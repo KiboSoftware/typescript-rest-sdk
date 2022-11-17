@@ -1,0 +1,13 @@
+apis/ReservationApi.ts
+apis/index.ts
+index.ts
+models/Allocati.ts
+models/AuditInf.ts
+models/BundledProdu.ts
+models/ChangeMessage.ts
+models/Produ.ts
+models/Reservati.ts
+models/ReservationCollecti.ts
+models/ReservationItem.ts
+models/index.ts
+runtime.ts

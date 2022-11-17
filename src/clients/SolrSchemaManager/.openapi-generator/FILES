@@ -1,0 +1,14 @@
+apis/FieldTypeDefinitionApi.ts
+apis/SchemaDefinitionApi.ts
+apis/SuggestDefinitionApi.ts
+apis/SynonymApi.ts
+apis/index.ts
+index.ts
+models/AuditInfo.ts
+models/FieldTypeDefinitionRepositoryEntry.ts
+models/SchemaDefinition.ts
+models/SchemaDefinitionField.ts
+models/SpellingSchemaDefinitionField.ts
+models/Suggester.ts
+models/index.ts
+runtime.ts

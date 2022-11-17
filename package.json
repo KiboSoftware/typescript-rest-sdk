@@ -1,0 +1,35 @@
+{
+  "name": "@kibocommerce/rest-sdk",
+  "version": "0.0.5",
+  "description": "Kibo Commerce Rest client SDK",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KiboSoftware/sdk-generator-poc.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KiboSoftware/sdk-generator-poc/issues"
+  },
+  "homepage": "https://github.com/KiboSoftware/sdk-generator-poc#readme",
+  "devDependencies": {
+    "@types/isomorphic-fetch": "^0.0.36",
+    "@types/node": "^18.11.1",
+    "typescript": "^4.8.3",
+    "why-is-node-running": "^2.2.2"
+  },
+  "dependencies": {
+    "@kibocommerce/sdk-authentication": "^1.0.0",
+    "dotenv": "^16.0.3",
+    "isomorphic-fetch": "^3.0.0",
+    "memory-cache-node": "^1.3.0"
+  },
+  "files": [
+    "**/*"
+  ]
+}

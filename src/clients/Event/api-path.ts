@@ -1,0 +1,1 @@
+export const basePathTemplate = 'https://{homePod}/api'

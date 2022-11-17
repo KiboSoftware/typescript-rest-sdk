@@ -1,0 +1,1 @@
+export const basePathTemplate = 'https://t{tenantId}.{env}.mozu.com/api'
