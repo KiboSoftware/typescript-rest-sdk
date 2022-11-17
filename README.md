@@ -8,6 +8,21 @@ Install package
 npm install @kibocommerce/rest-sdk
 ```
 
+Create env file (optional)
+
+```bash
+KIBO_LOCALE=
+KIBO_TENANT=
+KIBO_SITE=
+KIBO_MASTER_CATALOG=
+KIBO_CATALOG=
+KIBO_CURRENCY=
+KIBO_AUTH_HOST=
+KIBO_CLIENT_ID=
+KIBO_SHARED_SECRET=
+KIBO_API_ENV=
+```
+
 ## Create an API Client
 
 1. Import and create a Configuration object
