@@ -1,9 +1,10 @@
-import { KiboConfig } from '../types'
+import { ApiExtensionContext, KiboConfig } from '../types'
 import constants from './constants'
 
-export const getConfigFromEnv = (): KiboConfig => {
+export const getConfigFromEnv = (): any => {
   return {
     tenantId: process.env.KIBO_TENANT,
+    region: process.env.KIBO_REGION,
     siteId: process.env.KIBO_SITE,
     currency: process.env.KIBO_CURRENCY,
     catalog: process.env.KIBO_CATALOG,
@@ -17,3 +18,16 @@ export const getConfigFromEnv = (): KiboConfig => {
     dataViewMode: process.env.KIBO_DATA_VIEW_MODE || constants.dataViewModes.LIVE,
   }
 }
+
+// type HostedConfig = {
+//   baseUrl: string
+//   basePciUrl: string
+//   tenantPod: string
+//   'app-claims': string
+//   'user-claims': string
+//   tenant: string
+//   site: string
+//   'master-catalog': string
+//   catalog: string
+//   'dataview-mode': string
+// }

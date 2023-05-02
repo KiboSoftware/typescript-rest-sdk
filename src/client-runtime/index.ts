@@ -4,13 +4,27 @@
 /**
  * This is the base class for all generated API classes.
  */
+
+// middleware
+// //accessToken
+// // appClaims
+// // userClaims
+// // queryParamsStringify
+// // headers
+// // credentials
+// getBaseAPIUrl
+// fetchApi
+
 export class BaseAPI {
   public middleware: Middleware[]
   public basePathTemplate?: string
   protected configuration
   constructor(configuration?) {
     this.configuration = configuration
-    this.middleware = []
+    if (!this.configuration) {
+      throw new Error('API Configuration must be provided for client creation')
+    }
+    this.middleware = configuration.middleware || []
   }
 
   withMiddleware<T extends BaseAPI>(this: T, ...middlewares: Middleware[]) {
@@ -28,7 +42,21 @@ export class BaseAPI {
     const middlewares = postMiddlewares.map((post) => ({ post }))
     return this.withMiddleware<T>(...middlewares)
   }
-
+  protected async addAuthorizationHeaders(headers: HTTPHeaders) {
+    console.log('addAuthorizationHeaders')
+    if (this.configuration.accessToken) {
+      console.log('addAuthorizationHeaders: accessToken')
+      const token = await this.configuration.accessToken
+      const tokenString = await token()
+      if (tokenString) {
+        headers['Authorization'] = `Bearer ${tokenString}`
+      }
+    } else if (this.configuration.userClaims || this.configuration.appClaims) {
+      console.log('addAuthorizationHeaders: userClaims')
+      headers['x-vol-app-claims'] = this.configuration.appClaims
+      headers['x-vol-user-claims'] = this.configuration.userClaims
+    }
+  }
   protected async request(
     context: RequestOpts,
     initOverrides?: RequestInit | InitOverrideFunction
@@ -38,7 +66,13 @@ export class BaseAPI {
     if (response && response.status >= 200 && response.status < 300) {
       return response
     }
-    throw new ResponseError(response, 'Response returned an error code')
+    const responseBody = await response.text()
+    const apiError = JSON.parse(responseBody)
+    throw new ResponseError(
+      response,
+      apiError?.message || 'Response returned an error code',
+      apiError
+    )
   }
 
   private async createFetchParams(
@@ -74,12 +108,32 @@ export class BaseAPI {
         context,
       })),
     }
+    function isURLSearchParams(obj) {
+      // Duck-typing as a necessary condition.
+      if (
+        typeof obj !== 'object' ||
+        typeof obj.append !== 'function' ||
+        typeof obj.delete !== 'function' ||
+        typeof obj.get !== 'function' ||
+        typeof obj.getAll !== 'function' ||
+        typeof obj.has !== 'function' ||
+        typeof obj.set !== 'function'
+      ) {
+        return false
+      }
 
+      // Brand-checking and more duck-typing as optional condition.
+      return (
+        obj.constructor.name === 'URLSearchParams' ||
+        Object.prototype.toString.call(obj) === '[object URLSearchParams]' ||
+        typeof obj.sort === 'function'
+      )
+    }
     const init: RequestInit = {
       ...overridedInit,
       body:
         isFormData(overridedInit.body) ||
-        overridedInit.body instanceof URLSearchParams ||
+        isURLSearchParams(overridedInit.body) ||
         isBlob(overridedInit.body)
           ? overridedInit.body
           : JSON.stringify(overridedInit.body),
@@ -90,6 +144,7 @@ export class BaseAPI {
 
   private fetchApi = async (url: string, init: RequestInit) => {
     let fetchParams = { url, init }
+    console.log(url, init)
     for (const middleware of this.middleware) {
       if (middleware.pre) {
         fetchParams =
@@ -166,9 +221,23 @@ function isFormData(value: any): value is FormData {
 }
 
 export class ResponseError extends Error {
+  public apiError: { [key: string]: any }
+  public response: { url: any; status: any; statusText: any; correlationId: any }
   override name: 'ResponseError' = 'ResponseError'
-  constructor(public response: Response, msg?: string) {
+  constructor(response: Response, msg?: string, apiError?: any) {
     super(msg)
+    const correlationId = response?.headers?.get('x-vol-correlation') || {}
+
+    this.response = {
+      url: response?.url,
+      status: response?.status,
+      statusText: response?.statusText,
+      correlationId,
+    }
+    if (apiError?.additionalErrorData) {
+      apiError.additionalErrorData = JSON.stringify(apiError.additionalErrorData)
+    }
+    this.apiError = apiError
   }
 }
 

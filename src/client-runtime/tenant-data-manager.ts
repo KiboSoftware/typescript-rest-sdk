@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import { tenantCache } from '../utilities/tenant-cache'
+import { tenantDataMemCache } from '../utilities/tenant-data-mem-cache'
 
 export class TenantManager {
   private _sdkAuth: any
@@ -18,8 +18,8 @@ export class TenantManager {
 
   async getTenant(tenantId: number | string) {
     try {
-      if (tenantCache.has(tenantId.toString())) {
-        return tenantCache.get(tenantId.toString())
+      if (tenantDataMemCache.has(tenantId.toString())) {
+        return tenantDataMemCache.get(tenantId.toString())
       }
       const authToken = await this._sdkAuth.getAccessToken()
       const response = await fetch(`${this._homeApiUrl}/platform/tenants/${tenantId}`, {
@@ -29,7 +29,7 @@ export class TenantManager {
         throw new Error(`error fetching tenant data`)
       }
       const tenant = await response.json()
-      tenantCache.add(tenantId.toString(), tenant)
+      tenantDataMemCache.set(tenantId.toString(), tenant)
       return tenant
     } catch (error) {
       throw error

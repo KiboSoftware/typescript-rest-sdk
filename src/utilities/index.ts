@@ -1,6 +1,7 @@
 export { getConfigFromEnv } from './get-config-from-env'
-export { getApiUrl } from './get-api-url'
+export { getTenantApiUrl, getTenantHostFromConfig } from './get-api-url'
 export { getApiHeaders } from './get-api-headers'
-export { authenticationCache } from './authentication-cache'
-export { tenantCache } from './tenant-cache'
+export { apiAuthMemCache } from './api-auth-mem-cache'
+export { tenantDataMemCache } from './tenant-data-mem-cache'
 export { default as constants } from './constants'
+export const isKiboHosted = () => !!process.env.mozuHosted
