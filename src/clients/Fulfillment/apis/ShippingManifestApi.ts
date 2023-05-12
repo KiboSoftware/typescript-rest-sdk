@@ -73,22 +73,8 @@ export class ShippingManifestApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/fulfillment/shipping/manifests`,
             method: 'POST',
@@ -141,22 +127,8 @@ export class ShippingManifestApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/fulfillment/shipping/manifests/eligibleShipments`,
             method: 'GET',
@@ -192,22 +164,8 @@ export class ShippingManifestApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/fulfillment/shipping/manifests/{manifestId}`.replace(`{${"manifestId"}}`, encodeURIComponent(String(requestParameters.manifestId))),
             method: 'GET',
@@ -251,22 +209,8 @@ export class ShippingManifestApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/fulfillment/shipping/manifests`,
             method: 'GET',

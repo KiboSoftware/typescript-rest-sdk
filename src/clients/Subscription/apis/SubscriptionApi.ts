@@ -18,7 +18,7 @@ import { basePathTemplate } from '../api-path';
 import type {
   Frequency,
   FulfillmentInfo,
-  OneTimeCoupons,
+  InventoryTags,
   Order,
   Payment,
   ShippingRate,
@@ -26,6 +26,7 @@ import type {
   SubscriptionAction,
   SubscriptionAdjustment,
   SubscriptionCollection,
+  SubscriptionCoupons,
   SubscriptionItem,
   SubscriptionNextOrderDate,
   SubscriptionReason,
@@ -36,8 +37,8 @@ import {
     FrequencyToJSON,
     FulfillmentInfoFromJSON,
     FulfillmentInfoToJSON,
-    OneTimeCouponsFromJSON,
-    OneTimeCouponsToJSON,
+    InventoryTagsFromJSON,
+    InventoryTagsToJSON,
     OrderFromJSON,
     OrderToJSON,
     PaymentFromJSON,
@@ -52,6 +53,8 @@ import {
     SubscriptionAdjustmentToJSON,
     SubscriptionCollectionFromJSON,
     SubscriptionCollectionToJSON,
+    SubscriptionCouponsFromJSON,
+    SubscriptionCouponsToJSON,
     SubscriptionItemFromJSON,
     SubscriptionItemToJSON,
     SubscriptionNextOrderDateFromJSON,
@@ -86,11 +89,22 @@ export interface SubscriptionApiCreateSubscriptionRequest {
     subscription?: Subscription;
 }
 
+export interface SubscriptionApiDeleteSubscriptionDataRequest {
+    subscriptionId: string;
+    subscriptionDataId: string;
+}
+
 export interface SubscriptionApiDeleteSubscriptionItemRequest {
     subscriptionId: string;
     subscriptionItemId: string;
     updateMode?: string;
     subscriptionReason?: SubscriptionReason;
+}
+
+export interface SubscriptionApiDeleteSubscriptionItemDataRequest {
+    subscriptionId: string;
+    subscriptionItemId: string;
+    subscriptionItemDataId: string;
 }
 
 export interface SubscriptionApiGetAvailableShipmentMethodsRequest {
@@ -107,6 +121,15 @@ export interface SubscriptionApiGetSubscriptionRequest {
     draft?: boolean;
 }
 
+export interface SubscriptionApiGetSubscriptionDataRequest {
+    subscriptionId: string;
+}
+
+export interface SubscriptionApiGetSubscriptionItemDataRequest {
+    subscriptionId: string;
+    subscriptionItemId: string;
+}
+
 export interface SubscriptionApiGetSubscriptionsRequest {
     startIndex?: number;
     pageSize?: number;
@@ -120,15 +143,25 @@ export interface SubscriptionApiOrderNowRequest {
     subscriptionId: string;
 }
 
+export interface SubscriptionApiOrderPartialSubscriptionRequest {
+    subscriptionId: string;
+}
+
 export interface SubscriptionApiPerformSubscriptionActionRequest {
     subscriptionId: string;
     subscriptionAction?: SubscriptionAction;
 }
 
+export interface SubscriptionApiRemoveCouponRequest {
+    subscriptionId: string;
+    updateMode?: string;
+    subscriptionCoupons?: SubscriptionCoupons;
+}
+
 export interface SubscriptionApiRemoveOneTimeCouponRequest {
     subscriptionId: string;
     updateMode?: string;
-    oneTimeCoupons?: OneTimeCoupons;
+    subscriptionCoupons?: SubscriptionCoupons;
 }
 
 export interface SubscriptionApiSkipSubscriptionRequest {
@@ -170,9 +203,29 @@ export interface SubscriptionApiUpdateSubscriptionRequest {
     subscription?: Subscription;
 }
 
+export interface SubscriptionApiUpdateSubscriptionDataRequest {
+    subscriptionId: string;
+    subscriptionDataId: string;
+    body?: any | null;
+}
+
 export interface SubscriptionApiUpdateSubscriptionFrequencyRequest {
     subscriptionId: string;
     frequency?: Frequency;
+}
+
+export interface SubscriptionApiUpdateSubscriptionItemDataRequest {
+    subscriptionId: string;
+    subscriptionItemId: string;
+    subscriptionItemDataId: string;
+    body?: any | null;
+}
+
+export interface SubscriptionApiUpsertInventoryTagsRequest {
+    subscriptionId: string;
+    subscriptionItemId: string;
+    updateMode?: string;
+    inventoryTags?: Array<InventoryTags>;
 }
 
 /**
@@ -208,22 +261,8 @@ export class SubscriptionApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/subscriptions/{subscriptionId}/items`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))),
             method: 'POST',
@@ -271,22 +310,8 @@ export class SubscriptionApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/subscriptions/{subscriptionId}/coupons/{couponCode}`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))).replace(`{${"couponCode"}}`, encodeURIComponent(String(requestParameters.couponCode))),
             method: 'PUT',
@@ -325,22 +350,8 @@ export class SubscriptionApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/subscriptions/{subscriptionId}/cleardraft`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))),
             method: 'PUT',
@@ -379,22 +390,8 @@ export class SubscriptionApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/subscriptions/{subscriptionId}/converttoorder`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))),
             method: 'PUT',
@@ -431,22 +428,8 @@ export class SubscriptionApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/subscriptions`,
             method: 'POST',
@@ -464,6 +447,50 @@ export class SubscriptionApi extends runtime.BaseAPI {
      */
     async createSubscription(requestParameters: SubscriptionApiCreateSubscriptionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Subscription> {
         const response = await this.createSubscriptionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Delete Value of the given Key in the SubscriptionData bag.
+     * Delete Subscription Data
+     */
+
+
+    async deleteSubscriptionDataRaw(requestParameters: SubscriptionApiDeleteSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+        if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
+            throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling deleteSubscriptionData.');
+        }
+
+        if (requestParameters.subscriptionDataId === null || requestParameters.subscriptionDataId === undefined) {
+            throw new runtime.RequiredError('subscriptionDataId','Required parameter requestParameters.subscriptionDataId was null or undefined when calling deleteSubscriptionData.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/subscriptions/{subscriptionId}/data/{subscriptionDataId}`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))).replace(`{${"subscriptionDataId"}}`, encodeURIComponent(String(requestParameters.subscriptionDataId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
+    }
+
+    /**
+     * Delete Value of the given Key in the SubscriptionData bag.
+     * Delete Subscription Data
+     */
+    async deleteSubscriptionData(requestParameters: SubscriptionApiDeleteSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+        const response = await this.deleteSubscriptionDataRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -496,22 +523,8 @@ export class SubscriptionApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/subscriptions/{subscriptionId}/items/{subscriptionItemId}/remove`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))).replace(`{${"subscriptionItemId"}}`, encodeURIComponent(String(requestParameters.subscriptionItemId))),
             method: 'PUT',
@@ -529,6 +542,54 @@ export class SubscriptionApi extends runtime.BaseAPI {
      */
     async deleteSubscriptionItem(requestParameters: SubscriptionApiDeleteSubscriptionItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Subscription> {
         const response = await this.deleteSubscriptionItemRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Deletes the Value of the given Key in the SubscriptionItem Data bag.
+     * Delete Subscription Item Data
+     */
+
+
+    async deleteSubscriptionItemDataRaw(requestParameters: SubscriptionApiDeleteSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+        if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
+            throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling deleteSubscriptionItemData.');
+        }
+
+        if (requestParameters.subscriptionItemId === null || requestParameters.subscriptionItemId === undefined) {
+            throw new runtime.RequiredError('subscriptionItemId','Required parameter requestParameters.subscriptionItemId was null or undefined when calling deleteSubscriptionItemData.');
+        }
+
+        if (requestParameters.subscriptionItemDataId === null || requestParameters.subscriptionItemDataId === undefined) {
+            throw new runtime.RequiredError('subscriptionItemDataId','Required parameter requestParameters.subscriptionItemDataId was null or undefined when calling deleteSubscriptionItemData.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/subscriptions/{subscriptionId}/item/{subscriptionItemId}/data/{subscriptionItemDataId}`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))).replace(`{${"subscriptionItemId"}}`, encodeURIComponent(String(requestParameters.subscriptionItemId))).replace(`{${"subscriptionItemDataId"}}`, encodeURIComponent(String(requestParameters.subscriptionItemDataId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
+    }
+
+    /**
+     * Deletes the Value of the given Key in the SubscriptionItem Data bag.
+     * Delete Subscription Item Data
+     */
+    async deleteSubscriptionItemData(requestParameters: SubscriptionApiDeleteSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+        const response = await this.deleteSubscriptionItemDataRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -555,22 +616,8 @@ export class SubscriptionApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/subscriptions/{subscriptionId}/shipments/methods`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))),
             method: 'GET',
@@ -609,22 +656,8 @@ export class SubscriptionApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/subscriptions/reasons`,
             method: 'GET',
@@ -667,22 +700,8 @@ export class SubscriptionApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/subscriptions/{subscriptionId}`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))),
             method: 'GET',
@@ -699,6 +718,90 @@ export class SubscriptionApi extends runtime.BaseAPI {
      */
     async getSubscription(requestParameters: SubscriptionApiGetSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Subscription> {
         const response = await this.getSubscriptionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves all the values in the Subscription Data bag
+     * Get subscription Data
+     */
+
+
+    async getSubscriptionDataRaw(requestParameters: SubscriptionApiGetSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+        if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
+            throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling getSubscriptionData.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/subscriptions/{subscriptionId}/data`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
+    }
+
+    /**
+     * Retrieves all the values in the Subscription Data bag
+     * Get subscription Data
+     */
+    async getSubscriptionData(requestParameters: SubscriptionApiGetSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+        const response = await this.getSubscriptionDataRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves a specific value in the SubscriptionItem Data bag.
+     * Get Subscription Item Data
+     */
+
+
+    async getSubscriptionItemDataRaw(requestParameters: SubscriptionApiGetSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+        if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
+            throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling getSubscriptionItemData.');
+        }
+
+        if (requestParameters.subscriptionItemId === null || requestParameters.subscriptionItemId === undefined) {
+            throw new runtime.RequiredError('subscriptionItemId','Required parameter requestParameters.subscriptionItemId was null or undefined when calling getSubscriptionItemData.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/subscriptions/{subscriptionId}/item/{subscriptionItemId}/data`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))).replace(`{${"subscriptionItemId"}}`, encodeURIComponent(String(requestParameters.subscriptionItemId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
+    }
+
+    /**
+     * Retrieves a specific value in the SubscriptionItem Data bag.
+     * Get Subscription Item Data
+     */
+    async getSubscriptionItemData(requestParameters: SubscriptionApiGetSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+        const response = await this.getSubscriptionItemDataRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -741,22 +844,8 @@ export class SubscriptionApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/subscriptions`,
             method: 'GET',
@@ -795,22 +884,8 @@ export class SubscriptionApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/subscriptions/{subscriptionId}/ordernow`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))),
             method: 'PUT',
@@ -827,6 +902,46 @@ export class SubscriptionApi extends runtime.BaseAPI {
      */
     async orderNow(requestParameters: SubscriptionApiOrderNowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Subscription> {
         const response = await this.orderNowRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Lets the user place an order from Partial Draft.
+     * Order Partial Subscription
+     */
+
+
+    async orderPartialSubscriptionRaw(requestParameters: SubscriptionApiOrderPartialSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Subscription>> {
+        if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
+            throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling orderPartialSubscription.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/subscriptions/{subscriptionId}/orderpartialdraft`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SubscriptionFromJSON(jsonValue));
+    }
+
+    /**
+     * Lets the user place an order from Partial Draft.
+     * Order Partial Subscription
+     */
+    async orderPartialSubscription(requestParameters: SubscriptionApiOrderPartialSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Subscription> {
+        const response = await this.orderPartialSubscriptionRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -851,22 +966,8 @@ export class SubscriptionApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/subscriptions/{subscriptionId}/actions`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))),
             method: 'PUT',
@@ -884,6 +985,53 @@ export class SubscriptionApi extends runtime.BaseAPI {
      */
     async performSubscriptionAction(requestParameters: SubscriptionApiPerformSubscriptionActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Subscription> {
         const response = await this.performSubscriptionActionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Remove coupons from subscription and draft
+     * Remove coupons from subscription and draft
+     */
+
+
+    async removeCouponRaw(requestParameters: SubscriptionApiRemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Subscription>> {
+        if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
+            throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling removeCoupon.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.updateMode !== undefined) {
+            queryParameters['updateMode'] = requestParameters.updateMode;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/subscriptions/{subscriptionId}/removecoupon`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SubscriptionCouponsToJSON(requestParameters.subscriptionCoupons),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SubscriptionFromJSON(jsonValue));
+    }
+
+    /**
+     * Remove coupons from subscription and draft
+     * Remove coupons from subscription and draft
+     */
+    async removeCoupon(requestParameters: SubscriptionApiRemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Subscription> {
+        const response = await this.removeCouponRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -912,28 +1060,14 @@ export class SubscriptionApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/subscriptions/{subscriptionId}/removeonetimecoupon`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: OneTimeCouponsToJSON(requestParameters.oneTimeCoupons),
+            body: SubscriptionCouponsToJSON(requestParameters.subscriptionCoupons),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SubscriptionFromJSON(jsonValue));
@@ -967,22 +1101,8 @@ export class SubscriptionApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/subscriptions/{subscriptionId}/skip`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))),
             method: 'PUT',
@@ -1023,22 +1143,8 @@ export class SubscriptionApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/subscriptions/{subscriptionId}/adjustments`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))),
             method: 'POST',
@@ -1084,22 +1190,8 @@ export class SubscriptionApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/subscriptions/{subscriptionId}/fulfillmentinfo`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))),
             method: 'PUT',
@@ -1153,22 +1245,8 @@ export class SubscriptionApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/subscriptions/{subscriptionId}/items/{subscriptionItemId}/quantity/{quantity}`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))).replace(`{${"subscriptionItemId"}}`, encodeURIComponent(String(requestParameters.subscriptionItemId))).replace(`{${"quantity"}}`, encodeURIComponent(String(requestParameters.quantity))),
             method: 'PUT',
@@ -1210,22 +1288,8 @@ export class SubscriptionApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/subscriptions/{subscriptionId}/nextorderdate`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))),
             method: 'PUT',
@@ -1271,22 +1335,8 @@ export class SubscriptionApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/subscriptions/{subscriptionId}/payment`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))),
             method: 'PUT',
@@ -1328,22 +1378,8 @@ export class SubscriptionApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/subscriptions/{subscriptionId}`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))),
             method: 'PUT',
@@ -1361,6 +1397,53 @@ export class SubscriptionApi extends runtime.BaseAPI {
      */
     async updateSubscription(requestParameters: SubscriptionApiUpdateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Subscription> {
         const response = await this.updateSubscriptionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Insert / Updates the Value of the given Key in the Subscription Data bag.
+     * Update Subscription Data
+     */
+
+
+    async updateSubscriptionDataRaw(requestParameters: SubscriptionApiUpdateSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+        if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
+            throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling updateSubscriptionData.');
+        }
+
+        if (requestParameters.subscriptionDataId === null || requestParameters.subscriptionDataId === undefined) {
+            throw new runtime.RequiredError('subscriptionDataId','Required parameter requestParameters.subscriptionDataId was null or undefined when calling updateSubscriptionData.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/subscriptions/{subscriptionId}/data/{subscriptionDataId}`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))).replace(`{${"subscriptionDataId"}}`, encodeURIComponent(String(requestParameters.subscriptionDataId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.body as any,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
+    }
+
+    /**
+     * Insert / Updates the Value of the given Key in the Subscription Data bag.
+     * Update Subscription Data
+     */
+    async updateSubscriptionData(requestParameters: SubscriptionApiUpdateSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+        const response = await this.updateSubscriptionDataRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1385,22 +1468,8 @@ export class SubscriptionApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/subscriptions/{subscriptionId}/frequency`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))),
             method: 'PUT',
@@ -1418,6 +1487,108 @@ export class SubscriptionApi extends runtime.BaseAPI {
      */
     async updateSubscriptionFrequency(requestParameters: SubscriptionApiUpdateSubscriptionFrequencyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Subscription> {
         const response = await this.updateSubscriptionFrequencyRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Insert / Updates the Value of the given Key in the SubscriptionItem Data bag.
+     * Update Subscription Item Data
+     */
+
+
+    async updateSubscriptionItemDataRaw(requestParameters: SubscriptionApiUpdateSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+        if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
+            throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling updateSubscriptionItemData.');
+        }
+
+        if (requestParameters.subscriptionItemId === null || requestParameters.subscriptionItemId === undefined) {
+            throw new runtime.RequiredError('subscriptionItemId','Required parameter requestParameters.subscriptionItemId was null or undefined when calling updateSubscriptionItemData.');
+        }
+
+        if (requestParameters.subscriptionItemDataId === null || requestParameters.subscriptionItemDataId === undefined) {
+            throw new runtime.RequiredError('subscriptionItemDataId','Required parameter requestParameters.subscriptionItemDataId was null or undefined when calling updateSubscriptionItemData.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/subscriptions/{subscriptionId}/item/{subscriptionItemId}/data/{subscriptionItemDataId}`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))).replace(`{${"subscriptionItemId"}}`, encodeURIComponent(String(requestParameters.subscriptionItemId))).replace(`{${"subscriptionItemDataId"}}`, encodeURIComponent(String(requestParameters.subscriptionItemDataId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.body as any,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
+    }
+
+    /**
+     * Insert / Updates the Value of the given Key in the SubscriptionItem Data bag.
+     * Update Subscription Item Data
+     */
+    async updateSubscriptionItemData(requestParameters: SubscriptionApiUpdateSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+        const response = await this.updateSubscriptionItemDataRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Upsert Inventory Tags
+     * Upsert Inventory Tags
+     */
+
+
+    async upsertInventoryTagsRaw(requestParameters: SubscriptionApiUpsertInventoryTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Subscription>> {
+        if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
+            throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling upsertInventoryTags.');
+        }
+
+        if (requestParameters.subscriptionItemId === null || requestParameters.subscriptionItemId === undefined) {
+            throw new runtime.RequiredError('subscriptionItemId','Required parameter requestParameters.subscriptionItemId was null or undefined when calling upsertInventoryTags.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.updateMode !== undefined) {
+            queryParameters['updateMode'] = requestParameters.updateMode;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/subscriptions/{subscriptionId}/items/{subscriptionItemId}/upsertinventorytags`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))).replace(`{${"subscriptionItemId"}}`, encodeURIComponent(String(requestParameters.subscriptionItemId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.inventoryTags.map(InventoryTagsToJSON),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SubscriptionFromJSON(jsonValue));
+    }
+
+    /**
+     * Upsert Inventory Tags
+     * Upsert Inventory Tags
+     */
+    async upsertInventoryTags(requestParameters: SubscriptionApiUpsertInventoryTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Subscription> {
+        const response = await this.upsertInventoryTagsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

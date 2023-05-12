@@ -85,6 +85,12 @@ import {
     ShipmentStatusReasonFromJSONTyped,
     ShipmentStatusReasonToJSON,
 } from './ShipmentStatusReason';
+import type { SubstitutedItem } from './SubstitutedItem';
+import {
+    SubstitutedItemFromJSON,
+    SubstitutedItemFromJSONTyped,
+    SubstitutedItemToJSON,
+} from './SubstitutedItem';
 import type { WorkflowState } from './WorkflowState';
 import {
     WorkflowStateFromJSON,
@@ -494,6 +500,12 @@ export interface Shipment {
      * @memberof Shipment
      */
     alternateContact?: FulfillmentAlternateContact;
+    /**
+     * 
+     * @type {Array<SubstitutedItem>}
+     * @memberof Shipment
+     */
+    substitutedItems?: Array<SubstitutedItem> | null;
 }
 
 /**
@@ -581,6 +593,7 @@ export function ShipmentFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'customer': !exists(json, 'customer') ? undefined : CustomerFromJSON(json['customer']),
         'shipmentNotes': !exists(json, 'shipmentNotes') ? undefined : (json['shipmentNotes'] === null ? null : (json['shipmentNotes'] as Array<any>).map(ShipmentNoteFromJSON)),
         'alternateContact': !exists(json, 'alternateContact') ? undefined : FulfillmentAlternateContactFromJSON(json['alternateContact']),
+        'substitutedItems': !exists(json, 'substitutedItems') ? undefined : (json['substitutedItems'] === null ? null : (json['substitutedItems'] as Array<any>).map(SubstitutedItemFromJSON)),
     };
 }
 
@@ -658,6 +671,7 @@ export function ShipmentToJSON(value?: Shipment | null): any {
         'customer': CustomerToJSON(value.customer),
         'shipmentNotes': value.shipmentNotes === undefined ? undefined : (value.shipmentNotes === null ? null : (value.shipmentNotes as Array<any>).map(ShipmentNoteToJSON)),
         'alternateContact': FulfillmentAlternateContactToJSON(value.alternateContact),
+        'substitutedItems': value.substitutedItems === undefined ? undefined : (value.substitutedItems === null ? null : (value.substitutedItems as Array<any>).map(SubstitutedItemToJSON)),
     };
 }
 

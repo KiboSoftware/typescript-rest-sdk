@@ -84,22 +84,8 @@ export class EntityContainersApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/platform/entitylists/{entityListFullName}/entityContainers/{id}`.replace(`{${"entityListFullName"}}`, encodeURIComponent(String(requestParameters.entityListFullName))).replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
             method: 'GET',
@@ -154,22 +140,8 @@ export class EntityContainersApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/platform/entitylists/{entityListFullName}/entityContainers`.replace(`{${"entityListFullName"}}`, encodeURIComponent(String(requestParameters.entityListFullName))),
             method: 'GET',
@@ -216,22 +188,8 @@ export class EntityContainersApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/platform/entitylists/{entityListFullName}/views/{viewName}/entityContainers/{entityId}`.replace(`{${"entityListFullName"}}`, encodeURIComponent(String(requestParameters.entityListFullName))).replace(`{${"viewName"}}`, encodeURIComponent(String(requestParameters.viewName))).replace(`{${"entityId"}}`, encodeURIComponent(String(requestParameters.entityId))),
             method: 'GET',
@@ -286,22 +244,8 @@ export class EntityContainersApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/platform/entitylists/{entityListFullName}/views/{viewName}/entityContainers`.replace(`{${"entityListFullName"}}`, encodeURIComponent(String(requestParameters.entityListFullName))).replace(`{${"viewName"}}`, encodeURIComponent(String(requestParameters.viewName))),
             method: 'GET',

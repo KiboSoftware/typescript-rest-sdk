@@ -37,10 +37,16 @@ export interface SubscriptionApiGetDeliveryAttemptSummariesRequest {
     filter?: string;
 }
 
+export interface SubscriptionApiGetDeliveryAttemptSummariesAllSubscriptionsRequest {
+    startIndex?: number;
+    pageSize?: number;
+    sortBy?: string;
+    filter?: string;
+}
+
 export interface SubscriptionApiGetDeliveryAttemptSummaryRequest {
     subscriptionId: string;
-    id: string;
-    processId?: number;
+    processId: number;
 }
 
 export interface SubscriptionApiGetSubscriptionsRequest {
@@ -60,7 +66,7 @@ export class SubscriptionApi extends runtime.BaseAPI {
         this.basePathTemplate = basePathTemplate
     }
     /**
-     * Get delivery attempts
+     * Get delivery attempts for the specified subscription
      * Get Delivery Attempt Summaries
      */
 
@@ -94,22 +100,8 @@ export class SubscriptionApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/event/push/subscriptions/{subscriptionId}/deliveryattempts`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))),
             method: 'GET',
@@ -121,11 +113,63 @@ export class SubscriptionApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get delivery attempts
+     * Get delivery attempts for the specified subscription
      * Get Delivery Attempt Summaries
      */
     async getDeliveryAttemptSummaries(requestParameters: SubscriptionApiGetDeliveryAttemptSummariesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventDeliverySummaryCollection> {
         const response = await this.getDeliveryAttemptSummariesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get delivery attempts
+     * Get Delivery Attempt Summaries All Subscriptions
+     */
+
+
+    async getDeliveryAttemptSummariesAllSubscriptionsRaw(requestParameters: SubscriptionApiGetDeliveryAttemptSummariesAllSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventDeliverySummaryCollection>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.startIndex !== undefined) {
+            queryParameters['startIndex'] = requestParameters.startIndex;
+        }
+
+        if (requestParameters.pageSize !== undefined) {
+            queryParameters['pageSize'] = requestParameters.pageSize;
+        }
+
+        if (requestParameters.sortBy !== undefined) {
+            queryParameters['sortBy'] = requestParameters.sortBy;
+        }
+
+        if (requestParameters.filter !== undefined) {
+            queryParameters['filter'] = requestParameters.filter;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/event/push/subscriptions/deliveryattempts`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => EventDeliverySummaryCollectionFromJSON(jsonValue));
+    }
+
+    /**
+     * Get delivery attempts
+     * Get Delivery Attempt Summaries All Subscriptions
+     */
+    async getDeliveryAttemptSummariesAllSubscriptions(requestParameters: SubscriptionApiGetDeliveryAttemptSummariesAllSubscriptionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventDeliverySummaryCollection> {
+        const response = await this.getDeliveryAttemptSummariesAllSubscriptionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -140,15 +184,11 @@ export class SubscriptionApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling getDeliveryAttemptSummary.');
         }
 
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getDeliveryAttemptSummary.');
+        if (requestParameters.processId === null || requestParameters.processId === undefined) {
+            throw new runtime.RequiredError('processId','Required parameter requestParameters.processId was null or undefined when calling getDeliveryAttemptSummary.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.processId !== undefined) {
-            queryParameters['processId'] = requestParameters.processId;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -156,24 +196,10 @@ export class SubscriptionApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/event/push/subscriptions/{subscriptionId}/deliveryattempts/{id}`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))).replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            path: `/event/push/subscriptions/{subscriptionId}/deliveryattempts/{processId}`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))).replace(`{${"processId"}}`, encodeURIComponent(String(requestParameters.processId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -226,22 +252,8 @@ export class SubscriptionApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/event/push/subscriptions`,
             method: 'GET',

@@ -29,6 +29,11 @@ import {
     JobQueueResponseToJSON,
 } from '../models';
 
+export interface InventoryJobApiDeleteAllOldInventoryRequest {
+    xVolTenant: number;
+    months: number;
+}
+
 export interface InventoryJobApiDeleteOldInventoryRequest {
     xVolTenant: number;
     months: number;
@@ -57,6 +62,51 @@ export class InventoryJobApi extends runtime.BaseAPI {
         this.basePathTemplate = basePathTemplate
     }
     /**
+     * Deletes older records from inventory table of all silos
+     * Delete All Old Inventory
+     */
+
+
+    async deleteAllOldInventoryRaw(requestParameters: InventoryJobApiDeleteAllOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobIDResponse>>> {
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteAllOldInventory.');
+        }
+
+        if (requestParameters.months === null || requestParameters.months === undefined) {
+            throw new runtime.RequiredError('months','Required parameter requestParameters.months was null or undefined when calling deleteAllOldInventory.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/inventory/v1/deleteOldInventory/allSilo/{months}`.replace(`{${"months"}}`, encodeURIComponent(String(requestParameters.months))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(JobIDResponseFromJSON));
+    }
+
+    /**
+     * Deletes older records from inventory table of all silos
+     * Delete All Old Inventory
+     */
+    async deleteAllOldInventory(requestParameters: InventoryJobApiDeleteAllOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobIDResponse>> {
+        const response = await this.deleteAllOldInventoryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Deletes older records from inventory table
      * Delete Old Inventory
      */
@@ -80,24 +130,10 @@ export class InventoryJobApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v1/deleteOldInventory/{months}`.replace(`{${"months"}}`, encodeURIComponent(String(requestParameters.months))),
+            path: `/commerce/inventory/v1/deleteOldInventory/{months}`.replace(`{${"months"}}`, encodeURIComponent(String(requestParameters.months))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -139,24 +175,10 @@ export class InventoryJobApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v1/queue/{jobID}`.replace(`{${"jobID"}}`, encodeURIComponent(String(requestParameters.jobID))),
+            path: `/commerce/inventory/v1/queue/{jobID}`.replace(`{${"jobID"}}`, encodeURIComponent(String(requestParameters.jobID))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -214,24 +236,10 @@ export class InventoryJobApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v1/queue`,
+            path: `/commerce/inventory/v1/queue`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,

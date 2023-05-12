@@ -14,29 +14,11 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * 
+ * Location Response Object
  * @export
  * @interface LocationResponse
  */
 export interface LocationResponse {
-    /**
-     * Flag for success
-     * @type {boolean}
-     * @memberof LocationResponse
-     */
-    success?: boolean;
-    /**
-     * List of messages
-     * @type {Array<string>}
-     * @memberof LocationResponse
-     */
-    messages?: Array<string>;
-    /**
-     * Number of results
-     * @type {number}
-     * @memberof LocationResponse
-     */
-    numResults?: number;
     /**
      * Internal Location ID
      * @type {number}
@@ -133,6 +115,24 @@ export interface LocationResponse {
      * @memberof LocationResponse
      */
     wmsEnabled?: boolean;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof LocationResponse
+     */
+    success?: boolean;
+    /**
+     * List of messages
+     * @type {Array<string>}
+     * @memberof LocationResponse
+     */
+    messages?: Array<string>;
+    /**
+     * Number of results
+     * @type {number}
+     * @memberof LocationResponse
+     */
+    numResults?: number;
 }
 
 /**
@@ -154,9 +154,6 @@ export function LocationResponseFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'success': !exists(json, 'success') ? undefined : json['success'],
-        'messages': !exists(json, 'messages') ? undefined : json['messages'],
-        'numResults': !exists(json, 'numResults') ? undefined : json['numResults'],
         'locationID': !exists(json, 'locationID') ? undefined : json['locationID'],
         'tenantID': !exists(json, 'tenantID') ? undefined : json['tenantID'],
         'locationCode': !exists(json, 'locationCode') ? undefined : json['locationCode'],
@@ -173,6 +170,9 @@ export function LocationResponseFromJSONTyped(json: any, ignoreDiscriminator: bo
         'longitude': !exists(json, 'longitude') ? undefined : json['longitude'],
         'locationName': !exists(json, 'locationName') ? undefined : json['locationName'],
         'wmsEnabled': !exists(json, 'wmsEnabled') ? undefined : json['wmsEnabled'],
+        'success': !exists(json, 'success') ? undefined : json['success'],
+        'messages': !exists(json, 'messages') ? undefined : json['messages'],
+        'numResults': !exists(json, 'numResults') ? undefined : json['numResults'],
     };
 }
 
@@ -185,9 +185,6 @@ export function LocationResponseToJSON(value?: LocationResponse | null): any {
     }
     return {
         
-        'success': value.success,
-        'messages': value.messages,
-        'numResults': value.numResults,
         'locationID': value.locationID,
         'tenantID': value.tenantID,
         'locationCode': value.locationCode,
@@ -204,6 +201,9 @@ export function LocationResponseToJSON(value?: LocationResponse | null): any {
         'longitude': value.longitude,
         'locationName': value.locationName,
         'wmsEnabled': value.wmsEnabled,
+        'success': value.success,
+        'messages': value.messages,
+        'numResults': value.numResults,
     };
 }
 

@@ -77,6 +77,13 @@ models/FulfillmentAction.ts
 models/FulfillmentAlternateContact.ts
 models/FulfillmentField.ts
 models/FulfillmentInfo.ts
+models/FulfillmentServiceAppeasementReason.ts
+models/FulfillmentServiceAuditInfo.ts
+models/FulfillmentServiceFulfillmentField.ts
+models/FulfillmentServiceGiftCard.ts
+models/FulfillmentServiceInventoryTag.ts
+models/FulfillmentServiceProductOption.ts
+models/FulfillmentServiceSubstituteReason.ts
 models/FulfillmentShopperNotes.ts
 models/FulfillmentTask.ts
 models/FutureInventory.ts
@@ -175,6 +182,7 @@ models/ShopperNotes.ts
 models/SplitShipmentsObject.ts
 models/SubPayment.ts
 models/SubscriptionInfo.ts
+models/SubstitutedItem.ts
 models/SuggestedDiscount.ts
 models/TaskInput.ts
 models/ThresholdMessage.ts

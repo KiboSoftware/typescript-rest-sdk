@@ -45,6 +45,13 @@ import {
  */
 export interface SiteSearchSettings {
     /**
+     * controls sowBehavior (Never=0, Always=1, WhenNoMultiTermSyn=2)
+     * never sow=false, always sow=true,  WhenNoMultiTermSyn = (depends on existance of multitermsynonym match in query)
+     * @type {number}
+     * @memberof SiteSearchSettings
+     */
+    sowBehavior?: number | null;
+    /**
      * 
      * @type {Array<SiteSearchFieldWeight>}
      * @memberof SiteSearchSettings
@@ -63,6 +70,13 @@ export interface SiteSearchSettings {
      */
     fieldValueBoost?: FieldValueBoost;
     /**
+     * if values present is used for mm when sowBehavior.WhenNoMultiTermSyn and multi term sym match found in query
+     * if no values are present or null fallback to MinMatchPercents
+     * @type {Array<number>}
+     * @memberof SiteSearchSettings
+     */
+    multiTermSynMinimumMatchPercents?: Array<number> | null;
+    /**
      * 
      * @type {Array<number>}
      * @memberof SiteSearchSettings
@@ -74,6 +88,13 @@ export interface SiteSearchSettings {
      * @memberof SiteSearchSettings
      */
     phraseSlop?: number;
+    /**
+     * if true, 2 word shingles used for phrase boosting based on fields with phrase weights greater than 0
+     * if false, only full phrase mathing used for phrase boosting
+     * @type {boolean}
+     * @memberof SiteSearchSettings
+     */
+    twoWordPhraseBoost?: boolean | null;
     /**
      * 
      * @type {string}
@@ -131,11 +152,14 @@ export function SiteSearchSettingsFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
+        'sowBehavior': !exists(json, 'sowBehavior') ? undefined : json['sowBehavior'],
         'fieldWeights': !exists(json, 'fieldWeights') ? undefined : (json['fieldWeights'] === null ? null : (json['fieldWeights'] as Array<any>).map(SiteSearchFieldWeightFromJSON)),
         'customBoosts': !exists(json, 'customBoosts') ? undefined : json['customBoosts'],
         'fieldValueBoost': !exists(json, 'fieldValueBoost') ? undefined : FieldValueBoostFromJSON(json['fieldValueBoost']),
+        'multiTermSynMinimumMatchPercents': !exists(json, 'multiTermSynMinimumMatchPercents') ? undefined : json['multiTermSynMinimumMatchPercents'],
         'minimumMatchPercents': !exists(json, 'minimumMatchPercents') ? undefined : json['minimumMatchPercents'],
         'phraseSlop': !exists(json, 'phraseSlop') ? undefined : json['phraseSlop'],
+        'twoWordPhraseBoost': !exists(json, 'twoWordPhraseBoost') ? undefined : json['twoWordPhraseBoost'],
         'personalizationExperience': !exists(json, 'personalizationExperience') ? undefined : json['personalizationExperience'],
         'personalizationFactor': !exists(json, 'personalizationFactor') ? undefined : json['personalizationFactor'],
         'searchChildProductsByDefault': !exists(json, 'searchChildProductsByDefault') ? undefined : json['searchChildProductsByDefault'],
@@ -154,11 +178,14 @@ export function SiteSearchSettingsToJSON(value?: SiteSearchSettings | null): any
     }
     return {
         
+        'sowBehavior': value.sowBehavior,
         'fieldWeights': value.fieldWeights === undefined ? undefined : (value.fieldWeights === null ? null : (value.fieldWeights as Array<any>).map(SiteSearchFieldWeightToJSON)),
         'customBoosts': value.customBoosts,
         'fieldValueBoost': FieldValueBoostToJSON(value.fieldValueBoost),
+        'multiTermSynMinimumMatchPercents': value.multiTermSynMinimumMatchPercents,
         'minimumMatchPercents': value.minimumMatchPercents,
         'phraseSlop': value.phraseSlop,
+        'twoWordPhraseBoost': value.twoWordPhraseBoost,
         'personalizationExperience': value.personalizationExperience,
         'personalizationFactor': value.personalizationFactor,
         'searchChildProductsByDefault': value.searchChildProductsByDefault,

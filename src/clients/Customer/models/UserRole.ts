@@ -19,6 +19,12 @@ import {
     AuditInfoFromJSONTyped,
     AuditInfoToJSON,
 } from './AuditInfo';
+import type { Resource } from './Resource';
+import {
+    ResourceFromJSON,
+    ResourceFromJSONTyped,
+    ResourceToJSON,
+} from './Resource';
 import type { UserScope } from './UserScope';
 import {
     UserScopeFromJSON,
@@ -58,6 +64,12 @@ export interface UserRole {
     roleName?: string | null;
     /**
      * 
+     * @type {Array<Resource>}
+     * @memberof UserRole
+     */
+    roleResources?: Array<Resource> | null;
+    /**
+     * 
      * @type {Array<string>}
      * @memberof UserRole
      */
@@ -93,6 +105,7 @@ export function UserRoleFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'assignedInScope': !exists(json, 'assignedInScope') ? undefined : UserScopeFromJSON(json['assignedInScope']),
         'roleId': !exists(json, 'roleId') ? undefined : json['roleId'],
         'roleName': !exists(json, 'roleName') ? undefined : json['roleName'],
+        'roleResources': !exists(json, 'roleResources') ? undefined : (json['roleResources'] === null ? null : (json['roleResources'] as Array<any>).map(ResourceFromJSON)),
         'roleTags': !exists(json, 'roleTags') ? undefined : json['roleTags'],
         'auditInfo': !exists(json, 'auditInfo') ? undefined : AuditInfoFromJSON(json['auditInfo']),
     };
@@ -111,6 +124,7 @@ export function UserRoleToJSON(value?: UserRole | null): any {
         'assignedInScope': UserScopeToJSON(value.assignedInScope),
         'roleId': value.roleId,
         'roleName': value.roleName,
+        'roleResources': value.roleResources === undefined ? undefined : (value.roleResources === null ? null : (value.roleResources as Array<any>).map(ResourceToJSON)),
         'roleTags': value.roleTags,
         'auditInfo': AuditInfoToJSON(value.auditInfo),
     };

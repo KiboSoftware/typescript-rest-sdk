@@ -37,6 +37,24 @@ export interface UpdateExportSettingsS3Response {
      * @memberof UpdateExportSettingsS3Response
      */
     exportSettingsID?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof UpdateExportSettingsS3Response
+     */
+    success?: boolean;
+    /**
+     * List of messages
+     * @type {Array<string>}
+     * @memberof UpdateExportSettingsS3Response
+     */
+    messages?: Array<string>;
+    /**
+     * Number of results
+     * @type {number}
+     * @memberof UpdateExportSettingsS3Response
+     */
+    numResults?: number;
 }
 
 /**
@@ -61,6 +79,9 @@ export function UpdateExportSettingsS3ResponseFromJSONTyped(json: any, ignoreDis
         'tenantID': !exists(json, 'tenantID') ? undefined : json['tenantID'],
         'exportSettingsS3ID': !exists(json, 'exportSettingsS3ID') ? undefined : json['exportSettingsS3ID'],
         'exportSettingsID': !exists(json, 'exportSettingsID') ? undefined : json['exportSettingsID'],
+        'success': !exists(json, 'success') ? undefined : json['success'],
+        'messages': !exists(json, 'messages') ? undefined : json['messages'],
+        'numResults': !exists(json, 'numResults') ? undefined : json['numResults'],
     };
 }
 
@@ -76,6 +97,9 @@ export function UpdateExportSettingsS3ResponseToJSON(value?: UpdateExportSetting
         'tenantID': value.tenantID,
         'exportSettingsS3ID': value.exportSettingsS3ID,
         'exportSettingsID': value.exportSettingsID,
+        'success': value.success,
+        'messages': value.messages,
+        'numResults': value.numResults,
     };
 }
 

@@ -19,6 +19,18 @@ import {
     BundledProduFromJSONTyped,
     BundledProduToJSON,
 } from './BundledProdu';
+import type { PackageMeasurements } from './PackageMeasurements';
+import {
+    PackageMeasurementsFromJSON,
+    PackageMeasurementsFromJSONTyped,
+    PackageMeasurementsToJSON,
+} from './PackageMeasurements';
+import type { ProductProperty } from './ProductProperty';
+import {
+    ProductPropertyFromJSON,
+    ProductPropertyFromJSONTyped,
+    ProductPropertyToJSON,
+} from './ProductProperty';
 
 /**
  * 
@@ -86,6 +98,24 @@ export interface Produ {
      * @memberof Produ
      */
     isSplitExtrasInShipment?: boolean;
+    /**
+     * 
+     * @type {Array<ProductProperty>}
+     * @memberof Produ
+     */
+    properties?: Array<ProductProperty> | null;
+    /**
+     * 
+     * @type {PackageMeasurements}
+     * @memberof Produ
+     */
+    measurements?: PackageMeasurements;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Produ
+     */
+    isTaxable?: boolean | null;
 }
 
 /**
@@ -117,6 +147,9 @@ export function ProduFromJSONTyped(json: any, ignoreDiscriminator: boolean): Pro
         'productUsage': !exists(json, 'productUsage') ? undefined : json['productUsage'],
         'bundledProducts': !exists(json, 'bundledProducts') ? undefined : (json['bundledProducts'] === null ? null : (json['bundledProducts'] as Array<any>).map(BundledProduFromJSON)),
         'isSplitExtrasInShipment': !exists(json, 'isSplitExtrasInShipment') ? undefined : json['isSplitExtrasInShipment'],
+        'properties': !exists(json, 'properties') ? undefined : (json['properties'] === null ? null : (json['properties'] as Array<any>).map(ProductPropertyFromJSON)),
+        'measurements': !exists(json, 'measurements') ? undefined : PackageMeasurementsFromJSON(json['measurements']),
+        'isTaxable': !exists(json, 'isTaxable') ? undefined : json['isTaxable'],
     };
 }
 
@@ -139,6 +172,9 @@ export function ProduToJSON(value?: Produ | null): any {
         'productUsage': value.productUsage,
         'bundledProducts': value.bundledProducts === undefined ? undefined : (value.bundledProducts === null ? null : (value.bundledProducts as Array<any>).map(BundledProduToJSON)),
         'isSplitExtrasInShipment': value.isSplitExtrasInShipment,
+        'properties': value.properties === undefined ? undefined : (value.properties === null ? null : (value.properties as Array<any>).map(ProductPropertyToJSON)),
+        'measurements': PackageMeasurementsToJSON(value.measurements),
+        'isTaxable': value.isTaxable,
     };
 }
 

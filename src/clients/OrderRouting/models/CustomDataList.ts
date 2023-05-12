@@ -155,7 +155,8 @@ export interface CustomDataList {
 export const CustomDataListDataTypeEnum = {
     String: 'STRING',
     Number: 'NUMBER',
-    Location: 'LOCATION'
+    Location: 'LOCATION',
+    Date: 'DATE'
 } as const;
 export type CustomDataListDataTypeEnum = typeof CustomDataListDataTypeEnum[keyof typeof CustomDataListDataTypeEnum];
 

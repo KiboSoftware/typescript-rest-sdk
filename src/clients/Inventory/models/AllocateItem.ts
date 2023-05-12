@@ -62,6 +62,12 @@ export interface AllocateItem {
      */
     cartID?: string;
     /**
+     * Reservation ID
+     * @type {string}
+     * @memberof AllocateItem
+     */
+    reservationID?: string;
+    /**
      * Cart Item ID (GUID)
      * @type {string}
      * @memberof AllocateItem
@@ -141,6 +147,7 @@ export function AllocateItemFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'orderID': json['orderID'],
         'orderItemID': json['orderItemID'],
         'cartID': !exists(json, 'cartID') ? undefined : json['cartID'],
+        'reservationID': !exists(json, 'reservationID') ? undefined : json['reservationID'],
         'cartItemID': !exists(json, 'cartItemID') ? undefined : json['cartItemID'],
         'shipmentID': json['shipmentID'],
         'locationCode': !exists(json, 'locationCode') ? undefined : json['locationCode'],
@@ -168,6 +175,7 @@ export function AllocateItemToJSON(value?: AllocateItem | null): any {
         'orderID': value.orderID,
         'orderItemID': value.orderItemID,
         'cartID': value.cartID,
+        'reservationID': value.reservationID,
         'cartItemID': value.cartItemID,
         'shipmentID': value.shipmentID,
         'locationCode': value.locationCode,

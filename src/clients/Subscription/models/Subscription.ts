@@ -573,6 +573,36 @@ export interface Subscription {
      * @memberof Subscription
      */
     hasDraft?: boolean | null;
+    /**
+     * Is this subscription draft is a partial draft.
+     * @type {boolean}
+     * @memberof Subscription
+     */
+    isPartialDraft?: boolean;
+    /**
+     * Has order reminder email sent.
+     * @type {boolean}
+     * @memberof Subscription
+     */
+    isOrderReminderEmailSent?: boolean;
+    /**
+     * Has reactivation reminder email sent.
+     * @type {boolean}
+     * @memberof Subscription
+     */
+    isReactivationReminderEmailSent?: boolean;
+    /**
+     * This property is being used for reactivation email templete
+     * @type {Date}
+     * @memberof Subscription
+     */
+    reactivationDate?: Date;
+    /**
+     * 
+     * @type {Date}
+     * @memberof Subscription
+     */
+    subscriptionPauseDate?: Date | null;
 }
 
 /**
@@ -671,6 +701,11 @@ export function SubscriptionFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'subscriptionSkipCounter': !exists(json, 'subscriptionSkipCounter') ? undefined : json['subscriptionSkipCounter'],
         'isDraft': !exists(json, 'isDraft') ? undefined : json['isDraft'],
         'hasDraft': !exists(json, 'hasDraft') ? undefined : json['hasDraft'],
+        'isPartialDraft': !exists(json, 'isPartialDraft') ? undefined : json['isPartialDraft'],
+        'isOrderReminderEmailSent': !exists(json, 'isOrderReminderEmailSent') ? undefined : json['isOrderReminderEmailSent'],
+        'isReactivationReminderEmailSent': !exists(json, 'isReactivationReminderEmailSent') ? undefined : json['isReactivationReminderEmailSent'],
+        'reactivationDate': !exists(json, 'reactivationDate') ? undefined : (new Date(json['reactivationDate'])),
+        'subscriptionPauseDate': !exists(json, 'subscriptionPauseDate') ? undefined : (json['subscriptionPauseDate'] === null ? null : new Date(json['subscriptionPauseDate'])),
     };
 }
 
@@ -758,6 +793,11 @@ export function SubscriptionToJSON(value?: Subscription | null): any {
         'subscriptionSkipCounter': value.subscriptionSkipCounter,
         'isDraft': value.isDraft,
         'hasDraft': value.hasDraft,
+        'isPartialDraft': value.isPartialDraft,
+        'isOrderReminderEmailSent': value.isOrderReminderEmailSent,
+        'isReactivationReminderEmailSent': value.isReactivationReminderEmailSent,
+        'reactivationDate': value.reactivationDate === undefined ? undefined : (value.reactivationDate.toISOString()),
+        'subscriptionPauseDate': value.subscriptionPauseDate === undefined ? undefined : (value.subscriptionPauseDate === null ? null : value.subscriptionPauseDate.toISOString()),
     };
 }
 

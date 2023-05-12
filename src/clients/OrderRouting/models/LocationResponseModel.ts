@@ -30,6 +30,18 @@ export interface LocationResponseModel {
      * @type {string}
      * @memberof LocationResponseModel
      */
+    addressType?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationResponseModel
+     */
+    city?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationResponseModel
+     */
     countryCode?: string;
     /**
      * 
@@ -49,6 +61,12 @@ export interface LocationResponseModel {
      * @memberof LocationResponseModel
      */
     express?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationResponseModel
+     */
+    fridayHours?: string;
     /**
      * 
      * @type {number}
@@ -75,10 +93,22 @@ export interface LocationResponseModel {
     locationName?: string;
     /**
      * 
+     * @type {Array<string>}
+     * @memberof LocationResponseModel
+     */
+    locationTypes?: Array<string>;
+    /**
+     * 
      * @type {number}
      * @memberof LocationResponseModel
      */
     longitude?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationResponseModel
+     */
+    mondayHours?: string;
     /**
      * 
      * @type {boolean}
@@ -93,16 +123,46 @@ export interface LocationResponseModel {
     postalCode?: string;
     /**
      * 
+     * @type {boolean}
+     * @memberof LocationResponseModel
+     */
+    requiresManifest?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationResponseModel
+     */
+    saturdayHours?: string;
+    /**
+     * 
      * @type {string}
      * @memberof LocationResponseModel
      */
     stateOrProvince?: string;
     /**
      * 
+     * @type {string}
+     * @memberof LocationResponseModel
+     */
+    sundayHours?: string;
+    /**
+     * 
      * @type {number}
      * @memberof LocationResponseModel
      */
     tenantID?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationResponseModel
+     */
+    thursdayHours?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationResponseModel
+     */
+    timezone?: string;
     /**
      * 
      * @type {boolean}
@@ -114,7 +174,25 @@ export interface LocationResponseModel {
      * @type {string}
      * @memberof LocationResponseModel
      */
+    tuesdayHours?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationResponseModel
+     */
     updated?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationResponseModel
+     */
+    wednesdayHours?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LocationResponseModel
+     */
+    wmsEnabled?: boolean;
 }
 
 /**
@@ -137,21 +215,34 @@ export function LocationResponseModelFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'active': !exists(json, 'active') ? undefined : json['active'],
+        'addressType': !exists(json, 'addressType') ? undefined : json['addressType'],
+        'city': !exists(json, 'city') ? undefined : json['city'],
         'countryCode': !exists(json, 'countryCode') ? undefined : json['countryCode'],
         'created': !exists(json, 'created') ? undefined : json['created'],
         'directShip': !exists(json, 'directShip') ? undefined : json['directShip'],
         'express': !exists(json, 'express') ? undefined : json['express'],
+        'fridayHours': !exists(json, 'fridayHours') ? undefined : json['fridayHours'],
         'latitude': !exists(json, 'latitude') ? undefined : json['latitude'],
         'locationCode': !exists(json, 'locationCode') ? undefined : json['locationCode'],
         'locationID': !exists(json, 'locationID') ? undefined : json['locationID'],
         'locationName': !exists(json, 'locationName') ? undefined : json['locationName'],
+        'locationTypes': !exists(json, 'locationTypes') ? undefined : json['locationTypes'],
         'longitude': !exists(json, 'longitude') ? undefined : json['longitude'],
+        'mondayHours': !exists(json, 'mondayHours') ? undefined : json['mondayHours'],
         'pickup': !exists(json, 'pickup') ? undefined : json['pickup'],
         'postalCode': !exists(json, 'postalCode') ? undefined : json['postalCode'],
+        'requiresManifest': !exists(json, 'requiresManifest') ? undefined : json['requiresManifest'],
+        'saturdayHours': !exists(json, 'saturdayHours') ? undefined : json['saturdayHours'],
         'stateOrProvince': !exists(json, 'stateOrProvince') ? undefined : json['stateOrProvince'],
+        'sundayHours': !exists(json, 'sundayHours') ? undefined : json['sundayHours'],
         'tenantID': !exists(json, 'tenantID') ? undefined : json['tenantID'],
+        'thursdayHours': !exists(json, 'thursdayHours') ? undefined : json['thursdayHours'],
+        'timezone': !exists(json, 'timezone') ? undefined : json['timezone'],
         'transferEnabled': !exists(json, 'transferEnabled') ? undefined : json['transferEnabled'],
+        'tuesdayHours': !exists(json, 'tuesdayHours') ? undefined : json['tuesdayHours'],
         'updated': !exists(json, 'updated') ? undefined : json['updated'],
+        'wednesdayHours': !exists(json, 'wednesdayHours') ? undefined : json['wednesdayHours'],
+        'wmsEnabled': !exists(json, 'wmsEnabled') ? undefined : json['wmsEnabled'],
     };
 }
 
@@ -165,21 +256,34 @@ export function LocationResponseModelToJSON(value?: LocationResponseModel | null
     return {
         
         'active': value.active,
+        'addressType': value.addressType,
+        'city': value.city,
         'countryCode': value.countryCode,
         'created': value.created,
         'directShip': value.directShip,
         'express': value.express,
+        'fridayHours': value.fridayHours,
         'latitude': value.latitude,
         'locationCode': value.locationCode,
         'locationID': value.locationID,
         'locationName': value.locationName,
+        'locationTypes': value.locationTypes,
         'longitude': value.longitude,
+        'mondayHours': value.mondayHours,
         'pickup': value.pickup,
         'postalCode': value.postalCode,
+        'requiresManifest': value.requiresManifest,
+        'saturdayHours': value.saturdayHours,
         'stateOrProvince': value.stateOrProvince,
+        'sundayHours': value.sundayHours,
         'tenantID': value.tenantID,
+        'thursdayHours': value.thursdayHours,
+        'timezone': value.timezone,
         'transferEnabled': value.transferEnabled,
+        'tuesdayHours': value.tuesdayHours,
         'updated': value.updated,
+        'wednesdayHours': value.wednesdayHours,
+        'wmsEnabled': value.wmsEnabled,
     };
 }
 

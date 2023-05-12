@@ -170,6 +170,12 @@ export interface Attribute {
      * @memberof Attribute
      */
     displayGroup: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Attribute
+     */
+    availableForOrderRouting?: boolean;
 }
 
 /**
@@ -214,6 +220,7 @@ export function AttributeFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'isVisible': !exists(json, 'isVisible') ? undefined : json['isVisible'],
         'order': !exists(json, 'order') ? undefined : json['order'],
         'displayGroup': json['displayGroup'],
+        'availableForOrderRouting': !exists(json, 'availableForOrderRouting') ? undefined : json['availableForOrderRouting'],
     };
 }
 
@@ -246,6 +253,7 @@ export function AttributeToJSON(value?: Attribute | null): any {
         'isVisible': value.isVisible,
         'order': value.order,
         'displayGroup': value.displayGroup,
+        'availableForOrderRouting': value.availableForOrderRouting,
     };
 }
 

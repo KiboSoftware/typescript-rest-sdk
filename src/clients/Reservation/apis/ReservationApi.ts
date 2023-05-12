@@ -16,11 +16,14 @@
 import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
 import type {
+  OrderAttribute,
   Reservati,
   ReservationCollecti,
   ReservationItem,
 } from '../models';
 import {
+    OrderAttributeFromJSON,
+    OrderAttributeToJSON,
     ReservatiFromJSON,
     ReservatiToJSON,
     ReservationCollectiFromJSON,
@@ -74,29 +77,22 @@ export interface ReservationApiRemoveItemRequest {
     reservationItemId: string;
 }
 
-export interface ReservationApiUpdateFulfillmentMethodRequest {
-    reservationId: string;
-    reservationItemId: string;
-    fulfilmentMethod: string;
-    zipCode?: string;
-    locationCode?: string;
-}
-
 export interface ReservationApiUpdateItemQuantityRequest {
     reservationId: string;
     reservationItemId: string;
     quantity: number;
 }
 
-export interface ReservationApiUpdatePickupLocationRequest {
-    reservationId: string;
-    itemId: string;
-    fulfillmentLocationCode: string;
-}
-
 export interface ReservationApiUpdateReservationRequest {
     reservationId: string;
     reservati?: Reservati;
+}
+
+export interface ReservationApiUpdateReservationItemRequest {
+    reservationId: string;
+    reservationItemId: string;
+    zipCode?: string;
+    reservationItem?: ReservationItem;
 }
 
 export interface ReservationApiUpdateTimerRequest {
@@ -106,6 +102,7 @@ export interface ReservationApiUpdateTimerRequest {
 export interface ReservationApiUpdateZipCodeRequest {
     reservationId: string;
     zipCode: string;
+    orderAttribute?: Array<OrderAttribute>;
 }
 
 /**
@@ -135,22 +132,8 @@ export class ReservationApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/reservation/{reservationId}/activate`.replace(`{${"reservationId"}}`, encodeURIComponent(String(requestParameters.reservationId))),
             method: 'PUT',
@@ -195,22 +178,8 @@ export class ReservationApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/reservation/{reservationId}/items`.replace(`{${"reservationId"}}`, encodeURIComponent(String(requestParameters.reservationId))),
             method: 'POST',
@@ -250,22 +219,8 @@ export class ReservationApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/reservation/{reservationId}/close`.replace(`{${"reservationId"}}`, encodeURIComponent(String(requestParameters.reservationId))),
             method: 'PUT',
@@ -302,22 +257,8 @@ export class ReservationApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/reservation`,
             method: 'POST',
@@ -357,22 +298,8 @@ export class ReservationApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/reservation/{reservationId}`.replace(`{${"reservationId"}}`, encodeURIComponent(String(requestParameters.reservationId))),
             method: 'DELETE',
@@ -410,22 +337,8 @@ export class ReservationApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/reservation/{reservationId}/getallocationstatus`.replace(`{${"reservationId"}}`, encodeURIComponent(String(requestParameters.reservationId))),
             method: 'GET',
@@ -464,22 +377,8 @@ export class ReservationApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/reservation/{reservationId}`.replace(`{${"reservationId"}}`, encodeURIComponent(String(requestParameters.reservationId))),
             method: 'GET',
@@ -514,22 +413,8 @@ export class ReservationApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/reservation`,
             method: 'GET',
@@ -592,22 +477,8 @@ export class ReservationApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/reservation/cart/{cartId}`.replace(`{${"cartId"}}`, encodeURIComponent(String(requestParameters.cartId))),
             method: 'GET',
@@ -650,22 +521,8 @@ export class ReservationApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/reservation/{reservationId}/items/{reservationItemId}`.replace(`{${"reservationId"}}`, encodeURIComponent(String(requestParameters.reservationId))).replace(`{${"reservationItemId"}}`, encodeURIComponent(String(requestParameters.reservationItemId))),
             method: 'DELETE',
@@ -682,76 +539,6 @@ export class ReservationApi extends runtime.BaseAPI {
      */
     async removeItem(requestParameters: ReservationApiRemoveItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
         const response = await this.removeItemRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Update Fulfillment Method
-     * Update Fulfillment Method
-     */
-
-
-    async updateFulfillmentMethodRaw(requestParameters: ReservationApiUpdateFulfillmentMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
-        if (requestParameters.reservationId === null || requestParameters.reservationId === undefined) {
-            throw new runtime.RequiredError('reservationId','Required parameter requestParameters.reservationId was null or undefined when calling updateFulfillmentMethod.');
-        }
-
-        if (requestParameters.reservationItemId === null || requestParameters.reservationItemId === undefined) {
-            throw new runtime.RequiredError('reservationItemId','Required parameter requestParameters.reservationItemId was null or undefined when calling updateFulfillmentMethod.');
-        }
-
-        if (requestParameters.fulfilmentMethod === null || requestParameters.fulfilmentMethod === undefined) {
-            throw new runtime.RequiredError('fulfilmentMethod','Required parameter requestParameters.fulfilmentMethod was null or undefined when calling updateFulfillmentMethod.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.zipCode !== undefined) {
-            queryParameters['zipCode'] = requestParameters.zipCode;
-        }
-
-        if (requestParameters.locationCode !== undefined) {
-            queryParameters['locationCode'] = requestParameters.locationCode;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-
-
-
-
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/commerce/reservation/{reservationId}/items/{reservationItemId}/fulfilmentMethod/{fulfilmentMethod}`.replace(`{${"reservationId"}}`, encodeURIComponent(String(requestParameters.reservationId))).replace(`{${"reservationItemId"}}`, encodeURIComponent(String(requestParameters.reservationItemId))).replace(`{${"fulfilmentMethod"}}`, encodeURIComponent(String(requestParameters.fulfilmentMethod))),
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => ReservatiFromJSON(jsonValue));
-    }
-
-    /**
-     * Update Fulfillment Method
-     * Update Fulfillment Method
-     */
-    async updateFulfillmentMethod(requestParameters: ReservationApiUpdateFulfillmentMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
-        const response = await this.updateFulfillmentMethodRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -782,22 +569,8 @@ export class ReservationApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/reservation/{reservationId}/items/{reservationItemId}/quantity/{quantity}`.replace(`{${"reservationId"}}`, encodeURIComponent(String(requestParameters.reservationId))).replace(`{${"reservationItemId"}}`, encodeURIComponent(String(requestParameters.reservationItemId))).replace(`{${"quantity"}}`, encodeURIComponent(String(requestParameters.quantity))),
             method: 'PUT',
@@ -814,68 +587,6 @@ export class ReservationApi extends runtime.BaseAPI {
      */
     async updateItemQuantity(requestParameters: ReservationApiUpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
         const response = await this.updateItemQuantityRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Update Pickup Location
-     * Update Pickup Location
-     */
-
-
-    async updatePickupLocationRaw(requestParameters: ReservationApiUpdatePickupLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
-        if (requestParameters.reservationId === null || requestParameters.reservationId === undefined) {
-            throw new runtime.RequiredError('reservationId','Required parameter requestParameters.reservationId was null or undefined when calling updatePickupLocation.');
-        }
-
-        if (requestParameters.itemId === null || requestParameters.itemId === undefined) {
-            throw new runtime.RequiredError('itemId','Required parameter requestParameters.itemId was null or undefined when calling updatePickupLocation.');
-        }
-
-        if (requestParameters.fulfillmentLocationCode === null || requestParameters.fulfillmentLocationCode === undefined) {
-            throw new runtime.RequiredError('fulfillmentLocationCode','Required parameter requestParameters.fulfillmentLocationCode was null or undefined when calling updatePickupLocation.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-
-
-
-
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/commerce/reservation/{reservationId}/items/{itemId}/fulfillment/{fulfillmentLocationCode}`.replace(`{${"reservationId"}}`, encodeURIComponent(String(requestParameters.reservationId))).replace(`{${"itemId"}}`, encodeURIComponent(String(requestParameters.itemId))).replace(`{${"fulfillmentLocationCode"}}`, encodeURIComponent(String(requestParameters.fulfillmentLocationCode))),
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => ReservatiFromJSON(jsonValue));
-    }
-
-    /**
-     * Update Pickup Location
-     * Update Pickup Location
-     */
-    async updatePickupLocation(requestParameters: ReservationApiUpdatePickupLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
-        const response = await this.updatePickupLocationRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -900,22 +611,8 @@ export class ReservationApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/reservation/{reservationId}`.replace(`{${"reservationId"}}`, encodeURIComponent(String(requestParameters.reservationId))),
             method: 'PUT',
@@ -933,6 +630,57 @@ export class ReservationApi extends runtime.BaseAPI {
      */
     async updateReservation(requestParameters: ReservationApiUpdateReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
         const response = await this.updateReservationRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update Reservation Item
+     * Update Reservation Item
+     */
+
+
+    async updateReservationItemRaw(requestParameters: ReservationApiUpdateReservationItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
+        if (requestParameters.reservationId === null || requestParameters.reservationId === undefined) {
+            throw new runtime.RequiredError('reservationId','Required parameter requestParameters.reservationId was null or undefined when calling updateReservationItem.');
+        }
+
+        if (requestParameters.reservationItemId === null || requestParameters.reservationItemId === undefined) {
+            throw new runtime.RequiredError('reservationItemId','Required parameter requestParameters.reservationItemId was null or undefined when calling updateReservationItem.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.zipCode !== undefined) {
+            queryParameters['zipCode'] = requestParameters.zipCode;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/reservation/{reservationId}/items/{reservationItemId}`.replace(`{${"reservationId"}}`, encodeURIComponent(String(requestParameters.reservationId))).replace(`{${"reservationItemId"}}`, encodeURIComponent(String(requestParameters.reservationItemId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ReservationItemToJSON(requestParameters.reservationItem),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ReservatiFromJSON(jsonValue));
+    }
+
+    /**
+     * Update Reservation Item
+     * Update Reservation Item
+     */
+    async updateReservationItem(requestParameters: ReservationApiUpdateReservationItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
+        const response = await this.updateReservationItemRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -955,22 +703,8 @@ export class ReservationApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/reservation/{reservationId}/updatetimer`.replace(`{${"reservationId"}}`, encodeURIComponent(String(requestParameters.reservationId))),
             method: 'PUT',
@@ -1009,31 +743,20 @@ export class ReservationApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        headerParameters['Content-Type'] = 'application/json';
 
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/reservation/{reservationId}/zipcode/{zipCode}`.replace(`{${"reservationId"}}`, encodeURIComponent(String(requestParameters.reservationId))).replace(`{${"zipCode"}}`, encodeURIComponent(String(requestParameters.zipCode))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
+            body: requestParameters.orderAttribute.map(OrderAttributeToJSON),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ReservatiFromJSON(jsonValue));

@@ -27,7 +27,7 @@ import {
 } from './TagQuantity';
 
 /**
- * Base Response Model
+ * Inventory Response
  * @export
  * @interface InventoryResponse
  */

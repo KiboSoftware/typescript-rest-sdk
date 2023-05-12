@@ -16,12 +16,15 @@
 import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
 import type {
+  CarrierResponse,
   RateRequest,
   RateRequestGroup,
   RatesResponse,
   RatesResponseGroup,
 } from '../models';
 import {
+    CarrierResponseFromJSON,
+    CarrierResponseToJSON,
     RateRequestFromJSON,
     RateRequestToJSON,
     RateRequestGroupFromJSON,
@@ -51,6 +54,42 @@ export class ShippingApi extends runtime.BaseAPI {
         this.basePathTemplate = basePathTemplate
     }
     /**
+     * Get a list of supported carriers.
+     * Get Carriers
+     */
+
+
+    async getCarriersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/catalog/storefront/shipping/carriers`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CarrierResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get a list of supported carriers.
+     * Get Carriers
+     */
+    async getCarriers(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierResponse> {
+        const response = await this.getCarriersRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Get List of Rate Responses for a List of Rate Requests
      * Get Multi Rates
      */
@@ -71,22 +110,8 @@ export class ShippingApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/catalog/storefront/shipping/request-multi-rates`,
             method: 'POST',
@@ -128,22 +153,8 @@ export class ShippingApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/catalog/storefront/shipping/request-rates`,
             method: 'POST',

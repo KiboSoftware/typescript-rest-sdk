@@ -136,6 +136,12 @@ export interface Discount {
      */
     doesNotApplyToProductsWithSalePrice?: boolean | null;
     /**
+     * Signifies if the discount is disabled (Null is treated as false)
+     * @type {boolean}
+     * @memberof Discount
+     */
+    isDisabled?: boolean | null;
+    /**
      * Maximum number of times a user can redeem this discount.
      *  Must be either null or greater than zero.
      * @type {number}
@@ -292,6 +298,7 @@ export function DiscountFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'canBeDeleted': !exists(json, 'canBeDeleted') ? undefined : json['canBeDeleted'],
         'doesNotApplyToSalePrice': !exists(json, 'doesNotApplyToSalePrice') ? undefined : json['doesNotApplyToSalePrice'],
         'doesNotApplyToProductsWithSalePrice': !exists(json, 'doesNotApplyToProductsWithSalePrice') ? undefined : json['doesNotApplyToProductsWithSalePrice'],
+        'isDisabled': !exists(json, 'isDisabled') ? undefined : json['isDisabled'],
         'maximumUsesPerUser': !exists(json, 'maximumUsesPerUser') ? undefined : json['maximumUsesPerUser'],
         'maximumDiscountImpactPerOrder': !exists(json, 'maximumDiscountImpactPerOrder') ? undefined : json['maximumDiscountImpactPerOrder'],
         'maximumDiscountImpactPerRedemption': !exists(json, 'maximumDiscountImpactPerRedemption') ? undefined : json['maximumDiscountImpactPerRedemption'],
@@ -334,6 +341,7 @@ export function DiscountToJSON(value?: Discount | null): any {
         'canBeDeleted': value.canBeDeleted,
         'doesNotApplyToSalePrice': value.doesNotApplyToSalePrice,
         'doesNotApplyToProductsWithSalePrice': value.doesNotApplyToProductsWithSalePrice,
+        'isDisabled': value.isDisabled,
         'maximumUsesPerUser': value.maximumUsesPerUser,
         'maximumDiscountImpactPerOrder': value.maximumDiscountImpactPerOrder,
         'maximumDiscountImpactPerRedemption': value.maximumDiscountImpactPerRedemption,

@@ -32,6 +32,36 @@ export interface AdjustRequest {
      * @memberof AdjustRequest
      */
     items?: Array<AdjustItem>;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof AdjustRequest
+     */
+    locationCode?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof AdjustRequest
+     */
+    userID?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof AdjustRequest
+     */
+    pageSize?: number;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof AdjustRequest
+     */
+    pageNum?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof AdjustRequest
+     */
+    sortBy?: string;
 }
 
 /**
@@ -54,6 +84,11 @@ export function AdjustRequestFromJSONTyped(json: any, ignoreDiscriminator: boole
     return {
         
         'items': !exists(json, 'items') ? undefined : ((json['items'] as Array<any>).map(AdjustItemFromJSON)),
+        'locationCode': !exists(json, 'locationCode') ? undefined : json['locationCode'],
+        'userID': !exists(json, 'userID') ? undefined : json['userID'],
+        'pageSize': !exists(json, 'pageSize') ? undefined : json['pageSize'],
+        'pageNum': !exists(json, 'pageNum') ? undefined : json['pageNum'],
+        'sortBy': !exists(json, 'sortBy') ? undefined : json['sortBy'],
     };
 }
 
@@ -67,6 +102,11 @@ export function AdjustRequestToJSON(value?: AdjustRequest | null): any {
     return {
         
         'items': value.items === undefined ? undefined : ((value.items as Array<any>).map(AdjustItemToJSON)),
+        'locationCode': value.locationCode,
+        'userID': value.userID,
+        'pageSize': value.pageSize,
+        'pageNum': value.pageNum,
+        'sortBy': value.sortBy,
     };
 }
 

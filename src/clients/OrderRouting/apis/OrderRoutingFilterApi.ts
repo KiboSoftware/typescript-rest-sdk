@@ -112,24 +112,10 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/orderrouting/api/v1/filter/delete/{filterID}`.replace(`{${"filterID"}}`, encodeURIComponent(String(requestParameters.filterID))),
+            path: `/commerce/orders/orderrouting/api/v1/filter/delete/{filterID}`.replace(`{${"filterID"}}`, encodeURIComponent(String(requestParameters.filterID))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -178,24 +164,10 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/orderrouting/api/v1/filter/{filterID}`.replace(`{${"filterID"}}`, encodeURIComponent(String(requestParameters.filterID))),
+            path: `/commerce/orders/orderrouting/api/v1/filter/{filterID}`.replace(`{${"filterID"}}`, encodeURIComponent(String(requestParameters.filterID))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -247,24 +219,10 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/orderrouting/api/v1/filter/criteriaSet`,
+            path: `/commerce/orders/orderrouting/api/v1/filter/criteriaSet`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -317,24 +275,10 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/orderrouting/api/v1/filter/customDataListFilter`,
+            path: `/commerce/orders/orderrouting/api/v1/filter/customDataListFilter`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -387,24 +331,10 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/orderrouting/api/v1/filter/customDataValueFilter`,
+            path: `/commerce/orders/orderrouting/api/v1/filter/customDataValueFilter`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -451,24 +381,10 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/orderrouting/api/v1/filter/testcriteria`,
+            path: `/commerce/orders/orderrouting/api/v1/filter/testcriteria`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -514,24 +430,10 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/orderrouting/api/v1/filter/testset`,
+            path: `/commerce/orders/orderrouting/api/v1/filter/testset`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,

@@ -23,6 +23,7 @@ import type {
   CheckoutGroupShippingMethod,
   Destination,
   DigitalWallet,
+  InventoryTags,
   ItemsAndDeliveryDates,
   ItemsForDestination,
   OrderAttribute,
@@ -45,6 +46,8 @@ import {
     DestinationToJSON,
     DigitalWalletFromJSON,
     DigitalWalletToJSON,
+    InventoryTagsFromJSON,
+    InventoryTagsToJSON,
     ItemsAndDeliveryDatesFromJSON,
     ItemsAndDeliveryDatesToJSON,
     ItemsForDestinationFromJSON,
@@ -223,6 +226,12 @@ export interface CheckoutApiUpdateSubscriptionInfoRequest {
     subscriptionInfo?: SubscriptionInfo;
 }
 
+export interface CheckoutApiUpsertInventoryTagsRequest {
+    checkoutId: string;
+    itemId: string;
+    inventoryTags?: Array<InventoryTags>;
+}
+
 /**
  * 
  */
@@ -252,22 +261,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/items`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))),
             method: 'POST',
@@ -309,22 +304,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/destinations`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))),
             method: 'POST',
@@ -368,22 +349,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/coupons/{couponCode}`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))).replace(`{${"couponCode"}}`, encodeURIComponent(String(requestParameters.couponCode))),
             method: 'PUT',
@@ -424,22 +391,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/items/deliverydates`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))),
             method: 'POST',
@@ -481,22 +434,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/items/destinations`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))),
             method: 'POST',
@@ -538,22 +477,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/priceList`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))),
             method: 'PUT',
@@ -595,22 +520,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/attributes`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))),
             method: 'POST',
@@ -650,22 +561,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts`,
             method: 'POST',
@@ -706,22 +603,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/payments/actions`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))),
             method: 'POST',
@@ -765,22 +648,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/items/{itemId}`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))).replace(`{${"itemId"}}`, encodeURIComponent(String(requestParameters.itemId))),
             method: 'DELETE',
@@ -819,22 +688,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/actions`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))),
             method: 'GET',
@@ -873,22 +728,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/shippingMethods`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))),
             method: 'GET',
@@ -927,22 +768,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))),
             method: 'GET',
@@ -981,22 +808,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/attributes`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))),
             method: 'GET',
@@ -1055,22 +868,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts`,
             method: 'GET',
@@ -1113,22 +912,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/destinations/{destinationId}`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))).replace(`{${"destinationId"}}`, encodeURIComponent(String(requestParameters.destinationId))),
             method: 'GET',
@@ -1167,22 +952,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/destinations`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))),
             method: 'GET',
@@ -1223,22 +994,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/actions`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))),
             method: 'POST',
@@ -1284,22 +1041,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/payments/{paymentId}/actions`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))).replace(`{${"paymentId"}}`, encodeURIComponent(String(requestParameters.paymentId))),
             method: 'POST',
@@ -1345,22 +1088,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/digitalWallet/{digitalWalletType}`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))).replace(`{${"digitalWalletType"}}`, encodeURIComponent(String(requestParameters.digitalWalletType))),
             method: 'PUT',
@@ -1404,22 +1133,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/coupons/{couponCode}`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))).replace(`{${"couponCode"}}`, encodeURIComponent(String(requestParameters.couponCode))),
             method: 'DELETE',
@@ -1458,22 +1173,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/coupons`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))),
             method: 'DELETE',
@@ -1516,22 +1217,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/destinations/{destinationId}`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))).replace(`{${"destinationId"}}`, encodeURIComponent(String(requestParameters.destinationId))),
             method: 'DELETE',
@@ -1569,22 +1256,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/email/resend`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))),
             method: 'POST',
@@ -1624,22 +1297,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/shippingMethods`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))),
             method: 'POST',
@@ -1687,22 +1346,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/items/{itemId}/split`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))).replace(`{${"itemId"}}`, encodeURIComponent(String(requestParameters.itemId))),
             method: 'POST',
@@ -1743,22 +1388,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))),
             method: 'POST',
@@ -1804,22 +1435,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/attributes`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))),
             method: 'PUT',
@@ -1865,22 +1482,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/destinations/{destinationId}`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))).replace(`{${"destinationId"}}`, encodeURIComponent(String(requestParameters.destinationId))),
             method: 'PUT',
@@ -1926,22 +1529,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/items/{itemId}/deliverydate`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))).replace(`{${"itemId"}}`, encodeURIComponent(String(requestParameters.itemId))),
             method: 'PUT',
@@ -1989,22 +1578,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/items/{itemId}/destination/{destinationId}`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))).replace(`{${"itemId"}}`, encodeURIComponent(String(requestParameters.itemId))).replace(`{${"destinationId"}}`, encodeURIComponent(String(requestParameters.destinationId))),
             method: 'PUT',
@@ -2049,22 +1624,8 @@ export class CheckoutApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/checkouts/{checkoutId}/items/{itemId}/subscriptionInfo`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))).replace(`{${"itemId"}}`, encodeURIComponent(String(requestParameters.itemId))),
             method: 'PUT',
@@ -2082,6 +1643,53 @@ export class CheckoutApi extends runtime.BaseAPI {
      */
     async updateSubscriptionInfo(requestParameters: CheckoutApiUpdateSubscriptionInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Checkout> {
         const response = await this.updateSubscriptionInfoRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Upsert Inventory Tags
+     * Upsert Inventory Tags
+     */
+
+
+    async upsertInventoryTagsRaw(requestParameters: CheckoutApiUpsertInventoryTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Checkout>> {
+        if (requestParameters.checkoutId === null || requestParameters.checkoutId === undefined) {
+            throw new runtime.RequiredError('checkoutId','Required parameter requestParameters.checkoutId was null or undefined when calling upsertInventoryTags.');
+        }
+
+        if (requestParameters.itemId === null || requestParameters.itemId === undefined) {
+            throw new runtime.RequiredError('itemId','Required parameter requestParameters.itemId was null or undefined when calling upsertInventoryTags.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/checkouts/{checkoutId}/items/{itemId}/upsert-inventory-tags`.replace(`{${"checkoutId"}}`, encodeURIComponent(String(requestParameters.checkoutId))).replace(`{${"itemId"}}`, encodeURIComponent(String(requestParameters.itemId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.inventoryTags.map(InventoryTagsToJSON),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CheckoutFromJSON(jsonValue));
+    }
+
+    /**
+     * Upsert Inventory Tags
+     * Upsert Inventory Tags
+     */
+    async upsertInventoryTags(requestParameters: CheckoutApiUpsertInventoryTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Checkout> {
+        const response = await this.upsertInventoryTagsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

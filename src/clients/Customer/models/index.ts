@@ -69,6 +69,7 @@ export * from './Phone';
 export * from './PurchaseOrderTransaction';
 export * from './PurchaseOrderTransactionCollection';
 export * from './ResetPasswordInfo';
+export * from './Resource';
 export * from './Transaction';
 export * from './UpgradeToB2BAccountError';
 export * from './UpgradeToB2BAccountResponse';

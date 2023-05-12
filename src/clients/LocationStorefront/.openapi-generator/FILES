@@ -16,7 +16,9 @@ models/Location.ts
 models/LocationAttribute.ts
 models/LocationCollection.ts
 models/LocationType.ts
+models/ProcessingTime.ts
 models/RegularHours.ts
 models/ShippingOriginContact.ts
+models/TransferTime.ts
 models/index.ts
 runtime.ts

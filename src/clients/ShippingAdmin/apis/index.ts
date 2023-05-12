@@ -4,5 +4,6 @@ export * from './CarrierConfigurationApi';
 export * from './CarrierConfigurationGlobalApi';
 export * from './CarrierCredentialApi';
 export * from './CarrierCredentialSetApi';
+export * from './CarrierDefinitionApi';
 export * from './ShippingProfileApi';
 export * from './TargetRulesApi';

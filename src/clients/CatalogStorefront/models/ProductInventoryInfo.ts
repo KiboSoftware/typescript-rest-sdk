@@ -55,6 +55,12 @@ export interface ProductInventoryInfo {
      * @memberof ProductInventoryInfo
      */
     availableDate?: Date | null;
+    /**
+     * ReadOnly flag indicates is the product has substitutions defined
+     * @type {boolean}
+     * @memberof ProductInventoryInfo
+     */
+    isSubstitutable?: boolean;
 }
 
 /**
@@ -82,6 +88,7 @@ export function ProductInventoryInfoFromJSONTyped(json: any, ignoreDiscriminator
         'onlineSoftStockAvailable': !exists(json, 'onlineSoftStockAvailable') ? undefined : json['onlineSoftStockAvailable'],
         'onlineLocationCode': !exists(json, 'onlineLocationCode') ? undefined : json['onlineLocationCode'],
         'availableDate': !exists(json, 'availableDate') ? undefined : (json['availableDate'] === null ? null : new Date(json['availableDate'])),
+        'isSubstitutable': !exists(json, 'isSubstitutable') ? undefined : json['isSubstitutable'],
     };
 }
 
@@ -100,6 +107,7 @@ export function ProductInventoryInfoToJSON(value?: ProductInventoryInfo | null):
         'onlineSoftStockAvailable': value.onlineSoftStockAvailable,
         'onlineLocationCode': value.onlineLocationCode,
         'availableDate': value.availableDate === undefined ? undefined : (value.availableDate === null ? null : value.availableDate.toISOString()),
+        'isSubstitutable': value.isSubstitutable,
     };
 }
 

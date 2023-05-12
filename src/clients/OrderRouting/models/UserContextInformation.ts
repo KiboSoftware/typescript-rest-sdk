@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { TenantService } from './TenantService';
+import {
+    TenantServiceFromJSON,
+    TenantServiceFromJSONTyped,
+    TenantServiceToJSON,
+} from './TenantService';
+
 /**
  * 
  * @export
@@ -57,10 +64,10 @@ export interface UserContextInformation {
     tenantID?: number;
     /**
      * 
-     * @type {object}
+     * @type {TenantService}
      * @memberof UserContextInformation
      */
-    tenantService?: object;
+    tenantService?: TenantService;
 }
 
 /**
@@ -88,7 +95,7 @@ export function UserContextInformationFromJSONTyped(json: any, ignoreDiscriminat
         'siteID': !exists(json, 'siteID') ? undefined : json['siteID'],
         'siteService': !exists(json, 'siteService') ? undefined : json['siteService'],
         'tenantID': !exists(json, 'tenantID') ? undefined : json['tenantID'],
-        'tenantService': !exists(json, 'tenantService') ? undefined : json['tenantService'],
+        'tenantService': !exists(json, 'tenantService') ? undefined : TenantServiceFromJSON(json['tenantService']),
     };
 }
 
@@ -107,7 +114,7 @@ export function UserContextInformationToJSON(value?: UserContextInformation | nu
         'siteID': value.siteID,
         'siteService': value.siteService,
         'tenantID': value.tenantID,
-        'tenantService': value.tenantService,
+        'tenantService': TenantServiceToJSON(value.tenantService),
     };
 }
 

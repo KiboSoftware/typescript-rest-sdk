@@ -37,6 +37,12 @@ export interface Item {
      * @memberof Item
      */
     sku?: string;
+    /**
+     * Associative Map of <String, String> for tagCategoryName => tagName
+     * @type {{ [key: string]: string; }}
+     * @memberof Item
+     */
+    tags?: { [key: string]: string; };
 }
 
 /**
@@ -61,6 +67,7 @@ export function ItemFromJSONTyped(json: any, ignoreDiscriminator: boolean): Item
         'partNumber': !exists(json, 'partNumber') ? undefined : json['partNumber'],
         'upc': !exists(json, 'upc') ? undefined : json['upc'],
         'sku': !exists(json, 'sku') ? undefined : json['sku'],
+        'tags': !exists(json, 'tags') ? undefined : json['tags'],
     };
 }
 
@@ -76,6 +83,7 @@ export function ItemToJSON(value?: Item | null): any {
         'partNumber': value.partNumber,
         'upc': value.upc,
         'sku': value.sku,
+        'tags': value.tags,
     };
 }
 

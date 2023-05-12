@@ -106,24 +106,10 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/orderrouting/api/v1/group/delete/{groupID}`.replace(`{${"groupID"}}`, encodeURIComponent(String(requestParameters.groupID))),
+            path: `/commerce/orders/orderrouting/api/v1/group/delete/{groupID}`.replace(`{${"groupID"}}`, encodeURIComponent(String(requestParameters.groupID))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -172,24 +158,10 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/orderrouting/api/v1/group/{groupID}`.replace(`{${"groupID"}}`, encodeURIComponent(String(requestParameters.groupID))),
+            path: `/commerce/orders/orderrouting/api/v1/group/{groupID}`.replace(`{${"groupID"}}`, encodeURIComponent(String(requestParameters.groupID))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -241,24 +213,10 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/orderrouting/api/v1/group`,
+            path: `/commerce/orders/orderrouting/api/v1/group`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -315,24 +273,10 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/orderrouting/api/v1/group/{groupID}/setFilters`.replace(`{${"groupID"}}`, encodeURIComponent(String(requestParameters.groupID))),
+            path: `/commerce/orders/orderrouting/api/v1/group/{groupID}/setFilters`.replace(`{${"groupID"}}`, encodeURIComponent(String(requestParameters.groupID))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -389,24 +333,10 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/orderrouting/api/v1/group/{groupID}/setSorts`.replace(`{${"groupID"}}`, encodeURIComponent(String(requestParameters.groupID))),
+            path: `/commerce/orders/orderrouting/api/v1/group/{groupID}/setSorts`.replace(`{${"groupID"}}`, encodeURIComponent(String(requestParameters.groupID))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -453,24 +383,10 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/orderrouting/api/v1/group/test`,
+            path: `/commerce/orders/orderrouting/api/v1/group/test`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,

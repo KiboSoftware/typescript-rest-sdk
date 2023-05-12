@@ -19,6 +19,12 @@ import {
     AllocatiFromJSONTyped,
     AllocatiToJSON,
 } from './Allocati';
+import type { InventoryTags } from './InventoryTags';
+import {
+    InventoryTagsFromJSON,
+    InventoryTagsFromJSONTyped,
+    InventoryTagsToJSON,
+} from './InventoryTags';
 import type { Produ } from './Produ';
 import {
     ProduFromJSON,
@@ -86,6 +92,12 @@ export interface ReservationItem {
      * @memberof ReservationItem
      */
     allocationStatus?: string | null;
+    /**
+     * 
+     * @type {Array<InventoryTags>}
+     * @memberof ReservationItem
+     */
+    inventoryTags?: Array<InventoryTags> | null;
 }
 
 /**
@@ -116,6 +128,7 @@ export function ReservationItemFromJSONTyped(json: any, ignoreDiscriminator: boo
         'allocations': !exists(json, 'allocations') ? undefined : (json['allocations'] === null ? null : (json['allocations'] as Array<any>).map(AllocatiFromJSON)),
         'allowsBackOrder': !exists(json, 'allowsBackOrder') ? undefined : json['allowsBackOrder'],
         'allocationStatus': !exists(json, 'allocationStatus') ? undefined : json['allocationStatus'],
+        'inventoryTags': !exists(json, 'inventoryTags') ? undefined : (json['inventoryTags'] === null ? null : (json['inventoryTags'] as Array<any>).map(InventoryTagsFromJSON)),
     };
 }
 
@@ -137,6 +150,7 @@ export function ReservationItemToJSON(value?: ReservationItem | null): any {
         'allocations': value.allocations === undefined ? undefined : (value.allocations === null ? null : (value.allocations as Array<any>).map(AllocatiToJSON)),
         'allowsBackOrder': value.allowsBackOrder,
         'allocationStatus': value.allocationStatus,
+        'inventoryTags': value.inventoryTags === undefined ? undefined : (value.inventoryTags === null ? null : (value.inventoryTags as Array<any>).map(InventoryTagsToJSON)),
     };
 }
 

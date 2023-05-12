@@ -31,6 +31,24 @@ export interface UpdateExportSettingsResponse {
      * @memberof UpdateExportSettingsResponse
      */
     name?: string;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof UpdateExportSettingsResponse
+     */
+    success?: boolean;
+    /**
+     * List of messages
+     * @type {Array<string>}
+     * @memberof UpdateExportSettingsResponse
+     */
+    messages?: Array<string>;
+    /**
+     * Number of results
+     * @type {number}
+     * @memberof UpdateExportSettingsResponse
+     */
+    numResults?: number;
 }
 
 /**
@@ -54,6 +72,9 @@ export function UpdateExportSettingsResponseFromJSONTyped(json: any, ignoreDiscr
         
         'tenantID': !exists(json, 'tenantID') ? undefined : json['tenantID'],
         'name': !exists(json, 'name') ? undefined : json['name'],
+        'success': !exists(json, 'success') ? undefined : json['success'],
+        'messages': !exists(json, 'messages') ? undefined : json['messages'],
+        'numResults': !exists(json, 'numResults') ? undefined : json['numResults'],
     };
 }
 
@@ -68,6 +89,9 @@ export function UpdateExportSettingsResponseToJSON(value?: UpdateExportSettingsR
         
         'tenantID': value.tenantID,
         'name': value.name,
+        'success': value.success,
+        'messages': value.messages,
+        'numResults': value.numResults,
     };
 }
 

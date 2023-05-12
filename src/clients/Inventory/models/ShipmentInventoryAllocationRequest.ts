@@ -21,10 +21,10 @@ import { exists, mapValues } from '../runtime';
 export interface ShipmentInventoryAllocationRequest {
     /**
      * Shipment Ids
-     * @type {any}
+     * @type {Array<number>}
      * @memberof ShipmentInventoryAllocationRequest
      */
-    shipmentIDs: any | null;
+    shipmentIDs: Array<number>;
 }
 
 /**

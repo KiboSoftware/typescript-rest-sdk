@@ -58,6 +58,7 @@ models/CategoryDiscountCondition.ts
 models/CategoryLocalizedContent.ts
 models/CategoryLocalizedImage.ts
 models/CategoryPagedCollection.ts
+models/ContinuityRecurrenceSettings.ts
 models/Coupon.ts
 models/CouponCollection.ts
 models/CouponSet.ts

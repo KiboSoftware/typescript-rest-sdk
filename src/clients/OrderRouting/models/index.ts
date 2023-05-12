@@ -2,6 +2,7 @@
 /* eslint-disable */
 export * from './AbstractFilter';
 export * from './AssignmentSuggestion';
+export * from './Attribute';
 export * from './CandidateSuggestion';
 export * from './CandidateSuggestionFutureInventory';
 export * from './CandidateSuggestionInventory';
@@ -15,6 +16,9 @@ export * from './CustomDataListResponse';
 export * from './CustomDataValueFilter';
 export * from './CustomDataValueOfobject';
 export * from './ExclusionListEntryLocationCode';
+export * from './ExtendedCustomerInfo';
+export * from './ExtendedOrderInfo';
+export * from './ExtendedProductInfo';
 export * from './FulfillmentLimit';
 export * from './FutureInventory';
 export * from './GroupAfterAction';
@@ -37,5 +41,6 @@ export * from './SuggestionRequest';
 export * from './SuggestionResponse';
 export * from './SuggestionTestRequest';
 export * from './TagQuantity';
+export * from './TenantService';
 export * from './UnitOfobject';
 export * from './UserContextInformation';

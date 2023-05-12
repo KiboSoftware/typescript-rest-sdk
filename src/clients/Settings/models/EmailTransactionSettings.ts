@@ -355,6 +355,24 @@ export interface EmailTransactionSettings {
      * @memberof EmailTransactionSettings
      */
     subscriptionItemQuantityUpdated?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    subscriptionOrderReminder?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    subscriptionPauseLimitReminder?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    subscriptionPausedReminder?: boolean | null;
 }
 
 /**
@@ -432,6 +450,9 @@ export function EmailTransactionSettingsFromJSONTyped(json: any, ignoreDiscrimin
         'subscriptionItemsCancelled': !exists(json, 'subscriptionItemsCancelled') ? undefined : json['subscriptionItemsCancelled'],
         'subscriptionSkipped': !exists(json, 'subscriptionSkipped') ? undefined : json['subscriptionSkipped'],
         'subscriptionItemQuantityUpdated': !exists(json, 'subscriptionItemQuantityUpdated') ? undefined : json['subscriptionItemQuantityUpdated'],
+        'subscriptionOrderReminder': !exists(json, 'subscriptionOrderReminder') ? undefined : json['subscriptionOrderReminder'],
+        'subscriptionPauseLimitReminder': !exists(json, 'subscriptionPauseLimitReminder') ? undefined : json['subscriptionPauseLimitReminder'],
+        'subscriptionPausedReminder': !exists(json, 'subscriptionPausedReminder') ? undefined : json['subscriptionPausedReminder'],
     };
 }
 
@@ -500,6 +521,9 @@ export function EmailTransactionSettingsToJSON(value?: EmailTransactionSettings 
         'subscriptionItemsCancelled': value.subscriptionItemsCancelled,
         'subscriptionSkipped': value.subscriptionSkipped,
         'subscriptionItemQuantityUpdated': value.subscriptionItemQuantityUpdated,
+        'subscriptionOrderReminder': value.subscriptionOrderReminder,
+        'subscriptionPauseLimitReminder': value.subscriptionPauseLimitReminder,
+        'subscriptionPausedReminder': value.subscriptionPausedReminder,
     };
 }
 

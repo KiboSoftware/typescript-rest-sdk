@@ -29,21 +29,12 @@ import {
     TagCategoryToJSON,
 } from '../models';
 
-export interface InventoryTagCategoryApiDeleteTagCategoryRequest {
+export interface InventoryTagcategoryApiDeleteTagCategoryRequest {
     xVolTenant: number;
     tagCategoryName: string;
 }
 
-export interface InventoryTagCategoryApiGetTagCategoryRequest {
-    xVolTenant: number;
-    tagCategoryName: string;
-}
-
-export interface InventoryTagCategoryApiGetTagCategoryAllRequest {
-    xVolTenant: number;
-}
-
-export interface InventoryTagCategoryApiUpdateTagCategoryRequest {
+export interface InventoryTagcategoryApiUpdateTagCategoryRequest {
     xVolTenant: number;
     tagCategoryName: string;
     tagCategory: TagCategory;
@@ -52,7 +43,7 @@ export interface InventoryTagCategoryApiUpdateTagCategoryRequest {
 /**
  * 
  */
-export class InventoryTagCategoryApi extends runtime.BaseAPI {
+export class InventoryTagcategoryApi extends runtime.BaseAPI {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -63,7 +54,7 @@ export class InventoryTagCategoryApi extends runtime.BaseAPI {
      */
 
 
-    async deleteTagCategoryRaw(requestParameters: InventoryTagCategoryApiDeleteTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>> {
+    async deleteTagCategoryRaw(requestParameters: InventoryTagcategoryApiDeleteTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteTagCategory.');
         }
@@ -85,24 +76,10 @@ export class InventoryTagCategoryApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v1/tagCategory/{tag_category_name}`,
+            path: `/commerce/inventory/v1/tagCategory/{tag_category_name}`,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -115,126 +92,8 @@ export class InventoryTagCategoryApi extends runtime.BaseAPI {
      * Delete a Tag category
      * Delete Tag Category
      */
-    async deleteTagCategory(requestParameters: InventoryTagCategoryApiDeleteTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedCountResponse> {
+    async deleteTagCategory(requestParameters: InventoryTagcategoryApiDeleteTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedCountResponse> {
         const response = await this.deleteTagCategoryRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Get a tag category
-     * Get Tag Category
-     */
-
-
-    async getTagCategoryRaw(requestParameters: InventoryTagCategoryApiGetTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagCategory>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getTagCategory.');
-        }
-
-        if (requestParameters.tagCategoryName === null || requestParameters.tagCategoryName === undefined) {
-            throw new runtime.RequiredError('tagCategoryName','Required parameter requestParameters.tagCategoryName was null or undefined when calling getTagCategory.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.tagCategoryName !== undefined) {
-            queryParameters['tagCategoryName'] = requestParameters.tagCategoryName;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
-
-
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/commerce/inventory/api/v1/tagCategory/{tag_category_name}`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => TagCategoryFromJSON(jsonValue));
-    }
-
-    /**
-     * Get a tag category
-     * Get Tag Category
-     */
-    async getTagCategory(requestParameters: InventoryTagCategoryApiGetTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagCategory> {
-        const response = await this.getTagCategoryRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Get all tag categories for a tenant
-     * Get Tag Category All
-     */
-
-
-    async getTagCategoryAllRaw(requestParameters: InventoryTagCategoryApiGetTagCategoryAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<TagCategory>>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getTagCategoryAll.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
-
-
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/commerce/inventory/api/v1/tagCategory`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(TagCategoryFromJSON));
-    }
-
-    /**
-     * Get all tag categories for a tenant
-     * Get Tag Category All
-     */
-    async getTagCategoryAll(requestParameters: InventoryTagCategoryApiGetTagCategoryAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<TagCategory>> {
-        const response = await this.getTagCategoryAllRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -244,7 +103,7 @@ export class InventoryTagCategoryApi extends runtime.BaseAPI {
      */
 
 
-    async updateTagCategoryRaw(requestParameters: InventoryTagCategoryApiUpdateTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagCategory>> {
+    async updateTagCategoryRaw(requestParameters: InventoryTagcategoryApiUpdateTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagCategory>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateTagCategory.');
         }
@@ -272,24 +131,10 @@ export class InventoryTagCategoryApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v1/tagCategory/{tag_category_name}`,
+            path: `/commerce/inventory/v1/tagCategory/{tag_category_name}`,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
@@ -303,7 +148,7 @@ export class InventoryTagCategoryApi extends runtime.BaseAPI {
      * Update the designated tag category
      * Update Tag Category
      */
-    async updateTagCategory(requestParameters: InventoryTagCategoryApiUpdateTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagCategory> {
+    async updateTagCategory(requestParameters: InventoryTagcategoryApiUpdateTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagCategory> {
         const response = await this.updateTagCategoryRaw(requestParameters, initOverrides);
         return await response.value();
     }

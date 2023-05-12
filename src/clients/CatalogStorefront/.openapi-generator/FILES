@@ -77,6 +77,8 @@ models/ProductPurchasableState.ts
 models/ProductSearchPreviewResult.ts
 models/ProductSearchRandomAccessCursor.ts
 models/ProductSearchResult.ts
+models/ProductSubstituteCollection.ts
+models/ProductSubstitution.ts
 models/ProductValidationSummary.ts
 models/ProductVolumePrice.ts
 models/RequestFilter.ts

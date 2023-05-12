@@ -20,8 +20,6 @@ import type {
   AggregateResponse,
   InventoryRequest,
   InventoryResponse,
-  ItemQuantity,
-  RequestLocation,
 } from '../models';
 import {
     AggregateRequestFromJSON,
@@ -32,34 +30,12 @@ import {
     InventoryRequestToJSON,
     InventoryResponseFromJSON,
     InventoryResponseToJSON,
-    ItemQuantityFromJSON,
-    ItemQuantityToJSON,
-    RequestLocationFromJSON,
-    RequestLocationToJSON,
 } from '../models';
 
 export interface InventoryApiAggregateOperationRequest {
     xVolTenant: number;
     aggregateRequest: AggregateRequest;
     xVolSite?: number;
-}
-
-export interface InventoryApiGetInventoryRequest {
-    xVolTenant: number;
-    type: GetInventoryTypeEnum;
-    xVolSite?: number;
-    items?: Array<ItemQuantity>;
-    requestLocation?: RequestLocation;
-    locationWhitelist?: Array<string>;
-    locationBlacklist?: Array<string>;
-    limit?: number;
-    ignoreSafetyStock?: boolean;
-    includeNegativeInventory?: boolean;
-    shippingLocation?: boolean;
-    transferEnabled?: boolean;
-    pickup?: boolean;
-    includeInAggregate?: boolean;
-    includeAttributes?: boolean;
 }
 
 export interface InventoryApiPostQueryInventoryRequest {
@@ -106,24 +82,10 @@ export class InventoryApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v5/inventory/aggregate`,
+            path: `/commerce/inventory/v5/inventory/aggregate`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -139,121 +101,6 @@ export class InventoryApi extends runtime.BaseAPI {
      */
     async aggregate(requestParameters: InventoryApiAggregateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AggregateResponse>> {
         const response = await this.aggregateRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Get inventory from specified location
-     * Get Inventory
-     */
-
-
-    async getInventoryRaw(requestParameters: InventoryApiGetInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<InventoryResponse>>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getInventory.');
-        }
-
-        if (requestParameters.type === null || requestParameters.type === undefined) {
-            throw new runtime.RequiredError('type','Required parameter requestParameters.type was null or undefined when calling getInventory.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.type !== undefined) {
-            queryParameters['type'] = requestParameters.type;
-        }
-
-        if (requestParameters.items) {
-            queryParameters['items'] = requestParameters.items;
-        }
-
-        if (requestParameters.requestLocation !== undefined) {
-            queryParameters['requestLocation'] = requestParameters.requestLocation;
-        }
-
-        if (requestParameters.locationWhitelist) {
-            queryParameters['locationWhitelist'] = requestParameters.locationWhitelist;
-        }
-
-        if (requestParameters.locationBlacklist) {
-            queryParameters['locationBlacklist'] = requestParameters.locationBlacklist;
-        }
-
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
-        }
-
-        if (requestParameters.ignoreSafetyStock !== undefined) {
-            queryParameters['ignoreSafetyStock'] = requestParameters.ignoreSafetyStock;
-        }
-
-        if (requestParameters.includeNegativeInventory !== undefined) {
-            queryParameters['includeNegativeInventory'] = requestParameters.includeNegativeInventory;
-        }
-
-        if (requestParameters.shippingLocation !== undefined) {
-            queryParameters['shippingLocation'] = requestParameters.shippingLocation;
-        }
-
-        if (requestParameters.transferEnabled !== undefined) {
-            queryParameters['transferEnabled'] = requestParameters.transferEnabled;
-        }
-
-        if (requestParameters.pickup !== undefined) {
-            queryParameters['pickup'] = requestParameters.pickup;
-        }
-
-        if (requestParameters.includeInAggregate !== undefined) {
-            queryParameters['includeInAggregate'] = requestParameters.includeInAggregate;
-        }
-
-        if (requestParameters.includeAttributes !== undefined) {
-            queryParameters['includeAttributes'] = requestParameters.includeAttributes;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/commerce/inventory/api/v5/inventory`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(InventoryResponseFromJSON));
-    }
-
-    /**
-     * Get inventory from specified location
-     * Get Inventory
-     */
-    async getInventory(requestParameters: InventoryApiGetInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<InventoryResponse>> {
-        const response = await this.getInventoryRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -287,24 +134,10 @@ export class InventoryApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v5/inventory`,
+            path: `/commerce/inventory/v5/inventory`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -324,14 +157,3 @@ export class InventoryApi extends runtime.BaseAPI {
     }
 
 }
-
-/**
- * @export
- */
-export const GetInventoryTypeEnum = {
-    All: 'ALL',
-    Partial: 'PARTIAL',
-    Any: 'ANY',
-    AllStores: 'ALL_STORES'
-} as const;
-export type GetInventoryTypeEnum = typeof GetInventoryTypeEnum[keyof typeof GetInventoryTypeEnum];

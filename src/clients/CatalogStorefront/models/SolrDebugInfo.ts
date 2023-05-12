@@ -49,6 +49,12 @@ export interface SolrDebugInfo {
      * @memberof SolrDebugInfo
      */
     boostFunctions?: Array<string> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SolrDebugInfo
+     */
+    solrUrl?: string | null;
 }
 
 /**
@@ -75,6 +81,7 @@ export function SolrDebugInfoFromJSONTyped(json: any, ignoreDiscriminator: boole
         'blockedProductCodes': !exists(json, 'blockedProductCodes') ? undefined : json['blockedProductCodes'],
         'boostQueries': !exists(json, 'boostQueries') ? undefined : json['boostQueries'],
         'boostFunctions': !exists(json, 'boostFunctions') ? undefined : json['boostFunctions'],
+        'solrUrl': !exists(json, 'solrUrl') ? undefined : json['solrUrl'],
     };
 }
 
@@ -92,6 +99,7 @@ export function SolrDebugInfoToJSON(value?: SolrDebugInfo | null): any {
         'blockedProductCodes': value.blockedProductCodes,
         'boostQueries': value.boostQueries,
         'boostFunctions': value.boostFunctions,
+        'solrUrl': value.solrUrl,
     };
 }
 

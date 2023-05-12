@@ -20,6 +20,7 @@ import type {
   AllocateInventoryRequest,
   BaseResponse,
   JobQueueResponse,
+  TransitionCartRequest,
 } from '../models';
 import {
     AllocateInventory500ResponseFromJSON,
@@ -30,6 +31,8 @@ import {
     BaseResponseToJSON,
     JobQueueResponseFromJSON,
     JobQueueResponseToJSON,
+    TransitionCartRequestFromJSON,
+    TransitionCartRequestToJSON,
 } from '../models';
 
 export interface InventoryAllocationApiAllocateInventoryOperationRequest {
@@ -45,6 +48,11 @@ export interface InventoryAllocationApiDeallocateInventoryRequest {
 export interface InventoryAllocationApiFulfillInventoryRequest {
     xVolTenant: number;
     allocateInventoryRequest: AllocateInventoryRequest;
+}
+
+export interface InventoryAllocationApiTransitionCartOperationRequest {
+    xVolTenant: number;
+    transitionCartRequest: TransitionCartRequest;
 }
 
 /**
@@ -81,24 +89,10 @@ export class InventoryAllocationApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v5/inventory/allocate`,
+            path: `/commerce/inventory/v5/inventory/allocate`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -143,24 +137,10 @@ export class InventoryAllocationApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v5/inventory/deallocate`,
+            path: `/commerce/inventory/v5/inventory/deallocate`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -205,24 +185,10 @@ export class InventoryAllocationApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v5/inventory/fulfill`,
+            path: `/commerce/inventory/v5/inventory/fulfill`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -238,6 +204,54 @@ export class InventoryAllocationApi extends runtime.BaseAPI {
      */
     async fulfillInventory(requestParameters: InventoryAllocationApiFulfillInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse> {
         const response = await this.fulfillInventoryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Transitions a cart allocation into a normal order/shipment allocation
+     * Transition Cart
+     */
+
+
+    async transitionCartRaw(requestParameters: InventoryAllocationApiTransitionCartOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>> {
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling transitionCart.');
+        }
+
+        if (requestParameters.transitionCartRequest === null || requestParameters.transitionCartRequest === undefined) {
+            throw new runtime.RequiredError('transitionCartRequest','Required parameter requestParameters.transitionCartRequest was null or undefined when calling transitionCart.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/inventory/v5/inventory/transitionCart`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: TransitionCartRequestToJSON(requestParameters.transitionCartRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BaseResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Transitions a cart allocation into a normal order/shipment allocation
+     * Transition Cart
+     */
+    async transitionCart(requestParameters: InventoryAllocationApiTransitionCartOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse> {
+        const response = await this.transitionCartRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

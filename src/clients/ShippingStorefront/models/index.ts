@@ -1,7 +1,10 @@
 /* tslint:disable */
 /* eslint-disable */
 export * from './Address';
+export * from './AuditInfo';
+export * from './Carrier';
 export * from './CarrierRatesResponse';
+export * from './CarrierResponse';
 export * from './Category';
 export * from './CustomAttribute';
 export * from './ItemMeasurements';

@@ -86,24 +86,10 @@ export class InventoryFetchFileConfigApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v1/config/fetchfile/{fetchFileConfigID}`.replace(`{${"fetchFileConfigID"}}`, encodeURIComponent(String(requestParameters.fetchFileConfigID))),
+            path: `/commerce/inventory/v1/config/fetchfile/{fetchFileConfigID}`.replace(`{${"fetchFileConfigID"}}`, encodeURIComponent(String(requestParameters.fetchFileConfigID))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -141,24 +127,10 @@ export class InventoryFetchFileConfigApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v1/config/fetchfile`,
+            path: `/commerce/inventory/v1/config/fetchfile`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -202,24 +174,10 @@ export class InventoryFetchFileConfigApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v1/config/fetchfile`,
+            path: `/commerce/inventory/v1/config/fetchfile`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -262,24 +220,10 @@ export class InventoryFetchFileConfigApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v1/config/fetchfile/testConnection/{fetchFileConfigID}`.replace(`{${"fetchFileConfigID"}}`, encodeURIComponent(String(requestParameters.fetchFileConfigID))),
+            path: `/commerce/inventory/v1/config/fetchfile/testConnection/{fetchFileConfigID}`.replace(`{${"fetchFileConfigID"}}`, encodeURIComponent(String(requestParameters.fetchFileConfigID))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,

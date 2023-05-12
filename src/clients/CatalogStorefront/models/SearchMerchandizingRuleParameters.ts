@@ -27,6 +27,13 @@ import {
  */
 export interface SearchMerchandizingRuleParameters {
     /**
+     * User specific personalization ID.
+     * For Monetate users (AKA MID), it follows this format 2.x.y, where x and y are integers
+     * @type {string}
+     * @memberof SearchMerchandizingRuleParameters
+     */
+    personalizationUserId?: string | null;
+    /**
      * 
      * @type {string}
      * @memberof SearchMerchandizingRuleParameters
@@ -77,6 +84,7 @@ export function SearchMerchandizingRuleParametersFromJSONTyped(json: any, ignore
     }
     return {
         
+        'personalizationUserId': !exists(json, 'personalizationUserId') ? undefined : json['personalizationUserId'],
         'query': !exists(json, 'query') ? undefined : json['query'],
         'categoryCode': !exists(json, 'categoryCode') ? undefined : json['categoryCode'],
         'pageSize': !exists(json, 'pageSize') ? undefined : json['pageSize'],
@@ -94,6 +102,7 @@ export function SearchMerchandizingRuleParametersToJSON(value?: SearchMerchandiz
     }
     return {
         
+        'personalizationUserId': value.personalizationUserId,
         'query': value.query,
         'categoryCode': value.categoryCode,
         'pageSize': value.pageSize,

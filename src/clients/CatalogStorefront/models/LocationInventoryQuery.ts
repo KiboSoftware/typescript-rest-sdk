@@ -50,6 +50,12 @@ export interface LocationInventoryQuery {
      * @memberof LocationInventoryQuery
      */
     includeFutureInventory?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LocationInventoryQuery
+     */
+    forceDefaultsForUnspecifiedTagCategories?: boolean;
 }
 
 /**
@@ -75,6 +81,7 @@ export function LocationInventoryQueryFromJSONTyped(json: any, ignoreDiscriminat
         'productCodes': !exists(json, 'productCodes') ? undefined : json['productCodes'],
         'inventoryTags': !exists(json, 'inventoryTags') ? undefined : (json['inventoryTags'] === null ? null : (json['inventoryTags'] as Array<any>).map(InventoryTagFromJSON)),
         'includeFutureInventory': !exists(json, 'includeFutureInventory') ? undefined : json['includeFutureInventory'],
+        'forceDefaultsForUnspecifiedTagCategories': !exists(json, 'forceDefaultsForUnspecifiedTagCategories') ? undefined : json['forceDefaultsForUnspecifiedTagCategories'],
     };
 }
 
@@ -91,6 +98,7 @@ export function LocationInventoryQueryToJSON(value?: LocationInventoryQuery | nu
         'productCodes': value.productCodes,
         'inventoryTags': value.inventoryTags === undefined ? undefined : (value.inventoryTags === null ? null : (value.inventoryTags as Array<any>).map(InventoryTagToJSON)),
         'includeFutureInventory': value.includeFutureInventory,
+        'forceDefaultsForUnspecifiedTagCategories': value.forceDefaultsForUnspecifiedTagCategories,
     };
 }
 

@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { PackageMeasurements } from './PackageMeasurements';
+import {
+    PackageMeasurementsFromJSON,
+    PackageMeasurementsFromJSONTyped,
+    PackageMeasurementsToJSON,
+} from './PackageMeasurements';
+
 /**
  * 
  * @export
@@ -55,6 +62,12 @@ export interface BundledProdu {
      * @memberof BundledProdu
      */
     optionValue?: any | null;
+    /**
+     * 
+     * @type {PackageMeasurements}
+     * @memberof BundledProdu
+     */
+    measurements?: PackageMeasurements;
 }
 
 /**
@@ -82,6 +95,7 @@ export function BundledProduFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'quantity': !exists(json, 'quantity') ? undefined : json['quantity'],
         'optionAttributeFQN': !exists(json, 'optionAttributeFQN') ? undefined : json['optionAttributeFQN'],
         'optionValue': !exists(json, 'optionValue') ? undefined : json['optionValue'],
+        'measurements': !exists(json, 'measurements') ? undefined : PackageMeasurementsFromJSON(json['measurements']),
     };
 }
 
@@ -100,6 +114,7 @@ export function BundledProduToJSON(value?: BundledProdu | null): any {
         'quantity': value.quantity,
         'optionAttributeFQN': value.optionAttributeFQN,
         'optionValue': value.optionValue,
+        'measurements': PackageMeasurementsToJSON(value.measurements),
     };
 }
 

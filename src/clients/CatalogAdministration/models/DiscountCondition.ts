@@ -19,6 +19,12 @@ import {
     CategoryDiscountConditionFromJSONTyped,
     CategoryDiscountConditionToJSON,
 } from './CategoryDiscountCondition';
+import type { ContinuityRecurrenceSettings } from './ContinuityRecurrenceSettings';
+import {
+    ContinuityRecurrenceSettingsFromJSON,
+    ContinuityRecurrenceSettingsFromJSONTyped,
+    ContinuityRecurrenceSettingsToJSON,
+} from './ContinuityRecurrenceSettings';
 import type { CustomerSegment } from './CustomerSegment';
 import {
     CustomerSegmentFromJSON,
@@ -200,6 +206,19 @@ export interface DiscountCondition {
      * @memberof DiscountCondition
      */
     minTotalOrderQuantity?: number | null;
+    /**
+     * The pricing context must match on this value for the discount to apply.
+     * This only matters for tenants that use subscription products
+     * @type {string}
+     * @memberof DiscountCondition
+     */
+    pricingContext?: string | null;
+    /**
+     * 
+     * @type {ContinuityRecurrenceSettings}
+     * @memberof DiscountCondition
+     */
+    continuityRecurrenceSettings?: ContinuityRecurrenceSettings;
 }
 
 /**
@@ -246,6 +265,8 @@ export function DiscountConditionFromJSONTyped(json: any, ignoreDiscriminator: b
         'validSubscriptionContinuityOrdinals': !exists(json, 'validSubscriptionContinuityOrdinals') ? undefined : json['validSubscriptionContinuityOrdinals'],
         'minDistinctProductsRequired': !exists(json, 'minDistinctProductsRequired') ? undefined : json['minDistinctProductsRequired'],
         'minTotalOrderQuantity': !exists(json, 'minTotalOrderQuantity') ? undefined : json['minTotalOrderQuantity'],
+        'pricingContext': !exists(json, 'pricingContext') ? undefined : json['pricingContext'],
+        'continuityRecurrenceSettings': !exists(json, 'continuityRecurrenceSettings') ? undefined : ContinuityRecurrenceSettingsFromJSON(json['continuityRecurrenceSettings']),
     };
 }
 
@@ -283,6 +304,8 @@ export function DiscountConditionToJSON(value?: DiscountCondition | null): any {
         'validSubscriptionContinuityOrdinals': value.validSubscriptionContinuityOrdinals,
         'minDistinctProductsRequired': value.minDistinctProductsRequired,
         'minTotalOrderQuantity': value.minTotalOrderQuantity,
+        'pricingContext': value.pricingContext,
+        'continuityRecurrenceSettings': ContinuityRecurrenceSettingsToJSON(value.continuityRecurrenceSettings),
     };
 }
 

@@ -126,6 +126,12 @@ export interface DiscountTarget {
      */
     shippingZones?: Array<TargetedShippingZone> | null;
     /**
+     * Prevents the discount from being applied to handling fees
+     * @type {boolean}
+     * @memberof DiscountTarget
+     */
+    doNotApplyToHandlingFees?: boolean | null;
+    /**
      * When a condition is specified, this property limits the number of items that can be targeted per discount redemption with an order.
      * if multiple redemptions are allowed per order then multiples of this value would be allowed in multiples of the associated 
      * condition.
@@ -177,6 +183,7 @@ export function DiscountTargetFromJSONTyped(json: any, ignoreDiscriminator: bool
         'excludeItemsWithExistingProductDiscounts': !exists(json, 'excludeItemsWithExistingProductDiscounts') ? undefined : json['excludeItemsWithExistingProductDiscounts'],
         'shippingMethods': !exists(json, 'shippingMethods') ? undefined : (json['shippingMethods'] === null ? null : (json['shippingMethods'] as Array<any>).map(TargetedShippingMethodFromJSON)),
         'shippingZones': !exists(json, 'shippingZones') ? undefined : (json['shippingZones'] === null ? null : (json['shippingZones'] as Array<any>).map(TargetedShippingZoneFromJSON)),
+        'doNotApplyToHandlingFees': !exists(json, 'doNotApplyToHandlingFees') ? undefined : json['doNotApplyToHandlingFees'],
         'maximumQuantityPerRedemption': !exists(json, 'maximumQuantityPerRedemption') ? undefined : json['maximumQuantityPerRedemption'],
         'appliesToLeastExpensiveProductsFirst': !exists(json, 'appliesToLeastExpensiveProductsFirst') ? undefined : json['appliesToLeastExpensiveProductsFirst'],
     };
@@ -203,6 +210,7 @@ export function DiscountTargetToJSON(value?: DiscountTarget | null): any {
         'excludeItemsWithExistingProductDiscounts': value.excludeItemsWithExistingProductDiscounts,
         'shippingMethods': value.shippingMethods === undefined ? undefined : (value.shippingMethods === null ? null : (value.shippingMethods as Array<any>).map(TargetedShippingMethodToJSON)),
         'shippingZones': value.shippingZones === undefined ? undefined : (value.shippingZones === null ? null : (value.shippingZones as Array<any>).map(TargetedShippingZoneToJSON)),
+        'doNotApplyToHandlingFees': value.doNotApplyToHandlingFees,
         'maximumQuantityPerRedemption': value.maximumQuantityPerRedemption,
         'appliesToLeastExpensiveProductsFirst': value.appliesToLeastExpensiveProductsFirst,
     };

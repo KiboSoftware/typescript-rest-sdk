@@ -5,7 +5,13 @@ models/Allocati.ts
 models/AuditInf.ts
 models/BundledProdu.ts
 models/ChangeMessage.ts
+models/InventoryTags.ts
+models/Measurement.ts
+models/OrderAttribute.ts
+models/PackageMeasurements.ts
 models/Produ.ts
+models/ProductProperty.ts
+models/ProductPropertyValue.ts
 models/Reservati.ts
 models/ReservationCollecti.ts
 models/ReservationItem.ts

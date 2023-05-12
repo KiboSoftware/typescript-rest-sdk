@@ -38,6 +38,12 @@ export interface DiscountSettings {
      * @memberof DiscountSettings
      */
     usePostDiscountedOrderValue?: boolean | null;
+    /**
+     * Prevents discounts from applying to handling fees
+     * @type {boolean}
+     * @memberof DiscountSettings
+     */
+    doNotApplyToHandlingFees?: boolean | null;
 }
 
 /**
@@ -61,6 +67,7 @@ export function DiscountSettingsFromJSONTyped(json: any, ignoreDiscriminator: bo
         
         'stackingConfiguration': !exists(json, 'stackingConfiguration') ? undefined : StackingConfigurationFromJSON(json['stackingConfiguration']),
         'usePostDiscountedOrderValue': !exists(json, 'usePostDiscountedOrderValue') ? undefined : json['usePostDiscountedOrderValue'],
+        'doNotApplyToHandlingFees': !exists(json, 'doNotApplyToHandlingFees') ? undefined : json['doNotApplyToHandlingFees'],
     };
 }
 
@@ -75,6 +82,7 @@ export function DiscountSettingsToJSON(value?: DiscountSettings | null): any {
         
         'stackingConfiguration': StackingConfigurationToJSON(value.stackingConfiguration),
         'usePostDiscountedOrderValue': value.usePostDiscountedOrderValue,
+        'doNotApplyToHandlingFees': value.doNotApplyToHandlingFees,
     };
 }
 

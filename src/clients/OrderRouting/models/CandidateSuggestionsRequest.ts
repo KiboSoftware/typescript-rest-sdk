@@ -19,6 +19,18 @@ import {
     ExclusionListEntryLocationCodeFromJSONTyped,
     ExclusionListEntryLocationCodeToJSON,
 } from './ExclusionListEntryLocationCode';
+import type { ExtendedCustomerInfo } from './ExtendedCustomerInfo';
+import {
+    ExtendedCustomerInfoFromJSON,
+    ExtendedCustomerInfoFromJSONTyped,
+    ExtendedCustomerInfoToJSON,
+} from './ExtendedCustomerInfo';
+import type { ExtendedOrderInfo } from './ExtendedOrderInfo';
+import {
+    ExtendedOrderInfoFromJSON,
+    ExtendedOrderInfoFromJSONTyped,
+    ExtendedOrderInfoToJSON,
+} from './ExtendedOrderInfo';
 import type { OrderItem } from './OrderItem';
 import {
     OrderItemFromJSON,
@@ -50,6 +62,18 @@ export interface CandidateSuggestionsRequest {
      * @memberof CandidateSuggestionsRequest
      */
     exclusionListLocationCode?: Array<ExclusionListEntryLocationCode>;
+    /**
+     * 
+     * @type {ExtendedCustomerInfo}
+     * @memberof CandidateSuggestionsRequest
+     */
+    extendedCustomerInfo?: ExtendedCustomerInfo;
+    /**
+     * 
+     * @type {ExtendedOrderInfo}
+     * @memberof CandidateSuggestionsRequest
+     */
+    extendedOrderInfo?: ExtendedOrderInfo;
     /**
      * 
      * @type {Date}
@@ -156,6 +180,8 @@ export function CandidateSuggestionsRequestFromJSONTyped(json: any, ignoreDiscri
         
         'environmentID': !exists(json, 'environmentID') ? undefined : json['environmentID'],
         'exclusionListLocationCode': !exists(json, 'exclusionListLocationCode') ? undefined : ((json['exclusionListLocationCode'] as Array<any>).map(ExclusionListEntryLocationCodeFromJSON)),
+        'extendedCustomerInfo': !exists(json, 'extendedCustomerInfo') ? undefined : ExtendedCustomerInfoFromJSON(json['extendedCustomerInfo']),
+        'extendedOrderInfo': !exists(json, 'extendedOrderInfo') ? undefined : ExtendedOrderInfoFromJSON(json['extendedOrderInfo']),
         'futureDateLimit': !exists(json, 'futureDateLimit') ? undefined : (new Date(json['futureDateLimit'])),
         'futureExclusionListLocationCode': !exists(json, 'futureExclusionListLocationCode') ? undefined : ((json['futureExclusionListLocationCode'] as Array<any>).map(ExclusionListEntryLocationCodeFromJSON)),
         'inventoryRequestType': !exists(json, 'inventoryRequestType') ? undefined : json['inventoryRequestType'],
@@ -180,6 +206,8 @@ export function CandidateSuggestionsRequestToJSON(value?: CandidateSuggestionsRe
         
         'environmentID': value.environmentID,
         'exclusionListLocationCode': value.exclusionListLocationCode === undefined ? undefined : ((value.exclusionListLocationCode as Array<any>).map(ExclusionListEntryLocationCodeToJSON)),
+        'extendedCustomerInfo': ExtendedCustomerInfoToJSON(value.extendedCustomerInfo),
+        'extendedOrderInfo': ExtendedOrderInfoToJSON(value.extendedOrderInfo),
         'futureDateLimit': value.futureDateLimit === undefined ? undefined : (value.futureDateLimit.toISOString()),
         'futureExclusionListLocationCode': value.futureExclusionListLocationCode === undefined ? undefined : ((value.futureExclusionListLocationCode as Array<any>).map(ExclusionListEntryLocationCodeToJSON)),
         'inventoryRequestType': value.inventoryRequestType,

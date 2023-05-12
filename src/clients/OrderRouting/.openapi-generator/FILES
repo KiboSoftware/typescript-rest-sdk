@@ -7,6 +7,7 @@ apis/index.ts
 index.ts
 models/AbstractFilter.ts
 models/AssignmentSuggestion.ts
+models/Attribute.ts
 models/CandidateSuggestion.ts
 models/CandidateSuggestionFutureInventory.ts
 models/CandidateSuggestionInventory.ts
@@ -20,6 +21,9 @@ models/CustomDataListResponse.ts
 models/CustomDataValueFilter.ts
 models/CustomDataValueOfobject.ts
 models/ExclusionListEntryLocationCode.ts
+models/ExtendedCustomerInfo.ts
+models/ExtendedOrderInfo.ts
+models/ExtendedProductInfo.ts
 models/FulfillmentLimit.ts
 models/FutureInventory.ts
 models/GroupAfterAction.ts
@@ -42,6 +46,7 @@ models/SuggestionRequest.ts
 models/SuggestionResponse.ts
 models/SuggestionTestRequest.ts
 models/TagQuantity.ts
+models/TenantService.ts
 models/UnitOfobject.ts
 models/UserContextInformation.ts
 models/index.ts

@@ -28,11 +28,14 @@ models/LocationGroup.ts
 models/LocationGroupCollection.ts
 models/LocationGroupConfiguration.ts
 models/LocationType.ts
+models/LocationTypeCollection.ts
 models/LocationUsage.ts
 models/LocationUsageCollection.ts
 models/PackageSettings.ts
+models/ProcessingTime.ts
 models/RegularHours.ts
 models/ShippingMethodMappings.ts
 models/ShippingOriginContact.ts
+models/TransferTime.ts
 models/index.ts
 runtime.ts

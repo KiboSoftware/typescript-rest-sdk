@@ -37,6 +37,24 @@ export interface UpdateExportSettingsFTPResponse {
      * @memberof UpdateExportSettingsFTPResponse
      */
     exportSettingsName?: string;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof UpdateExportSettingsFTPResponse
+     */
+    success?: boolean;
+    /**
+     * List of messages
+     * @type {Array<string>}
+     * @memberof UpdateExportSettingsFTPResponse
+     */
+    messages?: Array<string>;
+    /**
+     * Number of results
+     * @type {number}
+     * @memberof UpdateExportSettingsFTPResponse
+     */
+    numResults?: number;
 }
 
 /**
@@ -61,6 +79,9 @@ export function UpdateExportSettingsFTPResponseFromJSONTyped(json: any, ignoreDi
         'tenantID': !exists(json, 'tenantID') ? undefined : json['tenantID'],
         'exportSettingsFTPName': !exists(json, 'exportSettingsFTPName') ? undefined : json['exportSettingsFTPName'],
         'exportSettingsName': !exists(json, 'exportSettingsName') ? undefined : json['exportSettingsName'],
+        'success': !exists(json, 'success') ? undefined : json['success'],
+        'messages': !exists(json, 'messages') ? undefined : json['messages'],
+        'numResults': !exists(json, 'numResults') ? undefined : json['numResults'],
     };
 }
 
@@ -76,6 +97,9 @@ export function UpdateExportSettingsFTPResponseToJSON(value?: UpdateExportSettin
         'tenantID': value.tenantID,
         'exportSettingsFTPName': value.exportSettingsFTPName,
         'exportSettingsName': value.exportSettingsName,
+        'success': value.success,
+        'messages': value.messages,
+        'numResults': value.numResults,
     };
 }
 

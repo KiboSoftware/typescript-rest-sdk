@@ -2,7 +2,10 @@ apis/ShippingApi.ts
 apis/index.ts
 index.ts
 models/Address.ts
+models/AuditInfo.ts
+models/Carrier.ts
 models/CarrierRatesResponse.ts
+models/CarrierResponse.ts
 models/Category.ts
 models/CustomAttribute.ts
 models/ItemMeasurements.ts

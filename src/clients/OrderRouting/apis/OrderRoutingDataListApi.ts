@@ -93,24 +93,10 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/orderrouting/api/v1/dataList`,
+            path: `/commerce/orders/orderrouting/api/v1/dataList`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -161,24 +147,10 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/orderrouting/api/v1/dataList/{dataListID}`.replace(`{${"dataListID"}}`, encodeURIComponent(String(requestParameters.dataListID))),
+            path: `/commerce/orders/orderrouting/api/v1/dataList/{dataListID}`.replace(`{${"dataListID"}}`, encodeURIComponent(String(requestParameters.dataListID))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -227,24 +199,10 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/orderrouting/api/v1/dataList/{dataListID}`.replace(`{${"dataListID"}}`, encodeURIComponent(String(requestParameters.dataListID))),
+            path: `/commerce/orders/orderrouting/api/v1/dataList/{dataListID}`.replace(`{${"dataListID"}}`, encodeURIComponent(String(requestParameters.dataListID))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -300,24 +258,10 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/orderrouting/api/v1/dataList/{dataListID}`.replace(`{${"dataListID"}}`, encodeURIComponent(String(requestParameters.dataListID))),
+            path: `/commerce/orders/orderrouting/api/v1/dataList/{dataListID}`.replace(`{${"dataListID"}}`, encodeURIComponent(String(requestParameters.dataListID))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,

@@ -159,11 +159,53 @@ export interface InventoryRequest {
      */
     sortByEnum?: InventoryRequestSortByEnumEnum;
     /**
+     * Whether to sort by descending order or not. Must be used in conjunction with the sortByEnum value
+     * @type {boolean}
+     * @memberof InventoryRequest
+     */
+    sortDescending?: boolean;
+    /**
+     * Whether to force populate default tags onto the request if they are unspecified for any tag category
+     * @type {boolean}
+     * @memberof InventoryRequest
+     */
+    forceDefaultsForUnspecifiedTagCategories?: boolean;
+    /**
      * Associative Map of <String, String> for tagCategoryName => tagName
      * @type {{ [key: string]: string; }}
      * @memberof InventoryRequest
      */
     tags?: { [key: string]: string; };
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof InventoryRequest
+     */
+    locationCode?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof InventoryRequest
+     */
+    userID?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof InventoryRequest
+     */
+    pageSize?: number;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof InventoryRequest
+     */
+    pageNum?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof InventoryRequest
+     */
+    sortBy?: string;
 }
 
 
@@ -214,7 +256,7 @@ export function InventoryRequestFromJSONTyped(json: any, ignoreDiscriminator: bo
         
         'type': json['type'],
         'items': ((json['items'] as Array<any>).map(ItemQuantityFromJSON)),
-        'requestLocation': !exists(json, 'requestLocation') ? undefined : json['requestLocation'],
+        'requestLocation': !exists(json, 'requestLocation') ? undefined : RequestLocationFromJSON(json['requestLocation']),
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
         'locationWhitelist': !exists(json, 'locationWhitelist') ? undefined : json['locationWhitelist'],
         'locationPriorityList': !exists(json, 'locationPriorityList') ? undefined : json['locationPriorityList'],
@@ -233,7 +275,14 @@ export function InventoryRequestFromJSONTyped(json: any, ignoreDiscriminator: bo
         'deliveryDateBefore': !exists(json, 'deliveryDateBefore') ? undefined : json['deliveryDateBefore'],
         'deliveryDateAfter': !exists(json, 'deliveryDateAfter') ? undefined : json['deliveryDateAfter'],
         'sortByEnum': !exists(json, 'sortByEnum') ? undefined : json['sortByEnum'],
+        'sortDescending': !exists(json, 'sortDescending') ? undefined : json['sortDescending'],
+        'forceDefaultsForUnspecifiedTagCategories': !exists(json, 'forceDefaultsForUnspecifiedTagCategories') ? undefined : json['forceDefaultsForUnspecifiedTagCategories'],
         'tags': !exists(json, 'tags') ? undefined : json['tags'],
+        'locationCode': !exists(json, 'locationCode') ? undefined : json['locationCode'],
+        'userID': !exists(json, 'userID') ? undefined : json['userID'],
+        'pageSize': !exists(json, 'pageSize') ? undefined : json['pageSize'],
+        'pageNum': !exists(json, 'pageNum') ? undefined : json['pageNum'],
+        'sortBy': !exists(json, 'sortBy') ? undefined : json['sortBy'],
     };
 }
 
@@ -248,7 +297,7 @@ export function InventoryRequestToJSON(value?: InventoryRequest | null): any {
         
         'type': value.type,
         'items': ((value.items as Array<any>).map(ItemQuantityToJSON)),
-        'requestLocation': value.requestLocation,
+        'requestLocation': RequestLocationToJSON(value.requestLocation),
         'limit': value.limit,
         'locationWhitelist': value.locationWhitelist,
         'locationPriorityList': value.locationPriorityList,
@@ -267,7 +316,14 @@ export function InventoryRequestToJSON(value?: InventoryRequest | null): any {
         'deliveryDateBefore': value.deliveryDateBefore,
         'deliveryDateAfter': value.deliveryDateAfter,
         'sortByEnum': value.sortByEnum,
+        'sortDescending': value.sortDescending,
+        'forceDefaultsForUnspecifiedTagCategories': value.forceDefaultsForUnspecifiedTagCategories,
         'tags': value.tags,
+        'locationCode': value.locationCode,
+        'userID': value.userID,
+        'pageSize': value.pageSize,
+        'pageNum': value.pageNum,
+        'sortBy': value.sortBy,
     };
 }
 

@@ -27,6 +27,7 @@ import type {
   ProductCostQuery,
   ProductForIndexing,
   ProductOptionSelections,
+  ProductSubstituteCollection,
   ProductValidationSummary,
 } from '../models';
 import {
@@ -52,6 +53,8 @@ import {
     ProductForIndexingToJSON,
     ProductOptionSelectionsFromJSON,
     ProductOptionSelectionsToJSON,
+    ProductSubstituteCollectionFromJSON,
+    ProductSubstituteCollectionToJSON,
     ProductValidationSummaryFromJSON,
     ProductValidationSummaryToJSON,
 } from '../models';
@@ -119,6 +122,10 @@ export interface ProductsApiStorefrontGetProductsRequest {
     includeProductDetailsOnlyProperty?: boolean;
 }
 
+export interface ProductsApiStorefrontProductSubstitutionsRequest {
+    productCode: string;
+}
+
 export interface ProductsApiStorefrontValidateDiscountsRequest {
     productCode: string;
     variationProductCode?: string;
@@ -136,6 +143,7 @@ export interface ProductsApiStorefrontValidateProductRequest {
     purchaseLocation?: string;
     useSubscriptionPricing?: boolean;
     recalculateDynamicCategories?: boolean;
+    acceptVariantProductCode?: boolean;
     productOptionSelections?: ProductOptionSelections;
 }
 
@@ -196,22 +204,8 @@ export class ProductsApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/catalog/storefront/products/{productCode}/configure`.replace(`{${"productCode"}}`, encodeURIComponent(String(requestParameters.productCode))),
             method: 'POST',
@@ -299,22 +293,8 @@ export class ProductsApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/catalog/storefront/products/{productCode}`.replace(`{${"productCode"}}`, encodeURIComponent(String(requestParameters.productCode))),
             method: 'GET',
@@ -351,22 +331,8 @@ export class ProductsApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/catalog/storefront/products/costs`,
             method: 'POST',
@@ -418,22 +384,8 @@ export class ProductsApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/catalog/storefront/products/indexing/{productCode}`.replace(`{${"productCode"}}`, encodeURIComponent(String(requestParameters.productCode))),
             method: 'GET',
@@ -470,22 +422,8 @@ export class ProductsApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/catalog/storefront/products/locationinventory`,
             method: 'POST',
@@ -529,22 +467,8 @@ export class ProductsApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/catalog/storefront/products/{productCode}/locationinventory`.replace(`{${"productCode"}}`, encodeURIComponent(String(requestParameters.productCode))),
             method: 'GET',
@@ -627,22 +551,8 @@ export class ProductsApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/catalog/storefront/products`,
             method: 'GET',
@@ -659,6 +569,46 @@ export class ProductsApi extends runtime.BaseAPI {
      */
     async storefrontGetProducts(requestParameters: ProductsApiStorefrontGetProductsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductCollection> {
         const response = await this.storefrontGetProductsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Returns a list of up to 10 products that can be substituted for the provided product code.
+     * Get product substitutions
+     */
+
+
+    async storefrontProductSubstitutionsRaw(requestParameters: ProductsApiStorefrontProductSubstitutionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSubstituteCollection>> {
+        if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
+            throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling storefrontProductSubstitutions.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/catalog/storefront/products/{productCode}/substitutions`.replace(`{${"productCode"}}`, encodeURIComponent(String(requestParameters.productCode))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ProductSubstituteCollectionFromJSON(jsonValue));
+    }
+
+    /**
+     * Returns a list of up to 10 products that can be substituted for the provided product code.
+     * Get product substitutions
+     */
+    async storefrontProductSubstitutions(requestParameters: ProductsApiStorefrontProductSubstitutionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSubstituteCollection> {
+        const response = await this.storefrontProductSubstitutionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -699,22 +649,8 @@ export class ProductsApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/catalog/storefront/products/{productCode}/validateDiscounts`.replace(`{${"productCode"}}`, encodeURIComponent(String(requestParameters.productCode))),
             method: 'POST',
@@ -772,6 +708,10 @@ export class ProductsApi extends runtime.BaseAPI {
             queryParameters['recalculateDynamicCategories'] = requestParameters.recalculateDynamicCategories;
         }
 
+        if (requestParameters.acceptVariantProductCode !== undefined) {
+            queryParameters['acceptVariantProductCode'] = requestParameters.acceptVariantProductCode;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
@@ -780,22 +720,8 @@ export class ProductsApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/catalog/storefront/products/{productCode}/validate`.replace(`{${"productCode"}}`, encodeURIComponent(String(requestParameters.productCode))),
             method: 'POST',

@@ -51,6 +51,31 @@ export interface SubscriptionSettings {
      */
     skipSubscriptionOffset?: number | null;
     /**
+     * Specifies the number of days to send subscription order reminder email before the next continuity order.
+     * @type {number}
+     * @memberof SubscriptionSettings
+     */
+    subscriptionOrderReminderOffset?: number | null;
+    /**
+     * Specifies if order now action resets next order date
+     * @type {boolean}
+     * @memberof SubscriptionSettings
+     */
+    orderNowResetNextOrderDate?: boolean | null;
+    /**
+     * Specifies the number of days prior to when we need to send a 
+     * "subscription pause limit reached reminder" email before the pause limit is reached.
+     * @type {number}
+     * @memberof SubscriptionSettings
+     */
+    subscriptionPauseLimitReminderOffset?: number | null;
+    /**
+     * Specifies the number of days to send subscription paused reminder email.
+     * @type {number}
+     * @memberof SubscriptionSettings
+     */
+    subscriptionPausedReminderOffset?: number | null;
+    /**
      * 
      * @type {AuditInfo}
      * @memberof SubscriptionSettings
@@ -81,6 +106,10 @@ export function SubscriptionSettingsFromJSONTyped(json: any, ignoreDiscriminator
         'pauseSubscriptionOffset': !exists(json, 'pauseSubscriptionOffset') ? undefined : json['pauseSubscriptionOffset'],
         'nextOrderDateOffset': !exists(json, 'nextOrderDateOffset') ? undefined : json['nextOrderDateOffset'],
         'skipSubscriptionOffset': !exists(json, 'skipSubscriptionOffset') ? undefined : json['skipSubscriptionOffset'],
+        'subscriptionOrderReminderOffset': !exists(json, 'subscriptionOrderReminderOffset') ? undefined : json['subscriptionOrderReminderOffset'],
+        'orderNowResetNextOrderDate': !exists(json, 'orderNowResetNextOrderDate') ? undefined : json['orderNowResetNextOrderDate'],
+        'subscriptionPauseLimitReminderOffset': !exists(json, 'subscriptionPauseLimitReminderOffset') ? undefined : json['subscriptionPauseLimitReminderOffset'],
+        'subscriptionPausedReminderOffset': !exists(json, 'subscriptionPausedReminderOffset') ? undefined : json['subscriptionPausedReminderOffset'],
         'auditInfo': !exists(json, 'auditInfo') ? undefined : AuditInfoFromJSON(json['auditInfo']),
     };
 }
@@ -98,6 +127,10 @@ export function SubscriptionSettingsToJSON(value?: SubscriptionSettings | null):
         'pauseSubscriptionOffset': value.pauseSubscriptionOffset,
         'nextOrderDateOffset': value.nextOrderDateOffset,
         'skipSubscriptionOffset': value.skipSubscriptionOffset,
+        'subscriptionOrderReminderOffset': value.subscriptionOrderReminderOffset,
+        'orderNowResetNextOrderDate': value.orderNowResetNextOrderDate,
+        'subscriptionPauseLimitReminderOffset': value.subscriptionPauseLimitReminderOffset,
+        'subscriptionPausedReminderOffset': value.subscriptionPausedReminderOffset,
         'auditInfo': AuditInfoToJSON(value.auditInfo),
     };
 }

@@ -38,6 +38,36 @@ export interface UpdateExportSettingsS3Request {
      * @memberof UpdateExportSettingsS3Request
      */
     exportSettingsS3: ExportSettingsS3;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof UpdateExportSettingsS3Request
+     */
+    locationCode?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof UpdateExportSettingsS3Request
+     */
+    userID?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof UpdateExportSettingsS3Request
+     */
+    pageSize?: number;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof UpdateExportSettingsS3Request
+     */
+    pageNum?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof UpdateExportSettingsS3Request
+     */
+    sortBy?: string;
 }
 
 /**
@@ -62,7 +92,12 @@ export function UpdateExportSettingsS3RequestFromJSONTyped(json: any, ignoreDisc
     return {
         
         'exportSettingsName': json['exportSettingsName'],
-        'exportSettingsS3': json['exportSettingsS3'],
+        'exportSettingsS3': ExportSettingsS3FromJSON(json['exportSettingsS3']),
+        'locationCode': !exists(json, 'locationCode') ? undefined : json['locationCode'],
+        'userID': !exists(json, 'userID') ? undefined : json['userID'],
+        'pageSize': !exists(json, 'pageSize') ? undefined : json['pageSize'],
+        'pageNum': !exists(json, 'pageNum') ? undefined : json['pageNum'],
+        'sortBy': !exists(json, 'sortBy') ? undefined : json['sortBy'],
     };
 }
 
@@ -76,7 +111,12 @@ export function UpdateExportSettingsS3RequestToJSON(value?: UpdateExportSettings
     return {
         
         'exportSettingsName': value.exportSettingsName,
-        'exportSettingsS3': value.exportSettingsS3,
+        'exportSettingsS3': ExportSettingsS3ToJSON(value.exportSettingsS3),
+        'locationCode': value.locationCode,
+        'userID': value.userID,
+        'pageSize': value.pageSize,
+        'pageNum': value.pageNum,
+        'sortBy': value.sortBy,
     };
 }
 

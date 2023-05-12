@@ -28,6 +28,7 @@ export * from './CategoryDiscountCondition';
 export * from './CategoryLocalizedContent';
 export * from './CategoryLocalizedImage';
 export * from './CategoryPagedCollection';
+export * from './ContinuityRecurrenceSettings';
 export * from './Coupon';
 export * from './CouponCollection';
 export * from './CouponSet';

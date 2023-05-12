@@ -15,5 +15,7 @@ export * from './Location';
 export * from './LocationAttribute';
 export * from './LocationCollection';
 export * from './LocationType';
+export * from './ProcessingTime';
 export * from './RegularHours';
 export * from './ShippingOriginContact';
+export * from './TransferTime';

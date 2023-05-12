@@ -62,6 +62,12 @@ export interface ProductStock {
      * @memberof ProductStock
      */
     futureInventories?: Array<FutureInventory> | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ProductStock
+     */
+    isSubstitutable?: boolean | null;
 }
 
 /**
@@ -89,6 +95,7 @@ export function ProductStockFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'stockAvailable': !exists(json, 'stockAvailable') ? undefined : json['stockAvailable'],
         'aggregateInventory': !exists(json, 'aggregateInventory') ? undefined : json['aggregateInventory'],
         'futureInventories': !exists(json, 'futureInventories') ? undefined : (json['futureInventories'] === null ? null : (json['futureInventories'] as Array<any>).map(FutureInventoryFromJSON)),
+        'isSubstitutable': !exists(json, 'isSubstitutable') ? undefined : json['isSubstitutable'],
     };
 }
 
@@ -107,6 +114,7 @@ export function ProductStockToJSON(value?: ProductStock | null): any {
         'stockAvailable': value.stockAvailable,
         'aggregateInventory': value.aggregateInventory,
         'futureInventories': value.futureInventories === undefined ? undefined : (value.futureInventories === null ? null : (value.futureInventories as Array<any>).map(FutureInventoryToJSON)),
+        'isSubstitutable': value.isSubstitutable,
     };
 }
 

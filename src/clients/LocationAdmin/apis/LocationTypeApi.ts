@@ -17,10 +17,13 @@ import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
 import type {
   LocationType,
+  LocationTypeCollection,
 } from '../models';
 import {
     LocationTypeFromJSON,
     LocationTypeToJSON,
+    LocationTypeCollectionFromJSON,
+    LocationTypeCollectionToJSON,
 } from '../models';
 
 export interface LocationTypeApiAddLocationTypeAsyncRequest {
@@ -33,6 +36,11 @@ export interface LocationTypeApiDeleteLocationTypeRequest {
 
 export interface LocationTypeApiGetLocationTypeRequest {
     locationTypeCode: string;
+}
+
+export interface LocationTypeApiGetLocationTypesWithPaginationRequest {
+    startIndex?: number;
+    pageSize?: number;
 }
 
 export interface LocationTypeApiUpdateLocationTypeRequest {
@@ -65,22 +73,8 @@ export class LocationTypeApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/admin/locationtypes`,
             method: 'POST',
@@ -120,22 +114,8 @@ export class LocationTypeApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/admin/locationtypes/{locationTypeCode}`.replace(`{${"locationTypeCode"}}`, encodeURIComponent(String(requestParameters.locationTypeCode))),
             method: 'DELETE',
@@ -173,22 +153,8 @@ export class LocationTypeApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/admin/locationtypes/{locationTypeCode}`.replace(`{${"locationTypeCode"}}`, encodeURIComponent(String(requestParameters.locationTypeCode))),
             method: 'GET',
@@ -223,22 +189,8 @@ export class LocationTypeApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/admin/locationtypes`,
             method: 'GET',
@@ -255,6 +207,50 @@ export class LocationTypeApi extends runtime.BaseAPI {
      */
     async getLocationTypes(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationType>> {
         const response = await this.getLocationTypesRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get a collection of LocationTypes.
+     * Get Location Types  <param name=\"pageSize\"></param><param name=\"sortBy\"></param>
+     */
+
+
+    async getLocationTypesWithPaginationRaw(requestParameters: LocationTypeApiGetLocationTypesWithPaginationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationTypeCollection>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.startIndex !== undefined) {
+            queryParameters['startIndex'] = requestParameters.startIndex;
+        }
+
+        if (requestParameters.pageSize !== undefined) {
+            queryParameters['pageSize'] = requestParameters.pageSize;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/admin/locationtypes/withpagination`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => LocationTypeCollectionFromJSON(jsonValue));
+    }
+
+    /**
+     * Get a collection of LocationTypes.
+     * Get Location Types  <param name=\"pageSize\"></param><param name=\"sortBy\"></param>
+     */
+    async getLocationTypesWithPagination(requestParameters: LocationTypeApiGetLocationTypesWithPaginationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationTypeCollection> {
+        const response = await this.getLocationTypesWithPaginationRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -279,22 +275,8 @@ export class LocationTypeApi extends runtime.BaseAPI {
 
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/commerce/admin/locationtypes/{locationTypeCode}`.replace(`{${"locationTypeCode"}}`, encodeURIComponent(String(requestParameters.locationTypeCode))),
             method: 'PUT',

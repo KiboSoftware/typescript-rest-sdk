@@ -18,9 +18,9 @@
  * @export
  */
 export const HttpVersionPolicy = {
-    NUMBER_0: 0,
-    NUMBER_1: 1,
-    NUMBER_2: 2
+    RequestVersionOrLower: 'RequestVersionOrLower',
+    RequestVersionOrHigher: 'RequestVersionOrHigher',
+    RequestVersionExact: 'RequestVersionExact'
 } as const;
 export type HttpVersionPolicy = typeof HttpVersionPolicy[keyof typeof HttpVersionPolicy];
 

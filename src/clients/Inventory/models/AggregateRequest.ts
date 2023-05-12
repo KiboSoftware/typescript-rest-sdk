@@ -68,7 +68,78 @@ export interface AggregateRequest {
      * @memberof AggregateRequest
      */
     tags?: { [key: string]: string; };
+    /**
+     * Include future inventory or not
+     * @type {string}
+     * @memberof AggregateRequest
+     */
+    includeFutureInventory?: AggregateRequestIncludeFutureInventoryEnum;
+    /**
+     * Whether to allow items with negative future inventory in the results
+     * @type {boolean}
+     * @memberof AggregateRequest
+     */
+    includeNegativeFutureInventory?: boolean;
+    /**
+     * Future start Date at which the inventory should be allocated against.
+     * @type {Date}
+     * @memberof AggregateRequest
+     */
+    futureStartDate?: Date;
+    /**
+     * Future end Date at which the inventory should be allocated against.
+     * @type {Date}
+     * @memberof AggregateRequest
+     */
+    futureEndDate?: Date;
+    /**
+     * Whether to force populate default tags onto the request if they are unspecified for any tag category
+     * @type {boolean}
+     * @memberof AggregateRequest
+     */
+    forceDefaultsForUnspecifiedTagCategories?: boolean;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof AggregateRequest
+     */
+    locationCode?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof AggregateRequest
+     */
+    userID?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof AggregateRequest
+     */
+    pageSize?: number;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof AggregateRequest
+     */
+    pageNum?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof AggregateRequest
+     */
+    sortBy?: string;
 }
+
+
+/**
+ * @export
+ */
+export const AggregateRequestIncludeFutureInventoryEnum = {
+    Only: 'FUTURE_ONLY',
+    AndCurrent: 'FUTURE_AND_CURRENT'
+} as const;
+export type AggregateRequestIncludeFutureInventoryEnum = typeof AggregateRequestIncludeFutureInventoryEnum[keyof typeof AggregateRequestIncludeFutureInventoryEnum];
+
 
 /**
  * Check if a given object implements the AggregateRequest interface.
@@ -97,6 +168,16 @@ export function AggregateRequestFromJSONTyped(json: any, ignoreDiscriminator: bo
         'transferEnabled': !exists(json, 'transferEnabled') ? undefined : json['transferEnabled'],
         'pickup': !exists(json, 'pickup') ? undefined : json['pickup'],
         'tags': !exists(json, 'tags') ? undefined : json['tags'],
+        'includeFutureInventory': !exists(json, 'includeFutureInventory') ? undefined : json['includeFutureInventory'],
+        'includeNegativeFutureInventory': !exists(json, 'includeNegativeFutureInventory') ? undefined : json['includeNegativeFutureInventory'],
+        'futureStartDate': !exists(json, 'futureStartDate') ? undefined : json['futureStartDate'],
+        'futureEndDate': !exists(json, 'futureEndDate') ? undefined : json['futureEndDate'],
+        'forceDefaultsForUnspecifiedTagCategories': !exists(json, 'forceDefaultsForUnspecifiedTagCategories') ? undefined : json['forceDefaultsForUnspecifiedTagCategories'],
+        'locationCode': !exists(json, 'locationCode') ? undefined : json['locationCode'],
+        'userID': !exists(json, 'userID') ? undefined : json['userID'],
+        'pageSize': !exists(json, 'pageSize') ? undefined : json['pageSize'],
+        'pageNum': !exists(json, 'pageNum') ? undefined : json['pageNum'],
+        'sortBy': !exists(json, 'sortBy') ? undefined : json['sortBy'],
     };
 }
 
@@ -116,6 +197,16 @@ export function AggregateRequestToJSON(value?: AggregateRequest | null): any {
         'transferEnabled': value.transferEnabled,
         'pickup': value.pickup,
         'tags': value.tags,
+        'includeFutureInventory': value.includeFutureInventory,
+        'includeNegativeFutureInventory': value.includeNegativeFutureInventory,
+        'futureStartDate': value.futureStartDate,
+        'futureEndDate': value.futureEndDate,
+        'forceDefaultsForUnspecifiedTagCategories': value.forceDefaultsForUnspecifiedTagCategories,
+        'locationCode': value.locationCode,
+        'userID': value.userID,
+        'pageSize': value.pageSize,
+        'pageNum': value.pageNum,
+        'sortBy': value.sortBy,
     };
 }
 

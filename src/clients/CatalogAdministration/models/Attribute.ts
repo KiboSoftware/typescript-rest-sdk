@@ -152,6 +152,12 @@ export interface Attribute {
      */
     isProperty?: boolean | null;
     /**
+     * Specifies if this attribute is available for order routing
+     * @type {boolean}
+     * @memberof Attribute
+     */
+    availableForOrderRouting?: boolean;
+    /**
      * Attribute Metadata. This list can contain opaque data (key value pairs) that can be used as a property bag for UI concerns.
      * @type {Array<AttributeMetadataItem>}
      * @memberof Attribute
@@ -229,6 +235,7 @@ export function AttributeFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'isOption': !exists(json, 'isOption') ? undefined : json['isOption'],
         'isExtra': !exists(json, 'isExtra') ? undefined : json['isExtra'],
         'isProperty': !exists(json, 'isProperty') ? undefined : json['isProperty'],
+        'availableForOrderRouting': !exists(json, 'availableForOrderRouting') ? undefined : json['availableForOrderRouting'],
         'attributeMetadata': !exists(json, 'attributeMetadata') ? undefined : (json['attributeMetadata'] === null ? null : (json['attributeMetadata'] as Array<any>).map(AttributeMetadataItemFromJSON)),
         'content': !exists(json, 'content') ? undefined : AttributeLocalizedContentFromJSON(json['content']),
         'localizedContent': !exists(json, 'localizedContent') ? undefined : (json['localizedContent'] === null ? null : (json['localizedContent'] as Array<any>).map(AttributeLocalizedContentFromJSON)),
@@ -263,6 +270,7 @@ export function AttributeToJSON(value?: Attribute | null): any {
         'isOption': value.isOption,
         'isExtra': value.isExtra,
         'isProperty': value.isProperty,
+        'availableForOrderRouting': value.availableForOrderRouting,
         'attributeMetadata': value.attributeMetadata === undefined ? undefined : (value.attributeMetadata === null ? null : (value.attributeMetadata as Array<any>).map(AttributeMetadataItemToJSON)),
         'content': AttributeLocalizedContentToJSON(value.content),
         'localizedContent': value.localizedContent === undefined ? undefined : (value.localizedContent === null ? null : (value.localizedContent as Array<any>).map(AttributeLocalizedContentToJSON)),

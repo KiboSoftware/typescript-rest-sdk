@@ -43,6 +43,36 @@ export interface ExportInventoryRequest {
      * @memberof ExportInventoryRequest
      */
     development?: boolean;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof ExportInventoryRequest
+     */
+    locationCode?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof ExportInventoryRequest
+     */
+    userID?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof ExportInventoryRequest
+     */
+    pageSize?: number;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof ExportInventoryRequest
+     */
+    pageNum?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof ExportInventoryRequest
+     */
+    sortBy?: string;
 }
 
 /**
@@ -68,6 +98,11 @@ export function ExportInventoryRequestFromJSONTyped(json: any, ignoreDiscriminat
         'exportSettingsFTPName': !exists(json, 'exportSettingsFTPName') ? undefined : json['exportSettingsFTPName'],
         'exportSettingsS3Name': !exists(json, 'exportSettingsS3Name') ? undefined : json['exportSettingsS3Name'],
         'development': !exists(json, 'development') ? undefined : json['development'],
+        'locationCode': !exists(json, 'locationCode') ? undefined : json['locationCode'],
+        'userID': !exists(json, 'userID') ? undefined : json['userID'],
+        'pageSize': !exists(json, 'pageSize') ? undefined : json['pageSize'],
+        'pageNum': !exists(json, 'pageNum') ? undefined : json['pageNum'],
+        'sortBy': !exists(json, 'sortBy') ? undefined : json['sortBy'],
     };
 }
 
@@ -84,6 +119,11 @@ export function ExportInventoryRequestToJSON(value?: ExportInventoryRequest | nu
         'exportSettingsFTPName': value.exportSettingsFTPName,
         'exportSettingsS3Name': value.exportSettingsS3Name,
         'development': value.development,
+        'locationCode': value.locationCode,
+        'userID': value.userID,
+        'pageSize': value.pageSize,
+        'pageNum': value.pageNum,
+        'sortBy': value.sortBy,
     };
 }
 

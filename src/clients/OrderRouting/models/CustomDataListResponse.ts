@@ -113,7 +113,8 @@ export interface CustomDataListResponse {
 export const CustomDataListResponseDataTypeEnum = {
     String: 'STRING',
     Number: 'NUMBER',
-    Location: 'LOCATION'
+    Location: 'LOCATION',
+    Date: 'DATE'
 } as const;
 export type CustomDataListResponseDataTypeEnum = typeof CustomDataListResponseDataTypeEnum[keyof typeof CustomDataListResponseDataTypeEnum];
 

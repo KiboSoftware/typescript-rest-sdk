@@ -32,6 +32,36 @@ export interface RefreshRequest {
      * @memberof RefreshRequest
      */
     items?: Array<RefreshItem>;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof RefreshRequest
+     */
+    locationCode: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof RefreshRequest
+     */
+    userID?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof RefreshRequest
+     */
+    pageSize?: number;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof RefreshRequest
+     */
+    pageNum?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof RefreshRequest
+     */
+    sortBy?: string;
 }
 
 /**
@@ -39,6 +69,7 @@ export interface RefreshRequest {
  */
 export function instanceOfRefreshRequest(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "locationCode" in value;
 
     return isInstance;
 }
@@ -54,6 +85,11 @@ export function RefreshRequestFromJSONTyped(json: any, ignoreDiscriminator: bool
     return {
         
         'items': !exists(json, 'items') ? undefined : ((json['items'] as Array<any>).map(RefreshItemFromJSON)),
+        'locationCode': json['locationCode'],
+        'userID': !exists(json, 'userID') ? undefined : json['userID'],
+        'pageSize': !exists(json, 'pageSize') ? undefined : json['pageSize'],
+        'pageNum': !exists(json, 'pageNum') ? undefined : json['pageNum'],
+        'sortBy': !exists(json, 'sortBy') ? undefined : json['sortBy'],
     };
 }
 
@@ -67,6 +103,11 @@ export function RefreshRequestToJSON(value?: RefreshRequest | null): any {
     return {
         
         'items': value.items === undefined ? undefined : ((value.items as Array<any>).map(RefreshItemToJSON)),
+        'locationCode': value.locationCode,
+        'userID': value.userID,
+        'pageSize': value.pageSize,
+        'pageNum': value.pageNum,
+        'sortBy': value.sortBy,
     };
 }
 

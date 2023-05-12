@@ -23,7 +23,6 @@ import type {
   DeleteItemRequest,
   DeleteItemResponse,
   DeleteItemsRequest,
-  InventoryResponse,
   JobIDResponse,
   JobQueueResponse,
   RefreshRequest,
@@ -43,8 +42,6 @@ import {
     DeleteItemResponseToJSON,
     DeleteItemsRequestFromJSON,
     DeleteItemsRequestToJSON,
-    InventoryResponseFromJSON,
-    InventoryResponseToJSON,
     JobIDResponseFromJSON,
     JobIDResponseToJSON,
     JobQueueResponseFromJSON,
@@ -81,16 +78,6 @@ export interface ModifyInventoryApiRedistributeInventoryAcrossTagsRequest {
 }
 
 export interface ModifyInventoryApiRefreshOperationRequest {
-    xVolTenant: number;
-    refreshRequest: RefreshRequest;
-}
-
-export interface ModifyInventoryApiSyncAdjustRequest {
-    xVolTenant: number;
-    adjustRequest: AdjustRequest;
-}
-
-export interface ModifyInventoryApiSyncRefreshRequest {
     xVolTenant: number;
     refreshRequest: RefreshRequest;
 }
@@ -133,24 +120,10 @@ export class ModifyInventoryApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v5/inventory/delete`,
+            path: `/commerce/inventory/v5/inventory/delete`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -195,24 +168,10 @@ export class ModifyInventoryApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v5/inventory/adjust`,
+            path: `/commerce/inventory/v5/inventory/adjust`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -261,24 +220,10 @@ export class ModifyInventoryApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v5/inventory/deleteFutureInventory`,
+            path: `/commerce/inventory/v5/inventory/deleteFutureInventory`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -327,24 +272,10 @@ export class ModifyInventoryApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v5/inventory/deleteItems`,
+            path: `/commerce/inventory/v5/inventory/deleteItems`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -383,24 +314,10 @@ export class ModifyInventoryApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v5/inventory/redistribute`,
+            path: `/commerce/inventory/v5/inventory/redistribute`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -444,24 +361,10 @@ export class ModifyInventoryApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v5/inventory/refresh`,
+            path: `/commerce/inventory/v5/inventory/refresh`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -477,130 +380,6 @@ export class ModifyInventoryApi extends runtime.BaseAPI {
      */
     async refresh(requestParameters: ModifyInventoryApiRefreshOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobIDResponse> {
         const response = await this.refreshRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Adjust Inventory - synchronous
-     * Sync-adjust
-     */
-
-
-    async syncAdjustRaw(requestParameters: ModifyInventoryApiSyncAdjustRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<InventoryResponse>>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling syncAdjust.');
-        }
-
-        if (requestParameters.adjustRequest === null || requestParameters.adjustRequest === undefined) {
-            throw new runtime.RequiredError('adjustRequest','Required parameter requestParameters.adjustRequest was null or undefined when calling syncAdjust.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
-
-
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/commerce/inventory/api/v5/inventory/sync-adjust`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: AdjustRequestToJSON(requestParameters.adjustRequest),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(InventoryResponseFromJSON));
-    }
-
-    /**
-     * Adjust Inventory - synchronous
-     * Sync-adjust
-     */
-    async syncAdjust(requestParameters: ModifyInventoryApiSyncAdjustRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<InventoryResponse>> {
-        const response = await this.syncAdjustRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Refresh Inventory - synchronous
-     * Sync-refresh
-     */
-
-
-    async syncRefreshRaw(requestParameters: ModifyInventoryApiSyncRefreshRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<InventoryResponse>>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling syncRefresh.');
-        }
-
-        if (requestParameters.refreshRequest === null || requestParameters.refreshRequest === undefined) {
-            throw new runtime.RequiredError('refreshRequest','Required parameter requestParameters.refreshRequest was null or undefined when calling syncRefresh.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
-
-
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/commerce/inventory/api/v5/inventory/sync-refresh`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: RefreshRequestToJSON(requestParameters.refreshRequest),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(InventoryResponseFromJSON));
-    }
-
-    /**
-     * Refresh Inventory - synchronous
-     * Sync-refresh
-     */
-    async syncRefresh(requestParameters: ModifyInventoryApiSyncRefreshRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<InventoryResponse>> {
-        const response = await this.syncRefreshRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -193,6 +193,36 @@ export interface FetchFileConfigRequest {
      * @memberof FetchFileConfigRequest
      */
     productMapping?: FetchFileConfigRequestProductMappingEnum;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof FetchFileConfigRequest
+     */
+    locationCode?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof FetchFileConfigRequest
+     */
+    userID?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof FetchFileConfigRequest
+     */
+    pageSize?: number;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof FetchFileConfigRequest
+     */
+    pageNum?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof FetchFileConfigRequest
+     */
+    sortBy?: string;
 }
 
 
@@ -261,6 +291,11 @@ export function FetchFileConfigRequestFromJSONTyped(json: any, ignoreDiscriminat
         'blankQuantityIsZero': !exists(json, 'blankQuantityIsZero') ? undefined : json['blankQuantityIsZero'],
         'csvDelimiter': !exists(json, 'csvDelimiter') ? undefined : json['csvDelimiter'],
         'productMapping': !exists(json, 'productMapping') ? undefined : json['productMapping'],
+        'locationCode': !exists(json, 'locationCode') ? undefined : json['locationCode'],
+        'userID': !exists(json, 'userID') ? undefined : json['userID'],
+        'pageSize': !exists(json, 'pageSize') ? undefined : json['pageSize'],
+        'pageNum': !exists(json, 'pageNum') ? undefined : json['pageNum'],
+        'sortBy': !exists(json, 'sortBy') ? undefined : json['sortBy'],
     };
 }
 
@@ -302,6 +337,11 @@ export function FetchFileConfigRequestToJSON(value?: FetchFileConfigRequest | nu
         'blankQuantityIsZero': value.blankQuantityIsZero,
         'csvDelimiter': value.csvDelimiter,
         'productMapping': value.productMapping,
+        'locationCode': value.locationCode,
+        'userID': value.userID,
+        'pageSize': value.pageSize,
+        'pageNum': value.pageNum,
+        'sortBy': value.sortBy,
     };
 }
 

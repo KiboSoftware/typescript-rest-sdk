@@ -19,6 +19,18 @@ import {
     ExclusionListEntryLocationCodeFromJSONTyped,
     ExclusionListEntryLocationCodeToJSON,
 } from './ExclusionListEntryLocationCode';
+import type { ExtendedCustomerInfo } from './ExtendedCustomerInfo';
+import {
+    ExtendedCustomerInfoFromJSON,
+    ExtendedCustomerInfoFromJSONTyped,
+    ExtendedCustomerInfoToJSON,
+} from './ExtendedCustomerInfo';
+import type { ExtendedOrderInfo } from './ExtendedOrderInfo';
+import {
+    ExtendedOrderInfoFromJSON,
+    ExtendedOrderInfoFromJSONTyped,
+    ExtendedOrderInfoToJSON,
+} from './ExtendedOrderInfo';
 import type { OrderItem } from './OrderItem';
 import {
     OrderItemFromJSON,
@@ -68,6 +80,18 @@ export interface SuggestionRequest {
      * @memberof SuggestionRequest
      */
     exclusionListLocationCode?: Array<ExclusionListEntryLocationCode>;
+    /**
+     * 
+     * @type {ExtendedCustomerInfo}
+     * @memberof SuggestionRequest
+     */
+    extendedCustomerInfo?: ExtendedCustomerInfo;
+    /**
+     * 
+     * @type {ExtendedOrderInfo}
+     * @memberof SuggestionRequest
+     */
+    extendedOrderInfo?: ExtendedOrderInfo;
     /**
      * 
      * @type {string}
@@ -215,6 +239,8 @@ export function SuggestionRequestFromJSONTyped(json: any, ignoreDiscriminator: b
         'customData': !exists(json, 'customData') ? undefined : json['customData'],
         'environmentID': !exists(json, 'environmentID') ? undefined : json['environmentID'],
         'exclusionListLocationCode': !exists(json, 'exclusionListLocationCode') ? undefined : ((json['exclusionListLocationCode'] as Array<any>).map(ExclusionListEntryLocationCodeFromJSON)),
+        'extendedCustomerInfo': !exists(json, 'extendedCustomerInfo') ? undefined : ExtendedCustomerInfoFromJSON(json['extendedCustomerInfo']),
+        'extendedOrderInfo': !exists(json, 'extendedOrderInfo') ? undefined : ExtendedOrderInfoFromJSON(json['extendedOrderInfo']),
         'externalResponseID': !exists(json, 'externalResponseID') ? undefined : json['externalResponseID'],
         'fraud': !exists(json, 'fraud') ? undefined : json['fraud'],
         'futureDateLimit': !exists(json, 'futureDateLimit') ? undefined : (new Date(json['futureDateLimit'])),
@@ -247,6 +273,8 @@ export function SuggestionRequestToJSON(value?: SuggestionRequest | null): any {
         'customData': value.customData,
         'environmentID': value.environmentID,
         'exclusionListLocationCode': value.exclusionListLocationCode === undefined ? undefined : ((value.exclusionListLocationCode as Array<any>).map(ExclusionListEntryLocationCodeToJSON)),
+        'extendedCustomerInfo': ExtendedCustomerInfoToJSON(value.extendedCustomerInfo),
+        'extendedOrderInfo': ExtendedOrderInfoToJSON(value.extendedOrderInfo),
         'externalResponseID': value.externalResponseID,
         'fraud': value.fraud,
         'futureDateLimit': value.futureDateLimit === undefined ? undefined : (value.futureDateLimit.toISOString()),

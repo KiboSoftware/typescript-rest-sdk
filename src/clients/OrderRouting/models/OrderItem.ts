@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { ExtendedProductInfo } from './ExtendedProductInfo';
+import {
+    ExtendedProductInfoFromJSON,
+    ExtendedProductInfoFromJSONTyped,
+    ExtendedProductInfoToJSON,
+} from './ExtendedProductInfo';
+
 /**
  * 
  * @export
@@ -33,6 +40,12 @@ export interface OrderItem {
     customItemData?: object;
     /**
      * 
+     * @type {ExtendedProductInfo}
+     * @memberof OrderItem
+     */
+    extendedProductInfo?: ExtendedProductInfo;
+    /**
+     * 
      * @type {boolean}
      * @memberof OrderItem
      */
@@ -42,7 +55,19 @@ export interface OrderItem {
      * @type {number}
      * @memberof OrderItem
      */
+    height?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof OrderItem
+     */
     itemDependency?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof OrderItem
+     */
+    length?: number;
     /**
      * 
      * @type {number}
@@ -57,6 +82,12 @@ export interface OrderItem {
     partNumber?: string;
     /**
      * 
+     * @type {string}
+     * @memberof OrderItem
+     */
+    productTitle?: string;
+    /**
+     * 
      * @type {number}
      * @memberof OrderItem
      */
@@ -69,10 +100,28 @@ export interface OrderItem {
     sku?: string;
     /**
      * 
+     * @type {boolean}
+     * @memberof OrderItem
+     */
+    taxable?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof OrderItem
      */
     upc?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof OrderItem
+     */
+    weight?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof OrderItem
+     */
+    width?: number;
 }
 
 /**
@@ -96,13 +145,20 @@ export function OrderItemFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         
         'backorderable': !exists(json, 'backorderable') ? undefined : json['backorderable'],
         'customItemData': !exists(json, 'customItemData') ? undefined : json['customItemData'],
+        'extendedProductInfo': !exists(json, 'extendedProductInfo') ? undefined : ExtendedProductInfoFromJSON(json['extendedProductInfo']),
         'futureOrderable': !exists(json, 'futureOrderable') ? undefined : json['futureOrderable'],
+        'height': !exists(json, 'height') ? undefined : json['height'],
         'itemDependency': !exists(json, 'itemDependency') ? undefined : json['itemDependency'],
+        'length': !exists(json, 'length') ? undefined : json['length'],
         'orderItemID': !exists(json, 'orderItemID') ? undefined : json['orderItemID'],
         'partNumber': !exists(json, 'partNumber') ? undefined : json['partNumber'],
+        'productTitle': !exists(json, 'productTitle') ? undefined : json['productTitle'],
         'quantity': !exists(json, 'quantity') ? undefined : json['quantity'],
         'sku': !exists(json, 'sku') ? undefined : json['sku'],
+        'taxable': !exists(json, 'taxable') ? undefined : json['taxable'],
         'upc': !exists(json, 'upc') ? undefined : json['upc'],
+        'weight': !exists(json, 'weight') ? undefined : json['weight'],
+        'width': !exists(json, 'width') ? undefined : json['width'],
     };
 }
 
@@ -117,13 +173,20 @@ export function OrderItemToJSON(value?: OrderItem | null): any {
         
         'backorderable': value.backorderable,
         'customItemData': value.customItemData,
+        'extendedProductInfo': ExtendedProductInfoToJSON(value.extendedProductInfo),
         'futureOrderable': value.futureOrderable,
+        'height': value.height,
         'itemDependency': value.itemDependency,
+        'length': value.length,
         'orderItemID': value.orderItemID,
         'partNumber': value.partNumber,
+        'productTitle': value.productTitle,
         'quantity': value.quantity,
         'sku': value.sku,
+        'taxable': value.taxable,
         'upc': value.upc,
+        'weight': value.weight,
+        'width': value.width,
     };
 }
 

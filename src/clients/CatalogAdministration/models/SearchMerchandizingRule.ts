@@ -58,6 +58,12 @@ export interface SearchMerchandizingRule {
     description?: string | null;
     /**
      * 
+     * @type {boolean}
+     * @memberof SearchMerchandizingRule
+     */
+    isDisabled?: boolean | null;
+    /**
+     * 
      * @type {Array<string>}
      * @memberof SearchMerchandizingRule
      */
@@ -104,6 +110,7 @@ export function SearchMerchandizingRuleFromJSONTyped(json: any, ignoreDiscrimina
         'code': !exists(json, 'code') ? undefined : json['code'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'description': !exists(json, 'description') ? undefined : json['description'],
+        'isDisabled': !exists(json, 'isDisabled') ? undefined : json['isDisabled'],
         'tags': !exists(json, 'tags') ? undefined : json['tags'],
         'context': !exists(json, 'context') ? undefined : SearchMerchandizingRuleContextFromJSON(json['context']),
         'ruleImpact': !exists(json, 'ruleImpact') ? undefined : SearchMerchandizingRuleImpactFromJSON(json['ruleImpact']),
@@ -123,6 +130,7 @@ export function SearchMerchandizingRuleToJSON(value?: SearchMerchandizingRule | 
         'code': value.code,
         'name': value.name,
         'description': value.description,
+        'isDisabled': value.isDisabled,
         'tags': value.tags,
         'context': SearchMerchandizingRuleContextToJSON(value.context),
         'ruleImpact': SearchMerchandizingRuleImpactToJSON(value.ruleImpact),

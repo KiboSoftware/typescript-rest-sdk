@@ -36,6 +36,13 @@ models/Frequency.ts
 models/FulfillmentAlternateContact.ts
 models/FulfillmentField.ts
 models/FulfillmentInfo.ts
+models/FulfillmentServiceAppeasementReason.ts
+models/FulfillmentServiceAuditInfo.ts
+models/FulfillmentServiceFulfillmentField.ts
+models/FulfillmentServiceGiftCard.ts
+models/FulfillmentServiceInventoryTag.ts
+models/FulfillmentServiceProductOption.ts
+models/FulfillmentServiceSubstituteReason.ts
 models/FulfillmentShopperNotes.ts
 models/FulfillmentTask.ts
 models/FutureInventory.ts
@@ -45,7 +52,6 @@ models/InvalidCoupon.ts
 models/InventoryTags.ts
 models/Link.ts
 models/Measurement.ts
-models/OneTimeCoupons.ts
 models/OnetimeProduct.ts
 models/OnetimeShippingMethod.ts
 models/Order.ts
@@ -92,12 +98,14 @@ models/Subscription.ts
 models/SubscriptionAction.ts
 models/SubscriptionAdjustment.ts
 models/SubscriptionCollection.ts
+models/SubscriptionCoupons.ts
 models/SubscriptionInfo.ts
 models/SubscriptionItem.ts
 models/SubscriptionNextOrderDate.ts
 models/SubscriptionReason.ts
 models/SubscriptionReasonCollection.ts
 models/SubscriptionReasonOption.ts
+models/SubstitutedItem.ts
 models/SuggestedDiscount.ts
 models/TaskInput.ts
 models/ThresholdMessage.ts

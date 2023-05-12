@@ -182,6 +182,24 @@ export interface InventoryResponse {
      * @memberof InventoryResponse
      */
     futureInventory?: Array<FutureInventory>;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof InventoryResponse
+     */
+    success?: boolean;
+    /**
+     * List of messages
+     * @type {Array<string>}
+     * @memberof InventoryResponse
+     */
+    messages?: Array<string>;
+    /**
+     * Number of results
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    numResults?: number;
 }
 
 /**
@@ -228,6 +246,9 @@ export function InventoryResponseFromJSONTyped(json: any, ignoreDiscriminator: b
         'attributes': !exists(json, 'attributes') ? undefined : json['attributes'],
         'taggedInventory': !exists(json, 'taggedInventory') ? undefined : ((json['taggedInventory'] as Array<any>).map(TagQuantityFromJSON)),
         'futureInventory': !exists(json, 'futureInventory') ? undefined : ((json['futureInventory'] as Array<any>).map(FutureInventoryFromJSON)),
+        'success': !exists(json, 'success') ? undefined : json['success'],
+        'messages': !exists(json, 'messages') ? undefined : json['messages'],
+        'numResults': !exists(json, 'numResults') ? undefined : json['numResults'],
     };
 }
 
@@ -265,6 +286,9 @@ export function InventoryResponseToJSON(value?: InventoryResponse | null): any {
         'attributes': value.attributes,
         'taggedInventory': value.taggedInventory === undefined ? undefined : ((value.taggedInventory as Array<any>).map(TagQuantityToJSON)),
         'futureInventory': value.futureInventory === undefined ? undefined : ((value.futureInventory as Array<any>).map(FutureInventoryToJSON)),
+        'success': value.success,
+        'messages': value.messages,
+        'numResults': value.numResults,
     };
 }
 

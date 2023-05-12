@@ -67,6 +67,30 @@ export interface CustomDataListFilter {
      * @type {string}
      * @memberof CustomDataListFilter
      */
+    dataPointExtensibleAttributeFQN?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomDataListFilter
+     */
+    dataPointExtensibleAttributeName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomDataListFilter
+     */
+    dataPointExtensibleAttributeType?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CustomDataListFilter
+     */
+    dataPointExtensibleFilter?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomDataListFilter
+     */
     dotDelimitedPropertyName?: string;
     /**
      * 
@@ -74,6 +98,30 @@ export interface CustomDataListFilter {
      * @memberof CustomDataListFilter
      */
     environmentID?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomDataListFilter
+     */
+    extensibleAttributeFQN?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomDataListFilter
+     */
+    extensibleAttributeName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomDataListFilter
+     */
+    extensibleAttributeType?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CustomDataListFilter
+     */
+    extensibleFilter?: boolean;
     /**
      * 
      * @type {number}
@@ -182,8 +230,16 @@ export function CustomDataListFilterFromJSONTyped(json: any, ignoreDiscriminator
         'creatorUsername': !exists(json, 'creatorUsername') ? undefined : json['creatorUsername'],
         'customAttributeName': !exists(json, 'customAttributeName') ? undefined : json['customAttributeName'],
         'customDataListID': !exists(json, 'customDataListID') ? undefined : json['customDataListID'],
+        'dataPointExtensibleAttributeFQN': !exists(json, 'dataPointExtensibleAttributeFQN') ? undefined : json['dataPointExtensibleAttributeFQN'],
+        'dataPointExtensibleAttributeName': !exists(json, 'dataPointExtensibleAttributeName') ? undefined : json['dataPointExtensibleAttributeName'],
+        'dataPointExtensibleAttributeType': !exists(json, 'dataPointExtensibleAttributeType') ? undefined : json['dataPointExtensibleAttributeType'],
+        'dataPointExtensibleFilter': !exists(json, 'dataPointExtensibleFilter') ? undefined : json['dataPointExtensibleFilter'],
         'dotDelimitedPropertyName': !exists(json, 'dotDelimitedPropertyName') ? undefined : json['dotDelimitedPropertyName'],
         'environmentID': !exists(json, 'environmentID') ? undefined : json['environmentID'],
+        'extensibleAttributeFQN': !exists(json, 'extensibleAttributeFQN') ? undefined : json['extensibleAttributeFQN'],
+        'extensibleAttributeName': !exists(json, 'extensibleAttributeName') ? undefined : json['extensibleAttributeName'],
+        'extensibleAttributeType': !exists(json, 'extensibleAttributeType') ? undefined : json['extensibleAttributeType'],
+        'extensibleFilter': !exists(json, 'extensibleFilter') ? undefined : json['extensibleFilter'],
         'filterID': !exists(json, 'filterID') ? undefined : json['filterID'],
         'filterUnit': !exists(json, 'filterUnit') ? undefined : UnitOfobjectFromJSON(json['filterUnit']),
         'name': !exists(json, 'name') ? undefined : json['name'],
@@ -211,8 +267,16 @@ export function CustomDataListFilterToJSON(value?: CustomDataListFilter | null):
         'creatorUsername': value.creatorUsername,
         'customAttributeName': value.customAttributeName,
         'customDataListID': value.customDataListID,
+        'dataPointExtensibleAttributeFQN': value.dataPointExtensibleAttributeFQN,
+        'dataPointExtensibleAttributeName': value.dataPointExtensibleAttributeName,
+        'dataPointExtensibleAttributeType': value.dataPointExtensibleAttributeType,
+        'dataPointExtensibleFilter': value.dataPointExtensibleFilter,
         'dotDelimitedPropertyName': value.dotDelimitedPropertyName,
         'environmentID': value.environmentID,
+        'extensibleAttributeFQN': value.extensibleAttributeFQN,
+        'extensibleAttributeName': value.extensibleAttributeName,
+        'extensibleAttributeType': value.extensibleAttributeType,
+        'extensibleFilter': value.extensibleFilter,
         'filterID': value.filterID,
         'filterUnit': UnitOfobjectToJSON(value.filterUnit),
         'name': value.name,

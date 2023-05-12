@@ -68,6 +68,8 @@ export * from './ProductPurchasableState';
 export * from './ProductSearchPreviewResult';
 export * from './ProductSearchRandomAccessCursor';
 export * from './ProductSearchResult';
+export * from './ProductSubstituteCollection';
+export * from './ProductSubstitution';
 export * from './ProductValidationSummary';
 export * from './ProductVolumePrice';
 export * from './RequestFilter';

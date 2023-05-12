@@ -49,6 +49,12 @@ import {
     LocationTypeFromJSONTyped,
     LocationTypeToJSON,
 } from './LocationType';
+import type { ProcessingTime } from './ProcessingTime';
+import {
+    ProcessingTimeFromJSON,
+    ProcessingTimeFromJSONTyped,
+    ProcessingTimeToJSON,
+} from './ProcessingTime';
 import type { RegularHours } from './RegularHours';
 import {
     RegularHoursFromJSON,
@@ -61,6 +67,12 @@ import {
     ShippingOriginContactFromJSONTyped,
     ShippingOriginContactToJSON,
 } from './ShippingOriginContact';
+import type { TransferTime } from './TransferTime';
+import {
+    TransferTimeFromJSON,
+    TransferTimeFromJSONTyped,
+    TransferTimeToJSON,
+} from './TransferTime';
 
 /**
  * 
@@ -218,6 +230,18 @@ export interface Location {
      * @memberof Location
      */
     requiresManifest?: boolean;
+    /**
+     * 
+     * @type {Array<ProcessingTime>}
+     * @memberof Location
+     */
+    processingTimes?: Array<ProcessingTime> | null;
+    /**
+     * 
+     * @type {TransferTime}
+     * @memberof Location
+     */
+    transferTime?: TransferTime;
 }
 
 /**
@@ -264,6 +288,8 @@ export function LocationFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'includeInLocationExport': !exists(json, 'includeInLocationExport') ? undefined : json['includeInLocationExport'],
         'warehouseEnabled': !exists(json, 'warehouseEnabled') ? undefined : json['warehouseEnabled'],
         'requiresManifest': !exists(json, 'requiresManifest') ? undefined : json['requiresManifest'],
+        'processingTimes': !exists(json, 'processingTimes') ? undefined : (json['processingTimes'] === null ? null : (json['processingTimes'] as Array<any>).map(ProcessingTimeFromJSON)),
+        'transferTime': !exists(json, 'transferTime') ? undefined : TransferTimeFromJSON(json['transferTime']),
     };
 }
 
@@ -301,6 +327,8 @@ export function LocationToJSON(value?: Location | null): any {
         'includeInLocationExport': value.includeInLocationExport,
         'warehouseEnabled': value.warehouseEnabled,
         'requiresManifest': value.requiresManifest,
+        'processingTimes': value.processingTimes === undefined ? undefined : (value.processingTimes === null ? null : (value.processingTimes as Array<any>).map(ProcessingTimeToJSON)),
+        'transferTime': TransferTimeToJSON(value.transferTime),
     };
 }
 

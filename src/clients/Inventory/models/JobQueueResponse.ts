@@ -85,6 +85,24 @@ export interface JobQueueResponse {
      * @memberof JobQueueResponse
      */
     status?: JobQueueResponseStatusEnum;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof JobQueueResponse
+     */
+    success?: boolean;
+    /**
+     * List of messages
+     * @type {Array<string>}
+     * @memberof JobQueueResponse
+     */
+    messages?: Array<string>;
+    /**
+     * Number of results
+     * @type {number}
+     * @memberof JobQueueResponse
+     */
+    numResults?: number;
 }
 
 
@@ -152,6 +170,9 @@ export function JobQueueResponseFromJSONTyped(json: any, ignoreDiscriminator: bo
         'hasData': !exists(json, 'hasData') ? undefined : json['hasData'],
         'itemCount': !exists(json, 'itemCount') ? undefined : json['itemCount'],
         'status': !exists(json, 'status') ? undefined : json['status'],
+        'success': !exists(json, 'success') ? undefined : json['success'],
+        'messages': !exists(json, 'messages') ? undefined : json['messages'],
+        'numResults': !exists(json, 'numResults') ? undefined : json['numResults'],
     };
 }
 
@@ -175,6 +196,9 @@ export function JobQueueResponseToJSON(value?: JobQueueResponse | null): any {
         'hasData': value.hasData,
         'itemCount': value.itemCount,
         'status': value.status,
+        'success': value.success,
+        'messages': value.messages,
+        'numResults': value.numResults,
     };
 }
 

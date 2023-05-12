@@ -61,6 +61,42 @@ export interface RequestLocation {
      * @memberof RequestLocation
      */
     locationCode?: string;
+    /**
+     * Address ID for this location
+     * @type {number}
+     * @memberof RequestLocation
+     */
+    addressID?: number;
+    /**
+     * CustomerID ID for this location
+     * @type {number}
+     * @memberof RequestLocation
+     */
+    customerID?: number;
+    /**
+     * Address line 1 for this location
+     * @type {string}
+     * @memberof RequestLocation
+     */
+    addressLine1?: string;
+    /**
+     * Phone number for this location
+     * @type {string}
+     * @memberof RequestLocation
+     */
+    phone?: string;
+    /**
+     * City for this location
+     * @type {string}
+     * @memberof RequestLocation
+     */
+    city?: string;
+    /**
+     * State for this location
+     * @type {string}
+     * @memberof RequestLocation
+     */
+    state?: string;
 }
 
 
@@ -100,6 +136,12 @@ export function RequestLocationFromJSONTyped(json: any, ignoreDiscriminator: boo
         'longitude': !exists(json, 'longitude') ? undefined : json['longitude'],
         'countryCode': !exists(json, 'countryCode') ? undefined : json['countryCode'],
         'locationCode': !exists(json, 'locationCode') ? undefined : json['locationCode'],
+        'addressID': !exists(json, 'addressID') ? undefined : json['addressID'],
+        'customerID': !exists(json, 'customerID') ? undefined : json['customerID'],
+        'addressLine1': !exists(json, 'addressLine1') ? undefined : json['addressLine1'],
+        'phone': !exists(json, 'phone') ? undefined : json['phone'],
+        'city': !exists(json, 'city') ? undefined : json['city'],
+        'state': !exists(json, 'state') ? undefined : json['state'],
     };
 }
 
@@ -119,6 +161,12 @@ export function RequestLocationToJSON(value?: RequestLocation | null): any {
         'longitude': value.longitude,
         'countryCode': value.countryCode,
         'locationCode': value.locationCode,
+        'addressID': value.addressID,
+        'customerID': value.customerID,
+        'addressLine1': value.addressLine1,
+        'phone': value.phone,
+        'city': value.city,
+        'state': value.state,
     };
 }
 

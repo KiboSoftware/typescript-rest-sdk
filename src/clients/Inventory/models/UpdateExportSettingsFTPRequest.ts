@@ -38,6 +38,36 @@ export interface UpdateExportSettingsFTPRequest {
      * @memberof UpdateExportSettingsFTPRequest
      */
     exportSettingsFTP: ExportSettingsFTP;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof UpdateExportSettingsFTPRequest
+     */
+    locationCode?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof UpdateExportSettingsFTPRequest
+     */
+    userID?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof UpdateExportSettingsFTPRequest
+     */
+    pageSize?: number;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof UpdateExportSettingsFTPRequest
+     */
+    pageNum?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof UpdateExportSettingsFTPRequest
+     */
+    sortBy?: string;
 }
 
 /**
@@ -62,7 +92,12 @@ export function UpdateExportSettingsFTPRequestFromJSONTyped(json: any, ignoreDis
     return {
         
         'exportSettingsName': json['exportSettingsName'],
-        'exportSettingsFTP': json['exportSettingsFTP'],
+        'exportSettingsFTP': ExportSettingsFTPFromJSON(json['exportSettingsFTP']),
+        'locationCode': !exists(json, 'locationCode') ? undefined : json['locationCode'],
+        'userID': !exists(json, 'userID') ? undefined : json['userID'],
+        'pageSize': !exists(json, 'pageSize') ? undefined : json['pageSize'],
+        'pageNum': !exists(json, 'pageNum') ? undefined : json['pageNum'],
+        'sortBy': !exists(json, 'sortBy') ? undefined : json['sortBy'],
     };
 }
 
@@ -76,7 +111,12 @@ export function UpdateExportSettingsFTPRequestToJSON(value?: UpdateExportSetting
     return {
         
         'exportSettingsName': value.exportSettingsName,
-        'exportSettingsFTP': value.exportSettingsFTP,
+        'exportSettingsFTP': ExportSettingsFTPToJSON(value.exportSettingsFTP),
+        'locationCode': value.locationCode,
+        'userID': value.userID,
+        'pageSize': value.pageSize,
+        'pageNum': value.pageNum,
+        'sortBy': value.sortBy,
     };
 }
 

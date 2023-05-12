@@ -76,6 +76,30 @@ export interface LocationCriteriaSetFilter {
     customAttributeName?: string;
     /**
      * 
+     * @type {string}
+     * @memberof LocationCriteriaSetFilter
+     */
+    dataPointExtensibleAttributeFQN?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationCriteriaSetFilter
+     */
+    dataPointExtensibleAttributeName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationCriteriaSetFilter
+     */
+    dataPointExtensibleAttributeType?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LocationCriteriaSetFilter
+     */
+    dataPointExtensibleFilter?: boolean;
+    /**
+     * 
      * @type {Array<LocationCriteriaSetDataDefinition>}
      * @memberof LocationCriteriaSetFilter
      */
@@ -92,6 +116,30 @@ export interface LocationCriteriaSetFilter {
      * @memberof LocationCriteriaSetFilter
      */
     environmentID?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationCriteriaSetFilter
+     */
+    extensibleAttributeFQN?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationCriteriaSetFilter
+     */
+    extensibleAttributeName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationCriteriaSetFilter
+     */
+    extensibleAttributeType?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LocationCriteriaSetFilter
+     */
+    extensibleFilter?: boolean;
     /**
      * 
      * @type {number}
@@ -206,9 +254,17 @@ export function LocationCriteriaSetFilterFromJSONTyped(json: any, ignoreDiscrimi
         'created': !exists(json, 'created') ? undefined : (new Date(json['created'])),
         'creatorUsername': !exists(json, 'creatorUsername') ? undefined : json['creatorUsername'],
         'customAttributeName': !exists(json, 'customAttributeName') ? undefined : json['customAttributeName'],
+        'dataPointExtensibleAttributeFQN': !exists(json, 'dataPointExtensibleAttributeFQN') ? undefined : json['dataPointExtensibleAttributeFQN'],
+        'dataPointExtensibleAttributeName': !exists(json, 'dataPointExtensibleAttributeName') ? undefined : json['dataPointExtensibleAttributeName'],
+        'dataPointExtensibleAttributeType': !exists(json, 'dataPointExtensibleAttributeType') ? undefined : json['dataPointExtensibleAttributeType'],
+        'dataPointExtensibleFilter': !exists(json, 'dataPointExtensibleFilter') ? undefined : json['dataPointExtensibleFilter'],
         'definitions': !exists(json, 'definitions') ? undefined : ((json['definitions'] as Array<any>).map(LocationCriteriaSetDataDefinitionFromJSON)),
         'dotDelimitedPropertyName': !exists(json, 'dotDelimitedPropertyName') ? undefined : json['dotDelimitedPropertyName'],
         'environmentID': !exists(json, 'environmentID') ? undefined : json['environmentID'],
+        'extensibleAttributeFQN': !exists(json, 'extensibleAttributeFQN') ? undefined : json['extensibleAttributeFQN'],
+        'extensibleAttributeName': !exists(json, 'extensibleAttributeName') ? undefined : json['extensibleAttributeName'],
+        'extensibleAttributeType': !exists(json, 'extensibleAttributeType') ? undefined : json['extensibleAttributeType'],
+        'extensibleFilter': !exists(json, 'extensibleFilter') ? undefined : json['extensibleFilter'],
         'filterID': !exists(json, 'filterID') ? undefined : json['filterID'],
         'filterUnit': !exists(json, 'filterUnit') ? undefined : UnitOfobjectFromJSON(json['filterUnit']),
         'locationCriteriaSet': !exists(json, 'locationCriteriaSet') ? undefined : LocationCriteriaSetFromJSON(json['locationCriteriaSet']),
@@ -237,9 +293,17 @@ export function LocationCriteriaSetFilterToJSON(value?: LocationCriteriaSetFilte
         'created': value.created === undefined ? undefined : (value.created.toISOString()),
         'creatorUsername': value.creatorUsername,
         'customAttributeName': value.customAttributeName,
+        'dataPointExtensibleAttributeFQN': value.dataPointExtensibleAttributeFQN,
+        'dataPointExtensibleAttributeName': value.dataPointExtensibleAttributeName,
+        'dataPointExtensibleAttributeType': value.dataPointExtensibleAttributeType,
+        'dataPointExtensibleFilter': value.dataPointExtensibleFilter,
         'definitions': value.definitions === undefined ? undefined : ((value.definitions as Array<any>).map(LocationCriteriaSetDataDefinitionToJSON)),
         'dotDelimitedPropertyName': value.dotDelimitedPropertyName,
         'environmentID': value.environmentID,
+        'extensibleAttributeFQN': value.extensibleAttributeFQN,
+        'extensibleAttributeName': value.extensibleAttributeName,
+        'extensibleAttributeType': value.extensibleAttributeType,
+        'extensibleFilter': value.extensibleFilter,
         'filterID': value.filterID,
         'filterUnit': UnitOfobjectToJSON(value.filterUnit),
         'locationCriteriaSet': LocationCriteriaSetToJSON(value.locationCriteriaSet),

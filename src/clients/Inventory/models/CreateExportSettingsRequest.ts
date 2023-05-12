@@ -32,6 +32,36 @@ export interface CreateExportSettingsRequest {
      * @memberof CreateExportSettingsRequest
      */
     exportSettings: ExportSettings;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof CreateExportSettingsRequest
+     */
+    locationCode?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof CreateExportSettingsRequest
+     */
+    userID?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof CreateExportSettingsRequest
+     */
+    pageSize?: number;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof CreateExportSettingsRequest
+     */
+    pageNum?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof CreateExportSettingsRequest
+     */
+    sortBy?: string;
 }
 
 /**
@@ -54,7 +84,12 @@ export function CreateExportSettingsRequestFromJSONTyped(json: any, ignoreDiscri
     }
     return {
         
-        'exportSettings': json['exportSettings'],
+        'exportSettings': ExportSettingsFromJSON(json['exportSettings']),
+        'locationCode': !exists(json, 'locationCode') ? undefined : json['locationCode'],
+        'userID': !exists(json, 'userID') ? undefined : json['userID'],
+        'pageSize': !exists(json, 'pageSize') ? undefined : json['pageSize'],
+        'pageNum': !exists(json, 'pageNum') ? undefined : json['pageNum'],
+        'sortBy': !exists(json, 'sortBy') ? undefined : json['sortBy'],
     };
 }
 
@@ -67,7 +102,12 @@ export function CreateExportSettingsRequestToJSON(value?: CreateExportSettingsRe
     }
     return {
         
-        'exportSettings': value.exportSettings,
+        'exportSettings': ExportSettingsToJSON(value.exportSettings),
+        'locationCode': value.locationCode,
+        'userID': value.userID,
+        'pageSize': value.pageSize,
+        'pageNum': value.pageNum,
+        'sortBy': value.sortBy,
     };
 }
 

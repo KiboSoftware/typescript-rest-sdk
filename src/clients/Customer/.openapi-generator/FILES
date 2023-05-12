@@ -81,6 +81,7 @@ models/Phone.ts
 models/PurchaseOrderTransaction.ts
 models/PurchaseOrderTransactionCollection.ts
 models/ResetPasswordInfo.ts
+models/Resource.ts
 models/Transaction.ts
 models/UpgradeToB2BAccountError.ts
 models/UpgradeToB2BAccountResponse.ts

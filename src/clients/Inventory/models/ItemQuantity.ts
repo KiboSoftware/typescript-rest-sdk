@@ -43,6 +43,12 @@ export interface ItemQuantity {
      * @memberof ItemQuantity
      */
     quantity?: number;
+    /**
+     * Associative Map of <String, String> for tagCategoryName => tagName
+     * @type {{ [key: string]: string; }}
+     * @memberof ItemQuantity
+     */
+    tags?: { [key: string]: string; };
 }
 
 /**
@@ -68,6 +74,7 @@ export function ItemQuantityFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'upc': !exists(json, 'upc') ? undefined : json['upc'],
         'sku': !exists(json, 'sku') ? undefined : json['sku'],
         'quantity': !exists(json, 'quantity') ? undefined : json['quantity'],
+        'tags': !exists(json, 'tags') ? undefined : json['tags'],
     };
 }
 
@@ -84,6 +91,7 @@ export function ItemQuantityToJSON(value?: ItemQuantity | null): any {
         'upc': value.upc,
         'sku': value.sku,
         'quantity': value.quantity,
+        'tags': value.tags,
     };
 }
 

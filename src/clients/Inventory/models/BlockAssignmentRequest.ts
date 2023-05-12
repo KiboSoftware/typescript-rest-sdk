@@ -32,6 +32,36 @@ export interface BlockAssignmentRequest {
      * @memberof BlockAssignmentRequest
      */
     items: Array<BlockAssignmentItem>;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof BlockAssignmentRequest
+     */
+    locationCode?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof BlockAssignmentRequest
+     */
+    userID?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof BlockAssignmentRequest
+     */
+    pageSize?: number;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof BlockAssignmentRequest
+     */
+    pageNum?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof BlockAssignmentRequest
+     */
+    sortBy?: string;
 }
 
 /**
@@ -55,6 +85,11 @@ export function BlockAssignmentRequestFromJSONTyped(json: any, ignoreDiscriminat
     return {
         
         'items': ((json['items'] as Array<any>).map(BlockAssignmentItemFromJSON)),
+        'locationCode': !exists(json, 'locationCode') ? undefined : json['locationCode'],
+        'userID': !exists(json, 'userID') ? undefined : json['userID'],
+        'pageSize': !exists(json, 'pageSize') ? undefined : json['pageSize'],
+        'pageNum': !exists(json, 'pageNum') ? undefined : json['pageNum'],
+        'sortBy': !exists(json, 'sortBy') ? undefined : json['sortBy'],
     };
 }
 
@@ -68,6 +103,11 @@ export function BlockAssignmentRequestToJSON(value?: BlockAssignmentRequest | nu
     return {
         
         'items': ((value.items as Array<any>).map(BlockAssignmentItemToJSON)),
+        'locationCode': value.locationCode,
+        'userID': value.userID,
+        'pageSize': value.pageSize,
+        'pageNum': value.pageNum,
+        'sortBy': value.sortBy,
     };
 }
 

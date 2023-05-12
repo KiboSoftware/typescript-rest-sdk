@@ -111,6 +111,12 @@ export interface AttributeDetail {
      * @memberof AttributeDetail
      */
     displayIntention?: string | null;
+    /**
+     * Indicates whether the attribute is available for order routing
+     * @type {boolean}
+     * @memberof AttributeDetail
+     */
+    availableForOrderRouting?: boolean;
 }
 
 /**
@@ -146,6 +152,7 @@ export function AttributeDetailFromJSONTyped(json: any, ignoreDiscriminator: boo
         'indexValueWithCase': !exists(json, 'indexValueWithCase') ? undefined : json['indexValueWithCase'],
         'customWeightInStorefrontSearch': !exists(json, 'customWeightInStorefrontSearch') ? undefined : json['customWeightInStorefrontSearch'],
         'displayIntention': !exists(json, 'displayIntention') ? undefined : json['displayIntention'],
+        'availableForOrderRouting': !exists(json, 'availableForOrderRouting') ? undefined : json['availableForOrderRouting'],
     };
 }
 
@@ -172,6 +179,7 @@ export function AttributeDetailToJSON(value?: AttributeDetail | null): any {
         'indexValueWithCase': value.indexValueWithCase,
         'customWeightInStorefrontSearch': value.customWeightInStorefrontSearch,
         'displayIntention': value.displayIntention,
+        'availableForOrderRouting': value.availableForOrderRouting,
     };
 }
 

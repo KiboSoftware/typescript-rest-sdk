@@ -23,6 +23,7 @@ import type {
   ExportInventoryRequest,
   ExportInventoryResponse,
   ExportSettingsResponse,
+  GetExportSettingsResponse,
   UpdateExportSettingsFTPRequest,
   UpdateExportSettingsFTPResponse,
   UpdateExportSettingsRequest,
@@ -45,6 +46,8 @@ import {
     ExportInventoryResponseToJSON,
     ExportSettingsResponseFromJSON,
     ExportSettingsResponseToJSON,
+    GetExportSettingsResponseFromJSON,
+    GetExportSettingsResponseToJSON,
     UpdateExportSettingsFTPRequestFromJSON,
     UpdateExportSettingsFTPRequestToJSON,
     UpdateExportSettingsFTPResponseFromJSON,
@@ -89,6 +92,11 @@ export interface ExportInventoryApiDeleteExportSettingsS3Request {
     xVolTenant: number;
     exportSettingsName: string;
     exportSettingsS3Name?: string;
+}
+
+export interface ExportInventoryApiGetExportSettingsRequest {
+    xVolTenant: number;
+    exportSettingsName: string;
 }
 
 export interface ExportInventoryApiRunExportRequest {
@@ -145,24 +153,10 @@ export class ExportInventoryApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v1/export/create`,
+            path: `/commerce/inventory/v1/export/create`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -207,24 +201,10 @@ export class ExportInventoryApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v1/export/ftp/create`,
+            path: `/commerce/inventory/v1/export/ftp/create`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -269,24 +249,10 @@ export class ExportInventoryApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v1/export/s3/create`,
+            path: `/commerce/inventory/v1/export/s3/create`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -333,24 +299,10 @@ export class ExportInventoryApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v1/export/{exportSettingsName}`,
+            path: `/commerce/inventory/v1/export/{exportSettingsName}`,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -396,24 +348,10 @@ export class ExportInventoryApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v1/export/ftp/{exportSettingsName}/{exportSettingsFTPName}`.replace(`{${"exportSettingsFTPName"}}`, encodeURIComponent(String(requestParameters.exportSettingsFTPName))),
+            path: `/commerce/inventory/v1/export/ftp/{exportSettingsName}/{exportSettingsFTPName}`.replace(`{${"exportSettingsFTPName"}}`, encodeURIComponent(String(requestParameters.exportSettingsFTPName))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -459,24 +397,10 @@ export class ExportInventoryApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v1/export/s3/{exportSettingsName}/{exportSettingsS3Name}`.replace(`{${"exportSettingsS3Name"}}`, encodeURIComponent(String(requestParameters.exportSettingsS3Name))),
+            path: `/commerce/inventory/v1/export/s3/{exportSettingsName}/{exportSettingsS3Name}`.replace(`{${"exportSettingsS3Name"}}`, encodeURIComponent(String(requestParameters.exportSettingsS3Name))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -491,6 +415,55 @@ export class ExportInventoryApi extends runtime.BaseAPI {
      */
     async deleteExportSettingsS3(requestParameters: ExportInventoryApiDeleteExportSettingsS3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedCountResponse> {
         const response = await this.deleteExportSettingsS3Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get an export settings
+     * Get Export Settings
+     */
+
+
+    async getExportSettingsRaw(requestParameters: ExportInventoryApiGetExportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<GetExportSettingsResponse>>> {
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getExportSettings.');
+        }
+
+        if (requestParameters.exportSettingsName === null || requestParameters.exportSettingsName === undefined) {
+            throw new runtime.RequiredError('exportSettingsName','Required parameter requestParameters.exportSettingsName was null or undefined when calling getExportSettings.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.exportSettingsName !== undefined) {
+            queryParameters['exportSettingsName'] = requestParameters.exportSettingsName;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/inventory/v1/export`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(GetExportSettingsResponseFromJSON));
+    }
+
+    /**
+     * Get an export settings
+     * Get Export Settings
+     */
+    async getExportSettings(requestParameters: ExportInventoryApiGetExportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<GetExportSettingsResponse>> {
+        const response = await this.getExportSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -520,24 +493,10 @@ export class ExportInventoryApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v1/export`,
+            path: `/commerce/inventory/v1/export`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -582,24 +541,10 @@ export class ExportInventoryApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v1/export/update`,
+            path: `/commerce/inventory/v1/export/update`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -644,24 +589,10 @@ export class ExportInventoryApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v1/export/ftp/update`,
+            path: `/commerce/inventory/v1/export/ftp/update`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -706,24 +637,10 @@ export class ExportInventoryApi extends runtime.BaseAPI {
         }
 
 
-        if (this.configuration && (this.configuration.accessToken || this.configuration.clientId && this.configuration.sharedSecret)) {
-            const token = await this.configuration.accessToken;
-            const tokenString = await token();
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
+        await this.addAuthorizationHeaders(headerParameters)
         
-        if (this.configuration && this.configuration.jwt) {
-            const token = this.configuration.jwt;
-            const tokenString = await token();
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/commerce/inventory/api/v1/export/s3/update`,
+            path: `/commerce/inventory/v1/export/s3/update`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,

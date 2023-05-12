@@ -56,6 +56,36 @@ export interface AllocateInventoryRequest {
      * @memberof AllocateInventoryRequest
      */
     autoAssign?: boolean;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof AllocateInventoryRequest
+     */
+    locationCode?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof AllocateInventoryRequest
+     */
+    userID?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof AllocateInventoryRequest
+     */
+    pageSize?: number;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof AllocateInventoryRequest
+     */
+    pageNum?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof AllocateInventoryRequest
+     */
+    sortBy?: string;
 }
 
 /**
@@ -83,6 +113,11 @@ export function AllocateInventoryRequestFromJSONTyped(json: any, ignoreDiscrimin
         'orderWeight': !exists(json, 'orderWeight') ? undefined : json['orderWeight'],
         'decrementOnHandOnDeallocate': !exists(json, 'decrementOnHandOnDeallocate') ? undefined : json['decrementOnHandOnDeallocate'],
         'autoAssign': !exists(json, 'autoAssign') ? undefined : json['autoAssign'],
+        'locationCode': !exists(json, 'locationCode') ? undefined : json['locationCode'],
+        'userID': !exists(json, 'userID') ? undefined : json['userID'],
+        'pageSize': !exists(json, 'pageSize') ? undefined : json['pageSize'],
+        'pageNum': !exists(json, 'pageNum') ? undefined : json['pageNum'],
+        'sortBy': !exists(json, 'sortBy') ? undefined : json['sortBy'],
     };
 }
 
@@ -100,6 +135,11 @@ export function AllocateInventoryRequestToJSON(value?: AllocateInventoryRequest 
         'orderWeight': value.orderWeight,
         'decrementOnHandOnDeallocate': value.decrementOnHandOnDeallocate,
         'autoAssign': value.autoAssign,
+        'locationCode': value.locationCode,
+        'userID': value.userID,
+        'pageSize': value.pageSize,
+        'pageNum': value.pageNum,
+        'sortBy': value.sortBy,
     };
 }
 

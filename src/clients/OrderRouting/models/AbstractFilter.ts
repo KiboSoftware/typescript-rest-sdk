@@ -61,6 +61,30 @@ export interface AbstractFilter {
      * @type {string}
      * @memberof AbstractFilter
      */
+    dataPointExtensibleAttributeFQN?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AbstractFilter
+     */
+    dataPointExtensibleAttributeName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AbstractFilter
+     */
+    dataPointExtensibleAttributeType?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AbstractFilter
+     */
+    dataPointExtensibleFilter?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof AbstractFilter
+     */
     dotDelimitedPropertyName?: string;
     /**
      * 
@@ -68,6 +92,30 @@ export interface AbstractFilter {
      * @memberof AbstractFilter
      */
     environmentID?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof AbstractFilter
+     */
+    extensibleAttributeFQN?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AbstractFilter
+     */
+    extensibleAttributeName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AbstractFilter
+     */
+    extensibleAttributeType?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AbstractFilter
+     */
+    extensibleFilter?: boolean;
     /**
      * 
      * @type {number}
@@ -175,8 +223,16 @@ export function AbstractFilterFromJSONTyped(json: any, ignoreDiscriminator: bool
         'created': !exists(json, 'created') ? undefined : (new Date(json['created'])),
         'creatorUsername': !exists(json, 'creatorUsername') ? undefined : json['creatorUsername'],
         'customAttributeName': !exists(json, 'customAttributeName') ? undefined : json['customAttributeName'],
+        'dataPointExtensibleAttributeFQN': !exists(json, 'dataPointExtensibleAttributeFQN') ? undefined : json['dataPointExtensibleAttributeFQN'],
+        'dataPointExtensibleAttributeName': !exists(json, 'dataPointExtensibleAttributeName') ? undefined : json['dataPointExtensibleAttributeName'],
+        'dataPointExtensibleAttributeType': !exists(json, 'dataPointExtensibleAttributeType') ? undefined : json['dataPointExtensibleAttributeType'],
+        'dataPointExtensibleFilter': !exists(json, 'dataPointExtensibleFilter') ? undefined : json['dataPointExtensibleFilter'],
         'dotDelimitedPropertyName': !exists(json, 'dotDelimitedPropertyName') ? undefined : json['dotDelimitedPropertyName'],
         'environmentID': !exists(json, 'environmentID') ? undefined : json['environmentID'],
+        'extensibleAttributeFQN': !exists(json, 'extensibleAttributeFQN') ? undefined : json['extensibleAttributeFQN'],
+        'extensibleAttributeName': !exists(json, 'extensibleAttributeName') ? undefined : json['extensibleAttributeName'],
+        'extensibleAttributeType': !exists(json, 'extensibleAttributeType') ? undefined : json['extensibleAttributeType'],
+        'extensibleFilter': !exists(json, 'extensibleFilter') ? undefined : json['extensibleFilter'],
         'filterID': !exists(json, 'filterID') ? undefined : json['filterID'],
         'filterUnit': !exists(json, 'filterUnit') ? undefined : UnitOfobjectFromJSON(json['filterUnit']),
         'name': !exists(json, 'name') ? undefined : json['name'],
@@ -203,8 +259,16 @@ export function AbstractFilterToJSON(value?: AbstractFilter | null): any {
         'created': value.created === undefined ? undefined : (value.created.toISOString()),
         'creatorUsername': value.creatorUsername,
         'customAttributeName': value.customAttributeName,
+        'dataPointExtensibleAttributeFQN': value.dataPointExtensibleAttributeFQN,
+        'dataPointExtensibleAttributeName': value.dataPointExtensibleAttributeName,
+        'dataPointExtensibleAttributeType': value.dataPointExtensibleAttributeType,
+        'dataPointExtensibleFilter': value.dataPointExtensibleFilter,
         'dotDelimitedPropertyName': value.dotDelimitedPropertyName,
         'environmentID': value.environmentID,
+        'extensibleAttributeFQN': value.extensibleAttributeFQN,
+        'extensibleAttributeName': value.extensibleAttributeName,
+        'extensibleAttributeType': value.extensibleAttributeType,
+        'extensibleFilter': value.extensibleFilter,
         'filterID': value.filterID,
         'filterUnit': UnitOfobjectToJSON(value.filterUnit),
         'name': value.name,

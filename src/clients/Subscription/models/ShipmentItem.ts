@@ -386,6 +386,30 @@ export interface ShipmentItem {
      * @memberof ShipmentItem
      */
     upc?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ShipmentItem
+     */
+    isSubstitutable?: boolean | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShipmentItem
+     */
+    originalLineId?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShipmentItem
+     */
+    originalQuantity?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShipmentItem
+     */
+    substituteQuantity?: number | null;
 }
 
 /**
@@ -462,6 +486,10 @@ export function ShipmentItemFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'sku': !exists(json, 'sku') ? undefined : json['sku'],
         'partNumber': !exists(json, 'partNumber') ? undefined : json['partNumber'],
         'upc': !exists(json, 'upc') ? undefined : json['upc'],
+        'isSubstitutable': !exists(json, 'isSubstitutable') ? undefined : json['isSubstitutable'],
+        'originalLineId': !exists(json, 'originalLineId') ? undefined : json['originalLineId'],
+        'originalQuantity': !exists(json, 'originalQuantity') ? undefined : json['originalQuantity'],
+        'substituteQuantity': !exists(json, 'substituteQuantity') ? undefined : json['substituteQuantity'],
     };
 }
 
@@ -529,6 +557,10 @@ export function ShipmentItemToJSON(value?: ShipmentItem | null): any {
         'sku': value.sku,
         'partNumber': value.partNumber,
         'upc': value.upc,
+        'isSubstitutable': value.isSubstitutable,
+        'originalLineId': value.originalLineId,
+        'originalQuantity': value.originalQuantity,
+        'substituteQuantity': value.substituteQuantity,
     };
 }
 

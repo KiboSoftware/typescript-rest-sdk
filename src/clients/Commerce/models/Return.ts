@@ -303,6 +303,12 @@ export interface Return {
      * @memberof Return
      */
     refundToGC?: boolean;
+    /**
+     * ShipOrBillCountryCode contains country code of shipping address or Billing address
+     * @type {string}
+     * @memberof Return
+     */
+    shipOrBillCountryCode?: string | null;
 }
 
 /**
@@ -363,6 +369,7 @@ export function ReturnFromJSONTyped(json: any, ignoreDiscriminator: boolean): Re
         'isUnified': !exists(json, 'isUnified') ? undefined : json['isUnified'],
         'canInitiateRefund': !exists(json, 'canInitiateRefund') ? undefined : json['canInitiateRefund'],
         'refundToGC': !exists(json, 'refundToGC') ? undefined : json['refundToGC'],
+        'shipOrBillCountryCode': !exists(json, 'shipOrBillCountryCode') ? undefined : json['shipOrBillCountryCode'],
     };
 }
 
@@ -414,6 +421,7 @@ export function ReturnToJSON(value?: Return | null): any {
         'isUnified': value.isUnified,
         'canInitiateRefund': value.canInitiateRefund,
         'refundToGC': value.refundToGC,
+        'shipOrBillCountryCode': value.shipOrBillCountryCode,
     };
 }
 

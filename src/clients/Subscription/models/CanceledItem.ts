@@ -404,6 +404,24 @@ export interface CanceledItem {
      * @memberof CanceledItem
      */
     upc?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CanceledItem
+     */
+    isSubstitutable?: boolean | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    originalLineId?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    substituteQuantity?: number | null;
 }
 
 /**
@@ -482,6 +500,9 @@ export function CanceledItemFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'sku': !exists(json, 'sku') ? undefined : json['sku'],
         'partNumber': !exists(json, 'partNumber') ? undefined : json['partNumber'],
         'upc': !exists(json, 'upc') ? undefined : json['upc'],
+        'isSubstitutable': !exists(json, 'isSubstitutable') ? undefined : json['isSubstitutable'],
+        'originalLineId': !exists(json, 'originalLineId') ? undefined : json['originalLineId'],
+        'substituteQuantity': !exists(json, 'substituteQuantity') ? undefined : json['substituteQuantity'],
     };
 }
 
@@ -551,6 +572,9 @@ export function CanceledItemToJSON(value?: CanceledItem | null): any {
         'sku': value.sku,
         'partNumber': value.partNumber,
         'upc': value.upc,
+        'isSubstitutable': value.isSubstitutable,
+        'originalLineId': value.originalLineId,
+        'substituteQuantity': value.substituteQuantity,
     };
 }
 

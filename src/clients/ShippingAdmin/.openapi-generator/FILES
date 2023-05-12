@@ -2,6 +2,7 @@ apis/CarrierConfigurationApi.ts
 apis/CarrierConfigurationGlobalApi.ts
 apis/CarrierCredentialApi.ts
 apis/CarrierCredentialSetApi.ts
+apis/CarrierDefinitionApi.ts
 apis/ShippingProfileApi.ts
 apis/TargetRulesApi.ts
 apis/index.ts
@@ -13,7 +14,11 @@ models/CarrierCredential.ts
 models/CarrierCredentialCollection.ts
 models/CarrierCredentialSet.ts
 models/CarrierCredentialSetCollection.ts
+models/CarrierCredentialSetMetadata.ts
+models/CarrierCredentialSetMetadataDataType.ts
+models/CarrierCredentialSetMetadataLocalizedContent.ts
 models/CarrierCredentialSetValue.ts
+models/CarrierDefinition.ts
 models/CustomTableRate.ts
 models/CustomTableRateContent.ts
 models/HandlingFeeRule.ts

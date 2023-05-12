@@ -14,29 +14,11 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * 
+ * LocationGroup Response Object
  * @export
  * @interface LocationGroupResponse
  */
 export interface LocationGroupResponse {
-    /**
-     * Flag for success
-     * @type {boolean}
-     * @memberof LocationGroupResponse
-     */
-    success?: boolean;
-    /**
-     * List of messages
-     * @type {Array<string>}
-     * @memberof LocationGroupResponse
-     */
-    messages?: Array<string>;
-    /**
-     * Number of results
-     * @type {number}
-     * @memberof LocationGroupResponse
-     */
-    numResults?: number;
     /**
      * Location Group ID
      * @type {number}
@@ -79,6 +61,24 @@ export interface LocationGroupResponse {
      * @memberof LocationGroupResponse
      */
     locationCodes?: Array<string>;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof LocationGroupResponse
+     */
+    success?: boolean;
+    /**
+     * List of messages
+     * @type {Array<string>}
+     * @memberof LocationGroupResponse
+     */
+    messages?: Array<string>;
+    /**
+     * Number of results
+     * @type {number}
+     * @memberof LocationGroupResponse
+     */
+    numResults?: number;
 }
 
 /**
@@ -100,9 +100,6 @@ export function LocationGroupResponseFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'success': !exists(json, 'success') ? undefined : json['success'],
-        'messages': !exists(json, 'messages') ? undefined : json['messages'],
-        'numResults': !exists(json, 'numResults') ? undefined : json['numResults'],
         'locationGroupID': !exists(json, 'locationGroupID') ? undefined : json['locationGroupID'],
         'tenantID': !exists(json, 'tenantID') ? undefined : json['tenantID'],
         'locationGroupCode': !exists(json, 'locationGroupCode') ? undefined : json['locationGroupCode'],
@@ -110,6 +107,9 @@ export function LocationGroupResponseFromJSONTyped(json: any, ignoreDiscriminato
         'adminLocationGroupID': !exists(json, 'adminLocationGroupID') ? undefined : json['adminLocationGroupID'],
         'sites': !exists(json, 'sites') ? undefined : json['sites'],
         'locationCodes': !exists(json, 'locationCodes') ? undefined : json['locationCodes'],
+        'success': !exists(json, 'success') ? undefined : json['success'],
+        'messages': !exists(json, 'messages') ? undefined : json['messages'],
+        'numResults': !exists(json, 'numResults') ? undefined : json['numResults'],
     };
 }
 
@@ -122,9 +122,6 @@ export function LocationGroupResponseToJSON(value?: LocationGroupResponse | null
     }
     return {
         
-        'success': value.success,
-        'messages': value.messages,
-        'numResults': value.numResults,
         'locationGroupID': value.locationGroupID,
         'tenantID': value.tenantID,
         'locationGroupCode': value.locationGroupCode,
@@ -132,6 +129,9 @@ export function LocationGroupResponseToJSON(value?: LocationGroupResponse | null
         'adminLocationGroupID': value.adminLocationGroupID,
         'sites': value.sites,
         'locationCodes': value.locationCodes,
+        'success': value.success,
+        'messages': value.messages,
+        'numResults': value.numResults,
     };
 }
 

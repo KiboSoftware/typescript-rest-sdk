@@ -38,6 +38,12 @@ export interface MFetchFileConfig {
      */
     active?: boolean;
     /**
+     * Failed Attempts
+     * @type {number}
+     * @memberof MFetchFileConfig
+     */
+    failedAttempts?: number;
+    /**
      * Time config was last modified
      * @type {string}
      * @memberof MFetchFileConfig
@@ -115,6 +121,18 @@ export interface MFetchFileConfig {
      * @memberof MFetchFileConfig
      */
     region?: string;
+    /**
+     * S3 Key
+     * @type {string}
+     * @memberof MFetchFileConfig
+     */
+    s3Key?: string;
+    /**
+     * S3 Secret
+     * @type {string}
+     * @memberof MFetchFileConfig
+     */
+    secret?: string;
     /**
      * S3 Bucket
      * @type {string}
@@ -252,6 +270,7 @@ export function MFetchFileConfigFromJSONTyped(json: any, ignoreDiscriminator: bo
         'fetchFileConfigID': !exists(json, 'fetchFileConfigID') ? undefined : json['fetchFileConfigID'],
         'tenantID': !exists(json, 'tenantID') ? undefined : json['tenantID'],
         'active': !exists(json, 'active') ? undefined : json['active'],
+        'failedAttempts': !exists(json, 'failed_attempts') ? undefined : json['failed_attempts'],
         'lastModified': !exists(json, 'lastModified') ? undefined : json['lastModified'],
         'emailList': !exists(json, 'emailList') ? undefined : json['emailList'],
         'refreshEnabled': !exists(json, 'refreshEnabled') ? undefined : json['refreshEnabled'],
@@ -265,6 +284,8 @@ export function MFetchFileConfigFromJSONTyped(json: any, ignoreDiscriminator: bo
         'ftpRemotePath': !exists(json, 'ftpRemotePath') ? undefined : json['ftpRemotePath'],
         'ftpRemotePathArchive': !exists(json, 'ftpRemotePathArchive') ? undefined : json['ftpRemotePathArchive'],
         'region': !exists(json, 'region') ? undefined : json['region'],
+        's3Key': !exists(json, 's3Key') ? undefined : json['s3Key'],
+        'secret': !exists(json, 'secret') ? undefined : json['secret'],
         'bucket': !exists(json, 'bucket') ? undefined : json['bucket'],
         's3Path': !exists(json, 's3Path') ? undefined : json['s3Path'],
         'archiveBucket': !exists(json, 'archiveBucket') ? undefined : json['archiveBucket'],
@@ -297,6 +318,7 @@ export function MFetchFileConfigToJSON(value?: MFetchFileConfig | null): any {
         'fetchFileConfigID': value.fetchFileConfigID,
         'tenantID': value.tenantID,
         'active': value.active,
+        'failed_attempts': value.failedAttempts,
         'lastModified': value.lastModified,
         'emailList': value.emailList,
         'refreshEnabled': value.refreshEnabled,
@@ -310,6 +332,8 @@ export function MFetchFileConfigToJSON(value?: MFetchFileConfig | null): any {
         'ftpRemotePath': value.ftpRemotePath,
         'ftpRemotePathArchive': value.ftpRemotePathArchive,
         'region': value.region,
+        's3Key': value.s3Key,
+        'secret': value.secret,
         'bucket': value.bucket,
         's3Path': value.s3Path,
         'archiveBucket': value.archiveBucket,
