@@ -1,5 +1,11 @@
 # KiboCommerce Typescript Rest SDK
 
+## Prerequisites 
+* NodeJS
+* KiboCommerce Developer Account
+* KiboCommerce Application ClientID / Secret
+* KiboCommerce Tenant
+  
 ## Getting Started
 
 Install package
