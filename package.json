@@ -1,6 +1,6 @@
 {
   "name": "@kibocommerce/rest-sdk",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Kibo Commerce Rest client SDK",
   "main": "index.js",
   "scripts": {
