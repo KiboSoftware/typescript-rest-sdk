@@ -60,13 +60,13 @@ export interface EntitiesApiGetViewEntityRequest {
 
 export interface EntitiesApiInsertEntityRequest {
     entityListFullName: string;
-    httpRequestMessage?: HttpRequestMessage;
+    entity : any;
 }
 
 export interface EntitiesApiUpdateEntityRequest {
     entityListFullName: string;
     id: string;
-    httpRequestMessage?: HttpRequestMessage;
+    entity : any;
 }
 
 /**
@@ -352,10 +352,10 @@ export class EntitiesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: HttpRequestMessageToJSON(requestParameters.httpRequestMessage),
+            body: JSON.stringify(requestParameters.entity),
         }, initOverrides);
 
-        return new runtime.TextApiResponse(response) as any;
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue);
     }
 
     /**
@@ -399,10 +399,11 @@ export class EntitiesApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: HttpRequestMessageToJSON(requestParameters.httpRequestMessage),
+            body: JSON.stringify(requestParameters.entity),
         }, initOverrides);
 
-        return new runtime.TextApiResponse(response) as any;
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue);
+       
     }
 
     /**
