@@ -352,7 +352,7 @@ export class EntitiesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: JSON.stringify(requestParameters.entity),
+            body: requestParameters.entity,
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue);
@@ -399,7 +399,7 @@ export class EntitiesApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: JSON.stringify(requestParameters.entity),
+            body: requestParameters.entity,
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue);
