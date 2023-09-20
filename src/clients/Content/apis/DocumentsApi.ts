@@ -193,8 +193,7 @@ export class DocumentsApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'text/plain';
-
+        headerParameters['Content-Type'] = 'application/json';
 
 
 
@@ -236,8 +235,7 @@ export class DocumentsApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'text/plain';
-
+        headerParameters['Content-Type'] = 'application/json';
 
 
 
@@ -412,8 +410,7 @@ export class DocumentsApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'text/plain';
-
+        headerParameters['Content-Type'] = 'application/json';
 
 
 
@@ -621,6 +618,8 @@ export class DocumentsApi extends runtime.BaseAPI {
         if (requestParameters.queryScope !== undefined) {
             queryParameters['queryScope'] = requestParameters.queryScope;
         }
+        // cache bust
+        queryParameters['_cb'] = Date.now();
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -858,8 +857,7 @@ export class DocumentsApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'text/plain';
-
+        headerParameters['Content-Type'] = 'application/json';
 
 
 
@@ -1047,8 +1045,7 @@ export class DocumentsApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'text/plain';
-
+        headerParameters['Content-Type'] = 'application/json';
 
 
 
@@ -1094,8 +1091,7 @@ export class DocumentsApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'text/plain';
-
+        headerParameters['Content-Type'] = 'application/json';
 
 
 
@@ -1140,8 +1136,7 @@ export class DocumentsApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'text/plain';
-
+        headerParameters['Content-Type'] = 'application/json';
 
 
 

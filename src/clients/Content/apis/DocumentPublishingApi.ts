@@ -62,8 +62,7 @@ export class DocumentPublishingApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'text/plain';
-
+        headerParameters['Content-Type'] = 'application/json';
 
 
 
@@ -152,8 +151,7 @@ export class DocumentPublishingApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'text/plain';
-
+        headerParameters['Content-Type'] = 'application/json';
 
 
 
