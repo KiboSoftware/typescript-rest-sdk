@@ -43,16 +43,13 @@ export class BaseAPI {
     return this.withMiddleware<T>(...middlewares)
   }
   protected async addAuthorizationHeaders(headers: HTTPHeaders) {
-    console.log('addAuthorizationHeaders')
     if (this.configuration.accessToken) {
-      console.log('addAuthorizationHeaders: accessToken')
       const token = await this.configuration.accessToken
       const tokenString = await token()
       if (tokenString) {
         headers['Authorization'] = `Bearer ${tokenString}`
       }
     } else if (this.configuration.userClaims || this.configuration.appClaims) {
-      console.log('addAuthorizationHeaders: userClaims')
       headers['x-vol-app-claims'] = this.configuration.appClaims
       headers['x-vol-user-claims'] = this.configuration.userClaims
     }
@@ -144,7 +141,6 @@ export class BaseAPI {
 
   private fetchApi = async (url: string, init: RequestInit) => {
     let fetchParams = { url, init }
-    console.log(url, init)
     for (const middleware of this.middleware) {
       if (middleware.pre) {
         fetchParams =
