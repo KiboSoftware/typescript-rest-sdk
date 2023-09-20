@@ -118,12 +118,12 @@ export interface ConfigurationParameters {
   credentials?: RequestCredentials //value for the credentials param we want to use on each request
   apiHost?: string
   apiEnv?: string
-  tenantId?: string
+  tenantId?: string | number
   region?: string
-  siteId?: string
+  siteId?: string | number
   currency?: string
-  catalog?: string
-  masterCatalog?: string
+  catalog?: string | number
+  masterCatalog?: string | number
   locale?: string
   sharedSecret?: string
   clientId?: string
