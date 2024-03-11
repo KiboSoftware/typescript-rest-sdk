@@ -4,4 +4,5 @@ export * from './OrderRoutingDataListApi';
 export * from './OrderRoutingFilterApi';
 export * from './OrderRoutingGroupApi';
 export * from './OrderRoutingLocationApi';
+export * from './OrderRoutingSettingsApi';
 export * from './RoutingApi';
