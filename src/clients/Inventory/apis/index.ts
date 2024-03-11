@@ -13,6 +13,5 @@ export * from './InventoryLocationGroupApi';
 export * from './InventorySiloApi';
 export * from './InventoryTagApi';
 export * from './InventoryTagCategoryApi';
-export * from './InventoryTagcategoryApi';
 export * from './ModifyInventoryApi';
 export * from './ShipmentInventoryAllocationApi';
