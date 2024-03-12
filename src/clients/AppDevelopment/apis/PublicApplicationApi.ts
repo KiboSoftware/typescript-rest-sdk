@@ -23,39 +23,39 @@ import type {
   RenameInfo,
 } from '../models';
 
-export interface PublicApplicationApiDeletePackageFileRequest {
+export interface DeletePackageFileRequest {
     applicationKey: string;
     filepath: string;
 }
 
-export interface PublicApplicationApiGetAppPackageNamesRequest {
+export interface GetAppPackageNamesRequest {
     applicationKey: string;
     responseFields?: string;
 }
 
-export interface PublicApplicationApiGetAppVersionsRequest {
+export interface GetAppVersionsRequest {
     nsAndAppId: string;
     responseFields?: string;
 }
 
-export interface PublicApplicationApiGetPackageFileMetadataRequest {
+export interface GetPackageFileMetadataRequest {
     applicationKey: string;
     filepath: string;
     responseFields?: string;
 }
 
-export interface PublicApplicationApiGetPackageMetadataRequest {
+export interface GetPackageMetadataRequest {
     applicationKey: string;
     responseFields?: string;
 }
 
-export interface PublicApplicationApiRenamePackageFileRequest {
+export interface RenamePackageFileRequest {
     applicationKey: string;
     responseFields?: string;
     renameInfo?: RenameInfo;
 }
 
-export interface PublicApplicationApiUpsertPackageFileRequest {
+export interface UpsertPackageFileRequest {
     applicationKey: string;
     filepath: string;
     lastModifiedTime?: string;
@@ -78,13 +78,13 @@ export interface PublicApplicationApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApplicationApiInterface
      */
-    deletePackageFileRaw(requestParameters: PublicApplicationApiDeletePackageFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deletePackageFileRaw(requestParameters: DeletePackageFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * 
      * Delete Package File
      */
-    deletePackageFile(requestParameters: PublicApplicationApiDeletePackageFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deletePackageFile(requestParameters: DeletePackageFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * 
@@ -95,13 +95,13 @@ export interface PublicApplicationApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApplicationApiInterface
      */
-    getAppPackageNamesRaw(requestParameters: PublicApplicationApiGetAppPackageNamesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PackageNamesCollection>>;
+    getAppPackageNamesRaw(requestParameters: GetAppPackageNamesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PackageNamesCollection>>;
 
     /**
      * 
      * Get App Package Names
      */
-    getAppPackageNames(requestParameters: PublicApplicationApiGetAppPackageNamesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PackageNamesCollection>;
+    getAppPackageNames(requestParameters: GetAppPackageNamesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PackageNamesCollection>;
 
     /**
      * 
@@ -112,13 +112,13 @@ export interface PublicApplicationApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApplicationApiInterface
      */
-    getAppVersionsRaw(requestParameters: PublicApplicationApiGetAppVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApplicationVersionsCollection>>;
+    getAppVersionsRaw(requestParameters: GetAppVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApplicationVersionsCollection>>;
 
     /**
      * 
      * Get App Versions
      */
-    getAppVersions(requestParameters: PublicApplicationApiGetAppVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApplicationVersionsCollection>;
+    getAppVersions(requestParameters: GetAppVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApplicationVersionsCollection>;
 
     /**
      * 
@@ -130,13 +130,13 @@ export interface PublicApplicationApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApplicationApiInterface
      */
-    getPackageFileMetadataRaw(requestParameters: PublicApplicationApiGetPackageFileMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileMetadata>>;
+    getPackageFileMetadataRaw(requestParameters: GetPackageFileMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileMetadata>>;
 
     /**
      * 
      * Get Package File Metadata
      */
-    getPackageFileMetadata(requestParameters: PublicApplicationApiGetPackageFileMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileMetadata>;
+    getPackageFileMetadata(requestParameters: GetPackageFileMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileMetadata>;
 
     /**
      * 
@@ -147,13 +147,13 @@ export interface PublicApplicationApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApplicationApiInterface
      */
-    getPackageMetadataRaw(requestParameters: PublicApplicationApiGetPackageMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FolderMetadata>>;
+    getPackageMetadataRaw(requestParameters: GetPackageMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FolderMetadata>>;
 
     /**
      * 
      * Get Package Metadata
      */
-    getPackageMetadata(requestParameters: PublicApplicationApiGetPackageMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FolderMetadata>;
+    getPackageMetadata(requestParameters: GetPackageMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FolderMetadata>;
 
     /**
      * 
@@ -165,13 +165,13 @@ export interface PublicApplicationApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApplicationApiInterface
      */
-    renamePackageFileRaw(requestParameters: PublicApplicationApiRenamePackageFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileMetadata>>;
+    renamePackageFileRaw(requestParameters: RenamePackageFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileMetadata>>;
 
     /**
      * 
      * Rename Package File
      */
-    renamePackageFile(requestParameters: PublicApplicationApiRenamePackageFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileMetadata>;
+    renamePackageFile(requestParameters: RenamePackageFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileMetadata>;
 
     /**
      * 
@@ -184,13 +184,13 @@ export interface PublicApplicationApiInterface {
      * @throws {RequiredError}
      * @memberof PublicApplicationApiInterface
      */
-    upsertPackageFileRaw(requestParameters: PublicApplicationApiUpsertPackageFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileMetadata>>;
+    upsertPackageFileRaw(requestParameters: UpsertPackageFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileMetadata>>;
 
     /**
      * 
      * Upsert Package File
      */
-    upsertPackageFile(requestParameters: PublicApplicationApiUpsertPackageFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileMetadata>;
+    upsertPackageFile(requestParameters: UpsertPackageFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileMetadata>;
 
 }
 
@@ -208,7 +208,7 @@ export class PublicApplicationApi extends runtime.BaseAPI implements PublicAppli
      */
 
 
-    async deletePackageFileRaw(requestParameters: PublicApplicationApiDeletePackageFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deletePackageFileRaw(requestParameters: DeletePackageFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.applicationKey === null || requestParameters.applicationKey === undefined) {
             throw new runtime.RequiredError('applicationKey','Required parameter requestParameters.applicationKey was null or undefined when calling deletePackageFile.');
         }
@@ -241,7 +241,7 @@ export class PublicApplicationApi extends runtime.BaseAPI implements PublicAppli
      * 
      * Delete Package File
      */
-    async deletePackageFile(requestParameters: PublicApplicationApiDeletePackageFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deletePackageFile(requestParameters: DeletePackageFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deletePackageFileRaw(requestParameters, initOverrides);
     }
 
@@ -251,7 +251,7 @@ export class PublicApplicationApi extends runtime.BaseAPI implements PublicAppli
      */
 
 
-    async getAppPackageNamesRaw(requestParameters: PublicApplicationApiGetAppPackageNamesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PackageNamesCollection>> {
+    async getAppPackageNamesRaw(requestParameters: GetAppPackageNamesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PackageNamesCollection>> {
         if (requestParameters.applicationKey === null || requestParameters.applicationKey === undefined) {
             throw new runtime.RequiredError('applicationKey','Required parameter requestParameters.applicationKey was null or undefined when calling getAppPackageNames.');
         }
@@ -284,7 +284,7 @@ export class PublicApplicationApi extends runtime.BaseAPI implements PublicAppli
      * 
      * Get App Package Names
      */
-    async getAppPackageNames(requestParameters: PublicApplicationApiGetAppPackageNamesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PackageNamesCollection> {
+    async getAppPackageNames(requestParameters: GetAppPackageNamesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PackageNamesCollection> {
         const response = await this.getAppPackageNamesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -295,7 +295,7 @@ export class PublicApplicationApi extends runtime.BaseAPI implements PublicAppli
      */
 
 
-    async getAppVersionsRaw(requestParameters: PublicApplicationApiGetAppVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApplicationVersionsCollection>> {
+    async getAppVersionsRaw(requestParameters: GetAppVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApplicationVersionsCollection>> {
         if (requestParameters.nsAndAppId === null || requestParameters.nsAndAppId === undefined) {
             throw new runtime.RequiredError('nsAndAppId','Required parameter requestParameters.nsAndAppId was null or undefined when calling getAppVersions.');
         }
@@ -328,7 +328,7 @@ export class PublicApplicationApi extends runtime.BaseAPI implements PublicAppli
      * 
      * Get App Versions
      */
-    async getAppVersions(requestParameters: PublicApplicationApiGetAppVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApplicationVersionsCollection> {
+    async getAppVersions(requestParameters: GetAppVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApplicationVersionsCollection> {
         const response = await this.getAppVersionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -339,7 +339,7 @@ export class PublicApplicationApi extends runtime.BaseAPI implements PublicAppli
      */
 
 
-    async getPackageFileMetadataRaw(requestParameters: PublicApplicationApiGetPackageFileMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileMetadata>> {
+    async getPackageFileMetadataRaw(requestParameters: GetPackageFileMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileMetadata>> {
         if (requestParameters.applicationKey === null || requestParameters.applicationKey === undefined) {
             throw new runtime.RequiredError('applicationKey','Required parameter requestParameters.applicationKey was null or undefined when calling getPackageFileMetadata.');
         }
@@ -376,7 +376,7 @@ export class PublicApplicationApi extends runtime.BaseAPI implements PublicAppli
      * 
      * Get Package File Metadata
      */
-    async getPackageFileMetadata(requestParameters: PublicApplicationApiGetPackageFileMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileMetadata> {
+    async getPackageFileMetadata(requestParameters: GetPackageFileMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileMetadata> {
         const response = await this.getPackageFileMetadataRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -387,7 +387,7 @@ export class PublicApplicationApi extends runtime.BaseAPI implements PublicAppli
      */
 
 
-    async getPackageMetadataRaw(requestParameters: PublicApplicationApiGetPackageMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FolderMetadata>> {
+    async getPackageMetadataRaw(requestParameters: GetPackageMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FolderMetadata>> {
         if (requestParameters.applicationKey === null || requestParameters.applicationKey === undefined) {
             throw new runtime.RequiredError('applicationKey','Required parameter requestParameters.applicationKey was null or undefined when calling getPackageMetadata.');
         }
@@ -420,7 +420,7 @@ export class PublicApplicationApi extends runtime.BaseAPI implements PublicAppli
      * 
      * Get Package Metadata
      */
-    async getPackageMetadata(requestParameters: PublicApplicationApiGetPackageMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FolderMetadata> {
+    async getPackageMetadata(requestParameters: GetPackageMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FolderMetadata> {
         const response = await this.getPackageMetadataRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -431,7 +431,7 @@ export class PublicApplicationApi extends runtime.BaseAPI implements PublicAppli
      */
 
 
-    async renamePackageFileRaw(requestParameters: PublicApplicationApiRenamePackageFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileMetadata>> {
+    async renamePackageFileRaw(requestParameters: RenamePackageFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileMetadata>> {
         if (requestParameters.applicationKey === null || requestParameters.applicationKey === undefined) {
             throw new runtime.RequiredError('applicationKey','Required parameter requestParameters.applicationKey was null or undefined when calling renamePackageFile.');
         }
@@ -467,7 +467,7 @@ export class PublicApplicationApi extends runtime.BaseAPI implements PublicAppli
      * 
      * Rename Package File
      */
-    async renamePackageFile(requestParameters: PublicApplicationApiRenamePackageFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileMetadata> {
+    async renamePackageFile(requestParameters: RenamePackageFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileMetadata> {
         const response = await this.renamePackageFileRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -478,7 +478,7 @@ export class PublicApplicationApi extends runtime.BaseAPI implements PublicAppli
      */
 
 
-    async upsertPackageFileRaw(requestParameters: PublicApplicationApiUpsertPackageFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileMetadata>> {
+    async upsertPackageFileRaw(requestParameters: UpsertPackageFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileMetadata>> {
         if (requestParameters.applicationKey === null || requestParameters.applicationKey === undefined) {
             throw new runtime.RequiredError('applicationKey','Required parameter requestParameters.applicationKey was null or undefined when calling upsertPackageFile.');
         }
@@ -519,7 +519,7 @@ export class PublicApplicationApi extends runtime.BaseAPI implements PublicAppli
      * 
      * Upsert Package File
      */
-    async upsertPackageFile(requestParameters: PublicApplicationApiUpsertPackageFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileMetadata> {
+    async upsertPackageFile(requestParameters: UpsertPackageFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileMetadata> {
         const response = await this.upsertPackageFileRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -21,7 +21,7 @@ import type {
   EntityModelOfCustomerSurvey,
 } from '../models';
 
-export interface CustomerSurveyApiCreateSurveyUsingPOSTRequest {
+export interface CreateSurveyUsingPOSTRequest {
     shipmentNumber: number;
     xVolTenant: number;
     customerSurveyDto: CustomerSurvey;
@@ -29,14 +29,14 @@ export interface CustomerSurveyApiCreateSurveyUsingPOSTRequest {
     responseFields?: string;
 }
 
-export interface CustomerSurveyApiGetSurveyUsingGETRequest {
+export interface GetSurveyUsingGETRequest {
     id: string;
     xVolTenant: number;
     xVolSite?: number;
     responseFields?: string;
 }
 
-export interface CustomerSurveyApiGetSurveysUsingGETRequest {
+export interface GetSurveysUsingGETRequest {
     shipmentNumber: number;
     xVolTenant: number;
     xVolSite?: number;
@@ -62,13 +62,13 @@ export interface CustomerSurveyApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerSurveyApiInterface
      */
-    createSurveyUsingPOSTRaw(requestParameters: CustomerSurveyApiCreateSurveyUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfCustomerSurvey>>;
+    createSurveyUsingPOSTRaw(requestParameters: CreateSurveyUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfCustomerSurvey>>;
 
     /**
      * createSurvey
      * createSurvey
      */
-    createSurveyUsingPOST(requestParameters: CustomerSurveyApiCreateSurveyUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfCustomerSurvey>;
+    createSurveyUsingPOST(requestParameters: CreateSurveyUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfCustomerSurvey>;
 
     /**
      * getSurvey
@@ -81,13 +81,13 @@ export interface CustomerSurveyApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerSurveyApiInterface
      */
-    getSurveyUsingGETRaw(requestParameters: CustomerSurveyApiGetSurveyUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfCustomerSurvey>>;
+    getSurveyUsingGETRaw(requestParameters: GetSurveyUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfCustomerSurvey>>;
 
     /**
      * getSurvey
      * getSurvey
      */
-    getSurveyUsingGET(requestParameters: CustomerSurveyApiGetSurveyUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfCustomerSurvey>;
+    getSurveyUsingGET(requestParameters: GetSurveyUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfCustomerSurvey>;
 
     /**
      * getSurveys
@@ -100,13 +100,13 @@ export interface CustomerSurveyApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerSurveyApiInterface
      */
-    getSurveysUsingGETRaw(requestParameters: CustomerSurveyApiGetSurveysUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfEntityModelOfCustomerSurvey>>;
+    getSurveysUsingGETRaw(requestParameters: GetSurveysUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfEntityModelOfCustomerSurvey>>;
 
     /**
      * getSurveys
      * getSurveys
      */
-    getSurveysUsingGET(requestParameters: CustomerSurveyApiGetSurveysUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfEntityModelOfCustomerSurvey>;
+    getSurveysUsingGET(requestParameters: GetSurveysUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfEntityModelOfCustomerSurvey>;
 
 }
 
@@ -124,7 +124,7 @@ export class CustomerSurveyApi extends runtime.BaseAPI implements CustomerSurvey
      */
 
 
-    async createSurveyUsingPOSTRaw(requestParameters: CustomerSurveyApiCreateSurveyUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfCustomerSurvey>> {
+    async createSurveyUsingPOSTRaw(requestParameters: CreateSurveyUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfCustomerSurvey>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling createSurveyUsingPOST.');
         }
@@ -176,7 +176,7 @@ export class CustomerSurveyApi extends runtime.BaseAPI implements CustomerSurvey
      * createSurvey
      * createSurvey
      */
-    async createSurveyUsingPOST(requestParameters: CustomerSurveyApiCreateSurveyUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfCustomerSurvey> {
+    async createSurveyUsingPOST(requestParameters: CreateSurveyUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfCustomerSurvey> {
         const response = await this.createSurveyUsingPOSTRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -187,7 +187,7 @@ export class CustomerSurveyApi extends runtime.BaseAPI implements CustomerSurvey
      */
 
 
-    async getSurveyUsingGETRaw(requestParameters: CustomerSurveyApiGetSurveyUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfCustomerSurvey>> {
+    async getSurveyUsingGETRaw(requestParameters: GetSurveyUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfCustomerSurvey>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getSurveyUsingGET.');
         }
@@ -232,7 +232,7 @@ export class CustomerSurveyApi extends runtime.BaseAPI implements CustomerSurvey
      * getSurvey
      * getSurvey
      */
-    async getSurveyUsingGET(requestParameters: CustomerSurveyApiGetSurveyUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfCustomerSurvey> {
+    async getSurveyUsingGET(requestParameters: GetSurveyUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfCustomerSurvey> {
         const response = await this.getSurveyUsingGETRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -243,7 +243,7 @@ export class CustomerSurveyApi extends runtime.BaseAPI implements CustomerSurvey
      */
 
 
-    async getSurveysUsingGETRaw(requestParameters: CustomerSurveyApiGetSurveysUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfEntityModelOfCustomerSurvey>> {
+    async getSurveysUsingGETRaw(requestParameters: GetSurveysUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfEntityModelOfCustomerSurvey>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getSurveysUsingGET.');
         }
@@ -288,7 +288,7 @@ export class CustomerSurveyApi extends runtime.BaseAPI implements CustomerSurvey
      * getSurveys
      * getSurveys
      */
-    async getSurveysUsingGET(requestParameters: CustomerSurveyApiGetSurveysUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfEntityModelOfCustomerSurvey> {
+    async getSurveysUsingGET(requestParameters: GetSurveysUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfEntityModelOfCustomerSurvey> {
         const response = await this.getSurveysUsingGETRaw(requestParameters, initOverrides);
         return await response.value();
     }

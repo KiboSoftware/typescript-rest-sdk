@@ -20,12 +20,12 @@ import type {
   EventEvent,
 } from '../models';
 
-export interface EventApiGetEventRequest {
+export interface GetEventRequest {
     eventId: string;
     responseFields?: string;
 }
 
-export interface EventApiGetEventsRequest {
+export interface GetEventsRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -49,13 +49,13 @@ export interface EventApiInterface {
      * @throws {RequiredError}
      * @memberof EventApiInterface
      */
-    getEventRaw(requestParameters: EventApiGetEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventEvent>>;
+    getEventRaw(requestParameters: GetEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventEvent>>;
 
     /**
      * Retrieves the details of a single event.
      * Get Event
      */
-    getEvent(requestParameters: EventApiGetEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventEvent>;
+    getEvent(requestParameters: GetEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventEvent>;
 
     /**
      * Retrieves a list of events according to any specified filter criteria and sort options.
@@ -69,13 +69,13 @@ export interface EventApiInterface {
      * @throws {RequiredError}
      * @memberof EventApiInterface
      */
-    getEventsRaw(requestParameters: EventApiGetEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventCollection>>;
+    getEventsRaw(requestParameters: GetEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventCollection>>;
 
     /**
      * Retrieves a list of events according to any specified filter criteria and sort options.
      * Get Events
      */
-    getEvents(requestParameters: EventApiGetEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventCollection>;
+    getEvents(requestParameters: GetEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventCollection>;
 
 }
 
@@ -93,7 +93,7 @@ export class EventApi extends runtime.BaseAPI implements EventApiInterface {
      */
 
 
-    async getEventRaw(requestParameters: EventApiGetEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventEvent>> {
+    async getEventRaw(requestParameters: GetEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventEvent>> {
         if (requestParameters.eventId === null || requestParameters.eventId === undefined) {
             throw new runtime.RequiredError('eventId','Required parameter requestParameters.eventId was null or undefined when calling getEvent.');
         }
@@ -126,7 +126,7 @@ export class EventApi extends runtime.BaseAPI implements EventApiInterface {
      * Retrieves the details of a single event.
      * Get Event
      */
-    async getEvent(requestParameters: EventApiGetEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventEvent> {
+    async getEvent(requestParameters: GetEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventEvent> {
         const response = await this.getEventRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -137,7 +137,7 @@ export class EventApi extends runtime.BaseAPI implements EventApiInterface {
      */
 
 
-    async getEventsRaw(requestParameters: EventApiGetEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventCollection>> {
+    async getEventsRaw(requestParameters: GetEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -182,7 +182,7 @@ export class EventApi extends runtime.BaseAPI implements EventApiInterface {
      * Retrieves a list of events according to any specified filter criteria and sort options.
      * Get Events
      */
-    async getEvents(requestParameters: EventApiGetEventsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventCollection> {
+    async getEvents(requestParameters: GetEventsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventCollection> {
         const response = await this.getEventsRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -21,22 +21,22 @@ import type {
   FacetSet,
 } from '../models';
 
-export interface FacetsApiAddFacetRequest {
+export interface AddFacetRequest {
     responseFields?: string;
     catalogAdminsFacet?: CatalogAdminsFacet;
 }
 
-export interface FacetsApiDeleteFacetByIdRequest {
+export interface DeleteFacetByIdRequest {
     facetId: number;
 }
 
-export interface FacetsApiGetFacetRequest {
+export interface GetFacetRequest {
     facetId: number;
     validate?: boolean;
     responseFields?: string;
 }
 
-export interface FacetsApiGetFacetCategoryListRequest {
+export interface GetFacetCategoryListRequest {
     categoryId?: number;
     categoryCode?: string;
     includeAvailable?: boolean;
@@ -44,24 +44,24 @@ export interface FacetsApiGetFacetCategoryListRequest {
     responseFields?: string;
 }
 
-export interface FacetsApiGetFacetCategoryListLegacyRequest {
+export interface GetFacetCategoryListLegacyRequest {
     categoryId: number;
     includeAvailable?: boolean;
     validate?: boolean;
     responseFields?: string;
 }
 
-export interface FacetsApiGetFacetsRequest {
+export interface GetFacetsRequest {
     responseFields?: string;
 }
 
-export interface FacetsApiUpdateFacetRequest {
+export interface UpdateFacetRequest {
     facetId: number;
     responseFields?: string;
     catalogAdminsFacet?: CatalogAdminsFacet;
 }
 
-export interface FacetsApiUpdateFacetSetRequest {
+export interface UpdateFacetSetRequest {
     categoryId?: number;
     categoryCode?: string;
     responseFields?: string;
@@ -84,13 +84,13 @@ export interface FacetsApiInterface {
      * @throws {RequiredError}
      * @memberof FacetsApiInterface
      */
-    addFacetRaw(requestParameters: FacetsApiAddFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsFacet>>;
+    addFacetRaw(requestParameters: AddFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsFacet>>;
 
     /**
      * Adds a new Facet to a category in a catalog.
      * Add facet
      */
-    addFacet(requestParameters: FacetsApiAddFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsFacet>;
+    addFacet(requestParameters: AddFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsFacet>;
 
     /**
      * Deletes the Facet definition from the store.
@@ -100,13 +100,13 @@ export interface FacetsApiInterface {
      * @throws {RequiredError}
      * @memberof FacetsApiInterface
      */
-    deleteFacetByIdRaw(requestParameters: FacetsApiDeleteFacetByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteFacetByIdRaw(requestParameters: DeleteFacetByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Deletes the Facet definition from the store.
      * Delete facet
      */
-    deleteFacetById(requestParameters: FacetsApiDeleteFacetByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteFacetById(requestParameters: DeleteFacetByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Retrieves the details of a Facet Definition
@@ -118,13 +118,13 @@ export interface FacetsApiInterface {
      * @throws {RequiredError}
      * @memberof FacetsApiInterface
      */
-    getFacetRaw(requestParameters: FacetsApiGetFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsFacet>>;
+    getFacetRaw(requestParameters: GetFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsFacet>>;
 
     /**
      * Retrieves the details of a Facet Definition
      * Get facet
      */
-    getFacet(requestParameters: FacetsApiGetFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsFacet>;
+    getFacet(requestParameters: GetFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsFacet>;
 
     /**
      * Retrieves a list of configured, and optionally available, Facet Configurations for the specified category.
@@ -138,13 +138,13 @@ export interface FacetsApiInterface {
      * @throws {RequiredError}
      * @memberof FacetsApiInterface
      */
-    getFacetCategoryListRaw(requestParameters: FacetsApiGetFacetCategoryListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FacetSet>>;
+    getFacetCategoryListRaw(requestParameters: GetFacetCategoryListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FacetSet>>;
 
     /**
      * Retrieves a list of configured, and optionally available, Facet Configurations for the specified category.
      * Get facet category list
      */
-    getFacetCategoryList(requestParameters: FacetsApiGetFacetCategoryListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FacetSet>;
+    getFacetCategoryList(requestParameters: GetFacetCategoryListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FacetSet>;
 
     /**
      * Retrieves a list of configured, and optionally available, Facet Configurations for the specified category.
@@ -157,13 +157,13 @@ export interface FacetsApiInterface {
      * @throws {RequiredError}
      * @memberof FacetsApiInterface
      */
-    getFacetCategoryListLegacyRaw(requestParameters: FacetsApiGetFacetCategoryListLegacyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FacetSet>>;
+    getFacetCategoryListLegacyRaw(requestParameters: GetFacetCategoryListLegacyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FacetSet>>;
 
     /**
      * Retrieves a list of configured, and optionally available, Facet Configurations for the specified category.
      * Get facet category list (legacy)
      */
-    getFacetCategoryListLegacy(requestParameters: FacetsApiGetFacetCategoryListLegacyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FacetSet>;
+    getFacetCategoryListLegacy(requestParameters: GetFacetCategoryListLegacyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FacetSet>;
 
     /**
      * Retrieves the list of Facet Definition
@@ -173,13 +173,13 @@ export interface FacetsApiInterface {
      * @throws {RequiredError}
      * @memberof FacetsApiInterface
      */
-    getFacetsRaw(requestParameters: FacetsApiGetFacetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FacetCollection>>;
+    getFacetsRaw(requestParameters: GetFacetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FacetCollection>>;
 
     /**
      * Retrieves the list of Facet Definition
      * Get facets
      */
-    getFacets(requestParameters: FacetsApiGetFacetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FacetCollection>;
+    getFacets(requestParameters: GetFacetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FacetCollection>;
 
     /**
      * Modifies a Facet definition.
@@ -191,13 +191,13 @@ export interface FacetsApiInterface {
      * @throws {RequiredError}
      * @memberof FacetsApiInterface
      */
-    updateFacetRaw(requestParameters: FacetsApiUpdateFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsFacet>>;
+    updateFacetRaw(requestParameters: UpdateFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsFacet>>;
 
     /**
      * Modifies a Facet definition.
      * Update facet
      */
-    updateFacet(requestParameters: FacetsApiUpdateFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsFacet>;
+    updateFacet(requestParameters: UpdateFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsFacet>;
 
     /**
      * Modifies a Facet definition.
@@ -210,13 +210,13 @@ export interface FacetsApiInterface {
      * @throws {RequiredError}
      * @memberof FacetsApiInterface
      */
-    updateFacetSetRaw(requestParameters: FacetsApiUpdateFacetSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FacetSet>>;
+    updateFacetSetRaw(requestParameters: UpdateFacetSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FacetSet>>;
 
     /**
      * Modifies a Facet definition.
      * Update facet
      */
-    updateFacetSet(requestParameters: FacetsApiUpdateFacetSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FacetSet>;
+    updateFacetSet(requestParameters: UpdateFacetSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FacetSet>;
 
 }
 
@@ -234,7 +234,7 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiInterface {
      */
 
 
-    async addFacetRaw(requestParameters: FacetsApiAddFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsFacet>> {
+    async addFacetRaw(requestParameters: AddFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsFacet>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -266,7 +266,7 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiInterface {
      * Adds a new Facet to a category in a catalog.
      * Add facet
      */
-    async addFacet(requestParameters: FacetsApiAddFacetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsFacet> {
+    async addFacet(requestParameters: AddFacetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsFacet> {
         const response = await this.addFacetRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -277,7 +277,7 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiInterface {
      */
 
 
-    async deleteFacetByIdRaw(requestParameters: FacetsApiDeleteFacetByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteFacetByIdRaw(requestParameters: DeleteFacetByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.facetId === null || requestParameters.facetId === undefined) {
             throw new runtime.RequiredError('facetId','Required parameter requestParameters.facetId was null or undefined when calling deleteFacetById.');
         }
@@ -306,7 +306,7 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiInterface {
      * Deletes the Facet definition from the store.
      * Delete facet
      */
-    async deleteFacetById(requestParameters: FacetsApiDeleteFacetByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteFacetById(requestParameters: DeleteFacetByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteFacetByIdRaw(requestParameters, initOverrides);
     }
 
@@ -316,7 +316,7 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiInterface {
      */
 
 
-    async getFacetRaw(requestParameters: FacetsApiGetFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsFacet>> {
+    async getFacetRaw(requestParameters: GetFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsFacet>> {
         if (requestParameters.facetId === null || requestParameters.facetId === undefined) {
             throw new runtime.RequiredError('facetId','Required parameter requestParameters.facetId was null or undefined when calling getFacet.');
         }
@@ -353,7 +353,7 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiInterface {
      * Retrieves the details of a Facet Definition
      * Get facet
      */
-    async getFacet(requestParameters: FacetsApiGetFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsFacet> {
+    async getFacet(requestParameters: GetFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsFacet> {
         const response = await this.getFacetRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -364,7 +364,7 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiInterface {
      */
 
 
-    async getFacetCategoryListRaw(requestParameters: FacetsApiGetFacetCategoryListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FacetSet>> {
+    async getFacetCategoryListRaw(requestParameters: GetFacetCategoryListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FacetSet>> {
         const queryParameters: any = {};
 
         if (requestParameters.categoryId !== undefined) {
@@ -409,7 +409,7 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiInterface {
      * Retrieves a list of configured, and optionally available, Facet Configurations for the specified category.
      * Get facet category list
      */
-    async getFacetCategoryList(requestParameters: FacetsApiGetFacetCategoryListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FacetSet> {
+    async getFacetCategoryList(requestParameters: GetFacetCategoryListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FacetSet> {
         const response = await this.getFacetCategoryListRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -420,7 +420,7 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiInterface {
      */
 
 
-    async getFacetCategoryListLegacyRaw(requestParameters: FacetsApiGetFacetCategoryListLegacyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FacetSet>> {
+    async getFacetCategoryListLegacyRaw(requestParameters: GetFacetCategoryListLegacyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FacetSet>> {
         if (requestParameters.categoryId === null || requestParameters.categoryId === undefined) {
             throw new runtime.RequiredError('categoryId','Required parameter requestParameters.categoryId was null or undefined when calling getFacetCategoryListLegacy.');
         }
@@ -461,7 +461,7 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiInterface {
      * Retrieves a list of configured, and optionally available, Facet Configurations for the specified category.
      * Get facet category list (legacy)
      */
-    async getFacetCategoryListLegacy(requestParameters: FacetsApiGetFacetCategoryListLegacyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FacetSet> {
+    async getFacetCategoryListLegacy(requestParameters: GetFacetCategoryListLegacyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FacetSet> {
         const response = await this.getFacetCategoryListLegacyRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -472,7 +472,7 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiInterface {
      */
 
 
-    async getFacetsRaw(requestParameters: FacetsApiGetFacetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FacetCollection>> {
+    async getFacetsRaw(requestParameters: GetFacetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FacetCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -501,7 +501,7 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiInterface {
      * Retrieves the list of Facet Definition
      * Get facets
      */
-    async getFacets(requestParameters: FacetsApiGetFacetsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FacetCollection> {
+    async getFacets(requestParameters: GetFacetsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FacetCollection> {
         const response = await this.getFacetsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -512,7 +512,7 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiInterface {
      */
 
 
-    async updateFacetRaw(requestParameters: FacetsApiUpdateFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsFacet>> {
+    async updateFacetRaw(requestParameters: UpdateFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsFacet>> {
         if (requestParameters.facetId === null || requestParameters.facetId === undefined) {
             throw new runtime.RequiredError('facetId','Required parameter requestParameters.facetId was null or undefined when calling updateFacet.');
         }
@@ -548,7 +548,7 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiInterface {
      * Modifies a Facet definition.
      * Update facet
      */
-    async updateFacet(requestParameters: FacetsApiUpdateFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsFacet> {
+    async updateFacet(requestParameters: UpdateFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsFacet> {
         const response = await this.updateFacetRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -559,7 +559,7 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiInterface {
      */
 
 
-    async updateFacetSetRaw(requestParameters: FacetsApiUpdateFacetSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FacetSet>> {
+    async updateFacetSetRaw(requestParameters: UpdateFacetSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FacetSet>> {
         const queryParameters: any = {};
 
         if (requestParameters.categoryId !== undefined) {
@@ -599,7 +599,7 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiInterface {
      * Modifies a Facet definition.
      * Update facet
      */
-    async updateFacetSet(requestParameters: FacetsApiUpdateFacetSetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FacetSet> {
+    async updateFacetSet(requestParameters: UpdateFacetSetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FacetSet> {
         const response = await this.updateFacetSetRaw(requestParameters, initOverrides);
         return await response.value();
     }

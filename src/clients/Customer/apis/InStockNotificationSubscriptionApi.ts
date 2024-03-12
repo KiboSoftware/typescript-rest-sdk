@@ -20,21 +20,21 @@ import type {
   InStockNotificationSubscriptionCollection,
 } from '../models';
 
-export interface InStockNotificationSubscriptionApiAddInStockNotificationSubscriptionRequest {
+export interface AddInStockNotificationSubscriptionRequest {
     responseFields?: string;
     inStockNotificationSubscription?: InStockNotificationSubscription;
 }
 
-export interface InStockNotificationSubscriptionApiDeleteInStockNotificationSubscriptionRequest {
+export interface DeleteInStockNotificationSubscriptionRequest {
     id: number;
 }
 
-export interface InStockNotificationSubscriptionApiGetInStockNotificationSubscriptionRequest {
+export interface GetInStockNotificationSubscriptionRequest {
     id: number;
     responseFields?: string;
 }
 
-export interface InStockNotificationSubscriptionApiGetInStockNotificationSubscriptionsRequest {
+export interface GetInStockNotificationSubscriptionsRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -58,13 +58,13 @@ export interface InStockNotificationSubscriptionApiInterface {
      * @throws {RequiredError}
      * @memberof InStockNotificationSubscriptionApiInterface
      */
-    addInStockNotificationSubscriptionRaw(requestParameters: InStockNotificationSubscriptionApiAddInStockNotificationSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InStockNotificationSubscription>>;
+    addInStockNotificationSubscriptionRaw(requestParameters: AddInStockNotificationSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InStockNotificationSubscription>>;
 
     /**
      * Creates a new notification subscription.
      * Add In Stock Notification Subscription
      */
-    addInStockNotificationSubscription(requestParameters: InStockNotificationSubscriptionApiAddInStockNotificationSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InStockNotificationSubscription>;
+    addInStockNotificationSubscription(requestParameters: AddInStockNotificationSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InStockNotificationSubscription>;
 
     /**
      * Deletes an in stock notification subscription.
@@ -74,13 +74,13 @@ export interface InStockNotificationSubscriptionApiInterface {
      * @throws {RequiredError}
      * @memberof InStockNotificationSubscriptionApiInterface
      */
-    deleteInStockNotificationSubscriptionRaw(requestParameters: InStockNotificationSubscriptionApiDeleteInStockNotificationSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteInStockNotificationSubscriptionRaw(requestParameters: DeleteInStockNotificationSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Deletes an in stock notification subscription.
      * Delete In Stock Notification Subscription
      */
-    deleteInStockNotificationSubscription(requestParameters: InStockNotificationSubscriptionApiDeleteInStockNotificationSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteInStockNotificationSubscription(requestParameters: DeleteInStockNotificationSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Retrieves the details of an inventory back in stock notification.
@@ -91,13 +91,13 @@ export interface InStockNotificationSubscriptionApiInterface {
      * @throws {RequiredError}
      * @memberof InStockNotificationSubscriptionApiInterface
      */
-    getInStockNotificationSubscriptionRaw(requestParameters: InStockNotificationSubscriptionApiGetInStockNotificationSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InStockNotificationSubscription>>;
+    getInStockNotificationSubscriptionRaw(requestParameters: GetInStockNotificationSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InStockNotificationSubscription>>;
 
     /**
      * Retrieves the details of an inventory back in stock notification.
      * Get In Stock Notification Subscription
      */
-    getInStockNotificationSubscription(requestParameters: InStockNotificationSubscriptionApiGetInStockNotificationSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InStockNotificationSubscription>;
+    getInStockNotificationSubscription(requestParameters: GetInStockNotificationSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InStockNotificationSubscription>;
 
     /**
      * Retrieves a list of inventory back in stock notification subscriptions according to any filter criteria and sort options.
@@ -111,13 +111,13 @@ export interface InStockNotificationSubscriptionApiInterface {
      * @throws {RequiredError}
      * @memberof InStockNotificationSubscriptionApiInterface
      */
-    getInStockNotificationSubscriptionsRaw(requestParameters: InStockNotificationSubscriptionApiGetInStockNotificationSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InStockNotificationSubscriptionCollection>>;
+    getInStockNotificationSubscriptionsRaw(requestParameters: GetInStockNotificationSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InStockNotificationSubscriptionCollection>>;
 
     /**
      * Retrieves a list of inventory back in stock notification subscriptions according to any filter criteria and sort options.
      * Get In Stock Notification Subscriptions
      */
-    getInStockNotificationSubscriptions(requestParameters: InStockNotificationSubscriptionApiGetInStockNotificationSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InStockNotificationSubscriptionCollection>;
+    getInStockNotificationSubscriptions(requestParameters: GetInStockNotificationSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InStockNotificationSubscriptionCollection>;
 
 }
 
@@ -135,7 +135,7 @@ export class InStockNotificationSubscriptionApi extends runtime.BaseAPI implemen
      */
 
 
-    async addInStockNotificationSubscriptionRaw(requestParameters: InStockNotificationSubscriptionApiAddInStockNotificationSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InStockNotificationSubscription>> {
+    async addInStockNotificationSubscriptionRaw(requestParameters: AddInStockNotificationSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InStockNotificationSubscription>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -167,7 +167,7 @@ export class InStockNotificationSubscriptionApi extends runtime.BaseAPI implemen
      * Creates a new notification subscription.
      * Add In Stock Notification Subscription
      */
-    async addInStockNotificationSubscription(requestParameters: InStockNotificationSubscriptionApiAddInStockNotificationSubscriptionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InStockNotificationSubscription> {
+    async addInStockNotificationSubscription(requestParameters: AddInStockNotificationSubscriptionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InStockNotificationSubscription> {
         const response = await this.addInStockNotificationSubscriptionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -178,7 +178,7 @@ export class InStockNotificationSubscriptionApi extends runtime.BaseAPI implemen
      */
 
 
-    async deleteInStockNotificationSubscriptionRaw(requestParameters: InStockNotificationSubscriptionApiDeleteInStockNotificationSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteInStockNotificationSubscriptionRaw(requestParameters: DeleteInStockNotificationSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling deleteInStockNotificationSubscription.');
         }
@@ -207,7 +207,7 @@ export class InStockNotificationSubscriptionApi extends runtime.BaseAPI implemen
      * Deletes an in stock notification subscription.
      * Delete In Stock Notification Subscription
      */
-    async deleteInStockNotificationSubscription(requestParameters: InStockNotificationSubscriptionApiDeleteInStockNotificationSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteInStockNotificationSubscription(requestParameters: DeleteInStockNotificationSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteInStockNotificationSubscriptionRaw(requestParameters, initOverrides);
     }
 
@@ -217,7 +217,7 @@ export class InStockNotificationSubscriptionApi extends runtime.BaseAPI implemen
      */
 
 
-    async getInStockNotificationSubscriptionRaw(requestParameters: InStockNotificationSubscriptionApiGetInStockNotificationSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InStockNotificationSubscription>> {
+    async getInStockNotificationSubscriptionRaw(requestParameters: GetInStockNotificationSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InStockNotificationSubscription>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getInStockNotificationSubscription.');
         }
@@ -250,7 +250,7 @@ export class InStockNotificationSubscriptionApi extends runtime.BaseAPI implemen
      * Retrieves the details of an inventory back in stock notification.
      * Get In Stock Notification Subscription
      */
-    async getInStockNotificationSubscription(requestParameters: InStockNotificationSubscriptionApiGetInStockNotificationSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InStockNotificationSubscription> {
+    async getInStockNotificationSubscription(requestParameters: GetInStockNotificationSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InStockNotificationSubscription> {
         const response = await this.getInStockNotificationSubscriptionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -261,7 +261,7 @@ export class InStockNotificationSubscriptionApi extends runtime.BaseAPI implemen
      */
 
 
-    async getInStockNotificationSubscriptionsRaw(requestParameters: InStockNotificationSubscriptionApiGetInStockNotificationSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InStockNotificationSubscriptionCollection>> {
+    async getInStockNotificationSubscriptionsRaw(requestParameters: GetInStockNotificationSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InStockNotificationSubscriptionCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -306,7 +306,7 @@ export class InStockNotificationSubscriptionApi extends runtime.BaseAPI implemen
      * Retrieves a list of inventory back in stock notification subscriptions according to any filter criteria and sort options.
      * Get In Stock Notification Subscriptions
      */
-    async getInStockNotificationSubscriptions(requestParameters: InStockNotificationSubscriptionApiGetInStockNotificationSubscriptionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InStockNotificationSubscriptionCollection> {
+    async getInStockNotificationSubscriptions(requestParameters: GetInStockNotificationSubscriptionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InStockNotificationSubscriptionCollection> {
         const response = await this.getInStockNotificationSubscriptionsRaw(requestParameters, initOverrides);
         return await response.value();
     }

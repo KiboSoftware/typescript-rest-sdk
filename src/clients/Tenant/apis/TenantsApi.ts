@@ -19,7 +19,7 @@ import type {
   TenantTenant,
 } from '../models';
 
-export interface TenantsApiGetTenantRequest {
+export interface GetTenantRequest {
     tenantId: number;
     responseFields?: string;
 }
@@ -40,13 +40,13 @@ export interface TenantsApiInterface {
      * @throws {RequiredError}
      * @memberof TenantsApiInterface
      */
-    getTenantRaw(requestParameters: TenantsApiGetTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantTenant>>;
+    getTenantRaw(requestParameters: GetTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantTenant>>;
 
     /**
      * Get Tenant by ID
      * Get Tenant by ID
      */
-    getTenant(requestParameters: TenantsApiGetTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantTenant>;
+    getTenant(requestParameters: GetTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantTenant>;
 
 }
 
@@ -64,7 +64,7 @@ export class TenantsApi extends runtime.BaseAPI implements TenantsApiInterface {
      */
 
 
-    async getTenantRaw(requestParameters: TenantsApiGetTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantTenant>> {
+    async getTenantRaw(requestParameters: GetTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantTenant>> {
         if (requestParameters.tenantId === null || requestParameters.tenantId === undefined) {
             throw new runtime.RequiredError('tenantId','Required parameter requestParameters.tenantId was null or undefined when calling getTenant.');
         }
@@ -97,7 +97,7 @@ export class TenantsApi extends runtime.BaseAPI implements TenantsApiInterface {
      * Get Tenant by ID
      * Get Tenant by ID
      */
-    async getTenant(requestParameters: TenantsApiGetTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantTenant> {
+    async getTenant(requestParameters: GetTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantTenant> {
         const response = await this.getTenantRaw(requestParameters, initOverrides);
         return await response.value();
     }

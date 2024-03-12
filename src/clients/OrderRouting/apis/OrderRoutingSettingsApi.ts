@@ -20,33 +20,33 @@ import type {
   OrderRoutingSettings,
 } from '../models';
 
-export interface OrderRoutingSettingsApiDeleteFilterAttributeUsingDELETERequest {
+export interface DeleteFilterAttributeUsingDELETERequest {
     attributeName: string;
     xVolSite: number;
     xVolTenant: number;
 }
 
-export interface OrderRoutingSettingsApiDeleteSettingsUsingDELETERequest {
+export interface DeleteSettingsUsingDELETERequest {
     tenantID: number;
     xVolSite: number;
     xVolTenant: number;
     siteID?: number;
 }
 
-export interface OrderRoutingSettingsApiGetFilterAttributeUsingGETRequest {
+export interface GetFilterAttributeUsingGETRequest {
     attributeName: string;
     xVolSite: number;
     xVolTenant: number;
     responseFields?: string;
 }
 
-export interface OrderRoutingSettingsApiGetFilterAttributesUsingGETRequest {
+export interface GetFilterAttributesUsingGETRequest {
     xVolSite: number;
     xVolTenant: number;
     responseFields?: string;
 }
 
-export interface OrderRoutingSettingsApiGetSettingsUsingGETRequest {
+export interface GetSettingsUsingGETRequest {
     xVolSite: number;
     xVolTenant: number;
     getDefaults?: boolean;
@@ -55,14 +55,14 @@ export interface OrderRoutingSettingsApiGetSettingsUsingGETRequest {
     responseFields?: string;
 }
 
-export interface OrderRoutingSettingsApiSaveFilterAttributeUsingPUTRequest {
+export interface SaveFilterAttributeUsingPUTRequest {
     xVolSite: number;
     xVolTenant: number;
     attribute: FilterAttribute;
     responseFields?: string;
 }
 
-export interface OrderRoutingSettingsApiSaveSettingsUsingPUTRequest {
+export interface SaveSettingsUsingPUTRequest {
     xVolSite: number;
     xVolTenant: number;
     settings: OrderRoutingSettings;
@@ -86,13 +86,13 @@ export interface OrderRoutingSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof OrderRoutingSettingsApiInterface
      */
-    deleteFilterAttributeUsingDELETERaw(requestParameters: OrderRoutingSettingsApiDeleteFilterAttributeUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FilterAttribute>>;
+    deleteFilterAttributeUsingDELETERaw(requestParameters: DeleteFilterAttributeUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FilterAttribute>>;
 
     /**
      * deleteFilterAttribute
      * deleteFilterAttribute
      */
-    deleteFilterAttributeUsingDELETE(requestParameters: OrderRoutingSettingsApiDeleteFilterAttributeUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FilterAttribute>;
+    deleteFilterAttributeUsingDELETE(requestParameters: DeleteFilterAttributeUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FilterAttribute>;
 
     /**
      * deleteSettings
@@ -105,13 +105,13 @@ export interface OrderRoutingSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof OrderRoutingSettingsApiInterface
      */
-    deleteSettingsUsingDELETERaw(requestParameters: OrderRoutingSettingsApiDeleteSettingsUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<boolean>>;
+    deleteSettingsUsingDELETERaw(requestParameters: DeleteSettingsUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<boolean>>;
 
     /**
      * deleteSettings
      * deleteSettings
      */
-    deleteSettingsUsingDELETE(requestParameters: OrderRoutingSettingsApiDeleteSettingsUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<boolean>;
+    deleteSettingsUsingDELETE(requestParameters: DeleteSettingsUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<boolean>;
 
     /**
      * getFilterAttribute
@@ -124,13 +124,13 @@ export interface OrderRoutingSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof OrderRoutingSettingsApiInterface
      */
-    getFilterAttributeUsingGETRaw(requestParameters: OrderRoutingSettingsApiGetFilterAttributeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FilterAttribute>>;
+    getFilterAttributeUsingGETRaw(requestParameters: GetFilterAttributeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FilterAttribute>>;
 
     /**
      * getFilterAttribute
      * getFilterAttribute
      */
-    getFilterAttributeUsingGET(requestParameters: OrderRoutingSettingsApiGetFilterAttributeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FilterAttribute>;
+    getFilterAttributeUsingGET(requestParameters: GetFilterAttributeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FilterAttribute>;
 
     /**
      * getFilterAttributes
@@ -142,13 +142,13 @@ export interface OrderRoutingSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof OrderRoutingSettingsApiInterface
      */
-    getFilterAttributesUsingGETRaw(requestParameters: OrderRoutingSettingsApiGetFilterAttributesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<FilterAttribute>>>;
+    getFilterAttributesUsingGETRaw(requestParameters: GetFilterAttributesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<FilterAttribute>>>;
 
     /**
      * getFilterAttributes
      * getFilterAttributes
      */
-    getFilterAttributesUsingGET(requestParameters: OrderRoutingSettingsApiGetFilterAttributesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<FilterAttribute>>;
+    getFilterAttributesUsingGET(requestParameters: GetFilterAttributesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<FilterAttribute>>;
 
     /**
      * getSettings
@@ -163,13 +163,13 @@ export interface OrderRoutingSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof OrderRoutingSettingsApiInterface
      */
-    getSettingsUsingGETRaw(requestParameters: OrderRoutingSettingsApiGetSettingsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderRoutingSettings>>;
+    getSettingsUsingGETRaw(requestParameters: GetSettingsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderRoutingSettings>>;
 
     /**
      * getSettings
      * getSettings
      */
-    getSettingsUsingGET(requestParameters: OrderRoutingSettingsApiGetSettingsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderRoutingSettings>;
+    getSettingsUsingGET(requestParameters: GetSettingsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderRoutingSettings>;
 
     /**
      * saveFilterAttribute
@@ -182,13 +182,13 @@ export interface OrderRoutingSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof OrderRoutingSettingsApiInterface
      */
-    saveFilterAttributeUsingPUTRaw(requestParameters: OrderRoutingSettingsApiSaveFilterAttributeUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FilterAttribute>>;
+    saveFilterAttributeUsingPUTRaw(requestParameters: SaveFilterAttributeUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FilterAttribute>>;
 
     /**
      * saveFilterAttribute
      * saveFilterAttribute
      */
-    saveFilterAttributeUsingPUT(requestParameters: OrderRoutingSettingsApiSaveFilterAttributeUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FilterAttribute>;
+    saveFilterAttributeUsingPUT(requestParameters: SaveFilterAttributeUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FilterAttribute>;
 
     /**
      * saveSettings
@@ -201,13 +201,13 @@ export interface OrderRoutingSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof OrderRoutingSettingsApiInterface
      */
-    saveSettingsUsingPUTRaw(requestParameters: OrderRoutingSettingsApiSaveSettingsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderRoutingSettings>>;
+    saveSettingsUsingPUTRaw(requestParameters: SaveSettingsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderRoutingSettings>>;
 
     /**
      * saveSettings
      * saveSettings
      */
-    saveSettingsUsingPUT(requestParameters: OrderRoutingSettingsApiSaveSettingsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderRoutingSettings>;
+    saveSettingsUsingPUT(requestParameters: SaveSettingsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderRoutingSettings>;
 
 }
 
@@ -225,7 +225,7 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
      */
 
 
-    async deleteFilterAttributeUsingDELETERaw(requestParameters: OrderRoutingSettingsApiDeleteFilterAttributeUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FilterAttribute>> {
+    async deleteFilterAttributeUsingDELETERaw(requestParameters: DeleteFilterAttributeUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FilterAttribute>> {
         if (requestParameters.attributeName === null || requestParameters.attributeName === undefined) {
             throw new runtime.RequiredError('attributeName','Required parameter requestParameters.attributeName was null or undefined when calling deleteFilterAttributeUsingDELETE.');
         }
@@ -270,7 +270,7 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
      * deleteFilterAttribute
      * deleteFilterAttribute
      */
-    async deleteFilterAttributeUsingDELETE(requestParameters: OrderRoutingSettingsApiDeleteFilterAttributeUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FilterAttribute> {
+    async deleteFilterAttributeUsingDELETE(requestParameters: DeleteFilterAttributeUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FilterAttribute> {
         const response = await this.deleteFilterAttributeUsingDELETERaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -281,7 +281,7 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
      */
 
 
-    async deleteSettingsUsingDELETERaw(requestParameters: OrderRoutingSettingsApiDeleteSettingsUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<boolean>> {
+    async deleteSettingsUsingDELETERaw(requestParameters: DeleteSettingsUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<boolean>> {
         if (requestParameters.tenantID === null || requestParameters.tenantID === undefined) {
             throw new runtime.RequiredError('tenantID','Required parameter requestParameters.tenantID was null or undefined when calling deleteSettingsUsingDELETE.');
         }
@@ -334,7 +334,7 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
      * deleteSettings
      * deleteSettings
      */
-    async deleteSettingsUsingDELETE(requestParameters: OrderRoutingSettingsApiDeleteSettingsUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<boolean> {
+    async deleteSettingsUsingDELETE(requestParameters: DeleteSettingsUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<boolean> {
         const response = await this.deleteSettingsUsingDELETERaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -345,7 +345,7 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
      */
 
 
-    async getFilterAttributeUsingGETRaw(requestParameters: OrderRoutingSettingsApiGetFilterAttributeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FilterAttribute>> {
+    async getFilterAttributeUsingGETRaw(requestParameters: GetFilterAttributeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FilterAttribute>> {
         if (requestParameters.attributeName === null || requestParameters.attributeName === undefined) {
             throw new runtime.RequiredError('attributeName','Required parameter requestParameters.attributeName was null or undefined when calling getFilterAttributeUsingGET.');
         }
@@ -394,7 +394,7 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
      * getFilterAttribute
      * getFilterAttribute
      */
-    async getFilterAttributeUsingGET(requestParameters: OrderRoutingSettingsApiGetFilterAttributeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FilterAttribute> {
+    async getFilterAttributeUsingGET(requestParameters: GetFilterAttributeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FilterAttribute> {
         const response = await this.getFilterAttributeUsingGETRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -405,7 +405,7 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
      */
 
 
-    async getFilterAttributesUsingGETRaw(requestParameters: OrderRoutingSettingsApiGetFilterAttributesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<FilterAttribute>>> {
+    async getFilterAttributesUsingGETRaw(requestParameters: GetFilterAttributesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<FilterAttribute>>> {
         if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
             throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling getFilterAttributesUsingGET.');
         }
@@ -450,7 +450,7 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
      * getFilterAttributes
      * getFilterAttributes
      */
-    async getFilterAttributesUsingGET(requestParameters: OrderRoutingSettingsApiGetFilterAttributesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<FilterAttribute>> {
+    async getFilterAttributesUsingGET(requestParameters: GetFilterAttributesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<FilterAttribute>> {
         const response = await this.getFilterAttributesUsingGETRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -461,7 +461,7 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
      */
 
 
-    async getSettingsUsingGETRaw(requestParameters: OrderRoutingSettingsApiGetSettingsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderRoutingSettings>> {
+    async getSettingsUsingGETRaw(requestParameters: GetSettingsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderRoutingSettings>> {
         if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
             throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling getSettingsUsingGET.');
         }
@@ -518,7 +518,7 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
      * getSettings
      * getSettings
      */
-    async getSettingsUsingGET(requestParameters: OrderRoutingSettingsApiGetSettingsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderRoutingSettings> {
+    async getSettingsUsingGET(requestParameters: GetSettingsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderRoutingSettings> {
         const response = await this.getSettingsUsingGETRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -529,7 +529,7 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
      */
 
 
-    async saveFilterAttributeUsingPUTRaw(requestParameters: OrderRoutingSettingsApiSaveFilterAttributeUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FilterAttribute>> {
+    async saveFilterAttributeUsingPUTRaw(requestParameters: SaveFilterAttributeUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FilterAttribute>> {
         if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
             throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling saveFilterAttributeUsingPUT.');
         }
@@ -581,7 +581,7 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
      * saveFilterAttribute
      * saveFilterAttribute
      */
-    async saveFilterAttributeUsingPUT(requestParameters: OrderRoutingSettingsApiSaveFilterAttributeUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FilterAttribute> {
+    async saveFilterAttributeUsingPUT(requestParameters: SaveFilterAttributeUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FilterAttribute> {
         const response = await this.saveFilterAttributeUsingPUTRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -592,7 +592,7 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
      */
 
 
-    async saveSettingsUsingPUTRaw(requestParameters: OrderRoutingSettingsApiSaveSettingsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderRoutingSettings>> {
+    async saveSettingsUsingPUTRaw(requestParameters: SaveSettingsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderRoutingSettings>> {
         if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
             throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling saveSettingsUsingPUT.');
         }
@@ -644,7 +644,7 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
      * saveSettings
      * saveSettings
      */
-    async saveSettingsUsingPUT(requestParameters: OrderRoutingSettingsApiSaveSettingsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderRoutingSettings> {
+    async saveSettingsUsingPUT(requestParameters: SaveSettingsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderRoutingSettings> {
         const response = await this.saveSettingsUsingPUTRaw(requestParameters, initOverrides);
         return await response.value();
     }

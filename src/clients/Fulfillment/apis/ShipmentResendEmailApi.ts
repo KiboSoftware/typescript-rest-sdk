@@ -16,14 +16,14 @@
 import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
 
-export interface ShipmentResendEmailApiResendShipmentCancelEmailUsingPUTRequest {
+export interface ResendShipmentCancelEmailUsingPUTRequest {
     shipmentNumber: number;
     xVolTenant: number;
     xVolSite?: number;
     responseFields?: string;
 }
 
-export interface ShipmentResendEmailApiResendShipmentFulfillEmailUsingPUTRequest {
+export interface ResendShipmentFulfillEmailUsingPUTRequest {
     shipmentNumber: number;
     xVolTenant: number;
     xVolSite?: number;
@@ -48,13 +48,13 @@ export interface ShipmentResendEmailApiInterface {
      * @throws {RequiredError}
      * @memberof ShipmentResendEmailApiInterface
      */
-    resendShipmentCancelEmailUsingPUTRaw(requestParameters: ShipmentResendEmailApiResendShipmentCancelEmailUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    resendShipmentCancelEmailUsingPUTRaw(requestParameters: ResendShipmentCancelEmailUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * resendShipmentCancelEmail
      * resendShipmentCancelEmail
      */
-    resendShipmentCancelEmailUsingPUT(requestParameters: ShipmentResendEmailApiResendShipmentCancelEmailUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    resendShipmentCancelEmailUsingPUT(requestParameters: ResendShipmentCancelEmailUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * resendShipmentFulfillEmail
@@ -67,13 +67,13 @@ export interface ShipmentResendEmailApiInterface {
      * @throws {RequiredError}
      * @memberof ShipmentResendEmailApiInterface
      */
-    resendShipmentFulfillEmailUsingPUTRaw(requestParameters: ShipmentResendEmailApiResendShipmentFulfillEmailUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    resendShipmentFulfillEmailUsingPUTRaw(requestParameters: ResendShipmentFulfillEmailUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * resendShipmentFulfillEmail
      * resendShipmentFulfillEmail
      */
-    resendShipmentFulfillEmailUsingPUT(requestParameters: ShipmentResendEmailApiResendShipmentFulfillEmailUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    resendShipmentFulfillEmailUsingPUT(requestParameters: ResendShipmentFulfillEmailUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
 }
 
@@ -91,7 +91,7 @@ export class ShipmentResendEmailApi extends runtime.BaseAPI implements ShipmentR
      */
 
 
-    async resendShipmentCancelEmailUsingPUTRaw(requestParameters: ShipmentResendEmailApiResendShipmentCancelEmailUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async resendShipmentCancelEmailUsingPUTRaw(requestParameters: ResendShipmentCancelEmailUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling resendShipmentCancelEmailUsingPUT.');
         }
@@ -136,7 +136,7 @@ export class ShipmentResendEmailApi extends runtime.BaseAPI implements ShipmentR
      * resendShipmentCancelEmail
      * resendShipmentCancelEmail
      */
-    async resendShipmentCancelEmailUsingPUT(requestParameters: ShipmentResendEmailApiResendShipmentCancelEmailUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async resendShipmentCancelEmailUsingPUT(requestParameters: ResendShipmentCancelEmailUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.resendShipmentCancelEmailUsingPUTRaw(requestParameters, initOverrides);
     }
 
@@ -146,7 +146,7 @@ export class ShipmentResendEmailApi extends runtime.BaseAPI implements ShipmentR
      */
 
 
-    async resendShipmentFulfillEmailUsingPUTRaw(requestParameters: ShipmentResendEmailApiResendShipmentFulfillEmailUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async resendShipmentFulfillEmailUsingPUTRaw(requestParameters: ResendShipmentFulfillEmailUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling resendShipmentFulfillEmailUsingPUT.');
         }
@@ -191,7 +191,7 @@ export class ShipmentResendEmailApi extends runtime.BaseAPI implements ShipmentR
      * resendShipmentFulfillEmail
      * resendShipmentFulfillEmail
      */
-    async resendShipmentFulfillEmailUsingPUT(requestParameters: ShipmentResendEmailApiResendShipmentFulfillEmailUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async resendShipmentFulfillEmailUsingPUT(requestParameters: ResendShipmentFulfillEmailUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.resendShipmentFulfillEmailUsingPUTRaw(requestParameters, initOverrides);
     }
 

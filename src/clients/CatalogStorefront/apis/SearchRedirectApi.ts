@@ -16,12 +16,12 @@
 import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
 
-export interface SearchRedirectApiGetRedirectRequest {
+export interface GetRedirectRequest {
     redirectId: string;
     responseFields?: string;
 }
 
-export interface SearchRedirectApiGetRedirectsRequest {
+export interface GetRedirectsRequest {
     responseFields?: string;
 }
 
@@ -41,13 +41,13 @@ export interface SearchRedirectApiInterface {
      * @throws {RequiredError}
      * @memberof SearchRedirectApiInterface
      */
-    getRedirectRaw(requestParameters: SearchRedirectApiGetRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    getRedirectRaw(requestParameters: GetRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Get search redirect item by redirect Id.
      * Get search redirect
      */
-    getRedirect(requestParameters: SearchRedirectApiGetRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    getRedirect(requestParameters: GetRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Get list of search redirect items.
@@ -57,13 +57,13 @@ export interface SearchRedirectApiInterface {
      * @throws {RequiredError}
      * @memberof SearchRedirectApiInterface
      */
-    getRedirectsRaw(requestParameters: SearchRedirectApiGetRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    getRedirectsRaw(requestParameters: GetRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Get list of search redirect items.
      * Get search redirects
      */
-    getRedirects(requestParameters: SearchRedirectApiGetRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    getRedirects(requestParameters: GetRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
 }
 
@@ -81,7 +81,7 @@ export class SearchRedirectApi extends runtime.BaseAPI implements SearchRedirect
      */
 
 
-    async getRedirectRaw(requestParameters: SearchRedirectApiGetRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async getRedirectRaw(requestParameters: GetRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.redirectId === null || requestParameters.redirectId === undefined) {
             throw new runtime.RequiredError('redirectId','Required parameter requestParameters.redirectId was null or undefined when calling getRedirect.');
         }
@@ -114,7 +114,7 @@ export class SearchRedirectApi extends runtime.BaseAPI implements SearchRedirect
      * Get search redirect item by redirect Id.
      * Get search redirect
      */
-    async getRedirect(requestParameters: SearchRedirectApiGetRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async getRedirect(requestParameters: GetRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getRedirectRaw(requestParameters, initOverrides);
     }
 
@@ -124,7 +124,7 @@ export class SearchRedirectApi extends runtime.BaseAPI implements SearchRedirect
      */
 
 
-    async getRedirectsRaw(requestParameters: SearchRedirectApiGetRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async getRedirectsRaw(requestParameters: GetRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -153,7 +153,7 @@ export class SearchRedirectApi extends runtime.BaseAPI implements SearchRedirect
      * Get list of search redirect items.
      * Get search redirects
      */
-    async getRedirects(requestParameters: SearchRedirectApiGetRedirectsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async getRedirects(requestParameters: GetRedirectsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getRedirectsRaw(requestParameters, initOverrides);
     }
 

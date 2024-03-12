@@ -20,23 +20,23 @@ import type {
   DocumentTypeCollection,
 } from '../models';
 
-export interface DocumentTypeApiCreateDocumentTypeRequest {
+export interface CreateDocumentTypeRequest {
     responseFields?: string;
     documentType?: DocumentType;
 }
 
-export interface DocumentTypeApiGetDocumentTypeRequest {
+export interface GetDocumentTypeRequest {
     documentTypeName: string;
     responseFields?: string;
 }
 
-export interface DocumentTypeApiGetDocumentTypesRequest {
+export interface GetDocumentTypesRequest {
     pageSize?: number;
     startIndex?: number;
     responseFields?: string;
 }
 
-export interface DocumentTypeApiUpdateDocumentTypeRequest {
+export interface UpdateDocumentTypeRequest {
     documentTypeName: string;
     responseFields?: string;
     documentType?: DocumentType;
@@ -58,13 +58,13 @@ export interface DocumentTypeApiInterface {
      * @throws {RequiredError}
      * @memberof DocumentTypeApiInterface
      */
-    createDocumentTypeRaw(requestParameters: DocumentTypeApiCreateDocumentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentType>>;
+    createDocumentTypeRaw(requestParameters: CreateDocumentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentType>>;
 
     /**
      * Create Document Type
      * Create Document Type
      */
-    createDocumentType(requestParameters: DocumentTypeApiCreateDocumentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentType>;
+    createDocumentType(requestParameters: CreateDocumentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentType>;
 
     /**
      * Get Document Type
@@ -75,13 +75,13 @@ export interface DocumentTypeApiInterface {
      * @throws {RequiredError}
      * @memberof DocumentTypeApiInterface
      */
-    getDocumentTypeRaw(requestParameters: DocumentTypeApiGetDocumentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentType>>;
+    getDocumentTypeRaw(requestParameters: GetDocumentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentType>>;
 
     /**
      * Get Document Type
      * Get Document Type
      */
-    getDocumentType(requestParameters: DocumentTypeApiGetDocumentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentType>;
+    getDocumentType(requestParameters: GetDocumentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentType>;
 
     /**
      * Get Document Types
@@ -93,13 +93,13 @@ export interface DocumentTypeApiInterface {
      * @throws {RequiredError}
      * @memberof DocumentTypeApiInterface
      */
-    getDocumentTypesRaw(requestParameters: DocumentTypeApiGetDocumentTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentTypeCollection>>;
+    getDocumentTypesRaw(requestParameters: GetDocumentTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentTypeCollection>>;
 
     /**
      * Get Document Types
      * Get Document Types
      */
-    getDocumentTypes(requestParameters: DocumentTypeApiGetDocumentTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentTypeCollection>;
+    getDocumentTypes(requestParameters: GetDocumentTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentTypeCollection>;
 
     /**
      * Update Document Type
@@ -111,13 +111,13 @@ export interface DocumentTypeApiInterface {
      * @throws {RequiredError}
      * @memberof DocumentTypeApiInterface
      */
-    updateDocumentTypeRaw(requestParameters: DocumentTypeApiUpdateDocumentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentType>>;
+    updateDocumentTypeRaw(requestParameters: UpdateDocumentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentType>>;
 
     /**
      * Update Document Type
      * Update Document Type
      */
-    updateDocumentType(requestParameters: DocumentTypeApiUpdateDocumentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentType>;
+    updateDocumentType(requestParameters: UpdateDocumentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentType>;
 
 }
 
@@ -135,7 +135,7 @@ export class DocumentTypeApi extends runtime.BaseAPI implements DocumentTypeApiI
      */
 
 
-    async createDocumentTypeRaw(requestParameters: DocumentTypeApiCreateDocumentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentType>> {
+    async createDocumentTypeRaw(requestParameters: CreateDocumentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentType>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -144,7 +144,7 @@ export class DocumentTypeApi extends runtime.BaseAPI implements DocumentTypeApiI
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        headerParameters['Content-Type'] = 'text/plain';
 
 
 
@@ -167,7 +167,7 @@ export class DocumentTypeApi extends runtime.BaseAPI implements DocumentTypeApiI
      * Create Document Type
      * Create Document Type
      */
-    async createDocumentType(requestParameters: DocumentTypeApiCreateDocumentTypeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentType> {
+    async createDocumentType(requestParameters: CreateDocumentTypeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentType> {
         const response = await this.createDocumentTypeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -178,7 +178,7 @@ export class DocumentTypeApi extends runtime.BaseAPI implements DocumentTypeApiI
      */
 
 
-    async getDocumentTypeRaw(requestParameters: DocumentTypeApiGetDocumentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentType>> {
+    async getDocumentTypeRaw(requestParameters: GetDocumentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentType>> {
         if (requestParameters.documentTypeName === null || requestParameters.documentTypeName === undefined) {
             throw new runtime.RequiredError('documentTypeName','Required parameter requestParameters.documentTypeName was null or undefined when calling getDocumentType.');
         }
@@ -211,7 +211,7 @@ export class DocumentTypeApi extends runtime.BaseAPI implements DocumentTypeApiI
      * Get Document Type
      * Get Document Type
      */
-    async getDocumentType(requestParameters: DocumentTypeApiGetDocumentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentType> {
+    async getDocumentType(requestParameters: GetDocumentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentType> {
         const response = await this.getDocumentTypeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -222,7 +222,7 @@ export class DocumentTypeApi extends runtime.BaseAPI implements DocumentTypeApiI
      */
 
 
-    async getDocumentTypesRaw(requestParameters: DocumentTypeApiGetDocumentTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentTypeCollection>> {
+    async getDocumentTypesRaw(requestParameters: GetDocumentTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentTypeCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.pageSize !== undefined) {
@@ -259,7 +259,7 @@ export class DocumentTypeApi extends runtime.BaseAPI implements DocumentTypeApiI
      * Get Document Types
      * Get Document Types
      */
-    async getDocumentTypes(requestParameters: DocumentTypeApiGetDocumentTypesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentTypeCollection> {
+    async getDocumentTypes(requestParameters: GetDocumentTypesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentTypeCollection> {
         const response = await this.getDocumentTypesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -270,7 +270,7 @@ export class DocumentTypeApi extends runtime.BaseAPI implements DocumentTypeApiI
      */
 
 
-    async updateDocumentTypeRaw(requestParameters: DocumentTypeApiUpdateDocumentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentType>> {
+    async updateDocumentTypeRaw(requestParameters: UpdateDocumentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentType>> {
         if (requestParameters.documentTypeName === null || requestParameters.documentTypeName === undefined) {
             throw new runtime.RequiredError('documentTypeName','Required parameter requestParameters.documentTypeName was null or undefined when calling updateDocumentType.');
         }
@@ -283,7 +283,7 @@ export class DocumentTypeApi extends runtime.BaseAPI implements DocumentTypeApiI
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        headerParameters['Content-Type'] = 'text/plain';
 
 
 
@@ -306,7 +306,7 @@ export class DocumentTypeApi extends runtime.BaseAPI implements DocumentTypeApiI
      * Update Document Type
      * Update Document Type
      */
-    async updateDocumentType(requestParameters: DocumentTypeApiUpdateDocumentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentType> {
+    async updateDocumentType(requestParameters: UpdateDocumentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentType> {
         const response = await this.updateDocumentTypeRaw(requestParameters, initOverrides);
         return await response.value();
     }

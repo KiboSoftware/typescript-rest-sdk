@@ -21,24 +21,24 @@ import type {
   CommerceRuntimeAttributeVocabularyValue,
 } from '../models';
 
-export interface CustomerAccountAttributeDefinitionsApiCreateAttributeRequest {
+export interface CreateAttributeRequest {
     responseFields?: string;
     commerceRuntimeAttribute?: CommerceRuntimeAttribute;
 }
 
-export interface CustomerAccountAttributeDefinitionsApiGetAttributeRequest {
+export interface GetAttributeRequest {
     attributeFQN: string;
     responseGroups?: string;
     responseFields?: string;
 }
 
-export interface CustomerAccountAttributeDefinitionsApiGetAttributeVocabularyValuesRequest {
+export interface GetAttributeVocabularyValuesRequest {
     attributeFQN: string;
     responseGroups?: string;
     responseFields?: string;
 }
 
-export interface CustomerAccountAttributeDefinitionsApiGetAttributesRequest {
+export interface GetAttributesRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -47,7 +47,7 @@ export interface CustomerAccountAttributeDefinitionsApiGetAttributesRequest {
     responseFields?: string;
 }
 
-export interface CustomerAccountAttributeDefinitionsApiUpdateAttributeRequest {
+export interface UpdateAttributeRequest {
     attributeFQN: string;
     responseFields?: string;
     commerceRuntimeAttribute?: CommerceRuntimeAttribute;
@@ -69,13 +69,13 @@ export interface CustomerAccountAttributeDefinitionsApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountAttributeDefinitionsApiInterface
      */
-    createAttributeRaw(requestParameters: CustomerAccountAttributeDefinitionsApiCreateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttribute>>;
+    createAttributeRaw(requestParameters: CreateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttribute>>;
 
     /**
      * Create Attribute
      * Create Attribute
      */
-    createAttribute(requestParameters: CustomerAccountAttributeDefinitionsApiCreateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttribute>;
+    createAttribute(requestParameters: CreateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttribute>;
 
     /**
      * Get Attribute
@@ -87,13 +87,13 @@ export interface CustomerAccountAttributeDefinitionsApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountAttributeDefinitionsApiInterface
      */
-    getAttributeRaw(requestParameters: CustomerAccountAttributeDefinitionsApiGetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttribute>>;
+    getAttributeRaw(requestParameters: GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttribute>>;
 
     /**
      * Get Attribute
      * Get Attribute
      */
-    getAttribute(requestParameters: CustomerAccountAttributeDefinitionsApiGetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttribute>;
+    getAttribute(requestParameters: GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttribute>;
 
     /**
      * Get Attribute Vocabulary Values
@@ -105,13 +105,13 @@ export interface CustomerAccountAttributeDefinitionsApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountAttributeDefinitionsApiInterface
      */
-    getAttributeVocabularyValuesRaw(requestParameters: CustomerAccountAttributeDefinitionsApiGetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeAttributeVocabularyValue>>>;
+    getAttributeVocabularyValuesRaw(requestParameters: GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeAttributeVocabularyValue>>>;
 
     /**
      * Get Attribute Vocabulary Values
      * Get Attribute Vocabulary Values
      */
-    getAttributeVocabularyValues(requestParameters: CustomerAccountAttributeDefinitionsApiGetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeAttributeVocabularyValue>>;
+    getAttributeVocabularyValues(requestParameters: GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeAttributeVocabularyValue>>;
 
     /**
      * Get Attributes
@@ -126,13 +126,13 @@ export interface CustomerAccountAttributeDefinitionsApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountAttributeDefinitionsApiInterface
      */
-    getAttributesRaw(requestParameters: CustomerAccountAttributeDefinitionsApiGetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttributeCollection>>;
+    getAttributesRaw(requestParameters: GetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttributeCollection>>;
 
     /**
      * Get Attributes
      * Get Attributes
      */
-    getAttributes(requestParameters: CustomerAccountAttributeDefinitionsApiGetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttributeCollection>;
+    getAttributes(requestParameters: GetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttributeCollection>;
 
     /**
      * Update Attribute
@@ -144,13 +144,13 @@ export interface CustomerAccountAttributeDefinitionsApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountAttributeDefinitionsApiInterface
      */
-    updateAttributeRaw(requestParameters: CustomerAccountAttributeDefinitionsApiUpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttribute>>;
+    updateAttributeRaw(requestParameters: UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttribute>>;
 
     /**
      * Update Attribute
      * Update Attribute
      */
-    updateAttribute(requestParameters: CustomerAccountAttributeDefinitionsApiUpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttribute>;
+    updateAttribute(requestParameters: UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttribute>;
 
 }
 
@@ -168,7 +168,7 @@ export class CustomerAccountAttributeDefinitionsApi extends runtime.BaseAPI impl
      */
 
 
-    async createAttributeRaw(requestParameters: CustomerAccountAttributeDefinitionsApiCreateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttribute>> {
+    async createAttributeRaw(requestParameters: CreateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttribute>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -200,7 +200,7 @@ export class CustomerAccountAttributeDefinitionsApi extends runtime.BaseAPI impl
      * Create Attribute
      * Create Attribute
      */
-    async createAttribute(requestParameters: CustomerAccountAttributeDefinitionsApiCreateAttributeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttribute> {
+    async createAttribute(requestParameters: CreateAttributeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttribute> {
         const response = await this.createAttributeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -211,7 +211,7 @@ export class CustomerAccountAttributeDefinitionsApi extends runtime.BaseAPI impl
      */
 
 
-    async getAttributeRaw(requestParameters: CustomerAccountAttributeDefinitionsApiGetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttribute>> {
+    async getAttributeRaw(requestParameters: GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttribute>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling getAttribute.');
         }
@@ -248,7 +248,7 @@ export class CustomerAccountAttributeDefinitionsApi extends runtime.BaseAPI impl
      * Get Attribute
      * Get Attribute
      */
-    async getAttribute(requestParameters: CustomerAccountAttributeDefinitionsApiGetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttribute> {
+    async getAttribute(requestParameters: GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttribute> {
         const response = await this.getAttributeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -259,7 +259,7 @@ export class CustomerAccountAttributeDefinitionsApi extends runtime.BaseAPI impl
      */
 
 
-    async getAttributeVocabularyValuesRaw(requestParameters: CustomerAccountAttributeDefinitionsApiGetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeAttributeVocabularyValue>>> {
+    async getAttributeVocabularyValuesRaw(requestParameters: GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeAttributeVocabularyValue>>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling getAttributeVocabularyValues.');
         }
@@ -296,7 +296,7 @@ export class CustomerAccountAttributeDefinitionsApi extends runtime.BaseAPI impl
      * Get Attribute Vocabulary Values
      * Get Attribute Vocabulary Values
      */
-    async getAttributeVocabularyValues(requestParameters: CustomerAccountAttributeDefinitionsApiGetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeAttributeVocabularyValue>> {
+    async getAttributeVocabularyValues(requestParameters: GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeAttributeVocabularyValue>> {
         const response = await this.getAttributeVocabularyValuesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -307,7 +307,7 @@ export class CustomerAccountAttributeDefinitionsApi extends runtime.BaseAPI impl
      */
 
 
-    async getAttributesRaw(requestParameters: CustomerAccountAttributeDefinitionsApiGetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttributeCollection>> {
+    async getAttributesRaw(requestParameters: GetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttributeCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -356,7 +356,7 @@ export class CustomerAccountAttributeDefinitionsApi extends runtime.BaseAPI impl
      * Get Attributes
      * Get Attributes
      */
-    async getAttributes(requestParameters: CustomerAccountAttributeDefinitionsApiGetAttributesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttributeCollection> {
+    async getAttributes(requestParameters: GetAttributesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttributeCollection> {
         const response = await this.getAttributesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -367,7 +367,7 @@ export class CustomerAccountAttributeDefinitionsApi extends runtime.BaseAPI impl
      */
 
 
-    async updateAttributeRaw(requestParameters: CustomerAccountAttributeDefinitionsApiUpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttribute>> {
+    async updateAttributeRaw(requestParameters: UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttribute>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling updateAttribute.');
         }
@@ -403,7 +403,7 @@ export class CustomerAccountAttributeDefinitionsApi extends runtime.BaseAPI impl
      * Update Attribute
      * Update Attribute
      */
-    async updateAttribute(requestParameters: CustomerAccountAttributeDefinitionsApiUpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttribute> {
+    async updateAttribute(requestParameters: UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttribute> {
         const response = await this.updateAttributeRaw(requestParameters, initOverrides);
         return await response.value();
     }

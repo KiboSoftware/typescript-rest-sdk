@@ -19,20 +19,20 @@ import type {
   DocumentDraftSummaryPagedCollection,
 } from '../models';
 
-export interface DocumentPublishingApiDeleteDocumentDraftsRequest {
+export interface DeleteDocumentDraftsRequest {
     documentLists?: string;
     responseFields?: string;
     requestBody?: Array<string>;
 }
 
-export interface DocumentPublishingApiListDocumentDraftSummariesRequest {
+export interface ListDocumentDraftSummariesRequest {
     pageSize?: number;
     startIndex?: number;
     documentLists?: string;
     responseFields?: string;
 }
 
-export interface DocumentPublishingApiPublishDocumentsRequest {
+export interface PublishDocumentsRequest {
     documentLists?: string;
     responseFields?: string;
     requestBody?: Array<string>;
@@ -55,13 +55,13 @@ export interface DocumentPublishingApiInterface {
      * @throws {RequiredError}
      * @memberof DocumentPublishingApiInterface
      */
-    deleteDocumentDraftsRaw(requestParameters: DocumentPublishingApiDeleteDocumentDraftsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteDocumentDraftsRaw(requestParameters: DeleteDocumentDraftsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Remove draft of each Document associated with te id in documentIds. Send empty body to remove all drafts
      * Delete Document Drafts
      */
-    deleteDocumentDrafts(requestParameters: DocumentPublishingApiDeleteDocumentDraftsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteDocumentDrafts(requestParameters: DeleteDocumentDraftsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Get Document Draft Summaries
@@ -74,13 +74,13 @@ export interface DocumentPublishingApiInterface {
      * @throws {RequiredError}
      * @memberof DocumentPublishingApiInterface
      */
-    listDocumentDraftSummariesRaw(requestParameters: DocumentPublishingApiListDocumentDraftSummariesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentDraftSummaryPagedCollection>>;
+    listDocumentDraftSummariesRaw(requestParameters: ListDocumentDraftSummariesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentDraftSummaryPagedCollection>>;
 
     /**
      * Get Document Draft Summaries
      * Get Document Draft Summaries
      */
-    listDocumentDraftSummaries(requestParameters: DocumentPublishingApiListDocumentDraftSummariesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentDraftSummaryPagedCollection>;
+    listDocumentDraftSummaries(requestParameters: ListDocumentDraftSummariesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentDraftSummaryPagedCollection>;
 
     /**
      * Publishes draft of each Document associated with the id in documentIds. Send empty body to publish all drafts
@@ -92,13 +92,13 @@ export interface DocumentPublishingApiInterface {
      * @throws {RequiredError}
      * @memberof DocumentPublishingApiInterface
      */
-    publishDocumentsRaw(requestParameters: DocumentPublishingApiPublishDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    publishDocumentsRaw(requestParameters: PublishDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Publishes draft of each Document associated with the id in documentIds. Send empty body to publish all drafts
      * Publish Documents
      */
-    publishDocuments(requestParameters: DocumentPublishingApiPublishDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    publishDocuments(requestParameters: PublishDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
 }
 
@@ -116,7 +116,7 @@ export class DocumentPublishingApi extends runtime.BaseAPI implements DocumentPu
      */
 
 
-    async deleteDocumentDraftsRaw(requestParameters: DocumentPublishingApiDeleteDocumentDraftsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteDocumentDraftsRaw(requestParameters: DeleteDocumentDraftsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         if (requestParameters.documentLists !== undefined) {
@@ -129,7 +129,7 @@ export class DocumentPublishingApi extends runtime.BaseAPI implements DocumentPu
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        headerParameters['Content-Type'] = 'text/plain';
 
 
 
@@ -152,7 +152,7 @@ export class DocumentPublishingApi extends runtime.BaseAPI implements DocumentPu
      * Remove draft of each Document associated with te id in documentIds. Send empty body to remove all drafts
      * Delete Document Drafts
      */
-    async deleteDocumentDrafts(requestParameters: DocumentPublishingApiDeleteDocumentDraftsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteDocumentDrafts(requestParameters: DeleteDocumentDraftsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteDocumentDraftsRaw(requestParameters, initOverrides);
     }
 
@@ -162,7 +162,7 @@ export class DocumentPublishingApi extends runtime.BaseAPI implements DocumentPu
      */
 
 
-    async listDocumentDraftSummariesRaw(requestParameters: DocumentPublishingApiListDocumentDraftSummariesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentDraftSummaryPagedCollection>> {
+    async listDocumentDraftSummariesRaw(requestParameters: ListDocumentDraftSummariesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentDraftSummaryPagedCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.pageSize !== undefined) {
@@ -203,7 +203,7 @@ export class DocumentPublishingApi extends runtime.BaseAPI implements DocumentPu
      * Get Document Draft Summaries
      * Get Document Draft Summaries
      */
-    async listDocumentDraftSummaries(requestParameters: DocumentPublishingApiListDocumentDraftSummariesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentDraftSummaryPagedCollection> {
+    async listDocumentDraftSummaries(requestParameters: ListDocumentDraftSummariesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentDraftSummaryPagedCollection> {
         const response = await this.listDocumentDraftSummariesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -214,7 +214,7 @@ export class DocumentPublishingApi extends runtime.BaseAPI implements DocumentPu
      */
 
 
-    async publishDocumentsRaw(requestParameters: DocumentPublishingApiPublishDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async publishDocumentsRaw(requestParameters: PublishDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         if (requestParameters.documentLists !== undefined) {
@@ -227,7 +227,7 @@ export class DocumentPublishingApi extends runtime.BaseAPI implements DocumentPu
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        headerParameters['Content-Type'] = 'text/plain';
 
 
 
@@ -250,7 +250,7 @@ export class DocumentPublishingApi extends runtime.BaseAPI implements DocumentPu
      * Publishes draft of each Document associated with the id in documentIds. Send empty body to publish all drafts
      * Publish Documents
      */
-    async publishDocuments(requestParameters: DocumentPublishingApiPublishDocumentsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async publishDocuments(requestParameters: PublishDocumentsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.publishDocumentsRaw(requestParameters, initOverrides);
     }
 

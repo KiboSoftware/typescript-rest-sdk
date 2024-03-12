@@ -20,12 +20,12 @@ import type {
   EntityCollection,
 } from '../models';
 
-export interface EntitiesApiDeleteEntityRequest {
+export interface DeleteEntityRequest {
     entityListFullName: string;
     id: string;
 }
 
-export interface EntitiesApiGetEntitiesRequest {
+export interface GetEntitiesRequest {
     entityListFullName: string;
     pageSize?: number;
     startIndex?: number;
@@ -34,13 +34,13 @@ export interface EntitiesApiGetEntitiesRequest {
     responseFields?: string;
 }
 
-export interface EntitiesApiGetEntityRequest {
+export interface GetEntityRequest {
     entityListFullName: string;
     id: string;
     responseFields?: string;
 }
 
-export interface EntitiesApiGetViewEntitiesRequest {
+export interface GetViewEntitiesRequest {
     entityListFullName: string;
     viewName: string;
     pageSize?: number;
@@ -49,20 +49,20 @@ export interface EntitiesApiGetViewEntitiesRequest {
     responseFields?: string;
 }
 
-export interface EntitiesApiGetViewEntityRequest {
+export interface GetViewEntityRequest {
     entityListFullName: string;
     viewName: string;
     entityId: string;
     responseFields?: string;
 }
 
-export interface EntitiesApiInsertEntityRequest {
+export interface InsertEntityRequest {
     entityListFullName: string;
     responseFields?: string;
     appDevHttpRequestMessage?: AppDevHttpRequestMessage;
 }
 
-export interface EntitiesApiUpdateEntityRequest {
+export interface UpdateEntityRequest {
     entityListFullName: string;
     id: string;
     responseFields?: string;
@@ -85,13 +85,13 @@ export interface EntitiesApiInterface {
      * @throws {RequiredError}
      * @memberof EntitiesApiInterface
      */
-    deleteEntityRaw(requestParameters: EntitiesApiDeleteEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteEntityRaw(requestParameters: DeleteEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Delete an existing Entity from an EntityList instance
      * Delete Entity
      */
-    deleteEntity(requestParameters: EntitiesApiDeleteEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteEntity(requestParameters: DeleteEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Get a filtered collection of Entities from an EntityList instance
@@ -106,13 +106,13 @@ export interface EntitiesApiInterface {
      * @throws {RequiredError}
      * @memberof EntitiesApiInterface
      */
-    getEntitiesRaw(requestParameters: EntitiesApiGetEntitiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityCollection>>;
+    getEntitiesRaw(requestParameters: GetEntitiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityCollection>>;
 
     /**
      * Get a filtered collection of Entities from an EntityList instance
      * Get Entities
      */
-    getEntities(requestParameters: EntitiesApiGetEntitiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityCollection>;
+    getEntities(requestParameters: GetEntitiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityCollection>;
 
     /**
      * Get a specific Entity from an EntityList instance
@@ -124,13 +124,13 @@ export interface EntitiesApiInterface {
      * @throws {RequiredError}
      * @memberof EntitiesApiInterface
      */
-    getEntityRaw(requestParameters: EntitiesApiGetEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>>;
+    getEntityRaw(requestParameters: GetEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>>;
 
     /**
      * Get a specific Entity from an EntityList instance
      * Get Entity
      */
-    getEntity(requestParameters: EntitiesApiGetEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any>;
+    getEntity(requestParameters: GetEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any>;
 
     /**
      * Get a filtered collection of Entities for a ListView on an EntityList
@@ -145,13 +145,13 @@ export interface EntitiesApiInterface {
      * @throws {RequiredError}
      * @memberof EntitiesApiInterface
      */
-    getViewEntitiesRaw(requestParameters: EntitiesApiGetViewEntitiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityCollection>>;
+    getViewEntitiesRaw(requestParameters: GetViewEntitiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityCollection>>;
 
     /**
      * Get a filtered collection of Entities for a ListView on an EntityList
      * Get View Entities
      */
-    getViewEntities(requestParameters: EntitiesApiGetViewEntitiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityCollection>;
+    getViewEntities(requestParameters: GetViewEntitiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityCollection>;
 
     /**
      * Get a specific Entity in a ListView on an EntityList
@@ -164,13 +164,13 @@ export interface EntitiesApiInterface {
      * @throws {RequiredError}
      * @memberof EntitiesApiInterface
      */
-    getViewEntityRaw(requestParameters: EntitiesApiGetViewEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>>;
+    getViewEntityRaw(requestParameters: GetViewEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>>;
 
     /**
      * Get a specific Entity in a ListView on an EntityList
      * Get View Entity
      */
-    getViewEntity(requestParameters: EntitiesApiGetViewEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any>;
+    getViewEntity(requestParameters: GetViewEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any>;
 
     /**
      * Insert an Entity into an EntityList instance
@@ -182,13 +182,13 @@ export interface EntitiesApiInterface {
      * @throws {RequiredError}
      * @memberof EntitiesApiInterface
      */
-    insertEntityRaw(requestParameters: EntitiesApiInsertEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>>;
+    insertEntityRaw(requestParameters: InsertEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>>;
 
     /**
      * Insert an Entity into an EntityList instance
      * Add Entity
      */
-    insertEntity(requestParameters: EntitiesApiInsertEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any>;
+    insertEntity(requestParameters: InsertEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any>;
 
     /**
      * Update an existing Entity in an EntityList instance
@@ -201,13 +201,13 @@ export interface EntitiesApiInterface {
      * @throws {RequiredError}
      * @memberof EntitiesApiInterface
      */
-    updateEntityRaw(requestParameters: EntitiesApiUpdateEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>>;
+    updateEntityRaw(requestParameters: UpdateEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>>;
 
     /**
      * Update an existing Entity in an EntityList instance
      * Update Entity
      */
-    updateEntity(requestParameters: EntitiesApiUpdateEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any>;
+    updateEntity(requestParameters: UpdateEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any>;
 
 }
 
@@ -225,7 +225,7 @@ export class EntitiesApi extends runtime.BaseAPI implements EntitiesApiInterface
      */
 
 
-    async deleteEntityRaw(requestParameters: EntitiesApiDeleteEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteEntityRaw(requestParameters: DeleteEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.entityListFullName === null || requestParameters.entityListFullName === undefined) {
             throw new runtime.RequiredError('entityListFullName','Required parameter requestParameters.entityListFullName was null or undefined when calling deleteEntity.');
         }
@@ -258,7 +258,7 @@ export class EntitiesApi extends runtime.BaseAPI implements EntitiesApiInterface
      * Delete an existing Entity from an EntityList instance
      * Delete Entity
      */
-    async deleteEntity(requestParameters: EntitiesApiDeleteEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteEntity(requestParameters: DeleteEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteEntityRaw(requestParameters, initOverrides);
     }
 
@@ -268,7 +268,7 @@ export class EntitiesApi extends runtime.BaseAPI implements EntitiesApiInterface
      */
 
 
-    async getEntitiesRaw(requestParameters: EntitiesApiGetEntitiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityCollection>> {
+    async getEntitiesRaw(requestParameters: GetEntitiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityCollection>> {
         if (requestParameters.entityListFullName === null || requestParameters.entityListFullName === undefined) {
             throw new runtime.RequiredError('entityListFullName','Required parameter requestParameters.entityListFullName was null or undefined when calling getEntities.');
         }
@@ -317,7 +317,7 @@ export class EntitiesApi extends runtime.BaseAPI implements EntitiesApiInterface
      * Get a filtered collection of Entities from an EntityList instance
      * Get Entities
      */
-    async getEntities(requestParameters: EntitiesApiGetEntitiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityCollection> {
+    async getEntities(requestParameters: GetEntitiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityCollection> {
         const response = await this.getEntitiesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -328,7 +328,7 @@ export class EntitiesApi extends runtime.BaseAPI implements EntitiesApiInterface
      */
 
 
-    async getEntityRaw(requestParameters: EntitiesApiGetEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
+    async getEntityRaw(requestParameters: GetEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         if (requestParameters.entityListFullName === null || requestParameters.entityListFullName === undefined) {
             throw new runtime.RequiredError('entityListFullName','Required parameter requestParameters.entityListFullName was null or undefined when calling getEntity.');
         }
@@ -365,7 +365,7 @@ export class EntitiesApi extends runtime.BaseAPI implements EntitiesApiInterface
      * Get a specific Entity from an EntityList instance
      * Get Entity
      */
-    async getEntity(requestParameters: EntitiesApiGetEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
+    async getEntity(requestParameters: GetEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.getEntityRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -376,7 +376,7 @@ export class EntitiesApi extends runtime.BaseAPI implements EntitiesApiInterface
      */
 
 
-    async getViewEntitiesRaw(requestParameters: EntitiesApiGetViewEntitiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityCollection>> {
+    async getViewEntitiesRaw(requestParameters: GetViewEntitiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityCollection>> {
         if (requestParameters.entityListFullName === null || requestParameters.entityListFullName === undefined) {
             throw new runtime.RequiredError('entityListFullName','Required parameter requestParameters.entityListFullName was null or undefined when calling getViewEntities.');
         }
@@ -425,7 +425,7 @@ export class EntitiesApi extends runtime.BaseAPI implements EntitiesApiInterface
      * Get a filtered collection of Entities for a ListView on an EntityList
      * Get View Entities
      */
-    async getViewEntities(requestParameters: EntitiesApiGetViewEntitiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityCollection> {
+    async getViewEntities(requestParameters: GetViewEntitiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityCollection> {
         const response = await this.getViewEntitiesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -436,7 +436,7 @@ export class EntitiesApi extends runtime.BaseAPI implements EntitiesApiInterface
      */
 
 
-    async getViewEntityRaw(requestParameters: EntitiesApiGetViewEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
+    async getViewEntityRaw(requestParameters: GetViewEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         if (requestParameters.entityListFullName === null || requestParameters.entityListFullName === undefined) {
             throw new runtime.RequiredError('entityListFullName','Required parameter requestParameters.entityListFullName was null or undefined when calling getViewEntity.');
         }
@@ -477,7 +477,7 @@ export class EntitiesApi extends runtime.BaseAPI implements EntitiesApiInterface
      * Get a specific Entity in a ListView on an EntityList
      * Get View Entity
      */
-    async getViewEntity(requestParameters: EntitiesApiGetViewEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
+    async getViewEntity(requestParameters: GetViewEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.getViewEntityRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -488,7 +488,7 @@ export class EntitiesApi extends runtime.BaseAPI implements EntitiesApiInterface
      */
 
 
-    async insertEntityRaw(requestParameters: EntitiesApiInsertEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
+    async insertEntityRaw(requestParameters: InsertEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         if (requestParameters.entityListFullName === null || requestParameters.entityListFullName === undefined) {
             throw new runtime.RequiredError('entityListFullName','Required parameter requestParameters.entityListFullName was null or undefined when calling insertEntity.');
         }
@@ -524,7 +524,7 @@ export class EntitiesApi extends runtime.BaseAPI implements EntitiesApiInterface
      * Insert an Entity into an EntityList instance
      * Add Entity
      */
-    async insertEntity(requestParameters: EntitiesApiInsertEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
+    async insertEntity(requestParameters: InsertEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.insertEntityRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -535,7 +535,7 @@ export class EntitiesApi extends runtime.BaseAPI implements EntitiesApiInterface
      */
 
 
-    async updateEntityRaw(requestParameters: EntitiesApiUpdateEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
+    async updateEntityRaw(requestParameters: UpdateEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         if (requestParameters.entityListFullName === null || requestParameters.entityListFullName === undefined) {
             throw new runtime.RequiredError('entityListFullName','Required parameter requestParameters.entityListFullName was null or undefined when calling updateEntity.');
         }
@@ -575,7 +575,7 @@ export class EntitiesApi extends runtime.BaseAPI implements EntitiesApiInterface
      * Update an existing Entity in an EntityList instance
      * Update Entity
      */
-    async updateEntity(requestParameters: EntitiesApiUpdateEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
+    async updateEntity(requestParameters: UpdateEntityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.updateEntityRaw(requestParameters, initOverrides);
         return await response.value();
     }

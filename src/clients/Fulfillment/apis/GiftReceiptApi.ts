@@ -22,7 +22,7 @@ import type {
   ShipmentGiftReceiptRequest,
 } from '../models';
 
-export interface GiftReceiptApiItemGiftReceiptUpdateUsingPUTRequest {
+export interface ItemGiftReceiptUpdateUsingPUTRequest {
     shipmentNumber: number;
     xVolTenant: number;
     itemGiftReceiptRequestDto: ItemGiftReceiptRequest;
@@ -30,7 +30,7 @@ export interface GiftReceiptApiItemGiftReceiptUpdateUsingPUTRequest {
     responseFields?: string;
 }
 
-export interface GiftReceiptApiShipmentGiftReceiptUpdateUsingPUTRequest {
+export interface ShipmentGiftReceiptUpdateUsingPUTRequest {
     orderId: string;
     xVolTenant: number;
     shipmentGiftReceiptRequestDto: ShipmentGiftReceiptRequest;
@@ -57,13 +57,13 @@ export interface GiftReceiptApiInterface {
      * @throws {RequiredError}
      * @memberof GiftReceiptApiInterface
      */
-    itemGiftReceiptUpdateUsingPUTRaw(requestParameters: GiftReceiptApiItemGiftReceiptUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+    itemGiftReceiptUpdateUsingPUTRaw(requestParameters: ItemGiftReceiptUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
 
     /**
      * itemGiftReceiptUpdate
      * itemGiftReceiptUpdate
      */
-    itemGiftReceiptUpdateUsingPUT(requestParameters: GiftReceiptApiItemGiftReceiptUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+    itemGiftReceiptUpdateUsingPUT(requestParameters: ItemGiftReceiptUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
 
     /**
      * shipmentGiftReceiptUpdate
@@ -77,13 +77,13 @@ export interface GiftReceiptApiInterface {
      * @throws {RequiredError}
      * @memberof GiftReceiptApiInterface
      */
-    shipmentGiftReceiptUpdateUsingPUTRaw(requestParameters: GiftReceiptApiShipmentGiftReceiptUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfShipment>>;
+    shipmentGiftReceiptUpdateUsingPUTRaw(requestParameters: ShipmentGiftReceiptUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfShipment>>;
 
     /**
      * shipmentGiftReceiptUpdate
      * shipmentGiftReceiptUpdate
      */
-    shipmentGiftReceiptUpdateUsingPUT(requestParameters: GiftReceiptApiShipmentGiftReceiptUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfShipment>;
+    shipmentGiftReceiptUpdateUsingPUT(requestParameters: ShipmentGiftReceiptUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfShipment>;
 
 }
 
@@ -101,7 +101,7 @@ export class GiftReceiptApi extends runtime.BaseAPI implements GiftReceiptApiInt
      */
 
 
-    async itemGiftReceiptUpdateUsingPUTRaw(requestParameters: GiftReceiptApiItemGiftReceiptUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async itemGiftReceiptUpdateUsingPUTRaw(requestParameters: ItemGiftReceiptUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling itemGiftReceiptUpdateUsingPUT.');
         }
@@ -153,7 +153,7 @@ export class GiftReceiptApi extends runtime.BaseAPI implements GiftReceiptApiInt
      * itemGiftReceiptUpdate
      * itemGiftReceiptUpdate
      */
-    async itemGiftReceiptUpdateUsingPUT(requestParameters: GiftReceiptApiItemGiftReceiptUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+    async itemGiftReceiptUpdateUsingPUT(requestParameters: ItemGiftReceiptUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
         const response = await this.itemGiftReceiptUpdateUsingPUTRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -164,7 +164,7 @@ export class GiftReceiptApi extends runtime.BaseAPI implements GiftReceiptApiInt
      */
 
 
-    async shipmentGiftReceiptUpdateUsingPUTRaw(requestParameters: GiftReceiptApiShipmentGiftReceiptUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfShipment>> {
+    async shipmentGiftReceiptUpdateUsingPUTRaw(requestParameters: ShipmentGiftReceiptUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfShipment>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling shipmentGiftReceiptUpdateUsingPUT.');
         }
@@ -216,7 +216,7 @@ export class GiftReceiptApi extends runtime.BaseAPI implements GiftReceiptApiInt
      * shipmentGiftReceiptUpdate
      * shipmentGiftReceiptUpdate
      */
-    async shipmentGiftReceiptUpdateUsingPUT(requestParameters: GiftReceiptApiShipmentGiftReceiptUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfShipment> {
+    async shipmentGiftReceiptUpdateUsingPUT(requestParameters: ShipmentGiftReceiptUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfShipment> {
         const response = await this.shipmentGiftReceiptUpdateUsingPUTRaw(requestParameters, initOverrides);
         return await response.value();
     }

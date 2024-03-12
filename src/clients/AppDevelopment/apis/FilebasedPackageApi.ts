@@ -19,7 +19,7 @@ import type {
   AppDevHttpResponseMessage,
 } from '../models';
 
-export interface FilebasedPackageApiGetFileRequest {
+export interface GetFileRequest {
     applicationKey: string;
     fileName?: string;
     responseFields?: string;
@@ -42,13 +42,13 @@ export interface FilebasedPackageApiInterface {
      * @throws {RequiredError}
      * @memberof FilebasedPackageApiInterface
      */
-    getFileRaw(requestParameters: FilebasedPackageApiGetFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevHttpResponseMessage>>;
+    getFileRaw(requestParameters: GetFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevHttpResponseMessage>>;
 
     /**
      * Get File
      * Get File
      */
-    getFile(requestParameters: FilebasedPackageApiGetFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevHttpResponseMessage>;
+    getFile(requestParameters: GetFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevHttpResponseMessage>;
 
 }
 
@@ -66,7 +66,7 @@ export class FilebasedPackageApi extends runtime.BaseAPI implements FilebasedPac
      */
 
 
-    async getFileRaw(requestParameters: FilebasedPackageApiGetFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevHttpResponseMessage>> {
+    async getFileRaw(requestParameters: GetFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevHttpResponseMessage>> {
         if (requestParameters.applicationKey === null || requestParameters.applicationKey === undefined) {
             throw new runtime.RequiredError('applicationKey','Required parameter requestParameters.applicationKey was null or undefined when calling getFile.');
         }
@@ -103,7 +103,7 @@ export class FilebasedPackageApi extends runtime.BaseAPI implements FilebasedPac
      * Get File
      * Get File
      */
-    async getFile(requestParameters: FilebasedPackageApiGetFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevHttpResponseMessage> {
+    async getFile(requestParameters: GetFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevHttpResponseMessage> {
         const response = await this.getFileRaw(requestParameters, initOverrides);
         return await response.value();
     }

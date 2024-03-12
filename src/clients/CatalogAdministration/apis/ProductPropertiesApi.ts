@@ -20,14 +20,14 @@ import type {
   ProductPropertyValueLocalizedContent,
 } from '../models';
 
-export interface ProductPropertiesApiAddPropertyRequest {
+export interface AddPropertyRequest {
     productCode: string;
     batchJobCode?: string;
     responseFields?: string;
     catalogAdminsProductProperty?: CatalogAdminsProductProperty;
 }
 
-export interface ProductPropertiesApiAddPropertyValueLocalizedContentRequest {
+export interface AddPropertyValueLocalizedContentRequest {
     productCode: string;
     attributeFQN: string;
     value: string;
@@ -35,31 +35,31 @@ export interface ProductPropertiesApiAddPropertyValueLocalizedContentRequest {
     productPropertyValueLocalizedContent?: ProductPropertyValueLocalizedContent;
 }
 
-export interface ProductPropertiesApiDeletePropertyRequest {
+export interface DeletePropertyRequest {
     productCode: string;
     attributeFQN: string;
     batchJobCode?: string;
 }
 
-export interface ProductPropertiesApiDeletePropertyValueLocalizedContentRequest {
+export interface DeletePropertyValueLocalizedContentRequest {
     productCode: string;
     attributeFQN: string;
     value: string;
     localeCode: string;
 }
 
-export interface ProductPropertiesApiGetPropertiesRequest {
+export interface GetPropertiesRequest {
     productCode: string;
     responseFields?: string;
 }
 
-export interface ProductPropertiesApiGetPropertyRequest {
+export interface GetPropertyRequest {
     productCode: string;
     attributeFQN: string;
     responseFields?: string;
 }
 
-export interface ProductPropertiesApiGetPropertyValueLocalizedContentRequest {
+export interface GetPropertyValueLocalizedContentRequest {
     productCode: string;
     attributeFQN: string;
     value: string;
@@ -67,14 +67,14 @@ export interface ProductPropertiesApiGetPropertyValueLocalizedContentRequest {
     responseFields?: string;
 }
 
-export interface ProductPropertiesApiGetPropertyValueLocalizedContentsRequest {
+export interface GetPropertyValueLocalizedContentsRequest {
     productCode: string;
     attributeFQN: string;
     value: string;
     responseFields?: string;
 }
 
-export interface ProductPropertiesApiUpdatePropertyRequest {
+export interface UpdatePropertyRequest {
     productCode: string;
     attributeFQN: string;
     batchJobCode?: string;
@@ -83,7 +83,7 @@ export interface ProductPropertiesApiUpdatePropertyRequest {
     catalogAdminsProductProperty?: CatalogAdminsProductProperty;
 }
 
-export interface ProductPropertiesApiUpdatePropertyValueLocalizedContentRequest {
+export interface UpdatePropertyValueLocalizedContentRequest {
     productCode: string;
     attributeFQN: string;
     value: string;
@@ -92,7 +92,7 @@ export interface ProductPropertiesApiUpdatePropertyValueLocalizedContentRequest 
     productPropertyValueLocalizedContent?: ProductPropertyValueLocalizedContent;
 }
 
-export interface ProductPropertiesApiUpdatePropertyValueLocalizedContentsRequest {
+export interface UpdatePropertyValueLocalizedContentsRequest {
     productCode: string;
     attributeFQN: string;
     value: string;
@@ -118,13 +118,13 @@ export interface ProductPropertiesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductPropertiesApiInterface
      */
-    addPropertyRaw(requestParameters: ProductPropertiesApiAddPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductProperty>>;
+    addPropertyRaw(requestParameters: AddPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductProperty>>;
 
     /**
      * Add property
      * Add property
      */
-    addProperty(requestParameters: ProductPropertiesApiAddPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductProperty>;
+    addProperty(requestParameters: AddPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductProperty>;
 
     /**
      * 
@@ -138,13 +138,13 @@ export interface ProductPropertiesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductPropertiesApiInterface
      */
-    addPropertyValueLocalizedContentRaw(requestParameters: ProductPropertiesApiAddPropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductPropertyValueLocalizedContent>>;
+    addPropertyValueLocalizedContentRaw(requestParameters: AddPropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductPropertyValueLocalizedContent>>;
 
     /**
      * 
      * Add property value localized content
      */
-    addPropertyValueLocalizedContent(requestParameters: ProductPropertiesApiAddPropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductPropertyValueLocalizedContent>;
+    addPropertyValueLocalizedContent(requestParameters: AddPropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductPropertyValueLocalizedContent>;
 
     /**
      * Delete Property
@@ -156,13 +156,13 @@ export interface ProductPropertiesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductPropertiesApiInterface
      */
-    deletePropertyRaw(requestParameters: ProductPropertiesApiDeletePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deletePropertyRaw(requestParameters: DeletePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Delete Property
      * Delete property
      */
-    deleteProperty(requestParameters: ProductPropertiesApiDeletePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteProperty(requestParameters: DeletePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * 
@@ -175,13 +175,13 @@ export interface ProductPropertiesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductPropertiesApiInterface
      */
-    deletePropertyValueLocalizedContentRaw(requestParameters: ProductPropertiesApiDeletePropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deletePropertyValueLocalizedContentRaw(requestParameters: DeletePropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * 
      * Delete property value localized content
      */
-    deletePropertyValueLocalizedContent(requestParameters: ProductPropertiesApiDeletePropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deletePropertyValueLocalizedContent(requestParameters: DeletePropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Get properties for the product
@@ -192,13 +192,13 @@ export interface ProductPropertiesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductPropertiesApiInterface
      */
-    getPropertiesRaw(requestParameters: ProductPropertiesApiGetPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsProductProperty>>>;
+    getPropertiesRaw(requestParameters: GetPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsProductProperty>>>;
 
     /**
      * Get properties for the product
      * Get properties
      */
-    getProperties(requestParameters: ProductPropertiesApiGetPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsProductProperty>>;
+    getProperties(requestParameters: GetPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsProductProperty>>;
 
     /**
      * Get individual property
@@ -210,13 +210,13 @@ export interface ProductPropertiesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductPropertiesApiInterface
      */
-    getPropertyRaw(requestParameters: ProductPropertiesApiGetPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductProperty>>;
+    getPropertyRaw(requestParameters: GetPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductProperty>>;
 
     /**
      * Get individual property
      * Get property
      */
-    getProperty(requestParameters: ProductPropertiesApiGetPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductProperty>;
+    getProperty(requestParameters: GetPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductProperty>;
 
     /**
      * 
@@ -230,13 +230,13 @@ export interface ProductPropertiesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductPropertiesApiInterface
      */
-    getPropertyValueLocalizedContentRaw(requestParameters: ProductPropertiesApiGetPropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductPropertyValueLocalizedContent>>;
+    getPropertyValueLocalizedContentRaw(requestParameters: GetPropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductPropertyValueLocalizedContent>>;
 
     /**
      * 
      * Get property value localized content
      */
-    getPropertyValueLocalizedContent(requestParameters: ProductPropertiesApiGetPropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductPropertyValueLocalizedContent>;
+    getPropertyValueLocalizedContent(requestParameters: GetPropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductPropertyValueLocalizedContent>;
 
     /**
      * 
@@ -249,13 +249,13 @@ export interface ProductPropertiesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductPropertiesApiInterface
      */
-    getPropertyValueLocalizedContentsRaw(requestParameters: ProductPropertiesApiGetPropertyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductPropertyValueLocalizedContent>>>;
+    getPropertyValueLocalizedContentsRaw(requestParameters: GetPropertyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductPropertyValueLocalizedContent>>>;
 
     /**
      * 
      * Get property value localized contents
      */
-    getPropertyValueLocalizedContents(requestParameters: ProductPropertiesApiGetPropertyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductPropertyValueLocalizedContent>>;
+    getPropertyValueLocalizedContents(requestParameters: GetPropertyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductPropertyValueLocalizedContent>>;
 
     /**
      * Update property
@@ -270,13 +270,13 @@ export interface ProductPropertiesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductPropertiesApiInterface
      */
-    updatePropertyRaw(requestParameters: ProductPropertiesApiUpdatePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductProperty>>;
+    updatePropertyRaw(requestParameters: UpdatePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductProperty>>;
 
     /**
      * Update property
      * Update property
      */
-    updateProperty(requestParameters: ProductPropertiesApiUpdatePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductProperty>;
+    updateProperty(requestParameters: UpdatePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductProperty>;
 
     /**
      * 
@@ -291,13 +291,13 @@ export interface ProductPropertiesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductPropertiesApiInterface
      */
-    updatePropertyValueLocalizedContentRaw(requestParameters: ProductPropertiesApiUpdatePropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductPropertyValueLocalizedContent>>;
+    updatePropertyValueLocalizedContentRaw(requestParameters: UpdatePropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductPropertyValueLocalizedContent>>;
 
     /**
      * 
      * Update property value localized content
      */
-    updatePropertyValueLocalizedContent(requestParameters: ProductPropertiesApiUpdatePropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductPropertyValueLocalizedContent>;
+    updatePropertyValueLocalizedContent(requestParameters: UpdatePropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductPropertyValueLocalizedContent>;
 
     /**
      * 
@@ -311,13 +311,13 @@ export interface ProductPropertiesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductPropertiesApiInterface
      */
-    updatePropertyValueLocalizedContentsRaw(requestParameters: ProductPropertiesApiUpdatePropertyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductPropertyValueLocalizedContent>>>;
+    updatePropertyValueLocalizedContentsRaw(requestParameters: UpdatePropertyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductPropertyValueLocalizedContent>>>;
 
     /**
      * 
      * Update property value localized contents
      */
-    updatePropertyValueLocalizedContents(requestParameters: ProductPropertiesApiUpdatePropertyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductPropertyValueLocalizedContent>>;
+    updatePropertyValueLocalizedContents(requestParameters: UpdatePropertyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductPropertyValueLocalizedContent>>;
 
 }
 
@@ -335,7 +335,7 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
      */
 
 
-    async addPropertyRaw(requestParameters: ProductPropertiesApiAddPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductProperty>> {
+    async addPropertyRaw(requestParameters: AddPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductProperty>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling addProperty.');
         }
@@ -375,7 +375,7 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
      * Add property
      * Add property
      */
-    async addProperty(requestParameters: ProductPropertiesApiAddPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductProperty> {
+    async addProperty(requestParameters: AddPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductProperty> {
         const response = await this.addPropertyRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -386,7 +386,7 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
      */
 
 
-    async addPropertyValueLocalizedContentRaw(requestParameters: ProductPropertiesApiAddPropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductPropertyValueLocalizedContent>> {
+    async addPropertyValueLocalizedContentRaw(requestParameters: AddPropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductPropertyValueLocalizedContent>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling addPropertyValueLocalizedContent.');
         }
@@ -430,7 +430,7 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
      * 
      * Add property value localized content
      */
-    async addPropertyValueLocalizedContent(requestParameters: ProductPropertiesApiAddPropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductPropertyValueLocalizedContent> {
+    async addPropertyValueLocalizedContent(requestParameters: AddPropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductPropertyValueLocalizedContent> {
         const response = await this.addPropertyValueLocalizedContentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -441,7 +441,7 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
      */
 
 
-    async deletePropertyRaw(requestParameters: ProductPropertiesApiDeletePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deletePropertyRaw(requestParameters: DeletePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling deleteProperty.');
         }
@@ -478,7 +478,7 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
      * Delete Property
      * Delete property
      */
-    async deleteProperty(requestParameters: ProductPropertiesApiDeletePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteProperty(requestParameters: DeletePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deletePropertyRaw(requestParameters, initOverrides);
     }
 
@@ -488,7 +488,7 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
      */
 
 
-    async deletePropertyValueLocalizedContentRaw(requestParameters: ProductPropertiesApiDeletePropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deletePropertyValueLocalizedContentRaw(requestParameters: DeletePropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling deletePropertyValueLocalizedContent.');
         }
@@ -529,7 +529,7 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
      * 
      * Delete property value localized content
      */
-    async deletePropertyValueLocalizedContent(requestParameters: ProductPropertiesApiDeletePropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deletePropertyValueLocalizedContent(requestParameters: DeletePropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deletePropertyValueLocalizedContentRaw(requestParameters, initOverrides);
     }
 
@@ -539,7 +539,7 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
      */
 
 
-    async getPropertiesRaw(requestParameters: ProductPropertiesApiGetPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsProductProperty>>> {
+    async getPropertiesRaw(requestParameters: GetPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsProductProperty>>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling getProperties.');
         }
@@ -572,7 +572,7 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
      * Get properties for the product
      * Get properties
      */
-    async getProperties(requestParameters: ProductPropertiesApiGetPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsProductProperty>> {
+    async getProperties(requestParameters: GetPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsProductProperty>> {
         const response = await this.getPropertiesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -583,7 +583,7 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
      */
 
 
-    async getPropertyRaw(requestParameters: ProductPropertiesApiGetPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductProperty>> {
+    async getPropertyRaw(requestParameters: GetPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductProperty>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling getProperty.');
         }
@@ -620,7 +620,7 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
      * Get individual property
      * Get property
      */
-    async getProperty(requestParameters: ProductPropertiesApiGetPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductProperty> {
+    async getProperty(requestParameters: GetPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductProperty> {
         const response = await this.getPropertyRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -631,7 +631,7 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
      */
 
 
-    async getPropertyValueLocalizedContentRaw(requestParameters: ProductPropertiesApiGetPropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductPropertyValueLocalizedContent>> {
+    async getPropertyValueLocalizedContentRaw(requestParameters: GetPropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductPropertyValueLocalizedContent>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling getPropertyValueLocalizedContent.');
         }
@@ -676,7 +676,7 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
      * 
      * Get property value localized content
      */
-    async getPropertyValueLocalizedContent(requestParameters: ProductPropertiesApiGetPropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductPropertyValueLocalizedContent> {
+    async getPropertyValueLocalizedContent(requestParameters: GetPropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductPropertyValueLocalizedContent> {
         const response = await this.getPropertyValueLocalizedContentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -687,7 +687,7 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
      */
 
 
-    async getPropertyValueLocalizedContentsRaw(requestParameters: ProductPropertiesApiGetPropertyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductPropertyValueLocalizedContent>>> {
+    async getPropertyValueLocalizedContentsRaw(requestParameters: GetPropertyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductPropertyValueLocalizedContent>>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling getPropertyValueLocalizedContents.');
         }
@@ -728,7 +728,7 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
      * 
      * Get property value localized contents
      */
-    async getPropertyValueLocalizedContents(requestParameters: ProductPropertiesApiGetPropertyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductPropertyValueLocalizedContent>> {
+    async getPropertyValueLocalizedContents(requestParameters: GetPropertyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductPropertyValueLocalizedContent>> {
         const response = await this.getPropertyValueLocalizedContentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -739,7 +739,7 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
      */
 
 
-    async updatePropertyRaw(requestParameters: ProductPropertiesApiUpdatePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductProperty>> {
+    async updatePropertyRaw(requestParameters: UpdatePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductProperty>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling updateProperty.');
         }
@@ -787,7 +787,7 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
      * Update property
      * Update property
      */
-    async updateProperty(requestParameters: ProductPropertiesApiUpdatePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductProperty> {
+    async updateProperty(requestParameters: UpdatePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductProperty> {
         const response = await this.updatePropertyRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -798,7 +798,7 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
      */
 
 
-    async updatePropertyValueLocalizedContentRaw(requestParameters: ProductPropertiesApiUpdatePropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductPropertyValueLocalizedContent>> {
+    async updatePropertyValueLocalizedContentRaw(requestParameters: UpdatePropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductPropertyValueLocalizedContent>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling updatePropertyValueLocalizedContent.');
         }
@@ -846,7 +846,7 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
      * 
      * Update property value localized content
      */
-    async updatePropertyValueLocalizedContent(requestParameters: ProductPropertiesApiUpdatePropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductPropertyValueLocalizedContent> {
+    async updatePropertyValueLocalizedContent(requestParameters: UpdatePropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductPropertyValueLocalizedContent> {
         const response = await this.updatePropertyValueLocalizedContentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -857,7 +857,7 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
      */
 
 
-    async updatePropertyValueLocalizedContentsRaw(requestParameters: ProductPropertiesApiUpdatePropertyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductPropertyValueLocalizedContent>>> {
+    async updatePropertyValueLocalizedContentsRaw(requestParameters: UpdatePropertyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductPropertyValueLocalizedContent>>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling updatePropertyValueLocalizedContents.');
         }
@@ -901,7 +901,7 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
      * 
      * Update property value localized contents
      */
-    async updatePropertyValueLocalizedContents(requestParameters: ProductPropertiesApiUpdatePropertyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductPropertyValueLocalizedContent>> {
+    async updatePropertyValueLocalizedContents(requestParameters: UpdatePropertyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductPropertyValueLocalizedContent>> {
         const response = await this.updatePropertyValueLocalizedContentsRaw(requestParameters, initOverrides);
         return await response.value();
     }

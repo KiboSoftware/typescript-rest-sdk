@@ -21,24 +21,24 @@ import type {
   CommerceRuntimeAttributeVocabularyValue,
 } from '../models';
 
-export interface OrderAttributeDefinitionsApiCreateAttributeRequest {
+export interface CreateAttributeRequest {
     responseFields?: string;
     commerceRuntimeAttribute?: CommerceRuntimeAttribute;
 }
 
-export interface OrderAttributeDefinitionsApiGetAttributeRequest {
+export interface GetAttributeRequest {
     attributeFQN: string;
     responseGroups?: string;
     responseFields?: string;
 }
 
-export interface OrderAttributeDefinitionsApiGetAttributeVocabularyValuesRequest {
+export interface GetAttributeVocabularyValuesRequest {
     attributeFQN: string;
     responseGroups?: string;
     responseFields?: string;
 }
 
-export interface OrderAttributeDefinitionsApiGetAttributesRequest {
+export interface GetAttributesRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -47,7 +47,7 @@ export interface OrderAttributeDefinitionsApiGetAttributesRequest {
     responseFields?: string;
 }
 
-export interface OrderAttributeDefinitionsApiUpdateAttributeRequest {
+export interface UpdateAttributeRequest {
     attributeFQN: string;
     responseFields?: string;
     commerceRuntimeAttribute?: CommerceRuntimeAttribute;
@@ -69,13 +69,13 @@ export interface OrderAttributeDefinitionsApiInterface {
      * @throws {RequiredError}
      * @memberof OrderAttributeDefinitionsApiInterface
      */
-    createAttributeRaw(requestParameters: OrderAttributeDefinitionsApiCreateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttribute>>;
+    createAttributeRaw(requestParameters: CreateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttribute>>;
 
     /**
      * Create Attribute
      * Create Attribute
      */
-    createAttribute(requestParameters: OrderAttributeDefinitionsApiCreateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttribute>;
+    createAttribute(requestParameters: CreateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttribute>;
 
     /**
      * Get Attribute
@@ -87,13 +87,13 @@ export interface OrderAttributeDefinitionsApiInterface {
      * @throws {RequiredError}
      * @memberof OrderAttributeDefinitionsApiInterface
      */
-    getAttributeRaw(requestParameters: OrderAttributeDefinitionsApiGetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttribute>>;
+    getAttributeRaw(requestParameters: GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttribute>>;
 
     /**
      * Get Attribute
      * Get Attribute
      */
-    getAttribute(requestParameters: OrderAttributeDefinitionsApiGetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttribute>;
+    getAttribute(requestParameters: GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttribute>;
 
     /**
      * Get Attribute Vocabulary Values
@@ -105,13 +105,13 @@ export interface OrderAttributeDefinitionsApiInterface {
      * @throws {RequiredError}
      * @memberof OrderAttributeDefinitionsApiInterface
      */
-    getAttributeVocabularyValuesRaw(requestParameters: OrderAttributeDefinitionsApiGetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeAttributeVocabularyValue>>>;
+    getAttributeVocabularyValuesRaw(requestParameters: GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeAttributeVocabularyValue>>>;
 
     /**
      * Get Attribute Vocabulary Values
      * Get Attribute Vocabulary Values
      */
-    getAttributeVocabularyValues(requestParameters: OrderAttributeDefinitionsApiGetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeAttributeVocabularyValue>>;
+    getAttributeVocabularyValues(requestParameters: GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeAttributeVocabularyValue>>;
 
     /**
      * Get Attributes
@@ -126,13 +126,13 @@ export interface OrderAttributeDefinitionsApiInterface {
      * @throws {RequiredError}
      * @memberof OrderAttributeDefinitionsApiInterface
      */
-    getAttributesRaw(requestParameters: OrderAttributeDefinitionsApiGetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttributeCollection>>;
+    getAttributesRaw(requestParameters: GetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttributeCollection>>;
 
     /**
      * Get Attributes
      * Get Attributes
      */
-    getAttributes(requestParameters: OrderAttributeDefinitionsApiGetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttributeCollection>;
+    getAttributes(requestParameters: GetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttributeCollection>;
 
     /**
      * Update Attribute
@@ -144,13 +144,13 @@ export interface OrderAttributeDefinitionsApiInterface {
      * @throws {RequiredError}
      * @memberof OrderAttributeDefinitionsApiInterface
      */
-    updateAttributeRaw(requestParameters: OrderAttributeDefinitionsApiUpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttribute>>;
+    updateAttributeRaw(requestParameters: UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttribute>>;
 
     /**
      * Update Attribute
      * Update Attribute
      */
-    updateAttribute(requestParameters: OrderAttributeDefinitionsApiUpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttribute>;
+    updateAttribute(requestParameters: UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttribute>;
 
 }
 
@@ -168,7 +168,7 @@ export class OrderAttributeDefinitionsApi extends runtime.BaseAPI implements Ord
      */
 
 
-    async createAttributeRaw(requestParameters: OrderAttributeDefinitionsApiCreateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttribute>> {
+    async createAttributeRaw(requestParameters: CreateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttribute>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -200,7 +200,7 @@ export class OrderAttributeDefinitionsApi extends runtime.BaseAPI implements Ord
      * Create Attribute
      * Create Attribute
      */
-    async createAttribute(requestParameters: OrderAttributeDefinitionsApiCreateAttributeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttribute> {
+    async createAttribute(requestParameters: CreateAttributeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttribute> {
         const response = await this.createAttributeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -211,7 +211,7 @@ export class OrderAttributeDefinitionsApi extends runtime.BaseAPI implements Ord
      */
 
 
-    async getAttributeRaw(requestParameters: OrderAttributeDefinitionsApiGetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttribute>> {
+    async getAttributeRaw(requestParameters: GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttribute>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling getAttribute.');
         }
@@ -248,7 +248,7 @@ export class OrderAttributeDefinitionsApi extends runtime.BaseAPI implements Ord
      * Get Attribute
      * Get Attribute
      */
-    async getAttribute(requestParameters: OrderAttributeDefinitionsApiGetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttribute> {
+    async getAttribute(requestParameters: GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttribute> {
         const response = await this.getAttributeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -259,7 +259,7 @@ export class OrderAttributeDefinitionsApi extends runtime.BaseAPI implements Ord
      */
 
 
-    async getAttributeVocabularyValuesRaw(requestParameters: OrderAttributeDefinitionsApiGetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeAttributeVocabularyValue>>> {
+    async getAttributeVocabularyValuesRaw(requestParameters: GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeAttributeVocabularyValue>>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling getAttributeVocabularyValues.');
         }
@@ -296,7 +296,7 @@ export class OrderAttributeDefinitionsApi extends runtime.BaseAPI implements Ord
      * Get Attribute Vocabulary Values
      * Get Attribute Vocabulary Values
      */
-    async getAttributeVocabularyValues(requestParameters: OrderAttributeDefinitionsApiGetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeAttributeVocabularyValue>> {
+    async getAttributeVocabularyValues(requestParameters: GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeAttributeVocabularyValue>> {
         const response = await this.getAttributeVocabularyValuesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -307,7 +307,7 @@ export class OrderAttributeDefinitionsApi extends runtime.BaseAPI implements Ord
      */
 
 
-    async getAttributesRaw(requestParameters: OrderAttributeDefinitionsApiGetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttributeCollection>> {
+    async getAttributesRaw(requestParameters: GetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttributeCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -356,7 +356,7 @@ export class OrderAttributeDefinitionsApi extends runtime.BaseAPI implements Ord
      * Get Attributes
      * Get Attributes
      */
-    async getAttributes(requestParameters: OrderAttributeDefinitionsApiGetAttributesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttributeCollection> {
+    async getAttributes(requestParameters: GetAttributesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttributeCollection> {
         const response = await this.getAttributesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -367,7 +367,7 @@ export class OrderAttributeDefinitionsApi extends runtime.BaseAPI implements Ord
      */
 
 
-    async updateAttributeRaw(requestParameters: OrderAttributeDefinitionsApiUpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttribute>> {
+    async updateAttributeRaw(requestParameters: UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeAttribute>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling updateAttribute.');
         }
@@ -403,7 +403,7 @@ export class OrderAttributeDefinitionsApi extends runtime.BaseAPI implements Ord
      * Update Attribute
      * Update Attribute
      */
-    async updateAttribute(requestParameters: OrderAttributeDefinitionsApiUpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttribute> {
+    async updateAttribute(requestParameters: UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeAttribute> {
         const response = await this.updateAttributeRaw(requestParameters, initOverrides);
         return await response.value();
     }

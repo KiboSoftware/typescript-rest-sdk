@@ -22,53 +22,53 @@ import type {
   CurrencyLocalizationCollection,
 } from '../models';
 
-export interface CurrencyApiAddCurrencyExchangeRatesRequest {
+export interface AddCurrencyExchangeRatesRequest {
     currencyCode: string;
     responseFields?: string;
     catalogAdminsCurrencyExchangeRate?: Array<CatalogAdminsCurrencyExchangeRate>;
 }
 
-export interface CurrencyApiAddCurrencyLocalizationRequest {
+export interface AddCurrencyLocalizationRequest {
     responseFields?: string;
     currencyLocalization?: CurrencyLocalization;
 }
 
-export interface CurrencyApiDeleteCurrencyExchangeRateRequest {
+export interface DeleteCurrencyExchangeRateRequest {
     currencyCode: string;
     toCurrencyCode: string;
 }
 
-export interface CurrencyApiDeleteCurrencyLocalizationRequest {
+export interface DeleteCurrencyLocalizationRequest {
     currencyCode: string;
 }
 
-export interface CurrencyApiGetCurrencyExchangeRateRequest {
+export interface GetCurrencyExchangeRateRequest {
     currencyCode: string;
     toCurrencyCode: string;
     responseFields?: string;
 }
 
-export interface CurrencyApiGetCurrencyExchangeRatesRequest {
+export interface GetCurrencyExchangeRatesRequest {
     currencyCode: string;
     responseFields?: string;
 }
 
-export interface CurrencyApiGetCurrencyLocalizationRequest {
+export interface GetCurrencyLocalizationRequest {
     currencyCode: string;
     responseFields?: string;
 }
 
-export interface CurrencyApiGetCurrencyLocalizationsRequest {
+export interface GetCurrencyLocalizationsRequest {
     responseFields?: string;
 }
 
-export interface CurrencyApiUpdateCurrencyExchangeRatesRequest {
+export interface UpdateCurrencyExchangeRatesRequest {
     currencyCode: string;
     responseFields?: string;
     catalogAdminsCurrencyExchangeRate?: Array<CatalogAdminsCurrencyExchangeRate>;
 }
 
-export interface CurrencyApiUpdateCurrencyLocalizationRequest {
+export interface UpdateCurrencyLocalizationRequest {
     currencyCode: string;
     responseFields?: string;
     currencyLocalization?: CurrencyLocalization;
@@ -91,13 +91,13 @@ export interface CurrencyApiInterface {
      * @throws {RequiredError}
      * @memberof CurrencyApiInterface
      */
-    addCurrencyExchangeRatesRaw(requestParameters: CurrencyApiAddCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addCurrencyExchangeRatesRaw(requestParameters: AddCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Updates the details of a currency-localization.
      * Update currency localization
      */
-    addCurrencyExchangeRates(requestParameters: CurrencyApiAddCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addCurrencyExchangeRates(requestParameters: AddCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Adds a new currency localization
@@ -108,13 +108,13 @@ export interface CurrencyApiInterface {
      * @throws {RequiredError}
      * @memberof CurrencyApiInterface
      */
-    addCurrencyLocalizationRaw(requestParameters: CurrencyApiAddCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CurrencyLocalization>>;
+    addCurrencyLocalizationRaw(requestParameters: AddCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CurrencyLocalization>>;
 
     /**
      * Adds a new currency localization
      * Add currency localization
      */
-    addCurrencyLocalization(requestParameters: CurrencyApiAddCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CurrencyLocalization>;
+    addCurrencyLocalization(requestParameters: AddCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CurrencyLocalization>;
 
     /**
      * Delete a single exchange rate for a specified currency-code and target currency-code.
@@ -125,13 +125,13 @@ export interface CurrencyApiInterface {
      * @throws {RequiredError}
      * @memberof CurrencyApiInterface
      */
-    deleteCurrencyExchangeRateRaw(requestParameters: CurrencyApiDeleteCurrencyExchangeRateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteCurrencyExchangeRateRaw(requestParameters: DeleteCurrencyExchangeRateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Delete a single exchange rate for a specified currency-code and target currency-code.
      * Delete currency exchange rate
      */
-    deleteCurrencyExchangeRate(requestParameters: CurrencyApiDeleteCurrencyExchangeRateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteCurrencyExchangeRate(requestParameters: DeleteCurrencyExchangeRateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Deletes the currency-localization specified by its currency code.
@@ -141,13 +141,13 @@ export interface CurrencyApiInterface {
      * @throws {RequiredError}
      * @memberof CurrencyApiInterface
      */
-    deleteCurrencyLocalizationRaw(requestParameters: CurrencyApiDeleteCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteCurrencyLocalizationRaw(requestParameters: DeleteCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Deletes the currency-localization specified by its currency code.
      * Delete currency localization
      */
-    deleteCurrencyLocalization(requestParameters: CurrencyApiDeleteCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteCurrencyLocalization(requestParameters: DeleteCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Retrieves a single exchange rate for a specified currency-code and target-currency-code.
@@ -159,13 +159,13 @@ export interface CurrencyApiInterface {
      * @throws {RequiredError}
      * @memberof CurrencyApiInterface
      */
-    getCurrencyExchangeRateRaw(requestParameters: CurrencyApiGetCurrencyExchangeRateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCurrencyExchangeRate>>;
+    getCurrencyExchangeRateRaw(requestParameters: GetCurrencyExchangeRateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCurrencyExchangeRate>>;
 
     /**
      * Retrieves a single exchange rate for a specified currency-code and target-currency-code.
      * Get currency exchange rate
      */
-    getCurrencyExchangeRate(requestParameters: CurrencyApiGetCurrencyExchangeRateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCurrencyExchangeRate>;
+    getCurrencyExchangeRate(requestParameters: GetCurrencyExchangeRateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCurrencyExchangeRate>;
 
     /**
      * Retrieves a list of exchange rates for a specified currency-code and filter criteria.
@@ -176,13 +176,13 @@ export interface CurrencyApiInterface {
      * @throws {RequiredError}
      * @memberof CurrencyApiInterface
      */
-    getCurrencyExchangeRatesRaw(requestParameters: CurrencyApiGetCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CurrencyExchangeRateCollection>>;
+    getCurrencyExchangeRatesRaw(requestParameters: GetCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CurrencyExchangeRateCollection>>;
 
     /**
      * Retrieves a list of exchange rates for a specified currency-code and filter criteria.
      * Get currency exchange rates
      */
-    getCurrencyExchangeRates(requestParameters: CurrencyApiGetCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CurrencyExchangeRateCollection>;
+    getCurrencyExchangeRates(requestParameters: GetCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CurrencyExchangeRateCollection>;
 
     /**
      * Gets a single currency-localization.
@@ -193,13 +193,13 @@ export interface CurrencyApiInterface {
      * @throws {RequiredError}
      * @memberof CurrencyApiInterface
      */
-    getCurrencyLocalizationRaw(requestParameters: CurrencyApiGetCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CurrencyLocalization>>;
+    getCurrencyLocalizationRaw(requestParameters: GetCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CurrencyLocalization>>;
 
     /**
      * Gets a single currency-localization.
      * Get currency localization
      */
-    getCurrencyLocalization(requestParameters: CurrencyApiGetCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CurrencyLocalization>;
+    getCurrencyLocalization(requestParameters: GetCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CurrencyLocalization>;
 
     /**
      * Gets all currency-localizations.
@@ -209,13 +209,13 @@ export interface CurrencyApiInterface {
      * @throws {RequiredError}
      * @memberof CurrencyApiInterface
      */
-    getCurrencyLocalizationsRaw(requestParameters: CurrencyApiGetCurrencyLocalizationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CurrencyLocalizationCollection>>;
+    getCurrencyLocalizationsRaw(requestParameters: GetCurrencyLocalizationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CurrencyLocalizationCollection>>;
 
     /**
      * Gets all currency-localizations.
      * Get currency localizations
      */
-    getCurrencyLocalizations(requestParameters: CurrencyApiGetCurrencyLocalizationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CurrencyLocalizationCollection>;
+    getCurrencyLocalizations(requestParameters: GetCurrencyLocalizationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CurrencyLocalizationCollection>;
 
     /**
      * Update multiple exchange rates for a specified currency-code.
@@ -227,13 +227,13 @@ export interface CurrencyApiInterface {
      * @throws {RequiredError}
      * @memberof CurrencyApiInterface
      */
-    updateCurrencyExchangeRatesRaw(requestParameters: CurrencyApiUpdateCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    updateCurrencyExchangeRatesRaw(requestParameters: UpdateCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Update multiple exchange rates for a specified currency-code.
      * Update currency exchange rates
      */
-    updateCurrencyExchangeRates(requestParameters: CurrencyApiUpdateCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    updateCurrencyExchangeRates(requestParameters: UpdateCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Updates the details of a currency-localization.
@@ -245,13 +245,13 @@ export interface CurrencyApiInterface {
      * @throws {RequiredError}
      * @memberof CurrencyApiInterface
      */
-    updateCurrencyLocalizationRaw(requestParameters: CurrencyApiUpdateCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CurrencyLocalization>>;
+    updateCurrencyLocalizationRaw(requestParameters: UpdateCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CurrencyLocalization>>;
 
     /**
      * Updates the details of a currency-localization.
      * Update currency localization
      */
-    updateCurrencyLocalization(requestParameters: CurrencyApiUpdateCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CurrencyLocalization>;
+    updateCurrencyLocalization(requestParameters: UpdateCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CurrencyLocalization>;
 
 }
 
@@ -269,7 +269,7 @@ export class CurrencyApi extends runtime.BaseAPI implements CurrencyApiInterface
      */
 
 
-    async addCurrencyExchangeRatesRaw(requestParameters: CurrencyApiAddCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addCurrencyExchangeRatesRaw(requestParameters: AddCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.currencyCode === null || requestParameters.currencyCode === undefined) {
             throw new runtime.RequiredError('currencyCode','Required parameter requestParameters.currencyCode was null or undefined when calling addCurrencyExchangeRates.');
         }
@@ -305,7 +305,7 @@ export class CurrencyApi extends runtime.BaseAPI implements CurrencyApiInterface
      * Updates the details of a currency-localization.
      * Update currency localization
      */
-    async addCurrencyExchangeRates(requestParameters: CurrencyApiAddCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async addCurrencyExchangeRates(requestParameters: AddCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.addCurrencyExchangeRatesRaw(requestParameters, initOverrides);
     }
 
@@ -315,7 +315,7 @@ export class CurrencyApi extends runtime.BaseAPI implements CurrencyApiInterface
      */
 
 
-    async addCurrencyLocalizationRaw(requestParameters: CurrencyApiAddCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CurrencyLocalization>> {
+    async addCurrencyLocalizationRaw(requestParameters: AddCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CurrencyLocalization>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -347,7 +347,7 @@ export class CurrencyApi extends runtime.BaseAPI implements CurrencyApiInterface
      * Adds a new currency localization
      * Add currency localization
      */
-    async addCurrencyLocalization(requestParameters: CurrencyApiAddCurrencyLocalizationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CurrencyLocalization> {
+    async addCurrencyLocalization(requestParameters: AddCurrencyLocalizationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CurrencyLocalization> {
         const response = await this.addCurrencyLocalizationRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -358,7 +358,7 @@ export class CurrencyApi extends runtime.BaseAPI implements CurrencyApiInterface
      */
 
 
-    async deleteCurrencyExchangeRateRaw(requestParameters: CurrencyApiDeleteCurrencyExchangeRateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteCurrencyExchangeRateRaw(requestParameters: DeleteCurrencyExchangeRateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.currencyCode === null || requestParameters.currencyCode === undefined) {
             throw new runtime.RequiredError('currencyCode','Required parameter requestParameters.currencyCode was null or undefined when calling deleteCurrencyExchangeRate.');
         }
@@ -391,7 +391,7 @@ export class CurrencyApi extends runtime.BaseAPI implements CurrencyApiInterface
      * Delete a single exchange rate for a specified currency-code and target currency-code.
      * Delete currency exchange rate
      */
-    async deleteCurrencyExchangeRate(requestParameters: CurrencyApiDeleteCurrencyExchangeRateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteCurrencyExchangeRate(requestParameters: DeleteCurrencyExchangeRateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteCurrencyExchangeRateRaw(requestParameters, initOverrides);
     }
 
@@ -401,7 +401,7 @@ export class CurrencyApi extends runtime.BaseAPI implements CurrencyApiInterface
      */
 
 
-    async deleteCurrencyLocalizationRaw(requestParameters: CurrencyApiDeleteCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteCurrencyLocalizationRaw(requestParameters: DeleteCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.currencyCode === null || requestParameters.currencyCode === undefined) {
             throw new runtime.RequiredError('currencyCode','Required parameter requestParameters.currencyCode was null or undefined when calling deleteCurrencyLocalization.');
         }
@@ -430,7 +430,7 @@ export class CurrencyApi extends runtime.BaseAPI implements CurrencyApiInterface
      * Deletes the currency-localization specified by its currency code.
      * Delete currency localization
      */
-    async deleteCurrencyLocalization(requestParameters: CurrencyApiDeleteCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteCurrencyLocalization(requestParameters: DeleteCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteCurrencyLocalizationRaw(requestParameters, initOverrides);
     }
 
@@ -440,7 +440,7 @@ export class CurrencyApi extends runtime.BaseAPI implements CurrencyApiInterface
      */
 
 
-    async getCurrencyExchangeRateRaw(requestParameters: CurrencyApiGetCurrencyExchangeRateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCurrencyExchangeRate>> {
+    async getCurrencyExchangeRateRaw(requestParameters: GetCurrencyExchangeRateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCurrencyExchangeRate>> {
         if (requestParameters.currencyCode === null || requestParameters.currencyCode === undefined) {
             throw new runtime.RequiredError('currencyCode','Required parameter requestParameters.currencyCode was null or undefined when calling getCurrencyExchangeRate.');
         }
@@ -477,7 +477,7 @@ export class CurrencyApi extends runtime.BaseAPI implements CurrencyApiInterface
      * Retrieves a single exchange rate for a specified currency-code and target-currency-code.
      * Get currency exchange rate
      */
-    async getCurrencyExchangeRate(requestParameters: CurrencyApiGetCurrencyExchangeRateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCurrencyExchangeRate> {
+    async getCurrencyExchangeRate(requestParameters: GetCurrencyExchangeRateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCurrencyExchangeRate> {
         const response = await this.getCurrencyExchangeRateRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -488,7 +488,7 @@ export class CurrencyApi extends runtime.BaseAPI implements CurrencyApiInterface
      */
 
 
-    async getCurrencyExchangeRatesRaw(requestParameters: CurrencyApiGetCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CurrencyExchangeRateCollection>> {
+    async getCurrencyExchangeRatesRaw(requestParameters: GetCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CurrencyExchangeRateCollection>> {
         if (requestParameters.currencyCode === null || requestParameters.currencyCode === undefined) {
             throw new runtime.RequiredError('currencyCode','Required parameter requestParameters.currencyCode was null or undefined when calling getCurrencyExchangeRates.');
         }
@@ -521,7 +521,7 @@ export class CurrencyApi extends runtime.BaseAPI implements CurrencyApiInterface
      * Retrieves a list of exchange rates for a specified currency-code and filter criteria.
      * Get currency exchange rates
      */
-    async getCurrencyExchangeRates(requestParameters: CurrencyApiGetCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CurrencyExchangeRateCollection> {
+    async getCurrencyExchangeRates(requestParameters: GetCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CurrencyExchangeRateCollection> {
         const response = await this.getCurrencyExchangeRatesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -532,7 +532,7 @@ export class CurrencyApi extends runtime.BaseAPI implements CurrencyApiInterface
      */
 
 
-    async getCurrencyLocalizationRaw(requestParameters: CurrencyApiGetCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CurrencyLocalization>> {
+    async getCurrencyLocalizationRaw(requestParameters: GetCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CurrencyLocalization>> {
         if (requestParameters.currencyCode === null || requestParameters.currencyCode === undefined) {
             throw new runtime.RequiredError('currencyCode','Required parameter requestParameters.currencyCode was null or undefined when calling getCurrencyLocalization.');
         }
@@ -565,7 +565,7 @@ export class CurrencyApi extends runtime.BaseAPI implements CurrencyApiInterface
      * Gets a single currency-localization.
      * Get currency localization
      */
-    async getCurrencyLocalization(requestParameters: CurrencyApiGetCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CurrencyLocalization> {
+    async getCurrencyLocalization(requestParameters: GetCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CurrencyLocalization> {
         const response = await this.getCurrencyLocalizationRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -576,7 +576,7 @@ export class CurrencyApi extends runtime.BaseAPI implements CurrencyApiInterface
      */
 
 
-    async getCurrencyLocalizationsRaw(requestParameters: CurrencyApiGetCurrencyLocalizationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CurrencyLocalizationCollection>> {
+    async getCurrencyLocalizationsRaw(requestParameters: GetCurrencyLocalizationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CurrencyLocalizationCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -605,7 +605,7 @@ export class CurrencyApi extends runtime.BaseAPI implements CurrencyApiInterface
      * Gets all currency-localizations.
      * Get currency localizations
      */
-    async getCurrencyLocalizations(requestParameters: CurrencyApiGetCurrencyLocalizationsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CurrencyLocalizationCollection> {
+    async getCurrencyLocalizations(requestParameters: GetCurrencyLocalizationsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CurrencyLocalizationCollection> {
         const response = await this.getCurrencyLocalizationsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -616,7 +616,7 @@ export class CurrencyApi extends runtime.BaseAPI implements CurrencyApiInterface
      */
 
 
-    async updateCurrencyExchangeRatesRaw(requestParameters: CurrencyApiUpdateCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async updateCurrencyExchangeRatesRaw(requestParameters: UpdateCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.currencyCode === null || requestParameters.currencyCode === undefined) {
             throw new runtime.RequiredError('currencyCode','Required parameter requestParameters.currencyCode was null or undefined when calling updateCurrencyExchangeRates.');
         }
@@ -652,7 +652,7 @@ export class CurrencyApi extends runtime.BaseAPI implements CurrencyApiInterface
      * Update multiple exchange rates for a specified currency-code.
      * Update currency exchange rates
      */
-    async updateCurrencyExchangeRates(requestParameters: CurrencyApiUpdateCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async updateCurrencyExchangeRates(requestParameters: UpdateCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.updateCurrencyExchangeRatesRaw(requestParameters, initOverrides);
     }
 
@@ -662,7 +662,7 @@ export class CurrencyApi extends runtime.BaseAPI implements CurrencyApiInterface
      */
 
 
-    async updateCurrencyLocalizationRaw(requestParameters: CurrencyApiUpdateCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CurrencyLocalization>> {
+    async updateCurrencyLocalizationRaw(requestParameters: UpdateCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CurrencyLocalization>> {
         if (requestParameters.currencyCode === null || requestParameters.currencyCode === undefined) {
             throw new runtime.RequiredError('currencyCode','Required parameter requestParameters.currencyCode was null or undefined when calling updateCurrencyLocalization.');
         }
@@ -698,7 +698,7 @@ export class CurrencyApi extends runtime.BaseAPI implements CurrencyApiInterface
      * Updates the details of a currency-localization.
      * Update currency localization
      */
-    async updateCurrencyLocalization(requestParameters: CurrencyApiUpdateCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CurrencyLocalization> {
+    async updateCurrencyLocalization(requestParameters: UpdateCurrencyLocalizationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CurrencyLocalization> {
         const response = await this.updateCurrencyLocalizationRaw(requestParameters, initOverrides);
         return await response.value();
     }

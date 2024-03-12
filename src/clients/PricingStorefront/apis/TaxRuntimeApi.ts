@@ -20,7 +20,7 @@ import type {
   TaxableOrder,
 } from '../models';
 
-export interface TaxRuntimeApiEstimateTaxesRequest {
+export interface EstimateTaxesRequest {
     responseFields?: string;
     taxableOrder?: TaxableOrder;
 }
@@ -41,13 +41,13 @@ export interface TaxRuntimeApiInterface {
      * @throws {RequiredError}
      * @memberof TaxRuntimeApiInterface
      */
-    estimateTaxesRaw(requestParameters: TaxRuntimeApiEstimateTaxesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderTaxContext>>;
+    estimateTaxesRaw(requestParameters: EstimateTaxesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderTaxContext>>;
 
     /**
      * Estimate Taxes
      * Estimate Taxes
      */
-    estimateTaxes(requestParameters: TaxRuntimeApiEstimateTaxesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderTaxContext>;
+    estimateTaxes(requestParameters: EstimateTaxesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderTaxContext>;
 
 }
 
@@ -65,7 +65,7 @@ export class TaxRuntimeApi extends runtime.BaseAPI implements TaxRuntimeApiInter
      */
 
 
-    async estimateTaxesRaw(requestParameters: TaxRuntimeApiEstimateTaxesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderTaxContext>> {
+    async estimateTaxesRaw(requestParameters: EstimateTaxesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderTaxContext>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -97,7 +97,7 @@ export class TaxRuntimeApi extends runtime.BaseAPI implements TaxRuntimeApiInter
      * Estimate Taxes
      * Estimate Taxes
      */
-    async estimateTaxes(requestParameters: TaxRuntimeApiEstimateTaxesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderTaxContext> {
+    async estimateTaxes(requestParameters: EstimateTaxesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderTaxContext> {
         const response = await this.estimateTaxesRaw(requestParameters, initOverrides);
         return await response.value();
     }

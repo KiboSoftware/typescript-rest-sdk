@@ -20,27 +20,27 @@ import type {
   CustomerSegmentCollection,
 } from '../models';
 
-export interface CustomerSegmentApiAddSegmentRequest {
+export interface AddSegmentRequest {
     responseFields?: string;
     customerCustomerSegment?: CustomerCustomerSegment;
 }
 
-export interface CustomerSegmentApiAddSegmentAccountsRequest {
+export interface AddSegmentAccountsRequest {
     id: number;
     responseFields?: string;
     requestBody?: Array<number>;
 }
 
-export interface CustomerSegmentApiDeleteSegmentRequest {
+export interface DeleteSegmentRequest {
     id: number;
 }
 
-export interface CustomerSegmentApiGetSegmentRequest {
+export interface GetSegmentRequest {
     id: number;
     responseFields?: string;
 }
 
-export interface CustomerSegmentApiGetSegmentsRequest {
+export interface GetSegmentsRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -48,12 +48,12 @@ export interface CustomerSegmentApiGetSegmentsRequest {
     responseFields?: string;
 }
 
-export interface CustomerSegmentApiRemoveSegmentAccountRequest {
+export interface RemoveSegmentAccountRequest {
     id: number;
     accountId: number;
 }
 
-export interface CustomerSegmentApiUpdateSegmentRequest {
+export interface UpdateSegmentRequest {
     id: number;
     responseFields?: string;
     customerCustomerSegment?: CustomerCustomerSegment;
@@ -75,13 +75,13 @@ export interface CustomerSegmentApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerSegmentApiInterface
      */
-    addSegmentRaw(requestParameters: CustomerSegmentApiAddSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCustomerSegment>>;
+    addSegmentRaw(requestParameters: AddSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCustomerSegment>>;
 
     /**
      * Creates a new segment. Merchants create segments of customers, for example,   to offer discounts to particular groups or assign VIP status to a set of customers.
      * Adds Segment
      */
-    addSegment(requestParameters: CustomerSegmentApiAddSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCustomerSegment>;
+    addSegment(requestParameters: AddSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCustomerSegment>;
 
     /**
      * Adds segments to an account.
@@ -93,13 +93,13 @@ export interface CustomerSegmentApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerSegmentApiInterface
      */
-    addSegmentAccountsRaw(requestParameters: CustomerSegmentApiAddSegmentAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addSegmentAccountsRaw(requestParameters: AddSegmentAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Adds segments to an account.
      * Add Segments Accounts
      */
-    addSegmentAccounts(requestParameters: CustomerSegmentApiAddSegmentAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addSegmentAccounts(requestParameters: AddSegmentAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Deletes a segement specified by its unique code. Note that the group is deleted in all accounts that contain this segment.
@@ -109,13 +109,13 @@ export interface CustomerSegmentApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerSegmentApiInterface
      */
-    deleteSegmentRaw(requestParameters: CustomerSegmentApiDeleteSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteSegmentRaw(requestParameters: DeleteSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Deletes a segement specified by its unique code. Note that the group is deleted in all accounts that contain this segment.
      * Delete Segment
      */
-    deleteSegment(requestParameters: CustomerSegmentApiDeleteSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteSegment(requestParameters: DeleteSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Retrieves a segment specified the segment Id.
@@ -126,13 +126,13 @@ export interface CustomerSegmentApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerSegmentApiInterface
      */
-    getSegmentRaw(requestParameters: CustomerSegmentApiGetSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCustomerSegment>>;
+    getSegmentRaw(requestParameters: GetSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCustomerSegment>>;
 
     /**
      * Retrieves a segment specified the segment Id.
      * Get Segment
      */
-    getSegment(requestParameters: CustomerSegmentApiGetSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCustomerSegment>;
+    getSegment(requestParameters: GetSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCustomerSegment>;
 
     /**
      * Retrieves a list of all segments defined for the site according to any specified filter criteria and sort options.
@@ -146,13 +146,13 @@ export interface CustomerSegmentApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerSegmentApiInterface
      */
-    getSegmentsRaw(requestParameters: CustomerSegmentApiGetSegmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerSegmentCollection>>;
+    getSegmentsRaw(requestParameters: GetSegmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerSegmentCollection>>;
 
     /**
      * Retrieves a list of all segments defined for the site according to any specified filter criteria and sort options.
      * Get Segments
      */
-    getSegments(requestParameters: CustomerSegmentApiGetSegmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerSegmentCollection>;
+    getSegments(requestParameters: GetSegmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerSegmentCollection>;
 
     /**
      * Removes single account from a segment.
@@ -163,13 +163,13 @@ export interface CustomerSegmentApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerSegmentApiInterface
      */
-    removeSegmentAccountRaw(requestParameters: CustomerSegmentApiRemoveSegmentAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    removeSegmentAccountRaw(requestParameters: RemoveSegmentAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Removes single account from a segment.
      * Remove Segment Account
      */
-    removeSegmentAccount(requestParameters: CustomerSegmentApiRemoveSegmentAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    removeSegmentAccount(requestParameters: RemoveSegmentAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Update the code, name, or description of an existing segment.
@@ -181,13 +181,13 @@ export interface CustomerSegmentApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerSegmentApiInterface
      */
-    updateSegmentRaw(requestParameters: CustomerSegmentApiUpdateSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCustomerSegment>>;
+    updateSegmentRaw(requestParameters: UpdateSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCustomerSegment>>;
 
     /**
      * Update the code, name, or description of an existing segment.
      * Update Segment
      */
-    updateSegment(requestParameters: CustomerSegmentApiUpdateSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCustomerSegment>;
+    updateSegment(requestParameters: UpdateSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCustomerSegment>;
 
 }
 
@@ -205,7 +205,7 @@ export class CustomerSegmentApi extends runtime.BaseAPI implements CustomerSegme
      */
 
 
-    async addSegmentRaw(requestParameters: CustomerSegmentApiAddSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCustomerSegment>> {
+    async addSegmentRaw(requestParameters: AddSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCustomerSegment>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -237,7 +237,7 @@ export class CustomerSegmentApi extends runtime.BaseAPI implements CustomerSegme
      * Creates a new segment. Merchants create segments of customers, for example,   to offer discounts to particular groups or assign VIP status to a set of customers.
      * Adds Segment
      */
-    async addSegment(requestParameters: CustomerSegmentApiAddSegmentRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCustomerSegment> {
+    async addSegment(requestParameters: AddSegmentRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCustomerSegment> {
         const response = await this.addSegmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -248,7 +248,7 @@ export class CustomerSegmentApi extends runtime.BaseAPI implements CustomerSegme
      */
 
 
-    async addSegmentAccountsRaw(requestParameters: CustomerSegmentApiAddSegmentAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addSegmentAccountsRaw(requestParameters: AddSegmentAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling addSegmentAccounts.');
         }
@@ -284,7 +284,7 @@ export class CustomerSegmentApi extends runtime.BaseAPI implements CustomerSegme
      * Adds segments to an account.
      * Add Segments Accounts
      */
-    async addSegmentAccounts(requestParameters: CustomerSegmentApiAddSegmentAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async addSegmentAccounts(requestParameters: AddSegmentAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.addSegmentAccountsRaw(requestParameters, initOverrides);
     }
 
@@ -294,7 +294,7 @@ export class CustomerSegmentApi extends runtime.BaseAPI implements CustomerSegme
      */
 
 
-    async deleteSegmentRaw(requestParameters: CustomerSegmentApiDeleteSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteSegmentRaw(requestParameters: DeleteSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling deleteSegment.');
         }
@@ -323,7 +323,7 @@ export class CustomerSegmentApi extends runtime.BaseAPI implements CustomerSegme
      * Deletes a segement specified by its unique code. Note that the group is deleted in all accounts that contain this segment.
      * Delete Segment
      */
-    async deleteSegment(requestParameters: CustomerSegmentApiDeleteSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteSegment(requestParameters: DeleteSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteSegmentRaw(requestParameters, initOverrides);
     }
 
@@ -333,7 +333,7 @@ export class CustomerSegmentApi extends runtime.BaseAPI implements CustomerSegme
      */
 
 
-    async getSegmentRaw(requestParameters: CustomerSegmentApiGetSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCustomerSegment>> {
+    async getSegmentRaw(requestParameters: GetSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCustomerSegment>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getSegment.');
         }
@@ -366,7 +366,7 @@ export class CustomerSegmentApi extends runtime.BaseAPI implements CustomerSegme
      * Retrieves a segment specified the segment Id.
      * Get Segment
      */
-    async getSegment(requestParameters: CustomerSegmentApiGetSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCustomerSegment> {
+    async getSegment(requestParameters: GetSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCustomerSegment> {
         const response = await this.getSegmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -377,7 +377,7 @@ export class CustomerSegmentApi extends runtime.BaseAPI implements CustomerSegme
      */
 
 
-    async getSegmentsRaw(requestParameters: CustomerSegmentApiGetSegmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerSegmentCollection>> {
+    async getSegmentsRaw(requestParameters: GetSegmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerSegmentCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -422,7 +422,7 @@ export class CustomerSegmentApi extends runtime.BaseAPI implements CustomerSegme
      * Retrieves a list of all segments defined for the site according to any specified filter criteria and sort options.
      * Get Segments
      */
-    async getSegments(requestParameters: CustomerSegmentApiGetSegmentsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerSegmentCollection> {
+    async getSegments(requestParameters: GetSegmentsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerSegmentCollection> {
         const response = await this.getSegmentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -433,7 +433,7 @@ export class CustomerSegmentApi extends runtime.BaseAPI implements CustomerSegme
      */
 
 
-    async removeSegmentAccountRaw(requestParameters: CustomerSegmentApiRemoveSegmentAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async removeSegmentAccountRaw(requestParameters: RemoveSegmentAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling removeSegmentAccount.');
         }
@@ -466,7 +466,7 @@ export class CustomerSegmentApi extends runtime.BaseAPI implements CustomerSegme
      * Removes single account from a segment.
      * Remove Segment Account
      */
-    async removeSegmentAccount(requestParameters: CustomerSegmentApiRemoveSegmentAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async removeSegmentAccount(requestParameters: RemoveSegmentAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.removeSegmentAccountRaw(requestParameters, initOverrides);
     }
 
@@ -476,7 +476,7 @@ export class CustomerSegmentApi extends runtime.BaseAPI implements CustomerSegme
      */
 
 
-    async updateSegmentRaw(requestParameters: CustomerSegmentApiUpdateSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCustomerSegment>> {
+    async updateSegmentRaw(requestParameters: UpdateSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCustomerSegment>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling updateSegment.');
         }
@@ -512,7 +512,7 @@ export class CustomerSegmentApi extends runtime.BaseAPI implements CustomerSegme
      * Update the code, name, or description of an existing segment.
      * Update Segment
      */
-    async updateSegment(requestParameters: CustomerSegmentApiUpdateSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCustomerSegment> {
+    async updateSegment(requestParameters: UpdateSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCustomerSegment> {
         const response = await this.updateSegmentRaw(requestParameters, initOverrides);
         return await response.value();
     }

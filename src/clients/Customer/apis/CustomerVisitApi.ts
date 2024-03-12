@@ -20,17 +20,17 @@ import type {
   VisitCollection,
 } from '../models';
 
-export interface CustomerVisitApiAddVisitRequest {
+export interface AddVisitRequest {
     responseFields?: string;
     visit?: Visit;
 }
 
-export interface CustomerVisitApiGetVisitRequest {
+export interface GetVisitRequest {
     visitId: string;
     responseFields?: string;
 }
 
-export interface CustomerVisitApiGetVisitsRequest {
+export interface GetVisitsRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -38,7 +38,7 @@ export interface CustomerVisitApiGetVisitsRequest {
     responseFields?: string;
 }
 
-export interface CustomerVisitApiUpdateVisitRequest {
+export interface UpdateVisitRequest {
     visitId: string;
     responseFields?: string;
     visit?: Visit;
@@ -60,13 +60,13 @@ export interface CustomerVisitApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerVisitApiInterface
      */
-    addVisitRaw(requestParameters: CustomerVisitApiAddVisitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Visit>>;
+    addVisitRaw(requestParameters: AddVisitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Visit>>;
 
     /**
      * Adds visit info on the customer.
      * Add Visit
      */
-    addVisit(requestParameters: CustomerVisitApiAddVisitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Visit>;
+    addVisit(requestParameters: AddVisitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Visit>;
 
     /**
      * Gets visit info specified by visit Id.
@@ -77,13 +77,13 @@ export interface CustomerVisitApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerVisitApiInterface
      */
-    getVisitRaw(requestParameters: CustomerVisitApiGetVisitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Visit>>;
+    getVisitRaw(requestParameters: GetVisitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Visit>>;
 
     /**
      * Gets visit info specified by visit Id.
      * Get Visit
      */
-    getVisit(requestParameters: CustomerVisitApiGetVisitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Visit>;
+    getVisit(requestParameters: GetVisitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Visit>;
 
     /**
      * Gets a collection of visit info specified by filter and sort order.
@@ -97,13 +97,13 @@ export interface CustomerVisitApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerVisitApiInterface
      */
-    getVisitsRaw(requestParameters: CustomerVisitApiGetVisitsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VisitCollection>>;
+    getVisitsRaw(requestParameters: GetVisitsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VisitCollection>>;
 
     /**
      * Gets a collection of visit info specified by filter and sort order.
      * Get Visits
      */
-    getVisits(requestParameters: CustomerVisitApiGetVisitsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VisitCollection>;
+    getVisits(requestParameters: GetVisitsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VisitCollection>;
 
     /**
      * Updates an existing visit on the customer.
@@ -115,13 +115,13 @@ export interface CustomerVisitApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerVisitApiInterface
      */
-    updateVisitRaw(requestParameters: CustomerVisitApiUpdateVisitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Visit>>;
+    updateVisitRaw(requestParameters: UpdateVisitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Visit>>;
 
     /**
      * Updates an existing visit on the customer.
      * Updates Visit
      */
-    updateVisit(requestParameters: CustomerVisitApiUpdateVisitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Visit>;
+    updateVisit(requestParameters: UpdateVisitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Visit>;
 
 }
 
@@ -139,7 +139,7 @@ export class CustomerVisitApi extends runtime.BaseAPI implements CustomerVisitAp
      */
 
 
-    async addVisitRaw(requestParameters: CustomerVisitApiAddVisitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Visit>> {
+    async addVisitRaw(requestParameters: AddVisitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Visit>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -171,7 +171,7 @@ export class CustomerVisitApi extends runtime.BaseAPI implements CustomerVisitAp
      * Adds visit info on the customer.
      * Add Visit
      */
-    async addVisit(requestParameters: CustomerVisitApiAddVisitRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Visit> {
+    async addVisit(requestParameters: AddVisitRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Visit> {
         const response = await this.addVisitRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -182,7 +182,7 @@ export class CustomerVisitApi extends runtime.BaseAPI implements CustomerVisitAp
      */
 
 
-    async getVisitRaw(requestParameters: CustomerVisitApiGetVisitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Visit>> {
+    async getVisitRaw(requestParameters: GetVisitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Visit>> {
         if (requestParameters.visitId === null || requestParameters.visitId === undefined) {
             throw new runtime.RequiredError('visitId','Required parameter requestParameters.visitId was null or undefined when calling getVisit.');
         }
@@ -215,7 +215,7 @@ export class CustomerVisitApi extends runtime.BaseAPI implements CustomerVisitAp
      * Gets visit info specified by visit Id.
      * Get Visit
      */
-    async getVisit(requestParameters: CustomerVisitApiGetVisitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Visit> {
+    async getVisit(requestParameters: GetVisitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Visit> {
         const response = await this.getVisitRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -226,7 +226,7 @@ export class CustomerVisitApi extends runtime.BaseAPI implements CustomerVisitAp
      */
 
 
-    async getVisitsRaw(requestParameters: CustomerVisitApiGetVisitsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VisitCollection>> {
+    async getVisitsRaw(requestParameters: GetVisitsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VisitCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -271,7 +271,7 @@ export class CustomerVisitApi extends runtime.BaseAPI implements CustomerVisitAp
      * Gets a collection of visit info specified by filter and sort order.
      * Get Visits
      */
-    async getVisits(requestParameters: CustomerVisitApiGetVisitsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VisitCollection> {
+    async getVisits(requestParameters: GetVisitsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VisitCollection> {
         const response = await this.getVisitsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -282,7 +282,7 @@ export class CustomerVisitApi extends runtime.BaseAPI implements CustomerVisitAp
      */
 
 
-    async updateVisitRaw(requestParameters: CustomerVisitApiUpdateVisitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Visit>> {
+    async updateVisitRaw(requestParameters: UpdateVisitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Visit>> {
         if (requestParameters.visitId === null || requestParameters.visitId === undefined) {
             throw new runtime.RequiredError('visitId','Required parameter requestParameters.visitId was null or undefined when calling updateVisit.');
         }
@@ -318,7 +318,7 @@ export class CustomerVisitApi extends runtime.BaseAPI implements CustomerVisitAp
      * Updates an existing visit on the customer.
      * Updates Visit
      */
-    async updateVisit(requestParameters: CustomerVisitApiUpdateVisitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Visit> {
+    async updateVisit(requestParameters: UpdateVisitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Visit> {
         const response = await this.updateVisitRaw(requestParameters, initOverrides);
         return await response.value();
     }

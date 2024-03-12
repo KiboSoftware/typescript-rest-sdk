@@ -23,44 +23,44 @@ import type {
   CouponSetCollection,
 } from '../models';
 
-export interface CouponSetsApiAddCouponSetRequest {
+export interface AddCouponSetRequest {
     responseFields?: string;
     couponSet?: CouponSet;
 }
 
-export interface CouponSetsApiAddCouponsRequest {
+export interface AddCouponsRequest {
     couponSetCode: string;
     responseFields?: string;
     coupon?: Array<Coupon>;
 }
 
-export interface CouponSetsApiAssignDiscountRequest {
+export interface AssignDiscountRequest {
     couponSetCode: string;
     responseFields?: string;
     assignedDiscount?: AssignedDiscount;
 }
 
-export interface CouponSetsApiDeleteCouponRequest {
+export interface DeleteCouponRequest {
     couponSetCode: string;
     couponCode: string;
 }
 
-export interface CouponSetsApiDeleteCouponSetRequest {
+export interface DeleteCouponSetRequest {
     couponSetCode: string;
 }
 
-export interface CouponSetsApiDeleteCouponsRequest {
+export interface DeleteCouponsRequest {
     couponSetCode: string;
     responseFields?: string;
     requestBody?: Array<string>;
 }
 
-export interface CouponSetsApiGetAssignedDiscountsRequest {
+export interface GetAssignedDiscountsRequest {
     couponSetCode: string;
     responseFields?: string;
 }
 
-export interface CouponSetsApiGetCouponRequest {
+export interface GetCouponRequest {
     couponSetCode: string;
     couponCode: string;
     includeCounts?: boolean;
@@ -68,14 +68,14 @@ export interface CouponSetsApiGetCouponRequest {
     responseFields?: string;
 }
 
-export interface CouponSetsApiGetCouponSetRequest {
+export interface GetCouponSetRequest {
     couponSetCode: string;
     includeCounts?: boolean;
     responseGroups?: string;
     responseFields?: string;
 }
 
-export interface CouponSetsApiGetCouponSetsRequest {
+export interface GetCouponSetsRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -85,7 +85,7 @@ export interface CouponSetsApiGetCouponSetsRequest {
     responseFields?: string;
 }
 
-export interface CouponSetsApiGetCouponsRequest {
+export interface GetCouponsRequest {
     couponSetCode: string;
     startIndex?: number;
     pageSize?: number;
@@ -96,22 +96,22 @@ export interface CouponSetsApiGetCouponsRequest {
     responseFields?: string;
 }
 
-export interface CouponSetsApiGetUniqueCouponSetCodeRequest {
+export interface GetUniqueCouponSetCodeRequest {
     responseFields?: string;
 }
 
-export interface CouponSetsApiUnAssignDiscountRequest {
+export interface UnAssignDiscountRequest {
     couponSetCode: string;
     discountId: number;
 }
 
-export interface CouponSetsApiUpdateCouponSetRequest {
+export interface UpdateCouponSetRequest {
     couponSetCode: string;
     responseFields?: string;
     couponSet?: CouponSet;
 }
 
-export interface CouponSetsApiValidateUniqueCouponSetCodeRequest {
+export interface ValidateUniqueCouponSetCodeRequest {
     code?: string;
     responseFields?: string;
 }
@@ -132,13 +132,13 @@ export interface CouponSetsApiInterface {
      * @throws {RequiredError}
      * @memberof CouponSetsApiInterface
      */
-    addCouponSetRaw(requestParameters: CouponSetsApiAddCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CouponSet>>;
+    addCouponSetRaw(requestParameters: AddCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CouponSet>>;
 
     /**
      * Adds a single CouponSet
      * Add coupon set
      */
-    addCouponSet(requestParameters: CouponSetsApiAddCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponSet>;
+    addCouponSet(requestParameters: AddCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponSet>;
 
     /**
      * 
@@ -150,13 +150,13 @@ export interface CouponSetsApiInterface {
      * @throws {RequiredError}
      * @memberof CouponSetsApiInterface
      */
-    addCouponsRaw(requestParameters: CouponSetsApiAddCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addCouponsRaw(requestParameters: AddCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * 
      * Add coupons
      */
-    addCoupons(requestParameters: CouponSetsApiAddCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addCoupons(requestParameters: AddCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * 
@@ -168,13 +168,13 @@ export interface CouponSetsApiInterface {
      * @throws {RequiredError}
      * @memberof CouponSetsApiInterface
      */
-    assignDiscountRaw(requestParameters: CouponSetsApiAssignDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    assignDiscountRaw(requestParameters: AssignDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * 
      * Assign discount
      */
-    assignDiscount(requestParameters: CouponSetsApiAssignDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    assignDiscount(requestParameters: AssignDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * 
@@ -185,13 +185,13 @@ export interface CouponSetsApiInterface {
      * @throws {RequiredError}
      * @memberof CouponSetsApiInterface
      */
-    deleteCouponRaw(requestParameters: CouponSetsApiDeleteCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteCouponRaw(requestParameters: DeleteCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * 
      * Delete coupon
      */
-    deleteCoupon(requestParameters: CouponSetsApiDeleteCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteCoupon(requestParameters: DeleteCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * 
@@ -201,13 +201,13 @@ export interface CouponSetsApiInterface {
      * @throws {RequiredError}
      * @memberof CouponSetsApiInterface
      */
-    deleteCouponSetRaw(requestParameters: CouponSetsApiDeleteCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteCouponSetRaw(requestParameters: DeleteCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * 
      * Delete coupon set
      */
-    deleteCouponSet(requestParameters: CouponSetsApiDeleteCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteCouponSet(requestParameters: DeleteCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * 
@@ -219,13 +219,13 @@ export interface CouponSetsApiInterface {
      * @throws {RequiredError}
      * @memberof CouponSetsApiInterface
      */
-    deleteCouponsRaw(requestParameters: CouponSetsApiDeleteCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteCouponsRaw(requestParameters: DeleteCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * 
      * Delete coupons
      */
-    deleteCoupons(requestParameters: CouponSetsApiDeleteCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteCoupons(requestParameters: DeleteCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * 
@@ -236,13 +236,13 @@ export interface CouponSetsApiInterface {
      * @throws {RequiredError}
      * @memberof CouponSetsApiInterface
      */
-    getAssignedDiscountsRaw(requestParameters: CouponSetsApiGetAssignedDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AssignedDiscount>>>;
+    getAssignedDiscountsRaw(requestParameters: GetAssignedDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AssignedDiscount>>>;
 
     /**
      * 
      * Get assigned discounts
      */
-    getAssignedDiscounts(requestParameters: CouponSetsApiGetAssignedDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AssignedDiscount>>;
+    getAssignedDiscounts(requestParameters: GetAssignedDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AssignedDiscount>>;
 
     /**
      * 
@@ -256,13 +256,13 @@ export interface CouponSetsApiInterface {
      * @throws {RequiredError}
      * @memberof CouponSetsApiInterface
      */
-    getCouponRaw(requestParameters: CouponSetsApiGetCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Coupon>>;
+    getCouponRaw(requestParameters: GetCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Coupon>>;
 
     /**
      * 
      * Get coupon
      */
-    getCoupon(requestParameters: CouponSetsApiGetCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Coupon>;
+    getCoupon(requestParameters: GetCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Coupon>;
 
     /**
      * Returns a single CouponSet
@@ -275,13 +275,13 @@ export interface CouponSetsApiInterface {
      * @throws {RequiredError}
      * @memberof CouponSetsApiInterface
      */
-    getCouponSetRaw(requestParameters: CouponSetsApiGetCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CouponSet>>;
+    getCouponSetRaw(requestParameters: GetCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CouponSet>>;
 
     /**
      * Returns a single CouponSet
      * Get coupon set
      */
-    getCouponSet(requestParameters: CouponSetsApiGetCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponSet>;
+    getCouponSet(requestParameters: GetCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponSet>;
 
     /**
      * Returns a paged collection of CouponSets
@@ -297,13 +297,13 @@ export interface CouponSetsApiInterface {
      * @throws {RequiredError}
      * @memberof CouponSetsApiInterface
      */
-    getCouponSetsRaw(requestParameters: CouponSetsApiGetCouponSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CouponSetCollection>>;
+    getCouponSetsRaw(requestParameters: GetCouponSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CouponSetCollection>>;
 
     /**
      * Returns a paged collection of CouponSets
      * Get coupon sets
      */
-    getCouponSets(requestParameters: CouponSetsApiGetCouponSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponSetCollection>;
+    getCouponSets(requestParameters: GetCouponSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponSetCollection>;
 
     /**
      * Returns a paged collection of Coupons
@@ -320,13 +320,13 @@ export interface CouponSetsApiInterface {
      * @throws {RequiredError}
      * @memberof CouponSetsApiInterface
      */
-    getCouponsRaw(requestParameters: CouponSetsApiGetCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CouponCollection>>;
+    getCouponsRaw(requestParameters: GetCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CouponCollection>>;
 
     /**
      * Returns a paged collection of Coupons
      * Get coupons
      */
-    getCoupons(requestParameters: CouponSetsApiGetCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponCollection>;
+    getCoupons(requestParameters: GetCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponCollection>;
 
     /**
      * Returns a random 4 character code that is unique as a coupon set code.
@@ -336,13 +336,13 @@ export interface CouponSetsApiInterface {
      * @throws {RequiredError}
      * @memberof CouponSetsApiInterface
      */
-    getUniqueCouponSetCodeRaw(requestParameters: CouponSetsApiGetUniqueCouponSetCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
+    getUniqueCouponSetCodeRaw(requestParameters: GetUniqueCouponSetCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
 
     /**
      * Returns a random 4 character code that is unique as a coupon set code.
      * Get unique coupon set code
      */
-    getUniqueCouponSetCode(requestParameters: CouponSetsApiGetUniqueCouponSetCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
+    getUniqueCouponSetCode(requestParameters: GetUniqueCouponSetCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
 
     /**
      * 
@@ -353,13 +353,13 @@ export interface CouponSetsApiInterface {
      * @throws {RequiredError}
      * @memberof CouponSetsApiInterface
      */
-    unAssignDiscountRaw(requestParameters: CouponSetsApiUnAssignDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    unAssignDiscountRaw(requestParameters: UnAssignDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * 
      * UnAssign discount
      */
-    unAssignDiscount(requestParameters: CouponSetsApiUnAssignDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    unAssignDiscount(requestParameters: UnAssignDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Update a CouponSet.     You can not update the Code or ID once the set is created.
@@ -371,13 +371,13 @@ export interface CouponSetsApiInterface {
      * @throws {RequiredError}
      * @memberof CouponSetsApiInterface
      */
-    updateCouponSetRaw(requestParameters: CouponSetsApiUpdateCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CouponSet>>;
+    updateCouponSetRaw(requestParameters: UpdateCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CouponSet>>;
 
     /**
      * Update a CouponSet.     You can not update the Code or ID once the set is created.
      * Update coupon set
      */
-    updateCouponSet(requestParameters: CouponSetsApiUpdateCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponSet>;
+    updateCouponSet(requestParameters: UpdateCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponSet>;
 
     /**
      *  Tests code for uniqueness and validity.
@@ -388,13 +388,13 @@ export interface CouponSetsApiInterface {
      * @throws {RequiredError}
      * @memberof CouponSetsApiInterface
      */
-    validateUniqueCouponSetCodeRaw(requestParameters: CouponSetsApiValidateUniqueCouponSetCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    validateUniqueCouponSetCodeRaw(requestParameters: ValidateUniqueCouponSetCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      *  Tests code for uniqueness and validity.
      * Validate unique coupon set code
      */
-    validateUniqueCouponSetCode(requestParameters: CouponSetsApiValidateUniqueCouponSetCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    validateUniqueCouponSetCode(requestParameters: ValidateUniqueCouponSetCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
 }
 
@@ -412,7 +412,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      */
 
 
-    async addCouponSetRaw(requestParameters: CouponSetsApiAddCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CouponSet>> {
+    async addCouponSetRaw(requestParameters: AddCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CouponSet>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -444,7 +444,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      * Adds a single CouponSet
      * Add coupon set
      */
-    async addCouponSet(requestParameters: CouponSetsApiAddCouponSetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponSet> {
+    async addCouponSet(requestParameters: AddCouponSetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponSet> {
         const response = await this.addCouponSetRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -455,7 +455,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      */
 
 
-    async addCouponsRaw(requestParameters: CouponSetsApiAddCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addCouponsRaw(requestParameters: AddCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.couponSetCode === null || requestParameters.couponSetCode === undefined) {
             throw new runtime.RequiredError('couponSetCode','Required parameter requestParameters.couponSetCode was null or undefined when calling addCoupons.');
         }
@@ -491,7 +491,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      * 
      * Add coupons
      */
-    async addCoupons(requestParameters: CouponSetsApiAddCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async addCoupons(requestParameters: AddCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.addCouponsRaw(requestParameters, initOverrides);
     }
 
@@ -501,7 +501,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      */
 
 
-    async assignDiscountRaw(requestParameters: CouponSetsApiAssignDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async assignDiscountRaw(requestParameters: AssignDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.couponSetCode === null || requestParameters.couponSetCode === undefined) {
             throw new runtime.RequiredError('couponSetCode','Required parameter requestParameters.couponSetCode was null or undefined when calling assignDiscount.');
         }
@@ -537,7 +537,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      * 
      * Assign discount
      */
-    async assignDiscount(requestParameters: CouponSetsApiAssignDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async assignDiscount(requestParameters: AssignDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.assignDiscountRaw(requestParameters, initOverrides);
     }
 
@@ -547,7 +547,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      */
 
 
-    async deleteCouponRaw(requestParameters: CouponSetsApiDeleteCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteCouponRaw(requestParameters: DeleteCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.couponSetCode === null || requestParameters.couponSetCode === undefined) {
             throw new runtime.RequiredError('couponSetCode','Required parameter requestParameters.couponSetCode was null or undefined when calling deleteCoupon.');
         }
@@ -580,7 +580,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      * 
      * Delete coupon
      */
-    async deleteCoupon(requestParameters: CouponSetsApiDeleteCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteCoupon(requestParameters: DeleteCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteCouponRaw(requestParameters, initOverrides);
     }
 
@@ -590,7 +590,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      */
 
 
-    async deleteCouponSetRaw(requestParameters: CouponSetsApiDeleteCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteCouponSetRaw(requestParameters: DeleteCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.couponSetCode === null || requestParameters.couponSetCode === undefined) {
             throw new runtime.RequiredError('couponSetCode','Required parameter requestParameters.couponSetCode was null or undefined when calling deleteCouponSet.');
         }
@@ -619,7 +619,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      * 
      * Delete coupon set
      */
-    async deleteCouponSet(requestParameters: CouponSetsApiDeleteCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteCouponSet(requestParameters: DeleteCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteCouponSetRaw(requestParameters, initOverrides);
     }
 
@@ -629,7 +629,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      */
 
 
-    async deleteCouponsRaw(requestParameters: CouponSetsApiDeleteCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteCouponsRaw(requestParameters: DeleteCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.couponSetCode === null || requestParameters.couponSetCode === undefined) {
             throw new runtime.RequiredError('couponSetCode','Required parameter requestParameters.couponSetCode was null or undefined when calling deleteCoupons.');
         }
@@ -665,7 +665,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      * 
      * Delete coupons
      */
-    async deleteCoupons(requestParameters: CouponSetsApiDeleteCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteCoupons(requestParameters: DeleteCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteCouponsRaw(requestParameters, initOverrides);
     }
 
@@ -675,7 +675,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      */
 
 
-    async getAssignedDiscountsRaw(requestParameters: CouponSetsApiGetAssignedDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AssignedDiscount>>> {
+    async getAssignedDiscountsRaw(requestParameters: GetAssignedDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AssignedDiscount>>> {
         if (requestParameters.couponSetCode === null || requestParameters.couponSetCode === undefined) {
             throw new runtime.RequiredError('couponSetCode','Required parameter requestParameters.couponSetCode was null or undefined when calling getAssignedDiscounts.');
         }
@@ -708,7 +708,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      * 
      * Get assigned discounts
      */
-    async getAssignedDiscounts(requestParameters: CouponSetsApiGetAssignedDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AssignedDiscount>> {
+    async getAssignedDiscounts(requestParameters: GetAssignedDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AssignedDiscount>> {
         const response = await this.getAssignedDiscountsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -719,7 +719,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      */
 
 
-    async getCouponRaw(requestParameters: CouponSetsApiGetCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Coupon>> {
+    async getCouponRaw(requestParameters: GetCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Coupon>> {
         if (requestParameters.couponSetCode === null || requestParameters.couponSetCode === undefined) {
             throw new runtime.RequiredError('couponSetCode','Required parameter requestParameters.couponSetCode was null or undefined when calling getCoupon.');
         }
@@ -764,7 +764,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      * 
      * Get coupon
      */
-    async getCoupon(requestParameters: CouponSetsApiGetCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Coupon> {
+    async getCoupon(requestParameters: GetCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Coupon> {
         const response = await this.getCouponRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -775,7 +775,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      */
 
 
-    async getCouponSetRaw(requestParameters: CouponSetsApiGetCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CouponSet>> {
+    async getCouponSetRaw(requestParameters: GetCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CouponSet>> {
         if (requestParameters.couponSetCode === null || requestParameters.couponSetCode === undefined) {
             throw new runtime.RequiredError('couponSetCode','Required parameter requestParameters.couponSetCode was null or undefined when calling getCouponSet.');
         }
@@ -816,7 +816,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      * Returns a single CouponSet
      * Get coupon set
      */
-    async getCouponSet(requestParameters: CouponSetsApiGetCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponSet> {
+    async getCouponSet(requestParameters: GetCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponSet> {
         const response = await this.getCouponSetRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -827,7 +827,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      */
 
 
-    async getCouponSetsRaw(requestParameters: CouponSetsApiGetCouponSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CouponSetCollection>> {
+    async getCouponSetsRaw(requestParameters: GetCouponSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CouponSetCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -880,7 +880,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      * Returns a paged collection of CouponSets
      * Get coupon sets
      */
-    async getCouponSets(requestParameters: CouponSetsApiGetCouponSetsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponSetCollection> {
+    async getCouponSets(requestParameters: GetCouponSetsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponSetCollection> {
         const response = await this.getCouponSetsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -891,7 +891,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      */
 
 
-    async getCouponsRaw(requestParameters: CouponSetsApiGetCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CouponCollection>> {
+    async getCouponsRaw(requestParameters: GetCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CouponCollection>> {
         if (requestParameters.couponSetCode === null || requestParameters.couponSetCode === undefined) {
             throw new runtime.RequiredError('couponSetCode','Required parameter requestParameters.couponSetCode was null or undefined when calling getCoupons.');
         }
@@ -948,7 +948,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      * Returns a paged collection of Coupons
      * Get coupons
      */
-    async getCoupons(requestParameters: CouponSetsApiGetCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponCollection> {
+    async getCoupons(requestParameters: GetCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponCollection> {
         const response = await this.getCouponsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -959,7 +959,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      */
 
 
-    async getUniqueCouponSetCodeRaw(requestParameters: CouponSetsApiGetUniqueCouponSetCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async getUniqueCouponSetCodeRaw(requestParameters: GetUniqueCouponSetCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -988,7 +988,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      * Returns a random 4 character code that is unique as a coupon set code.
      * Get unique coupon set code
      */
-    async getUniqueCouponSetCode(requestParameters: CouponSetsApiGetUniqueCouponSetCodeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+    async getUniqueCouponSetCode(requestParameters: GetUniqueCouponSetCodeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
         const response = await this.getUniqueCouponSetCodeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -999,7 +999,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      */
 
 
-    async unAssignDiscountRaw(requestParameters: CouponSetsApiUnAssignDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async unAssignDiscountRaw(requestParameters: UnAssignDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.couponSetCode === null || requestParameters.couponSetCode === undefined) {
             throw new runtime.RequiredError('couponSetCode','Required parameter requestParameters.couponSetCode was null or undefined when calling unAssignDiscount.');
         }
@@ -1032,7 +1032,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      * 
      * UnAssign discount
      */
-    async unAssignDiscount(requestParameters: CouponSetsApiUnAssignDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async unAssignDiscount(requestParameters: UnAssignDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.unAssignDiscountRaw(requestParameters, initOverrides);
     }
 
@@ -1042,7 +1042,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      */
 
 
-    async updateCouponSetRaw(requestParameters: CouponSetsApiUpdateCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CouponSet>> {
+    async updateCouponSetRaw(requestParameters: UpdateCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CouponSet>> {
         if (requestParameters.couponSetCode === null || requestParameters.couponSetCode === undefined) {
             throw new runtime.RequiredError('couponSetCode','Required parameter requestParameters.couponSetCode was null or undefined when calling updateCouponSet.');
         }
@@ -1078,7 +1078,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      * Update a CouponSet.     You can not update the Code or ID once the set is created.
      * Update coupon set
      */
-    async updateCouponSet(requestParameters: CouponSetsApiUpdateCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponSet> {
+    async updateCouponSet(requestParameters: UpdateCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponSet> {
         const response = await this.updateCouponSetRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1089,7 +1089,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      */
 
 
-    async validateUniqueCouponSetCodeRaw(requestParameters: CouponSetsApiValidateUniqueCouponSetCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async validateUniqueCouponSetCodeRaw(requestParameters: ValidateUniqueCouponSetCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         if (requestParameters.code !== undefined) {
@@ -1122,7 +1122,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiInter
      *  Tests code for uniqueness and validity.
      * Validate unique coupon set code
      */
-    async validateUniqueCouponSetCode(requestParameters: CouponSetsApiValidateUniqueCouponSetCodeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async validateUniqueCouponSetCode(requestParameters: ValidateUniqueCouponSetCodeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.validateUniqueCouponSetCodeRaw(requestParameters, initOverrides);
     }
 

@@ -21,7 +21,7 @@ import type {
   EventSubscriptionCollection,
 } from '../models';
 
-export interface SubscriptionApiGetDeliveryAttemptSummariesRequest {
+export interface GetDeliveryAttemptSummariesRequest {
     subscriptionId: string;
     startIndex?: number;
     pageSize?: number;
@@ -30,7 +30,7 @@ export interface SubscriptionApiGetDeliveryAttemptSummariesRequest {
     responseFields?: string;
 }
 
-export interface SubscriptionApiGetDeliveryAttemptSummariesAllSubscriptionsRequest {
+export interface GetDeliveryAttemptSummariesAllSubscriptionsRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -38,13 +38,13 @@ export interface SubscriptionApiGetDeliveryAttemptSummariesAllSubscriptionsReque
     responseFields?: string;
 }
 
-export interface SubscriptionApiGetDeliveryAttemptSummaryRequest {
+export interface GetDeliveryAttemptSummaryRequest {
     subscriptionId: string;
     processId: number;
     responseFields?: string;
 }
 
-export interface SubscriptionApiGetSubscriptionsRequest {
+export interface GetSubscriptionsRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -73,13 +73,13 @@ export interface SubscriptionApiInterface {
      * @throws {RequiredError}
      * @memberof SubscriptionApiInterface
      */
-    getDeliveryAttemptSummariesRaw(requestParameters: SubscriptionApiGetDeliveryAttemptSummariesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventDeliverySummaryCollection>>;
+    getDeliveryAttemptSummariesRaw(requestParameters: GetDeliveryAttemptSummariesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventDeliverySummaryCollection>>;
 
     /**
      * Get delivery attempts for the specified subscription
      * Get Delivery Attempt Summaries
      */
-    getDeliveryAttemptSummaries(requestParameters: SubscriptionApiGetDeliveryAttemptSummariesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventDeliverySummaryCollection>;
+    getDeliveryAttemptSummaries(requestParameters: GetDeliveryAttemptSummariesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventDeliverySummaryCollection>;
 
     /**
      * Get delivery attempts
@@ -93,13 +93,13 @@ export interface SubscriptionApiInterface {
      * @throws {RequiredError}
      * @memberof SubscriptionApiInterface
      */
-    getDeliveryAttemptSummariesAllSubscriptionsRaw(requestParameters: SubscriptionApiGetDeliveryAttemptSummariesAllSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventDeliverySummaryCollection>>;
+    getDeliveryAttemptSummariesAllSubscriptionsRaw(requestParameters: GetDeliveryAttemptSummariesAllSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventDeliverySummaryCollection>>;
 
     /**
      * Get delivery attempts
      * Get Delivery Attempt Summaries All Subscriptions
      */
-    getDeliveryAttemptSummariesAllSubscriptions(requestParameters: SubscriptionApiGetDeliveryAttemptSummariesAllSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventDeliverySummaryCollection>;
+    getDeliveryAttemptSummariesAllSubscriptions(requestParameters: GetDeliveryAttemptSummariesAllSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventDeliverySummaryCollection>;
 
     /**
      * Get delivery attempt summary
@@ -111,13 +111,13 @@ export interface SubscriptionApiInterface {
      * @throws {RequiredError}
      * @memberof SubscriptionApiInterface
      */
-    getDeliveryAttemptSummaryRaw(requestParameters: SubscriptionApiGetDeliveryAttemptSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventDeliverySummary>>;
+    getDeliveryAttemptSummaryRaw(requestParameters: GetDeliveryAttemptSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventDeliverySummary>>;
 
     /**
      * Get delivery attempt summary
      * Get Delivery Attempt Summary
      */
-    getDeliveryAttemptSummary(requestParameters: SubscriptionApiGetDeliveryAttemptSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventDeliverySummary>;
+    getDeliveryAttemptSummary(requestParameters: GetDeliveryAttemptSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventDeliverySummary>;
 
     /**
      * Retrieves a list of events according to any specified filter criteria and sort options.
@@ -132,13 +132,13 @@ export interface SubscriptionApiInterface {
      * @throws {RequiredError}
      * @memberof SubscriptionApiInterface
      */
-    getSubscriptionsRaw(requestParameters: SubscriptionApiGetSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventSubscriptionCollection>>;
+    getSubscriptionsRaw(requestParameters: GetSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventSubscriptionCollection>>;
 
     /**
      * Retrieves a list of events according to any specified filter criteria and sort options.
      * Get Subscriptions
      */
-    getSubscriptions(requestParameters: SubscriptionApiGetSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventSubscriptionCollection>;
+    getSubscriptions(requestParameters: GetSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventSubscriptionCollection>;
 
 }
 
@@ -156,7 +156,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async getDeliveryAttemptSummariesRaw(requestParameters: SubscriptionApiGetDeliveryAttemptSummariesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventDeliverySummaryCollection>> {
+    async getDeliveryAttemptSummariesRaw(requestParameters: GetDeliveryAttemptSummariesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventDeliverySummaryCollection>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling getDeliveryAttemptSummaries.');
         }
@@ -205,7 +205,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Get delivery attempts for the specified subscription
      * Get Delivery Attempt Summaries
      */
-    async getDeliveryAttemptSummaries(requestParameters: SubscriptionApiGetDeliveryAttemptSummariesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventDeliverySummaryCollection> {
+    async getDeliveryAttemptSummaries(requestParameters: GetDeliveryAttemptSummariesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventDeliverySummaryCollection> {
         const response = await this.getDeliveryAttemptSummariesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -216,7 +216,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async getDeliveryAttemptSummariesAllSubscriptionsRaw(requestParameters: SubscriptionApiGetDeliveryAttemptSummariesAllSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventDeliverySummaryCollection>> {
+    async getDeliveryAttemptSummariesAllSubscriptionsRaw(requestParameters: GetDeliveryAttemptSummariesAllSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventDeliverySummaryCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -261,7 +261,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Get delivery attempts
      * Get Delivery Attempt Summaries All Subscriptions
      */
-    async getDeliveryAttemptSummariesAllSubscriptions(requestParameters: SubscriptionApiGetDeliveryAttemptSummariesAllSubscriptionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventDeliverySummaryCollection> {
+    async getDeliveryAttemptSummariesAllSubscriptions(requestParameters: GetDeliveryAttemptSummariesAllSubscriptionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventDeliverySummaryCollection> {
         const response = await this.getDeliveryAttemptSummariesAllSubscriptionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -272,7 +272,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async getDeliveryAttemptSummaryRaw(requestParameters: SubscriptionApiGetDeliveryAttemptSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventDeliverySummary>> {
+    async getDeliveryAttemptSummaryRaw(requestParameters: GetDeliveryAttemptSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventDeliverySummary>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling getDeliveryAttemptSummary.');
         }
@@ -309,7 +309,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Get delivery attempt summary
      * Get Delivery Attempt Summary
      */
-    async getDeliveryAttemptSummary(requestParameters: SubscriptionApiGetDeliveryAttemptSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventDeliverySummary> {
+    async getDeliveryAttemptSummary(requestParameters: GetDeliveryAttemptSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventDeliverySummary> {
         const response = await this.getDeliveryAttemptSummaryRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -320,7 +320,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async getSubscriptionsRaw(requestParameters: SubscriptionApiGetSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventSubscriptionCollection>> {
+    async getSubscriptionsRaw(requestParameters: GetSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventSubscriptionCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -369,7 +369,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Retrieves a list of events according to any specified filter criteria and sort options.
      * Get Subscriptions
      */
-    async getSubscriptions(requestParameters: SubscriptionApiGetSubscriptionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventSubscriptionCollection> {
+    async getSubscriptions(requestParameters: GetSubscriptionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventSubscriptionCollection> {
         const response = await this.getSubscriptionsRaw(requestParameters, initOverrides);
         return await response.value();
     }

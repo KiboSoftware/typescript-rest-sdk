@@ -19,7 +19,7 @@ import type {
   ExtendedCustomerContactCollection,
 } from '../models';
 
-export interface B2BContactApiGetB2BContactsRequest {
+export interface GetB2BContactsRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -50,13 +50,13 @@ export interface B2BContactApiInterface {
      * @throws {RequiredError}
      * @memberof B2BContactApiInterface
      */
-    getB2BContactsRaw(requestParameters: B2BContactApiGetB2BContactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtendedCustomerContactCollection>>;
+    getB2BContactsRaw(requestParameters: GetB2BContactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtendedCustomerContactCollection>>;
 
     /**
      * Retrieves a list of B2B contacts according to any specified filter criteria and sort options.
      * Get B2B Contacts
      */
-    getB2BContacts(requestParameters: B2BContactApiGetB2BContactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtendedCustomerContactCollection>;
+    getB2BContacts(requestParameters: GetB2BContactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtendedCustomerContactCollection>;
 
 }
 
@@ -74,7 +74,7 @@ export class B2BContactApi extends runtime.BaseAPI implements B2BContactApiInter
      */
 
 
-    async getB2BContactsRaw(requestParameters: B2BContactApiGetB2BContactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtendedCustomerContactCollection>> {
+    async getB2BContactsRaw(requestParameters: GetB2BContactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtendedCustomerContactCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -127,7 +127,7 @@ export class B2BContactApi extends runtime.BaseAPI implements B2BContactApiInter
      * Retrieves a list of B2B contacts according to any specified filter criteria and sort options.
      * Get B2B Contacts
      */
-    async getB2BContacts(requestParameters: B2BContactApiGetB2BContactsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtendedCustomerContactCollection> {
+    async getB2BContacts(requestParameters: GetB2BContactsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtendedCustomerContactCollection> {
         const response = await this.getB2BContactsRaw(requestParameters, initOverrides);
         return await response.value();
     }

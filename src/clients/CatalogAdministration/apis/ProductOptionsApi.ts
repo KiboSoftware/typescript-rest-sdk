@@ -19,29 +19,29 @@ import type {
   CatalogAdminsProductOption,
 } from '../models';
 
-export interface ProductOptionsApiAddOptionRequest {
+export interface AddOptionRequest {
     productCode: string;
     responseFields?: string;
     catalogAdminsProductOption?: CatalogAdminsProductOption;
 }
 
-export interface ProductOptionsApiDeleteOptionRequest {
+export interface DeleteOptionRequest {
     productCode: string;
     attributeFQN: string;
 }
 
-export interface ProductOptionsApiGetOptionRequest {
+export interface GetOptionRequest {
     productCode: string;
     attributeFQN: string;
     responseFields?: string;
 }
 
-export interface ProductOptionsApiGetOptionsRequest {
+export interface GetOptionsRequest {
     productCode: string;
     responseFields?: string;
 }
 
-export interface ProductOptionsApiUpdateOptionRequest {
+export interface UpdateOptionRequest {
     productCode: string;
     attributeFQN: string;
     responseFields?: string;
@@ -65,13 +65,13 @@ export interface ProductOptionsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductOptionsApiInterface
      */
-    addOptionRaw(requestParameters: ProductOptionsApiAddOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductOption>>;
+    addOptionRaw(requestParameters: AddOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductOption>>;
 
     /**
      * Add option
      * Add option
      */
-    addOption(requestParameters: ProductOptionsApiAddOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductOption>;
+    addOption(requestParameters: AddOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductOption>;
 
     /**
      * Delete individual option
@@ -82,13 +82,13 @@ export interface ProductOptionsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductOptionsApiInterface
      */
-    deleteOptionRaw(requestParameters: ProductOptionsApiDeleteOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteOptionRaw(requestParameters: DeleteOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Delete individual option
      * Delete option
      */
-    deleteOption(requestParameters: ProductOptionsApiDeleteOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteOption(requestParameters: DeleteOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Get individual option
@@ -100,13 +100,13 @@ export interface ProductOptionsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductOptionsApiInterface
      */
-    getOptionRaw(requestParameters: ProductOptionsApiGetOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductOption>>;
+    getOptionRaw(requestParameters: GetOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductOption>>;
 
     /**
      * Get individual option
      * Get option
      */
-    getOption(requestParameters: ProductOptionsApiGetOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductOption>;
+    getOption(requestParameters: GetOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductOption>;
 
     /**
      * Get options for the product
@@ -117,13 +117,13 @@ export interface ProductOptionsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductOptionsApiInterface
      */
-    getOptionsRaw(requestParameters: ProductOptionsApiGetOptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsProductOption>>>;
+    getOptionsRaw(requestParameters: GetOptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsProductOption>>>;
 
     /**
      * Get options for the product
      * Get options
      */
-    getOptions(requestParameters: ProductOptionsApiGetOptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsProductOption>>;
+    getOptions(requestParameters: GetOptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsProductOption>>;
 
     /**
      * Update individual option
@@ -136,13 +136,13 @@ export interface ProductOptionsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductOptionsApiInterface
      */
-    updateOptionRaw(requestParameters: ProductOptionsApiUpdateOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductOption>>;
+    updateOptionRaw(requestParameters: UpdateOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductOption>>;
 
     /**
      * Update individual option
      * Update option
      */
-    updateOption(requestParameters: ProductOptionsApiUpdateOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductOption>;
+    updateOption(requestParameters: UpdateOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductOption>;
 
 }
 
@@ -160,7 +160,7 @@ export class ProductOptionsApi extends runtime.BaseAPI implements ProductOptions
      */
 
 
-    async addOptionRaw(requestParameters: ProductOptionsApiAddOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductOption>> {
+    async addOptionRaw(requestParameters: AddOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductOption>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling addOption.');
         }
@@ -196,7 +196,7 @@ export class ProductOptionsApi extends runtime.BaseAPI implements ProductOptions
      * Add option
      * Add option
      */
-    async addOption(requestParameters: ProductOptionsApiAddOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductOption> {
+    async addOption(requestParameters: AddOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductOption> {
         const response = await this.addOptionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -207,7 +207,7 @@ export class ProductOptionsApi extends runtime.BaseAPI implements ProductOptions
      */
 
 
-    async deleteOptionRaw(requestParameters: ProductOptionsApiDeleteOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteOptionRaw(requestParameters: DeleteOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling deleteOption.');
         }
@@ -240,7 +240,7 @@ export class ProductOptionsApi extends runtime.BaseAPI implements ProductOptions
      * Delete individual option
      * Delete option
      */
-    async deleteOption(requestParameters: ProductOptionsApiDeleteOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteOption(requestParameters: DeleteOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteOptionRaw(requestParameters, initOverrides);
     }
 
@@ -250,7 +250,7 @@ export class ProductOptionsApi extends runtime.BaseAPI implements ProductOptions
      */
 
 
-    async getOptionRaw(requestParameters: ProductOptionsApiGetOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductOption>> {
+    async getOptionRaw(requestParameters: GetOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductOption>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling getOption.');
         }
@@ -287,7 +287,7 @@ export class ProductOptionsApi extends runtime.BaseAPI implements ProductOptions
      * Get individual option
      * Get option
      */
-    async getOption(requestParameters: ProductOptionsApiGetOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductOption> {
+    async getOption(requestParameters: GetOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductOption> {
         const response = await this.getOptionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -298,7 +298,7 @@ export class ProductOptionsApi extends runtime.BaseAPI implements ProductOptions
      */
 
 
-    async getOptionsRaw(requestParameters: ProductOptionsApiGetOptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsProductOption>>> {
+    async getOptionsRaw(requestParameters: GetOptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsProductOption>>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling getOptions.');
         }
@@ -331,7 +331,7 @@ export class ProductOptionsApi extends runtime.BaseAPI implements ProductOptions
      * Get options for the product
      * Get options
      */
-    async getOptions(requestParameters: ProductOptionsApiGetOptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsProductOption>> {
+    async getOptions(requestParameters: GetOptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsProductOption>> {
         const response = await this.getOptionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -342,7 +342,7 @@ export class ProductOptionsApi extends runtime.BaseAPI implements ProductOptions
      */
 
 
-    async updateOptionRaw(requestParameters: ProductOptionsApiUpdateOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductOption>> {
+    async updateOptionRaw(requestParameters: UpdateOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductOption>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling updateOption.');
         }
@@ -382,7 +382,7 @@ export class ProductOptionsApi extends runtime.BaseAPI implements ProductOptions
      * Update individual option
      * Update option
      */
-    async updateOption(requestParameters: ProductOptionsApiUpdateOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductOption> {
+    async updateOption(requestParameters: UpdateOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductOption> {
         const response = await this.updateOptionRaw(requestParameters, initOverrides);
         return await response.value();
     }

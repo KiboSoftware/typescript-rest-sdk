@@ -22,44 +22,44 @@ import type {
   WishlistItemCollection,
 } from '../models';
 
-export interface WishlistApiAddItemToWishlistRequest {
+export interface AddItemToWishlistRequest {
     wishlistId: string;
     responseFields?: string;
     wishlistItem?: WishlistItem;
 }
 
-export interface WishlistApiCreateWishlistRequest {
+export interface CreateWishlistRequest {
     responseFields?: string;
     wishlist?: Wishlist;
 }
 
-export interface WishlistApiDeleteWishlistRequest {
+export interface DeleteWishlistRequest {
     wishlistId: string;
 }
 
-export interface WishlistApiDeleteWishlistItemRequest {
+export interface DeleteWishlistItemRequest {
     wishlistId: string;
     wishlistItemId: string;
 }
 
-export interface WishlistApiGetWishlistRequest {
+export interface GetWishlistRequest {
     wishlistId: string;
     responseFields?: string;
 }
 
-export interface WishlistApiGetWishlistByNameRequest {
+export interface GetWishlistByNameRequest {
     customerAccountId: number;
     wishlistName: string;
     responseFields?: string;
 }
 
-export interface WishlistApiGetWishlistItemRequest {
+export interface GetWishlistItemRequest {
     wishlistId: string;
     wishlistItemId: string;
     responseFields?: string;
 }
 
-export interface WishlistApiGetWishlistItemsRequest {
+export interface GetWishlistItemsRequest {
     wishlistId: string;
     startIndex?: number;
     pageSize?: number;
@@ -68,7 +68,7 @@ export interface WishlistApiGetWishlistItemsRequest {
     responseFields?: string;
 }
 
-export interface WishlistApiGetWishlistItemsByWishlistNameRequest {
+export interface GetWishlistItemsByWishlistNameRequest {
     customerAccountId: number;
     wishlistName: string;
     startIndex?: number;
@@ -78,7 +78,7 @@ export interface WishlistApiGetWishlistItemsByWishlistNameRequest {
     responseFields?: string;
 }
 
-export interface WishlistApiGetWishlistsRequest {
+export interface GetWishlistsRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -88,24 +88,24 @@ export interface WishlistApiGetWishlistsRequest {
     responseFields?: string;
 }
 
-export interface WishlistApiRemoveAllWishlistItemsRequest {
+export interface RemoveAllWishlistItemsRequest {
     wishlistId: string;
 }
 
-export interface WishlistApiUpdateWishlistRequest {
+export interface UpdateWishlistRequest {
     wishlistId: string;
     responseFields?: string;
     wishlist?: Wishlist;
 }
 
-export interface WishlistApiUpdateWishlistItemRequest {
+export interface UpdateWishlistItemRequest {
     wishlistId: string;
     wishlistItemId: string;
     responseFields?: string;
     wishlistItem?: WishlistItem;
 }
 
-export interface WishlistApiUpdateWishlistItemQuantityRequest {
+export interface UpdateWishlistItemQuantityRequest {
     wishlistId: string;
     wishlistItemId: string;
     quantity: number;
@@ -129,13 +129,13 @@ export interface WishlistApiInterface {
      * @throws {RequiredError}
      * @memberof WishlistApiInterface
      */
-    addItemToWishlistRaw(requestParameters: WishlistApiAddItemToWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistItem>>;
+    addItemToWishlistRaw(requestParameters: AddItemToWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistItem>>;
 
     /**
      * Adds an item to the wishlist of the current shopper.
      * Add Item To Wishlist
      */
-    addItemToWishlist(requestParameters: WishlistApiAddItemToWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistItem>;
+    addItemToWishlist(requestParameters: AddItemToWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistItem>;
 
     /**
      * Create wishlist.
@@ -146,13 +146,13 @@ export interface WishlistApiInterface {
      * @throws {RequiredError}
      * @memberof WishlistApiInterface
      */
-    createWishlistRaw(requestParameters: WishlistApiCreateWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Wishlist>>;
+    createWishlistRaw(requestParameters: CreateWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Wishlist>>;
 
     /**
      * Create wishlist.
      * Create Wishlist
      */
-    createWishlist(requestParameters: WishlistApiCreateWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Wishlist>;
+    createWishlist(requestParameters: CreateWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Wishlist>;
 
     /**
      * Deletes a wishlist specified by wishlist Id.
@@ -162,13 +162,13 @@ export interface WishlistApiInterface {
      * @throws {RequiredError}
      * @memberof WishlistApiInterface
      */
-    deleteWishlistRaw(requestParameters: WishlistApiDeleteWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteWishlistRaw(requestParameters: DeleteWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Deletes a wishlist specified by wishlist Id.
      * Deletes Wishlist
      */
-    deleteWishlist(requestParameters: WishlistApiDeleteWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteWishlist(requestParameters: DeleteWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Delete/remove wishlist item.
@@ -179,13 +179,13 @@ export interface WishlistApiInterface {
      * @throws {RequiredError}
      * @memberof WishlistApiInterface
      */
-    deleteWishlistItemRaw(requestParameters: WishlistApiDeleteWishlistItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteWishlistItemRaw(requestParameters: DeleteWishlistItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Delete/remove wishlist item.
      * Delete Wishlist Item
      */
-    deleteWishlistItem(requestParameters: WishlistApiDeleteWishlistItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteWishlistItem(requestParameters: DeleteWishlistItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Retrieves the details of a wishlist specified by the wishlist ID.
@@ -196,13 +196,13 @@ export interface WishlistApiInterface {
      * @throws {RequiredError}
      * @memberof WishlistApiInterface
      */
-    getWishlistRaw(requestParameters: WishlistApiGetWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Wishlist>>;
+    getWishlistRaw(requestParameters: GetWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Wishlist>>;
 
     /**
      * Retrieves the details of a wishlist specified by the wishlist ID.
      * Get Wishlist
      */
-    getWishlist(requestParameters: WishlistApiGetWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Wishlist>;
+    getWishlist(requestParameters: GetWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Wishlist>;
 
     /**
      * Retrieves wishlist by name.
@@ -214,13 +214,13 @@ export interface WishlistApiInterface {
      * @throws {RequiredError}
      * @memberof WishlistApiInterface
      */
-    getWishlistByNameRaw(requestParameters: WishlistApiGetWishlistByNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Wishlist>>;
+    getWishlistByNameRaw(requestParameters: GetWishlistByNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Wishlist>>;
 
     /**
      * Retrieves wishlist by name.
      * Get Wishlist By Name
      */
-    getWishlistByName(requestParameters: WishlistApiGetWishlistByNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Wishlist>;
+    getWishlistByName(requestParameters: GetWishlistByNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Wishlist>;
 
     /**
      * Retrieves an individual wishlist item from a wishlist.
@@ -232,13 +232,13 @@ export interface WishlistApiInterface {
      * @throws {RequiredError}
      * @memberof WishlistApiInterface
      */
-    getWishlistItemRaw(requestParameters: WishlistApiGetWishlistItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistItem>>;
+    getWishlistItemRaw(requestParameters: GetWishlistItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistItem>>;
 
     /**
      * Retrieves an individual wishlist item from a wishlist.
      * Get Wishlist Item
      */
-    getWishlistItem(requestParameters: WishlistApiGetWishlistItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistItem>;
+    getWishlistItem(requestParameters: GetWishlistItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistItem>;
 
     /**
      * Returns a listing of wishlists.
@@ -253,13 +253,13 @@ export interface WishlistApiInterface {
      * @throws {RequiredError}
      * @memberof WishlistApiInterface
      */
-    getWishlistItemsRaw(requestParameters: WishlistApiGetWishlistItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistItemCollection>>;
+    getWishlistItemsRaw(requestParameters: GetWishlistItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistItemCollection>>;
 
     /**
      * Returns a listing of wishlists.
      * Get Wishlist Items
      */
-    getWishlistItems(requestParameters: WishlistApiGetWishlistItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistItemCollection>;
+    getWishlistItems(requestParameters: GetWishlistItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistItemCollection>;
 
     /**
      * Returns a listing of wishlists.
@@ -275,13 +275,13 @@ export interface WishlistApiInterface {
      * @throws {RequiredError}
      * @memberof WishlistApiInterface
      */
-    getWishlistItemsByWishlistNameRaw(requestParameters: WishlistApiGetWishlistItemsByWishlistNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistItemCollection>>;
+    getWishlistItemsByWishlistNameRaw(requestParameters: GetWishlistItemsByWishlistNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistItemCollection>>;
 
     /**
      * Returns a listing of wishlists.
      * Get Wishlist Items By WishlistName
      */
-    getWishlistItemsByWishlistName(requestParameters: WishlistApiGetWishlistItemsByWishlistNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistItemCollection>;
+    getWishlistItemsByWishlistName(requestParameters: GetWishlistItemsByWishlistNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistItemCollection>;
 
     /**
      * Retrieves a list of wishlists according to any specified filter criteria and sort options.
@@ -297,13 +297,13 @@ export interface WishlistApiInterface {
      * @throws {RequiredError}
      * @memberof WishlistApiInterface
      */
-    getWishlistsRaw(requestParameters: WishlistApiGetWishlistsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistCollection>>;
+    getWishlistsRaw(requestParameters: GetWishlistsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistCollection>>;
 
     /**
      * Retrieves a list of wishlists according to any specified filter criteria and sort options.
      * Get Wishlists
      */
-    getWishlists(requestParameters: WishlistApiGetWishlistsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistCollection>;
+    getWishlists(requestParameters: GetWishlistsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistCollection>;
 
     /**
      * Clears all items in the wishlist.
@@ -313,13 +313,13 @@ export interface WishlistApiInterface {
      * @throws {RequiredError}
      * @memberof WishlistApiInterface
      */
-    removeAllWishlistItemsRaw(requestParameters: WishlistApiRemoveAllWishlistItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Wishlist>>;
+    removeAllWishlistItemsRaw(requestParameters: RemoveAllWishlistItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Wishlist>>;
 
     /**
      * Clears all items in the wishlist.
      * Remove All Wishlist Items
      */
-    removeAllWishlistItems(requestParameters: WishlistApiRemoveAllWishlistItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Wishlist>;
+    removeAllWishlistItems(requestParameters: RemoveAllWishlistItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Wishlist>;
 
     /**
      * Updates a wishlist specified by wishlist Id.
@@ -331,13 +331,13 @@ export interface WishlistApiInterface {
      * @throws {RequiredError}
      * @memberof WishlistApiInterface
      */
-    updateWishlistRaw(requestParameters: WishlistApiUpdateWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Wishlist>>;
+    updateWishlistRaw(requestParameters: UpdateWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Wishlist>>;
 
     /**
      * Updates a wishlist specified by wishlist Id.
      * Update Wishlist
      */
-    updateWishlist(requestParameters: WishlistApiUpdateWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Wishlist>;
+    updateWishlist(requestParameters: UpdateWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Wishlist>;
 
     /**
      * Updates a wishlist item.
@@ -350,13 +350,13 @@ export interface WishlistApiInterface {
      * @throws {RequiredError}
      * @memberof WishlistApiInterface
      */
-    updateWishlistItemRaw(requestParameters: WishlistApiUpdateWishlistItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistItem>>;
+    updateWishlistItemRaw(requestParameters: UpdateWishlistItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistItem>>;
 
     /**
      * Updates a wishlist item.
      * Update Wishlist Item
      */
-    updateWishlistItem(requestParameters: WishlistApiUpdateWishlistItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistItem>;
+    updateWishlistItem(requestParameters: UpdateWishlistItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistItem>;
 
     /**
      * Updates the quantity of an item in the wishlist.
@@ -369,13 +369,13 @@ export interface WishlistApiInterface {
      * @throws {RequiredError}
      * @memberof WishlistApiInterface
      */
-    updateWishlistItemQuantityRaw(requestParameters: WishlistApiUpdateWishlistItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistItem>>;
+    updateWishlistItemQuantityRaw(requestParameters: UpdateWishlistItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistItem>>;
 
     /**
      * Updates the quantity of an item in the wishlist.
      * Update Wishlist Item Quantity
      */
-    updateWishlistItemQuantity(requestParameters: WishlistApiUpdateWishlistItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistItem>;
+    updateWishlistItemQuantity(requestParameters: UpdateWishlistItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistItem>;
 
 }
 
@@ -393,7 +393,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      */
 
 
-    async addItemToWishlistRaw(requestParameters: WishlistApiAddItemToWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistItem>> {
+    async addItemToWishlistRaw(requestParameters: AddItemToWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistItem>> {
         if (requestParameters.wishlistId === null || requestParameters.wishlistId === undefined) {
             throw new runtime.RequiredError('wishlistId','Required parameter requestParameters.wishlistId was null or undefined when calling addItemToWishlist.');
         }
@@ -429,7 +429,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      * Adds an item to the wishlist of the current shopper.
      * Add Item To Wishlist
      */
-    async addItemToWishlist(requestParameters: WishlistApiAddItemToWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistItem> {
+    async addItemToWishlist(requestParameters: AddItemToWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistItem> {
         const response = await this.addItemToWishlistRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -440,7 +440,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      */
 
 
-    async createWishlistRaw(requestParameters: WishlistApiCreateWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Wishlist>> {
+    async createWishlistRaw(requestParameters: CreateWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Wishlist>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -472,7 +472,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      * Create wishlist.
      * Create Wishlist
      */
-    async createWishlist(requestParameters: WishlistApiCreateWishlistRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Wishlist> {
+    async createWishlist(requestParameters: CreateWishlistRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Wishlist> {
         const response = await this.createWishlistRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -483,7 +483,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      */
 
 
-    async deleteWishlistRaw(requestParameters: WishlistApiDeleteWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteWishlistRaw(requestParameters: DeleteWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.wishlistId === null || requestParameters.wishlistId === undefined) {
             throw new runtime.RequiredError('wishlistId','Required parameter requestParameters.wishlistId was null or undefined when calling deleteWishlist.');
         }
@@ -512,7 +512,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      * Deletes a wishlist specified by wishlist Id.
      * Deletes Wishlist
      */
-    async deleteWishlist(requestParameters: WishlistApiDeleteWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteWishlist(requestParameters: DeleteWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteWishlistRaw(requestParameters, initOverrides);
     }
 
@@ -522,7 +522,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      */
 
 
-    async deleteWishlistItemRaw(requestParameters: WishlistApiDeleteWishlistItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteWishlistItemRaw(requestParameters: DeleteWishlistItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.wishlistId === null || requestParameters.wishlistId === undefined) {
             throw new runtime.RequiredError('wishlistId','Required parameter requestParameters.wishlistId was null or undefined when calling deleteWishlistItem.');
         }
@@ -555,7 +555,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      * Delete/remove wishlist item.
      * Delete Wishlist Item
      */
-    async deleteWishlistItem(requestParameters: WishlistApiDeleteWishlistItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteWishlistItem(requestParameters: DeleteWishlistItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteWishlistItemRaw(requestParameters, initOverrides);
     }
 
@@ -565,7 +565,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      */
 
 
-    async getWishlistRaw(requestParameters: WishlistApiGetWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Wishlist>> {
+    async getWishlistRaw(requestParameters: GetWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Wishlist>> {
         if (requestParameters.wishlistId === null || requestParameters.wishlistId === undefined) {
             throw new runtime.RequiredError('wishlistId','Required parameter requestParameters.wishlistId was null or undefined when calling getWishlist.');
         }
@@ -598,7 +598,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      * Retrieves the details of a wishlist specified by the wishlist ID.
      * Get Wishlist
      */
-    async getWishlist(requestParameters: WishlistApiGetWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Wishlist> {
+    async getWishlist(requestParameters: GetWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Wishlist> {
         const response = await this.getWishlistRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -609,7 +609,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      */
 
 
-    async getWishlistByNameRaw(requestParameters: WishlistApiGetWishlistByNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Wishlist>> {
+    async getWishlistByNameRaw(requestParameters: GetWishlistByNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Wishlist>> {
         if (requestParameters.customerAccountId === null || requestParameters.customerAccountId === undefined) {
             throw new runtime.RequiredError('customerAccountId','Required parameter requestParameters.customerAccountId was null or undefined when calling getWishlistByName.');
         }
@@ -646,7 +646,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      * Retrieves wishlist by name.
      * Get Wishlist By Name
      */
-    async getWishlistByName(requestParameters: WishlistApiGetWishlistByNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Wishlist> {
+    async getWishlistByName(requestParameters: GetWishlistByNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Wishlist> {
         const response = await this.getWishlistByNameRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -657,7 +657,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      */
 
 
-    async getWishlistItemRaw(requestParameters: WishlistApiGetWishlistItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistItem>> {
+    async getWishlistItemRaw(requestParameters: GetWishlistItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistItem>> {
         if (requestParameters.wishlistId === null || requestParameters.wishlistId === undefined) {
             throw new runtime.RequiredError('wishlistId','Required parameter requestParameters.wishlistId was null or undefined when calling getWishlistItem.');
         }
@@ -694,7 +694,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      * Retrieves an individual wishlist item from a wishlist.
      * Get Wishlist Item
      */
-    async getWishlistItem(requestParameters: WishlistApiGetWishlistItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistItem> {
+    async getWishlistItem(requestParameters: GetWishlistItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistItem> {
         const response = await this.getWishlistItemRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -705,7 +705,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      */
 
 
-    async getWishlistItemsRaw(requestParameters: WishlistApiGetWishlistItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistItemCollection>> {
+    async getWishlistItemsRaw(requestParameters: GetWishlistItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistItemCollection>> {
         if (requestParameters.wishlistId === null || requestParameters.wishlistId === undefined) {
             throw new runtime.RequiredError('wishlistId','Required parameter requestParameters.wishlistId was null or undefined when calling getWishlistItems.');
         }
@@ -754,7 +754,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      * Returns a listing of wishlists.
      * Get Wishlist Items
      */
-    async getWishlistItems(requestParameters: WishlistApiGetWishlistItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistItemCollection> {
+    async getWishlistItems(requestParameters: GetWishlistItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistItemCollection> {
         const response = await this.getWishlistItemsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -765,7 +765,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      */
 
 
-    async getWishlistItemsByWishlistNameRaw(requestParameters: WishlistApiGetWishlistItemsByWishlistNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistItemCollection>> {
+    async getWishlistItemsByWishlistNameRaw(requestParameters: GetWishlistItemsByWishlistNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistItemCollection>> {
         if (requestParameters.customerAccountId === null || requestParameters.customerAccountId === undefined) {
             throw new runtime.RequiredError('customerAccountId','Required parameter requestParameters.customerAccountId was null or undefined when calling getWishlistItemsByWishlistName.');
         }
@@ -818,7 +818,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      * Returns a listing of wishlists.
      * Get Wishlist Items By WishlistName
      */
-    async getWishlistItemsByWishlistName(requestParameters: WishlistApiGetWishlistItemsByWishlistNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistItemCollection> {
+    async getWishlistItemsByWishlistName(requestParameters: GetWishlistItemsByWishlistNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistItemCollection> {
         const response = await this.getWishlistItemsByWishlistNameRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -829,7 +829,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      */
 
 
-    async getWishlistsRaw(requestParameters: WishlistApiGetWishlistsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistCollection>> {
+    async getWishlistsRaw(requestParameters: GetWishlistsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -882,7 +882,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      * Retrieves a list of wishlists according to any specified filter criteria and sort options.
      * Get Wishlists
      */
-    async getWishlists(requestParameters: WishlistApiGetWishlistsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistCollection> {
+    async getWishlists(requestParameters: GetWishlistsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistCollection> {
         const response = await this.getWishlistsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -893,7 +893,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      */
 
 
-    async removeAllWishlistItemsRaw(requestParameters: WishlistApiRemoveAllWishlistItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Wishlist>> {
+    async removeAllWishlistItemsRaw(requestParameters: RemoveAllWishlistItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Wishlist>> {
         if (requestParameters.wishlistId === null || requestParameters.wishlistId === undefined) {
             throw new runtime.RequiredError('wishlistId','Required parameter requestParameters.wishlistId was null or undefined when calling removeAllWishlistItems.');
         }
@@ -922,7 +922,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      * Clears all items in the wishlist.
      * Remove All Wishlist Items
      */
-    async removeAllWishlistItems(requestParameters: WishlistApiRemoveAllWishlistItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Wishlist> {
+    async removeAllWishlistItems(requestParameters: RemoveAllWishlistItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Wishlist> {
         const response = await this.removeAllWishlistItemsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -933,7 +933,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      */
 
 
-    async updateWishlistRaw(requestParameters: WishlistApiUpdateWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Wishlist>> {
+    async updateWishlistRaw(requestParameters: UpdateWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Wishlist>> {
         if (requestParameters.wishlistId === null || requestParameters.wishlistId === undefined) {
             throw new runtime.RequiredError('wishlistId','Required parameter requestParameters.wishlistId was null or undefined when calling updateWishlist.');
         }
@@ -969,7 +969,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      * Updates a wishlist specified by wishlist Id.
      * Update Wishlist
      */
-    async updateWishlist(requestParameters: WishlistApiUpdateWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Wishlist> {
+    async updateWishlist(requestParameters: UpdateWishlistRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Wishlist> {
         const response = await this.updateWishlistRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -980,7 +980,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      */
 
 
-    async updateWishlistItemRaw(requestParameters: WishlistApiUpdateWishlistItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistItem>> {
+    async updateWishlistItemRaw(requestParameters: UpdateWishlistItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistItem>> {
         if (requestParameters.wishlistId === null || requestParameters.wishlistId === undefined) {
             throw new runtime.RequiredError('wishlistId','Required parameter requestParameters.wishlistId was null or undefined when calling updateWishlistItem.');
         }
@@ -1020,7 +1020,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      * Updates a wishlist item.
      * Update Wishlist Item
      */
-    async updateWishlistItem(requestParameters: WishlistApiUpdateWishlistItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistItem> {
+    async updateWishlistItem(requestParameters: UpdateWishlistItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistItem> {
         const response = await this.updateWishlistItemRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1031,7 +1031,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      */
 
 
-    async updateWishlistItemQuantityRaw(requestParameters: WishlistApiUpdateWishlistItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistItem>> {
+    async updateWishlistItemQuantityRaw(requestParameters: UpdateWishlistItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WishlistItem>> {
         if (requestParameters.wishlistId === null || requestParameters.wishlistId === undefined) {
             throw new runtime.RequiredError('wishlistId','Required parameter requestParameters.wishlistId was null or undefined when calling updateWishlistItemQuantity.');
         }
@@ -1072,7 +1072,7 @@ export class WishlistApi extends runtime.BaseAPI implements WishlistApiInterface
      * Updates the quantity of an item in the wishlist.
      * Update Wishlist Item Quantity
      */
-    async updateWishlistItemQuantity(requestParameters: WishlistApiUpdateWishlistItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistItem> {
+    async updateWishlistItemQuantity(requestParameters: UpdateWishlistItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WishlistItem> {
         const response = await this.updateWishlistItemQuantityRaw(requestParameters, initOverrides);
         return await response.value();
     }

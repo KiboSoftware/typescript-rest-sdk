@@ -19,7 +19,7 @@ import type {
   DocumentCollection,
 } from '../models';
 
-export interface ViewsApiGetViewDocumentsRequest {
+export interface GetViewDocumentsRequest {
     documentListName: string;
     viewName: string;
     filter?: string;
@@ -52,13 +52,13 @@ export interface ViewsApiInterface {
      * @throws {RequiredError}
      * @memberof ViewsApiInterface
      */
-    getViewDocumentsRaw(requestParameters: ViewsApiGetViewDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentCollection>>;
+    getViewDocumentsRaw(requestParameters: GetViewDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentCollection>>;
 
     /**
      * Get View Documents
      * Get View Documents
      */
-    getViewDocuments(requestParameters: ViewsApiGetViewDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentCollection>;
+    getViewDocuments(requestParameters: GetViewDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentCollection>;
 
 }
 
@@ -76,7 +76,7 @@ export class ViewsApi extends runtime.BaseAPI implements ViewsApiInterface {
      */
 
 
-    async getViewDocumentsRaw(requestParameters: ViewsApiGetViewDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentCollection>> {
+    async getViewDocumentsRaw(requestParameters: GetViewDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentCollection>> {
         if (requestParameters.documentListName === null || requestParameters.documentListName === undefined) {
             throw new runtime.RequiredError('documentListName','Required parameter requestParameters.documentListName was null or undefined when calling getViewDocuments.');
         }
@@ -133,7 +133,7 @@ export class ViewsApi extends runtime.BaseAPI implements ViewsApiInterface {
      * Get View Documents
      * Get View Documents
      */
-    async getViewDocuments(requestParameters: ViewsApiGetViewDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentCollection> {
+    async getViewDocuments(requestParameters: GetViewDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentCollection> {
         const response = await this.getViewDocumentsRaw(requestParameters, initOverrides);
         return await response.value();
     }

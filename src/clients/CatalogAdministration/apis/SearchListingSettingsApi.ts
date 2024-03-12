@@ -19,16 +19,16 @@ import type {
   ListingSettings,
 } from '../models';
 
-export interface SearchListingSettingsApiDeleteListingSettingsRequest {
+export interface DeleteListingSettingsRequest {
     name: string;
 }
 
-export interface SearchListingSettingsApiGetListingSettingsRequest {
+export interface GetListingSettingsRequest {
     name: string;
     responseFields?: string;
 }
 
-export interface SearchListingSettingsApiUpdateListingSettingsRequest {
+export interface UpdateListingSettingsRequest {
     name: string;
     responseFields?: string;
     listingSettings?: ListingSettings;
@@ -49,13 +49,13 @@ export interface SearchListingSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof SearchListingSettingsApiInterface
      */
-    deleteListingSettingsRaw(requestParameters: SearchListingSettingsApiDeleteListingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteListingSettingsRaw(requestParameters: DeleteListingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Deletes the ListingSettings for a specific SearchSetting by name.
      * Delete search listing settings
      */
-    deleteListingSettings(requestParameters: SearchListingSettingsApiDeleteListingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteListingSettings(requestParameters: DeleteListingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Get ListingSettings for a specific SearchSettings by name.
@@ -66,13 +66,13 @@ export interface SearchListingSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof SearchListingSettingsApiInterface
      */
-    getListingSettingsRaw(requestParameters: SearchListingSettingsApiGetListingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListingSettings>>;
+    getListingSettingsRaw(requestParameters: GetListingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListingSettings>>;
 
     /**
      * Get ListingSettings for a specific SearchSettings by name.
      * Get search listing settings
      */
-    getListingSettings(requestParameters: SearchListingSettingsApiGetListingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListingSettings>;
+    getListingSettings(requestParameters: GetListingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListingSettings>;
 
     /**
      * Adds or Updates (Upsert) the ListingSettings for a specific SearchSetting by name.
@@ -84,13 +84,13 @@ export interface SearchListingSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof SearchListingSettingsApiInterface
      */
-    updateListingSettingsRaw(requestParameters: SearchListingSettingsApiUpdateListingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListingSettings>>;
+    updateListingSettingsRaw(requestParameters: UpdateListingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListingSettings>>;
 
     /**
      * Adds or Updates (Upsert) the ListingSettings for a specific SearchSetting by name.
      * Add/Update search listing settings
      */
-    updateListingSettings(requestParameters: SearchListingSettingsApiUpdateListingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListingSettings>;
+    updateListingSettings(requestParameters: UpdateListingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListingSettings>;
 
 }
 
@@ -108,7 +108,7 @@ export class SearchListingSettingsApi extends runtime.BaseAPI implements SearchL
      */
 
 
-    async deleteListingSettingsRaw(requestParameters: SearchListingSettingsApiDeleteListingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteListingSettingsRaw(requestParameters: DeleteListingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.name === null || requestParameters.name === undefined) {
             throw new runtime.RequiredError('name','Required parameter requestParameters.name was null or undefined when calling deleteListingSettings.');
         }
@@ -137,7 +137,7 @@ export class SearchListingSettingsApi extends runtime.BaseAPI implements SearchL
      * Deletes the ListingSettings for a specific SearchSetting by name.
      * Delete search listing settings
      */
-    async deleteListingSettings(requestParameters: SearchListingSettingsApiDeleteListingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteListingSettings(requestParameters: DeleteListingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteListingSettingsRaw(requestParameters, initOverrides);
     }
 
@@ -147,7 +147,7 @@ export class SearchListingSettingsApi extends runtime.BaseAPI implements SearchL
      */
 
 
-    async getListingSettingsRaw(requestParameters: SearchListingSettingsApiGetListingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListingSettings>> {
+    async getListingSettingsRaw(requestParameters: GetListingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListingSettings>> {
         if (requestParameters.name === null || requestParameters.name === undefined) {
             throw new runtime.RequiredError('name','Required parameter requestParameters.name was null or undefined when calling getListingSettings.');
         }
@@ -180,7 +180,7 @@ export class SearchListingSettingsApi extends runtime.BaseAPI implements SearchL
      * Get ListingSettings for a specific SearchSettings by name.
      * Get search listing settings
      */
-    async getListingSettings(requestParameters: SearchListingSettingsApiGetListingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListingSettings> {
+    async getListingSettings(requestParameters: GetListingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListingSettings> {
         const response = await this.getListingSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -191,7 +191,7 @@ export class SearchListingSettingsApi extends runtime.BaseAPI implements SearchL
      */
 
 
-    async updateListingSettingsRaw(requestParameters: SearchListingSettingsApiUpdateListingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListingSettings>> {
+    async updateListingSettingsRaw(requestParameters: UpdateListingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListingSettings>> {
         if (requestParameters.name === null || requestParameters.name === undefined) {
             throw new runtime.RequiredError('name','Required parameter requestParameters.name was null or undefined when calling updateListingSettings.');
         }
@@ -227,7 +227,7 @@ export class SearchListingSettingsApi extends runtime.BaseAPI implements SearchL
      * Adds or Updates (Upsert) the ListingSettings for a specific SearchSetting by name.
      * Add/Update search listing settings
      */
-    async updateListingSettings(requestParameters: SearchListingSettingsApiUpdateListingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListingSettings> {
+    async updateListingSettings(requestParameters: UpdateListingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListingSettings> {
         const response = await this.updateListingSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }

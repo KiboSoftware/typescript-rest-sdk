@@ -16,7 +16,7 @@
 import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
 
-export interface ShippingNotificationApiHandleCarrierNotificationUsingPOSTRequest {
+export interface HandleCarrierNotificationUsingPOSTRequest {
     carrier: string;
     xVolTenant: number;
     paramMap: any | null;
@@ -43,13 +43,13 @@ export interface ShippingNotificationApiInterface {
      * @throws {RequiredError}
      * @memberof ShippingNotificationApiInterface
      */
-    handleCarrierNotificationUsingPOSTRaw(requestParameters: ShippingNotificationApiHandleCarrierNotificationUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
+    handleCarrierNotificationUsingPOSTRaw(requestParameters: HandleCarrierNotificationUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
 
     /**
      * handleCarrierNotification
      * handleCarrierNotification
      */
-    handleCarrierNotificationUsingPOST(requestParameters: ShippingNotificationApiHandleCarrierNotificationUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
+    handleCarrierNotificationUsingPOST(requestParameters: HandleCarrierNotificationUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
 
 }
 
@@ -67,7 +67,7 @@ export class ShippingNotificationApi extends runtime.BaseAPI implements Shipping
      */
 
 
-    async handleCarrierNotificationUsingPOSTRaw(requestParameters: ShippingNotificationApiHandleCarrierNotificationUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async handleCarrierNotificationUsingPOSTRaw(requestParameters: HandleCarrierNotificationUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
         if (requestParameters.carrier === null || requestParameters.carrier === undefined) {
             throw new runtime.RequiredError('carrier','Required parameter requestParameters.carrier was null or undefined when calling handleCarrierNotificationUsingPOST.');
         }
@@ -136,7 +136,7 @@ export class ShippingNotificationApi extends runtime.BaseAPI implements Shipping
      * handleCarrierNotification
      * handleCarrierNotification
      */
-    async handleCarrierNotificationUsingPOST(requestParameters: ShippingNotificationApiHandleCarrierNotificationUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+    async handleCarrierNotificationUsingPOST(requestParameters: HandleCarrierNotificationUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
         const response = await this.handleCarrierNotificationUsingPOSTRaw(requestParameters, initOverrides);
         return await response.value();
     }

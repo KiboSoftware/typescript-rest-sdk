@@ -23,60 +23,60 @@ import type {
   ProductVariationPagedCollection,
 } from '../models';
 
-export interface ProductTypesApiAddExtraRequest {
+export interface AddExtraRequest {
     productTypeId: number;
     responseFields?: string;
     attributeInProductType?: AttributeInProductType;
 }
 
-export interface ProductTypesApiAddOptionRequest {
+export interface AddOptionRequest {
     productTypeId: number;
     responseFields?: string;
     attributeInProductType?: AttributeInProductType;
 }
 
-export interface ProductTypesApiAddProductTypeRequest {
+export interface AddProductTypeRequest {
     responseFields?: string;
     productType?: ProductType;
 }
 
-export interface ProductTypesApiAddPropertyRequest {
+export interface AddPropertyRequest {
     productTypeId: number;
     responseFields?: string;
     attributeInProductType?: AttributeInProductType;
 }
 
-export interface ProductTypesApiAddVariantPropertyRequest {
+export interface AddVariantPropertyRequest {
     productTypeId: number;
     responseFields?: string;
     attributeInProductType?: AttributeInProductType;
 }
 
-export interface ProductTypesApiDeleteExtraRequest {
+export interface DeleteExtraRequest {
     productTypeId: number;
     attributeFQN: string;
 }
 
-export interface ProductTypesApiDeleteOptionRequest {
+export interface DeleteOptionRequest {
     productTypeId: number;
     attributeFQN: string;
 }
 
-export interface ProductTypesApiDeleteProductTypeRequest {
+export interface DeleteProductTypeRequest {
     productTypeId: number;
 }
 
-export interface ProductTypesApiDeletePropertyRequest {
-    productTypeId: number;
-    attributeFQN: string;
-}
-
-export interface ProductTypesApiDeleteVariantPropertyRequest {
+export interface DeletePropertyRequest {
     productTypeId: number;
     attributeFQN: string;
 }
 
-export interface ProductTypesApiGenerateProductVariationsRequest {
+export interface DeleteVariantPropertyRequest {
+    productTypeId: number;
+    attributeFQN: string;
+}
+
+export interface GenerateProductVariationsRequest {
     productTypeId: number;
     productCode?: string;
     startIndex?: number;
@@ -87,34 +87,34 @@ export interface ProductTypesApiGenerateProductVariationsRequest {
     catalogAdminsProductOption?: Array<CatalogAdminsProductOption>;
 }
 
-export interface ProductTypesApiGetExtraRequest {
+export interface GetExtraRequest {
     productTypeId: number;
     attributeFQN: string;
     responseFields?: string;
 }
 
-export interface ProductTypesApiGetExtrasRequest {
+export interface GetExtrasRequest {
     productTypeId: number;
     responseFields?: string;
 }
 
-export interface ProductTypesApiGetOptionRequest {
+export interface GetOptionRequest {
     productTypeId: number;
     attributeFQN: string;
     responseFields?: string;
 }
 
-export interface ProductTypesApiGetOptionsRequest {
+export interface GetOptionsRequest {
     productTypeId: number;
     responseFields?: string;
 }
 
-export interface ProductTypesApiGetProductTypeRequest {
+export interface GetProductTypeRequest {
     productTypeId: number;
     responseFields?: string;
 }
 
-export interface ProductTypesApiGetProductTypesRequest {
+export interface GetProductTypesRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -123,56 +123,56 @@ export interface ProductTypesApiGetProductTypesRequest {
     responseFields?: string;
 }
 
-export interface ProductTypesApiGetPropertiesRequest {
+export interface GetPropertiesRequest {
     productTypeId: number;
     responseFields?: string;
 }
 
-export interface ProductTypesApiGetPropertyRequest {
-    productTypeId: number;
-    attributeFQN: string;
-    responseFields?: string;
-}
-
-export interface ProductTypesApiGetVariantPropertiesRequest {
-    productTypeId: number;
-    responseFields?: string;
-}
-
-export interface ProductTypesApiGetVariantPropertyRequest {
+export interface GetPropertyRequest {
     productTypeId: number;
     attributeFQN: string;
     responseFields?: string;
 }
 
-export interface ProductTypesApiUpdateExtraRequest {
+export interface GetVariantPropertiesRequest {
+    productTypeId: number;
+    responseFields?: string;
+}
+
+export interface GetVariantPropertyRequest {
     productTypeId: number;
     attributeFQN: string;
     responseFields?: string;
-    attributeInProductType?: AttributeInProductType;
 }
 
-export interface ProductTypesApiUpdateOptionRequest {
+export interface UpdateExtraRequest {
     productTypeId: number;
     attributeFQN: string;
     responseFields?: string;
     attributeInProductType?: AttributeInProductType;
 }
 
-export interface ProductTypesApiUpdateProductTypeRequest {
+export interface UpdateOptionRequest {
+    productTypeId: number;
+    attributeFQN: string;
+    responseFields?: string;
+    attributeInProductType?: AttributeInProductType;
+}
+
+export interface UpdateProductTypeRequest {
     productTypeId: number;
     responseFields?: string;
     productType?: ProductType;
 }
 
-export interface ProductTypesApiUpdatePropertyRequest {
+export interface UpdatePropertyRequest {
     productTypeId: number;
     attributeFQN: string;
     responseFields?: string;
     attributeInProductType?: AttributeInProductType;
 }
 
-export interface ProductTypesApiUpdateVariantPropertyRequest {
+export interface UpdateVariantPropertyRequest {
     productTypeId: number;
     attributeFQN: string;
     responseFields?: string;
@@ -196,13 +196,13 @@ export interface ProductTypesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductTypesApiInterface
      */
-    addExtraRaw(requestParameters: ProductTypesApiAddExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
+    addExtraRaw(requestParameters: AddExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
 
     /**
      * Add extra.
      * Add extra
      */
-    addExtra(requestParameters: ProductTypesApiAddExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
+    addExtra(requestParameters: AddExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
 
     /**
      * Add option.
@@ -214,13 +214,13 @@ export interface ProductTypesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductTypesApiInterface
      */
-    addOptionRaw(requestParameters: ProductTypesApiAddOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
+    addOptionRaw(requestParameters: AddOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
 
     /**
      * Add option.
      * Add option
      */
-    addOption(requestParameters: ProductTypesApiAddOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
+    addOption(requestParameters: AddOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
 
     /**
      * Get product type by Id.
@@ -231,13 +231,13 @@ export interface ProductTypesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductTypesApiInterface
      */
-    addProductTypeRaw(requestParameters: ProductTypesApiAddProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductType>>;
+    addProductTypeRaw(requestParameters: AddProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductType>>;
 
     /**
      * Get product type by Id.
      * Add product type
      */
-    addProductType(requestParameters: ProductTypesApiAddProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductType>;
+    addProductType(requestParameters: AddProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductType>;
 
     /**
      * Add property.
@@ -249,13 +249,13 @@ export interface ProductTypesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductTypesApiInterface
      */
-    addPropertyRaw(requestParameters: ProductTypesApiAddPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
+    addPropertyRaw(requestParameters: AddPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
 
     /**
      * Add property.
      * Add product type property
      */
-    addProperty(requestParameters: ProductTypesApiAddPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
+    addProperty(requestParameters: AddPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
 
     /**
      * Add variant property.
@@ -267,13 +267,13 @@ export interface ProductTypesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductTypesApiInterface
      */
-    addVariantPropertyRaw(requestParameters: ProductTypesApiAddVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
+    addVariantPropertyRaw(requestParameters: AddVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
 
     /**
      * Add variant property.
      * Add variant property
      */
-    addVariantProperty(requestParameters: ProductTypesApiAddVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
+    addVariantProperty(requestParameters: AddVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
 
     /**
      * Delete extra.
@@ -284,13 +284,13 @@ export interface ProductTypesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductTypesApiInterface
      */
-    deleteExtraRaw(requestParameters: ProductTypesApiDeleteExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteExtraRaw(requestParameters: DeleteExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Delete extra.
      * Delete extra
      */
-    deleteExtra(requestParameters: ProductTypesApiDeleteExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteExtra(requestParameters: DeleteExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Delete option.
@@ -301,13 +301,13 @@ export interface ProductTypesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductTypesApiInterface
      */
-    deleteOptionRaw(requestParameters: ProductTypesApiDeleteOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteOptionRaw(requestParameters: DeleteOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Delete option.
      * Delete option
      */
-    deleteOption(requestParameters: ProductTypesApiDeleteOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteOption(requestParameters: DeleteOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Delete product type.
@@ -317,13 +317,13 @@ export interface ProductTypesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductTypesApiInterface
      */
-    deleteProductTypeRaw(requestParameters: ProductTypesApiDeleteProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteProductTypeRaw(requestParameters: DeleteProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Delete product type.
      * Delete product type
      */
-    deleteProductType(requestParameters: ProductTypesApiDeleteProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteProductType(requestParameters: DeleteProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Delete property.
@@ -334,13 +334,13 @@ export interface ProductTypesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductTypesApiInterface
      */
-    deletePropertyRaw(requestParameters: ProductTypesApiDeletePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deletePropertyRaw(requestParameters: DeletePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Delete property.
      * Delete product type property
      */
-    deleteProperty(requestParameters: ProductTypesApiDeletePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteProperty(requestParameters: DeletePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Delete variant property.
@@ -351,13 +351,13 @@ export interface ProductTypesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductTypesApiInterface
      */
-    deleteVariantPropertyRaw(requestParameters: ProductTypesApiDeleteVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteVariantPropertyRaw(requestParameters: DeleteVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Delete variant property.
      * Delete variant property
      */
-    deleteVariantProperty(requestParameters: ProductTypesApiDeleteVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteVariantProperty(requestParameters: DeleteVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * 
@@ -374,13 +374,13 @@ export interface ProductTypesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductTypesApiInterface
      */
-    generateProductVariationsRaw(requestParameters: ProductTypesApiGenerateProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationPagedCollection>>;
+    generateProductVariationsRaw(requestParameters: GenerateProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationPagedCollection>>;
 
     /**
      * 
      * Generate product variations
      */
-    generateProductVariations(requestParameters: ProductTypesApiGenerateProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationPagedCollection>;
+    generateProductVariations(requestParameters: GenerateProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationPagedCollection>;
 
     /**
      * Get extra.
@@ -392,13 +392,13 @@ export interface ProductTypesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductTypesApiInterface
      */
-    getExtraRaw(requestParameters: ProductTypesApiGetExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
+    getExtraRaw(requestParameters: GetExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
 
     /**
      * Get extra.
      * Get extra
      */
-    getExtra(requestParameters: ProductTypesApiGetExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
+    getExtra(requestParameters: GetExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
 
     /**
      * Get extras.
@@ -409,13 +409,13 @@ export interface ProductTypesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductTypesApiInterface
      */
-    getExtrasRaw(requestParameters: ProductTypesApiGetExtrasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeInProductType>>>;
+    getExtrasRaw(requestParameters: GetExtrasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeInProductType>>>;
 
     /**
      * Get extras.
      * Get extras
      */
-    getExtras(requestParameters: ProductTypesApiGetExtrasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeInProductType>>;
+    getExtras(requestParameters: GetExtrasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeInProductType>>;
 
     /**
      * Get individual option.
@@ -427,13 +427,13 @@ export interface ProductTypesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductTypesApiInterface
      */
-    getOptionRaw(requestParameters: ProductTypesApiGetOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
+    getOptionRaw(requestParameters: GetOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
 
     /**
      * Get individual option.
      * Get option
      */
-    getOption(requestParameters: ProductTypesApiGetOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
+    getOption(requestParameters: GetOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
 
     /**
      * Get options for the product type.
@@ -444,13 +444,13 @@ export interface ProductTypesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductTypesApiInterface
      */
-    getOptionsRaw(requestParameters: ProductTypesApiGetOptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeInProductType>>>;
+    getOptionsRaw(requestParameters: GetOptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeInProductType>>>;
 
     /**
      * Get options for the product type.
      * Get options
      */
-    getOptions(requestParameters: ProductTypesApiGetOptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeInProductType>>;
+    getOptions(requestParameters: GetOptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeInProductType>>;
 
     /**
      * Get product type by Id.
@@ -461,13 +461,13 @@ export interface ProductTypesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductTypesApiInterface
      */
-    getProductTypeRaw(requestParameters: ProductTypesApiGetProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductType>>;
+    getProductTypeRaw(requestParameters: GetProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductType>>;
 
     /**
      * Get product type by Id.
      * Get product type
      */
-    getProductType(requestParameters: ProductTypesApiGetProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductType>;
+    getProductType(requestParameters: GetProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductType>;
 
     /**
      * Retrieves a list of product types according to any specified filter criteria and sort options.
@@ -482,13 +482,13 @@ export interface ProductTypesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductTypesApiInterface
      */
-    getProductTypesRaw(requestParameters: ProductTypesApiGetProductTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductTypeCollection>>;
+    getProductTypesRaw(requestParameters: GetProductTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductTypeCollection>>;
 
     /**
      * Retrieves a list of product types according to any specified filter criteria and sort options.
      * Get product types
      */
-    getProductTypes(requestParameters: ProductTypesApiGetProductTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductTypeCollection>;
+    getProductTypes(requestParameters: GetProductTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductTypeCollection>;
 
     /**
      * Get properties.
@@ -499,13 +499,13 @@ export interface ProductTypesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductTypesApiInterface
      */
-    getPropertiesRaw(requestParameters: ProductTypesApiGetPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeInProductType>>>;
+    getPropertiesRaw(requestParameters: GetPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeInProductType>>>;
 
     /**
      * Get properties.
      * Get product type properties
      */
-    getProperties(requestParameters: ProductTypesApiGetPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeInProductType>>;
+    getProperties(requestParameters: GetPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeInProductType>>;
 
     /**
      * Get property.
@@ -517,13 +517,13 @@ export interface ProductTypesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductTypesApiInterface
      */
-    getPropertyRaw(requestParameters: ProductTypesApiGetPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
+    getPropertyRaw(requestParameters: GetPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
 
     /**
      * Get property.
      * Get product type property
      */
-    getProperty(requestParameters: ProductTypesApiGetPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
+    getProperty(requestParameters: GetPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
 
     /**
      * Get variant properties.
@@ -534,13 +534,13 @@ export interface ProductTypesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductTypesApiInterface
      */
-    getVariantPropertiesRaw(requestParameters: ProductTypesApiGetVariantPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeInProductType>>>;
+    getVariantPropertiesRaw(requestParameters: GetVariantPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeInProductType>>>;
 
     /**
      * Get variant properties.
      * Get variant properties
      */
-    getVariantProperties(requestParameters: ProductTypesApiGetVariantPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeInProductType>>;
+    getVariantProperties(requestParameters: GetVariantPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeInProductType>>;
 
     /**
      * Get variant property.
@@ -552,13 +552,13 @@ export interface ProductTypesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductTypesApiInterface
      */
-    getVariantPropertyRaw(requestParameters: ProductTypesApiGetVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
+    getVariantPropertyRaw(requestParameters: GetVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
 
     /**
      * Get variant property.
      * Get variant property
      */
-    getVariantProperty(requestParameters: ProductTypesApiGetVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
+    getVariantProperty(requestParameters: GetVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
 
     /**
      * Update extra.
@@ -571,13 +571,13 @@ export interface ProductTypesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductTypesApiInterface
      */
-    updateExtraRaw(requestParameters: ProductTypesApiUpdateExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
+    updateExtraRaw(requestParameters: UpdateExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
 
     /**
      * Update extra.
      * Update extra
      */
-    updateExtra(requestParameters: ProductTypesApiUpdateExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
+    updateExtra(requestParameters: UpdateExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
 
     /**
      * Update option.
@@ -590,13 +590,13 @@ export interface ProductTypesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductTypesApiInterface
      */
-    updateOptionRaw(requestParameters: ProductTypesApiUpdateOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
+    updateOptionRaw(requestParameters: UpdateOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
 
     /**
      * Update option.
      * Update option
      */
-    updateOption(requestParameters: ProductTypesApiUpdateOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
+    updateOption(requestParameters: UpdateOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
 
     /**
      * Update product type.
@@ -608,13 +608,13 @@ export interface ProductTypesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductTypesApiInterface
      */
-    updateProductTypeRaw(requestParameters: ProductTypesApiUpdateProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductType>>;
+    updateProductTypeRaw(requestParameters: UpdateProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductType>>;
 
     /**
      * Update product type.
      * Update product type
      */
-    updateProductType(requestParameters: ProductTypesApiUpdateProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductType>;
+    updateProductType(requestParameters: UpdateProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductType>;
 
     /**
      * Update property.
@@ -627,13 +627,13 @@ export interface ProductTypesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductTypesApiInterface
      */
-    updatePropertyRaw(requestParameters: ProductTypesApiUpdatePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
+    updatePropertyRaw(requestParameters: UpdatePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
 
     /**
      * Update property.
      * Update product type property
      */
-    updateProperty(requestParameters: ProductTypesApiUpdatePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
+    updateProperty(requestParameters: UpdatePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
 
     /**
      * Update variant property.
@@ -646,13 +646,13 @@ export interface ProductTypesApiInterface {
      * @throws {RequiredError}
      * @memberof ProductTypesApiInterface
      */
-    updateVariantPropertyRaw(requestParameters: ProductTypesApiUpdateVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
+    updateVariantPropertyRaw(requestParameters: UpdateVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
 
     /**
      * Update variant property.
      * Update variant property
      */
-    updateVariantProperty(requestParameters: ProductTypesApiUpdateVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
+    updateVariantProperty(requestParameters: UpdateVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
 
 }
 
@@ -670,7 +670,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      */
 
 
-    async addExtraRaw(requestParameters: ProductTypesApiAddExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>> {
+    async addExtraRaw(requestParameters: AddExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>> {
         if (requestParameters.productTypeId === null || requestParameters.productTypeId === undefined) {
             throw new runtime.RequiredError('productTypeId','Required parameter requestParameters.productTypeId was null or undefined when calling addExtra.');
         }
@@ -706,7 +706,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      * Add extra.
      * Add extra
      */
-    async addExtra(requestParameters: ProductTypesApiAddExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
+    async addExtra(requestParameters: AddExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
         const response = await this.addExtraRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -717,7 +717,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      */
 
 
-    async addOptionRaw(requestParameters: ProductTypesApiAddOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>> {
+    async addOptionRaw(requestParameters: AddOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>> {
         if (requestParameters.productTypeId === null || requestParameters.productTypeId === undefined) {
             throw new runtime.RequiredError('productTypeId','Required parameter requestParameters.productTypeId was null or undefined when calling addOption.');
         }
@@ -753,7 +753,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      * Add option.
      * Add option
      */
-    async addOption(requestParameters: ProductTypesApiAddOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
+    async addOption(requestParameters: AddOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
         const response = await this.addOptionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -764,7 +764,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      */
 
 
-    async addProductTypeRaw(requestParameters: ProductTypesApiAddProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductType>> {
+    async addProductTypeRaw(requestParameters: AddProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductType>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -796,7 +796,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      * Get product type by Id.
      * Add product type
      */
-    async addProductType(requestParameters: ProductTypesApiAddProductTypeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductType> {
+    async addProductType(requestParameters: AddProductTypeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductType> {
         const response = await this.addProductTypeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -807,7 +807,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      */
 
 
-    async addPropertyRaw(requestParameters: ProductTypesApiAddPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>> {
+    async addPropertyRaw(requestParameters: AddPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>> {
         if (requestParameters.productTypeId === null || requestParameters.productTypeId === undefined) {
             throw new runtime.RequiredError('productTypeId','Required parameter requestParameters.productTypeId was null or undefined when calling addProperty.');
         }
@@ -843,7 +843,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      * Add property.
      * Add product type property
      */
-    async addProperty(requestParameters: ProductTypesApiAddPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
+    async addProperty(requestParameters: AddPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
         const response = await this.addPropertyRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -854,7 +854,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      */
 
 
-    async addVariantPropertyRaw(requestParameters: ProductTypesApiAddVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>> {
+    async addVariantPropertyRaw(requestParameters: AddVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>> {
         if (requestParameters.productTypeId === null || requestParameters.productTypeId === undefined) {
             throw new runtime.RequiredError('productTypeId','Required parameter requestParameters.productTypeId was null or undefined when calling addVariantProperty.');
         }
@@ -890,7 +890,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      * Add variant property.
      * Add variant property
      */
-    async addVariantProperty(requestParameters: ProductTypesApiAddVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
+    async addVariantProperty(requestParameters: AddVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
         const response = await this.addVariantPropertyRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -901,7 +901,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      */
 
 
-    async deleteExtraRaw(requestParameters: ProductTypesApiDeleteExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteExtraRaw(requestParameters: DeleteExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.productTypeId === null || requestParameters.productTypeId === undefined) {
             throw new runtime.RequiredError('productTypeId','Required parameter requestParameters.productTypeId was null or undefined when calling deleteExtra.');
         }
@@ -934,7 +934,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      * Delete extra.
      * Delete extra
      */
-    async deleteExtra(requestParameters: ProductTypesApiDeleteExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteExtra(requestParameters: DeleteExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteExtraRaw(requestParameters, initOverrides);
     }
 
@@ -944,7 +944,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      */
 
 
-    async deleteOptionRaw(requestParameters: ProductTypesApiDeleteOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteOptionRaw(requestParameters: DeleteOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.productTypeId === null || requestParameters.productTypeId === undefined) {
             throw new runtime.RequiredError('productTypeId','Required parameter requestParameters.productTypeId was null or undefined when calling deleteOption.');
         }
@@ -977,7 +977,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      * Delete option.
      * Delete option
      */
-    async deleteOption(requestParameters: ProductTypesApiDeleteOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteOption(requestParameters: DeleteOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteOptionRaw(requestParameters, initOverrides);
     }
 
@@ -987,7 +987,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      */
 
 
-    async deleteProductTypeRaw(requestParameters: ProductTypesApiDeleteProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteProductTypeRaw(requestParameters: DeleteProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.productTypeId === null || requestParameters.productTypeId === undefined) {
             throw new runtime.RequiredError('productTypeId','Required parameter requestParameters.productTypeId was null or undefined when calling deleteProductType.');
         }
@@ -1016,7 +1016,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      * Delete product type.
      * Delete product type
      */
-    async deleteProductType(requestParameters: ProductTypesApiDeleteProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteProductType(requestParameters: DeleteProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteProductTypeRaw(requestParameters, initOverrides);
     }
 
@@ -1026,7 +1026,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      */
 
 
-    async deletePropertyRaw(requestParameters: ProductTypesApiDeletePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deletePropertyRaw(requestParameters: DeletePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.productTypeId === null || requestParameters.productTypeId === undefined) {
             throw new runtime.RequiredError('productTypeId','Required parameter requestParameters.productTypeId was null or undefined when calling deleteProperty.');
         }
@@ -1059,7 +1059,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      * Delete property.
      * Delete product type property
      */
-    async deleteProperty(requestParameters: ProductTypesApiDeletePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteProperty(requestParameters: DeletePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deletePropertyRaw(requestParameters, initOverrides);
     }
 
@@ -1069,7 +1069,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      */
 
 
-    async deleteVariantPropertyRaw(requestParameters: ProductTypesApiDeleteVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteVariantPropertyRaw(requestParameters: DeleteVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.productTypeId === null || requestParameters.productTypeId === undefined) {
             throw new runtime.RequiredError('productTypeId','Required parameter requestParameters.productTypeId was null or undefined when calling deleteVariantProperty.');
         }
@@ -1102,7 +1102,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      * Delete variant property.
      * Delete variant property
      */
-    async deleteVariantProperty(requestParameters: ProductTypesApiDeleteVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteVariantProperty(requestParameters: DeleteVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteVariantPropertyRaw(requestParameters, initOverrides);
     }
 
@@ -1112,7 +1112,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      */
 
 
-    async generateProductVariationsRaw(requestParameters: ProductTypesApiGenerateProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationPagedCollection>> {
+    async generateProductVariationsRaw(requestParameters: GenerateProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationPagedCollection>> {
         if (requestParameters.productTypeId === null || requestParameters.productTypeId === undefined) {
             throw new runtime.RequiredError('productTypeId','Required parameter requestParameters.productTypeId was null or undefined when calling generateProductVariations.');
         }
@@ -1168,7 +1168,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      * 
      * Generate product variations
      */
-    async generateProductVariations(requestParameters: ProductTypesApiGenerateProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationPagedCollection> {
+    async generateProductVariations(requestParameters: GenerateProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationPagedCollection> {
         const response = await this.generateProductVariationsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1179,7 +1179,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      */
 
 
-    async getExtraRaw(requestParameters: ProductTypesApiGetExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>> {
+    async getExtraRaw(requestParameters: GetExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>> {
         if (requestParameters.productTypeId === null || requestParameters.productTypeId === undefined) {
             throw new runtime.RequiredError('productTypeId','Required parameter requestParameters.productTypeId was null or undefined when calling getExtra.');
         }
@@ -1216,7 +1216,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      * Get extra.
      * Get extra
      */
-    async getExtra(requestParameters: ProductTypesApiGetExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
+    async getExtra(requestParameters: GetExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
         const response = await this.getExtraRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1227,7 +1227,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      */
 
 
-    async getExtrasRaw(requestParameters: ProductTypesApiGetExtrasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeInProductType>>> {
+    async getExtrasRaw(requestParameters: GetExtrasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeInProductType>>> {
         if (requestParameters.productTypeId === null || requestParameters.productTypeId === undefined) {
             throw new runtime.RequiredError('productTypeId','Required parameter requestParameters.productTypeId was null or undefined when calling getExtras.');
         }
@@ -1260,7 +1260,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      * Get extras.
      * Get extras
      */
-    async getExtras(requestParameters: ProductTypesApiGetExtrasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeInProductType>> {
+    async getExtras(requestParameters: GetExtrasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeInProductType>> {
         const response = await this.getExtrasRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1271,7 +1271,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      */
 
 
-    async getOptionRaw(requestParameters: ProductTypesApiGetOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>> {
+    async getOptionRaw(requestParameters: GetOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>> {
         if (requestParameters.productTypeId === null || requestParameters.productTypeId === undefined) {
             throw new runtime.RequiredError('productTypeId','Required parameter requestParameters.productTypeId was null or undefined when calling getOption.');
         }
@@ -1308,7 +1308,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      * Get individual option.
      * Get option
      */
-    async getOption(requestParameters: ProductTypesApiGetOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
+    async getOption(requestParameters: GetOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
         const response = await this.getOptionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1319,7 +1319,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      */
 
 
-    async getOptionsRaw(requestParameters: ProductTypesApiGetOptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeInProductType>>> {
+    async getOptionsRaw(requestParameters: GetOptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeInProductType>>> {
         if (requestParameters.productTypeId === null || requestParameters.productTypeId === undefined) {
             throw new runtime.RequiredError('productTypeId','Required parameter requestParameters.productTypeId was null or undefined when calling getOptions.');
         }
@@ -1352,7 +1352,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      * Get options for the product type.
      * Get options
      */
-    async getOptions(requestParameters: ProductTypesApiGetOptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeInProductType>> {
+    async getOptions(requestParameters: GetOptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeInProductType>> {
         const response = await this.getOptionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1363,7 +1363,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      */
 
 
-    async getProductTypeRaw(requestParameters: ProductTypesApiGetProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductType>> {
+    async getProductTypeRaw(requestParameters: GetProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductType>> {
         if (requestParameters.productTypeId === null || requestParameters.productTypeId === undefined) {
             throw new runtime.RequiredError('productTypeId','Required parameter requestParameters.productTypeId was null or undefined when calling getProductType.');
         }
@@ -1396,7 +1396,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      * Get product type by Id.
      * Get product type
      */
-    async getProductType(requestParameters: ProductTypesApiGetProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductType> {
+    async getProductType(requestParameters: GetProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductType> {
         const response = await this.getProductTypeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1407,7 +1407,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      */
 
 
-    async getProductTypesRaw(requestParameters: ProductTypesApiGetProductTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductTypeCollection>> {
+    async getProductTypesRaw(requestParameters: GetProductTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductTypeCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -1456,7 +1456,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      * Retrieves a list of product types according to any specified filter criteria and sort options.
      * Get product types
      */
-    async getProductTypes(requestParameters: ProductTypesApiGetProductTypesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductTypeCollection> {
+    async getProductTypes(requestParameters: GetProductTypesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductTypeCollection> {
         const response = await this.getProductTypesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1467,7 +1467,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      */
 
 
-    async getPropertiesRaw(requestParameters: ProductTypesApiGetPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeInProductType>>> {
+    async getPropertiesRaw(requestParameters: GetPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeInProductType>>> {
         if (requestParameters.productTypeId === null || requestParameters.productTypeId === undefined) {
             throw new runtime.RequiredError('productTypeId','Required parameter requestParameters.productTypeId was null or undefined when calling getProperties.');
         }
@@ -1500,7 +1500,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      * Get properties.
      * Get product type properties
      */
-    async getProperties(requestParameters: ProductTypesApiGetPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeInProductType>> {
+    async getProperties(requestParameters: GetPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeInProductType>> {
         const response = await this.getPropertiesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1511,7 +1511,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      */
 
 
-    async getPropertyRaw(requestParameters: ProductTypesApiGetPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>> {
+    async getPropertyRaw(requestParameters: GetPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>> {
         if (requestParameters.productTypeId === null || requestParameters.productTypeId === undefined) {
             throw new runtime.RequiredError('productTypeId','Required parameter requestParameters.productTypeId was null or undefined when calling getProperty.');
         }
@@ -1548,7 +1548,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      * Get property.
      * Get product type property
      */
-    async getProperty(requestParameters: ProductTypesApiGetPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
+    async getProperty(requestParameters: GetPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
         const response = await this.getPropertyRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1559,7 +1559,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      */
 
 
-    async getVariantPropertiesRaw(requestParameters: ProductTypesApiGetVariantPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeInProductType>>> {
+    async getVariantPropertiesRaw(requestParameters: GetVariantPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeInProductType>>> {
         if (requestParameters.productTypeId === null || requestParameters.productTypeId === undefined) {
             throw new runtime.RequiredError('productTypeId','Required parameter requestParameters.productTypeId was null or undefined when calling getVariantProperties.');
         }
@@ -1592,7 +1592,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      * Get variant properties.
      * Get variant properties
      */
-    async getVariantProperties(requestParameters: ProductTypesApiGetVariantPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeInProductType>> {
+    async getVariantProperties(requestParameters: GetVariantPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeInProductType>> {
         const response = await this.getVariantPropertiesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1603,7 +1603,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      */
 
 
-    async getVariantPropertyRaw(requestParameters: ProductTypesApiGetVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>> {
+    async getVariantPropertyRaw(requestParameters: GetVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>> {
         if (requestParameters.productTypeId === null || requestParameters.productTypeId === undefined) {
             throw new runtime.RequiredError('productTypeId','Required parameter requestParameters.productTypeId was null or undefined when calling getVariantProperty.');
         }
@@ -1640,7 +1640,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      * Get variant property.
      * Get variant property
      */
-    async getVariantProperty(requestParameters: ProductTypesApiGetVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
+    async getVariantProperty(requestParameters: GetVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
         const response = await this.getVariantPropertyRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1651,7 +1651,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      */
 
 
-    async updateExtraRaw(requestParameters: ProductTypesApiUpdateExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>> {
+    async updateExtraRaw(requestParameters: UpdateExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>> {
         if (requestParameters.productTypeId === null || requestParameters.productTypeId === undefined) {
             throw new runtime.RequiredError('productTypeId','Required parameter requestParameters.productTypeId was null or undefined when calling updateExtra.');
         }
@@ -1691,7 +1691,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      * Update extra.
      * Update extra
      */
-    async updateExtra(requestParameters: ProductTypesApiUpdateExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
+    async updateExtra(requestParameters: UpdateExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
         const response = await this.updateExtraRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1702,7 +1702,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      */
 
 
-    async updateOptionRaw(requestParameters: ProductTypesApiUpdateOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>> {
+    async updateOptionRaw(requestParameters: UpdateOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>> {
         if (requestParameters.productTypeId === null || requestParameters.productTypeId === undefined) {
             throw new runtime.RequiredError('productTypeId','Required parameter requestParameters.productTypeId was null or undefined when calling updateOption.');
         }
@@ -1742,7 +1742,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      * Update option.
      * Update option
      */
-    async updateOption(requestParameters: ProductTypesApiUpdateOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
+    async updateOption(requestParameters: UpdateOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
         const response = await this.updateOptionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1753,7 +1753,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      */
 
 
-    async updateProductTypeRaw(requestParameters: ProductTypesApiUpdateProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductType>> {
+    async updateProductTypeRaw(requestParameters: UpdateProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductType>> {
         if (requestParameters.productTypeId === null || requestParameters.productTypeId === undefined) {
             throw new runtime.RequiredError('productTypeId','Required parameter requestParameters.productTypeId was null or undefined when calling updateProductType.');
         }
@@ -1789,7 +1789,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      * Update product type.
      * Update product type
      */
-    async updateProductType(requestParameters: ProductTypesApiUpdateProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductType> {
+    async updateProductType(requestParameters: UpdateProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductType> {
         const response = await this.updateProductTypeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1800,7 +1800,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      */
 
 
-    async updatePropertyRaw(requestParameters: ProductTypesApiUpdatePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>> {
+    async updatePropertyRaw(requestParameters: UpdatePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>> {
         if (requestParameters.productTypeId === null || requestParameters.productTypeId === undefined) {
             throw new runtime.RequiredError('productTypeId','Required parameter requestParameters.productTypeId was null or undefined when calling updateProperty.');
         }
@@ -1840,7 +1840,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      * Update property.
      * Update product type property
      */
-    async updateProperty(requestParameters: ProductTypesApiUpdatePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
+    async updateProperty(requestParameters: UpdatePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
         const response = await this.updatePropertyRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1851,7 +1851,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      */
 
 
-    async updateVariantPropertyRaw(requestParameters: ProductTypesApiUpdateVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>> {
+    async updateVariantPropertyRaw(requestParameters: UpdateVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>> {
         if (requestParameters.productTypeId === null || requestParameters.productTypeId === undefined) {
             throw new runtime.RequiredError('productTypeId','Required parameter requestParameters.productTypeId was null or undefined when calling updateVariantProperty.');
         }
@@ -1891,7 +1891,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiI
      * Update variant property.
      * Update variant property
      */
-    async updateVariantProperty(requestParameters: ProductTypesApiUpdateVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
+    async updateVariantProperty(requestParameters: UpdateVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
         const response = await this.updateVariantPropertyRaw(requestParameters, initOverrides);
         return await response.value();
     }

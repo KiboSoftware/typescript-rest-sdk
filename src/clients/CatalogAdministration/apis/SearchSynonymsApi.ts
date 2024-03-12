@@ -21,31 +21,31 @@ import type {
   SynonymDefinitionPagedCollection,
 } from '../models';
 
-export interface SearchSynonymsApiAddSynonymDefinitionRequest {
+export interface AddSynonymDefinitionRequest {
     responseFields?: string;
     synonymDefinition?: SynonymDefinition;
 }
 
-export interface SearchSynonymsApiDeleteSynonymDefinitionRequest {
+export interface DeleteSynonymDefinitionRequest {
     synonymId: number;
 }
 
-export interface SearchSynonymsApiGetAllSynonymDefinitionCollectionsForMasterCatalogRequest {
+export interface GetAllSynonymDefinitionCollectionsForMasterCatalogRequest {
     languageCode: string;
     responseFields?: string;
 }
 
-export interface SearchSynonymsApiGetSynonymDefinitionRequest {
+export interface GetSynonymDefinitionRequest {
     synonymId: number;
     responseFields?: string;
 }
 
-export interface SearchSynonymsApiGetSynonymDefinitionCollectionRequest {
+export interface GetSynonymDefinitionCollectionRequest {
     localeCode: string;
     responseFields?: string;
 }
 
-export interface SearchSynonymsApiGetSynonymDefinitionsRequest {
+export interface GetSynonymDefinitionsRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -53,13 +53,13 @@ export interface SearchSynonymsApiGetSynonymDefinitionsRequest {
     responseFields?: string;
 }
 
-export interface SearchSynonymsApiUpdateSynonymDefinitionRequest {
+export interface UpdateSynonymDefinitionRequest {
     synonymId: number;
     responseFields?: string;
     synonymDefinition?: SynonymDefinition;
 }
 
-export interface SearchSynonymsApiUpdateSynonymDefinitionCollectionRequest {
+export interface UpdateSynonymDefinitionCollectionRequest {
     localeCode: string;
     responseFields?: string;
     synonymDefinitionCollection?: SynonymDefinitionCollection;
@@ -81,13 +81,13 @@ export interface SearchSynonymsApiInterface {
      * @throws {RequiredError}
      * @memberof SearchSynonymsApiInterface
      */
-    addSynonymDefinitionRaw(requestParameters: SearchSynonymsApiAddSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinition>>;
+    addSynonymDefinitionRaw(requestParameters: AddSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinition>>;
 
     /**
      * Add synonym definition
      * Add synonym definition
      */
-    addSynonymDefinition(requestParameters: SearchSynonymsApiAddSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinition>;
+    addSynonymDefinition(requestParameters: AddSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinition>;
 
     /**
      * Delete synonym definition
@@ -97,13 +97,13 @@ export interface SearchSynonymsApiInterface {
      * @throws {RequiredError}
      * @memberof SearchSynonymsApiInterface
      */
-    deleteSynonymDefinitionRaw(requestParameters: SearchSynonymsApiDeleteSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteSynonymDefinitionRaw(requestParameters: DeleteSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Delete synonym definition
      * Delete synonym definition
      */
-    deleteSynonymDefinition(requestParameters: SearchSynonymsApiDeleteSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteSynonymDefinition(requestParameters: DeleteSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Get synonym definition collections
@@ -114,13 +114,13 @@ export interface SearchSynonymsApiInterface {
      * @throws {RequiredError}
      * @memberof SearchSynonymsApiInterface
      */
-    getAllSynonymDefinitionCollectionsForMasterCatalogRaw(requestParameters: SearchSynonymsApiGetAllSynonymDefinitionCollectionsForMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinitionCollection>>;
+    getAllSynonymDefinitionCollectionsForMasterCatalogRaw(requestParameters: GetAllSynonymDefinitionCollectionsForMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinitionCollection>>;
 
     /**
      * Get synonym definition collections
      * Get synonym definition collections
      */
-    getAllSynonymDefinitionCollectionsForMasterCatalog(requestParameters: SearchSynonymsApiGetAllSynonymDefinitionCollectionsForMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinitionCollection>;
+    getAllSynonymDefinitionCollectionsForMasterCatalog(requestParameters: GetAllSynonymDefinitionCollectionsForMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinitionCollection>;
 
     /**
      * Get synonym definition
@@ -131,13 +131,13 @@ export interface SearchSynonymsApiInterface {
      * @throws {RequiredError}
      * @memberof SearchSynonymsApiInterface
      */
-    getSynonymDefinitionRaw(requestParameters: SearchSynonymsApiGetSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinition>>;
+    getSynonymDefinitionRaw(requestParameters: GetSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinition>>;
 
     /**
      * Get synonym definition
      * Get synonym definition
      */
-    getSynonymDefinition(requestParameters: SearchSynonymsApiGetSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinition>;
+    getSynonymDefinition(requestParameters: GetSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinition>;
 
     /**
      * Get synonym definition collection
@@ -148,13 +148,13 @@ export interface SearchSynonymsApiInterface {
      * @throws {RequiredError}
      * @memberof SearchSynonymsApiInterface
      */
-    getSynonymDefinitionCollectionRaw(requestParameters: SearchSynonymsApiGetSynonymDefinitionCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinitionCollection>>;
+    getSynonymDefinitionCollectionRaw(requestParameters: GetSynonymDefinitionCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinitionCollection>>;
 
     /**
      * Get synonym definition collection
      * Get synonym definition collection
      */
-    getSynonymDefinitionCollection(requestParameters: SearchSynonymsApiGetSynonymDefinitionCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinitionCollection>;
+    getSynonymDefinitionCollection(requestParameters: GetSynonymDefinitionCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinitionCollection>;
 
     /**
      * Get synonym definitions
@@ -168,13 +168,13 @@ export interface SearchSynonymsApiInterface {
      * @throws {RequiredError}
      * @memberof SearchSynonymsApiInterface
      */
-    getSynonymDefinitionsRaw(requestParameters: SearchSynonymsApiGetSynonymDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinitionPagedCollection>>;
+    getSynonymDefinitionsRaw(requestParameters: GetSynonymDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinitionPagedCollection>>;
 
     /**
      * Get synonym definitions
      * Get synonym definitions
      */
-    getSynonymDefinitions(requestParameters: SearchSynonymsApiGetSynonymDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinitionPagedCollection>;
+    getSynonymDefinitions(requestParameters: GetSynonymDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinitionPagedCollection>;
 
     /**
      * Update synonym definition
@@ -186,13 +186,13 @@ export interface SearchSynonymsApiInterface {
      * @throws {RequiredError}
      * @memberof SearchSynonymsApiInterface
      */
-    updateSynonymDefinitionRaw(requestParameters: SearchSynonymsApiUpdateSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinition>>;
+    updateSynonymDefinitionRaw(requestParameters: UpdateSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinition>>;
 
     /**
      * Update synonym definition
      * Update synonym definition
      */
-    updateSynonymDefinition(requestParameters: SearchSynonymsApiUpdateSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinition>;
+    updateSynonymDefinition(requestParameters: UpdateSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinition>;
 
     /**
      * Upsert synonym definition collection
@@ -204,13 +204,13 @@ export interface SearchSynonymsApiInterface {
      * @throws {RequiredError}
      * @memberof SearchSynonymsApiInterface
      */
-    updateSynonymDefinitionCollectionRaw(requestParameters: SearchSynonymsApiUpdateSynonymDefinitionCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinitionCollection>>;
+    updateSynonymDefinitionCollectionRaw(requestParameters: UpdateSynonymDefinitionCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinitionCollection>>;
 
     /**
      * Upsert synonym definition collection
      * Add/Update synonym definition collection
      */
-    updateSynonymDefinitionCollection(requestParameters: SearchSynonymsApiUpdateSynonymDefinitionCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinitionCollection>;
+    updateSynonymDefinitionCollection(requestParameters: UpdateSynonymDefinitionCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinitionCollection>;
 
 }
 
@@ -228,7 +228,7 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
      */
 
 
-    async addSynonymDefinitionRaw(requestParameters: SearchSynonymsApiAddSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinition>> {
+    async addSynonymDefinitionRaw(requestParameters: AddSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinition>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -260,7 +260,7 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
      * Add synonym definition
      * Add synonym definition
      */
-    async addSynonymDefinition(requestParameters: SearchSynonymsApiAddSynonymDefinitionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinition> {
+    async addSynonymDefinition(requestParameters: AddSynonymDefinitionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinition> {
         const response = await this.addSynonymDefinitionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -271,7 +271,7 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
      */
 
 
-    async deleteSynonymDefinitionRaw(requestParameters: SearchSynonymsApiDeleteSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteSynonymDefinitionRaw(requestParameters: DeleteSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.synonymId === null || requestParameters.synonymId === undefined) {
             throw new runtime.RequiredError('synonymId','Required parameter requestParameters.synonymId was null or undefined when calling deleteSynonymDefinition.');
         }
@@ -300,7 +300,7 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
      * Delete synonym definition
      * Delete synonym definition
      */
-    async deleteSynonymDefinition(requestParameters: SearchSynonymsApiDeleteSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteSynonymDefinition(requestParameters: DeleteSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteSynonymDefinitionRaw(requestParameters, initOverrides);
     }
 
@@ -310,7 +310,7 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
      */
 
 
-    async getAllSynonymDefinitionCollectionsForMasterCatalogRaw(requestParameters: SearchSynonymsApiGetAllSynonymDefinitionCollectionsForMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinitionCollection>> {
+    async getAllSynonymDefinitionCollectionsForMasterCatalogRaw(requestParameters: GetAllSynonymDefinitionCollectionsForMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinitionCollection>> {
         if (requestParameters.languageCode === null || requestParameters.languageCode === undefined) {
             throw new runtime.RequiredError('languageCode','Required parameter requestParameters.languageCode was null or undefined when calling getAllSynonymDefinitionCollectionsForMasterCatalog.');
         }
@@ -343,7 +343,7 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
      * Get synonym definition collections
      * Get synonym definition collections
      */
-    async getAllSynonymDefinitionCollectionsForMasterCatalog(requestParameters: SearchSynonymsApiGetAllSynonymDefinitionCollectionsForMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinitionCollection> {
+    async getAllSynonymDefinitionCollectionsForMasterCatalog(requestParameters: GetAllSynonymDefinitionCollectionsForMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinitionCollection> {
         const response = await this.getAllSynonymDefinitionCollectionsForMasterCatalogRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -354,7 +354,7 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
      */
 
 
-    async getSynonymDefinitionRaw(requestParameters: SearchSynonymsApiGetSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinition>> {
+    async getSynonymDefinitionRaw(requestParameters: GetSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinition>> {
         if (requestParameters.synonymId === null || requestParameters.synonymId === undefined) {
             throw new runtime.RequiredError('synonymId','Required parameter requestParameters.synonymId was null or undefined when calling getSynonymDefinition.');
         }
@@ -387,7 +387,7 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
      * Get synonym definition
      * Get synonym definition
      */
-    async getSynonymDefinition(requestParameters: SearchSynonymsApiGetSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinition> {
+    async getSynonymDefinition(requestParameters: GetSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinition> {
         const response = await this.getSynonymDefinitionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -398,7 +398,7 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
      */
 
 
-    async getSynonymDefinitionCollectionRaw(requestParameters: SearchSynonymsApiGetSynonymDefinitionCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinitionCollection>> {
+    async getSynonymDefinitionCollectionRaw(requestParameters: GetSynonymDefinitionCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinitionCollection>> {
         if (requestParameters.localeCode === null || requestParameters.localeCode === undefined) {
             throw new runtime.RequiredError('localeCode','Required parameter requestParameters.localeCode was null or undefined when calling getSynonymDefinitionCollection.');
         }
@@ -431,7 +431,7 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
      * Get synonym definition collection
      * Get synonym definition collection
      */
-    async getSynonymDefinitionCollection(requestParameters: SearchSynonymsApiGetSynonymDefinitionCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinitionCollection> {
+    async getSynonymDefinitionCollection(requestParameters: GetSynonymDefinitionCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinitionCollection> {
         const response = await this.getSynonymDefinitionCollectionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -442,7 +442,7 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
      */
 
 
-    async getSynonymDefinitionsRaw(requestParameters: SearchSynonymsApiGetSynonymDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinitionPagedCollection>> {
+    async getSynonymDefinitionsRaw(requestParameters: GetSynonymDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinitionPagedCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -487,7 +487,7 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
      * Get synonym definitions
      * Get synonym definitions
      */
-    async getSynonymDefinitions(requestParameters: SearchSynonymsApiGetSynonymDefinitionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinitionPagedCollection> {
+    async getSynonymDefinitions(requestParameters: GetSynonymDefinitionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinitionPagedCollection> {
         const response = await this.getSynonymDefinitionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -498,7 +498,7 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
      */
 
 
-    async updateSynonymDefinitionRaw(requestParameters: SearchSynonymsApiUpdateSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinition>> {
+    async updateSynonymDefinitionRaw(requestParameters: UpdateSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinition>> {
         if (requestParameters.synonymId === null || requestParameters.synonymId === undefined) {
             throw new runtime.RequiredError('synonymId','Required parameter requestParameters.synonymId was null or undefined when calling updateSynonymDefinition.');
         }
@@ -534,7 +534,7 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
      * Update synonym definition
      * Update synonym definition
      */
-    async updateSynonymDefinition(requestParameters: SearchSynonymsApiUpdateSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinition> {
+    async updateSynonymDefinition(requestParameters: UpdateSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinition> {
         const response = await this.updateSynonymDefinitionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -545,7 +545,7 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
      */
 
 
-    async updateSynonymDefinitionCollectionRaw(requestParameters: SearchSynonymsApiUpdateSynonymDefinitionCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinitionCollection>> {
+    async updateSynonymDefinitionCollectionRaw(requestParameters: UpdateSynonymDefinitionCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinitionCollection>> {
         if (requestParameters.localeCode === null || requestParameters.localeCode === undefined) {
             throw new runtime.RequiredError('localeCode','Required parameter requestParameters.localeCode was null or undefined when calling updateSynonymDefinitionCollection.');
         }
@@ -581,7 +581,7 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
      * Upsert synonym definition collection
      * Add/Update synonym definition collection
      */
-    async updateSynonymDefinitionCollection(requestParameters: SearchSynonymsApiUpdateSynonymDefinitionCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinitionCollection> {
+    async updateSynonymDefinitionCollection(requestParameters: UpdateSynonymDefinitionCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinitionCollection> {
         const response = await this.updateSynonymDefinitionCollectionRaw(requestParameters, initOverrides);
         return await response.value();
     }

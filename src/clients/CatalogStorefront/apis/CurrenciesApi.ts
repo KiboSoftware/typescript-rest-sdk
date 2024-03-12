@@ -19,7 +19,7 @@ import type {
   CatalogRuntimesCurrencyExchangeRate,
 } from '../models';
 
-export interface CurrenciesApiStorefrontGetCurrencyExchangeRatesRequest {
+export interface StorefrontGetCurrencyExchangeRatesRequest {
     responseFields?: string;
 }
 
@@ -38,13 +38,13 @@ export interface CurrenciesApiInterface {
      * @throws {RequiredError}
      * @memberof CurrenciesApiInterface
      */
-    storefrontGetCurrencyExchangeRatesRaw(requestParameters: CurrenciesApiStorefrontGetCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogRuntimesCurrencyExchangeRate>>>;
+    storefrontGetCurrencyExchangeRatesRaw(requestParameters: StorefrontGetCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogRuntimesCurrencyExchangeRate>>>;
 
     /**
      * Retrieves a list of currency exchange rates based on the context\'s currency code.
      * Get exchange rates
      */
-    storefrontGetCurrencyExchangeRates(requestParameters: CurrenciesApiStorefrontGetCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogRuntimesCurrencyExchangeRate>>;
+    storefrontGetCurrencyExchangeRates(requestParameters: StorefrontGetCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogRuntimesCurrencyExchangeRate>>;
 
 }
 
@@ -62,7 +62,7 @@ export class CurrenciesApi extends runtime.BaseAPI implements CurrenciesApiInter
      */
 
 
-    async storefrontGetCurrencyExchangeRatesRaw(requestParameters: CurrenciesApiStorefrontGetCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogRuntimesCurrencyExchangeRate>>> {
+    async storefrontGetCurrencyExchangeRatesRaw(requestParameters: StorefrontGetCurrencyExchangeRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogRuntimesCurrencyExchangeRate>>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -91,7 +91,7 @@ export class CurrenciesApi extends runtime.BaseAPI implements CurrenciesApiInter
      * Retrieves a list of currency exchange rates based on the context\'s currency code.
      * Get exchange rates
      */
-    async storefrontGetCurrencyExchangeRates(requestParameters: CurrenciesApiStorefrontGetCurrencyExchangeRatesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogRuntimesCurrencyExchangeRate>> {
+    async storefrontGetCurrencyExchangeRates(requestParameters: StorefrontGetCurrencyExchangeRatesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogRuntimesCurrencyExchangeRate>> {
         const response = await this.storefrontGetCurrencyExchangeRatesRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -24,28 +24,28 @@ import type {
   PackageSummaryCollection,
 } from '../models';
 
-export interface PackageApiClonePackageRequest {
+export interface ClonePackageRequest {
     applicationKey: string;
     packageName: string;
     responseFields?: string;
 }
 
-export interface PackageApiCreateNewCorePackageRequest {
+export interface CreateNewCorePackageRequest {
     responseFields?: string;
     packageRequest?: PackageRequest;
 }
 
-export interface PackageApiCreatePackageRequest {
+export interface CreatePackageRequest {
     projectId?: number;
     responseFields?: string;
     appDevPackage?: AppDevPackage;
 }
 
-export interface PackageApiDeletePackageRequest {
+export interface DeletePackageRequest {
     applicationKey: string;
 }
 
-export interface PackageApiGetAllPackagesRequest {
+export interface GetAllPackagesRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -53,12 +53,12 @@ export interface PackageApiGetAllPackagesRequest {
     responseFields?: string;
 }
 
-export interface PackageApiGetApplicationSummaryChildrenRequest {
+export interface GetApplicationSummaryChildrenRequest {
     appId: string;
     responseFields?: string;
 }
 
-export interface PackageApiGetApplicationSummaryParentsRequest {
+export interface GetApplicationSummaryParentsRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -66,14 +66,14 @@ export interface PackageApiGetApplicationSummaryParentsRequest {
     responseFields?: string;
 }
 
-export interface PackageApiGetPackageRequest {
+export interface GetPackageRequest {
     applicationKey: string;
     includeChildren?: boolean;
     skipDevAccountCheck?: boolean;
     responseFields?: string;
 }
 
-export interface PackageApiGetPackagesRequest {
+export interface GetPackagesRequest {
     applicationKey: string;
     startIndex?: number;
     pageSize?: number;
@@ -82,7 +82,7 @@ export interface PackageApiGetPackagesRequest {
     responseFields?: string;
 }
 
-export interface PackageApiUpdatePackageRequest {
+export interface UpdatePackageRequest {
     applicationKey: string;
     responseFields?: string;
     appDevPackage?: AppDevPackage;
@@ -105,13 +105,13 @@ export interface PackageApiInterface {
      * @throws {RequiredError}
      * @memberof PackageApiInterface
      */
-    clonePackageRaw(requestParameters: PackageApiClonePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevPackage>>;
+    clonePackageRaw(requestParameters: ClonePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevPackage>>;
 
     /**
      * Use this operation to clone an existing package.
      * Clone Package
      */
-    clonePackage(requestParameters: PackageApiClonePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevPackage>;
+    clonePackage(requestParameters: ClonePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevPackage>;
 
     /**
      * Save as new version of the application core with only a release package included.
@@ -122,13 +122,13 @@ export interface PackageApiInterface {
      * @throws {RequiredError}
      * @memberof PackageApiInterface
      */
-    createNewCorePackageRaw(requestParameters: PackageApiCreateNewCorePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevPackage>>;
+    createNewCorePackageRaw(requestParameters: CreateNewCorePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevPackage>>;
 
     /**
      * Save as new version of the application core with only a release package included.
      * Create New Core Package
      */
-    createNewCorePackage(requestParameters: PackageApiCreateNewCorePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevPackage>;
+    createNewCorePackage(requestParameters: CreateNewCorePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevPackage>;
 
     /**
      * 
@@ -140,13 +140,13 @@ export interface PackageApiInterface {
      * @throws {RequiredError}
      * @memberof PackageApiInterface
      */
-    createPackageRaw(requestParameters: PackageApiCreatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevPackage>>;
+    createPackageRaw(requestParameters: CreatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevPackage>>;
 
     /**
      * 
      * Create Package
      */
-    createPackage(requestParameters: PackageApiCreatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevPackage>;
+    createPackage(requestParameters: CreatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevPackage>;
 
     /**
      * Use thi operatin to logically delete a package.
@@ -156,13 +156,13 @@ export interface PackageApiInterface {
      * @throws {RequiredError}
      * @memberof PackageApiInterface
      */
-    deletePackageRaw(requestParameters: PackageApiDeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deletePackageRaw(requestParameters: DeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Use thi operatin to logically delete a package.
      * Delete Package
      */
-    deletePackage(requestParameters: PackageApiDeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deletePackage(requestParameters: DeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Get all packages for a given Developer Account.
@@ -176,13 +176,13 @@ export interface PackageApiInterface {
      * @throws {RequiredError}
      * @memberof PackageApiInterface
      */
-    getAllPackagesRaw(requestParameters: PackageApiGetAllPackagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PackageSummaryCollection>>;
+    getAllPackagesRaw(requestParameters: GetAllPackagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PackageSummaryCollection>>;
 
     /**
      * Get all packages for a given Developer Account.
      * Get All Packages
      */
-    getAllPackages(requestParameters: PackageApiGetAllPackagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PackageSummaryCollection>;
+    getAllPackages(requestParameters: GetAllPackagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PackageSummaryCollection>;
 
     /**
      * 
@@ -193,13 +193,13 @@ export interface PackageApiInterface {
      * @throws {RequiredError}
      * @memberof PackageApiInterface
      */
-    getApplicationSummaryChildrenRaw(requestParameters: PackageApiGetApplicationSummaryChildrenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ApplicationSummary>>>;
+    getApplicationSummaryChildrenRaw(requestParameters: GetApplicationSummaryChildrenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ApplicationSummary>>>;
 
     /**
      * 
      * Get Application Summary Children
      */
-    getApplicationSummaryChildren(requestParameters: PackageApiGetApplicationSummaryChildrenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ApplicationSummary>>;
+    getApplicationSummaryChildren(requestParameters: GetApplicationSummaryChildrenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ApplicationSummary>>;
 
     /**
      * 
@@ -213,13 +213,13 @@ export interface PackageApiInterface {
      * @throws {RequiredError}
      * @memberof PackageApiInterface
      */
-    getApplicationSummaryParentsRaw(requestParameters: PackageApiGetApplicationSummaryParentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApplicationSummaryCollection>>;
+    getApplicationSummaryParentsRaw(requestParameters: GetApplicationSummaryParentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApplicationSummaryCollection>>;
 
     /**
      * 
      * Get Application Summary Parents
      */
-    getApplicationSummaryParents(requestParameters: PackageApiGetApplicationSummaryParentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApplicationSummaryCollection>;
+    getApplicationSummaryParents(requestParameters: GetApplicationSummaryParentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApplicationSummaryCollection>;
 
     /**
      * Use this operation to retrieve the package for the requested  package and its associated application core information.
@@ -232,13 +232,13 @@ export interface PackageApiInterface {
      * @throws {RequiredError}
      * @memberof PackageApiInterface
      */
-    getPackageRaw(requestParameters: PackageApiGetPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevPackage>>;
+    getPackageRaw(requestParameters: GetPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevPackage>>;
 
     /**
      * Use this operation to retrieve the package for the requested  package and its associated application core information.
      * Get Package
      */
-    getPackage(requestParameters: PackageApiGetPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevPackage>;
+    getPackage(requestParameters: GetPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevPackage>;
 
     /**
      * Use this operation to retieve all packages for a given applicationKey.
@@ -253,13 +253,13 @@ export interface PackageApiInterface {
      * @throws {RequiredError}
      * @memberof PackageApiInterface
      */
-    getPackagesRaw(requestParameters: PackageApiGetPackagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PackageCollection>>;
+    getPackagesRaw(requestParameters: GetPackagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PackageCollection>>;
 
     /**
      * Use this operation to retieve all packages for a given applicationKey.
      * Get Packages
      */
-    getPackages(requestParameters: PackageApiGetPackagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PackageCollection>;
+    getPackages(requestParameters: GetPackagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PackageCollection>;
 
     /**
      * 
@@ -271,13 +271,13 @@ export interface PackageApiInterface {
      * @throws {RequiredError}
      * @memberof PackageApiInterface
      */
-    updatePackageRaw(requestParameters: PackageApiUpdatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevPackage>>;
+    updatePackageRaw(requestParameters: UpdatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevPackage>>;
 
     /**
      * 
      * Update Package
      */
-    updatePackage(requestParameters: PackageApiUpdatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevPackage>;
+    updatePackage(requestParameters: UpdatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevPackage>;
 
 }
 
@@ -295,7 +295,7 @@ export class PackageApi extends runtime.BaseAPI implements PackageApiInterface {
      */
 
 
-    async clonePackageRaw(requestParameters: PackageApiClonePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevPackage>> {
+    async clonePackageRaw(requestParameters: ClonePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevPackage>> {
         if (requestParameters.applicationKey === null || requestParameters.applicationKey === undefined) {
             throw new runtime.RequiredError('applicationKey','Required parameter requestParameters.applicationKey was null or undefined when calling clonePackage.');
         }
@@ -332,7 +332,7 @@ export class PackageApi extends runtime.BaseAPI implements PackageApiInterface {
      * Use this operation to clone an existing package.
      * Clone Package
      */
-    async clonePackage(requestParameters: PackageApiClonePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevPackage> {
+    async clonePackage(requestParameters: ClonePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevPackage> {
         const response = await this.clonePackageRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -343,7 +343,7 @@ export class PackageApi extends runtime.BaseAPI implements PackageApiInterface {
      */
 
 
-    async createNewCorePackageRaw(requestParameters: PackageApiCreateNewCorePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevPackage>> {
+    async createNewCorePackageRaw(requestParameters: CreateNewCorePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevPackage>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -375,7 +375,7 @@ export class PackageApi extends runtime.BaseAPI implements PackageApiInterface {
      * Save as new version of the application core with only a release package included.
      * Create New Core Package
      */
-    async createNewCorePackage(requestParameters: PackageApiCreateNewCorePackageRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevPackage> {
+    async createNewCorePackage(requestParameters: CreateNewCorePackageRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevPackage> {
         const response = await this.createNewCorePackageRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -386,7 +386,7 @@ export class PackageApi extends runtime.BaseAPI implements PackageApiInterface {
      */
 
 
-    async createPackageRaw(requestParameters: PackageApiCreatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevPackage>> {
+    async createPackageRaw(requestParameters: CreatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevPackage>> {
         const queryParameters: any = {};
 
         if (requestParameters.projectId !== undefined) {
@@ -422,7 +422,7 @@ export class PackageApi extends runtime.BaseAPI implements PackageApiInterface {
      * 
      * Create Package
      */
-    async createPackage(requestParameters: PackageApiCreatePackageRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevPackage> {
+    async createPackage(requestParameters: CreatePackageRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevPackage> {
         const response = await this.createPackageRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -433,7 +433,7 @@ export class PackageApi extends runtime.BaseAPI implements PackageApiInterface {
      */
 
 
-    async deletePackageRaw(requestParameters: PackageApiDeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deletePackageRaw(requestParameters: DeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.applicationKey === null || requestParameters.applicationKey === undefined) {
             throw new runtime.RequiredError('applicationKey','Required parameter requestParameters.applicationKey was null or undefined when calling deletePackage.');
         }
@@ -462,7 +462,7 @@ export class PackageApi extends runtime.BaseAPI implements PackageApiInterface {
      * Use thi operatin to logically delete a package.
      * Delete Package
      */
-    async deletePackage(requestParameters: PackageApiDeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deletePackage(requestParameters: DeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deletePackageRaw(requestParameters, initOverrides);
     }
 
@@ -472,7 +472,7 @@ export class PackageApi extends runtime.BaseAPI implements PackageApiInterface {
      */
 
 
-    async getAllPackagesRaw(requestParameters: PackageApiGetAllPackagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PackageSummaryCollection>> {
+    async getAllPackagesRaw(requestParameters: GetAllPackagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PackageSummaryCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -517,7 +517,7 @@ export class PackageApi extends runtime.BaseAPI implements PackageApiInterface {
      * Get all packages for a given Developer Account.
      * Get All Packages
      */
-    async getAllPackages(requestParameters: PackageApiGetAllPackagesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PackageSummaryCollection> {
+    async getAllPackages(requestParameters: GetAllPackagesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PackageSummaryCollection> {
         const response = await this.getAllPackagesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -528,7 +528,7 @@ export class PackageApi extends runtime.BaseAPI implements PackageApiInterface {
      */
 
 
-    async getApplicationSummaryChildrenRaw(requestParameters: PackageApiGetApplicationSummaryChildrenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ApplicationSummary>>> {
+    async getApplicationSummaryChildrenRaw(requestParameters: GetApplicationSummaryChildrenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ApplicationSummary>>> {
         if (requestParameters.appId === null || requestParameters.appId === undefined) {
             throw new runtime.RequiredError('appId','Required parameter requestParameters.appId was null or undefined when calling getApplicationSummaryChildren.');
         }
@@ -561,7 +561,7 @@ export class PackageApi extends runtime.BaseAPI implements PackageApiInterface {
      * 
      * Get Application Summary Children
      */
-    async getApplicationSummaryChildren(requestParameters: PackageApiGetApplicationSummaryChildrenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ApplicationSummary>> {
+    async getApplicationSummaryChildren(requestParameters: GetApplicationSummaryChildrenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ApplicationSummary>> {
         const response = await this.getApplicationSummaryChildrenRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -572,7 +572,7 @@ export class PackageApi extends runtime.BaseAPI implements PackageApiInterface {
      */
 
 
-    async getApplicationSummaryParentsRaw(requestParameters: PackageApiGetApplicationSummaryParentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApplicationSummaryCollection>> {
+    async getApplicationSummaryParentsRaw(requestParameters: GetApplicationSummaryParentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApplicationSummaryCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -617,7 +617,7 @@ export class PackageApi extends runtime.BaseAPI implements PackageApiInterface {
      * 
      * Get Application Summary Parents
      */
-    async getApplicationSummaryParents(requestParameters: PackageApiGetApplicationSummaryParentsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApplicationSummaryCollection> {
+    async getApplicationSummaryParents(requestParameters: GetApplicationSummaryParentsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApplicationSummaryCollection> {
         const response = await this.getApplicationSummaryParentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -628,7 +628,7 @@ export class PackageApi extends runtime.BaseAPI implements PackageApiInterface {
      */
 
 
-    async getPackageRaw(requestParameters: PackageApiGetPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevPackage>> {
+    async getPackageRaw(requestParameters: GetPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevPackage>> {
         if (requestParameters.applicationKey === null || requestParameters.applicationKey === undefined) {
             throw new runtime.RequiredError('applicationKey','Required parameter requestParameters.applicationKey was null or undefined when calling getPackage.');
         }
@@ -669,7 +669,7 @@ export class PackageApi extends runtime.BaseAPI implements PackageApiInterface {
      * Use this operation to retrieve the package for the requested  package and its associated application core information.
      * Get Package
      */
-    async getPackage(requestParameters: PackageApiGetPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevPackage> {
+    async getPackage(requestParameters: GetPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevPackage> {
         const response = await this.getPackageRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -680,7 +680,7 @@ export class PackageApi extends runtime.BaseAPI implements PackageApiInterface {
      */
 
 
-    async getPackagesRaw(requestParameters: PackageApiGetPackagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PackageCollection>> {
+    async getPackagesRaw(requestParameters: GetPackagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PackageCollection>> {
         if (requestParameters.applicationKey === null || requestParameters.applicationKey === undefined) {
             throw new runtime.RequiredError('applicationKey','Required parameter requestParameters.applicationKey was null or undefined when calling getPackages.');
         }
@@ -729,7 +729,7 @@ export class PackageApi extends runtime.BaseAPI implements PackageApiInterface {
      * Use this operation to retieve all packages for a given applicationKey.
      * Get Packages
      */
-    async getPackages(requestParameters: PackageApiGetPackagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PackageCollection> {
+    async getPackages(requestParameters: GetPackagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PackageCollection> {
         const response = await this.getPackagesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -740,7 +740,7 @@ export class PackageApi extends runtime.BaseAPI implements PackageApiInterface {
      */
 
 
-    async updatePackageRaw(requestParameters: PackageApiUpdatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevPackage>> {
+    async updatePackageRaw(requestParameters: UpdatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevPackage>> {
         if (requestParameters.applicationKey === null || requestParameters.applicationKey === undefined) {
             throw new runtime.RequiredError('applicationKey','Required parameter requestParameters.applicationKey was null or undefined when calling updatePackage.');
         }
@@ -776,7 +776,7 @@ export class PackageApi extends runtime.BaseAPI implements PackageApiInterface {
      * 
      * Update Package
      */
-    async updatePackage(requestParameters: PackageApiUpdatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevPackage> {
+    async updatePackage(requestParameters: UpdatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevPackage> {
         const response = await this.updatePackageRaw(requestParameters, initOverrides);
         return await response.value();
     }

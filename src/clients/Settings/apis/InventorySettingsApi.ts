@@ -19,16 +19,16 @@ import type {
   InventorySettings,
 } from '../models';
 
-export interface InventorySettingsApiCreateInventorySettingsRequest {
+export interface CreateInventorySettingsRequest {
     responseFields?: string;
     inventorySettings?: InventorySettings;
 }
 
-export interface InventorySettingsApiGetInventorySettingsRequest {
+export interface GetInventorySettingsRequest {
     responseFields?: string;
 }
 
-export interface InventorySettingsApiUpdateInventorySettingsRequest {
+export interface UpdateInventorySettingsRequest {
     responseFields?: string;
     inventorySettings?: InventorySettings;
 }
@@ -49,13 +49,13 @@ export interface InventorySettingsApiInterface {
      * @throws {RequiredError}
      * @memberof InventorySettingsApiInterface
      */
-    createInventorySettingsRaw(requestParameters: InventorySettingsApiCreateInventorySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventorySettings>>;
+    createInventorySettingsRaw(requestParameters: CreateInventorySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventorySettings>>;
 
     /**
      * Creates inventory settings for the site
      * Create Inventory Settings
      */
-    createInventorySettings(requestParameters: InventorySettingsApiCreateInventorySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InventorySettings>;
+    createInventorySettings(requestParameters: CreateInventorySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InventorySettings>;
 
     /**
      * Retrieves existing inventory settings for the site which contain inventory export job settings.
@@ -65,13 +65,13 @@ export interface InventorySettingsApiInterface {
      * @throws {RequiredError}
      * @memberof InventorySettingsApiInterface
      */
-    getInventorySettingsRaw(requestParameters: InventorySettingsApiGetInventorySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventorySettings>>;
+    getInventorySettingsRaw(requestParameters: GetInventorySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventorySettings>>;
 
     /**
      * Retrieves existing inventory settings for the site which contain inventory export job settings.
      * Get Inventory Settings
      */
-    getInventorySettings(requestParameters: InventorySettingsApiGetInventorySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InventorySettings>;
+    getInventorySettings(requestParameters: GetInventorySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InventorySettings>;
 
     /**
      * Modifies existing inventory settings
@@ -82,13 +82,13 @@ export interface InventorySettingsApiInterface {
      * @throws {RequiredError}
      * @memberof InventorySettingsApiInterface
      */
-    updateInventorySettingsRaw(requestParameters: InventorySettingsApiUpdateInventorySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventorySettings>>;
+    updateInventorySettingsRaw(requestParameters: UpdateInventorySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventorySettings>>;
 
     /**
      * Modifies existing inventory settings
      * Update Inventory Settings
      */
-    updateInventorySettings(requestParameters: InventorySettingsApiUpdateInventorySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InventorySettings>;
+    updateInventorySettings(requestParameters: UpdateInventorySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InventorySettings>;
 
 }
 
@@ -106,7 +106,7 @@ export class InventorySettingsApi extends runtime.BaseAPI implements InventorySe
      */
 
 
-    async createInventorySettingsRaw(requestParameters: InventorySettingsApiCreateInventorySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventorySettings>> {
+    async createInventorySettingsRaw(requestParameters: CreateInventorySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventorySettings>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -138,7 +138,7 @@ export class InventorySettingsApi extends runtime.BaseAPI implements InventorySe
      * Creates inventory settings for the site
      * Create Inventory Settings
      */
-    async createInventorySettings(requestParameters: InventorySettingsApiCreateInventorySettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InventorySettings> {
+    async createInventorySettings(requestParameters: CreateInventorySettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InventorySettings> {
         const response = await this.createInventorySettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -149,7 +149,7 @@ export class InventorySettingsApi extends runtime.BaseAPI implements InventorySe
      */
 
 
-    async getInventorySettingsRaw(requestParameters: InventorySettingsApiGetInventorySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventorySettings>> {
+    async getInventorySettingsRaw(requestParameters: GetInventorySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventorySettings>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -178,7 +178,7 @@ export class InventorySettingsApi extends runtime.BaseAPI implements InventorySe
      * Retrieves existing inventory settings for the site which contain inventory export job settings.
      * Get Inventory Settings
      */
-    async getInventorySettings(requestParameters: InventorySettingsApiGetInventorySettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InventorySettings> {
+    async getInventorySettings(requestParameters: GetInventorySettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InventorySettings> {
         const response = await this.getInventorySettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -189,7 +189,7 @@ export class InventorySettingsApi extends runtime.BaseAPI implements InventorySe
      */
 
 
-    async updateInventorySettingsRaw(requestParameters: InventorySettingsApiUpdateInventorySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventorySettings>> {
+    async updateInventorySettingsRaw(requestParameters: UpdateInventorySettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventorySettings>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -221,7 +221,7 @@ export class InventorySettingsApi extends runtime.BaseAPI implements InventorySe
      * Modifies existing inventory settings
      * Update Inventory Settings
      */
-    async updateInventorySettings(requestParameters: InventorySettingsApiUpdateInventorySettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InventorySettings> {
+    async updateInventorySettings(requestParameters: UpdateInventorySettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InventorySettings> {
         const response = await this.updateInventorySettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }

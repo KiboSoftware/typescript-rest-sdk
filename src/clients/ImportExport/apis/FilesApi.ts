@@ -19,23 +19,23 @@ import type {
   DropLocation,
 } from '../models';
 
-export interface FilesApiDownloadRequest {
+export interface DownloadRequest {
     id: string;
     responseFields?: string;
 }
 
-export interface FilesApiGetRequest {
+export interface GetRequest {
     id: string;
     responseFields?: string;
 }
 
-export interface FilesApiGetPublicLinkRequest {
+export interface GetPublicLinkRequest {
     id: string;
     hourDuration?: number;
     responseFields?: string;
 }
 
-export interface FilesApiUploadRequest {
+export interface UploadRequest {
     fileType?: string;
     fileName?: string;
     responseFields?: string;
@@ -58,13 +58,13 @@ export interface FilesApiInterface {
      * @throws {RequiredError}
      * @memberof FilesApiInterface
      */
-    downloadRaw(requestParameters: FilesApiDownloadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    downloadRaw(requestParameters: DownloadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Download
      * Download
      */
-    download(requestParameters: FilesApiDownloadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    download(requestParameters: DownloadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Get
@@ -75,13 +75,13 @@ export interface FilesApiInterface {
      * @throws {RequiredError}
      * @memberof FilesApiInterface
      */
-    getRaw(requestParameters: FilesApiGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DropLocation>>;
+    getRaw(requestParameters: GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DropLocation>>;
 
     /**
      * Get
      * Get
      */
-    get(requestParameters: FilesApiGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DropLocation>;
+    get(requestParameters: GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DropLocation>;
 
     /**
      * Get Public Link
@@ -93,13 +93,13 @@ export interface FilesApiInterface {
      * @throws {RequiredError}
      * @memberof FilesApiInterface
      */
-    getPublicLinkRaw(requestParameters: FilesApiGetPublicLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
+    getPublicLinkRaw(requestParameters: GetPublicLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
 
     /**
      * Get Public Link
      * Get Public Link
      */
-    getPublicLink(requestParameters: FilesApiGetPublicLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
+    getPublicLink(requestParameters: GetPublicLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
 
     /**
      * Upload
@@ -112,13 +112,13 @@ export interface FilesApiInterface {
      * @throws {RequiredError}
      * @memberof FilesApiInterface
      */
-    uploadRaw(requestParameters: FilesApiUploadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DropLocation>>;
+    uploadRaw(requestParameters: UploadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DropLocation>>;
 
     /**
      * Upload
      * Upload
      */
-    upload(requestParameters: FilesApiUploadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DropLocation>;
+    upload(requestParameters: UploadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DropLocation>;
 
 }
 
@@ -136,7 +136,7 @@ export class FilesApi extends runtime.BaseAPI implements FilesApiInterface {
      */
 
 
-    async downloadRaw(requestParameters: FilesApiDownloadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async downloadRaw(requestParameters: DownloadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling download.');
         }
@@ -169,7 +169,7 @@ export class FilesApi extends runtime.BaseAPI implements FilesApiInterface {
      * Download
      * Download
      */
-    async download(requestParameters: FilesApiDownloadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async download(requestParameters: DownloadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.downloadRaw(requestParameters, initOverrides);
     }
 
@@ -179,7 +179,7 @@ export class FilesApi extends runtime.BaseAPI implements FilesApiInterface {
      */
 
 
-    async getRaw(requestParameters: FilesApiGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DropLocation>> {
+    async getRaw(requestParameters: GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DropLocation>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling get.');
         }
@@ -212,7 +212,7 @@ export class FilesApi extends runtime.BaseAPI implements FilesApiInterface {
      * Get
      * Get
      */
-    async get(requestParameters: FilesApiGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DropLocation> {
+    async get(requestParameters: GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DropLocation> {
         const response = await this.getRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -223,7 +223,7 @@ export class FilesApi extends runtime.BaseAPI implements FilesApiInterface {
      */
 
 
-    async getPublicLinkRaw(requestParameters: FilesApiGetPublicLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async getPublicLinkRaw(requestParameters: GetPublicLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getPublicLink.');
         }
@@ -260,7 +260,7 @@ export class FilesApi extends runtime.BaseAPI implements FilesApiInterface {
      * Get Public Link
      * Get Public Link
      */
-    async getPublicLink(requestParameters: FilesApiGetPublicLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+    async getPublicLink(requestParameters: GetPublicLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
         const response = await this.getPublicLinkRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -271,7 +271,7 @@ export class FilesApi extends runtime.BaseAPI implements FilesApiInterface {
      */
 
 
-    async uploadRaw(requestParameters: FilesApiUploadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DropLocation>> {
+    async uploadRaw(requestParameters: UploadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DropLocation>> {
         const queryParameters: any = {};
 
         if (requestParameters.fileType !== undefined) {
@@ -311,7 +311,7 @@ export class FilesApi extends runtime.BaseAPI implements FilesApiInterface {
      * Upload
      * Upload
      */
-    async upload(requestParameters: FilesApiUploadRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DropLocation> {
+    async upload(requestParameters: UploadRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DropLocation> {
         const response = await this.uploadRaw(requestParameters, initOverrides);
         return await response.value();
     }

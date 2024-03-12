@@ -24,32 +24,32 @@ import type {
   BatchJobSummaryCollection,
 } from '../models';
 
-export interface BatchJobApiCreateBatchJobRequest {
+export interface CreateBatchJobRequest {
     responseFields?: string;
     batchJob?: BatchJob;
 }
 
-export interface BatchJobApiDeleteBatchJobRequest {
+export interface DeleteBatchJobRequest {
     code: string;
 }
 
-export interface BatchJobApiGetAvailableActionsRequest {
-    code: string;
-    responseFields?: string;
-}
-
-export interface BatchJobApiGetBatchJobRequest {
+export interface GetAvailableActionsRequest {
     code: string;
     responseFields?: string;
 }
 
-export interface BatchJobApiGetBatchJobItemRequest {
+export interface GetBatchJobRequest {
+    code: string;
+    responseFields?: string;
+}
+
+export interface GetBatchJobItemRequest {
     code: string;
     correlationId: string;
     responseFields?: string;
 }
 
-export interface BatchJobApiGetBatchJobItemsRequest {
+export interface GetBatchJobItemsRequest {
     code: string;
     pageSize?: number;
     startIndex?: number;
@@ -59,7 +59,7 @@ export interface BatchJobApiGetBatchJobItemsRequest {
     responseFields?: string;
 }
 
-export interface BatchJobApiGetBatchJobsRequest {
+export interface GetBatchJobsRequest {
     domain?: string;
     pageSize?: number;
     startIndex?: number;
@@ -68,12 +68,12 @@ export interface BatchJobApiGetBatchJobsRequest {
     responseFields?: string;
 }
 
-export interface BatchJobApiGetBatchSummaryJobRequest {
+export interface GetBatchSummaryJobRequest {
     code: string;
     responseFields?: string;
 }
 
-export interface BatchJobApiGetBatchSummaryJobsRequest {
+export interface GetBatchSummaryJobsRequest {
     domain?: string;
     pageSize?: number;
     startIndex?: number;
@@ -82,13 +82,13 @@ export interface BatchJobApiGetBatchSummaryJobsRequest {
     responseFields?: string;
 }
 
-export interface BatchJobApiPerformBatchActionRequest {
+export interface PerformBatchActionRequest {
     code: string;
     responseFields?: string;
     batchJobAction?: BatchJobAction;
 }
 
-export interface BatchJobApiUpdateBatchJobRequest {
+export interface UpdateBatchJobRequest {
     code: string;
     responseFields?: string;
     batchJob?: BatchJob;
@@ -110,13 +110,13 @@ export interface BatchJobApiInterface {
      * @throws {RequiredError}
      * @memberof BatchJobApiInterface
      */
-    createBatchJobRaw(requestParameters: BatchJobApiCreateBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJob>>;
+    createBatchJobRaw(requestParameters: CreateBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJob>>;
 
     /**
      * Create Batch Job
      * Create Batch Job
      */
-    createBatchJob(requestParameters: BatchJobApiCreateBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJob>;
+    createBatchJob(requestParameters: CreateBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJob>;
 
     /**
      * Delete Batch Job
@@ -126,13 +126,13 @@ export interface BatchJobApiInterface {
      * @throws {RequiredError}
      * @memberof BatchJobApiInterface
      */
-    deleteBatchJobRaw(requestParameters: BatchJobApiDeleteBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJob>>;
+    deleteBatchJobRaw(requestParameters: DeleteBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJob>>;
 
     /**
      * Delete Batch Job
      * Delete Batch Job
      */
-    deleteBatchJob(requestParameters: BatchJobApiDeleteBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJob>;
+    deleteBatchJob(requestParameters: DeleteBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJob>;
 
     /**
      * Get Available Actions
@@ -143,13 +143,13 @@ export interface BatchJobApiInterface {
      * @throws {RequiredError}
      * @memberof BatchJobApiInterface
      */
-    getAvailableActionsRaw(requestParameters: BatchJobApiGetAvailableActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
+    getAvailableActionsRaw(requestParameters: GetAvailableActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
 
     /**
      * Get Available Actions
      * Get Available Actions
      */
-    getAvailableActions(requestParameters: BatchJobApiGetAvailableActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
+    getAvailableActions(requestParameters: GetAvailableActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
 
     /**
      * Get Batch Job
@@ -160,13 +160,13 @@ export interface BatchJobApiInterface {
      * @throws {RequiredError}
      * @memberof BatchJobApiInterface
      */
-    getBatchJobRaw(requestParameters: BatchJobApiGetBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJob>>;
+    getBatchJobRaw(requestParameters: GetBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJob>>;
 
     /**
      * Get Batch Job
      * Get Batch Job
      */
-    getBatchJob(requestParameters: BatchJobApiGetBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJob>;
+    getBatchJob(requestParameters: GetBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJob>;
 
     /**
      * Get Batch Job Item
@@ -178,13 +178,13 @@ export interface BatchJobApiInterface {
      * @throws {RequiredError}
      * @memberof BatchJobApiInterface
      */
-    getBatchJobItemRaw(requestParameters: BatchJobApiGetBatchJobItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJobItemResultSet>>;
+    getBatchJobItemRaw(requestParameters: GetBatchJobItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJobItemResultSet>>;
 
     /**
      * Get Batch Job Item
      * Get Batch Job Item
      */
-    getBatchJobItem(requestParameters: BatchJobApiGetBatchJobItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJobItemResultSet>;
+    getBatchJobItem(requestParameters: GetBatchJobItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJobItemResultSet>;
 
     /**
      * Get Batch Job Items
@@ -200,13 +200,13 @@ export interface BatchJobApiInterface {
      * @throws {RequiredError}
      * @memberof BatchJobApiInterface
      */
-    getBatchJobItemsRaw(requestParameters: BatchJobApiGetBatchJobItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJobItemResultSet>>;
+    getBatchJobItemsRaw(requestParameters: GetBatchJobItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJobItemResultSet>>;
 
     /**
      * Get Batch Job Items
      * Get Batch Job Items
      */
-    getBatchJobItems(requestParameters: BatchJobApiGetBatchJobItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJobItemResultSet>;
+    getBatchJobItems(requestParameters: GetBatchJobItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJobItemResultSet>;
 
     /**
      * Get Batch Jobs
@@ -221,13 +221,13 @@ export interface BatchJobApiInterface {
      * @throws {RequiredError}
      * @memberof BatchJobApiInterface
      */
-    getBatchJobsRaw(requestParameters: BatchJobApiGetBatchJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJobCollection>>;
+    getBatchJobsRaw(requestParameters: GetBatchJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJobCollection>>;
 
     /**
      * Get Batch Jobs
      * Get Batch Jobs
      */
-    getBatchJobs(requestParameters: BatchJobApiGetBatchJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJobCollection>;
+    getBatchJobs(requestParameters: GetBatchJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJobCollection>;
 
     /**
      * Get Batch Summary Job
@@ -238,13 +238,13 @@ export interface BatchJobApiInterface {
      * @throws {RequiredError}
      * @memberof BatchJobApiInterface
      */
-    getBatchSummaryJobRaw(requestParameters: BatchJobApiGetBatchSummaryJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJobSummary>>;
+    getBatchSummaryJobRaw(requestParameters: GetBatchSummaryJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJobSummary>>;
 
     /**
      * Get Batch Summary Job
      * Get Batch Summary Job
      */
-    getBatchSummaryJob(requestParameters: BatchJobApiGetBatchSummaryJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJobSummary>;
+    getBatchSummaryJob(requestParameters: GetBatchSummaryJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJobSummary>;
 
     /**
      * Get Batch Summary Jobs
@@ -259,13 +259,13 @@ export interface BatchJobApiInterface {
      * @throws {RequiredError}
      * @memberof BatchJobApiInterface
      */
-    getBatchSummaryJobsRaw(requestParameters: BatchJobApiGetBatchSummaryJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJobSummaryCollection>>;
+    getBatchSummaryJobsRaw(requestParameters: GetBatchSummaryJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJobSummaryCollection>>;
 
     /**
      * Get Batch Summary Jobs
      * Get Batch Summary Jobs
      */
-    getBatchSummaryJobs(requestParameters: BatchJobApiGetBatchSummaryJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJobSummaryCollection>;
+    getBatchSummaryJobs(requestParameters: GetBatchSummaryJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJobSummaryCollection>;
 
     /**
      * Perform Batch Action
@@ -277,13 +277,13 @@ export interface BatchJobApiInterface {
      * @throws {RequiredError}
      * @memberof BatchJobApiInterface
      */
-    performBatchActionRaw(requestParameters: BatchJobApiPerformBatchActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJob>>;
+    performBatchActionRaw(requestParameters: PerformBatchActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJob>>;
 
     /**
      * Perform Batch Action
      * Perform Batch Action
      */
-    performBatchAction(requestParameters: BatchJobApiPerformBatchActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJob>;
+    performBatchAction(requestParameters: PerformBatchActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJob>;
 
     /**
      * Update Batch Job
@@ -295,13 +295,13 @@ export interface BatchJobApiInterface {
      * @throws {RequiredError}
      * @memberof BatchJobApiInterface
      */
-    updateBatchJobRaw(requestParameters: BatchJobApiUpdateBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJob>>;
+    updateBatchJobRaw(requestParameters: UpdateBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJob>>;
 
     /**
      * Update Batch Job
      * Update Batch Job
      */
-    updateBatchJob(requestParameters: BatchJobApiUpdateBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJob>;
+    updateBatchJob(requestParameters: UpdateBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJob>;
 
 }
 
@@ -319,7 +319,7 @@ export class BatchJobApi extends runtime.BaseAPI implements BatchJobApiInterface
      */
 
 
-    async createBatchJobRaw(requestParameters: BatchJobApiCreateBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJob>> {
+    async createBatchJobRaw(requestParameters: CreateBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJob>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -351,7 +351,7 @@ export class BatchJobApi extends runtime.BaseAPI implements BatchJobApiInterface
      * Create Batch Job
      * Create Batch Job
      */
-    async createBatchJob(requestParameters: BatchJobApiCreateBatchJobRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJob> {
+    async createBatchJob(requestParameters: CreateBatchJobRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJob> {
         const response = await this.createBatchJobRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -362,7 +362,7 @@ export class BatchJobApi extends runtime.BaseAPI implements BatchJobApiInterface
      */
 
 
-    async deleteBatchJobRaw(requestParameters: BatchJobApiDeleteBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJob>> {
+    async deleteBatchJobRaw(requestParameters: DeleteBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJob>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling deleteBatchJob.');
         }
@@ -391,7 +391,7 @@ export class BatchJobApi extends runtime.BaseAPI implements BatchJobApiInterface
      * Delete Batch Job
      * Delete Batch Job
      */
-    async deleteBatchJob(requestParameters: BatchJobApiDeleteBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJob> {
+    async deleteBatchJob(requestParameters: DeleteBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJob> {
         const response = await this.deleteBatchJobRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -402,7 +402,7 @@ export class BatchJobApi extends runtime.BaseAPI implements BatchJobApiInterface
      */
 
 
-    async getAvailableActionsRaw(requestParameters: BatchJobApiGetAvailableActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+    async getAvailableActionsRaw(requestParameters: GetAvailableActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling getAvailableActions.');
         }
@@ -435,7 +435,7 @@ export class BatchJobApi extends runtime.BaseAPI implements BatchJobApiInterface
      * Get Available Actions
      * Get Available Actions
      */
-    async getAvailableActions(requestParameters: BatchJobApiGetAvailableActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+    async getAvailableActions(requestParameters: GetAvailableActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
         const response = await this.getAvailableActionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -446,7 +446,7 @@ export class BatchJobApi extends runtime.BaseAPI implements BatchJobApiInterface
      */
 
 
-    async getBatchJobRaw(requestParameters: BatchJobApiGetBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJob>> {
+    async getBatchJobRaw(requestParameters: GetBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJob>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling getBatchJob.');
         }
@@ -479,7 +479,7 @@ export class BatchJobApi extends runtime.BaseAPI implements BatchJobApiInterface
      * Get Batch Job
      * Get Batch Job
      */
-    async getBatchJob(requestParameters: BatchJobApiGetBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJob> {
+    async getBatchJob(requestParameters: GetBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJob> {
         const response = await this.getBatchJobRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -490,7 +490,7 @@ export class BatchJobApi extends runtime.BaseAPI implements BatchJobApiInterface
      */
 
 
-    async getBatchJobItemRaw(requestParameters: BatchJobApiGetBatchJobItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJobItemResultSet>> {
+    async getBatchJobItemRaw(requestParameters: GetBatchJobItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJobItemResultSet>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling getBatchJobItem.');
         }
@@ -527,7 +527,7 @@ export class BatchJobApi extends runtime.BaseAPI implements BatchJobApiInterface
      * Get Batch Job Item
      * Get Batch Job Item
      */
-    async getBatchJobItem(requestParameters: BatchJobApiGetBatchJobItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJobItemResultSet> {
+    async getBatchJobItem(requestParameters: GetBatchJobItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJobItemResultSet> {
         const response = await this.getBatchJobItemRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -538,7 +538,7 @@ export class BatchJobApi extends runtime.BaseAPI implements BatchJobApiInterface
      */
 
 
-    async getBatchJobItemsRaw(requestParameters: BatchJobApiGetBatchJobItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJobItemResultSet>> {
+    async getBatchJobItemsRaw(requestParameters: GetBatchJobItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJobItemResultSet>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling getBatchJobItems.');
         }
@@ -591,7 +591,7 @@ export class BatchJobApi extends runtime.BaseAPI implements BatchJobApiInterface
      * Get Batch Job Items
      * Get Batch Job Items
      */
-    async getBatchJobItems(requestParameters: BatchJobApiGetBatchJobItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJobItemResultSet> {
+    async getBatchJobItems(requestParameters: GetBatchJobItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJobItemResultSet> {
         const response = await this.getBatchJobItemsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -602,7 +602,7 @@ export class BatchJobApi extends runtime.BaseAPI implements BatchJobApiInterface
      */
 
 
-    async getBatchJobsRaw(requestParameters: BatchJobApiGetBatchJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJobCollection>> {
+    async getBatchJobsRaw(requestParameters: GetBatchJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJobCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.domain !== undefined) {
@@ -651,7 +651,7 @@ export class BatchJobApi extends runtime.BaseAPI implements BatchJobApiInterface
      * Get Batch Jobs
      * Get Batch Jobs
      */
-    async getBatchJobs(requestParameters: BatchJobApiGetBatchJobsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJobCollection> {
+    async getBatchJobs(requestParameters: GetBatchJobsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJobCollection> {
         const response = await this.getBatchJobsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -662,7 +662,7 @@ export class BatchJobApi extends runtime.BaseAPI implements BatchJobApiInterface
      */
 
 
-    async getBatchSummaryJobRaw(requestParameters: BatchJobApiGetBatchSummaryJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJobSummary>> {
+    async getBatchSummaryJobRaw(requestParameters: GetBatchSummaryJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJobSummary>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling getBatchSummaryJob.');
         }
@@ -695,7 +695,7 @@ export class BatchJobApi extends runtime.BaseAPI implements BatchJobApiInterface
      * Get Batch Summary Job
      * Get Batch Summary Job
      */
-    async getBatchSummaryJob(requestParameters: BatchJobApiGetBatchSummaryJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJobSummary> {
+    async getBatchSummaryJob(requestParameters: GetBatchSummaryJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJobSummary> {
         const response = await this.getBatchSummaryJobRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -706,7 +706,7 @@ export class BatchJobApi extends runtime.BaseAPI implements BatchJobApiInterface
      */
 
 
-    async getBatchSummaryJobsRaw(requestParameters: BatchJobApiGetBatchSummaryJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJobSummaryCollection>> {
+    async getBatchSummaryJobsRaw(requestParameters: GetBatchSummaryJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJobSummaryCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.domain !== undefined) {
@@ -755,7 +755,7 @@ export class BatchJobApi extends runtime.BaseAPI implements BatchJobApiInterface
      * Get Batch Summary Jobs
      * Get Batch Summary Jobs
      */
-    async getBatchSummaryJobs(requestParameters: BatchJobApiGetBatchSummaryJobsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJobSummaryCollection> {
+    async getBatchSummaryJobs(requestParameters: GetBatchSummaryJobsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJobSummaryCollection> {
         const response = await this.getBatchSummaryJobsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -766,7 +766,7 @@ export class BatchJobApi extends runtime.BaseAPI implements BatchJobApiInterface
      */
 
 
-    async performBatchActionRaw(requestParameters: BatchJobApiPerformBatchActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJob>> {
+    async performBatchActionRaw(requestParameters: PerformBatchActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJob>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling performBatchAction.');
         }
@@ -802,7 +802,7 @@ export class BatchJobApi extends runtime.BaseAPI implements BatchJobApiInterface
      * Perform Batch Action
      * Perform Batch Action
      */
-    async performBatchAction(requestParameters: BatchJobApiPerformBatchActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJob> {
+    async performBatchAction(requestParameters: PerformBatchActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJob> {
         const response = await this.performBatchActionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -813,7 +813,7 @@ export class BatchJobApi extends runtime.BaseAPI implements BatchJobApiInterface
      */
 
 
-    async updateBatchJobRaw(requestParameters: BatchJobApiUpdateBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJob>> {
+    async updateBatchJobRaw(requestParameters: UpdateBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchJob>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling updateBatchJob.');
         }
@@ -849,7 +849,7 @@ export class BatchJobApi extends runtime.BaseAPI implements BatchJobApiInterface
      * Update Batch Job
      * Update Batch Job
      */
-    async updateBatchJob(requestParameters: BatchJobApiUpdateBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJob> {
+    async updateBatchJob(requestParameters: UpdateBatchJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchJob> {
         const response = await this.updateBatchJobRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -58,7 +58,7 @@ import type {
   SubscriptionInfo,
 } from '../models';
 
-export interface OrderApiAddExtendedPropertiesRequest {
+export interface AddExtendedPropertiesRequest {
     orderId: string;
     updateMode?: string;
     version?: string;
@@ -66,13 +66,13 @@ export interface OrderApiAddExtendedPropertiesRequest {
     extendedProperty?: Array<ExtendedProperty>;
 }
 
-export interface OrderApiAddValidationResultRequest {
+export interface AddValidationResultRequest {
     orderId: string;
     responseFields?: string;
     orderValidationResult?: OrderValidationResult;
 }
 
-export interface OrderApiApplyAdjustmentRequest {
+export interface ApplyAdjustmentRequest {
     orderId: string;
     updateMode?: string;
     version?: string;
@@ -80,7 +80,7 @@ export interface OrderApiApplyAdjustmentRequest {
     adjustment?: Adjustment;
 }
 
-export interface OrderApiApplyCouponRequest {
+export interface ApplyCouponRequest {
     orderId: string;
     couponCode: string;
     updateMode?: string;
@@ -88,7 +88,7 @@ export interface OrderApiApplyCouponRequest {
     responseFields?: string;
 }
 
-export interface OrderApiApplyHandlingAdjustmentRequest {
+export interface ApplyHandlingAdjustmentRequest {
     orderId: string;
     updateMode?: string;
     version?: string;
@@ -96,7 +96,7 @@ export interface OrderApiApplyHandlingAdjustmentRequest {
     adjustment?: Adjustment;
 }
 
-export interface OrderApiApplyShippingAdjustmentRequest {
+export interface ApplyShippingAdjustmentRequest {
     orderId: string;
     updateMode?: string;
     version?: string;
@@ -104,19 +104,19 @@ export interface OrderApiApplyShippingAdjustmentRequest {
     adjustment?: Adjustment;
 }
 
-export interface OrderApiAutoCapturePaymentsRequest {
+export interface AutoCapturePaymentsRequest {
     orderId: string;
     forceCapture?: boolean;
     responseFields?: string;
 }
 
-export interface OrderApiCancelOrderRequest {
+export interface CancelOrderRequest {
     orderId: string;
     responseFields?: string;
     commerceRuntimeCanceledReason?: CommerceRuntimeCanceledReason;
 }
 
-export interface OrderApiChangeOrderPriceListRequest {
+export interface ChangeOrderPriceListRequest {
     orderId: string;
     updateMode?: string;
     version?: string;
@@ -124,31 +124,31 @@ export interface OrderApiChangeOrderPriceListRequest {
     body?: string;
 }
 
-export interface OrderApiChangeOrderUserIdRequest {
+export interface ChangeOrderUserIdRequest {
     orderId: string;
     responseFields?: string;
 }
 
-export interface OrderApiCreateDigitalPackageRequest {
+export interface CreateDigitalPackageRequest {
     orderId: string;
     responseFields?: string;
     digitalPackage?: DigitalPackage;
 }
 
-export interface OrderApiCreateOrderRequest {
+export interface CreateOrderRequest {
     cartId?: string;
     quoteId?: string;
     responseFields?: string;
     order?: Order;
 }
 
-export interface OrderApiCreateOrderAttributesRequest {
+export interface CreateOrderAttributesRequest {
     orderId: string;
     responseFields?: string;
     commerceRuntimeOrderAttribute?: Array<CommerceRuntimeOrderAttribute>;
 }
 
-export interface OrderApiCreateOrderItemRequest {
+export interface CreateOrderItemRequest {
     orderId: string;
     updateMode?: string;
     version?: string;
@@ -158,159 +158,159 @@ export interface OrderApiCreateOrderItemRequest {
     commerceRuntimeOrderItem?: CommerceRuntimeOrderItem;
 }
 
-export interface OrderApiCreateOrderNoteRequest {
+export interface CreateOrderNoteRequest {
     orderId: string;
     responseFields?: string;
     orderNote?: OrderNote;
 }
 
-export interface OrderApiCreatePackageRequest {
+export interface CreatePackageRequest {
     orderId: string;
     responseFields?: string;
     commerceRuntimePackage?: CommerceRuntimePackage;
 }
 
-export interface OrderApiCreatePackageShipmentsRequest {
+export interface CreatePackageShipmentsRequest {
     orderId: string;
     responseFields?: string;
     requestBody?: Array<string>;
 }
 
-export interface OrderApiCreatePaymentActionRequest {
+export interface CreatePaymentActionRequest {
     orderId: string;
     responseFields?: string;
     paymentAction?: PaymentAction;
 }
 
-export interface OrderApiCreatePickupRequest {
+export interface CreatePickupRequest {
     orderId: string;
     responseFields?: string;
     pickup?: Pickup;
 }
 
-export interface OrderApiCreateRefundRequest {
+export interface CreateRefundRequest {
     orderId: string;
     responseFields?: string;
     refund?: Refund;
 }
 
-export interface OrderApiDeleteDigitalPackageRequest {
+export interface DeleteDigitalPackageRequest {
     orderId: string;
     digitalPackageId: string;
 }
 
-export interface OrderApiDeleteExtendedPropertiesRequest {
+export interface DeleteExtendedPropertiesRequest {
     orderId: string;
     updateMode?: string;
     version?: string;
     requestBody?: Array<string>;
 }
 
-export interface OrderApiDeleteExtendedPropertyRequest {
+export interface DeleteExtendedPropertyRequest {
     orderId: string;
     key: string;
     updateMode?: string;
     version?: string;
 }
 
-export interface OrderApiDeleteOrderDraftRequest {
+export interface DeleteOrderDraftRequest {
     orderId: string;
     version?: string;
     responseFields?: string;
 }
 
-export interface OrderApiDeleteOrderItemRequest {
+export interface DeleteOrderItemRequest {
     orderId: string;
     orderItemId: string;
     updateMode?: string;
     version?: string;
 }
 
-export interface OrderApiDeleteOrderNoteRequest {
+export interface DeleteOrderNoteRequest {
     orderId: string;
     noteId: string;
 }
 
-export interface OrderApiDeletePackageRequest {
+export interface DeletePackageRequest {
     orderId: string;
     packageId: string;
 }
 
-export interface OrderApiDeletePickupRequest {
+export interface DeletePickupRequest {
     orderId: string;
     pickupId: string;
 }
 
-export interface OrderApiDeleteShipmentRequest {
+export interface DeleteShipmentRequest {
     orderId: string;
     shipmentId: string;
 }
 
-export interface OrderApiEvaluateOrderRollupStatusRequest {
+export interface EvaluateOrderRollupStatusRequest {
     orderId: string;
     responseFields?: string;
 }
 
-export interface OrderApiGetAvailableActionsRequest {
+export interface GetAvailableActionsRequest {
     orderId: string;
     responseFields?: string;
 }
 
-export interface OrderApiGetAvailableDigitalPackageFulfillmentActionsRequest {
+export interface GetAvailableDigitalPackageFulfillmentActionsRequest {
     orderId: string;
     digitalPackageId: string;
     responseFields?: string;
 }
 
-export interface OrderApiGetAvailablePackageFulfillmentActionsRequest {
+export interface GetAvailablePackageFulfillmentActionsRequest {
     orderId: string;
     packageId: string;
     responseFields?: string;
 }
 
-export interface OrderApiGetAvailablePaymentActionsRequest {
+export interface GetAvailablePaymentActionsRequest {
     orderId: string;
     paymentId: string;
     responseFields?: string;
 }
 
-export interface OrderApiGetAvailablePickupFulfillmentActionsRequest {
+export interface GetAvailablePickupFulfillmentActionsRequest {
     orderId: string;
     pickupId: string;
     responseFields?: string;
 }
 
-export interface OrderApiGetAvailableShipmentMethodsRequest {
+export interface GetAvailableShipmentMethodsRequest {
     orderId: string;
     draft?: boolean;
     responseFields?: string;
 }
 
-export interface OrderApiGetBillingInfoRequest {
+export interface GetBillingInfoRequest {
     orderId: string;
     draft?: boolean;
     responseFields?: string;
 }
 
-export interface OrderApiGetDigitalPackageRequest {
+export interface GetDigitalPackageRequest {
     orderId: string;
     digitalPackageId: string;
     responseFields?: string;
 }
 
-export interface OrderApiGetExtendedPropertiesRequest {
+export interface GetExtendedPropertiesRequest {
     orderId: string;
     draft?: boolean;
     responseFields?: string;
 }
 
-export interface OrderApiGetFulfillmentInfoRequest {
+export interface GetFulfillmentInfoRequest {
     orderId: string;
     draft?: boolean;
     responseFields?: string;
 }
 
-export interface OrderApiGetOrderRequest {
+export interface GetOrderRequest {
     orderId: string;
     draft?: boolean;
     includeBin?: boolean;
@@ -318,48 +318,48 @@ export interface OrderApiGetOrderRequest {
     responseFields?: string;
 }
 
-export interface OrderApiGetOrderAttributesRequest {
+export interface GetOrderAttributesRequest {
     orderId: string;
     responseFields?: string;
 }
 
-export interface OrderApiGetOrderItemRequest {
+export interface GetOrderItemRequest {
     orderId: string;
     orderItemId: string;
     draft?: boolean;
     responseFields?: string;
 }
 
-export interface OrderApiGetOrderItemViaLineIdRequest {
+export interface GetOrderItemViaLineIdRequest {
     orderId: string;
     lineId: number;
     draft?: boolean;
     responseFields?: string;
 }
 
-export interface OrderApiGetOrderItemsRequest {
+export interface GetOrderItemsRequest {
     orderId: string;
     draft?: boolean;
     responseFields?: string;
 }
 
-export interface OrderApiGetOrderNoteRequest {
+export interface GetOrderNoteRequest {
     orderId: string;
     noteId: string;
     responseFields?: string;
 }
 
-export interface OrderApiGetOrderNotesRequest {
+export interface GetOrderNotesRequest {
     orderId: string;
     responseFields?: string;
 }
 
-export interface OrderApiGetOrderReturnableItemsRequest {
+export interface GetOrderReturnableItemsRequest {
     orderId: string;
     responseFields?: string;
 }
 
-export interface OrderApiGetOrdersRequest {
+export interface GetOrdersRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -372,41 +372,41 @@ export interface OrderApiGetOrdersRequest {
     responseFields?: string;
 }
 
-export interface OrderApiGetPackageRequest {
+export interface GetPackageRequest {
     orderId: string;
     packageId: string;
     responseFields?: string;
 }
 
-export interface OrderApiGetPackageLabelRequest {
+export interface GetPackageLabelRequest {
     orderId: string;
     packageId: string;
     responseFields?: string;
 }
 
-export interface OrderApiGetPaymentRequest {
+export interface GetPaymentRequest {
     orderId: string;
     paymentId: string;
     responseFields?: string;
 }
 
-export interface OrderApiGetPaymentsRequest {
+export interface GetPaymentsRequest {
     orderId: string;
     responseFields?: string;
 }
 
-export interface OrderApiGetPickupRequest {
+export interface GetPickupRequest {
     orderId: string;
     pickupId: string;
     responseFields?: string;
 }
 
-export interface OrderApiGetQueuedHistoricalOrderRequest {
+export interface GetQueuedHistoricalOrderRequest {
     orderId: string;
     responseFields?: string;
 }
 
-export interface OrderApiGetQueuedHistoricalOrdersRequest {
+export interface GetQueuedHistoricalOrdersRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -415,12 +415,12 @@ export interface OrderApiGetQueuedHistoricalOrdersRequest {
     responseFields?: string;
 }
 
-export interface OrderApiGetQueuedOrderRequest {
+export interface GetQueuedOrderRequest {
     orderId: string;
     responseFields?: string;
 }
 
-export interface OrderApiGetQueuedOrdersRequest {
+export interface GetQueuedOrdersRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -429,106 +429,106 @@ export interface OrderApiGetQueuedOrdersRequest {
     responseFields?: string;
 }
 
-export interface OrderApiGetReasonsRequest {
+export interface GetReasonsRequest {
     category?: string;
     responseFields?: string;
 }
 
-export interface OrderApiGetRefundReasonsRequest {
+export interface GetRefundReasonsRequest {
     responseFields?: string;
 }
 
-export interface OrderApiGetShipmentRequest {
+export interface GetShipmentRequest {
     orderId: string;
     shipmentId: string;
     responseFields?: string;
 }
 
-export interface OrderApiGetTaxableOrdersRequest {
+export interface GetTaxableOrdersRequest {
     orderId: string;
     responseFields?: string;
 }
 
-export interface OrderApiGetValidationResultsRequest {
+export interface GetValidationResultsRequest {
     orderId: string;
     responseFields?: string;
 }
 
-export interface OrderApiPerformFulfillmentActionRequest {
+export interface PerformFulfillmentActionRequest {
     orderId: string;
     responseFields?: string;
     fulfillmentAction?: FulfillmentAction;
 }
 
-export interface OrderApiPerformOrderActionRequest {
+export interface PerformOrderActionRequest {
     orderId: string;
     responseFields?: string;
     orderAction?: OrderAction;
 }
 
-export interface OrderApiPerformPaymentActionRequest {
+export interface PerformPaymentActionRequest {
     orderId: string;
     paymentId: string;
     responseFields?: string;
     paymentAction?: PaymentAction;
 }
 
-export interface OrderApiPriceOrderRequest {
+export interface PriceOrderRequest {
     refreshShipping?: boolean;
     responseFields?: string;
     order?: Order;
 }
 
-export interface OrderApiProcessDigitalWalletRequest {
+export interface ProcessDigitalWalletRequest {
     orderId: string;
     digitalWalletType: string;
     responseFields?: string;
     digitalWallet?: DigitalWallet;
 }
 
-export interface OrderApiRemoveAdjustmentRequest {
+export interface RemoveAdjustmentRequest {
     orderId: string;
     updateMode?: string;
     version?: string;
 }
 
-export interface OrderApiRemoveAlternateContactRequest {
+export interface RemoveAlternateContactRequest {
     orderId: string;
     responseFields?: string;
 }
 
-export interface OrderApiRemoveCouponRequest {
+export interface RemoveCouponRequest {
     orderId: string;
     couponCode: string;
     updateMode?: string;
     version?: string;
 }
 
-export interface OrderApiRemoveCouponsRequest {
+export interface RemoveCouponsRequest {
     orderId: string;
     updateMode?: string;
     version?: string;
 }
 
-export interface OrderApiRemoveHandlingAdjustmentRequest {
+export interface RemoveHandlingAdjustmentRequest {
     orderId: string;
     updateMode?: string;
     version?: string;
 }
 
-export interface OrderApiRemoveShippingAdjustmentRequest {
+export interface RemoveShippingAdjustmentRequest {
     orderId: string;
     updateMode?: string;
     version?: string;
 }
 
-export interface OrderApiRepriceCanceledShipmentRequest {
+export interface RepriceCanceledShipmentRequest {
     orderId: string;
     responseFields?: string;
     repriceCanceledShipmentObject?: RepriceCanceledShipmentObject;
 }
 
-export interface OrderApiRepriceShipmentRequest {
+export interface RepriceShipmentRequest {
     shipmentNumber: number;
     orderId: string;
     isItemCancellationContext?: boolean;
@@ -536,38 +536,38 @@ export interface OrderApiRepriceShipmentRequest {
     repriceShipmentObject?: RepriceShipmentObject;
 }
 
-export interface OrderApiRepriceSubstitutesRequest {
+export interface RepriceSubstitutesRequest {
     shipmentNumber: number;
     orderId: string;
     responseFields?: string;
     repriceShipmentObject?: RepriceShipmentObject;
 }
 
-export interface OrderApiResendGatewayGiftCardEmailRequest {
+export interface ResendGatewayGiftCardEmailRequest {
     orderId: string;
     giftcardId: string;
     responseFields?: string;
 }
 
-export interface OrderApiResendOrderConfirmationEmailRequest {
+export interface ResendOrderConfirmationEmailRequest {
     orderId: string;
     responseFields?: string;
     orderAction?: OrderAction;
 }
 
-export interface OrderApiResendPackageFulfillmentEmailRequest {
+export interface ResendPackageFulfillmentEmailRequest {
     orderId: string;
     responseFields?: string;
     fulfillmentAction?: FulfillmentAction;
 }
 
-export interface OrderApiResendRefundEmailRequest {
+export interface ResendRefundEmailRequest {
     orderId: string;
     refundId: string;
     responseFields?: string;
 }
 
-export interface OrderApiSetBillingInfoRequest {
+export interface SetBillingInfoRequest {
     orderId: string;
     updateMode?: string;
     version?: string;
@@ -575,7 +575,7 @@ export interface OrderApiSetBillingInfoRequest {
     billingInfo?: BillingInfo;
 }
 
-export interface OrderApiSetFulFillmentInfoRequest {
+export interface SetFulFillmentInfoRequest {
     orderId: string;
     updateMode?: string;
     version?: string;
@@ -583,26 +583,26 @@ export interface OrderApiSetFulFillmentInfoRequest {
     fulfillmentInfo?: FulfillmentInfo;
 }
 
-export interface OrderApiSmsOptOutRequest {
+export interface SmsOptOutRequest {
     siteId: string;
     responseFields?: string;
 }
 
-export interface OrderApiSplitShipmentsRequest {
+export interface SplitShipmentsRequest {
     orderId: string;
     shipmentNumber: string;
     responseFields?: string;
     splitShipmentsObject?: SplitShipmentsObject;
 }
 
-export interface OrderApiUpdateDigitalPackageRequest {
+export interface UpdateDigitalPackageRequest {
     orderId: string;
     digitalPackageId: string;
     responseFields?: string;
     digitalPackage?: DigitalPackage;
 }
 
-export interface OrderApiUpdateExtendedPropertiesRequest {
+export interface UpdateExtendedPropertiesRequest {
     orderId: string;
     updateMode?: string;
     version?: string;
@@ -611,7 +611,7 @@ export interface OrderApiUpdateExtendedPropertiesRequest {
     extendedProperty?: Array<ExtendedProperty>;
 }
 
-export interface OrderApiUpdateExtendedPropertyRequest {
+export interface UpdateExtendedPropertyRequest {
     orderId: string;
     key: string;
     updateMode?: string;
@@ -621,7 +621,7 @@ export interface OrderApiUpdateExtendedPropertyRequest {
     extendedProperty?: ExtendedProperty;
 }
 
-export interface OrderApiUpdateGiftInfoRequest {
+export interface UpdateGiftInfoRequest {
     orderId: string;
     orderItemId: string;
     updateMode?: string;
@@ -630,7 +630,7 @@ export interface OrderApiUpdateGiftInfoRequest {
     giftInfo?: GiftInfo;
 }
 
-export interface OrderApiUpdateItemDeliveryDateRequest {
+export interface UpdateItemDeliveryDateRequest {
     orderId: string;
     orderItemId: string;
     updateMode?: string;
@@ -639,7 +639,7 @@ export interface OrderApiUpdateItemDeliveryDateRequest {
     body?: string;
 }
 
-export interface OrderApiUpdateItemDutyRequest {
+export interface UpdateItemDutyRequest {
     orderId: string;
     orderItemId: string;
     dutyAmount: number;
@@ -648,7 +648,7 @@ export interface OrderApiUpdateItemDutyRequest {
     responseFields?: string;
 }
 
-export interface OrderApiUpdateItemFulfillmentRequest {
+export interface UpdateItemFulfillmentRequest {
     orderId: string;
     orderItemId: string;
     updateMode?: string;
@@ -658,7 +658,7 @@ export interface OrderApiUpdateItemFulfillmentRequest {
     commerceRuntimeOrderItem?: CommerceRuntimeOrderItem;
 }
 
-export interface OrderApiUpdateItemProductPriceRequest {
+export interface UpdateItemProductPriceRequest {
     orderId: string;
     orderItemId: string;
     price: number;
@@ -667,7 +667,7 @@ export interface OrderApiUpdateItemProductPriceRequest {
     responseFields?: string;
 }
 
-export interface OrderApiUpdateItemQuantityRequest {
+export interface UpdateItemQuantityRequest {
     orderId: string;
     orderItemId: string;
     quantity: number;
@@ -676,7 +676,7 @@ export interface OrderApiUpdateItemQuantityRequest {
     responseFields?: string;
 }
 
-export interface OrderApiUpdateOrderRequest {
+export interface UpdateOrderRequest {
     orderId: string;
     updateMode?: string;
     version?: string;
@@ -684,14 +684,14 @@ export interface OrderApiUpdateOrderRequest {
     order?: Order;
 }
 
-export interface OrderApiUpdateOrderAttributesRequest {
+export interface UpdateOrderAttributesRequest {
     orderId: string;
     removeMissing?: boolean;
     responseFields?: string;
     commerceRuntimeOrderAttribute?: Array<CommerceRuntimeOrderAttribute>;
 }
 
-export interface OrderApiUpdateOrderDiscountRequest {
+export interface UpdateOrderDiscountRequest {
     orderId: string;
     discountId: number;
     updateMode?: string;
@@ -700,7 +700,7 @@ export interface OrderApiUpdateOrderDiscountRequest {
     commerceRuntimeAppliedDiscount?: CommerceRuntimeAppliedDiscount;
 }
 
-export interface OrderApiUpdateOrderItemDiscountRequest {
+export interface UpdateOrderItemDiscountRequest {
     orderId: string;
     orderItemId: string;
     discountId: number;
@@ -710,42 +710,42 @@ export interface OrderApiUpdateOrderItemDiscountRequest {
     commerceRuntimeAppliedDiscount?: CommerceRuntimeAppliedDiscount;
 }
 
-export interface OrderApiUpdateOrderNoteRequest {
+export interface UpdateOrderNoteRequest {
     orderId: string;
     noteId: string;
     responseFields?: string;
     orderNote?: OrderNote;
 }
 
-export interface OrderApiUpdateOrderRestrictionsRequest {
+export interface UpdateOrderRestrictionsRequest {
     orderId: string;
     restrictEdit?: boolean;
     restrictCancellation?: boolean;
     responseFields?: string;
 }
 
-export interface OrderApiUpdatePackageRequest {
+export interface UpdatePackageRequest {
     orderId: string;
     packageId: string;
     responseFields?: string;
     commerceRuntimePackage?: CommerceRuntimePackage;
 }
 
-export interface OrderApiUpdatePickupRequest {
+export interface UpdatePickupRequest {
     orderId: string;
     pickupId: string;
     responseFields?: string;
     pickup?: Pickup;
 }
 
-export interface OrderApiUpdateShipmentAdjustmentsRequest {
+export interface UpdateShipmentAdjustmentsRequest {
     orderId: string;
     shipmentNumber: number;
     responseFields?: string;
     shipmentAdjustment?: ShipmentAdjustment;
 }
 
-export interface OrderApiUpdateShipmentItemRequest {
+export interface UpdateShipmentItemRequest {
     orderId: string;
     shipmentNumber: number;
     itemId: number;
@@ -753,26 +753,26 @@ export interface OrderApiUpdateShipmentItemRequest {
     shipmentItemAdjustment?: ShipmentItemAdjustment;
 }
 
-export interface OrderApiUpdateSubscriptionInfoRequest {
+export interface UpdateSubscriptionInfoRequest {
     orderId: string;
     orderItemId: string;
     responseFields?: string;
     subscriptionInfo?: SubscriptionInfo;
 }
 
-export interface OrderApiUpsertAlternateContactRequest {
+export interface UpsertAlternateContactRequest {
     orderId: string;
     responseFields?: string;
     alternateContact?: AlternateContact;
 }
 
-export interface OrderApiUpsertGiftMessageRequest {
+export interface UpsertGiftMessageRequest {
     orderId: string;
     responseFields?: string;
     giftMessage?: GiftMessage;
 }
 
-export interface OrderApiUpsertInventoryTagsRequest {
+export interface UpsertInventoryTagsRequest {
     orderId: string;
     orderItemId: string;
     updateMode?: string;
@@ -800,13 +800,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    addExtendedPropertiesRaw(requestParameters: OrderApiAddExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtendedProperty>>>;
+    addExtendedPropertiesRaw(requestParameters: AddExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtendedProperty>>>;
 
     /**
      * Adds extended properties.
      * Adds Extended Properties
      */
-    addExtendedProperties(requestParameters: OrderApiAddExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtendedProperty>>;
+    addExtendedProperties(requestParameters: AddExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtendedProperty>>;
 
     /**
      * Adds a validation result from an external system to an order.
@@ -818,13 +818,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    addValidationResultRaw(requestParameters: OrderApiAddValidationResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderValidationResult>>;
+    addValidationResultRaw(requestParameters: AddValidationResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderValidationResult>>;
 
     /**
      * Adds a validation result from an external system to an order.
      * Add Validation Result
      */
-    addValidationResult(requestParameters: OrderApiAddValidationResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderValidationResult>;
+    addValidationResult(requestParameters: AddValidationResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderValidationResult>;
 
     /**
      * Apply a pricing adjustment to the order.
@@ -838,13 +838,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    applyAdjustmentRaw(requestParameters: OrderApiApplyAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    applyAdjustmentRaw(requestParameters: ApplyAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Apply a pricing adjustment to the order.
      * Apply Adjustment
      */
-    applyAdjustment(requestParameters: OrderApiApplyAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    applyAdjustment(requestParameters: ApplyAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Apply a coupon to the order.
@@ -858,13 +858,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    applyCouponRaw(requestParameters: OrderApiApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    applyCouponRaw(requestParameters: ApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Apply a coupon to the order.
      * Apply Coupon
      */
-    applyCoupon(requestParameters: OrderApiApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    applyCoupon(requestParameters: ApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Apply a handling adjustment to the order.
@@ -878,13 +878,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    applyHandlingAdjustmentRaw(requestParameters: OrderApiApplyHandlingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    applyHandlingAdjustmentRaw(requestParameters: ApplyHandlingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Apply a handling adjustment to the order.
      * Apply Handling Adjustment
      */
-    applyHandlingAdjustment(requestParameters: OrderApiApplyHandlingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    applyHandlingAdjustment(requestParameters: ApplyHandlingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Apply a shipping adjustment to the order specified by order Id.
@@ -898,13 +898,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    applyShippingAdjustmentRaw(requestParameters: OrderApiApplyShippingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    applyShippingAdjustmentRaw(requestParameters: ApplyShippingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Apply a shipping adjustment to the order specified by order Id.
      * Apply Shipping Adjustment
      */
-    applyShippingAdjustment(requestParameters: OrderApiApplyShippingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    applyShippingAdjustment(requestParameters: ApplyShippingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Amount to capture is total of fulfilled shipments - order adjustment - amount already captured.
@@ -916,13 +916,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    autoCapturePaymentsRaw(requestParameters: OrderApiAutoCapturePaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    autoCapturePaymentsRaw(requestParameters: AutoCapturePaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Amount to capture is total of fulfilled shipments - order adjustment - amount already captured.
      * Auto Capture Payments
      */
-    autoCapturePayments(requestParameters: OrderApiAutoCapturePaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    autoCapturePayments(requestParameters: AutoCapturePaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Cancel an order with the cancel reason.
@@ -934,13 +934,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    cancelOrderRaw(requestParameters: OrderApiCancelOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    cancelOrderRaw(requestParameters: CancelOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Cancel an order with the cancel reason.
      * Cancel Order
      */
-    cancelOrder(requestParameters: OrderApiCancelOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    cancelOrder(requestParameters: CancelOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Changes the pricelist associated with an order.The desired price list code should be specified on the ApiContext.
@@ -954,13 +954,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    changeOrderPriceListRaw(requestParameters: OrderApiChangeOrderPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    changeOrderPriceListRaw(requestParameters: ChangeOrderPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Changes the pricelist associated with an order.The desired price list code should be specified on the ApiContext.
      * Change Order Price List
      */
-    changeOrderPriceList(requestParameters: OrderApiChangeOrderPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    changeOrderPriceList(requestParameters: ChangeOrderPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Changes the User ID associated with an order.
@@ -971,13 +971,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    changeOrderUserIdRaw(requestParameters: OrderApiChangeOrderUserIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    changeOrderUserIdRaw(requestParameters: ChangeOrderUserIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Changes the User ID associated with an order.
      * Change Order UserId
      */
-    changeOrderUserId(requestParameters: OrderApiChangeOrderUserIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    changeOrderUserId(requestParameters: ChangeOrderUserIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Apply a digital package to the order.
@@ -989,13 +989,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    createDigitalPackageRaw(requestParameters: OrderApiCreateDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DigitalPackage>>;
+    createDigitalPackageRaw(requestParameters: CreateDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DigitalPackage>>;
 
     /**
      * Apply a digital package to the order.
      * Create Digital Package
      */
-    createDigitalPackage(requestParameters: OrderApiCreateDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DigitalPackage>;
+    createDigitalPackage(requestParameters: CreateDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DigitalPackage>;
 
     /**
      * Creates a new order for no-cart quick-ordering scenarios. The full API payload required integration with the ecommerce front-end.
@@ -1008,13 +1008,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    createOrderRaw(requestParameters: OrderApiCreateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    createOrderRaw(requestParameters: CreateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Creates a new order for no-cart quick-ordering scenarios. The full API payload required integration with the ecommerce front-end.
      * Create Order
      */
-    createOrder(requestParameters: OrderApiCreateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    createOrder(requestParameters: CreateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Adds a attributeSet to the order. This is an internal attributeSet that the merchant might want to add to an order.
@@ -1026,13 +1026,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    createOrderAttributesRaw(requestParameters: OrderApiCreateOrderAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeOrderAttribute>>>;
+    createOrderAttributesRaw(requestParameters: CreateOrderAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeOrderAttribute>>>;
 
     /**
      * Adds a attributeSet to the order. This is an internal attributeSet that the merchant might want to add to an order.
      * Create Order Attributes
      */
-    createOrderAttributes(requestParameters: OrderApiCreateOrderAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeOrderAttribute>>;
+    createOrderAttributes(requestParameters: CreateOrderAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeOrderAttribute>>;
 
     /**
      * Adds a product or other item to the cart of the current shopper.
@@ -1048,13 +1048,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    createOrderItemRaw(requestParameters: OrderApiCreateOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    createOrderItemRaw(requestParameters: CreateOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Adds a product or other item to the cart of the current shopper.
      * Create Order Item
      */
-    createOrderItem(requestParameters: OrderApiCreateOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    createOrderItem(requestParameters: CreateOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Adds a note to the order. This is an internal note that the merchant might want to add to an order.
@@ -1066,13 +1066,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    createOrderNoteRaw(requestParameters: OrderApiCreateOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderNote>>;
+    createOrderNoteRaw(requestParameters: CreateOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderNote>>;
 
     /**
      * Adds a note to the order. This is an internal note that the merchant might want to add to an order.
      * Create Order Note
      */
-    createOrderNote(requestParameters: OrderApiCreateOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderNote>;
+    createOrderNote(requestParameters: CreateOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderNote>;
 
     /**
      * 
@@ -1084,13 +1084,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    createPackageRaw(requestParameters: OrderApiCreatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimePackage>>;
+    createPackageRaw(requestParameters: CreatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimePackage>>;
 
     /**
      * 
      * Apply a package to the order
      */
-    createPackage(requestParameters: OrderApiCreatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimePackage>;
+    createPackage(requestParameters: CreatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimePackage>;
 
     /**
      * 
@@ -1102,13 +1102,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    createPackageShipmentsRaw(requestParameters: OrderApiCreatePackageShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimePackage>>>;
+    createPackageShipmentsRaw(requestParameters: CreatePackageShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimePackage>>>;
 
     /**
      * 
      * Creates a shipment by grouping together multiple packages into logical shipments
      */
-    createPackageShipments(requestParameters: OrderApiCreatePackageShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimePackage>>;
+    createPackageShipments(requestParameters: CreatePackageShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimePackage>>;
 
     /**
      * Sets the action of the specified payment transaction interaction. Available actions depend on the current status of the payment transaction.If in doubt, get a list of available payment actions first.
@@ -1120,13 +1120,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    createPaymentActionRaw(requestParameters: OrderApiCreatePaymentActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    createPaymentActionRaw(requestParameters: CreatePaymentActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Sets the action of the specified payment transaction interaction. Available actions depend on the current status of the payment transaction.If in doubt, get a list of available payment actions first.
      * Create Payment Action
      */
-    createPaymentAction(requestParameters: OrderApiCreatePaymentActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    createPaymentAction(requestParameters: CreatePaymentActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Apply a pickup to the order.
@@ -1138,13 +1138,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    createPickupRaw(requestParameters: OrderApiCreatePickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Pickup>>;
+    createPickupRaw(requestParameters: CreatePickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Pickup>>;
 
     /**
      * Apply a pickup to the order.
      * Create Pickup
      */
-    createPickup(requestParameters: OrderApiCreatePickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Pickup>;
+    createPickup(requestParameters: CreatePickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Pickup>;
 
     /**
      * Apply a refund to the order.
@@ -1156,13 +1156,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    createRefundRaw(requestParameters: OrderApiCreateRefundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Refund>>;
+    createRefundRaw(requestParameters: CreateRefundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Refund>>;
 
     /**
      * Apply a refund to the order.
      * Create Refund
      */
-    createRefund(requestParameters: OrderApiCreateRefundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Refund>;
+    createRefund(requestParameters: CreateRefundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Refund>;
 
     /**
      * Delete an order digital package.
@@ -1173,13 +1173,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    deleteDigitalPackageRaw(requestParameters: OrderApiDeleteDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteDigitalPackageRaw(requestParameters: DeleteDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Delete an order digital package.
      * Delete Digital Package
      */
-    deleteDigitalPackage(requestParameters: OrderApiDeleteDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteDigitalPackage(requestParameters: DeleteDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Delete extended properties on the order.
@@ -1192,13 +1192,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    deleteExtendedPropertiesRaw(requestParameters: OrderApiDeleteExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteExtendedPropertiesRaw(requestParameters: DeleteExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Delete extended properties on the order.
      * Delete Extended Properties
      */
-    deleteExtendedProperties(requestParameters: OrderApiDeleteExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteExtendedProperties(requestParameters: DeleteExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Removes a particular order item from the order of the current shopper.
@@ -1211,13 +1211,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    deleteExtendedPropertyRaw(requestParameters: OrderApiDeleteExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteExtendedPropertyRaw(requestParameters: DeleteExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Removes a particular order item from the order of the current shopper.
      * Delete Extended Property
      */
-    deleteExtendedProperty(requestParameters: OrderApiDeleteExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteExtendedProperty(requestParameters: DeleteExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Deletes a draft version of an order.
@@ -1229,13 +1229,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    deleteOrderDraftRaw(requestParameters: OrderApiDeleteOrderDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteOrderDraftRaw(requestParameters: DeleteOrderDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Deletes a draft version of an order.
      * Delete Order Draft
      */
-    deleteOrderDraft(requestParameters: OrderApiDeleteOrderDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteOrderDraft(requestParameters: DeleteOrderDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Removes a particular order item from the order of the current shopper.
@@ -1248,13 +1248,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    deleteOrderItemRaw(requestParameters: OrderApiDeleteOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    deleteOrderItemRaw(requestParameters: DeleteOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Removes a particular order item from the order of the current shopper.
      * Delete Order Item
      */
-    deleteOrderItem(requestParameters: OrderApiDeleteOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    deleteOrderItem(requestParameters: DeleteOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Deletes a specific order note on an order.
@@ -1265,13 +1265,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    deleteOrderNoteRaw(requestParameters: OrderApiDeleteOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteOrderNoteRaw(requestParameters: DeleteOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Deletes a specific order note on an order.
      * Delete Order Note
      */
-    deleteOrderNote(requestParameters: OrderApiDeleteOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteOrderNote(requestParameters: DeleteOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * 
@@ -1282,13 +1282,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    deletePackageRaw(requestParameters: OrderApiDeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deletePackageRaw(requestParameters: DeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * 
      * Delete an order package
      */
-    deletePackage(requestParameters: OrderApiDeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deletePackage(requestParameters: DeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Delete an order pickup.
@@ -1299,13 +1299,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    deletePickupRaw(requestParameters: OrderApiDeletePickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deletePickupRaw(requestParameters: DeletePickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Delete an order pickup.
      * Delete Pickup
      */
-    deletePickup(requestParameters: OrderApiDeletePickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deletePickup(requestParameters: DeletePickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Deletes an existing order shipment
@@ -1316,13 +1316,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    deleteShipmentRaw(requestParameters: OrderApiDeleteShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteShipmentRaw(requestParameters: DeleteShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Deletes an existing order shipment
      * Deletes an existing order shipment
      */
-    deleteShipment(requestParameters: OrderApiDeleteShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteShipment(requestParameters: DeleteShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Evaluate Order Rollup Status
@@ -1333,13 +1333,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    evaluateOrderRollupStatusRaw(requestParameters: OrderApiEvaluateOrderRollupStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    evaluateOrderRollupStatusRaw(requestParameters: EvaluateOrderRollupStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Evaluate Order Rollup Status
      * Evaluate Order Rollup Status
      */
-    evaluateOrderRollupStatus(requestParameters: OrderApiEvaluateOrderRollupStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    evaluateOrderRollupStatus(requestParameters: EvaluateOrderRollupStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Retrieves available order actions which depends on the status of the order.Possible actions can be Create, Submit, SetAsProcessing, Close or Cancel.
@@ -1350,13 +1350,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getAvailableActionsRaw(requestParameters: OrderApiGetAvailableActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
+    getAvailableActionsRaw(requestParameters: GetAvailableActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
 
     /**
      * Retrieves available order actions which depends on the status of the order.Possible actions can be Create, Submit, SetAsProcessing, Close or Cancel.
      * Get Available Actions
      */
-    getAvailableActions(requestParameters: OrderApiGetAvailableActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
+    getAvailableActions(requestParameters: GetAvailableActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
 
     /**
      * Retrieves available fulfillment actions.
@@ -1368,13 +1368,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getAvailableDigitalPackageFulfillmentActionsRaw(requestParameters: OrderApiGetAvailableDigitalPackageFulfillmentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
+    getAvailableDigitalPackageFulfillmentActionsRaw(requestParameters: GetAvailableDigitalPackageFulfillmentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
 
     /**
      * Retrieves available fulfillment actions.
      * Get Available Digital Package Fulfillment Actions
      */
-    getAvailableDigitalPackageFulfillmentActions(requestParameters: OrderApiGetAvailableDigitalPackageFulfillmentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
+    getAvailableDigitalPackageFulfillmentActions(requestParameters: GetAvailableDigitalPackageFulfillmentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
 
     /**
      * 
@@ -1386,13 +1386,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getAvailablePackageFulfillmentActionsRaw(requestParameters: OrderApiGetAvailablePackageFulfillmentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
+    getAvailablePackageFulfillmentActionsRaw(requestParameters: GetAvailablePackageFulfillmentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
 
     /**
      * 
      * Retrieves available fulfillment actions
      */
-    getAvailablePackageFulfillmentActions(requestParameters: OrderApiGetAvailablePackageFulfillmentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
+    getAvailablePackageFulfillmentActions(requestParameters: GetAvailablePackageFulfillmentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
 
     /**
      * Retrieves available payment actions which depends on the status of the order\'s payment transaction.   Possible actions can be \"Create,\" \"Capture,\" \"Void,\" \"AuthCapture,\" or \"ReceiveCheck.\"
@@ -1404,13 +1404,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getAvailablePaymentActionsRaw(requestParameters: OrderApiGetAvailablePaymentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
+    getAvailablePaymentActionsRaw(requestParameters: GetAvailablePaymentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
 
     /**
      * Retrieves available payment actions which depends on the status of the order\'s payment transaction.   Possible actions can be \"Create,\" \"Capture,\" \"Void,\" \"AuthCapture,\" or \"ReceiveCheck.\"
      * Get Available Payment Actions
      */
-    getAvailablePaymentActions(requestParameters: OrderApiGetAvailablePaymentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
+    getAvailablePaymentActions(requestParameters: GetAvailablePaymentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
 
     /**
      * Retrieves available fulfillment actions.
@@ -1422,13 +1422,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getAvailablePickupFulfillmentActionsRaw(requestParameters: OrderApiGetAvailablePickupFulfillmentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
+    getAvailablePickupFulfillmentActionsRaw(requestParameters: GetAvailablePickupFulfillmentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
 
     /**
      * Retrieves available fulfillment actions.
      * Get Available Pickup Fulfillment Actions
      */
-    getAvailablePickupFulfillmentActions(requestParameters: OrderApiGetAvailablePickupFulfillmentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
+    getAvailablePickupFulfillmentActions(requestParameters: GetAvailablePickupFulfillmentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
 
     /**
      * Retrieves available shipping methods. Typically used to display available shipping method options on the checkout page.
@@ -1440,13 +1440,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getAvailableShipmentMethodsRaw(requestParameters: OrderApiGetAvailableShipmentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeShippingRate>>>;
+    getAvailableShipmentMethodsRaw(requestParameters: GetAvailableShipmentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeShippingRate>>>;
 
     /**
      * Retrieves available shipping methods. Typically used to display available shipping method options on the checkout page.
      * Get Available Shipment Methods
      */
-    getAvailableShipmentMethods(requestParameters: OrderApiGetAvailableShipmentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeShippingRate>>;
+    getAvailableShipmentMethods(requestParameters: GetAvailableShipmentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeShippingRate>>;
 
     /**
      * Retrieves the customer\'s billing address.If paying by credit card, it retrieves the card\'s number, expiration date, card holder\'s name and billing address.
@@ -1458,13 +1458,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getBillingInfoRaw(requestParameters: OrderApiGetBillingInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BillingInfo>>;
+    getBillingInfoRaw(requestParameters: GetBillingInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BillingInfo>>;
 
     /**
      * Retrieves the customer\'s billing address.If paying by credit card, it retrieves the card\'s number, expiration date, card holder\'s name and billing address.
      * Get Billing Info
      */
-    getBillingInfo(requestParameters: OrderApiGetBillingInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BillingInfo>;
+    getBillingInfo(requestParameters: GetBillingInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BillingInfo>;
 
     /**
      * Get an order digital package.
@@ -1476,13 +1476,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getDigitalPackageRaw(requestParameters: OrderApiGetDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DigitalPackage>>;
+    getDigitalPackageRaw(requestParameters: GetDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DigitalPackage>>;
 
     /**
      * Get an order digital package.
      * Get Digital Package
      */
-    getDigitalPackage(requestParameters: OrderApiGetDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DigitalPackage>;
+    getDigitalPackage(requestParameters: GetDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DigitalPackage>;
 
     /**
      * Get extended properties on an order.
@@ -1494,13 +1494,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getExtendedPropertiesRaw(requestParameters: OrderApiGetExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtendedProperty>>>;
+    getExtendedPropertiesRaw(requestParameters: GetExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtendedProperty>>>;
 
     /**
      * Get extended properties on an order.
      * Get Extended Properties
      */
-    getExtendedProperties(requestParameters: OrderApiGetExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtendedProperty>>;
+    getExtendedProperties(requestParameters: GetExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtendedProperty>>;
 
     /**
      * Retrieves an order\'s fulfillment information specified by order ID.
@@ -1512,13 +1512,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getFulfillmentInfoRaw(requestParameters: OrderApiGetFulfillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FulfillmentInfo>>;
+    getFulfillmentInfoRaw(requestParameters: GetFulfillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FulfillmentInfo>>;
 
     /**
      * Retrieves an order\'s fulfillment information specified by order ID.
      * Get Fulfillment Info
      */
-    getFulfillmentInfo(requestParameters: OrderApiGetFulfillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillmentInfo>;
+    getFulfillmentInfo(requestParameters: GetFulfillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillmentInfo>;
 
     /**
      * Retrieves the details of an order specified by the order ID.
@@ -1532,13 +1532,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getOrderRaw(requestParameters: OrderApiGetOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    getOrderRaw(requestParameters: GetOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Retrieves the details of an order specified by the order ID.
      * Get Order
      */
-    getOrder(requestParameters: OrderApiGetOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    getOrder(requestParameters: GetOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Retrieves a list of all attribute sets for an order.
@@ -1549,13 +1549,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getOrderAttributesRaw(requestParameters: OrderApiGetOrderAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeOrderAttribute>>>;
+    getOrderAttributesRaw(requestParameters: GetOrderAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeOrderAttribute>>>;
 
     /**
      * Retrieves a list of all attribute sets for an order.
      * Get Order Attributes
      */
-    getOrderAttributes(requestParameters: OrderApiGetOrderAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeOrderAttribute>>;
+    getOrderAttributes(requestParameters: GetOrderAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeOrderAttribute>>;
 
     /**
      * Retrieves the details of a single order item.
@@ -1568,13 +1568,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getOrderItemRaw(requestParameters: OrderApiGetOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeOrderItem>>;
+    getOrderItemRaw(requestParameters: GetOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeOrderItem>>;
 
     /**
      * Retrieves the details of a single order item.
      * Get Order Item
      */
-    getOrderItem(requestParameters: OrderApiGetOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeOrderItem>;
+    getOrderItem(requestParameters: GetOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeOrderItem>;
 
     /**
      * Retrieves the details of a single order item via its line id.
@@ -1587,13 +1587,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getOrderItemViaLineIdRaw(requestParameters: OrderApiGetOrderItemViaLineIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeOrderItem>>;
+    getOrderItemViaLineIdRaw(requestParameters: GetOrderItemViaLineIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeOrderItem>>;
 
     /**
      * Retrieves the details of a single order item via its line id.
      * Get Order Item Via LineId
      */
-    getOrderItemViaLineId(requestParameters: OrderApiGetOrderItemViaLineIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeOrderItem>;
+    getOrderItemViaLineId(requestParameters: GetOrderItemViaLineIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeOrderItem>;
 
     /**
      * Retrieves the details of all items in an order specified by order Id.
@@ -1605,13 +1605,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getOrderItemsRaw(requestParameters: OrderApiGetOrderItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderItemCollection>>;
+    getOrderItemsRaw(requestParameters: GetOrderItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderItemCollection>>;
 
     /**
      * Retrieves the details of all items in an order specified by order Id.
      * Get Order Items
      */
-    getOrderItems(requestParameters: OrderApiGetOrderItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderItemCollection>;
+    getOrderItems(requestParameters: GetOrderItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderItemCollection>;
 
     /**
      * Retrieves a specific order note from an order.
@@ -1623,13 +1623,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getOrderNoteRaw(requestParameters: OrderApiGetOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderNote>>;
+    getOrderNoteRaw(requestParameters: GetOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderNote>>;
 
     /**
      * Retrieves a specific order note from an order.
      * Get Order Note
      */
-    getOrderNote(requestParameters: OrderApiGetOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderNote>;
+    getOrderNote(requestParameters: GetOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderNote>;
 
     /**
      * Retrieves a list of all notes for an order.
@@ -1640,13 +1640,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getOrderNotesRaw(requestParameters: OrderApiGetOrderNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<OrderNote>>>;
+    getOrderNotesRaw(requestParameters: GetOrderNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<OrderNote>>>;
 
     /**
      * Retrieves a list of all notes for an order.
      * Get Order Notes
      */
-    getOrderNotes(requestParameters: OrderApiGetOrderNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<OrderNote>>;
+    getOrderNotes(requestParameters: GetOrderNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<OrderNote>>;
 
     /**
      * Provides fulfillment information for order items such as quantity ordered, fulfilled, and returned. Indicates which items are eligible for return.
@@ -1657,13 +1657,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getOrderReturnableItemsRaw(requestParameters: OrderApiGetOrderReturnableItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderReturnableItemCollection>>;
+    getOrderReturnableItemsRaw(requestParameters: GetOrderReturnableItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderReturnableItemCollection>>;
 
     /**
      * Provides fulfillment information for order items such as quantity ordered, fulfilled, and returned. Indicates which items are eligible for return.
      * Get Order Returnable Items
      */
-    getOrderReturnableItems(requestParameters: OrderApiGetOrderReturnableItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderReturnableItemCollection>;
+    getOrderReturnableItems(requestParameters: GetOrderReturnableItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderReturnableItemCollection>;
 
     /**
      * Retrieves a list of orders according to any specified filter criteria and sort options.
@@ -1682,13 +1682,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getOrdersRaw(requestParameters: OrderApiGetOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderCollection>>;
+    getOrdersRaw(requestParameters: GetOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderCollection>>;
 
     /**
      * Retrieves a list of orders according to any specified filter criteria and sort options.
      * Get Orders
      */
-    getOrders(requestParameters: OrderApiGetOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderCollection>;
+    getOrders(requestParameters: GetOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderCollection>;
 
     /**
      * Get an order package
@@ -1700,13 +1700,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getPackageRaw(requestParameters: OrderApiGetPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimePackage>>;
+    getPackageRaw(requestParameters: GetPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimePackage>>;
 
     /**
      * Get an order package
      * Get an order package
      */
-    getPackage(requestParameters: OrderApiGetPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimePackage>;
+    getPackage(requestParameters: GetPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimePackage>;
 
     /**
      * Get an order package label
@@ -1718,13 +1718,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getPackageLabelRaw(requestParameters: OrderApiGetPackageLabelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    getPackageLabelRaw(requestParameters: GetPackageLabelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Get an order package label
      * Get an order package label
      */
-    getPackageLabel(requestParameters: OrderApiGetPackageLabelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    getPackageLabel(requestParameters: GetPackageLabelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Retrieves a specific payment transaction from the order.
@@ -1736,13 +1736,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getPaymentRaw(requestParameters: OrderApiGetPaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Payment>>;
+    getPaymentRaw(requestParameters: GetPaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Payment>>;
 
     /**
      * Retrieves a specific payment transaction from the order.
      * Get Payment
      */
-    getPayment(requestParameters: OrderApiGetPaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Payment>;
+    getPayment(requestParameters: GetPaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Payment>;
 
     /**
      * Retrieves payment transactions for an order. Allows filtering and sorting.
@@ -1753,13 +1753,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getPaymentsRaw(requestParameters: OrderApiGetPaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaymentCollection>>;
+    getPaymentsRaw(requestParameters: GetPaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaymentCollection>>;
 
     /**
      * Retrieves payment transactions for an order. Allows filtering and sorting.
      * Get Payments
      */
-    getPayments(requestParameters: OrderApiGetPaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentCollection>;
+    getPayments(requestParameters: GetPaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentCollection>;
 
     /**
      * Gets a specified pickup on the order.
@@ -1771,13 +1771,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getPickupRaw(requestParameters: OrderApiGetPickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Pickup>>;
+    getPickupRaw(requestParameters: GetPickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Pickup>>;
 
     /**
      * Gets a specified pickup on the order.
      * Get Pickup
      */
-    getPickup(requestParameters: OrderApiGetPickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Pickup>;
+    getPickup(requestParameters: GetPickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Pickup>;
 
     /**
      * Retrieves the details of an order specified by the order ID.
@@ -1788,13 +1788,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getQueuedHistoricalOrderRaw(requestParameters: OrderApiGetQueuedHistoricalOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    getQueuedHistoricalOrderRaw(requestParameters: GetQueuedHistoricalOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Retrieves the details of an order specified by the order ID.
      * Get QueuedHistoricalOrder
      */
-    getQueuedHistoricalOrder(requestParameters: OrderApiGetQueuedHistoricalOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    getQueuedHistoricalOrder(requestParameters: GetQueuedHistoricalOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Retrieves a list of queued historical orders according to any specified filter criteria and sort options.
@@ -1809,13 +1809,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getQueuedHistoricalOrdersRaw(requestParameters: OrderApiGetQueuedHistoricalOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QueuedOrderCollection>>;
+    getQueuedHistoricalOrdersRaw(requestParameters: GetQueuedHistoricalOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QueuedOrderCollection>>;
 
     /**
      * Retrieves a list of queued historical orders according to any specified filter criteria and sort options.
      * Get QueuedHistoricalOrders
      */
-    getQueuedHistoricalOrders(requestParameters: OrderApiGetQueuedHistoricalOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QueuedOrderCollection>;
+    getQueuedHistoricalOrders(requestParameters: GetQueuedHistoricalOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QueuedOrderCollection>;
 
     /**
      * Get QueuedOrder
@@ -1826,13 +1826,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getQueuedOrderRaw(requestParameters: OrderApiGetQueuedOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    getQueuedOrderRaw(requestParameters: GetQueuedOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Get QueuedOrder
      * Get QueuedOrder
      */
-    getQueuedOrder(requestParameters: OrderApiGetQueuedOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    getQueuedOrder(requestParameters: GetQueuedOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Retrieves a list of queuedorders according to any specified filter criteria and sort options.
@@ -1847,13 +1847,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getQueuedOrdersRaw(requestParameters: OrderApiGetQueuedOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QueuedOrderCollection>>;
+    getQueuedOrdersRaw(requestParameters: GetQueuedOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QueuedOrderCollection>>;
 
     /**
      * Retrieves a list of queuedorders according to any specified filter criteria and sort options.
      * Get Queued Orders
      */
-    getQueuedOrders(requestParameters: OrderApiGetQueuedOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QueuedOrderCollection>;
+    getQueuedOrders(requestParameters: GetQueuedOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QueuedOrderCollection>;
 
     /**
      * Gets order cancellation reasons based on a category.
@@ -1864,13 +1864,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getReasonsRaw(requestParameters: OrderApiGetReasonsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CancelReasonCollection>>;
+    getReasonsRaw(requestParameters: GetReasonsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CancelReasonCollection>>;
 
     /**
      * Gets order cancellation reasons based on a category.
      * Get Order Cancel Reasons
      */
-    getReasons(requestParameters: OrderApiGetReasonsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CancelReasonCollection>;
+    getReasons(requestParameters: GetReasonsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CancelReasonCollection>;
 
     /**
      * Gets all the refund reasons.
@@ -1880,13 +1880,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getRefundReasonsRaw(requestParameters: OrderApiGetRefundReasonsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RefundReasonCollection>>;
+    getRefundReasonsRaw(requestParameters: GetRefundReasonsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RefundReasonCollection>>;
 
     /**
      * Gets all the refund reasons.
      * Get Refund Reasons
      */
-    getRefundReasons(requestParameters: OrderApiGetRefundReasonsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RefundReasonCollection>;
+    getRefundReasons(requestParameters: GetRefundReasonsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RefundReasonCollection>;
 
     /**
      * Allows a shipment to be retrieved for the order.
@@ -1898,13 +1898,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getShipmentRaw(requestParameters: OrderApiGetShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipment>>;
+    getShipmentRaw(requestParameters: GetShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipment>>;
 
     /**
      * Allows a shipment to be retrieved for the order.
      * Get Shipment
      */
-    getShipment(requestParameters: OrderApiGetShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment>;
+    getShipment(requestParameters: GetShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment>;
 
     /**
      * Gets an order divided up into \"TaxableOrders\" based on the source and delivery locations of the order items. Generally used for the purpose of splitting it into multiple taxable orders in order to fulfill the order in multiple locations.
@@ -1915,13 +1915,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getTaxableOrdersRaw(requestParameters: OrderApiGetTaxableOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<PricingTaxableOrder>>>;
+    getTaxableOrdersRaw(requestParameters: GetTaxableOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<PricingTaxableOrder>>>;
 
     /**
      * Gets an order divided up into \"TaxableOrders\" based on the source and delivery locations of the order items. Generally used for the purpose of splitting it into multiple taxable orders in order to fulfill the order in multiple locations.
      * Get Taxable Orders
      */
-    getTaxableOrders(requestParameters: OrderApiGetTaxableOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<PricingTaxableOrder>>;
+    getTaxableOrders(requestParameters: GetTaxableOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<PricingTaxableOrder>>;
 
     /**
      * Gets list of validation results on an order.
@@ -1932,13 +1932,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getValidationResultsRaw(requestParameters: OrderApiGetValidationResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<OrderValidationResult>>>;
+    getValidationResultsRaw(requestParameters: GetValidationResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<OrderValidationResult>>>;
 
     /**
      * Gets list of validation results on an order.
      * Get Validation Results
      */
-    getValidationResults(requestParameters: OrderApiGetValidationResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<OrderValidationResult>>;
+    getValidationResults(requestParameters: GetValidationResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<OrderValidationResult>>;
 
     /**
      * Sets the fulfillment action to \'Ship\'. To ship an order, the order must have a customer name, the \'Open\' or \'OpenAdProcessing\' status, full shipping address, and shipping method.
@@ -1950,13 +1950,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    performFulfillmentActionRaw(requestParameters: OrderApiPerformFulfillmentActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    performFulfillmentActionRaw(requestParameters: PerformFulfillmentActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Sets the fulfillment action to \'Ship\'. To ship an order, the order must have a customer name, the \'Open\' or \'OpenAdProcessing\' status, full shipping address, and shipping method.
      * Perform Fulfillment Action
      */
-    performFulfillmentAction(requestParameters: OrderApiPerformFulfillmentActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    performFulfillmentAction(requestParameters: PerformFulfillmentActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Set an action on the order. Available actions depend on the current status of the order. If in doubt, get a list of available order actions first.
@@ -1968,13 +1968,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    performOrderActionRaw(requestParameters: OrderApiPerformOrderActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    performOrderActionRaw(requestParameters: PerformOrderActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Set an action on the order. Available actions depend on the current status of the order. If in doubt, get a list of available order actions first.
      * Perform Order Action
      */
-    performOrderAction(requestParameters: OrderApiPerformOrderActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    performOrderAction(requestParameters: PerformOrderActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Performs a specific payment action. Available actions depend on the current status of the payment transaction.   If in doubt, get a list of available payment actions first.
@@ -1987,13 +1987,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    performPaymentActionRaw(requestParameters: OrderApiPerformPaymentActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    performPaymentActionRaw(requestParameters: PerformPaymentActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Performs a specific payment action. Available actions depend on the current status of the payment transaction.   If in doubt, get a list of available payment actions first.
      * Perform Payment Action
      */
-    performPaymentAction(requestParameters: OrderApiPerformPaymentActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    performPaymentAction(requestParameters: PerformPaymentActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * 
@@ -2005,13 +2005,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    priceOrderRaw(requestParameters: OrderApiPriceOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    priceOrderRaw(requestParameters: PriceOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * 
      * Price Order
      */
-    priceOrder(requestParameters: OrderApiPriceOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    priceOrder(requestParameters: PriceOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Process digital wallet (used to hold 3rd party payment and shipping information) on the order.
@@ -2024,13 +2024,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    processDigitalWalletRaw(requestParameters: OrderApiProcessDigitalWalletRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    processDigitalWalletRaw(requestParameters: ProcessDigitalWalletRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Process digital wallet (used to hold 3rd party payment and shipping information) on the order.
      * Process Digital Wallet
      */
-    processDigitalWallet(requestParameters: OrderApiProcessDigitalWalletRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    processDigitalWallet(requestParameters: ProcessDigitalWalletRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Removes an adjustment that had been previously applied to the order.
@@ -2042,13 +2042,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    removeAdjustmentRaw(requestParameters: OrderApiRemoveAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    removeAdjustmentRaw(requestParameters: RemoveAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Removes an adjustment that had been previously applied to the order.
      * Remove Adjustment
      */
-    removeAdjustment(requestParameters: OrderApiRemoveAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    removeAdjustment(requestParameters: RemoveAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * 
@@ -2059,13 +2059,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    removeAlternateContactRaw(requestParameters: OrderApiRemoveAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    removeAlternateContactRaw(requestParameters: RemoveAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * 
      * Endpoint to remove alternate conatact from order and shipments.
      */
-    removeAlternateContact(requestParameters: OrderApiRemoveAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    removeAlternateContact(requestParameters: RemoveAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Removes a coupon that had been previously applied to the order.
@@ -2078,13 +2078,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    removeCouponRaw(requestParameters: OrderApiRemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    removeCouponRaw(requestParameters: RemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Removes a coupon that had been previously applied to the order.
      * Remove Coupon
      */
-    removeCoupon(requestParameters: OrderApiRemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    removeCoupon(requestParameters: RemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Removes all coupons that had been previously applied to the order.
@@ -2096,13 +2096,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    removeCouponsRaw(requestParameters: OrderApiRemoveCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    removeCouponsRaw(requestParameters: RemoveCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Removes all coupons that had been previously applied to the order.
      * Remove Coupons
      */
-    removeCoupons(requestParameters: OrderApiRemoveCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    removeCoupons(requestParameters: RemoveCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Removes a coupon that had been previously applied to the order.
@@ -2114,13 +2114,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    removeHandlingAdjustmentRaw(requestParameters: OrderApiRemoveHandlingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    removeHandlingAdjustmentRaw(requestParameters: RemoveHandlingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Removes a coupon that had been previously applied to the order.
      * Remove Handling Adjustment
      */
-    removeHandlingAdjustment(requestParameters: OrderApiRemoveHandlingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    removeHandlingAdjustment(requestParameters: RemoveHandlingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Removes an adjustment that had been previously applied to the order.
@@ -2132,13 +2132,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    removeShippingAdjustmentRaw(requestParameters: OrderApiRemoveShippingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    removeShippingAdjustmentRaw(requestParameters: RemoveShippingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Removes an adjustment that had been previously applied to the order.
      * Remove Shipping Adjustment
      */
-    removeShippingAdjustment(requestParameters: OrderApiRemoveShippingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    removeShippingAdjustment(requestParameters: RemoveShippingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      *  FFMT svc will call this during full shipment cancelation or last item cancelation.  FFMT svs is performing shipment Rate validation.(FFMT svc is responsible for sending valid FlatratePerOrder shipments.)  Shipping costs of the canceled shipment will distribute to the active shipment.  Reset Shipping Costs of the canceled shipment to zero.
@@ -2150,13 +2150,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    repriceCanceledShipmentRaw(requestParameters: OrderApiRepriceCanceledShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RepriceCanceledShipmentObject>>;
+    repriceCanceledShipmentRaw(requestParameters: RepriceCanceledShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RepriceCanceledShipmentObject>>;
 
     /**
      *  FFMT svc will call this during full shipment cancelation or last item cancelation.  FFMT svs is performing shipment Rate validation.(FFMT svc is responsible for sending valid FlatratePerOrder shipments.)  Shipping costs of the canceled shipment will distribute to the active shipment.  Reset Shipping Costs of the canceled shipment to zero.
      * This endpoint is use to Reprice Canceled shipment
      */
-    repriceCanceledShipment(requestParameters: OrderApiRepriceCanceledShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RepriceCanceledShipmentObject>;
+    repriceCanceledShipment(requestParameters: RepriceCanceledShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RepriceCanceledShipmentObject>;
 
     /**
      * Allows a shipment to be repriced.
@@ -2170,13 +2170,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    repriceShipmentRaw(requestParameters: OrderApiRepriceShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipment>>;
+    repriceShipmentRaw(requestParameters: RepriceShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipment>>;
 
     /**
      * Allows a shipment to be repriced.
      * Reprice Shipment
      */
-    repriceShipment(requestParameters: OrderApiRepriceShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment>;
+    repriceShipment(requestParameters: RepriceShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment>;
 
     /**
      * Reprice substitute items in shipments
@@ -2189,13 +2189,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    repriceSubstitutesRaw(requestParameters: OrderApiRepriceSubstitutesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipment>>;
+    repriceSubstitutesRaw(requestParameters: RepriceSubstitutesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipment>>;
 
     /**
      * Reprice substitute items in shipments
      * Reprice substitute items in shipments
      */
-    repriceSubstitutes(requestParameters: OrderApiRepriceSubstitutesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment>;
+    repriceSubstitutes(requestParameters: RepriceSubstitutesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment>;
 
     /**
      * Resend gateway giftcard email.
@@ -2207,13 +2207,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    resendGatewayGiftCardEmailRaw(requestParameters: OrderApiResendGatewayGiftCardEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    resendGatewayGiftCardEmailRaw(requestParameters: ResendGatewayGiftCardEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Resend gateway giftcard email.
      * Resend Gateway Gift Card Email
      */
-    resendGatewayGiftCardEmail(requestParameters: OrderApiResendGatewayGiftCardEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    resendGatewayGiftCardEmail(requestParameters: ResendGatewayGiftCardEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Resend order confirmation email specified by the order Id.
@@ -2225,13 +2225,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    resendOrderConfirmationEmailRaw(requestParameters: OrderApiResendOrderConfirmationEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    resendOrderConfirmationEmailRaw(requestParameters: ResendOrderConfirmationEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Resend order confirmation email specified by the order Id.
      * Resend Order Confirmation Email
      */
-    resendOrderConfirmationEmail(requestParameters: OrderApiResendOrderConfirmationEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    resendOrderConfirmationEmail(requestParameters: ResendOrderConfirmationEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Resends the package fulfillment email.
@@ -2243,13 +2243,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    resendPackageFulfillmentEmailRaw(requestParameters: OrderApiResendPackageFulfillmentEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    resendPackageFulfillmentEmailRaw(requestParameters: ResendPackageFulfillmentEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Resends the package fulfillment email.
      * Resend Package Fulfillment Email
      */
-    resendPackageFulfillmentEmail(requestParameters: OrderApiResendPackageFulfillmentEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    resendPackageFulfillmentEmail(requestParameters: ResendPackageFulfillmentEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Resend refund email.
@@ -2261,13 +2261,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    resendRefundEmailRaw(requestParameters: OrderApiResendRefundEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    resendRefundEmailRaw(requestParameters: ResendRefundEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Resend refund email.
      * Resend Refund Email
      */
-    resendRefundEmail(requestParameters: OrderApiResendRefundEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    resendRefundEmail(requestParameters: ResendRefundEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Adds a payment source to the order.
@@ -2281,13 +2281,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    setBillingInfoRaw(requestParameters: OrderApiSetBillingInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BillingInfo>>;
+    setBillingInfoRaw(requestParameters: SetBillingInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BillingInfo>>;
 
     /**
      * Adds a payment source to the order.
      * Set Billing Info
      */
-    setBillingInfo(requestParameters: OrderApiSetBillingInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BillingInfo>;
+    setBillingInfo(requestParameters: SetBillingInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BillingInfo>;
 
     /**
      * Modifies an order\'s fulfillment information. For example, to update the fulfillment address, estimated delivery date, or the merchant\'s fulfillment cost.
@@ -2301,13 +2301,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    setFulFillmentInfoRaw(requestParameters: OrderApiSetFulFillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FulfillmentInfo>>;
+    setFulFillmentInfoRaw(requestParameters: SetFulFillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FulfillmentInfo>>;
 
     /**
      * Modifies an order\'s fulfillment information. For example, to update the fulfillment address, estimated delivery date, or the merchant\'s fulfillment cost.
      * Set Fulfillment Info
      */
-    setFulFillmentInfo(requestParameters: OrderApiSetFulFillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillmentInfo>;
+    setFulFillmentInfo(requestParameters: SetFulFillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillmentInfo>;
 
     /**
      * Opting out from the sms notifications.
@@ -2318,13 +2318,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    smsOptOutRaw(requestParameters: OrderApiSmsOptOutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    smsOptOutRaw(requestParameters: SmsOptOutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Opting out from the sms notifications.
      * Sms Opt Out
      */
-    smsOptOut(requestParameters: OrderApiSmsOptOutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    smsOptOut(requestParameters: SmsOptOutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Allows spliting an existing shipment.
@@ -2337,13 +2337,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    splitShipmentsRaw(requestParameters: OrderApiSplitShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeShipment>>>;
+    splitShipmentsRaw(requestParameters: SplitShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeShipment>>>;
 
     /**
      * Allows spliting an existing shipment.
      * Split Shipments
      */
-    splitShipments(requestParameters: OrderApiSplitShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeShipment>>;
+    splitShipments(requestParameters: SplitShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeShipment>>;
 
     /**
      * Updates a digital package on the order.
@@ -2356,13 +2356,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    updateDigitalPackageRaw(requestParameters: OrderApiUpdateDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DigitalPackage>>;
+    updateDigitalPackageRaw(requestParameters: UpdateDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DigitalPackage>>;
 
     /**
      * Updates a digital package on the order.
      * Update Digital Package
      */
-    updateDigitalPackage(requestParameters: OrderApiUpdateDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DigitalPackage>;
+    updateDigitalPackage(requestParameters: UpdateDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DigitalPackage>;
 
     /**
      * Update extended properties.
@@ -2377,13 +2377,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    updateExtendedPropertiesRaw(requestParameters: OrderApiUpdateExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtendedProperty>>>;
+    updateExtendedPropertiesRaw(requestParameters: UpdateExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtendedProperty>>>;
 
     /**
      * Update extended properties.
      * Updated extended properties
      */
-    updateExtendedProperties(requestParameters: OrderApiUpdateExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtendedProperty>>;
+    updateExtendedProperties(requestParameters: UpdateExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtendedProperty>>;
 
     /**
      * Updated specific extended property
@@ -2399,13 +2399,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    updateExtendedPropertyRaw(requestParameters: OrderApiUpdateExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtendedProperty>>;
+    updateExtendedPropertyRaw(requestParameters: UpdateExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtendedProperty>>;
 
     /**
      * Updated specific extended property
      * Update Extended Property
      */
-    updateExtendedProperty(requestParameters: OrderApiUpdateExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtendedProperty>;
+    updateExtendedProperty(requestParameters: UpdateExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtendedProperty>;
 
     /**
      * Update GiftInfo on OrderItem
@@ -2420,13 +2420,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    updateGiftInfoRaw(requestParameters: OrderApiUpdateGiftInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    updateGiftInfoRaw(requestParameters: UpdateGiftInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Update GiftInfo on OrderItem
      * Update GiftInfo on OrderItem
      */
-    updateGiftInfo(requestParameters: OrderApiUpdateGiftInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    updateGiftInfo(requestParameters: UpdateGiftInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Updates the Delivery Date of a particular Order Item
@@ -2441,13 +2441,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    updateItemDeliveryDateRaw(requestParameters: OrderApiUpdateItemDeliveryDateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    updateItemDeliveryDateRaw(requestParameters: UpdateItemDeliveryDateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Updates the Delivery Date of a particular Order Item
      * Updates the Delivery Date of a particular Order Item
      */
-    updateItemDeliveryDate(requestParameters: OrderApiUpdateItemDeliveryDateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    updateItemDeliveryDate(requestParameters: UpdateItemDeliveryDateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Updates the duty amount of an order item in the order.
@@ -2462,13 +2462,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    updateItemDutyRaw(requestParameters: OrderApiUpdateItemDutyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    updateItemDutyRaw(requestParameters: UpdateItemDutyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Updates the duty amount of an order item in the order.
      * Update Item Duty
      */
-    updateItemDuty(requestParameters: OrderApiUpdateItemDutyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    updateItemDuty(requestParameters: UpdateItemDutyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Updates the fullfillment method and/or location of an individual order item in the order of the current shopper.
@@ -2484,13 +2484,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    updateItemFulfillmentRaw(requestParameters: OrderApiUpdateItemFulfillmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    updateItemFulfillmentRaw(requestParameters: UpdateItemFulfillmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Updates the fullfillment method and/or location of an individual order item in the order of the current shopper.
      * Update Item Fulfillment
      */
-    updateItemFulfillment(requestParameters: OrderApiUpdateItemFulfillmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    updateItemFulfillment(requestParameters: UpdateItemFulfillmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Updates the price of an individual order item in the order.
@@ -2505,13 +2505,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    updateItemProductPriceRaw(requestParameters: OrderApiUpdateItemProductPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    updateItemProductPriceRaw(requestParameters: UpdateItemProductPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Updates the price of an individual order item in the order.
      * Update Item Product Price
      */
-    updateItemProductPrice(requestParameters: OrderApiUpdateItemProductPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    updateItemProductPrice(requestParameters: UpdateItemProductPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Updates the quantity of an individual order item in the order.
@@ -2526,13 +2526,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    updateItemQuantityRaw(requestParameters: OrderApiUpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    updateItemQuantityRaw(requestParameters: UpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Updates the quantity of an individual order item in the order.
      * Update Item Quantity
      */
-    updateItemQuantity(requestParameters: OrderApiUpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    updateItemQuantity(requestParameters: UpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Updates the billing and/or shipping information of an existing order.
@@ -2546,13 +2546,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    updateOrderRaw(requestParameters: OrderApiUpdateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    updateOrderRaw(requestParameters: UpdateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Updates the billing and/or shipping information of an existing order.
      * Update Order
      */
-    updateOrder(requestParameters: OrderApiUpdateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    updateOrder(requestParameters: UpdateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Updates a specific order attribute set of an order.
@@ -2565,13 +2565,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    updateOrderAttributesRaw(requestParameters: OrderApiUpdateOrderAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeOrderAttribute>>>;
+    updateOrderAttributesRaw(requestParameters: UpdateOrderAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeOrderAttribute>>>;
 
     /**
      * Updates a specific order attribute set of an order.
      * Update Order Attributes
      */
-    updateOrderAttributes(requestParameters: OrderApiUpdateOrderAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeOrderAttribute>>;
+    updateOrderAttributes(requestParameters: UpdateOrderAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeOrderAttribute>>;
 
     /**
      * Update existing discount on the order.
@@ -2586,13 +2586,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    updateOrderDiscountRaw(requestParameters: OrderApiUpdateOrderDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    updateOrderDiscountRaw(requestParameters: UpdateOrderDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Update existing discount on the order.
      * Update Order Discount
      */
-    updateOrderDiscount(requestParameters: OrderApiUpdateOrderDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    updateOrderDiscount(requestParameters: UpdateOrderDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Update a discount on the order item to ignore or unignore it.
@@ -2608,13 +2608,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    updateOrderItemDiscountRaw(requestParameters: OrderApiUpdateOrderItemDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    updateOrderItemDiscountRaw(requestParameters: UpdateOrderItemDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Update a discount on the order item to ignore or unignore it.
      * Update Order Item Discount
      */
-    updateOrderItemDiscount(requestParameters: OrderApiUpdateOrderItemDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    updateOrderItemDiscount(requestParameters: UpdateOrderItemDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Updates a specific order note for an order.
@@ -2627,13 +2627,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    updateOrderNoteRaw(requestParameters: OrderApiUpdateOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderNote>>;
+    updateOrderNoteRaw(requestParameters: UpdateOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderNote>>;
 
     /**
      * Updates a specific order note for an order.
      * Update Order Note
      */
-    updateOrderNote(requestParameters: OrderApiUpdateOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderNote>;
+    updateOrderNote(requestParameters: UpdateOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderNote>;
 
     /**
      * Update Order Restrictions
@@ -2646,13 +2646,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    updateOrderRestrictionsRaw(requestParameters: OrderApiUpdateOrderRestrictionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    updateOrderRestrictionsRaw(requestParameters: UpdateOrderRestrictionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Update Order Restrictions
      * Update Order Restrictions
      */
-    updateOrderRestrictions(requestParameters: OrderApiUpdateOrderRestrictionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    updateOrderRestrictions(requestParameters: UpdateOrderRestrictionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * 
@@ -2665,13 +2665,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    updatePackageRaw(requestParameters: OrderApiUpdatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimePackage>>;
+    updatePackageRaw(requestParameters: UpdatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimePackage>>;
 
     /**
      * 
      * Delete an order package
      */
-    updatePackage(requestParameters: OrderApiUpdatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimePackage>;
+    updatePackage(requestParameters: UpdatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimePackage>;
 
     /**
      * Updates pickup details on the order.
@@ -2684,13 +2684,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    updatePickupRaw(requestParameters: OrderApiUpdatePickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Pickup>>;
+    updatePickupRaw(requestParameters: UpdatePickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Pickup>>;
 
     /**
      * Updates pickup details on the order.
      * Update Pickup
      */
-    updatePickup(requestParameters: OrderApiUpdatePickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Pickup>;
+    updatePickup(requestParameters: UpdatePickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Pickup>;
 
     /**
      * Updates adjustments on shipments.
@@ -2703,13 +2703,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    updateShipmentAdjustmentsRaw(requestParameters: OrderApiUpdateShipmentAdjustmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipment>>;
+    updateShipmentAdjustmentsRaw(requestParameters: UpdateShipmentAdjustmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipment>>;
 
     /**
      * Updates adjustments on shipments.
      * Update Shipment Adjustments
      */
-    updateShipmentAdjustments(requestParameters: OrderApiUpdateShipmentAdjustmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment>;
+    updateShipmentAdjustments(requestParameters: UpdateShipmentAdjustmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment>;
 
     /**
      * Updates shipment item with new shipment adjustment.
@@ -2723,13 +2723,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    updateShipmentItemRaw(requestParameters: OrderApiUpdateShipmentItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipment>>;
+    updateShipmentItemRaw(requestParameters: UpdateShipmentItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipment>>;
 
     /**
      * Updates shipment item with new shipment adjustment.
      * Update Shipment Item
      */
-    updateShipmentItem(requestParameters: OrderApiUpdateShipmentItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment>;
+    updateShipmentItem(requestParameters: UpdateShipmentItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment>;
 
     /**
      * Update a subscription info on the order item.
@@ -2742,13 +2742,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    updateSubscriptionInfoRaw(requestParameters: OrderApiUpdateSubscriptionInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    updateSubscriptionInfoRaw(requestParameters: UpdateSubscriptionInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Update a subscription info on the order item.
      * Update Order Item Subscription Info, applies only to Draft Order
      */
-    updateSubscriptionInfo(requestParameters: OrderApiUpdateSubscriptionInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    updateSubscriptionInfo(requestParameters: UpdateSubscriptionInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * 
@@ -2760,13 +2760,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    upsertAlternateContactRaw(requestParameters: OrderApiUpsertAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    upsertAlternateContactRaw(requestParameters: UpsertAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * 
      * Endpoint to add/update alternate contact
      */
-    upsertAlternateContact(requestParameters: OrderApiUpsertAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    upsertAlternateContact(requestParameters: UpsertAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Upsert Gift Message
@@ -2778,13 +2778,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    upsertGiftMessageRaw(requestParameters: OrderApiUpsertGiftMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    upsertGiftMessageRaw(requestParameters: UpsertGiftMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Upsert Gift Message
      * Upsert Gift Message
      */
-    upsertGiftMessage(requestParameters: OrderApiUpsertGiftMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    upsertGiftMessage(requestParameters: UpsertGiftMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * You need to pass in all tags everytime
@@ -2799,13 +2799,13 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    upsertInventoryTagsRaw(requestParameters: OrderApiUpsertInventoryTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    upsertInventoryTagsRaw(requestParameters: UpsertInventoryTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * You need to pass in all tags everytime
      * Upsert Inventory Tags on OrderItem
      */
-    upsertInventoryTags(requestParameters: OrderApiUpsertInventoryTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    upsertInventoryTags(requestParameters: UpsertInventoryTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
 }
 
@@ -2823,7 +2823,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async addExtendedPropertiesRaw(requestParameters: OrderApiAddExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtendedProperty>>> {
+    async addExtendedPropertiesRaw(requestParameters: AddExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtendedProperty>>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling addExtendedProperties.');
         }
@@ -2867,7 +2867,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Adds extended properties.
      * Adds Extended Properties
      */
-    async addExtendedProperties(requestParameters: OrderApiAddExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtendedProperty>> {
+    async addExtendedProperties(requestParameters: AddExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtendedProperty>> {
         const response = await this.addExtendedPropertiesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2878,7 +2878,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async addValidationResultRaw(requestParameters: OrderApiAddValidationResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderValidationResult>> {
+    async addValidationResultRaw(requestParameters: AddValidationResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderValidationResult>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling addValidationResult.');
         }
@@ -2914,7 +2914,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Adds a validation result from an external system to an order.
      * Add Validation Result
      */
-    async addValidationResult(requestParameters: OrderApiAddValidationResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderValidationResult> {
+    async addValidationResult(requestParameters: AddValidationResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderValidationResult> {
         const response = await this.addValidationResultRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2925,7 +2925,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async applyAdjustmentRaw(requestParameters: OrderApiApplyAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async applyAdjustmentRaw(requestParameters: ApplyAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling applyAdjustment.');
         }
@@ -2969,7 +2969,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Apply a pricing adjustment to the order.
      * Apply Adjustment
      */
-    async applyAdjustment(requestParameters: OrderApiApplyAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async applyAdjustment(requestParameters: ApplyAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.applyAdjustmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2980,7 +2980,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async applyCouponRaw(requestParameters: OrderApiApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async applyCouponRaw(requestParameters: ApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling applyCoupon.');
         }
@@ -3025,7 +3025,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Apply a coupon to the order.
      * Apply Coupon
      */
-    async applyCoupon(requestParameters: OrderApiApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async applyCoupon(requestParameters: ApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.applyCouponRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3036,7 +3036,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async applyHandlingAdjustmentRaw(requestParameters: OrderApiApplyHandlingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async applyHandlingAdjustmentRaw(requestParameters: ApplyHandlingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling applyHandlingAdjustment.');
         }
@@ -3080,7 +3080,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Apply a handling adjustment to the order.
      * Apply Handling Adjustment
      */
-    async applyHandlingAdjustment(requestParameters: OrderApiApplyHandlingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async applyHandlingAdjustment(requestParameters: ApplyHandlingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.applyHandlingAdjustmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3091,7 +3091,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async applyShippingAdjustmentRaw(requestParameters: OrderApiApplyShippingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async applyShippingAdjustmentRaw(requestParameters: ApplyShippingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling applyShippingAdjustment.');
         }
@@ -3135,7 +3135,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Apply a shipping adjustment to the order specified by order Id.
      * Apply Shipping Adjustment
      */
-    async applyShippingAdjustment(requestParameters: OrderApiApplyShippingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async applyShippingAdjustment(requestParameters: ApplyShippingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.applyShippingAdjustmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3146,7 +3146,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async autoCapturePaymentsRaw(requestParameters: OrderApiAutoCapturePaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async autoCapturePaymentsRaw(requestParameters: AutoCapturePaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling autoCapturePayments.');
         }
@@ -3183,7 +3183,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Amount to capture is total of fulfilled shipments - order adjustment - amount already captured.
      * Auto Capture Payments
      */
-    async autoCapturePayments(requestParameters: OrderApiAutoCapturePaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async autoCapturePayments(requestParameters: AutoCapturePaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.autoCapturePaymentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3194,7 +3194,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async cancelOrderRaw(requestParameters: OrderApiCancelOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async cancelOrderRaw(requestParameters: CancelOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling cancelOrder.');
         }
@@ -3230,7 +3230,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Cancel an order with the cancel reason.
      * Cancel Order
      */
-    async cancelOrder(requestParameters: OrderApiCancelOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async cancelOrder(requestParameters: CancelOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.cancelOrderRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3241,7 +3241,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async changeOrderPriceListRaw(requestParameters: OrderApiChangeOrderPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async changeOrderPriceListRaw(requestParameters: ChangeOrderPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling changeOrderPriceList.');
         }
@@ -3285,7 +3285,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Changes the pricelist associated with an order.The desired price list code should be specified on the ApiContext.
      * Change Order Price List
      */
-    async changeOrderPriceList(requestParameters: OrderApiChangeOrderPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async changeOrderPriceList(requestParameters: ChangeOrderPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.changeOrderPriceListRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3296,7 +3296,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async changeOrderUserIdRaw(requestParameters: OrderApiChangeOrderUserIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async changeOrderUserIdRaw(requestParameters: ChangeOrderUserIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling changeOrderUserId.');
         }
@@ -3329,7 +3329,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Changes the User ID associated with an order.
      * Change Order UserId
      */
-    async changeOrderUserId(requestParameters: OrderApiChangeOrderUserIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async changeOrderUserId(requestParameters: ChangeOrderUserIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.changeOrderUserIdRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3340,7 +3340,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async createDigitalPackageRaw(requestParameters: OrderApiCreateDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DigitalPackage>> {
+    async createDigitalPackageRaw(requestParameters: CreateDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DigitalPackage>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling createDigitalPackage.');
         }
@@ -3376,7 +3376,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Apply a digital package to the order.
      * Create Digital Package
      */
-    async createDigitalPackage(requestParameters: OrderApiCreateDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DigitalPackage> {
+    async createDigitalPackage(requestParameters: CreateDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DigitalPackage> {
         const response = await this.createDigitalPackageRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3387,7 +3387,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async createOrderRaw(requestParameters: OrderApiCreateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async createOrderRaw(requestParameters: CreateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         const queryParameters: any = {};
 
         if (requestParameters.cartId !== undefined) {
@@ -3427,7 +3427,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Creates a new order for no-cart quick-ordering scenarios. The full API payload required integration with the ecommerce front-end.
      * Create Order
      */
-    async createOrder(requestParameters: OrderApiCreateOrderRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async createOrder(requestParameters: CreateOrderRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.createOrderRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3438,7 +3438,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async createOrderAttributesRaw(requestParameters: OrderApiCreateOrderAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeOrderAttribute>>> {
+    async createOrderAttributesRaw(requestParameters: CreateOrderAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeOrderAttribute>>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling createOrderAttributes.');
         }
@@ -3474,7 +3474,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Adds a attributeSet to the order. This is an internal attributeSet that the merchant might want to add to an order.
      * Create Order Attributes
      */
-    async createOrderAttributes(requestParameters: OrderApiCreateOrderAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeOrderAttribute>> {
+    async createOrderAttributes(requestParameters: CreateOrderAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeOrderAttribute>> {
         const response = await this.createOrderAttributesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3485,7 +3485,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async createOrderItemRaw(requestParameters: OrderApiCreateOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async createOrderItemRaw(requestParameters: CreateOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling createOrderItem.');
         }
@@ -3537,7 +3537,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Adds a product or other item to the cart of the current shopper.
      * Create Order Item
      */
-    async createOrderItem(requestParameters: OrderApiCreateOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async createOrderItem(requestParameters: CreateOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.createOrderItemRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3548,7 +3548,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async createOrderNoteRaw(requestParameters: OrderApiCreateOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderNote>> {
+    async createOrderNoteRaw(requestParameters: CreateOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderNote>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling createOrderNote.');
         }
@@ -3584,7 +3584,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Adds a note to the order. This is an internal note that the merchant might want to add to an order.
      * Create Order Note
      */
-    async createOrderNote(requestParameters: OrderApiCreateOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderNote> {
+    async createOrderNote(requestParameters: CreateOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderNote> {
         const response = await this.createOrderNoteRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3595,7 +3595,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async createPackageRaw(requestParameters: OrderApiCreatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimePackage>> {
+    async createPackageRaw(requestParameters: CreatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimePackage>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling createPackage.');
         }
@@ -3631,7 +3631,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * 
      * Apply a package to the order
      */
-    async createPackage(requestParameters: OrderApiCreatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimePackage> {
+    async createPackage(requestParameters: CreatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimePackage> {
         const response = await this.createPackageRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3642,7 +3642,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async createPackageShipmentsRaw(requestParameters: OrderApiCreatePackageShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimePackage>>> {
+    async createPackageShipmentsRaw(requestParameters: CreatePackageShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimePackage>>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling createPackageShipments.');
         }
@@ -3678,7 +3678,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * 
      * Creates a shipment by grouping together multiple packages into logical shipments
      */
-    async createPackageShipments(requestParameters: OrderApiCreatePackageShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimePackage>> {
+    async createPackageShipments(requestParameters: CreatePackageShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimePackage>> {
         const response = await this.createPackageShipmentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3689,7 +3689,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async createPaymentActionRaw(requestParameters: OrderApiCreatePaymentActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async createPaymentActionRaw(requestParameters: CreatePaymentActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling createPaymentAction.');
         }
@@ -3725,7 +3725,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Sets the action of the specified payment transaction interaction. Available actions depend on the current status of the payment transaction.If in doubt, get a list of available payment actions first.
      * Create Payment Action
      */
-    async createPaymentAction(requestParameters: OrderApiCreatePaymentActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async createPaymentAction(requestParameters: CreatePaymentActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.createPaymentActionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3736,7 +3736,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async createPickupRaw(requestParameters: OrderApiCreatePickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Pickup>> {
+    async createPickupRaw(requestParameters: CreatePickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Pickup>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling createPickup.');
         }
@@ -3772,7 +3772,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Apply a pickup to the order.
      * Create Pickup
      */
-    async createPickup(requestParameters: OrderApiCreatePickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Pickup> {
+    async createPickup(requestParameters: CreatePickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Pickup> {
         const response = await this.createPickupRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3783,7 +3783,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async createRefundRaw(requestParameters: OrderApiCreateRefundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Refund>> {
+    async createRefundRaw(requestParameters: CreateRefundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Refund>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling createRefund.');
         }
@@ -3819,7 +3819,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Apply a refund to the order.
      * Create Refund
      */
-    async createRefund(requestParameters: OrderApiCreateRefundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Refund> {
+    async createRefund(requestParameters: CreateRefundRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Refund> {
         const response = await this.createRefundRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3830,7 +3830,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async deleteDigitalPackageRaw(requestParameters: OrderApiDeleteDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteDigitalPackageRaw(requestParameters: DeleteDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling deleteDigitalPackage.');
         }
@@ -3863,7 +3863,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Delete an order digital package.
      * Delete Digital Package
      */
-    async deleteDigitalPackage(requestParameters: OrderApiDeleteDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteDigitalPackage(requestParameters: DeleteDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteDigitalPackageRaw(requestParameters, initOverrides);
     }
 
@@ -3873,7 +3873,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async deleteExtendedPropertiesRaw(requestParameters: OrderApiDeleteExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteExtendedPropertiesRaw(requestParameters: DeleteExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling deleteExtendedProperties.');
         }
@@ -3913,7 +3913,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Delete extended properties on the order.
      * Delete Extended Properties
      */
-    async deleteExtendedProperties(requestParameters: OrderApiDeleteExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteExtendedProperties(requestParameters: DeleteExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteExtendedPropertiesRaw(requestParameters, initOverrides);
     }
 
@@ -3923,7 +3923,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async deleteExtendedPropertyRaw(requestParameters: OrderApiDeleteExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteExtendedPropertyRaw(requestParameters: DeleteExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling deleteExtendedProperty.');
         }
@@ -3964,7 +3964,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Removes a particular order item from the order of the current shopper.
      * Delete Extended Property
      */
-    async deleteExtendedProperty(requestParameters: OrderApiDeleteExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteExtendedProperty(requestParameters: DeleteExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteExtendedPropertyRaw(requestParameters, initOverrides);
     }
 
@@ -3974,7 +3974,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async deleteOrderDraftRaw(requestParameters: OrderApiDeleteOrderDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteOrderDraftRaw(requestParameters: DeleteOrderDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling deleteOrderDraft.');
         }
@@ -4011,7 +4011,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Deletes a draft version of an order.
      * Delete Order Draft
      */
-    async deleteOrderDraft(requestParameters: OrderApiDeleteOrderDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteOrderDraft(requestParameters: DeleteOrderDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteOrderDraftRaw(requestParameters, initOverrides);
     }
 
@@ -4021,7 +4021,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async deleteOrderItemRaw(requestParameters: OrderApiDeleteOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async deleteOrderItemRaw(requestParameters: DeleteOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling deleteOrderItem.');
         }
@@ -4062,7 +4062,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Removes a particular order item from the order of the current shopper.
      * Delete Order Item
      */
-    async deleteOrderItem(requestParameters: OrderApiDeleteOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async deleteOrderItem(requestParameters: DeleteOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.deleteOrderItemRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -4073,7 +4073,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async deleteOrderNoteRaw(requestParameters: OrderApiDeleteOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteOrderNoteRaw(requestParameters: DeleteOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling deleteOrderNote.');
         }
@@ -4106,7 +4106,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Deletes a specific order note on an order.
      * Delete Order Note
      */
-    async deleteOrderNote(requestParameters: OrderApiDeleteOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteOrderNote(requestParameters: DeleteOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteOrderNoteRaw(requestParameters, initOverrides);
     }
 
@@ -4116,7 +4116,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async deletePackageRaw(requestParameters: OrderApiDeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deletePackageRaw(requestParameters: DeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling deletePackage.');
         }
@@ -4149,7 +4149,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * 
      * Delete an order package
      */
-    async deletePackage(requestParameters: OrderApiDeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deletePackage(requestParameters: DeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deletePackageRaw(requestParameters, initOverrides);
     }
 
@@ -4159,7 +4159,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async deletePickupRaw(requestParameters: OrderApiDeletePickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deletePickupRaw(requestParameters: DeletePickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling deletePickup.');
         }
@@ -4192,7 +4192,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Delete an order pickup.
      * Delete Pickup
      */
-    async deletePickup(requestParameters: OrderApiDeletePickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deletePickup(requestParameters: DeletePickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deletePickupRaw(requestParameters, initOverrides);
     }
 
@@ -4202,7 +4202,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async deleteShipmentRaw(requestParameters: OrderApiDeleteShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteShipmentRaw(requestParameters: DeleteShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling deleteShipment.');
         }
@@ -4235,7 +4235,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Deletes an existing order shipment
      * Deletes an existing order shipment
      */
-    async deleteShipment(requestParameters: OrderApiDeleteShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteShipment(requestParameters: DeleteShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteShipmentRaw(requestParameters, initOverrides);
     }
 
@@ -4245,7 +4245,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async evaluateOrderRollupStatusRaw(requestParameters: OrderApiEvaluateOrderRollupStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async evaluateOrderRollupStatusRaw(requestParameters: EvaluateOrderRollupStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling evaluateOrderRollupStatus.');
         }
@@ -4278,7 +4278,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Evaluate Order Rollup Status
      * Evaluate Order Rollup Status
      */
-    async evaluateOrderRollupStatus(requestParameters: OrderApiEvaluateOrderRollupStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async evaluateOrderRollupStatus(requestParameters: EvaluateOrderRollupStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.evaluateOrderRollupStatusRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -4289,7 +4289,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getAvailableActionsRaw(requestParameters: OrderApiGetAvailableActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+    async getAvailableActionsRaw(requestParameters: GetAvailableActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getAvailableActions.');
         }
@@ -4322,7 +4322,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Retrieves available order actions which depends on the status of the order.Possible actions can be Create, Submit, SetAsProcessing, Close or Cancel.
      * Get Available Actions
      */
-    async getAvailableActions(requestParameters: OrderApiGetAvailableActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+    async getAvailableActions(requestParameters: GetAvailableActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
         const response = await this.getAvailableActionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -4333,7 +4333,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getAvailableDigitalPackageFulfillmentActionsRaw(requestParameters: OrderApiGetAvailableDigitalPackageFulfillmentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+    async getAvailableDigitalPackageFulfillmentActionsRaw(requestParameters: GetAvailableDigitalPackageFulfillmentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getAvailableDigitalPackageFulfillmentActions.');
         }
@@ -4370,7 +4370,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Retrieves available fulfillment actions.
      * Get Available Digital Package Fulfillment Actions
      */
-    async getAvailableDigitalPackageFulfillmentActions(requestParameters: OrderApiGetAvailableDigitalPackageFulfillmentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+    async getAvailableDigitalPackageFulfillmentActions(requestParameters: GetAvailableDigitalPackageFulfillmentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
         const response = await this.getAvailableDigitalPackageFulfillmentActionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -4381,7 +4381,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getAvailablePackageFulfillmentActionsRaw(requestParameters: OrderApiGetAvailablePackageFulfillmentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+    async getAvailablePackageFulfillmentActionsRaw(requestParameters: GetAvailablePackageFulfillmentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getAvailablePackageFulfillmentActions.');
         }
@@ -4418,7 +4418,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * 
      * Retrieves available fulfillment actions
      */
-    async getAvailablePackageFulfillmentActions(requestParameters: OrderApiGetAvailablePackageFulfillmentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+    async getAvailablePackageFulfillmentActions(requestParameters: GetAvailablePackageFulfillmentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
         const response = await this.getAvailablePackageFulfillmentActionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -4429,7 +4429,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getAvailablePaymentActionsRaw(requestParameters: OrderApiGetAvailablePaymentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+    async getAvailablePaymentActionsRaw(requestParameters: GetAvailablePaymentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getAvailablePaymentActions.');
         }
@@ -4466,7 +4466,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Retrieves available payment actions which depends on the status of the order\'s payment transaction.   Possible actions can be \"Create,\" \"Capture,\" \"Void,\" \"AuthCapture,\" or \"ReceiveCheck.\"
      * Get Available Payment Actions
      */
-    async getAvailablePaymentActions(requestParameters: OrderApiGetAvailablePaymentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+    async getAvailablePaymentActions(requestParameters: GetAvailablePaymentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
         const response = await this.getAvailablePaymentActionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -4477,7 +4477,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getAvailablePickupFulfillmentActionsRaw(requestParameters: OrderApiGetAvailablePickupFulfillmentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+    async getAvailablePickupFulfillmentActionsRaw(requestParameters: GetAvailablePickupFulfillmentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getAvailablePickupFulfillmentActions.');
         }
@@ -4514,7 +4514,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Retrieves available fulfillment actions.
      * Get Available Pickup Fulfillment Actions
      */
-    async getAvailablePickupFulfillmentActions(requestParameters: OrderApiGetAvailablePickupFulfillmentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+    async getAvailablePickupFulfillmentActions(requestParameters: GetAvailablePickupFulfillmentActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
         const response = await this.getAvailablePickupFulfillmentActionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -4525,7 +4525,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getAvailableShipmentMethodsRaw(requestParameters: OrderApiGetAvailableShipmentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeShippingRate>>> {
+    async getAvailableShipmentMethodsRaw(requestParameters: GetAvailableShipmentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeShippingRate>>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getAvailableShipmentMethods.');
         }
@@ -4562,7 +4562,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Retrieves available shipping methods. Typically used to display available shipping method options on the checkout page.
      * Get Available Shipment Methods
      */
-    async getAvailableShipmentMethods(requestParameters: OrderApiGetAvailableShipmentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeShippingRate>> {
+    async getAvailableShipmentMethods(requestParameters: GetAvailableShipmentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeShippingRate>> {
         const response = await this.getAvailableShipmentMethodsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -4573,7 +4573,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getBillingInfoRaw(requestParameters: OrderApiGetBillingInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BillingInfo>> {
+    async getBillingInfoRaw(requestParameters: GetBillingInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BillingInfo>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getBillingInfo.');
         }
@@ -4610,7 +4610,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Retrieves the customer\'s billing address.If paying by credit card, it retrieves the card\'s number, expiration date, card holder\'s name and billing address.
      * Get Billing Info
      */
-    async getBillingInfo(requestParameters: OrderApiGetBillingInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BillingInfo> {
+    async getBillingInfo(requestParameters: GetBillingInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BillingInfo> {
         const response = await this.getBillingInfoRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -4621,7 +4621,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getDigitalPackageRaw(requestParameters: OrderApiGetDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DigitalPackage>> {
+    async getDigitalPackageRaw(requestParameters: GetDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DigitalPackage>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getDigitalPackage.');
         }
@@ -4658,7 +4658,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Get an order digital package.
      * Get Digital Package
      */
-    async getDigitalPackage(requestParameters: OrderApiGetDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DigitalPackage> {
+    async getDigitalPackage(requestParameters: GetDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DigitalPackage> {
         const response = await this.getDigitalPackageRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -4669,7 +4669,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getExtendedPropertiesRaw(requestParameters: OrderApiGetExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtendedProperty>>> {
+    async getExtendedPropertiesRaw(requestParameters: GetExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtendedProperty>>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getExtendedProperties.');
         }
@@ -4706,7 +4706,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Get extended properties on an order.
      * Get Extended Properties
      */
-    async getExtendedProperties(requestParameters: OrderApiGetExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtendedProperty>> {
+    async getExtendedProperties(requestParameters: GetExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtendedProperty>> {
         const response = await this.getExtendedPropertiesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -4717,7 +4717,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getFulfillmentInfoRaw(requestParameters: OrderApiGetFulfillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FulfillmentInfo>> {
+    async getFulfillmentInfoRaw(requestParameters: GetFulfillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FulfillmentInfo>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getFulfillmentInfo.');
         }
@@ -4754,7 +4754,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Retrieves an order\'s fulfillment information specified by order ID.
      * Get Fulfillment Info
      */
-    async getFulfillmentInfo(requestParameters: OrderApiGetFulfillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillmentInfo> {
+    async getFulfillmentInfo(requestParameters: GetFulfillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillmentInfo> {
         const response = await this.getFulfillmentInfoRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -4765,7 +4765,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getOrderRaw(requestParameters: OrderApiGetOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async getOrderRaw(requestParameters: GetOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getOrder.');
         }
@@ -4810,7 +4810,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Retrieves the details of an order specified by the order ID.
      * Get Order
      */
-    async getOrder(requestParameters: OrderApiGetOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async getOrder(requestParameters: GetOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.getOrderRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -4821,7 +4821,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getOrderAttributesRaw(requestParameters: OrderApiGetOrderAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeOrderAttribute>>> {
+    async getOrderAttributesRaw(requestParameters: GetOrderAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeOrderAttribute>>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getOrderAttributes.');
         }
@@ -4854,7 +4854,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Retrieves a list of all attribute sets for an order.
      * Get Order Attributes
      */
-    async getOrderAttributes(requestParameters: OrderApiGetOrderAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeOrderAttribute>> {
+    async getOrderAttributes(requestParameters: GetOrderAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeOrderAttribute>> {
         const response = await this.getOrderAttributesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -4865,7 +4865,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getOrderItemRaw(requestParameters: OrderApiGetOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeOrderItem>> {
+    async getOrderItemRaw(requestParameters: GetOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeOrderItem>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getOrderItem.');
         }
@@ -4906,7 +4906,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Retrieves the details of a single order item.
      * Get Order Item
      */
-    async getOrderItem(requestParameters: OrderApiGetOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeOrderItem> {
+    async getOrderItem(requestParameters: GetOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeOrderItem> {
         const response = await this.getOrderItemRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -4917,7 +4917,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getOrderItemViaLineIdRaw(requestParameters: OrderApiGetOrderItemViaLineIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeOrderItem>> {
+    async getOrderItemViaLineIdRaw(requestParameters: GetOrderItemViaLineIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeOrderItem>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getOrderItemViaLineId.');
         }
@@ -4958,7 +4958,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Retrieves the details of a single order item via its line id.
      * Get Order Item Via LineId
      */
-    async getOrderItemViaLineId(requestParameters: OrderApiGetOrderItemViaLineIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeOrderItem> {
+    async getOrderItemViaLineId(requestParameters: GetOrderItemViaLineIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeOrderItem> {
         const response = await this.getOrderItemViaLineIdRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -4969,7 +4969,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getOrderItemsRaw(requestParameters: OrderApiGetOrderItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderItemCollection>> {
+    async getOrderItemsRaw(requestParameters: GetOrderItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderItemCollection>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getOrderItems.');
         }
@@ -5006,7 +5006,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Retrieves the details of all items in an order specified by order Id.
      * Get Order Items
      */
-    async getOrderItems(requestParameters: OrderApiGetOrderItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderItemCollection> {
+    async getOrderItems(requestParameters: GetOrderItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderItemCollection> {
         const response = await this.getOrderItemsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5017,7 +5017,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getOrderNoteRaw(requestParameters: OrderApiGetOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderNote>> {
+    async getOrderNoteRaw(requestParameters: GetOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderNote>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getOrderNote.');
         }
@@ -5054,7 +5054,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Retrieves a specific order note from an order.
      * Get Order Note
      */
-    async getOrderNote(requestParameters: OrderApiGetOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderNote> {
+    async getOrderNote(requestParameters: GetOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderNote> {
         const response = await this.getOrderNoteRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5065,7 +5065,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getOrderNotesRaw(requestParameters: OrderApiGetOrderNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<OrderNote>>> {
+    async getOrderNotesRaw(requestParameters: GetOrderNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<OrderNote>>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getOrderNotes.');
         }
@@ -5098,7 +5098,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Retrieves a list of all notes for an order.
      * Get Order Notes
      */
-    async getOrderNotes(requestParameters: OrderApiGetOrderNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<OrderNote>> {
+    async getOrderNotes(requestParameters: GetOrderNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<OrderNote>> {
         const response = await this.getOrderNotesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5109,7 +5109,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getOrderReturnableItemsRaw(requestParameters: OrderApiGetOrderReturnableItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderReturnableItemCollection>> {
+    async getOrderReturnableItemsRaw(requestParameters: GetOrderReturnableItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderReturnableItemCollection>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getOrderReturnableItems.');
         }
@@ -5142,7 +5142,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Provides fulfillment information for order items such as quantity ordered, fulfilled, and returned. Indicates which items are eligible for return.
      * Get Order Returnable Items
      */
-    async getOrderReturnableItems(requestParameters: OrderApiGetOrderReturnableItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderReturnableItemCollection> {
+    async getOrderReturnableItems(requestParameters: GetOrderReturnableItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderReturnableItemCollection> {
         const response = await this.getOrderReturnableItemsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5153,7 +5153,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getOrdersRaw(requestParameters: OrderApiGetOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderCollection>> {
+    async getOrdersRaw(requestParameters: GetOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -5218,7 +5218,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Retrieves a list of orders according to any specified filter criteria and sort options.
      * Get Orders
      */
-    async getOrders(requestParameters: OrderApiGetOrdersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderCollection> {
+    async getOrders(requestParameters: GetOrdersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderCollection> {
         const response = await this.getOrdersRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5229,7 +5229,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getPackageRaw(requestParameters: OrderApiGetPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimePackage>> {
+    async getPackageRaw(requestParameters: GetPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimePackage>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getPackage.');
         }
@@ -5266,7 +5266,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Get an order package
      * Get an order package
      */
-    async getPackage(requestParameters: OrderApiGetPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimePackage> {
+    async getPackage(requestParameters: GetPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimePackage> {
         const response = await this.getPackageRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5277,7 +5277,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getPackageLabelRaw(requestParameters: OrderApiGetPackageLabelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async getPackageLabelRaw(requestParameters: GetPackageLabelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getPackageLabel.');
         }
@@ -5314,7 +5314,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Get an order package label
      * Get an order package label
      */
-    async getPackageLabel(requestParameters: OrderApiGetPackageLabelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async getPackageLabel(requestParameters: GetPackageLabelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getPackageLabelRaw(requestParameters, initOverrides);
     }
 
@@ -5324,7 +5324,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getPaymentRaw(requestParameters: OrderApiGetPaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Payment>> {
+    async getPaymentRaw(requestParameters: GetPaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Payment>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getPayment.');
         }
@@ -5361,7 +5361,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Retrieves a specific payment transaction from the order.
      * Get Payment
      */
-    async getPayment(requestParameters: OrderApiGetPaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Payment> {
+    async getPayment(requestParameters: GetPaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Payment> {
         const response = await this.getPaymentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5372,7 +5372,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getPaymentsRaw(requestParameters: OrderApiGetPaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaymentCollection>> {
+    async getPaymentsRaw(requestParameters: GetPaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaymentCollection>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getPayments.');
         }
@@ -5405,7 +5405,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Retrieves payment transactions for an order. Allows filtering and sorting.
      * Get Payments
      */
-    async getPayments(requestParameters: OrderApiGetPaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentCollection> {
+    async getPayments(requestParameters: GetPaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentCollection> {
         const response = await this.getPaymentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5416,7 +5416,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getPickupRaw(requestParameters: OrderApiGetPickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Pickup>> {
+    async getPickupRaw(requestParameters: GetPickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Pickup>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getPickup.');
         }
@@ -5453,7 +5453,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Gets a specified pickup on the order.
      * Get Pickup
      */
-    async getPickup(requestParameters: OrderApiGetPickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Pickup> {
+    async getPickup(requestParameters: GetPickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Pickup> {
         const response = await this.getPickupRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5464,7 +5464,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getQueuedHistoricalOrderRaw(requestParameters: OrderApiGetQueuedHistoricalOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async getQueuedHistoricalOrderRaw(requestParameters: GetQueuedHistoricalOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getQueuedHistoricalOrder.');
         }
@@ -5497,7 +5497,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Retrieves the details of an order specified by the order ID.
      * Get QueuedHistoricalOrder
      */
-    async getQueuedHistoricalOrder(requestParameters: OrderApiGetQueuedHistoricalOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async getQueuedHistoricalOrder(requestParameters: GetQueuedHistoricalOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.getQueuedHistoricalOrderRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5508,7 +5508,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getQueuedHistoricalOrdersRaw(requestParameters: OrderApiGetQueuedHistoricalOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QueuedOrderCollection>> {
+    async getQueuedHistoricalOrdersRaw(requestParameters: GetQueuedHistoricalOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QueuedOrderCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -5557,7 +5557,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Retrieves a list of queued historical orders according to any specified filter criteria and sort options.
      * Get QueuedHistoricalOrders
      */
-    async getQueuedHistoricalOrders(requestParameters: OrderApiGetQueuedHistoricalOrdersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QueuedOrderCollection> {
+    async getQueuedHistoricalOrders(requestParameters: GetQueuedHistoricalOrdersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QueuedOrderCollection> {
         const response = await this.getQueuedHistoricalOrdersRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5568,7 +5568,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getQueuedOrderRaw(requestParameters: OrderApiGetQueuedOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async getQueuedOrderRaw(requestParameters: GetQueuedOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getQueuedOrder.');
         }
@@ -5601,7 +5601,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Get QueuedOrder
      * Get QueuedOrder
      */
-    async getQueuedOrder(requestParameters: OrderApiGetQueuedOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async getQueuedOrder(requestParameters: GetQueuedOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.getQueuedOrderRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5612,7 +5612,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getQueuedOrdersRaw(requestParameters: OrderApiGetQueuedOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QueuedOrderCollection>> {
+    async getQueuedOrdersRaw(requestParameters: GetQueuedOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QueuedOrderCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -5661,7 +5661,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Retrieves a list of queuedorders according to any specified filter criteria and sort options.
      * Get Queued Orders
      */
-    async getQueuedOrders(requestParameters: OrderApiGetQueuedOrdersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QueuedOrderCollection> {
+    async getQueuedOrders(requestParameters: GetQueuedOrdersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QueuedOrderCollection> {
         const response = await this.getQueuedOrdersRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5672,7 +5672,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getReasonsRaw(requestParameters: OrderApiGetReasonsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CancelReasonCollection>> {
+    async getReasonsRaw(requestParameters: GetReasonsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CancelReasonCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.category !== undefined) {
@@ -5705,7 +5705,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Gets order cancellation reasons based on a category.
      * Get Order Cancel Reasons
      */
-    async getReasons(requestParameters: OrderApiGetReasonsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CancelReasonCollection> {
+    async getReasons(requestParameters: GetReasonsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CancelReasonCollection> {
         const response = await this.getReasonsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5716,7 +5716,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getRefundReasonsRaw(requestParameters: OrderApiGetRefundReasonsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RefundReasonCollection>> {
+    async getRefundReasonsRaw(requestParameters: GetRefundReasonsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RefundReasonCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -5745,7 +5745,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Gets all the refund reasons.
      * Get Refund Reasons
      */
-    async getRefundReasons(requestParameters: OrderApiGetRefundReasonsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RefundReasonCollection> {
+    async getRefundReasons(requestParameters: GetRefundReasonsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RefundReasonCollection> {
         const response = await this.getRefundReasonsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5756,7 +5756,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getShipmentRaw(requestParameters: OrderApiGetShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipment>> {
+    async getShipmentRaw(requestParameters: GetShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipment>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getShipment.');
         }
@@ -5793,7 +5793,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Allows a shipment to be retrieved for the order.
      * Get Shipment
      */
-    async getShipment(requestParameters: OrderApiGetShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment> {
+    async getShipment(requestParameters: GetShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment> {
         const response = await this.getShipmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5804,7 +5804,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getTaxableOrdersRaw(requestParameters: OrderApiGetTaxableOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<PricingTaxableOrder>>> {
+    async getTaxableOrdersRaw(requestParameters: GetTaxableOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<PricingTaxableOrder>>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getTaxableOrders.');
         }
@@ -5837,7 +5837,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Gets an order divided up into \"TaxableOrders\" based on the source and delivery locations of the order items. Generally used for the purpose of splitting it into multiple taxable orders in order to fulfill the order in multiple locations.
      * Get Taxable Orders
      */
-    async getTaxableOrders(requestParameters: OrderApiGetTaxableOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<PricingTaxableOrder>> {
+    async getTaxableOrders(requestParameters: GetTaxableOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<PricingTaxableOrder>> {
         const response = await this.getTaxableOrdersRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5848,7 +5848,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async getValidationResultsRaw(requestParameters: OrderApiGetValidationResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<OrderValidationResult>>> {
+    async getValidationResultsRaw(requestParameters: GetValidationResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<OrderValidationResult>>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getValidationResults.');
         }
@@ -5881,7 +5881,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Gets list of validation results on an order.
      * Get Validation Results
      */
-    async getValidationResults(requestParameters: OrderApiGetValidationResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<OrderValidationResult>> {
+    async getValidationResults(requestParameters: GetValidationResultsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<OrderValidationResult>> {
         const response = await this.getValidationResultsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5892,7 +5892,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async performFulfillmentActionRaw(requestParameters: OrderApiPerformFulfillmentActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async performFulfillmentActionRaw(requestParameters: PerformFulfillmentActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling performFulfillmentAction.');
         }
@@ -5928,7 +5928,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Sets the fulfillment action to \'Ship\'. To ship an order, the order must have a customer name, the \'Open\' or \'OpenAdProcessing\' status, full shipping address, and shipping method.
      * Perform Fulfillment Action
      */
-    async performFulfillmentAction(requestParameters: OrderApiPerformFulfillmentActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async performFulfillmentAction(requestParameters: PerformFulfillmentActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.performFulfillmentActionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5939,7 +5939,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async performOrderActionRaw(requestParameters: OrderApiPerformOrderActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async performOrderActionRaw(requestParameters: PerformOrderActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling performOrderAction.');
         }
@@ -5975,7 +5975,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Set an action on the order. Available actions depend on the current status of the order. If in doubt, get a list of available order actions first.
      * Perform Order Action
      */
-    async performOrderAction(requestParameters: OrderApiPerformOrderActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async performOrderAction(requestParameters: PerformOrderActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.performOrderActionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5986,7 +5986,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async performPaymentActionRaw(requestParameters: OrderApiPerformPaymentActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async performPaymentActionRaw(requestParameters: PerformPaymentActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling performPaymentAction.');
         }
@@ -6026,7 +6026,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Performs a specific payment action. Available actions depend on the current status of the payment transaction.   If in doubt, get a list of available payment actions first.
      * Perform Payment Action
      */
-    async performPaymentAction(requestParameters: OrderApiPerformPaymentActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async performPaymentAction(requestParameters: PerformPaymentActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.performPaymentActionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -6037,7 +6037,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async priceOrderRaw(requestParameters: OrderApiPriceOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async priceOrderRaw(requestParameters: PriceOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         const queryParameters: any = {};
 
         if (requestParameters.refreshShipping !== undefined) {
@@ -6073,7 +6073,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * 
      * Price Order
      */
-    async priceOrder(requestParameters: OrderApiPriceOrderRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async priceOrder(requestParameters: PriceOrderRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.priceOrderRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -6084,7 +6084,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async processDigitalWalletRaw(requestParameters: OrderApiProcessDigitalWalletRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async processDigitalWalletRaw(requestParameters: ProcessDigitalWalletRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling processDigitalWallet.');
         }
@@ -6124,7 +6124,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Process digital wallet (used to hold 3rd party payment and shipping information) on the order.
      * Process Digital Wallet
      */
-    async processDigitalWallet(requestParameters: OrderApiProcessDigitalWalletRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async processDigitalWallet(requestParameters: ProcessDigitalWalletRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.processDigitalWalletRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -6135,7 +6135,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async removeAdjustmentRaw(requestParameters: OrderApiRemoveAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async removeAdjustmentRaw(requestParameters: RemoveAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling removeAdjustment.');
         }
@@ -6172,7 +6172,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Removes an adjustment that had been previously applied to the order.
      * Remove Adjustment
      */
-    async removeAdjustment(requestParameters: OrderApiRemoveAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async removeAdjustment(requestParameters: RemoveAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.removeAdjustmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -6183,7 +6183,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async removeAlternateContactRaw(requestParameters: OrderApiRemoveAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async removeAlternateContactRaw(requestParameters: RemoveAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling removeAlternateContact.');
         }
@@ -6216,7 +6216,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * 
      * Endpoint to remove alternate conatact from order and shipments.
      */
-    async removeAlternateContact(requestParameters: OrderApiRemoveAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async removeAlternateContact(requestParameters: RemoveAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.removeAlternateContactRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -6227,7 +6227,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async removeCouponRaw(requestParameters: OrderApiRemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async removeCouponRaw(requestParameters: RemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling removeCoupon.');
         }
@@ -6268,7 +6268,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Removes a coupon that had been previously applied to the order.
      * Remove Coupon
      */
-    async removeCoupon(requestParameters: OrderApiRemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async removeCoupon(requestParameters: RemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.removeCouponRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -6279,7 +6279,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async removeCouponsRaw(requestParameters: OrderApiRemoveCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async removeCouponsRaw(requestParameters: RemoveCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling removeCoupons.');
         }
@@ -6316,7 +6316,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Removes all coupons that had been previously applied to the order.
      * Remove Coupons
      */
-    async removeCoupons(requestParameters: OrderApiRemoveCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async removeCoupons(requestParameters: RemoveCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.removeCouponsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -6327,7 +6327,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async removeHandlingAdjustmentRaw(requestParameters: OrderApiRemoveHandlingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async removeHandlingAdjustmentRaw(requestParameters: RemoveHandlingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling removeHandlingAdjustment.');
         }
@@ -6364,7 +6364,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Removes a coupon that had been previously applied to the order.
      * Remove Handling Adjustment
      */
-    async removeHandlingAdjustment(requestParameters: OrderApiRemoveHandlingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async removeHandlingAdjustment(requestParameters: RemoveHandlingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.removeHandlingAdjustmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -6375,7 +6375,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async removeShippingAdjustmentRaw(requestParameters: OrderApiRemoveShippingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async removeShippingAdjustmentRaw(requestParameters: RemoveShippingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling removeShippingAdjustment.');
         }
@@ -6412,7 +6412,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Removes an adjustment that had been previously applied to the order.
      * Remove Shipping Adjustment
      */
-    async removeShippingAdjustment(requestParameters: OrderApiRemoveShippingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async removeShippingAdjustment(requestParameters: RemoveShippingAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.removeShippingAdjustmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -6423,7 +6423,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async repriceCanceledShipmentRaw(requestParameters: OrderApiRepriceCanceledShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RepriceCanceledShipmentObject>> {
+    async repriceCanceledShipmentRaw(requestParameters: RepriceCanceledShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RepriceCanceledShipmentObject>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling repriceCanceledShipment.');
         }
@@ -6459,7 +6459,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      *  FFMT svc will call this during full shipment cancelation or last item cancelation.  FFMT svs is performing shipment Rate validation.(FFMT svc is responsible for sending valid FlatratePerOrder shipments.)  Shipping costs of the canceled shipment will distribute to the active shipment.  Reset Shipping Costs of the canceled shipment to zero.
      * This endpoint is use to Reprice Canceled shipment
      */
-    async repriceCanceledShipment(requestParameters: OrderApiRepriceCanceledShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RepriceCanceledShipmentObject> {
+    async repriceCanceledShipment(requestParameters: RepriceCanceledShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RepriceCanceledShipmentObject> {
         const response = await this.repriceCanceledShipmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -6470,7 +6470,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async repriceShipmentRaw(requestParameters: OrderApiRepriceShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipment>> {
+    async repriceShipmentRaw(requestParameters: RepriceShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling repriceShipment.');
         }
@@ -6514,7 +6514,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Allows a shipment to be repriced.
      * Reprice Shipment
      */
-    async repriceShipment(requestParameters: OrderApiRepriceShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment> {
+    async repriceShipment(requestParameters: RepriceShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment> {
         const response = await this.repriceShipmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -6525,7 +6525,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async repriceSubstitutesRaw(requestParameters: OrderApiRepriceSubstitutesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipment>> {
+    async repriceSubstitutesRaw(requestParameters: RepriceSubstitutesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling repriceSubstitutes.');
         }
@@ -6565,7 +6565,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Reprice substitute items in shipments
      * Reprice substitute items in shipments
      */
-    async repriceSubstitutes(requestParameters: OrderApiRepriceSubstitutesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment> {
+    async repriceSubstitutes(requestParameters: RepriceSubstitutesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment> {
         const response = await this.repriceSubstitutesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -6576,7 +6576,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async resendGatewayGiftCardEmailRaw(requestParameters: OrderApiResendGatewayGiftCardEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async resendGatewayGiftCardEmailRaw(requestParameters: ResendGatewayGiftCardEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling resendGatewayGiftCardEmail.');
         }
@@ -6613,7 +6613,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Resend gateway giftcard email.
      * Resend Gateway Gift Card Email
      */
-    async resendGatewayGiftCardEmail(requestParameters: OrderApiResendGatewayGiftCardEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async resendGatewayGiftCardEmail(requestParameters: ResendGatewayGiftCardEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.resendGatewayGiftCardEmailRaw(requestParameters, initOverrides);
     }
 
@@ -6623,7 +6623,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async resendOrderConfirmationEmailRaw(requestParameters: OrderApiResendOrderConfirmationEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async resendOrderConfirmationEmailRaw(requestParameters: ResendOrderConfirmationEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling resendOrderConfirmationEmail.');
         }
@@ -6659,7 +6659,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Resend order confirmation email specified by the order Id.
      * Resend Order Confirmation Email
      */
-    async resendOrderConfirmationEmail(requestParameters: OrderApiResendOrderConfirmationEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async resendOrderConfirmationEmail(requestParameters: ResendOrderConfirmationEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.resendOrderConfirmationEmailRaw(requestParameters, initOverrides);
     }
 
@@ -6669,7 +6669,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async resendPackageFulfillmentEmailRaw(requestParameters: OrderApiResendPackageFulfillmentEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async resendPackageFulfillmentEmailRaw(requestParameters: ResendPackageFulfillmentEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling resendPackageFulfillmentEmail.');
         }
@@ -6705,7 +6705,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Resends the package fulfillment email.
      * Resend Package Fulfillment Email
      */
-    async resendPackageFulfillmentEmail(requestParameters: OrderApiResendPackageFulfillmentEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async resendPackageFulfillmentEmail(requestParameters: ResendPackageFulfillmentEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.resendPackageFulfillmentEmailRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -6716,7 +6716,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async resendRefundEmailRaw(requestParameters: OrderApiResendRefundEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async resendRefundEmailRaw(requestParameters: ResendRefundEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling resendRefundEmail.');
         }
@@ -6753,7 +6753,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Resend refund email.
      * Resend Refund Email
      */
-    async resendRefundEmail(requestParameters: OrderApiResendRefundEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async resendRefundEmail(requestParameters: ResendRefundEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.resendRefundEmailRaw(requestParameters, initOverrides);
     }
 
@@ -6763,7 +6763,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async setBillingInfoRaw(requestParameters: OrderApiSetBillingInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BillingInfo>> {
+    async setBillingInfoRaw(requestParameters: SetBillingInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BillingInfo>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling setBillingInfo.');
         }
@@ -6807,7 +6807,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Adds a payment source to the order.
      * Set Billing Info
      */
-    async setBillingInfo(requestParameters: OrderApiSetBillingInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BillingInfo> {
+    async setBillingInfo(requestParameters: SetBillingInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BillingInfo> {
         const response = await this.setBillingInfoRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -6818,7 +6818,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async setFulFillmentInfoRaw(requestParameters: OrderApiSetFulFillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FulfillmentInfo>> {
+    async setFulFillmentInfoRaw(requestParameters: SetFulFillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FulfillmentInfo>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling setFulFillmentInfo.');
         }
@@ -6862,7 +6862,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Modifies an order\'s fulfillment information. For example, to update the fulfillment address, estimated delivery date, or the merchant\'s fulfillment cost.
      * Set Fulfillment Info
      */
-    async setFulFillmentInfo(requestParameters: OrderApiSetFulFillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillmentInfo> {
+    async setFulFillmentInfo(requestParameters: SetFulFillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillmentInfo> {
         const response = await this.setFulFillmentInfoRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -6873,7 +6873,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async smsOptOutRaw(requestParameters: OrderApiSmsOptOutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async smsOptOutRaw(requestParameters: SmsOptOutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.siteId === null || requestParameters.siteId === undefined) {
             throw new runtime.RequiredError('siteId','Required parameter requestParameters.siteId was null or undefined when calling smsOptOut.');
         }
@@ -6906,7 +6906,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Opting out from the sms notifications.
      * Sms Opt Out
      */
-    async smsOptOut(requestParameters: OrderApiSmsOptOutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async smsOptOut(requestParameters: SmsOptOutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.smsOptOutRaw(requestParameters, initOverrides);
     }
 
@@ -6916,7 +6916,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async splitShipmentsRaw(requestParameters: OrderApiSplitShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeShipment>>> {
+    async splitShipmentsRaw(requestParameters: SplitShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeShipment>>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling splitShipments.');
         }
@@ -6956,7 +6956,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Allows spliting an existing shipment.
      * Split Shipments
      */
-    async splitShipments(requestParameters: OrderApiSplitShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeShipment>> {
+    async splitShipments(requestParameters: SplitShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeShipment>> {
         const response = await this.splitShipmentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -6967,7 +6967,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async updateDigitalPackageRaw(requestParameters: OrderApiUpdateDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DigitalPackage>> {
+    async updateDigitalPackageRaw(requestParameters: UpdateDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DigitalPackage>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling updateDigitalPackage.');
         }
@@ -7007,7 +7007,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Updates a digital package on the order.
      * Update Digital Package
      */
-    async updateDigitalPackage(requestParameters: OrderApiUpdateDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DigitalPackage> {
+    async updateDigitalPackage(requestParameters: UpdateDigitalPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DigitalPackage> {
         const response = await this.updateDigitalPackageRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -7018,7 +7018,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async updateExtendedPropertiesRaw(requestParameters: OrderApiUpdateExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtendedProperty>>> {
+    async updateExtendedPropertiesRaw(requestParameters: UpdateExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtendedProperty>>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling updateExtendedProperties.');
         }
@@ -7066,7 +7066,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Update extended properties.
      * Updated extended properties
      */
-    async updateExtendedProperties(requestParameters: OrderApiUpdateExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtendedProperty>> {
+    async updateExtendedProperties(requestParameters: UpdateExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtendedProperty>> {
         const response = await this.updateExtendedPropertiesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -7077,7 +7077,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async updateExtendedPropertyRaw(requestParameters: OrderApiUpdateExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtendedProperty>> {
+    async updateExtendedPropertyRaw(requestParameters: UpdateExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtendedProperty>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling updateExtendedProperty.');
         }
@@ -7129,7 +7129,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Updated specific extended property
      * Update Extended Property
      */
-    async updateExtendedProperty(requestParameters: OrderApiUpdateExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtendedProperty> {
+    async updateExtendedProperty(requestParameters: UpdateExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtendedProperty> {
         const response = await this.updateExtendedPropertyRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -7140,7 +7140,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async updateGiftInfoRaw(requestParameters: OrderApiUpdateGiftInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async updateGiftInfoRaw(requestParameters: UpdateGiftInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling updateGiftInfo.');
         }
@@ -7188,7 +7188,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Update GiftInfo on OrderItem
      * Update GiftInfo on OrderItem
      */
-    async updateGiftInfo(requestParameters: OrderApiUpdateGiftInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async updateGiftInfo(requestParameters: UpdateGiftInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.updateGiftInfoRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -7199,7 +7199,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async updateItemDeliveryDateRaw(requestParameters: OrderApiUpdateItemDeliveryDateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async updateItemDeliveryDateRaw(requestParameters: UpdateItemDeliveryDateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling updateItemDeliveryDate.');
         }
@@ -7247,7 +7247,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Updates the Delivery Date of a particular Order Item
      * Updates the Delivery Date of a particular Order Item
      */
-    async updateItemDeliveryDate(requestParameters: OrderApiUpdateItemDeliveryDateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async updateItemDeliveryDate(requestParameters: UpdateItemDeliveryDateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.updateItemDeliveryDateRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -7258,7 +7258,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async updateItemDutyRaw(requestParameters: OrderApiUpdateItemDutyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async updateItemDutyRaw(requestParameters: UpdateItemDutyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling updateItemDuty.');
         }
@@ -7307,7 +7307,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Updates the duty amount of an order item in the order.
      * Update Item Duty
      */
-    async updateItemDuty(requestParameters: OrderApiUpdateItemDutyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async updateItemDuty(requestParameters: UpdateItemDutyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.updateItemDutyRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -7318,7 +7318,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async updateItemFulfillmentRaw(requestParameters: OrderApiUpdateItemFulfillmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async updateItemFulfillmentRaw(requestParameters: UpdateItemFulfillmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling updateItemFulfillment.');
         }
@@ -7370,7 +7370,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Updates the fullfillment method and/or location of an individual order item in the order of the current shopper.
      * Update Item Fulfillment
      */
-    async updateItemFulfillment(requestParameters: OrderApiUpdateItemFulfillmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async updateItemFulfillment(requestParameters: UpdateItemFulfillmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.updateItemFulfillmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -7381,7 +7381,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async updateItemProductPriceRaw(requestParameters: OrderApiUpdateItemProductPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async updateItemProductPriceRaw(requestParameters: UpdateItemProductPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling updateItemProductPrice.');
         }
@@ -7430,7 +7430,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Updates the price of an individual order item in the order.
      * Update Item Product Price
      */
-    async updateItemProductPrice(requestParameters: OrderApiUpdateItemProductPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async updateItemProductPrice(requestParameters: UpdateItemProductPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.updateItemProductPriceRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -7441,7 +7441,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async updateItemQuantityRaw(requestParameters: OrderApiUpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async updateItemQuantityRaw(requestParameters: UpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling updateItemQuantity.');
         }
@@ -7490,7 +7490,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Updates the quantity of an individual order item in the order.
      * Update Item Quantity
      */
-    async updateItemQuantity(requestParameters: OrderApiUpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async updateItemQuantity(requestParameters: UpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.updateItemQuantityRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -7501,7 +7501,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async updateOrderRaw(requestParameters: OrderApiUpdateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async updateOrderRaw(requestParameters: UpdateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling updateOrder.');
         }
@@ -7545,7 +7545,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Updates the billing and/or shipping information of an existing order.
      * Update Order
      */
-    async updateOrder(requestParameters: OrderApiUpdateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async updateOrder(requestParameters: UpdateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.updateOrderRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -7556,7 +7556,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async updateOrderAttributesRaw(requestParameters: OrderApiUpdateOrderAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeOrderAttribute>>> {
+    async updateOrderAttributesRaw(requestParameters: UpdateOrderAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeOrderAttribute>>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling updateOrderAttributes.');
         }
@@ -7596,7 +7596,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Updates a specific order attribute set of an order.
      * Update Order Attributes
      */
-    async updateOrderAttributes(requestParameters: OrderApiUpdateOrderAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeOrderAttribute>> {
+    async updateOrderAttributes(requestParameters: UpdateOrderAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeOrderAttribute>> {
         const response = await this.updateOrderAttributesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -7607,7 +7607,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async updateOrderDiscountRaw(requestParameters: OrderApiUpdateOrderDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async updateOrderDiscountRaw(requestParameters: UpdateOrderDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling updateOrderDiscount.');
         }
@@ -7655,7 +7655,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Update existing discount on the order.
      * Update Order Discount
      */
-    async updateOrderDiscount(requestParameters: OrderApiUpdateOrderDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async updateOrderDiscount(requestParameters: UpdateOrderDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.updateOrderDiscountRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -7666,7 +7666,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async updateOrderItemDiscountRaw(requestParameters: OrderApiUpdateOrderItemDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async updateOrderItemDiscountRaw(requestParameters: UpdateOrderItemDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling updateOrderItemDiscount.');
         }
@@ -7718,7 +7718,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Update a discount on the order item to ignore or unignore it.
      * Update Order Item Discount
      */
-    async updateOrderItemDiscount(requestParameters: OrderApiUpdateOrderItemDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async updateOrderItemDiscount(requestParameters: UpdateOrderItemDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.updateOrderItemDiscountRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -7729,7 +7729,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async updateOrderNoteRaw(requestParameters: OrderApiUpdateOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderNote>> {
+    async updateOrderNoteRaw(requestParameters: UpdateOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderNote>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling updateOrderNote.');
         }
@@ -7769,7 +7769,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Updates a specific order note for an order.
      * Update Order Note
      */
-    async updateOrderNote(requestParameters: OrderApiUpdateOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderNote> {
+    async updateOrderNote(requestParameters: UpdateOrderNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderNote> {
         const response = await this.updateOrderNoteRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -7780,7 +7780,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async updateOrderRestrictionsRaw(requestParameters: OrderApiUpdateOrderRestrictionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async updateOrderRestrictionsRaw(requestParameters: UpdateOrderRestrictionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling updateOrderRestrictions.');
         }
@@ -7821,7 +7821,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Update Order Restrictions
      * Update Order Restrictions
      */
-    async updateOrderRestrictions(requestParameters: OrderApiUpdateOrderRestrictionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async updateOrderRestrictions(requestParameters: UpdateOrderRestrictionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.updateOrderRestrictionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -7832,7 +7832,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async updatePackageRaw(requestParameters: OrderApiUpdatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimePackage>> {
+    async updatePackageRaw(requestParameters: UpdatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimePackage>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling updatePackage.');
         }
@@ -7872,7 +7872,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * 
      * Delete an order package
      */
-    async updatePackage(requestParameters: OrderApiUpdatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimePackage> {
+    async updatePackage(requestParameters: UpdatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimePackage> {
         const response = await this.updatePackageRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -7883,7 +7883,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async updatePickupRaw(requestParameters: OrderApiUpdatePickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Pickup>> {
+    async updatePickupRaw(requestParameters: UpdatePickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Pickup>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling updatePickup.');
         }
@@ -7923,7 +7923,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Updates pickup details on the order.
      * Update Pickup
      */
-    async updatePickup(requestParameters: OrderApiUpdatePickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Pickup> {
+    async updatePickup(requestParameters: UpdatePickupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Pickup> {
         const response = await this.updatePickupRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -7934,7 +7934,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async updateShipmentAdjustmentsRaw(requestParameters: OrderApiUpdateShipmentAdjustmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipment>> {
+    async updateShipmentAdjustmentsRaw(requestParameters: UpdateShipmentAdjustmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipment>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling updateShipmentAdjustments.');
         }
@@ -7974,7 +7974,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Updates adjustments on shipments.
      * Update Shipment Adjustments
      */
-    async updateShipmentAdjustments(requestParameters: OrderApiUpdateShipmentAdjustmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment> {
+    async updateShipmentAdjustments(requestParameters: UpdateShipmentAdjustmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment> {
         const response = await this.updateShipmentAdjustmentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -7985,7 +7985,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async updateShipmentItemRaw(requestParameters: OrderApiUpdateShipmentItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipment>> {
+    async updateShipmentItemRaw(requestParameters: UpdateShipmentItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipment>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling updateShipmentItem.');
         }
@@ -8029,7 +8029,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Updates shipment item with new shipment adjustment.
      * Update Shipment Item
      */
-    async updateShipmentItem(requestParameters: OrderApiUpdateShipmentItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment> {
+    async updateShipmentItem(requestParameters: UpdateShipmentItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment> {
         const response = await this.updateShipmentItemRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -8040,7 +8040,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async updateSubscriptionInfoRaw(requestParameters: OrderApiUpdateSubscriptionInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async updateSubscriptionInfoRaw(requestParameters: UpdateSubscriptionInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling updateSubscriptionInfo.');
         }
@@ -8080,7 +8080,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Update a subscription info on the order item.
      * Update Order Item Subscription Info, applies only to Draft Order
      */
-    async updateSubscriptionInfo(requestParameters: OrderApiUpdateSubscriptionInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async updateSubscriptionInfo(requestParameters: UpdateSubscriptionInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.updateSubscriptionInfoRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -8091,7 +8091,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async upsertAlternateContactRaw(requestParameters: OrderApiUpsertAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async upsertAlternateContactRaw(requestParameters: UpsertAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling upsertAlternateContact.');
         }
@@ -8127,7 +8127,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * 
      * Endpoint to add/update alternate contact
      */
-    async upsertAlternateContact(requestParameters: OrderApiUpsertAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async upsertAlternateContact(requestParameters: UpsertAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.upsertAlternateContactRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -8138,7 +8138,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async upsertGiftMessageRaw(requestParameters: OrderApiUpsertGiftMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async upsertGiftMessageRaw(requestParameters: UpsertGiftMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling upsertGiftMessage.');
         }
@@ -8174,7 +8174,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * Upsert Gift Message
      * Upsert Gift Message
      */
-    async upsertGiftMessage(requestParameters: OrderApiUpsertGiftMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async upsertGiftMessage(requestParameters: UpsertGiftMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.upsertGiftMessageRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -8185,7 +8185,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
 
 
-    async upsertInventoryTagsRaw(requestParameters: OrderApiUpsertInventoryTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async upsertInventoryTagsRaw(requestParameters: UpsertInventoryTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling upsertInventoryTags.');
         }
@@ -8233,7 +8233,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      * You need to pass in all tags everytime
      * Upsert Inventory Tags on OrderItem
      */
-    async upsertInventoryTags(requestParameters: OrderApiUpsertInventoryTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async upsertInventoryTags(requestParameters: UpsertInventoryTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.upsertInventoryTagsRaw(requestParameters, initOverrides);
         return await response.value();
     }

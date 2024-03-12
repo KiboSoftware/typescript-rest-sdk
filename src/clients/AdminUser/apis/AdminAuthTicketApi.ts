@@ -20,24 +20,24 @@ import type {
   UserAuthInfo,
 } from '../models';
 
-export interface AdminAuthTicketApiCreateUserAuthTicketRequest {
+export interface CreateUserAuthTicketRequest {
     tenantId?: number;
     responseFields?: string;
     userAuthInfo?: UserAuthInfo;
 }
 
-export interface AdminAuthTicketApiCreateUserAuthTicketWithWsFedRequest {
+export interface CreateUserAuthTicketWithWsFedRequest {
     id: string;
     scopeid?: number;
     scopeType?: string;
     responseFields?: string;
 }
 
-export interface AdminAuthTicketApiDeleteUserAuthTicketRequest {
+export interface DeleteUserAuthTicketRequest {
     refreshToken?: string;
 }
 
-export interface AdminAuthTicketApiGetWsFedChallengeUrlRequest {
+export interface GetWsFedChallengeUrlRequest {
     id: string;
     scopeid?: number;
     scopeType?: string;
@@ -45,13 +45,13 @@ export interface AdminAuthTicketApiGetWsFedChallengeUrlRequest {
     responseFields?: string;
 }
 
-export interface AdminAuthTicketApiGetWsFedSignOutUrlRequest {
+export interface GetWsFedSignOutUrlRequest {
     id: string;
     redirect?: string;
     responseFields?: string;
 }
 
-export interface AdminAuthTicketApiRefreshAuthTicketRequest {
+export interface RefreshAuthTicketRequest {
     tenantId?: number;
     responseFields?: string;
     tenantAdminUserAuthTicket?: TenantAdminUserAuthTicket;
@@ -74,13 +74,13 @@ export interface AdminAuthTicketApiInterface {
      * @throws {RequiredError}
      * @memberof AdminAuthTicketApiInterface
      */
-    createUserAuthTicketRaw(requestParameters: AdminAuthTicketApiCreateUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantAdminUserAuthTicket>>;
+    createUserAuthTicketRaw(requestParameters: CreateUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantAdminUserAuthTicket>>;
 
     /**
      * Authenticates a user for a particular tenant given a set of user credentials adn a tenantId.
      * Create User Auth Ticket
      */
-    createUserAuthTicket(requestParameters: AdminAuthTicketApiCreateUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantAdminUserAuthTicket>;
+    createUserAuthTicket(requestParameters: CreateUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantAdminUserAuthTicket>;
 
     /**
      * Create User Auth Ticket With Ws Fed
@@ -93,13 +93,13 @@ export interface AdminAuthTicketApiInterface {
      * @throws {RequiredError}
      * @memberof AdminAuthTicketApiInterface
      */
-    createUserAuthTicketWithWsFedRaw(requestParameters: AdminAuthTicketApiCreateUserAuthTicketWithWsFedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantAdminUserAuthTicket>>;
+    createUserAuthTicketWithWsFedRaw(requestParameters: CreateUserAuthTicketWithWsFedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantAdminUserAuthTicket>>;
 
     /**
      * Create User Auth Ticket With Ws Fed
      * Create User Auth Ticket With Ws Fed
      */
-    createUserAuthTicketWithWsFed(requestParameters: AdminAuthTicketApiCreateUserAuthTicketWithWsFedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantAdminUserAuthTicket>;
+    createUserAuthTicketWithWsFed(requestParameters: CreateUserAuthTicketWithWsFedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantAdminUserAuthTicket>;
 
     /**
      * Logs out a user by deleting the refresh token
@@ -109,13 +109,13 @@ export interface AdminAuthTicketApiInterface {
      * @throws {RequiredError}
      * @memberof AdminAuthTicketApiInterface
      */
-    deleteUserAuthTicketRaw(requestParameters: AdminAuthTicketApiDeleteUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteUserAuthTicketRaw(requestParameters: DeleteUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Logs out a user by deleting the refresh token
      * Delete User Auth Ticket
      */
-    deleteUserAuthTicket(requestParameters: AdminAuthTicketApiDeleteUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteUserAuthTicket(requestParameters: DeleteUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Get Ws Fed Challenge Url
@@ -129,13 +129,13 @@ export interface AdminAuthTicketApiInterface {
      * @throws {RequiredError}
      * @memberof AdminAuthTicketApiInterface
      */
-    getWsFedChallengeUrlRaw(requestParameters: AdminAuthTicketApiGetWsFedChallengeUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
+    getWsFedChallengeUrlRaw(requestParameters: GetWsFedChallengeUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
 
     /**
      * Get Ws Fed Challenge Url
      * Get Ws Fed Challenge Url
      */
-    getWsFedChallengeUrl(requestParameters: AdminAuthTicketApiGetWsFedChallengeUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
+    getWsFedChallengeUrl(requestParameters: GetWsFedChallengeUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
 
     /**
      * Get Ws Fed Sign Out Url
@@ -147,13 +147,13 @@ export interface AdminAuthTicketApiInterface {
      * @throws {RequiredError}
      * @memberof AdminAuthTicketApiInterface
      */
-    getWsFedSignOutUrlRaw(requestParameters: AdminAuthTicketApiGetWsFedSignOutUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
+    getWsFedSignOutUrlRaw(requestParameters: GetWsFedSignOutUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
 
     /**
      * Get Ws Fed Sign Out Url
      * Get Ws Fed Sign Out Url
      */
-    getWsFedSignOutUrl(requestParameters: AdminAuthTicketApiGetWsFedSignOutUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
+    getWsFedSignOutUrl(requestParameters: GetWsFedSignOutUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
 
     /**
      * Reauthenticates the current user for a different tenant. If the user does not have access to the tenant, the operation fails.
@@ -165,13 +165,13 @@ export interface AdminAuthTicketApiInterface {
      * @throws {RequiredError}
      * @memberof AdminAuthTicketApiInterface
      */
-    refreshAuthTicketRaw(requestParameters: AdminAuthTicketApiRefreshAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantAdminUserAuthTicket>>;
+    refreshAuthTicketRaw(requestParameters: RefreshAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantAdminUserAuthTicket>>;
 
     /**
      * Reauthenticates the current user for a different tenant. If the user does not have access to the tenant, the operation fails.
      * Refresh Auth Ticket
      */
-    refreshAuthTicket(requestParameters: AdminAuthTicketApiRefreshAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantAdminUserAuthTicket>;
+    refreshAuthTicket(requestParameters: RefreshAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantAdminUserAuthTicket>;
 
 }
 
@@ -189,7 +189,7 @@ export class AdminAuthTicketApi extends runtime.BaseAPI implements AdminAuthTick
      */
 
 
-    async createUserAuthTicketRaw(requestParameters: AdminAuthTicketApiCreateUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantAdminUserAuthTicket>> {
+    async createUserAuthTicketRaw(requestParameters: CreateUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantAdminUserAuthTicket>> {
         const queryParameters: any = {};
 
         if (requestParameters.tenantId !== undefined) {
@@ -225,7 +225,7 @@ export class AdminAuthTicketApi extends runtime.BaseAPI implements AdminAuthTick
      * Authenticates a user for a particular tenant given a set of user credentials adn a tenantId.
      * Create User Auth Ticket
      */
-    async createUserAuthTicket(requestParameters: AdminAuthTicketApiCreateUserAuthTicketRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantAdminUserAuthTicket> {
+    async createUserAuthTicket(requestParameters: CreateUserAuthTicketRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantAdminUserAuthTicket> {
         const response = await this.createUserAuthTicketRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -236,7 +236,7 @@ export class AdminAuthTicketApi extends runtime.BaseAPI implements AdminAuthTick
      */
 
 
-    async createUserAuthTicketWithWsFedRaw(requestParameters: AdminAuthTicketApiCreateUserAuthTicketWithWsFedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantAdminUserAuthTicket>> {
+    async createUserAuthTicketWithWsFedRaw(requestParameters: CreateUserAuthTicketWithWsFedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantAdminUserAuthTicket>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling createUserAuthTicketWithWsFed.');
         }
@@ -277,7 +277,7 @@ export class AdminAuthTicketApi extends runtime.BaseAPI implements AdminAuthTick
      * Create User Auth Ticket With Ws Fed
      * Create User Auth Ticket With Ws Fed
      */
-    async createUserAuthTicketWithWsFed(requestParameters: AdminAuthTicketApiCreateUserAuthTicketWithWsFedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantAdminUserAuthTicket> {
+    async createUserAuthTicketWithWsFed(requestParameters: CreateUserAuthTicketWithWsFedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantAdminUserAuthTicket> {
         const response = await this.createUserAuthTicketWithWsFedRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -288,7 +288,7 @@ export class AdminAuthTicketApi extends runtime.BaseAPI implements AdminAuthTick
      */
 
 
-    async deleteUserAuthTicketRaw(requestParameters: AdminAuthTicketApiDeleteUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteUserAuthTicketRaw(requestParameters: DeleteUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         if (requestParameters.refreshToken !== undefined) {
@@ -317,7 +317,7 @@ export class AdminAuthTicketApi extends runtime.BaseAPI implements AdminAuthTick
      * Logs out a user by deleting the refresh token
      * Delete User Auth Ticket
      */
-    async deleteUserAuthTicket(requestParameters: AdminAuthTicketApiDeleteUserAuthTicketRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteUserAuthTicket(requestParameters: DeleteUserAuthTicketRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteUserAuthTicketRaw(requestParameters, initOverrides);
     }
 
@@ -327,7 +327,7 @@ export class AdminAuthTicketApi extends runtime.BaseAPI implements AdminAuthTick
      */
 
 
-    async getWsFedChallengeUrlRaw(requestParameters: AdminAuthTicketApiGetWsFedChallengeUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async getWsFedChallengeUrlRaw(requestParameters: GetWsFedChallengeUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getWsFedChallengeUrl.');
         }
@@ -372,7 +372,7 @@ export class AdminAuthTicketApi extends runtime.BaseAPI implements AdminAuthTick
      * Get Ws Fed Challenge Url
      * Get Ws Fed Challenge Url
      */
-    async getWsFedChallengeUrl(requestParameters: AdminAuthTicketApiGetWsFedChallengeUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+    async getWsFedChallengeUrl(requestParameters: GetWsFedChallengeUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
         const response = await this.getWsFedChallengeUrlRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -383,7 +383,7 @@ export class AdminAuthTicketApi extends runtime.BaseAPI implements AdminAuthTick
      */
 
 
-    async getWsFedSignOutUrlRaw(requestParameters: AdminAuthTicketApiGetWsFedSignOutUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async getWsFedSignOutUrlRaw(requestParameters: GetWsFedSignOutUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getWsFedSignOutUrl.');
         }
@@ -420,7 +420,7 @@ export class AdminAuthTicketApi extends runtime.BaseAPI implements AdminAuthTick
      * Get Ws Fed Sign Out Url
      * Get Ws Fed Sign Out Url
      */
-    async getWsFedSignOutUrl(requestParameters: AdminAuthTicketApiGetWsFedSignOutUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+    async getWsFedSignOutUrl(requestParameters: GetWsFedSignOutUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
         const response = await this.getWsFedSignOutUrlRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -431,7 +431,7 @@ export class AdminAuthTicketApi extends runtime.BaseAPI implements AdminAuthTick
      */
 
 
-    async refreshAuthTicketRaw(requestParameters: AdminAuthTicketApiRefreshAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantAdminUserAuthTicket>> {
+    async refreshAuthTicketRaw(requestParameters: RefreshAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantAdminUserAuthTicket>> {
         const queryParameters: any = {};
 
         if (requestParameters.tenantId !== undefined) {
@@ -467,7 +467,7 @@ export class AdminAuthTicketApi extends runtime.BaseAPI implements AdminAuthTick
      * Reauthenticates the current user for a different tenant. If the user does not have access to the tenant, the operation fails.
      * Refresh Auth Ticket
      */
-    async refreshAuthTicket(requestParameters: AdminAuthTicketApiRefreshAuthTicketRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantAdminUserAuthTicket> {
+    async refreshAuthTicket(requestParameters: RefreshAuthTicketRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantAdminUserAuthTicket> {
         const response = await this.refreshAuthTicketRaw(requestParameters, initOverrides);
         return await response.value();
     }

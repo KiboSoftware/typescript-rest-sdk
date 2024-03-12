@@ -28,71 +28,71 @@ import type {
   UpgradeToB2BAccountResponse,
 } from '../models';
 
-export interface B2BAccountApiAddAccountRequest {
+export interface AddAccountRequest {
     responseFields?: string;
     b2BAccount?: B2BAccount;
 }
 
-export interface B2BAccountApiAddB2BAccountAttributeRequest {
+export interface AddB2BAccountAttributeRequest {
     accountId: number;
     responseFields?: string;
     customerAttribute?: CustomerAttribute;
 }
 
-export interface B2BAccountApiAddSalesRepToB2BAccountRequest {
+export interface AddSalesRepToB2BAccountRequest {
     accountId: number;
     userId: string;
     responseFields?: string;
 }
 
-export interface B2BAccountApiAddSalesRepsToB2BAccountRequest {
+export interface AddSalesRepsToB2BAccountRequest {
     accountId: number;
     responseFields?: string;
     requestBody?: Array<string>;
 }
 
-export interface B2BAccountApiAddUserRequest {
+export interface AddUserRequest {
     accountId: number;
     responseFields?: string;
     b2BUserAndAuthInfo?: B2BUserAndAuthInfo;
 }
 
-export interface B2BAccountApiAddUserRoleAsyncRequest {
+export interface AddUserRoleAsyncRequest {
     accountId: number;
     userId: string;
     roleId: number;
     responseFields?: string;
 }
 
-export interface B2BAccountApiChangeParentAccountRequest {
+export interface ChangeParentAccountRequest {
     accountId: number;
     parentAccountId: number;
     responseFields?: string;
 }
 
-export interface B2BAccountApiDeleteB2BAccountAttributeRequest {
+export interface DeleteB2BAccountAttributeRequest {
     accountId: number;
     attributeFQN: string;
 }
 
-export interface B2BAccountApiGetAccountsForSalesRepRequest {
+export interface GetAccountsForSalesRepRequest {
     userId: string;
     responseFields?: string;
 }
 
-export interface B2BAccountApiGetB2BAccountRequest {
+export interface GetB2BAccountRequest {
     accountId: number;
     responseGroups?: string;
     responseFields?: string;
 }
 
-export interface B2BAccountApiGetB2BAccountAttributeRequest {
+export interface GetB2BAccountAttributeRequest {
     accountId: number;
     attributeFQN: string;
     responseFields?: string;
 }
 
-export interface B2BAccountApiGetB2BAccountAttributesRequest {
+export interface GetB2BAccountAttributesRequest {
     accountId: number;
     startIndex?: number;
     pageSize?: number;
@@ -101,13 +101,13 @@ export interface B2BAccountApiGetB2BAccountAttributesRequest {
     responseFields?: string;
 }
 
-export interface B2BAccountApiGetB2BAccountHierarchyRequest {
+export interface GetB2BAccountHierarchyRequest {
     accountId: number;
     responseGroups?: string;
     responseFields?: string;
 }
 
-export interface B2BAccountApiGetB2BAccountsRequest {
+export interface GetB2BAccountsRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -119,13 +119,13 @@ export interface B2BAccountApiGetB2BAccountsRequest {
     responseFields?: string;
 }
 
-export interface B2BAccountApiGetUserRolesAsyncRequest {
+export interface GetUserRolesAsyncRequest {
     accountId: number;
     userId: string;
     responseFields?: string;
 }
 
-export interface B2BAccountApiGetUsersAsyncRequest {
+export interface GetUsersAsyncRequest {
     accountId: number;
     startIndex?: number;
     pageSize?: number;
@@ -137,56 +137,56 @@ export interface B2BAccountApiGetUsersAsyncRequest {
     responseFields?: string;
 }
 
-export interface B2BAccountApiRemoveSalesRepFromB2BAccountRequest {
+export interface RemoveSalesRepFromB2BAccountRequest {
     accountId: number;
     userId: string;
 }
 
-export interface B2BAccountApiRemoveUserRequest {
+export interface RemoveUserRequest {
     accountId: number;
     userId: string;
     responseFields?: string;
 }
 
-export interface B2BAccountApiRemoveUserRoleAsyncRequest {
+export interface RemoveUserRoleAsyncRequest {
     accountId: number;
     userId: string;
     roleId: number;
 }
 
-export interface B2BAccountApiUpdateAccountRequest {
+export interface UpdateAccountRequest {
     accountId: number;
     responseFields?: string;
     b2BAccount?: B2BAccount;
 }
 
-export interface B2BAccountApiUpdateB2BAccountAttributeRequest {
+export interface UpdateB2BAccountAttributeRequest {
     accountId: number;
     attributeFQN: string;
     responseFields?: string;
     customerAttribute?: CustomerAttribute;
 }
 
-export interface B2BAccountApiUpdateB2BAccountStatusRequest {
+export interface UpdateB2BAccountStatusRequest {
     accountId: number;
     actionName: string;
     responseFields?: string;
 }
 
-export interface B2BAccountApiUpdateSalesRepsOnB2BAccountRequest {
+export interface UpdateSalesRepsOnB2BAccountRequest {
     accountId: number;
     responseFields?: string;
     requestBody?: Array<string>;
 }
 
-export interface B2BAccountApiUpdateUserRequest {
+export interface UpdateUserRequest {
     accountId: number;
     userId: string;
     responseFields?: string;
     b2BUser?: B2BUser;
 }
 
-export interface B2BAccountApiUpgradeAccountsToB2BRequest {
+export interface UpgradeAccountsToB2BRequest {
     responseFields?: string;
     requestBody?: Array<number>;
 }
@@ -207,13 +207,13 @@ export interface B2BAccountApiInterface {
      * @throws {RequiredError}
      * @memberof B2BAccountApiInterface
      */
-    addAccountRaw(requestParameters: B2BAccountApiAddAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>>;
+    addAccountRaw(requestParameters: AddAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>>;
 
     /**
      * Creates a new B2B account.
      * Add Account
      */
-    addAccount(requestParameters: B2BAccountApiAddAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount>;
+    addAccount(requestParameters: AddAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount>;
 
     /**
      * Add a customer attribute to the B2B account.
@@ -225,13 +225,13 @@ export interface B2BAccountApiInterface {
      * @throws {RequiredError}
      * @memberof B2BAccountApiInterface
      */
-    addB2BAccountAttributeRaw(requestParameters: B2BAccountApiAddB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttribute>>;
+    addB2BAccountAttributeRaw(requestParameters: AddB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttribute>>;
 
     /**
      * Add a customer attribute to the B2B account.
      * Add B2B Account tAttribute
      */
-    addB2BAccountAttribute(requestParameters: B2BAccountApiAddB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttribute>;
+    addB2BAccountAttribute(requestParameters: AddB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttribute>;
 
     /**
      * Add Sales Rep To B2B Account
@@ -243,13 +243,13 @@ export interface B2BAccountApiInterface {
      * @throws {RequiredError}
      * @memberof B2BAccountApiInterface
      */
-    addSalesRepToB2BAccountRaw(requestParameters: B2BAccountApiAddSalesRepToB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>>;
+    addSalesRepToB2BAccountRaw(requestParameters: AddSalesRepToB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>>;
 
     /**
      * Add Sales Rep To B2B Account
      * Add Sales Rep To B2B Account
      */
-    addSalesRepToB2BAccount(requestParameters: B2BAccountApiAddSalesRepToB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount>;
+    addSalesRepToB2BAccount(requestParameters: AddSalesRepToB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount>;
 
     /**
      * Adds lists of sales reps to a B2B account.
@@ -261,13 +261,13 @@ export interface B2BAccountApiInterface {
      * @throws {RequiredError}
      * @memberof B2BAccountApiInterface
      */
-    addSalesRepsToB2BAccountRaw(requestParameters: B2BAccountApiAddSalesRepsToB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>>;
+    addSalesRepsToB2BAccountRaw(requestParameters: AddSalesRepsToB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>>;
 
     /**
      * Adds lists of sales reps to a B2B account.
      * Add Sales Reps To B2B Account
      */
-    addSalesRepsToB2BAccount(requestParameters: B2BAccountApiAddSalesRepsToB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount>;
+    addSalesRepsToB2BAccount(requestParameters: AddSalesRepsToB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount>;
 
     /**
      * Adds user to B2B account.
@@ -279,13 +279,13 @@ export interface B2BAccountApiInterface {
      * @throws {RequiredError}
      * @memberof B2BAccountApiInterface
      */
-    addUserRaw(requestParameters: B2BAccountApiAddUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BUser>>;
+    addUserRaw(requestParameters: AddUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BUser>>;
 
     /**
      * Adds user to B2B account.
      * Add User
      */
-    addUser(requestParameters: B2BAccountApiAddUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BUser>;
+    addUser(requestParameters: AddUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BUser>;
 
     /**
      * Add a role to B2B user.
@@ -298,13 +298,13 @@ export interface B2BAccountApiInterface {
      * @throws {RequiredError}
      * @memberof B2BAccountApiInterface
      */
-    addUserRoleAsyncRaw(requestParameters: B2BAccountApiAddUserRoleAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addUserRoleAsyncRaw(requestParameters: AddUserRoleAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Add a role to B2B user.
      * Add User Role Async
      */
-    addUserRoleAsync(requestParameters: B2BAccountApiAddUserRoleAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addUserRoleAsync(requestParameters: AddUserRoleAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Change the B2B parent account for an existing B2B account that belongs to an account hierarchy.
@@ -316,13 +316,13 @@ export interface B2BAccountApiInterface {
      * @throws {RequiredError}
      * @memberof B2BAccountApiInterface
      */
-    changeParentAccountRaw(requestParameters: B2BAccountApiChangeParentAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>>;
+    changeParentAccountRaw(requestParameters: ChangeParentAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>>;
 
     /**
      * Change the B2B parent account for an existing B2B account that belongs to an account hierarchy.
      * Change Parent Account
      */
-    changeParentAccount(requestParameters: B2BAccountApiChangeParentAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount>;
+    changeParentAccount(requestParameters: ChangeParentAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount>;
 
     /**
      * Deletes a specific customer attribute specified by attributeFQN.
@@ -333,13 +333,13 @@ export interface B2BAccountApiInterface {
      * @throws {RequiredError}
      * @memberof B2BAccountApiInterface
      */
-    deleteB2BAccountAttributeRaw(requestParameters: B2BAccountApiDeleteB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteB2BAccountAttributeRaw(requestParameters: DeleteB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Deletes a specific customer attribute specified by attributeFQN.
      * Delete B2B Account Attribute
      */
-    deleteB2BAccountAttribute(requestParameters: B2BAccountApiDeleteB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteB2BAccountAttribute(requestParameters: DeleteB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Gets list of accounts for the B2B sales rep account.
@@ -350,13 +350,13 @@ export interface B2BAccountApiInterface {
      * @throws {RequiredError}
      * @memberof B2BAccountApiInterface
      */
-    getAccountsForSalesRepRaw(requestParameters: B2BAccountApiGetAccountsForSalesRepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>>;
+    getAccountsForSalesRepRaw(requestParameters: GetAccountsForSalesRepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>>;
 
     /**
      * Gets list of accounts for the B2B sales rep account.
      * Get Accounts For Sales Rep
      */
-    getAccountsForSalesRep(requestParameters: B2BAccountApiGetAccountsForSalesRepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>>;
+    getAccountsForSalesRep(requestParameters: GetAccountsForSalesRepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>>;
 
     /**
      * Retrieves the details of a B2B account specified by its unique identifier.
@@ -368,13 +368,13 @@ export interface B2BAccountApiInterface {
      * @throws {RequiredError}
      * @memberof B2BAccountApiInterface
      */
-    getB2BAccountRaw(requestParameters: B2BAccountApiGetB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>>;
+    getB2BAccountRaw(requestParameters: GetB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>>;
 
     /**
      * Retrieves the details of a B2B account specified by its unique identifier.
      * Get B2B Account
      */
-    getB2BAccount(requestParameters: B2BAccountApiGetB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount>;
+    getB2BAccount(requestParameters: GetB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount>;
 
     /**
      * Retrieves the contents of a particular attribute attached to a specified account.
@@ -386,13 +386,13 @@ export interface B2BAccountApiInterface {
      * @throws {RequiredError}
      * @memberof B2BAccountApiInterface
      */
-    getB2BAccountAttributeRaw(requestParameters: B2BAccountApiGetB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttribute>>;
+    getB2BAccountAttributeRaw(requestParameters: GetB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttribute>>;
 
     /**
      * Retrieves the contents of a particular attribute attached to a specified account.
      * Get B2B Account Attribute
      */
-    getB2BAccountAttribute(requestParameters: B2BAccountApiGetB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttribute>;
+    getB2BAccountAttribute(requestParameters: GetB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttribute>;
 
     /**
      * Retrieves a list of notes added to an account according to any specified filter criteria and sort options.
@@ -407,13 +407,13 @@ export interface B2BAccountApiInterface {
      * @throws {RequiredError}
      * @memberof B2BAccountApiInterface
      */
-    getB2BAccountAttributesRaw(requestParameters: B2BAccountApiGetB2BAccountAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttributeCollection>>;
+    getB2BAccountAttributesRaw(requestParameters: GetB2BAccountAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttributeCollection>>;
 
     /**
      * Retrieves a list of notes added to an account according to any specified filter criteria and sort options.
      * Get B2B Account Attributes
      */
-    getB2BAccountAttributes(requestParameters: B2BAccountApiGetB2BAccountAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttributeCollection>;
+    getB2BAccountAttributes(requestParameters: GetB2BAccountAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttributeCollection>;
 
     /**
      * Retrieves the account hierarchy for a B2B account specified by its unique identifier.
@@ -425,13 +425,13 @@ export interface B2BAccountApiInterface {
      * @throws {RequiredError}
      * @memberof B2BAccountApiInterface
      */
-    getB2BAccountHierarchyRaw(requestParameters: B2BAccountApiGetB2BAccountHierarchyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccountHierarchyResult>>;
+    getB2BAccountHierarchyRaw(requestParameters: GetB2BAccountHierarchyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccountHierarchyResult>>;
 
     /**
      * Retrieves the account hierarchy for a B2B account specified by its unique identifier.
      * Get B2B Account Hierarchy
      */
-    getB2BAccountHierarchy(requestParameters: B2BAccountApiGetB2BAccountHierarchyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccountHierarchyResult>;
+    getB2BAccountHierarchy(requestParameters: GetB2BAccountHierarchyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccountHierarchyResult>;
 
     /**
      * Retrieves a list of B2B accounts according to any filter criteria and sort options.
@@ -449,13 +449,13 @@ export interface B2BAccountApiInterface {
      * @throws {RequiredError}
      * @memberof B2BAccountApiInterface
      */
-    getB2BAccountsRaw(requestParameters: B2BAccountApiGetB2BAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccountCollection>>;
+    getB2BAccountsRaw(requestParameters: GetB2BAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccountCollection>>;
 
     /**
      * Retrieves a list of B2B accounts according to any filter criteria and sort options.
      * Get B2B Accounts
      */
-    getB2BAccounts(requestParameters: B2BAccountApiGetB2BAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccountCollection>;
+    getB2BAccounts(requestParameters: GetB2BAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccountCollection>;
 
     /**
      * Retrieves all the roles for a specified user of a b2b account.
@@ -467,13 +467,13 @@ export interface B2BAccountApiInterface {
      * @throws {RequiredError}
      * @memberof B2BAccountApiInterface
      */
-    getUserRolesAsyncRaw(requestParameters: B2BAccountApiGetUserRolesAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerUserRoleCollection>>;
+    getUserRolesAsyncRaw(requestParameters: GetUserRolesAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerUserRoleCollection>>;
 
     /**
      * Retrieves all the roles for a specified user of a b2b account.
      * Get User Roles Async
      */
-    getUserRolesAsync(requestParameters: B2BAccountApiGetUserRolesAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerUserRoleCollection>;
+    getUserRolesAsync(requestParameters: GetUserRolesAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerUserRoleCollection>;
 
     /**
      * Retrieves a list of user for a B2B account according to any filter criteria and sort options.
@@ -491,13 +491,13 @@ export interface B2BAccountApiInterface {
      * @throws {RequiredError}
      * @memberof B2BAccountApiInterface
      */
-    getUsersAsyncRaw(requestParameters: B2BAccountApiGetUsersAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BUserCollection>>;
+    getUsersAsyncRaw(requestParameters: GetUsersAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BUserCollection>>;
 
     /**
      * Retrieves a list of user for a B2B account according to any filter criteria and sort options.
      * Get Users Async
      */
-    getUsersAsync(requestParameters: B2BAccountApiGetUsersAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BUserCollection>;
+    getUsersAsync(requestParameters: GetUsersAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BUserCollection>;
 
     /**
      * Removes a specific sales rep from B2B account .
@@ -508,13 +508,13 @@ export interface B2BAccountApiInterface {
      * @throws {RequiredError}
      * @memberof B2BAccountApiInterface
      */
-    removeSalesRepFromB2BAccountRaw(requestParameters: B2BAccountApiRemoveSalesRepFromB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>>;
+    removeSalesRepFromB2BAccountRaw(requestParameters: RemoveSalesRepFromB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>>;
 
     /**
      * Removes a specific sales rep from B2B account .
      * Remove Sales Rep From B2B Account
      */
-    removeSalesRepFromB2BAccount(requestParameters: B2BAccountApiRemoveSalesRepFromB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount>;
+    removeSalesRepFromB2BAccount(requestParameters: RemoveSalesRepFromB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount>;
 
     /**
      * Removes a B2B user from an account.
@@ -526,13 +526,13 @@ export interface B2BAccountApiInterface {
      * @throws {RequiredError}
      * @memberof B2BAccountApiInterface
      */
-    removeUserRaw(requestParameters: B2BAccountApiRemoveUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    removeUserRaw(requestParameters: RemoveUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Removes a B2B user from an account.
      * Remove User
      */
-    removeUser(requestParameters: B2BAccountApiRemoveUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    removeUser(requestParameters: RemoveUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Removes a role from the specified user.
@@ -544,13 +544,13 @@ export interface B2BAccountApiInterface {
      * @throws {RequiredError}
      * @memberof B2BAccountApiInterface
      */
-    removeUserRoleAsyncRaw(requestParameters: B2BAccountApiRemoveUserRoleAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    removeUserRoleAsyncRaw(requestParameters: RemoveUserRoleAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Removes a role from the specified user.
      * Remove User Role Async
      */
-    removeUserRoleAsync(requestParameters: B2BAccountApiRemoveUserRoleAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    removeUserRoleAsync(requestParameters: RemoveUserRoleAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Modifies an existing B2B account.
@@ -562,13 +562,13 @@ export interface B2BAccountApiInterface {
      * @throws {RequiredError}
      * @memberof B2BAccountApiInterface
      */
-    updateAccountRaw(requestParameters: B2BAccountApiUpdateAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>>;
+    updateAccountRaw(requestParameters: UpdateAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>>;
 
     /**
      * Modifies an existing B2B account.
      * Update Account
      */
-    updateAccount(requestParameters: B2BAccountApiUpdateAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount>;
+    updateAccount(requestParameters: UpdateAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount>;
 
     /**
      * Modifies an existing attribute for a b2b account.
@@ -581,13 +581,13 @@ export interface B2BAccountApiInterface {
      * @throws {RequiredError}
      * @memberof B2BAccountApiInterface
      */
-    updateB2BAccountAttributeRaw(requestParameters: B2BAccountApiUpdateB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttribute>>;
+    updateB2BAccountAttributeRaw(requestParameters: UpdateB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttribute>>;
 
     /**
      * Modifies an existing attribute for a b2b account.
      * Update B2B Account Attribute
      */
-    updateB2BAccountAttribute(requestParameters: B2BAccountApiUpdateB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttribute>;
+    updateB2BAccountAttribute(requestParameters: UpdateB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttribute>;
 
     /**
      * Updates the status on B2B account.
@@ -599,13 +599,13 @@ export interface B2BAccountApiInterface {
      * @throws {RequiredError}
      * @memberof B2BAccountApiInterface
      */
-    updateB2BAccountStatusRaw(requestParameters: B2BAccountApiUpdateB2BAccountStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>>;
+    updateB2BAccountStatusRaw(requestParameters: UpdateB2BAccountStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>>;
 
     /**
      * Updates the status on B2B account.
      * Update B2B Account Status
      */
-    updateB2BAccountStatus(requestParameters: B2BAccountApiUpdateB2BAccountStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount>;
+    updateB2BAccountStatus(requestParameters: UpdateB2BAccountStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount>;
 
     /**
      * Updates list of  sales reps on a B2B account.
@@ -617,13 +617,13 @@ export interface B2BAccountApiInterface {
      * @throws {RequiredError}
      * @memberof B2BAccountApiInterface
      */
-    updateSalesRepsOnB2BAccountRaw(requestParameters: B2BAccountApiUpdateSalesRepsOnB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>>;
+    updateSalesRepsOnB2BAccountRaw(requestParameters: UpdateSalesRepsOnB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>>;
 
     /**
      * Updates list of  sales reps on a B2B account.
      * Update Sales Reps On B2B Account
      */
-    updateSalesRepsOnB2BAccount(requestParameters: B2BAccountApiUpdateSalesRepsOnB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount>;
+    updateSalesRepsOnB2BAccount(requestParameters: UpdateSalesRepsOnB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount>;
 
     /**
      * Updates a B2B user specified by user Id.
@@ -636,13 +636,13 @@ export interface B2BAccountApiInterface {
      * @throws {RequiredError}
      * @memberof B2BAccountApiInterface
      */
-    updateUserRaw(requestParameters: B2BAccountApiUpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BUser>>;
+    updateUserRaw(requestParameters: UpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BUser>>;
 
     /**
      * Updates a B2B user specified by user Id.
      * Update User
      */
-    updateUser(requestParameters: B2BAccountApiUpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BUser>;
+    updateUser(requestParameters: UpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BUser>;
 
     /**
      * Upgrades bulk B2C accounts to B2B
@@ -653,13 +653,13 @@ export interface B2BAccountApiInterface {
      * @throws {RequiredError}
      * @memberof B2BAccountApiInterface
      */
-    upgradeAccountsToB2BRaw(requestParameters: B2BAccountApiUpgradeAccountsToB2BRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpgradeToB2BAccountResponse>>;
+    upgradeAccountsToB2BRaw(requestParameters: UpgradeAccountsToB2BRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpgradeToB2BAccountResponse>>;
 
     /**
      * Upgrades bulk B2C accounts to B2B
      * Upgrade B2C Accounts To B2B
      */
-    upgradeAccountsToB2B(requestParameters: B2BAccountApiUpgradeAccountsToB2BRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpgradeToB2BAccountResponse>;
+    upgradeAccountsToB2B(requestParameters: UpgradeAccountsToB2BRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpgradeToB2BAccountResponse>;
 
 }
 
@@ -677,7 +677,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      */
 
 
-    async addAccountRaw(requestParameters: B2BAccountApiAddAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>> {
+    async addAccountRaw(requestParameters: AddAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -709,7 +709,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      * Creates a new B2B account.
      * Add Account
      */
-    async addAccount(requestParameters: B2BAccountApiAddAccountRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount> {
+    async addAccount(requestParameters: AddAccountRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount> {
         const response = await this.addAccountRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -720,7 +720,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      */
 
 
-    async addB2BAccountAttributeRaw(requestParameters: B2BAccountApiAddB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttribute>> {
+    async addB2BAccountAttributeRaw(requestParameters: AddB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttribute>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling addB2BAccountAttribute.');
         }
@@ -756,7 +756,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      * Add a customer attribute to the B2B account.
      * Add B2B Account tAttribute
      */
-    async addB2BAccountAttribute(requestParameters: B2BAccountApiAddB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttribute> {
+    async addB2BAccountAttribute(requestParameters: AddB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttribute> {
         const response = await this.addB2BAccountAttributeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -767,7 +767,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      */
 
 
-    async addSalesRepToB2BAccountRaw(requestParameters: B2BAccountApiAddSalesRepToB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>> {
+    async addSalesRepToB2BAccountRaw(requestParameters: AddSalesRepToB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling addSalesRepToB2BAccount.');
         }
@@ -804,7 +804,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      * Add Sales Rep To B2B Account
      * Add Sales Rep To B2B Account
      */
-    async addSalesRepToB2BAccount(requestParameters: B2BAccountApiAddSalesRepToB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount> {
+    async addSalesRepToB2BAccount(requestParameters: AddSalesRepToB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount> {
         const response = await this.addSalesRepToB2BAccountRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -815,7 +815,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      */
 
 
-    async addSalesRepsToB2BAccountRaw(requestParameters: B2BAccountApiAddSalesRepsToB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>> {
+    async addSalesRepsToB2BAccountRaw(requestParameters: AddSalesRepsToB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling addSalesRepsToB2BAccount.');
         }
@@ -851,7 +851,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      * Adds lists of sales reps to a B2B account.
      * Add Sales Reps To B2B Account
      */
-    async addSalesRepsToB2BAccount(requestParameters: B2BAccountApiAddSalesRepsToB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount> {
+    async addSalesRepsToB2BAccount(requestParameters: AddSalesRepsToB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount> {
         const response = await this.addSalesRepsToB2BAccountRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -862,7 +862,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      */
 
 
-    async addUserRaw(requestParameters: B2BAccountApiAddUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BUser>> {
+    async addUserRaw(requestParameters: AddUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BUser>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling addUser.');
         }
@@ -898,7 +898,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      * Adds user to B2B account.
      * Add User
      */
-    async addUser(requestParameters: B2BAccountApiAddUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BUser> {
+    async addUser(requestParameters: AddUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BUser> {
         const response = await this.addUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -909,7 +909,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      */
 
 
-    async addUserRoleAsyncRaw(requestParameters: B2BAccountApiAddUserRoleAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addUserRoleAsyncRaw(requestParameters: AddUserRoleAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling addUserRoleAsync.');
         }
@@ -950,7 +950,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      * Add a role to B2B user.
      * Add User Role Async
      */
-    async addUserRoleAsync(requestParameters: B2BAccountApiAddUserRoleAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async addUserRoleAsync(requestParameters: AddUserRoleAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.addUserRoleAsyncRaw(requestParameters, initOverrides);
     }
 
@@ -960,7 +960,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      */
 
 
-    async changeParentAccountRaw(requestParameters: B2BAccountApiChangeParentAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>> {
+    async changeParentAccountRaw(requestParameters: ChangeParentAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling changeParentAccount.');
         }
@@ -997,7 +997,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      * Change the B2B parent account for an existing B2B account that belongs to an account hierarchy.
      * Change Parent Account
      */
-    async changeParentAccount(requestParameters: B2BAccountApiChangeParentAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount> {
+    async changeParentAccount(requestParameters: ChangeParentAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount> {
         const response = await this.changeParentAccountRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1008,7 +1008,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      */
 
 
-    async deleteB2BAccountAttributeRaw(requestParameters: B2BAccountApiDeleteB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteB2BAccountAttributeRaw(requestParameters: DeleteB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling deleteB2BAccountAttribute.');
         }
@@ -1041,7 +1041,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      * Deletes a specific customer attribute specified by attributeFQN.
      * Delete B2B Account Attribute
      */
-    async deleteB2BAccountAttribute(requestParameters: B2BAccountApiDeleteB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteB2BAccountAttribute(requestParameters: DeleteB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteB2BAccountAttributeRaw(requestParameters, initOverrides);
     }
 
@@ -1051,7 +1051,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      */
 
 
-    async getAccountsForSalesRepRaw(requestParameters: B2BAccountApiGetAccountsForSalesRepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>> {
+    async getAccountsForSalesRepRaw(requestParameters: GetAccountsForSalesRepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>> {
         if (requestParameters.userId === null || requestParameters.userId === undefined) {
             throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getAccountsForSalesRep.');
         }
@@ -1084,7 +1084,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      * Gets list of accounts for the B2B sales rep account.
      * Get Accounts For Sales Rep
      */
-    async getAccountsForSalesRep(requestParameters: B2BAccountApiGetAccountsForSalesRepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>> {
+    async getAccountsForSalesRep(requestParameters: GetAccountsForSalesRepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>> {
         const response = await this.getAccountsForSalesRepRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1095,7 +1095,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      */
 
 
-    async getB2BAccountRaw(requestParameters: B2BAccountApiGetB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>> {
+    async getB2BAccountRaw(requestParameters: GetB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling getB2BAccount.');
         }
@@ -1132,7 +1132,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      * Retrieves the details of a B2B account specified by its unique identifier.
      * Get B2B Account
      */
-    async getB2BAccount(requestParameters: B2BAccountApiGetB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount> {
+    async getB2BAccount(requestParameters: GetB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount> {
         const response = await this.getB2BAccountRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1143,7 +1143,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      */
 
 
-    async getB2BAccountAttributeRaw(requestParameters: B2BAccountApiGetB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttribute>> {
+    async getB2BAccountAttributeRaw(requestParameters: GetB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttribute>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling getB2BAccountAttribute.');
         }
@@ -1180,7 +1180,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      * Retrieves the contents of a particular attribute attached to a specified account.
      * Get B2B Account Attribute
      */
-    async getB2BAccountAttribute(requestParameters: B2BAccountApiGetB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttribute> {
+    async getB2BAccountAttribute(requestParameters: GetB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttribute> {
         const response = await this.getB2BAccountAttributeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1191,7 +1191,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      */
 
 
-    async getB2BAccountAttributesRaw(requestParameters: B2BAccountApiGetB2BAccountAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttributeCollection>> {
+    async getB2BAccountAttributesRaw(requestParameters: GetB2BAccountAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttributeCollection>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling getB2BAccountAttributes.');
         }
@@ -1240,7 +1240,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      * Retrieves a list of notes added to an account according to any specified filter criteria and sort options.
      * Get B2B Account Attributes
      */
-    async getB2BAccountAttributes(requestParameters: B2BAccountApiGetB2BAccountAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttributeCollection> {
+    async getB2BAccountAttributes(requestParameters: GetB2BAccountAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttributeCollection> {
         const response = await this.getB2BAccountAttributesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1251,7 +1251,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      */
 
 
-    async getB2BAccountHierarchyRaw(requestParameters: B2BAccountApiGetB2BAccountHierarchyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccountHierarchyResult>> {
+    async getB2BAccountHierarchyRaw(requestParameters: GetB2BAccountHierarchyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccountHierarchyResult>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling getB2BAccountHierarchy.');
         }
@@ -1288,7 +1288,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      * Retrieves the account hierarchy for a B2B account specified by its unique identifier.
      * Get B2B Account Hierarchy
      */
-    async getB2BAccountHierarchy(requestParameters: B2BAccountApiGetB2BAccountHierarchyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccountHierarchyResult> {
+    async getB2BAccountHierarchy(requestParameters: GetB2BAccountHierarchyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccountHierarchyResult> {
         const response = await this.getB2BAccountHierarchyRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1299,7 +1299,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      */
 
 
-    async getB2BAccountsRaw(requestParameters: B2BAccountApiGetB2BAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccountCollection>> {
+    async getB2BAccountsRaw(requestParameters: GetB2BAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccountCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -1360,7 +1360,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      * Retrieves a list of B2B accounts according to any filter criteria and sort options.
      * Get B2B Accounts
      */
-    async getB2BAccounts(requestParameters: B2BAccountApiGetB2BAccountsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccountCollection> {
+    async getB2BAccounts(requestParameters: GetB2BAccountsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccountCollection> {
         const response = await this.getB2BAccountsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1371,7 +1371,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      */
 
 
-    async getUserRolesAsyncRaw(requestParameters: B2BAccountApiGetUserRolesAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerUserRoleCollection>> {
+    async getUserRolesAsyncRaw(requestParameters: GetUserRolesAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerUserRoleCollection>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling getUserRolesAsync.');
         }
@@ -1408,7 +1408,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      * Retrieves all the roles for a specified user of a b2b account.
      * Get User Roles Async
      */
-    async getUserRolesAsync(requestParameters: B2BAccountApiGetUserRolesAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerUserRoleCollection> {
+    async getUserRolesAsync(requestParameters: GetUserRolesAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerUserRoleCollection> {
         const response = await this.getUserRolesAsyncRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1419,7 +1419,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      */
 
 
-    async getUsersAsyncRaw(requestParameters: B2BAccountApiGetUsersAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BUserCollection>> {
+    async getUsersAsyncRaw(requestParameters: GetUsersAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BUserCollection>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling getUsersAsync.');
         }
@@ -1480,7 +1480,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      * Retrieves a list of user for a B2B account according to any filter criteria and sort options.
      * Get Users Async
      */
-    async getUsersAsync(requestParameters: B2BAccountApiGetUsersAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BUserCollection> {
+    async getUsersAsync(requestParameters: GetUsersAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BUserCollection> {
         const response = await this.getUsersAsyncRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1491,7 +1491,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      */
 
 
-    async removeSalesRepFromB2BAccountRaw(requestParameters: B2BAccountApiRemoveSalesRepFromB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>> {
+    async removeSalesRepFromB2BAccountRaw(requestParameters: RemoveSalesRepFromB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling removeSalesRepFromB2BAccount.');
         }
@@ -1524,7 +1524,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      * Removes a specific sales rep from B2B account .
      * Remove Sales Rep From B2B Account
      */
-    async removeSalesRepFromB2BAccount(requestParameters: B2BAccountApiRemoveSalesRepFromB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount> {
+    async removeSalesRepFromB2BAccount(requestParameters: RemoveSalesRepFromB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount> {
         const response = await this.removeSalesRepFromB2BAccountRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1535,7 +1535,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      */
 
 
-    async removeUserRaw(requestParameters: B2BAccountApiRemoveUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async removeUserRaw(requestParameters: RemoveUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling removeUser.');
         }
@@ -1572,7 +1572,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      * Removes a B2B user from an account.
      * Remove User
      */
-    async removeUser(requestParameters: B2BAccountApiRemoveUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async removeUser(requestParameters: RemoveUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.removeUserRaw(requestParameters, initOverrides);
     }
 
@@ -1582,7 +1582,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      */
 
 
-    async removeUserRoleAsyncRaw(requestParameters: B2BAccountApiRemoveUserRoleAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async removeUserRoleAsyncRaw(requestParameters: RemoveUserRoleAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling removeUserRoleAsync.');
         }
@@ -1619,7 +1619,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      * Removes a role from the specified user.
      * Remove User Role Async
      */
-    async removeUserRoleAsync(requestParameters: B2BAccountApiRemoveUserRoleAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async removeUserRoleAsync(requestParameters: RemoveUserRoleAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.removeUserRoleAsyncRaw(requestParameters, initOverrides);
     }
 
@@ -1629,7 +1629,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      */
 
 
-    async updateAccountRaw(requestParameters: B2BAccountApiUpdateAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>> {
+    async updateAccountRaw(requestParameters: UpdateAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling updateAccount.');
         }
@@ -1665,7 +1665,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      * Modifies an existing B2B account.
      * Update Account
      */
-    async updateAccount(requestParameters: B2BAccountApiUpdateAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount> {
+    async updateAccount(requestParameters: UpdateAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount> {
         const response = await this.updateAccountRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1676,7 +1676,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      */
 
 
-    async updateB2BAccountAttributeRaw(requestParameters: B2BAccountApiUpdateB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttribute>> {
+    async updateB2BAccountAttributeRaw(requestParameters: UpdateB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttribute>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling updateB2BAccountAttribute.');
         }
@@ -1716,7 +1716,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      * Modifies an existing attribute for a b2b account.
      * Update B2B Account Attribute
      */
-    async updateB2BAccountAttribute(requestParameters: B2BAccountApiUpdateB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttribute> {
+    async updateB2BAccountAttribute(requestParameters: UpdateB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttribute> {
         const response = await this.updateB2BAccountAttributeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1727,7 +1727,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      */
 
 
-    async updateB2BAccountStatusRaw(requestParameters: B2BAccountApiUpdateB2BAccountStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>> {
+    async updateB2BAccountStatusRaw(requestParameters: UpdateB2BAccountStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling updateB2BAccountStatus.');
         }
@@ -1764,7 +1764,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      * Updates the status on B2B account.
      * Update B2B Account Status
      */
-    async updateB2BAccountStatus(requestParameters: B2BAccountApiUpdateB2BAccountStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount> {
+    async updateB2BAccountStatus(requestParameters: UpdateB2BAccountStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount> {
         const response = await this.updateB2BAccountStatusRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1775,7 +1775,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      */
 
 
-    async updateSalesRepsOnB2BAccountRaw(requestParameters: B2BAccountApiUpdateSalesRepsOnB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>> {
+    async updateSalesRepsOnB2BAccountRaw(requestParameters: UpdateSalesRepsOnB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BAccount>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling updateSalesRepsOnB2BAccount.');
         }
@@ -1811,7 +1811,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      * Updates list of  sales reps on a B2B account.
      * Update Sales Reps On B2B Account
      */
-    async updateSalesRepsOnB2BAccount(requestParameters: B2BAccountApiUpdateSalesRepsOnB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount> {
+    async updateSalesRepsOnB2BAccount(requestParameters: UpdateSalesRepsOnB2BAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccount> {
         const response = await this.updateSalesRepsOnB2BAccountRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1822,7 +1822,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      */
 
 
-    async updateUserRaw(requestParameters: B2BAccountApiUpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BUser>> {
+    async updateUserRaw(requestParameters: UpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<B2BUser>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling updateUser.');
         }
@@ -1862,7 +1862,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      * Updates a B2B user specified by user Id.
      * Update User
      */
-    async updateUser(requestParameters: B2BAccountApiUpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BUser> {
+    async updateUser(requestParameters: UpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BUser> {
         const response = await this.updateUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1873,7 +1873,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      */
 
 
-    async upgradeAccountsToB2BRaw(requestParameters: B2BAccountApiUpgradeAccountsToB2BRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpgradeToB2BAccountResponse>> {
+    async upgradeAccountsToB2BRaw(requestParameters: UpgradeAccountsToB2BRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpgradeToB2BAccountResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -1905,7 +1905,7 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiInter
      * Upgrades bulk B2C accounts to B2B
      * Upgrade B2C Accounts To B2B
      */
-    async upgradeAccountsToB2B(requestParameters: B2BAccountApiUpgradeAccountsToB2BRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpgradeToB2BAccountResponse> {
+    async upgradeAccountsToB2B(requestParameters: UpgradeAccountsToB2BRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpgradeToB2BAccountResponse> {
         const response = await this.upgradeAccountsToB2BRaw(requestParameters, initOverrides);
         return await response.value();
     }

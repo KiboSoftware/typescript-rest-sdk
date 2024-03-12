@@ -20,26 +20,26 @@ import type {
   SearchMerchandizingRuleCollection,
 } from '../models';
 
-export interface SearchMerchandizingRuleApiCloneSearchMerchandizingRuleRequest {
+export interface CloneSearchMerchandizingRuleRequest {
     code: string;
     responseFields?: string;
 }
 
-export interface SearchMerchandizingRuleApiCreateSearchMerchandizingRuleRequest {
+export interface CreateSearchMerchandizingRuleRequest {
     responseFields?: string;
     catalogAdminsSearchMerchandizingRule?: CatalogAdminsSearchMerchandizingRule;
 }
 
-export interface SearchMerchandizingRuleApiDeleteSearchMerchandizingRuleRequest {
+export interface DeleteSearchMerchandizingRuleRequest {
     code: string;
 }
 
-export interface SearchMerchandizingRuleApiGetSearchMerchandizingRuleRequest {
+export interface GetSearchMerchandizingRuleRequest {
     code: string;
     responseFields?: string;
 }
 
-export interface SearchMerchandizingRuleApiGetSearchMerchandizingRulesRequest {
+export interface GetSearchMerchandizingRulesRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -49,7 +49,7 @@ export interface SearchMerchandizingRuleApiGetSearchMerchandizingRulesRequest {
     responseFields?: string;
 }
 
-export interface SearchMerchandizingRuleApiUpdateSearchMerchandizingRuleRequest {
+export interface UpdateSearchMerchandizingRuleRequest {
     code: string;
     responseFields?: string;
     catalogAdminsSearchMerchandizingRule?: CatalogAdminsSearchMerchandizingRule;
@@ -71,13 +71,13 @@ export interface SearchMerchandizingRuleApiInterface {
      * @throws {RequiredError}
      * @memberof SearchMerchandizingRuleApiInterface
      */
-    cloneSearchMerchandizingRuleRaw(requestParameters: SearchMerchandizingRuleApiCloneSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsSearchMerchandizingRule>>;
+    cloneSearchMerchandizingRuleRaw(requestParameters: CloneSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsSearchMerchandizingRule>>;
 
     /**
      * Clone Search Merchandizing Rule
      * Clone Search Merchandizing Rule
      */
-    cloneSearchMerchandizingRule(requestParameters: SearchMerchandizingRuleApiCloneSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsSearchMerchandizingRule>;
+    cloneSearchMerchandizingRule(requestParameters: CloneSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsSearchMerchandizingRule>;
 
     /**
      * Create Search Merchandizing Rule
@@ -88,13 +88,13 @@ export interface SearchMerchandizingRuleApiInterface {
      * @throws {RequiredError}
      * @memberof SearchMerchandizingRuleApiInterface
      */
-    createSearchMerchandizingRuleRaw(requestParameters: SearchMerchandizingRuleApiCreateSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsSearchMerchandizingRule>>;
+    createSearchMerchandizingRuleRaw(requestParameters: CreateSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsSearchMerchandizingRule>>;
 
     /**
      * Create Search Merchandizing Rule
      * Create Search Merchandizing Rule
      */
-    createSearchMerchandizingRule(requestParameters: SearchMerchandizingRuleApiCreateSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsSearchMerchandizingRule>;
+    createSearchMerchandizingRule(requestParameters: CreateSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsSearchMerchandizingRule>;
 
     /**
      * Delete Search Merchandizing Rule
@@ -104,13 +104,13 @@ export interface SearchMerchandizingRuleApiInterface {
      * @throws {RequiredError}
      * @memberof SearchMerchandizingRuleApiInterface
      */
-    deleteSearchMerchandizingRuleRaw(requestParameters: SearchMerchandizingRuleApiDeleteSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteSearchMerchandizingRuleRaw(requestParameters: DeleteSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Delete Search Merchandizing Rule
      * Delete Search Merchandizing Rule
      */
-    deleteSearchMerchandizingRule(requestParameters: SearchMerchandizingRuleApiDeleteSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteSearchMerchandizingRule(requestParameters: DeleteSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Get Search Merchandizing Rule
@@ -121,13 +121,13 @@ export interface SearchMerchandizingRuleApiInterface {
      * @throws {RequiredError}
      * @memberof SearchMerchandizingRuleApiInterface
      */
-    getSearchMerchandizingRuleRaw(requestParameters: SearchMerchandizingRuleApiGetSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsSearchMerchandizingRule>>;
+    getSearchMerchandizingRuleRaw(requestParameters: GetSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsSearchMerchandizingRule>>;
 
     /**
      * Get Search Merchandizing Rule
      * Get Search Merchandizing Rule
      */
-    getSearchMerchandizingRule(requestParameters: SearchMerchandizingRuleApiGetSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsSearchMerchandizingRule>;
+    getSearchMerchandizingRule(requestParameters: GetSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsSearchMerchandizingRule>;
 
     /**
      * Get Search Merchandizing Rules
@@ -143,13 +143,13 @@ export interface SearchMerchandizingRuleApiInterface {
      * @throws {RequiredError}
      * @memberof SearchMerchandizingRuleApiInterface
      */
-    getSearchMerchandizingRulesRaw(requestParameters: SearchMerchandizingRuleApiGetSearchMerchandizingRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchMerchandizingRuleCollection>>;
+    getSearchMerchandizingRulesRaw(requestParameters: GetSearchMerchandizingRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchMerchandizingRuleCollection>>;
 
     /**
      * Get Search Merchandizing Rules
      * Get Search Merchandizing Rules
      */
-    getSearchMerchandizingRules(requestParameters: SearchMerchandizingRuleApiGetSearchMerchandizingRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchMerchandizingRuleCollection>;
+    getSearchMerchandizingRules(requestParameters: GetSearchMerchandizingRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchMerchandizingRuleCollection>;
 
     /**
      * Update Search Merchandizing Rule
@@ -161,13 +161,13 @@ export interface SearchMerchandizingRuleApiInterface {
      * @throws {RequiredError}
      * @memberof SearchMerchandizingRuleApiInterface
      */
-    updateSearchMerchandizingRuleRaw(requestParameters: SearchMerchandizingRuleApiUpdateSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsSearchMerchandizingRule>>;
+    updateSearchMerchandizingRuleRaw(requestParameters: UpdateSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsSearchMerchandizingRule>>;
 
     /**
      * Update Search Merchandizing Rule
      * Update Search Merchandizing Rule
      */
-    updateSearchMerchandizingRule(requestParameters: SearchMerchandizingRuleApiUpdateSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsSearchMerchandizingRule>;
+    updateSearchMerchandizingRule(requestParameters: UpdateSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsSearchMerchandizingRule>;
 
 }
 
@@ -185,7 +185,7 @@ export class SearchMerchandizingRuleApi extends runtime.BaseAPI implements Searc
      */
 
 
-    async cloneSearchMerchandizingRuleRaw(requestParameters: SearchMerchandizingRuleApiCloneSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsSearchMerchandizingRule>> {
+    async cloneSearchMerchandizingRuleRaw(requestParameters: CloneSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsSearchMerchandizingRule>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling cloneSearchMerchandizingRule.');
         }
@@ -218,7 +218,7 @@ export class SearchMerchandizingRuleApi extends runtime.BaseAPI implements Searc
      * Clone Search Merchandizing Rule
      * Clone Search Merchandizing Rule
      */
-    async cloneSearchMerchandizingRule(requestParameters: SearchMerchandizingRuleApiCloneSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsSearchMerchandizingRule> {
+    async cloneSearchMerchandizingRule(requestParameters: CloneSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsSearchMerchandizingRule> {
         const response = await this.cloneSearchMerchandizingRuleRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -229,7 +229,7 @@ export class SearchMerchandizingRuleApi extends runtime.BaseAPI implements Searc
      */
 
 
-    async createSearchMerchandizingRuleRaw(requestParameters: SearchMerchandizingRuleApiCreateSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsSearchMerchandizingRule>> {
+    async createSearchMerchandizingRuleRaw(requestParameters: CreateSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsSearchMerchandizingRule>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -261,7 +261,7 @@ export class SearchMerchandizingRuleApi extends runtime.BaseAPI implements Searc
      * Create Search Merchandizing Rule
      * Create Search Merchandizing Rule
      */
-    async createSearchMerchandizingRule(requestParameters: SearchMerchandizingRuleApiCreateSearchMerchandizingRuleRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsSearchMerchandizingRule> {
+    async createSearchMerchandizingRule(requestParameters: CreateSearchMerchandizingRuleRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsSearchMerchandizingRule> {
         const response = await this.createSearchMerchandizingRuleRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -272,7 +272,7 @@ export class SearchMerchandizingRuleApi extends runtime.BaseAPI implements Searc
      */
 
 
-    async deleteSearchMerchandizingRuleRaw(requestParameters: SearchMerchandizingRuleApiDeleteSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteSearchMerchandizingRuleRaw(requestParameters: DeleteSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling deleteSearchMerchandizingRule.');
         }
@@ -301,7 +301,7 @@ export class SearchMerchandizingRuleApi extends runtime.BaseAPI implements Searc
      * Delete Search Merchandizing Rule
      * Delete Search Merchandizing Rule
      */
-    async deleteSearchMerchandizingRule(requestParameters: SearchMerchandizingRuleApiDeleteSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteSearchMerchandizingRule(requestParameters: DeleteSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteSearchMerchandizingRuleRaw(requestParameters, initOverrides);
     }
 
@@ -311,7 +311,7 @@ export class SearchMerchandizingRuleApi extends runtime.BaseAPI implements Searc
      */
 
 
-    async getSearchMerchandizingRuleRaw(requestParameters: SearchMerchandizingRuleApiGetSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsSearchMerchandizingRule>> {
+    async getSearchMerchandizingRuleRaw(requestParameters: GetSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsSearchMerchandizingRule>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling getSearchMerchandizingRule.');
         }
@@ -344,7 +344,7 @@ export class SearchMerchandizingRuleApi extends runtime.BaseAPI implements Searc
      * Get Search Merchandizing Rule
      * Get Search Merchandizing Rule
      */
-    async getSearchMerchandizingRule(requestParameters: SearchMerchandizingRuleApiGetSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsSearchMerchandizingRule> {
+    async getSearchMerchandizingRule(requestParameters: GetSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsSearchMerchandizingRule> {
         const response = await this.getSearchMerchandizingRuleRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -355,7 +355,7 @@ export class SearchMerchandizingRuleApi extends runtime.BaseAPI implements Searc
      */
 
 
-    async getSearchMerchandizingRulesRaw(requestParameters: SearchMerchandizingRuleApiGetSearchMerchandizingRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchMerchandizingRuleCollection>> {
+    async getSearchMerchandizingRulesRaw(requestParameters: GetSearchMerchandizingRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchMerchandizingRuleCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -408,7 +408,7 @@ export class SearchMerchandizingRuleApi extends runtime.BaseAPI implements Searc
      * Get Search Merchandizing Rules
      * Get Search Merchandizing Rules
      */
-    async getSearchMerchandizingRules(requestParameters: SearchMerchandizingRuleApiGetSearchMerchandizingRulesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchMerchandizingRuleCollection> {
+    async getSearchMerchandizingRules(requestParameters: GetSearchMerchandizingRulesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchMerchandizingRuleCollection> {
         const response = await this.getSearchMerchandizingRulesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -419,7 +419,7 @@ export class SearchMerchandizingRuleApi extends runtime.BaseAPI implements Searc
      */
 
 
-    async updateSearchMerchandizingRuleRaw(requestParameters: SearchMerchandizingRuleApiUpdateSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsSearchMerchandizingRule>> {
+    async updateSearchMerchandizingRuleRaw(requestParameters: UpdateSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsSearchMerchandizingRule>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling updateSearchMerchandizingRule.');
         }
@@ -455,7 +455,7 @@ export class SearchMerchandizingRuleApi extends runtime.BaseAPI implements Searc
      * Update Search Merchandizing Rule
      * Update Search Merchandizing Rule
      */
-    async updateSearchMerchandizingRule(requestParameters: SearchMerchandizingRuleApiUpdateSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsSearchMerchandizingRule> {
+    async updateSearchMerchandizingRule(requestParameters: UpdateSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsSearchMerchandizingRule> {
         const response = await this.updateSearchMerchandizingRuleRaw(requestParameters, initOverrides);
         return await response.value();
     }

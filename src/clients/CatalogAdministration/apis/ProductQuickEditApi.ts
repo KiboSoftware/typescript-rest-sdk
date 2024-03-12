@@ -24,22 +24,22 @@ import type {
   QuickEditResponse,
 } from '../models';
 
-export interface ProductQuickEditApiUpdateProductInCatalogRequest {
+export interface UpdateProductInCatalogRequest {
     responseFields?: string;
     quickEditProductInCatalogActions?: QuickEditProductInCatalogActions;
 }
 
-export interface ProductQuickEditApiUpdateProductPropertiesRequest {
+export interface UpdateProductPropertiesRequest {
     responseFields?: string;
     quickEditProductPropertyActions?: QuickEditProductPropertyActions;
 }
 
-export interface ProductQuickEditApiUpdateProductTypeRequest {
+export interface UpdateProductTypeRequest {
     responseFields?: string;
     quickEditChangeProductTypeActions?: QuickEditChangeProductTypeActions;
 }
 
-export interface ProductQuickEditApiUpdateProductsRequest {
+export interface UpdateProductsRequest {
     responseFields?: string;
     quickEditProductActions?: QuickEditProductActions;
 }
@@ -60,13 +60,13 @@ export interface ProductQuickEditApiInterface {
      * @throws {RequiredError}
      * @memberof ProductQuickEditApiInterface
      */
-    updateProductInCatalogRaw(requestParameters: ProductQuickEditApiUpdateProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuickEditResponse>>;
+    updateProductInCatalogRaw(requestParameters: UpdateProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuickEditResponse>>;
 
     /**
      *  Values will be added not replaced.
      * Endpoint  is used to update product in Catalog
      */
-    updateProductInCatalog(requestParameters: ProductQuickEditApiUpdateProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuickEditResponse>;
+    updateProductInCatalog(requestParameters: UpdateProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuickEditResponse>;
 
     /**
      * 
@@ -77,13 +77,13 @@ export interface ProductQuickEditApiInterface {
      * @throws {RequiredError}
      * @memberof ProductQuickEditApiInterface
      */
-    updateProductPropertiesRaw(requestParameters: ProductQuickEditApiUpdateProductPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuickEditResponse>>;
+    updateProductPropertiesRaw(requestParameters: UpdateProductPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuickEditResponse>>;
 
     /**
      * 
      * Endpoint used to apply properties updates  Values will be added not replaced
      */
-    updateProductProperties(requestParameters: ProductQuickEditApiUpdateProductPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuickEditResponse>;
+    updateProductProperties(requestParameters: UpdateProductPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuickEditResponse>;
 
     /**
      * Endpoint used to apply updates for product type
@@ -94,13 +94,13 @@ export interface ProductQuickEditApiInterface {
      * @throws {RequiredError}
      * @memberof ProductQuickEditApiInterface
      */
-    updateProductTypeRaw(requestParameters: ProductQuickEditApiUpdateProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuickEditChangeProductTypeResponse>>;
+    updateProductTypeRaw(requestParameters: UpdateProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuickEditChangeProductTypeResponse>>;
 
     /**
      * Endpoint used to apply updates for product type
      * Endpoint used to apply updates for product type
      */
-    updateProductType(requestParameters: ProductQuickEditApiUpdateProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuickEditChangeProductTypeResponse>;
+    updateProductType(requestParameters: UpdateProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuickEditChangeProductTypeResponse>;
 
     /**
      * 
@@ -111,13 +111,13 @@ export interface ProductQuickEditApiInterface {
      * @throws {RequiredError}
      * @memberof ProductQuickEditApiInterface
      */
-    updateProductsRaw(requestParameters: ProductQuickEditApiUpdateProductsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuickEditResponse>>;
+    updateProductsRaw(requestParameters: UpdateProductsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuickEditResponse>>;
 
     /**
      * 
      * Endpoint used to apply top level product updates  Downside is that the whole product has to be hydrated
      */
-    updateProducts(requestParameters: ProductQuickEditApiUpdateProductsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuickEditResponse>;
+    updateProducts(requestParameters: UpdateProductsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuickEditResponse>;
 
 }
 
@@ -135,7 +135,7 @@ export class ProductQuickEditApi extends runtime.BaseAPI implements ProductQuick
      */
 
 
-    async updateProductInCatalogRaw(requestParameters: ProductQuickEditApiUpdateProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuickEditResponse>> {
+    async updateProductInCatalogRaw(requestParameters: UpdateProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuickEditResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -167,7 +167,7 @@ export class ProductQuickEditApi extends runtime.BaseAPI implements ProductQuick
      *  Values will be added not replaced.
      * Endpoint  is used to update product in Catalog
      */
-    async updateProductInCatalog(requestParameters: ProductQuickEditApiUpdateProductInCatalogRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuickEditResponse> {
+    async updateProductInCatalog(requestParameters: UpdateProductInCatalogRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuickEditResponse> {
         const response = await this.updateProductInCatalogRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -178,7 +178,7 @@ export class ProductQuickEditApi extends runtime.BaseAPI implements ProductQuick
      */
 
 
-    async updateProductPropertiesRaw(requestParameters: ProductQuickEditApiUpdateProductPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuickEditResponse>> {
+    async updateProductPropertiesRaw(requestParameters: UpdateProductPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuickEditResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -210,7 +210,7 @@ export class ProductQuickEditApi extends runtime.BaseAPI implements ProductQuick
      * 
      * Endpoint used to apply properties updates  Values will be added not replaced
      */
-    async updateProductProperties(requestParameters: ProductQuickEditApiUpdateProductPropertiesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuickEditResponse> {
+    async updateProductProperties(requestParameters: UpdateProductPropertiesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuickEditResponse> {
         const response = await this.updateProductPropertiesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -221,7 +221,7 @@ export class ProductQuickEditApi extends runtime.BaseAPI implements ProductQuick
      */
 
 
-    async updateProductTypeRaw(requestParameters: ProductQuickEditApiUpdateProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuickEditChangeProductTypeResponse>> {
+    async updateProductTypeRaw(requestParameters: UpdateProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuickEditChangeProductTypeResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -253,7 +253,7 @@ export class ProductQuickEditApi extends runtime.BaseAPI implements ProductQuick
      * Endpoint used to apply updates for product type
      * Endpoint used to apply updates for product type
      */
-    async updateProductType(requestParameters: ProductQuickEditApiUpdateProductTypeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuickEditChangeProductTypeResponse> {
+    async updateProductType(requestParameters: UpdateProductTypeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuickEditChangeProductTypeResponse> {
         const response = await this.updateProductTypeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -264,7 +264,7 @@ export class ProductQuickEditApi extends runtime.BaseAPI implements ProductQuick
      */
 
 
-    async updateProductsRaw(requestParameters: ProductQuickEditApiUpdateProductsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuickEditResponse>> {
+    async updateProductsRaw(requestParameters: UpdateProductsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuickEditResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -296,7 +296,7 @@ export class ProductQuickEditApi extends runtime.BaseAPI implements ProductQuick
      * 
      * Endpoint used to apply top level product updates  Downside is that the whole product has to be hydrated
      */
-    async updateProducts(requestParameters: ProductQuickEditApiUpdateProductsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuickEditResponse> {
+    async updateProducts(requestParameters: UpdateProductsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuickEditResponse> {
         const response = await this.updateProductsRaw(requestParameters, initOverrides);
         return await response.value();
     }

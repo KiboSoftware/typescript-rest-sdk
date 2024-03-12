@@ -19,7 +19,7 @@ import type {
   RoleCollection,
 } from '../models';
 
-export interface RoleApiGetRolesRequest {
+export interface GetRolesRequest {
     startIndex?: number;
     pageSize?: number;
     filter?: string;
@@ -44,13 +44,13 @@ export interface RoleApiInterface {
      * @throws {RequiredError}
      * @memberof RoleApiInterface
      */
-    getRolesRaw(requestParameters: RoleApiGetRolesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RoleCollection>>;
+    getRolesRaw(requestParameters: GetRolesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RoleCollection>>;
 
     /**
      * Retrieves a list of all roles defined for this tenant.
      * Get Roles
      */
-    getRoles(requestParameters: RoleApiGetRolesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RoleCollection>;
+    getRoles(requestParameters: GetRolesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RoleCollection>;
 
 }
 
@@ -68,7 +68,7 @@ export class RoleApi extends runtime.BaseAPI implements RoleApiInterface {
      */
 
 
-    async getRolesRaw(requestParameters: RoleApiGetRolesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RoleCollection>> {
+    async getRolesRaw(requestParameters: GetRolesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RoleCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -109,7 +109,7 @@ export class RoleApi extends runtime.BaseAPI implements RoleApiInterface {
      * Retrieves a list of all roles defined for this tenant.
      * Get Roles
      */
-    async getRoles(requestParameters: RoleApiGetRolesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RoleCollection> {
+    async getRoles(requestParameters: GetRolesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RoleCollection> {
         const response = await this.getRolesRaw(requestParameters, initOverrides);
         return await response.value();
     }

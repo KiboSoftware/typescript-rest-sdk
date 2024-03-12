@@ -19,12 +19,12 @@ import type {
   CarrierDefinition,
 } from '../models';
 
-export interface CarrierDefinitionApiGetCarrierDefinitionRequest {
+export interface GetCarrierDefinitionRequest {
     carrierId: string;
     responseFields?: string;
 }
 
-export interface CarrierDefinitionApiGetCarrierDefinitionsRequest {
+export interface GetCarrierDefinitionsRequest {
     responseFields?: string;
 }
 
@@ -44,13 +44,13 @@ export interface CarrierDefinitionApiInterface {
      * @throws {RequiredError}
      * @memberof CarrierDefinitionApiInterface
      */
-    getCarrierDefinitionRaw(requestParameters: CarrierDefinitionApiGetCarrierDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierDefinition>>;
+    getCarrierDefinitionRaw(requestParameters: GetCarrierDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierDefinition>>;
 
     /**
      * hippingAdmin.Contracts.Carriers.CarrierDefinition for the specified carrier.
      * Returns a Mozu
      */
-    getCarrierDefinition(requestParameters: CarrierDefinitionApiGetCarrierDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierDefinition>;
+    getCarrierDefinition(requestParameters: GetCarrierDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierDefinition>;
 
     /**
      * hippingAdmin.Contracts.Carriers.CarrierDefinitions for the specified tenant.
@@ -60,13 +60,13 @@ export interface CarrierDefinitionApiInterface {
      * @throws {RequiredError}
      * @memberof CarrierDefinitionApiInterface
      */
-    getCarrierDefinitionsRaw(requestParameters: CarrierDefinitionApiGetCarrierDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CarrierDefinition>>>;
+    getCarrierDefinitionsRaw(requestParameters: GetCarrierDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CarrierDefinition>>>;
 
     /**
      * hippingAdmin.Contracts.Carriers.CarrierDefinitions for the specified tenant.
      * Returns a list of Mozu
      */
-    getCarrierDefinitions(requestParameters: CarrierDefinitionApiGetCarrierDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CarrierDefinition>>;
+    getCarrierDefinitions(requestParameters: GetCarrierDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CarrierDefinition>>;
 
 }
 
@@ -84,7 +84,7 @@ export class CarrierDefinitionApi extends runtime.BaseAPI implements CarrierDefi
      */
 
 
-    async getCarrierDefinitionRaw(requestParameters: CarrierDefinitionApiGetCarrierDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierDefinition>> {
+    async getCarrierDefinitionRaw(requestParameters: GetCarrierDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierDefinition>> {
         if (requestParameters.carrierId === null || requestParameters.carrierId === undefined) {
             throw new runtime.RequiredError('carrierId','Required parameter requestParameters.carrierId was null or undefined when calling getCarrierDefinition.');
         }
@@ -117,7 +117,7 @@ export class CarrierDefinitionApi extends runtime.BaseAPI implements CarrierDefi
      * hippingAdmin.Contracts.Carriers.CarrierDefinition for the specified carrier.
      * Returns a Mozu
      */
-    async getCarrierDefinition(requestParameters: CarrierDefinitionApiGetCarrierDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierDefinition> {
+    async getCarrierDefinition(requestParameters: GetCarrierDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierDefinition> {
         const response = await this.getCarrierDefinitionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -128,7 +128,7 @@ export class CarrierDefinitionApi extends runtime.BaseAPI implements CarrierDefi
      */
 
 
-    async getCarrierDefinitionsRaw(requestParameters: CarrierDefinitionApiGetCarrierDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CarrierDefinition>>> {
+    async getCarrierDefinitionsRaw(requestParameters: GetCarrierDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CarrierDefinition>>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -157,7 +157,7 @@ export class CarrierDefinitionApi extends runtime.BaseAPI implements CarrierDefi
      * hippingAdmin.Contracts.Carriers.CarrierDefinitions for the specified tenant.
      * Returns a list of Mozu
      */
-    async getCarrierDefinitions(requestParameters: CarrierDefinitionApiGetCarrierDefinitionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CarrierDefinition>> {
+    async getCarrierDefinitions(requestParameters: GetCarrierDefinitionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CarrierDefinition>> {
         const response = await this.getCarrierDefinitionsRaw(requestParameters, initOverrides);
         return await response.value();
     }

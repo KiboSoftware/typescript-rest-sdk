@@ -21,23 +21,23 @@ import type {
   JobQueueResponse,
 } from '../models';
 
-export interface InventoryJobApiDeleteAllOldInventoryRequest {
+export interface DeleteAllOldInventoryRequest {
     xVolTenant: number;
     months: number;
 }
 
-export interface InventoryJobApiDeleteOldInventoryRequest {
+export interface DeleteOldInventoryRequest {
     xVolTenant: number;
     months: number;
 }
 
-export interface InventoryJobApiGetJobRequest {
+export interface GetJobRequest {
     xVolTenant: number;
     jobID: number;
     responseFields?: string;
 }
 
-export interface InventoryJobApiGetJobsRequest {
+export interface GetJobsRequest {
     xVolTenant: number;
     locationCode?: string;
     limit?: number;
@@ -63,13 +63,13 @@ export interface InventoryJobApiInterface {
      * @throws {RequiredError}
      * @memberof InventoryJobApiInterface
      */
-    deleteAllOldInventoryRaw(requestParameters: InventoryJobApiDeleteAllOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobIDResponse>>>;
+    deleteAllOldInventoryRaw(requestParameters: DeleteAllOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobIDResponse>>>;
 
     /**
      * Deletes older records from inventory table of all silos
      * Delete All Old Inventory
      */
-    deleteAllOldInventory(requestParameters: InventoryJobApiDeleteAllOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobIDResponse>>;
+    deleteAllOldInventory(requestParameters: DeleteAllOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobIDResponse>>;
 
     /**
      * Deletes older records from inventory table
@@ -80,13 +80,13 @@ export interface InventoryJobApiInterface {
      * @throws {RequiredError}
      * @memberof InventoryJobApiInterface
      */
-    deleteOldInventoryRaw(requestParameters: InventoryJobApiDeleteOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobIDResponse>>;
+    deleteOldInventoryRaw(requestParameters: DeleteOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobIDResponse>>;
 
     /**
      * Deletes older records from inventory table
      * Delete Old Inventory
      */
-    deleteOldInventory(requestParameters: InventoryJobApiDeleteOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobIDResponse>;
+    deleteOldInventory(requestParameters: DeleteOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobIDResponse>;
 
     /**
      * Get the specified job
@@ -98,13 +98,13 @@ export interface InventoryJobApiInterface {
      * @throws {RequiredError}
      * @memberof InventoryJobApiInterface
      */
-    getJobRaw(requestParameters: InventoryJobApiGetJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobQueueResponse>>;
+    getJobRaw(requestParameters: GetJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobQueueResponse>>;
 
     /**
      * Get the specified job
      * Get Job
      */
-    getJob(requestParameters: InventoryJobApiGetJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobQueueResponse>;
+    getJob(requestParameters: GetJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobQueueResponse>;
 
     /**
      * Get the requested jobs
@@ -120,13 +120,13 @@ export interface InventoryJobApiInterface {
      * @throws {RequiredError}
      * @memberof InventoryJobApiInterface
      */
-    getJobsRaw(requestParameters: InventoryJobApiGetJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobQueueResponse>>>;
+    getJobsRaw(requestParameters: GetJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobQueueResponse>>>;
 
     /**
      * Get the requested jobs
      * Get Jobs
      */
-    getJobs(requestParameters: InventoryJobApiGetJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobQueueResponse>>;
+    getJobs(requestParameters: GetJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobQueueResponse>>;
 
 }
 
@@ -144,7 +144,7 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiI
      */
 
 
-    async deleteAllOldInventoryRaw(requestParameters: InventoryJobApiDeleteAllOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobIDResponse>>> {
+    async deleteAllOldInventoryRaw(requestParameters: DeleteAllOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobIDResponse>>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteAllOldInventory.');
         }
@@ -181,7 +181,7 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiI
      * Deletes older records from inventory table of all silos
      * Delete All Old Inventory
      */
-    async deleteAllOldInventory(requestParameters: InventoryJobApiDeleteAllOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobIDResponse>> {
+    async deleteAllOldInventory(requestParameters: DeleteAllOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobIDResponse>> {
         const response = await this.deleteAllOldInventoryRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -192,7 +192,7 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiI
      */
 
 
-    async deleteOldInventoryRaw(requestParameters: InventoryJobApiDeleteOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobIDResponse>> {
+    async deleteOldInventoryRaw(requestParameters: DeleteOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobIDResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteOldInventory.');
         }
@@ -229,7 +229,7 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiI
      * Deletes older records from inventory table
      * Delete Old Inventory
      */
-    async deleteOldInventory(requestParameters: InventoryJobApiDeleteOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobIDResponse> {
+    async deleteOldInventory(requestParameters: DeleteOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobIDResponse> {
         const response = await this.deleteOldInventoryRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -240,7 +240,7 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiI
      */
 
 
-    async getJobRaw(requestParameters: InventoryJobApiGetJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobQueueResponse>> {
+    async getJobRaw(requestParameters: GetJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobQueueResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getJob.');
         }
@@ -281,7 +281,7 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiI
      * Get the specified job
      * Get Job
      */
-    async getJob(requestParameters: InventoryJobApiGetJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobQueueResponse> {
+    async getJob(requestParameters: GetJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobQueueResponse> {
         const response = await this.getJobRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -292,7 +292,7 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiI
      */
 
 
-    async getJobsRaw(requestParameters: InventoryJobApiGetJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobQueueResponse>>> {
+    async getJobsRaw(requestParameters: GetJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobQueueResponse>>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getJobs.');
         }
@@ -349,7 +349,7 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiI
      * Get the requested jobs
      * Get Jobs
      */
-    async getJobs(requestParameters: InventoryJobApiGetJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobQueueResponse>> {
+    async getJobs(requestParameters: GetJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobQueueResponse>> {
         const response = await this.getJobsRaw(requestParameters, initOverrides);
         return await response.value();
     }

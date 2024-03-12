@@ -23,21 +23,21 @@ import type {
   OauthAuthRequest,
 } from '../models';
 
-export interface AppAuthTicketsApiAuthenticateAppRequest {
+export interface AuthenticateAppRequest {
     responseFields?: string;
     appAuthInfo?: AppAuthInfo;
 }
 
-export interface AppAuthTicketsApiDeleteAppAuthTicketRequest {
+export interface DeleteAppAuthTicketRequest {
     refreshToken: string;
 }
 
-export interface AppAuthTicketsApiOauthAuthenticateAppRequest {
+export interface OauthAuthenticateAppRequest {
     responseFields?: string;
     oauthAuthRequest?: OauthAuthRequest;
 }
 
-export interface AppAuthTicketsApiRefreshAppAuthTicketRequest {
+export interface RefreshAppAuthTicketRequest {
     responseFields?: string;
     authTicketRequest?: AuthTicketRequest;
 }
@@ -58,13 +58,13 @@ export interface AppAuthTicketsApiInterface {
      * @throws {RequiredError}
      * @memberof AppAuthTicketsApiInterface
      */
-    authenticateAppRaw(requestParameters: AppAuthTicketsApiAuthenticateAppRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthTicket>>;
+    authenticateAppRaw(requestParameters: AuthenticateAppRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthTicket>>;
 
     /**
      * Authenticates an application using shared secret and application id. The method returns a set of authentication tokens used to manage application authentication.
      * App Authenticate
      */
-    authenticateApp(requestParameters: AppAuthTicketsApiAuthenticateAppRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthTicket>;
+    authenticateApp(requestParameters: AuthenticateAppRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthTicket>;
 
     /**
      * This method is used to expire an application\'s current refresh token which   will force the application to reauthenticate once the current access token expires.
@@ -74,13 +74,13 @@ export interface AppAuthTicketsApiInterface {
      * @throws {RequiredError}
      * @memberof AppAuthTicketsApiInterface
      */
-    deleteAppAuthTicketRaw(requestParameters: AppAuthTicketsApiDeleteAppAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteAppAuthTicketRaw(requestParameters: DeleteAppAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * This method is used to expire an application\'s current refresh token which   will force the application to reauthenticate once the current access token expires.
      * Delete App Auth Ticket
      */
-    deleteAppAuthTicket(requestParameters: AppAuthTicketsApiDeleteAppAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteAppAuthTicket(requestParameters: DeleteAppAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Oauth Authenticate App
@@ -91,13 +91,13 @@ export interface AppAuthTicketsApiInterface {
      * @throws {RequiredError}
      * @memberof AppAuthTicketsApiInterface
      */
-    oauthAuthenticateAppRaw(requestParameters: AppAuthTicketsApiOauthAuthenticateAppRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OAuthAccessTokenResponse>>;
+    oauthAuthenticateAppRaw(requestParameters: OauthAuthenticateAppRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OAuthAccessTokenResponse>>;
 
     /**
      * Oauth Authenticate App
      * Oauth Authenticate App
      */
-    oauthAuthenticateApp(requestParameters: AppAuthTicketsApiOauthAuthenticateAppRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OAuthAccessTokenResponse>;
+    oauthAuthenticateApp(requestParameters: OauthAuthenticateAppRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OAuthAccessTokenResponse>;
 
     /**
      * Returns the AppAuthTicket with a refreshed AccessToken
@@ -108,13 +108,13 @@ export interface AppAuthTicketsApiInterface {
      * @throws {RequiredError}
      * @memberof AppAuthTicketsApiInterface
      */
-    refreshAppAuthTicketRaw(requestParameters: AppAuthTicketsApiRefreshAppAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthTicket>>;
+    refreshAppAuthTicketRaw(requestParameters: RefreshAppAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthTicket>>;
 
     /**
      * Returns the AppAuthTicket with a refreshed AccessToken
      * Refresh App Auth Ticket
      */
-    refreshAppAuthTicket(requestParameters: AppAuthTicketsApiRefreshAppAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthTicket>;
+    refreshAppAuthTicket(requestParameters: RefreshAppAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthTicket>;
 
 }
 
@@ -132,7 +132,7 @@ export class AppAuthTicketsApi extends runtime.BaseAPI implements AppAuthTickets
      */
 
 
-    async authenticateAppRaw(requestParameters: AppAuthTicketsApiAuthenticateAppRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthTicket>> {
+    async authenticateAppRaw(requestParameters: AuthenticateAppRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthTicket>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -164,7 +164,7 @@ export class AppAuthTicketsApi extends runtime.BaseAPI implements AppAuthTickets
      * Authenticates an application using shared secret and application id. The method returns a set of authentication tokens used to manage application authentication.
      * App Authenticate
      */
-    async authenticateApp(requestParameters: AppAuthTicketsApiAuthenticateAppRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthTicket> {
+    async authenticateApp(requestParameters: AuthenticateAppRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthTicket> {
         const response = await this.authenticateAppRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -175,7 +175,7 @@ export class AppAuthTicketsApi extends runtime.BaseAPI implements AppAuthTickets
      */
 
 
-    async deleteAppAuthTicketRaw(requestParameters: AppAuthTicketsApiDeleteAppAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteAppAuthTicketRaw(requestParameters: DeleteAppAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.refreshToken === null || requestParameters.refreshToken === undefined) {
             throw new runtime.RequiredError('refreshToken','Required parameter requestParameters.refreshToken was null or undefined when calling deleteAppAuthTicket.');
         }
@@ -204,7 +204,7 @@ export class AppAuthTicketsApi extends runtime.BaseAPI implements AppAuthTickets
      * This method is used to expire an application\'s current refresh token which   will force the application to reauthenticate once the current access token expires.
      * Delete App Auth Ticket
      */
-    async deleteAppAuthTicket(requestParameters: AppAuthTicketsApiDeleteAppAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteAppAuthTicket(requestParameters: DeleteAppAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteAppAuthTicketRaw(requestParameters, initOverrides);
     }
 
@@ -214,7 +214,7 @@ export class AppAuthTicketsApi extends runtime.BaseAPI implements AppAuthTickets
      */
 
 
-    async oauthAuthenticateAppRaw(requestParameters: AppAuthTicketsApiOauthAuthenticateAppRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OAuthAccessTokenResponse>> {
+    async oauthAuthenticateAppRaw(requestParameters: OauthAuthenticateAppRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OAuthAccessTokenResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -246,7 +246,7 @@ export class AppAuthTicketsApi extends runtime.BaseAPI implements AppAuthTickets
      * Oauth Authenticate App
      * Oauth Authenticate App
      */
-    async oauthAuthenticateApp(requestParameters: AppAuthTicketsApiOauthAuthenticateAppRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OAuthAccessTokenResponse> {
+    async oauthAuthenticateApp(requestParameters: OauthAuthenticateAppRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OAuthAccessTokenResponse> {
         const response = await this.oauthAuthenticateAppRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -257,7 +257,7 @@ export class AppAuthTicketsApi extends runtime.BaseAPI implements AppAuthTickets
      */
 
 
-    async refreshAppAuthTicketRaw(requestParameters: AppAuthTicketsApiRefreshAppAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthTicket>> {
+    async refreshAppAuthTicketRaw(requestParameters: RefreshAppAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthTicket>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -289,7 +289,7 @@ export class AppAuthTicketsApi extends runtime.BaseAPI implements AppAuthTickets
      * Returns the AppAuthTicket with a refreshed AccessToken
      * Refresh App Auth Ticket
      */
-    async refreshAppAuthTicket(requestParameters: AppAuthTicketsApiRefreshAppAuthTicketRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthTicket> {
+    async refreshAppAuthTicket(requestParameters: RefreshAppAuthTicketRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthTicket> {
         const response = await this.refreshAppAuthTicketRaw(requestParameters, initOverrides);
         return await response.value();
     }

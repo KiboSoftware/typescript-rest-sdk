@@ -19,14 +19,14 @@ import type {
   EntityModelOfRenderedContent,
 } from '../models';
 
-export interface RenditionApiRenderOrderSummaryUsingGETRequest {
+export interface RenderOrderSummaryUsingGETRequest {
     orderId: string;
     xVolTenant: number;
     xVolSite?: number;
     responseFields?: string;
 }
 
-export interface RenditionApiRenderReturnReceiptUsingGETRequest {
+export interface RenderReturnReceiptUsingGETRequest {
     returnId: string;
     xVolTenant: number;
     xVolSite?: number;
@@ -51,13 +51,13 @@ export interface RenditionApiInterface {
      * @throws {RequiredError}
      * @memberof RenditionApiInterface
      */
-    renderOrderSummaryUsingGETRaw(requestParameters: RenditionApiRenderOrderSummaryUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>>;
+    renderOrderSummaryUsingGETRaw(requestParameters: RenderOrderSummaryUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>>;
 
     /**
      * renderOrderSummary
      * renderOrderSummary
      */
-    renderOrderSummaryUsingGET(requestParameters: RenditionApiRenderOrderSummaryUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent>;
+    renderOrderSummaryUsingGET(requestParameters: RenderOrderSummaryUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent>;
 
     /**
      * renderReturnReceipt
@@ -70,13 +70,13 @@ export interface RenditionApiInterface {
      * @throws {RequiredError}
      * @memberof RenditionApiInterface
      */
-    renderReturnReceiptUsingGETRaw(requestParameters: RenditionApiRenderReturnReceiptUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>>;
+    renderReturnReceiptUsingGETRaw(requestParameters: RenderReturnReceiptUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>>;
 
     /**
      * renderReturnReceipt
      * renderReturnReceipt
      */
-    renderReturnReceiptUsingGET(requestParameters: RenditionApiRenderReturnReceiptUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent>;
+    renderReturnReceiptUsingGET(requestParameters: RenderReturnReceiptUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent>;
 
 }
 
@@ -94,7 +94,7 @@ export class RenditionApi extends runtime.BaseAPI implements RenditionApiInterfa
      */
 
 
-    async renderOrderSummaryUsingGETRaw(requestParameters: RenditionApiRenderOrderSummaryUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>> {
+    async renderOrderSummaryUsingGETRaw(requestParameters: RenderOrderSummaryUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling renderOrderSummaryUsingGET.');
         }
@@ -139,7 +139,7 @@ export class RenditionApi extends runtime.BaseAPI implements RenditionApiInterfa
      * renderOrderSummary
      * renderOrderSummary
      */
-    async renderOrderSummaryUsingGET(requestParameters: RenditionApiRenderOrderSummaryUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent> {
+    async renderOrderSummaryUsingGET(requestParameters: RenderOrderSummaryUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent> {
         const response = await this.renderOrderSummaryUsingGETRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -150,7 +150,7 @@ export class RenditionApi extends runtime.BaseAPI implements RenditionApiInterfa
      */
 
 
-    async renderReturnReceiptUsingGETRaw(requestParameters: RenditionApiRenderReturnReceiptUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>> {
+    async renderReturnReceiptUsingGETRaw(requestParameters: RenderReturnReceiptUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling renderReturnReceiptUsingGET.');
         }
@@ -195,7 +195,7 @@ export class RenditionApi extends runtime.BaseAPI implements RenditionApiInterfa
      * renderReturnReceipt
      * renderReturnReceipt
      */
-    async renderReturnReceiptUsingGET(requestParameters: RenditionApiRenderReturnReceiptUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent> {
+    async renderReturnReceiptUsingGET(requestParameters: RenderReturnReceiptUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent> {
         const response = await this.renderReturnReceiptUsingGETRaw(requestParameters, initOverrides);
         return await response.value();
     }

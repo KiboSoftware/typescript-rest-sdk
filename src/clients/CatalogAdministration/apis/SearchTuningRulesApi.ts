@@ -21,25 +21,25 @@ import type {
   SearchTuningRuleSortFields,
 } from '../models';
 
-export interface SearchTuningRulesApiAddSearchTuningRuleRequest {
+export interface AddSearchTuningRuleRequest {
     responseFields?: string;
     searchTuningRule?: SearchTuningRule;
 }
 
-export interface SearchTuningRulesApiDeleteSearchTuningRuleRequest {
+export interface DeleteSearchTuningRuleRequest {
     searchTuningRuleCode: string;
 }
 
-export interface SearchTuningRulesApiGetSearchTuningRuleRequest {
+export interface GetSearchTuningRuleRequest {
     searchTuningRuleCode: string;
     responseFields?: string;
 }
 
-export interface SearchTuningRulesApiGetSearchTuningRuleSortFieldsRequest {
+export interface GetSearchTuningRuleSortFieldsRequest {
     responseFields?: string;
 }
 
-export interface SearchTuningRulesApiGetSearchTuningRulesRequest {
+export interface GetSearchTuningRulesRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -48,13 +48,13 @@ export interface SearchTuningRulesApiGetSearchTuningRulesRequest {
     responseFields?: string;
 }
 
-export interface SearchTuningRulesApiUpdateSearchTuningRuleRequest {
+export interface UpdateSearchTuningRuleRequest {
     searchTuningRuleCode: string;
     responseFields?: string;
     searchTuningRule?: SearchTuningRule;
 }
 
-export interface SearchTuningRulesApiUpdateSearchTuningRuleSortFieldsRequest {
+export interface UpdateSearchTuningRuleSortFieldsRequest {
     responseFields?: string;
     searchTuningRuleSortFields?: SearchTuningRuleSortFields;
 }
@@ -75,13 +75,13 @@ export interface SearchTuningRulesApiInterface {
      * @throws {RequiredError}
      * @memberof SearchTuningRulesApiInterface
      */
-    addSearchTuningRuleRaw(requestParameters: SearchTuningRulesApiAddSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchTuningRule>>;
+    addSearchTuningRuleRaw(requestParameters: AddSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchTuningRule>>;
 
     /**
      * Add search tuning rule
      * Add search tuning rule
      */
-    addSearchTuningRule(requestParameters: SearchTuningRulesApiAddSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchTuningRule>;
+    addSearchTuningRule(requestParameters: AddSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchTuningRule>;
 
     /**
      * Delete search tuning rule
@@ -91,13 +91,13 @@ export interface SearchTuningRulesApiInterface {
      * @throws {RequiredError}
      * @memberof SearchTuningRulesApiInterface
      */
-    deleteSearchTuningRuleRaw(requestParameters: SearchTuningRulesApiDeleteSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteSearchTuningRuleRaw(requestParameters: DeleteSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Delete search tuning rule
      * Delete search tuning rule
      */
-    deleteSearchTuningRule(requestParameters: SearchTuningRulesApiDeleteSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteSearchTuningRule(requestParameters: DeleteSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Get search tuning rule
@@ -108,13 +108,13 @@ export interface SearchTuningRulesApiInterface {
      * @throws {RequiredError}
      * @memberof SearchTuningRulesApiInterface
      */
-    getSearchTuningRuleRaw(requestParameters: SearchTuningRulesApiGetSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchTuningRule>>;
+    getSearchTuningRuleRaw(requestParameters: GetSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchTuningRule>>;
 
     /**
      * Get search tuning rule
      * Get search tuning rule
      */
-    getSearchTuningRule(requestParameters: SearchTuningRulesApiGetSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchTuningRule>;
+    getSearchTuningRule(requestParameters: GetSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchTuningRule>;
 
     /**
      * Get search tuning rule sort fields
@@ -124,13 +124,13 @@ export interface SearchTuningRulesApiInterface {
      * @throws {RequiredError}
      * @memberof SearchTuningRulesApiInterface
      */
-    getSearchTuningRuleSortFieldsRaw(requestParameters: SearchTuningRulesApiGetSearchTuningRuleSortFieldsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchTuningRuleSortFields>>;
+    getSearchTuningRuleSortFieldsRaw(requestParameters: GetSearchTuningRuleSortFieldsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchTuningRuleSortFields>>;
 
     /**
      * Get search tuning rule sort fields
      * Get search tuning rule sort fields
      */
-    getSearchTuningRuleSortFields(requestParameters: SearchTuningRulesApiGetSearchTuningRuleSortFieldsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchTuningRuleSortFields>;
+    getSearchTuningRuleSortFields(requestParameters: GetSearchTuningRuleSortFieldsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchTuningRuleSortFields>;
 
     /**
      * Get search tuning rules
@@ -145,13 +145,13 @@ export interface SearchTuningRulesApiInterface {
      * @throws {RequiredError}
      * @memberof SearchTuningRulesApiInterface
      */
-    getSearchTuningRulesRaw(requestParameters: SearchTuningRulesApiGetSearchTuningRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchTuningRuleCollection>>;
+    getSearchTuningRulesRaw(requestParameters: GetSearchTuningRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchTuningRuleCollection>>;
 
     /**
      * Get search tuning rules
      * Get search tuning rules
      */
-    getSearchTuningRules(requestParameters: SearchTuningRulesApiGetSearchTuningRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchTuningRuleCollection>;
+    getSearchTuningRules(requestParameters: GetSearchTuningRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchTuningRuleCollection>;
 
     /**
      * Update search tuning rule
@@ -163,13 +163,13 @@ export interface SearchTuningRulesApiInterface {
      * @throws {RequiredError}
      * @memberof SearchTuningRulesApiInterface
      */
-    updateSearchTuningRuleRaw(requestParameters: SearchTuningRulesApiUpdateSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchTuningRule>>;
+    updateSearchTuningRuleRaw(requestParameters: UpdateSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchTuningRule>>;
 
     /**
      * Update search tuning rule
      * Update search tuning rule
      */
-    updateSearchTuningRule(requestParameters: SearchTuningRulesApiUpdateSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchTuningRule>;
+    updateSearchTuningRule(requestParameters: UpdateSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchTuningRule>;
 
     /**
      * Update search tuning rule sort fields
@@ -180,13 +180,13 @@ export interface SearchTuningRulesApiInterface {
      * @throws {RequiredError}
      * @memberof SearchTuningRulesApiInterface
      */
-    updateSearchTuningRuleSortFieldsRaw(requestParameters: SearchTuningRulesApiUpdateSearchTuningRuleSortFieldsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchTuningRuleSortFields>>;
+    updateSearchTuningRuleSortFieldsRaw(requestParameters: UpdateSearchTuningRuleSortFieldsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchTuningRuleSortFields>>;
 
     /**
      * Update search tuning rule sort fields
      * Update search tuning rule sort fields
      */
-    updateSearchTuningRuleSortFields(requestParameters: SearchTuningRulesApiUpdateSearchTuningRuleSortFieldsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchTuningRuleSortFields>;
+    updateSearchTuningRuleSortFields(requestParameters: UpdateSearchTuningRuleSortFieldsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchTuningRuleSortFields>;
 
 }
 
@@ -204,7 +204,7 @@ export class SearchTuningRulesApi extends runtime.BaseAPI implements SearchTunin
      */
 
 
-    async addSearchTuningRuleRaw(requestParameters: SearchTuningRulesApiAddSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchTuningRule>> {
+    async addSearchTuningRuleRaw(requestParameters: AddSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchTuningRule>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -236,7 +236,7 @@ export class SearchTuningRulesApi extends runtime.BaseAPI implements SearchTunin
      * Add search tuning rule
      * Add search tuning rule
      */
-    async addSearchTuningRule(requestParameters: SearchTuningRulesApiAddSearchTuningRuleRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchTuningRule> {
+    async addSearchTuningRule(requestParameters: AddSearchTuningRuleRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchTuningRule> {
         const response = await this.addSearchTuningRuleRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -247,7 +247,7 @@ export class SearchTuningRulesApi extends runtime.BaseAPI implements SearchTunin
      */
 
 
-    async deleteSearchTuningRuleRaw(requestParameters: SearchTuningRulesApiDeleteSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteSearchTuningRuleRaw(requestParameters: DeleteSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.searchTuningRuleCode === null || requestParameters.searchTuningRuleCode === undefined) {
             throw new runtime.RequiredError('searchTuningRuleCode','Required parameter requestParameters.searchTuningRuleCode was null or undefined when calling deleteSearchTuningRule.');
         }
@@ -276,7 +276,7 @@ export class SearchTuningRulesApi extends runtime.BaseAPI implements SearchTunin
      * Delete search tuning rule
      * Delete search tuning rule
      */
-    async deleteSearchTuningRule(requestParameters: SearchTuningRulesApiDeleteSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteSearchTuningRule(requestParameters: DeleteSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteSearchTuningRuleRaw(requestParameters, initOverrides);
     }
 
@@ -286,7 +286,7 @@ export class SearchTuningRulesApi extends runtime.BaseAPI implements SearchTunin
      */
 
 
-    async getSearchTuningRuleRaw(requestParameters: SearchTuningRulesApiGetSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchTuningRule>> {
+    async getSearchTuningRuleRaw(requestParameters: GetSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchTuningRule>> {
         if (requestParameters.searchTuningRuleCode === null || requestParameters.searchTuningRuleCode === undefined) {
             throw new runtime.RequiredError('searchTuningRuleCode','Required parameter requestParameters.searchTuningRuleCode was null or undefined when calling getSearchTuningRule.');
         }
@@ -319,7 +319,7 @@ export class SearchTuningRulesApi extends runtime.BaseAPI implements SearchTunin
      * Get search tuning rule
      * Get search tuning rule
      */
-    async getSearchTuningRule(requestParameters: SearchTuningRulesApiGetSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchTuningRule> {
+    async getSearchTuningRule(requestParameters: GetSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchTuningRule> {
         const response = await this.getSearchTuningRuleRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -330,7 +330,7 @@ export class SearchTuningRulesApi extends runtime.BaseAPI implements SearchTunin
      */
 
 
-    async getSearchTuningRuleSortFieldsRaw(requestParameters: SearchTuningRulesApiGetSearchTuningRuleSortFieldsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchTuningRuleSortFields>> {
+    async getSearchTuningRuleSortFieldsRaw(requestParameters: GetSearchTuningRuleSortFieldsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchTuningRuleSortFields>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -359,7 +359,7 @@ export class SearchTuningRulesApi extends runtime.BaseAPI implements SearchTunin
      * Get search tuning rule sort fields
      * Get search tuning rule sort fields
      */
-    async getSearchTuningRuleSortFields(requestParameters: SearchTuningRulesApiGetSearchTuningRuleSortFieldsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchTuningRuleSortFields> {
+    async getSearchTuningRuleSortFields(requestParameters: GetSearchTuningRuleSortFieldsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchTuningRuleSortFields> {
         const response = await this.getSearchTuningRuleSortFieldsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -370,7 +370,7 @@ export class SearchTuningRulesApi extends runtime.BaseAPI implements SearchTunin
      */
 
 
-    async getSearchTuningRulesRaw(requestParameters: SearchTuningRulesApiGetSearchTuningRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchTuningRuleCollection>> {
+    async getSearchTuningRulesRaw(requestParameters: GetSearchTuningRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchTuningRuleCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -419,7 +419,7 @@ export class SearchTuningRulesApi extends runtime.BaseAPI implements SearchTunin
      * Get search tuning rules
      * Get search tuning rules
      */
-    async getSearchTuningRules(requestParameters: SearchTuningRulesApiGetSearchTuningRulesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchTuningRuleCollection> {
+    async getSearchTuningRules(requestParameters: GetSearchTuningRulesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchTuningRuleCollection> {
         const response = await this.getSearchTuningRulesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -430,7 +430,7 @@ export class SearchTuningRulesApi extends runtime.BaseAPI implements SearchTunin
      */
 
 
-    async updateSearchTuningRuleRaw(requestParameters: SearchTuningRulesApiUpdateSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchTuningRule>> {
+    async updateSearchTuningRuleRaw(requestParameters: UpdateSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchTuningRule>> {
         if (requestParameters.searchTuningRuleCode === null || requestParameters.searchTuningRuleCode === undefined) {
             throw new runtime.RequiredError('searchTuningRuleCode','Required parameter requestParameters.searchTuningRuleCode was null or undefined when calling updateSearchTuningRule.');
         }
@@ -466,7 +466,7 @@ export class SearchTuningRulesApi extends runtime.BaseAPI implements SearchTunin
      * Update search tuning rule
      * Update search tuning rule
      */
-    async updateSearchTuningRule(requestParameters: SearchTuningRulesApiUpdateSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchTuningRule> {
+    async updateSearchTuningRule(requestParameters: UpdateSearchTuningRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchTuningRule> {
         const response = await this.updateSearchTuningRuleRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -477,7 +477,7 @@ export class SearchTuningRulesApi extends runtime.BaseAPI implements SearchTunin
      */
 
 
-    async updateSearchTuningRuleSortFieldsRaw(requestParameters: SearchTuningRulesApiUpdateSearchTuningRuleSortFieldsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchTuningRuleSortFields>> {
+    async updateSearchTuningRuleSortFieldsRaw(requestParameters: UpdateSearchTuningRuleSortFieldsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchTuningRuleSortFields>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -509,7 +509,7 @@ export class SearchTuningRulesApi extends runtime.BaseAPI implements SearchTunin
      * Update search tuning rule sort fields
      * Update search tuning rule sort fields
      */
-    async updateSearchTuningRuleSortFields(requestParameters: SearchTuningRulesApiUpdateSearchTuningRuleSortFieldsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchTuningRuleSortFields> {
+    async updateSearchTuningRuleSortFields(requestParameters: UpdateSearchTuningRuleSortFieldsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchTuningRuleSortFields> {
         const response = await this.updateSearchTuningRuleSortFieldsRaw(requestParameters, initOverrides);
         return await response.value();
     }

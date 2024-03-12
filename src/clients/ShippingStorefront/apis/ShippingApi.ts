@@ -27,27 +27,27 @@ import type {
   ShippingRuntimeShipmentResponse,
 } from '../models';
 
-export interface ShippingApiGetCarriersRequest {
+export interface GetCarriersRequest {
     responseFields?: string;
 }
 
-export interface ShippingApiGetLabelsRequest {
+export interface GetLabelsRequest {
     responseFields?: string;
     shipmentRequest?: ShipmentRequest;
 }
 
-export interface ShippingApiGetLabelsByTrackingNumberRequest {
+export interface GetLabelsByTrackingNumberRequest {
     responseFields?: string;
     labelRequest?: LabelRequest;
 }
 
-export interface ShippingApiGetMultiRatesRequest {
+export interface GetMultiRatesRequest {
     includeRawResponse?: boolean;
     responseFields?: string;
     rateRequestGroup?: Array<RateRequestGroup>;
 }
 
-export interface ShippingApiGetRatesRequest {
+export interface GetRatesRequest {
     includeRawResponse?: boolean;
     responseFields?: string;
     rateRequest?: RateRequest;
@@ -68,13 +68,13 @@ export interface ShippingApiInterface {
      * @throws {RequiredError}
      * @memberof ShippingApiInterface
      */
-    getCarriersRaw(requestParameters: ShippingApiGetCarriersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierResponse>>;
+    getCarriersRaw(requestParameters: GetCarriersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierResponse>>;
 
     /**
      * Get a list of supported carriers.
      * Get Carriers
      */
-    getCarriers(requestParameters: ShippingApiGetCarriersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierResponse>;
+    getCarriers(requestParameters: GetCarriersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierResponse>;
 
     /**
      * Get Shipping Label for the Service Type Requested
@@ -85,13 +85,13 @@ export interface ShippingApiInterface {
      * @throws {RequiredError}
      * @memberof ShippingApiInterface
      */
-    getLabelsRaw(requestParameters: ShippingApiGetLabelsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingRuntimeShipmentResponse>>;
+    getLabelsRaw(requestParameters: GetLabelsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingRuntimeShipmentResponse>>;
 
     /**
      * Get Shipping Label for the Service Type Requested
      * Get Labels
      */
-    getLabels(requestParameters: ShippingApiGetLabelsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingRuntimeShipmentResponse>;
+    getLabels(requestParameters: GetLabelsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingRuntimeShipmentResponse>;
 
     /**
      * Get shipping labels by tracking number.
@@ -102,13 +102,13 @@ export interface ShippingApiInterface {
      * @throws {RequiredError}
      * @memberof ShippingApiInterface
      */
-    getLabelsByTrackingNumberRaw(requestParameters: ShippingApiGetLabelsByTrackingNumberRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LabelResponse>>;
+    getLabelsByTrackingNumberRaw(requestParameters: GetLabelsByTrackingNumberRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LabelResponse>>;
 
     /**
      * Get shipping labels by tracking number.
      * Get Labels By Tracking Number
      */
-    getLabelsByTrackingNumber(requestParameters: ShippingApiGetLabelsByTrackingNumberRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LabelResponse>;
+    getLabelsByTrackingNumber(requestParameters: GetLabelsByTrackingNumberRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LabelResponse>;
 
     /**
      * Get List of Rate Responses for a List of Rate Requests
@@ -120,13 +120,13 @@ export interface ShippingApiInterface {
      * @throws {RequiredError}
      * @memberof ShippingApiInterface
      */
-    getMultiRatesRaw(requestParameters: ShippingApiGetMultiRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<RatesResponseGroup>>>;
+    getMultiRatesRaw(requestParameters: GetMultiRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<RatesResponseGroup>>>;
 
     /**
      * Get List of Rate Responses for a List of Rate Requests
      * Get Multi Rates
      */
-    getMultiRates(requestParameters: ShippingApiGetMultiRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<RatesResponseGroup>>;
+    getMultiRates(requestParameters: GetMultiRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<RatesResponseGroup>>;
 
     /**
      * Get Rate Responses for a Rate Request
@@ -138,13 +138,13 @@ export interface ShippingApiInterface {
      * @throws {RequiredError}
      * @memberof ShippingApiInterface
      */
-    getRatesRaw(requestParameters: ShippingApiGetRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RatesResponse>>;
+    getRatesRaw(requestParameters: GetRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RatesResponse>>;
 
     /**
      * Get Rate Responses for a Rate Request
      * Get Rates
      */
-    getRates(requestParameters: ShippingApiGetRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RatesResponse>;
+    getRates(requestParameters: GetRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RatesResponse>;
 
 }
 
@@ -162,7 +162,7 @@ export class ShippingApi extends runtime.BaseAPI implements ShippingApiInterface
      */
 
 
-    async getCarriersRaw(requestParameters: ShippingApiGetCarriersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierResponse>> {
+    async getCarriersRaw(requestParameters: GetCarriersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -191,7 +191,7 @@ export class ShippingApi extends runtime.BaseAPI implements ShippingApiInterface
      * Get a list of supported carriers.
      * Get Carriers
      */
-    async getCarriers(requestParameters: ShippingApiGetCarriersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierResponse> {
+    async getCarriers(requestParameters: GetCarriersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierResponse> {
         const response = await this.getCarriersRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -202,7 +202,7 @@ export class ShippingApi extends runtime.BaseAPI implements ShippingApiInterface
      */
 
 
-    async getLabelsRaw(requestParameters: ShippingApiGetLabelsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingRuntimeShipmentResponse>> {
+    async getLabelsRaw(requestParameters: GetLabelsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingRuntimeShipmentResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -234,7 +234,7 @@ export class ShippingApi extends runtime.BaseAPI implements ShippingApiInterface
      * Get Shipping Label for the Service Type Requested
      * Get Labels
      */
-    async getLabels(requestParameters: ShippingApiGetLabelsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingRuntimeShipmentResponse> {
+    async getLabels(requestParameters: GetLabelsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingRuntimeShipmentResponse> {
         const response = await this.getLabelsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -245,7 +245,7 @@ export class ShippingApi extends runtime.BaseAPI implements ShippingApiInterface
      */
 
 
-    async getLabelsByTrackingNumberRaw(requestParameters: ShippingApiGetLabelsByTrackingNumberRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LabelResponse>> {
+    async getLabelsByTrackingNumberRaw(requestParameters: GetLabelsByTrackingNumberRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LabelResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -277,7 +277,7 @@ export class ShippingApi extends runtime.BaseAPI implements ShippingApiInterface
      * Get shipping labels by tracking number.
      * Get Labels By Tracking Number
      */
-    async getLabelsByTrackingNumber(requestParameters: ShippingApiGetLabelsByTrackingNumberRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LabelResponse> {
+    async getLabelsByTrackingNumber(requestParameters: GetLabelsByTrackingNumberRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LabelResponse> {
         const response = await this.getLabelsByTrackingNumberRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -288,7 +288,7 @@ export class ShippingApi extends runtime.BaseAPI implements ShippingApiInterface
      */
 
 
-    async getMultiRatesRaw(requestParameters: ShippingApiGetMultiRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<RatesResponseGroup>>> {
+    async getMultiRatesRaw(requestParameters: GetMultiRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<RatesResponseGroup>>> {
         const queryParameters: any = {};
 
         if (requestParameters.includeRawResponse !== undefined) {
@@ -324,7 +324,7 @@ export class ShippingApi extends runtime.BaseAPI implements ShippingApiInterface
      * Get List of Rate Responses for a List of Rate Requests
      * Get Multi Rates
      */
-    async getMultiRates(requestParameters: ShippingApiGetMultiRatesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<RatesResponseGroup>> {
+    async getMultiRates(requestParameters: GetMultiRatesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<RatesResponseGroup>> {
         const response = await this.getMultiRatesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -335,7 +335,7 @@ export class ShippingApi extends runtime.BaseAPI implements ShippingApiInterface
      */
 
 
-    async getRatesRaw(requestParameters: ShippingApiGetRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RatesResponse>> {
+    async getRatesRaw(requestParameters: GetRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RatesResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters.includeRawResponse !== undefined) {
@@ -371,7 +371,7 @@ export class ShippingApi extends runtime.BaseAPI implements ShippingApiInterface
      * Get Rate Responses for a Rate Request
      * Get Rates
      */
-    async getRates(requestParameters: ShippingApiGetRatesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RatesResponse> {
+    async getRates(requestParameters: GetRatesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RatesResponse> {
         const response = await this.getRatesRaw(requestParameters, initOverrides);
         return await response.value();
     }

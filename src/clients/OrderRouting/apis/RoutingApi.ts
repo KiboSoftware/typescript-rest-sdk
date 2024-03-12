@@ -24,13 +24,13 @@ import type {
   SuggestionTestRequest,
 } from '../models';
 
-export interface RoutingApiGetSampleRequestUsingGETRequest {
+export interface GetSampleRequestUsingGETRequest {
     xVolSite: number;
     xVolTenant: number;
     responseFields?: string;
 }
 
-export interface RoutingApiGetSuggestionLogUsingGETRequest {
+export interface GetSuggestionLogUsingGETRequest {
     xVolSite: number;
     xVolTenant: number;
     externalResponseID?: string;
@@ -40,14 +40,14 @@ export interface RoutingApiGetSuggestionLogUsingGETRequest {
     responseFields?: string;
 }
 
-export interface RoutingApiSuggestCandidatesUsingPOSTRequest {
+export interface SuggestCandidatesUsingPOSTRequest {
     xVolSite: number;
     xVolTenant: number;
     request: CandidateSuggestionsRequest;
     responseFields?: string;
 }
 
-export interface RoutingApiSuggestRoutingTestUsingPOSTRequest {
+export interface SuggestRoutingTestUsingPOSTRequest {
     xVolSite: number;
     xVolTenant: number;
     request: SuggestionTestRequest;
@@ -55,7 +55,7 @@ export interface RoutingApiSuggestRoutingTestUsingPOSTRequest {
     responseFields?: string;
 }
 
-export interface RoutingApiSuggestRoutingUsingPOSTRequest {
+export interface SuggestRoutingUsingPOSTRequest {
     xVolSite: number;
     xVolTenant: number;
     request: SuggestionRequest;
@@ -80,13 +80,13 @@ export interface RoutingApiInterface {
      * @throws {RequiredError}
      * @memberof RoutingApiInterface
      */
-    getSampleRequestUsingGETRaw(requestParameters: RoutingApiGetSampleRequestUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestionRequest>>;
+    getSampleRequestUsingGETRaw(requestParameters: GetSampleRequestUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestionRequest>>;
 
     /**
      * getSampleRequest
      * getSampleRequest
      */
-    getSampleRequestUsingGET(requestParameters: RoutingApiGetSampleRequestUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestionRequest>;
+    getSampleRequestUsingGET(requestParameters: GetSampleRequestUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestionRequest>;
 
     /**
      * getSuggestionLog
@@ -102,13 +102,13 @@ export interface RoutingApiInterface {
      * @throws {RequiredError}
      * @memberof RoutingApiInterface
      */
-    getSuggestionLogUsingGETRaw(requestParameters: RoutingApiGetSuggestionLogUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SuggestionLog>>>;
+    getSuggestionLogUsingGETRaw(requestParameters: GetSuggestionLogUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SuggestionLog>>>;
 
     /**
      * getSuggestionLog
      * getSuggestionLog
      */
-    getSuggestionLogUsingGET(requestParameters: RoutingApiGetSuggestionLogUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SuggestionLog>>;
+    getSuggestionLogUsingGET(requestParameters: GetSuggestionLogUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SuggestionLog>>;
 
     /**
      * suggestCandidates
@@ -121,13 +121,13 @@ export interface RoutingApiInterface {
      * @throws {RequiredError}
      * @memberof RoutingApiInterface
      */
-    suggestCandidatesUsingPOSTRaw(requestParameters: RoutingApiSuggestCandidatesUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CandidateSuggestionsResponse>>;
+    suggestCandidatesUsingPOSTRaw(requestParameters: SuggestCandidatesUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CandidateSuggestionsResponse>>;
 
     /**
      * suggestCandidates
      * suggestCandidates
      */
-    suggestCandidatesUsingPOST(requestParameters: RoutingApiSuggestCandidatesUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CandidateSuggestionsResponse>;
+    suggestCandidatesUsingPOST(requestParameters: SuggestCandidatesUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CandidateSuggestionsResponse>;
 
     /**
      * suggestRoutingTest
@@ -141,13 +141,13 @@ export interface RoutingApiInterface {
      * @throws {RequiredError}
      * @memberof RoutingApiInterface
      */
-    suggestRoutingTestUsingPOSTRaw(requestParameters: RoutingApiSuggestRoutingTestUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestionResponse>>;
+    suggestRoutingTestUsingPOSTRaw(requestParameters: SuggestRoutingTestUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestionResponse>>;
 
     /**
      * suggestRoutingTest
      * suggestRoutingTest
      */
-    suggestRoutingTestUsingPOST(requestParameters: RoutingApiSuggestRoutingTestUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestionResponse>;
+    suggestRoutingTestUsingPOST(requestParameters: SuggestRoutingTestUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestionResponse>;
 
     /**
      * suggestRouting
@@ -161,13 +161,13 @@ export interface RoutingApiInterface {
      * @throws {RequiredError}
      * @memberof RoutingApiInterface
      */
-    suggestRoutingUsingPOSTRaw(requestParameters: RoutingApiSuggestRoutingUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestionResponse>>;
+    suggestRoutingUsingPOSTRaw(requestParameters: SuggestRoutingUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestionResponse>>;
 
     /**
      * suggestRouting
      * suggestRouting
      */
-    suggestRoutingUsingPOST(requestParameters: RoutingApiSuggestRoutingUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestionResponse>;
+    suggestRoutingUsingPOST(requestParameters: SuggestRoutingUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestionResponse>;
 
 }
 
@@ -185,7 +185,7 @@ export class RoutingApi extends runtime.BaseAPI implements RoutingApiInterface {
      */
 
 
-    async getSampleRequestUsingGETRaw(requestParameters: RoutingApiGetSampleRequestUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestionRequest>> {
+    async getSampleRequestUsingGETRaw(requestParameters: GetSampleRequestUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestionRequest>> {
         if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
             throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling getSampleRequestUsingGET.');
         }
@@ -230,7 +230,7 @@ export class RoutingApi extends runtime.BaseAPI implements RoutingApiInterface {
      * getSampleRequest
      * getSampleRequest
      */
-    async getSampleRequestUsingGET(requestParameters: RoutingApiGetSampleRequestUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestionRequest> {
+    async getSampleRequestUsingGET(requestParameters: GetSampleRequestUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestionRequest> {
         const response = await this.getSampleRequestUsingGETRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -241,7 +241,7 @@ export class RoutingApi extends runtime.BaseAPI implements RoutingApiInterface {
      */
 
 
-    async getSuggestionLogUsingGETRaw(requestParameters: RoutingApiGetSuggestionLogUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SuggestionLog>>> {
+    async getSuggestionLogUsingGETRaw(requestParameters: GetSuggestionLogUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SuggestionLog>>> {
         if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
             throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling getSuggestionLogUsingGET.');
         }
@@ -302,7 +302,7 @@ export class RoutingApi extends runtime.BaseAPI implements RoutingApiInterface {
      * getSuggestionLog
      * getSuggestionLog
      */
-    async getSuggestionLogUsingGET(requestParameters: RoutingApiGetSuggestionLogUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SuggestionLog>> {
+    async getSuggestionLogUsingGET(requestParameters: GetSuggestionLogUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SuggestionLog>> {
         const response = await this.getSuggestionLogUsingGETRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -313,7 +313,7 @@ export class RoutingApi extends runtime.BaseAPI implements RoutingApiInterface {
      */
 
 
-    async suggestCandidatesUsingPOSTRaw(requestParameters: RoutingApiSuggestCandidatesUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CandidateSuggestionsResponse>> {
+    async suggestCandidatesUsingPOSTRaw(requestParameters: SuggestCandidatesUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CandidateSuggestionsResponse>> {
         if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
             throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling suggestCandidatesUsingPOST.');
         }
@@ -365,7 +365,7 @@ export class RoutingApi extends runtime.BaseAPI implements RoutingApiInterface {
      * suggestCandidates
      * suggestCandidates
      */
-    async suggestCandidatesUsingPOST(requestParameters: RoutingApiSuggestCandidatesUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CandidateSuggestionsResponse> {
+    async suggestCandidatesUsingPOST(requestParameters: SuggestCandidatesUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CandidateSuggestionsResponse> {
         const response = await this.suggestCandidatesUsingPOSTRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -376,7 +376,7 @@ export class RoutingApi extends runtime.BaseAPI implements RoutingApiInterface {
      */
 
 
-    async suggestRoutingTestUsingPOSTRaw(requestParameters: RoutingApiSuggestRoutingTestUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestionResponse>> {
+    async suggestRoutingTestUsingPOSTRaw(requestParameters: SuggestRoutingTestUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestionResponse>> {
         if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
             throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling suggestRoutingTestUsingPOST.');
         }
@@ -432,7 +432,7 @@ export class RoutingApi extends runtime.BaseAPI implements RoutingApiInterface {
      * suggestRoutingTest
      * suggestRoutingTest
      */
-    async suggestRoutingTestUsingPOST(requestParameters: RoutingApiSuggestRoutingTestUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestionResponse> {
+    async suggestRoutingTestUsingPOST(requestParameters: SuggestRoutingTestUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestionResponse> {
         const response = await this.suggestRoutingTestUsingPOSTRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -443,7 +443,7 @@ export class RoutingApi extends runtime.BaseAPI implements RoutingApiInterface {
      */
 
 
-    async suggestRoutingUsingPOSTRaw(requestParameters: RoutingApiSuggestRoutingUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestionResponse>> {
+    async suggestRoutingUsingPOSTRaw(requestParameters: SuggestRoutingUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestionResponse>> {
         if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
             throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling suggestRoutingUsingPOST.');
         }
@@ -499,7 +499,7 @@ export class RoutingApi extends runtime.BaseAPI implements RoutingApiInterface {
      * suggestRouting
      * suggestRouting
      */
-    async suggestRoutingUsingPOST(requestParameters: RoutingApiSuggestRoutingUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestionResponse> {
+    async suggestRoutingUsingPOST(requestParameters: SuggestRoutingUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestionResponse> {
         const response = await this.suggestRoutingUsingPOSTRaw(requestParameters, initOverrides);
         return await response.value();
     }

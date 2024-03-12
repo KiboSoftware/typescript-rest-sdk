@@ -21,7 +21,7 @@ import type {
   CatalogRuntimesCategoryPagedCollection,
 } from '../models';
 
-export interface CategoriesApiStorefrontGetCategoriesRequest {
+export interface StorefrontGetCategoriesRequest {
     filter?: string;
     startIndex?: number;
     pageSize?: number;
@@ -30,14 +30,14 @@ export interface CategoriesApiStorefrontGetCategoriesRequest {
     responseFields?: string;
 }
 
-export interface CategoriesApiStorefrontGetCategoryRequest {
+export interface StorefrontGetCategoryRequest {
     categoryId: number;
     allowInactive?: boolean;
     includeAttributes?: boolean;
     responseFields?: string;
 }
 
-export interface CategoriesApiStorefrontGetCategoryTreeRequest {
+export interface StorefrontGetCategoryTreeRequest {
     includeAttributes?: boolean;
     responseFields?: string;
 }
@@ -62,13 +62,13 @@ export interface CategoriesApiInterface {
      * @throws {RequiredError}
      * @memberof CategoriesApiInterface
      */
-    storefrontGetCategoriesRaw(requestParameters: CategoriesApiStorefrontGetCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogRuntimesCategoryPagedCollection>>;
+    storefrontGetCategoriesRaw(requestParameters: StorefrontGetCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogRuntimesCategoryPagedCollection>>;
 
     /**
      * Retrieves a list of product categories that appear on the storefront as a flat list. Hidden categories do not appear in the list.
      * Get a list of product categories
      */
-    storefrontGetCategories(requestParameters: CategoriesApiStorefrontGetCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogRuntimesCategoryPagedCollection>;
+    storefrontGetCategories(requestParameters: StorefrontGetCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogRuntimesCategoryPagedCollection>;
 
     /**
      * Retrieves the name and details of a category that appears on the storefront. 
@@ -81,13 +81,13 @@ export interface CategoriesApiInterface {
      * @throws {RequiredError}
      * @memberof CategoriesApiInterface
      */
-    storefrontGetCategoryRaw(requestParameters: CategoriesApiStorefrontGetCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogRuntimesCategory>>;
+    storefrontGetCategoryRaw(requestParameters: StorefrontGetCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogRuntimesCategory>>;
 
     /**
      * Retrieves the name and details of a category that appears on the storefront. 
      * Get a product category
      */
-    storefrontGetCategory(requestParameters: CategoriesApiStorefrontGetCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogRuntimesCategory>;
+    storefrontGetCategory(requestParameters: StorefrontGetCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogRuntimesCategory>;
 
     /**
      * Retrieves the list of product categories that appear on the storefront organized in a hierarchical format. Hidden categories do not appear in the list.
@@ -98,13 +98,13 @@ export interface CategoriesApiInterface {
      * @throws {RequiredError}
      * @memberof CategoriesApiInterface
      */
-    storefrontGetCategoryTreeRaw(requestParameters: CategoriesApiStorefrontGetCategoryTreeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogRuntimesCategoryCollection>>;
+    storefrontGetCategoryTreeRaw(requestParameters: StorefrontGetCategoryTreeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogRuntimesCategoryCollection>>;
 
     /**
      * Retrieves the list of product categories that appear on the storefront organized in a hierarchical format. Hidden categories do not appear in the list.
      * Get a category tree
      */
-    storefrontGetCategoryTree(requestParameters: CategoriesApiStorefrontGetCategoryTreeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogRuntimesCategoryCollection>;
+    storefrontGetCategoryTree(requestParameters: StorefrontGetCategoryTreeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogRuntimesCategoryCollection>;
 
 }
 
@@ -122,7 +122,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      */
 
 
-    async storefrontGetCategoriesRaw(requestParameters: CategoriesApiStorefrontGetCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogRuntimesCategoryPagedCollection>> {
+    async storefrontGetCategoriesRaw(requestParameters: StorefrontGetCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogRuntimesCategoryPagedCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.filter !== undefined) {
@@ -171,7 +171,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      * Retrieves a list of product categories that appear on the storefront as a flat list. Hidden categories do not appear in the list.
      * Get a list of product categories
      */
-    async storefrontGetCategories(requestParameters: CategoriesApiStorefrontGetCategoriesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogRuntimesCategoryPagedCollection> {
+    async storefrontGetCategories(requestParameters: StorefrontGetCategoriesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogRuntimesCategoryPagedCollection> {
         const response = await this.storefrontGetCategoriesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -182,7 +182,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      */
 
 
-    async storefrontGetCategoryRaw(requestParameters: CategoriesApiStorefrontGetCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogRuntimesCategory>> {
+    async storefrontGetCategoryRaw(requestParameters: StorefrontGetCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogRuntimesCategory>> {
         if (requestParameters.categoryId === null || requestParameters.categoryId === undefined) {
             throw new runtime.RequiredError('categoryId','Required parameter requestParameters.categoryId was null or undefined when calling storefrontGetCategory.');
         }
@@ -223,7 +223,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      * Retrieves the name and details of a category that appears on the storefront. 
      * Get a product category
      */
-    async storefrontGetCategory(requestParameters: CategoriesApiStorefrontGetCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogRuntimesCategory> {
+    async storefrontGetCategory(requestParameters: StorefrontGetCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogRuntimesCategory> {
         const response = await this.storefrontGetCategoryRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -234,7 +234,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      */
 
 
-    async storefrontGetCategoryTreeRaw(requestParameters: CategoriesApiStorefrontGetCategoryTreeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogRuntimesCategoryCollection>> {
+    async storefrontGetCategoryTreeRaw(requestParameters: StorefrontGetCategoryTreeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogRuntimesCategoryCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.includeAttributes !== undefined) {
@@ -267,7 +267,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      * Retrieves the list of product categories that appear on the storefront organized in a hierarchical format. Hidden categories do not appear in the list.
      * Get a category tree
      */
-    async storefrontGetCategoryTree(requestParameters: CategoriesApiStorefrontGetCategoryTreeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogRuntimesCategoryCollection> {
+    async storefrontGetCategoryTree(requestParameters: StorefrontGetCategoryTreeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogRuntimesCategoryCollection> {
         const response = await this.storefrontGetCategoryTreeRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -19,23 +19,23 @@ import type {
   Suggester,
 } from '../models';
 
-export interface SuggestDefinitionApiDownLoadSuggestRequest {
+export interface DownLoadSuggestRequest {
     language: string;
     responseFields?: string;
 }
 
-export interface SuggestDefinitionApiGetSuggestSettingsRequest {
+export interface GetSuggestSettingsRequest {
     language: string;
     responseFields?: string;
 }
 
-export interface SuggestDefinitionApiUpdateSuggestSettingsRequest {
+export interface UpdateSuggestSettingsRequest {
     language: string;
     responseFields?: string;
     suggester?: Suggester;
 }
 
-export interface SuggestDefinitionApiUploadSuggestRequest {
+export interface UploadSuggestRequest {
     language: string;
     responseFields?: string;
 }
@@ -56,13 +56,13 @@ export interface SuggestDefinitionApiInterface {
      * @throws {RequiredError}
      * @memberof SuggestDefinitionApiInterface
      */
-    downLoadSuggestRaw(requestParameters: SuggestDefinitionApiDownLoadSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    downLoadSuggestRaw(requestParameters: DownLoadSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Downloads the suggest file for the site
      * Downloads the suggest file for the site
      */
-    downLoadSuggest(requestParameters: SuggestDefinitionApiDownLoadSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    downLoadSuggest(requestParameters: DownLoadSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Gets the suggester settings for the site
@@ -73,13 +73,13 @@ export interface SuggestDefinitionApiInterface {
      * @throws {RequiredError}
      * @memberof SuggestDefinitionApiInterface
      */
-    getSuggestSettingsRaw(requestParameters: SuggestDefinitionApiGetSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Suggester>>;
+    getSuggestSettingsRaw(requestParameters: GetSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Suggester>>;
 
     /**
      * Gets the suggester settings for the site
      * Gets the suggester settings for the site
      */
-    getSuggestSettings(requestParameters: SuggestDefinitionApiGetSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Suggester>;
+    getSuggestSettings(requestParameters: GetSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Suggester>;
 
     /**
      * Updates the suggester settings for the site
@@ -91,13 +91,13 @@ export interface SuggestDefinitionApiInterface {
      * @throws {RequiredError}
      * @memberof SuggestDefinitionApiInterface
      */
-    updateSuggestSettingsRaw(requestParameters: SuggestDefinitionApiUpdateSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Suggester>>;
+    updateSuggestSettingsRaw(requestParameters: UpdateSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Suggester>>;
 
     /**
      * Updates the suggester settings for the site
      * Updates the suggester settings for the site
      */
-    updateSuggestSettings(requestParameters: SuggestDefinitionApiUpdateSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Suggester>;
+    updateSuggestSettings(requestParameters: UpdateSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Suggester>;
 
     /**
      * Uploads a suggest file for the site in tab seperated format)
@@ -108,13 +108,13 @@ export interface SuggestDefinitionApiInterface {
      * @throws {RequiredError}
      * @memberof SuggestDefinitionApiInterface
      */
-    uploadSuggestRaw(requestParameters: SuggestDefinitionApiUploadSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
+    uploadSuggestRaw(requestParameters: UploadSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
 
     /**
      * Uploads a suggest file for the site in tab seperated format)
      * Uploads a suggest file for the site in tab seperated format)
      */
-    uploadSuggest(requestParameters: SuggestDefinitionApiUploadSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
+    uploadSuggest(requestParameters: UploadSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
 
 }
 
@@ -132,7 +132,7 @@ export class SuggestDefinitionApi extends runtime.BaseAPI implements SuggestDefi
      */
 
 
-    async downLoadSuggestRaw(requestParameters: SuggestDefinitionApiDownLoadSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async downLoadSuggestRaw(requestParameters: DownLoadSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.language === null || requestParameters.language === undefined) {
             throw new runtime.RequiredError('language','Required parameter requestParameters.language was null or undefined when calling downLoadSuggest.');
         }
@@ -165,7 +165,7 @@ export class SuggestDefinitionApi extends runtime.BaseAPI implements SuggestDefi
      * Downloads the suggest file for the site
      * Downloads the suggest file for the site
      */
-    async downLoadSuggest(requestParameters: SuggestDefinitionApiDownLoadSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async downLoadSuggest(requestParameters: DownLoadSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.downLoadSuggestRaw(requestParameters, initOverrides);
     }
 
@@ -175,7 +175,7 @@ export class SuggestDefinitionApi extends runtime.BaseAPI implements SuggestDefi
      */
 
 
-    async getSuggestSettingsRaw(requestParameters: SuggestDefinitionApiGetSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Suggester>> {
+    async getSuggestSettingsRaw(requestParameters: GetSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Suggester>> {
         if (requestParameters.language === null || requestParameters.language === undefined) {
             throw new runtime.RequiredError('language','Required parameter requestParameters.language was null or undefined when calling getSuggestSettings.');
         }
@@ -208,7 +208,7 @@ export class SuggestDefinitionApi extends runtime.BaseAPI implements SuggestDefi
      * Gets the suggester settings for the site
      * Gets the suggester settings for the site
      */
-    async getSuggestSettings(requestParameters: SuggestDefinitionApiGetSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Suggester> {
+    async getSuggestSettings(requestParameters: GetSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Suggester> {
         const response = await this.getSuggestSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -219,7 +219,7 @@ export class SuggestDefinitionApi extends runtime.BaseAPI implements SuggestDefi
      */
 
 
-    async updateSuggestSettingsRaw(requestParameters: SuggestDefinitionApiUpdateSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Suggester>> {
+    async updateSuggestSettingsRaw(requestParameters: UpdateSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Suggester>> {
         if (requestParameters.language === null || requestParameters.language === undefined) {
             throw new runtime.RequiredError('language','Required parameter requestParameters.language was null or undefined when calling updateSuggestSettings.');
         }
@@ -255,7 +255,7 @@ export class SuggestDefinitionApi extends runtime.BaseAPI implements SuggestDefi
      * Updates the suggester settings for the site
      * Updates the suggester settings for the site
      */
-    async updateSuggestSettings(requestParameters: SuggestDefinitionApiUpdateSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Suggester> {
+    async updateSuggestSettings(requestParameters: UpdateSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Suggester> {
         const response = await this.updateSuggestSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -266,7 +266,7 @@ export class SuggestDefinitionApi extends runtime.BaseAPI implements SuggestDefi
      */
 
 
-    async uploadSuggestRaw(requestParameters: SuggestDefinitionApiUploadSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+    async uploadSuggestRaw(requestParameters: UploadSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
         if (requestParameters.language === null || requestParameters.language === undefined) {
             throw new runtime.RequiredError('language','Required parameter requestParameters.language was null or undefined when calling uploadSuggest.');
         }
@@ -299,7 +299,7 @@ export class SuggestDefinitionApi extends runtime.BaseAPI implements SuggestDefi
      * Uploads a suggest file for the site in tab seperated format)
      * Uploads a suggest file for the site in tab seperated format)
      */
-    async uploadSuggest(requestParameters: SuggestDefinitionApiUploadSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+    async uploadSuggest(requestParameters: UploadSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
         const response = await this.uploadSuggestRaw(requestParameters, initOverrides);
         return await response.value();
     }

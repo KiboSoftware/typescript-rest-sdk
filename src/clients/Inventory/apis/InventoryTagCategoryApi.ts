@@ -21,12 +21,12 @@ import type {
   TagCategory,
 } from '../models';
 
-export interface InventoryTagcategoryApiDeleteTagCategoryRequest {
+export interface DeleteTagCategoryRequest {
     xVolTenant: number;
     tagCategoryName: string;
 }
 
-export interface InventoryTagcategoryApiUpdateTagCategoryRequest {
+export interface UpdateTagCategoryRequest {
     xVolTenant: number;
     tagCategoryName: string;
     tagCategory: TagCategory;
@@ -49,13 +49,13 @@ export interface InventoryTagcategoryApiInterface {
      * @throws {RequiredError}
      * @memberof InventoryTagcategoryApiInterface
      */
-    deleteTagCategoryRaw(requestParameters: InventoryTagcategoryApiDeleteTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>>;
+    deleteTagCategoryRaw(requestParameters: DeleteTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>>;
 
     /**
      * Delete a Tag category
      * Delete Tag Category
      */
-    deleteTagCategory(requestParameters: InventoryTagcategoryApiDeleteTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedCountResponse>;
+    deleteTagCategory(requestParameters: DeleteTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedCountResponse>;
 
     /**
      * Update the designated tag category
@@ -68,13 +68,13 @@ export interface InventoryTagcategoryApiInterface {
      * @throws {RequiredError}
      * @memberof InventoryTagcategoryApiInterface
      */
-    updateTagCategoryRaw(requestParameters: InventoryTagcategoryApiUpdateTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagCategory>>;
+    updateTagCategoryRaw(requestParameters: UpdateTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagCategory>>;
 
     /**
      * Update the designated tag category
      * Update Tag Category
      */
-    updateTagCategory(requestParameters: InventoryTagcategoryApiUpdateTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagCategory>;
+    updateTagCategory(requestParameters: UpdateTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagCategory>;
 
 }
 
@@ -92,7 +92,7 @@ export class InventoryTagcategoryApi extends runtime.BaseAPI implements Inventor
      */
 
 
-    async deleteTagCategoryRaw(requestParameters: InventoryTagcategoryApiDeleteTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>> {
+    async deleteTagCategoryRaw(requestParameters: DeleteTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteTagCategory.');
         }
@@ -133,7 +133,7 @@ export class InventoryTagcategoryApi extends runtime.BaseAPI implements Inventor
      * Delete a Tag category
      * Delete Tag Category
      */
-    async deleteTagCategory(requestParameters: InventoryTagcategoryApiDeleteTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedCountResponse> {
+    async deleteTagCategory(requestParameters: DeleteTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedCountResponse> {
         const response = await this.deleteTagCategoryRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -144,7 +144,7 @@ export class InventoryTagcategoryApi extends runtime.BaseAPI implements Inventor
      */
 
 
-    async updateTagCategoryRaw(requestParameters: InventoryTagcategoryApiUpdateTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagCategory>> {
+    async updateTagCategoryRaw(requestParameters: UpdateTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagCategory>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateTagCategory.');
         }
@@ -196,7 +196,7 @@ export class InventoryTagcategoryApi extends runtime.BaseAPI implements Inventor
      * Update the designated tag category
      * Update Tag Category
      */
-    async updateTagCategory(requestParameters: InventoryTagcategoryApiUpdateTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagCategory> {
+    async updateTagCategory(requestParameters: UpdateTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagCategory> {
         const response = await this.updateTagCategoryRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -20,27 +20,27 @@ import type {
   DocumentListCollection,
 } from '../models';
 
-export interface DocumentListApiCreateDocumentListRequest {
+export interface CreateDocumentListRequest {
     responseFields?: string;
     documentList?: DocumentList;
 }
 
-export interface DocumentListApiDeleteDocumentListRequest {
+export interface DeleteDocumentListRequest {
     documentListName: string;
 }
 
-export interface DocumentListApiGetDocumentListRequest {
+export interface GetDocumentListRequest {
     documentListName: string;
     responseFields?: string;
 }
 
-export interface DocumentListApiGetDocumentListsRequest {
+export interface GetDocumentListsRequest {
     pageSize?: number;
     startIndex?: number;
     responseFields?: string;
 }
 
-export interface DocumentListApiUpdateDocumentListRequest {
+export interface UpdateDocumentListRequest {
     documentListName: string;
     responseFields?: string;
     documentList?: DocumentList;
@@ -62,13 +62,13 @@ export interface DocumentListApiInterface {
      * @throws {RequiredError}
      * @memberof DocumentListApiInterface
      */
-    createDocumentListRaw(requestParameters: DocumentListApiCreateDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentList>>;
+    createDocumentListRaw(requestParameters: CreateDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentList>>;
 
     /**
      * Create DocumentList
      * Create DocumentList
      */
-    createDocumentList(requestParameters: DocumentListApiCreateDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentList>;
+    createDocumentList(requestParameters: CreateDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentList>;
 
     /**
      * Delete Document List
@@ -78,13 +78,13 @@ export interface DocumentListApiInterface {
      * @throws {RequiredError}
      * @memberof DocumentListApiInterface
      */
-    deleteDocumentListRaw(requestParameters: DocumentListApiDeleteDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteDocumentListRaw(requestParameters: DeleteDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Delete Document List
      * Delete Document List
      */
-    deleteDocumentList(requestParameters: DocumentListApiDeleteDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteDocumentList(requestParameters: DeleteDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Get Document List
@@ -95,13 +95,13 @@ export interface DocumentListApiInterface {
      * @throws {RequiredError}
      * @memberof DocumentListApiInterface
      */
-    getDocumentListRaw(requestParameters: DocumentListApiGetDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentList>>;
+    getDocumentListRaw(requestParameters: GetDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentList>>;
 
     /**
      * Get Document List
      * Get Document List
      */
-    getDocumentList(requestParameters: DocumentListApiGetDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentList>;
+    getDocumentList(requestParameters: GetDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentList>;
 
     /**
      * Retrieve a paged documentListName of all document lists
@@ -113,13 +113,13 @@ export interface DocumentListApiInterface {
      * @throws {RequiredError}
      * @memberof DocumentListApiInterface
      */
-    getDocumentListsRaw(requestParameters: DocumentListApiGetDocumentListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentListCollection>>;
+    getDocumentListsRaw(requestParameters: GetDocumentListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentListCollection>>;
 
     /**
      * Retrieve a paged documentListName of all document lists
      * Get Document Lists
      */
-    getDocumentLists(requestParameters: DocumentListApiGetDocumentListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentListCollection>;
+    getDocumentLists(requestParameters: GetDocumentListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentListCollection>;
 
     /**
      * Update Document List
@@ -131,13 +131,13 @@ export interface DocumentListApiInterface {
      * @throws {RequiredError}
      * @memberof DocumentListApiInterface
      */
-    updateDocumentListRaw(requestParameters: DocumentListApiUpdateDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentList>>;
+    updateDocumentListRaw(requestParameters: UpdateDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentList>>;
 
     /**
      * Update Document List
      * Update Document List
      */
-    updateDocumentList(requestParameters: DocumentListApiUpdateDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentList>;
+    updateDocumentList(requestParameters: UpdateDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentList>;
 
 }
 
@@ -155,7 +155,7 @@ export class DocumentListApi extends runtime.BaseAPI implements DocumentListApiI
      */
 
 
-    async createDocumentListRaw(requestParameters: DocumentListApiCreateDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentList>> {
+    async createDocumentListRaw(requestParameters: CreateDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentList>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -164,7 +164,7 @@ export class DocumentListApi extends runtime.BaseAPI implements DocumentListApiI
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        headerParameters['Content-Type'] = 'text/plain';
 
 
 
@@ -187,7 +187,7 @@ export class DocumentListApi extends runtime.BaseAPI implements DocumentListApiI
      * Create DocumentList
      * Create DocumentList
      */
-    async createDocumentList(requestParameters: DocumentListApiCreateDocumentListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentList> {
+    async createDocumentList(requestParameters: CreateDocumentListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentList> {
         const response = await this.createDocumentListRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -198,7 +198,7 @@ export class DocumentListApi extends runtime.BaseAPI implements DocumentListApiI
      */
 
 
-    async deleteDocumentListRaw(requestParameters: DocumentListApiDeleteDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteDocumentListRaw(requestParameters: DeleteDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.documentListName === null || requestParameters.documentListName === undefined) {
             throw new runtime.RequiredError('documentListName','Required parameter requestParameters.documentListName was null or undefined when calling deleteDocumentList.');
         }
@@ -227,7 +227,7 @@ export class DocumentListApi extends runtime.BaseAPI implements DocumentListApiI
      * Delete Document List
      * Delete Document List
      */
-    async deleteDocumentList(requestParameters: DocumentListApiDeleteDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteDocumentList(requestParameters: DeleteDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteDocumentListRaw(requestParameters, initOverrides);
     }
 
@@ -237,7 +237,7 @@ export class DocumentListApi extends runtime.BaseAPI implements DocumentListApiI
      */
 
 
-    async getDocumentListRaw(requestParameters: DocumentListApiGetDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentList>> {
+    async getDocumentListRaw(requestParameters: GetDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentList>> {
         if (requestParameters.documentListName === null || requestParameters.documentListName === undefined) {
             throw new runtime.RequiredError('documentListName','Required parameter requestParameters.documentListName was null or undefined when calling getDocumentList.');
         }
@@ -270,7 +270,7 @@ export class DocumentListApi extends runtime.BaseAPI implements DocumentListApiI
      * Get Document List
      * Get Document List
      */
-    async getDocumentList(requestParameters: DocumentListApiGetDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentList> {
+    async getDocumentList(requestParameters: GetDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentList> {
         const response = await this.getDocumentListRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -281,7 +281,7 @@ export class DocumentListApi extends runtime.BaseAPI implements DocumentListApiI
      */
 
 
-    async getDocumentListsRaw(requestParameters: DocumentListApiGetDocumentListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentListCollection>> {
+    async getDocumentListsRaw(requestParameters: GetDocumentListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentListCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.pageSize !== undefined) {
@@ -318,7 +318,7 @@ export class DocumentListApi extends runtime.BaseAPI implements DocumentListApiI
      * Retrieve a paged documentListName of all document lists
      * Get Document Lists
      */
-    async getDocumentLists(requestParameters: DocumentListApiGetDocumentListsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentListCollection> {
+    async getDocumentLists(requestParameters: GetDocumentListsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentListCollection> {
         const response = await this.getDocumentListsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -329,7 +329,7 @@ export class DocumentListApi extends runtime.BaseAPI implements DocumentListApiI
      */
 
 
-    async updateDocumentListRaw(requestParameters: DocumentListApiUpdateDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentList>> {
+    async updateDocumentListRaw(requestParameters: UpdateDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentList>> {
         if (requestParameters.documentListName === null || requestParameters.documentListName === undefined) {
             throw new runtime.RequiredError('documentListName','Required parameter requestParameters.documentListName was null or undefined when calling updateDocumentList.');
         }
@@ -342,7 +342,7 @@ export class DocumentListApi extends runtime.BaseAPI implements DocumentListApiI
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        headerParameters['Content-Type'] = 'text/plain';
 
 
 
@@ -365,7 +365,7 @@ export class DocumentListApi extends runtime.BaseAPI implements DocumentListApiI
      * Update Document List
      * Update Document List
      */
-    async updateDocumentList(requestParameters: DocumentListApiUpdateDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentList> {
+    async updateDocumentList(requestParameters: UpdateDocumentListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentList> {
         const response = await this.updateDocumentListRaw(requestParameters, initOverrides);
         return await response.value();
     }

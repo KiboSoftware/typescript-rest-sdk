@@ -20,7 +20,7 @@ import type {
   ThrirdPartyTaxableOrder,
 } from '../models';
 
-export interface TaxCapabilityApiGetTaxRequest {
+export interface GetTaxRequest {
     responseFields?: string;
     thrirdPartyTaxableOrder?: ThrirdPartyTaxableOrder;
 }
@@ -41,13 +41,13 @@ export interface TaxCapabilityApiInterface {
      * @throws {RequiredError}
      * @memberof TaxCapabilityApiInterface
      */
-    getTaxRaw(requestParameters: TaxCapabilityApiGetTaxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ThrirdPartyOrderTaxContext>>;
+    getTaxRaw(requestParameters: GetTaxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ThrirdPartyOrderTaxContext>>;
 
     /**
      * Get Tax
      * Get Tax
      */
-    getTax(requestParameters: TaxCapabilityApiGetTaxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ThrirdPartyOrderTaxContext>;
+    getTax(requestParameters: GetTaxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ThrirdPartyOrderTaxContext>;
 
 }
 
@@ -65,7 +65,7 @@ export class TaxCapabilityApi extends runtime.BaseAPI implements TaxCapabilityAp
      */
 
 
-    async getTaxRaw(requestParameters: TaxCapabilityApiGetTaxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ThrirdPartyOrderTaxContext>> {
+    async getTaxRaw(requestParameters: GetTaxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ThrirdPartyOrderTaxContext>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -97,7 +97,7 @@ export class TaxCapabilityApi extends runtime.BaseAPI implements TaxCapabilityAp
      * Get Tax
      * Get Tax
      */
-    async getTax(requestParameters: TaxCapabilityApiGetTaxRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ThrirdPartyOrderTaxContext> {
+    async getTax(requestParameters: GetTaxRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ThrirdPartyOrderTaxContext> {
         const response = await this.getTaxRaw(requestParameters, initOverrides);
         return await response.value();
     }

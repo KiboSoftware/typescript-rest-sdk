@@ -20,21 +20,21 @@ import type {
   TargetRuleCollection,
 } from '../models';
 
-export interface TargetRulesApiCreateTargetRuleRequest {
+export interface CreateTargetRuleRequest {
     responseFields?: string;
     targetRule?: TargetRule;
 }
 
-export interface TargetRulesApiDeleteTargetRuleRequest {
+export interface DeleteTargetRuleRequest {
     code: string;
 }
 
-export interface TargetRulesApiGetTargetRuleRequest {
+export interface GetTargetRuleRequest {
     code: string;
     responseFields?: string;
 }
 
-export interface TargetRulesApiGetTargetRulesRequest {
+export interface GetTargetRulesRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -42,13 +42,13 @@ export interface TargetRulesApiGetTargetRulesRequest {
     responseFields?: string;
 }
 
-export interface TargetRulesApiUpdateTargetRuleRequest {
+export interface UpdateTargetRuleRequest {
     code: string;
     responseFields?: string;
     targetRule?: TargetRule;
 }
 
-export interface TargetRulesApiValidateTargetRuleRequest {
+export interface ValidateTargetRuleRequest {
     responseFields?: string;
     targetRule?: TargetRule;
 }
@@ -69,13 +69,13 @@ export interface TargetRulesApiInterface {
      * @throws {RequiredError}
      * @memberof TargetRulesApiInterface
      */
-    createTargetRuleRaw(requestParameters: TargetRulesApiCreateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRule>>;
+    createTargetRuleRaw(requestParameters: CreateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRule>>;
 
     /**
      * Create Target Rule
      * Create Target Rule
      */
-    createTargetRule(requestParameters: TargetRulesApiCreateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRule>;
+    createTargetRule(requestParameters: CreateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRule>;
 
     /**
      * Delete Target Rule
@@ -85,13 +85,13 @@ export interface TargetRulesApiInterface {
      * @throws {RequiredError}
      * @memberof TargetRulesApiInterface
      */
-    deleteTargetRuleRaw(requestParameters: TargetRulesApiDeleteTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteTargetRuleRaw(requestParameters: DeleteTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Delete Target Rule
      * Delete Target Rule
      */
-    deleteTargetRule(requestParameters: TargetRulesApiDeleteTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteTargetRule(requestParameters: DeleteTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Get Target Rule
@@ -102,13 +102,13 @@ export interface TargetRulesApiInterface {
      * @throws {RequiredError}
      * @memberof TargetRulesApiInterface
      */
-    getTargetRuleRaw(requestParameters: TargetRulesApiGetTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRule>>;
+    getTargetRuleRaw(requestParameters: GetTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRule>>;
 
     /**
      * Get Target Rule
      * Get Target Rule
      */
-    getTargetRule(requestParameters: TargetRulesApiGetTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRule>;
+    getTargetRule(requestParameters: GetTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRule>;
 
     /**
      * 
@@ -122,13 +122,13 @@ export interface TargetRulesApiInterface {
      * @throws {RequiredError}
      * @memberof TargetRulesApiInterface
      */
-    getTargetRulesRaw(requestParameters: TargetRulesApiGetTargetRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRuleCollection>>;
+    getTargetRulesRaw(requestParameters: GetTargetRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRuleCollection>>;
 
     /**
      * 
      * Retrieves a list of TargetRules according to any specified filter criteria and sort options
      */
-    getTargetRules(requestParameters: TargetRulesApiGetTargetRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRuleCollection>;
+    getTargetRules(requestParameters: GetTargetRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRuleCollection>;
 
     /**
      * Update Target Rule
@@ -140,13 +140,13 @@ export interface TargetRulesApiInterface {
      * @throws {RequiredError}
      * @memberof TargetRulesApiInterface
      */
-    updateTargetRuleRaw(requestParameters: TargetRulesApiUpdateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRule>>;
+    updateTargetRuleRaw(requestParameters: UpdateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRule>>;
 
     /**
      * Update Target Rule
      * Update Target Rule
      */
-    updateTargetRule(requestParameters: TargetRulesApiUpdateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRule>;
+    updateTargetRule(requestParameters: UpdateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRule>;
 
     /**
      * Validate Target Rule
@@ -157,13 +157,13 @@ export interface TargetRulesApiInterface {
      * @throws {RequiredError}
      * @memberof TargetRulesApiInterface
      */
-    validateTargetRuleRaw(requestParameters: TargetRulesApiValidateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    validateTargetRuleRaw(requestParameters: ValidateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Validate Target Rule
      * Validate Target Rule
      */
-    validateTargetRule(requestParameters: TargetRulesApiValidateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    validateTargetRule(requestParameters: ValidateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
 }
 
@@ -181,7 +181,7 @@ export class TargetRulesApi extends runtime.BaseAPI implements TargetRulesApiInt
      */
 
 
-    async createTargetRuleRaw(requestParameters: TargetRulesApiCreateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRule>> {
+    async createTargetRuleRaw(requestParameters: CreateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRule>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -213,7 +213,7 @@ export class TargetRulesApi extends runtime.BaseAPI implements TargetRulesApiInt
      * Create Target Rule
      * Create Target Rule
      */
-    async createTargetRule(requestParameters: TargetRulesApiCreateTargetRuleRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRule> {
+    async createTargetRule(requestParameters: CreateTargetRuleRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRule> {
         const response = await this.createTargetRuleRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -224,7 +224,7 @@ export class TargetRulesApi extends runtime.BaseAPI implements TargetRulesApiInt
      */
 
 
-    async deleteTargetRuleRaw(requestParameters: TargetRulesApiDeleteTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteTargetRuleRaw(requestParameters: DeleteTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling deleteTargetRule.');
         }
@@ -253,7 +253,7 @@ export class TargetRulesApi extends runtime.BaseAPI implements TargetRulesApiInt
      * Delete Target Rule
      * Delete Target Rule
      */
-    async deleteTargetRule(requestParameters: TargetRulesApiDeleteTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteTargetRule(requestParameters: DeleteTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteTargetRuleRaw(requestParameters, initOverrides);
     }
 
@@ -263,7 +263,7 @@ export class TargetRulesApi extends runtime.BaseAPI implements TargetRulesApiInt
      */
 
 
-    async getTargetRuleRaw(requestParameters: TargetRulesApiGetTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRule>> {
+    async getTargetRuleRaw(requestParameters: GetTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRule>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling getTargetRule.');
         }
@@ -296,7 +296,7 @@ export class TargetRulesApi extends runtime.BaseAPI implements TargetRulesApiInt
      * Get Target Rule
      * Get Target Rule
      */
-    async getTargetRule(requestParameters: TargetRulesApiGetTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRule> {
+    async getTargetRule(requestParameters: GetTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRule> {
         const response = await this.getTargetRuleRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -307,7 +307,7 @@ export class TargetRulesApi extends runtime.BaseAPI implements TargetRulesApiInt
      */
 
 
-    async getTargetRulesRaw(requestParameters: TargetRulesApiGetTargetRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRuleCollection>> {
+    async getTargetRulesRaw(requestParameters: GetTargetRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRuleCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -352,7 +352,7 @@ export class TargetRulesApi extends runtime.BaseAPI implements TargetRulesApiInt
      * 
      * Retrieves a list of TargetRules according to any specified filter criteria and sort options
      */
-    async getTargetRules(requestParameters: TargetRulesApiGetTargetRulesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRuleCollection> {
+    async getTargetRules(requestParameters: GetTargetRulesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRuleCollection> {
         const response = await this.getTargetRulesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -363,7 +363,7 @@ export class TargetRulesApi extends runtime.BaseAPI implements TargetRulesApiInt
      */
 
 
-    async updateTargetRuleRaw(requestParameters: TargetRulesApiUpdateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRule>> {
+    async updateTargetRuleRaw(requestParameters: UpdateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRule>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling updateTargetRule.');
         }
@@ -399,7 +399,7 @@ export class TargetRulesApi extends runtime.BaseAPI implements TargetRulesApiInt
      * Update Target Rule
      * Update Target Rule
      */
-    async updateTargetRule(requestParameters: TargetRulesApiUpdateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRule> {
+    async updateTargetRule(requestParameters: UpdateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRule> {
         const response = await this.updateTargetRuleRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -410,7 +410,7 @@ export class TargetRulesApi extends runtime.BaseAPI implements TargetRulesApiInt
      */
 
 
-    async validateTargetRuleRaw(requestParameters: TargetRulesApiValidateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async validateTargetRuleRaw(requestParameters: ValidateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -442,7 +442,7 @@ export class TargetRulesApi extends runtime.BaseAPI implements TargetRulesApiInt
      * Validate Target Rule
      * Validate Target Rule
      */
-    async validateTargetRule(requestParameters: TargetRulesApiValidateTargetRuleRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async validateTargetRule(requestParameters: ValidateTargetRuleRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.validateTargetRuleRaw(requestParameters, initOverrides);
     }
 

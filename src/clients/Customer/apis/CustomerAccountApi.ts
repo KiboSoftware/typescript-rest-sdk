@@ -44,65 +44,65 @@ import type {
   Transaction,
 } from '../models';
 
-export interface CustomerAccountApiAddAccountRequest {
+export interface AddAccountRequest {
     responseFields?: string;
     customerAccount?: CustomerAccount;
 }
 
-export interface CustomerAccountApiAddAccountAndLoginRequest {
+export interface AddAccountAndLoginRequest {
     responseFields?: string;
     customerAccountAndAuthInfo?: CustomerAccountAndAuthInfo;
 }
 
-export interface CustomerAccountApiAddAccountAttributeRequest {
+export interface AddAccountAttributeRequest {
     accountId: number;
     userId?: string;
     responseFields?: string;
     customerAttribute?: CustomerAttribute;
 }
 
-export interface CustomerAccountApiAddAccountCardRequest {
+export interface AddAccountCardRequest {
     accountId: number;
     responseFields?: string;
     card?: Card;
 }
 
-export interface CustomerAccountApiAddAccountContactRequest {
+export interface AddAccountContactRequest {
     accountId: number;
     responseFields?: string;
     customerContact?: CustomerContact;
 }
 
-export interface CustomerAccountApiAddAccountContactListRequest {
+export interface AddAccountContactListRequest {
     accountId: number;
     responseFields?: string;
     customerContact?: Array<CustomerContact>;
 }
 
-export interface CustomerAccountApiAddAccountNoteRequest {
+export interface AddAccountNoteRequest {
     accountId: number;
     responseFields?: string;
     customerNote?: CustomerNote;
 }
 
-export interface CustomerAccountApiAddAccountsRequest {
+export interface AddAccountsRequest {
     responseFields?: string;
     customerAccountAndAuthInfo?: Array<CustomerAccountAndAuthInfo>;
 }
 
-export interface CustomerAccountApiAddLoginToExistingCustomerRequest {
+export interface AddLoginToExistingCustomerRequest {
     accountId: number;
     responseFields?: string;
     customerLoginInfo?: CustomerLoginInfo;
 }
 
-export interface CustomerAccountApiAddTransactionRequest {
+export interface AddTransactionRequest {
     accountId: number;
     responseFields?: string;
     transaction?: Transaction;
 }
 
-export interface CustomerAccountApiChangePasswordRequest {
+export interface ChangePasswordRequest {
     accountId: number;
     unlockAccount?: boolean;
     userId?: string;
@@ -110,63 +110,63 @@ export interface CustomerAccountApiChangePasswordRequest {
     customerPasswordInfo?: CustomerPasswordInfo;
 }
 
-export interface CustomerAccountApiChangePasswordsRequest {
+export interface ChangePasswordsRequest {
     responseFields?: string;
     accountPasswordInfoCollection?: AccountPasswordInfoCollection;
 }
 
-export interface CustomerAccountApiCreateCustomerPurchaseOrderAccountRequest {
+export interface CreateCustomerPurchaseOrderAccountRequest {
     accountId: number;
     responseFields?: string;
     customerPurchaseOrderAccount?: CustomerPurchaseOrderAccount;
 }
 
-export interface CustomerAccountApiCreatePurchaseOrderTransactionRequest {
+export interface CreatePurchaseOrderTransactionRequest {
     accountId: number;
     responseFields?: string;
     purchaseOrderTransaction?: PurchaseOrderTransaction;
 }
 
-export interface CustomerAccountApiDeleteAccountRequest {
+export interface DeleteAccountRequest {
     accountId: number;
 }
 
-export interface CustomerAccountApiDeleteAccountAttributeRequest {
+export interface DeleteAccountAttributeRequest {
     accountId: number;
     attributeFQN: string;
     userId?: string;
 }
 
-export interface CustomerAccountApiDeleteAccountCardRequest {
+export interface DeleteAccountCardRequest {
     accountId: number;
     cardId: string;
 }
 
-export interface CustomerAccountApiDeleteAccountContactRequest {
+export interface DeleteAccountContactRequest {
     accountId: number;
     contactId: number;
 }
 
-export interface CustomerAccountApiDeleteAccountNoteRequest {
+export interface DeleteAccountNoteRequest {
     accountId: number;
     noteId: number;
 }
 
-export interface CustomerAccountApiGetAccountRequest {
+export interface GetAccountRequest {
     accountId: number;
     responseGroups?: string;
     userId?: string;
     responseFields?: string;
 }
 
-export interface CustomerAccountApiGetAccountAttributeRequest {
+export interface GetAccountAttributeRequest {
     accountId: number;
     attributeFQN: string;
     userId?: string;
     responseFields?: string;
 }
 
-export interface CustomerAccountApiGetAccountAttributesRequest {
+export interface GetAccountAttributesRequest {
     accountId: number;
     startIndex?: number;
     pageSize?: number;
@@ -176,7 +176,7 @@ export interface CustomerAccountApiGetAccountAttributesRequest {
     responseFields?: string;
 }
 
-export interface CustomerAccountApiGetAccountAuditLogRequest {
+export interface GetAccountAuditLogRequest {
     accountId: number;
     startIndex?: number;
     pageSize?: number;
@@ -185,25 +185,25 @@ export interface CustomerAccountApiGetAccountAuditLogRequest {
     responseFields?: string;
 }
 
-export interface CustomerAccountApiGetAccountCardRequest {
+export interface GetAccountCardRequest {
     accountId: number;
     cardId: string;
     responseFields?: string;
 }
 
-export interface CustomerAccountApiGetAccountCardsRequest {
+export interface GetAccountCardsRequest {
     accountId: number;
     responseFields?: string;
 }
 
-export interface CustomerAccountApiGetAccountContactRequest {
+export interface GetAccountContactRequest {
     accountId: number;
     contactId: number;
     userId?: string;
     responseFields?: string;
 }
 
-export interface CustomerAccountApiGetAccountContactsRequest {
+export interface GetAccountContactsRequest {
     accountId: number;
     startIndex?: number;
     pageSize?: number;
@@ -213,13 +213,13 @@ export interface CustomerAccountApiGetAccountContactsRequest {
     responseFields?: string;
 }
 
-export interface CustomerAccountApiGetAccountNoteRequest {
+export interface GetAccountNoteRequest {
     accountId: number;
     noteId: number;
     responseFields?: string;
 }
 
-export interface CustomerAccountApiGetAccountNotesRequest {
+export interface GetAccountNotesRequest {
     accountId: number;
     startIndex?: number;
     pageSize?: number;
@@ -228,7 +228,7 @@ export interface CustomerAccountApiGetAccountNotesRequest {
     responseFields?: string;
 }
 
-export interface CustomerAccountApiGetAccountSegmentsRequest {
+export interface GetAccountSegmentsRequest {
     accountId: number;
     startIndex?: number;
     pageSize?: number;
@@ -237,7 +237,7 @@ export interface CustomerAccountApiGetAccountSegmentsRequest {
     responseFields?: string;
 }
 
-export interface CustomerAccountApiGetAccountsRequest {
+export interface GetAccountsRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -250,17 +250,17 @@ export interface CustomerAccountApiGetAccountsRequest {
     responseFields?: string;
 }
 
-export interface CustomerAccountApiGetCurrentAccountRequest {
+export interface GetCurrentAccountRequest {
     responseGroups?: string;
     responseFields?: string;
 }
 
-export interface CustomerAccountApiGetCustomerPurchaseOrderAccountRequest {
+export interface GetCustomerPurchaseOrderAccountRequest {
     accountId: number;
     responseFields?: string;
 }
 
-export interface CustomerAccountApiGetCustomerPurchaseOrderTransactionsRequest {
+export interface GetCustomerPurchaseOrderTransactionsRequest {
     accountId: number;
     startIndex?: number;
     pageSize?: number;
@@ -269,7 +269,7 @@ export interface CustomerAccountApiGetCustomerPurchaseOrderTransactionsRequest {
     responseFields?: string;
 }
 
-export interface CustomerAccountApiGetCustomersPurchaseOrderAccountsRequest {
+export interface GetCustomersPurchaseOrderAccountsRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -277,65 +277,65 @@ export interface CustomerAccountApiGetCustomersPurchaseOrderAccountsRequest {
     responseFields?: string;
 }
 
-export interface CustomerAccountApiGetLoginStateRequest {
+export interface GetLoginStateRequest {
     accountId: number;
     userId?: string;
     responseFields?: string;
 }
 
-export interface CustomerAccountApiGetLoginStateByEmailAddressRequest {
+export interface GetLoginStateByEmailAddressRequest {
     emailAddress?: string;
     customerSetCode?: string;
     responseFields?: string;
 }
 
-export interface CustomerAccountApiGetLoginStateByUserNameRequest {
+export interface GetLoginStateByUserNameRequest {
     userName?: string;
     customerSetCode?: string;
     responseFields?: string;
 }
 
-export interface CustomerAccountApiGetTransactionsRequest {
+export interface GetTransactionsRequest {
     accountId: number;
     responseFields?: string;
 }
 
-export interface CustomerAccountApiRecomputeCustomerLifetimeValueRequest {
+export interface RecomputeCustomerLifetimeValueRequest {
     accountId: number;
     responseFields?: string;
 }
 
-export interface CustomerAccountApiRemoveTransactionRequest {
+export interface RemoveTransactionRequest {
     accountId: number;
     transactionId: string;
 }
 
-export interface CustomerAccountApiResetPasswordRequest {
+export interface ResetPasswordRequest {
     responseFields?: string;
     customerResetPasswordInfo?: CustomerResetPasswordInfo;
 }
 
-export interface CustomerAccountApiSetLoginLockedRequest {
+export interface SetLoginLockedRequest {
     accountId: number;
     userId?: string;
     responseFields?: string;
     body?: boolean;
 }
 
-export interface CustomerAccountApiSetPasswordChangeRequiredRequest {
+export interface SetPasswordChangeRequiredRequest {
     accountId: number;
     userId?: string;
     responseFields?: string;
     body?: boolean;
 }
 
-export interface CustomerAccountApiUpdateAccountRequest {
+export interface UpdateAccountRequest {
     accountId: number;
     responseFields?: string;
     customerAccount?: CustomerAccount;
 }
 
-export interface CustomerAccountApiUpdateAccountAttributeRequest {
+export interface UpdateAccountAttributeRequest {
     accountId: number;
     attributeFQN: string;
     userId?: string;
@@ -343,14 +343,14 @@ export interface CustomerAccountApiUpdateAccountAttributeRequest {
     customerAttribute?: CustomerAttribute;
 }
 
-export interface CustomerAccountApiUpdateAccountCardRequest {
+export interface UpdateAccountCardRequest {
     accountId: number;
     cardId: string;
     responseFields?: string;
     card?: Card;
 }
 
-export interface CustomerAccountApiUpdateAccountContactRequest {
+export interface UpdateAccountContactRequest {
     accountId: number;
     contactId: number;
     userId?: string;
@@ -358,20 +358,20 @@ export interface CustomerAccountApiUpdateAccountContactRequest {
     customerContact?: CustomerContact;
 }
 
-export interface CustomerAccountApiUpdateAccountNoteRequest {
+export interface UpdateAccountNoteRequest {
     accountId: number;
     noteId: number;
     responseFields?: string;
     customerNote?: CustomerNote;
 }
 
-export interface CustomerAccountApiUpdateCustomerPurchaseOrderAccountRequest {
+export interface UpdateCustomerPurchaseOrderAccountRequest {
     accountId: number;
     responseFields?: string;
     customerPurchaseOrderAccount?: CustomerPurchaseOrderAccount;
 }
 
-export interface CustomerAccountApiUpdateForgottenPasswordRequest {
+export interface UpdateForgottenPasswordRequest {
     responseFields?: string;
     confirmationInfo?: ConfirmationInfo;
 }
@@ -392,13 +392,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    addAccountRaw(requestParameters: CustomerAccountApiAddAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAccount>>;
+    addAccountRaw(requestParameters: AddAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAccount>>;
 
     /**
      * Creates a new customer account.
      * Add Account
      */
-    addAccount(requestParameters: CustomerAccountApiAddAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAccount>;
+    addAccount(requestParameters: AddAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAccount>;
 
     /**
      * Adds a customer to the account.
@@ -409,13 +409,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    addAccountAndLoginRaw(requestParameters: CustomerAccountApiAddAccountAndLoginRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>>;
+    addAccountAndLoginRaw(requestParameters: AddAccountAndLoginRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>>;
 
     /**
      * Adds a customer to the account.
      * Add Account And Login
      */
-    addAccountAndLogin(requestParameters: CustomerAccountApiAddAccountAndLoginRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket>;
+    addAccountAndLogin(requestParameters: AddAccountAndLoginRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket>;
 
     /**
      * Adds a new account attribute.
@@ -428,13 +428,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    addAccountAttributeRaw(requestParameters: CustomerAccountApiAddAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttribute>>;
+    addAccountAttributeRaw(requestParameters: AddAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttribute>>;
 
     /**
      * Adds a new account attribute.
      * Add Account Attribute
      */
-    addAccountAttribute(requestParameters: CustomerAccountApiAddAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttribute>;
+    addAccountAttribute(requestParameters: AddAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttribute>;
 
     /**
      * Creates a card on the specific customer account.
@@ -446,13 +446,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    addAccountCardRaw(requestParameters: CustomerAccountApiAddAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Card>>;
+    addAccountCardRaw(requestParameters: AddAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Card>>;
 
     /**
      * Creates a card on the specific customer account.
      * Add Account Card
      */
-    addAccountCard(requestParameters: CustomerAccountApiAddAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Card>;
+    addAccountCard(requestParameters: AddAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Card>;
 
     /**
      * Creates a new CustomerContact for a customer account, for example, a new shipping address.
@@ -464,13 +464,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    addAccountContactRaw(requestParameters: CustomerAccountApiAddAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerContact>>;
+    addAccountContactRaw(requestParameters: AddAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerContact>>;
 
     /**
      * Creates a new CustomerContact for a customer account, for example, a new shipping address.
      * Add Account Contact
      */
-    addAccountContact(requestParameters: CustomerAccountApiAddAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerContact>;
+    addAccountContact(requestParameters: AddAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerContact>;
 
     /**
      * Creates a new CustomerContacts for a customer account in bulk to support adding multiple contacts in a multi-ship scenario.
@@ -482,13 +482,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    addAccountContactListRaw(requestParameters: CustomerAccountApiAddAccountContactListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerContactCollection>>;
+    addAccountContactListRaw(requestParameters: AddAccountContactListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerContactCollection>>;
 
     /**
      * Creates a new CustomerContacts for a customer account in bulk to support adding multiple contacts in a multi-ship scenario.
      * Add Account Contact List
      */
-    addAccountContactList(requestParameters: CustomerAccountApiAddAccountContactListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerContactCollection>;
+    addAccountContactList(requestParameters: AddAccountContactListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerContactCollection>;
 
     /**
      * Adds a new note to the specified customer account.
@@ -500,13 +500,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    addAccountNoteRaw(requestParameters: CustomerAccountApiAddAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerNote>>;
+    addAccountNoteRaw(requestParameters: AddAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerNote>>;
 
     /**
      * Adds a new note to the specified customer account.
      * Add Account Note
      */
-    addAccountNote(requestParameters: CustomerAccountApiAddAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerNote>;
+    addAccountNote(requestParameters: AddAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerNote>;
 
     /**
      * Creates multiple new shopper accounts for a specified site. Allows you to create a number of new shopper accounts at one time.
@@ -517,13 +517,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    addAccountsRaw(requestParameters: CustomerAccountApiAddAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAccountCollection>>;
+    addAccountsRaw(requestParameters: AddAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAccountCollection>>;
 
     /**
      * Creates multiple new shopper accounts for a specified site. Allows you to create a number of new shopper accounts at one time.
      * Add Accounts
      */
-    addAccounts(requestParameters: CustomerAccountApiAddAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAccountCollection>;
+    addAccounts(requestParameters: AddAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAccountCollection>;
 
     /**
      * Creates a login for an existing customer and logs them in automatically.
@@ -535,13 +535,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    addLoginToExistingCustomerRaw(requestParameters: CustomerAccountApiAddLoginToExistingCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>>;
+    addLoginToExistingCustomerRaw(requestParameters: AddLoginToExistingCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>>;
 
     /**
      * Creates a login for an existing customer and logs them in automatically.
      * Add Login To Existing Customer
      */
-    addLoginToExistingCustomer(requestParameters: CustomerAccountApiAddLoginToExistingCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket>;
+    addLoginToExistingCustomer(requestParameters: AddLoginToExistingCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket>;
 
     /**
      * Add a transaction on customer account.
@@ -553,13 +553,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    addTransactionRaw(requestParameters: CustomerAccountApiAddTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Transaction>>;
+    addTransactionRaw(requestParameters: AddTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Transaction>>;
 
     /**
      * Add a transaction on customer account.
      * Add Transaction
      */
-    addTransaction(requestParameters: CustomerAccountApiAddTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Transaction>;
+    addTransaction(requestParameters: AddTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Transaction>;
 
     /**
      * Changes a shopper\'s password.
@@ -573,13 +573,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    changePasswordRaw(requestParameters: CustomerAccountApiChangePasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    changePasswordRaw(requestParameters: ChangePasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Changes a shopper\'s password.
      * Change Password
      */
-    changePassword(requestParameters: CustomerAccountApiChangePasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    changePassword(requestParameters: ChangePasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Changes a collection of shopper passwords
@@ -590,13 +590,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    changePasswordsRaw(requestParameters: CustomerAccountApiChangePasswordsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChangePasswordResultCollection>>;
+    changePasswordsRaw(requestParameters: ChangePasswordsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChangePasswordResultCollection>>;
 
     /**
      * Changes a collection of shopper passwords
      * Change Passwords
      */
-    changePasswords(requestParameters: CustomerAccountApiChangePasswordsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChangePasswordResultCollection>;
+    changePasswords(requestParameters: ChangePasswordsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChangePasswordResultCollection>;
 
     /**
      * Creates a customer\'s purchase order account.
@@ -608,13 +608,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    createCustomerPurchaseOrderAccountRaw(requestParameters: CustomerAccountApiCreateCustomerPurchaseOrderAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerPurchaseOrderAccount>>;
+    createCustomerPurchaseOrderAccountRaw(requestParameters: CreateCustomerPurchaseOrderAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerPurchaseOrderAccount>>;
 
     /**
      * Creates a customer\'s purchase order account.
      * Create Customer Purchase Order Account
      */
-    createCustomerPurchaseOrderAccount(requestParameters: CustomerAccountApiCreateCustomerPurchaseOrderAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerPurchaseOrderAccount>;
+    createCustomerPurchaseOrderAccount(requestParameters: CreateCustomerPurchaseOrderAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerPurchaseOrderAccount>;
 
     /**
      * Creates a purchase order transaction log (for public api use).
@@ -626,13 +626,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    createPurchaseOrderTransactionRaw(requestParameters: CustomerAccountApiCreatePurchaseOrderTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PurchaseOrderTransaction>>;
+    createPurchaseOrderTransactionRaw(requestParameters: CreatePurchaseOrderTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PurchaseOrderTransaction>>;
 
     /**
      * Creates a purchase order transaction log (for public api use).
      * Create Purchase Order Transaction
      */
-    createPurchaseOrderTransaction(requestParameters: CustomerAccountApiCreatePurchaseOrderTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PurchaseOrderTransaction>;
+    createPurchaseOrderTransaction(requestParameters: CreatePurchaseOrderTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PurchaseOrderTransaction>;
 
     /**
      * Deletes a customer account. A customer account cannot be deleted if any orders exist, past or present.
@@ -642,13 +642,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    deleteAccountRaw(requestParameters: CustomerAccountApiDeleteAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteAccountRaw(requestParameters: DeleteAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Deletes a customer account. A customer account cannot be deleted if any orders exist, past or present.
      * Delete Account
      */
-    deleteAccount(requestParameters: CustomerAccountApiDeleteAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteAccount(requestParameters: DeleteAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Deletes an account attribute specified by attributeFQN.
@@ -660,13 +660,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    deleteAccountAttributeRaw(requestParameters: CustomerAccountApiDeleteAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteAccountAttributeRaw(requestParameters: DeleteAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Deletes an account attribute specified by attributeFQN.
      * Delete Account Attribute
      */
-    deleteAccountAttribute(requestParameters: CustomerAccountApiDeleteAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteAccountAttribute(requestParameters: DeleteAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Removes a card from the specified customer account.
@@ -677,13 +677,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    deleteAccountCardRaw(requestParameters: CustomerAccountApiDeleteAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteAccountCardRaw(requestParameters: DeleteAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Removes a card from the specified customer account.
      * Delete Account Card
      */
-    deleteAccountCard(requestParameters: CustomerAccountApiDeleteAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteAccountCard(requestParameters: DeleteAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Deletes a CustomerContact for the specified customer account.
@@ -694,13 +694,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    deleteAccountContactRaw(requestParameters: CustomerAccountApiDeleteAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteAccountContactRaw(requestParameters: DeleteAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Deletes a CustomerContact for the specified customer account.
      * Delete Account Contact
      */
-    deleteAccountContact(requestParameters: CustomerAccountApiDeleteAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteAccountContact(requestParameters: DeleteAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Removes a note from the specified customer account.
@@ -711,13 +711,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    deleteAccountNoteRaw(requestParameters: CustomerAccountApiDeleteAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteAccountNoteRaw(requestParameters: DeleteAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Removes a note from the specified customer account.
      * Delete Account Note
      */
-    deleteAccountNote(requestParameters: CustomerAccountApiDeleteAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteAccountNote(requestParameters: DeleteAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Retrieves the details of a customer account specified by its unique identifier.
@@ -730,13 +730,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    getAccountRaw(requestParameters: CustomerAccountApiGetAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAccount>>;
+    getAccountRaw(requestParameters: GetAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAccount>>;
 
     /**
      * Retrieves the details of a customer account specified by its unique identifier.
      * Get Account
      */
-    getAccount(requestParameters: CustomerAccountApiGetAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAccount>;
+    getAccount(requestParameters: GetAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAccount>;
 
     /**
      * Retrieves the contents of a particular attribute attached to a specified account.
@@ -749,13 +749,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    getAccountAttributeRaw(requestParameters: CustomerAccountApiGetAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttribute>>;
+    getAccountAttributeRaw(requestParameters: GetAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttribute>>;
 
     /**
      * Retrieves the contents of a particular attribute attached to a specified account.
      * Get Account Attribute
      */
-    getAccountAttribute(requestParameters: CustomerAccountApiGetAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttribute>;
+    getAccountAttribute(requestParameters: GetAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttribute>;
 
     /**
      * Retrieves a collection of account attributes according to any specified filter criteria and sort options.
@@ -771,13 +771,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    getAccountAttributesRaw(requestParameters: CustomerAccountApiGetAccountAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttributeCollection>>;
+    getAccountAttributesRaw(requestParameters: GetAccountAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttributeCollection>>;
 
     /**
      * Retrieves a collection of account attributes according to any specified filter criteria and sort options.
      * Get Account Attributes
      */
-    getAccountAttributes(requestParameters: CustomerAccountApiGetAccountAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttributeCollection>;
+    getAccountAttributes(requestParameters: GetAccountAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttributeCollection>;
 
     /**
      * Get Account Audit Log
@@ -792,13 +792,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    getAccountAuditLogRaw(requestParameters: CustomerAccountApiGetAccountAuditLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuditEntryCollection>>;
+    getAccountAuditLogRaw(requestParameters: GetAccountAuditLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuditEntryCollection>>;
 
     /**
      * Get Account Audit Log
      * Get Account Audit Log
      */
-    getAccountAuditLog(requestParameters: CustomerAccountApiGetAccountAuditLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuditEntryCollection>;
+    getAccountAuditLog(requestParameters: GetAccountAuditLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuditEntryCollection>;
 
     /**
      * Retrieves a card for the specified customer account and card ID.
@@ -810,13 +810,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    getAccountCardRaw(requestParameters: CustomerAccountApiGetAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Card>>;
+    getAccountCardRaw(requestParameters: GetAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Card>>;
 
     /**
      * Retrieves a card for the specified customer account and card ID.
      * Get Account Card
      */
-    getAccountCard(requestParameters: CustomerAccountApiGetAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Card>;
+    getAccountCard(requestParameters: GetAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Card>;
 
     /**
      * Retrieves a list of cards for the specified customer account.
@@ -827,13 +827,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    getAccountCardsRaw(requestParameters: CustomerAccountApiGetAccountCardsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CardCollection>>;
+    getAccountCardsRaw(requestParameters: GetAccountCardsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CardCollection>>;
 
     /**
      * Retrieves a list of cards for the specified customer account.
      * Get Account Cards
      */
-    getAccountCards(requestParameters: CustomerAccountApiGetAccountCardsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CardCollection>;
+    getAccountCards(requestParameters: GetAccountCardsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CardCollection>;
 
     /**
      * Retrieves the specified CustomerContact for a customer account, for example, a billing or shipping CustomerContact.
@@ -846,13 +846,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    getAccountContactRaw(requestParameters: CustomerAccountApiGetAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerContact>>;
+    getAccountContactRaw(requestParameters: GetAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerContact>>;
 
     /**
      * Retrieves the specified CustomerContact for a customer account, for example, a billing or shipping CustomerContact.
      * Get Account Contact
      */
-    getAccountContact(requestParameters: CustomerAccountApiGetAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerContact>;
+    getAccountContact(requestParameters: GetAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerContact>;
 
     /**
      * Retrieves a list of contacts for a customer according to any specified filter criteria and sort options.
@@ -868,13 +868,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    getAccountContactsRaw(requestParameters: CustomerAccountApiGetAccountContactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerContactCollection>>;
+    getAccountContactsRaw(requestParameters: GetAccountContactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerContactCollection>>;
 
     /**
      * Retrieves a list of contacts for a customer according to any specified filter criteria and sort options.
      * Get Account Contacts
      */
-    getAccountContacts(requestParameters: CustomerAccountApiGetAccountContactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerContactCollection>;
+    getAccountContacts(requestParameters: GetAccountContactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerContactCollection>;
 
     /**
      * Retrieves the contents of a particular note attached to a specified customer account.
@@ -886,13 +886,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    getAccountNoteRaw(requestParameters: CustomerAccountApiGetAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerNote>>;
+    getAccountNoteRaw(requestParameters: GetAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerNote>>;
 
     /**
      * Retrieves the contents of a particular note attached to a specified customer account.
      * Get Account Note
      */
-    getAccountNote(requestParameters: CustomerAccountApiGetAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerNote>;
+    getAccountNote(requestParameters: GetAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerNote>;
 
     /**
      * Retrieves a list of notes added to a customer account according to any specified filter criteria and sort options.
@@ -907,13 +907,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    getAccountNotesRaw(requestParameters: CustomerAccountApiGetAccountNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerNoteCollection>>;
+    getAccountNotesRaw(requestParameters: GetAccountNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerNoteCollection>>;
 
     /**
      * Retrieves a list of notes added to a customer account according to any specified filter criteria and sort options.
      * Get Account Notes
      */
-    getAccountNotes(requestParameters: CustomerAccountApiGetAccountNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerNoteCollection>;
+    getAccountNotes(requestParameters: GetAccountNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerNoteCollection>;
 
     /**
      * Retrieves a list of segments for the specified account according to any specified filter criteria and sort options.
@@ -928,13 +928,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    getAccountSegmentsRaw(requestParameters: CustomerAccountApiGetAccountSegmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerSegmentCollection>>;
+    getAccountSegmentsRaw(requestParameters: GetAccountSegmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerSegmentCollection>>;
 
     /**
      * Retrieves a list of segments for the specified account according to any specified filter criteria and sort options.
      * Get Account Segments
      */
-    getAccountSegments(requestParameters: CustomerAccountApiGetAccountSegmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerSegmentCollection>;
+    getAccountSegments(requestParameters: GetAccountSegmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerSegmentCollection>;
 
     /**
      * Retrieves a list of customer accounts according to any filter criteria and sort options.
@@ -953,13 +953,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    getAccountsRaw(requestParameters: CustomerAccountApiGetAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAccountCollection>>;
+    getAccountsRaw(requestParameters: GetAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAccountCollection>>;
 
     /**
      * Retrieves a list of customer accounts according to any filter criteria and sort options.
      * Get Accounts
      */
-    getAccounts(requestParameters: CustomerAccountApiGetAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAccountCollection>;
+    getAccounts(requestParameters: GetAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAccountCollection>;
 
     /**
      * Retrieves the details of a the current logged in customer account
@@ -970,13 +970,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    getCurrentAccountRaw(requestParameters: CustomerAccountApiGetCurrentAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAccount>>;
+    getCurrentAccountRaw(requestParameters: GetCurrentAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAccount>>;
 
     /**
      * Retrieves the details of a the current logged in customer account
      * Retrieves the details of a the current logged in customer account
      */
-    getCurrentAccount(requestParameters: CustomerAccountApiGetCurrentAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAccount>;
+    getCurrentAccount(requestParameters: GetCurrentAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAccount>;
 
     /**
      * Gets a customer\'s purchase order account.
@@ -987,13 +987,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    getCustomerPurchaseOrderAccountRaw(requestParameters: CustomerAccountApiGetCustomerPurchaseOrderAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerPurchaseOrderAccount>>;
+    getCustomerPurchaseOrderAccountRaw(requestParameters: GetCustomerPurchaseOrderAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerPurchaseOrderAccount>>;
 
     /**
      * Gets a customer\'s purchase order account.
      * Gets a customer\'s purchase order account.
      */
-    getCustomerPurchaseOrderAccount(requestParameters: CustomerAccountApiGetCustomerPurchaseOrderAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerPurchaseOrderAccount>;
+    getCustomerPurchaseOrderAccount(requestParameters: GetCustomerPurchaseOrderAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerPurchaseOrderAccount>;
 
     /**
      * Gets a collection of Purchase order transaction logs associated with a customer account id.
@@ -1008,13 +1008,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    getCustomerPurchaseOrderTransactionsRaw(requestParameters: CustomerAccountApiGetCustomerPurchaseOrderTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PurchaseOrderTransactionCollection>>;
+    getCustomerPurchaseOrderTransactionsRaw(requestParameters: GetCustomerPurchaseOrderTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PurchaseOrderTransactionCollection>>;
 
     /**
      * Gets a collection of Purchase order transaction logs associated with a customer account id.
      * Get Customer Purchase Order Transactions
      */
-    getCustomerPurchaseOrderTransactions(requestParameters: CustomerAccountApiGetCustomerPurchaseOrderTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PurchaseOrderTransactionCollection>;
+    getCustomerPurchaseOrderTransactions(requestParameters: GetCustomerPurchaseOrderTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PurchaseOrderTransactionCollection>;
 
     /**
      * Gets a collection of customer purchase order accounts.
@@ -1028,13 +1028,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    getCustomersPurchaseOrderAccountsRaw(requestParameters: CustomerAccountApiGetCustomersPurchaseOrderAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerPurchaseOrderAccountCollection>>;
+    getCustomersPurchaseOrderAccountsRaw(requestParameters: GetCustomersPurchaseOrderAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerPurchaseOrderAccountCollection>>;
 
     /**
      * Gets a collection of customer purchase order accounts.
      * Get Customers Purchase Order Accounts
      */
-    getCustomersPurchaseOrderAccounts(requestParameters: CustomerAccountApiGetCustomersPurchaseOrderAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerPurchaseOrderAccountCollection>;
+    getCustomersPurchaseOrderAccounts(requestParameters: GetCustomersPurchaseOrderAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerPurchaseOrderAccountCollection>;
 
     /**
      * Retrieves the log-in status details of a shopper specified by account Id and user Id.
@@ -1046,13 +1046,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    getLoginStateRaw(requestParameters: CustomerAccountApiGetLoginStateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoginState>>;
+    getLoginStateRaw(requestParameters: GetLoginStateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoginState>>;
 
     /**
      * Retrieves the log-in status details of a shopper specified by account Id and user Id.
      * Get Login State
      */
-    getLoginState(requestParameters: CustomerAccountApiGetLoginStateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoginState>;
+    getLoginState(requestParameters: GetLoginStateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoginState>;
 
     /**
      * Retrieves the log-in status details of a shopper specified by emailAdress.
@@ -1064,13 +1064,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    getLoginStateByEmailAddressRaw(requestParameters: CustomerAccountApiGetLoginStateByEmailAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoginState>>;
+    getLoginStateByEmailAddressRaw(requestParameters: GetLoginStateByEmailAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoginState>>;
 
     /**
      * Retrieves the log-in status details of a shopper specified by emailAdress.
      * Get Login State By Email Address
      */
-    getLoginStateByEmailAddress(requestParameters: CustomerAccountApiGetLoginStateByEmailAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoginState>;
+    getLoginStateByEmailAddress(requestParameters: GetLoginStateByEmailAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoginState>;
 
     /**
      * Retrieves the log-in status details of a shopper specified by userName.
@@ -1082,13 +1082,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    getLoginStateByUserNameRaw(requestParameters: CustomerAccountApiGetLoginStateByUserNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoginState>>;
+    getLoginStateByUserNameRaw(requestParameters: GetLoginStateByUserNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoginState>>;
 
     /**
      * Retrieves the log-in status details of a shopper specified by userName.
      * Get Login State By UserName
      */
-    getLoginStateByUserName(requestParameters: CustomerAccountApiGetLoginStateByUserNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoginState>;
+    getLoginStateByUserName(requestParameters: GetLoginStateByUserNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoginState>;
 
     /**
      * Gets the list of transactions on customer account.
@@ -1099,13 +1099,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    getTransactionsRaw(requestParameters: CustomerAccountApiGetTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Transaction>>>;
+    getTransactionsRaw(requestParameters: GetTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Transaction>>>;
 
     /**
      * Gets the list of transactions on customer account.
      * Get Transactions
      */
-    getTransactions(requestParameters: CustomerAccountApiGetTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Transaction>>;
+    getTransactions(requestParameters: GetTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Transaction>>;
 
     /**
      * Triggers event to recompute customer lifetime value.  The lifetime value may not immediately be recalculated, but enters a queue.
@@ -1116,13 +1116,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    recomputeCustomerLifetimeValueRaw(requestParameters: CustomerAccountApiRecomputeCustomerLifetimeValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    recomputeCustomerLifetimeValueRaw(requestParameters: RecomputeCustomerLifetimeValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Triggers event to recompute customer lifetime value.  The lifetime value may not immediately be recalculated, but enters a queue.
      * Recompute Customer Lifetime Value
      */
-    recomputeCustomerLifetimeValue(requestParameters: CustomerAccountApiRecomputeCustomerLifetimeValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    recomputeCustomerLifetimeValue(requestParameters: RecomputeCustomerLifetimeValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Removes a transaction on customer account.
@@ -1133,13 +1133,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    removeTransactionRaw(requestParameters: CustomerAccountApiRemoveTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    removeTransactionRaw(requestParameters: RemoveTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Removes a transaction on customer account.
      * Remove Transaction
      */
-    removeTransaction(requestParameters: CustomerAccountApiRemoveTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    removeTransaction(requestParameters: RemoveTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Resets the password for a shopper specified by username or emailAddress.
@@ -1150,13 +1150,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    resetPasswordRaw(requestParameters: CustomerAccountApiResetPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    resetPasswordRaw(requestParameters: ResetPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Resets the password for a shopper specified by username or emailAddress.
      * Reset Password
      */
-    resetPassword(requestParameters: CustomerAccountApiResetPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    resetPassword(requestParameters: ResetPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Sets a flag indicating whether the customers login is locked or unlocked.
@@ -1169,13 +1169,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    setLoginLockedRaw(requestParameters: CustomerAccountApiSetLoginLockedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    setLoginLockedRaw(requestParameters: SetLoginLockedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Sets a flag indicating whether the customers login is locked or unlocked.
      * Set Login Locked
      */
-    setLoginLocked(requestParameters: CustomerAccountApiSetLoginLockedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    setLoginLocked(requestParameters: SetLoginLockedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Sets a flag indicating whether the customers must change their password before logging in again.
@@ -1188,13 +1188,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    setPasswordChangeRequiredRaw(requestParameters: CustomerAccountApiSetPasswordChangeRequiredRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    setPasswordChangeRequiredRaw(requestParameters: SetPasswordChangeRequiredRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Sets a flag indicating whether the customers must change their password before logging in again.
      * Set Password Change Required
      */
-    setPasswordChangeRequired(requestParameters: CustomerAccountApiSetPasswordChangeRequiredRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    setPasswordChangeRequired(requestParameters: SetPasswordChangeRequiredRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Modifies an existing customer account, for example, to change the primary billing contact or change whether to accept marketing material.
@@ -1206,13 +1206,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    updateAccountRaw(requestParameters: CustomerAccountApiUpdateAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAccount>>;
+    updateAccountRaw(requestParameters: UpdateAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAccount>>;
 
     /**
      * Modifies an existing customer account, for example, to change the primary billing contact or change whether to accept marketing material.
      * Update Account
      */
-    updateAccount(requestParameters: CustomerAccountApiUpdateAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAccount>;
+    updateAccount(requestParameters: UpdateAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAccount>;
 
     /**
      * Modifies an existing attribute for an account.
@@ -1226,13 +1226,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    updateAccountAttributeRaw(requestParameters: CustomerAccountApiUpdateAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttribute>>;
+    updateAccountAttributeRaw(requestParameters: UpdateAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttribute>>;
 
     /**
      * Modifies an existing attribute for an account.
      * Update Account Attribute
      */
-    updateAccountAttribute(requestParameters: CustomerAccountApiUpdateAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttribute>;
+    updateAccountAttribute(requestParameters: UpdateAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttribute>;
 
     /**
      * Updates a card on the specific customer account.
@@ -1245,13 +1245,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    updateAccountCardRaw(requestParameters: CustomerAccountApiUpdateAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Card>>;
+    updateAccountCardRaw(requestParameters: UpdateAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Card>>;
 
     /**
      * Updates a card on the specific customer account.
      * Update Account Card
      */
-    updateAccountCard(requestParameters: CustomerAccountApiUpdateAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Card>;
+    updateAccountCard(requestParameters: UpdateAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Card>;
 
     /**
      * Updates a CustomerContact for a specified customer account, for example to update addresses or change which CustomerContact is the primary CustomerContact for billing.
@@ -1265,13 +1265,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    updateAccountContactRaw(requestParameters: CustomerAccountApiUpdateAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerContact>>;
+    updateAccountContactRaw(requestParameters: UpdateAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerContact>>;
 
     /**
      * Updates a CustomerContact for a specified customer account, for example to update addresses or change which CustomerContact is the primary CustomerContact for billing.
      * Update Account Contact
      */
-    updateAccountContact(requestParameters: CustomerAccountApiUpdateAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerContact>;
+    updateAccountContact(requestParameters: UpdateAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerContact>;
 
     /**
      * Modifies an existing note for a customer account.
@@ -1284,13 +1284,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    updateAccountNoteRaw(requestParameters: CustomerAccountApiUpdateAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerNote>>;
+    updateAccountNoteRaw(requestParameters: UpdateAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerNote>>;
 
     /**
      * Modifies an existing note for a customer account.
      * Update Account Note
      */
-    updateAccountNote(requestParameters: CustomerAccountApiUpdateAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerNote>;
+    updateAccountNote(requestParameters: UpdateAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerNote>;
 
     /**
      * Updates a customer\'s purchase order account.
@@ -1302,13 +1302,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    updateCustomerPurchaseOrderAccountRaw(requestParameters: CustomerAccountApiUpdateCustomerPurchaseOrderAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerPurchaseOrderAccount>>;
+    updateCustomerPurchaseOrderAccountRaw(requestParameters: UpdateCustomerPurchaseOrderAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerPurchaseOrderAccount>>;
 
     /**
      * Updates a customer\'s purchase order account.
      * Update Customer Purchase Order Account
      */
-    updateCustomerPurchaseOrderAccount(requestParameters: CustomerAccountApiUpdateCustomerPurchaseOrderAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerPurchaseOrderAccount>;
+    updateCustomerPurchaseOrderAccount(requestParameters: UpdateCustomerPurchaseOrderAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerPurchaseOrderAccount>;
 
     /**
      * Updates the password for a shopper who has requested a password change and provided the new password and confirmation code.
@@ -1319,13 +1319,13 @@ export interface CustomerAccountApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerAccountApiInterface
      */
-    updateForgottenPasswordRaw(requestParameters: CustomerAccountApiUpdateForgottenPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    updateForgottenPasswordRaw(requestParameters: UpdateForgottenPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Updates the password for a shopper who has requested a password change and provided the new password and confirmation code.
      * Update Forgotten Password
      */
-    updateForgottenPassword(requestParameters: CustomerAccountApiUpdateForgottenPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    updateForgottenPassword(requestParameters: UpdateForgottenPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
 }
 
@@ -1343,7 +1343,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async addAccountRaw(requestParameters: CustomerAccountApiAddAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAccount>> {
+    async addAccountRaw(requestParameters: AddAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAccount>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -1375,7 +1375,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Creates a new customer account.
      * Add Account
      */
-    async addAccount(requestParameters: CustomerAccountApiAddAccountRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAccount> {
+    async addAccount(requestParameters: AddAccountRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAccount> {
         const response = await this.addAccountRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1386,7 +1386,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async addAccountAndLoginRaw(requestParameters: CustomerAccountApiAddAccountAndLoginRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>> {
+    async addAccountAndLoginRaw(requestParameters: AddAccountAndLoginRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -1418,7 +1418,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Adds a customer to the account.
      * Add Account And Login
      */
-    async addAccountAndLogin(requestParameters: CustomerAccountApiAddAccountAndLoginRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket> {
+    async addAccountAndLogin(requestParameters: AddAccountAndLoginRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket> {
         const response = await this.addAccountAndLoginRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1429,7 +1429,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async addAccountAttributeRaw(requestParameters: CustomerAccountApiAddAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttribute>> {
+    async addAccountAttributeRaw(requestParameters: AddAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttribute>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling addAccountAttribute.');
         }
@@ -1469,7 +1469,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Adds a new account attribute.
      * Add Account Attribute
      */
-    async addAccountAttribute(requestParameters: CustomerAccountApiAddAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttribute> {
+    async addAccountAttribute(requestParameters: AddAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttribute> {
         const response = await this.addAccountAttributeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1480,7 +1480,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async addAccountCardRaw(requestParameters: CustomerAccountApiAddAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Card>> {
+    async addAccountCardRaw(requestParameters: AddAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Card>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling addAccountCard.');
         }
@@ -1516,7 +1516,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Creates a card on the specific customer account.
      * Add Account Card
      */
-    async addAccountCard(requestParameters: CustomerAccountApiAddAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Card> {
+    async addAccountCard(requestParameters: AddAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Card> {
         const response = await this.addAccountCardRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1527,7 +1527,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async addAccountContactRaw(requestParameters: CustomerAccountApiAddAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerContact>> {
+    async addAccountContactRaw(requestParameters: AddAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerContact>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling addAccountContact.');
         }
@@ -1563,7 +1563,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Creates a new CustomerContact for a customer account, for example, a new shipping address.
      * Add Account Contact
      */
-    async addAccountContact(requestParameters: CustomerAccountApiAddAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerContact> {
+    async addAccountContact(requestParameters: AddAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerContact> {
         const response = await this.addAccountContactRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1574,7 +1574,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async addAccountContactListRaw(requestParameters: CustomerAccountApiAddAccountContactListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerContactCollection>> {
+    async addAccountContactListRaw(requestParameters: AddAccountContactListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerContactCollection>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling addAccountContactList.');
         }
@@ -1610,7 +1610,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Creates a new CustomerContacts for a customer account in bulk to support adding multiple contacts in a multi-ship scenario.
      * Add Account Contact List
      */
-    async addAccountContactList(requestParameters: CustomerAccountApiAddAccountContactListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerContactCollection> {
+    async addAccountContactList(requestParameters: AddAccountContactListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerContactCollection> {
         const response = await this.addAccountContactListRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1621,7 +1621,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async addAccountNoteRaw(requestParameters: CustomerAccountApiAddAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerNote>> {
+    async addAccountNoteRaw(requestParameters: AddAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerNote>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling addAccountNote.');
         }
@@ -1657,7 +1657,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Adds a new note to the specified customer account.
      * Add Account Note
      */
-    async addAccountNote(requestParameters: CustomerAccountApiAddAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerNote> {
+    async addAccountNote(requestParameters: AddAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerNote> {
         const response = await this.addAccountNoteRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1668,7 +1668,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async addAccountsRaw(requestParameters: CustomerAccountApiAddAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAccountCollection>> {
+    async addAccountsRaw(requestParameters: AddAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAccountCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -1700,7 +1700,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Creates multiple new shopper accounts for a specified site. Allows you to create a number of new shopper accounts at one time.
      * Add Accounts
      */
-    async addAccounts(requestParameters: CustomerAccountApiAddAccountsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAccountCollection> {
+    async addAccounts(requestParameters: AddAccountsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAccountCollection> {
         const response = await this.addAccountsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1711,7 +1711,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async addLoginToExistingCustomerRaw(requestParameters: CustomerAccountApiAddLoginToExistingCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>> {
+    async addLoginToExistingCustomerRaw(requestParameters: AddLoginToExistingCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling addLoginToExistingCustomer.');
         }
@@ -1747,7 +1747,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Creates a login for an existing customer and logs them in automatically.
      * Add Login To Existing Customer
      */
-    async addLoginToExistingCustomer(requestParameters: CustomerAccountApiAddLoginToExistingCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket> {
+    async addLoginToExistingCustomer(requestParameters: AddLoginToExistingCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket> {
         const response = await this.addLoginToExistingCustomerRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1758,7 +1758,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async addTransactionRaw(requestParameters: CustomerAccountApiAddTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Transaction>> {
+    async addTransactionRaw(requestParameters: AddTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Transaction>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling addTransaction.');
         }
@@ -1794,7 +1794,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Add a transaction on customer account.
      * Add Transaction
      */
-    async addTransaction(requestParameters: CustomerAccountApiAddTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Transaction> {
+    async addTransaction(requestParameters: AddTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Transaction> {
         const response = await this.addTransactionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1805,7 +1805,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async changePasswordRaw(requestParameters: CustomerAccountApiChangePasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async changePasswordRaw(requestParameters: ChangePasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling changePassword.');
         }
@@ -1849,7 +1849,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Changes a shopper\'s password.
      * Change Password
      */
-    async changePassword(requestParameters: CustomerAccountApiChangePasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async changePassword(requestParameters: ChangePasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.changePasswordRaw(requestParameters, initOverrides);
     }
 
@@ -1859,7 +1859,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async changePasswordsRaw(requestParameters: CustomerAccountApiChangePasswordsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChangePasswordResultCollection>> {
+    async changePasswordsRaw(requestParameters: ChangePasswordsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChangePasswordResultCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -1891,7 +1891,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Changes a collection of shopper passwords
      * Change Passwords
      */
-    async changePasswords(requestParameters: CustomerAccountApiChangePasswordsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChangePasswordResultCollection> {
+    async changePasswords(requestParameters: ChangePasswordsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChangePasswordResultCollection> {
         const response = await this.changePasswordsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1902,7 +1902,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async createCustomerPurchaseOrderAccountRaw(requestParameters: CustomerAccountApiCreateCustomerPurchaseOrderAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerPurchaseOrderAccount>> {
+    async createCustomerPurchaseOrderAccountRaw(requestParameters: CreateCustomerPurchaseOrderAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerPurchaseOrderAccount>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling createCustomerPurchaseOrderAccount.');
         }
@@ -1938,7 +1938,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Creates a customer\'s purchase order account.
      * Create Customer Purchase Order Account
      */
-    async createCustomerPurchaseOrderAccount(requestParameters: CustomerAccountApiCreateCustomerPurchaseOrderAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerPurchaseOrderAccount> {
+    async createCustomerPurchaseOrderAccount(requestParameters: CreateCustomerPurchaseOrderAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerPurchaseOrderAccount> {
         const response = await this.createCustomerPurchaseOrderAccountRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1949,7 +1949,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async createPurchaseOrderTransactionRaw(requestParameters: CustomerAccountApiCreatePurchaseOrderTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PurchaseOrderTransaction>> {
+    async createPurchaseOrderTransactionRaw(requestParameters: CreatePurchaseOrderTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PurchaseOrderTransaction>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling createPurchaseOrderTransaction.');
         }
@@ -1985,7 +1985,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Creates a purchase order transaction log (for public api use).
      * Create Purchase Order Transaction
      */
-    async createPurchaseOrderTransaction(requestParameters: CustomerAccountApiCreatePurchaseOrderTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PurchaseOrderTransaction> {
+    async createPurchaseOrderTransaction(requestParameters: CreatePurchaseOrderTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PurchaseOrderTransaction> {
         const response = await this.createPurchaseOrderTransactionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1996,7 +1996,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async deleteAccountRaw(requestParameters: CustomerAccountApiDeleteAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteAccountRaw(requestParameters: DeleteAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling deleteAccount.');
         }
@@ -2025,7 +2025,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Deletes a customer account. A customer account cannot be deleted if any orders exist, past or present.
      * Delete Account
      */
-    async deleteAccount(requestParameters: CustomerAccountApiDeleteAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteAccount(requestParameters: DeleteAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteAccountRaw(requestParameters, initOverrides);
     }
 
@@ -2035,7 +2035,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async deleteAccountAttributeRaw(requestParameters: CustomerAccountApiDeleteAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteAccountAttributeRaw(requestParameters: DeleteAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling deleteAccountAttribute.');
         }
@@ -2072,7 +2072,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Deletes an account attribute specified by attributeFQN.
      * Delete Account Attribute
      */
-    async deleteAccountAttribute(requestParameters: CustomerAccountApiDeleteAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteAccountAttribute(requestParameters: DeleteAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteAccountAttributeRaw(requestParameters, initOverrides);
     }
 
@@ -2082,7 +2082,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async deleteAccountCardRaw(requestParameters: CustomerAccountApiDeleteAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteAccountCardRaw(requestParameters: DeleteAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling deleteAccountCard.');
         }
@@ -2115,7 +2115,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Removes a card from the specified customer account.
      * Delete Account Card
      */
-    async deleteAccountCard(requestParameters: CustomerAccountApiDeleteAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteAccountCard(requestParameters: DeleteAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteAccountCardRaw(requestParameters, initOverrides);
     }
 
@@ -2125,7 +2125,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async deleteAccountContactRaw(requestParameters: CustomerAccountApiDeleteAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteAccountContactRaw(requestParameters: DeleteAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling deleteAccountContact.');
         }
@@ -2158,7 +2158,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Deletes a CustomerContact for the specified customer account.
      * Delete Account Contact
      */
-    async deleteAccountContact(requestParameters: CustomerAccountApiDeleteAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteAccountContact(requestParameters: DeleteAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteAccountContactRaw(requestParameters, initOverrides);
     }
 
@@ -2168,7 +2168,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async deleteAccountNoteRaw(requestParameters: CustomerAccountApiDeleteAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteAccountNoteRaw(requestParameters: DeleteAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling deleteAccountNote.');
         }
@@ -2201,7 +2201,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Removes a note from the specified customer account.
      * Delete Account Note
      */
-    async deleteAccountNote(requestParameters: CustomerAccountApiDeleteAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteAccountNote(requestParameters: DeleteAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteAccountNoteRaw(requestParameters, initOverrides);
     }
 
@@ -2211,7 +2211,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async getAccountRaw(requestParameters: CustomerAccountApiGetAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAccount>> {
+    async getAccountRaw(requestParameters: GetAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAccount>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling getAccount.');
         }
@@ -2252,7 +2252,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Retrieves the details of a customer account specified by its unique identifier.
      * Get Account
      */
-    async getAccount(requestParameters: CustomerAccountApiGetAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAccount> {
+    async getAccount(requestParameters: GetAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAccount> {
         const response = await this.getAccountRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2263,7 +2263,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async getAccountAttributeRaw(requestParameters: CustomerAccountApiGetAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttribute>> {
+    async getAccountAttributeRaw(requestParameters: GetAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttribute>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling getAccountAttribute.');
         }
@@ -2304,7 +2304,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Retrieves the contents of a particular attribute attached to a specified account.
      * Get Account Attribute
      */
-    async getAccountAttribute(requestParameters: CustomerAccountApiGetAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttribute> {
+    async getAccountAttribute(requestParameters: GetAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttribute> {
         const response = await this.getAccountAttributeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2315,7 +2315,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async getAccountAttributesRaw(requestParameters: CustomerAccountApiGetAccountAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttributeCollection>> {
+    async getAccountAttributesRaw(requestParameters: GetAccountAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttributeCollection>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling getAccountAttributes.');
         }
@@ -2368,7 +2368,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Retrieves a collection of account attributes according to any specified filter criteria and sort options.
      * Get Account Attributes
      */
-    async getAccountAttributes(requestParameters: CustomerAccountApiGetAccountAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttributeCollection> {
+    async getAccountAttributes(requestParameters: GetAccountAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttributeCollection> {
         const response = await this.getAccountAttributesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2379,7 +2379,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async getAccountAuditLogRaw(requestParameters: CustomerAccountApiGetAccountAuditLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuditEntryCollection>> {
+    async getAccountAuditLogRaw(requestParameters: GetAccountAuditLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuditEntryCollection>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling getAccountAuditLog.');
         }
@@ -2428,7 +2428,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Get Account Audit Log
      * Get Account Audit Log
      */
-    async getAccountAuditLog(requestParameters: CustomerAccountApiGetAccountAuditLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuditEntryCollection> {
+    async getAccountAuditLog(requestParameters: GetAccountAuditLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuditEntryCollection> {
         const response = await this.getAccountAuditLogRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2439,7 +2439,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async getAccountCardRaw(requestParameters: CustomerAccountApiGetAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Card>> {
+    async getAccountCardRaw(requestParameters: GetAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Card>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling getAccountCard.');
         }
@@ -2476,7 +2476,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Retrieves a card for the specified customer account and card ID.
      * Get Account Card
      */
-    async getAccountCard(requestParameters: CustomerAccountApiGetAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Card> {
+    async getAccountCard(requestParameters: GetAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Card> {
         const response = await this.getAccountCardRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2487,7 +2487,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async getAccountCardsRaw(requestParameters: CustomerAccountApiGetAccountCardsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CardCollection>> {
+    async getAccountCardsRaw(requestParameters: GetAccountCardsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CardCollection>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling getAccountCards.');
         }
@@ -2520,7 +2520,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Retrieves a list of cards for the specified customer account.
      * Get Account Cards
      */
-    async getAccountCards(requestParameters: CustomerAccountApiGetAccountCardsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CardCollection> {
+    async getAccountCards(requestParameters: GetAccountCardsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CardCollection> {
         const response = await this.getAccountCardsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2531,7 +2531,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async getAccountContactRaw(requestParameters: CustomerAccountApiGetAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerContact>> {
+    async getAccountContactRaw(requestParameters: GetAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerContact>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling getAccountContact.');
         }
@@ -2572,7 +2572,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Retrieves the specified CustomerContact for a customer account, for example, a billing or shipping CustomerContact.
      * Get Account Contact
      */
-    async getAccountContact(requestParameters: CustomerAccountApiGetAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerContact> {
+    async getAccountContact(requestParameters: GetAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerContact> {
         const response = await this.getAccountContactRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2583,7 +2583,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async getAccountContactsRaw(requestParameters: CustomerAccountApiGetAccountContactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerContactCollection>> {
+    async getAccountContactsRaw(requestParameters: GetAccountContactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerContactCollection>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling getAccountContacts.');
         }
@@ -2636,7 +2636,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Retrieves a list of contacts for a customer according to any specified filter criteria and sort options.
      * Get Account Contacts
      */
-    async getAccountContacts(requestParameters: CustomerAccountApiGetAccountContactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerContactCollection> {
+    async getAccountContacts(requestParameters: GetAccountContactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerContactCollection> {
         const response = await this.getAccountContactsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2647,7 +2647,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async getAccountNoteRaw(requestParameters: CustomerAccountApiGetAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerNote>> {
+    async getAccountNoteRaw(requestParameters: GetAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerNote>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling getAccountNote.');
         }
@@ -2684,7 +2684,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Retrieves the contents of a particular note attached to a specified customer account.
      * Get Account Note
      */
-    async getAccountNote(requestParameters: CustomerAccountApiGetAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerNote> {
+    async getAccountNote(requestParameters: GetAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerNote> {
         const response = await this.getAccountNoteRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2695,7 +2695,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async getAccountNotesRaw(requestParameters: CustomerAccountApiGetAccountNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerNoteCollection>> {
+    async getAccountNotesRaw(requestParameters: GetAccountNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerNoteCollection>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling getAccountNotes.');
         }
@@ -2744,7 +2744,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Retrieves a list of notes added to a customer account according to any specified filter criteria and sort options.
      * Get Account Notes
      */
-    async getAccountNotes(requestParameters: CustomerAccountApiGetAccountNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerNoteCollection> {
+    async getAccountNotes(requestParameters: GetAccountNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerNoteCollection> {
         const response = await this.getAccountNotesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2755,7 +2755,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async getAccountSegmentsRaw(requestParameters: CustomerAccountApiGetAccountSegmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerSegmentCollection>> {
+    async getAccountSegmentsRaw(requestParameters: GetAccountSegmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerSegmentCollection>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling getAccountSegments.');
         }
@@ -2804,7 +2804,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Retrieves a list of segments for the specified account according to any specified filter criteria and sort options.
      * Get Account Segments
      */
-    async getAccountSegments(requestParameters: CustomerAccountApiGetAccountSegmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerSegmentCollection> {
+    async getAccountSegments(requestParameters: GetAccountSegmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerSegmentCollection> {
         const response = await this.getAccountSegmentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2815,7 +2815,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async getAccountsRaw(requestParameters: CustomerAccountApiGetAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAccountCollection>> {
+    async getAccountsRaw(requestParameters: GetAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAccountCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -2880,7 +2880,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Retrieves a list of customer accounts according to any filter criteria and sort options.
      * Get Accounts
      */
-    async getAccounts(requestParameters: CustomerAccountApiGetAccountsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAccountCollection> {
+    async getAccounts(requestParameters: GetAccountsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAccountCollection> {
         const response = await this.getAccountsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2891,7 +2891,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async getCurrentAccountRaw(requestParameters: CustomerAccountApiGetCurrentAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAccount>> {
+    async getCurrentAccountRaw(requestParameters: GetCurrentAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAccount>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseGroups !== undefined) {
@@ -2924,7 +2924,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Retrieves the details of a the current logged in customer account
      * Retrieves the details of a the current logged in customer account
      */
-    async getCurrentAccount(requestParameters: CustomerAccountApiGetCurrentAccountRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAccount> {
+    async getCurrentAccount(requestParameters: GetCurrentAccountRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAccount> {
         const response = await this.getCurrentAccountRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2935,7 +2935,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async getCustomerPurchaseOrderAccountRaw(requestParameters: CustomerAccountApiGetCustomerPurchaseOrderAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerPurchaseOrderAccount>> {
+    async getCustomerPurchaseOrderAccountRaw(requestParameters: GetCustomerPurchaseOrderAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerPurchaseOrderAccount>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling getCustomerPurchaseOrderAccount.');
         }
@@ -2968,7 +2968,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Gets a customer\'s purchase order account.
      * Gets a customer\'s purchase order account.
      */
-    async getCustomerPurchaseOrderAccount(requestParameters: CustomerAccountApiGetCustomerPurchaseOrderAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerPurchaseOrderAccount> {
+    async getCustomerPurchaseOrderAccount(requestParameters: GetCustomerPurchaseOrderAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerPurchaseOrderAccount> {
         const response = await this.getCustomerPurchaseOrderAccountRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2979,7 +2979,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async getCustomerPurchaseOrderTransactionsRaw(requestParameters: CustomerAccountApiGetCustomerPurchaseOrderTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PurchaseOrderTransactionCollection>> {
+    async getCustomerPurchaseOrderTransactionsRaw(requestParameters: GetCustomerPurchaseOrderTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PurchaseOrderTransactionCollection>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling getCustomerPurchaseOrderTransactions.');
         }
@@ -3028,7 +3028,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Gets a collection of Purchase order transaction logs associated with a customer account id.
      * Get Customer Purchase Order Transactions
      */
-    async getCustomerPurchaseOrderTransactions(requestParameters: CustomerAccountApiGetCustomerPurchaseOrderTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PurchaseOrderTransactionCollection> {
+    async getCustomerPurchaseOrderTransactions(requestParameters: GetCustomerPurchaseOrderTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PurchaseOrderTransactionCollection> {
         const response = await this.getCustomerPurchaseOrderTransactionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3039,7 +3039,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async getCustomersPurchaseOrderAccountsRaw(requestParameters: CustomerAccountApiGetCustomersPurchaseOrderAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerPurchaseOrderAccountCollection>> {
+    async getCustomersPurchaseOrderAccountsRaw(requestParameters: GetCustomersPurchaseOrderAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerPurchaseOrderAccountCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -3084,7 +3084,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Gets a collection of customer purchase order accounts.
      * Get Customers Purchase Order Accounts
      */
-    async getCustomersPurchaseOrderAccounts(requestParameters: CustomerAccountApiGetCustomersPurchaseOrderAccountsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerPurchaseOrderAccountCollection> {
+    async getCustomersPurchaseOrderAccounts(requestParameters: GetCustomersPurchaseOrderAccountsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerPurchaseOrderAccountCollection> {
         const response = await this.getCustomersPurchaseOrderAccountsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3095,7 +3095,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async getLoginStateRaw(requestParameters: CustomerAccountApiGetLoginStateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoginState>> {
+    async getLoginStateRaw(requestParameters: GetLoginStateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoginState>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling getLoginState.');
         }
@@ -3132,7 +3132,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Retrieves the log-in status details of a shopper specified by account Id and user Id.
      * Get Login State
      */
-    async getLoginState(requestParameters: CustomerAccountApiGetLoginStateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoginState> {
+    async getLoginState(requestParameters: GetLoginStateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoginState> {
         const response = await this.getLoginStateRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3143,7 +3143,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async getLoginStateByEmailAddressRaw(requestParameters: CustomerAccountApiGetLoginStateByEmailAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoginState>> {
+    async getLoginStateByEmailAddressRaw(requestParameters: GetLoginStateByEmailAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoginState>> {
         const queryParameters: any = {};
 
         if (requestParameters.emailAddress !== undefined) {
@@ -3180,7 +3180,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Retrieves the log-in status details of a shopper specified by emailAdress.
      * Get Login State By Email Address
      */
-    async getLoginStateByEmailAddress(requestParameters: CustomerAccountApiGetLoginStateByEmailAddressRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoginState> {
+    async getLoginStateByEmailAddress(requestParameters: GetLoginStateByEmailAddressRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoginState> {
         const response = await this.getLoginStateByEmailAddressRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3191,7 +3191,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async getLoginStateByUserNameRaw(requestParameters: CustomerAccountApiGetLoginStateByUserNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoginState>> {
+    async getLoginStateByUserNameRaw(requestParameters: GetLoginStateByUserNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoginState>> {
         const queryParameters: any = {};
 
         if (requestParameters.userName !== undefined) {
@@ -3228,7 +3228,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Retrieves the log-in status details of a shopper specified by userName.
      * Get Login State By UserName
      */
-    async getLoginStateByUserName(requestParameters: CustomerAccountApiGetLoginStateByUserNameRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoginState> {
+    async getLoginStateByUserName(requestParameters: GetLoginStateByUserNameRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoginState> {
         const response = await this.getLoginStateByUserNameRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3239,7 +3239,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async getTransactionsRaw(requestParameters: CustomerAccountApiGetTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Transaction>>> {
+    async getTransactionsRaw(requestParameters: GetTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Transaction>>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling getTransactions.');
         }
@@ -3272,7 +3272,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Gets the list of transactions on customer account.
      * Get Transactions
      */
-    async getTransactions(requestParameters: CustomerAccountApiGetTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Transaction>> {
+    async getTransactions(requestParameters: GetTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Transaction>> {
         const response = await this.getTransactionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3283,7 +3283,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async recomputeCustomerLifetimeValueRaw(requestParameters: CustomerAccountApiRecomputeCustomerLifetimeValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async recomputeCustomerLifetimeValueRaw(requestParameters: RecomputeCustomerLifetimeValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling recomputeCustomerLifetimeValue.');
         }
@@ -3316,7 +3316,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Triggers event to recompute customer lifetime value.  The lifetime value may not immediately be recalculated, but enters a queue.
      * Recompute Customer Lifetime Value
      */
-    async recomputeCustomerLifetimeValue(requestParameters: CustomerAccountApiRecomputeCustomerLifetimeValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async recomputeCustomerLifetimeValue(requestParameters: RecomputeCustomerLifetimeValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.recomputeCustomerLifetimeValueRaw(requestParameters, initOverrides);
     }
 
@@ -3326,7 +3326,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async removeTransactionRaw(requestParameters: CustomerAccountApiRemoveTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async removeTransactionRaw(requestParameters: RemoveTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling removeTransaction.');
         }
@@ -3359,7 +3359,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Removes a transaction on customer account.
      * Remove Transaction
      */
-    async removeTransaction(requestParameters: CustomerAccountApiRemoveTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async removeTransaction(requestParameters: RemoveTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.removeTransactionRaw(requestParameters, initOverrides);
     }
 
@@ -3369,7 +3369,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async resetPasswordRaw(requestParameters: CustomerAccountApiResetPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async resetPasswordRaw(requestParameters: ResetPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -3401,7 +3401,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Resets the password for a shopper specified by username or emailAddress.
      * Reset Password
      */
-    async resetPassword(requestParameters: CustomerAccountApiResetPasswordRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async resetPassword(requestParameters: ResetPasswordRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.resetPasswordRaw(requestParameters, initOverrides);
     }
 
@@ -3411,7 +3411,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async setLoginLockedRaw(requestParameters: CustomerAccountApiSetLoginLockedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async setLoginLockedRaw(requestParameters: SetLoginLockedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling setLoginLocked.');
         }
@@ -3451,7 +3451,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Sets a flag indicating whether the customers login is locked or unlocked.
      * Set Login Locked
      */
-    async setLoginLocked(requestParameters: CustomerAccountApiSetLoginLockedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async setLoginLocked(requestParameters: SetLoginLockedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.setLoginLockedRaw(requestParameters, initOverrides);
     }
 
@@ -3461,7 +3461,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async setPasswordChangeRequiredRaw(requestParameters: CustomerAccountApiSetPasswordChangeRequiredRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async setPasswordChangeRequiredRaw(requestParameters: SetPasswordChangeRequiredRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling setPasswordChangeRequired.');
         }
@@ -3501,7 +3501,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Sets a flag indicating whether the customers must change their password before logging in again.
      * Set Password Change Required
      */
-    async setPasswordChangeRequired(requestParameters: CustomerAccountApiSetPasswordChangeRequiredRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async setPasswordChangeRequired(requestParameters: SetPasswordChangeRequiredRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.setPasswordChangeRequiredRaw(requestParameters, initOverrides);
     }
 
@@ -3511,7 +3511,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async updateAccountRaw(requestParameters: CustomerAccountApiUpdateAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAccount>> {
+    async updateAccountRaw(requestParameters: UpdateAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAccount>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling updateAccount.');
         }
@@ -3547,7 +3547,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Modifies an existing customer account, for example, to change the primary billing contact or change whether to accept marketing material.
      * Update Account
      */
-    async updateAccount(requestParameters: CustomerAccountApiUpdateAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAccount> {
+    async updateAccount(requestParameters: UpdateAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAccount> {
         const response = await this.updateAccountRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3558,7 +3558,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async updateAccountAttributeRaw(requestParameters: CustomerAccountApiUpdateAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttribute>> {
+    async updateAccountAttributeRaw(requestParameters: UpdateAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAttribute>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling updateAccountAttribute.');
         }
@@ -3602,7 +3602,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Modifies an existing attribute for an account.
      * Update Account Attribute
      */
-    async updateAccountAttribute(requestParameters: CustomerAccountApiUpdateAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttribute> {
+    async updateAccountAttribute(requestParameters: UpdateAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttribute> {
         const response = await this.updateAccountAttributeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3613,7 +3613,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async updateAccountCardRaw(requestParameters: CustomerAccountApiUpdateAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Card>> {
+    async updateAccountCardRaw(requestParameters: UpdateAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Card>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling updateAccountCard.');
         }
@@ -3653,7 +3653,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Updates a card on the specific customer account.
      * Update Account Card
      */
-    async updateAccountCard(requestParameters: CustomerAccountApiUpdateAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Card> {
+    async updateAccountCard(requestParameters: UpdateAccountCardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Card> {
         const response = await this.updateAccountCardRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3664,7 +3664,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async updateAccountContactRaw(requestParameters: CustomerAccountApiUpdateAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerContact>> {
+    async updateAccountContactRaw(requestParameters: UpdateAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerContact>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling updateAccountContact.');
         }
@@ -3708,7 +3708,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Updates a CustomerContact for a specified customer account, for example to update addresses or change which CustomerContact is the primary CustomerContact for billing.
      * Update Account Contact
      */
-    async updateAccountContact(requestParameters: CustomerAccountApiUpdateAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerContact> {
+    async updateAccountContact(requestParameters: UpdateAccountContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerContact> {
         const response = await this.updateAccountContactRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3719,7 +3719,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async updateAccountNoteRaw(requestParameters: CustomerAccountApiUpdateAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerNote>> {
+    async updateAccountNoteRaw(requestParameters: UpdateAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerNote>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling updateAccountNote.');
         }
@@ -3759,7 +3759,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Modifies an existing note for a customer account.
      * Update Account Note
      */
-    async updateAccountNote(requestParameters: CustomerAccountApiUpdateAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerNote> {
+    async updateAccountNote(requestParameters: UpdateAccountNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerNote> {
         const response = await this.updateAccountNoteRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3770,7 +3770,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async updateCustomerPurchaseOrderAccountRaw(requestParameters: CustomerAccountApiUpdateCustomerPurchaseOrderAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerPurchaseOrderAccount>> {
+    async updateCustomerPurchaseOrderAccountRaw(requestParameters: UpdateCustomerPurchaseOrderAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerPurchaseOrderAccount>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
             throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling updateCustomerPurchaseOrderAccount.');
         }
@@ -3806,7 +3806,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Updates a customer\'s purchase order account.
      * Update Customer Purchase Order Account
      */
-    async updateCustomerPurchaseOrderAccount(requestParameters: CustomerAccountApiUpdateCustomerPurchaseOrderAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerPurchaseOrderAccount> {
+    async updateCustomerPurchaseOrderAccount(requestParameters: UpdateCustomerPurchaseOrderAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerPurchaseOrderAccount> {
         const response = await this.updateCustomerPurchaseOrderAccountRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3817,7 +3817,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      */
 
 
-    async updateForgottenPasswordRaw(requestParameters: CustomerAccountApiUpdateForgottenPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async updateForgottenPasswordRaw(requestParameters: UpdateForgottenPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -3849,7 +3849,7 @@ export class CustomerAccountApi extends runtime.BaseAPI implements CustomerAccou
      * Updates the password for a shopper who has requested a password change and provided the new password and confirmation code.
      * Update Forgotten Password
      */
-    async updateForgottenPassword(requestParameters: CustomerAccountApiUpdateForgottenPasswordRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async updateForgottenPassword(requestParameters: UpdateForgottenPasswordRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.updateForgottenPasswordRaw(requestParameters, initOverrides);
     }
 

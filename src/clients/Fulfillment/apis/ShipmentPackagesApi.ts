@@ -21,7 +21,7 @@ import type {
   SaveMpsPackagesRequest,
 } from '../models';
 
-export interface ShipmentPackagesApiDeleteShipmentPackageUsingDELETERequest {
+export interface DeleteShipmentPackageUsingDELETERequest {
     packageId: string;
     shipmentNumber: number;
     xVolTenant: number;
@@ -29,14 +29,14 @@ export interface ShipmentPackagesApiDeleteShipmentPackageUsingDELETERequest {
     xVolSite?: number;
 }
 
-export interface ShipmentPackagesApiDeleteShipmentPackagesUsingDELETERequest {
+export interface DeleteShipmentPackagesUsingDELETERequest {
     shipmentNumber: number;
     xVolTenant: number;
     ifMatch?: string;
     xVolSite?: number;
 }
 
-export interface ShipmentPackagesApiNewPackageUsingPOSTRequest {
+export interface NewPackageUsingPOSTRequest {
     shipmentNumber: number;
     xVolTenant: number;
     packageDto: FulfillmentAPIProductionProfilePackage;
@@ -45,7 +45,7 @@ export interface ShipmentPackagesApiNewPackageUsingPOSTRequest {
     responseFields?: string;
 }
 
-export interface ShipmentPackagesApiNewPackagesUsingPOSTRequest {
+export interface NewPackagesUsingPOSTRequest {
     shipmentNumber: number;
     xVolTenant: number;
     packageDtoList: Array<FulfillmentAPIProductionProfilePackage>;
@@ -54,14 +54,14 @@ export interface ShipmentPackagesApiNewPackagesUsingPOSTRequest {
     responseFields?: string;
 }
 
-export interface ShipmentPackagesApiRemoveShippingInformationUsingDELETERequest {
+export interface RemoveShippingInformationUsingDELETERequest {
     shipmentNumber: number;
     xVolTenant: number;
     ifMatch?: string;
     xVolSite?: number;
 }
 
-export interface ShipmentPackagesApiSaveMultiPieceShipmentPackagesUsingPUTRequest {
+export interface SaveMultiPieceShipmentPackagesUsingPUTRequest {
     shipmentNumber: number;
     xVolTenant: number;
     saveMpsPackagesRequestDto: SaveMpsPackagesRequest;
@@ -70,7 +70,7 @@ export interface ShipmentPackagesApiSaveMultiPieceShipmentPackagesUsingPUTReques
     responseFields?: string;
 }
 
-export interface ShipmentPackagesApiUpdatePackageUsingPUTRequest {
+export interface UpdatePackageUsingPUTRequest {
     packageId: string;
     shipmentNumber: number;
     xVolTenant: number;
@@ -99,13 +99,13 @@ export interface ShipmentPackagesApiInterface {
      * @throws {RequiredError}
      * @memberof ShipmentPackagesApiInterface
      */
-    deleteShipmentPackageUsingDELETERaw(requestParameters: ShipmentPackagesApiDeleteShipmentPackageUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteShipmentPackageUsingDELETERaw(requestParameters: DeleteShipmentPackageUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * deleteShipmentPackage
      * deleteShipmentPackage
      */
-    deleteShipmentPackageUsingDELETE(requestParameters: ShipmentPackagesApiDeleteShipmentPackageUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteShipmentPackageUsingDELETE(requestParameters: DeleteShipmentPackageUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * deleteShipmentPackages
@@ -118,13 +118,13 @@ export interface ShipmentPackagesApiInterface {
      * @throws {RequiredError}
      * @memberof ShipmentPackagesApiInterface
      */
-    deleteShipmentPackagesUsingDELETERaw(requestParameters: ShipmentPackagesApiDeleteShipmentPackagesUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+    deleteShipmentPackagesUsingDELETERaw(requestParameters: DeleteShipmentPackagesUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
 
     /**
      * deleteShipmentPackages
      * deleteShipmentPackages
      */
-    deleteShipmentPackagesUsingDELETE(requestParameters: ShipmentPackagesApiDeleteShipmentPackagesUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+    deleteShipmentPackagesUsingDELETE(requestParameters: DeleteShipmentPackagesUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
 
     /**
      * newPackage
@@ -139,13 +139,13 @@ export interface ShipmentPackagesApiInterface {
      * @throws {RequiredError}
      * @memberof ShipmentPackagesApiInterface
      */
-    newPackageUsingPOSTRaw(requestParameters: ShipmentPackagesApiNewPackageUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+    newPackageUsingPOSTRaw(requestParameters: NewPackageUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
 
     /**
      * newPackage
      * newPackage
      */
-    newPackageUsingPOST(requestParameters: ShipmentPackagesApiNewPackageUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+    newPackageUsingPOST(requestParameters: NewPackageUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
 
     /**
      * newPackages
@@ -160,13 +160,13 @@ export interface ShipmentPackagesApiInterface {
      * @throws {RequiredError}
      * @memberof ShipmentPackagesApiInterface
      */
-    newPackagesUsingPOSTRaw(requestParameters: ShipmentPackagesApiNewPackagesUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+    newPackagesUsingPOSTRaw(requestParameters: NewPackagesUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
 
     /**
      * newPackages
      * newPackages
      */
-    newPackagesUsingPOST(requestParameters: ShipmentPackagesApiNewPackagesUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+    newPackagesUsingPOST(requestParameters: NewPackagesUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
 
     /**
      * removeShippingInformation
@@ -179,13 +179,13 @@ export interface ShipmentPackagesApiInterface {
      * @throws {RequiredError}
      * @memberof ShipmentPackagesApiInterface
      */
-    removeShippingInformationUsingDELETERaw(requestParameters: ShipmentPackagesApiRemoveShippingInformationUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+    removeShippingInformationUsingDELETERaw(requestParameters: RemoveShippingInformationUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
 
     /**
      * removeShippingInformation
      * removeShippingInformation
      */
-    removeShippingInformationUsingDELETE(requestParameters: ShipmentPackagesApiRemoveShippingInformationUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+    removeShippingInformationUsingDELETE(requestParameters: RemoveShippingInformationUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
 
     /**
      * saveMultiPieceShipmentPackages
@@ -200,13 +200,13 @@ export interface ShipmentPackagesApiInterface {
      * @throws {RequiredError}
      * @memberof ShipmentPackagesApiInterface
      */
-    saveMultiPieceShipmentPackagesUsingPUTRaw(requestParameters: ShipmentPackagesApiSaveMultiPieceShipmentPackagesUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+    saveMultiPieceShipmentPackagesUsingPUTRaw(requestParameters: SaveMultiPieceShipmentPackagesUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
 
     /**
      * saveMultiPieceShipmentPackages
      * saveMultiPieceShipmentPackages
      */
-    saveMultiPieceShipmentPackagesUsingPUT(requestParameters: ShipmentPackagesApiSaveMultiPieceShipmentPackagesUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+    saveMultiPieceShipmentPackagesUsingPUT(requestParameters: SaveMultiPieceShipmentPackagesUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
 
     /**
      * updatePackage
@@ -222,13 +222,13 @@ export interface ShipmentPackagesApiInterface {
      * @throws {RequiredError}
      * @memberof ShipmentPackagesApiInterface
      */
-    updatePackageUsingPUTRaw(requestParameters: ShipmentPackagesApiUpdatePackageUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+    updatePackageUsingPUTRaw(requestParameters: UpdatePackageUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
 
     /**
      * updatePackage
      * updatePackage
      */
-    updatePackageUsingPUT(requestParameters: ShipmentPackagesApiUpdatePackageUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+    updatePackageUsingPUT(requestParameters: UpdatePackageUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
 
 }
 
@@ -246,7 +246,7 @@ export class ShipmentPackagesApi extends runtime.BaseAPI implements ShipmentPack
      */
 
 
-    async deleteShipmentPackageUsingDELETERaw(requestParameters: ShipmentPackagesApiDeleteShipmentPackageUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteShipmentPackageUsingDELETERaw(requestParameters: DeleteShipmentPackageUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.packageId === null || requestParameters.packageId === undefined) {
             throw new runtime.RequiredError('packageId','Required parameter requestParameters.packageId was null or undefined when calling deleteShipmentPackageUsingDELETE.');
         }
@@ -295,7 +295,7 @@ export class ShipmentPackagesApi extends runtime.BaseAPI implements ShipmentPack
      * deleteShipmentPackage
      * deleteShipmentPackage
      */
-    async deleteShipmentPackageUsingDELETE(requestParameters: ShipmentPackagesApiDeleteShipmentPackageUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteShipmentPackageUsingDELETE(requestParameters: DeleteShipmentPackageUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteShipmentPackageUsingDELETERaw(requestParameters, initOverrides);
     }
 
@@ -305,7 +305,7 @@ export class ShipmentPackagesApi extends runtime.BaseAPI implements ShipmentPack
      */
 
 
-    async deleteShipmentPackagesUsingDELETERaw(requestParameters: ShipmentPackagesApiDeleteShipmentPackagesUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async deleteShipmentPackagesUsingDELETERaw(requestParameters: DeleteShipmentPackagesUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling deleteShipmentPackagesUsingDELETE.');
         }
@@ -350,7 +350,7 @@ export class ShipmentPackagesApi extends runtime.BaseAPI implements ShipmentPack
      * deleteShipmentPackages
      * deleteShipmentPackages
      */
-    async deleteShipmentPackagesUsingDELETE(requestParameters: ShipmentPackagesApiDeleteShipmentPackagesUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+    async deleteShipmentPackagesUsingDELETE(requestParameters: DeleteShipmentPackagesUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
         const response = await this.deleteShipmentPackagesUsingDELETERaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -361,7 +361,7 @@ export class ShipmentPackagesApi extends runtime.BaseAPI implements ShipmentPack
      */
 
 
-    async newPackageUsingPOSTRaw(requestParameters: ShipmentPackagesApiNewPackageUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async newPackageUsingPOSTRaw(requestParameters: NewPackageUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling newPackageUsingPOST.');
         }
@@ -417,7 +417,7 @@ export class ShipmentPackagesApi extends runtime.BaseAPI implements ShipmentPack
      * newPackage
      * newPackage
      */
-    async newPackageUsingPOST(requestParameters: ShipmentPackagesApiNewPackageUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+    async newPackageUsingPOST(requestParameters: NewPackageUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
         const response = await this.newPackageUsingPOSTRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -428,7 +428,7 @@ export class ShipmentPackagesApi extends runtime.BaseAPI implements ShipmentPack
      */
 
 
-    async newPackagesUsingPOSTRaw(requestParameters: ShipmentPackagesApiNewPackagesUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async newPackagesUsingPOSTRaw(requestParameters: NewPackagesUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling newPackagesUsingPOST.');
         }
@@ -484,7 +484,7 @@ export class ShipmentPackagesApi extends runtime.BaseAPI implements ShipmentPack
      * newPackages
      * newPackages
      */
-    async newPackagesUsingPOST(requestParameters: ShipmentPackagesApiNewPackagesUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+    async newPackagesUsingPOST(requestParameters: NewPackagesUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
         const response = await this.newPackagesUsingPOSTRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -495,7 +495,7 @@ export class ShipmentPackagesApi extends runtime.BaseAPI implements ShipmentPack
      */
 
 
-    async removeShippingInformationUsingDELETERaw(requestParameters: ShipmentPackagesApiRemoveShippingInformationUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async removeShippingInformationUsingDELETERaw(requestParameters: RemoveShippingInformationUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling removeShippingInformationUsingDELETE.');
         }
@@ -540,7 +540,7 @@ export class ShipmentPackagesApi extends runtime.BaseAPI implements ShipmentPack
      * removeShippingInformation
      * removeShippingInformation
      */
-    async removeShippingInformationUsingDELETE(requestParameters: ShipmentPackagesApiRemoveShippingInformationUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+    async removeShippingInformationUsingDELETE(requestParameters: RemoveShippingInformationUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
         const response = await this.removeShippingInformationUsingDELETERaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -551,7 +551,7 @@ export class ShipmentPackagesApi extends runtime.BaseAPI implements ShipmentPack
      */
 
 
-    async saveMultiPieceShipmentPackagesUsingPUTRaw(requestParameters: ShipmentPackagesApiSaveMultiPieceShipmentPackagesUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async saveMultiPieceShipmentPackagesUsingPUTRaw(requestParameters: SaveMultiPieceShipmentPackagesUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling saveMultiPieceShipmentPackagesUsingPUT.');
         }
@@ -607,7 +607,7 @@ export class ShipmentPackagesApi extends runtime.BaseAPI implements ShipmentPack
      * saveMultiPieceShipmentPackages
      * saveMultiPieceShipmentPackages
      */
-    async saveMultiPieceShipmentPackagesUsingPUT(requestParameters: ShipmentPackagesApiSaveMultiPieceShipmentPackagesUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+    async saveMultiPieceShipmentPackagesUsingPUT(requestParameters: SaveMultiPieceShipmentPackagesUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
         const response = await this.saveMultiPieceShipmentPackagesUsingPUTRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -618,7 +618,7 @@ export class ShipmentPackagesApi extends runtime.BaseAPI implements ShipmentPack
      */
 
 
-    async updatePackageUsingPUTRaw(requestParameters: ShipmentPackagesApiUpdatePackageUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async updatePackageUsingPUTRaw(requestParameters: UpdatePackageUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.packageId === null || requestParameters.packageId === undefined) {
             throw new runtime.RequiredError('packageId','Required parameter requestParameters.packageId was null or undefined when calling updatePackageUsingPUT.');
         }
@@ -678,7 +678,7 @@ export class ShipmentPackagesApi extends runtime.BaseAPI implements ShipmentPack
      * updatePackage
      * updatePackage
      */
-    async updatePackageUsingPUT(requestParameters: ShipmentPackagesApiUpdatePackageUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+    async updatePackageUsingPUT(requestParameters: UpdatePackageUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
         const response = await this.updatePackageUsingPUTRaw(requestParameters, initOverrides);
         return await response.value();
     }

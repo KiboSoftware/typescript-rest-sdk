@@ -20,31 +20,31 @@ import type {
   LocationTypeCollection,
 } from '../models';
 
-export interface LocationTypeApiAddLocationTypeAsyncRequest {
+export interface AddLocationTypeAsyncRequest {
     responseFields?: string;
     locationType?: LocationType;
 }
 
-export interface LocationTypeApiDeleteLocationTypeRequest {
+export interface DeleteLocationTypeRequest {
     locationTypeCode: string;
 }
 
-export interface LocationTypeApiGetLocationTypeRequest {
+export interface GetLocationTypeRequest {
     locationTypeCode: string;
     responseFields?: string;
 }
 
-export interface LocationTypeApiGetLocationTypesRequest {
+export interface GetLocationTypesRequest {
     responseFields?: string;
 }
 
-export interface LocationTypeApiGetLocationTypesWithPaginationRequest {
+export interface GetLocationTypesWithPaginationRequest {
     startIndex?: number;
     pageSize?: number;
     responseFields?: string;
 }
 
-export interface LocationTypeApiUpdateLocationTypeRequest {
+export interface UpdateLocationTypeRequest {
     locationTypeCode: string;
     responseFields?: string;
     locationType?: LocationType;
@@ -66,13 +66,13 @@ export interface LocationTypeApiInterface {
      * @throws {RequiredError}
      * @memberof LocationTypeApiInterface
      */
-    addLocationTypeAsyncRaw(requestParameters: LocationTypeApiAddLocationTypeAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationType>>;
+    addLocationTypeAsyncRaw(requestParameters: AddLocationTypeAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationType>>;
 
     /**
      * Create a LocationType.
      * Add Location Type Async
      */
-    addLocationTypeAsync(requestParameters: LocationTypeApiAddLocationTypeAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationType>;
+    addLocationTypeAsync(requestParameters: AddLocationTypeAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationType>;
 
     /**
      * Delete Location Type.
@@ -82,13 +82,13 @@ export interface LocationTypeApiInterface {
      * @throws {RequiredError}
      * @memberof LocationTypeApiInterface
      */
-    deleteLocationTypeRaw(requestParameters: LocationTypeApiDeleteLocationTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteLocationTypeRaw(requestParameters: DeleteLocationTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Delete Location Type.
      * Delete Location Type
      */
-    deleteLocationType(requestParameters: LocationTypeApiDeleteLocationTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteLocationType(requestParameters: DeleteLocationTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Get a LocationType.
@@ -99,13 +99,13 @@ export interface LocationTypeApiInterface {
      * @throws {RequiredError}
      * @memberof LocationTypeApiInterface
      */
-    getLocationTypeRaw(requestParameters: LocationTypeApiGetLocationTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationType>>;
+    getLocationTypeRaw(requestParameters: GetLocationTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationType>>;
 
     /**
      * Get a LocationType.
      * Get Location Type
      */
-    getLocationType(requestParameters: LocationTypeApiGetLocationTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationType>;
+    getLocationType(requestParameters: GetLocationTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationType>;
 
     /**
      * Get a collection of LocationTypes.
@@ -115,13 +115,13 @@ export interface LocationTypeApiInterface {
      * @throws {RequiredError}
      * @memberof LocationTypeApiInterface
      */
-    getLocationTypesRaw(requestParameters: LocationTypeApiGetLocationTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationType>>>;
+    getLocationTypesRaw(requestParameters: GetLocationTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationType>>>;
 
     /**
      * Get a collection of LocationTypes.
      * Get Location Types
      */
-    getLocationTypes(requestParameters: LocationTypeApiGetLocationTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationType>>;
+    getLocationTypes(requestParameters: GetLocationTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationType>>;
 
     /**
      * Get a collection of LocationTypes.
@@ -133,13 +133,13 @@ export interface LocationTypeApiInterface {
      * @throws {RequiredError}
      * @memberof LocationTypeApiInterface
      */
-    getLocationTypesWithPaginationRaw(requestParameters: LocationTypeApiGetLocationTypesWithPaginationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationTypeCollection>>;
+    getLocationTypesWithPaginationRaw(requestParameters: GetLocationTypesWithPaginationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationTypeCollection>>;
 
     /**
      * Get a collection of LocationTypes.
      * Get Location Types  <param name=\"pageSize\"></param><param name=\"sortBy\"></param>
      */
-    getLocationTypesWithPagination(requestParameters: LocationTypeApiGetLocationTypesWithPaginationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationTypeCollection>;
+    getLocationTypesWithPagination(requestParameters: GetLocationTypesWithPaginationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationTypeCollection>;
 
     /**
      * Update a LocationType.
@@ -151,13 +151,13 @@ export interface LocationTypeApiInterface {
      * @throws {RequiredError}
      * @memberof LocationTypeApiInterface
      */
-    updateLocationTypeRaw(requestParameters: LocationTypeApiUpdateLocationTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationType>>;
+    updateLocationTypeRaw(requestParameters: UpdateLocationTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationType>>;
 
     /**
      * Update a LocationType.
      * Update Location Type
      */
-    updateLocationType(requestParameters: LocationTypeApiUpdateLocationTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationType>;
+    updateLocationType(requestParameters: UpdateLocationTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationType>;
 
 }
 
@@ -175,7 +175,7 @@ export class LocationTypeApi extends runtime.BaseAPI implements LocationTypeApiI
      */
 
 
-    async addLocationTypeAsyncRaw(requestParameters: LocationTypeApiAddLocationTypeAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationType>> {
+    async addLocationTypeAsyncRaw(requestParameters: AddLocationTypeAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationType>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -207,7 +207,7 @@ export class LocationTypeApi extends runtime.BaseAPI implements LocationTypeApiI
      * Create a LocationType.
      * Add Location Type Async
      */
-    async addLocationTypeAsync(requestParameters: LocationTypeApiAddLocationTypeAsyncRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationType> {
+    async addLocationTypeAsync(requestParameters: AddLocationTypeAsyncRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationType> {
         const response = await this.addLocationTypeAsyncRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -218,7 +218,7 @@ export class LocationTypeApi extends runtime.BaseAPI implements LocationTypeApiI
      */
 
 
-    async deleteLocationTypeRaw(requestParameters: LocationTypeApiDeleteLocationTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteLocationTypeRaw(requestParameters: DeleteLocationTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.locationTypeCode === null || requestParameters.locationTypeCode === undefined) {
             throw new runtime.RequiredError('locationTypeCode','Required parameter requestParameters.locationTypeCode was null or undefined when calling deleteLocationType.');
         }
@@ -247,7 +247,7 @@ export class LocationTypeApi extends runtime.BaseAPI implements LocationTypeApiI
      * Delete Location Type.
      * Delete Location Type
      */
-    async deleteLocationType(requestParameters: LocationTypeApiDeleteLocationTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteLocationType(requestParameters: DeleteLocationTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteLocationTypeRaw(requestParameters, initOverrides);
     }
 
@@ -257,7 +257,7 @@ export class LocationTypeApi extends runtime.BaseAPI implements LocationTypeApiI
      */
 
 
-    async getLocationTypeRaw(requestParameters: LocationTypeApiGetLocationTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationType>> {
+    async getLocationTypeRaw(requestParameters: GetLocationTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationType>> {
         if (requestParameters.locationTypeCode === null || requestParameters.locationTypeCode === undefined) {
             throw new runtime.RequiredError('locationTypeCode','Required parameter requestParameters.locationTypeCode was null or undefined when calling getLocationType.');
         }
@@ -290,7 +290,7 @@ export class LocationTypeApi extends runtime.BaseAPI implements LocationTypeApiI
      * Get a LocationType.
      * Get Location Type
      */
-    async getLocationType(requestParameters: LocationTypeApiGetLocationTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationType> {
+    async getLocationType(requestParameters: GetLocationTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationType> {
         const response = await this.getLocationTypeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -301,7 +301,7 @@ export class LocationTypeApi extends runtime.BaseAPI implements LocationTypeApiI
      */
 
 
-    async getLocationTypesRaw(requestParameters: LocationTypeApiGetLocationTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationType>>> {
+    async getLocationTypesRaw(requestParameters: GetLocationTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationType>>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -330,7 +330,7 @@ export class LocationTypeApi extends runtime.BaseAPI implements LocationTypeApiI
      * Get a collection of LocationTypes.
      * Get Location Types
      */
-    async getLocationTypes(requestParameters: LocationTypeApiGetLocationTypesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationType>> {
+    async getLocationTypes(requestParameters: GetLocationTypesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationType>> {
         const response = await this.getLocationTypesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -341,7 +341,7 @@ export class LocationTypeApi extends runtime.BaseAPI implements LocationTypeApiI
      */
 
 
-    async getLocationTypesWithPaginationRaw(requestParameters: LocationTypeApiGetLocationTypesWithPaginationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationTypeCollection>> {
+    async getLocationTypesWithPaginationRaw(requestParameters: GetLocationTypesWithPaginationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationTypeCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -378,7 +378,7 @@ export class LocationTypeApi extends runtime.BaseAPI implements LocationTypeApiI
      * Get a collection of LocationTypes.
      * Get Location Types  <param name=\"pageSize\"></param><param name=\"sortBy\"></param>
      */
-    async getLocationTypesWithPagination(requestParameters: LocationTypeApiGetLocationTypesWithPaginationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationTypeCollection> {
+    async getLocationTypesWithPagination(requestParameters: GetLocationTypesWithPaginationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationTypeCollection> {
         const response = await this.getLocationTypesWithPaginationRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -389,7 +389,7 @@ export class LocationTypeApi extends runtime.BaseAPI implements LocationTypeApiI
      */
 
 
-    async updateLocationTypeRaw(requestParameters: LocationTypeApiUpdateLocationTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationType>> {
+    async updateLocationTypeRaw(requestParameters: UpdateLocationTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationType>> {
         if (requestParameters.locationTypeCode === null || requestParameters.locationTypeCode === undefined) {
             throw new runtime.RequiredError('locationTypeCode','Required parameter requestParameters.locationTypeCode was null or undefined when calling updateLocationType.');
         }
@@ -425,7 +425,7 @@ export class LocationTypeApi extends runtime.BaseAPI implements LocationTypeApiI
      * Update a LocationType.
      * Update Location Type
      */
-    async updateLocationType(requestParameters: LocationTypeApiUpdateLocationTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationType> {
+    async updateLocationType(requestParameters: UpdateLocationTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationType> {
         const response = await this.updateLocationTypeRaw(requestParameters, initOverrides);
         return await response.value();
     }

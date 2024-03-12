@@ -20,12 +20,12 @@ import type {
   CustomerSetCollection,
 } from '../models';
 
-export interface CustomerSetApiGetCustomerSetRequest {
+export interface GetCustomerSetRequest {
     code: string;
     responseFields?: string;
 }
 
-export interface CustomerSetApiGetCustomerSetsRequest {
+export interface GetCustomerSetsRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -49,13 +49,13 @@ export interface CustomerSetApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerSetApiInterface
      */
-    getCustomerSetRaw(requestParameters: CustomerSetApiGetCustomerSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerSet>>;
+    getCustomerSetRaw(requestParameters: GetCustomerSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerSet>>;
 
     /**
      * Retrieves the name of a customer group specified the customer group ID.
      * Get Customer Set
      */
-    getCustomerSet(requestParameters: CustomerSetApiGetCustomerSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerSet>;
+    getCustomerSet(requestParameters: GetCustomerSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerSet>;
 
     /**
      * Retrieves a list of all customerSets defined for the site according to any specified filter criteria and sort options.
@@ -69,13 +69,13 @@ export interface CustomerSetApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerSetApiInterface
      */
-    getCustomerSetsRaw(requestParameters: CustomerSetApiGetCustomerSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerSetCollection>>;
+    getCustomerSetsRaw(requestParameters: GetCustomerSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerSetCollection>>;
 
     /**
      * Retrieves a list of all customerSets defined for the site according to any specified filter criteria and sort options.
      * Get Customer Sets
      */
-    getCustomerSets(requestParameters: CustomerSetApiGetCustomerSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerSetCollection>;
+    getCustomerSets(requestParameters: GetCustomerSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerSetCollection>;
 
 }
 
@@ -93,7 +93,7 @@ export class CustomerSetApi extends runtime.BaseAPI implements CustomerSetApiInt
      */
 
 
-    async getCustomerSetRaw(requestParameters: CustomerSetApiGetCustomerSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerSet>> {
+    async getCustomerSetRaw(requestParameters: GetCustomerSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerSet>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling getCustomerSet.');
         }
@@ -126,7 +126,7 @@ export class CustomerSetApi extends runtime.BaseAPI implements CustomerSetApiInt
      * Retrieves the name of a customer group specified the customer group ID.
      * Get Customer Set
      */
-    async getCustomerSet(requestParameters: CustomerSetApiGetCustomerSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerSet> {
+    async getCustomerSet(requestParameters: GetCustomerSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerSet> {
         const response = await this.getCustomerSetRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -137,7 +137,7 @@ export class CustomerSetApi extends runtime.BaseAPI implements CustomerSetApiInt
      */
 
 
-    async getCustomerSetsRaw(requestParameters: CustomerSetApiGetCustomerSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerSetCollection>> {
+    async getCustomerSetsRaw(requestParameters: GetCustomerSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerSetCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -182,7 +182,7 @@ export class CustomerSetApi extends runtime.BaseAPI implements CustomerSetApiInt
      * Retrieves a list of all customerSets defined for the site according to any specified filter criteria and sort options.
      * Get Customer Sets
      */
-    async getCustomerSets(requestParameters: CustomerSetApiGetCustomerSetsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerSetCollection> {
+    async getCustomerSets(requestParameters: GetCustomerSetsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerSetCollection> {
         const response = await this.getCustomerSetsRaw(requestParameters, initOverrides);
         return await response.value();
     }

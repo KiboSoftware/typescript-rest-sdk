@@ -19,14 +19,14 @@ import type {
   ShipmentAttribute,
 } from '../models';
 
-export interface ShipmentAttributesApiDeleteShipmentAttributeUsingDELETERequest {
+export interface DeleteShipmentAttributeUsingDELETERequest {
     key: string;
     shipmentNumber: number;
     xVolTenant: number;
     xVolSite?: number;
 }
 
-export interface ShipmentAttributesApiGetShipmentAttributeUsingGETRequest {
+export interface GetShipmentAttributeUsingGETRequest {
     key: string;
     shipmentNumber: number;
     xVolTenant: number;
@@ -34,14 +34,14 @@ export interface ShipmentAttributesApiGetShipmentAttributeUsingGETRequest {
     responseFields?: string;
 }
 
-export interface ShipmentAttributesApiGetShipmentAttributesUsingGETRequest {
+export interface GetShipmentAttributesUsingGETRequest {
     shipmentNumber: number;
     xVolTenant: number;
     xVolSite?: number;
     responseFields?: string;
 }
 
-export interface ShipmentAttributesApiSetShipmentAttributeUsingPUTRequest {
+export interface SetShipmentAttributeUsingPUTRequest {
     key: string;
     shipmentNumber: number;
     xVolTenant: number;
@@ -50,7 +50,7 @@ export interface ShipmentAttributesApiSetShipmentAttributeUsingPUTRequest {
     responseFields?: string;
 }
 
-export interface ShipmentAttributesApiSetShipmentAttributesUsingPUTRequest {
+export interface SetShipmentAttributesUsingPUTRequest {
     shipmentNumber: number;
     xVolTenant: number;
     attributes: Array<ShipmentAttribute>;
@@ -76,13 +76,13 @@ export interface ShipmentAttributesApiInterface {
      * @throws {RequiredError}
      * @memberof ShipmentAttributesApiInterface
      */
-    deleteShipmentAttributeUsingDELETERaw(requestParameters: ShipmentAttributesApiDeleteShipmentAttributeUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteShipmentAttributeUsingDELETERaw(requestParameters: DeleteShipmentAttributeUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * deleteShipmentAttribute
      * deleteShipmentAttribute
      */
-    deleteShipmentAttributeUsingDELETE(requestParameters: ShipmentAttributesApiDeleteShipmentAttributeUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteShipmentAttributeUsingDELETE(requestParameters: DeleteShipmentAttributeUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * getShipmentAttribute
@@ -96,13 +96,13 @@ export interface ShipmentAttributesApiInterface {
      * @throws {RequiredError}
      * @memberof ShipmentAttributesApiInterface
      */
-    getShipmentAttributeUsingGETRaw(requestParameters: ShipmentAttributesApiGetShipmentAttributeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShipmentAttribute>>;
+    getShipmentAttributeUsingGETRaw(requestParameters: GetShipmentAttributeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShipmentAttribute>>;
 
     /**
      * getShipmentAttribute
      * getShipmentAttribute
      */
-    getShipmentAttributeUsingGET(requestParameters: ShipmentAttributesApiGetShipmentAttributeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShipmentAttribute>;
+    getShipmentAttributeUsingGET(requestParameters: GetShipmentAttributeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShipmentAttribute>;
 
     /**
      * getShipmentAttributes
@@ -115,13 +115,13 @@ export interface ShipmentAttributesApiInterface {
      * @throws {RequiredError}
      * @memberof ShipmentAttributesApiInterface
      */
-    getShipmentAttributesUsingGETRaw(requestParameters: ShipmentAttributesApiGetShipmentAttributesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ShipmentAttribute>>>;
+    getShipmentAttributesUsingGETRaw(requestParameters: GetShipmentAttributesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ShipmentAttribute>>>;
 
     /**
      * getShipmentAttributes
      * getShipmentAttributes
      */
-    getShipmentAttributesUsingGET(requestParameters: ShipmentAttributesApiGetShipmentAttributesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ShipmentAttribute>>;
+    getShipmentAttributesUsingGET(requestParameters: GetShipmentAttributesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ShipmentAttribute>>;
 
     /**
      * setShipmentAttribute
@@ -136,13 +136,13 @@ export interface ShipmentAttributesApiInterface {
      * @throws {RequiredError}
      * @memberof ShipmentAttributesApiInterface
      */
-    setShipmentAttributeUsingPUTRaw(requestParameters: ShipmentAttributesApiSetShipmentAttributeUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShipmentAttribute>>;
+    setShipmentAttributeUsingPUTRaw(requestParameters: SetShipmentAttributeUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShipmentAttribute>>;
 
     /**
      * setShipmentAttribute
      * setShipmentAttribute
      */
-    setShipmentAttributeUsingPUT(requestParameters: ShipmentAttributesApiSetShipmentAttributeUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShipmentAttribute>;
+    setShipmentAttributeUsingPUT(requestParameters: SetShipmentAttributeUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShipmentAttribute>;
 
     /**
      * setShipmentAttributes
@@ -156,13 +156,13 @@ export interface ShipmentAttributesApiInterface {
      * @throws {RequiredError}
      * @memberof ShipmentAttributesApiInterface
      */
-    setShipmentAttributesUsingPUTRaw(requestParameters: ShipmentAttributesApiSetShipmentAttributesUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ShipmentAttribute>>>;
+    setShipmentAttributesUsingPUTRaw(requestParameters: SetShipmentAttributesUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ShipmentAttribute>>>;
 
     /**
      * setShipmentAttributes
      * setShipmentAttributes
      */
-    setShipmentAttributesUsingPUT(requestParameters: ShipmentAttributesApiSetShipmentAttributesUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ShipmentAttribute>>;
+    setShipmentAttributesUsingPUT(requestParameters: SetShipmentAttributesUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ShipmentAttribute>>;
 
 }
 
@@ -180,7 +180,7 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
      */
 
 
-    async deleteShipmentAttributeUsingDELETERaw(requestParameters: ShipmentAttributesApiDeleteShipmentAttributeUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteShipmentAttributeUsingDELETERaw(requestParameters: DeleteShipmentAttributeUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.key === null || requestParameters.key === undefined) {
             throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling deleteShipmentAttributeUsingDELETE.');
         }
@@ -225,7 +225,7 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
      * deleteShipmentAttribute
      * deleteShipmentAttribute
      */
-    async deleteShipmentAttributeUsingDELETE(requestParameters: ShipmentAttributesApiDeleteShipmentAttributeUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteShipmentAttributeUsingDELETE(requestParameters: DeleteShipmentAttributeUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteShipmentAttributeUsingDELETERaw(requestParameters, initOverrides);
     }
 
@@ -235,7 +235,7 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
      */
 
 
-    async getShipmentAttributeUsingGETRaw(requestParameters: ShipmentAttributesApiGetShipmentAttributeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShipmentAttribute>> {
+    async getShipmentAttributeUsingGETRaw(requestParameters: GetShipmentAttributeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShipmentAttribute>> {
         if (requestParameters.key === null || requestParameters.key === undefined) {
             throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling getShipmentAttributeUsingGET.');
         }
@@ -284,7 +284,7 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
      * getShipmentAttribute
      * getShipmentAttribute
      */
-    async getShipmentAttributeUsingGET(requestParameters: ShipmentAttributesApiGetShipmentAttributeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShipmentAttribute> {
+    async getShipmentAttributeUsingGET(requestParameters: GetShipmentAttributeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShipmentAttribute> {
         const response = await this.getShipmentAttributeUsingGETRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -295,7 +295,7 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
      */
 
 
-    async getShipmentAttributesUsingGETRaw(requestParameters: ShipmentAttributesApiGetShipmentAttributesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ShipmentAttribute>>> {
+    async getShipmentAttributesUsingGETRaw(requestParameters: GetShipmentAttributesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ShipmentAttribute>>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getShipmentAttributesUsingGET.');
         }
@@ -340,7 +340,7 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
      * getShipmentAttributes
      * getShipmentAttributes
      */
-    async getShipmentAttributesUsingGET(requestParameters: ShipmentAttributesApiGetShipmentAttributesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ShipmentAttribute>> {
+    async getShipmentAttributesUsingGET(requestParameters: GetShipmentAttributesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ShipmentAttribute>> {
         const response = await this.getShipmentAttributesUsingGETRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -351,7 +351,7 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
      */
 
 
-    async setShipmentAttributeUsingPUTRaw(requestParameters: ShipmentAttributesApiSetShipmentAttributeUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShipmentAttribute>> {
+    async setShipmentAttributeUsingPUTRaw(requestParameters: SetShipmentAttributeUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShipmentAttribute>> {
         if (requestParameters.key === null || requestParameters.key === undefined) {
             throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling setShipmentAttributeUsingPUT.');
         }
@@ -407,7 +407,7 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
      * setShipmentAttribute
      * setShipmentAttribute
      */
-    async setShipmentAttributeUsingPUT(requestParameters: ShipmentAttributesApiSetShipmentAttributeUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShipmentAttribute> {
+    async setShipmentAttributeUsingPUT(requestParameters: SetShipmentAttributeUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShipmentAttribute> {
         const response = await this.setShipmentAttributeUsingPUTRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -418,7 +418,7 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
      */
 
 
-    async setShipmentAttributesUsingPUTRaw(requestParameters: ShipmentAttributesApiSetShipmentAttributesUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ShipmentAttribute>>> {
+    async setShipmentAttributesUsingPUTRaw(requestParameters: SetShipmentAttributesUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ShipmentAttribute>>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling setShipmentAttributesUsingPUT.');
         }
@@ -470,7 +470,7 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
      * setShipmentAttributes
      * setShipmentAttributes
      */
-    async setShipmentAttributesUsingPUT(requestParameters: ShipmentAttributesApiSetShipmentAttributesUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ShipmentAttribute>> {
+    async setShipmentAttributesUsingPUT(requestParameters: SetShipmentAttributesUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ShipmentAttribute>> {
         const response = await this.setShipmentAttributesUsingPUTRaw(requestParameters, initOverrides);
         return await response.value();
     }

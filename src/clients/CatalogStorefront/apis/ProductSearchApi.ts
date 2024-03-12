@@ -23,7 +23,7 @@ import type {
   VisualSearchResult,
 } from '../models';
 
-export interface ProductSearchApiSearchDebugRequest {
+export interface SearchDebugRequest {
     query?: string;
     filter?: string;
     facetTemplate?: string;
@@ -62,14 +62,14 @@ export interface ProductSearchApiSearchDebugRequest {
     q?: string;
 }
 
-export interface ProductSearchApiStorefrontGetRandomAccessCursorRequest {
+export interface StorefrontGetRandomAccessCursorRequest {
     query?: string;
     filter?: string;
     pageSize?: number;
     responseFields?: string;
 }
 
-export interface ProductSearchApiStorefrontSearchRequest {
+export interface StorefrontSearchRequest {
     query?: string;
     filter?: string;
     facetTemplate?: string;
@@ -107,7 +107,7 @@ export interface ProductSearchApiStorefrontSearchRequest {
     responseFields?: string;
 }
 
-export interface ProductSearchApiStorefrontSiteSearchRequest {
+export interface StorefrontSiteSearchRequest {
     query?: string;
     filter?: string;
     facetTemplate?: string;
@@ -146,7 +146,7 @@ export interface ProductSearchApiStorefrontSiteSearchRequest {
     responseFields?: string;
 }
 
-export interface ProductSearchApiStorefrontSuggestRequest {
+export interface StorefrontSuggestRequest {
     query?: string;
     groups?: string;
     pageSize?: number;
@@ -155,7 +155,7 @@ export interface ProductSearchApiStorefrontSuggestRequest {
     responseFields?: string;
 }
 
-export interface ProductSearchApiStorefrontSuggest2Request {
+export interface StorefrontSuggest2Request {
     query?: string;
     groups?: string;
     pageSize?: number;
@@ -165,7 +165,7 @@ export interface ProductSearchApiStorefrontSuggest2Request {
     responseFields?: string;
 }
 
-export interface ProductSearchApiStorefrontVisualSearchRequest {
+export interface StorefrontVisualSearchRequest {
     searchTerm: string;
     filters?: Array<RequestFilter>;
     returnfields?: Array<string>;
@@ -184,7 +184,7 @@ export interface ProductSearchApiStorefrontVisualSearchRequest {
     responseFields?: string;
 }
 
-export interface ProductSearchApiSuggestDebugRequest {
+export interface SuggestDebugRequest {
     groups?: string;
     query?: string;
     pageSize?: number;
@@ -246,13 +246,13 @@ export interface ProductSearchApiInterface {
      * @throws {RequiredError}
      * @memberof ProductSearchApiInterface
      */
-    searchDebugRaw(requestParameters: ProductSearchApiSearchDebugRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    searchDebugRaw(requestParameters: SearchDebugRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Searches the items displayed on the storefront for products or product options that the shopper types in a search query. Used for debugging explain plans from solr
      * Searches the items displayed on the storefront. Used for debugging explain plans from solr
      */
-    searchDebug(requestParameters: ProductSearchApiSearchDebugRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    searchDebug(requestParameters: SearchDebugRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Generate a list of cursors that then allows you to retrieve all products with efficient deep paging.     Optionally provide a query and/or filter to generate a cursor for a subset of products.     After retrieving the cursor, provide a cursorMark to the cursorMark argument of the /search or /getProducts operations.     You may provide cursorMarks in any order or even in parallel operations.
@@ -265,13 +265,13 @@ export interface ProductSearchApiInterface {
      * @throws {RequiredError}
      * @memberof ProductSearchApiInterface
      */
-    storefrontGetRandomAccessCursorRaw(requestParameters: ProductSearchApiStorefrontGetRandomAccessCursorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchRandomAccessCursor>>;
+    storefrontGetRandomAccessCursorRaw(requestParameters: StorefrontGetRandomAccessCursorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchRandomAccessCursor>>;
 
     /**
      * Generate a list of cursors that then allows you to retrieve all products with efficient deep paging.     Optionally provide a query and/or filter to generate a cursor for a subset of products.     After retrieving the cursor, provide a cursorMark to the cursorMark argument of the /search or /getProducts operations.     You may provide cursorMarks in any order or even in parallel operations.
      * Gets list of cursors for search results
      */
-    storefrontGetRandomAccessCursor(requestParameters: ProductSearchApiStorefrontGetRandomAccessCursorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchRandomAccessCursor>;
+    storefrontGetRandomAccessCursor(requestParameters: StorefrontGetRandomAccessCursorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchRandomAccessCursor>;
 
     /**
      * Searches the categories displayed on the storefront for products or product options that the shopper types in a search query.
@@ -315,13 +315,13 @@ export interface ProductSearchApiInterface {
      * @throws {RequiredError}
      * @memberof ProductSearchApiInterface
      */
-    storefrontSearchRaw(requestParameters: ProductSearchApiStorefrontSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchResult>>;
+    storefrontSearchRaw(requestParameters: StorefrontSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchResult>>;
 
     /**
      * Searches the categories displayed on the storefront for products or product options that the shopper types in a search query.
      * Search for products.
      */
-    storefrontSearch(requestParameters: ProductSearchApiStorefrontSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchResult>;
+    storefrontSearch(requestParameters: StorefrontSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchResult>;
 
     /**
      * Site Search - Searches the items displayed on the storefront.
@@ -366,13 +366,13 @@ export interface ProductSearchApiInterface {
      * @throws {RequiredError}
      * @memberof ProductSearchApiInterface
      */
-    storefrontSiteSearchRaw(requestParameters: ProductSearchApiStorefrontSiteSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchResult>>;
+    storefrontSiteSearchRaw(requestParameters: StorefrontSiteSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchResult>>;
 
     /**
      * Site Search - Searches the items displayed on the storefront.
      * Site Search - Searches the items displayed on the storefront.
      */
-    storefrontSiteSearch(requestParameters: ProductSearchApiStorefrontSiteSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchResult>;
+    storefrontSiteSearch(requestParameters: StorefrontSiteSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchResult>;
 
     /**
      * Suggests possible search terms as the shopper enters search text.
@@ -387,13 +387,13 @@ export interface ProductSearchApiInterface {
      * @throws {RequiredError}
      * @memberof ProductSearchApiInterface
      */
-    storefrontSuggestRaw(requestParameters: ProductSearchApiStorefrontSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSuggestionResult>>;
+    storefrontSuggestRaw(requestParameters: StorefrontSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSuggestionResult>>;
 
     /**
      * Suggests possible search terms as the shopper enters search text.
      * Gets suggested search terms
      */
-    storefrontSuggest(requestParameters: ProductSearchApiStorefrontSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSuggestionResult>;
+    storefrontSuggest(requestParameters: StorefrontSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSuggestionResult>;
 
     /**
      * Suggests possible search terms as the shopper enters search text.
@@ -409,13 +409,13 @@ export interface ProductSearchApiInterface {
      * @throws {RequiredError}
      * @memberof ProductSearchApiInterface
      */
-    storefrontSuggest2Raw(requestParameters: ProductSearchApiStorefrontSuggest2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSuggestionResult>>;
+    storefrontSuggest2Raw(requestParameters: StorefrontSuggest2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSuggestionResult>>;
 
     /**
      * Suggests possible search terms as the shopper enters search text.
      * Gets suggested search terms
      */
-    storefrontSuggest2(requestParameters: ProductSearchApiStorefrontSuggest2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSuggestionResult>;
+    storefrontSuggest2(requestParameters: StorefrontSuggest2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSuggestionResult>;
 
     /**
      * Type ahead - Searches the items displayed on the storefront.
@@ -440,13 +440,13 @@ export interface ProductSearchApiInterface {
      * @throws {RequiredError}
      * @memberof ProductSearchApiInterface
      */
-    storefrontVisualSearchRaw(requestParameters: ProductSearchApiStorefrontVisualSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VisualSearchResult>>;
+    storefrontVisualSearchRaw(requestParameters: StorefrontVisualSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VisualSearchResult>>;
 
     /**
      * Type ahead - Searches the items displayed on the storefront.
      * Type ahead - Searches the items displayed on the storefront.
      */
-    storefrontVisualSearch(requestParameters: ProductSearchApiStorefrontVisualSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VisualSearchResult>;
+    storefrontVisualSearch(requestParameters: StorefrontVisualSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VisualSearchResult>;
 
     /**
      * Comma delimited list of suggestion groups that should be returned. The default is everything. e.g. categories, products.
@@ -464,13 +464,13 @@ export interface ProductSearchApiInterface {
      * @throws {RequiredError}
      * @memberof ProductSearchApiInterface
      */
-    suggestDebugRaw(requestParameters: ProductSearchApiSuggestDebugRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    suggestDebugRaw(requestParameters: SuggestDebugRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Comma delimited list of suggestion groups that should be returned. The default is everything. e.g. categories, products.
      * Debugging relevancy for the Suggest endpoint
      */
-    suggestDebug(requestParameters: ProductSearchApiSuggestDebugRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    suggestDebug(requestParameters: SuggestDebugRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
 }
 
@@ -488,7 +488,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      */
 
 
-    async searchDebugRaw(requestParameters: ProductSearchApiSearchDebugRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async searchDebugRaw(requestParameters: SearchDebugRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         if (requestParameters.query !== undefined) {
@@ -657,7 +657,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      * Searches the items displayed on the storefront for products or product options that the shopper types in a search query. Used for debugging explain plans from solr
      * Searches the items displayed on the storefront. Used for debugging explain plans from solr
      */
-    async searchDebug(requestParameters: ProductSearchApiSearchDebugRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async searchDebug(requestParameters: SearchDebugRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.searchDebugRaw(requestParameters, initOverrides);
     }
 
@@ -667,7 +667,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      */
 
 
-    async storefrontGetRandomAccessCursorRaw(requestParameters: ProductSearchApiStorefrontGetRandomAccessCursorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchRandomAccessCursor>> {
+    async storefrontGetRandomAccessCursorRaw(requestParameters: StorefrontGetRandomAccessCursorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchRandomAccessCursor>> {
         const queryParameters: any = {};
 
         if (requestParameters.query !== undefined) {
@@ -708,7 +708,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      * Generate a list of cursors that then allows you to retrieve all products with efficient deep paging.     Optionally provide a query and/or filter to generate a cursor for a subset of products.     After retrieving the cursor, provide a cursorMark to the cursorMark argument of the /search or /getProducts operations.     You may provide cursorMarks in any order or even in parallel operations.
      * Gets list of cursors for search results
      */
-    async storefrontGetRandomAccessCursor(requestParameters: ProductSearchApiStorefrontGetRandomAccessCursorRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchRandomAccessCursor> {
+    async storefrontGetRandomAccessCursor(requestParameters: StorefrontGetRandomAccessCursorRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchRandomAccessCursor> {
         const response = await this.storefrontGetRandomAccessCursorRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -719,7 +719,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      */
 
 
-    async storefrontSearchRaw(requestParameters: ProductSearchApiStorefrontSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchResult>> {
+    async storefrontSearchRaw(requestParameters: StorefrontSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchResult>> {
         const queryParameters: any = {};
 
         if (requestParameters.query !== undefined) {
@@ -884,7 +884,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      * Searches the categories displayed on the storefront for products or product options that the shopper types in a search query.
      * Search for products.
      */
-    async storefrontSearch(requestParameters: ProductSearchApiStorefrontSearchRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchResult> {
+    async storefrontSearch(requestParameters: StorefrontSearchRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchResult> {
         const response = await this.storefrontSearchRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -895,7 +895,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      */
 
 
-    async storefrontSiteSearchRaw(requestParameters: ProductSearchApiStorefrontSiteSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchResult>> {
+    async storefrontSiteSearchRaw(requestParameters: StorefrontSiteSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchResult>> {
         const queryParameters: any = {};
 
         if (requestParameters.query !== undefined) {
@@ -1064,7 +1064,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      * Site Search - Searches the items displayed on the storefront.
      * Site Search - Searches the items displayed on the storefront.
      */
-    async storefrontSiteSearch(requestParameters: ProductSearchApiStorefrontSiteSearchRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchResult> {
+    async storefrontSiteSearch(requestParameters: StorefrontSiteSearchRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchResult> {
         const response = await this.storefrontSiteSearchRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1075,7 +1075,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      */
 
 
-    async storefrontSuggestRaw(requestParameters: ProductSearchApiStorefrontSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSuggestionResult>> {
+    async storefrontSuggestRaw(requestParameters: StorefrontSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSuggestionResult>> {
         const queryParameters: any = {};
 
         if (requestParameters.query !== undefined) {
@@ -1124,7 +1124,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      * Suggests possible search terms as the shopper enters search text.
      * Gets suggested search terms
      */
-    async storefrontSuggest(requestParameters: ProductSearchApiStorefrontSuggestRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSuggestionResult> {
+    async storefrontSuggest(requestParameters: StorefrontSuggestRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSuggestionResult> {
         const response = await this.storefrontSuggestRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1135,7 +1135,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      */
 
 
-    async storefrontSuggest2Raw(requestParameters: ProductSearchApiStorefrontSuggest2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSuggestionResult>> {
+    async storefrontSuggest2Raw(requestParameters: StorefrontSuggest2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSuggestionResult>> {
         const queryParameters: any = {};
 
         if (requestParameters.query !== undefined) {
@@ -1188,7 +1188,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      * Suggests possible search terms as the shopper enters search text.
      * Gets suggested search terms
      */
-    async storefrontSuggest2(requestParameters: ProductSearchApiStorefrontSuggest2Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSuggestionResult> {
+    async storefrontSuggest2(requestParameters: StorefrontSuggest2Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSuggestionResult> {
         const response = await this.storefrontSuggest2Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1199,7 +1199,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      */
 
 
-    async storefrontVisualSearchRaw(requestParameters: ProductSearchApiStorefrontVisualSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VisualSearchResult>> {
+    async storefrontVisualSearchRaw(requestParameters: StorefrontVisualSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VisualSearchResult>> {
         if (requestParameters.searchTerm === null || requestParameters.searchTerm === undefined) {
             throw new runtime.RequiredError('searchTerm','Required parameter requestParameters.searchTerm was null or undefined when calling storefrontVisualSearch.');
         }
@@ -1292,7 +1292,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      * Type ahead - Searches the items displayed on the storefront.
      * Type ahead - Searches the items displayed on the storefront.
      */
-    async storefrontVisualSearch(requestParameters: ProductSearchApiStorefrontVisualSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VisualSearchResult> {
+    async storefrontVisualSearch(requestParameters: StorefrontVisualSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VisualSearchResult> {
         const response = await this.storefrontVisualSearchRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1303,7 +1303,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      */
 
 
-    async suggestDebugRaw(requestParameters: ProductSearchApiSuggestDebugRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async suggestDebugRaw(requestParameters: SuggestDebugRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         if (requestParameters.groups !== undefined) {
@@ -1364,7 +1364,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      * Comma delimited list of suggestion groups that should be returned. The default is everything. e.g. categories, products.
      * Debugging relevancy for the Suggest endpoint
      */
-    async suggestDebug(requestParameters: ProductSearchApiSuggestDebugRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async suggestDebug(requestParameters: SuggestDebugRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.suggestDebugRaw(requestParameters, initOverrides);
     }
 

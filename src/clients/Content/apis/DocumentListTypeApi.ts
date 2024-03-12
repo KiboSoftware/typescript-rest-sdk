@@ -20,23 +20,23 @@ import type {
   DocumentListTypeCollection,
 } from '../models';
 
-export interface DocumentListTypeApiCreateDocumentListTypeRequest {
+export interface CreateDocumentListTypeRequest {
     responseFields?: string;
     documentListType?: DocumentListType;
 }
 
-export interface DocumentListTypeApiGetDocumentListTypeRequest {
+export interface GetDocumentListTypeRequest {
     documentListTypeFQN: string;
     responseFields?: string;
 }
 
-export interface DocumentListTypeApiGetDocumentListTypesRequest {
+export interface GetDocumentListTypesRequest {
     pageSize?: number;
     startIndex?: number;
     responseFields?: string;
 }
 
-export interface DocumentListTypeApiUpdateDocumentListTypeRequest {
+export interface UpdateDocumentListTypeRequest {
     documentListTypeFQN: string;
     responseFields?: string;
     documentListType?: DocumentListType;
@@ -58,13 +58,13 @@ export interface DocumentListTypeApiInterface {
      * @throws {RequiredError}
      * @memberof DocumentListTypeApiInterface
      */
-    createDocumentListTypeRaw(requestParameters: DocumentListTypeApiCreateDocumentListTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentListType>>;
+    createDocumentListTypeRaw(requestParameters: CreateDocumentListTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentListType>>;
 
     /**
      * Create Document List Type
      * Create Document List Type
      */
-    createDocumentListType(requestParameters: DocumentListTypeApiCreateDocumentListTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentListType>;
+    createDocumentListType(requestParameters: CreateDocumentListTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentListType>;
 
     /**
      * Get Document List Type
@@ -75,13 +75,13 @@ export interface DocumentListTypeApiInterface {
      * @throws {RequiredError}
      * @memberof DocumentListTypeApiInterface
      */
-    getDocumentListTypeRaw(requestParameters: DocumentListTypeApiGetDocumentListTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentListType>>;
+    getDocumentListTypeRaw(requestParameters: GetDocumentListTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentListType>>;
 
     /**
      * Get Document List Type
      * Get Document List Type
      */
-    getDocumentListType(requestParameters: DocumentListTypeApiGetDocumentListTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentListType>;
+    getDocumentListType(requestParameters: GetDocumentListTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentListType>;
 
     /**
      * Get Document List Types
@@ -93,13 +93,13 @@ export interface DocumentListTypeApiInterface {
      * @throws {RequiredError}
      * @memberof DocumentListTypeApiInterface
      */
-    getDocumentListTypesRaw(requestParameters: DocumentListTypeApiGetDocumentListTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentListTypeCollection>>;
+    getDocumentListTypesRaw(requestParameters: GetDocumentListTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentListTypeCollection>>;
 
     /**
      * Get Document List Types
      * Get Document List Types
      */
-    getDocumentListTypes(requestParameters: DocumentListTypeApiGetDocumentListTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentListTypeCollection>;
+    getDocumentListTypes(requestParameters: GetDocumentListTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentListTypeCollection>;
 
     /**
      * Update Document List Type
@@ -111,13 +111,13 @@ export interface DocumentListTypeApiInterface {
      * @throws {RequiredError}
      * @memberof DocumentListTypeApiInterface
      */
-    updateDocumentListTypeRaw(requestParameters: DocumentListTypeApiUpdateDocumentListTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentListType>>;
+    updateDocumentListTypeRaw(requestParameters: UpdateDocumentListTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentListType>>;
 
     /**
      * Update Document List Type
      * Update Document List Type
      */
-    updateDocumentListType(requestParameters: DocumentListTypeApiUpdateDocumentListTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentListType>;
+    updateDocumentListType(requestParameters: UpdateDocumentListTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentListType>;
 
 }
 
@@ -135,7 +135,7 @@ export class DocumentListTypeApi extends runtime.BaseAPI implements DocumentList
      */
 
 
-    async createDocumentListTypeRaw(requestParameters: DocumentListTypeApiCreateDocumentListTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentListType>> {
+    async createDocumentListTypeRaw(requestParameters: CreateDocumentListTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentListType>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -144,7 +144,7 @@ export class DocumentListTypeApi extends runtime.BaseAPI implements DocumentList
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        headerParameters['Content-Type'] = 'text/plain';
 
 
 
@@ -167,7 +167,7 @@ export class DocumentListTypeApi extends runtime.BaseAPI implements DocumentList
      * Create Document List Type
      * Create Document List Type
      */
-    async createDocumentListType(requestParameters: DocumentListTypeApiCreateDocumentListTypeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentListType> {
+    async createDocumentListType(requestParameters: CreateDocumentListTypeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentListType> {
         const response = await this.createDocumentListTypeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -178,7 +178,7 @@ export class DocumentListTypeApi extends runtime.BaseAPI implements DocumentList
      */
 
 
-    async getDocumentListTypeRaw(requestParameters: DocumentListTypeApiGetDocumentListTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentListType>> {
+    async getDocumentListTypeRaw(requestParameters: GetDocumentListTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentListType>> {
         if (requestParameters.documentListTypeFQN === null || requestParameters.documentListTypeFQN === undefined) {
             throw new runtime.RequiredError('documentListTypeFQN','Required parameter requestParameters.documentListTypeFQN was null or undefined when calling getDocumentListType.');
         }
@@ -211,7 +211,7 @@ export class DocumentListTypeApi extends runtime.BaseAPI implements DocumentList
      * Get Document List Type
      * Get Document List Type
      */
-    async getDocumentListType(requestParameters: DocumentListTypeApiGetDocumentListTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentListType> {
+    async getDocumentListType(requestParameters: GetDocumentListTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentListType> {
         const response = await this.getDocumentListTypeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -222,7 +222,7 @@ export class DocumentListTypeApi extends runtime.BaseAPI implements DocumentList
      */
 
 
-    async getDocumentListTypesRaw(requestParameters: DocumentListTypeApiGetDocumentListTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentListTypeCollection>> {
+    async getDocumentListTypesRaw(requestParameters: GetDocumentListTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentListTypeCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.pageSize !== undefined) {
@@ -259,7 +259,7 @@ export class DocumentListTypeApi extends runtime.BaseAPI implements DocumentList
      * Get Document List Types
      * Get Document List Types
      */
-    async getDocumentListTypes(requestParameters: DocumentListTypeApiGetDocumentListTypesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentListTypeCollection> {
+    async getDocumentListTypes(requestParameters: GetDocumentListTypesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentListTypeCollection> {
         const response = await this.getDocumentListTypesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -270,7 +270,7 @@ export class DocumentListTypeApi extends runtime.BaseAPI implements DocumentList
      */
 
 
-    async updateDocumentListTypeRaw(requestParameters: DocumentListTypeApiUpdateDocumentListTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentListType>> {
+    async updateDocumentListTypeRaw(requestParameters: UpdateDocumentListTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentListType>> {
         if (requestParameters.documentListTypeFQN === null || requestParameters.documentListTypeFQN === undefined) {
             throw new runtime.RequiredError('documentListTypeFQN','Required parameter requestParameters.documentListTypeFQN was null or undefined when calling updateDocumentListType.');
         }
@@ -283,7 +283,7 @@ export class DocumentListTypeApi extends runtime.BaseAPI implements DocumentList
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        headerParameters['Content-Type'] = 'text/plain';
 
 
 
@@ -306,7 +306,7 @@ export class DocumentListTypeApi extends runtime.BaseAPI implements DocumentList
      * Update Document List Type
      * Update Document List Type
      */
-    async updateDocumentListType(requestParameters: DocumentListTypeApiUpdateDocumentListTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentListType> {
+    async updateDocumentListType(requestParameters: UpdateDocumentListTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentListType> {
         const response = await this.updateDocumentListTypeRaw(requestParameters, initOverrides);
         return await response.value();
     }

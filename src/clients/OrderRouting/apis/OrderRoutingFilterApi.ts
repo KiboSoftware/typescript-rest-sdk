@@ -22,47 +22,47 @@ import type {
   LocationCriteriaSetFilter,
 } from '../models';
 
-export interface OrderRoutingFilterApiDeleteFilterUsingDELETERequest {
+export interface DeleteFilterUsingDELETERequest {
     filterID: number;
     xVolSite: number;
     xVolTenant: number;
 }
 
-export interface OrderRoutingFilterApiGetFilterUsingGETRequest {
+export interface GetFilterUsingGETRequest {
     filterID: number;
     xVolSite: number;
     xVolTenant: number;
     responseFields?: string;
 }
 
-export interface OrderRoutingFilterApiSaveCriteriaSetFilterUsingPOSTRequest {
+export interface SaveCriteriaSetFilterUsingPOSTRequest {
     xVolSite: number;
     xVolTenant: number;
     loc: LocationCriteriaSetFilter;
     responseFields?: string;
 }
 
-export interface OrderRoutingFilterApiSaveCustomDataListFilterUsingPOSTRequest {
+export interface SaveCustomDataListFilterUsingPOSTRequest {
     xVolSite: number;
     xVolTenant: number;
     filter: CustomDataListFilter;
     responseFields?: string;
 }
 
-export interface OrderRoutingFilterApiSaveCustomDataValueFilterUsingPOSTRequest {
+export interface SaveCustomDataValueFilterUsingPOSTRequest {
     xVolSite: number;
     xVolTenant: number;
     customDataValueFilter: CustomDataValueFilter;
     responseFields?: string;
 }
 
-export interface OrderRoutingFilterApiTestFilterUsingGETRequest {
+export interface TestFilterUsingGETRequest {
     xVolSite: number;
     xVolTenant: number;
     responseFields?: string;
 }
 
-export interface OrderRoutingFilterApiTestSetFilterUsingGETRequest {
+export interface TestSetFilterUsingGETRequest {
     xVolSite: number;
     xVolTenant: number;
     responseFields?: string;
@@ -85,13 +85,13 @@ export interface OrderRoutingFilterApiInterface {
      * @throws {RequiredError}
      * @memberof OrderRoutingFilterApiInterface
      */
-    deleteFilterUsingDELETERaw(requestParameters: OrderRoutingFilterApiDeleteFilterUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteFilterUsingDELETERaw(requestParameters: DeleteFilterUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * deleteFilter
      * deleteFilter
      */
-    deleteFilterUsingDELETE(requestParameters: OrderRoutingFilterApiDeleteFilterUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteFilterUsingDELETE(requestParameters: DeleteFilterUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * getFilter
@@ -104,13 +104,13 @@ export interface OrderRoutingFilterApiInterface {
      * @throws {RequiredError}
      * @memberof OrderRoutingFilterApiInterface
      */
-    getFilterUsingGETRaw(requestParameters: OrderRoutingFilterApiGetFilterUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>>;
+    getFilterUsingGETRaw(requestParameters: GetFilterUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>>;
 
     /**
      * getFilter
      * getFilter
      */
-    getFilterUsingGET(requestParameters: OrderRoutingFilterApiGetFilterUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter>;
+    getFilterUsingGET(requestParameters: GetFilterUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter>;
 
     /**
      * saveCriteriaSetFilter
@@ -123,13 +123,13 @@ export interface OrderRoutingFilterApiInterface {
      * @throws {RequiredError}
      * @memberof OrderRoutingFilterApiInterface
      */
-    saveCriteriaSetFilterUsingPOSTRaw(requestParameters: OrderRoutingFilterApiSaveCriteriaSetFilterUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>>;
+    saveCriteriaSetFilterUsingPOSTRaw(requestParameters: SaveCriteriaSetFilterUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>>;
 
     /**
      * saveCriteriaSetFilter
      * saveCriteriaSetFilter
      */
-    saveCriteriaSetFilterUsingPOST(requestParameters: OrderRoutingFilterApiSaveCriteriaSetFilterUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter>;
+    saveCriteriaSetFilterUsingPOST(requestParameters: SaveCriteriaSetFilterUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter>;
 
     /**
      * saveCustomDataListFilter
@@ -142,13 +142,13 @@ export interface OrderRoutingFilterApiInterface {
      * @throws {RequiredError}
      * @memberof OrderRoutingFilterApiInterface
      */
-    saveCustomDataListFilterUsingPOSTRaw(requestParameters: OrderRoutingFilterApiSaveCustomDataListFilterUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>>;
+    saveCustomDataListFilterUsingPOSTRaw(requestParameters: SaveCustomDataListFilterUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>>;
 
     /**
      * saveCustomDataListFilter
      * saveCustomDataListFilter
      */
-    saveCustomDataListFilterUsingPOST(requestParameters: OrderRoutingFilterApiSaveCustomDataListFilterUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter>;
+    saveCustomDataListFilterUsingPOST(requestParameters: SaveCustomDataListFilterUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter>;
 
     /**
      * saveCustomDataValueFilter
@@ -161,13 +161,13 @@ export interface OrderRoutingFilterApiInterface {
      * @throws {RequiredError}
      * @memberof OrderRoutingFilterApiInterface
      */
-    saveCustomDataValueFilterUsingPOSTRaw(requestParameters: OrderRoutingFilterApiSaveCustomDataValueFilterUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>>;
+    saveCustomDataValueFilterUsingPOSTRaw(requestParameters: SaveCustomDataValueFilterUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>>;
 
     /**
      * saveCustomDataValueFilter
      * saveCustomDataValueFilter
      */
-    saveCustomDataValueFilterUsingPOST(requestParameters: OrderRoutingFilterApiSaveCustomDataValueFilterUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter>;
+    saveCustomDataValueFilterUsingPOST(requestParameters: SaveCustomDataValueFilterUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter>;
 
     /**
      * testFilter
@@ -179,13 +179,13 @@ export interface OrderRoutingFilterApiInterface {
      * @throws {RequiredError}
      * @memberof OrderRoutingFilterApiInterface
      */
-    testFilterUsingGETRaw(requestParameters: OrderRoutingFilterApiTestFilterUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>>;
+    testFilterUsingGETRaw(requestParameters: TestFilterUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>>;
 
     /**
      * testFilter
      * testFilter
      */
-    testFilterUsingGET(requestParameters: OrderRoutingFilterApiTestFilterUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter>;
+    testFilterUsingGET(requestParameters: TestFilterUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter>;
 
     /**
      * testSetFilter
@@ -197,13 +197,13 @@ export interface OrderRoutingFilterApiInterface {
      * @throws {RequiredError}
      * @memberof OrderRoutingFilterApiInterface
      */
-    testSetFilterUsingGETRaw(requestParameters: OrderRoutingFilterApiTestSetFilterUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>>;
+    testSetFilterUsingGETRaw(requestParameters: TestSetFilterUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>>;
 
     /**
      * testSetFilter
      * testSetFilter
      */
-    testSetFilterUsingGET(requestParameters: OrderRoutingFilterApiTestSetFilterUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter>;
+    testSetFilterUsingGET(requestParameters: TestSetFilterUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter>;
 
 }
 
@@ -221,7 +221,7 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI implements OrderRouti
      */
 
 
-    async deleteFilterUsingDELETERaw(requestParameters: OrderRoutingFilterApiDeleteFilterUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteFilterUsingDELETERaw(requestParameters: DeleteFilterUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.filterID === null || requestParameters.filterID === undefined) {
             throw new runtime.RequiredError('filterID','Required parameter requestParameters.filterID was null or undefined when calling deleteFilterUsingDELETE.');
         }
@@ -266,7 +266,7 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI implements OrderRouti
      * deleteFilter
      * deleteFilter
      */
-    async deleteFilterUsingDELETE(requestParameters: OrderRoutingFilterApiDeleteFilterUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteFilterUsingDELETE(requestParameters: DeleteFilterUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteFilterUsingDELETERaw(requestParameters, initOverrides);
     }
 
@@ -276,7 +276,7 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI implements OrderRouti
      */
 
 
-    async getFilterUsingGETRaw(requestParameters: OrderRoutingFilterApiGetFilterUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>> {
+    async getFilterUsingGETRaw(requestParameters: GetFilterUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>> {
         if (requestParameters.filterID === null || requestParameters.filterID === undefined) {
             throw new runtime.RequiredError('filterID','Required parameter requestParameters.filterID was null or undefined when calling getFilterUsingGET.');
         }
@@ -325,7 +325,7 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI implements OrderRouti
      * getFilter
      * getFilter
      */
-    async getFilterUsingGET(requestParameters: OrderRoutingFilterApiGetFilterUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter> {
+    async getFilterUsingGET(requestParameters: GetFilterUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter> {
         const response = await this.getFilterUsingGETRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -336,7 +336,7 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI implements OrderRouti
      */
 
 
-    async saveCriteriaSetFilterUsingPOSTRaw(requestParameters: OrderRoutingFilterApiSaveCriteriaSetFilterUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>> {
+    async saveCriteriaSetFilterUsingPOSTRaw(requestParameters: SaveCriteriaSetFilterUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>> {
         if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
             throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling saveCriteriaSetFilterUsingPOST.');
         }
@@ -388,7 +388,7 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI implements OrderRouti
      * saveCriteriaSetFilter
      * saveCriteriaSetFilter
      */
-    async saveCriteriaSetFilterUsingPOST(requestParameters: OrderRoutingFilterApiSaveCriteriaSetFilterUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter> {
+    async saveCriteriaSetFilterUsingPOST(requestParameters: SaveCriteriaSetFilterUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter> {
         const response = await this.saveCriteriaSetFilterUsingPOSTRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -399,7 +399,7 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI implements OrderRouti
      */
 
 
-    async saveCustomDataListFilterUsingPOSTRaw(requestParameters: OrderRoutingFilterApiSaveCustomDataListFilterUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>> {
+    async saveCustomDataListFilterUsingPOSTRaw(requestParameters: SaveCustomDataListFilterUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>> {
         if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
             throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling saveCustomDataListFilterUsingPOST.');
         }
@@ -451,7 +451,7 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI implements OrderRouti
      * saveCustomDataListFilter
      * saveCustomDataListFilter
      */
-    async saveCustomDataListFilterUsingPOST(requestParameters: OrderRoutingFilterApiSaveCustomDataListFilterUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter> {
+    async saveCustomDataListFilterUsingPOST(requestParameters: SaveCustomDataListFilterUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter> {
         const response = await this.saveCustomDataListFilterUsingPOSTRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -462,7 +462,7 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI implements OrderRouti
      */
 
 
-    async saveCustomDataValueFilterUsingPOSTRaw(requestParameters: OrderRoutingFilterApiSaveCustomDataValueFilterUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>> {
+    async saveCustomDataValueFilterUsingPOSTRaw(requestParameters: SaveCustomDataValueFilterUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>> {
         if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
             throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling saveCustomDataValueFilterUsingPOST.');
         }
@@ -514,7 +514,7 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI implements OrderRouti
      * saveCustomDataValueFilter
      * saveCustomDataValueFilter
      */
-    async saveCustomDataValueFilterUsingPOST(requestParameters: OrderRoutingFilterApiSaveCustomDataValueFilterUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter> {
+    async saveCustomDataValueFilterUsingPOST(requestParameters: SaveCustomDataValueFilterUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter> {
         const response = await this.saveCustomDataValueFilterUsingPOSTRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -525,7 +525,7 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI implements OrderRouti
      */
 
 
-    async testFilterUsingGETRaw(requestParameters: OrderRoutingFilterApiTestFilterUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>> {
+    async testFilterUsingGETRaw(requestParameters: TestFilterUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>> {
         if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
             throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling testFilterUsingGET.');
         }
@@ -570,7 +570,7 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI implements OrderRouti
      * testFilter
      * testFilter
      */
-    async testFilterUsingGET(requestParameters: OrderRoutingFilterApiTestFilterUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter> {
+    async testFilterUsingGET(requestParameters: TestFilterUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter> {
         const response = await this.testFilterUsingGETRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -581,7 +581,7 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI implements OrderRouti
      */
 
 
-    async testSetFilterUsingGETRaw(requestParameters: OrderRoutingFilterApiTestSetFilterUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>> {
+    async testSetFilterUsingGETRaw(requestParameters: TestSetFilterUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>> {
         if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
             throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling testSetFilterUsingGET.');
         }
@@ -626,7 +626,7 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI implements OrderRouti
      * testSetFilter
      * testSetFilter
      */
-    async testSetFilterUsingGET(requestParameters: OrderRoutingFilterApiTestSetFilterUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter> {
+    async testSetFilterUsingGET(requestParameters: TestSetFilterUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter> {
         const response = await this.testSetFilterUsingGETRaw(requestParameters, initOverrides);
         return await response.value();
     }

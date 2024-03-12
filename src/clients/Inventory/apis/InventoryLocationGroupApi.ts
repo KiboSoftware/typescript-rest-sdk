@@ -19,7 +19,7 @@ import type {
   LocationGroupResponse,
 } from '../models';
 
-export interface InventoryLocationGroupApiGetLocationGroupsRequest {
+export interface GetLocationGroupsRequest {
     xVolTenant: number;
     responseFields?: string;
 }
@@ -40,13 +40,13 @@ export interface InventoryLocationGroupApiInterface {
      * @throws {RequiredError}
      * @memberof InventoryLocationGroupApiInterface
      */
-    getLocationGroupsRaw(requestParameters: InventoryLocationGroupApiGetLocationGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationGroupResponse>>>;
+    getLocationGroupsRaw(requestParameters: GetLocationGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationGroupResponse>>>;
 
     /**
      * Get LocationGroups
      * Get Location Groups
      */
-    getLocationGroups(requestParameters: InventoryLocationGroupApiGetLocationGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationGroupResponse>>;
+    getLocationGroups(requestParameters: GetLocationGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationGroupResponse>>;
 
 }
 
@@ -64,7 +64,7 @@ export class InventoryLocationGroupApi extends runtime.BaseAPI implements Invent
      */
 
 
-    async getLocationGroupsRaw(requestParameters: InventoryLocationGroupApiGetLocationGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationGroupResponse>>> {
+    async getLocationGroupsRaw(requestParameters: GetLocationGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationGroupResponse>>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getLocationGroups.');
         }
@@ -101,7 +101,7 @@ export class InventoryLocationGroupApi extends runtime.BaseAPI implements Invent
      * Get LocationGroups
      * Get Location Groups
      */
-    async getLocationGroups(requestParameters: InventoryLocationGroupApiGetLocationGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationGroupResponse>> {
+    async getLocationGroups(requestParameters: GetLocationGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationGroupResponse>> {
         const response = await this.getLocationGroupsRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -21,7 +21,7 @@ import type {
   BlockAssignmentRequest,
 } from '../models';
 
-export interface InventoryBlockAssignmentApiBlockAssignmentOperationRequest {
+export interface BlockAssignmentOperationRequest {
     xVolTenant: number;
     blockAssignmentRequest: BlockAssignmentRequest;
     responseFields?: string;
@@ -44,13 +44,13 @@ export interface InventoryBlockAssignmentApiInterface {
      * @throws {RequiredError}
      * @memberof InventoryBlockAssignmentApiInterface
      */
-    blockAssignmentRaw(requestParameters: InventoryBlockAssignmentApiBlockAssignmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>>;
+    blockAssignmentRaw(requestParameters: BlockAssignmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>>;
 
     /**
      * Setting the blockAssignment flag to true for the product based on the given request
      * Block Assignment
      */
-    blockAssignment(requestParameters: InventoryBlockAssignmentApiBlockAssignmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse>;
+    blockAssignment(requestParameters: BlockAssignmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse>;
 
 }
 
@@ -68,7 +68,7 @@ export class InventoryBlockAssignmentApi extends runtime.BaseAPI implements Inve
      */
 
 
-    async blockAssignmentRaw(requestParameters: InventoryBlockAssignmentApiBlockAssignmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>> {
+    async blockAssignmentRaw(requestParameters: BlockAssignmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling blockAssignment.');
         }
@@ -112,7 +112,7 @@ export class InventoryBlockAssignmentApi extends runtime.BaseAPI implements Inve
      * Setting the blockAssignment flag to true for the product based on the given request
      * Block Assignment
      */
-    async blockAssignment(requestParameters: InventoryBlockAssignmentApiBlockAssignmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse> {
+    async blockAssignment(requestParameters: BlockAssignmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse> {
         const response = await this.blockAssignmentRaw(requestParameters, initOverrides);
         return await response.value();
     }

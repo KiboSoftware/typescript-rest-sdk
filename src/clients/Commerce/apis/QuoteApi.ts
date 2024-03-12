@@ -25,93 +25,93 @@ import type {
   QuoteComment,
 } from '../models';
 
-export interface QuoteApiAddItemToQuoteRequest {
+export interface AddItemToQuoteRequest {
     quoteId: string;
     updateMode?: string;
     responseFields?: string;
     commerceRuntimeOrderItem?: CommerceRuntimeOrderItem;
 }
 
-export interface QuoteApiApplyCouponRequest {
+export interface ApplyCouponRequest {
     quoteId: string;
     couponCode: string;
     updateMode?: string;
     responseFields?: string;
 }
 
-export interface QuoteApiCopyQuoteRequest {
+export interface CopyQuoteRequest {
     quoteId: string;
     responseFields?: string;
 }
 
-export interface QuoteApiCreateRequest {
+export interface CreateRequest {
     quoteId: string;
     updateMode?: string;
     responseFields?: string;
     quoteComment?: QuoteComment;
 }
 
-export interface QuoteApiCreateQuoteRequest {
+export interface CreateQuoteRequest {
     responseFields?: string;
     quote?: Quote;
 }
 
-export interface QuoteApiCreateQuoteFromCartRequest {
+export interface CreateQuoteFromCartRequest {
     cartId: string;
     updateMode?: string;
     responseFields?: string;
 }
 
-export interface QuoteApiDeleteQuoteRequest {
+export interface DeleteQuoteRequest {
     quoteId: string;
     draft?: boolean;
 }
 
-export interface QuoteApiDeleteQuoteItemRequest {
+export interface DeleteQuoteItemRequest {
     quoteId: string;
     quoteItemId: string;
     updateMode?: string;
 }
 
-export interface QuoteApiGetRequest {
+export interface GetRequest {
     quoteId: string;
     commentId: string;
     draft?: boolean;
     responseFields?: string;
 }
 
-export interface QuoteApiGetAllRequest {
+export interface GetAllRequest {
     quoteId: string;
     responseFields?: string;
 }
 
-export interface QuoteApiGetAvailableShippingMethodsRequest {
-    quoteId: string;
-    draft?: boolean;
-    responseFields?: string;
-}
-
-export interface QuoteApiGetQuoteRequest {
+export interface GetAvailableShippingMethodsRequest {
     quoteId: string;
     draft?: boolean;
     responseFields?: string;
 }
 
-export interface QuoteApiGetQuoteByNameRequest {
+export interface GetQuoteRequest {
+    quoteId: string;
+    draft?: boolean;
+    responseFields?: string;
+}
+
+export interface GetQuoteByNameRequest {
     customerAccountId: number;
     quoteName: string;
     draft?: boolean;
     responseFields?: string;
 }
 
-export interface QuoteApiGetQuoteItemRequest {
+export interface GetQuoteItemRequest {
     quoteId: string;
     quoteItemId: string;
     draft?: boolean;
     responseFields?: string;
 }
 
-export interface QuoteApiGetQuoteItemsRequest {
+export interface GetQuoteItemsRequest {
     quoteId: string;
     startIndex?: number;
     pageSize?: number;
@@ -120,7 +120,7 @@ export interface QuoteApiGetQuoteItemsRequest {
     responseFields?: string;
 }
 
-export interface QuoteApiGetQuoteItemsByQuoteNameRequest {
+export interface GetQuoteItemsByQuoteNameRequest {
     customerAccountId: number;
     quoteName: string;
     startIndex?: number;
@@ -130,7 +130,7 @@ export interface QuoteApiGetQuoteItemsByQuoteNameRequest {
     responseFields?: string;
 }
 
-export interface QuoteApiGetQuotesRequest {
+export interface GetQuotesRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -140,31 +140,31 @@ export interface QuoteApiGetQuotesRequest {
     responseFields?: string;
 }
 
-export interface QuoteApiRemoveCouponRequest {
+export interface RemoveCouponRequest {
     quoteId: string;
     couponCode: string;
     updateMode?: string;
 }
 
-export interface QuoteApiRemoveCouponsRequest {
+export interface RemoveCouponsRequest {
     quoteId: string;
     updateMode?: string;
 }
 
-export interface QuoteApiSendQuoteEmailRequest {
+export interface SendQuoteEmailRequest {
     quoteId: string;
     responseFields?: string;
     requestBody?: Array<string>;
 }
 
-export interface QuoteApiUpdateFulfillmentInfoRequest {
+export interface UpdateFulfillmentInfoRequest {
     quoteId: string;
     updateMode?: string;
     responseFields?: string;
     fulfillmentInfo?: FulfillmentInfo;
 }
 
-export interface QuoteApiUpdateItemFulfillmentRequest {
+export interface UpdateItemFulfillmentRequest {
     quoteId: string;
     quoteItemId: string;
     updateMode?: string;
@@ -172,7 +172,7 @@ export interface QuoteApiUpdateItemFulfillmentRequest {
     commerceRuntimeOrderItem?: CommerceRuntimeOrderItem;
 }
 
-export interface QuoteApiUpdateItemProductPriceRequest {
+export interface UpdateItemProductPriceRequest {
     quoteId: string;
     quoteItemId: string;
     price: number;
@@ -180,7 +180,7 @@ export interface QuoteApiUpdateItemProductPriceRequest {
     responseFields?: string;
 }
 
-export interface QuoteApiUpdateItemQuantityRequest {
+export interface UpdateItemQuantityRequest {
     quoteId: string;
     quoteItemId: string;
     quantity: number;
@@ -188,14 +188,14 @@ export interface QuoteApiUpdateItemQuantityRequest {
     responseFields?: string;
 }
 
-export interface QuoteApiUpdateQuoteRequest {
+export interface UpdateQuoteRequest {
     quoteId: string;
     updateMode?: string;
     responseFields?: string;
     quote?: Quote;
 }
 
-export interface QuoteApiUpdateQuoteAdjustmentsRequest {
+export interface UpdateQuoteAdjustmentsRequest {
     quoteId: string;
     updateMode?: string;
     responseFields?: string;
@@ -220,13 +220,13 @@ export interface QuoteApiInterface {
      * @throws {RequiredError}
      * @memberof QuoteApiInterface
      */
-    addItemToQuoteRaw(requestParameters: QuoteApiAddItemToQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
+    addItemToQuoteRaw(requestParameters: AddItemToQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
 
     /**
      * Adds an item to the Quote of the current shopper.
      * Add Item To Quote
      */
-    addItemToQuote(requestParameters: QuoteApiAddItemToQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
+    addItemToQuote(requestParameters: AddItemToQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
 
     /**
      * Apply a coupon to the quote.
@@ -239,13 +239,13 @@ export interface QuoteApiInterface {
      * @throws {RequiredError}
      * @memberof QuoteApiInterface
      */
-    applyCouponRaw(requestParameters: QuoteApiApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
+    applyCouponRaw(requestParameters: ApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
 
     /**
      * Apply a coupon to the quote.
      * Apply Coupon
      */
-    applyCoupon(requestParameters: QuoteApiApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
+    applyCoupon(requestParameters: ApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
 
     /**
      * Copies a source quote and creates a new quote.
@@ -256,13 +256,13 @@ export interface QuoteApiInterface {
      * @throws {RequiredError}
      * @memberof QuoteApiInterface
      */
-    copyQuoteRaw(requestParameters: QuoteApiCopyQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
+    copyQuoteRaw(requestParameters: CopyQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
 
     /**
      * Copies a source quote and creates a new quote.
      * Copy quote
      */
-    copyQuote(requestParameters: QuoteApiCopyQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
+    copyQuote(requestParameters: CopyQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
 
     /**
      * Create a comment on a specific quote.
@@ -275,13 +275,13 @@ export interface QuoteApiInterface {
      * @throws {RequiredError}
      * @memberof QuoteApiInterface
      */
-    createRaw(requestParameters: QuoteApiCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuoteComment>>;
+    createRaw(requestParameters: CreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuoteComment>>;
 
     /**
      * Create a comment on a specific quote.
      * Create Comment
      */
-    create(requestParameters: QuoteApiCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuoteComment>;
+    create(requestParameters: CreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuoteComment>;
 
     /**
      * Creates a new B2B quote. With quotes, buyers can request an estimate based on a list of products they are interested in. Sellers can evaluate these requests and make adjustments to pricing, discounts, or other criteria before the buyer chooses whether to place the order or not. Comments can be left on the quote to communicate during this negotiation process.
@@ -292,13 +292,13 @@ export interface QuoteApiInterface {
      * @throws {RequiredError}
      * @memberof QuoteApiInterface
      */
-    createQuoteRaw(requestParameters: QuoteApiCreateQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
+    createQuoteRaw(requestParameters: CreateQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
 
     /**
      * Creates a new B2B quote. With quotes, buyers can request an estimate based on a list of products they are interested in. Sellers can evaluate these requests and make adjustments to pricing, discounts, or other criteria before the buyer chooses whether to place the order or not. Comments can be left on the quote to communicate during this negotiation process.
      * Create quote
      */
-    createQuote(requestParameters: QuoteApiCreateQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
+    createQuote(requestParameters: CreateQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
 
     /**
      * Creates a new quote from an existing cart, that is, when the customer chooses to initate quote.
@@ -310,13 +310,13 @@ export interface QuoteApiInterface {
      * @throws {RequiredError}
      * @memberof QuoteApiInterface
      */
-    createQuoteFromCartRaw(requestParameters: QuoteApiCreateQuoteFromCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
+    createQuoteFromCartRaw(requestParameters: CreateQuoteFromCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
 
     /**
      * Creates a new quote from an existing cart, that is, when the customer chooses to initate quote.
      * Create Quote From Cart
      */
-    createQuoteFromCart(requestParameters: QuoteApiCreateQuoteFromCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
+    createQuoteFromCart(requestParameters: CreateQuoteFromCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
 
     /**
      * Deletes the quote specified by quote Id.
@@ -327,13 +327,13 @@ export interface QuoteApiInterface {
      * @throws {RequiredError}
      * @memberof QuoteApiInterface
      */
-    deleteQuoteRaw(requestParameters: QuoteApiDeleteQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteQuoteRaw(requestParameters: DeleteQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Deletes the quote specified by quote Id.
      * Delete Quote
      */
-    deleteQuote(requestParameters: QuoteApiDeleteQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteQuote(requestParameters: DeleteQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Delete Quote Item
@@ -345,13 +345,13 @@ export interface QuoteApiInterface {
      * @throws {RequiredError}
      * @memberof QuoteApiInterface
      */
-    deleteQuoteItemRaw(requestParameters: QuoteApiDeleteQuoteItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteQuoteItemRaw(requestParameters: DeleteQuoteItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Delete Quote Item
      * Delete Quote Item
      */
-    deleteQuoteItem(requestParameters: QuoteApiDeleteQuoteItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteQuoteItem(requestParameters: DeleteQuoteItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Retrieves a specific quote comment from an quote.
@@ -364,13 +364,13 @@ export interface QuoteApiInterface {
      * @throws {RequiredError}
      * @memberof QuoteApiInterface
      */
-    getRaw(requestParameters: QuoteApiGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuoteComment>>;
+    getRaw(requestParameters: GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuoteComment>>;
 
     /**
      * Retrieves a specific quote comment from an quote.
      * Get Quote Comment
      */
-    get(requestParameters: QuoteApiGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuoteComment>;
+    get(requestParameters: GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuoteComment>;
 
     /**
      * Retrieves all quote comments from an quote.
@@ -381,13 +381,13 @@ export interface QuoteApiInterface {
      * @throws {RequiredError}
      * @memberof QuoteApiInterface
      */
-    getAllRaw(requestParameters: QuoteApiGetAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuoteComment>>;
+    getAllRaw(requestParameters: GetAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuoteComment>>;
 
     /**
      * Retrieves all quote comments from an quote.
      * Get All Quote Comments
      */
-    getAll(requestParameters: QuoteApiGetAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuoteComment>;
+    getAll(requestParameters: GetAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuoteComment>;
 
     /**
      * Retrieves available shipping methods for quotes. Typically used to display available shipping method options on the quote page.
@@ -399,13 +399,13 @@ export interface QuoteApiInterface {
      * @throws {RequiredError}
      * @memberof QuoteApiInterface
      */
-    getAvailableShippingMethodsRaw(requestParameters: QuoteApiGetAvailableShippingMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeShippingRate>>>;
+    getAvailableShippingMethodsRaw(requestParameters: GetAvailableShippingMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeShippingRate>>>;
 
     /**
      * Retrieves available shipping methods for quotes. Typically used to display available shipping method options on the quote page.
      * Get Available Shipping Methods
      */
-    getAvailableShippingMethods(requestParameters: QuoteApiGetAvailableShippingMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeShippingRate>>;
+    getAvailableShippingMethods(requestParameters: GetAvailableShippingMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeShippingRate>>;
 
     /**
      * Retrieves the details of a quote specified by the quote ID.
@@ -417,13 +417,13 @@ export interface QuoteApiInterface {
      * @throws {RequiredError}
      * @memberof QuoteApiInterface
      */
-    getQuoteRaw(requestParameters: QuoteApiGetQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
+    getQuoteRaw(requestParameters: GetQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
 
     /**
      * Retrieves the details of a quote specified by the quote ID.
      * Get Quote
      */
-    getQuote(requestParameters: QuoteApiGetQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
+    getQuote(requestParameters: GetQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
 
     /**
      * Retrieves quote by its name.
@@ -436,13 +436,13 @@ export interface QuoteApiInterface {
      * @throws {RequiredError}
      * @memberof QuoteApiInterface
      */
-    getQuoteByNameRaw(requestParameters: QuoteApiGetQuoteByNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
+    getQuoteByNameRaw(requestParameters: GetQuoteByNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
 
     /**
      * Retrieves quote by its name.
      * Get Quote By Name
      */
-    getQuoteByName(requestParameters: QuoteApiGetQuoteByNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
+    getQuoteByName(requestParameters: GetQuoteByNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
 
     /**
      * Retrieves an individual Quote item from a Quote specified by quote Id and quote item Id.
@@ -455,13 +455,13 @@ export interface QuoteApiInterface {
      * @throws {RequiredError}
      * @memberof QuoteApiInterface
      */
-    getQuoteItemRaw(requestParameters: QuoteApiGetQuoteItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeOrderItem>>;
+    getQuoteItemRaw(requestParameters: GetQuoteItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeOrderItem>>;
 
     /**
      * Retrieves an individual Quote item from a Quote specified by quote Id and quote item Id.
      * Get Quote Item
      */
-    getQuoteItem(requestParameters: QuoteApiGetQuoteItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeOrderItem>;
+    getQuoteItem(requestParameters: GetQuoteItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeOrderItem>;
 
     /**
      * Returns a listing of Quotes
@@ -476,13 +476,13 @@ export interface QuoteApiInterface {
      * @throws {RequiredError}
      * @memberof QuoteApiInterface
      */
-    getQuoteItemsRaw(requestParameters: QuoteApiGetQuoteItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeOrderItem>>>;
+    getQuoteItemsRaw(requestParameters: GetQuoteItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeOrderItem>>>;
 
     /**
      * Returns a listing of Quotes
      * Get Quote Items
      */
-    getQuoteItems(requestParameters: QuoteApiGetQuoteItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeOrderItem>>;
+    getQuoteItems(requestParameters: GetQuoteItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeOrderItem>>;
 
     /**
      * Gets the quote specified by the quote name.
@@ -498,13 +498,13 @@ export interface QuoteApiInterface {
      * @throws {RequiredError}
      * @memberof QuoteApiInterface
      */
-    getQuoteItemsByQuoteNameRaw(requestParameters: QuoteApiGetQuoteItemsByQuoteNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeOrderItem>>>;
+    getQuoteItemsByQuoteNameRaw(requestParameters: GetQuoteItemsByQuoteNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeOrderItem>>>;
 
     /**
      * Gets the quote specified by the quote name.
      * Get Quote Items By Quote Name
      */
-    getQuoteItemsByQuoteName(requestParameters: QuoteApiGetQuoteItemsByQuoteNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeOrderItem>>;
+    getQuoteItemsByQuoteName(requestParameters: GetQuoteItemsByQuoteNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeOrderItem>>;
 
     /**
      * Retrieves a list of B2B Quotes according to any specified filter criteria and sort options.
@@ -520,13 +520,13 @@ export interface QuoteApiInterface {
      * @throws {RequiredError}
      * @memberof QuoteApiInterface
      */
-    getQuotesRaw(requestParameters: QuoteApiGetQuotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuoteCollection>>;
+    getQuotesRaw(requestParameters: GetQuotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuoteCollection>>;
 
     /**
      * Retrieves a list of B2B Quotes according to any specified filter criteria and sort options.
      * Get Quotes
      */
-    getQuotes(requestParameters: QuoteApiGetQuotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuoteCollection>;
+    getQuotes(requestParameters: GetQuotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuoteCollection>;
 
     /**
      * Removes a coupon that had been previously applied to the Quote.
@@ -538,13 +538,13 @@ export interface QuoteApiInterface {
      * @throws {RequiredError}
      * @memberof QuoteApiInterface
      */
-    removeCouponRaw(requestParameters: QuoteApiRemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
+    removeCouponRaw(requestParameters: RemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
 
     /**
      * Removes a coupon that had been previously applied to the Quote.
      * Remove Coupon
      */
-    removeCoupon(requestParameters: QuoteApiRemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
+    removeCoupon(requestParameters: RemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
 
     /**
      * Removes all coupons that had been previously applied to the Quote.
@@ -555,13 +555,13 @@ export interface QuoteApiInterface {
      * @throws {RequiredError}
      * @memberof QuoteApiInterface
      */
-    removeCouponsRaw(requestParameters: QuoteApiRemoveCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
+    removeCouponsRaw(requestParameters: RemoveCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
 
     /**
      * Removes all coupons that had been previously applied to the Quote.
      * Remove Coupons
      */
-    removeCoupons(requestParameters: QuoteApiRemoveCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
+    removeCoupons(requestParameters: RemoveCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
 
     /**
      * Send Quote email to provided email addresses or email mentioned on the quote.
@@ -573,13 +573,13 @@ export interface QuoteApiInterface {
      * @throws {RequiredError}
      * @memberof QuoteApiInterface
      */
-    sendQuoteEmailRaw(requestParameters: QuoteApiSendQuoteEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    sendQuoteEmailRaw(requestParameters: SendQuoteEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Send Quote email to provided email addresses or email mentioned on the quote.
      * Send Quote Email
      */
-    sendQuoteEmail(requestParameters: QuoteApiSendQuoteEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    sendQuoteEmail(requestParameters: SendQuoteEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Updates the fulfillmentInfo of quote.
@@ -592,13 +592,13 @@ export interface QuoteApiInterface {
      * @throws {RequiredError}
      * @memberof QuoteApiInterface
      */
-    updateFulfillmentInfoRaw(requestParameters: QuoteApiUpdateFulfillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
+    updateFulfillmentInfoRaw(requestParameters: UpdateFulfillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
 
     /**
      * Updates the fulfillmentInfo of quote.
      * Update Fulfillment Info
      */
-    updateFulfillmentInfo(requestParameters: QuoteApiUpdateFulfillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
+    updateFulfillmentInfo(requestParameters: UpdateFulfillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
 
     /**
      * Updates the fulfillment method and/or location of an individual quote item in the quote.
@@ -612,13 +612,13 @@ export interface QuoteApiInterface {
      * @throws {RequiredError}
      * @memberof QuoteApiInterface
      */
-    updateItemFulfillmentRaw(requestParameters: QuoteApiUpdateItemFulfillmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
+    updateItemFulfillmentRaw(requestParameters: UpdateItemFulfillmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
 
     /**
      * Updates the fulfillment method and/or location of an individual quote item in the quote.
      * Update Item Fulfillment
      */
-    updateItemFulfillment(requestParameters: QuoteApiUpdateItemFulfillmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
+    updateItemFulfillment(requestParameters: UpdateItemFulfillmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
 
     /**
      * Overrides the price of an individual quote item.
@@ -632,13 +632,13 @@ export interface QuoteApiInterface {
      * @throws {RequiredError}
      * @memberof QuoteApiInterface
      */
-    updateItemProductPriceRaw(requestParameters: QuoteApiUpdateItemProductPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
+    updateItemProductPriceRaw(requestParameters: UpdateItemProductPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
 
     /**
      * Overrides the price of an individual quote item.
      * Update Item Product Price
      */
-    updateItemProductPrice(requestParameters: QuoteApiUpdateItemProductPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
+    updateItemProductPrice(requestParameters: UpdateItemProductPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
 
     /**
      * Updates the quantity of an individual Quote item.
@@ -652,13 +652,13 @@ export interface QuoteApiInterface {
      * @throws {RequiredError}
      * @memberof QuoteApiInterface
      */
-    updateItemQuantityRaw(requestParameters: QuoteApiUpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
+    updateItemQuantityRaw(requestParameters: UpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
 
     /**
      * Updates the quantity of an individual Quote item.
      * Update Item Quantity
      */
-    updateItemQuantity(requestParameters: QuoteApiUpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
+    updateItemQuantity(requestParameters: UpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
 
     /**
      * Updates a quote specified by quote Id.
@@ -671,13 +671,13 @@ export interface QuoteApiInterface {
      * @throws {RequiredError}
      * @memberof QuoteApiInterface
      */
-    updateQuoteRaw(requestParameters: QuoteApiUpdateQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
+    updateQuoteRaw(requestParameters: UpdateQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
 
     /**
      * Updates a quote specified by quote Id.
      * Update Quote
      */
-    updateQuote(requestParameters: QuoteApiUpdateQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
+    updateQuote(requestParameters: UpdateQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
 
     /**
      * Set product, shipping, and handling adjustments on the specified quote.
@@ -690,13 +690,13 @@ export interface QuoteApiInterface {
      * @throws {RequiredError}
      * @memberof QuoteApiInterface
      */
-    updateQuoteAdjustmentsRaw(requestParameters: QuoteApiUpdateQuoteAdjustmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
+    updateQuoteAdjustmentsRaw(requestParameters: UpdateQuoteAdjustmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>>;
 
     /**
      * Set product, shipping, and handling adjustments on the specified quote.
      * Update Quote Adjustments
      */
-    updateQuoteAdjustments(requestParameters: QuoteApiUpdateQuoteAdjustmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
+    updateQuoteAdjustments(requestParameters: UpdateQuoteAdjustmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote>;
 
 }
 
@@ -714,7 +714,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      */
 
 
-    async addItemToQuoteRaw(requestParameters: QuoteApiAddItemToQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
+    async addItemToQuoteRaw(requestParameters: AddItemToQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
         if (requestParameters.quoteId === null || requestParameters.quoteId === undefined) {
             throw new runtime.RequiredError('quoteId','Required parameter requestParameters.quoteId was null or undefined when calling addItemToQuote.');
         }
@@ -754,7 +754,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      * Adds an item to the Quote of the current shopper.
      * Add Item To Quote
      */
-    async addItemToQuote(requestParameters: QuoteApiAddItemToQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
+    async addItemToQuote(requestParameters: AddItemToQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
         const response = await this.addItemToQuoteRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -765,7 +765,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      */
 
 
-    async applyCouponRaw(requestParameters: QuoteApiApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
+    async applyCouponRaw(requestParameters: ApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
         if (requestParameters.quoteId === null || requestParameters.quoteId === undefined) {
             throw new runtime.RequiredError('quoteId','Required parameter requestParameters.quoteId was null or undefined when calling applyCoupon.');
         }
@@ -806,7 +806,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      * Apply a coupon to the quote.
      * Apply Coupon
      */
-    async applyCoupon(requestParameters: QuoteApiApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
+    async applyCoupon(requestParameters: ApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
         const response = await this.applyCouponRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -817,7 +817,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      */
 
 
-    async copyQuoteRaw(requestParameters: QuoteApiCopyQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
+    async copyQuoteRaw(requestParameters: CopyQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
         if (requestParameters.quoteId === null || requestParameters.quoteId === undefined) {
             throw new runtime.RequiredError('quoteId','Required parameter requestParameters.quoteId was null or undefined when calling copyQuote.');
         }
@@ -850,7 +850,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      * Copies a source quote and creates a new quote.
      * Copy quote
      */
-    async copyQuote(requestParameters: QuoteApiCopyQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
+    async copyQuote(requestParameters: CopyQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
         const response = await this.copyQuoteRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -861,7 +861,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      */
 
 
-    async createRaw(requestParameters: QuoteApiCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuoteComment>> {
+    async createRaw(requestParameters: CreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuoteComment>> {
         if (requestParameters.quoteId === null || requestParameters.quoteId === undefined) {
             throw new runtime.RequiredError('quoteId','Required parameter requestParameters.quoteId was null or undefined when calling create.');
         }
@@ -901,7 +901,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      * Create a comment on a specific quote.
      * Create Comment
      */
-    async create(requestParameters: QuoteApiCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuoteComment> {
+    async create(requestParameters: CreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuoteComment> {
         const response = await this.createRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -912,7 +912,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      */
 
 
-    async createQuoteRaw(requestParameters: QuoteApiCreateQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
+    async createQuoteRaw(requestParameters: CreateQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -944,7 +944,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      * Creates a new B2B quote. With quotes, buyers can request an estimate based on a list of products they are interested in. Sellers can evaluate these requests and make adjustments to pricing, discounts, or other criteria before the buyer chooses whether to place the order or not. Comments can be left on the quote to communicate during this negotiation process.
      * Create quote
      */
-    async createQuote(requestParameters: QuoteApiCreateQuoteRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
+    async createQuote(requestParameters: CreateQuoteRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
         const response = await this.createQuoteRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -955,7 +955,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      */
 
 
-    async createQuoteFromCartRaw(requestParameters: QuoteApiCreateQuoteFromCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
+    async createQuoteFromCartRaw(requestParameters: CreateQuoteFromCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
         if (requestParameters.cartId === null || requestParameters.cartId === undefined) {
             throw new runtime.RequiredError('cartId','Required parameter requestParameters.cartId was null or undefined when calling createQuoteFromCart.');
         }
@@ -992,7 +992,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      * Creates a new quote from an existing cart, that is, when the customer chooses to initate quote.
      * Create Quote From Cart
      */
-    async createQuoteFromCart(requestParameters: QuoteApiCreateQuoteFromCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
+    async createQuoteFromCart(requestParameters: CreateQuoteFromCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
         const response = await this.createQuoteFromCartRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1003,7 +1003,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      */
 
 
-    async deleteQuoteRaw(requestParameters: QuoteApiDeleteQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteQuoteRaw(requestParameters: DeleteQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.quoteId === null || requestParameters.quoteId === undefined) {
             throw new runtime.RequiredError('quoteId','Required parameter requestParameters.quoteId was null or undefined when calling deleteQuote.');
         }
@@ -1036,7 +1036,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      * Deletes the quote specified by quote Id.
      * Delete Quote
      */
-    async deleteQuote(requestParameters: QuoteApiDeleteQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteQuote(requestParameters: DeleteQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteQuoteRaw(requestParameters, initOverrides);
     }
 
@@ -1046,7 +1046,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      */
 
 
-    async deleteQuoteItemRaw(requestParameters: QuoteApiDeleteQuoteItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteQuoteItemRaw(requestParameters: DeleteQuoteItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.quoteId === null || requestParameters.quoteId === undefined) {
             throw new runtime.RequiredError('quoteId','Required parameter requestParameters.quoteId was null or undefined when calling deleteQuoteItem.');
         }
@@ -1083,7 +1083,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      * Delete Quote Item
      * Delete Quote Item
      */
-    async deleteQuoteItem(requestParameters: QuoteApiDeleteQuoteItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteQuoteItem(requestParameters: DeleteQuoteItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteQuoteItemRaw(requestParameters, initOverrides);
     }
 
@@ -1093,7 +1093,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      */
 
 
-    async getRaw(requestParameters: QuoteApiGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuoteComment>> {
+    async getRaw(requestParameters: GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuoteComment>> {
         if (requestParameters.quoteId === null || requestParameters.quoteId === undefined) {
             throw new runtime.RequiredError('quoteId','Required parameter requestParameters.quoteId was null or undefined when calling get.');
         }
@@ -1134,7 +1134,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      * Retrieves a specific quote comment from an quote.
      * Get Quote Comment
      */
-    async get(requestParameters: QuoteApiGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuoteComment> {
+    async get(requestParameters: GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuoteComment> {
         const response = await this.getRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1145,7 +1145,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      */
 
 
-    async getAllRaw(requestParameters: QuoteApiGetAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuoteComment>> {
+    async getAllRaw(requestParameters: GetAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuoteComment>> {
         if (requestParameters.quoteId === null || requestParameters.quoteId === undefined) {
             throw new runtime.RequiredError('quoteId','Required parameter requestParameters.quoteId was null or undefined when calling getAll.');
         }
@@ -1178,7 +1178,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      * Retrieves all quote comments from an quote.
      * Get All Quote Comments
      */
-    async getAll(requestParameters: QuoteApiGetAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuoteComment> {
+    async getAll(requestParameters: GetAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuoteComment> {
         const response = await this.getAllRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1189,7 +1189,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      */
 
 
-    async getAvailableShippingMethodsRaw(requestParameters: QuoteApiGetAvailableShippingMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeShippingRate>>> {
+    async getAvailableShippingMethodsRaw(requestParameters: GetAvailableShippingMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeShippingRate>>> {
         if (requestParameters.quoteId === null || requestParameters.quoteId === undefined) {
             throw new runtime.RequiredError('quoteId','Required parameter requestParameters.quoteId was null or undefined when calling getAvailableShippingMethods.');
         }
@@ -1226,7 +1226,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      * Retrieves available shipping methods for quotes. Typically used to display available shipping method options on the quote page.
      * Get Available Shipping Methods
      */
-    async getAvailableShippingMethods(requestParameters: QuoteApiGetAvailableShippingMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeShippingRate>> {
+    async getAvailableShippingMethods(requestParameters: GetAvailableShippingMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeShippingRate>> {
         const response = await this.getAvailableShippingMethodsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1237,7 +1237,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      */
 
 
-    async getQuoteRaw(requestParameters: QuoteApiGetQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
+    async getQuoteRaw(requestParameters: GetQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
         if (requestParameters.quoteId === null || requestParameters.quoteId === undefined) {
             throw new runtime.RequiredError('quoteId','Required parameter requestParameters.quoteId was null or undefined when calling getQuote.');
         }
@@ -1274,7 +1274,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      * Retrieves the details of a quote specified by the quote ID.
      * Get Quote
      */
-    async getQuote(requestParameters: QuoteApiGetQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
+    async getQuote(requestParameters: GetQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
         const response = await this.getQuoteRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1285,7 +1285,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      */
 
 
-    async getQuoteByNameRaw(requestParameters: QuoteApiGetQuoteByNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
+    async getQuoteByNameRaw(requestParameters: GetQuoteByNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
         if (requestParameters.customerAccountId === null || requestParameters.customerAccountId === undefined) {
             throw new runtime.RequiredError('customerAccountId','Required parameter requestParameters.customerAccountId was null or undefined when calling getQuoteByName.');
         }
@@ -1326,7 +1326,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      * Retrieves quote by its name.
      * Get Quote By Name
      */
-    async getQuoteByName(requestParameters: QuoteApiGetQuoteByNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
+    async getQuoteByName(requestParameters: GetQuoteByNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
         const response = await this.getQuoteByNameRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1337,7 +1337,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      */
 
 
-    async getQuoteItemRaw(requestParameters: QuoteApiGetQuoteItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeOrderItem>> {
+    async getQuoteItemRaw(requestParameters: GetQuoteItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeOrderItem>> {
         if (requestParameters.quoteId === null || requestParameters.quoteId === undefined) {
             throw new runtime.RequiredError('quoteId','Required parameter requestParameters.quoteId was null or undefined when calling getQuoteItem.');
         }
@@ -1378,7 +1378,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      * Retrieves an individual Quote item from a Quote specified by quote Id and quote item Id.
      * Get Quote Item
      */
-    async getQuoteItem(requestParameters: QuoteApiGetQuoteItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeOrderItem> {
+    async getQuoteItem(requestParameters: GetQuoteItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeOrderItem> {
         const response = await this.getQuoteItemRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1389,7 +1389,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      */
 
 
-    async getQuoteItemsRaw(requestParameters: QuoteApiGetQuoteItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeOrderItem>>> {
+    async getQuoteItemsRaw(requestParameters: GetQuoteItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeOrderItem>>> {
         if (requestParameters.quoteId === null || requestParameters.quoteId === undefined) {
             throw new runtime.RequiredError('quoteId','Required parameter requestParameters.quoteId was null or undefined when calling getQuoteItems.');
         }
@@ -1438,7 +1438,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      * Returns a listing of Quotes
      * Get Quote Items
      */
-    async getQuoteItems(requestParameters: QuoteApiGetQuoteItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeOrderItem>> {
+    async getQuoteItems(requestParameters: GetQuoteItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeOrderItem>> {
         const response = await this.getQuoteItemsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1449,7 +1449,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      */
 
 
-    async getQuoteItemsByQuoteNameRaw(requestParameters: QuoteApiGetQuoteItemsByQuoteNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeOrderItem>>> {
+    async getQuoteItemsByQuoteNameRaw(requestParameters: GetQuoteItemsByQuoteNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeOrderItem>>> {
         if (requestParameters.customerAccountId === null || requestParameters.customerAccountId === undefined) {
             throw new runtime.RequiredError('customerAccountId','Required parameter requestParameters.customerAccountId was null or undefined when calling getQuoteItemsByQuoteName.');
         }
@@ -1502,7 +1502,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      * Gets the quote specified by the quote name.
      * Get Quote Items By Quote Name
      */
-    async getQuoteItemsByQuoteName(requestParameters: QuoteApiGetQuoteItemsByQuoteNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeOrderItem>> {
+    async getQuoteItemsByQuoteName(requestParameters: GetQuoteItemsByQuoteNameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeOrderItem>> {
         const response = await this.getQuoteItemsByQuoteNameRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1513,7 +1513,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      */
 
 
-    async getQuotesRaw(requestParameters: QuoteApiGetQuotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuoteCollection>> {
+    async getQuotesRaw(requestParameters: GetQuotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuoteCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -1566,7 +1566,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      * Retrieves a list of B2B Quotes according to any specified filter criteria and sort options.
      * Get Quotes
      */
-    async getQuotes(requestParameters: QuoteApiGetQuotesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuoteCollection> {
+    async getQuotes(requestParameters: GetQuotesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuoteCollection> {
         const response = await this.getQuotesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1577,7 +1577,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      */
 
 
-    async removeCouponRaw(requestParameters: QuoteApiRemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
+    async removeCouponRaw(requestParameters: RemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
         if (requestParameters.quoteId === null || requestParameters.quoteId === undefined) {
             throw new runtime.RequiredError('quoteId','Required parameter requestParameters.quoteId was null or undefined when calling removeCoupon.');
         }
@@ -1614,7 +1614,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      * Removes a coupon that had been previously applied to the Quote.
      * Remove Coupon
      */
-    async removeCoupon(requestParameters: QuoteApiRemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
+    async removeCoupon(requestParameters: RemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
         const response = await this.removeCouponRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1625,7 +1625,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      */
 
 
-    async removeCouponsRaw(requestParameters: QuoteApiRemoveCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
+    async removeCouponsRaw(requestParameters: RemoveCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
         if (requestParameters.quoteId === null || requestParameters.quoteId === undefined) {
             throw new runtime.RequiredError('quoteId','Required parameter requestParameters.quoteId was null or undefined when calling removeCoupons.');
         }
@@ -1658,7 +1658,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      * Removes all coupons that had been previously applied to the Quote.
      * Remove Coupons
      */
-    async removeCoupons(requestParameters: QuoteApiRemoveCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
+    async removeCoupons(requestParameters: RemoveCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
         const response = await this.removeCouponsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1669,7 +1669,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      */
 
 
-    async sendQuoteEmailRaw(requestParameters: QuoteApiSendQuoteEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async sendQuoteEmailRaw(requestParameters: SendQuoteEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.quoteId === null || requestParameters.quoteId === undefined) {
             throw new runtime.RequiredError('quoteId','Required parameter requestParameters.quoteId was null or undefined when calling sendQuoteEmail.');
         }
@@ -1705,7 +1705,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      * Send Quote email to provided email addresses or email mentioned on the quote.
      * Send Quote Email
      */
-    async sendQuoteEmail(requestParameters: QuoteApiSendQuoteEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async sendQuoteEmail(requestParameters: SendQuoteEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.sendQuoteEmailRaw(requestParameters, initOverrides);
     }
 
@@ -1715,7 +1715,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      */
 
 
-    async updateFulfillmentInfoRaw(requestParameters: QuoteApiUpdateFulfillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
+    async updateFulfillmentInfoRaw(requestParameters: UpdateFulfillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
         if (requestParameters.quoteId === null || requestParameters.quoteId === undefined) {
             throw new runtime.RequiredError('quoteId','Required parameter requestParameters.quoteId was null or undefined when calling updateFulfillmentInfo.');
         }
@@ -1755,7 +1755,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      * Updates the fulfillmentInfo of quote.
      * Update Fulfillment Info
      */
-    async updateFulfillmentInfo(requestParameters: QuoteApiUpdateFulfillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
+    async updateFulfillmentInfo(requestParameters: UpdateFulfillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
         const response = await this.updateFulfillmentInfoRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1766,7 +1766,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      */
 
 
-    async updateItemFulfillmentRaw(requestParameters: QuoteApiUpdateItemFulfillmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
+    async updateItemFulfillmentRaw(requestParameters: UpdateItemFulfillmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
         if (requestParameters.quoteId === null || requestParameters.quoteId === undefined) {
             throw new runtime.RequiredError('quoteId','Required parameter requestParameters.quoteId was null or undefined when calling updateItemFulfillment.');
         }
@@ -1810,7 +1810,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      * Updates the fulfillment method and/or location of an individual quote item in the quote.
      * Update Item Fulfillment
      */
-    async updateItemFulfillment(requestParameters: QuoteApiUpdateItemFulfillmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
+    async updateItemFulfillment(requestParameters: UpdateItemFulfillmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
         const response = await this.updateItemFulfillmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1821,7 +1821,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      */
 
 
-    async updateItemProductPriceRaw(requestParameters: QuoteApiUpdateItemProductPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
+    async updateItemProductPriceRaw(requestParameters: UpdateItemProductPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
         if (requestParameters.quoteId === null || requestParameters.quoteId === undefined) {
             throw new runtime.RequiredError('quoteId','Required parameter requestParameters.quoteId was null or undefined when calling updateItemProductPrice.');
         }
@@ -1866,7 +1866,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      * Overrides the price of an individual quote item.
      * Update Item Product Price
      */
-    async updateItemProductPrice(requestParameters: QuoteApiUpdateItemProductPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
+    async updateItemProductPrice(requestParameters: UpdateItemProductPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
         const response = await this.updateItemProductPriceRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1877,7 +1877,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      */
 
 
-    async updateItemQuantityRaw(requestParameters: QuoteApiUpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
+    async updateItemQuantityRaw(requestParameters: UpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
         if (requestParameters.quoteId === null || requestParameters.quoteId === undefined) {
             throw new runtime.RequiredError('quoteId','Required parameter requestParameters.quoteId was null or undefined when calling updateItemQuantity.');
         }
@@ -1922,7 +1922,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      * Updates the quantity of an individual Quote item.
      * Update Item Quantity
      */
-    async updateItemQuantity(requestParameters: QuoteApiUpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
+    async updateItemQuantity(requestParameters: UpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
         const response = await this.updateItemQuantityRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1933,7 +1933,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      */
 
 
-    async updateQuoteRaw(requestParameters: QuoteApiUpdateQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
+    async updateQuoteRaw(requestParameters: UpdateQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
         if (requestParameters.quoteId === null || requestParameters.quoteId === undefined) {
             throw new runtime.RequiredError('quoteId','Required parameter requestParameters.quoteId was null or undefined when calling updateQuote.');
         }
@@ -1973,7 +1973,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      * Updates a quote specified by quote Id.
      * Update Quote
      */
-    async updateQuote(requestParameters: QuoteApiUpdateQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
+    async updateQuote(requestParameters: UpdateQuoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
         const response = await this.updateQuoteRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1984,7 +1984,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      */
 
 
-    async updateQuoteAdjustmentsRaw(requestParameters: QuoteApiUpdateQuoteAdjustmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
+    async updateQuoteAdjustmentsRaw(requestParameters: UpdateQuoteAdjustmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quote>> {
         if (requestParameters.quoteId === null || requestParameters.quoteId === undefined) {
             throw new runtime.RequiredError('quoteId','Required parameter requestParameters.quoteId was null or undefined when calling updateQuoteAdjustments.');
         }
@@ -2024,7 +2024,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiInterface {
      * Set product, shipping, and handling adjustments on the specified quote.
      * Update Quote Adjustments
      */
-    async updateQuoteAdjustments(requestParameters: QuoteApiUpdateQuoteAdjustmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
+    async updateQuoteAdjustments(requestParameters: UpdateQuoteAdjustmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quote> {
         const response = await this.updateQuoteAdjustmentsRaw(requestParameters, initOverrides);
         return await response.value();
     }

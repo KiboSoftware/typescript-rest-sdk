@@ -36,150 +36,150 @@ import type {
   ReturnRefundDetails,
 } from '../models';
 
-export interface ReturnApiAutoRefundOperationRequest {
+export interface AutoRefundOperationRequest {
     returnId: string;
     responseFields?: string;
     autoRefundRequest?: Array<AutoRefundRequest>;
 }
 
-export interface ReturnApiCreatePackageRequest {
+export interface CreatePackageRequest {
     returnId: string;
     responseFields?: string;
     commerceRuntimePackage?: CommerceRuntimePackage;
 }
 
-export interface ReturnApiCreatePackageShipmentsRequest {
+export interface CreatePackageShipmentsRequest {
     returnId: string;
     responseFields?: string;
     requestBody?: Array<string>;
 }
 
-export interface ReturnApiCreatePaymentActionForReturnRequest {
+export interface CreatePaymentActionForReturnRequest {
     returnId: string;
     responseFields?: string;
     paymentAction?: PaymentAction;
 }
 
-export interface ReturnApiCreateReturnRequest {
+export interface CreateReturnRequest {
     responseFields?: string;
     _return?: Return;
 }
 
-export interface ReturnApiCreateReturnItemRequest {
+export interface CreateReturnItemRequest {
     returnId: string;
     responseFields?: string;
     returnItem?: ReturnItem;
 }
 
-export interface ReturnApiCreateReturnNoteRequest {
+export interface CreateReturnNoteRequest {
     returnId: string;
     responseFields?: string;
     orderNote?: OrderNote;
 }
 
-export interface ReturnApiCreateReturnShippingOrderRequest {
+export interface CreateReturnShippingOrderRequest {
     returnId: string;
     responseFields?: string;
     returnItemSpecifier?: Array<ReturnItemSpecifier>;
 }
 
-export interface ReturnApiDeleteOrderItemRequest {
+export interface DeleteOrderItemRequest {
     orderId: string;
     orderItemId: string;
     returnId?: string;
     returnItemId?: string;
 }
 
-export interface ReturnApiDeletePackageRequest {
+export interface DeletePackageRequest {
     returnId: string;
     packageId: string;
 }
 
-export interface ReturnApiDeleteReturnRequest {
+export interface DeleteReturnRequest {
     returnId: string;
 }
 
-export interface ReturnApiDeleteReturnNoteRequest {
+export interface DeleteReturnNoteRequest {
     returnId: string;
     noteId: string;
 }
 
-export interface ReturnApiDeleteShipmentRequest {
+export interface DeleteShipmentRequest {
     returnId: string;
     shipmentId: string;
 }
 
-export interface ReturnApiGetAvailableReturnActionsRequest {
+export interface GetAvailableReturnActionsRequest {
     returnId: string;
     responseFields?: string;
 }
 
-export interface ReturnApiGetPackageRequest {
+export interface GetPackageRequest {
     returnId: string;
     packageId: string;
     responseFields?: string;
 }
 
-export interface ReturnApiGetPackageLabelRequest {
+export interface GetPackageLabelRequest {
     returnId: string;
     packageId: string;
     returnAsBase64Png?: boolean;
     responseFields?: string;
 }
 
-export interface ReturnApiGetPaymentRequest {
+export interface GetPaymentRequest {
     returnId: string;
     paymentId: string;
     responseFields?: string;
 }
 
-export interface ReturnApiGetPaymentDistributionRequest {
+export interface GetPaymentDistributionRequest {
     returnId: string;
     responseFields?: string;
 }
 
-export interface ReturnApiGetPaymentsRequest {
+export interface GetPaymentsRequest {
     returnId: string;
     responseFields?: string;
 }
 
-export interface ReturnApiGetReasonsRequest {
+export interface GetReasonsRequest {
     responseFields?: string;
 }
 
-export interface ReturnApiGetReturnRequest {
+export interface GetReturnRequest {
     returnId: string;
     responseFields?: string;
 }
 
-export interface ReturnApiGetReturnItemRequest {
+export interface GetReturnItemRequest {
     returnId: string;
     returnItemId: string;
     responseFields?: string;
 }
 
-export interface ReturnApiGetReturnItemsRequest {
+export interface GetReturnItemsRequest {
     returnId: string;
     responseFields?: string;
 }
 
-export interface ReturnApiGetReturnLabelRequest {
+export interface GetReturnLabelRequest {
     returnId: string;
     responseFields?: string;
 }
 
-export interface ReturnApiGetReturnNoteRequest {
+export interface GetReturnNoteRequest {
     returnId: string;
     noteId: string;
     responseFields?: string;
 }
 
-export interface ReturnApiGetReturnNotesRequest {
+export interface GetReturnNotesRequest {
     returnId: string;
     responseFields?: string;
 }
 
-export interface ReturnApiGetReturnsRequest {
+export interface GetReturnsRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -188,49 +188,49 @@ export interface ReturnApiGetReturnsRequest {
     responseFields?: string;
 }
 
-export interface ReturnApiGetShipmentRequest {
+export interface GetShipmentRequest {
     returnId: string;
     shipmentId: string;
     responseFields?: string;
 }
 
-export interface ReturnApiPerformPaymentActionForReturnRequest {
+export interface PerformPaymentActionForReturnRequest {
     returnId: string;
     paymentId: string;
     responseFields?: string;
     paymentAction?: PaymentAction;
 }
 
-export interface ReturnApiPerformReturnActionsRequest {
+export interface PerformReturnActionsRequest {
     responseFields?: string;
     returnAction?: ReturnAction;
 }
 
-export interface ReturnApiResendReturnEmailRequest {
+export interface ResendReturnEmailRequest {
     responseFields?: string;
     returnAction?: ReturnAction;
 }
 
-export interface ReturnApiRestockReturnItemsRequest {
+export interface RestockReturnItemsRequest {
     returnId: string;
     responseFields?: string;
     restockableReturnItem?: Array<RestockableReturnItem>;
 }
 
-export interface ReturnApiUpdatePackageRequest {
+export interface UpdatePackageRequest {
     returnId: string;
     packageId: string;
     responseFields?: string;
     commerceRuntimePackage?: CommerceRuntimePackage;
 }
 
-export interface ReturnApiUpdateReturnRequest {
+export interface UpdateReturnRequest {
     returnId: string;
     responseFields?: string;
     _return?: Return;
 }
 
-export interface ReturnApiUpdateReturnNoteRequest {
+export interface UpdateReturnNoteRequest {
     returnId: string;
     noteId: string;
     responseFields?: string;
@@ -254,13 +254,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    autoRefundRaw(requestParameters: ReturnApiAutoRefundOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>>;
+    autoRefundRaw(requestParameters: AutoRefundOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>>;
 
     /**
      * Attempt to automatically refund the return
      * Attempt to automatically refund the return
      */
-    autoRefund(requestParameters: ReturnApiAutoRefundOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return>;
+    autoRefund(requestParameters: AutoRefundOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return>;
 
     /**
      *  package?
@@ -272,13 +272,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    createPackageRaw(requestParameters: ReturnApiCreatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimePackage>>;
+    createPackageRaw(requestParameters: CreatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimePackage>>;
 
     /**
      *  package?
      * Apply a package to the return
      */
-    createPackage(requestParameters: ReturnApiCreatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimePackage>;
+    createPackage(requestParameters: CreatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimePackage>;
 
     /**
      * 
@@ -290,13 +290,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    createPackageShipmentsRaw(requestParameters: ReturnApiCreatePackageShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimePackage>>>;
+    createPackageShipmentsRaw(requestParameters: CreatePackageShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimePackage>>>;
 
     /**
      * 
      * Creates a shipment by grouping together multiple packages into logical shipments
      */
-    createPackageShipments(requestParameters: ReturnApiCreatePackageShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimePackage>>;
+    createPackageShipments(requestParameters: CreatePackageShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimePackage>>;
 
     /**
      * Sets the action of the specified payment transaction interaction. Available actions depend on the current status of the payment transaction.If in doubt, get a list of available payment actions first.
@@ -308,13 +308,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    createPaymentActionForReturnRaw(requestParameters: ReturnApiCreatePaymentActionForReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>>;
+    createPaymentActionForReturnRaw(requestParameters: CreatePaymentActionForReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>>;
 
     /**
      * Sets the action of the specified payment transaction interaction. Available actions depend on the current status of the payment transaction.If in doubt, get a list of available payment actions first.
      * Create Payment Action For Return
      */
-    createPaymentActionForReturn(requestParameters: ReturnApiCreatePaymentActionForReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return>;
+    createPaymentActionForReturn(requestParameters: CreatePaymentActionForReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return>;
 
     /**
      * Creates a new Return for an order or product list.
@@ -325,13 +325,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    createReturnRaw(requestParameters: ReturnApiCreateReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>>;
+    createReturnRaw(requestParameters: CreateReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>>;
 
     /**
      * Creates a new Return for an order or product list.
      * Create Returns
      */
-    createReturn(requestParameters: ReturnApiCreateReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return>;
+    createReturn(requestParameters: CreateReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return>;
 
     /**
      * Adds a return item to the return.
@@ -343,13 +343,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    createReturnItemRaw(requestParameters: ReturnApiCreateReturnItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>>;
+    createReturnItemRaw(requestParameters: CreateReturnItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>>;
 
     /**
      * Adds a return item to the return.
      * Create Return Item
      */
-    createReturnItem(requestParameters: ReturnApiCreateReturnItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return>;
+    createReturnItem(requestParameters: CreateReturnItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return>;
 
     /**
      * Adds a note to the return. This is an internal note that the merchant might want to add to a return. This note is visible in Admin for customer service representatives to see.
@@ -361,13 +361,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    createReturnNoteRaw(requestParameters: ReturnApiCreateReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderNote>>;
+    createReturnNoteRaw(requestParameters: CreateReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderNote>>;
 
     /**
      * Adds a note to the return. This is an internal note that the merchant might want to add to a return. This note is visible in Admin for customer service representatives to see.
      * Create Return Note
      */
-    createReturnNote(requestParameters: ReturnApiCreateReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderNote>;
+    createReturnNote(requestParameters: CreateReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderNote>;
 
     /**
      * Creates a child order for the return for processing replacments. The request body (a collection of ReturnItemSpecifier) is optional. If the body is empty, the operation replaces all remaining items marked for replace. If you want to replace only a specific item(s) marked for return, you must specify the item(s) in the request body.
@@ -379,13 +379,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    createReturnShippingOrderRaw(requestParameters: ReturnApiCreateReturnShippingOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+    createReturnShippingOrderRaw(requestParameters: CreateReturnShippingOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
 
     /**
      * Creates a child order for the return for processing replacments. The request body (a collection of ReturnItemSpecifier) is optional. If the body is empty, the operation replaces all remaining items marked for replace. If you want to replace only a specific item(s) marked for return, you must specify the item(s) in the request body.
      * Create Return Shipping Order
      */
-    createReturnShippingOrder(requestParameters: ReturnApiCreateReturnShippingOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+    createReturnShippingOrder(requestParameters: CreateReturnShippingOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
     /**
      * Removes a particular return item from the return of the current shopper.
@@ -398,13 +398,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    deleteOrderItemRaw(requestParameters: ReturnApiDeleteOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>>;
+    deleteOrderItemRaw(requestParameters: DeleteOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>>;
 
     /**
      * Removes a particular return item from the return of the current shopper.
      * Delete Order Item
      */
-    deleteOrderItem(requestParameters: ReturnApiDeleteOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return>;
+    deleteOrderItem(requestParameters: DeleteOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return>;
 
     /**
      * 
@@ -415,13 +415,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    deletePackageRaw(requestParameters: ReturnApiDeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deletePackageRaw(requestParameters: DeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * 
      * Delete an order package
      */
-    deletePackage(requestParameters: ReturnApiDeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deletePackage(requestParameters: DeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Deletes a return specified by return Id.
@@ -431,13 +431,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    deleteReturnRaw(requestParameters: ReturnApiDeleteReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteReturnRaw(requestParameters: DeleteReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Deletes a return specified by return Id.
      * Delete Return
      */
-    deleteReturn(requestParameters: ReturnApiDeleteReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteReturn(requestParameters: DeleteReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Deletes a specific note on a return.
@@ -448,13 +448,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    deleteReturnNoteRaw(requestParameters: ReturnApiDeleteReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteReturnNoteRaw(requestParameters: DeleteReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Deletes a specific note on a return.
      * Delete Return Note
      */
-    deleteReturnNote(requestParameters: ReturnApiDeleteReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteReturnNote(requestParameters: DeleteReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Deletes an existing return shipment
@@ -465,13 +465,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    deleteShipmentRaw(requestParameters: ReturnApiDeleteShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteShipmentRaw(requestParameters: DeleteShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Deletes an existing return shipment
      * Deletes an existing return shipment
      */
-    deleteShipment(requestParameters: ReturnApiDeleteShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteShipment(requestParameters: DeleteShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Gets all the available actions on the return specified by return Id.
@@ -482,13 +482,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    getAvailableReturnActionsRaw(requestParameters: ReturnApiGetAvailableReturnActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
+    getAvailableReturnActionsRaw(requestParameters: GetAvailableReturnActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
 
     /**
      * Gets all the available actions on the return specified by return Id.
      * Get Available Return Actions
      */
-    getAvailableReturnActions(requestParameters: ReturnApiGetAvailableReturnActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
+    getAvailableReturnActions(requestParameters: GetAvailableReturnActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
 
     /**
      * Get an order package
@@ -500,13 +500,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    getPackageRaw(requestParameters: ReturnApiGetPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimePackage>>;
+    getPackageRaw(requestParameters: GetPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimePackage>>;
 
     /**
      * Get an order package
      * Get an order package
      */
-    getPackage(requestParameters: ReturnApiGetPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimePackage>;
+    getPackage(requestParameters: GetPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimePackage>;
 
     /**
      * Get an order package
@@ -519,13 +519,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    getPackageLabelRaw(requestParameters: ReturnApiGetPackageLabelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    getPackageLabelRaw(requestParameters: GetPackageLabelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Get an order package
      * Get an order package
      */
-    getPackageLabel(requestParameters: ReturnApiGetPackageLabelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    getPackageLabel(requestParameters: GetPackageLabelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Gets specific payment on the return specified by return Id and payment Id.
@@ -537,13 +537,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    getPaymentRaw(requestParameters: ReturnApiGetPaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Payment>>;
+    getPaymentRaw(requestParameters: GetPaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Payment>>;
 
     /**
      * Gets specific payment on the return specified by return Id and payment Id.
      * Get Payment
      */
-    getPayment(requestParameters: ReturnApiGetPaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Payment>;
+    getPayment(requestParameters: GetPaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Payment>;
 
     /**
      * Get Payment Distribution
@@ -554,13 +554,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    getPaymentDistributionRaw(requestParameters: ReturnApiGetPaymentDistributionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnRefundDetails>>;
+    getPaymentDistributionRaw(requestParameters: GetPaymentDistributionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnRefundDetails>>;
 
     /**
      * Get Payment Distribution
      * Get Payment Distribution
      */
-    getPaymentDistribution(requestParameters: ReturnApiGetPaymentDistributionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnRefundDetails>;
+    getPaymentDistribution(requestParameters: GetPaymentDistributionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnRefundDetails>;
 
     /**
      * Gets payments on the return specified by return Id.
@@ -571,13 +571,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    getPaymentsRaw(requestParameters: ReturnApiGetPaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaymentCollection>>;
+    getPaymentsRaw(requestParameters: GetPaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaymentCollection>>;
 
     /**
      * Gets payments on the return specified by return Id.
      * Get Payments
      */
-    getPayments(requestParameters: ReturnApiGetPaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentCollection>;
+    getPayments(requestParameters: GetPaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentCollection>;
 
     /**
      * Gets all the return reasons.
@@ -587,13 +587,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    getReasonsRaw(requestParameters: ReturnApiGetReasonsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReasonCollection>>;
+    getReasonsRaw(requestParameters: GetReasonsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReasonCollection>>;
 
     /**
      * Gets all the return reasons.
      * Get Reasons
      */
-    getReasons(requestParameters: ReturnApiGetReasonsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReasonCollection>;
+    getReasons(requestParameters: GetReasonsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReasonCollection>;
 
     /**
      * Allows for retrieval for a return given only the return Id.  Further manipulation of that returns must be done off of the order.
@@ -604,13 +604,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    getReturnRaw(requestParameters: ReturnApiGetReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>>;
+    getReturnRaw(requestParameters: GetReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>>;
 
     /**
      * Allows for retrieval for a return given only the return Id.  Further manipulation of that returns must be done off of the order.
      * Get Return
      */
-    getReturn(requestParameters: ReturnApiGetReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return>;
+    getReturn(requestParameters: GetReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return>;
 
     /**
      * Retrieves the details of a single return item.
@@ -622,13 +622,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    getReturnItemRaw(requestParameters: ReturnApiGetReturnItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnItem>>;
+    getReturnItemRaw(requestParameters: GetReturnItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnItem>>;
 
     /**
      * Retrieves the details of a single return item.
      * Get Return Item
      */
-    getReturnItem(requestParameters: ReturnApiGetReturnItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnItem>;
+    getReturnItem(requestParameters: GetReturnItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnItem>;
 
     /**
      * Retrieves the details of all return items in an order.
@@ -639,13 +639,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    getReturnItemsRaw(requestParameters: ReturnApiGetReturnItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnItemCollection>>;
+    getReturnItemsRaw(requestParameters: GetReturnItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnItemCollection>>;
 
     /**
      * Retrieves the details of all return items in an order.
      * Get Return Items
      */
-    getReturnItems(requestParameters: ReturnApiGetReturnItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnItemCollection>;
+    getReturnItems(requestParameters: GetReturnItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnItemCollection>;
 
     /**
      * Gets the return label specified by returnId.
@@ -656,13 +656,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    getReturnLabelRaw(requestParameters: ReturnApiGetReturnLabelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipmentResponse>>;
+    getReturnLabelRaw(requestParameters: GetReturnLabelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipmentResponse>>;
 
     /**
      * Gets the return label specified by returnId.
      * Get Return Label
      */
-    getReturnLabel(requestParameters: ReturnApiGetReturnLabelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipmentResponse>;
+    getReturnLabel(requestParameters: GetReturnLabelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipmentResponse>;
 
     /**
      * Retrieves a specific note from a return.
@@ -674,13 +674,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    getReturnNoteRaw(requestParameters: ReturnApiGetReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderNote>>;
+    getReturnNoteRaw(requestParameters: GetReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderNote>>;
 
     /**
      * Retrieves a specific note from a return.
      * Get Return Note
      */
-    getReturnNote(requestParameters: ReturnApiGetReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderNote>;
+    getReturnNote(requestParameters: GetReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderNote>;
 
     /**
      * Retrieves a list of all notes for a return.
@@ -691,13 +691,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    getReturnNotesRaw(requestParameters: ReturnApiGetReturnNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<OrderNote>>>;
+    getReturnNotesRaw(requestParameters: GetReturnNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<OrderNote>>>;
 
     /**
      * Retrieves a list of all notes for a return.
      * Get Return Notes
      */
-    getReturnNotes(requestParameters: ReturnApiGetReturnNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<OrderNote>>;
+    getReturnNotes(requestParameters: GetReturnNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<OrderNote>>;
 
     /**
      * Provides a paged, collection of returns for a Site.
@@ -712,13 +712,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    getReturnsRaw(requestParameters: ReturnApiGetReturnsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnCollection>>;
+    getReturnsRaw(requestParameters: GetReturnsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnCollection>>;
 
     /**
      * Provides a paged, collection of returns for a Site.
      * Get Returns
      */
-    getReturns(requestParameters: ReturnApiGetReturnsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnCollection>;
+    getReturns(requestParameters: GetReturnsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnCollection>;
 
     /**
      * 
@@ -730,13 +730,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    getShipmentRaw(requestParameters: ReturnApiGetShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipment>>;
+    getShipmentRaw(requestParameters: GetShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipment>>;
 
     /**
      * 
      * Allows a shipment to be retrieved for the order
      */
-    getShipment(requestParameters: ReturnApiGetShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment>;
+    getShipment(requestParameters: GetShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment>;
 
     /**
      * Sets the action of the specified payment transaction interaction. Available actions depend on the current status of the payment transaction.If in doubt, get a list of available payment actions first.  To retrieve the list of available actions, use an operation like GetAvailableReturnActions to view the actions available for the resource you are updating.
@@ -749,13 +749,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    performPaymentActionForReturnRaw(requestParameters: ReturnApiPerformPaymentActionForReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>>;
+    performPaymentActionForReturnRaw(requestParameters: PerformPaymentActionForReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>>;
 
     /**
      * Sets the action of the specified payment transaction interaction. Available actions depend on the current status of the payment transaction.If in doubt, get a list of available payment actions first.  To retrieve the list of available actions, use an operation like GetAvailableReturnActions to view the actions available for the resource you are updating.
      * Perform Payment Action For Return
      */
-    performPaymentActionForReturn(requestParameters: ReturnApiPerformPaymentActionForReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return>;
+    performPaymentActionForReturn(requestParameters: PerformPaymentActionForReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return>;
 
     /**
      * Perform Return Action.
@@ -766,13 +766,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    performReturnActionsRaw(requestParameters: ReturnApiPerformReturnActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnCollection>>;
+    performReturnActionsRaw(requestParameters: PerformReturnActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnCollection>>;
 
     /**
      * Perform Return Action.
      * Delete Return
      */
-    performReturnActions(requestParameters: ReturnApiPerformReturnActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnCollection>;
+    performReturnActions(requestParameters: PerformReturnActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnCollection>;
 
     /**
      * Resends return email.
@@ -783,13 +783,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    resendReturnEmailRaw(requestParameters: ReturnApiResendReturnEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    resendReturnEmailRaw(requestParameters: ResendReturnEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Resends return email.
      * Resend Return Email
      */
-    resendReturnEmail(requestParameters: ReturnApiResendReturnEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    resendReturnEmail(requestParameters: ResendReturnEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * API to restock return item.
@@ -801,13 +801,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    restockReturnItemsRaw(requestParameters: ReturnApiRestockReturnItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>>;
+    restockReturnItemsRaw(requestParameters: RestockReturnItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>>;
 
     /**
      * API to restock return item.
      * Restock Return Items
      */
-    restockReturnItems(requestParameters: ReturnApiRestockReturnItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return>;
+    restockReturnItems(requestParameters: RestockReturnItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return>;
 
     /**
      * 
@@ -820,13 +820,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    updatePackageRaw(requestParameters: ReturnApiUpdatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimePackage>>;
+    updatePackageRaw(requestParameters: UpdatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimePackage>>;
 
     /**
      * 
      * Delete an order package
      */
-    updatePackage(requestParameters: ReturnApiUpdatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimePackage>;
+    updatePackage(requestParameters: UpdatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimePackage>;
 
     /**
      * Gets all the return reasons.
@@ -838,13 +838,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    updateReturnRaw(requestParameters: ReturnApiUpdateReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>>;
+    updateReturnRaw(requestParameters: UpdateReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>>;
 
     /**
      * Gets all the return reasons.
      * Get Reasons
      */
-    updateReturn(requestParameters: ReturnApiUpdateReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return>;
+    updateReturn(requestParameters: UpdateReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return>;
 
     /**
      * Updates a specific note for a return.
@@ -857,13 +857,13 @@ export interface ReturnApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnApiInterface
      */
-    updateReturnNoteRaw(requestParameters: ReturnApiUpdateReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderNote>>;
+    updateReturnNoteRaw(requestParameters: UpdateReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderNote>>;
 
     /**
      * Updates a specific note for a return.
      * Update Return Note
      */
-    updateReturnNote(requestParameters: ReturnApiUpdateReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderNote>;
+    updateReturnNote(requestParameters: UpdateReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderNote>;
 
 }
 
@@ -881,7 +881,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async autoRefundRaw(requestParameters: ReturnApiAutoRefundOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>> {
+    async autoRefundRaw(requestParameters: AutoRefundOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling autoRefund.');
         }
@@ -917,7 +917,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Attempt to automatically refund the return
      * Attempt to automatically refund the return
      */
-    async autoRefund(requestParameters: ReturnApiAutoRefundOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return> {
+    async autoRefund(requestParameters: AutoRefundOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return> {
         const response = await this.autoRefundRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -928,7 +928,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async createPackageRaw(requestParameters: ReturnApiCreatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimePackage>> {
+    async createPackageRaw(requestParameters: CreatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimePackage>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling createPackage.');
         }
@@ -964,7 +964,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      *  package?
      * Apply a package to the return
      */
-    async createPackage(requestParameters: ReturnApiCreatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimePackage> {
+    async createPackage(requestParameters: CreatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimePackage> {
         const response = await this.createPackageRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -975,7 +975,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async createPackageShipmentsRaw(requestParameters: ReturnApiCreatePackageShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimePackage>>> {
+    async createPackageShipmentsRaw(requestParameters: CreatePackageShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimePackage>>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling createPackageShipments.');
         }
@@ -1011,7 +1011,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * 
      * Creates a shipment by grouping together multiple packages into logical shipments
      */
-    async createPackageShipments(requestParameters: ReturnApiCreatePackageShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimePackage>> {
+    async createPackageShipments(requestParameters: CreatePackageShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimePackage>> {
         const response = await this.createPackageShipmentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1022,7 +1022,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async createPaymentActionForReturnRaw(requestParameters: ReturnApiCreatePaymentActionForReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>> {
+    async createPaymentActionForReturnRaw(requestParameters: CreatePaymentActionForReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling createPaymentActionForReturn.');
         }
@@ -1058,7 +1058,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Sets the action of the specified payment transaction interaction. Available actions depend on the current status of the payment transaction.If in doubt, get a list of available payment actions first.
      * Create Payment Action For Return
      */
-    async createPaymentActionForReturn(requestParameters: ReturnApiCreatePaymentActionForReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return> {
+    async createPaymentActionForReturn(requestParameters: CreatePaymentActionForReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return> {
         const response = await this.createPaymentActionForReturnRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1069,7 +1069,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async createReturnRaw(requestParameters: ReturnApiCreateReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>> {
+    async createReturnRaw(requestParameters: CreateReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -1101,7 +1101,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Creates a new Return for an order or product list.
      * Create Returns
      */
-    async createReturn(requestParameters: ReturnApiCreateReturnRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return> {
+    async createReturn(requestParameters: CreateReturnRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return> {
         const response = await this.createReturnRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1112,7 +1112,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async createReturnItemRaw(requestParameters: ReturnApiCreateReturnItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>> {
+    async createReturnItemRaw(requestParameters: CreateReturnItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling createReturnItem.');
         }
@@ -1148,7 +1148,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Adds a return item to the return.
      * Create Return Item
      */
-    async createReturnItem(requestParameters: ReturnApiCreateReturnItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return> {
+    async createReturnItem(requestParameters: CreateReturnItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return> {
         const response = await this.createReturnItemRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1159,7 +1159,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async createReturnNoteRaw(requestParameters: ReturnApiCreateReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderNote>> {
+    async createReturnNoteRaw(requestParameters: CreateReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderNote>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling createReturnNote.');
         }
@@ -1195,7 +1195,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Adds a note to the return. This is an internal note that the merchant might want to add to a return. This note is visible in Admin for customer service representatives to see.
      * Create Return Note
      */
-    async createReturnNote(requestParameters: ReturnApiCreateReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderNote> {
+    async createReturnNote(requestParameters: CreateReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderNote> {
         const response = await this.createReturnNoteRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1206,7 +1206,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async createReturnShippingOrderRaw(requestParameters: ReturnApiCreateReturnShippingOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async createReturnShippingOrderRaw(requestParameters: CreateReturnShippingOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling createReturnShippingOrder.');
         }
@@ -1242,7 +1242,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Creates a child order for the return for processing replacments. The request body (a collection of ReturnItemSpecifier) is optional. If the body is empty, the operation replaces all remaining items marked for replace. If you want to replace only a specific item(s) marked for return, you must specify the item(s) in the request body.
      * Create Return Shipping Order
      */
-    async createReturnShippingOrder(requestParameters: ReturnApiCreateReturnShippingOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async createReturnShippingOrder(requestParameters: CreateReturnShippingOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.createReturnShippingOrderRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1253,7 +1253,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async deleteOrderItemRaw(requestParameters: ReturnApiDeleteOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>> {
+    async deleteOrderItemRaw(requestParameters: DeleteOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling deleteOrderItem.');
         }
@@ -1294,7 +1294,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Removes a particular return item from the return of the current shopper.
      * Delete Order Item
      */
-    async deleteOrderItem(requestParameters: ReturnApiDeleteOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return> {
+    async deleteOrderItem(requestParameters: DeleteOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return> {
         const response = await this.deleteOrderItemRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1305,7 +1305,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async deletePackageRaw(requestParameters: ReturnApiDeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deletePackageRaw(requestParameters: DeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling deletePackage.');
         }
@@ -1338,7 +1338,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * 
      * Delete an order package
      */
-    async deletePackage(requestParameters: ReturnApiDeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deletePackage(requestParameters: DeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deletePackageRaw(requestParameters, initOverrides);
     }
 
@@ -1348,7 +1348,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async deleteReturnRaw(requestParameters: ReturnApiDeleteReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteReturnRaw(requestParameters: DeleteReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling deleteReturn.');
         }
@@ -1377,7 +1377,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Deletes a return specified by return Id.
      * Delete Return
      */
-    async deleteReturn(requestParameters: ReturnApiDeleteReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteReturn(requestParameters: DeleteReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteReturnRaw(requestParameters, initOverrides);
     }
 
@@ -1387,7 +1387,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async deleteReturnNoteRaw(requestParameters: ReturnApiDeleteReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteReturnNoteRaw(requestParameters: DeleteReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling deleteReturnNote.');
         }
@@ -1420,7 +1420,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Deletes a specific note on a return.
      * Delete Return Note
      */
-    async deleteReturnNote(requestParameters: ReturnApiDeleteReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteReturnNote(requestParameters: DeleteReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteReturnNoteRaw(requestParameters, initOverrides);
     }
 
@@ -1430,7 +1430,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async deleteShipmentRaw(requestParameters: ReturnApiDeleteShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteShipmentRaw(requestParameters: DeleteShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling deleteShipment.');
         }
@@ -1463,7 +1463,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Deletes an existing return shipment
      * Deletes an existing return shipment
      */
-    async deleteShipment(requestParameters: ReturnApiDeleteShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteShipment(requestParameters: DeleteShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteShipmentRaw(requestParameters, initOverrides);
     }
 
@@ -1473,7 +1473,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async getAvailableReturnActionsRaw(requestParameters: ReturnApiGetAvailableReturnActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+    async getAvailableReturnActionsRaw(requestParameters: GetAvailableReturnActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling getAvailableReturnActions.');
         }
@@ -1506,7 +1506,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Gets all the available actions on the return specified by return Id.
      * Get Available Return Actions
      */
-    async getAvailableReturnActions(requestParameters: ReturnApiGetAvailableReturnActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+    async getAvailableReturnActions(requestParameters: GetAvailableReturnActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
         const response = await this.getAvailableReturnActionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1517,7 +1517,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async getPackageRaw(requestParameters: ReturnApiGetPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimePackage>> {
+    async getPackageRaw(requestParameters: GetPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimePackage>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling getPackage.');
         }
@@ -1554,7 +1554,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Get an order package
      * Get an order package
      */
-    async getPackage(requestParameters: ReturnApiGetPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimePackage> {
+    async getPackage(requestParameters: GetPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimePackage> {
         const response = await this.getPackageRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1565,7 +1565,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async getPackageLabelRaw(requestParameters: ReturnApiGetPackageLabelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async getPackageLabelRaw(requestParameters: GetPackageLabelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling getPackageLabel.');
         }
@@ -1606,7 +1606,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Get an order package
      * Get an order package
      */
-    async getPackageLabel(requestParameters: ReturnApiGetPackageLabelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async getPackageLabel(requestParameters: GetPackageLabelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getPackageLabelRaw(requestParameters, initOverrides);
     }
 
@@ -1616,7 +1616,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async getPaymentRaw(requestParameters: ReturnApiGetPaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Payment>> {
+    async getPaymentRaw(requestParameters: GetPaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Payment>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling getPayment.');
         }
@@ -1653,7 +1653,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Gets specific payment on the return specified by return Id and payment Id.
      * Get Payment
      */
-    async getPayment(requestParameters: ReturnApiGetPaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Payment> {
+    async getPayment(requestParameters: GetPaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Payment> {
         const response = await this.getPaymentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1664,7 +1664,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async getPaymentDistributionRaw(requestParameters: ReturnApiGetPaymentDistributionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnRefundDetails>> {
+    async getPaymentDistributionRaw(requestParameters: GetPaymentDistributionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnRefundDetails>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling getPaymentDistribution.');
         }
@@ -1697,7 +1697,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Get Payment Distribution
      * Get Payment Distribution
      */
-    async getPaymentDistribution(requestParameters: ReturnApiGetPaymentDistributionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnRefundDetails> {
+    async getPaymentDistribution(requestParameters: GetPaymentDistributionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnRefundDetails> {
         const response = await this.getPaymentDistributionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1708,7 +1708,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async getPaymentsRaw(requestParameters: ReturnApiGetPaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaymentCollection>> {
+    async getPaymentsRaw(requestParameters: GetPaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaymentCollection>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling getPayments.');
         }
@@ -1741,7 +1741,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Gets payments on the return specified by return Id.
      * Get Payments
      */
-    async getPayments(requestParameters: ReturnApiGetPaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentCollection> {
+    async getPayments(requestParameters: GetPaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentCollection> {
         const response = await this.getPaymentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1752,7 +1752,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async getReasonsRaw(requestParameters: ReturnApiGetReasonsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReasonCollection>> {
+    async getReasonsRaw(requestParameters: GetReasonsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReasonCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -1781,7 +1781,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Gets all the return reasons.
      * Get Reasons
      */
-    async getReasons(requestParameters: ReturnApiGetReasonsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReasonCollection> {
+    async getReasons(requestParameters: GetReasonsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReasonCollection> {
         const response = await this.getReasonsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1792,7 +1792,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async getReturnRaw(requestParameters: ReturnApiGetReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>> {
+    async getReturnRaw(requestParameters: GetReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling getReturn.');
         }
@@ -1825,7 +1825,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Allows for retrieval for a return given only the return Id.  Further manipulation of that returns must be done off of the order.
      * Get Return
      */
-    async getReturn(requestParameters: ReturnApiGetReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return> {
+    async getReturn(requestParameters: GetReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return> {
         const response = await this.getReturnRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1836,7 +1836,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async getReturnItemRaw(requestParameters: ReturnApiGetReturnItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnItem>> {
+    async getReturnItemRaw(requestParameters: GetReturnItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnItem>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling getReturnItem.');
         }
@@ -1873,7 +1873,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Retrieves the details of a single return item.
      * Get Return Item
      */
-    async getReturnItem(requestParameters: ReturnApiGetReturnItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnItem> {
+    async getReturnItem(requestParameters: GetReturnItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnItem> {
         const response = await this.getReturnItemRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1884,7 +1884,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async getReturnItemsRaw(requestParameters: ReturnApiGetReturnItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnItemCollection>> {
+    async getReturnItemsRaw(requestParameters: GetReturnItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnItemCollection>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling getReturnItems.');
         }
@@ -1917,7 +1917,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Retrieves the details of all return items in an order.
      * Get Return Items
      */
-    async getReturnItems(requestParameters: ReturnApiGetReturnItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnItemCollection> {
+    async getReturnItems(requestParameters: GetReturnItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnItemCollection> {
         const response = await this.getReturnItemsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1928,7 +1928,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async getReturnLabelRaw(requestParameters: ReturnApiGetReturnLabelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipmentResponse>> {
+    async getReturnLabelRaw(requestParameters: GetReturnLabelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipmentResponse>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling getReturnLabel.');
         }
@@ -1961,7 +1961,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Gets the return label specified by returnId.
      * Get Return Label
      */
-    async getReturnLabel(requestParameters: ReturnApiGetReturnLabelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipmentResponse> {
+    async getReturnLabel(requestParameters: GetReturnLabelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipmentResponse> {
         const response = await this.getReturnLabelRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1972,7 +1972,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async getReturnNoteRaw(requestParameters: ReturnApiGetReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderNote>> {
+    async getReturnNoteRaw(requestParameters: GetReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderNote>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling getReturnNote.');
         }
@@ -2009,7 +2009,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Retrieves a specific note from a return.
      * Get Return Note
      */
-    async getReturnNote(requestParameters: ReturnApiGetReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderNote> {
+    async getReturnNote(requestParameters: GetReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderNote> {
         const response = await this.getReturnNoteRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2020,7 +2020,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async getReturnNotesRaw(requestParameters: ReturnApiGetReturnNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<OrderNote>>> {
+    async getReturnNotesRaw(requestParameters: GetReturnNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<OrderNote>>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling getReturnNotes.');
         }
@@ -2053,7 +2053,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Retrieves a list of all notes for a return.
      * Get Return Notes
      */
-    async getReturnNotes(requestParameters: ReturnApiGetReturnNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<OrderNote>> {
+    async getReturnNotes(requestParameters: GetReturnNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<OrderNote>> {
         const response = await this.getReturnNotesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2064,7 +2064,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async getReturnsRaw(requestParameters: ReturnApiGetReturnsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnCollection>> {
+    async getReturnsRaw(requestParameters: GetReturnsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -2113,7 +2113,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Provides a paged, collection of returns for a Site.
      * Get Returns
      */
-    async getReturns(requestParameters: ReturnApiGetReturnsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnCollection> {
+    async getReturns(requestParameters: GetReturnsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnCollection> {
         const response = await this.getReturnsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2124,7 +2124,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async getShipmentRaw(requestParameters: ReturnApiGetShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipment>> {
+    async getShipmentRaw(requestParameters: GetShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipment>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling getShipment.');
         }
@@ -2161,7 +2161,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * 
      * Allows a shipment to be retrieved for the order
      */
-    async getShipment(requestParameters: ReturnApiGetShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment> {
+    async getShipment(requestParameters: GetShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment> {
         const response = await this.getShipmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2172,7 +2172,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async performPaymentActionForReturnRaw(requestParameters: ReturnApiPerformPaymentActionForReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>> {
+    async performPaymentActionForReturnRaw(requestParameters: PerformPaymentActionForReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling performPaymentActionForReturn.');
         }
@@ -2212,7 +2212,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Sets the action of the specified payment transaction interaction. Available actions depend on the current status of the payment transaction.If in doubt, get a list of available payment actions first.  To retrieve the list of available actions, use an operation like GetAvailableReturnActions to view the actions available for the resource you are updating.
      * Perform Payment Action For Return
      */
-    async performPaymentActionForReturn(requestParameters: ReturnApiPerformPaymentActionForReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return> {
+    async performPaymentActionForReturn(requestParameters: PerformPaymentActionForReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return> {
         const response = await this.performPaymentActionForReturnRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2223,7 +2223,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async performReturnActionsRaw(requestParameters: ReturnApiPerformReturnActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnCollection>> {
+    async performReturnActionsRaw(requestParameters: PerformReturnActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -2255,7 +2255,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Perform Return Action.
      * Delete Return
      */
-    async performReturnActions(requestParameters: ReturnApiPerformReturnActionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnCollection> {
+    async performReturnActions(requestParameters: PerformReturnActionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnCollection> {
         const response = await this.performReturnActionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2266,7 +2266,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async resendReturnEmailRaw(requestParameters: ReturnApiResendReturnEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async resendReturnEmailRaw(requestParameters: ResendReturnEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -2298,7 +2298,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Resends return email.
      * Resend Return Email
      */
-    async resendReturnEmail(requestParameters: ReturnApiResendReturnEmailRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async resendReturnEmail(requestParameters: ResendReturnEmailRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.resendReturnEmailRaw(requestParameters, initOverrides);
     }
 
@@ -2308,7 +2308,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async restockReturnItemsRaw(requestParameters: ReturnApiRestockReturnItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>> {
+    async restockReturnItemsRaw(requestParameters: RestockReturnItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling restockReturnItems.');
         }
@@ -2344,7 +2344,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * API to restock return item.
      * Restock Return Items
      */
-    async restockReturnItems(requestParameters: ReturnApiRestockReturnItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return> {
+    async restockReturnItems(requestParameters: RestockReturnItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return> {
         const response = await this.restockReturnItemsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2355,7 +2355,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async updatePackageRaw(requestParameters: ReturnApiUpdatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimePackage>> {
+    async updatePackageRaw(requestParameters: UpdatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimePackage>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling updatePackage.');
         }
@@ -2395,7 +2395,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * 
      * Delete an order package
      */
-    async updatePackage(requestParameters: ReturnApiUpdatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimePackage> {
+    async updatePackage(requestParameters: UpdatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimePackage> {
         const response = await this.updatePackageRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2406,7 +2406,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async updateReturnRaw(requestParameters: ReturnApiUpdateReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>> {
+    async updateReturnRaw(requestParameters: UpdateReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling updateReturn.');
         }
@@ -2442,7 +2442,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Gets all the return reasons.
      * Get Reasons
      */
-    async updateReturn(requestParameters: ReturnApiUpdateReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return> {
+    async updateReturn(requestParameters: UpdateReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return> {
         const response = await this.updateReturnRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2453,7 +2453,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      */
 
 
-    async updateReturnNoteRaw(requestParameters: ReturnApiUpdateReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderNote>> {
+    async updateReturnNoteRaw(requestParameters: UpdateReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderNote>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling updateReturnNote.');
         }
@@ -2493,7 +2493,7 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiInterface {
      * Updates a specific note for a return.
      * Update Return Note
      */
-    async updateReturnNote(requestParameters: ReturnApiUpdateReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderNote> {
+    async updateReturnNote(requestParameters: UpdateReturnNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderNote> {
         const response = await this.updateReturnNoteRaw(requestParameters, initOverrides);
         return await response.value();
     }

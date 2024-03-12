@@ -20,13 +20,13 @@ import type {
   EntityContainerCollection,
 } from '../models';
 
-export interface EntityContainersApiGetEntityContainerRequest {
+export interface GetEntityContainerRequest {
     entityListFullName: string;
     id: string;
     responseFields?: string;
 }
 
-export interface EntityContainersApiGetEntityContainersRequest {
+export interface GetEntityContainersRequest {
     entityListFullName: string;
     pageSize?: number;
     startIndex?: number;
@@ -35,14 +35,14 @@ export interface EntityContainersApiGetEntityContainersRequest {
     responseFields?: string;
 }
 
-export interface EntityContainersApiGetViewEntityContainerRequest {
+export interface GetViewEntityContainerRequest {
     entityListFullName: string;
     viewName: string;
     entityId: string;
     responseFields?: string;
 }
 
-export interface EntityContainersApiGetViewEntityContainersRequest {
+export interface GetViewEntityContainersRequest {
     entityListFullName: string;
     viewName: string;
     pageSize?: number;
@@ -68,13 +68,13 @@ export interface EntityContainersApiInterface {
      * @throws {RequiredError}
      * @memberof EntityContainersApiInterface
      */
-    getEntityContainerRaw(requestParameters: EntityContainersApiGetEntityContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityContainer>>;
+    getEntityContainerRaw(requestParameters: GetEntityContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityContainer>>;
 
     /**
      * Get a specific Entity Container from an  EntityList instance
      * Get Entity Container
      */
-    getEntityContainer(requestParameters: EntityContainersApiGetEntityContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityContainer>;
+    getEntityContainer(requestParameters: GetEntityContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityContainer>;
 
     /**
      * Get a filtered collection of Entity Containers from an Entity List instance
@@ -89,13 +89,13 @@ export interface EntityContainersApiInterface {
      * @throws {RequiredError}
      * @memberof EntityContainersApiInterface
      */
-    getEntityContainersRaw(requestParameters: EntityContainersApiGetEntityContainersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityContainerCollection>>;
+    getEntityContainersRaw(requestParameters: GetEntityContainersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityContainerCollection>>;
 
     /**
      * Get a filtered collection of Entity Containers from an Entity List instance
      * Get Entity Containers
      */
-    getEntityContainers(requestParameters: EntityContainersApiGetEntityContainersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityContainerCollection>;
+    getEntityContainers(requestParameters: GetEntityContainersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityContainerCollection>;
 
     /**
      * Get an Entity Container for a specific Entity in a ListView on an EntityList
@@ -108,13 +108,13 @@ export interface EntityContainersApiInterface {
      * @throws {RequiredError}
      * @memberof EntityContainersApiInterface
      */
-    getViewEntityContainerRaw(requestParameters: EntityContainersApiGetViewEntityContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityContainer>>;
+    getViewEntityContainerRaw(requestParameters: GetViewEntityContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityContainer>>;
 
     /**
      * Get an Entity Container for a specific Entity in a ListView on an EntityList
      * Get  Entity View Container
      */
-    getViewEntityContainer(requestParameters: EntityContainersApiGetViewEntityContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityContainer>;
+    getViewEntityContainer(requestParameters: GetViewEntityContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityContainer>;
 
     /**
      * Get a filtered collection of Entity Containers for a ListView on an EntityList
@@ -129,13 +129,13 @@ export interface EntityContainersApiInterface {
      * @throws {RequiredError}
      * @memberof EntityContainersApiInterface
      */
-    getViewEntityContainersRaw(requestParameters: EntityContainersApiGetViewEntityContainersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityContainerCollection>>;
+    getViewEntityContainersRaw(requestParameters: GetViewEntityContainersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityContainerCollection>>;
 
     /**
      * Get a filtered collection of Entity Containers for a ListView on an EntityList
      * Get Entity View Containers
      */
-    getViewEntityContainers(requestParameters: EntityContainersApiGetViewEntityContainersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityContainerCollection>;
+    getViewEntityContainers(requestParameters: GetViewEntityContainersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityContainerCollection>;
 
 }
 
@@ -153,7 +153,7 @@ export class EntityContainersApi extends runtime.BaseAPI implements EntityContai
      */
 
 
-    async getEntityContainerRaw(requestParameters: EntityContainersApiGetEntityContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityContainer>> {
+    async getEntityContainerRaw(requestParameters: GetEntityContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityContainer>> {
         if (requestParameters.entityListFullName === null || requestParameters.entityListFullName === undefined) {
             throw new runtime.RequiredError('entityListFullName','Required parameter requestParameters.entityListFullName was null or undefined when calling getEntityContainer.');
         }
@@ -190,7 +190,7 @@ export class EntityContainersApi extends runtime.BaseAPI implements EntityContai
      * Get a specific Entity Container from an  EntityList instance
      * Get Entity Container
      */
-    async getEntityContainer(requestParameters: EntityContainersApiGetEntityContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityContainer> {
+    async getEntityContainer(requestParameters: GetEntityContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityContainer> {
         const response = await this.getEntityContainerRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -201,7 +201,7 @@ export class EntityContainersApi extends runtime.BaseAPI implements EntityContai
      */
 
 
-    async getEntityContainersRaw(requestParameters: EntityContainersApiGetEntityContainersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityContainerCollection>> {
+    async getEntityContainersRaw(requestParameters: GetEntityContainersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityContainerCollection>> {
         if (requestParameters.entityListFullName === null || requestParameters.entityListFullName === undefined) {
             throw new runtime.RequiredError('entityListFullName','Required parameter requestParameters.entityListFullName was null or undefined when calling getEntityContainers.');
         }
@@ -250,7 +250,7 @@ export class EntityContainersApi extends runtime.BaseAPI implements EntityContai
      * Get a filtered collection of Entity Containers from an Entity List instance
      * Get Entity Containers
      */
-    async getEntityContainers(requestParameters: EntityContainersApiGetEntityContainersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityContainerCollection> {
+    async getEntityContainers(requestParameters: GetEntityContainersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityContainerCollection> {
         const response = await this.getEntityContainersRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -261,7 +261,7 @@ export class EntityContainersApi extends runtime.BaseAPI implements EntityContai
      */
 
 
-    async getViewEntityContainerRaw(requestParameters: EntityContainersApiGetViewEntityContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityContainer>> {
+    async getViewEntityContainerRaw(requestParameters: GetViewEntityContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityContainer>> {
         if (requestParameters.entityListFullName === null || requestParameters.entityListFullName === undefined) {
             throw new runtime.RequiredError('entityListFullName','Required parameter requestParameters.entityListFullName was null or undefined when calling getViewEntityContainer.');
         }
@@ -302,7 +302,7 @@ export class EntityContainersApi extends runtime.BaseAPI implements EntityContai
      * Get an Entity Container for a specific Entity in a ListView on an EntityList
      * Get  Entity View Container
      */
-    async getViewEntityContainer(requestParameters: EntityContainersApiGetViewEntityContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityContainer> {
+    async getViewEntityContainer(requestParameters: GetViewEntityContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityContainer> {
         const response = await this.getViewEntityContainerRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -313,7 +313,7 @@ export class EntityContainersApi extends runtime.BaseAPI implements EntityContai
      */
 
 
-    async getViewEntityContainersRaw(requestParameters: EntityContainersApiGetViewEntityContainersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityContainerCollection>> {
+    async getViewEntityContainersRaw(requestParameters: GetViewEntityContainersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityContainerCollection>> {
         if (requestParameters.entityListFullName === null || requestParameters.entityListFullName === undefined) {
             throw new runtime.RequiredError('entityListFullName','Required parameter requestParameters.entityListFullName was null or undefined when calling getViewEntityContainers.');
         }
@@ -362,7 +362,7 @@ export class EntityContainersApi extends runtime.BaseAPI implements EntityContai
      * Get a filtered collection of Entity Containers for a ListView on an EntityList
      * Get Entity View Containers
      */
-    async getViewEntityContainers(requestParameters: EntityContainersApiGetViewEntityContainersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityContainerCollection> {
+    async getViewEntityContainers(requestParameters: GetViewEntityContainersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityContainerCollection> {
         const response = await this.getViewEntityContainersRaw(requestParameters, initOverrides);
         return await response.value();
     }

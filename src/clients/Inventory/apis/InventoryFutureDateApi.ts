@@ -21,7 +21,7 @@ import type {
   JobQueueResponse,
 } from '../models';
 
-export interface InventoryFutureDateApiAdjustFutureDateOperationRequest {
+export interface AdjustFutureDateOperationRequest {
     xVolTenant: number;
     futureInventoryID: number;
     adjustFutureDateRequest: AdjustFutureDateRequest;
@@ -46,13 +46,13 @@ export interface InventoryFutureDateApiInterface {
      * @throws {RequiredError}
      * @memberof InventoryFutureDateApiInterface
      */
-    adjustFutureDateRaw(requestParameters: InventoryFutureDateApiAdjustFutureDateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobQueueResponse>>;
+    adjustFutureDateRaw(requestParameters: AdjustFutureDateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobQueueResponse>>;
 
     /**
      * Adjust future_date of future inventory
      * Adjust Future Date
      */
-    adjustFutureDate(requestParameters: InventoryFutureDateApiAdjustFutureDateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobQueueResponse>;
+    adjustFutureDate(requestParameters: AdjustFutureDateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobQueueResponse>;
 
 }
 
@@ -70,7 +70,7 @@ export class InventoryFutureDateApi extends runtime.BaseAPI implements Inventory
      */
 
 
-    async adjustFutureDateRaw(requestParameters: InventoryFutureDateApiAdjustFutureDateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobQueueResponse>> {
+    async adjustFutureDateRaw(requestParameters: AdjustFutureDateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobQueueResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling adjustFutureDate.');
         }
@@ -118,7 +118,7 @@ export class InventoryFutureDateApi extends runtime.BaseAPI implements Inventory
      * Adjust future_date of future inventory
      * Adjust Future Date
      */
-    async adjustFutureDate(requestParameters: InventoryFutureDateApiAdjustFutureDateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobQueueResponse> {
+    async adjustFutureDate(requestParameters: AdjustFutureDateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobQueueResponse> {
         const response = await this.adjustFutureDateRaw(requestParameters, initOverrides);
         return await response.value();
     }

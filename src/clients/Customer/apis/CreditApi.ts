@@ -23,50 +23,28 @@ import type {
   CustomerCredit,
 } from '../models';
 
-export interface CreditApiAddCreditRequest {
+export interface AddCreditRequest {
     userId?: string;
     responseFields?: string;
     customerCredit?: CustomerCredit;
 }
 
-export interface CreditApiAddTransactionRequest {
+export interface AddTransactionRequest {
     code: string;
     responseFields?: string;
     creditTransaction?: CreditTransaction;
 }
 
-export interface CreditApiAssociateCreditToShopperRequest {
+export interface AssociateCreditToShopperRequest {
     code: string;
     responseFields?: string;
 }
 
-export interface CreditApiDeleteCreditRequest {
+export interface DeleteCreditRequest {
     code: string;
 }
 
-export interface CreditApiGetAuditEntriesRequest {
-    code: string;
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    filter?: string;
-    responseFields?: string;
-}
-
-export interface CreditApiGetCreditRequest {
-    code: string;
-    responseFields?: string;
-}
-
-export interface CreditApiGetCreditsRequest {
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    filter?: string;
-    responseFields?: string;
-}
-
-export interface CreditApiGetTransactionsRequest {
+export interface GetAuditEntriesRequest {
     code: string;
     startIndex?: number;
     pageSize?: number;
@@ -75,13 +53,35 @@ export interface CreditApiGetTransactionsRequest {
     responseFields?: string;
 }
 
-export interface CreditApiResendCreditCreatedEmailRequest {
+export interface GetCreditRequest {
+    code: string;
+    responseFields?: string;
+}
+
+export interface GetCreditsRequest {
+    startIndex?: number;
+    pageSize?: number;
+    sortBy?: string;
+    filter?: string;
+    responseFields?: string;
+}
+
+export interface GetTransactionsRequest {
+    code: string;
+    startIndex?: number;
+    pageSize?: number;
+    sortBy?: string;
+    filter?: string;
+    responseFields?: string;
+}
+
+export interface ResendCreditCreatedEmailRequest {
     code: string;
     userId?: string;
     responseFields?: string;
 }
 
-export interface CreditApiUpdateCreditRequest {
+export interface UpdateCreditRequest {
     code: string;
     responseFields?: string;
     customerCredit?: CustomerCredit;
@@ -104,13 +104,13 @@ export interface CreditApiInterface {
      * @throws {RequiredError}
      * @memberof CreditApiInterface
      */
-    addCreditRaw(requestParameters: CreditApiAddCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCredit>>;
+    addCreditRaw(requestParameters: AddCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCredit>>;
 
     /**
      * Adds credit to user account.
      * Add Credit
      */
-    addCredit(requestParameters: CreditApiAddCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCredit>;
+    addCredit(requestParameters: AddCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCredit>;
 
     /**
      * Adds a credit transaction.
@@ -122,13 +122,13 @@ export interface CreditApiInterface {
      * @throws {RequiredError}
      * @memberof CreditApiInterface
      */
-    addTransactionRaw(requestParameters: CreditApiAddTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreditTransaction>>;
+    addTransactionRaw(requestParameters: AddTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreditTransaction>>;
 
     /**
      * Adds a credit transaction.
      * Add Transaction
      */
-    addTransaction(requestParameters: CreditApiAddTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreditTransaction>;
+    addTransaction(requestParameters: AddTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreditTransaction>;
 
     /**
      * Maps credit to the shopper.
@@ -139,13 +139,13 @@ export interface CreditApiInterface {
      * @throws {RequiredError}
      * @memberof CreditApiInterface
      */
-    associateCreditToShopperRaw(requestParameters: CreditApiAssociateCreditToShopperRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCredit>>;
+    associateCreditToShopperRaw(requestParameters: AssociateCreditToShopperRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCredit>>;
 
     /**
      * Maps credit to the shopper.
      * Associate Credit To Shopper
      */
-    associateCreditToShopper(requestParameters: CreditApiAssociateCreditToShopperRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCredit>;
+    associateCreditToShopper(requestParameters: AssociateCreditToShopperRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCredit>;
 
     /**
      * Deletes a credit.
@@ -155,13 +155,13 @@ export interface CreditApiInterface {
      * @throws {RequiredError}
      * @memberof CreditApiInterface
      */
-    deleteCreditRaw(requestParameters: CreditApiDeleteCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteCreditRaw(requestParameters: DeleteCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Deletes a credit.
      * Delete credit
      */
-    deleteCredit(requestParameters: CreditApiDeleteCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteCredit(requestParameters: DeleteCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Retrieves a list of audit entries according to any filter criteria and sort options.
@@ -176,13 +176,13 @@ export interface CreditApiInterface {
      * @throws {RequiredError}
      * @memberof CreditApiInterface
      */
-    getAuditEntriesRaw(requestParameters: CreditApiGetAuditEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreditAuditEntryCollection>>;
+    getAuditEntriesRaw(requestParameters: GetAuditEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreditAuditEntryCollection>>;
 
     /**
      * Retrieves a list of audit entries according to any filter criteria and sort options.
      * Get Audit Entries
      */
-    getAuditEntries(requestParameters: CreditApiGetAuditEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreditAuditEntryCollection>;
+    getAuditEntries(requestParameters: GetAuditEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreditAuditEntryCollection>;
 
     /**
      * Get credit specified by code.
@@ -193,13 +193,13 @@ export interface CreditApiInterface {
      * @throws {RequiredError}
      * @memberof CreditApiInterface
      */
-    getCreditRaw(requestParameters: CreditApiGetCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCredit>>;
+    getCreditRaw(requestParameters: GetCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCredit>>;
 
     /**
      * Get credit specified by code.
      * Get credit
      */
-    getCredit(requestParameters: CreditApiGetCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCredit>;
+    getCredit(requestParameters: GetCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCredit>;
 
     /**
      * Retrieves a list of credit collection according to any filter criteria and sort options.
@@ -213,13 +213,13 @@ export interface CreditApiInterface {
      * @throws {RequiredError}
      * @memberof CreditApiInterface
      */
-    getCreditsRaw(requestParameters: CreditApiGetCreditsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreditCollection>>;
+    getCreditsRaw(requestParameters: GetCreditsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreditCollection>>;
 
     /**
      * Retrieves a list of credit collection according to any filter criteria and sort options.
      * Get Credits
      */
-    getCredits(requestParameters: CreditApiGetCreditsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreditCollection>;
+    getCredits(requestParameters: GetCreditsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreditCollection>;
 
     /**
      * Gets credit transactions according to any filter criteria and sort options.
@@ -234,13 +234,13 @@ export interface CreditApiInterface {
      * @throws {RequiredError}
      * @memberof CreditApiInterface
      */
-    getTransactionsRaw(requestParameters: CreditApiGetTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreditTransactionCollection>>;
+    getTransactionsRaw(requestParameters: GetTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreditTransactionCollection>>;
 
     /**
      * Gets credit transactions according to any filter criteria and sort options.
      * Get Transactions
      */
-    getTransactions(requestParameters: CreditApiGetTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreditTransactionCollection>;
+    getTransactions(requestParameters: GetTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreditTransactionCollection>;
 
     /**
      * Resend email when credit is created.
@@ -252,13 +252,13 @@ export interface CreditApiInterface {
      * @throws {RequiredError}
      * @memberof CreditApiInterface
      */
-    resendCreditCreatedEmailRaw(requestParameters: CreditApiResendCreditCreatedEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    resendCreditCreatedEmailRaw(requestParameters: ResendCreditCreatedEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Resend email when credit is created.
      * Resend Credit Created Email
      */
-    resendCreditCreatedEmail(requestParameters: CreditApiResendCreditCreatedEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    resendCreditCreatedEmail(requestParameters: ResendCreditCreatedEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Updates a credit specified by a credit code.
@@ -270,13 +270,13 @@ export interface CreditApiInterface {
      * @throws {RequiredError}
      * @memberof CreditApiInterface
      */
-    updateCreditRaw(requestParameters: CreditApiUpdateCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCredit>>;
+    updateCreditRaw(requestParameters: UpdateCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCredit>>;
 
     /**
      * Updates a credit specified by a credit code.
      * Update Credit
      */
-    updateCredit(requestParameters: CreditApiUpdateCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCredit>;
+    updateCredit(requestParameters: UpdateCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCredit>;
 
 }
 
@@ -294,7 +294,7 @@ export class CreditApi extends runtime.BaseAPI implements CreditApiInterface {
      */
 
 
-    async addCreditRaw(requestParameters: CreditApiAddCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCredit>> {
+    async addCreditRaw(requestParameters: AddCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCredit>> {
         const queryParameters: any = {};
 
         if (requestParameters.userId !== undefined) {
@@ -330,7 +330,7 @@ export class CreditApi extends runtime.BaseAPI implements CreditApiInterface {
      * Adds credit to user account.
      * Add Credit
      */
-    async addCredit(requestParameters: CreditApiAddCreditRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCredit> {
+    async addCredit(requestParameters: AddCreditRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCredit> {
         const response = await this.addCreditRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -341,7 +341,7 @@ export class CreditApi extends runtime.BaseAPI implements CreditApiInterface {
      */
 
 
-    async addTransactionRaw(requestParameters: CreditApiAddTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreditTransaction>> {
+    async addTransactionRaw(requestParameters: AddTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreditTransaction>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling addTransaction.');
         }
@@ -377,7 +377,7 @@ export class CreditApi extends runtime.BaseAPI implements CreditApiInterface {
      * Adds a credit transaction.
      * Add Transaction
      */
-    async addTransaction(requestParameters: CreditApiAddTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreditTransaction> {
+    async addTransaction(requestParameters: AddTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreditTransaction> {
         const response = await this.addTransactionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -388,7 +388,7 @@ export class CreditApi extends runtime.BaseAPI implements CreditApiInterface {
      */
 
 
-    async associateCreditToShopperRaw(requestParameters: CreditApiAssociateCreditToShopperRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCredit>> {
+    async associateCreditToShopperRaw(requestParameters: AssociateCreditToShopperRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCredit>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling associateCreditToShopper.');
         }
@@ -421,7 +421,7 @@ export class CreditApi extends runtime.BaseAPI implements CreditApiInterface {
      * Maps credit to the shopper.
      * Associate Credit To Shopper
      */
-    async associateCreditToShopper(requestParameters: CreditApiAssociateCreditToShopperRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCredit> {
+    async associateCreditToShopper(requestParameters: AssociateCreditToShopperRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCredit> {
         const response = await this.associateCreditToShopperRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -432,7 +432,7 @@ export class CreditApi extends runtime.BaseAPI implements CreditApiInterface {
      */
 
 
-    async deleteCreditRaw(requestParameters: CreditApiDeleteCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteCreditRaw(requestParameters: DeleteCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling deleteCredit.');
         }
@@ -461,7 +461,7 @@ export class CreditApi extends runtime.BaseAPI implements CreditApiInterface {
      * Deletes a credit.
      * Delete credit
      */
-    async deleteCredit(requestParameters: CreditApiDeleteCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteCredit(requestParameters: DeleteCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteCreditRaw(requestParameters, initOverrides);
     }
 
@@ -471,7 +471,7 @@ export class CreditApi extends runtime.BaseAPI implements CreditApiInterface {
      */
 
 
-    async getAuditEntriesRaw(requestParameters: CreditApiGetAuditEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreditAuditEntryCollection>> {
+    async getAuditEntriesRaw(requestParameters: GetAuditEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreditAuditEntryCollection>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling getAuditEntries.');
         }
@@ -520,7 +520,7 @@ export class CreditApi extends runtime.BaseAPI implements CreditApiInterface {
      * Retrieves a list of audit entries according to any filter criteria and sort options.
      * Get Audit Entries
      */
-    async getAuditEntries(requestParameters: CreditApiGetAuditEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreditAuditEntryCollection> {
+    async getAuditEntries(requestParameters: GetAuditEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreditAuditEntryCollection> {
         const response = await this.getAuditEntriesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -531,7 +531,7 @@ export class CreditApi extends runtime.BaseAPI implements CreditApiInterface {
      */
 
 
-    async getCreditRaw(requestParameters: CreditApiGetCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCredit>> {
+    async getCreditRaw(requestParameters: GetCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCredit>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling getCredit.');
         }
@@ -564,7 +564,7 @@ export class CreditApi extends runtime.BaseAPI implements CreditApiInterface {
      * Get credit specified by code.
      * Get credit
      */
-    async getCredit(requestParameters: CreditApiGetCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCredit> {
+    async getCredit(requestParameters: GetCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCredit> {
         const response = await this.getCreditRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -575,7 +575,7 @@ export class CreditApi extends runtime.BaseAPI implements CreditApiInterface {
      */
 
 
-    async getCreditsRaw(requestParameters: CreditApiGetCreditsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreditCollection>> {
+    async getCreditsRaw(requestParameters: GetCreditsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreditCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -620,7 +620,7 @@ export class CreditApi extends runtime.BaseAPI implements CreditApiInterface {
      * Retrieves a list of credit collection according to any filter criteria and sort options.
      * Get Credits
      */
-    async getCredits(requestParameters: CreditApiGetCreditsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreditCollection> {
+    async getCredits(requestParameters: GetCreditsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreditCollection> {
         const response = await this.getCreditsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -631,7 +631,7 @@ export class CreditApi extends runtime.BaseAPI implements CreditApiInterface {
      */
 
 
-    async getTransactionsRaw(requestParameters: CreditApiGetTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreditTransactionCollection>> {
+    async getTransactionsRaw(requestParameters: GetTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreditTransactionCollection>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling getTransactions.');
         }
@@ -680,7 +680,7 @@ export class CreditApi extends runtime.BaseAPI implements CreditApiInterface {
      * Gets credit transactions according to any filter criteria and sort options.
      * Get Transactions
      */
-    async getTransactions(requestParameters: CreditApiGetTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreditTransactionCollection> {
+    async getTransactions(requestParameters: GetTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreditTransactionCollection> {
         const response = await this.getTransactionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -691,7 +691,7 @@ export class CreditApi extends runtime.BaseAPI implements CreditApiInterface {
      */
 
 
-    async resendCreditCreatedEmailRaw(requestParameters: CreditApiResendCreditCreatedEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async resendCreditCreatedEmailRaw(requestParameters: ResendCreditCreatedEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling resendCreditCreatedEmail.');
         }
@@ -728,7 +728,7 @@ export class CreditApi extends runtime.BaseAPI implements CreditApiInterface {
      * Resend email when credit is created.
      * Resend Credit Created Email
      */
-    async resendCreditCreatedEmail(requestParameters: CreditApiResendCreditCreatedEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async resendCreditCreatedEmail(requestParameters: ResendCreditCreatedEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.resendCreditCreatedEmailRaw(requestParameters, initOverrides);
     }
 
@@ -738,7 +738,7 @@ export class CreditApi extends runtime.BaseAPI implements CreditApiInterface {
      */
 
 
-    async updateCreditRaw(requestParameters: CreditApiUpdateCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCredit>> {
+    async updateCreditRaw(requestParameters: UpdateCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCredit>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling updateCredit.');
         }
@@ -774,7 +774,7 @@ export class CreditApi extends runtime.BaseAPI implements CreditApiInterface {
      * Updates a credit specified by a credit code.
      * Update Credit
      */
-    async updateCredit(requestParameters: CreditApiUpdateCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCredit> {
+    async updateCredit(requestParameters: UpdateCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCredit> {
         const response = await this.updateCreditRaw(requestParameters, initOverrides);
         return await response.value();
     }

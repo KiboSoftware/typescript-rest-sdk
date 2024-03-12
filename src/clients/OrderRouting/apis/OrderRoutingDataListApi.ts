@@ -20,27 +20,27 @@ import type {
   CustomDataListResponse,
 } from '../models';
 
-export interface OrderRoutingDataListApiCreateCustomDataListUsingPOSTRequest {
+export interface CreateCustomDataListUsingPOSTRequest {
     xVolSite: number;
     xVolTenant: number;
     customDataList: CustomDataList;
     responseFields?: string;
 }
 
-export interface OrderRoutingDataListApiDeleteCustomDataListUsingDELETERequest {
+export interface DeleteCustomDataListUsingDELETERequest {
     dataListID: number;
     xVolSite: number;
     xVolTenant: number;
 }
 
-export interface OrderRoutingDataListApiGetCustomDataListUsingGETRequest {
+export interface GetCustomDataListUsingGETRequest {
     dataListID: number;
     xVolSite: number;
     xVolTenant: number;
     responseFields?: string;
 }
 
-export interface OrderRoutingDataListApiUpdateCustomDataListUsingPUTRequest {
+export interface UpdateCustomDataListUsingPUTRequest {
     dataListID: number;
     xVolSite: number;
     xVolTenant: number;
@@ -66,13 +66,13 @@ export interface OrderRoutingDataListApiInterface {
      * @throws {RequiredError}
      * @memberof OrderRoutingDataListApiInterface
      */
-    createCustomDataListUsingPOSTRaw(requestParameters: OrderRoutingDataListApiCreateCustomDataListUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDataListResponse>>;
+    createCustomDataListUsingPOSTRaw(requestParameters: CreateCustomDataListUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDataListResponse>>;
 
     /**
      * createCustomDataList
      * createCustomDataList
      */
-    createCustomDataListUsingPOST(requestParameters: OrderRoutingDataListApiCreateCustomDataListUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDataListResponse>;
+    createCustomDataListUsingPOST(requestParameters: CreateCustomDataListUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDataListResponse>;
 
     /**
      * deleteCustomDataList
@@ -84,13 +84,13 @@ export interface OrderRoutingDataListApiInterface {
      * @throws {RequiredError}
      * @memberof OrderRoutingDataListApiInterface
      */
-    deleteCustomDataListUsingDELETERaw(requestParameters: OrderRoutingDataListApiDeleteCustomDataListUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteCustomDataListUsingDELETERaw(requestParameters: DeleteCustomDataListUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * deleteCustomDataList
      * deleteCustomDataList
      */
-    deleteCustomDataListUsingDELETE(requestParameters: OrderRoutingDataListApiDeleteCustomDataListUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteCustomDataListUsingDELETE(requestParameters: DeleteCustomDataListUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * getCustomDataList
@@ -103,13 +103,13 @@ export interface OrderRoutingDataListApiInterface {
      * @throws {RequiredError}
      * @memberof OrderRoutingDataListApiInterface
      */
-    getCustomDataListUsingGETRaw(requestParameters: OrderRoutingDataListApiGetCustomDataListUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDataListResponse>>;
+    getCustomDataListUsingGETRaw(requestParameters: GetCustomDataListUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDataListResponse>>;
 
     /**
      * getCustomDataList
      * getCustomDataList
      */
-    getCustomDataListUsingGET(requestParameters: OrderRoutingDataListApiGetCustomDataListUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDataListResponse>;
+    getCustomDataListUsingGET(requestParameters: GetCustomDataListUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDataListResponse>;
 
     /**
      * updateCustomDataList
@@ -123,13 +123,13 @@ export interface OrderRoutingDataListApiInterface {
      * @throws {RequiredError}
      * @memberof OrderRoutingDataListApiInterface
      */
-    updateCustomDataListUsingPUTRaw(requestParameters: OrderRoutingDataListApiUpdateCustomDataListUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDataListResponse>>;
+    updateCustomDataListUsingPUTRaw(requestParameters: UpdateCustomDataListUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDataListResponse>>;
 
     /**
      * updateCustomDataList
      * updateCustomDataList
      */
-    updateCustomDataListUsingPUT(requestParameters: OrderRoutingDataListApiUpdateCustomDataListUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDataListResponse>;
+    updateCustomDataListUsingPUT(requestParameters: UpdateCustomDataListUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDataListResponse>;
 
 }
 
@@ -147,7 +147,7 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI implements OrderRou
      */
 
 
-    async createCustomDataListUsingPOSTRaw(requestParameters: OrderRoutingDataListApiCreateCustomDataListUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDataListResponse>> {
+    async createCustomDataListUsingPOSTRaw(requestParameters: CreateCustomDataListUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDataListResponse>> {
         if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
             throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling createCustomDataListUsingPOST.');
         }
@@ -199,7 +199,7 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI implements OrderRou
      * createCustomDataList
      * createCustomDataList
      */
-    async createCustomDataListUsingPOST(requestParameters: OrderRoutingDataListApiCreateCustomDataListUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDataListResponse> {
+    async createCustomDataListUsingPOST(requestParameters: CreateCustomDataListUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDataListResponse> {
         const response = await this.createCustomDataListUsingPOSTRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -210,7 +210,7 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI implements OrderRou
      */
 
 
-    async deleteCustomDataListUsingDELETERaw(requestParameters: OrderRoutingDataListApiDeleteCustomDataListUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteCustomDataListUsingDELETERaw(requestParameters: DeleteCustomDataListUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.dataListID === null || requestParameters.dataListID === undefined) {
             throw new runtime.RequiredError('dataListID','Required parameter requestParameters.dataListID was null or undefined when calling deleteCustomDataListUsingDELETE.');
         }
@@ -255,7 +255,7 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI implements OrderRou
      * deleteCustomDataList
      * deleteCustomDataList
      */
-    async deleteCustomDataListUsingDELETE(requestParameters: OrderRoutingDataListApiDeleteCustomDataListUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteCustomDataListUsingDELETE(requestParameters: DeleteCustomDataListUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteCustomDataListUsingDELETERaw(requestParameters, initOverrides);
     }
 
@@ -265,7 +265,7 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI implements OrderRou
      */
 
 
-    async getCustomDataListUsingGETRaw(requestParameters: OrderRoutingDataListApiGetCustomDataListUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDataListResponse>> {
+    async getCustomDataListUsingGETRaw(requestParameters: GetCustomDataListUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDataListResponse>> {
         if (requestParameters.dataListID === null || requestParameters.dataListID === undefined) {
             throw new runtime.RequiredError('dataListID','Required parameter requestParameters.dataListID was null or undefined when calling getCustomDataListUsingGET.');
         }
@@ -314,7 +314,7 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI implements OrderRou
      * getCustomDataList
      * getCustomDataList
      */
-    async getCustomDataListUsingGET(requestParameters: OrderRoutingDataListApiGetCustomDataListUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDataListResponse> {
+    async getCustomDataListUsingGET(requestParameters: GetCustomDataListUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDataListResponse> {
         const response = await this.getCustomDataListUsingGETRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -325,7 +325,7 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI implements OrderRou
      */
 
 
-    async updateCustomDataListUsingPUTRaw(requestParameters: OrderRoutingDataListApiUpdateCustomDataListUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDataListResponse>> {
+    async updateCustomDataListUsingPUTRaw(requestParameters: UpdateCustomDataListUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDataListResponse>> {
         if (requestParameters.dataListID === null || requestParameters.dataListID === undefined) {
             throw new runtime.RequiredError('dataListID','Required parameter requestParameters.dataListID was null or undefined when calling updateCustomDataListUsingPUT.');
         }
@@ -381,7 +381,7 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI implements OrderRou
      * updateCustomDataList
      * updateCustomDataList
      */
-    async updateCustomDataListUsingPUT(requestParameters: OrderRoutingDataListApiUpdateCustomDataListUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDataListResponse> {
+    async updateCustomDataListUsingPUT(requestParameters: UpdateCustomDataListUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDataListResponse> {
         const response = await this.updateCustomDataListUsingPUTRaw(requestParameters, initOverrides);
         return await response.value();
     }

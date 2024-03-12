@@ -20,17 +20,17 @@ import type {
   LocationCollection,
 } from '../models';
 
-export interface LocationApiGetCurbsideLocationRequest {
+export interface GetCurbsideLocationRequest {
     includeAttributeDefinition?: boolean;
     responseFields?: string;
 }
 
-export interface LocationApiGetDeliveryLocationRequest {
+export interface GetDeliveryLocationRequest {
     includeAttributeDefinition?: boolean;
     responseFields?: string;
 }
 
-export interface LocationApiGetDeliveryLocationsRequest {
+export interface GetDeliveryLocationsRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -39,18 +39,18 @@ export interface LocationApiGetDeliveryLocationsRequest {
     responseFields?: string;
 }
 
-export interface LocationApiGetDirectShipLocationRequest {
+export interface GetDirectShipLocationRequest {
     includeAttributeDefinition?: boolean;
     responseFields?: string;
 }
 
-export interface LocationApiGetInStorePickupLocationRequest {
+export interface GetInStorePickupLocationRequest {
     locationCode: string;
     includeAttributeDefinition?: boolean;
     responseFields?: string;
 }
 
-export interface LocationApiGetInStorePickupLocationsRequest {
+export interface GetInStorePickupLocationsRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -59,13 +59,13 @@ export interface LocationApiGetInStorePickupLocationsRequest {
     responseFields?: string;
 }
 
-export interface LocationApiGetLocationRequest {
+export interface GetLocationRequest {
     locationCode: string;
     includeAttributeDefinition?: boolean;
     responseFields?: string;
 }
 
-export interface LocationApiGetLocationsInUsageTypeRequest {
+export interface GetLocationsInUsageTypeRequest {
     locationUsageType: string;
     startIndex?: number;
     pageSize?: number;
@@ -91,13 +91,13 @@ export interface LocationApiInterface {
      * @throws {RequiredError}
      * @memberof LocationApiInterface
      */
-    getCurbsideLocationRaw(requestParameters: LocationApiGetCurbsideLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>>;
+    getCurbsideLocationRaw(requestParameters: GetCurbsideLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>>;
 
     /**
      * Get the Curbside Location for the Site.
      * Get Curbside Location
      */
-    getCurbsideLocation(requestParameters: LocationApiGetCurbsideLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location>;
+    getCurbsideLocation(requestParameters: GetCurbsideLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location>;
 
     /**
      * Get Delivery Location
@@ -108,13 +108,13 @@ export interface LocationApiInterface {
      * @throws {RequiredError}
      * @memberof LocationApiInterface
      */
-    getDeliveryLocationRaw(requestParameters: LocationApiGetDeliveryLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>>;
+    getDeliveryLocationRaw(requestParameters: GetDeliveryLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>>;
 
     /**
      * Get Delivery Location
      * Get Delivery Location
      */
-    getDeliveryLocation(requestParameters: LocationApiGetDeliveryLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location>;
+    getDeliveryLocation(requestParameters: GetDeliveryLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location>;
 
     /**
      * Gets the delivery Locations for the site
@@ -129,13 +129,13 @@ export interface LocationApiInterface {
      * @throws {RequiredError}
      * @memberof LocationApiInterface
      */
-    getDeliveryLocationsRaw(requestParameters: LocationApiGetDeliveryLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationCollection>>;
+    getDeliveryLocationsRaw(requestParameters: GetDeliveryLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationCollection>>;
 
     /**
      * Gets the delivery Locations for the site
      * Get Delivery Locations
      */
-    getDeliveryLocations(requestParameters: LocationApiGetDeliveryLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationCollection>;
+    getDeliveryLocations(requestParameters: GetDeliveryLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationCollection>;
 
     /**
      * Get the Direct Ship Location for the Site.
@@ -146,13 +146,13 @@ export interface LocationApiInterface {
      * @throws {RequiredError}
      * @memberof LocationApiInterface
      */
-    getDirectShipLocationRaw(requestParameters: LocationApiGetDirectShipLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>>;
+    getDirectShipLocationRaw(requestParameters: GetDirectShipLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>>;
 
     /**
      * Get the Direct Ship Location for the Site.
      * Get Direct Ship Location
      */
-    getDirectShipLocation(requestParameters: LocationApiGetDirectShipLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location>;
+    getDirectShipLocation(requestParameters: GetDirectShipLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location>;
 
     /**
      * Get a specific in store pickup Location for the Site
@@ -164,13 +164,13 @@ export interface LocationApiInterface {
      * @throws {RequiredError}
      * @memberof LocationApiInterface
      */
-    getInStorePickupLocationRaw(requestParameters: LocationApiGetInStorePickupLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>>;
+    getInStorePickupLocationRaw(requestParameters: GetInStorePickupLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>>;
 
     /**
      * Get a specific in store pickup Location for the Site
      * Get In Store Pickup Location
      */
-    getInStorePickupLocation(requestParameters: LocationApiGetInStorePickupLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location>;
+    getInStorePickupLocation(requestParameters: GetInStorePickupLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location>;
 
     /**
      * Gets the in store pickup Locations for the site.
@@ -185,13 +185,13 @@ export interface LocationApiInterface {
      * @throws {RequiredError}
      * @memberof LocationApiInterface
      */
-    getInStorePickupLocationsRaw(requestParameters: LocationApiGetInStorePickupLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationCollection>>;
+    getInStorePickupLocationsRaw(requestParameters: GetInStorePickupLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationCollection>>;
 
     /**
      * Gets the in store pickup Locations for the site.
      * Get In Store Pickup Locations
      */
-    getInStorePickupLocations(requestParameters: LocationApiGetInStorePickupLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationCollection>;
+    getInStorePickupLocations(requestParameters: GetInStorePickupLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationCollection>;
 
     /**
      * Get a Location by locationCode.
@@ -203,13 +203,13 @@ export interface LocationApiInterface {
      * @throws {RequiredError}
      * @memberof LocationApiInterface
      */
-    getLocationRaw(requestParameters: LocationApiGetLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>>;
+    getLocationRaw(requestParameters: GetLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>>;
 
     /**
      * Get a Location by locationCode.
      * Get Location
      */
-    getLocation(requestParameters: LocationApiGetLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location>;
+    getLocation(requestParameters: GetLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location>;
 
     /**
      * Get the Locations for the Site associated with the locationUsageType.
@@ -225,13 +225,13 @@ export interface LocationApiInterface {
      * @throws {RequiredError}
      * @memberof LocationApiInterface
      */
-    getLocationsInUsageTypeRaw(requestParameters: LocationApiGetLocationsInUsageTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationCollection>>;
+    getLocationsInUsageTypeRaw(requestParameters: GetLocationsInUsageTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationCollection>>;
 
     /**
      * Get the Locations for the Site associated with the locationUsageType.
      * Get Locations In Usage Type
      */
-    getLocationsInUsageType(requestParameters: LocationApiGetLocationsInUsageTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationCollection>;
+    getLocationsInUsageType(requestParameters: GetLocationsInUsageTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationCollection>;
 
 }
 
@@ -249,7 +249,7 @@ export class LocationApi extends runtime.BaseAPI implements LocationApiInterface
      */
 
 
-    async getCurbsideLocationRaw(requestParameters: LocationApiGetCurbsideLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>> {
+    async getCurbsideLocationRaw(requestParameters: GetCurbsideLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>> {
         const queryParameters: any = {};
 
         if (requestParameters.includeAttributeDefinition !== undefined) {
@@ -282,7 +282,7 @@ export class LocationApi extends runtime.BaseAPI implements LocationApiInterface
      * Get the Curbside Location for the Site.
      * Get Curbside Location
      */
-    async getCurbsideLocation(requestParameters: LocationApiGetCurbsideLocationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location> {
+    async getCurbsideLocation(requestParameters: GetCurbsideLocationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location> {
         const response = await this.getCurbsideLocationRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -293,7 +293,7 @@ export class LocationApi extends runtime.BaseAPI implements LocationApiInterface
      */
 
 
-    async getDeliveryLocationRaw(requestParameters: LocationApiGetDeliveryLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>> {
+    async getDeliveryLocationRaw(requestParameters: GetDeliveryLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>> {
         const queryParameters: any = {};
 
         if (requestParameters.includeAttributeDefinition !== undefined) {
@@ -326,7 +326,7 @@ export class LocationApi extends runtime.BaseAPI implements LocationApiInterface
      * Get Delivery Location
      * Get Delivery Location
      */
-    async getDeliveryLocation(requestParameters: LocationApiGetDeliveryLocationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location> {
+    async getDeliveryLocation(requestParameters: GetDeliveryLocationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location> {
         const response = await this.getDeliveryLocationRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -337,7 +337,7 @@ export class LocationApi extends runtime.BaseAPI implements LocationApiInterface
      */
 
 
-    async getDeliveryLocationsRaw(requestParameters: LocationApiGetDeliveryLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationCollection>> {
+    async getDeliveryLocationsRaw(requestParameters: GetDeliveryLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -386,7 +386,7 @@ export class LocationApi extends runtime.BaseAPI implements LocationApiInterface
      * Gets the delivery Locations for the site
      * Get Delivery Locations
      */
-    async getDeliveryLocations(requestParameters: LocationApiGetDeliveryLocationsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationCollection> {
+    async getDeliveryLocations(requestParameters: GetDeliveryLocationsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationCollection> {
         const response = await this.getDeliveryLocationsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -397,7 +397,7 @@ export class LocationApi extends runtime.BaseAPI implements LocationApiInterface
      */
 
 
-    async getDirectShipLocationRaw(requestParameters: LocationApiGetDirectShipLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>> {
+    async getDirectShipLocationRaw(requestParameters: GetDirectShipLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>> {
         const queryParameters: any = {};
 
         if (requestParameters.includeAttributeDefinition !== undefined) {
@@ -430,7 +430,7 @@ export class LocationApi extends runtime.BaseAPI implements LocationApiInterface
      * Get the Direct Ship Location for the Site.
      * Get Direct Ship Location
      */
-    async getDirectShipLocation(requestParameters: LocationApiGetDirectShipLocationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location> {
+    async getDirectShipLocation(requestParameters: GetDirectShipLocationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location> {
         const response = await this.getDirectShipLocationRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -441,7 +441,7 @@ export class LocationApi extends runtime.BaseAPI implements LocationApiInterface
      */
 
 
-    async getInStorePickupLocationRaw(requestParameters: LocationApiGetInStorePickupLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>> {
+    async getInStorePickupLocationRaw(requestParameters: GetInStorePickupLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>> {
         if (requestParameters.locationCode === null || requestParameters.locationCode === undefined) {
             throw new runtime.RequiredError('locationCode','Required parameter requestParameters.locationCode was null or undefined when calling getInStorePickupLocation.');
         }
@@ -478,7 +478,7 @@ export class LocationApi extends runtime.BaseAPI implements LocationApiInterface
      * Get a specific in store pickup Location for the Site
      * Get In Store Pickup Location
      */
-    async getInStorePickupLocation(requestParameters: LocationApiGetInStorePickupLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location> {
+    async getInStorePickupLocation(requestParameters: GetInStorePickupLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location> {
         const response = await this.getInStorePickupLocationRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -489,7 +489,7 @@ export class LocationApi extends runtime.BaseAPI implements LocationApiInterface
      */
 
 
-    async getInStorePickupLocationsRaw(requestParameters: LocationApiGetInStorePickupLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationCollection>> {
+    async getInStorePickupLocationsRaw(requestParameters: GetInStorePickupLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -538,7 +538,7 @@ export class LocationApi extends runtime.BaseAPI implements LocationApiInterface
      * Gets the in store pickup Locations for the site.
      * Get In Store Pickup Locations
      */
-    async getInStorePickupLocations(requestParameters: LocationApiGetInStorePickupLocationsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationCollection> {
+    async getInStorePickupLocations(requestParameters: GetInStorePickupLocationsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationCollection> {
         const response = await this.getInStorePickupLocationsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -549,7 +549,7 @@ export class LocationApi extends runtime.BaseAPI implements LocationApiInterface
      */
 
 
-    async getLocationRaw(requestParameters: LocationApiGetLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>> {
+    async getLocationRaw(requestParameters: GetLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>> {
         if (requestParameters.locationCode === null || requestParameters.locationCode === undefined) {
             throw new runtime.RequiredError('locationCode','Required parameter requestParameters.locationCode was null or undefined when calling getLocation.');
         }
@@ -586,7 +586,7 @@ export class LocationApi extends runtime.BaseAPI implements LocationApiInterface
      * Get a Location by locationCode.
      * Get Location
      */
-    async getLocation(requestParameters: LocationApiGetLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location> {
+    async getLocation(requestParameters: GetLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location> {
         const response = await this.getLocationRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -597,7 +597,7 @@ export class LocationApi extends runtime.BaseAPI implements LocationApiInterface
      */
 
 
-    async getLocationsInUsageTypeRaw(requestParameters: LocationApiGetLocationsInUsageTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationCollection>> {
+    async getLocationsInUsageTypeRaw(requestParameters: GetLocationsInUsageTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationCollection>> {
         if (requestParameters.locationUsageType === null || requestParameters.locationUsageType === undefined) {
             throw new runtime.RequiredError('locationUsageType','Required parameter requestParameters.locationUsageType was null or undefined when calling getLocationsInUsageType.');
         }
@@ -650,7 +650,7 @@ export class LocationApi extends runtime.BaseAPI implements LocationApiInterface
      * Get the Locations for the Site associated with the locationUsageType.
      * Get Locations In Usage Type
      */
-    async getLocationsInUsageType(requestParameters: LocationApiGetLocationsInUsageTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationCollection> {
+    async getLocationsInUsageType(requestParameters: GetLocationsInUsageTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationCollection> {
         const response = await this.getLocationsInUsageTypeRaw(requestParameters, initOverrides);
         return await response.value();
     }

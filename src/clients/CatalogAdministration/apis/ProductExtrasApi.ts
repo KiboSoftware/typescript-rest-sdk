@@ -20,13 +20,13 @@ import type {
   ProductExtraValueDeltaPrice,
 } from '../models';
 
-export interface ProductExtrasApiAddExtraRequest {
+export interface AddExtraRequest {
     productCode: string;
     responseFields?: string;
     productExtra?: ProductExtra;
 }
 
-export interface ProductExtrasApiAddExtraValueLocalizedDeltaPriceRequest {
+export interface AddExtraValueLocalizedDeltaPriceRequest {
     productCode: string;
     attributeFQN: string;
     value: string;
@@ -34,52 +34,52 @@ export interface ProductExtrasApiAddExtraValueLocalizedDeltaPriceRequest {
     productExtraValueDeltaPrice?: ProductExtraValueDeltaPrice;
 }
 
-export interface ProductExtrasApiDeleteExtraRequest {
+export interface DeleteExtraRequest {
     productCode: string;
     attributeFQN: string;
 }
 
-export interface ProductExtrasApiDeleteExtraValueLocalizedDeltaPriceRequest {
-    productCode: string;
-    attributeFQN: string;
-    value: string;
-    currencyCode: string;
-}
-
-export interface ProductExtrasApiGetExtraRequest {
-    productCode: string;
-    attributeFQN: string;
-    responseFields?: string;
-}
-
-export interface ProductExtrasApiGetExtraValueLocalizedDeltaPriceRequest {
+export interface DeleteExtraValueLocalizedDeltaPriceRequest {
     productCode: string;
     attributeFQN: string;
     value: string;
     currencyCode: string;
+}
+
+export interface GetExtraRequest {
+    productCode: string;
+    attributeFQN: string;
     responseFields?: string;
 }
 
-export interface ProductExtrasApiGetExtraValueLocalizedDeltaPricesRequest {
+export interface GetExtraValueLocalizedDeltaPriceRequest {
+    productCode: string;
+    attributeFQN: string;
+    value: string;
+    currencyCode: string;
+    responseFields?: string;
+}
+
+export interface GetExtraValueLocalizedDeltaPricesRequest {
     productCode: string;
     attributeFQN: string;
     value: string;
     responseFields?: string;
 }
 
-export interface ProductExtrasApiGetExtrasRequest {
+export interface GetExtrasRequest {
     productCode: string;
     responseFields?: string;
 }
 
-export interface ProductExtrasApiUpdateExtraRequest {
+export interface UpdateExtraRequest {
     productCode: string;
     attributeFQN: string;
     responseFields?: string;
     productExtra?: ProductExtra;
 }
 
-export interface ProductExtrasApiUpdateExtraValueLocalizedDeltaPriceRequest {
+export interface UpdateExtraValueLocalizedDeltaPriceRequest {
     productCode: string;
     attributeFQN: string;
     value: string;
@@ -88,7 +88,7 @@ export interface ProductExtrasApiUpdateExtraValueLocalizedDeltaPriceRequest {
     productExtraValueDeltaPrice?: ProductExtraValueDeltaPrice;
 }
 
-export interface ProductExtrasApiUpdateExtraValueLocalizedDeltaPricesRequest {
+export interface UpdateExtraValueLocalizedDeltaPricesRequest {
     productCode: string;
     attributeFQN: string;
     value: string;
@@ -113,13 +113,13 @@ export interface ProductExtrasApiInterface {
      * @throws {RequiredError}
      * @memberof ProductExtrasApiInterface
      */
-    addExtraRaw(requestParameters: ProductExtrasApiAddExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtra>>;
+    addExtraRaw(requestParameters: AddExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtra>>;
 
     /**
      * Add extra
      * Add extra
      */
-    addExtra(requestParameters: ProductExtrasApiAddExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtra>;
+    addExtra(requestParameters: AddExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtra>;
 
     /**
      * 
@@ -133,13 +133,13 @@ export interface ProductExtrasApiInterface {
      * @throws {RequiredError}
      * @memberof ProductExtrasApiInterface
      */
-    addExtraValueLocalizedDeltaPriceRaw(requestParameters: ProductExtrasApiAddExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtraValueDeltaPrice>>;
+    addExtraValueLocalizedDeltaPriceRaw(requestParameters: AddExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtraValueDeltaPrice>>;
 
     /**
      * 
      * Add extra value localized delta price
      */
-    addExtraValueLocalizedDeltaPrice(requestParameters: ProductExtrasApiAddExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtraValueDeltaPrice>;
+    addExtraValueLocalizedDeltaPrice(requestParameters: AddExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtraValueDeltaPrice>;
 
     /**
      * Delete extra
@@ -150,13 +150,13 @@ export interface ProductExtrasApiInterface {
      * @throws {RequiredError}
      * @memberof ProductExtrasApiInterface
      */
-    deleteExtraRaw(requestParameters: ProductExtrasApiDeleteExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteExtraRaw(requestParameters: DeleteExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Delete extra
      * Delete extra
      */
-    deleteExtra(requestParameters: ProductExtrasApiDeleteExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteExtra(requestParameters: DeleteExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * 
@@ -169,13 +169,13 @@ export interface ProductExtrasApiInterface {
      * @throws {RequiredError}
      * @memberof ProductExtrasApiInterface
      */
-    deleteExtraValueLocalizedDeltaPriceRaw(requestParameters: ProductExtrasApiDeleteExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteExtraValueLocalizedDeltaPriceRaw(requestParameters: DeleteExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * 
      * Delete extra value localized delta price
      */
-    deleteExtraValueLocalizedDeltaPrice(requestParameters: ProductExtrasApiDeleteExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteExtraValueLocalizedDeltaPrice(requestParameters: DeleteExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Get individual extra.
@@ -187,13 +187,13 @@ export interface ProductExtrasApiInterface {
      * @throws {RequiredError}
      * @memberof ProductExtrasApiInterface
      */
-    getExtraRaw(requestParameters: ProductExtrasApiGetExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtra>>;
+    getExtraRaw(requestParameters: GetExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtra>>;
 
     /**
      * Get individual extra.
      * Get extra
      */
-    getExtra(requestParameters: ProductExtrasApiGetExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtra>;
+    getExtra(requestParameters: GetExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtra>;
 
     /**
      * 
@@ -207,13 +207,13 @@ export interface ProductExtrasApiInterface {
      * @throws {RequiredError}
      * @memberof ProductExtrasApiInterface
      */
-    getExtraValueLocalizedDeltaPriceRaw(requestParameters: ProductExtrasApiGetExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtraValueDeltaPrice>>;
+    getExtraValueLocalizedDeltaPriceRaw(requestParameters: GetExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtraValueDeltaPrice>>;
 
     /**
      * 
      * Get extra value localized delta price
      */
-    getExtraValueLocalizedDeltaPrice(requestParameters: ProductExtrasApiGetExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtraValueDeltaPrice>;
+    getExtraValueLocalizedDeltaPrice(requestParameters: GetExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtraValueDeltaPrice>;
 
     /**
      * 
@@ -226,13 +226,13 @@ export interface ProductExtrasApiInterface {
      * @throws {RequiredError}
      * @memberof ProductExtrasApiInterface
      */
-    getExtraValueLocalizedDeltaPricesRaw(requestParameters: ProductExtrasApiGetExtraValueLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductExtraValueDeltaPrice>>>;
+    getExtraValueLocalizedDeltaPricesRaw(requestParameters: GetExtraValueLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductExtraValueDeltaPrice>>>;
 
     /**
      * 
      * Get extra value localized delta prices
      */
-    getExtraValueLocalizedDeltaPrices(requestParameters: ProductExtrasApiGetExtraValueLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductExtraValueDeltaPrice>>;
+    getExtraValueLocalizedDeltaPrices(requestParameters: GetExtraValueLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductExtraValueDeltaPrice>>;
 
     /**
      * Get extras for the product.
@@ -243,13 +243,13 @@ export interface ProductExtrasApiInterface {
      * @throws {RequiredError}
      * @memberof ProductExtrasApiInterface
      */
-    getExtrasRaw(requestParameters: ProductExtrasApiGetExtrasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductExtra>>>;
+    getExtrasRaw(requestParameters: GetExtrasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductExtra>>>;
 
     /**
      * Get extras for the product.
      * Get extras
      */
-    getExtras(requestParameters: ProductExtrasApiGetExtrasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductExtra>>;
+    getExtras(requestParameters: GetExtrasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductExtra>>;
 
     /**
      * Update extra
@@ -262,13 +262,13 @@ export interface ProductExtrasApiInterface {
      * @throws {RequiredError}
      * @memberof ProductExtrasApiInterface
      */
-    updateExtraRaw(requestParameters: ProductExtrasApiUpdateExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtra>>;
+    updateExtraRaw(requestParameters: UpdateExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtra>>;
 
     /**
      * Update extra
      * Update extra
      */
-    updateExtra(requestParameters: ProductExtrasApiUpdateExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtra>;
+    updateExtra(requestParameters: UpdateExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtra>;
 
     /**
      * 
@@ -283,13 +283,13 @@ export interface ProductExtrasApiInterface {
      * @throws {RequiredError}
      * @memberof ProductExtrasApiInterface
      */
-    updateExtraValueLocalizedDeltaPriceRaw(requestParameters: ProductExtrasApiUpdateExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtraValueDeltaPrice>>;
+    updateExtraValueLocalizedDeltaPriceRaw(requestParameters: UpdateExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtraValueDeltaPrice>>;
 
     /**
      * 
      * Update extra value localized delta price
      */
-    updateExtraValueLocalizedDeltaPrice(requestParameters: ProductExtrasApiUpdateExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtraValueDeltaPrice>;
+    updateExtraValueLocalizedDeltaPrice(requestParameters: UpdateExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtraValueDeltaPrice>;
 
     /**
      * 
@@ -303,13 +303,13 @@ export interface ProductExtrasApiInterface {
      * @throws {RequiredError}
      * @memberof ProductExtrasApiInterface
      */
-    updateExtraValueLocalizedDeltaPricesRaw(requestParameters: ProductExtrasApiUpdateExtraValueLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductExtraValueDeltaPrice>>>;
+    updateExtraValueLocalizedDeltaPricesRaw(requestParameters: UpdateExtraValueLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductExtraValueDeltaPrice>>>;
 
     /**
      * 
      * Update extra value localized delta prices
      */
-    updateExtraValueLocalizedDeltaPrices(requestParameters: ProductExtrasApiUpdateExtraValueLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductExtraValueDeltaPrice>>;
+    updateExtraValueLocalizedDeltaPrices(requestParameters: UpdateExtraValueLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductExtraValueDeltaPrice>>;
 
 }
 
@@ -327,7 +327,7 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
      */
 
 
-    async addExtraRaw(requestParameters: ProductExtrasApiAddExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtra>> {
+    async addExtraRaw(requestParameters: AddExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtra>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling addExtra.');
         }
@@ -363,7 +363,7 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
      * Add extra
      * Add extra
      */
-    async addExtra(requestParameters: ProductExtrasApiAddExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtra> {
+    async addExtra(requestParameters: AddExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtra> {
         const response = await this.addExtraRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -374,7 +374,7 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
      */
 
 
-    async addExtraValueLocalizedDeltaPriceRaw(requestParameters: ProductExtrasApiAddExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtraValueDeltaPrice>> {
+    async addExtraValueLocalizedDeltaPriceRaw(requestParameters: AddExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtraValueDeltaPrice>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling addExtraValueLocalizedDeltaPrice.');
         }
@@ -418,7 +418,7 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
      * 
      * Add extra value localized delta price
      */
-    async addExtraValueLocalizedDeltaPrice(requestParameters: ProductExtrasApiAddExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtraValueDeltaPrice> {
+    async addExtraValueLocalizedDeltaPrice(requestParameters: AddExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtraValueDeltaPrice> {
         const response = await this.addExtraValueLocalizedDeltaPriceRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -429,7 +429,7 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
      */
 
 
-    async deleteExtraRaw(requestParameters: ProductExtrasApiDeleteExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteExtraRaw(requestParameters: DeleteExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling deleteExtra.');
         }
@@ -462,7 +462,7 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
      * Delete extra
      * Delete extra
      */
-    async deleteExtra(requestParameters: ProductExtrasApiDeleteExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteExtra(requestParameters: DeleteExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteExtraRaw(requestParameters, initOverrides);
     }
 
@@ -472,7 +472,7 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
      */
 
 
-    async deleteExtraValueLocalizedDeltaPriceRaw(requestParameters: ProductExtrasApiDeleteExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteExtraValueLocalizedDeltaPriceRaw(requestParameters: DeleteExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling deleteExtraValueLocalizedDeltaPrice.');
         }
@@ -513,7 +513,7 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
      * 
      * Delete extra value localized delta price
      */
-    async deleteExtraValueLocalizedDeltaPrice(requestParameters: ProductExtrasApiDeleteExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteExtraValueLocalizedDeltaPrice(requestParameters: DeleteExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteExtraValueLocalizedDeltaPriceRaw(requestParameters, initOverrides);
     }
 
@@ -523,7 +523,7 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
      */
 
 
-    async getExtraRaw(requestParameters: ProductExtrasApiGetExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtra>> {
+    async getExtraRaw(requestParameters: GetExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtra>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling getExtra.');
         }
@@ -560,7 +560,7 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
      * Get individual extra.
      * Get extra
      */
-    async getExtra(requestParameters: ProductExtrasApiGetExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtra> {
+    async getExtra(requestParameters: GetExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtra> {
         const response = await this.getExtraRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -571,7 +571,7 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
      */
 
 
-    async getExtraValueLocalizedDeltaPriceRaw(requestParameters: ProductExtrasApiGetExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtraValueDeltaPrice>> {
+    async getExtraValueLocalizedDeltaPriceRaw(requestParameters: GetExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtraValueDeltaPrice>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling getExtraValueLocalizedDeltaPrice.');
         }
@@ -616,7 +616,7 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
      * 
      * Get extra value localized delta price
      */
-    async getExtraValueLocalizedDeltaPrice(requestParameters: ProductExtrasApiGetExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtraValueDeltaPrice> {
+    async getExtraValueLocalizedDeltaPrice(requestParameters: GetExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtraValueDeltaPrice> {
         const response = await this.getExtraValueLocalizedDeltaPriceRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -627,7 +627,7 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
      */
 
 
-    async getExtraValueLocalizedDeltaPricesRaw(requestParameters: ProductExtrasApiGetExtraValueLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductExtraValueDeltaPrice>>> {
+    async getExtraValueLocalizedDeltaPricesRaw(requestParameters: GetExtraValueLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductExtraValueDeltaPrice>>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling getExtraValueLocalizedDeltaPrices.');
         }
@@ -668,7 +668,7 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
      * 
      * Get extra value localized delta prices
      */
-    async getExtraValueLocalizedDeltaPrices(requestParameters: ProductExtrasApiGetExtraValueLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductExtraValueDeltaPrice>> {
+    async getExtraValueLocalizedDeltaPrices(requestParameters: GetExtraValueLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductExtraValueDeltaPrice>> {
         const response = await this.getExtraValueLocalizedDeltaPricesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -679,7 +679,7 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
      */
 
 
-    async getExtrasRaw(requestParameters: ProductExtrasApiGetExtrasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductExtra>>> {
+    async getExtrasRaw(requestParameters: GetExtrasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductExtra>>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling getExtras.');
         }
@@ -712,7 +712,7 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
      * Get extras for the product.
      * Get extras
      */
-    async getExtras(requestParameters: ProductExtrasApiGetExtrasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductExtra>> {
+    async getExtras(requestParameters: GetExtrasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductExtra>> {
         const response = await this.getExtrasRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -723,7 +723,7 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
      */
 
 
-    async updateExtraRaw(requestParameters: ProductExtrasApiUpdateExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtra>> {
+    async updateExtraRaw(requestParameters: UpdateExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtra>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling updateExtra.');
         }
@@ -763,7 +763,7 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
      * Update extra
      * Update extra
      */
-    async updateExtra(requestParameters: ProductExtrasApiUpdateExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtra> {
+    async updateExtra(requestParameters: UpdateExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtra> {
         const response = await this.updateExtraRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -774,7 +774,7 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
      */
 
 
-    async updateExtraValueLocalizedDeltaPriceRaw(requestParameters: ProductExtrasApiUpdateExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtraValueDeltaPrice>> {
+    async updateExtraValueLocalizedDeltaPriceRaw(requestParameters: UpdateExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtraValueDeltaPrice>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling updateExtraValueLocalizedDeltaPrice.');
         }
@@ -822,7 +822,7 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
      * 
      * Update extra value localized delta price
      */
-    async updateExtraValueLocalizedDeltaPrice(requestParameters: ProductExtrasApiUpdateExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtraValueDeltaPrice> {
+    async updateExtraValueLocalizedDeltaPrice(requestParameters: UpdateExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtraValueDeltaPrice> {
         const response = await this.updateExtraValueLocalizedDeltaPriceRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -833,7 +833,7 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
      */
 
 
-    async updateExtraValueLocalizedDeltaPricesRaw(requestParameters: ProductExtrasApiUpdateExtraValueLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductExtraValueDeltaPrice>>> {
+    async updateExtraValueLocalizedDeltaPricesRaw(requestParameters: UpdateExtraValueLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductExtraValueDeltaPrice>>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling updateExtraValueLocalizedDeltaPrices.');
         }
@@ -877,7 +877,7 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
      * 
      * Update extra value localized delta prices
      */
-    async updateExtraValueLocalizedDeltaPrices(requestParameters: ProductExtrasApiUpdateExtraValueLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductExtraValueDeltaPrice>> {
+    async updateExtraValueLocalizedDeltaPrices(requestParameters: UpdateExtraValueLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductExtraValueDeltaPrice>> {
         const response = await this.updateExtraValueLocalizedDeltaPricesRaw(requestParameters, initOverrides);
         return await response.value();
     }

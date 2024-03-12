@@ -21,7 +21,7 @@ import type {
   ShipmentInventoryAllocationResponse,
 } from '../models';
 
-export interface ShipmentInventoryAllocationApiGetShipmentInventoryAllocationsRequest {
+export interface GetShipmentInventoryAllocationsRequest {
     xVolTenant: number;
     shipmentInventoryAllocationRequest: ShipmentInventoryAllocationRequest;
     responseFields?: string;
@@ -44,13 +44,13 @@ export interface ShipmentInventoryAllocationApiInterface {
      * @throws {RequiredError}
      * @memberof ShipmentInventoryAllocationApiInterface
      */
-    getShipmentInventoryAllocationsRaw(requestParameters: ShipmentInventoryAllocationApiGetShipmentInventoryAllocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShipmentInventoryAllocationResponse>>;
+    getShipmentInventoryAllocationsRaw(requestParameters: GetShipmentInventoryAllocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShipmentInventoryAllocationResponse>>;
 
     /**
      * Get future Inventory Allocations by shipment Ids
      * Get Shipment Inventory Allocations
      */
-    getShipmentInventoryAllocations(requestParameters: ShipmentInventoryAllocationApiGetShipmentInventoryAllocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShipmentInventoryAllocationResponse>;
+    getShipmentInventoryAllocations(requestParameters: GetShipmentInventoryAllocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShipmentInventoryAllocationResponse>;
 
 }
 
@@ -68,7 +68,7 @@ export class ShipmentInventoryAllocationApi extends runtime.BaseAPI implements S
      */
 
 
-    async getShipmentInventoryAllocationsRaw(requestParameters: ShipmentInventoryAllocationApiGetShipmentInventoryAllocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShipmentInventoryAllocationResponse>> {
+    async getShipmentInventoryAllocationsRaw(requestParameters: GetShipmentInventoryAllocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShipmentInventoryAllocationResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipmentInventoryAllocations.');
         }
@@ -112,7 +112,7 @@ export class ShipmentInventoryAllocationApi extends runtime.BaseAPI implements S
      * Get future Inventory Allocations by shipment Ids
      * Get Shipment Inventory Allocations
      */
-    async getShipmentInventoryAllocations(requestParameters: ShipmentInventoryAllocationApiGetShipmentInventoryAllocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShipmentInventoryAllocationResponse> {
+    async getShipmentInventoryAllocations(requestParameters: GetShipmentInventoryAllocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShipmentInventoryAllocationResponse> {
         const response = await this.getShipmentInventoryAllocationsRaw(requestParameters, initOverrides);
         return await response.value();
     }

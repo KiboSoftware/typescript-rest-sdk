@@ -20,20 +20,20 @@ import type {
   SiteShippingSettings,
 } from '../models';
 
-export interface ShippingSettingsApiCreateOrderHandlingFeeRequest {
+export interface CreateOrderHandlingFeeRequest {
     responseFields?: string;
     siteShippingHandlingFee?: SiteShippingHandlingFee;
 }
 
-export interface ShippingSettingsApiGetOrderHandlingFeeRequest {
+export interface GetOrderHandlingFeeRequest {
     responseFields?: string;
 }
 
-export interface ShippingSettingsApiGetSiteShippingSettingsRequest {
+export interface GetSiteShippingSettingsRequest {
     responseFields?: string;
 }
 
-export interface ShippingSettingsApiUpdateOrderHandlingFeeRequest {
+export interface UpdateOrderHandlingFeeRequest {
     responseFields?: string;
     siteShippingHandlingFee?: SiteShippingHandlingFee;
 }
@@ -55,13 +55,13 @@ export interface ShippingSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof ShippingSettingsApiInterface
      */
-    createOrderHandlingFeeRaw(requestParameters: ShippingSettingsApiCreateOrderHandlingFeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteShippingHandlingFee>>;
+    createOrderHandlingFeeRaw(requestParameters: CreateOrderHandlingFeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteShippingHandlingFee>>;
 
     /**
      * OBSOLETE: Handling fees are now defined via shipping admin   Creates site\'s shipping handling fee.
      * Creates the site\'s order handling fee as it appears in shipping settings. Allows you to add the return address in shipping settings without modifying any other settings.
      */
-    createOrderHandlingFee(requestParameters: ShippingSettingsApiCreateOrderHandlingFeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteShippingHandlingFee>;
+    createOrderHandlingFee(requestParameters: CreateOrderHandlingFeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteShippingHandlingFee>;
 
     /**
      * OBSOLETE: Handling fees are now defined via shipping admin   Retrieves the site\'s shipping handling fee.
@@ -72,13 +72,13 @@ export interface ShippingSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof ShippingSettingsApiInterface
      */
-    getOrderHandlingFeeRaw(requestParameters: ShippingSettingsApiGetOrderHandlingFeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteShippingHandlingFee>>;
+    getOrderHandlingFeeRaw(requestParameters: GetOrderHandlingFeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteShippingHandlingFee>>;
 
     /**
      * OBSOLETE: Handling fees are now defined via shipping admin   Retrieves the site\'s shipping handling fee.
      * Get Order Handling Fee
      */
-    getOrderHandlingFee(requestParameters: ShippingSettingsApiGetOrderHandlingFeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteShippingHandlingFee>;
+    getOrderHandlingFee(requestParameters: GetOrderHandlingFeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteShippingHandlingFee>;
 
     /**
      * Retrievs site\'s current shipping settings including information about the active shipping rate provider,  return address, shipping methods, and which countries that you can ship to.
@@ -88,13 +88,13 @@ export interface ShippingSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof ShippingSettingsApiInterface
      */
-    getSiteShippingSettingsRaw(requestParameters: ShippingSettingsApiGetSiteShippingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteShippingSettings>>;
+    getSiteShippingSettingsRaw(requestParameters: GetSiteShippingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteShippingSettings>>;
 
     /**
      * Retrievs site\'s current shipping settings including information about the active shipping rate provider,  return address, shipping methods, and which countries that you can ship to.
      * Get Site Shipping Settings
      */
-    getSiteShippingSettings(requestParameters: ShippingSettingsApiGetSiteShippingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteShippingSettings>;
+    getSiteShippingSettings(requestParameters: GetSiteShippingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteShippingSettings>;
 
     /**
      * OBSOLETE: Handling fees are now defined via shipping admin   Updates the site\'s shipping handling fee.
@@ -106,13 +106,13 @@ export interface ShippingSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof ShippingSettingsApiInterface
      */
-    updateOrderHandlingFeeRaw(requestParameters: ShippingSettingsApiUpdateOrderHandlingFeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteShippingHandlingFee>>;
+    updateOrderHandlingFeeRaw(requestParameters: UpdateOrderHandlingFeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteShippingHandlingFee>>;
 
     /**
      * OBSOLETE: Handling fees are now defined via shipping admin   Updates the site\'s shipping handling fee.
      * Updates the site\'s shipping return address as it appears in shipping settings. Allows you to update the address in shipping settings without modifying any other settings.
      */
-    updateOrderHandlingFee(requestParameters: ShippingSettingsApiUpdateOrderHandlingFeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteShippingHandlingFee>;
+    updateOrderHandlingFee(requestParameters: UpdateOrderHandlingFeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteShippingHandlingFee>;
 
 }
 
@@ -130,7 +130,7 @@ export class ShippingSettingsApi extends runtime.BaseAPI implements ShippingSett
      */
 
 
-    async createOrderHandlingFeeRaw(requestParameters: ShippingSettingsApiCreateOrderHandlingFeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteShippingHandlingFee>> {
+    async createOrderHandlingFeeRaw(requestParameters: CreateOrderHandlingFeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteShippingHandlingFee>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -162,7 +162,7 @@ export class ShippingSettingsApi extends runtime.BaseAPI implements ShippingSett
      * OBSOLETE: Handling fees are now defined via shipping admin   Creates site\'s shipping handling fee.
      * Creates the site\'s order handling fee as it appears in shipping settings. Allows you to add the return address in shipping settings without modifying any other settings.
      */
-    async createOrderHandlingFee(requestParameters: ShippingSettingsApiCreateOrderHandlingFeeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteShippingHandlingFee> {
+    async createOrderHandlingFee(requestParameters: CreateOrderHandlingFeeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteShippingHandlingFee> {
         const response = await this.createOrderHandlingFeeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -173,7 +173,7 @@ export class ShippingSettingsApi extends runtime.BaseAPI implements ShippingSett
      */
 
 
-    async getOrderHandlingFeeRaw(requestParameters: ShippingSettingsApiGetOrderHandlingFeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteShippingHandlingFee>> {
+    async getOrderHandlingFeeRaw(requestParameters: GetOrderHandlingFeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteShippingHandlingFee>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -202,7 +202,7 @@ export class ShippingSettingsApi extends runtime.BaseAPI implements ShippingSett
      * OBSOLETE: Handling fees are now defined via shipping admin   Retrieves the site\'s shipping handling fee.
      * Get Order Handling Fee
      */
-    async getOrderHandlingFee(requestParameters: ShippingSettingsApiGetOrderHandlingFeeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteShippingHandlingFee> {
+    async getOrderHandlingFee(requestParameters: GetOrderHandlingFeeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteShippingHandlingFee> {
         const response = await this.getOrderHandlingFeeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -213,7 +213,7 @@ export class ShippingSettingsApi extends runtime.BaseAPI implements ShippingSett
      */
 
 
-    async getSiteShippingSettingsRaw(requestParameters: ShippingSettingsApiGetSiteShippingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteShippingSettings>> {
+    async getSiteShippingSettingsRaw(requestParameters: GetSiteShippingSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteShippingSettings>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -242,7 +242,7 @@ export class ShippingSettingsApi extends runtime.BaseAPI implements ShippingSett
      * Retrievs site\'s current shipping settings including information about the active shipping rate provider,  return address, shipping methods, and which countries that you can ship to.
      * Get Site Shipping Settings
      */
-    async getSiteShippingSettings(requestParameters: ShippingSettingsApiGetSiteShippingSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteShippingSettings> {
+    async getSiteShippingSettings(requestParameters: GetSiteShippingSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteShippingSettings> {
         const response = await this.getSiteShippingSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -253,7 +253,7 @@ export class ShippingSettingsApi extends runtime.BaseAPI implements ShippingSett
      */
 
 
-    async updateOrderHandlingFeeRaw(requestParameters: ShippingSettingsApiUpdateOrderHandlingFeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteShippingHandlingFee>> {
+    async updateOrderHandlingFeeRaw(requestParameters: UpdateOrderHandlingFeeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteShippingHandlingFee>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -285,7 +285,7 @@ export class ShippingSettingsApi extends runtime.BaseAPI implements ShippingSett
      * OBSOLETE: Handling fees are now defined via shipping admin   Updates the site\'s shipping handling fee.
      * Updates the site\'s shipping return address as it appears in shipping settings. Allows you to update the address in shipping settings without modifying any other settings.
      */
-    async updateOrderHandlingFee(requestParameters: ShippingSettingsApiUpdateOrderHandlingFeeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteShippingHandlingFee> {
+    async updateOrderHandlingFee(requestParameters: UpdateOrderHandlingFeeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteShippingHandlingFee> {
         const response = await this.updateOrderHandlingFeeRaw(requestParameters, initOverrides);
         return await response.value();
     }

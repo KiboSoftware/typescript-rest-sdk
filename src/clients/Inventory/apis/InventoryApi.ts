@@ -22,14 +22,14 @@ import type {
   InventoryRequest,
 } from '../models';
 
-export interface InventoryApiAggregateOperationRequest {
+export interface AggregateOperationRequest {
     xVolTenant: number;
     aggregateRequest: AggregateRequest;
     xVolSite?: number;
     responseFields?: string;
 }
 
-export interface InventoryApiPostQueryInventoryRequest {
+export interface PostQueryInventoryRequest {
     xVolTenant: number;
     inventoryRequest: InventoryRequest;
     xVolSite?: number;
@@ -54,13 +54,13 @@ export interface InventoryApiInterface {
      * @throws {RequiredError}
      * @memberof InventoryApiInterface
      */
-    aggregateRaw(requestParameters: InventoryApiAggregateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AggregateResponse>>>;
+    aggregateRaw(requestParameters: AggregateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AggregateResponse>>>;
 
     /**
      * Aggregates Inventory
      * Aggregate
      */
-    aggregate(requestParameters: InventoryApiAggregateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AggregateResponse>>;
+    aggregate(requestParameters: AggregateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AggregateResponse>>;
 
     /**
      * Queries for specified inventory at given location
@@ -73,13 +73,13 @@ export interface InventoryApiInterface {
      * @throws {RequiredError}
      * @memberof InventoryApiInterface
      */
-    postQueryInventoryRaw(requestParameters: InventoryApiPostQueryInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<InventoryInventoryResponse>>>;
+    postQueryInventoryRaw(requestParameters: PostQueryInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<InventoryInventoryResponse>>>;
 
     /**
      * Queries for specified inventory at given location
      * Post Query Inventory
      */
-    postQueryInventory(requestParameters: InventoryApiPostQueryInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<InventoryInventoryResponse>>;
+    postQueryInventory(requestParameters: PostQueryInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<InventoryInventoryResponse>>;
 
 }
 
@@ -97,7 +97,7 @@ export class InventoryApi extends runtime.BaseAPI implements InventoryApiInterfa
      */
 
 
-    async aggregateRaw(requestParameters: InventoryApiAggregateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AggregateResponse>>> {
+    async aggregateRaw(requestParameters: AggregateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AggregateResponse>>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling aggregate.');
         }
@@ -145,7 +145,7 @@ export class InventoryApi extends runtime.BaseAPI implements InventoryApiInterfa
      * Aggregates Inventory
      * Aggregate
      */
-    async aggregate(requestParameters: InventoryApiAggregateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AggregateResponse>> {
+    async aggregate(requestParameters: AggregateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AggregateResponse>> {
         const response = await this.aggregateRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -156,7 +156,7 @@ export class InventoryApi extends runtime.BaseAPI implements InventoryApiInterfa
      */
 
 
-    async postQueryInventoryRaw(requestParameters: InventoryApiPostQueryInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<InventoryInventoryResponse>>> {
+    async postQueryInventoryRaw(requestParameters: PostQueryInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<InventoryInventoryResponse>>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling postQueryInventory.');
         }
@@ -204,7 +204,7 @@ export class InventoryApi extends runtime.BaseAPI implements InventoryApiInterfa
      * Queries for specified inventory at given location
      * Post Query Inventory
      */
-    async postQueryInventory(requestParameters: InventoryApiPostQueryInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<InventoryInventoryResponse>> {
+    async postQueryInventory(requestParameters: PostQueryInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<InventoryInventoryResponse>> {
         const response = await this.postQueryInventoryRaw(requestParameters, initOverrides);
         return await response.value();
     }

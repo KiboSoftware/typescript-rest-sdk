@@ -20,16 +20,16 @@ import type {
   MasterCatalogCollection,
 } from '../models';
 
-export interface MasterCatalogPublishSettingsApiGetMasterCatalogRequest {
+export interface GetMasterCatalogRequest {
     masterCatalogId: number;
     responseFields?: string;
 }
 
-export interface MasterCatalogPublishSettingsApiGetMasterCatalogsRequest {
+export interface GetMasterCatalogsRequest {
     responseFields?: string;
 }
 
-export interface MasterCatalogPublishSettingsApiUpdateMasterCatalogRequest {
+export interface UpdateMasterCatalogRequest {
     masterCatalogId: number;
     responseFields?: string;
     catalogAdminsMasterCatalog?: CatalogAdminsMasterCatalog;
@@ -51,13 +51,13 @@ export interface MasterCatalogPublishSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof MasterCatalogPublishSettingsApiInterface
      */
-    getMasterCatalogRaw(requestParameters: MasterCatalogPublishSettingsApiGetMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsMasterCatalog>>;
+    getMasterCatalogRaw(requestParameters: GetMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsMasterCatalog>>;
 
     /**
      * Get a MasterCatalog
      * Get master catalog
      */
-    getMasterCatalog(requestParameters: MasterCatalogPublishSettingsApiGetMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsMasterCatalog>;
+    getMasterCatalog(requestParameters: GetMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsMasterCatalog>;
 
     /**
      * 
@@ -67,13 +67,13 @@ export interface MasterCatalogPublishSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof MasterCatalogPublishSettingsApiInterface
      */
-    getMasterCatalogsRaw(requestParameters: MasterCatalogPublishSettingsApiGetMasterCatalogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MasterCatalogCollection>>;
+    getMasterCatalogsRaw(requestParameters: GetMasterCatalogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MasterCatalogCollection>>;
 
     /**
      * 
      * Get master catalogs
      */
-    getMasterCatalogs(requestParameters: MasterCatalogPublishSettingsApiGetMasterCatalogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MasterCatalogCollection>;
+    getMasterCatalogs(requestParameters: GetMasterCatalogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MasterCatalogCollection>;
 
     /**
      * Update the publishingMode of a MasterCatalog
@@ -85,13 +85,13 @@ export interface MasterCatalogPublishSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof MasterCatalogPublishSettingsApiInterface
      */
-    updateMasterCatalogRaw(requestParameters: MasterCatalogPublishSettingsApiUpdateMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsMasterCatalog>>;
+    updateMasterCatalogRaw(requestParameters: UpdateMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsMasterCatalog>>;
 
     /**
      * Update the publishingMode of a MasterCatalog
      * Update master catalog
      */
-    updateMasterCatalog(requestParameters: MasterCatalogPublishSettingsApiUpdateMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsMasterCatalog>;
+    updateMasterCatalog(requestParameters: UpdateMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsMasterCatalog>;
 
 }
 
@@ -109,7 +109,7 @@ export class MasterCatalogPublishSettingsApi extends runtime.BaseAPI implements 
      */
 
 
-    async getMasterCatalogRaw(requestParameters: MasterCatalogPublishSettingsApiGetMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsMasterCatalog>> {
+    async getMasterCatalogRaw(requestParameters: GetMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsMasterCatalog>> {
         if (requestParameters.masterCatalogId === null || requestParameters.masterCatalogId === undefined) {
             throw new runtime.RequiredError('masterCatalogId','Required parameter requestParameters.masterCatalogId was null or undefined when calling getMasterCatalog.');
         }
@@ -142,7 +142,7 @@ export class MasterCatalogPublishSettingsApi extends runtime.BaseAPI implements 
      * Get a MasterCatalog
      * Get master catalog
      */
-    async getMasterCatalog(requestParameters: MasterCatalogPublishSettingsApiGetMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsMasterCatalog> {
+    async getMasterCatalog(requestParameters: GetMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsMasterCatalog> {
         const response = await this.getMasterCatalogRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -153,7 +153,7 @@ export class MasterCatalogPublishSettingsApi extends runtime.BaseAPI implements 
      */
 
 
-    async getMasterCatalogsRaw(requestParameters: MasterCatalogPublishSettingsApiGetMasterCatalogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MasterCatalogCollection>> {
+    async getMasterCatalogsRaw(requestParameters: GetMasterCatalogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MasterCatalogCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -182,7 +182,7 @@ export class MasterCatalogPublishSettingsApi extends runtime.BaseAPI implements 
      * 
      * Get master catalogs
      */
-    async getMasterCatalogs(requestParameters: MasterCatalogPublishSettingsApiGetMasterCatalogsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MasterCatalogCollection> {
+    async getMasterCatalogs(requestParameters: GetMasterCatalogsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MasterCatalogCollection> {
         const response = await this.getMasterCatalogsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -193,7 +193,7 @@ export class MasterCatalogPublishSettingsApi extends runtime.BaseAPI implements 
      */
 
 
-    async updateMasterCatalogRaw(requestParameters: MasterCatalogPublishSettingsApiUpdateMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsMasterCatalog>> {
+    async updateMasterCatalogRaw(requestParameters: UpdateMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsMasterCatalog>> {
         if (requestParameters.masterCatalogId === null || requestParameters.masterCatalogId === undefined) {
             throw new runtime.RequiredError('masterCatalogId','Required parameter requestParameters.masterCatalogId was null or undefined when calling updateMasterCatalog.');
         }
@@ -229,7 +229,7 @@ export class MasterCatalogPublishSettingsApi extends runtime.BaseAPI implements 
      * Update the publishingMode of a MasterCatalog
      * Update master catalog
      */
-    async updateMasterCatalog(requestParameters: MasterCatalogPublishSettingsApiUpdateMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsMasterCatalog> {
+    async updateMasterCatalog(requestParameters: UpdateMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsMasterCatalog> {
         const response = await this.updateMasterCatalogRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -19,7 +19,7 @@ import type {
   FieldTypeDefinitionRepositoryEntry,
 } from '../models';
 
-export interface FieldTypeDefinitionApiGetFieldTypeDefinitionsRequest {
+export interface GetFieldTypeDefinitionsRequest {
     language: string;
     responseFields?: string;
 }
@@ -40,13 +40,13 @@ export interface FieldTypeDefinitionApiInterface {
      * @throws {RequiredError}
      * @memberof FieldTypeDefinitionApiInterface
      */
-    getFieldTypeDefinitionsRaw(requestParameters: FieldTypeDefinitionApiGetFieldTypeDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<FieldTypeDefinitionRepositoryEntry>>>;
+    getFieldTypeDefinitionsRaw(requestParameters: GetFieldTypeDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<FieldTypeDefinitionRepositoryEntry>>>;
 
     /**
      * Get Field Type Definitions
      * Get Field Type Definitions
      */
-    getFieldTypeDefinitions(requestParameters: FieldTypeDefinitionApiGetFieldTypeDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<FieldTypeDefinitionRepositoryEntry>>;
+    getFieldTypeDefinitions(requestParameters: GetFieldTypeDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<FieldTypeDefinitionRepositoryEntry>>;
 
 }
 
@@ -64,7 +64,7 @@ export class FieldTypeDefinitionApi extends runtime.BaseAPI implements FieldType
      */
 
 
-    async getFieldTypeDefinitionsRaw(requestParameters: FieldTypeDefinitionApiGetFieldTypeDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<FieldTypeDefinitionRepositoryEntry>>> {
+    async getFieldTypeDefinitionsRaw(requestParameters: GetFieldTypeDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<FieldTypeDefinitionRepositoryEntry>>> {
         if (requestParameters.language === null || requestParameters.language === undefined) {
             throw new runtime.RequiredError('language','Required parameter requestParameters.language was null or undefined when calling getFieldTypeDefinitions.');
         }
@@ -97,7 +97,7 @@ export class FieldTypeDefinitionApi extends runtime.BaseAPI implements FieldType
      * Get Field Type Definitions
      * Get Field Type Definitions
      */
-    async getFieldTypeDefinitions(requestParameters: FieldTypeDefinitionApiGetFieldTypeDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<FieldTypeDefinitionRepositoryEntry>> {
+    async getFieldTypeDefinitions(requestParameters: GetFieldTypeDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<FieldTypeDefinitionRepositoryEntry>> {
         const response = await this.getFieldTypeDefinitionsRaw(requestParameters, initOverrides);
         return await response.value();
     }

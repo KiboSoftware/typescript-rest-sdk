@@ -21,24 +21,24 @@ import type {
   LocationResponse,
 } from '../models';
 
-export interface InventoryLocationApiGetLocationGroupsRequest {
+export interface GetLocationGroupsRequest {
     xVolTenant: number;
     locationGroupCode: string;
     responseFields?: string;
 }
 
-export interface InventoryLocationApiGetLocationsRequest {
+export interface GetLocationsRequest {
     xVolTenant: number;
     locationCode: string;
     responseFields?: string;
 }
 
-export interface InventoryLocationApiGetLocations0Request {
+export interface GetLocations0Request {
     xVolTenant: number;
     responseFields?: string;
 }
 
-export interface InventoryLocationApiSaveLocationRequest {
+export interface SaveLocationRequest {
     xVolTenant: number;
     locationRequest: LocationRequest;
     responseFields?: string;
@@ -61,13 +61,13 @@ export interface InventoryLocationApiInterface {
      * @throws {RequiredError}
      * @memberof InventoryLocationApiInterface
      */
-    getLocationGroupsRaw(requestParameters: InventoryLocationApiGetLocationGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationGroupResponse>>>;
+    getLocationGroupsRaw(requestParameters: GetLocationGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationGroupResponse>>>;
 
     /**
      * Get LocationGroups
      * Get Location Groups
      */
-    getLocationGroups(requestParameters: InventoryLocationApiGetLocationGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationGroupResponse>>;
+    getLocationGroups(requestParameters: GetLocationGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationGroupResponse>>;
 
     /**
      * Get Locations
@@ -79,13 +79,13 @@ export interface InventoryLocationApiInterface {
      * @throws {RequiredError}
      * @memberof InventoryLocationApiInterface
      */
-    getLocationsRaw(requestParameters: InventoryLocationApiGetLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationResponse>>>;
+    getLocationsRaw(requestParameters: GetLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationResponse>>>;
 
     /**
      * Get Locations
      * Get Locations
      */
-    getLocations(requestParameters: InventoryLocationApiGetLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationResponse>>;
+    getLocations(requestParameters: GetLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationResponse>>;
 
     /**
      * Get Locations
@@ -96,13 +96,13 @@ export interface InventoryLocationApiInterface {
      * @throws {RequiredError}
      * @memberof InventoryLocationApiInterface
      */
-    getLocations_1Raw(requestParameters: InventoryLocationApiGetLocations0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationResponse>>>;
+    getLocations_1Raw(requestParameters: GetLocations0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationResponse>>>;
 
     /**
      * Get Locations
      * Get Locations
      */
-    getLocations_1(requestParameters: InventoryLocationApiGetLocations0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationResponse>>;
+    getLocations_1(requestParameters: GetLocations0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationResponse>>;
 
     /**
      * Save Location
@@ -114,13 +114,13 @@ export interface InventoryLocationApiInterface {
      * @throws {RequiredError}
      * @memberof InventoryLocationApiInterface
      */
-    saveLocationRaw(requestParameters: InventoryLocationApiSaveLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationResponse>>>;
+    saveLocationRaw(requestParameters: SaveLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationResponse>>>;
 
     /**
      * Save Location
      * Save Location
      */
-    saveLocation(requestParameters: InventoryLocationApiSaveLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationResponse>>;
+    saveLocation(requestParameters: SaveLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationResponse>>;
 
 }
 
@@ -138,7 +138,7 @@ export class InventoryLocationApi extends runtime.BaseAPI implements InventoryLo
      */
 
 
-    async getLocationGroupsRaw(requestParameters: InventoryLocationApiGetLocationGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationGroupResponse>>> {
+    async getLocationGroupsRaw(requestParameters: GetLocationGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationGroupResponse>>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getLocationGroups.');
         }
@@ -179,7 +179,7 @@ export class InventoryLocationApi extends runtime.BaseAPI implements InventoryLo
      * Get LocationGroups
      * Get Location Groups
      */
-    async getLocationGroups(requestParameters: InventoryLocationApiGetLocationGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationGroupResponse>> {
+    async getLocationGroups(requestParameters: GetLocationGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationGroupResponse>> {
         const response = await this.getLocationGroupsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -190,7 +190,7 @@ export class InventoryLocationApi extends runtime.BaseAPI implements InventoryLo
      */
 
 
-    async getLocationsRaw(requestParameters: InventoryLocationApiGetLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationResponse>>> {
+    async getLocationsRaw(requestParameters: GetLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationResponse>>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getLocations.');
         }
@@ -231,7 +231,7 @@ export class InventoryLocationApi extends runtime.BaseAPI implements InventoryLo
      * Get Locations
      * Get Locations
      */
-    async getLocations(requestParameters: InventoryLocationApiGetLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationResponse>> {
+    async getLocations(requestParameters: GetLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationResponse>> {
         const response = await this.getLocationsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -242,7 +242,7 @@ export class InventoryLocationApi extends runtime.BaseAPI implements InventoryLo
      */
 
 
-    async getLocations_1Raw(requestParameters: InventoryLocationApiGetLocations0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationResponse>>> {
+    async getLocations_1Raw(requestParameters: GetLocations0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationResponse>>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getLocations_1.');
         }
@@ -279,7 +279,7 @@ export class InventoryLocationApi extends runtime.BaseAPI implements InventoryLo
      * Get Locations
      * Get Locations
      */
-    async getLocations_1(requestParameters: InventoryLocationApiGetLocations0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationResponse>> {
+    async getLocations_1(requestParameters: GetLocations0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationResponse>> {
         const response = await this.getLocations_1Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -290,7 +290,7 @@ export class InventoryLocationApi extends runtime.BaseAPI implements InventoryLo
      */
 
 
-    async saveLocationRaw(requestParameters: InventoryLocationApiSaveLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationResponse>>> {
+    async saveLocationRaw(requestParameters: SaveLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationResponse>>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling saveLocation.');
         }
@@ -334,7 +334,7 @@ export class InventoryLocationApi extends runtime.BaseAPI implements InventoryLo
      * Save Location
      * Save Location
      */
-    async saveLocation(requestParameters: InventoryLocationApiSaveLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationResponse>> {
+    async saveLocation(requestParameters: SaveLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationResponse>> {
         const response = await this.saveLocationRaw(requestParameters, initOverrides);
         return await response.value();
     }

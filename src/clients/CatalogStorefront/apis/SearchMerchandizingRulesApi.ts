@@ -19,7 +19,7 @@ import type {
   SearchMerchandizingRuleParameters,
 } from '../models';
 
-export interface SearchMerchandizingRulesApiPreviewSearchMerchandizingRuleRequest {
+export interface PreviewSearchMerchandizingRuleRequest {
     responseFields?: string;
     searchMerchandizingRuleParameters?: SearchMerchandizingRuleParameters;
 }
@@ -40,13 +40,13 @@ export interface SearchMerchandizingRulesApiInterface {
      * @throws {RequiredError}
      * @memberof SearchMerchandizingRulesApiInterface
      */
-    previewSearchMerchandizingRuleRaw(requestParameters: SearchMerchandizingRulesApiPreviewSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
+    previewSearchMerchandizingRuleRaw(requestParameters: PreviewSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
 
     /**
      * Preview search results with given SearchMerchandizingRule object
      * Preview search merchandizing rule
      */
-    previewSearchMerchandizingRule(requestParameters: SearchMerchandizingRulesApiPreviewSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
+    previewSearchMerchandizingRule(requestParameters: PreviewSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
 
 }
 
@@ -64,7 +64,7 @@ export class SearchMerchandizingRulesApi extends runtime.BaseAPI implements Sear
      */
 
 
-    async previewSearchMerchandizingRuleRaw(requestParameters: SearchMerchandizingRulesApiPreviewSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async previewSearchMerchandizingRuleRaw(requestParameters: PreviewSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -96,7 +96,7 @@ export class SearchMerchandizingRulesApi extends runtime.BaseAPI implements Sear
      * Preview search results with given SearchMerchandizingRule object
      * Preview search merchandizing rule
      */
-    async previewSearchMerchandizingRule(requestParameters: SearchMerchandizingRulesApiPreviewSearchMerchandizingRuleRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async previewSearchMerchandizingRule(requestParameters: PreviewSearchMerchandizingRuleRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
         const response = await this.previewSearchMerchandizingRuleRaw(requestParameters, initOverrides);
         return await response.value();
     }

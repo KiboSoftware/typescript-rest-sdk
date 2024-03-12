@@ -20,22 +20,22 @@ import type {
   ProductSortDefinitionPagedCollection,
 } from '../models';
 
-export interface ProductSortDefinitionsApiAddProductSortDefinitionRequest {
+export interface AddProductSortDefinitionRequest {
     useProvidedId?: boolean;
     responseFields?: string;
     productSortDefinition?: ProductSortDefinition;
 }
 
-export interface ProductSortDefinitionsApiDeleteProductSortDefinitionRequest {
+export interface DeleteProductSortDefinitionRequest {
     productSortDefinitionId: number;
 }
 
-export interface ProductSortDefinitionsApiGetProductSortDefinitionRequest {
+export interface GetProductSortDefinitionRequest {
     productSortDefinitionId: number;
     responseFields?: string;
 }
 
-export interface ProductSortDefinitionsApiGetProductSortDefinitionsRequest {
+export interface GetProductSortDefinitionsRequest {
     startIndex?: number;
     pageSize?: number;
     sortBy?: string;
@@ -43,7 +43,7 @@ export interface ProductSortDefinitionsApiGetProductSortDefinitionsRequest {
     responseFields?: string;
 }
 
-export interface ProductSortDefinitionsApiUpdateProductSortDefinitionRequest {
+export interface UpdateProductSortDefinitionRequest {
     productSortDefinitionId: number;
     responseFields?: string;
     productSortDefinition?: ProductSortDefinition;
@@ -66,13 +66,13 @@ export interface ProductSortDefinitionsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductSortDefinitionsApiInterface
      */
-    addProductSortDefinitionRaw(requestParameters: ProductSortDefinitionsApiAddProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSortDefinition>>;
+    addProductSortDefinitionRaw(requestParameters: AddProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSortDefinition>>;
 
     /**
      * Adds a new product sort definition.
      * Add product sort definition
      */
-    addProductSortDefinition(requestParameters: ProductSortDefinitionsApiAddProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSortDefinition>;
+    addProductSortDefinition(requestParameters: AddProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSortDefinition>;
 
     /**
      * Deletes the product sort definition specified by its ProductSortDefinitionID.
@@ -82,13 +82,13 @@ export interface ProductSortDefinitionsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductSortDefinitionsApiInterface
      */
-    deleteProductSortDefinitionRaw(requestParameters: ProductSortDefinitionsApiDeleteProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteProductSortDefinitionRaw(requestParameters: DeleteProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Deletes the product sort definition specified by its ProductSortDefinitionID.
      * Delete product sort definition
      */
-    deleteProductSortDefinition(requestParameters: ProductSortDefinitionsApiDeleteProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteProductSortDefinition(requestParameters: DeleteProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Gets a single product sort definition.
@@ -99,13 +99,13 @@ export interface ProductSortDefinitionsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductSortDefinitionsApiInterface
      */
-    getProductSortDefinitionRaw(requestParameters: ProductSortDefinitionsApiGetProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSortDefinition>>;
+    getProductSortDefinitionRaw(requestParameters: GetProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSortDefinition>>;
 
     /**
      * Gets a single product sort definition.
      * Get product sort definition
      */
-    getProductSortDefinition(requestParameters: ProductSortDefinitionsApiGetProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSortDefinition>;
+    getProductSortDefinition(requestParameters: GetProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSortDefinition>;
 
     /**
      * Retrieves a list of product sort definitions according to any specified filter criteria and sort options.
@@ -119,13 +119,13 @@ export interface ProductSortDefinitionsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductSortDefinitionsApiInterface
      */
-    getProductSortDefinitionsRaw(requestParameters: ProductSortDefinitionsApiGetProductSortDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSortDefinitionPagedCollection>>;
+    getProductSortDefinitionsRaw(requestParameters: GetProductSortDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSortDefinitionPagedCollection>>;
 
     /**
      * Retrieves a list of product sort definitions according to any specified filter criteria and sort options.
      * Get product sort definitions
      */
-    getProductSortDefinitions(requestParameters: ProductSortDefinitionsApiGetProductSortDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSortDefinitionPagedCollection>;
+    getProductSortDefinitions(requestParameters: GetProductSortDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSortDefinitionPagedCollection>;
 
     /**
      * Updates the details of a product sort definition.
@@ -137,13 +137,13 @@ export interface ProductSortDefinitionsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductSortDefinitionsApiInterface
      */
-    updateProductSortDefinitionRaw(requestParameters: ProductSortDefinitionsApiUpdateProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSortDefinition>>;
+    updateProductSortDefinitionRaw(requestParameters: UpdateProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSortDefinition>>;
 
     /**
      * Updates the details of a product sort definition.
      * Update product sort definition
      */
-    updateProductSortDefinition(requestParameters: ProductSortDefinitionsApiUpdateProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSortDefinition>;
+    updateProductSortDefinition(requestParameters: UpdateProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSortDefinition>;
 
 }
 
@@ -161,7 +161,7 @@ export class ProductSortDefinitionsApi extends runtime.BaseAPI implements Produc
      */
 
 
-    async addProductSortDefinitionRaw(requestParameters: ProductSortDefinitionsApiAddProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSortDefinition>> {
+    async addProductSortDefinitionRaw(requestParameters: AddProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSortDefinition>> {
         const queryParameters: any = {};
 
         if (requestParameters.useProvidedId !== undefined) {
@@ -197,7 +197,7 @@ export class ProductSortDefinitionsApi extends runtime.BaseAPI implements Produc
      * Adds a new product sort definition.
      * Add product sort definition
      */
-    async addProductSortDefinition(requestParameters: ProductSortDefinitionsApiAddProductSortDefinitionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSortDefinition> {
+    async addProductSortDefinition(requestParameters: AddProductSortDefinitionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSortDefinition> {
         const response = await this.addProductSortDefinitionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -208,7 +208,7 @@ export class ProductSortDefinitionsApi extends runtime.BaseAPI implements Produc
      */
 
 
-    async deleteProductSortDefinitionRaw(requestParameters: ProductSortDefinitionsApiDeleteProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteProductSortDefinitionRaw(requestParameters: DeleteProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.productSortDefinitionId === null || requestParameters.productSortDefinitionId === undefined) {
             throw new runtime.RequiredError('productSortDefinitionId','Required parameter requestParameters.productSortDefinitionId was null or undefined when calling deleteProductSortDefinition.');
         }
@@ -237,7 +237,7 @@ export class ProductSortDefinitionsApi extends runtime.BaseAPI implements Produc
      * Deletes the product sort definition specified by its ProductSortDefinitionID.
      * Delete product sort definition
      */
-    async deleteProductSortDefinition(requestParameters: ProductSortDefinitionsApiDeleteProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteProductSortDefinition(requestParameters: DeleteProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteProductSortDefinitionRaw(requestParameters, initOverrides);
     }
 
@@ -247,7 +247,7 @@ export class ProductSortDefinitionsApi extends runtime.BaseAPI implements Produc
      */
 
 
-    async getProductSortDefinitionRaw(requestParameters: ProductSortDefinitionsApiGetProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSortDefinition>> {
+    async getProductSortDefinitionRaw(requestParameters: GetProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSortDefinition>> {
         if (requestParameters.productSortDefinitionId === null || requestParameters.productSortDefinitionId === undefined) {
             throw new runtime.RequiredError('productSortDefinitionId','Required parameter requestParameters.productSortDefinitionId was null or undefined when calling getProductSortDefinition.');
         }
@@ -280,7 +280,7 @@ export class ProductSortDefinitionsApi extends runtime.BaseAPI implements Produc
      * Gets a single product sort definition.
      * Get product sort definition
      */
-    async getProductSortDefinition(requestParameters: ProductSortDefinitionsApiGetProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSortDefinition> {
+    async getProductSortDefinition(requestParameters: GetProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSortDefinition> {
         const response = await this.getProductSortDefinitionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -291,7 +291,7 @@ export class ProductSortDefinitionsApi extends runtime.BaseAPI implements Produc
      */
 
 
-    async getProductSortDefinitionsRaw(requestParameters: ProductSortDefinitionsApiGetProductSortDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSortDefinitionPagedCollection>> {
+    async getProductSortDefinitionsRaw(requestParameters: GetProductSortDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSortDefinitionPagedCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -336,7 +336,7 @@ export class ProductSortDefinitionsApi extends runtime.BaseAPI implements Produc
      * Retrieves a list of product sort definitions according to any specified filter criteria and sort options.
      * Get product sort definitions
      */
-    async getProductSortDefinitions(requestParameters: ProductSortDefinitionsApiGetProductSortDefinitionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSortDefinitionPagedCollection> {
+    async getProductSortDefinitions(requestParameters: GetProductSortDefinitionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSortDefinitionPagedCollection> {
         const response = await this.getProductSortDefinitionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -347,7 +347,7 @@ export class ProductSortDefinitionsApi extends runtime.BaseAPI implements Produc
      */
 
 
-    async updateProductSortDefinitionRaw(requestParameters: ProductSortDefinitionsApiUpdateProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSortDefinition>> {
+    async updateProductSortDefinitionRaw(requestParameters: UpdateProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSortDefinition>> {
         if (requestParameters.productSortDefinitionId === null || requestParameters.productSortDefinitionId === undefined) {
             throw new runtime.RequiredError('productSortDefinitionId','Required parameter requestParameters.productSortDefinitionId was null or undefined when calling updateProductSortDefinition.');
         }
@@ -383,7 +383,7 @@ export class ProductSortDefinitionsApi extends runtime.BaseAPI implements Produc
      * Updates the details of a product sort definition.
      * Update product sort definition
      */
-    async updateProductSortDefinition(requestParameters: ProductSortDefinitionsApiUpdateProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSortDefinition> {
+    async updateProductSortDefinition(requestParameters: UpdateProductSortDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSortDefinition> {
         const response = await this.updateProductSortDefinitionRaw(requestParameters, initOverrides);
         return await response.value();
     }

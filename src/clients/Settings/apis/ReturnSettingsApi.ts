@@ -19,16 +19,16 @@ import type {
   ReturnSettings,
 } from '../models';
 
-export interface ReturnSettingsApiCreateReturnSettingsRequest {
+export interface CreateReturnSettingsRequest {
     responseFields?: string;
     returnSettings?: ReturnSettings;
 }
 
-export interface ReturnSettingsApiGetReturnSettingsRequest {
+export interface GetReturnSettingsRequest {
     responseFields?: string;
 }
 
-export interface ReturnSettingsApiUpdateReturnSettingsRequest {
+export interface UpdateReturnSettingsRequest {
     responseFields?: string;
     returnSettings?: ReturnSettings;
 }
@@ -49,13 +49,13 @@ export interface ReturnSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnSettingsApiInterface
      */
-    createReturnSettingsRaw(requestParameters: ReturnSettingsApiCreateReturnSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnSettings>>;
+    createReturnSettingsRaw(requestParameters: CreateReturnSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnSettings>>;
 
     /**
      * Creates return settings which includes return processing fee, return shipping location   and return label creation on fulfillment
      * Create Return Settings
      */
-    createReturnSettings(requestParameters: ReturnSettingsApiCreateReturnSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnSettings>;
+    createReturnSettings(requestParameters: CreateReturnSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnSettings>;
 
     /**
      * Retrieves return settings which includes return processing fee, return shipping location   and return label creation on fulfillment
@@ -65,13 +65,13 @@ export interface ReturnSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnSettingsApiInterface
      */
-    getReturnSettingsRaw(requestParameters: ReturnSettingsApiGetReturnSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnSettings>>;
+    getReturnSettingsRaw(requestParameters: GetReturnSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnSettings>>;
 
     /**
      * Retrieves return settings which includes return processing fee, return shipping location   and return label creation on fulfillment
      * Get Return Settings
      */
-    getReturnSettings(requestParameters: ReturnSettingsApiGetReturnSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnSettings>;
+    getReturnSettings(requestParameters: GetReturnSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnSettings>;
 
     /**
      * Modifies existing fulfillment settings which includes return processing fee, return shipping location   and return label creation on fulfillment
@@ -82,13 +82,13 @@ export interface ReturnSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof ReturnSettingsApiInterface
      */
-    updateReturnSettingsRaw(requestParameters: ReturnSettingsApiUpdateReturnSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnSettings>>;
+    updateReturnSettingsRaw(requestParameters: UpdateReturnSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnSettings>>;
 
     /**
      * Modifies existing fulfillment settings which includes return processing fee, return shipping location   and return label creation on fulfillment
      * Update Return Settings
      */
-    updateReturnSettings(requestParameters: ReturnSettingsApiUpdateReturnSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnSettings>;
+    updateReturnSettings(requestParameters: UpdateReturnSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnSettings>;
 
 }
 
@@ -106,7 +106,7 @@ export class ReturnSettingsApi extends runtime.BaseAPI implements ReturnSettings
      */
 
 
-    async createReturnSettingsRaw(requestParameters: ReturnSettingsApiCreateReturnSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnSettings>> {
+    async createReturnSettingsRaw(requestParameters: CreateReturnSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnSettings>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -138,7 +138,7 @@ export class ReturnSettingsApi extends runtime.BaseAPI implements ReturnSettings
      * Creates return settings which includes return processing fee, return shipping location   and return label creation on fulfillment
      * Create Return Settings
      */
-    async createReturnSettings(requestParameters: ReturnSettingsApiCreateReturnSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnSettings> {
+    async createReturnSettings(requestParameters: CreateReturnSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnSettings> {
         const response = await this.createReturnSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -149,7 +149,7 @@ export class ReturnSettingsApi extends runtime.BaseAPI implements ReturnSettings
      */
 
 
-    async getReturnSettingsRaw(requestParameters: ReturnSettingsApiGetReturnSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnSettings>> {
+    async getReturnSettingsRaw(requestParameters: GetReturnSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnSettings>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -178,7 +178,7 @@ export class ReturnSettingsApi extends runtime.BaseAPI implements ReturnSettings
      * Retrieves return settings which includes return processing fee, return shipping location   and return label creation on fulfillment
      * Get Return Settings
      */
-    async getReturnSettings(requestParameters: ReturnSettingsApiGetReturnSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnSettings> {
+    async getReturnSettings(requestParameters: GetReturnSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnSettings> {
         const response = await this.getReturnSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -189,7 +189,7 @@ export class ReturnSettingsApi extends runtime.BaseAPI implements ReturnSettings
      */
 
 
-    async updateReturnSettingsRaw(requestParameters: ReturnSettingsApiUpdateReturnSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnSettings>> {
+    async updateReturnSettingsRaw(requestParameters: UpdateReturnSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReturnSettings>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -221,7 +221,7 @@ export class ReturnSettingsApi extends runtime.BaseAPI implements ReturnSettings
      * Modifies existing fulfillment settings which includes return processing fee, return shipping location   and return label creation on fulfillment
      * Update Return Settings
      */
-    async updateReturnSettings(requestParameters: ReturnSettingsApiUpdateReturnSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnSettings> {
+    async updateReturnSettings(requestParameters: UpdateReturnSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnSettings> {
         const response = await this.updateReturnSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }

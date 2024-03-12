@@ -20,17 +20,17 @@ import type {
   UserAuthInfo,
 } from '../models';
 
-export interface DeveloperAdminAuthTicketApiCreateDeveloperUserAuthTicketRequest {
+export interface CreateDeveloperUserAuthTicketRequest {
     developerAccountId?: number;
     responseFields?: string;
     userAuthInfo?: UserAuthInfo;
 }
 
-export interface DeveloperAdminAuthTicketApiDeleteUserAuthTicketRequest {
+export interface DeleteUserAuthTicketRequest {
     refreshToken?: string;
 }
 
-export interface DeveloperAdminAuthTicketApiRefreshDeveloperAuthTicketRequest {
+export interface RefreshDeveloperAuthTicketRequest {
     developerAccountId?: number;
     responseFields?: string;
     developerAdminUserAuthTicket?: DeveloperAdminUserAuthTicket;
@@ -53,13 +53,13 @@ export interface DeveloperAdminAuthTicketApiInterface {
      * @throws {RequiredError}
      * @memberof DeveloperAdminAuthTicketApiInterface
      */
-    createDeveloperUserAuthTicketRaw(requestParameters: DeveloperAdminAuthTicketApiCreateDeveloperUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeveloperAdminUserAuthTicket>>;
+    createDeveloperUserAuthTicketRaw(requestParameters: CreateDeveloperUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeveloperAdminUserAuthTicket>>;
 
     /**
      * Authenticates a user for a particular tenant given a set of user credentials adn a tenantId.
      * Create Developer User Auth Ticket
      */
-    createDeveloperUserAuthTicket(requestParameters: DeveloperAdminAuthTicketApiCreateDeveloperUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeveloperAdminUserAuthTicket>;
+    createDeveloperUserAuthTicket(requestParameters: CreateDeveloperUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeveloperAdminUserAuthTicket>;
 
     /**
      * Logs out a user by deleting the refresh token
@@ -69,13 +69,13 @@ export interface DeveloperAdminAuthTicketApiInterface {
      * @throws {RequiredError}
      * @memberof DeveloperAdminAuthTicketApiInterface
      */
-    deleteUserAuthTicketRaw(requestParameters: DeveloperAdminAuthTicketApiDeleteUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteUserAuthTicketRaw(requestParameters: DeleteUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Logs out a user by deleting the refresh token
      * Delete User Auth Ticket
      */
-    deleteUserAuthTicket(requestParameters: DeveloperAdminAuthTicketApiDeleteUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteUserAuthTicket(requestParameters: DeleteUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Reauthenticates the current user for a different tenant. If the user does not have access to the tenant, the operation fails.
@@ -87,13 +87,13 @@ export interface DeveloperAdminAuthTicketApiInterface {
      * @throws {RequiredError}
      * @memberof DeveloperAdminAuthTicketApiInterface
      */
-    refreshDeveloperAuthTicketRaw(requestParameters: DeveloperAdminAuthTicketApiRefreshDeveloperAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeveloperAdminUserAuthTicket>>;
+    refreshDeveloperAuthTicketRaw(requestParameters: RefreshDeveloperAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeveloperAdminUserAuthTicket>>;
 
     /**
      * Reauthenticates the current user for a different tenant. If the user does not have access to the tenant, the operation fails.
      * Refresh Developer Auth Ticket
      */
-    refreshDeveloperAuthTicket(requestParameters: DeveloperAdminAuthTicketApiRefreshDeveloperAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeveloperAdminUserAuthTicket>;
+    refreshDeveloperAuthTicket(requestParameters: RefreshDeveloperAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeveloperAdminUserAuthTicket>;
 
 }
 
@@ -111,7 +111,7 @@ export class DeveloperAdminAuthTicketApi extends runtime.BaseAPI implements Deve
      */
 
 
-    async createDeveloperUserAuthTicketRaw(requestParameters: DeveloperAdminAuthTicketApiCreateDeveloperUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeveloperAdminUserAuthTicket>> {
+    async createDeveloperUserAuthTicketRaw(requestParameters: CreateDeveloperUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeveloperAdminUserAuthTicket>> {
         const queryParameters: any = {};
 
         if (requestParameters.developerAccountId !== undefined) {
@@ -147,7 +147,7 @@ export class DeveloperAdminAuthTicketApi extends runtime.BaseAPI implements Deve
      * Authenticates a user for a particular tenant given a set of user credentials adn a tenantId.
      * Create Developer User Auth Ticket
      */
-    async createDeveloperUserAuthTicket(requestParameters: DeveloperAdminAuthTicketApiCreateDeveloperUserAuthTicketRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeveloperAdminUserAuthTicket> {
+    async createDeveloperUserAuthTicket(requestParameters: CreateDeveloperUserAuthTicketRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeveloperAdminUserAuthTicket> {
         const response = await this.createDeveloperUserAuthTicketRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -158,7 +158,7 @@ export class DeveloperAdminAuthTicketApi extends runtime.BaseAPI implements Deve
      */
 
 
-    async deleteUserAuthTicketRaw(requestParameters: DeveloperAdminAuthTicketApiDeleteUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteUserAuthTicketRaw(requestParameters: DeleteUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         if (requestParameters.refreshToken !== undefined) {
@@ -187,7 +187,7 @@ export class DeveloperAdminAuthTicketApi extends runtime.BaseAPI implements Deve
      * Logs out a user by deleting the refresh token
      * Delete User Auth Ticket
      */
-    async deleteUserAuthTicket(requestParameters: DeveloperAdminAuthTicketApiDeleteUserAuthTicketRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteUserAuthTicket(requestParameters: DeleteUserAuthTicketRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteUserAuthTicketRaw(requestParameters, initOverrides);
     }
 
@@ -197,7 +197,7 @@ export class DeveloperAdminAuthTicketApi extends runtime.BaseAPI implements Deve
      */
 
 
-    async refreshDeveloperAuthTicketRaw(requestParameters: DeveloperAdminAuthTicketApiRefreshDeveloperAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeveloperAdminUserAuthTicket>> {
+    async refreshDeveloperAuthTicketRaw(requestParameters: RefreshDeveloperAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeveloperAdminUserAuthTicket>> {
         const queryParameters: any = {};
 
         if (requestParameters.developerAccountId !== undefined) {
@@ -233,7 +233,7 @@ export class DeveloperAdminAuthTicketApi extends runtime.BaseAPI implements Deve
      * Reauthenticates the current user for a different tenant. If the user does not have access to the tenant, the operation fails.
      * Refresh Developer Auth Ticket
      */
-    async refreshDeveloperAuthTicket(requestParameters: DeveloperAdminAuthTicketApiRefreshDeveloperAuthTicketRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeveloperAdminUserAuthTicket> {
+    async refreshDeveloperAuthTicket(requestParameters: RefreshDeveloperAuthTicketRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeveloperAdminUserAuthTicket> {
         const response = await this.refreshDeveloperAuthTicketRaw(requestParameters, initOverrides);
         return await response.value();
     }

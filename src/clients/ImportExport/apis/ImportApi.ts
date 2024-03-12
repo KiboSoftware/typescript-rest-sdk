@@ -19,21 +19,21 @@ import type {
   ImportJob,
 } from '../models';
 
-export interface ImportApiDeleteRequest {
+export interface DeleteRequest {
     id: string;
 }
 
-export interface ImportApiCreateRequest {
+export interface CreateRequest {
     responseFields?: string;
     importJob?: ImportJob;
 }
 
-export interface ImportApiGetRequest {
+export interface GetRequest {
     id: string;
     responseFields?: string;
 }
 
-export interface ImportApiListRequest {
+export interface ListRequest {
     startIndex?: number;
     pageSize?: number;
     filter?: string;
@@ -55,13 +55,13 @@ export interface ImportApiInterface {
      * @throws {RequiredError}
      * @memberof ImportApiInterface
      */
-    _deleteRaw(requestParameters: ImportApiDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    _deleteRaw(requestParameters: DeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Delete
      * Delete
      */
-    _delete(requestParameters: ImportApiDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    _delete(requestParameters: DeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Create
@@ -72,13 +72,13 @@ export interface ImportApiInterface {
      * @throws {RequiredError}
      * @memberof ImportApiInterface
      */
-    createRaw(requestParameters: ImportApiCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ImportJob>>;
+    createRaw(requestParameters: CreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ImportJob>>;
 
     /**
      * Create
      * Create
      */
-    create(requestParameters: ImportApiCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ImportJob>;
+    create(requestParameters: CreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ImportJob>;
 
     /**
      * Get
@@ -89,13 +89,13 @@ export interface ImportApiInterface {
      * @throws {RequiredError}
      * @memberof ImportApiInterface
      */
-    getRaw(requestParameters: ImportApiGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ImportJob>>;
+    getRaw(requestParameters: GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ImportJob>>;
 
     /**
      * Get
      * Get
      */
-    get(requestParameters: ImportApiGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ImportJob>;
+    get(requestParameters: GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ImportJob>;
 
     /**
      * List
@@ -108,13 +108,13 @@ export interface ImportApiInterface {
      * @throws {RequiredError}
      * @memberof ImportApiInterface
      */
-    listRaw(requestParameters: ImportApiListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ImportJob>>>;
+    listRaw(requestParameters: ListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ImportJob>>>;
 
     /**
      * List
      * List
      */
-    list(requestParameters: ImportApiListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ImportJob>>;
+    list(requestParameters: ListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ImportJob>>;
 
 }
 
@@ -132,7 +132,7 @@ export class ImportApi extends runtime.BaseAPI implements ImportApiInterface {
      */
 
 
-    async _deleteRaw(requestParameters: ImportApiDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async _deleteRaw(requestParameters: DeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling _delete.');
         }
@@ -161,7 +161,7 @@ export class ImportApi extends runtime.BaseAPI implements ImportApiInterface {
      * Delete
      * Delete
      */
-    async _delete(requestParameters: ImportApiDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async _delete(requestParameters: DeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this._deleteRaw(requestParameters, initOverrides);
     }
 
@@ -171,7 +171,7 @@ export class ImportApi extends runtime.BaseAPI implements ImportApiInterface {
      */
 
 
-    async createRaw(requestParameters: ImportApiCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ImportJob>> {
+    async createRaw(requestParameters: CreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ImportJob>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -203,7 +203,7 @@ export class ImportApi extends runtime.BaseAPI implements ImportApiInterface {
      * Create
      * Create
      */
-    async create(requestParameters: ImportApiCreateRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ImportJob> {
+    async create(requestParameters: CreateRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ImportJob> {
         const response = await this.createRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -214,7 +214,7 @@ export class ImportApi extends runtime.BaseAPI implements ImportApiInterface {
      */
 
 
-    async getRaw(requestParameters: ImportApiGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ImportJob>> {
+    async getRaw(requestParameters: GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ImportJob>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling get.');
         }
@@ -247,7 +247,7 @@ export class ImportApi extends runtime.BaseAPI implements ImportApiInterface {
      * Get
      * Get
      */
-    async get(requestParameters: ImportApiGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ImportJob> {
+    async get(requestParameters: GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ImportJob> {
         const response = await this.getRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -258,7 +258,7 @@ export class ImportApi extends runtime.BaseAPI implements ImportApiInterface {
      */
 
 
-    async listRaw(requestParameters: ImportApiListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ImportJob>>> {
+    async listRaw(requestParameters: ListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ImportJob>>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -299,7 +299,7 @@ export class ImportApi extends runtime.BaseAPI implements ImportApiInterface {
      * List
      * List
      */
-    async list(requestParameters: ImportApiListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ImportJob>> {
+    async list(requestParameters: ListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ImportJob>> {
         const response = await this.listRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -19,17 +19,17 @@ import type {
   LocationGroupConfiguration,
 } from '../models';
 
-export interface LocationGroupConfigurationApiGetLocationGroupConfigurationRequest {
+export interface GetLocationGroupConfigurationRequest {
     locationGroupCode: string;
     responseFields?: string;
 }
 
-export interface LocationGroupConfigurationApiGetLocationGroupConfigurationByLocationCodeRequest {
+export interface GetLocationGroupConfigurationByLocationCodeRequest {
     locationCode: string;
     responseFields?: string;
 }
 
-export interface LocationGroupConfigurationApiSetLocationGroupConfigurationRequest {
+export interface SetLocationGroupConfigurationRequest {
     locationGroupCode: string;
     responseFields?: string;
     locationGroupConfiguration?: LocationGroupConfiguration;
@@ -51,13 +51,13 @@ export interface LocationGroupConfigurationApiInterface {
      * @throws {RequiredError}
      * @memberof LocationGroupConfigurationApiInterface
      */
-    getLocationGroupConfigurationRaw(requestParameters: LocationGroupConfigurationApiGetLocationGroupConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationGroupConfiguration>>;
+    getLocationGroupConfigurationRaw(requestParameters: GetLocationGroupConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationGroupConfiguration>>;
 
     /**
      * Get this tenants Location Group Configuration Values by locationGroupCode.
      * Get Location Group Configuration
      */
-    getLocationGroupConfiguration(requestParameters: LocationGroupConfigurationApiGetLocationGroupConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationGroupConfiguration>;
+    getLocationGroupConfiguration(requestParameters: GetLocationGroupConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationGroupConfiguration>;
 
     /**
      * Get this tenants Location Group Configuration Values.
@@ -68,13 +68,13 @@ export interface LocationGroupConfigurationApiInterface {
      * @throws {RequiredError}
      * @memberof LocationGroupConfigurationApiInterface
      */
-    getLocationGroupConfigurationByLocationCodeRaw(requestParameters: LocationGroupConfigurationApiGetLocationGroupConfigurationByLocationCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationGroupConfiguration>>;
+    getLocationGroupConfigurationByLocationCodeRaw(requestParameters: GetLocationGroupConfigurationByLocationCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationGroupConfiguration>>;
 
     /**
      * Get this tenants Location Group Configuration Values.
      * Get Location Group Configuration By Location Code
      */
-    getLocationGroupConfigurationByLocationCode(requestParameters: LocationGroupConfigurationApiGetLocationGroupConfigurationByLocationCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationGroupConfiguration>;
+    getLocationGroupConfigurationByLocationCode(requestParameters: GetLocationGroupConfigurationByLocationCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationGroupConfiguration>;
 
     /**
      * Set this tenants Location Group Configuration Values.
@@ -86,13 +86,13 @@ export interface LocationGroupConfigurationApiInterface {
      * @throws {RequiredError}
      * @memberof LocationGroupConfigurationApiInterface
      */
-    setLocationGroupConfigurationRaw(requestParameters: LocationGroupConfigurationApiSetLocationGroupConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationGroupConfiguration>>;
+    setLocationGroupConfigurationRaw(requestParameters: SetLocationGroupConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationGroupConfiguration>>;
 
     /**
      * Set this tenants Location Group Configuration Values.
      * Set Location Group Configuration
      */
-    setLocationGroupConfiguration(requestParameters: LocationGroupConfigurationApiSetLocationGroupConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationGroupConfiguration>;
+    setLocationGroupConfiguration(requestParameters: SetLocationGroupConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationGroupConfiguration>;
 
 }
 
@@ -110,7 +110,7 @@ export class LocationGroupConfigurationApi extends runtime.BaseAPI implements Lo
      */
 
 
-    async getLocationGroupConfigurationRaw(requestParameters: LocationGroupConfigurationApiGetLocationGroupConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationGroupConfiguration>> {
+    async getLocationGroupConfigurationRaw(requestParameters: GetLocationGroupConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationGroupConfiguration>> {
         if (requestParameters.locationGroupCode === null || requestParameters.locationGroupCode === undefined) {
             throw new runtime.RequiredError('locationGroupCode','Required parameter requestParameters.locationGroupCode was null or undefined when calling getLocationGroupConfiguration.');
         }
@@ -143,7 +143,7 @@ export class LocationGroupConfigurationApi extends runtime.BaseAPI implements Lo
      * Get this tenants Location Group Configuration Values by locationGroupCode.
      * Get Location Group Configuration
      */
-    async getLocationGroupConfiguration(requestParameters: LocationGroupConfigurationApiGetLocationGroupConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationGroupConfiguration> {
+    async getLocationGroupConfiguration(requestParameters: GetLocationGroupConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationGroupConfiguration> {
         const response = await this.getLocationGroupConfigurationRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -154,7 +154,7 @@ export class LocationGroupConfigurationApi extends runtime.BaseAPI implements Lo
      */
 
 
-    async getLocationGroupConfigurationByLocationCodeRaw(requestParameters: LocationGroupConfigurationApiGetLocationGroupConfigurationByLocationCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationGroupConfiguration>> {
+    async getLocationGroupConfigurationByLocationCodeRaw(requestParameters: GetLocationGroupConfigurationByLocationCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationGroupConfiguration>> {
         if (requestParameters.locationCode === null || requestParameters.locationCode === undefined) {
             throw new runtime.RequiredError('locationCode','Required parameter requestParameters.locationCode was null or undefined when calling getLocationGroupConfigurationByLocationCode.');
         }
@@ -187,7 +187,7 @@ export class LocationGroupConfigurationApi extends runtime.BaseAPI implements Lo
      * Get this tenants Location Group Configuration Values.
      * Get Location Group Configuration By Location Code
      */
-    async getLocationGroupConfigurationByLocationCode(requestParameters: LocationGroupConfigurationApiGetLocationGroupConfigurationByLocationCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationGroupConfiguration> {
+    async getLocationGroupConfigurationByLocationCode(requestParameters: GetLocationGroupConfigurationByLocationCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationGroupConfiguration> {
         const response = await this.getLocationGroupConfigurationByLocationCodeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -198,7 +198,7 @@ export class LocationGroupConfigurationApi extends runtime.BaseAPI implements Lo
      */
 
 
-    async setLocationGroupConfigurationRaw(requestParameters: LocationGroupConfigurationApiSetLocationGroupConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationGroupConfiguration>> {
+    async setLocationGroupConfigurationRaw(requestParameters: SetLocationGroupConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationGroupConfiguration>> {
         if (requestParameters.locationGroupCode === null || requestParameters.locationGroupCode === undefined) {
             throw new runtime.RequiredError('locationGroupCode','Required parameter requestParameters.locationGroupCode was null or undefined when calling setLocationGroupConfiguration.');
         }
@@ -234,7 +234,7 @@ export class LocationGroupConfigurationApi extends runtime.BaseAPI implements Lo
      * Set this tenants Location Group Configuration Values.
      * Set Location Group Configuration
      */
-    async setLocationGroupConfiguration(requestParameters: LocationGroupConfigurationApiSetLocationGroupConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationGroupConfiguration> {
+    async setLocationGroupConfiguration(requestParameters: SetLocationGroupConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationGroupConfiguration> {
         const response = await this.setLocationGroupConfigurationRaw(requestParameters, initOverrides);
         return await response.value();
     }

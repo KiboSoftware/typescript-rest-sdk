@@ -21,19 +21,19 @@ import type {
   PublishSetSummaryPagedCollection,
 } from '../models';
 
-export interface DocumentPublishSetApiAddPublishSetItemsRequest {
+export interface AddPublishSetItemsRequest {
     code: string;
     responseFields?: string;
     addOrDeletePublishItem?: Array<AddOrDeletePublishItem>;
 }
 
-export interface DocumentPublishSetApiDeletePublishSetRequest {
+export interface DeletePublishSetRequest {
     code: string;
     shouldDiscard?: boolean;
     responseFields?: string;
 }
 
-export interface DocumentPublishSetApiGetPublishSetItemsRequest {
+export interface GetPublishSetItemsRequest {
     code: string;
     pageSize?: number;
     startIndex?: number;
@@ -42,7 +42,7 @@ export interface DocumentPublishSetApiGetPublishSetItemsRequest {
     responseFields?: string;
 }
 
-export interface DocumentPublishSetApiGetPublishSetsRequest {
+export interface GetPublishSetsRequest {
     pageSize?: number;
     startIndex?: number;
     responseFields?: string;
@@ -65,13 +65,13 @@ export interface DocumentPublishSetApiInterface {
      * @throws {RequiredError}
      * @memberof DocumentPublishSetApiInterface
      */
-    addPublishSetItemsRaw(requestParameters: DocumentPublishSetApiAddPublishSetItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addPublishSetItemsRaw(requestParameters: AddPublishSetItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Adds a set of documents by id to a publish set.
      * Add Publish Set Items
      */
-    addPublishSetItems(requestParameters: DocumentPublishSetApiAddPublishSetItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addPublishSetItems(requestParameters: AddPublishSetItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Adds a set of documents by id to a publish set.
@@ -83,13 +83,13 @@ export interface DocumentPublishSetApiInterface {
      * @throws {RequiredError}
      * @memberof DocumentPublishSetApiInterface
      */
-    deletePublishSetRaw(requestParameters: DocumentPublishSetApiDeletePublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deletePublishSetRaw(requestParameters: DeletePublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Adds a set of documents by id to a publish set.
      * Delete Publish Set
      */
-    deletePublishSet(requestParameters: DocumentPublishSetApiDeletePublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deletePublishSet(requestParameters: DeletePublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Retrieve a paged collection of publish set Items.
@@ -104,13 +104,13 @@ export interface DocumentPublishSetApiInterface {
      * @throws {RequiredError}
      * @memberof DocumentPublishSetApiInterface
      */
-    getPublishSetItemsRaw(requestParameters: DocumentPublishSetApiGetPublishSetItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentDraftSummaryPagedCollection>>;
+    getPublishSetItemsRaw(requestParameters: GetPublishSetItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentDraftSummaryPagedCollection>>;
 
     /**
      * Retrieve a paged collection of publish set Items.
      * Get Publish Set Items
      */
-    getPublishSetItems(requestParameters: DocumentPublishSetApiGetPublishSetItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentDraftSummaryPagedCollection>;
+    getPublishSetItems(requestParameters: GetPublishSetItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentDraftSummaryPagedCollection>;
 
     /**
      * Returns a List of current Publishing sets with counts of drafts in each.
@@ -122,13 +122,13 @@ export interface DocumentPublishSetApiInterface {
      * @throws {RequiredError}
      * @memberof DocumentPublishSetApiInterface
      */
-    getPublishSetsRaw(requestParameters: DocumentPublishSetApiGetPublishSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PublishSetSummaryPagedCollection>>;
+    getPublishSetsRaw(requestParameters: GetPublishSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PublishSetSummaryPagedCollection>>;
 
     /**
      * Returns a List of current Publishing sets with counts of drafts in each.
      * Get Publish Set
      */
-    getPublishSets(requestParameters: DocumentPublishSetApiGetPublishSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublishSetSummaryPagedCollection>;
+    getPublishSets(requestParameters: GetPublishSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublishSetSummaryPagedCollection>;
 
 }
 
@@ -146,7 +146,7 @@ export class DocumentPublishSetApi extends runtime.BaseAPI implements DocumentPu
      */
 
 
-    async addPublishSetItemsRaw(requestParameters: DocumentPublishSetApiAddPublishSetItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addPublishSetItemsRaw(requestParameters: AddPublishSetItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling addPublishSetItems.');
         }
@@ -159,7 +159,7 @@ export class DocumentPublishSetApi extends runtime.BaseAPI implements DocumentPu
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        headerParameters['Content-Type'] = 'text/plain';
 
 
 
@@ -182,7 +182,7 @@ export class DocumentPublishSetApi extends runtime.BaseAPI implements DocumentPu
      * Adds a set of documents by id to a publish set.
      * Add Publish Set Items
      */
-    async addPublishSetItems(requestParameters: DocumentPublishSetApiAddPublishSetItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async addPublishSetItems(requestParameters: AddPublishSetItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.addPublishSetItemsRaw(requestParameters, initOverrides);
     }
 
@@ -192,7 +192,7 @@ export class DocumentPublishSetApi extends runtime.BaseAPI implements DocumentPu
      */
 
 
-    async deletePublishSetRaw(requestParameters: DocumentPublishSetApiDeletePublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deletePublishSetRaw(requestParameters: DeletePublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling deletePublishSet.');
         }
@@ -229,7 +229,7 @@ export class DocumentPublishSetApi extends runtime.BaseAPI implements DocumentPu
      * Adds a set of documents by id to a publish set.
      * Delete Publish Set
      */
-    async deletePublishSet(requestParameters: DocumentPublishSetApiDeletePublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deletePublishSet(requestParameters: DeletePublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deletePublishSetRaw(requestParameters, initOverrides);
     }
 
@@ -239,7 +239,7 @@ export class DocumentPublishSetApi extends runtime.BaseAPI implements DocumentPu
      */
 
 
-    async getPublishSetItemsRaw(requestParameters: DocumentPublishSetApiGetPublishSetItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentDraftSummaryPagedCollection>> {
+    async getPublishSetItemsRaw(requestParameters: GetPublishSetItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentDraftSummaryPagedCollection>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling getPublishSetItems.');
         }
@@ -288,7 +288,7 @@ export class DocumentPublishSetApi extends runtime.BaseAPI implements DocumentPu
      * Retrieve a paged collection of publish set Items.
      * Get Publish Set Items
      */
-    async getPublishSetItems(requestParameters: DocumentPublishSetApiGetPublishSetItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentDraftSummaryPagedCollection> {
+    async getPublishSetItems(requestParameters: GetPublishSetItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentDraftSummaryPagedCollection> {
         const response = await this.getPublishSetItemsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -299,7 +299,7 @@ export class DocumentPublishSetApi extends runtime.BaseAPI implements DocumentPu
      */
 
 
-    async getPublishSetsRaw(requestParameters: DocumentPublishSetApiGetPublishSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PublishSetSummaryPagedCollection>> {
+    async getPublishSetsRaw(requestParameters: GetPublishSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PublishSetSummaryPagedCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.pageSize !== undefined) {
@@ -336,7 +336,7 @@ export class DocumentPublishSetApi extends runtime.BaseAPI implements DocumentPu
      * Returns a List of current Publishing sets with counts of drafts in each.
      * Get Publish Set
      */
-    async getPublishSets(requestParameters: DocumentPublishSetApiGetPublishSetsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublishSetSummaryPagedCollection> {
+    async getPublishSets(requestParameters: GetPublishSetsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublishSetSummaryPagedCollection> {
         const response = await this.getPublishSetsRaw(requestParameters, initOverrides);
         return await response.value();
     }

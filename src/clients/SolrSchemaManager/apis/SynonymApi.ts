@@ -16,12 +16,12 @@
 import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
 
-export interface SynonymApiListSynonymsRequest {
+export interface ListSynonymsRequest {
     language?: string;
     responseFields?: string;
 }
 
-export interface SynonymApiUpdateSynonymsRequest {
+export interface UpdateSynonymsRequest {
     responseFields?: string;
 }
 
@@ -41,13 +41,13 @@ export interface SynonymApiInterface {
      * @throws {RequiredError}
      * @memberof SynonymApiInterface
      */
-    listSynonymsRaw(requestParameters: SynonymApiListSynonymsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
+    listSynonymsRaw(requestParameters: ListSynonymsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
 
     /**
      * List Synonyms
      * List Synonyms
      */
-    listSynonyms(requestParameters: SynonymApiListSynonymsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
+    listSynonyms(requestParameters: ListSynonymsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
 
     /**
      * Update Synonyms
@@ -57,13 +57,13 @@ export interface SynonymApiInterface {
      * @throws {RequiredError}
      * @memberof SynonymApiInterface
      */
-    updateSynonymsRaw(requestParameters: SynonymApiUpdateSynonymsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<boolean>>;
+    updateSynonymsRaw(requestParameters: UpdateSynonymsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<boolean>>;
 
     /**
      * Update Synonyms
      * Update Synonyms
      */
-    updateSynonyms(requestParameters: SynonymApiUpdateSynonymsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<boolean>;
+    updateSynonyms(requestParameters: UpdateSynonymsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<boolean>;
 
 }
 
@@ -81,7 +81,7 @@ export class SynonymApi extends runtime.BaseAPI implements SynonymApiInterface {
      */
 
 
-    async listSynonymsRaw(requestParameters: SynonymApiListSynonymsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async listSynonymsRaw(requestParameters: ListSynonymsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
         const queryParameters: any = {};
 
         if (requestParameters.language !== undefined) {
@@ -114,7 +114,7 @@ export class SynonymApi extends runtime.BaseAPI implements SynonymApiInterface {
      * List Synonyms
      * List Synonyms
      */
-    async listSynonyms(requestParameters: SynonymApiListSynonymsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+    async listSynonyms(requestParameters: ListSynonymsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
         const response = await this.listSynonymsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -125,7 +125,7 @@ export class SynonymApi extends runtime.BaseAPI implements SynonymApiInterface {
      */
 
 
-    async updateSynonymsRaw(requestParameters: SynonymApiUpdateSynonymsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<boolean>> {
+    async updateSynonymsRaw(requestParameters: UpdateSynonymsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<boolean>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -154,7 +154,7 @@ export class SynonymApi extends runtime.BaseAPI implements SynonymApiInterface {
      * Update Synonyms
      * Update Synonyms
      */
-    async updateSynonyms(requestParameters: SynonymApiUpdateSynonymsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<boolean> {
+    async updateSynonyms(requestParameters: UpdateSynonymsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<boolean> {
         const response = await this.updateSynonymsRaw(requestParameters, initOverrides);
         return await response.value();
     }

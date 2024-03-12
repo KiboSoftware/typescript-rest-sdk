@@ -19,7 +19,7 @@ import type {
   AutoAddDiscountTarget,
 } from '../models';
 
-export interface DiscountRuntimeApiGetAutoAddTargetRequest {
+export interface GetAutoAddTargetRequest {
     discountId: number;
     responseFields?: string;
 }
@@ -40,13 +40,13 @@ export interface DiscountRuntimeApiInterface {
      * @throws {RequiredError}
      * @memberof DiscountRuntimeApiInterface
      */
-    getAutoAddTargetRaw(requestParameters: DiscountRuntimeApiGetAutoAddTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoAddDiscountTarget>>;
+    getAutoAddTargetRaw(requestParameters: GetAutoAddTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoAddDiscountTarget>>;
 
     /**
      * Get Auto Add Target
      * Get Auto Add Target
      */
-    getAutoAddTarget(requestParameters: DiscountRuntimeApiGetAutoAddTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoAddDiscountTarget>;
+    getAutoAddTarget(requestParameters: GetAutoAddTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoAddDiscountTarget>;
 
 }
 
@@ -64,7 +64,7 @@ export class DiscountRuntimeApi extends runtime.BaseAPI implements DiscountRunti
      */
 
 
-    async getAutoAddTargetRaw(requestParameters: DiscountRuntimeApiGetAutoAddTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoAddDiscountTarget>> {
+    async getAutoAddTargetRaw(requestParameters: GetAutoAddTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoAddDiscountTarget>> {
         if (requestParameters.discountId === null || requestParameters.discountId === undefined) {
             throw new runtime.RequiredError('discountId','Required parameter requestParameters.discountId was null or undefined when calling getAutoAddTarget.');
         }
@@ -97,7 +97,7 @@ export class DiscountRuntimeApi extends runtime.BaseAPI implements DiscountRunti
      * Get Auto Add Target
      * Get Auto Add Target
      */
-    async getAutoAddTarget(requestParameters: DiscountRuntimeApiGetAutoAddTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoAddDiscountTarget> {
+    async getAutoAddTarget(requestParameters: GetAutoAddTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoAddDiscountTarget> {
         const response = await this.getAutoAddTargetRaw(requestParameters, initOverrides);
         return await response.value();
     }

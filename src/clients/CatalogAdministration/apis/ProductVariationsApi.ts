@@ -23,70 +23,70 @@ import type {
   ProductVariationPagedCollection,
 } from '../models';
 
-export interface ProductVariationsApiAddProductVariationLocalizedDeltaPriceRequest {
+export interface AddProductVariationLocalizedDeltaPriceRequest {
     productCode: string;
     variationKey: string;
     responseFields?: string;
     productVariationDeltaPrice?: ProductVariationDeltaPrice;
 }
 
-export interface ProductVariationsApiAddProductVariationLocalizedPriceRequest {
+export interface AddProductVariationLocalizedPriceRequest {
     productCode: string;
     variationKey: string;
     responseFields?: string;
     productVariationFixedPrice?: ProductVariationFixedPrice;
 }
 
-export interface ProductVariationsApiDeleteProductVariationRequest {
+export interface DeleteProductVariationRequest {
     productCode: string;
     variationKey: string;
 }
 
-export interface ProductVariationsApiDeleteProductVariationLocalizedDeltaPriceRequest {
-    productCode: string;
-    variationKey: string;
-    currencyCode: string;
-}
-
-export interface ProductVariationsApiDeleteProductVariationLocalizedPriceRequest {
+export interface DeleteProductVariationLocalizedDeltaPriceRequest {
     productCode: string;
     variationKey: string;
     currencyCode: string;
 }
 
-export interface ProductVariationsApiGetProductVariationRequest {
-    productCode: string;
-    variationKey: string;
-    responseFields?: string;
-}
-
-export interface ProductVariationsApiGetProductVariationLocalizedDeltaPriceRequest {
+export interface DeleteProductVariationLocalizedPriceRequest {
     productCode: string;
     variationKey: string;
     currencyCode: string;
-    responseFields?: string;
 }
 
-export interface ProductVariationsApiGetProductVariationLocalizedDeltaPricesRequest {
+export interface GetProductVariationRequest {
     productCode: string;
     variationKey: string;
     responseFields?: string;
 }
 
-export interface ProductVariationsApiGetProductVariationLocalizedPriceRequest {
+export interface GetProductVariationLocalizedDeltaPriceRequest {
     productCode: string;
     variationKey: string;
     currencyCode: string;
     responseFields?: string;
 }
 
-export interface ProductVariationsApiGetProductVariationLocalizedPricesRequest {
+export interface GetProductVariationLocalizedDeltaPricesRequest {
     productCode: string;
     variationKey: string;
     responseFields?: string;
 }
 
-export interface ProductVariationsApiGetProductVariationsRequest {
+export interface GetProductVariationLocalizedPriceRequest {
+    productCode: string;
+    variationKey: string;
+    currencyCode: string;
+    responseFields?: string;
+}
+
+export interface GetProductVariationLocalizedPricesRequest {
+    productCode: string;
+    variationKey: string;
+    responseFields?: string;
+}
+
+export interface GetProductVariationsRequest {
     productCode: string;
     startIndex?: number;
     pageSize?: number;
@@ -95,14 +95,14 @@ export interface ProductVariationsApiGetProductVariationsRequest {
     responseFields?: string;
 }
 
-export interface ProductVariationsApiUpdateProductVariationRequest {
+export interface UpdateProductVariationRequest {
     productCode: string;
     variationKey: string;
     responseFields?: string;
     productVariation?: ProductVariation;
 }
 
-export interface ProductVariationsApiUpdateProductVariationLocalizedDeltaPriceRequest {
+export interface UpdateProductVariationLocalizedDeltaPriceRequest {
     productCode: string;
     variationKey: string;
     currencyCode: string;
@@ -110,14 +110,14 @@ export interface ProductVariationsApiUpdateProductVariationLocalizedDeltaPriceRe
     productVariationDeltaPrice?: ProductVariationDeltaPrice;
 }
 
-export interface ProductVariationsApiUpdateProductVariationLocalizedDeltaPricesRequest {
+export interface UpdateProductVariationLocalizedDeltaPricesRequest {
     productCode: string;
     variationKey: string;
     responseFields?: string;
     productVariationDeltaPrice?: Array<ProductVariationDeltaPrice>;
 }
 
-export interface ProductVariationsApiUpdateProductVariationLocalizedPriceRequest {
+export interface UpdateProductVariationLocalizedPriceRequest {
     productCode: string;
     variationKey: string;
     currencyCode: string;
@@ -125,14 +125,14 @@ export interface ProductVariationsApiUpdateProductVariationLocalizedPriceRequest
     productVariationFixedPrice?: ProductVariationFixedPrice;
 }
 
-export interface ProductVariationsApiUpdateProductVariationLocalizedPricesRequest {
+export interface UpdateProductVariationLocalizedPricesRequest {
     productCode: string;
     variationKey: string;
     responseFields?: string;
     productVariationFixedPrice?: Array<ProductVariationFixedPrice>;
 }
 
-export interface ProductVariationsApiUpdateProductVariationsRequest {
+export interface UpdateProductVariationsRequest {
     productCode: string;
     responseFields?: string;
     productVariationCollection?: ProductVariationCollection;
@@ -156,13 +156,13 @@ export interface ProductVariationsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductVariationsApiInterface
      */
-    addProductVariationLocalizedDeltaPriceRaw(requestParameters: ProductVariationsApiAddProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationDeltaPrice>>;
+    addProductVariationLocalizedDeltaPriceRaw(requestParameters: AddProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationDeltaPrice>>;
 
     /**
      * 
      * Add product variation localized delta price
      */
-    addProductVariationLocalizedDeltaPrice(requestParameters: ProductVariationsApiAddProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationDeltaPrice>;
+    addProductVariationLocalizedDeltaPrice(requestParameters: AddProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationDeltaPrice>;
 
     /**
      * 
@@ -175,13 +175,13 @@ export interface ProductVariationsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductVariationsApiInterface
      */
-    addProductVariationLocalizedPriceRaw(requestParameters: ProductVariationsApiAddProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationFixedPrice>>;
+    addProductVariationLocalizedPriceRaw(requestParameters: AddProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationFixedPrice>>;
 
     /**
      * 
      * Add product variation localized price
      */
-    addProductVariationLocalizedPrice(requestParameters: ProductVariationsApiAddProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationFixedPrice>;
+    addProductVariationLocalizedPrice(requestParameters: AddProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationFixedPrice>;
 
     /**
      * Deletes an existing product variation.
@@ -192,13 +192,13 @@ export interface ProductVariationsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductVariationsApiInterface
      */
-    deleteProductVariationRaw(requestParameters: ProductVariationsApiDeleteProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteProductVariationRaw(requestParameters: DeleteProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Deletes an existing product variation.
      * Delete product variation
      */
-    deleteProductVariation(requestParameters: ProductVariationsApiDeleteProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteProductVariation(requestParameters: DeleteProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * 
@@ -210,13 +210,13 @@ export interface ProductVariationsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductVariationsApiInterface
      */
-    deleteProductVariationLocalizedDeltaPriceRaw(requestParameters: ProductVariationsApiDeleteProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteProductVariationLocalizedDeltaPriceRaw(requestParameters: DeleteProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * 
      * Delete product variation localized delta price
      */
-    deleteProductVariationLocalizedDeltaPrice(requestParameters: ProductVariationsApiDeleteProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteProductVariationLocalizedDeltaPrice(requestParameters: DeleteProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * 
@@ -228,13 +228,13 @@ export interface ProductVariationsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductVariationsApiInterface
      */
-    deleteProductVariationLocalizedPriceRaw(requestParameters: ProductVariationsApiDeleteProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    deleteProductVariationLocalizedPriceRaw(requestParameters: DeleteProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * 
      * Delete product variation localized price
      */
-    deleteProductVariationLocalizedPrice(requestParameters: ProductVariationsApiDeleteProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    deleteProductVariationLocalizedPrice(requestParameters: DeleteProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Retrieves an existing product variation for a specific product and variation key.
@@ -246,13 +246,13 @@ export interface ProductVariationsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductVariationsApiInterface
      */
-    getProductVariationRaw(requestParameters: ProductVariationsApiGetProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariation>>;
+    getProductVariationRaw(requestParameters: GetProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariation>>;
 
     /**
      * Retrieves an existing product variation for a specific product and variation key.
      * Get product variation
      */
-    getProductVariation(requestParameters: ProductVariationsApiGetProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariation>;
+    getProductVariation(requestParameters: GetProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariation>;
 
     /**
      * 
@@ -265,13 +265,13 @@ export interface ProductVariationsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductVariationsApiInterface
      */
-    getProductVariationLocalizedDeltaPriceRaw(requestParameters: ProductVariationsApiGetProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationDeltaPrice>>;
+    getProductVariationLocalizedDeltaPriceRaw(requestParameters: GetProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationDeltaPrice>>;
 
     /**
      * 
      * Get product variation localized delta price
      */
-    getProductVariationLocalizedDeltaPrice(requestParameters: ProductVariationsApiGetProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationDeltaPrice>;
+    getProductVariationLocalizedDeltaPrice(requestParameters: GetProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationDeltaPrice>;
 
     /**
      * 
@@ -283,13 +283,13 @@ export interface ProductVariationsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductVariationsApiInterface
      */
-    getProductVariationLocalizedDeltaPricesRaw(requestParameters: ProductVariationsApiGetProductVariationLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductVariationDeltaPrice>>>;
+    getProductVariationLocalizedDeltaPricesRaw(requestParameters: GetProductVariationLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductVariationDeltaPrice>>>;
 
     /**
      * 
      * Get product variation localized delta prices
      */
-    getProductVariationLocalizedDeltaPrices(requestParameters: ProductVariationsApiGetProductVariationLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductVariationDeltaPrice>>;
+    getProductVariationLocalizedDeltaPrices(requestParameters: GetProductVariationLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductVariationDeltaPrice>>;
 
     /**
      * 
@@ -302,13 +302,13 @@ export interface ProductVariationsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductVariationsApiInterface
      */
-    getProductVariationLocalizedPriceRaw(requestParameters: ProductVariationsApiGetProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationFixedPrice>>;
+    getProductVariationLocalizedPriceRaw(requestParameters: GetProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationFixedPrice>>;
 
     /**
      * 
      * Get product variation localized price
      */
-    getProductVariationLocalizedPrice(requestParameters: ProductVariationsApiGetProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationFixedPrice>;
+    getProductVariationLocalizedPrice(requestParameters: GetProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationFixedPrice>;
 
     /**
      * 
@@ -320,13 +320,13 @@ export interface ProductVariationsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductVariationsApiInterface
      */
-    getProductVariationLocalizedPricesRaw(requestParameters: ProductVariationsApiGetProductVariationLocalizedPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductVariationFixedPrice>>>;
+    getProductVariationLocalizedPricesRaw(requestParameters: GetProductVariationLocalizedPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductVariationFixedPrice>>>;
 
     /**
      * 
      * Get product variation localized prices
      */
-    getProductVariationLocalizedPrices(requestParameters: ProductVariationsApiGetProductVariationLocalizedPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductVariationFixedPrice>>;
+    getProductVariationLocalizedPrices(requestParameters: GetProductVariationLocalizedPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductVariationFixedPrice>>;
 
     /**
      * Retrieves a paged list of product variations for a specific product according to any specified filter criteria and sort options.
@@ -341,13 +341,13 @@ export interface ProductVariationsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductVariationsApiInterface
      */
-    getProductVariationsRaw(requestParameters: ProductVariationsApiGetProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationPagedCollection>>;
+    getProductVariationsRaw(requestParameters: GetProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationPagedCollection>>;
 
     /**
      * Retrieves a paged list of product variations for a specific product according to any specified filter criteria and sort options.
      * Get product variations
      */
-    getProductVariations(requestParameters: ProductVariationsApiGetProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationPagedCollection>;
+    getProductVariations(requestParameters: GetProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationPagedCollection>;
 
     /**
      * Modifies an existing product variation specified by its variation key. Typically used to change the price or               inventory count of an existing product variation. Read-only options are ignored.
@@ -360,13 +360,13 @@ export interface ProductVariationsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductVariationsApiInterface
      */
-    updateProductVariationRaw(requestParameters: ProductVariationsApiUpdateProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariation>>;
+    updateProductVariationRaw(requestParameters: UpdateProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariation>>;
 
     /**
      * Modifies an existing product variation specified by its variation key. Typically used to change the price or               inventory count of an existing product variation. Read-only options are ignored.
      * Update product variation
      */
-    updateProductVariation(requestParameters: ProductVariationsApiUpdateProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariation>;
+    updateProductVariation(requestParameters: UpdateProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariation>;
 
     /**
      * 
@@ -380,13 +380,13 @@ export interface ProductVariationsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductVariationsApiInterface
      */
-    updateProductVariationLocalizedDeltaPriceRaw(requestParameters: ProductVariationsApiUpdateProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationDeltaPrice>>;
+    updateProductVariationLocalizedDeltaPriceRaw(requestParameters: UpdateProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationDeltaPrice>>;
 
     /**
      * 
      * Update product variation localized delta price
      */
-    updateProductVariationLocalizedDeltaPrice(requestParameters: ProductVariationsApiUpdateProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationDeltaPrice>;
+    updateProductVariationLocalizedDeltaPrice(requestParameters: UpdateProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationDeltaPrice>;
 
     /**
      * 
@@ -399,13 +399,13 @@ export interface ProductVariationsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductVariationsApiInterface
      */
-    updateProductVariationLocalizedDeltaPricesRaw(requestParameters: ProductVariationsApiUpdateProductVariationLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductVariationDeltaPrice>>>;
+    updateProductVariationLocalizedDeltaPricesRaw(requestParameters: UpdateProductVariationLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductVariationDeltaPrice>>>;
 
     /**
      * 
      * Update product variation localized delta prices
      */
-    updateProductVariationLocalizedDeltaPrices(requestParameters: ProductVariationsApiUpdateProductVariationLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductVariationDeltaPrice>>;
+    updateProductVariationLocalizedDeltaPrices(requestParameters: UpdateProductVariationLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductVariationDeltaPrice>>;
 
     /**
      * 
@@ -419,13 +419,13 @@ export interface ProductVariationsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductVariationsApiInterface
      */
-    updateProductVariationLocalizedPriceRaw(requestParameters: ProductVariationsApiUpdateProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationFixedPrice>>;
+    updateProductVariationLocalizedPriceRaw(requestParameters: UpdateProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationFixedPrice>>;
 
     /**
      * 
      * Update product variation localized price
      */
-    updateProductVariationLocalizedPrice(requestParameters: ProductVariationsApiUpdateProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationFixedPrice>;
+    updateProductVariationLocalizedPrice(requestParameters: UpdateProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationFixedPrice>;
 
     /**
      * 
@@ -438,13 +438,13 @@ export interface ProductVariationsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductVariationsApiInterface
      */
-    updateProductVariationLocalizedPricesRaw(requestParameters: ProductVariationsApiUpdateProductVariationLocalizedPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductVariationFixedPrice>>>;
+    updateProductVariationLocalizedPricesRaw(requestParameters: UpdateProductVariationLocalizedPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductVariationFixedPrice>>>;
 
     /**
      * 
      * Update product variation localized prices
      */
-    updateProductVariationLocalizedPrices(requestParameters: ProductVariationsApiUpdateProductVariationLocalizedPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductVariationFixedPrice>>;
+    updateProductVariationLocalizedPrices(requestParameters: UpdateProductVariationLocalizedPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductVariationFixedPrice>>;
 
     /**
      * Modifies multiple product variations for an existing product in one operation. Use to set IsActive to true for               variations that represent configurable options for sale. Also use to change the price or inventory count of an               existing product variation. Read-only options are ignored.
@@ -456,13 +456,13 @@ export interface ProductVariationsApiInterface {
      * @throws {RequiredError}
      * @memberof ProductVariationsApiInterface
      */
-    updateProductVariationsRaw(requestParameters: ProductVariationsApiUpdateProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationCollection>>;
+    updateProductVariationsRaw(requestParameters: UpdateProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationCollection>>;
 
     /**
      * Modifies multiple product variations for an existing product in one operation. Use to set IsActive to true for               variations that represent configurable options for sale. Also use to change the price or inventory count of an               existing product variation. Read-only options are ignored.
      * Update product variations
      */
-    updateProductVariations(requestParameters: ProductVariationsApiUpdateProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationCollection>;
+    updateProductVariations(requestParameters: UpdateProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationCollection>;
 
 }
 
@@ -480,7 +480,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      */
 
 
-    async addProductVariationLocalizedDeltaPriceRaw(requestParameters: ProductVariationsApiAddProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationDeltaPrice>> {
+    async addProductVariationLocalizedDeltaPriceRaw(requestParameters: AddProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationDeltaPrice>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling addProductVariationLocalizedDeltaPrice.');
         }
@@ -520,7 +520,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      * 
      * Add product variation localized delta price
      */
-    async addProductVariationLocalizedDeltaPrice(requestParameters: ProductVariationsApiAddProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationDeltaPrice> {
+    async addProductVariationLocalizedDeltaPrice(requestParameters: AddProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationDeltaPrice> {
         const response = await this.addProductVariationLocalizedDeltaPriceRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -531,7 +531,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      */
 
 
-    async addProductVariationLocalizedPriceRaw(requestParameters: ProductVariationsApiAddProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationFixedPrice>> {
+    async addProductVariationLocalizedPriceRaw(requestParameters: AddProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationFixedPrice>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling addProductVariationLocalizedPrice.');
         }
@@ -571,7 +571,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      * 
      * Add product variation localized price
      */
-    async addProductVariationLocalizedPrice(requestParameters: ProductVariationsApiAddProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationFixedPrice> {
+    async addProductVariationLocalizedPrice(requestParameters: AddProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationFixedPrice> {
         const response = await this.addProductVariationLocalizedPriceRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -582,7 +582,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      */
 
 
-    async deleteProductVariationRaw(requestParameters: ProductVariationsApiDeleteProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteProductVariationRaw(requestParameters: DeleteProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling deleteProductVariation.');
         }
@@ -615,7 +615,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      * Deletes an existing product variation.
      * Delete product variation
      */
-    async deleteProductVariation(requestParameters: ProductVariationsApiDeleteProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteProductVariation(requestParameters: DeleteProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteProductVariationRaw(requestParameters, initOverrides);
     }
 
@@ -625,7 +625,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      */
 
 
-    async deleteProductVariationLocalizedDeltaPriceRaw(requestParameters: ProductVariationsApiDeleteProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteProductVariationLocalizedDeltaPriceRaw(requestParameters: DeleteProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling deleteProductVariationLocalizedDeltaPrice.');
         }
@@ -662,7 +662,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      * 
      * Delete product variation localized delta price
      */
-    async deleteProductVariationLocalizedDeltaPrice(requestParameters: ProductVariationsApiDeleteProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteProductVariationLocalizedDeltaPrice(requestParameters: DeleteProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteProductVariationLocalizedDeltaPriceRaw(requestParameters, initOverrides);
     }
 
@@ -672,7 +672,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      */
 
 
-    async deleteProductVariationLocalizedPriceRaw(requestParameters: ProductVariationsApiDeleteProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteProductVariationLocalizedPriceRaw(requestParameters: DeleteProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling deleteProductVariationLocalizedPrice.');
         }
@@ -709,7 +709,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      * 
      * Delete product variation localized price
      */
-    async deleteProductVariationLocalizedPrice(requestParameters: ProductVariationsApiDeleteProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteProductVariationLocalizedPrice(requestParameters: DeleteProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteProductVariationLocalizedPriceRaw(requestParameters, initOverrides);
     }
 
@@ -719,7 +719,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      */
 
 
-    async getProductVariationRaw(requestParameters: ProductVariationsApiGetProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariation>> {
+    async getProductVariationRaw(requestParameters: GetProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariation>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling getProductVariation.');
         }
@@ -756,7 +756,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      * Retrieves an existing product variation for a specific product and variation key.
      * Get product variation
      */
-    async getProductVariation(requestParameters: ProductVariationsApiGetProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariation> {
+    async getProductVariation(requestParameters: GetProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariation> {
         const response = await this.getProductVariationRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -767,7 +767,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      */
 
 
-    async getProductVariationLocalizedDeltaPriceRaw(requestParameters: ProductVariationsApiGetProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationDeltaPrice>> {
+    async getProductVariationLocalizedDeltaPriceRaw(requestParameters: GetProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationDeltaPrice>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling getProductVariationLocalizedDeltaPrice.');
         }
@@ -808,7 +808,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      * 
      * Get product variation localized delta price
      */
-    async getProductVariationLocalizedDeltaPrice(requestParameters: ProductVariationsApiGetProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationDeltaPrice> {
+    async getProductVariationLocalizedDeltaPrice(requestParameters: GetProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationDeltaPrice> {
         const response = await this.getProductVariationLocalizedDeltaPriceRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -819,7 +819,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      */
 
 
-    async getProductVariationLocalizedDeltaPricesRaw(requestParameters: ProductVariationsApiGetProductVariationLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductVariationDeltaPrice>>> {
+    async getProductVariationLocalizedDeltaPricesRaw(requestParameters: GetProductVariationLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductVariationDeltaPrice>>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling getProductVariationLocalizedDeltaPrices.');
         }
@@ -856,7 +856,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      * 
      * Get product variation localized delta prices
      */
-    async getProductVariationLocalizedDeltaPrices(requestParameters: ProductVariationsApiGetProductVariationLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductVariationDeltaPrice>> {
+    async getProductVariationLocalizedDeltaPrices(requestParameters: GetProductVariationLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductVariationDeltaPrice>> {
         const response = await this.getProductVariationLocalizedDeltaPricesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -867,7 +867,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      */
 
 
-    async getProductVariationLocalizedPriceRaw(requestParameters: ProductVariationsApiGetProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationFixedPrice>> {
+    async getProductVariationLocalizedPriceRaw(requestParameters: GetProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationFixedPrice>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling getProductVariationLocalizedPrice.');
         }
@@ -908,7 +908,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      * 
      * Get product variation localized price
      */
-    async getProductVariationLocalizedPrice(requestParameters: ProductVariationsApiGetProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationFixedPrice> {
+    async getProductVariationLocalizedPrice(requestParameters: GetProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationFixedPrice> {
         const response = await this.getProductVariationLocalizedPriceRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -919,7 +919,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      */
 
 
-    async getProductVariationLocalizedPricesRaw(requestParameters: ProductVariationsApiGetProductVariationLocalizedPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductVariationFixedPrice>>> {
+    async getProductVariationLocalizedPricesRaw(requestParameters: GetProductVariationLocalizedPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductVariationFixedPrice>>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling getProductVariationLocalizedPrices.');
         }
@@ -956,7 +956,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      * 
      * Get product variation localized prices
      */
-    async getProductVariationLocalizedPrices(requestParameters: ProductVariationsApiGetProductVariationLocalizedPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductVariationFixedPrice>> {
+    async getProductVariationLocalizedPrices(requestParameters: GetProductVariationLocalizedPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductVariationFixedPrice>> {
         const response = await this.getProductVariationLocalizedPricesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -967,7 +967,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      */
 
 
-    async getProductVariationsRaw(requestParameters: ProductVariationsApiGetProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationPagedCollection>> {
+    async getProductVariationsRaw(requestParameters: GetProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationPagedCollection>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling getProductVariations.');
         }
@@ -1016,7 +1016,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      * Retrieves a paged list of product variations for a specific product according to any specified filter criteria and sort options.
      * Get product variations
      */
-    async getProductVariations(requestParameters: ProductVariationsApiGetProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationPagedCollection> {
+    async getProductVariations(requestParameters: GetProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationPagedCollection> {
         const response = await this.getProductVariationsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1027,7 +1027,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      */
 
 
-    async updateProductVariationRaw(requestParameters: ProductVariationsApiUpdateProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariation>> {
+    async updateProductVariationRaw(requestParameters: UpdateProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariation>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling updateProductVariation.');
         }
@@ -1067,7 +1067,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      * Modifies an existing product variation specified by its variation key. Typically used to change the price or               inventory count of an existing product variation. Read-only options are ignored.
      * Update product variation
      */
-    async updateProductVariation(requestParameters: ProductVariationsApiUpdateProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariation> {
+    async updateProductVariation(requestParameters: UpdateProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariation> {
         const response = await this.updateProductVariationRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1078,7 +1078,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      */
 
 
-    async updateProductVariationLocalizedDeltaPriceRaw(requestParameters: ProductVariationsApiUpdateProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationDeltaPrice>> {
+    async updateProductVariationLocalizedDeltaPriceRaw(requestParameters: UpdateProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationDeltaPrice>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling updateProductVariationLocalizedDeltaPrice.');
         }
@@ -1122,7 +1122,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      * 
      * Update product variation localized delta price
      */
-    async updateProductVariationLocalizedDeltaPrice(requestParameters: ProductVariationsApiUpdateProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationDeltaPrice> {
+    async updateProductVariationLocalizedDeltaPrice(requestParameters: UpdateProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationDeltaPrice> {
         const response = await this.updateProductVariationLocalizedDeltaPriceRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1133,7 +1133,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      */
 
 
-    async updateProductVariationLocalizedDeltaPricesRaw(requestParameters: ProductVariationsApiUpdateProductVariationLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductVariationDeltaPrice>>> {
+    async updateProductVariationLocalizedDeltaPricesRaw(requestParameters: UpdateProductVariationLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductVariationDeltaPrice>>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling updateProductVariationLocalizedDeltaPrices.');
         }
@@ -1173,7 +1173,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      * 
      * Update product variation localized delta prices
      */
-    async updateProductVariationLocalizedDeltaPrices(requestParameters: ProductVariationsApiUpdateProductVariationLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductVariationDeltaPrice>> {
+    async updateProductVariationLocalizedDeltaPrices(requestParameters: UpdateProductVariationLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductVariationDeltaPrice>> {
         const response = await this.updateProductVariationLocalizedDeltaPricesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1184,7 +1184,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      */
 
 
-    async updateProductVariationLocalizedPriceRaw(requestParameters: ProductVariationsApiUpdateProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationFixedPrice>> {
+    async updateProductVariationLocalizedPriceRaw(requestParameters: UpdateProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationFixedPrice>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling updateProductVariationLocalizedPrice.');
         }
@@ -1228,7 +1228,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      * 
      * Update product variation localized price
      */
-    async updateProductVariationLocalizedPrice(requestParameters: ProductVariationsApiUpdateProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationFixedPrice> {
+    async updateProductVariationLocalizedPrice(requestParameters: UpdateProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationFixedPrice> {
         const response = await this.updateProductVariationLocalizedPriceRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1239,7 +1239,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      */
 
 
-    async updateProductVariationLocalizedPricesRaw(requestParameters: ProductVariationsApiUpdateProductVariationLocalizedPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductVariationFixedPrice>>> {
+    async updateProductVariationLocalizedPricesRaw(requestParameters: UpdateProductVariationLocalizedPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductVariationFixedPrice>>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling updateProductVariationLocalizedPrices.');
         }
@@ -1279,7 +1279,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      * 
      * Update product variation localized prices
      */
-    async updateProductVariationLocalizedPrices(requestParameters: ProductVariationsApiUpdateProductVariationLocalizedPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductVariationFixedPrice>> {
+    async updateProductVariationLocalizedPrices(requestParameters: UpdateProductVariationLocalizedPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductVariationFixedPrice>> {
         const response = await this.updateProductVariationLocalizedPricesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1290,7 +1290,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      */
 
 
-    async updateProductVariationsRaw(requestParameters: ProductVariationsApiUpdateProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationCollection>> {
+    async updateProductVariationsRaw(requestParameters: UpdateProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationCollection>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling updateProductVariations.');
         }
@@ -1326,7 +1326,7 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
      * Modifies multiple product variations for an existing product in one operation. Use to set IsActive to true for               variations that represent configurable options for sale. Also use to change the price or inventory count of an               existing product variation. Read-only options are ignored.
      * Update product variations
      */
-    async updateProductVariations(requestParameters: ProductVariationsApiUpdateProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationCollection> {
+    async updateProductVariations(requestParameters: UpdateProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationCollection> {
         const response = await this.updateProductVariationsRaw(requestParameters, initOverrides);
         return await response.value();
     }

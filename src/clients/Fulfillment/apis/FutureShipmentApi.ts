@@ -22,7 +22,7 @@ import type {
   FutureShipmentUpdateDateRequest,
 } from '../models';
 
-export interface FutureShipmentApiCreateFutureShipmentsForFutureAllocatableItemsUsingPOSTRequest {
+export interface CreateFutureShipmentsForFutureAllocatableItemsUsingPOSTRequest {
     shipmentNumber: number;
     xVolTenant: number;
     futureItemsRequestDto: FutureItemsRequest;
@@ -31,7 +31,7 @@ export interface FutureShipmentApiCreateFutureShipmentsForFutureAllocatableItems
     responseFields?: string;
 }
 
-export interface FutureShipmentApiCreateFutureShipmentsForItemsUsingPOSTRequest {
+export interface CreateFutureShipmentsForItemsUsingPOSTRequest {
     shipmentNumber: number;
     xVolTenant: number;
     futureItemsRequestDto: FutureItemsRequest;
@@ -40,7 +40,7 @@ export interface FutureShipmentApiCreateFutureShipmentsForItemsUsingPOSTRequest 
     responseFields?: string;
 }
 
-export interface FutureShipmentApiFutureShipmentToReadyUsingPUTRequest {
+export interface FutureShipmentToReadyUsingPUTRequest {
     shipmentNumber: number;
     xVolTenant: number;
     ifMatch?: string;
@@ -48,7 +48,7 @@ export interface FutureShipmentApiFutureShipmentToReadyUsingPUTRequest {
     responseFields?: string;
 }
 
-export interface FutureShipmentApiUpdateFutureShipmentDateUsingPUTRequest {
+export interface UpdateFutureShipmentDateUsingPUTRequest {
     shipmentNumber: number;
     xVolTenant: number;
     futureShipmentUpdateDateRequestDto: FutureShipmentUpdateDateRequest;
@@ -77,13 +77,13 @@ export interface FutureShipmentApiInterface {
      * @throws {RequiredError}
      * @memberof FutureShipmentApiInterface
      */
-    createFutureShipmentsForFutureAllocatableItemsUsingPOSTRaw(requestParameters: FutureShipmentApiCreateFutureShipmentsForFutureAllocatableItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfEntityModelOfShipment>>;
+    createFutureShipmentsForFutureAllocatableItemsUsingPOSTRaw(requestParameters: CreateFutureShipmentsForFutureAllocatableItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfEntityModelOfShipment>>;
 
     /**
      * createFutureShipmentsForFutureAllocatableItems
      * createFutureShipmentsForFutureAllocatableItems
      */
-    createFutureShipmentsForFutureAllocatableItemsUsingPOST(requestParameters: FutureShipmentApiCreateFutureShipmentsForFutureAllocatableItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfEntityModelOfShipment>;
+    createFutureShipmentsForFutureAllocatableItemsUsingPOST(requestParameters: CreateFutureShipmentsForFutureAllocatableItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfEntityModelOfShipment>;
 
     /**
      * createFutureShipmentsForItems
@@ -98,13 +98,13 @@ export interface FutureShipmentApiInterface {
      * @throws {RequiredError}
      * @memberof FutureShipmentApiInterface
      */
-    createFutureShipmentsForItemsUsingPOSTRaw(requestParameters: FutureShipmentApiCreateFutureShipmentsForItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfEntityModelOfShipment>>;
+    createFutureShipmentsForItemsUsingPOSTRaw(requestParameters: CreateFutureShipmentsForItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfEntityModelOfShipment>>;
 
     /**
      * createFutureShipmentsForItems
      * createFutureShipmentsForItems
      */
-    createFutureShipmentsForItemsUsingPOST(requestParameters: FutureShipmentApiCreateFutureShipmentsForItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfEntityModelOfShipment>;
+    createFutureShipmentsForItemsUsingPOST(requestParameters: CreateFutureShipmentsForItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfEntityModelOfShipment>;
 
     /**
      * futureShipmentToReady
@@ -118,13 +118,13 @@ export interface FutureShipmentApiInterface {
      * @throws {RequiredError}
      * @memberof FutureShipmentApiInterface
      */
-    futureShipmentToReadyUsingPUTRaw(requestParameters: FutureShipmentApiFutureShipmentToReadyUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+    futureShipmentToReadyUsingPUTRaw(requestParameters: FutureShipmentToReadyUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
 
     /**
      * futureShipmentToReady
      * futureShipmentToReady
      */
-    futureShipmentToReadyUsingPUT(requestParameters: FutureShipmentApiFutureShipmentToReadyUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+    futureShipmentToReadyUsingPUT(requestParameters: FutureShipmentToReadyUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
 
     /**
      * updateFutureShipmentDate
@@ -139,13 +139,13 @@ export interface FutureShipmentApiInterface {
      * @throws {RequiredError}
      * @memberof FutureShipmentApiInterface
      */
-    updateFutureShipmentDateUsingPUTRaw(requestParameters: FutureShipmentApiUpdateFutureShipmentDateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+    updateFutureShipmentDateUsingPUTRaw(requestParameters: UpdateFutureShipmentDateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
 
     /**
      * updateFutureShipmentDate
      * updateFutureShipmentDate
      */
-    updateFutureShipmentDateUsingPUT(requestParameters: FutureShipmentApiUpdateFutureShipmentDateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+    updateFutureShipmentDateUsingPUT(requestParameters: UpdateFutureShipmentDateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
 
 }
 
@@ -163,7 +163,7 @@ export class FutureShipmentApi extends runtime.BaseAPI implements FutureShipment
      */
 
 
-    async createFutureShipmentsForFutureAllocatableItemsUsingPOSTRaw(requestParameters: FutureShipmentApiCreateFutureShipmentsForFutureAllocatableItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfEntityModelOfShipment>> {
+    async createFutureShipmentsForFutureAllocatableItemsUsingPOSTRaw(requestParameters: CreateFutureShipmentsForFutureAllocatableItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfEntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling createFutureShipmentsForFutureAllocatableItemsUsingPOST.');
         }
@@ -219,7 +219,7 @@ export class FutureShipmentApi extends runtime.BaseAPI implements FutureShipment
      * createFutureShipmentsForFutureAllocatableItems
      * createFutureShipmentsForFutureAllocatableItems
      */
-    async createFutureShipmentsForFutureAllocatableItemsUsingPOST(requestParameters: FutureShipmentApiCreateFutureShipmentsForFutureAllocatableItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfEntityModelOfShipment> {
+    async createFutureShipmentsForFutureAllocatableItemsUsingPOST(requestParameters: CreateFutureShipmentsForFutureAllocatableItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfEntityModelOfShipment> {
         const response = await this.createFutureShipmentsForFutureAllocatableItemsUsingPOSTRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -230,7 +230,7 @@ export class FutureShipmentApi extends runtime.BaseAPI implements FutureShipment
      */
 
 
-    async createFutureShipmentsForItemsUsingPOSTRaw(requestParameters: FutureShipmentApiCreateFutureShipmentsForItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfEntityModelOfShipment>> {
+    async createFutureShipmentsForItemsUsingPOSTRaw(requestParameters: CreateFutureShipmentsForItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfEntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling createFutureShipmentsForItemsUsingPOST.');
         }
@@ -286,7 +286,7 @@ export class FutureShipmentApi extends runtime.BaseAPI implements FutureShipment
      * createFutureShipmentsForItems
      * createFutureShipmentsForItems
      */
-    async createFutureShipmentsForItemsUsingPOST(requestParameters: FutureShipmentApiCreateFutureShipmentsForItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfEntityModelOfShipment> {
+    async createFutureShipmentsForItemsUsingPOST(requestParameters: CreateFutureShipmentsForItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfEntityModelOfShipment> {
         const response = await this.createFutureShipmentsForItemsUsingPOSTRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -297,7 +297,7 @@ export class FutureShipmentApi extends runtime.BaseAPI implements FutureShipment
      */
 
 
-    async futureShipmentToReadyUsingPUTRaw(requestParameters: FutureShipmentApiFutureShipmentToReadyUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async futureShipmentToReadyUsingPUTRaw(requestParameters: FutureShipmentToReadyUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling futureShipmentToReadyUsingPUT.');
         }
@@ -346,7 +346,7 @@ export class FutureShipmentApi extends runtime.BaseAPI implements FutureShipment
      * futureShipmentToReady
      * futureShipmentToReady
      */
-    async futureShipmentToReadyUsingPUT(requestParameters: FutureShipmentApiFutureShipmentToReadyUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+    async futureShipmentToReadyUsingPUT(requestParameters: FutureShipmentToReadyUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
         const response = await this.futureShipmentToReadyUsingPUTRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -357,7 +357,7 @@ export class FutureShipmentApi extends runtime.BaseAPI implements FutureShipment
      */
 
 
-    async updateFutureShipmentDateUsingPUTRaw(requestParameters: FutureShipmentApiUpdateFutureShipmentDateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async updateFutureShipmentDateUsingPUTRaw(requestParameters: UpdateFutureShipmentDateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateFutureShipmentDateUsingPUT.');
         }
@@ -413,7 +413,7 @@ export class FutureShipmentApi extends runtime.BaseAPI implements FutureShipment
      * updateFutureShipmentDate
      * updateFutureShipmentDate
      */
-    async updateFutureShipmentDateUsingPUT(requestParameters: FutureShipmentApiUpdateFutureShipmentDateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+    async updateFutureShipmentDateUsingPUT(requestParameters: UpdateFutureShipmentDateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
         const response = await this.updateFutureShipmentDateUsingPUTRaw(requestParameters, initOverrides);
         return await response.value();
     }

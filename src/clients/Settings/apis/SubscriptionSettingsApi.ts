@@ -19,16 +19,16 @@ import type {
   SubscriptionSettings,
 } from '../models';
 
-export interface SubscriptionSettingsApiCreateSubscriptionSettingsRequest {
+export interface CreateSubscriptionSettingsRequest {
     responseFields?: string;
     subscriptionSettings?: SubscriptionSettings;
 }
 
-export interface SubscriptionSettingsApiGetSubscriptionSettingsRequest {
+export interface GetSubscriptionSettingsRequest {
     responseFields?: string;
 }
 
-export interface SubscriptionSettingsApiUpdateSubscriptionSettingsRequest {
+export interface UpdateSubscriptionSettingsRequest {
     responseFields?: string;
     subscriptionSettings?: SubscriptionSettings;
 }
@@ -49,13 +49,13 @@ export interface SubscriptionSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof SubscriptionSettingsApiInterface
      */
-    createSubscriptionSettingsRaw(requestParameters: SubscriptionSettingsApiCreateSubscriptionSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionSettings>>;
+    createSubscriptionSettingsRaw(requestParameters: CreateSubscriptionSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionSettings>>;
 
     /**
      * Creates new subscription settings for a site
      * Create subscription settings
      */
-    createSubscriptionSettings(requestParameters: SubscriptionSettingsApiCreateSubscriptionSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionSettings>;
+    createSubscriptionSettings(requestParameters: CreateSubscriptionSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionSettings>;
 
     /**
      * Retrieves existing subscription settings for a site
@@ -65,13 +65,13 @@ export interface SubscriptionSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof SubscriptionSettingsApiInterface
      */
-    getSubscriptionSettingsRaw(requestParameters: SubscriptionSettingsApiGetSubscriptionSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionSettings>>;
+    getSubscriptionSettingsRaw(requestParameters: GetSubscriptionSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionSettings>>;
 
     /**
      * Retrieves existing subscription settings for a site
      * Retrieves existing subscription settings
      */
-    getSubscriptionSettings(requestParameters: SubscriptionSettingsApiGetSubscriptionSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionSettings>;
+    getSubscriptionSettings(requestParameters: GetSubscriptionSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionSettings>;
 
     /**
      * Modifies existing subscription settings for a site
@@ -82,13 +82,13 @@ export interface SubscriptionSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof SubscriptionSettingsApiInterface
      */
-    updateSubscriptionSettingsRaw(requestParameters: SubscriptionSettingsApiUpdateSubscriptionSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionSettings>>;
+    updateSubscriptionSettingsRaw(requestParameters: UpdateSubscriptionSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionSettings>>;
 
     /**
      * Modifies existing subscription settings for a site
      * Update Subscription Settings
      */
-    updateSubscriptionSettings(requestParameters: SubscriptionSettingsApiUpdateSubscriptionSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionSettings>;
+    updateSubscriptionSettings(requestParameters: UpdateSubscriptionSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionSettings>;
 
 }
 
@@ -106,7 +106,7 @@ export class SubscriptionSettingsApi extends runtime.BaseAPI implements Subscrip
      */
 
 
-    async createSubscriptionSettingsRaw(requestParameters: SubscriptionSettingsApiCreateSubscriptionSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionSettings>> {
+    async createSubscriptionSettingsRaw(requestParameters: CreateSubscriptionSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionSettings>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -138,7 +138,7 @@ export class SubscriptionSettingsApi extends runtime.BaseAPI implements Subscrip
      * Creates new subscription settings for a site
      * Create subscription settings
      */
-    async createSubscriptionSettings(requestParameters: SubscriptionSettingsApiCreateSubscriptionSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionSettings> {
+    async createSubscriptionSettings(requestParameters: CreateSubscriptionSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionSettings> {
         const response = await this.createSubscriptionSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -149,7 +149,7 @@ export class SubscriptionSettingsApi extends runtime.BaseAPI implements Subscrip
      */
 
 
-    async getSubscriptionSettingsRaw(requestParameters: SubscriptionSettingsApiGetSubscriptionSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionSettings>> {
+    async getSubscriptionSettingsRaw(requestParameters: GetSubscriptionSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionSettings>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -178,7 +178,7 @@ export class SubscriptionSettingsApi extends runtime.BaseAPI implements Subscrip
      * Retrieves existing subscription settings for a site
      * Retrieves existing subscription settings
      */
-    async getSubscriptionSettings(requestParameters: SubscriptionSettingsApiGetSubscriptionSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionSettings> {
+    async getSubscriptionSettings(requestParameters: GetSubscriptionSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionSettings> {
         const response = await this.getSubscriptionSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -189,7 +189,7 @@ export class SubscriptionSettingsApi extends runtime.BaseAPI implements Subscrip
      */
 
 
-    async updateSubscriptionSettingsRaw(requestParameters: SubscriptionSettingsApiUpdateSubscriptionSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionSettings>> {
+    async updateSubscriptionSettingsRaw(requestParameters: UpdateSubscriptionSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionSettings>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -221,7 +221,7 @@ export class SubscriptionSettingsApi extends runtime.BaseAPI implements Subscrip
      * Modifies existing subscription settings for a site
      * Update Subscription Settings
      */
-    async updateSubscriptionSettings(requestParameters: SubscriptionSettingsApiUpdateSubscriptionSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionSettings> {
+    async updateSubscriptionSettings(requestParameters: UpdateSubscriptionSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionSettings> {
         const response = await this.updateSubscriptionSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -19,16 +19,16 @@ import type {
   CartSettings,
 } from '../models';
 
-export interface CartSettingsApiCreateCartSettingsRequest {
+export interface CreateCartSettingsRequest {
     responseFields?: string;
     cartSettings?: CartSettings;
 }
 
-export interface CartSettingsApiGetCartSettingsRequest {
+export interface GetCartSettingsRequest {
     responseFields?: string;
 }
 
-export interface CartSettingsApiUpdateCartSettingsRequest {
+export interface UpdateCartSettingsRequest {
     responseFields?: string;
     cartSettings?: CartSettings;
 }
@@ -49,13 +49,13 @@ export interface CartSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof CartSettingsApiInterface
      */
-    createCartSettingsRaw(requestParameters: CartSettingsApiCreateCartSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartSettings>>;
+    createCartSettingsRaw(requestParameters: CreateCartSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartSettings>>;
 
     /**
      * Creates new cart settings for a site
      * Create cart settings
      */
-    createCartSettings(requestParameters: CartSettingsApiCreateCartSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartSettings>;
+    createCartSettings(requestParameters: CreateCartSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartSettings>;
 
     /**
      * Retrieves existing cart settings for a site
@@ -65,13 +65,13 @@ export interface CartSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof CartSettingsApiInterface
      */
-    getCartSettingsRaw(requestParameters: CartSettingsApiGetCartSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartSettings>>;
+    getCartSettingsRaw(requestParameters: GetCartSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartSettings>>;
 
     /**
      * Retrieves existing cart settings for a site
      * Retrieves existing cart settings
      */
-    getCartSettings(requestParameters: CartSettingsApiGetCartSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartSettings>;
+    getCartSettings(requestParameters: GetCartSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartSettings>;
 
     /**
      * Modifies existing cart settings for a site
@@ -82,13 +82,13 @@ export interface CartSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof CartSettingsApiInterface
      */
-    updateCartSettingsRaw(requestParameters: CartSettingsApiUpdateCartSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartSettings>>;
+    updateCartSettingsRaw(requestParameters: UpdateCartSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartSettings>>;
 
     /**
      * Modifies existing cart settings for a site
      * Update Cart Settings
      */
-    updateCartSettings(requestParameters: CartSettingsApiUpdateCartSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartSettings>;
+    updateCartSettings(requestParameters: UpdateCartSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartSettings>;
 
 }
 
@@ -106,7 +106,7 @@ export class CartSettingsApi extends runtime.BaseAPI implements CartSettingsApiI
      */
 
 
-    async createCartSettingsRaw(requestParameters: CartSettingsApiCreateCartSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartSettings>> {
+    async createCartSettingsRaw(requestParameters: CreateCartSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartSettings>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -138,7 +138,7 @@ export class CartSettingsApi extends runtime.BaseAPI implements CartSettingsApiI
      * Creates new cart settings for a site
      * Create cart settings
      */
-    async createCartSettings(requestParameters: CartSettingsApiCreateCartSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartSettings> {
+    async createCartSettings(requestParameters: CreateCartSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartSettings> {
         const response = await this.createCartSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -149,7 +149,7 @@ export class CartSettingsApi extends runtime.BaseAPI implements CartSettingsApiI
      */
 
 
-    async getCartSettingsRaw(requestParameters: CartSettingsApiGetCartSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartSettings>> {
+    async getCartSettingsRaw(requestParameters: GetCartSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartSettings>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -178,7 +178,7 @@ export class CartSettingsApi extends runtime.BaseAPI implements CartSettingsApiI
      * Retrieves existing cart settings for a site
      * Retrieves existing cart settings
      */
-    async getCartSettings(requestParameters: CartSettingsApiGetCartSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartSettings> {
+    async getCartSettings(requestParameters: GetCartSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartSettings> {
         const response = await this.getCartSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -189,7 +189,7 @@ export class CartSettingsApi extends runtime.BaseAPI implements CartSettingsApiI
      */
 
 
-    async updateCartSettingsRaw(requestParameters: CartSettingsApiUpdateCartSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartSettings>> {
+    async updateCartSettingsRaw(requestParameters: UpdateCartSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartSettings>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -221,7 +221,7 @@ export class CartSettingsApi extends runtime.BaseAPI implements CartSettingsApiI
      * Modifies existing cart settings for a site
      * Update Cart Settings
      */
-    async updateCartSettings(requestParameters: CartSettingsApiUpdateCartSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartSettings> {
+    async updateCartSettings(requestParameters: UpdateCartSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartSettings> {
         const response = await this.updateCartSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
