@@ -20,135 +20,134 @@ import type {
   ChannelCollection,
 } from '../models';
 
-export interface CreateChannelRequest {
-    responseFields?: string;
-    channel?: Channel;
+
+export namespace channelApiParams { 
+    export interface CreateChannelRequest {
+        responseFields?: string;
+        channel?: Channel;
+    }
+    export interface DeleteChannelRequest {
+        code: string;
+    }
+    export interface GetChannelRequest {
+        code: string;
+        responseFields?: string;
+    }
+    export interface GetChannelsRequest {
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        filter?: string;
+        responseFields?: string;
+    }
+    export interface UpdateChannelRequest {
+        code: string;
+        responseFields?: string;
+        channel?: Channel;
+    }
+}
+/**
+* ChannelApiService - interface
+* 
+* @export
+* @interface ChannelApi
+*/
+export interface ChannelApiService {
+    /**
+    * Creates a new channel that defines a new logical business division to use for financial reporting.
+    * @summary Creates channel.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Channel} [channel] All properties of the channel to place.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ChannelApiInterface
+    */
+    createChannelRaw(requestParameters: channelApiParams.CreateChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Channel>>;
+
+    /**
+    * Creates a new channel that defines a new logical business division to use for financial reporting.
+    * Creates channel.
+    */
+    createChannel(requestParameters: channelApiParams.CreateChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Channel>;
+
+    /**
+    * Deletes a channel specified by channel Id. After deleting this channel, assign its associated sites to another channel. Because channels are managed at the tenant level, you must associate all the tenant\'s sites with a channel. Sites that do not have a defined channel association cannot successfully submit orders.
+    * @summary Delete Channel
+    * @param {string} code ID of the channel to update.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ChannelApiInterface
+    */
+    deleteChannelRaw(requestParameters: channelApiParams.DeleteChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+    * Deletes a channel specified by channel Id. After deleting this channel, assign its associated sites to another channel. Because channels are managed at the tenant level, you must associate all the tenant\'s sites with a channel. Sites that do not have a defined channel association cannot successfully submit orders.
+    * Delete Channel
+    */
+    deleteChannel(requestParameters: channelApiParams.DeleteChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+    * Retrieves the details of an channel specified by the channel ID.
+    * @summary Get Channel
+    * @param {string} code Unique identifier of the channel whose details you want.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ChannelApiInterface
+    */
+    getChannelRaw(requestParameters: channelApiParams.GetChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Channel>>;
+
+    /**
+    * Retrieves the details of an channel specified by the channel ID.
+    * Get Channel
+    */
+    getChannel(requestParameters: channelApiParams.GetChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Channel>;
+
+    /**
+    * Retrieves a list of channels according to any specified filter criteria and sort options. All orders include a channel association that enables the company to perform financial reporting for each defined channel. Because channels are managed at the tenant level, you must associate all the tenant\'s sites with a channel. Sites that do not have a defined channel association cannot successfully submit orders.
+    * @summary Get Channels
+    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.               For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
+    * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+    * @param {string} [sortBy] The element to sort the results by and the channel in which the results appear. Either ascending (a-z) or descending (z-a) channel. Optional.
+    * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals,               gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ChannelApiInterface
+    */
+    getChannelsRaw(requestParameters: channelApiParams.GetChannelsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelCollection>>;
+
+    /**
+    * Retrieves a list of channels according to any specified filter criteria and sort options. All orders include a channel association that enables the company to perform financial reporting for each defined channel. Because channels are managed at the tenant level, you must associate all the tenant\'s sites with a channel. Sites that do not have a defined channel association cannot successfully submit orders.
+    * Get Channels
+    */
+    getChannels(requestParameters: channelApiParams.GetChannelsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelCollection>;
+
+    /**
+    * Updates a channel.
+    * @summary Update channel.
+    * @param {string} code ID of the channel to update.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Channel} [channel] All properties of the channel to place.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ChannelApiInterface
+    */
+    updateChannelRaw(requestParameters: channelApiParams.UpdateChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Channel>>;
+
+    /**
+    * Updates a channel.
+    * Update channel.
+    */
+    updateChannel(requestParameters: channelApiParams.UpdateChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Channel>;
+
 }
 
-export interface DeleteChannelRequest {
-    code: string;
-}
-
-export interface GetChannelRequest {
-    code: string;
-    responseFields?: string;
-}
-
-export interface GetChannelsRequest {
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    filter?: string;
-    responseFields?: string;
-}
-
-export interface UpdateChannelRequest {
-    code: string;
-    responseFields?: string;
-    channel?: Channel;
-}
 
 /**
- * ChannelApi - interface
- * 
- * @export
- * @interface ChannelApiInterface
- */
-export interface ChannelApiInterface {
-    /**
-     * Creates a new channel that defines a new logical business division to use for financial reporting.
-     * @summary Creates channel.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Channel} [channel] All properties of the channel to place.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChannelApiInterface
-     */
-    createChannelRaw(requestParameters: CreateChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Channel>>;
-
-    /**
-     * Creates a new channel that defines a new logical business division to use for financial reporting.
-     * Creates channel.
-     */
-    createChannel(requestParameters: CreateChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Channel>;
-
-    /**
-     * Deletes a channel specified by channel Id. After deleting this channel, assign its associated sites to another channel. Because channels are managed at the tenant level, you must associate all the tenant\'s sites with a channel. Sites that do not have a defined channel association cannot successfully submit orders.
-     * @summary Delete Channel
-     * @param {string} code ID of the channel to update.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChannelApiInterface
-     */
-    deleteChannelRaw(requestParameters: DeleteChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     * Deletes a channel specified by channel Id. After deleting this channel, assign its associated sites to another channel. Because channels are managed at the tenant level, you must associate all the tenant\'s sites with a channel. Sites that do not have a defined channel association cannot successfully submit orders.
-     * Delete Channel
-     */
-    deleteChannel(requestParameters: DeleteChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * Retrieves the details of an channel specified by the channel ID.
-     * @summary Get Channel
-     * @param {string} code Unique identifier of the channel whose details you want.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChannelApiInterface
-     */
-    getChannelRaw(requestParameters: GetChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Channel>>;
-
-    /**
-     * Retrieves the details of an channel specified by the channel ID.
-     * Get Channel
-     */
-    getChannel(requestParameters: GetChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Channel>;
-
-    /**
-     * Retrieves a list of channels according to any specified filter criteria and sort options. All orders include a channel association that enables the company to perform financial reporting for each defined channel. Because channels are managed at the tenant level, you must associate all the tenant\'s sites with a channel. Sites that do not have a defined channel association cannot successfully submit orders.
-     * @summary Get Channels
-     * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.               For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
-     * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
-     * @param {string} [sortBy] The element to sort the results by and the channel in which the results appear. Either ascending (a-z) or descending (z-a) channel. Optional.
-     * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals,               gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChannelApiInterface
-     */
-    getChannelsRaw(requestParameters: GetChannelsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelCollection>>;
-
-    /**
-     * Retrieves a list of channels according to any specified filter criteria and sort options. All orders include a channel association that enables the company to perform financial reporting for each defined channel. Because channels are managed at the tenant level, you must associate all the tenant\'s sites with a channel. Sites that do not have a defined channel association cannot successfully submit orders.
-     * Get Channels
-     */
-    getChannels(requestParameters: GetChannelsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelCollection>;
-
-    /**
-     * Updates a channel.
-     * @summary Update channel.
-     * @param {string} code ID of the channel to update.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Channel} [channel] All properties of the channel to place.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChannelApiInterface
-     */
-    updateChannelRaw(requestParameters: UpdateChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Channel>>;
-
-    /**
-     * Updates a channel.
-     * Update channel.
-     */
-    updateChannel(requestParameters: UpdateChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Channel>;
-
-}
-
-/**
  * 
  */
-export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
+export class ChannelApi extends runtime.BaseAPI implements ChannelApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -159,7 +158,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
      */
 
 
-    async createChannelRaw(requestParameters: CreateChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Channel>> {
+    async createChannelRaw(requestParameters: channelApiParams.CreateChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Channel>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -191,7 +190,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
      * Creates a new channel that defines a new logical business division to use for financial reporting.
      * Creates channel.
      */
-    async createChannel(requestParameters: CreateChannelRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Channel> {
+    async createChannel(requestParameters: channelApiParams.CreateChannelRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Channel> {
         const response = await this.createChannelRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -202,7 +201,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
      */
 
 
-    async deleteChannelRaw(requestParameters: DeleteChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteChannelRaw(requestParameters: channelApiParams.DeleteChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling deleteChannel.');
         }
@@ -231,7 +230,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
      * Deletes a channel specified by channel Id. After deleting this channel, assign its associated sites to another channel. Because channels are managed at the tenant level, you must associate all the tenant\'s sites with a channel. Sites that do not have a defined channel association cannot successfully submit orders.
      * Delete Channel
      */
-    async deleteChannel(requestParameters: DeleteChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteChannel(requestParameters: channelApiParams.DeleteChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteChannelRaw(requestParameters, initOverrides);
     }
 
@@ -241,7 +240,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
      */
 
 
-    async getChannelRaw(requestParameters: GetChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Channel>> {
+    async getChannelRaw(requestParameters: channelApiParams.GetChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Channel>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling getChannel.');
         }
@@ -274,7 +273,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
      * Retrieves the details of an channel specified by the channel ID.
      * Get Channel
      */
-    async getChannel(requestParameters: GetChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Channel> {
+    async getChannel(requestParameters: channelApiParams.GetChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Channel> {
         const response = await this.getChannelRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -285,7 +284,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
      */
 
 
-    async getChannelsRaw(requestParameters: GetChannelsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelCollection>> {
+    async getChannelsRaw(requestParameters: channelApiParams.GetChannelsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -330,7 +329,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
      * Retrieves a list of channels according to any specified filter criteria and sort options. All orders include a channel association that enables the company to perform financial reporting for each defined channel. Because channels are managed at the tenant level, you must associate all the tenant\'s sites with a channel. Sites that do not have a defined channel association cannot successfully submit orders.
      * Get Channels
      */
-    async getChannels(requestParameters: GetChannelsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelCollection> {
+    async getChannels(requestParameters: channelApiParams.GetChannelsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelCollection> {
         const response = await this.getChannelsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -341,7 +340,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
      */
 
 
-    async updateChannelRaw(requestParameters: UpdateChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Channel>> {
+    async updateChannelRaw(requestParameters: channelApiParams.UpdateChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Channel>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling updateChannel.');
         }
@@ -377,7 +376,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
      * Updates a channel.
      * Update channel.
      */
-    async updateChannel(requestParameters: UpdateChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Channel> {
+    async updateChannel(requestParameters: channelApiParams.UpdateChannelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Channel> {
         const response = await this.updateChannelRaw(requestParameters, initOverrides);
         return await response.value();
     }

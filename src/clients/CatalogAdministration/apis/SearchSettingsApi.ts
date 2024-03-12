@@ -22,243 +22,237 @@ import type {
   SpellcheckUpdate,
 } from '../models';
 
-export interface AddSearchSettingRequest {
-    fromSystemDefault?: boolean;
-    copyFromName?: string;
-    name?: string;
-    makeDefault?: boolean;
-    responseFields?: string;
-    searchSettings?: SearchSettings;
-}
 
-export interface DeleteSearchSettingRequest {
-    name: string;
+export namespace searchSettingsApiParams { 
+    export interface AddSearchSettingRequest {
+        fromSystemDefault?: boolean;
+        copyFromName?: string;
+        name?: string;
+        makeDefault?: boolean;
+        responseFields?: string;
+        searchSettings?: SearchSettings;
+    }
+    export interface DeleteSearchSettingRequest {
+        name: string;
+    }
+    export interface DeleteSiteSearchSettingsRequest {
+        name: string;
+    }
+    export interface GetSearchSettingRequest {
+        name: string;
+        responseFields?: string;
+    }
+    export interface GetSearchSettingsRequest {
+        responseFields?: string;
+    }
+    export interface GetSiteSearchSettingsRequest {
+        name: string;
+        responseFields?: string;
+    }
+    export interface GetSystemDefaultSettingsRequest {
+        responseFields?: string;
+    }
+    export interface UpdateSearchSettingRequest {
+        name: string;
+        responseFields?: string;
+        searchSettings?: SearchSettings;
+    }
+    export interface UpdateSiteSearchSettingsRequest {
+        name: string;
+        responseFields?: string;
+        siteSearchSettings?: SiteSearchSettings;
+    }
+    export interface UpdateSpellCheckRequest {
+        responseFields?: string;
+        spellcheckUpdate?: SpellcheckUpdate;
+    }
 }
-
-export interface DeleteSiteSearchSettingsRequest {
-    name: string;
-}
-
-export interface GetSearchSettingRequest {
-    name: string;
-    responseFields?: string;
-}
-
-export interface GetSearchSettingsRequest {
-    responseFields?: string;
-}
-
-export interface GetSiteSearchSettingsRequest {
-    name: string;
-    responseFields?: string;
-}
-
-export interface GetSystemDefaultSettingsRequest {
-    responseFields?: string;
-}
-
-export interface UpdateSearchSettingRequest {
-    name: string;
-    responseFields?: string;
-    searchSettings?: SearchSettings;
-}
-
-export interface UpdateSiteSearchSettingsRequest {
-    name: string;
-    responseFields?: string;
-    siteSearchSettings?: SiteSearchSettings;
-}
-
-export interface UpdateSpellCheckRequest {
-    responseFields?: string;
-    spellcheckUpdate?: SpellcheckUpdate;
-}
-
 /**
- * SearchSettingsApi - interface
- * 
- * @export
- * @interface SearchSettingsApiInterface
- */
-export interface SearchSettingsApiInterface {
+* SearchSettingsApiService - interface
+* 
+* @export
+* @interface SearchSettingsApi
+*/
+export interface SearchSettingsApiService {
     /**
-     * Adds the Search Settings for a specific site.
-     * @summary Add search setting
-     * @param {boolean} [fromSystemDefault] 
-     * @param {string} [copyFromName] 
-     * @param {string} [name] 
-     * @param {boolean} [makeDefault] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {SearchSettings} [searchSettings] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchSettingsApiInterface
-     */
-    addSearchSettingRaw(requestParameters: AddSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettings>>;
+    * Adds the Search Settings for a specific site.
+    * @summary Add search setting
+    * @param {boolean} [fromSystemDefault] 
+    * @param {string} [copyFromName] 
+    * @param {string} [name] 
+    * @param {boolean} [makeDefault] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {SearchSettings} [searchSettings] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SearchSettingsApiInterface
+    */
+    addSearchSettingRaw(requestParameters: searchSettingsApiParams.AddSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettings>>;
 
     /**
-     * Adds the Search Settings for a specific site.
-     * Add search setting
-     */
-    addSearchSetting(requestParameters: AddSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings>;
+    * Adds the Search Settings for a specific site.
+    * Add search setting
+    */
+    addSearchSetting(requestParameters: searchSettingsApiParams.AddSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings>;
 
     /**
-     * Delete the Search Settings for a specific site by name.
-     * @summary Delete search setting
-     * @param {string} name 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchSettingsApiInterface
-     */
-    deleteSearchSettingRaw(requestParameters: DeleteSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettings>>;
+    * Delete the Search Settings for a specific site by name.
+    * @summary Delete search setting
+    * @param {string} name 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SearchSettingsApiInterface
+    */
+    deleteSearchSettingRaw(requestParameters: searchSettingsApiParams.DeleteSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettings>>;
 
     /**
-     * Delete the Search Settings for a specific site by name.
-     * Delete search setting
-     */
-    deleteSearchSetting(requestParameters: DeleteSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings>;
+    * Delete the Search Settings for a specific site by name.
+    * Delete search setting
+    */
+    deleteSearchSetting(requestParameters: searchSettingsApiParams.DeleteSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings>;
 
     /**
-     * Deletes the SiteSearchSettings for a specific SearchSetting by name.
-     * @summary Delete site search settings
-     * @param {string} name 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchSettingsApiInterface
-     */
-    deleteSiteSearchSettingsRaw(requestParameters: DeleteSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Deletes the SiteSearchSettings for a specific SearchSetting by name.
+    * @summary Delete site search settings
+    * @param {string} name 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SearchSettingsApiInterface
+    */
+    deleteSiteSearchSettingsRaw(requestParameters: searchSettingsApiParams.DeleteSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Deletes the SiteSearchSettings for a specific SearchSetting by name.
-     * Delete site search settings
-     */
-    deleteSiteSearchSettings(requestParameters: DeleteSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Deletes the SiteSearchSettings for a specific SearchSetting by name.
+    * Delete site search settings
+    */
+    deleteSiteSearchSettings(requestParameters: searchSettingsApiParams.DeleteSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Get site search settings by name.
-     * @summary Get search setting
-     * @param {string} name 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchSettingsApiInterface
-     */
-    getSearchSettingRaw(requestParameters: GetSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettings>>;
+    * Get site search settings by name.
+    * @summary Get search setting
+    * @param {string} name 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SearchSettingsApiInterface
+    */
+    getSearchSettingRaw(requestParameters: searchSettingsApiParams.GetSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettings>>;
 
     /**
-     * Get site search settings by name.
-     * Get search setting
-     */
-    getSearchSetting(requestParameters: GetSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings>;
+    * Get site search settings by name.
+    * Get search setting
+    */
+    getSearchSetting(requestParameters: searchSettingsApiParams.GetSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings>;
 
     /**
-     * Get site search settings list.
-     * @summary Get search settings
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchSettingsApiInterface
-     */
-    getSearchSettingsRaw(requestParameters: GetSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettingsCollection>>;
+    * Get site search settings list.
+    * @summary Get search settings
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SearchSettingsApiInterface
+    */
+    getSearchSettingsRaw(requestParameters: searchSettingsApiParams.GetSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettingsCollection>>;
 
     /**
-     * Get site search settings list.
-     * Get search settings
-     */
-    getSearchSettings(requestParameters: GetSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettingsCollection>;
+    * Get site search settings list.
+    * Get search settings
+    */
+    getSearchSettings(requestParameters: searchSettingsApiParams.GetSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettingsCollection>;
 
     /**
-     * Get SiteSearchSettings for a specific SearchSettings by name.
-     * @summary Get site search settings
-     * @param {string} name 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchSettingsApiInterface
-     */
-    getSiteSearchSettingsRaw(requestParameters: GetSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteSearchSettings>>;
+    * Get SiteSearchSettings for a specific SearchSettings by name.
+    * @summary Get site search settings
+    * @param {string} name 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SearchSettingsApiInterface
+    */
+    getSiteSearchSettingsRaw(requestParameters: searchSettingsApiParams.GetSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteSearchSettings>>;
 
     /**
-     * Get SiteSearchSettings for a specific SearchSettings by name.
-     * Get site search settings
-     */
-    getSiteSearchSettings(requestParameters: GetSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteSearchSettings>;
+    * Get SiteSearchSettings for a specific SearchSettings by name.
+    * Get site search settings
+    */
+    getSiteSearchSettings(requestParameters: searchSettingsApiParams.GetSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteSearchSettings>;
 
     /**
-     * Get the system default search settings
-     * @summary Get system default search setting
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchSettingsApiInterface
-     */
-    getSystemDefaultSettingsRaw(requestParameters: GetSystemDefaultSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettings>>;
+    * Get the system default search settings
+    * @summary Get system default search setting
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SearchSettingsApiInterface
+    */
+    getSystemDefaultSettingsRaw(requestParameters: searchSettingsApiParams.GetSystemDefaultSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettings>>;
 
     /**
-     * Get the system default search settings
-     * Get system default search setting
-     */
-    getSystemDefaultSettings(requestParameters: GetSystemDefaultSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings>;
+    * Get the system default search settings
+    * Get system default search setting
+    */
+    getSystemDefaultSettings(requestParameters: searchSettingsApiParams.GetSystemDefaultSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings>;
 
     /**
-     * Updates the Search Settings for a specific site.
-     * @summary Update search setting
-     * @param {string} name 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {SearchSettings} [searchSettings] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchSettingsApiInterface
-     */
-    updateSearchSettingRaw(requestParameters: UpdateSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettings>>;
+    * Updates the Search Settings for a specific site.
+    * @summary Update search setting
+    * @param {string} name 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {SearchSettings} [searchSettings] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SearchSettingsApiInterface
+    */
+    updateSearchSettingRaw(requestParameters: searchSettingsApiParams.UpdateSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettings>>;
 
     /**
-     * Updates the Search Settings for a specific site.
-     * Update search setting
-     */
-    updateSearchSetting(requestParameters: UpdateSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings>;
+    * Updates the Search Settings for a specific site.
+    * Update search setting
+    */
+    updateSearchSetting(requestParameters: searchSettingsApiParams.UpdateSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings>;
 
     /**
-     * Updates the SiteSearchSettings for a specific SearchSetting by name.
-     * @summary Update site search settings
-     * @param {string} name 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {SiteSearchSettings} [siteSearchSettings] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchSettingsApiInterface
-     */
-    updateSiteSearchSettingsRaw(requestParameters: UpdateSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteSearchSettings>>;
+    * Updates the SiteSearchSettings for a specific SearchSetting by name.
+    * @summary Update site search settings
+    * @param {string} name 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {SiteSearchSettings} [siteSearchSettings] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SearchSettingsApiInterface
+    */
+    updateSiteSearchSettingsRaw(requestParameters: searchSettingsApiParams.UpdateSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteSearchSettings>>;
 
     /**
-     * Updates the SiteSearchSettings for a specific SearchSetting by name.
-     * Update site search settings
-     */
-    updateSiteSearchSettings(requestParameters: UpdateSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteSearchSettings>;
+    * Updates the SiteSearchSettings for a specific SearchSetting by name.
+    * Update site search settings
+    */
+    updateSiteSearchSettings(requestParameters: searchSettingsApiParams.UpdateSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteSearchSettings>;
 
     /**
-     * Update Spellcheck for SiteSearchSettings.
-     * @summary Update Spellcheck settings
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {SpellcheckUpdate} [spellcheckUpdate] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchSettingsApiInterface
-     */
-    updateSpellCheckRaw(requestParameters: UpdateSpellCheckRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Update Spellcheck for SiteSearchSettings.
+    * @summary Update Spellcheck settings
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {SpellcheckUpdate} [spellcheckUpdate] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SearchSettingsApiInterface
+    */
+    updateSpellCheckRaw(requestParameters: searchSettingsApiParams.UpdateSpellCheckRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Update Spellcheck for SiteSearchSettings.
-     * Update Spellcheck settings
-     */
-    updateSpellCheck(requestParameters: UpdateSpellCheckRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Update Spellcheck for SiteSearchSettings.
+    * Update Spellcheck settings
+    */
+    updateSpellCheck(requestParameters: searchSettingsApiParams.UpdateSpellCheckRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
 }
+
 
 /**
  * 
  */
-export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettingsApiInterface {
+export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettingsApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -269,7 +263,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
      */
 
 
-    async addSearchSettingRaw(requestParameters: AddSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettings>> {
+    async addSearchSettingRaw(requestParameters: searchSettingsApiParams.AddSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettings>> {
         const queryParameters: any = {};
 
         if (requestParameters.fromSystemDefault !== undefined) {
@@ -317,7 +311,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
      * Adds the Search Settings for a specific site.
      * Add search setting
      */
-    async addSearchSetting(requestParameters: AddSearchSettingRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings> {
+    async addSearchSetting(requestParameters: searchSettingsApiParams.AddSearchSettingRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings> {
         const response = await this.addSearchSettingRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -328,7 +322,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
      */
 
 
-    async deleteSearchSettingRaw(requestParameters: DeleteSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettings>> {
+    async deleteSearchSettingRaw(requestParameters: searchSettingsApiParams.DeleteSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettings>> {
         if (requestParameters.name === null || requestParameters.name === undefined) {
             throw new runtime.RequiredError('name','Required parameter requestParameters.name was null or undefined when calling deleteSearchSetting.');
         }
@@ -357,7 +351,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
      * Delete the Search Settings for a specific site by name.
      * Delete search setting
      */
-    async deleteSearchSetting(requestParameters: DeleteSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings> {
+    async deleteSearchSetting(requestParameters: searchSettingsApiParams.DeleteSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings> {
         const response = await this.deleteSearchSettingRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -368,7 +362,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
      */
 
 
-    async deleteSiteSearchSettingsRaw(requestParameters: DeleteSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteSiteSearchSettingsRaw(requestParameters: searchSettingsApiParams.DeleteSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.name === null || requestParameters.name === undefined) {
             throw new runtime.RequiredError('name','Required parameter requestParameters.name was null or undefined when calling deleteSiteSearchSettings.');
         }
@@ -397,7 +391,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
      * Deletes the SiteSearchSettings for a specific SearchSetting by name.
      * Delete site search settings
      */
-    async deleteSiteSearchSettings(requestParameters: DeleteSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteSiteSearchSettings(requestParameters: searchSettingsApiParams.DeleteSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteSiteSearchSettingsRaw(requestParameters, initOverrides);
     }
 
@@ -407,7 +401,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
      */
 
 
-    async getSearchSettingRaw(requestParameters: GetSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettings>> {
+    async getSearchSettingRaw(requestParameters: searchSettingsApiParams.GetSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettings>> {
         if (requestParameters.name === null || requestParameters.name === undefined) {
             throw new runtime.RequiredError('name','Required parameter requestParameters.name was null or undefined when calling getSearchSetting.');
         }
@@ -440,7 +434,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
      * Get site search settings by name.
      * Get search setting
      */
-    async getSearchSetting(requestParameters: GetSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings> {
+    async getSearchSetting(requestParameters: searchSettingsApiParams.GetSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings> {
         const response = await this.getSearchSettingRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -451,7 +445,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
      */
 
 
-    async getSearchSettingsRaw(requestParameters: GetSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettingsCollection>> {
+    async getSearchSettingsRaw(requestParameters: searchSettingsApiParams.GetSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettingsCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -480,7 +474,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
      * Get site search settings list.
      * Get search settings
      */
-    async getSearchSettings(requestParameters: GetSearchSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettingsCollection> {
+    async getSearchSettings(requestParameters: searchSettingsApiParams.GetSearchSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettingsCollection> {
         const response = await this.getSearchSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -491,7 +485,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
      */
 
 
-    async getSiteSearchSettingsRaw(requestParameters: GetSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteSearchSettings>> {
+    async getSiteSearchSettingsRaw(requestParameters: searchSettingsApiParams.GetSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteSearchSettings>> {
         if (requestParameters.name === null || requestParameters.name === undefined) {
             throw new runtime.RequiredError('name','Required parameter requestParameters.name was null or undefined when calling getSiteSearchSettings.');
         }
@@ -524,7 +518,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
      * Get SiteSearchSettings for a specific SearchSettings by name.
      * Get site search settings
      */
-    async getSiteSearchSettings(requestParameters: GetSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteSearchSettings> {
+    async getSiteSearchSettings(requestParameters: searchSettingsApiParams.GetSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteSearchSettings> {
         const response = await this.getSiteSearchSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -535,7 +529,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
      */
 
 
-    async getSystemDefaultSettingsRaw(requestParameters: GetSystemDefaultSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettings>> {
+    async getSystemDefaultSettingsRaw(requestParameters: searchSettingsApiParams.GetSystemDefaultSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettings>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -564,7 +558,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
      * Get the system default search settings
      * Get system default search setting
      */
-    async getSystemDefaultSettings(requestParameters: GetSystemDefaultSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings> {
+    async getSystemDefaultSettings(requestParameters: searchSettingsApiParams.GetSystemDefaultSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings> {
         const response = await this.getSystemDefaultSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -575,7 +569,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
      */
 
 
-    async updateSearchSettingRaw(requestParameters: UpdateSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettings>> {
+    async updateSearchSettingRaw(requestParameters: searchSettingsApiParams.UpdateSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettings>> {
         if (requestParameters.name === null || requestParameters.name === undefined) {
             throw new runtime.RequiredError('name','Required parameter requestParameters.name was null or undefined when calling updateSearchSetting.');
         }
@@ -611,7 +605,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
      * Updates the Search Settings for a specific site.
      * Update search setting
      */
-    async updateSearchSetting(requestParameters: UpdateSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings> {
+    async updateSearchSetting(requestParameters: searchSettingsApiParams.UpdateSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings> {
         const response = await this.updateSearchSettingRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -622,7 +616,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
      */
 
 
-    async updateSiteSearchSettingsRaw(requestParameters: UpdateSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteSearchSettings>> {
+    async updateSiteSearchSettingsRaw(requestParameters: searchSettingsApiParams.UpdateSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteSearchSettings>> {
         if (requestParameters.name === null || requestParameters.name === undefined) {
             throw new runtime.RequiredError('name','Required parameter requestParameters.name was null or undefined when calling updateSiteSearchSettings.');
         }
@@ -658,7 +652,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
      * Updates the SiteSearchSettings for a specific SearchSetting by name.
      * Update site search settings
      */
-    async updateSiteSearchSettings(requestParameters: UpdateSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteSearchSettings> {
+    async updateSiteSearchSettings(requestParameters: searchSettingsApiParams.UpdateSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteSearchSettings> {
         const response = await this.updateSiteSearchSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -669,7 +663,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
      */
 
 
-    async updateSpellCheckRaw(requestParameters: UpdateSpellCheckRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async updateSpellCheckRaw(requestParameters: searchSettingsApiParams.UpdateSpellCheckRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -701,7 +695,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
      * Update Spellcheck for SiteSearchSettings.
      * Update Spellcheck settings
      */
-    async updateSpellCheck(requestParameters: UpdateSpellCheckRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async updateSpellCheck(requestParameters: searchSettingsApiParams.UpdateSpellCheckRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.updateSpellCheckRaw(requestParameters, initOverrides);
     }
 

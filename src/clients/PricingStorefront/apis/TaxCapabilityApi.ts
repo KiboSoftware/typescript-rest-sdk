@@ -20,41 +20,44 @@ import type {
   ThrirdPartyTaxableOrder,
 } from '../models';
 
-export interface GetTaxRequest {
-    responseFields?: string;
-    thrirdPartyTaxableOrder?: ThrirdPartyTaxableOrder;
+
+export namespace taxCapabilityApiParams { 
+    export interface GetTaxRequest {
+        responseFields?: string;
+        thrirdPartyTaxableOrder?: ThrirdPartyTaxableOrder;
+    }
+}
+/**
+* TaxCapabilityApiService - interface
+* 
+* @export
+* @interface TaxCapabilityApi
+*/
+export interface TaxCapabilityApiService {
+    /**
+    * Get Tax
+    * @summary Get Tax
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ThrirdPartyTaxableOrder} [thrirdPartyTaxableOrder] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof TaxCapabilityApiInterface
+    */
+    getTaxRaw(requestParameters: taxCapabilityApiParams.GetTaxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ThrirdPartyOrderTaxContext>>;
+
+    /**
+    * Get Tax
+    * Get Tax
+    */
+    getTax(requestParameters: taxCapabilityApiParams.GetTaxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ThrirdPartyOrderTaxContext>;
+
 }
 
-/**
- * TaxCapabilityApi - interface
- * 
- * @export
- * @interface TaxCapabilityApiInterface
- */
-export interface TaxCapabilityApiInterface {
-    /**
-     * Get Tax
-     * @summary Get Tax
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {ThrirdPartyTaxableOrder} [thrirdPartyTaxableOrder] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TaxCapabilityApiInterface
-     */
-    getTaxRaw(requestParameters: GetTaxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ThrirdPartyOrderTaxContext>>;
-
-    /**
-     * Get Tax
-     * Get Tax
-     */
-    getTax(requestParameters: GetTaxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ThrirdPartyOrderTaxContext>;
-
-}
 
 /**
  * 
  */
-export class TaxCapabilityApi extends runtime.BaseAPI implements TaxCapabilityApiInterface {
+export class TaxCapabilityApi extends runtime.BaseAPI implements TaxCapabilityApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -65,7 +68,7 @@ export class TaxCapabilityApi extends runtime.BaseAPI implements TaxCapabilityAp
      */
 
 
-    async getTaxRaw(requestParameters: GetTaxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ThrirdPartyOrderTaxContext>> {
+    async getTaxRaw(requestParameters: taxCapabilityApiParams.GetTaxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ThrirdPartyOrderTaxContext>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -97,7 +100,7 @@ export class TaxCapabilityApi extends runtime.BaseAPI implements TaxCapabilityAp
      * Get Tax
      * Get Tax
      */
-    async getTax(requestParameters: GetTaxRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ThrirdPartyOrderTaxContext> {
+    async getTax(requestParameters: taxCapabilityApiParams.GetTaxRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ThrirdPartyOrderTaxContext> {
         const response = await this.getTaxRaw(requestParameters, initOverrides);
         return await response.value();
     }

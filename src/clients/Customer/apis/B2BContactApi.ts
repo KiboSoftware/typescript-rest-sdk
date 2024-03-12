@@ -19,51 +19,54 @@ import type {
   ExtendedCustomerContactCollection,
 } from '../models';
 
-export interface GetB2BContactsRequest {
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    filter?: string;
-    q?: string;
-    qLimit?: number;
-    responseFields?: string;
+
+export namespace b2BContactApiParams { 
+    export interface GetB2BContactsRequest {
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        filter?: string;
+        q?: string;
+        qLimit?: number;
+        responseFields?: string;
+    }
+}
+/**
+* B2BContactApiService - interface
+* 
+* @export
+* @interface B2BContactApi
+*/
+export interface B2BContactApiService {
+    /**
+    * Retrieves a list of B2B contacts according to any specified filter criteria and sort options.
+    * @summary Get B2B Contacts
+    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
+    * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+    * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+    * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
+    * @param {string} [q] 
+    * @param {number} [qLimit] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof B2BContactApiInterface
+    */
+    getB2BContactsRaw(requestParameters: b2BContactApiParams.GetB2BContactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtendedCustomerContactCollection>>;
+
+    /**
+    * Retrieves a list of B2B contacts according to any specified filter criteria and sort options.
+    * Get B2B Contacts
+    */
+    getB2BContacts(requestParameters: b2BContactApiParams.GetB2BContactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtendedCustomerContactCollection>;
+
 }
 
-/**
- * B2BContactApi - interface
- * 
- * @export
- * @interface B2BContactApiInterface
- */
-export interface B2BContactApiInterface {
-    /**
-     * Retrieves a list of B2B contacts according to any specified filter criteria and sort options.
-     * @summary Get B2B Contacts
-     * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
-     * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
-     * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
-     * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
-     * @param {string} [q] 
-     * @param {number} [qLimit] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof B2BContactApiInterface
-     */
-    getB2BContactsRaw(requestParameters: GetB2BContactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtendedCustomerContactCollection>>;
-
-    /**
-     * Retrieves a list of B2B contacts according to any specified filter criteria and sort options.
-     * Get B2B Contacts
-     */
-    getB2BContacts(requestParameters: GetB2BContactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtendedCustomerContactCollection>;
-
-}
 
 /**
  * 
  */
-export class B2BContactApi extends runtime.BaseAPI implements B2BContactApiInterface {
+export class B2BContactApi extends runtime.BaseAPI implements B2BContactApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -74,7 +77,7 @@ export class B2BContactApi extends runtime.BaseAPI implements B2BContactApiInter
      */
 
 
-    async getB2BContactsRaw(requestParameters: GetB2BContactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtendedCustomerContactCollection>> {
+    async getB2BContactsRaw(requestParameters: b2BContactApiParams.GetB2BContactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtendedCustomerContactCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -127,7 +130,7 @@ export class B2BContactApi extends runtime.BaseAPI implements B2BContactApiInter
      * Retrieves a list of B2B contacts according to any specified filter criteria and sort options.
      * Get B2B Contacts
      */
-    async getB2BContacts(requestParameters: GetB2BContactsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtendedCustomerContactCollection> {
+    async getB2BContacts(requestParameters: b2BContactApiParams.GetB2BContactsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtendedCustomerContactCollection> {
         const response = await this.getB2BContactsRaw(requestParameters, initOverrides);
         return await response.value();
     }

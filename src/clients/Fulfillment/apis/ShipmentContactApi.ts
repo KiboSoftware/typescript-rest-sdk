@@ -20,213 +20,198 @@ import type {
   UpdateContactRequest,
 } from '../models';
 
-export interface DeleteAlternateContactUsingDELETERequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    ifMatch?: string;
-    xVolSite?: number;
-}
 
-export interface GetAlternateContactUsingGETRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    xVolSite?: number;
-    responseFields?: string;
+export namespace shipmentContactApiParams { 
+    export interface DeleteAlternateContactRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface GetAlternateContactRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface GetCustomerContactRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface GetDestinationContactRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface UpdateAlternateContactRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        updateContactRequest: UpdateContactRequest;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface UpdateCustomerContactRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        updateContactRequest: UpdateContactRequest;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface UpdateDestinationContactRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        updateContactRequest: UpdateContactRequest;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
 }
-
-export interface GetCustomerContactUsingGETRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface GetDestinationContactUsingGETRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface UpdateAlternateContactUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    updateContactRequest: UpdateContactRequest;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface UpdateCustomerContactUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    updateContactRequest: UpdateContactRequest;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface UpdateDestinationContactUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    updateContactRequest: UpdateContactRequest;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
 /**
- * ShipmentContactApi - interface
- * 
- * @export
- * @interface ShipmentContactApiInterface
- */
-export interface ShipmentContactApiInterface {
+* ShipmentContactApiService - interface
+* 
+* @export
+* @interface ShipmentContactApi
+*/
+export interface ShipmentContactApiService {
     /**
-     * deleteAlternateContact
-     * @summary deleteAlternateContact
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentContactApiInterface
-     */
-    deleteAlternateContactUsingDELETERaw(requestParameters: DeleteAlternateContactUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * deleteAlternateContact
+    * @summary deleteAlternateContact
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentContactApiInterface
+    */
+    deleteAlternateContactRaw(requestParameters: shipmentContactApiParams.DeleteAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * deleteAlternateContact
-     * deleteAlternateContact
-     */
-    deleteAlternateContactUsingDELETE(requestParameters: DeleteAlternateContactUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * deleteAlternateContact
+    * deleteAlternateContact
+    */
+    deleteAlternateContact(requestParameters: shipmentContactApiParams.DeleteAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * getAlternateContact
-     * @summary getAlternateContact
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentContactApiInterface
-     */
-    getAlternateContactUsingGETRaw(requestParameters: GetAlternateContactUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>>;
+    * getAlternateContact
+    * @summary getAlternateContact
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentContactApiInterface
+    */
+    getAlternateContactRaw(requestParameters: shipmentContactApiParams.GetAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>>;
 
     /**
-     * getAlternateContact
-     * getAlternateContact
-     */
-    getAlternateContactUsingGET(requestParameters: GetAlternateContactUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact>;
+    * getAlternateContact
+    * getAlternateContact
+    */
+    getAlternateContact(requestParameters: shipmentContactApiParams.GetAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact>;
 
     /**
-     * getCustomerContact
-     * @summary getCustomerContact
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentContactApiInterface
-     */
-    getCustomerContactUsingGETRaw(requestParameters: GetCustomerContactUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>>;
+    * getCustomerContact
+    * @summary getCustomerContact
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentContactApiInterface
+    */
+    getCustomerContactRaw(requestParameters: shipmentContactApiParams.GetCustomerContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>>;
 
     /**
-     * getCustomerContact
-     * getCustomerContact
-     */
-    getCustomerContactUsingGET(requestParameters: GetCustomerContactUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact>;
+    * getCustomerContact
+    * getCustomerContact
+    */
+    getCustomerContact(requestParameters: shipmentContactApiParams.GetCustomerContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact>;
 
     /**
-     * getDestinationContact
-     * @summary getDestinationContact
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentContactApiInterface
-     */
-    getDestinationContactUsingGETRaw(requestParameters: GetDestinationContactUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>>;
+    * getDestinationContact
+    * @summary getDestinationContact
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentContactApiInterface
+    */
+    getDestinationContactRaw(requestParameters: shipmentContactApiParams.GetDestinationContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>>;
 
     /**
-     * getDestinationContact
-     * getDestinationContact
-     */
-    getDestinationContactUsingGET(requestParameters: GetDestinationContactUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact>;
+    * getDestinationContact
+    * getDestinationContact
+    */
+    getDestinationContact(requestParameters: shipmentContactApiParams.GetDestinationContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact>;
 
     /**
-     * updateAlternateContact
-     * @summary updateAlternateContact
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {UpdateContactRequest} updateContactRequest updateContactRequest
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentContactApiInterface
-     */
-    updateAlternateContactUsingPUTRaw(requestParameters: UpdateAlternateContactUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>>;
+    * updateAlternateContact
+    * @summary updateAlternateContact
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {UpdateContactRequest} updateContactRequest updateContactRequest
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentContactApiInterface
+    */
+    updateAlternateContactRaw(requestParameters: shipmentContactApiParams.UpdateAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>>;
 
     /**
-     * updateAlternateContact
-     * updateAlternateContact
-     */
-    updateAlternateContactUsingPUT(requestParameters: UpdateAlternateContactUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact>;
+    * updateAlternateContact
+    * updateAlternateContact
+    */
+    updateAlternateContact(requestParameters: shipmentContactApiParams.UpdateAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact>;
 
     /**
-     * updateCustomerContact
-     * @summary updateCustomerContact
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {UpdateContactRequest} updateContactRequest updateContactRequest
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentContactApiInterface
-     */
-    updateCustomerContactUsingPUTRaw(requestParameters: UpdateCustomerContactUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>>;
+    * updateCustomerContact
+    * @summary updateCustomerContact
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {UpdateContactRequest} updateContactRequest updateContactRequest
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentContactApiInterface
+    */
+    updateCustomerContactRaw(requestParameters: shipmentContactApiParams.UpdateCustomerContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>>;
 
     /**
-     * updateCustomerContact
-     * updateCustomerContact
-     */
-    updateCustomerContactUsingPUT(requestParameters: UpdateCustomerContactUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact>;
+    * updateCustomerContact
+    * updateCustomerContact
+    */
+    updateCustomerContact(requestParameters: shipmentContactApiParams.UpdateCustomerContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact>;
 
     /**
-     * updateDestinationContact
-     * @summary updateDestinationContact
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {UpdateContactRequest} updateContactRequest updateContactRequest
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentContactApiInterface
-     */
-    updateDestinationContactUsingPUTRaw(requestParameters: UpdateDestinationContactUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>>;
+    * updateDestinationContact
+    * @summary updateDestinationContact
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {UpdateContactRequest} updateContactRequest updateContactRequest
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentContactApiInterface
+    */
+    updateDestinationContactRaw(requestParameters: shipmentContactApiParams.UpdateDestinationContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>>;
 
     /**
-     * updateDestinationContact
-     * updateDestinationContact
-     */
-    updateDestinationContactUsingPUT(requestParameters: UpdateDestinationContactUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact>;
+    * updateDestinationContact
+    * updateDestinationContact
+    */
+    updateDestinationContact(requestParameters: shipmentContactApiParams.UpdateDestinationContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact>;
 
 }
+
 
 /**
  * 
  */
-export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentContactApiInterface {
+export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentContactApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -237,13 +222,13 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
      */
 
 
-    async deleteAlternateContactUsingDELETERaw(requestParameters: DeleteAlternateContactUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteAlternateContactRaw(requestParameters: shipmentContactApiParams.DeleteAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling deleteAlternateContactUsingDELETE.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling deleteAlternateContact.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteAlternateContactUsingDELETE.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteAlternateContact.');
         }
 
         const queryParameters: any = {};
@@ -282,8 +267,8 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
      * deleteAlternateContact
      * deleteAlternateContact
      */
-    async deleteAlternateContactUsingDELETE(requestParameters: DeleteAlternateContactUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.deleteAlternateContactUsingDELETERaw(requestParameters, initOverrides);
+    async deleteAlternateContact(requestParameters: shipmentContactApiParams.DeleteAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteAlternateContactRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -292,20 +277,16 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
      */
 
 
-    async getAlternateContactUsingGETRaw(requestParameters: GetAlternateContactUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>> {
+    async getAlternateContactRaw(requestParameters: shipmentContactApiParams.GetAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getAlternateContactUsingGET.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getAlternateContact.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getAlternateContactUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getAlternateContact.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -337,8 +318,8 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
      * getAlternateContact
      * getAlternateContact
      */
-    async getAlternateContactUsingGET(requestParameters: GetAlternateContactUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact> {
-        const response = await this.getAlternateContactUsingGETRaw(requestParameters, initOverrides);
+    async getAlternateContact(requestParameters: shipmentContactApiParams.GetAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact> {
+        const response = await this.getAlternateContactRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -348,20 +329,16 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
      */
 
 
-    async getCustomerContactUsingGETRaw(requestParameters: GetCustomerContactUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>> {
+    async getCustomerContactRaw(requestParameters: shipmentContactApiParams.GetCustomerContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getCustomerContactUsingGET.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getCustomerContact.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getCustomerContactUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getCustomerContact.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -393,8 +370,8 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
      * getCustomerContact
      * getCustomerContact
      */
-    async getCustomerContactUsingGET(requestParameters: GetCustomerContactUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact> {
-        const response = await this.getCustomerContactUsingGETRaw(requestParameters, initOverrides);
+    async getCustomerContact(requestParameters: shipmentContactApiParams.GetCustomerContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact> {
+        const response = await this.getCustomerContactRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -404,20 +381,16 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
      */
 
 
-    async getDestinationContactUsingGETRaw(requestParameters: GetDestinationContactUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>> {
+    async getDestinationContactRaw(requestParameters: shipmentContactApiParams.GetDestinationContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getDestinationContactUsingGET.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getDestinationContact.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getDestinationContactUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getDestinationContact.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -449,8 +422,8 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
      * getDestinationContact
      * getDestinationContact
      */
-    async getDestinationContactUsingGET(requestParameters: GetDestinationContactUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact> {
-        const response = await this.getDestinationContactUsingGETRaw(requestParameters, initOverrides);
+    async getDestinationContact(requestParameters: shipmentContactApiParams.GetDestinationContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact> {
+        const response = await this.getDestinationContactRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -460,24 +433,20 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
      */
 
 
-    async updateAlternateContactUsingPUTRaw(requestParameters: UpdateAlternateContactUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>> {
+    async updateAlternateContactRaw(requestParameters: shipmentContactApiParams.UpdateAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateAlternateContactUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateAlternateContact.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateAlternateContactUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateAlternateContact.');
         }
 
         if (requestParameters.updateContactRequest === null || requestParameters.updateContactRequest === undefined) {
-            throw new runtime.RequiredError('updateContactRequest','Required parameter requestParameters.updateContactRequest was null or undefined when calling updateAlternateContactUsingPUT.');
+            throw new runtime.RequiredError('updateContactRequest','Required parameter requestParameters.updateContactRequest was null or undefined when calling updateAlternateContact.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -516,8 +485,8 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
      * updateAlternateContact
      * updateAlternateContact
      */
-    async updateAlternateContactUsingPUT(requestParameters: UpdateAlternateContactUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact> {
-        const response = await this.updateAlternateContactUsingPUTRaw(requestParameters, initOverrides);
+    async updateAlternateContact(requestParameters: shipmentContactApiParams.UpdateAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact> {
+        const response = await this.updateAlternateContactRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -527,24 +496,20 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
      */
 
 
-    async updateCustomerContactUsingPUTRaw(requestParameters: UpdateCustomerContactUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>> {
+    async updateCustomerContactRaw(requestParameters: shipmentContactApiParams.UpdateCustomerContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateCustomerContactUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateCustomerContact.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateCustomerContactUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateCustomerContact.');
         }
 
         if (requestParameters.updateContactRequest === null || requestParameters.updateContactRequest === undefined) {
-            throw new runtime.RequiredError('updateContactRequest','Required parameter requestParameters.updateContactRequest was null or undefined when calling updateCustomerContactUsingPUT.');
+            throw new runtime.RequiredError('updateContactRequest','Required parameter requestParameters.updateContactRequest was null or undefined when calling updateCustomerContact.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -583,8 +548,8 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
      * updateCustomerContact
      * updateCustomerContact
      */
-    async updateCustomerContactUsingPUT(requestParameters: UpdateCustomerContactUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact> {
-        const response = await this.updateCustomerContactUsingPUTRaw(requestParameters, initOverrides);
+    async updateCustomerContact(requestParameters: shipmentContactApiParams.UpdateCustomerContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact> {
+        const response = await this.updateCustomerContactRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -594,24 +559,20 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
      */
 
 
-    async updateDestinationContactUsingPUTRaw(requestParameters: UpdateDestinationContactUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>> {
+    async updateDestinationContactRaw(requestParameters: shipmentContactApiParams.UpdateDestinationContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateDestinationContactUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateDestinationContact.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateDestinationContactUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateDestinationContact.');
         }
 
         if (requestParameters.updateContactRequest === null || requestParameters.updateContactRequest === undefined) {
-            throw new runtime.RequiredError('updateContactRequest','Required parameter requestParameters.updateContactRequest was null or undefined when calling updateDestinationContactUsingPUT.');
+            throw new runtime.RequiredError('updateContactRequest','Required parameter requestParameters.updateContactRequest was null or undefined when calling updateDestinationContact.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -650,8 +611,8 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
      * updateDestinationContact
      * updateDestinationContact
      */
-    async updateDestinationContactUsingPUT(requestParameters: UpdateDestinationContactUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact> {
-        const response = await this.updateDestinationContactUsingPUTRaw(requestParameters, initOverrides);
+    async updateDestinationContact(requestParameters: shipmentContactApiParams.UpdateDestinationContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact> {
+        const response = await this.updateDestinationContactRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

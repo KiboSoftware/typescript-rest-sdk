@@ -20,135 +20,134 @@ import type {
   EntityListCollection,
 } from '../models';
 
-export interface CreateEntityListRequest {
-    responseFields?: string;
-    entityList?: EntityList;
+
+export namespace entityListsApiParams { 
+    export interface CreateEntityListRequest {
+        responseFields?: string;
+        entityList?: EntityList;
+    }
+    export interface DeleteEntityListRequest {
+        entityListFullName: string;
+    }
+    export interface GetEntityListRequest {
+        entityListFullName: string;
+        responseFields?: string;
+    }
+    export interface GetEntityListsRequest {
+        pageSize?: number;
+        startIndex?: number;
+        filter?: string;
+        sortBy?: string;
+        responseFields?: string;
+    }
+    export interface UpdateEntityListRequest {
+        entityListFullName: string;
+        responseFields?: string;
+        entityList?: EntityList;
+    }
+}
+/**
+* EntityListsApiService - interface
+* 
+* @export
+* @interface EntityListsApi
+*/
+export interface EntityListsApiService {
+    /**
+    * Create a new EntityList for a specific tenant.
+    * @summary Add EntityList
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {EntityList} [entityList] The EntityList definition
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof EntityListsApiInterface
+    */
+    createEntityListRaw(requestParameters: entityListsApiParams.CreateEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityList>>;
+
+    /**
+    * Create a new EntityList for a specific tenant.
+    * Add EntityList
+    */
+    createEntityList(requestParameters: entityListsApiParams.CreateEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityList>;
+
+    /**
+    * Delete an existing EntityList for a specific tenant. This will also delete all Entities in all instances of this EntityList for the tenant.
+    * @summary Delete EntityList
+    * @param {string} entityListFullName The full name of the EntityList including namespace in name@nameSpace format
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof EntityListsApiInterface
+    */
+    deleteEntityListRaw(requestParameters: entityListsApiParams.DeleteEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+    * Delete an existing EntityList for a specific tenant. This will also delete all Entities in all instances of this EntityList for the tenant.
+    * Delete EntityList
+    */
+    deleteEntityList(requestParameters: entityListsApiParams.DeleteEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+    * Get an existing EntityList definition for a specific tenant
+    * @summary Get EntityList
+    * @param {string} entityListFullName The full name of the EntityList including namespace in name@nameSpace format
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof EntityListsApiInterface
+    */
+    getEntityListRaw(requestParameters: entityListsApiParams.GetEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityList>>;
+
+    /**
+    * Get an existing EntityList definition for a specific tenant
+    * Get EntityList
+    */
+    getEntityList(requestParameters: entityListsApiParams.GetEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityList>;
+
+    /**
+    * Get a filtered list of EntityLists for a specific tenant.
+    * @summary Get EntityLists
+    * @param {number} [pageSize] 
+    * @param {number} [startIndex] 
+    * @param {string} [filter] 
+    * @param {string} [sortBy] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof EntityListsApiInterface
+    */
+    getEntityListsRaw(requestParameters: entityListsApiParams.GetEntityListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityListCollection>>;
+
+    /**
+    * Get a filtered list of EntityLists for a specific tenant.
+    * Get EntityLists
+    */
+    getEntityLists(requestParameters: entityListsApiParams.GetEntityListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityListCollection>;
+
+    /**
+    * Update an existing Entitylist for a specific tenant.
+    * @summary Update Entitylist
+    * @param {string} entityListFullName The full name of the EntityList including namespace in name@nameSpace format
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {EntityList} [entityList] The EntityList definition
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof EntityListsApiInterface
+    */
+    updateEntityListRaw(requestParameters: entityListsApiParams.UpdateEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityList>>;
+
+    /**
+    * Update an existing Entitylist for a specific tenant.
+    * Update Entitylist
+    */
+    updateEntityList(requestParameters: entityListsApiParams.UpdateEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityList>;
+
 }
 
-export interface DeleteEntityListRequest {
-    entityListFullName: string;
-}
-
-export interface GetEntityListRequest {
-    entityListFullName: string;
-    responseFields?: string;
-}
-
-export interface GetEntityListsRequest {
-    pageSize?: number;
-    startIndex?: number;
-    filter?: string;
-    sortBy?: string;
-    responseFields?: string;
-}
-
-export interface UpdateEntityListRequest {
-    entityListFullName: string;
-    responseFields?: string;
-    entityList?: EntityList;
-}
 
 /**
- * EntityListsApi - interface
- * 
- * @export
- * @interface EntityListsApiInterface
- */
-export interface EntityListsApiInterface {
-    /**
-     * Create a new EntityList for a specific tenant.
-     * @summary Add EntityList
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {EntityList} [entityList] The EntityList definition
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EntityListsApiInterface
-     */
-    createEntityListRaw(requestParameters: CreateEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityList>>;
-
-    /**
-     * Create a new EntityList for a specific tenant.
-     * Add EntityList
-     */
-    createEntityList(requestParameters: CreateEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityList>;
-
-    /**
-     * Delete an existing EntityList for a specific tenant. This will also delete all Entities in all instances of this EntityList for the tenant.
-     * @summary Delete EntityList
-     * @param {string} entityListFullName The full name of the EntityList including namespace in name@nameSpace format
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EntityListsApiInterface
-     */
-    deleteEntityListRaw(requestParameters: DeleteEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     * Delete an existing EntityList for a specific tenant. This will also delete all Entities in all instances of this EntityList for the tenant.
-     * Delete EntityList
-     */
-    deleteEntityList(requestParameters: DeleteEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * Get an existing EntityList definition for a specific tenant
-     * @summary Get EntityList
-     * @param {string} entityListFullName The full name of the EntityList including namespace in name@nameSpace format
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EntityListsApiInterface
-     */
-    getEntityListRaw(requestParameters: GetEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityList>>;
-
-    /**
-     * Get an existing EntityList definition for a specific tenant
-     * Get EntityList
-     */
-    getEntityList(requestParameters: GetEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityList>;
-
-    /**
-     * Get a filtered list of EntityLists for a specific tenant.
-     * @summary Get EntityLists
-     * @param {number} [pageSize] 
-     * @param {number} [startIndex] 
-     * @param {string} [filter] 
-     * @param {string} [sortBy] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EntityListsApiInterface
-     */
-    getEntityListsRaw(requestParameters: GetEntityListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityListCollection>>;
-
-    /**
-     * Get a filtered list of EntityLists for a specific tenant.
-     * Get EntityLists
-     */
-    getEntityLists(requestParameters: GetEntityListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityListCollection>;
-
-    /**
-     * Update an existing Entitylist for a specific tenant.
-     * @summary Update Entitylist
-     * @param {string} entityListFullName The full name of the EntityList including namespace in name@nameSpace format
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {EntityList} [entityList] The EntityList definition
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EntityListsApiInterface
-     */
-    updateEntityListRaw(requestParameters: UpdateEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityList>>;
-
-    /**
-     * Update an existing Entitylist for a specific tenant.
-     * Update Entitylist
-     */
-    updateEntityList(requestParameters: UpdateEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityList>;
-
-}
-
-/**
  * 
  */
-export class EntityListsApi extends runtime.BaseAPI implements EntityListsApiInterface {
+export class EntityListsApi extends runtime.BaseAPI implements EntityListsApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -159,7 +158,7 @@ export class EntityListsApi extends runtime.BaseAPI implements EntityListsApiInt
      */
 
 
-    async createEntityListRaw(requestParameters: CreateEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityList>> {
+    async createEntityListRaw(requestParameters: entityListsApiParams.CreateEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityList>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -191,7 +190,7 @@ export class EntityListsApi extends runtime.BaseAPI implements EntityListsApiInt
      * Create a new EntityList for a specific tenant.
      * Add EntityList
      */
-    async createEntityList(requestParameters: CreateEntityListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityList> {
+    async createEntityList(requestParameters: entityListsApiParams.CreateEntityListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityList> {
         const response = await this.createEntityListRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -202,7 +201,7 @@ export class EntityListsApi extends runtime.BaseAPI implements EntityListsApiInt
      */
 
 
-    async deleteEntityListRaw(requestParameters: DeleteEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteEntityListRaw(requestParameters: entityListsApiParams.DeleteEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.entityListFullName === null || requestParameters.entityListFullName === undefined) {
             throw new runtime.RequiredError('entityListFullName','Required parameter requestParameters.entityListFullName was null or undefined when calling deleteEntityList.');
         }
@@ -231,7 +230,7 @@ export class EntityListsApi extends runtime.BaseAPI implements EntityListsApiInt
      * Delete an existing EntityList for a specific tenant. This will also delete all Entities in all instances of this EntityList for the tenant.
      * Delete EntityList
      */
-    async deleteEntityList(requestParameters: DeleteEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteEntityList(requestParameters: entityListsApiParams.DeleteEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteEntityListRaw(requestParameters, initOverrides);
     }
 
@@ -241,7 +240,7 @@ export class EntityListsApi extends runtime.BaseAPI implements EntityListsApiInt
      */
 
 
-    async getEntityListRaw(requestParameters: GetEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityList>> {
+    async getEntityListRaw(requestParameters: entityListsApiParams.GetEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityList>> {
         if (requestParameters.entityListFullName === null || requestParameters.entityListFullName === undefined) {
             throw new runtime.RequiredError('entityListFullName','Required parameter requestParameters.entityListFullName was null or undefined when calling getEntityList.');
         }
@@ -274,7 +273,7 @@ export class EntityListsApi extends runtime.BaseAPI implements EntityListsApiInt
      * Get an existing EntityList definition for a specific tenant
      * Get EntityList
      */
-    async getEntityList(requestParameters: GetEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityList> {
+    async getEntityList(requestParameters: entityListsApiParams.GetEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityList> {
         const response = await this.getEntityListRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -285,7 +284,7 @@ export class EntityListsApi extends runtime.BaseAPI implements EntityListsApiInt
      */
 
 
-    async getEntityListsRaw(requestParameters: GetEntityListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityListCollection>> {
+    async getEntityListsRaw(requestParameters: entityListsApiParams.GetEntityListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityListCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.pageSize !== undefined) {
@@ -330,7 +329,7 @@ export class EntityListsApi extends runtime.BaseAPI implements EntityListsApiInt
      * Get a filtered list of EntityLists for a specific tenant.
      * Get EntityLists
      */
-    async getEntityLists(requestParameters: GetEntityListsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityListCollection> {
+    async getEntityLists(requestParameters: entityListsApiParams.GetEntityListsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityListCollection> {
         const response = await this.getEntityListsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -341,7 +340,7 @@ export class EntityListsApi extends runtime.BaseAPI implements EntityListsApiInt
      */
 
 
-    async updateEntityListRaw(requestParameters: UpdateEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityList>> {
+    async updateEntityListRaw(requestParameters: entityListsApiParams.UpdateEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityList>> {
         if (requestParameters.entityListFullName === null || requestParameters.entityListFullName === undefined) {
             throw new runtime.RequiredError('entityListFullName','Required parameter requestParameters.entityListFullName was null or undefined when calling updateEntityList.');
         }
@@ -377,7 +376,7 @@ export class EntityListsApi extends runtime.BaseAPI implements EntityListsApiInt
      * Update an existing Entitylist for a specific tenant.
      * Update Entitylist
      */
-    async updateEntityList(requestParameters: UpdateEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityList> {
+    async updateEntityList(requestParameters: entityListsApiParams.UpdateEntityListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityList> {
         const response = await this.updateEntityListRaw(requestParameters, initOverrides);
         return await response.value();
     }

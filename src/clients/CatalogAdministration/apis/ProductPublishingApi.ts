@@ -21,149 +21,147 @@ import type {
   PublishingScope,
 } from '../models';
 
-export interface AssignProductsToPublishSetRequest {
-    responseFields?: string;
-    publishSet?: PublishSet;
-}
 
-export interface DeletePublishSetRequest {
-    publishSetCode: string;
-    discardDrafts?: boolean;
+export namespace productPublishingApiParams { 
+    export interface AssignProductsToPublishSetRequest {
+        responseFields?: string;
+        publishSet?: PublishSet;
+    }
+    export interface DeletePublishSetRequest {
+        publishSetCode: string;
+        discardDrafts?: boolean;
+    }
+    export interface DiscardDraftsRequest {
+        responseFields?: string;
+        publishingScope?: PublishingScope;
+    }
+    export interface GetPublishSetRequest {
+        publishSetCode: string;
+        responseFields?: string;
+    }
+    export interface GetPublishSetsRequest {
+        responseFields?: string;
+    }
+    export interface PublishDraftsRequest {
+        responseFields?: string;
+        publishingScope?: PublishingScope;
+    }
 }
-
-export interface DiscardDraftsRequest {
-    responseFields?: string;
-    publishingScope?: PublishingScope;
-}
-
-export interface GetPublishSetRequest {
-    publishSetCode: string;
-    responseFields?: string;
-}
-
-export interface GetPublishSetsRequest {
-    responseFields?: string;
-}
-
-export interface PublishDraftsRequest {
-    responseFields?: string;
-    publishingScope?: PublishingScope;
-}
-
 /**
- * ProductPublishingApi - interface
- * 
- * @export
- * @interface ProductPublishingApiInterface
- */
-export interface ProductPublishingApiInterface {
+* ProductPublishingApiService - interface
+* 
+* @export
+* @interface ProductPublishingApi
+*/
+export interface ProductPublishingApiService {
     /**
-     * 
-     * @summary Assign products to publish set
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {PublishSet} [publishSet] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductPublishingApiInterface
-     */
-    assignProductsToPublishSetRaw(requestParameters: AssignProductsToPublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PublishSet>>;
+    * 
+    * @summary Assign products to publish set
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {PublishSet} [publishSet] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductPublishingApiInterface
+    */
+    assignProductsToPublishSetRaw(requestParameters: productPublishingApiParams.AssignProductsToPublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PublishSet>>;
 
     /**
-     * 
-     * Assign products to publish set
-     */
-    assignProductsToPublishSet(requestParameters: AssignProductsToPublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublishSet>;
+    * 
+    * Assign products to publish set
+    */
+    assignProductsToPublishSet(requestParameters: productPublishingApiParams.AssignProductsToPublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublishSet>;
 
     /**
-     * Removes all details about a PublishSet from the product service.          If the discardDrafts param is true, it also deletes the product drafts.
-     * @summary Delete publish set
-     * @param {string} publishSetCode The code of the PublishSet to delete
-     * @param {boolean} [discardDrafts] Whether to also discard the drafts for this publish set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductPublishingApiInterface
-     */
-    deletePublishSetRaw(requestParameters: DeletePublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Removes all details about a PublishSet from the product service.          If the discardDrafts param is true, it also deletes the product drafts.
+    * @summary Delete publish set
+    * @param {string} publishSetCode The code of the PublishSet to delete
+    * @param {boolean} [discardDrafts] Whether to also discard the drafts for this publish set.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductPublishingApiInterface
+    */
+    deletePublishSetRaw(requestParameters: productPublishingApiParams.DeletePublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Removes all details about a PublishSet from the product service.          If the discardDrafts param is true, it also deletes the product drafts.
-     * Delete publish set
-     */
-    deletePublishSet(requestParameters: DeletePublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Removes all details about a PublishSet from the product service.          If the discardDrafts param is true, it also deletes the product drafts.
+    * Delete publish set
+    */
+    deletePublishSet(requestParameters: productPublishingApiParams.DeletePublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * 
-     * @summary Discard draft products
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {PublishingScope} [publishingScope] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductPublishingApiInterface
-     */
-    discardDraftsRaw(requestParameters: DiscardDraftsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * 
+    * @summary Discard draft products
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {PublishingScope} [publishingScope] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductPublishingApiInterface
+    */
+    discardDraftsRaw(requestParameters: productPublishingApiParams.DiscardDraftsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * 
-     * Discard draft products
-     */
-    discardDrafts(requestParameters: DiscardDraftsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * 
+    * Discard draft products
+    */
+    discardDrafts(requestParameters: productPublishingApiParams.DiscardDraftsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Retrieves the details of a single PublishSet.
-     * @summary Get publish set
-     * @param {string} publishSetCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductPublishingApiInterface
-     */
-    getPublishSetRaw(requestParameters: GetPublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PublishSet>>;
+    * Retrieves the details of a single PublishSet.
+    * @summary Get publish set
+    * @param {string} publishSetCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductPublishingApiInterface
+    */
+    getPublishSetRaw(requestParameters: productPublishingApiParams.GetPublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PublishSet>>;
 
     /**
-     * Retrieves the details of a single PublishSet.
-     * Get publish set
-     */
-    getPublishSet(requestParameters: GetPublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublishSet>;
+    * Retrieves the details of a single PublishSet.
+    * Get publish set
+    */
+    getPublishSet(requestParameters: productPublishingApiParams.GetPublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublishSet>;
 
     /**
-     * Retrieves a list of PublishSets including the product counts.
-     * @summary Get publish sets
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductPublishingApiInterface
-     */
-    getPublishSetsRaw(requestParameters: GetPublishSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PublishSetCollection>>;
+    * Retrieves a list of PublishSets including the product counts.
+    * @summary Get publish sets
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductPublishingApiInterface
+    */
+    getPublishSetsRaw(requestParameters: productPublishingApiParams.GetPublishSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PublishSetCollection>>;
 
     /**
-     * Retrieves a list of PublishSets including the product counts.
-     * Get publish sets
-     */
-    getPublishSets(requestParameters: GetPublishSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublishSetCollection>;
+    * Retrieves a list of PublishSets including the product counts.
+    * Get publish sets
+    */
+    getPublishSets(requestParameters: productPublishingApiParams.GetPublishSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublishSetCollection>;
 
     /**
-     * 
-     * @summary Publish draft products
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {PublishingScope} [publishingScope] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductPublishingApiInterface
-     */
-    publishDraftsRaw(requestParameters: PublishDraftsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * 
+    * @summary Publish draft products
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {PublishingScope} [publishingScope] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductPublishingApiInterface
+    */
+    publishDraftsRaw(requestParameters: productPublishingApiParams.PublishDraftsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * 
-     * Publish draft products
-     */
-    publishDrafts(requestParameters: PublishDraftsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * 
+    * Publish draft products
+    */
+    publishDrafts(requestParameters: productPublishingApiParams.PublishDraftsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
 }
+
 
 /**
  * 
  */
-export class ProductPublishingApi extends runtime.BaseAPI implements ProductPublishingApiInterface {
+export class ProductPublishingApi extends runtime.BaseAPI implements ProductPublishingApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -174,7 +172,7 @@ export class ProductPublishingApi extends runtime.BaseAPI implements ProductPubl
      */
 
 
-    async assignProductsToPublishSetRaw(requestParameters: AssignProductsToPublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PublishSet>> {
+    async assignProductsToPublishSetRaw(requestParameters: productPublishingApiParams.AssignProductsToPublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PublishSet>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -206,7 +204,7 @@ export class ProductPublishingApi extends runtime.BaseAPI implements ProductPubl
      * 
      * Assign products to publish set
      */
-    async assignProductsToPublishSet(requestParameters: AssignProductsToPublishSetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublishSet> {
+    async assignProductsToPublishSet(requestParameters: productPublishingApiParams.AssignProductsToPublishSetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublishSet> {
         const response = await this.assignProductsToPublishSetRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -217,7 +215,7 @@ export class ProductPublishingApi extends runtime.BaseAPI implements ProductPubl
      */
 
 
-    async deletePublishSetRaw(requestParameters: DeletePublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deletePublishSetRaw(requestParameters: productPublishingApiParams.DeletePublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.publishSetCode === null || requestParameters.publishSetCode === undefined) {
             throw new runtime.RequiredError('publishSetCode','Required parameter requestParameters.publishSetCode was null or undefined when calling deletePublishSet.');
         }
@@ -250,7 +248,7 @@ export class ProductPublishingApi extends runtime.BaseAPI implements ProductPubl
      * Removes all details about a PublishSet from the product service.          If the discardDrafts param is true, it also deletes the product drafts.
      * Delete publish set
      */
-    async deletePublishSet(requestParameters: DeletePublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deletePublishSet(requestParameters: productPublishingApiParams.DeletePublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deletePublishSetRaw(requestParameters, initOverrides);
     }
 
@@ -260,7 +258,7 @@ export class ProductPublishingApi extends runtime.BaseAPI implements ProductPubl
      */
 
 
-    async discardDraftsRaw(requestParameters: DiscardDraftsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async discardDraftsRaw(requestParameters: productPublishingApiParams.DiscardDraftsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -292,7 +290,7 @@ export class ProductPublishingApi extends runtime.BaseAPI implements ProductPubl
      * 
      * Discard draft products
      */
-    async discardDrafts(requestParameters: DiscardDraftsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async discardDrafts(requestParameters: productPublishingApiParams.DiscardDraftsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.discardDraftsRaw(requestParameters, initOverrides);
     }
 
@@ -302,7 +300,7 @@ export class ProductPublishingApi extends runtime.BaseAPI implements ProductPubl
      */
 
 
-    async getPublishSetRaw(requestParameters: GetPublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PublishSet>> {
+    async getPublishSetRaw(requestParameters: productPublishingApiParams.GetPublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PublishSet>> {
         if (requestParameters.publishSetCode === null || requestParameters.publishSetCode === undefined) {
             throw new runtime.RequiredError('publishSetCode','Required parameter requestParameters.publishSetCode was null or undefined when calling getPublishSet.');
         }
@@ -335,7 +333,7 @@ export class ProductPublishingApi extends runtime.BaseAPI implements ProductPubl
      * Retrieves the details of a single PublishSet.
      * Get publish set
      */
-    async getPublishSet(requestParameters: GetPublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublishSet> {
+    async getPublishSet(requestParameters: productPublishingApiParams.GetPublishSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublishSet> {
         const response = await this.getPublishSetRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -346,7 +344,7 @@ export class ProductPublishingApi extends runtime.BaseAPI implements ProductPubl
      */
 
 
-    async getPublishSetsRaw(requestParameters: GetPublishSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PublishSetCollection>> {
+    async getPublishSetsRaw(requestParameters: productPublishingApiParams.GetPublishSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PublishSetCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -375,7 +373,7 @@ export class ProductPublishingApi extends runtime.BaseAPI implements ProductPubl
      * Retrieves a list of PublishSets including the product counts.
      * Get publish sets
      */
-    async getPublishSets(requestParameters: GetPublishSetsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublishSetCollection> {
+    async getPublishSets(requestParameters: productPublishingApiParams.GetPublishSetsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublishSetCollection> {
         const response = await this.getPublishSetsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -386,7 +384,7 @@ export class ProductPublishingApi extends runtime.BaseAPI implements ProductPubl
      */
 
 
-    async publishDraftsRaw(requestParameters: PublishDraftsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async publishDraftsRaw(requestParameters: productPublishingApiParams.PublishDraftsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -418,7 +416,7 @@ export class ProductPublishingApi extends runtime.BaseAPI implements ProductPubl
      * 
      * Publish draft products
      */
-    async publishDrafts(requestParameters: PublishDraftsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async publishDrafts(requestParameters: productPublishingApiParams.PublishDraftsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.publishDraftsRaw(requestParameters, initOverrides);
     }
 

@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 apis/CartSettingsApi.ts
 apis/CheckoutSettingsApi.ts
 apis/FulfillmentSettingsApi.ts

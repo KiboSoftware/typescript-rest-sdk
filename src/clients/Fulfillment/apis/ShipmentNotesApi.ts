@@ -20,109 +20,106 @@ import type {
   FulfillmentAPIProductionProfileShipmentNote,
 } from '../models';
 
-export interface DeleteShipmentNoteUsingDELETERequest {
-    noteId: string;
-    shipmentNumber: number;
-    xVolTenant: number;
-    ifMatch?: string;
-    xVolSite?: number;
-}
 
-export interface NewShipmentNoteUsingPOSTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    shipmentNoteDto: FulfillmentAPIProductionProfileShipmentNote;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
+export namespace shipmentNotesApiParams { 
+    export interface DeleteShipmentNoteRequest {
+        noteId: string;
+        shipmentNumber: number;
+        xVolTenant: number;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface NewShipmentNoteRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        shipmentNoteDto: FulfillmentAPIProductionProfileShipmentNote;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface UpdateShipmentNoteRequest {
+        noteId: string;
+        shipmentNumber: number;
+        xVolTenant: number;
+        shipmentNoteDto: FulfillmentAPIProductionProfileShipmentNote;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
 }
-
-export interface UpdateShipmentNoteUsingPUTRequest {
-    noteId: string;
-    shipmentNumber: number;
-    xVolTenant: number;
-    shipmentNoteDto: FulfillmentAPIProductionProfileShipmentNote;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
 /**
- * ShipmentNotesApi - interface
- * 
- * @export
- * @interface ShipmentNotesApiInterface
- */
-export interface ShipmentNotesApiInterface {
+* ShipmentNotesApiService - interface
+* 
+* @export
+* @interface ShipmentNotesApi
+*/
+export interface ShipmentNotesApiService {
     /**
-     * deleteShipmentNote
-     * @summary deleteShipmentNote
-     * @param {string} noteId noteId
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentNotesApiInterface
-     */
-    deleteShipmentNoteUsingDELETERaw(requestParameters: DeleteShipmentNoteUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * deleteShipmentNote
+    * @summary deleteShipmentNote
+    * @param {string} noteId noteId
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentNotesApiInterface
+    */
+    deleteShipmentNoteRaw(requestParameters: shipmentNotesApiParams.DeleteShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * deleteShipmentNote
-     * deleteShipmentNote
-     */
-    deleteShipmentNoteUsingDELETE(requestParameters: DeleteShipmentNoteUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * deleteShipmentNote
+    * deleteShipmentNote
+    */
+    deleteShipmentNote(requestParameters: shipmentNotesApiParams.DeleteShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * newShipmentNote
-     * @summary newShipmentNote
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {FulfillmentAPIProductionProfileShipmentNote} shipmentNoteDto shipmentNoteDto
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentNotesApiInterface
-     */
-    newShipmentNoteUsingPOSTRaw(requestParameters: NewShipmentNoteUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+    * newShipmentNote
+    * @summary newShipmentNote
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {FulfillmentAPIProductionProfileShipmentNote} shipmentNoteDto shipmentNoteDto
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentNotesApiInterface
+    */
+    newShipmentNoteRaw(requestParameters: shipmentNotesApiParams.NewShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
 
     /**
-     * newShipmentNote
-     * newShipmentNote
-     */
-    newShipmentNoteUsingPOST(requestParameters: NewShipmentNoteUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+    * newShipmentNote
+    * newShipmentNote
+    */
+    newShipmentNote(requestParameters: shipmentNotesApiParams.NewShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
 
     /**
-     * updateShipmentNote
-     * @summary updateShipmentNote
-     * @param {string} noteId noteId
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {FulfillmentAPIProductionProfileShipmentNote} shipmentNoteDto shipmentNoteDto
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentNotesApiInterface
-     */
-    updateShipmentNoteUsingPUTRaw(requestParameters: UpdateShipmentNoteUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+    * updateShipmentNote
+    * @summary updateShipmentNote
+    * @param {string} noteId noteId
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {FulfillmentAPIProductionProfileShipmentNote} shipmentNoteDto shipmentNoteDto
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentNotesApiInterface
+    */
+    updateShipmentNoteRaw(requestParameters: shipmentNotesApiParams.UpdateShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
 
     /**
-     * updateShipmentNote
-     * updateShipmentNote
-     */
-    updateShipmentNoteUsingPUT(requestParameters: UpdateShipmentNoteUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+    * updateShipmentNote
+    * updateShipmentNote
+    */
+    updateShipmentNote(requestParameters: shipmentNotesApiParams.UpdateShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
 
 }
+
 
 /**
  * 
  */
-export class ShipmentNotesApi extends runtime.BaseAPI implements ShipmentNotesApiInterface {
+export class ShipmentNotesApi extends runtime.BaseAPI implements ShipmentNotesApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -133,17 +130,17 @@ export class ShipmentNotesApi extends runtime.BaseAPI implements ShipmentNotesAp
      */
 
 
-    async deleteShipmentNoteUsingDELETERaw(requestParameters: DeleteShipmentNoteUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteShipmentNoteRaw(requestParameters: shipmentNotesApiParams.DeleteShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.noteId === null || requestParameters.noteId === undefined) {
-            throw new runtime.RequiredError('noteId','Required parameter requestParameters.noteId was null or undefined when calling deleteShipmentNoteUsingDELETE.');
+            throw new runtime.RequiredError('noteId','Required parameter requestParameters.noteId was null or undefined when calling deleteShipmentNote.');
         }
 
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling deleteShipmentNoteUsingDELETE.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling deleteShipmentNote.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteShipmentNoteUsingDELETE.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteShipmentNote.');
         }
 
         const queryParameters: any = {};
@@ -182,8 +179,8 @@ export class ShipmentNotesApi extends runtime.BaseAPI implements ShipmentNotesAp
      * deleteShipmentNote
      * deleteShipmentNote
      */
-    async deleteShipmentNoteUsingDELETE(requestParameters: DeleteShipmentNoteUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.deleteShipmentNoteUsingDELETERaw(requestParameters, initOverrides);
+    async deleteShipmentNote(requestParameters: shipmentNotesApiParams.DeleteShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteShipmentNoteRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -192,24 +189,20 @@ export class ShipmentNotesApi extends runtime.BaseAPI implements ShipmentNotesAp
      */
 
 
-    async newShipmentNoteUsingPOSTRaw(requestParameters: NewShipmentNoteUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async newShipmentNoteRaw(requestParameters: shipmentNotesApiParams.NewShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling newShipmentNoteUsingPOST.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling newShipmentNote.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling newShipmentNoteUsingPOST.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling newShipmentNote.');
         }
 
         if (requestParameters.shipmentNoteDto === null || requestParameters.shipmentNoteDto === undefined) {
-            throw new runtime.RequiredError('shipmentNoteDto','Required parameter requestParameters.shipmentNoteDto was null or undefined when calling newShipmentNoteUsingPOST.');
+            throw new runtime.RequiredError('shipmentNoteDto','Required parameter requestParameters.shipmentNoteDto was null or undefined when calling newShipmentNote.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -248,8 +241,8 @@ export class ShipmentNotesApi extends runtime.BaseAPI implements ShipmentNotesAp
      * newShipmentNote
      * newShipmentNote
      */
-    async newShipmentNoteUsingPOST(requestParameters: NewShipmentNoteUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.newShipmentNoteUsingPOSTRaw(requestParameters, initOverrides);
+    async newShipmentNote(requestParameters: shipmentNotesApiParams.NewShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.newShipmentNoteRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -259,28 +252,24 @@ export class ShipmentNotesApi extends runtime.BaseAPI implements ShipmentNotesAp
      */
 
 
-    async updateShipmentNoteUsingPUTRaw(requestParameters: UpdateShipmentNoteUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async updateShipmentNoteRaw(requestParameters: shipmentNotesApiParams.UpdateShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.noteId === null || requestParameters.noteId === undefined) {
-            throw new runtime.RequiredError('noteId','Required parameter requestParameters.noteId was null or undefined when calling updateShipmentNoteUsingPUT.');
+            throw new runtime.RequiredError('noteId','Required parameter requestParameters.noteId was null or undefined when calling updateShipmentNote.');
         }
 
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateShipmentNoteUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateShipmentNote.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateShipmentNoteUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateShipmentNote.');
         }
 
         if (requestParameters.shipmentNoteDto === null || requestParameters.shipmentNoteDto === undefined) {
-            throw new runtime.RequiredError('shipmentNoteDto','Required parameter requestParameters.shipmentNoteDto was null or undefined when calling updateShipmentNoteUsingPUT.');
+            throw new runtime.RequiredError('shipmentNoteDto','Required parameter requestParameters.shipmentNoteDto was null or undefined when calling updateShipmentNote.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -319,8 +308,8 @@ export class ShipmentNotesApi extends runtime.BaseAPI implements ShipmentNotesAp
      * updateShipmentNote
      * updateShipmentNote
      */
-    async updateShipmentNoteUsingPUT(requestParameters: UpdateShipmentNoteUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.updateShipmentNoteUsingPUTRaw(requestParameters, initOverrides);
+    async updateShipmentNote(requestParameters: shipmentNotesApiParams.UpdateShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.updateShipmentNoteRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

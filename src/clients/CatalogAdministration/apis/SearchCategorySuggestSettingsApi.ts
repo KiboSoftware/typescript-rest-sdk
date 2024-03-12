@@ -19,85 +19,86 @@ import type {
   SuggestSettings,
 } from '../models';
 
-export interface DeleteCategorySuggestSettingsRequest {
-    name: string;
+
+export namespace searchCategorySuggestSettingsApiParams { 
+    export interface DeleteCategorySuggestSettingsRequest {
+        name: string;
+    }
+    export interface GetCategorySuggestSettingsRequest {
+        name: string;
+        responseFields?: string;
+    }
+    export interface UpdateCategorySuggestSettingsRequest {
+        name: string;
+        responseFields?: string;
+        suggestSettings?: SuggestSettings;
+    }
+}
+/**
+* SearchCategorySuggestSettingsApiService - interface
+* 
+* @export
+* @interface SearchCategorySuggestSettingsApi
+*/
+export interface SearchCategorySuggestSettingsApiService {
+    /**
+    * Deletes the CategorySuggestSettings for a specific SearchSetting by name.
+    * @summary Delete category suggest settings
+    * @param {string} name 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SearchCategorySuggestSettingsApiInterface
+    */
+    deleteCategorySuggestSettingsRaw(requestParameters: searchCategorySuggestSettingsApiParams.DeleteCategorySuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+    * Deletes the CategorySuggestSettings for a specific SearchSetting by name.
+    * Delete category suggest settings
+    */
+    deleteCategorySuggestSettings(requestParameters: searchCategorySuggestSettingsApiParams.DeleteCategorySuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+    * Get CategorySuggestSettings for a specific SearchSettings.
+    * @summary Get category suggest settings
+    * @param {string} name 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SearchCategorySuggestSettingsApiInterface
+    */
+    getCategorySuggestSettingsRaw(requestParameters: searchCategorySuggestSettingsApiParams.GetCategorySuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestSettings>>;
+
+    /**
+    * Get CategorySuggestSettings for a specific SearchSettings.
+    * Get category suggest settings
+    */
+    getCategorySuggestSettings(requestParameters: searchCategorySuggestSettingsApiParams.GetCategorySuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestSettings>;
+
+    /**
+    * Adds or Updates (Upsert) the CategorySuggestSettings for a specific SearchSetting.
+    * @summary Add/Update category suggest settings
+    * @param {string} name 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {SuggestSettings} [suggestSettings] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SearchCategorySuggestSettingsApiInterface
+    */
+    updateCategorySuggestSettingsRaw(requestParameters: searchCategorySuggestSettingsApiParams.UpdateCategorySuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestSettings>>;
+
+    /**
+    * Adds or Updates (Upsert) the CategorySuggestSettings for a specific SearchSetting.
+    * Add/Update category suggest settings
+    */
+    updateCategorySuggestSettings(requestParameters: searchCategorySuggestSettingsApiParams.UpdateCategorySuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestSettings>;
+
 }
 
-export interface GetCategorySuggestSettingsRequest {
-    name: string;
-    responseFields?: string;
-}
-
-export interface UpdateCategorySuggestSettingsRequest {
-    name: string;
-    responseFields?: string;
-    suggestSettings?: SuggestSettings;
-}
 
 /**
- * SearchCategorySuggestSettingsApi - interface
- * 
- * @export
- * @interface SearchCategorySuggestSettingsApiInterface
- */
-export interface SearchCategorySuggestSettingsApiInterface {
-    /**
-     * Deletes the CategorySuggestSettings for a specific SearchSetting by name.
-     * @summary Delete category suggest settings
-     * @param {string} name 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchCategorySuggestSettingsApiInterface
-     */
-    deleteCategorySuggestSettingsRaw(requestParameters: DeleteCategorySuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     * Deletes the CategorySuggestSettings for a specific SearchSetting by name.
-     * Delete category suggest settings
-     */
-    deleteCategorySuggestSettings(requestParameters: DeleteCategorySuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * Get CategorySuggestSettings for a specific SearchSettings.
-     * @summary Get category suggest settings
-     * @param {string} name 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchCategorySuggestSettingsApiInterface
-     */
-    getCategorySuggestSettingsRaw(requestParameters: GetCategorySuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestSettings>>;
-
-    /**
-     * Get CategorySuggestSettings for a specific SearchSettings.
-     * Get category suggest settings
-     */
-    getCategorySuggestSettings(requestParameters: GetCategorySuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestSettings>;
-
-    /**
-     * Adds or Updates (Upsert) the CategorySuggestSettings for a specific SearchSetting.
-     * @summary Add/Update category suggest settings
-     * @param {string} name 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {SuggestSettings} [suggestSettings] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchCategorySuggestSettingsApiInterface
-     */
-    updateCategorySuggestSettingsRaw(requestParameters: UpdateCategorySuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestSettings>>;
-
-    /**
-     * Adds or Updates (Upsert) the CategorySuggestSettings for a specific SearchSetting.
-     * Add/Update category suggest settings
-     */
-    updateCategorySuggestSettings(requestParameters: UpdateCategorySuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestSettings>;
-
-}
-
-/**
  * 
  */
-export class SearchCategorySuggestSettingsApi extends runtime.BaseAPI implements SearchCategorySuggestSettingsApiInterface {
+export class SearchCategorySuggestSettingsApi extends runtime.BaseAPI implements SearchCategorySuggestSettingsApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -108,7 +109,7 @@ export class SearchCategorySuggestSettingsApi extends runtime.BaseAPI implements
      */
 
 
-    async deleteCategorySuggestSettingsRaw(requestParameters: DeleteCategorySuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteCategorySuggestSettingsRaw(requestParameters: searchCategorySuggestSettingsApiParams.DeleteCategorySuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.name === null || requestParameters.name === undefined) {
             throw new runtime.RequiredError('name','Required parameter requestParameters.name was null or undefined when calling deleteCategorySuggestSettings.');
         }
@@ -137,7 +138,7 @@ export class SearchCategorySuggestSettingsApi extends runtime.BaseAPI implements
      * Deletes the CategorySuggestSettings for a specific SearchSetting by name.
      * Delete category suggest settings
      */
-    async deleteCategorySuggestSettings(requestParameters: DeleteCategorySuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteCategorySuggestSettings(requestParameters: searchCategorySuggestSettingsApiParams.DeleteCategorySuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteCategorySuggestSettingsRaw(requestParameters, initOverrides);
     }
 
@@ -147,7 +148,7 @@ export class SearchCategorySuggestSettingsApi extends runtime.BaseAPI implements
      */
 
 
-    async getCategorySuggestSettingsRaw(requestParameters: GetCategorySuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestSettings>> {
+    async getCategorySuggestSettingsRaw(requestParameters: searchCategorySuggestSettingsApiParams.GetCategorySuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestSettings>> {
         if (requestParameters.name === null || requestParameters.name === undefined) {
             throw new runtime.RequiredError('name','Required parameter requestParameters.name was null or undefined when calling getCategorySuggestSettings.');
         }
@@ -180,7 +181,7 @@ export class SearchCategorySuggestSettingsApi extends runtime.BaseAPI implements
      * Get CategorySuggestSettings for a specific SearchSettings.
      * Get category suggest settings
      */
-    async getCategorySuggestSettings(requestParameters: GetCategorySuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestSettings> {
+    async getCategorySuggestSettings(requestParameters: searchCategorySuggestSettingsApiParams.GetCategorySuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestSettings> {
         const response = await this.getCategorySuggestSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -191,7 +192,7 @@ export class SearchCategorySuggestSettingsApi extends runtime.BaseAPI implements
      */
 
 
-    async updateCategorySuggestSettingsRaw(requestParameters: UpdateCategorySuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestSettings>> {
+    async updateCategorySuggestSettingsRaw(requestParameters: searchCategorySuggestSettingsApiParams.UpdateCategorySuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestSettings>> {
         if (requestParameters.name === null || requestParameters.name === undefined) {
             throw new runtime.RequiredError('name','Required parameter requestParameters.name was null or undefined when calling updateCategorySuggestSettings.');
         }
@@ -227,7 +228,7 @@ export class SearchCategorySuggestSettingsApi extends runtime.BaseAPI implements
      * Adds or Updates (Upsert) the CategorySuggestSettings for a specific SearchSetting.
      * Add/Update category suggest settings
      */
-    async updateCategorySuggestSettings(requestParameters: UpdateCategorySuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestSettings> {
+    async updateCategorySuggestSettings(requestParameters: searchCategorySuggestSettingsApiParams.UpdateCategorySuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestSettings> {
         const response = await this.updateCategorySuggestSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }

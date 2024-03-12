@@ -19,71 +19,69 @@ import type {
   EntityModelOfRenderedContent,
 } from '../models';
 
-export interface RenderOrderSummaryUsingGETRequest {
-    orderId: string;
-    xVolTenant: number;
-    xVolSite?: number;
-    responseFields?: string;
-}
 
-export interface RenderReturnReceiptUsingGETRequest {
-    returnId: string;
-    xVolTenant: number;
-    xVolSite?: number;
-    responseFields?: string;
+export namespace renditionApiParams { 
+    export interface RenderOrderSummaryRequest {
+        orderId: string;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface RenderReturnReceiptRequest {
+        returnId: string;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
 }
-
 /**
- * RenditionApi - interface
- * 
- * @export
- * @interface RenditionApiInterface
- */
-export interface RenditionApiInterface {
+* RenditionApiService - interface
+* 
+* @export
+* @interface RenditionApi
+*/
+export interface RenditionApiService {
     /**
-     * renderOrderSummary
-     * @summary renderOrderSummary
-     * @param {string} orderId orderId
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RenditionApiInterface
-     */
-    renderOrderSummaryUsingGETRaw(requestParameters: RenderOrderSummaryUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>>;
+    * renderOrderSummary
+    * @summary renderOrderSummary
+    * @param {string} orderId orderId
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof RenditionApiInterface
+    */
+    renderOrderSummaryRaw(requestParameters: renditionApiParams.RenderOrderSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>>;
 
     /**
-     * renderOrderSummary
-     * renderOrderSummary
-     */
-    renderOrderSummaryUsingGET(requestParameters: RenderOrderSummaryUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent>;
+    * renderOrderSummary
+    * renderOrderSummary
+    */
+    renderOrderSummary(requestParameters: renditionApiParams.RenderOrderSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent>;
 
     /**
-     * renderReturnReceipt
-     * @summary renderReturnReceipt
-     * @param {string} returnId returnId
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RenditionApiInterface
-     */
-    renderReturnReceiptUsingGETRaw(requestParameters: RenderReturnReceiptUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>>;
+    * renderReturnReceipt
+    * @summary renderReturnReceipt
+    * @param {string} returnId returnId
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof RenditionApiInterface
+    */
+    renderReturnReceiptRaw(requestParameters: renditionApiParams.RenderReturnReceiptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>>;
 
     /**
-     * renderReturnReceipt
-     * renderReturnReceipt
-     */
-    renderReturnReceiptUsingGET(requestParameters: RenderReturnReceiptUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent>;
+    * renderReturnReceipt
+    * renderReturnReceipt
+    */
+    renderReturnReceipt(requestParameters: renditionApiParams.RenderReturnReceiptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent>;
 
 }
+
 
 /**
  * 
  */
-export class RenditionApi extends runtime.BaseAPI implements RenditionApiInterface {
+export class RenditionApi extends runtime.BaseAPI implements RenditionApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -94,20 +92,16 @@ export class RenditionApi extends runtime.BaseAPI implements RenditionApiInterfa
      */
 
 
-    async renderOrderSummaryUsingGETRaw(requestParameters: RenderOrderSummaryUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>> {
+    async renderOrderSummaryRaw(requestParameters: renditionApiParams.RenderOrderSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
-            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling renderOrderSummaryUsingGET.');
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling renderOrderSummary.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling renderOrderSummaryUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling renderOrderSummary.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -139,8 +133,8 @@ export class RenditionApi extends runtime.BaseAPI implements RenditionApiInterfa
      * renderOrderSummary
      * renderOrderSummary
      */
-    async renderOrderSummaryUsingGET(requestParameters: RenderOrderSummaryUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent> {
-        const response = await this.renderOrderSummaryUsingGETRaw(requestParameters, initOverrides);
+    async renderOrderSummary(requestParameters: renditionApiParams.RenderOrderSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent> {
+        const response = await this.renderOrderSummaryRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -150,20 +144,16 @@ export class RenditionApi extends runtime.BaseAPI implements RenditionApiInterfa
      */
 
 
-    async renderReturnReceiptUsingGETRaw(requestParameters: RenderReturnReceiptUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>> {
+    async renderReturnReceiptRaw(requestParameters: renditionApiParams.RenderReturnReceiptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
-            throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling renderReturnReceiptUsingGET.');
+            throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling renderReturnReceipt.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling renderReturnReceiptUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling renderReturnReceipt.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -195,8 +185,8 @@ export class RenditionApi extends runtime.BaseAPI implements RenditionApiInterfa
      * renderReturnReceipt
      * renderReturnReceipt
      */
-    async renderReturnReceiptUsingGET(requestParameters: RenderReturnReceiptUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent> {
-        const response = await this.renderReturnReceiptUsingGETRaw(requestParameters, initOverrides);
+    async renderReturnReceipt(requestParameters: renditionApiParams.RenderReturnReceiptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent> {
+        const response = await this.renderReturnReceiptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

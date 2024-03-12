@@ -20,41 +20,44 @@ import type {
   AddressValidationResponse,
 } from '../models';
 
-export interface ValidateAddressRequest {
-    responseFields?: string;
-    addressValidationRequest?: AddressValidationRequest;
+
+export namespace addressValidationApiParams { 
+    export interface ValidateAddressRequest {
+        responseFields?: string;
+        addressValidationRequest?: AddressValidationRequest;
+    }
+}
+/**
+* AddressValidationApiService - interface
+* 
+* @export
+* @interface AddressValidationApi
+*/
+export interface AddressValidationApiService {
+    /**
+    * Allows merchants and services to validate an address against the configured AddressValidator capability in SiteSettings, fallback uses USPS Address Validation.
+    * @summary Validate Address
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {AddressValidationRequest} [addressValidationRequest] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof AddressValidationApiInterface
+    */
+    validateAddressRaw(requestParameters: addressValidationApiParams.ValidateAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddressValidationResponse>>;
+
+    /**
+    * Allows merchants and services to validate an address against the configured AddressValidator capability in SiteSettings, fallback uses USPS Address Validation.
+    * Validate Address
+    */
+    validateAddress(requestParameters: addressValidationApiParams.ValidateAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddressValidationResponse>;
+
 }
 
-/**
- * AddressValidationApi - interface
- * 
- * @export
- * @interface AddressValidationApiInterface
- */
-export interface AddressValidationApiInterface {
-    /**
-     * Allows merchants and services to validate an address against the configured AddressValidator capability in SiteSettings, fallback uses USPS Address Validation.
-     * @summary Validate Address
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {AddressValidationRequest} [addressValidationRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AddressValidationApiInterface
-     */
-    validateAddressRaw(requestParameters: ValidateAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddressValidationResponse>>;
-
-    /**
-     * Allows merchants and services to validate an address against the configured AddressValidator capability in SiteSettings, fallback uses USPS Address Validation.
-     * Validate Address
-     */
-    validateAddress(requestParameters: ValidateAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddressValidationResponse>;
-
-}
 
 /**
  * 
  */
-export class AddressValidationApi extends runtime.BaseAPI implements AddressValidationApiInterface {
+export class AddressValidationApi extends runtime.BaseAPI implements AddressValidationApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -65,7 +68,7 @@ export class AddressValidationApi extends runtime.BaseAPI implements AddressVali
      */
 
 
-    async validateAddressRaw(requestParameters: ValidateAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddressValidationResponse>> {
+    async validateAddressRaw(requestParameters: addressValidationApiParams.ValidateAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddressValidationResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -97,7 +100,7 @@ export class AddressValidationApi extends runtime.BaseAPI implements AddressVali
      * Allows merchants and services to validate an address against the configured AddressValidator capability in SiteSettings, fallback uses USPS Address Validation.
      * Validate Address
      */
-    async validateAddress(requestParameters: ValidateAddressRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddressValidationResponse> {
+    async validateAddress(requestParameters: addressValidationApiParams.ValidateAddressRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddressValidationResponse> {
         const response = await this.validateAddressRaw(requestParameters, initOverrides);
         return await response.value();
     }

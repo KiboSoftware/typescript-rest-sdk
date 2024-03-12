@@ -19,41 +19,44 @@ import type {
   AutoAddDiscountTarget,
 } from '../models';
 
-export interface GetAutoAddTargetRequest {
-    discountId: number;
-    responseFields?: string;
+
+export namespace discountRuntimeApiParams { 
+    export interface GetAutoAddTargetRequest {
+        discountId: number;
+        responseFields?: string;
+    }
+}
+/**
+* DiscountRuntimeApiService - interface
+* 
+* @export
+* @interface DiscountRuntimeApi
+*/
+export interface DiscountRuntimeApiService {
+    /**
+    * Get Auto Add Target
+    * @summary Get Auto Add Target
+    * @param {number} discountId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DiscountRuntimeApiInterface
+    */
+    getAutoAddTargetRaw(requestParameters: discountRuntimeApiParams.GetAutoAddTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoAddDiscountTarget>>;
+
+    /**
+    * Get Auto Add Target
+    * Get Auto Add Target
+    */
+    getAutoAddTarget(requestParameters: discountRuntimeApiParams.GetAutoAddTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoAddDiscountTarget>;
+
 }
 
-/**
- * DiscountRuntimeApi - interface
- * 
- * @export
- * @interface DiscountRuntimeApiInterface
- */
-export interface DiscountRuntimeApiInterface {
-    /**
-     * Get Auto Add Target
-     * @summary Get Auto Add Target
-     * @param {number} discountId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DiscountRuntimeApiInterface
-     */
-    getAutoAddTargetRaw(requestParameters: GetAutoAddTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoAddDiscountTarget>>;
-
-    /**
-     * Get Auto Add Target
-     * Get Auto Add Target
-     */
-    getAutoAddTarget(requestParameters: GetAutoAddTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoAddDiscountTarget>;
-
-}
 
 /**
  * 
  */
-export class DiscountRuntimeApi extends runtime.BaseAPI implements DiscountRuntimeApiInterface {
+export class DiscountRuntimeApi extends runtime.BaseAPI implements DiscountRuntimeApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -64,7 +67,7 @@ export class DiscountRuntimeApi extends runtime.BaseAPI implements DiscountRunti
      */
 
 
-    async getAutoAddTargetRaw(requestParameters: GetAutoAddTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoAddDiscountTarget>> {
+    async getAutoAddTargetRaw(requestParameters: discountRuntimeApiParams.GetAutoAddTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoAddDiscountTarget>> {
         if (requestParameters.discountId === null || requestParameters.discountId === undefined) {
             throw new runtime.RequiredError('discountId','Required parameter requestParameters.discountId was null or undefined when calling getAutoAddTarget.');
         }
@@ -97,7 +100,7 @@ export class DiscountRuntimeApi extends runtime.BaseAPI implements DiscountRunti
      * Get Auto Add Target
      * Get Auto Add Target
      */
-    async getAutoAddTarget(requestParameters: GetAutoAddTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoAddDiscountTarget> {
+    async getAutoAddTarget(requestParameters: discountRuntimeApiParams.GetAutoAddTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoAddDiscountTarget> {
         const response = await this.getAutoAddTargetRaw(requestParameters, initOverrides);
         return await response.value();
     }

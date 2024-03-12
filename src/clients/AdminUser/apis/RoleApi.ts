@@ -19,45 +19,48 @@ import type {
   RoleCollection,
 } from '../models';
 
-export interface GetRolesRequest {
-    startIndex?: number;
-    pageSize?: number;
-    filter?: string;
-    responseFields?: string;
+
+export namespace roleApiParams { 
+    export interface GetRolesRequest {
+        startIndex?: number;
+        pageSize?: number;
+        filter?: string;
+        responseFields?: string;
+    }
+}
+/**
+* RoleApiService - interface
+* 
+* @export
+* @interface RoleApi
+*/
+export interface RoleApiService {
+    /**
+    * Retrieves a list of all roles defined for this tenant.
+    * @summary Get Roles
+    * @param {number} [startIndex] 
+    * @param {number} [pageSize] 
+    * @param {string} [filter] Optional filter param to filter the roles
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof RoleApiInterface
+    */
+    getRolesRaw(requestParameters: roleApiParams.GetRolesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RoleCollection>>;
+
+    /**
+    * Retrieves a list of all roles defined for this tenant.
+    * Get Roles
+    */
+    getRoles(requestParameters: roleApiParams.GetRolesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RoleCollection>;
+
 }
 
-/**
- * RoleApi - interface
- * 
- * @export
- * @interface RoleApiInterface
- */
-export interface RoleApiInterface {
-    /**
-     * Retrieves a list of all roles defined for this tenant.
-     * @summary Get Roles
-     * @param {number} [startIndex] 
-     * @param {number} [pageSize] 
-     * @param {string} [filter] Optional filter param to filter the roles
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RoleApiInterface
-     */
-    getRolesRaw(requestParameters: GetRolesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RoleCollection>>;
-
-    /**
-     * Retrieves a list of all roles defined for this tenant.
-     * Get Roles
-     */
-    getRoles(requestParameters: GetRolesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RoleCollection>;
-
-}
 
 /**
  * 
  */
-export class RoleApi extends runtime.BaseAPI implements RoleApiInterface {
+export class RoleApi extends runtime.BaseAPI implements RoleApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -68,7 +71,7 @@ export class RoleApi extends runtime.BaseAPI implements RoleApiInterface {
      */
 
 
-    async getRolesRaw(requestParameters: GetRolesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RoleCollection>> {
+    async getRolesRaw(requestParameters: roleApiParams.GetRolesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RoleCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -109,7 +112,7 @@ export class RoleApi extends runtime.BaseAPI implements RoleApiInterface {
      * Retrieves a list of all roles defined for this tenant.
      * Get Roles
      */
-    async getRoles(requestParameters: GetRolesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RoleCollection> {
+    async getRoles(requestParameters: roleApiParams.GetRolesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RoleCollection> {
         const response = await this.getRolesRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -23,401 +23,389 @@ import type {
   ReservationWebAPIOrderAttribute,
 } from '../models';
 
-export interface ActivateReservationRequest {
-    reservationId: string;
-    responseFields?: string;
-}
 
-export interface AddItemRequest {
-    reservationId: string;
-    zipCode?: string;
-    responseFields?: string;
-    reservationItem?: ReservationItem;
+export namespace reservationApiParams { 
+    export interface ActivateReservationRequest {
+        reservationId: string;
+        responseFields?: string;
+    }
+    export interface AddItemRequest {
+        reservationId: string;
+        zipCode?: string;
+        responseFields?: string;
+        reservationItem?: ReservationItem;
+    }
+    export interface CloseReservationRequest {
+        reservationId: string;
+        responseFields?: string;
+    }
+    export interface ConvertToOrderReservationRequest {
+        reservationId: string;
+        responseFields?: string;
+        orderReservati?: OrderReservati;
+    }
+    export interface CreateReservationRequest {
+        responseFields?: string;
+        reservati?: Reservati;
+    }
+    export interface DeleteReservationRequest {
+        reservationId: string;
+    }
+    export interface GetAllocationStatusRequest {
+        reservationId: string;
+        responseFields?: string;
+    }
+    export interface GetReservationByIdRequest {
+        reservationId: string;
+        responseFields?: string;
+    }
+    export interface GetReservationsRequest {
+        responseFields?: string;
+    }
+    export interface GetReservationsByCartIdRequest {
+        cartId: string;
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        filter?: string;
+        q?: string;
+        qLimit?: number;
+        responseFields?: string;
+    }
+    export interface RemoveItemRequest {
+        reservationId: string;
+        reservationItemId: string;
+    }
+    export interface UpdateItemQuantityRequest {
+        reservationId: string;
+        reservationItemId: string;
+        quantity: number;
+        responseFields?: string;
+    }
+    export interface UpdateReservationRequest {
+        reservationId: string;
+        responseFields?: string;
+        reservati?: Reservati;
+    }
+    export interface UpdateReservationItemRequest {
+        reservationId: string;
+        reservationItemId: string;
+        zipCode?: string;
+        responseFields?: string;
+        reservationItem?: ReservationItem;
+    }
+    export interface UpdateTimerRequest {
+        reservationId: string;
+        responseFields?: string;
+    }
+    export interface UpdateZipCodeRequest {
+        reservationId: string;
+        zipCode: string;
+        responseFields?: string;
+        reservationWebAPIOrderAttribute?: Array<ReservationWebAPIOrderAttribute>;
+    }
 }
-
-export interface CloseReservationRequest {
-    reservationId: string;
-    responseFields?: string;
-}
-
-export interface ConvertToOrderReservationRequest {
-    reservationId: string;
-    responseFields?: string;
-    orderReservati?: OrderReservati;
-}
-
-export interface CreateReservationRequest {
-    responseFields?: string;
-    reservati?: Reservati;
-}
-
-export interface DeleteReservationRequest {
-    reservationId: string;
-}
-
-export interface GetAllocationStatusRequest {
-    reservationId: string;
-    responseFields?: string;
-}
-
-export interface GetReservationByIdRequest {
-    reservationId: string;
-    responseFields?: string;
-}
-
-export interface GetReservationsRequest {
-    responseFields?: string;
-}
-
-export interface GetReservationsByCartIdRequest {
-    cartId: string;
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    filter?: string;
-    q?: string;
-    qLimit?: number;
-    responseFields?: string;
-}
-
-export interface RemoveItemRequest {
-    reservationId: string;
-    reservationItemId: string;
-}
-
-export interface UpdateItemQuantityRequest {
-    reservationId: string;
-    reservationItemId: string;
-    quantity: number;
-    responseFields?: string;
-}
-
-export interface UpdateReservationRequest {
-    reservationId: string;
-    responseFields?: string;
-    reservati?: Reservati;
-}
-
-export interface UpdateReservationItemRequest {
-    reservationId: string;
-    reservationItemId: string;
-    zipCode?: string;
-    responseFields?: string;
-    reservationItem?: ReservationItem;
-}
-
-export interface UpdateTimerRequest {
-    reservationId: string;
-    responseFields?: string;
-}
-
-export interface UpdateZipCodeRequest {
-    reservationId: string;
-    zipCode: string;
-    responseFields?: string;
-    reservationWebAPIOrderAttribute?: Array<ReservationWebAPIOrderAttribute>;
-}
-
 /**
- * ReservationApi - interface
- * 
- * @export
- * @interface ReservationApiInterface
- */
-export interface ReservationApiInterface {
+* ReservationApiService - interface
+* 
+* @export
+* @interface ReservationApi
+*/
+export interface ReservationApiService {
     /**
-     * Activate Reservation
-     * @summary Activate Reservation
-     * @param {string} reservationId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReservationApiInterface
-     */
-    activateReservationRaw(requestParameters: ActivateReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>>;
+    * Activate Reservation
+    * @summary Activate Reservation
+    * @param {string} reservationId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReservationApiInterface
+    */
+    activateReservationRaw(requestParameters: reservationApiParams.ActivateReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>>;
 
     /**
-     * Activate Reservation
-     * Activate Reservation
-     */
-    activateReservation(requestParameters: ActivateReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati>;
+    * Activate Reservation
+    * Activate Reservation
+    */
+    activateReservation(requestParameters: reservationApiParams.ActivateReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati>;
 
     /**
-     * Add Item
-     * @summary Add Item
-     * @param {string} reservationId 
-     * @param {string} [zipCode] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {ReservationItem} [reservationItem] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReservationApiInterface
-     */
-    addItemRaw(requestParameters: AddItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>>;
+    * Add Item
+    * @summary Add Item
+    * @param {string} reservationId 
+    * @param {string} [zipCode] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ReservationItem} [reservationItem] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReservationApiInterface
+    */
+    addItemRaw(requestParameters: reservationApiParams.AddItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>>;
 
     /**
-     * Add Item
-     * Add Item
-     */
-    addItem(requestParameters: AddItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati>;
+    * Add Item
+    * Add Item
+    */
+    addItem(requestParameters: reservationApiParams.AddItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati>;
 
     /**
-     * Close Reservation
-     * @summary Close Reservation
-     * @param {string} reservationId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReservationApiInterface
-     */
-    closeReservationRaw(requestParameters: CloseReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>>;
+    * Close Reservation
+    * @summary Close Reservation
+    * @param {string} reservationId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReservationApiInterface
+    */
+    closeReservationRaw(requestParameters: reservationApiParams.CloseReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>>;
 
     /**
-     * Close Reservation
-     * Close Reservation
-     */
-    closeReservation(requestParameters: CloseReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati>;
+    * Close Reservation
+    * Close Reservation
+    */
+    closeReservation(requestParameters: reservationApiParams.CloseReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati>;
 
     /**
-     * Convert To Order Reservation
-     * @summary Convert To Order Reservation
-     * @param {string} reservationId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {OrderReservati} [orderReservati] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReservationApiInterface
-     */
-    convertToOrderReservationRaw(requestParameters: ConvertToOrderReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>>;
+    * Convert To Order Reservation
+    * @summary Convert To Order Reservation
+    * @param {string} reservationId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {OrderReservati} [orderReservati] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReservationApiInterface
+    */
+    convertToOrderReservationRaw(requestParameters: reservationApiParams.ConvertToOrderReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>>;
 
     /**
-     * Convert To Order Reservation
-     * Convert To Order Reservation
-     */
-    convertToOrderReservation(requestParameters: ConvertToOrderReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati>;
+    * Convert To Order Reservation
+    * Convert To Order Reservation
+    */
+    convertToOrderReservation(requestParameters: reservationApiParams.ConvertToOrderReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati>;
 
     /**
-     * Create Reservation
-     * @summary Create Reservation
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Reservati} [reservati] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReservationApiInterface
-     */
-    createReservationRaw(requestParameters: CreateReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>>;
+    * Create Reservation
+    * @summary Create Reservation
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Reservati} [reservati] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReservationApiInterface
+    */
+    createReservationRaw(requestParameters: reservationApiParams.CreateReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>>;
 
     /**
-     * Create Reservation
-     * Create Reservation
-     */
-    createReservation(requestParameters: CreateReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati>;
+    * Create Reservation
+    * Create Reservation
+    */
+    createReservation(requestParameters: reservationApiParams.CreateReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati>;
 
     /**
-     * Delete Reservation
-     * @summary Delete Reservation
-     * @param {string} reservationId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReservationApiInterface
-     */
-    deleteReservationRaw(requestParameters: DeleteReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Delete Reservation
+    * @summary Delete Reservation
+    * @param {string} reservationId 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReservationApiInterface
+    */
+    deleteReservationRaw(requestParameters: reservationApiParams.DeleteReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Delete Reservation
-     * Delete Reservation
-     */
-    deleteReservation(requestParameters: DeleteReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Delete Reservation
+    * Delete Reservation
+    */
+    deleteReservation(requestParameters: reservationApiParams.DeleteReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Get Allocation Status
-     * @summary Get Allocation Status
-     * @param {string} reservationId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReservationApiInterface
-     */
-    getAllocationStatusRaw(requestParameters: GetAllocationStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: string; }>>;
+    * Get Allocation Status
+    * @summary Get Allocation Status
+    * @param {string} reservationId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReservationApiInterface
+    */
+    getAllocationStatusRaw(requestParameters: reservationApiParams.GetAllocationStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: string; }>>;
 
     /**
-     * Get Allocation Status
-     * Get Allocation Status
-     */
-    getAllocationStatus(requestParameters: GetAllocationStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: string; }>;
+    * Get Allocation Status
+    * Get Allocation Status
+    */
+    getAllocationStatus(requestParameters: reservationApiParams.GetAllocationStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: string; }>;
 
     /**
-     * Get Reservation By Id
-     * @summary Get Reservation By Id
-     * @param {string} reservationId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReservationApiInterface
-     */
-    getReservationByIdRaw(requestParameters: GetReservationByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>>;
+    * Get Reservation By Id
+    * @summary Get Reservation By Id
+    * @param {string} reservationId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReservationApiInterface
+    */
+    getReservationByIdRaw(requestParameters: reservationApiParams.GetReservationByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>>;
 
     /**
-     * Get Reservation By Id
-     * Get Reservation By Id
-     */
-    getReservationById(requestParameters: GetReservationByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati>;
+    * Get Reservation By Id
+    * Get Reservation By Id
+    */
+    getReservationById(requestParameters: reservationApiParams.GetReservationByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati>;
 
     /**
-     * Get Reservations
-     * @summary Get Reservations
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReservationApiInterface
-     */
-    getReservationsRaw(requestParameters: GetReservationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>>;
+    * Get Reservations
+    * @summary Get Reservations
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReservationApiInterface
+    */
+    getReservationsRaw(requestParameters: reservationApiParams.GetReservationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>>;
 
     /**
-     * Get Reservations
-     * Get Reservations
-     */
-    getReservations(requestParameters: GetReservationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati>;
+    * Get Reservations
+    * Get Reservations
+    */
+    getReservations(requestParameters: reservationApiParams.GetReservationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati>;
 
     /**
-     * Get Reservations By Cart Id
-     * @summary Get Reservations By Cart Id
-     * @param {string} cartId 
-     * @param {number} [startIndex] 
-     * @param {number} [pageSize] 
-     * @param {string} [sortBy] 
-     * @param {string} [filter] 
-     * @param {string} [q] 
-     * @param {number} [qLimit] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReservationApiInterface
-     */
-    getReservationsByCartIdRaw(requestParameters: GetReservationsByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReservationCollecti>>;
+    * Get Reservations By Cart Id
+    * @summary Get Reservations By Cart Id
+    * @param {string} cartId 
+    * @param {number} [startIndex] 
+    * @param {number} [pageSize] 
+    * @param {string} [sortBy] 
+    * @param {string} [filter] 
+    * @param {string} [q] 
+    * @param {number} [qLimit] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReservationApiInterface
+    */
+    getReservationsByCartIdRaw(requestParameters: reservationApiParams.GetReservationsByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReservationCollecti>>;
 
     /**
-     * Get Reservations By Cart Id
-     * Get Reservations By Cart Id
-     */
-    getReservationsByCartId(requestParameters: GetReservationsByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReservationCollecti>;
+    * Get Reservations By Cart Id
+    * Get Reservations By Cart Id
+    */
+    getReservationsByCartId(requestParameters: reservationApiParams.GetReservationsByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReservationCollecti>;
 
     /**
-     * Remove Item
-     * @summary Remove Item
-     * @param {string} reservationId 
-     * @param {string} reservationItemId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReservationApiInterface
-     */
-    removeItemRaw(requestParameters: RemoveItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>>;
+    * Remove Item
+    * @summary Remove Item
+    * @param {string} reservationId 
+    * @param {string} reservationItemId 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReservationApiInterface
+    */
+    removeItemRaw(requestParameters: reservationApiParams.RemoveItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>>;
 
     /**
-     * Remove Item
-     * Remove Item
-     */
-    removeItem(requestParameters: RemoveItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati>;
+    * Remove Item
+    * Remove Item
+    */
+    removeItem(requestParameters: reservationApiParams.RemoveItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati>;
 
     /**
-     * Update Item Quantity
-     * @summary Update Item Quantity
-     * @param {string} reservationId 
-     * @param {string} reservationItemId 
-     * @param {number} quantity 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReservationApiInterface
-     */
-    updateItemQuantityRaw(requestParameters: UpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>>;
+    * Update Item Quantity
+    * @summary Update Item Quantity
+    * @param {string} reservationId 
+    * @param {string} reservationItemId 
+    * @param {number} quantity 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReservationApiInterface
+    */
+    updateItemQuantityRaw(requestParameters: reservationApiParams.UpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>>;
 
     /**
-     * Update Item Quantity
-     * Update Item Quantity
-     */
-    updateItemQuantity(requestParameters: UpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati>;
+    * Update Item Quantity
+    * Update Item Quantity
+    */
+    updateItemQuantity(requestParameters: reservationApiParams.UpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati>;
 
     /**
-     * Update Reservation
-     * @summary Update Reservation
-     * @param {string} reservationId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Reservati} [reservati] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReservationApiInterface
-     */
-    updateReservationRaw(requestParameters: UpdateReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>>;
+    * Update Reservation
+    * @summary Update Reservation
+    * @param {string} reservationId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Reservati} [reservati] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReservationApiInterface
+    */
+    updateReservationRaw(requestParameters: reservationApiParams.UpdateReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>>;
 
     /**
-     * Update Reservation
-     * Update Reservation
-     */
-    updateReservation(requestParameters: UpdateReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati>;
+    * Update Reservation
+    * Update Reservation
+    */
+    updateReservation(requestParameters: reservationApiParams.UpdateReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati>;
 
     /**
-     * Update Reservation Item
-     * @summary Update Reservation Item
-     * @param {string} reservationId 
-     * @param {string} reservationItemId 
-     * @param {string} [zipCode] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {ReservationItem} [reservationItem] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReservationApiInterface
-     */
-    updateReservationItemRaw(requestParameters: UpdateReservationItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>>;
+    * Update Reservation Item
+    * @summary Update Reservation Item
+    * @param {string} reservationId 
+    * @param {string} reservationItemId 
+    * @param {string} [zipCode] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ReservationItem} [reservationItem] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReservationApiInterface
+    */
+    updateReservationItemRaw(requestParameters: reservationApiParams.UpdateReservationItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>>;
 
     /**
-     * Update Reservation Item
-     * Update Reservation Item
-     */
-    updateReservationItem(requestParameters: UpdateReservationItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati>;
+    * Update Reservation Item
+    * Update Reservation Item
+    */
+    updateReservationItem(requestParameters: reservationApiParams.UpdateReservationItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati>;
 
     /**
-     * Update Timer
-     * @summary Update Timer
-     * @param {string} reservationId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReservationApiInterface
-     */
-    updateTimerRaw(requestParameters: UpdateTimerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>>;
+    * Update Timer
+    * @summary Update Timer
+    * @param {string} reservationId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReservationApiInterface
+    */
+    updateTimerRaw(requestParameters: reservationApiParams.UpdateTimerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>>;
 
     /**
-     * Update Timer
-     * Update Timer
-     */
-    updateTimer(requestParameters: UpdateTimerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati>;
+    * Update Timer
+    * Update Timer
+    */
+    updateTimer(requestParameters: reservationApiParams.UpdateTimerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati>;
 
     /**
-     * Update Zip Code
-     * @summary Update Zip Code
-     * @param {string} reservationId 
-     * @param {string} zipCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Array<ReservationWebAPIOrderAttribute>} [reservationWebAPIOrderAttribute] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReservationApiInterface
-     */
-    updateZipCodeRaw(requestParameters: UpdateZipCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>>;
+    * Update Zip Code
+    * @summary Update Zip Code
+    * @param {string} reservationId 
+    * @param {string} zipCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<ReservationWebAPIOrderAttribute>} [reservationWebAPIOrderAttribute] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReservationApiInterface
+    */
+    updateZipCodeRaw(requestParameters: reservationApiParams.UpdateZipCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>>;
 
     /**
-     * Update Zip Code
-     * Update Zip Code
-     */
-    updateZipCode(requestParameters: UpdateZipCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati>;
+    * Update Zip Code
+    * Update Zip Code
+    */
+    updateZipCode(requestParameters: reservationApiParams.UpdateZipCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati>;
 
 }
+
 
 /**
  * 
  */
-export class ReservationApi extends runtime.BaseAPI implements ReservationApiInterface {
+export class ReservationApi extends runtime.BaseAPI implements ReservationApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -428,7 +416,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      */
 
 
-    async activateReservationRaw(requestParameters: ActivateReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
+    async activateReservationRaw(requestParameters: reservationApiParams.ActivateReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
         if (requestParameters.reservationId === null || requestParameters.reservationId === undefined) {
             throw new runtime.RequiredError('reservationId','Required parameter requestParameters.reservationId was null or undefined when calling activateReservation.');
         }
@@ -461,7 +449,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      * Activate Reservation
      * Activate Reservation
      */
-    async activateReservation(requestParameters: ActivateReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
+    async activateReservation(requestParameters: reservationApiParams.ActivateReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
         const response = await this.activateReservationRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -472,7 +460,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      */
 
 
-    async addItemRaw(requestParameters: AddItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
+    async addItemRaw(requestParameters: reservationApiParams.AddItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
         if (requestParameters.reservationId === null || requestParameters.reservationId === undefined) {
             throw new runtime.RequiredError('reservationId','Required parameter requestParameters.reservationId was null or undefined when calling addItem.');
         }
@@ -512,7 +500,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      * Add Item
      * Add Item
      */
-    async addItem(requestParameters: AddItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
+    async addItem(requestParameters: reservationApiParams.AddItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
         const response = await this.addItemRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -523,7 +511,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      */
 
 
-    async closeReservationRaw(requestParameters: CloseReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
+    async closeReservationRaw(requestParameters: reservationApiParams.CloseReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
         if (requestParameters.reservationId === null || requestParameters.reservationId === undefined) {
             throw new runtime.RequiredError('reservationId','Required parameter requestParameters.reservationId was null or undefined when calling closeReservation.');
         }
@@ -556,7 +544,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      * Close Reservation
      * Close Reservation
      */
-    async closeReservation(requestParameters: CloseReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
+    async closeReservation(requestParameters: reservationApiParams.CloseReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
         const response = await this.closeReservationRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -567,7 +555,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      */
 
 
-    async convertToOrderReservationRaw(requestParameters: ConvertToOrderReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
+    async convertToOrderReservationRaw(requestParameters: reservationApiParams.ConvertToOrderReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
         if (requestParameters.reservationId === null || requestParameters.reservationId === undefined) {
             throw new runtime.RequiredError('reservationId','Required parameter requestParameters.reservationId was null or undefined when calling convertToOrderReservation.');
         }
@@ -603,7 +591,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      * Convert To Order Reservation
      * Convert To Order Reservation
      */
-    async convertToOrderReservation(requestParameters: ConvertToOrderReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
+    async convertToOrderReservation(requestParameters: reservationApiParams.ConvertToOrderReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
         const response = await this.convertToOrderReservationRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -614,7 +602,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      */
 
 
-    async createReservationRaw(requestParameters: CreateReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
+    async createReservationRaw(requestParameters: reservationApiParams.CreateReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -646,7 +634,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      * Create Reservation
      * Create Reservation
      */
-    async createReservation(requestParameters: CreateReservationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
+    async createReservation(requestParameters: reservationApiParams.CreateReservationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
         const response = await this.createReservationRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -657,7 +645,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      */
 
 
-    async deleteReservationRaw(requestParameters: DeleteReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteReservationRaw(requestParameters: reservationApiParams.DeleteReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.reservationId === null || requestParameters.reservationId === undefined) {
             throw new runtime.RequiredError('reservationId','Required parameter requestParameters.reservationId was null or undefined when calling deleteReservation.');
         }
@@ -686,7 +674,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      * Delete Reservation
      * Delete Reservation
      */
-    async deleteReservation(requestParameters: DeleteReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteReservation(requestParameters: reservationApiParams.DeleteReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteReservationRaw(requestParameters, initOverrides);
     }
 
@@ -696,7 +684,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      */
 
 
-    async getAllocationStatusRaw(requestParameters: GetAllocationStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: string; }>> {
+    async getAllocationStatusRaw(requestParameters: reservationApiParams.GetAllocationStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: string; }>> {
         if (requestParameters.reservationId === null || requestParameters.reservationId === undefined) {
             throw new runtime.RequiredError('reservationId','Required parameter requestParameters.reservationId was null or undefined when calling getAllocationStatus.');
         }
@@ -729,7 +717,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      * Get Allocation Status
      * Get Allocation Status
      */
-    async getAllocationStatus(requestParameters: GetAllocationStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: string; }> {
+    async getAllocationStatus(requestParameters: reservationApiParams.GetAllocationStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: string; }> {
         const response = await this.getAllocationStatusRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -740,7 +728,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      */
 
 
-    async getReservationByIdRaw(requestParameters: GetReservationByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
+    async getReservationByIdRaw(requestParameters: reservationApiParams.GetReservationByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
         if (requestParameters.reservationId === null || requestParameters.reservationId === undefined) {
             throw new runtime.RequiredError('reservationId','Required parameter requestParameters.reservationId was null or undefined when calling getReservationById.');
         }
@@ -773,7 +761,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      * Get Reservation By Id
      * Get Reservation By Id
      */
-    async getReservationById(requestParameters: GetReservationByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
+    async getReservationById(requestParameters: reservationApiParams.GetReservationByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
         const response = await this.getReservationByIdRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -784,7 +772,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      */
 
 
-    async getReservationsRaw(requestParameters: GetReservationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
+    async getReservationsRaw(requestParameters: reservationApiParams.GetReservationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -813,7 +801,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      * Get Reservations
      * Get Reservations
      */
-    async getReservations(requestParameters: GetReservationsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
+    async getReservations(requestParameters: reservationApiParams.GetReservationsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
         const response = await this.getReservationsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -824,7 +812,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      */
 
 
-    async getReservationsByCartIdRaw(requestParameters: GetReservationsByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReservationCollecti>> {
+    async getReservationsByCartIdRaw(requestParameters: reservationApiParams.GetReservationsByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReservationCollecti>> {
         if (requestParameters.cartId === null || requestParameters.cartId === undefined) {
             throw new runtime.RequiredError('cartId','Required parameter requestParameters.cartId was null or undefined when calling getReservationsByCartId.');
         }
@@ -881,7 +869,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      * Get Reservations By Cart Id
      * Get Reservations By Cart Id
      */
-    async getReservationsByCartId(requestParameters: GetReservationsByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReservationCollecti> {
+    async getReservationsByCartId(requestParameters: reservationApiParams.GetReservationsByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReservationCollecti> {
         const response = await this.getReservationsByCartIdRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -892,7 +880,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      */
 
 
-    async removeItemRaw(requestParameters: RemoveItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
+    async removeItemRaw(requestParameters: reservationApiParams.RemoveItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
         if (requestParameters.reservationId === null || requestParameters.reservationId === undefined) {
             throw new runtime.RequiredError('reservationId','Required parameter requestParameters.reservationId was null or undefined when calling removeItem.');
         }
@@ -925,7 +913,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      * Remove Item
      * Remove Item
      */
-    async removeItem(requestParameters: RemoveItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
+    async removeItem(requestParameters: reservationApiParams.RemoveItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
         const response = await this.removeItemRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -936,7 +924,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      */
 
 
-    async updateItemQuantityRaw(requestParameters: UpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
+    async updateItemQuantityRaw(requestParameters: reservationApiParams.UpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
         if (requestParameters.reservationId === null || requestParameters.reservationId === undefined) {
             throw new runtime.RequiredError('reservationId','Required parameter requestParameters.reservationId was null or undefined when calling updateItemQuantity.');
         }
@@ -977,7 +965,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      * Update Item Quantity
      * Update Item Quantity
      */
-    async updateItemQuantity(requestParameters: UpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
+    async updateItemQuantity(requestParameters: reservationApiParams.UpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
         const response = await this.updateItemQuantityRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -988,7 +976,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      */
 
 
-    async updateReservationRaw(requestParameters: UpdateReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
+    async updateReservationRaw(requestParameters: reservationApiParams.UpdateReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
         if (requestParameters.reservationId === null || requestParameters.reservationId === undefined) {
             throw new runtime.RequiredError('reservationId','Required parameter requestParameters.reservationId was null or undefined when calling updateReservation.');
         }
@@ -1024,7 +1012,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      * Update Reservation
      * Update Reservation
      */
-    async updateReservation(requestParameters: UpdateReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
+    async updateReservation(requestParameters: reservationApiParams.UpdateReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
         const response = await this.updateReservationRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1035,7 +1023,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      */
 
 
-    async updateReservationItemRaw(requestParameters: UpdateReservationItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
+    async updateReservationItemRaw(requestParameters: reservationApiParams.UpdateReservationItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
         if (requestParameters.reservationId === null || requestParameters.reservationId === undefined) {
             throw new runtime.RequiredError('reservationId','Required parameter requestParameters.reservationId was null or undefined when calling updateReservationItem.');
         }
@@ -1079,7 +1067,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      * Update Reservation Item
      * Update Reservation Item
      */
-    async updateReservationItem(requestParameters: UpdateReservationItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
+    async updateReservationItem(requestParameters: reservationApiParams.UpdateReservationItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
         const response = await this.updateReservationItemRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1090,7 +1078,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      */
 
 
-    async updateTimerRaw(requestParameters: UpdateTimerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
+    async updateTimerRaw(requestParameters: reservationApiParams.UpdateTimerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
         if (requestParameters.reservationId === null || requestParameters.reservationId === undefined) {
             throw new runtime.RequiredError('reservationId','Required parameter requestParameters.reservationId was null or undefined when calling updateTimer.');
         }
@@ -1123,7 +1111,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      * Update Timer
      * Update Timer
      */
-    async updateTimer(requestParameters: UpdateTimerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
+    async updateTimer(requestParameters: reservationApiParams.UpdateTimerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
         const response = await this.updateTimerRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1134,7 +1122,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      */
 
 
-    async updateZipCodeRaw(requestParameters: UpdateZipCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
+    async updateZipCodeRaw(requestParameters: reservationApiParams.UpdateZipCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
         if (requestParameters.reservationId === null || requestParameters.reservationId === undefined) {
             throw new runtime.RequiredError('reservationId','Required parameter requestParameters.reservationId was null or undefined when calling updateZipCode.');
         }
@@ -1174,7 +1162,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiInt
      * Update Zip Code
      * Update Zip Code
      */
-    async updateZipCode(requestParameters: UpdateZipCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
+    async updateZipCode(requestParameters: reservationApiParams.UpdateZipCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Reservati> {
         const response = await this.updateZipCodeRaw(requestParameters, initOverrides);
         return await response.value();
     }

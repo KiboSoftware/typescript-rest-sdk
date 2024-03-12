@@ -20,85 +20,86 @@ import type {
   SuggestSettings,
 } from '../models';
 
-export interface DeleteProductSuggestSettingsRequest {
-    name: string;
+
+export namespace searchProductSuggestSettingsApiParams { 
+    export interface DeleteProductSuggestSettingsRequest {
+        name: string;
+    }
+    export interface GetProductSuggestSettingsRequest {
+        name: string;
+        responseFields?: string;
+    }
+    export interface UpdateProductSuggestSettingsRequest {
+        name: string;
+        responseFields?: string;
+        productSuggestSettings?: ProductSuggestSettings;
+    }
+}
+/**
+* SearchProductSuggestSettingsApiService - interface
+* 
+* @export
+* @interface SearchProductSuggestSettingsApi
+*/
+export interface SearchProductSuggestSettingsApiService {
+    /**
+    * Deletes the ProductSuggestSettings for a specific SearchSetting by name.
+    * @summary Delete product suggest settings
+    * @param {string} name 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SearchProductSuggestSettingsApiInterface
+    */
+    deleteProductSuggestSettingsRaw(requestParameters: searchProductSuggestSettingsApiParams.DeleteProductSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+    * Deletes the ProductSuggestSettings for a specific SearchSetting by name.
+    * Delete product suggest settings
+    */
+    deleteProductSuggestSettings(requestParameters: searchProductSuggestSettingsApiParams.DeleteProductSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+    * Get ProductSuggestSettings for a specific SearchSettings by name.
+    * @summary Get [roduct suggest settings
+    * @param {string} name 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SearchProductSuggestSettingsApiInterface
+    */
+    getProductSuggestSettingsRaw(requestParameters: searchProductSuggestSettingsApiParams.GetProductSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestSettings>>;
+
+    /**
+    * Get ProductSuggestSettings for a specific SearchSettings by name.
+    * Get [roduct suggest settings
+    */
+    getProductSuggestSettings(requestParameters: searchProductSuggestSettingsApiParams.GetProductSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestSettings>;
+
+    /**
+    * Adds or Updates (Upsert) the ProductSuggestSettings for a specific SearchSetting by name.
+    * @summary Add/Update product suggest settings
+    * @param {string} name 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ProductSuggestSettings} [productSuggestSettings] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SearchProductSuggestSettingsApiInterface
+    */
+    updateProductSuggestSettingsRaw(requestParameters: searchProductSuggestSettingsApiParams.UpdateProductSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSuggestSettings>>;
+
+    /**
+    * Adds or Updates (Upsert) the ProductSuggestSettings for a specific SearchSetting by name.
+    * Add/Update product suggest settings
+    */
+    updateProductSuggestSettings(requestParameters: searchProductSuggestSettingsApiParams.UpdateProductSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSuggestSettings>;
+
 }
 
-export interface GetProductSuggestSettingsRequest {
-    name: string;
-    responseFields?: string;
-}
-
-export interface UpdateProductSuggestSettingsRequest {
-    name: string;
-    responseFields?: string;
-    productSuggestSettings?: ProductSuggestSettings;
-}
 
 /**
- * SearchProductSuggestSettingsApi - interface
- * 
- * @export
- * @interface SearchProductSuggestSettingsApiInterface
- */
-export interface SearchProductSuggestSettingsApiInterface {
-    /**
-     * Deletes the ProductSuggestSettings for a specific SearchSetting by name.
-     * @summary Delete product suggest settings
-     * @param {string} name 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchProductSuggestSettingsApiInterface
-     */
-    deleteProductSuggestSettingsRaw(requestParameters: DeleteProductSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     * Deletes the ProductSuggestSettings for a specific SearchSetting by name.
-     * Delete product suggest settings
-     */
-    deleteProductSuggestSettings(requestParameters: DeleteProductSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * Get ProductSuggestSettings for a specific SearchSettings by name.
-     * @summary Get [roduct suggest settings
-     * @param {string} name 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchProductSuggestSettingsApiInterface
-     */
-    getProductSuggestSettingsRaw(requestParameters: GetProductSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestSettings>>;
-
-    /**
-     * Get ProductSuggestSettings for a specific SearchSettings by name.
-     * Get [roduct suggest settings
-     */
-    getProductSuggestSettings(requestParameters: GetProductSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestSettings>;
-
-    /**
-     * Adds or Updates (Upsert) the ProductSuggestSettings for a specific SearchSetting by name.
-     * @summary Add/Update product suggest settings
-     * @param {string} name 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {ProductSuggestSettings} [productSuggestSettings] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchProductSuggestSettingsApiInterface
-     */
-    updateProductSuggestSettingsRaw(requestParameters: UpdateProductSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSuggestSettings>>;
-
-    /**
-     * Adds or Updates (Upsert) the ProductSuggestSettings for a specific SearchSetting by name.
-     * Add/Update product suggest settings
-     */
-    updateProductSuggestSettings(requestParameters: UpdateProductSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSuggestSettings>;
-
-}
-
-/**
  * 
  */
-export class SearchProductSuggestSettingsApi extends runtime.BaseAPI implements SearchProductSuggestSettingsApiInterface {
+export class SearchProductSuggestSettingsApi extends runtime.BaseAPI implements SearchProductSuggestSettingsApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -109,7 +110,7 @@ export class SearchProductSuggestSettingsApi extends runtime.BaseAPI implements 
      */
 
 
-    async deleteProductSuggestSettingsRaw(requestParameters: DeleteProductSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteProductSuggestSettingsRaw(requestParameters: searchProductSuggestSettingsApiParams.DeleteProductSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.name === null || requestParameters.name === undefined) {
             throw new runtime.RequiredError('name','Required parameter requestParameters.name was null or undefined when calling deleteProductSuggestSettings.');
         }
@@ -138,7 +139,7 @@ export class SearchProductSuggestSettingsApi extends runtime.BaseAPI implements 
      * Deletes the ProductSuggestSettings for a specific SearchSetting by name.
      * Delete product suggest settings
      */
-    async deleteProductSuggestSettings(requestParameters: DeleteProductSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteProductSuggestSettings(requestParameters: searchProductSuggestSettingsApiParams.DeleteProductSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteProductSuggestSettingsRaw(requestParameters, initOverrides);
     }
 
@@ -148,7 +149,7 @@ export class SearchProductSuggestSettingsApi extends runtime.BaseAPI implements 
      */
 
 
-    async getProductSuggestSettingsRaw(requestParameters: GetProductSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestSettings>> {
+    async getProductSuggestSettingsRaw(requestParameters: searchProductSuggestSettingsApiParams.GetProductSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestSettings>> {
         if (requestParameters.name === null || requestParameters.name === undefined) {
             throw new runtime.RequiredError('name','Required parameter requestParameters.name was null or undefined when calling getProductSuggestSettings.');
         }
@@ -181,7 +182,7 @@ export class SearchProductSuggestSettingsApi extends runtime.BaseAPI implements 
      * Get ProductSuggestSettings for a specific SearchSettings by name.
      * Get [roduct suggest settings
      */
-    async getProductSuggestSettings(requestParameters: GetProductSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestSettings> {
+    async getProductSuggestSettings(requestParameters: searchProductSuggestSettingsApiParams.GetProductSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestSettings> {
         const response = await this.getProductSuggestSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -192,7 +193,7 @@ export class SearchProductSuggestSettingsApi extends runtime.BaseAPI implements 
      */
 
 
-    async updateProductSuggestSettingsRaw(requestParameters: UpdateProductSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSuggestSettings>> {
+    async updateProductSuggestSettingsRaw(requestParameters: searchProductSuggestSettingsApiParams.UpdateProductSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSuggestSettings>> {
         if (requestParameters.name === null || requestParameters.name === undefined) {
             throw new runtime.RequiredError('name','Required parameter requestParameters.name was null or undefined when calling updateProductSuggestSettings.');
         }
@@ -228,7 +229,7 @@ export class SearchProductSuggestSettingsApi extends runtime.BaseAPI implements 
      * Adds or Updates (Upsert) the ProductSuggestSettings for a specific SearchSetting by name.
      * Add/Update product suggest settings
      */
-    async updateProductSuggestSettings(requestParameters: UpdateProductSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSuggestSettings> {
+    async updateProductSuggestSettings(requestParameters: searchProductSuggestSettingsApiParams.UpdateProductSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSuggestSettings> {
         const response = await this.updateProductSuggestSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }

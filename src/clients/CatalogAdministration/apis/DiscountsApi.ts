@@ -25,295 +25,287 @@ import type {
   TagCollection,
 } from '../models';
 
-export interface CreateDiscountRequest {
-    tagCode?: string;
-    responseFields?: string;
-    catalogAdminsDiscount?: CatalogAdminsDiscount;
-}
 
-export interface DeleteDiscountRequest {
-    discountId: number;
+export namespace discountsApiParams { 
+    export interface CreateDiscountRequest {
+        tagCode?: string;
+        responseFields?: string;
+        catalogAdminsDiscount?: CatalogAdminsDiscount;
+    }
+    export interface DeleteDiscountRequest {
+        discountId: number;
+    }
+    export interface GenerateRandomCouponRequest {
+        responseFields?: string;
+    }
+    export interface GetDiscountRequest {
+        discountId: number;
+        responseFields?: string;
+    }
+    export interface GetDiscountContentRequest {
+        discountId: number;
+        responseFields?: string;
+    }
+    export interface GetDiscountTargetRequest {
+        discountId: number;
+        responseFields?: string;
+    }
+    export interface GetDiscountsRequest {
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        filter?: string;
+        responseGroups?: string;
+        responseFields?: string;
+    }
+    export interface GetTagsRequest {
+        discountId: number;
+        responseFields?: string;
+    }
+    export interface UpdateDiscountRequest {
+        discountId: number;
+        responseFields?: string;
+        catalogAdminsDiscount?: CatalogAdminsDiscount;
+    }
+    export interface UpdateDiscountContentRequest {
+        discountId: number;
+        responseFields?: string;
+        discountLocalizedContent?: DiscountLocalizedContent;
+    }
+    export interface UpdateDiscountTagsRequest {
+        responseFields?: string;
+        discountTag?: Array<DiscountTag>;
+    }
+    export interface UpdateDiscountTargetRequest {
+        discountId: number;
+        responseFields?: string;
+        catalogAdminsDiscountTarget?: CatalogAdminsDiscountTarget;
+    }
 }
-
-export interface GenerateRandomCouponRequest {
-    responseFields?: string;
-}
-
-export interface GetDiscountRequest {
-    discountId: number;
-    responseFields?: string;
-}
-
-export interface GetDiscountContentRequest {
-    discountId: number;
-    responseFields?: string;
-}
-
-export interface GetDiscountTargetRequest {
-    discountId: number;
-    responseFields?: string;
-}
-
-export interface GetDiscountsRequest {
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    filter?: string;
-    responseGroups?: string;
-    responseFields?: string;
-}
-
-export interface GetTagsRequest {
-    discountId: number;
-    responseFields?: string;
-}
-
-export interface UpdateDiscountRequest {
-    discountId: number;
-    responseFields?: string;
-    catalogAdminsDiscount?: CatalogAdminsDiscount;
-}
-
-export interface UpdateDiscountContentRequest {
-    discountId: number;
-    responseFields?: string;
-    discountLocalizedContent?: DiscountLocalizedContent;
-}
-
-export interface UpdateDiscountTagsRequest {
-    responseFields?: string;
-    discountTag?: Array<DiscountTag>;
-}
-
-export interface UpdateDiscountTargetRequest {
-    discountId: number;
-    responseFields?: string;
-    catalogAdminsDiscountTarget?: CatalogAdminsDiscountTarget;
-}
-
 /**
- * DiscountsApi - interface
- * 
- * @export
- * @interface DiscountsApiInterface
- */
-export interface DiscountsApiInterface {
+* DiscountsApiService - interface
+* 
+* @export
+* @interface DiscountsApi
+*/
+export interface DiscountsApiService {
     /**
-     * Creates a discount.
-     * @summary Create discount
-     * @param {string} [tagCode] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CatalogAdminsDiscount} [catalogAdminsDiscount] Properties of the discount to create. Required properties: Content.Name, AmountType, StartDate, and Target.Type.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DiscountsApiInterface
-     */
-    createDiscountRaw(requestParameters: CreateDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscount>>;
+    * Creates a discount.
+    * @summary Create discount
+    * @param {string} [tagCode] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CatalogAdminsDiscount} [catalogAdminsDiscount] Properties of the discount to create. Required properties: Content.Name, AmountType, StartDate, and Target.Type.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DiscountsApiInterface
+    */
+    createDiscountRaw(requestParameters: discountsApiParams.CreateDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscount>>;
 
     /**
-     * Creates a discount.
-     * Create discount
-     */
-    createDiscount(requestParameters: CreateDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscount>;
+    * Creates a discount.
+    * Create discount
+    */
+    createDiscount(requestParameters: discountsApiParams.CreateDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscount>;
 
     /**
-     * Deletes a discount specified by its discount ID.
-     * @summary Delete discount
-     * @param {number} discountId Unique identifier of the discount. System-supplied and read-only.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DiscountsApiInterface
-     */
-    deleteDiscountRaw(requestParameters: DeleteDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Deletes a discount specified by its discount ID.
+    * @summary Delete discount
+    * @param {number} discountId Unique identifier of the discount. System-supplied and read-only.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DiscountsApiInterface
+    */
+    deleteDiscountRaw(requestParameters: discountsApiParams.DeleteDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Deletes a discount specified by its discount ID.
-     * Delete discount
-     */
-    deleteDiscount(requestParameters: DeleteDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Deletes a discount specified by its discount ID.
+    * Delete discount
+    */
+    deleteDiscount(requestParameters: discountsApiParams.DeleteDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Generates a random code for a coupon.
-     * @summary Generate a random coupon
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DiscountsApiInterface
-     */
-    generateRandomCouponRaw(requestParameters: GenerateRandomCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
+    * Generates a random code for a coupon.
+    * @summary Generate a random coupon
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DiscountsApiInterface
+    */
+    generateRandomCouponRaw(requestParameters: discountsApiParams.GenerateRandomCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
 
     /**
-     * Generates a random code for a coupon.
-     * Generate a random coupon
-     */
-    generateRandomCoupon(requestParameters: GenerateRandomCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
+    * Generates a random code for a coupon.
+    * Generate a random coupon
+    */
+    generateRandomCoupon(requestParameters: discountsApiParams.GenerateRandomCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
 
     /**
-     * Retrieves the details of a single discount.
-     * @summary Get discount
-     * @param {number} discountId Unique identifier of the discount. System-supplied and read-only.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DiscountsApiInterface
-     */
-    getDiscountRaw(requestParameters: GetDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscount>>;
+    * Retrieves the details of a single discount.
+    * @summary Get discount
+    * @param {number} discountId Unique identifier of the discount. System-supplied and read-only.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DiscountsApiInterface
+    */
+    getDiscountRaw(requestParameters: discountsApiParams.GetDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscount>>;
 
     /**
-     * Retrieves the details of a single discount.
-     * Get discount
-     */
-    getDiscount(requestParameters: GetDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscount>;
+    * Retrieves the details of a single discount.
+    * Get discount
+    */
+    getDiscount(requestParameters: discountsApiParams.GetDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscount>;
 
     /**
-     * Retrieves the localized content specified for the specified discount.
-     * @summary Get discount content
-     * @param {number} discountId Unique identifier of the discount. System-supplied and read-only.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DiscountsApiInterface
-     */
-    getDiscountContentRaw(requestParameters: GetDiscountContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountLocalizedContent>>;
+    * Retrieves the localized content specified for the specified discount.
+    * @summary Get discount content
+    * @param {number} discountId Unique identifier of the discount. System-supplied and read-only.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DiscountsApiInterface
+    */
+    getDiscountContentRaw(requestParameters: discountsApiParams.GetDiscountContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountLocalizedContent>>;
 
     /**
-     * Retrieves the localized content specified for the specified discount.
-     * Get discount content
-     */
-    getDiscountContent(requestParameters: GetDiscountContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountLocalizedContent>;
+    * Retrieves the localized content specified for the specified discount.
+    * Get discount content
+    */
+    getDiscountContent(requestParameters: discountsApiParams.GetDiscountContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountLocalizedContent>;
 
     /**
-     * Retrieves the discount target, that is which products, categories, or shipping methods are eligible for the discount.
-     * @summary Get discount target
-     * @param {number} discountId Unique identifier of the discount. System-supplied and read-only.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DiscountsApiInterface
-     */
-    getDiscountTargetRaw(requestParameters: GetDiscountTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscountTarget>>;
+    * Retrieves the discount target, that is which products, categories, or shipping methods are eligible for the discount.
+    * @summary Get discount target
+    * @param {number} discountId Unique identifier of the discount. System-supplied and read-only.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DiscountsApiInterface
+    */
+    getDiscountTargetRaw(requestParameters: discountsApiParams.GetDiscountTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscountTarget>>;
 
     /**
-     * Retrieves the discount target, that is which products, categories, or shipping methods are eligible for the discount.
-     * Get discount target
-     */
-    getDiscountTarget(requestParameters: GetDiscountTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscountTarget>;
+    * Retrieves the discount target, that is which products, categories, or shipping methods are eligible for the discount.
+    * Get discount target
+    */
+    getDiscountTarget(requestParameters: discountsApiParams.GetDiscountTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscountTarget>;
 
     /**
-     * Retrieves a list of discounts according to any specified filter criteria and sort options.
-     * @summary Get discounts
-     * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
-     * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
-     * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
-     * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
-     * @param {string} [responseGroups] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DiscountsApiInterface
-     */
-    getDiscountsRaw(requestParameters: GetDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountCollection>>;
+    * Retrieves a list of discounts according to any specified filter criteria and sort options.
+    * @summary Get discounts
+    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
+    * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+    * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+    * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
+    * @param {string} [responseGroups] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DiscountsApiInterface
+    */
+    getDiscountsRaw(requestParameters: discountsApiParams.GetDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountCollection>>;
 
     /**
-     * Retrieves a list of discounts according to any specified filter criteria and sort options.
-     * Get discounts
-     */
-    getDiscounts(requestParameters: GetDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountCollection>;
+    * Retrieves a list of discounts according to any specified filter criteria and sort options.
+    * Get discounts
+    */
+    getDiscounts(requestParameters: discountsApiParams.GetDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountCollection>;
 
     /**
-     * Retrieves all tags associated to a discount
-     * @summary Get tags for a discount
-     * @param {number} discountId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DiscountsApiInterface
-     */
-    getTagsRaw(requestParameters: GetTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagCollection>>;
+    * Retrieves all tags associated to a discount
+    * @summary Get tags for a discount
+    * @param {number} discountId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DiscountsApiInterface
+    */
+    getTagsRaw(requestParameters: discountsApiParams.GetTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagCollection>>;
 
     /**
-     * Retrieves all tags associated to a discount
-     * Get tags for a discount
-     */
-    getTags(requestParameters: GetTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagCollection>;
+    * Retrieves all tags associated to a discount
+    * Get tags for a discount
+    */
+    getTags(requestParameters: discountsApiParams.GetTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagCollection>;
 
     /**
-     * Modifies a discount.
-     * @summary Update discount
-     * @param {number} discountId Unique identifier of the discount. System-supplied and read-only.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CatalogAdminsDiscount} [catalogAdminsDiscount] Properties of the discount to update.               Required properties: Content.Name, AmountType, StartDate, and Target.Type.               Any unspecified properties are set to null and boolean variables are set to false.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DiscountsApiInterface
-     */
-    updateDiscountRaw(requestParameters: UpdateDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscount>>;
+    * Modifies a discount.
+    * @summary Update discount
+    * @param {number} discountId Unique identifier of the discount. System-supplied and read-only.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CatalogAdminsDiscount} [catalogAdminsDiscount] Properties of the discount to update.               Required properties: Content.Name, AmountType, StartDate, and Target.Type.               Any unspecified properties are set to null and boolean variables are set to false.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DiscountsApiInterface
+    */
+    updateDiscountRaw(requestParameters: discountsApiParams.UpdateDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscount>>;
 
     /**
-     * Modifies a discount.
-     * Update discount
-     */
-    updateDiscount(requestParameters: UpdateDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscount>;
+    * Modifies a discount.
+    * Update discount
+    */
+    updateDiscount(requestParameters: discountsApiParams.UpdateDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscount>;
 
     /**
-     * Modifies the localized content for the specified discount. Allows you to rename the discount without modifying any other discount properties.
-     * @summary Update discount content
-     * @param {number} discountId Unique identifier of the discount. System-supplied and read-only.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {DiscountLocalizedContent} [discountLocalizedContent] New Name and/or LocaleCode. Properties of the content to update. Required property: Name.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DiscountsApiInterface
-     */
-    updateDiscountContentRaw(requestParameters: UpdateDiscountContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountLocalizedContent>>;
+    * Modifies the localized content for the specified discount. Allows you to rename the discount without modifying any other discount properties.
+    * @summary Update discount content
+    * @param {number} discountId Unique identifier of the discount. System-supplied and read-only.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {DiscountLocalizedContent} [discountLocalizedContent] New Name and/or LocaleCode. Properties of the content to update. Required property: Name.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DiscountsApiInterface
+    */
+    updateDiscountContentRaw(requestParameters: discountsApiParams.UpdateDiscountContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountLocalizedContent>>;
 
     /**
-     * Modifies the localized content for the specified discount. Allows you to rename the discount without modifying any other discount properties.
-     * Update discount content
-     */
-    updateDiscountContent(requestParameters: UpdateDiscountContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountLocalizedContent>;
+    * Modifies the localized content for the specified discount. Allows you to rename the discount without modifying any other discount properties.
+    * Update discount content
+    */
+    updateDiscountContent(requestParameters: discountsApiParams.UpdateDiscountContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountLocalizedContent>;
 
     /**
-     * Modifies tags of the discount. The original tags are overwritten.
-     * @summary Update discount tags
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Array<DiscountTag>} [discountTag] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DiscountsApiInterface
-     */
-    updateDiscountTagsRaw(requestParameters: UpdateDiscountTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountTagCollection>>;
+    * Modifies tags of the discount. The original tags are overwritten.
+    * @summary Update discount tags
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<DiscountTag>} [discountTag] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DiscountsApiInterface
+    */
+    updateDiscountTagsRaw(requestParameters: discountsApiParams.UpdateDiscountTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountTagCollection>>;
 
     /**
-     * Modifies tags of the discount. The original tags are overwritten.
-     * Update discount tags
-     */
-    updateDiscountTags(requestParameters: UpdateDiscountTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountTagCollection>;
+    * Modifies tags of the discount. The original tags are overwritten.
+    * Update discount tags
+    */
+    updateDiscountTags(requestParameters: discountsApiParams.UpdateDiscountTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountTagCollection>;
 
     /**
-     * Modifies properties of the discount target, for example, the dollar amount, or precentage off the price.
-     * @summary Update discount target
-     * @param {number} discountId Unique identifier of the discount. System-supplied and read-only.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CatalogAdminsDiscountTarget} [catalogAdminsDiscountTarget] Properties of the discount target to modify.               Required properties: Target.Type. Any unspecified properties are set to null and boolean variables to false.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DiscountsApiInterface
-     */
-    updateDiscountTargetRaw(requestParameters: UpdateDiscountTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscountTarget>>;
+    * Modifies properties of the discount target, for example, the dollar amount, or precentage off the price.
+    * @summary Update discount target
+    * @param {number} discountId Unique identifier of the discount. System-supplied and read-only.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CatalogAdminsDiscountTarget} [catalogAdminsDiscountTarget] Properties of the discount target to modify.               Required properties: Target.Type. Any unspecified properties are set to null and boolean variables to false.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DiscountsApiInterface
+    */
+    updateDiscountTargetRaw(requestParameters: discountsApiParams.UpdateDiscountTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscountTarget>>;
 
     /**
-     * Modifies properties of the discount target, for example, the dollar amount, or precentage off the price.
-     * Update discount target
-     */
-    updateDiscountTarget(requestParameters: UpdateDiscountTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscountTarget>;
+    * Modifies properties of the discount target, for example, the dollar amount, or precentage off the price.
+    * Update discount target
+    */
+    updateDiscountTarget(requestParameters: discountsApiParams.UpdateDiscountTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscountTarget>;
 
 }
+
 
 /**
  * 
  */
-export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiInterface {
+export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -324,7 +316,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiInterfa
      */
 
 
-    async createDiscountRaw(requestParameters: CreateDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscount>> {
+    async createDiscountRaw(requestParameters: discountsApiParams.CreateDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscount>> {
         const queryParameters: any = {};
 
         if (requestParameters.tagCode !== undefined) {
@@ -360,7 +352,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiInterfa
      * Creates a discount.
      * Create discount
      */
-    async createDiscount(requestParameters: CreateDiscountRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscount> {
+    async createDiscount(requestParameters: discountsApiParams.CreateDiscountRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscount> {
         const response = await this.createDiscountRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -371,7 +363,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiInterfa
      */
 
 
-    async deleteDiscountRaw(requestParameters: DeleteDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteDiscountRaw(requestParameters: discountsApiParams.DeleteDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.discountId === null || requestParameters.discountId === undefined) {
             throw new runtime.RequiredError('discountId','Required parameter requestParameters.discountId was null or undefined when calling deleteDiscount.');
         }
@@ -400,7 +392,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiInterfa
      * Deletes a discount specified by its discount ID.
      * Delete discount
      */
-    async deleteDiscount(requestParameters: DeleteDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteDiscount(requestParameters: discountsApiParams.DeleteDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteDiscountRaw(requestParameters, initOverrides);
     }
 
@@ -410,7 +402,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiInterfa
      */
 
 
-    async generateRandomCouponRaw(requestParameters: GenerateRandomCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async generateRandomCouponRaw(requestParameters: discountsApiParams.GenerateRandomCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -439,7 +431,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiInterfa
      * Generates a random code for a coupon.
      * Generate a random coupon
      */
-    async generateRandomCoupon(requestParameters: GenerateRandomCouponRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+    async generateRandomCoupon(requestParameters: discountsApiParams.GenerateRandomCouponRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
         const response = await this.generateRandomCouponRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -450,7 +442,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiInterfa
      */
 
 
-    async getDiscountRaw(requestParameters: GetDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscount>> {
+    async getDiscountRaw(requestParameters: discountsApiParams.GetDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscount>> {
         if (requestParameters.discountId === null || requestParameters.discountId === undefined) {
             throw new runtime.RequiredError('discountId','Required parameter requestParameters.discountId was null or undefined when calling getDiscount.');
         }
@@ -483,7 +475,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiInterfa
      * Retrieves the details of a single discount.
      * Get discount
      */
-    async getDiscount(requestParameters: GetDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscount> {
+    async getDiscount(requestParameters: discountsApiParams.GetDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscount> {
         const response = await this.getDiscountRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -494,7 +486,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiInterfa
      */
 
 
-    async getDiscountContentRaw(requestParameters: GetDiscountContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountLocalizedContent>> {
+    async getDiscountContentRaw(requestParameters: discountsApiParams.GetDiscountContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountLocalizedContent>> {
         if (requestParameters.discountId === null || requestParameters.discountId === undefined) {
             throw new runtime.RequiredError('discountId','Required parameter requestParameters.discountId was null or undefined when calling getDiscountContent.');
         }
@@ -527,7 +519,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiInterfa
      * Retrieves the localized content specified for the specified discount.
      * Get discount content
      */
-    async getDiscountContent(requestParameters: GetDiscountContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountLocalizedContent> {
+    async getDiscountContent(requestParameters: discountsApiParams.GetDiscountContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountLocalizedContent> {
         const response = await this.getDiscountContentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -538,7 +530,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiInterfa
      */
 
 
-    async getDiscountTargetRaw(requestParameters: GetDiscountTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscountTarget>> {
+    async getDiscountTargetRaw(requestParameters: discountsApiParams.GetDiscountTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscountTarget>> {
         if (requestParameters.discountId === null || requestParameters.discountId === undefined) {
             throw new runtime.RequiredError('discountId','Required parameter requestParameters.discountId was null or undefined when calling getDiscountTarget.');
         }
@@ -571,7 +563,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiInterfa
      * Retrieves the discount target, that is which products, categories, or shipping methods are eligible for the discount.
      * Get discount target
      */
-    async getDiscountTarget(requestParameters: GetDiscountTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscountTarget> {
+    async getDiscountTarget(requestParameters: discountsApiParams.GetDiscountTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscountTarget> {
         const response = await this.getDiscountTargetRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -582,7 +574,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiInterfa
      */
 
 
-    async getDiscountsRaw(requestParameters: GetDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountCollection>> {
+    async getDiscountsRaw(requestParameters: discountsApiParams.GetDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -631,7 +623,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiInterfa
      * Retrieves a list of discounts according to any specified filter criteria and sort options.
      * Get discounts
      */
-    async getDiscounts(requestParameters: GetDiscountsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountCollection> {
+    async getDiscounts(requestParameters: discountsApiParams.GetDiscountsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountCollection> {
         const response = await this.getDiscountsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -642,7 +634,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiInterfa
      */
 
 
-    async getTagsRaw(requestParameters: GetTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagCollection>> {
+    async getTagsRaw(requestParameters: discountsApiParams.GetTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagCollection>> {
         if (requestParameters.discountId === null || requestParameters.discountId === undefined) {
             throw new runtime.RequiredError('discountId','Required parameter requestParameters.discountId was null or undefined when calling getTags.');
         }
@@ -675,7 +667,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiInterfa
      * Retrieves all tags associated to a discount
      * Get tags for a discount
      */
-    async getTags(requestParameters: GetTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagCollection> {
+    async getTags(requestParameters: discountsApiParams.GetTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagCollection> {
         const response = await this.getTagsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -686,7 +678,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiInterfa
      */
 
 
-    async updateDiscountRaw(requestParameters: UpdateDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscount>> {
+    async updateDiscountRaw(requestParameters: discountsApiParams.UpdateDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscount>> {
         if (requestParameters.discountId === null || requestParameters.discountId === undefined) {
             throw new runtime.RequiredError('discountId','Required parameter requestParameters.discountId was null or undefined when calling updateDiscount.');
         }
@@ -722,7 +714,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiInterfa
      * Modifies a discount.
      * Update discount
      */
-    async updateDiscount(requestParameters: UpdateDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscount> {
+    async updateDiscount(requestParameters: discountsApiParams.UpdateDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscount> {
         const response = await this.updateDiscountRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -733,7 +725,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiInterfa
      */
 
 
-    async updateDiscountContentRaw(requestParameters: UpdateDiscountContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountLocalizedContent>> {
+    async updateDiscountContentRaw(requestParameters: discountsApiParams.UpdateDiscountContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountLocalizedContent>> {
         if (requestParameters.discountId === null || requestParameters.discountId === undefined) {
             throw new runtime.RequiredError('discountId','Required parameter requestParameters.discountId was null or undefined when calling updateDiscountContent.');
         }
@@ -769,7 +761,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiInterfa
      * Modifies the localized content for the specified discount. Allows you to rename the discount without modifying any other discount properties.
      * Update discount content
      */
-    async updateDiscountContent(requestParameters: UpdateDiscountContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountLocalizedContent> {
+    async updateDiscountContent(requestParameters: discountsApiParams.UpdateDiscountContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountLocalizedContent> {
         const response = await this.updateDiscountContentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -780,7 +772,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiInterfa
      */
 
 
-    async updateDiscountTagsRaw(requestParameters: UpdateDiscountTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountTagCollection>> {
+    async updateDiscountTagsRaw(requestParameters: discountsApiParams.UpdateDiscountTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountTagCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -812,7 +804,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiInterfa
      * Modifies tags of the discount. The original tags are overwritten.
      * Update discount tags
      */
-    async updateDiscountTags(requestParameters: UpdateDiscountTagsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountTagCollection> {
+    async updateDiscountTags(requestParameters: discountsApiParams.UpdateDiscountTagsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountTagCollection> {
         const response = await this.updateDiscountTagsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -823,7 +815,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiInterfa
      */
 
 
-    async updateDiscountTargetRaw(requestParameters: UpdateDiscountTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscountTarget>> {
+    async updateDiscountTargetRaw(requestParameters: discountsApiParams.UpdateDiscountTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscountTarget>> {
         if (requestParameters.discountId === null || requestParameters.discountId === undefined) {
             throw new runtime.RequiredError('discountId','Required parameter requestParameters.discountId was null or undefined when calling updateDiscountTarget.');
         }
@@ -859,7 +851,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiInterfa
      * Modifies properties of the discount target, for example, the dollar amount, or precentage off the price.
      * Update discount target
      */
-    async updateDiscountTarget(requestParameters: UpdateDiscountTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscountTarget> {
+    async updateDiscountTarget(requestParameters: discountsApiParams.UpdateDiscountTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscountTarget> {
         const response = await this.updateDiscountTargetRaw(requestParameters, initOverrides);
         return await response.value();
     }

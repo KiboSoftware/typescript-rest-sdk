@@ -36,869 +36,839 @@ import type {
   SubscriptionRuntimeSubscriptionCollection,
 } from '../models';
 
-export interface AddSubscriptionItemRequest {
-    subscriptionId: string;
-    updateMode?: string;
-    responseFields?: string;
-    subscriptionItem?: SubscriptionItem;
-}
 
-export interface ApplyCouponRequest {
-    subscriptionId: string;
-    couponCode: string;
-    updateMode?: string;
-    responseFields?: string;
+export namespace subscriptionApiParams { 
+    export interface AddSubscriptionItemRequest {
+        subscriptionId: string;
+        updateMode?: string;
+        responseFields?: string;
+        subscriptionItem?: SubscriptionItem;
+    }
+    export interface ApplyCouponRequest {
+        subscriptionId: string;
+        couponCode: string;
+        updateMode?: string;
+        responseFields?: string;
+    }
+    export interface ChangePricelistOnSubscriptionRequest {
+        subscriptionId: string;
+        responseFields?: string;
+        subscriptionPriceList?: SubscriptionPriceList;
+    }
+    export interface ClearSubscriptionDraftRequest {
+        subscriptionId: string;
+        responseFields?: string;
+    }
+    export interface ConvertToOrderRequest {
+        subscriptionId: string;
+        responseFields?: string;
+    }
+    export interface CreateSubscriptionRequest {
+        responseFields?: string;
+        subscriptionRuntimeSubscription?: SubscriptionRuntimeSubscription;
+    }
+    export interface CreateSubscriptionAttributesRequest {
+        subscriptionId: string;
+        responseFields?: string;
+        subscriptionAttribute?: Array<SubscriptionAttribute>;
+    }
+    export interface DeleteSubscriptionDataRequest {
+        subscriptionId: string;
+        subscriptionDataId: string;
+        updateMode?: string;
+    }
+    export interface DeleteSubscriptionItemRequest {
+        subscriptionId: string;
+        subscriptionItemId: string;
+        updateMode?: string;
+        responseFields?: string;
+        subscriptionReason?: SubscriptionReason;
+    }
+    export interface DeleteSubscriptionItemDataRequest {
+        subscriptionId: string;
+        subscriptionItemId: string;
+        subscriptionItemDataId: string;
+        updateMode?: string;
+    }
+    export interface GetAvailableShipmentMethodsRequest {
+        subscriptionId: string;
+        draft?: boolean;
+        responseFields?: string;
+    }
+    export interface GetReasonsRequest {
+        category?: string;
+        responseFields?: string;
+    }
+    export interface GetSubscriptionRequest {
+        subscriptionId: string;
+        draft?: boolean;
+        responseFields?: string;
+    }
+    export interface GetSubscriptionAttributesRequest {
+        subscriptionId: string;
+        responseFields?: string;
+    }
+    export interface GetSubscriptionDataRequest {
+        subscriptionId: string;
+        draft?: boolean;
+        responseFields?: string;
+    }
+    export interface GetSubscriptionItemDataRequest {
+        subscriptionId: string;
+        subscriptionItemId: string;
+        draft?: boolean;
+        responseFields?: string;
+    }
+    export interface GetSubscriptionsRequest {
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        filter?: string;
+        q?: string;
+        qLimit?: number;
+        responseFields?: string;
+    }
+    export interface OrderNowRequest {
+        subscriptionId: string;
+        responseFields?: string;
+    }
+    export interface OrderPartialSubscriptionRequest {
+        subscriptionId: string;
+        responseFields?: string;
+    }
+    export interface PerformSubscriptionActionRequest {
+        subscriptionId: string;
+        responseFields?: string;
+        subscriptionAction?: SubscriptionAction;
+    }
+    export interface RemoveCouponRequest {
+        subscriptionId: string;
+        updateMode?: string;
+        responseFields?: string;
+        subscriptionCoupons?: SubscriptionCoupons;
+    }
+    export interface SkipSubscriptionRequest {
+        subscriptionId: string;
+        responseFields?: string;
+    }
+    export interface UpdateAdjustmentsRequest {
+        subscriptionId: string;
+        responseFields?: string;
+        subscriptionAdjustment?: SubscriptionAdjustment;
+    }
+    export interface UpdateFulfillmentInfoRequest {
+        subscriptionId: string;
+        updateMode?: string;
+        responseFields?: string;
+        fulfillmentInfo?: FulfillmentInfo;
+    }
+    export interface UpdateInstallmentPlanRequest {
+        subscriptionId: string;
+        updateMode?: string;
+        responseFields?: string;
+        installmentPlanRequest?: InstallmentPlanRequest;
+    }
+    export interface UpdateItemQuantityRequest {
+        subscriptionId: string;
+        subscriptionItemId: string;
+        quantity: number;
+        updateMode?: string;
+        responseFields?: string;
+        subscriptionReason?: SubscriptionReason;
+    }
+    export interface UpdateNextOrderDateRequest {
+        subscriptionId: string;
+        responseFields?: string;
+        subscriptionNextOrderDate?: SubscriptionNextOrderDate;
+    }
+    export interface UpdatePaymentRequest {
+        subscriptionId: string;
+        updateMode?: string;
+        responseFields?: string;
+        payment?: Payment;
+    }
+    export interface UpdateSubscriptionRequest {
+        subscriptionId: string;
+        responseFields?: string;
+        subscriptionRuntimeSubscription?: SubscriptionRuntimeSubscription;
+    }
+    export interface UpdateSubscriptionAttributeRequest {
+        subscriptionId: string;
+        removeMissing?: boolean;
+        responseFields?: string;
+        subscriptionAttribute?: Array<SubscriptionAttribute>;
+    }
+    export interface UpdateSubscriptionDataRequest {
+        subscriptionId: string;
+        subscriptionDataId: string;
+        updateMode?: string;
+        responseFields?: string;
+        body?: any | null;
+    }
+    export interface UpdateSubscriptionFrequencyRequest {
+        subscriptionId: string;
+        responseFields?: string;
+        frequency?: Frequency;
+    }
+    export interface UpdateSubscriptionItemDataRequest {
+        subscriptionId: string;
+        subscriptionItemId: string;
+        subscriptionItemDataId: string;
+        updateMode?: string;
+        responseFields?: string;
+        body?: any | null;
+    }
+    export interface UpsertInventoryTagsRequest {
+        subscriptionId: string;
+        subscriptionItemId: string;
+        updateMode?: string;
+        responseFields?: string;
+        inventoryTags?: Array<InventoryTags>;
+    }
 }
-
-export interface ChangePricelistOnSubscriptionRequest {
-    subscriptionId: string;
-    responseFields?: string;
-    subscriptionPriceList?: SubscriptionPriceList;
-}
-
-export interface ClearSubscriptionDraftRequest {
-    subscriptionId: string;
-    responseFields?: string;
-}
-
-export interface ConvertToOrderRequest {
-    subscriptionId: string;
-    responseFields?: string;
-}
-
-export interface CreateSubscriptionRequest {
-    responseFields?: string;
-    subscriptionRuntimeSubscription?: SubscriptionRuntimeSubscription;
-}
-
-export interface CreateSubscriptionAttributesRequest {
-    subscriptionId: string;
-    responseFields?: string;
-    subscriptionAttribute?: Array<SubscriptionAttribute>;
-}
-
-export interface DeleteSubscriptionDataRequest {
-    subscriptionId: string;
-    subscriptionDataId: string;
-    updateMode?: string;
-}
-
-export interface DeleteSubscriptionItemRequest {
-    subscriptionId: string;
-    subscriptionItemId: string;
-    updateMode?: string;
-    responseFields?: string;
-    subscriptionReason?: SubscriptionReason;
-}
-
-export interface DeleteSubscriptionItemDataRequest {
-    subscriptionId: string;
-    subscriptionItemId: string;
-    subscriptionItemDataId: string;
-    updateMode?: string;
-}
-
-export interface GetAvailableShipmentMethodsRequest {
-    subscriptionId: string;
-    draft?: boolean;
-    responseFields?: string;
-}
-
-export interface GetReasonsRequest {
-    category?: string;
-    responseFields?: string;
-}
-
-export interface GetSubscriptionRequest {
-    subscriptionId: string;
-    draft?: boolean;
-    responseFields?: string;
-}
-
-export interface GetSubscriptionAttributesRequest {
-    subscriptionId: string;
-    responseFields?: string;
-}
-
-export interface GetSubscriptionDataRequest {
-    subscriptionId: string;
-    draft?: boolean;
-    responseFields?: string;
-}
-
-export interface GetSubscriptionItemDataRequest {
-    subscriptionId: string;
-    subscriptionItemId: string;
-    draft?: boolean;
-    responseFields?: string;
-}
-
-export interface GetSubscriptionsRequest {
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    filter?: string;
-    q?: string;
-    qLimit?: number;
-    responseFields?: string;
-}
-
-export interface OrderNowRequest {
-    subscriptionId: string;
-    responseFields?: string;
-}
-
-export interface OrderPartialSubscriptionRequest {
-    subscriptionId: string;
-    responseFields?: string;
-}
-
-export interface PerformSubscriptionActionRequest {
-    subscriptionId: string;
-    responseFields?: string;
-    subscriptionAction?: SubscriptionAction;
-}
-
-export interface RemoveCouponRequest {
-    subscriptionId: string;
-    updateMode?: string;
-    responseFields?: string;
-    subscriptionCoupons?: SubscriptionCoupons;
-}
-
-export interface SkipSubscriptionRequest {
-    subscriptionId: string;
-    responseFields?: string;
-}
-
-export interface UpdateAdjustmentsRequest {
-    subscriptionId: string;
-    responseFields?: string;
-    subscriptionAdjustment?: SubscriptionAdjustment;
-}
-
-export interface UpdateFulfillmentInfoRequest {
-    subscriptionId: string;
-    updateMode?: string;
-    responseFields?: string;
-    fulfillmentInfo?: FulfillmentInfo;
-}
-
-export interface UpdateInstallmentPlanRequest {
-    subscriptionId: string;
-    updateMode?: string;
-    responseFields?: string;
-    installmentPlanRequest?: InstallmentPlanRequest;
-}
-
-export interface UpdateItemQuantityRequest {
-    subscriptionId: string;
-    subscriptionItemId: string;
-    quantity: number;
-    updateMode?: string;
-    responseFields?: string;
-    subscriptionReason?: SubscriptionReason;
-}
-
-export interface UpdateNextOrderDateRequest {
-    subscriptionId: string;
-    responseFields?: string;
-    subscriptionNextOrderDate?: SubscriptionNextOrderDate;
-}
-
-export interface UpdatePaymentRequest {
-    subscriptionId: string;
-    updateMode?: string;
-    responseFields?: string;
-    payment?: Payment;
-}
-
-export interface UpdateSubscriptionRequest {
-    subscriptionId: string;
-    responseFields?: string;
-    subscriptionRuntimeSubscription?: SubscriptionRuntimeSubscription;
-}
-
-export interface UpdateSubscriptionAttributeRequest {
-    subscriptionId: string;
-    removeMissing?: boolean;
-    responseFields?: string;
-    subscriptionAttribute?: Array<SubscriptionAttribute>;
-}
-
-export interface UpdateSubscriptionDataRequest {
-    subscriptionId: string;
-    subscriptionDataId: string;
-    updateMode?: string;
-    responseFields?: string;
-    body?: any | null;
-}
-
-export interface UpdateSubscriptionFrequencyRequest {
-    subscriptionId: string;
-    responseFields?: string;
-    frequency?: Frequency;
-}
-
-export interface UpdateSubscriptionItemDataRequest {
-    subscriptionId: string;
-    subscriptionItemId: string;
-    subscriptionItemDataId: string;
-    updateMode?: string;
-    responseFields?: string;
-    body?: any | null;
-}
-
-export interface UpsertInventoryTagsRequest {
-    subscriptionId: string;
-    subscriptionItemId: string;
-    updateMode?: string;
-    responseFields?: string;
-    inventoryTags?: Array<InventoryTags>;
-}
-
 /**
- * SubscriptionApi - interface
- * 
- * @export
- * @interface SubscriptionApiInterface
- */
-export interface SubscriptionApiInterface {
-    /**
-     * Add a subscription item in existing subscription.
-     * @summary Add Subscription Item
-     * @param {string} subscriptionId subscription id
-     * @param {string} [updateMode] Determines the update strategy for this update (ApplyToOriginal, ApplyToDraft).
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {SubscriptionItem} [subscriptionItem] subscription item to add.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    addSubscriptionItemRaw(requestParameters: AddSubscriptionItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
-
-    /**
-     * Add a subscription item in existing subscription.
-     * Add Subscription Item
-     */
-    addSubscriptionItem(requestParameters: AddSubscriptionItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
-
-    /**
-     * Apply coupon to the Subscription.
-     * @summary Apply Coupon
-     * @param {string} subscriptionId Unique identifier of the Subscription with which to associate the coupon.
-     * @param {string} couponCode Coupon code that the customer supplies to get the discounted price.
-     * @param {string} [updateMode] updateMode\&quot;&gt;Determines the update strategy for this update (ApplyToOriginal, ApplyToDraft).
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    applyCouponRaw(requestParameters: ApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
-
-    /**
-     * Apply coupon to the Subscription.
-     * Apply Coupon
-     */
-    applyCoupon(requestParameters: ApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
-
-    /**
-     * Updates the price list on the subscription.
-     * @summary Change Pricelist On Subscription
-     * @param {string} subscriptionId The subscription identifier.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {SubscriptionPriceList} [subscriptionPriceList] The price list to be applied.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    changePricelistOnSubscriptionRaw(requestParameters: ChangePricelistOnSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
-
-    /**
-     * Updates the price list on the subscription.
-     * Change Pricelist On Subscription
-     */
-    changePricelistOnSubscription(requestParameters: ChangePricelistOnSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
-
-    /**
-     * Delete subscription draft
-     * @summary Delete subscription draft
-     * @param {string} subscriptionId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    clearSubscriptionDraftRaw(requestParameters: ClearSubscriptionDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
-
-    /**
-     * Delete subscription draft
-     * Delete subscription draft
-     */
-    clearSubscriptionDraft(requestParameters: ClearSubscriptionDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
-
-    /**
-     * Convert the subscription to order.
-     * @summary Convert To Order
-     * @param {string} subscriptionId The subscription identifier.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    convertToOrderRaw(requestParameters: ConvertToOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
-
-    /**
-     * Convert the subscription to order.
-     * Convert To Order
-     */
-    convertToOrder(requestParameters: ConvertToOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
-
-    /**
-     * Creates and validates a new subscription.
-     * @summary Creates Subscription
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {SubscriptionRuntimeSubscription} [subscriptionRuntimeSubscription] The subscription.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    createSubscriptionRaw(requestParameters: CreateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
-
-    /**
-     * Creates and validates a new subscription.
-     * Creates Subscription
-     */
-    createSubscription(requestParameters: CreateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
-
-    /**
-     * Creates list of subscription attributes specified by subscription Id.
-     * @summary Create Subscription Attributes
-     * @param {string} subscriptionId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Array<SubscriptionAttribute>} [subscriptionAttribute] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    createSubscriptionAttributesRaw(requestParameters: CreateSubscriptionAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SubscriptionAttribute>>>;
-
-    /**
-     * Creates list of subscription attributes specified by subscription Id.
-     * Create Subscription Attributes
-     */
-    createSubscriptionAttributes(requestParameters: CreateSubscriptionAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SubscriptionAttribute>>;
-
-    /**
-     * Delete Value of the given Key in the SubscriptionData bag.
-     * @summary Delete Subscription Data
-     * @param {string} subscriptionId Unique Identifier of the Subscription you want to Delete the Databag for
-     * @param {string} subscriptionDataId URLEncoded Key for the Value you want to Delete from the Subscription DataBag
-     * @param {string} [updateMode] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    deleteSubscriptionDataRaw(requestParameters: DeleteSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
-
-    /**
-     * Delete Value of the given Key in the SubscriptionData bag.
-     * Delete Subscription Data
-     */
-    deleteSubscriptionData(requestParameters: DeleteSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
-
-    /**
-     * Removes a particular subscription item from the subscription
-     * @summary Delete Subscription Item
-     * @param {string} subscriptionId subscription id
-     * @param {string} subscriptionItemId subscription item id
-     * @param {string} [updateMode] Determines the update strategy for this update (ApplyToOriginal, ApplyToDraft).
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {SubscriptionReason} [subscriptionReason] cancellation reason
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    deleteSubscriptionItemRaw(requestParameters: DeleteSubscriptionItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
-
-    /**
-     * Removes a particular subscription item from the subscription
-     * Delete Subscription Item
-     */
-    deleteSubscriptionItem(requestParameters: DeleteSubscriptionItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
-
-    /**
-     * Deletes the Value of the given Key in the SubscriptionItem Data bag.
-     * @summary Delete Subscription Item Data
-     * @param {string} subscriptionId Unique Identifier of the Subscription you want to get the Items for
-     * @param {string} subscriptionItemId Unique Identifier of the SubscriptionItem you want to delete the Databag for
-     * @param {string} subscriptionItemDataId URLEncoded Key for the Value you want to Delete from the SubscriptionItem DataBag
-     * @param {string} [updateMode] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    deleteSubscriptionItemDataRaw(requestParameters: DeleteSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
-
-    /**
-     * Deletes the Value of the given Key in the SubscriptionItem Data bag.
-     * Delete Subscription Item Data
-     */
-    deleteSubscriptionItemData(requestParameters: DeleteSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
-
-    /**
-     * Gets valid shipping methods for subscription
-     * @summary Get Available Shipment Methods
-     * @param {string} subscriptionId 
-     * @param {boolean} [draft] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    getAvailableShipmentMethodsRaw(requestParameters: GetAvailableShipmentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeShippingRate>>>;
-
-    /**
-     * Gets valid shipping methods for subscription
-     * Get Available Shipment Methods
-     */
-    getAvailableShipmentMethods(requestParameters: GetAvailableShipmentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeShippingRate>>;
-
-    /**
-     * Gets available subscription action reasons for the given category. If no category is supplied will give available Cancel action reasons.
-     * @summary Get Reasons
-     * @param {string} [category] Action to get available reasons for. Defaults to CANCEL
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    getReasonsRaw(requestParameters: GetReasonsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionReasonCollection>>;
-
-    /**
-     * Gets available subscription action reasons for the given category. If no category is supplied will give available Cancel action reasons.
-     * Get Reasons
-     */
-    getReasons(requestParameters: GetReasonsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionReasonCollection>;
-
-    /**
-     * Retrieves the details of a subscription specified by the subscription ID.
-     * @summary Gets Subscription
-     * @param {string} subscriptionId The subscription identifier.
-     * @param {boolean} [draft] return draft version of subscription.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    getSubscriptionRaw(requestParameters: GetSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
-
-    /**
-     * Retrieves the details of a subscription specified by the subscription ID.
-     * Gets Subscription
-     */
-    getSubscription(requestParameters: GetSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
-
-    /**
-     * Gets the list of attributes specified by subscription Id.
-     * @summary Get Subscription Attributes
-     * @param {string} subscriptionId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    getSubscriptionAttributesRaw(requestParameters: GetSubscriptionAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SubscriptionAttribute>>>;
-
-    /**
-     * Gets the list of attributes specified by subscription Id.
-     * Get Subscription Attributes
-     */
-    getSubscriptionAttributes(requestParameters: GetSubscriptionAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SubscriptionAttribute>>;
-
-    /**
-     * Retrieves all the values in the Subscription Data bag
-     * @summary Get subscription Data
-     * @param {string} subscriptionId Unique Identifier of the Subscription whose Data you want to get
-     * @param {boolean} [draft] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    getSubscriptionDataRaw(requestParameters: GetSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
-
-    /**
-     * Retrieves all the values in the Subscription Data bag
-     * Get subscription Data
-     */
-    getSubscriptionData(requestParameters: GetSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
-
-    /**
-     * Retrieves a specific value in the SubscriptionItem Data bag.
-     * @summary Get Subscription Item Data
-     * @param {string} subscriptionId Unique Identifier of the Subscription you want to get the Subscription Items for
-     * @param {string} subscriptionItemId Unique Identifier of the SubscriptionItem whose Data you want to get
-     * @param {boolean} [draft] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    getSubscriptionItemDataRaw(requestParameters: GetSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
-
-    /**
-     * Retrieves a specific value in the SubscriptionItem Data bag.
-     * Get Subscription Item Data
-     */
-    getSubscriptionItemData(requestParameters: GetSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
-
-    /**
-     * Retrieves a list of subscriptions according to any specified filter criteria and sort options.
-     * @summary Get Subscriptions
-     * @param {number} [startIndex] The start index.
-     * @param {number} [pageSize] Size of the page.
-     * @param {string} [sortBy] The sort by.
-     * @param {string} [filter] The filter.
-     * @param {string} [q] The q.
-     * @param {number} [qLimit] The q limit.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    getSubscriptionsRaw(requestParameters: GetSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscriptionCollection>>;
-
-    /**
-     * Retrieves a list of subscriptions according to any specified filter criteria and sort options.
-     * Get Subscriptions
-     */
-    getSubscriptions(requestParameters: GetSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscriptionCollection>;
-
-    /**
-     * Lets the user place an instant order from the subscription.
-     * @summary Order Now
-     * @param {string} subscriptionId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    orderNowRaw(requestParameters: OrderNowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
-
-    /**
-     * Lets the user place an instant order from the subscription.
-     * Order Now
-     */
-    orderNow(requestParameters: OrderNowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
-
-    /**
-     * Lets the user place an order from Partial Draft.
-     * @summary Order Partial Subscription
-     * @param {string} subscriptionId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    orderPartialSubscriptionRaw(requestParameters: OrderPartialSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
-
-    /**
-     * Lets the user place an order from Partial Draft.
-     * Order Partial Subscription
-     */
-    orderPartialSubscription(requestParameters: OrderPartialSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
-
-    /**
-     * Perform the specified action on subscription. Available actions are Activate, Pause, and Cancel.
-     * @summary Perform Subscription Action
-     * @param {string} subscriptionId The subscription identifier.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {SubscriptionAction} [subscriptionAction] Action to perform, which can be \&quot;Activate,\&quot; \&quot;Pause,\&quot; \&quot;Cancel\&quot;.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    performSubscriptionActionRaw(requestParameters: PerformSubscriptionActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
-
-    /**
-     * Perform the specified action on subscription. Available actions are Activate, Pause, and Cancel.
-     * Perform Subscription Action
-     */
-    performSubscriptionAction(requestParameters: PerformSubscriptionActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
-
-    /**
-     * Remove coupons from subscription and draft
-     * @summary Remove coupons from subscription and draft
-     * @param {string} subscriptionId 
-     * @param {string} [updateMode] Determines the update strategy for this update (ApplyToOriginal, ApplyToDraft).
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {SubscriptionCoupons} [subscriptionCoupons] CouponCodes
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    removeCouponRaw(requestParameters: RemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
-
-    /**
-     * Remove coupons from subscription and draft
-     * Remove coupons from subscription and draft
-     */
-    removeCoupon(requestParameters: RemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
-
-    /**
-     * Skips the next continuity order for the subscription.
-     * @summary Skip Subscription
-     * @param {string} subscriptionId The subscription identifier.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    skipSubscriptionRaw(requestParameters: SkipSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
-
-    /**
-     * Skips the next continuity order for the subscription.
-     * Skip Subscription
-     */
-    skipSubscription(requestParameters: SkipSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
-
-    /**
-     * Update item, shipping and handling adjustments on the subscription.
-     * @summary Update Adjustments
-     * @param {string} subscriptionId The subscription identifier.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {SubscriptionAdjustment} [subscriptionAdjustment] Adjustments for subscription.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    updateAdjustmentsRaw(requestParameters: UpdateAdjustmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
-
-    /**
-     * Update item, shipping and handling adjustments on the subscription.
-     * Update Adjustments
-     */
-    updateAdjustments(requestParameters: UpdateAdjustmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
-
-    /**
-     * Modifies the Fulfillment Info for a subscription.
-     * @summary Update Fulfillment Info
-     * @param {string} subscriptionId The subscription identifier.
-     * @param {string} [updateMode] Determines the update strategy for this update (ApplyToOriginal, ApplyToDraft).
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {FulfillmentInfo} [fulfillmentInfo] New fulfillment info for subscription.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    updateFulfillmentInfoRaw(requestParameters: UpdateFulfillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FulfillmentInfo>>;
-
-    /**
-     * Modifies the Fulfillment Info for a subscription.
-     * Update Fulfillment Info
-     */
-    updateFulfillmentInfo(requestParameters: UpdateFulfillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillmentInfo>;
-
-    /**
-     * Updates the installment plan on the subscription.
-     * @summary Update Installment plan
-     * @param {string} subscriptionId The subscription identifier.
-     * @param {string} [updateMode] Determines the update strategy for this update (ApplyToOriginal, ApplyToDraft).
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {InstallmentPlanRequest} [installmentPlanRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    updateInstallmentPlanRaw(requestParameters: UpdateInstallmentPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
-
-    /**
-     * Updates the installment plan on the subscription.
-     * Update Installment plan
-     */
-    updateInstallmentPlan(requestParameters: UpdateInstallmentPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
-
-    /**
-     * Update Item Quantity on existing subscription.
-     * @summary Update Item Quantity
-     * @param {string} subscriptionId subscription id
-     * @param {string} subscriptionItemId subscription item id
-     * @param {number} quantity New quantity for the specified subscription item.
-     * @param {string} [updateMode] Determines the update strategy for this update (ApplyToOriginal, ApplyToDraft).
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {SubscriptionReason} [subscriptionReason] cancellation reason if item quantity is decreased.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    updateItemQuantityRaw(requestParameters: UpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
-
-    /**
-     * Update Item Quantity on existing subscription.
-     * Update Item Quantity
-     */
-    updateItemQuantity(requestParameters: UpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
-
-    /**
-     * Updates the next order date on an existing subscription
-     * @summary Update Next Order Date
-     * @param {string} subscriptionId The subscription identifier.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {SubscriptionNextOrderDate} [subscriptionNextOrderDate] The Next Order date to be set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    updateNextOrderDateRaw(requestParameters: UpdateNextOrderDateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
-
-    /**
-     * Updates the next order date on an existing subscription
-     * Update Next Order Date
-     */
-    updateNextOrderDate(requestParameters: UpdateNextOrderDateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
-
-    /**
-     * Updates the payment on the subscription.
-     * @summary Update Payment
-     * @param {string} subscriptionId The subscription identifier.
-     * @param {string} [updateMode] Determines the update strategy for this update (ApplyToOriginal, ApplyToDraft).
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Payment} [payment] The new payment to be applied.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    updatePaymentRaw(requestParameters: UpdatePaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
-
-    /**
-     * Updates the payment on the subscription.
-     * Update Payment
-     */
-    updatePayment(requestParameters: UpdatePaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
-
-    /**
-     * Update the info for an existing subscription
-     * @summary Update Subscription
-     * @param {string} subscriptionId The subscription identifier.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {SubscriptionRuntimeSubscription} [subscriptionRuntimeSubscription] The subscription.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    updateSubscriptionRaw(requestParameters: UpdateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
-
-    /**
-     * Update the info for an existing subscription
-     * Update Subscription
-     */
-    updateSubscription(requestParameters: UpdateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
-
-    /**
-     * Updates the list of subscription attributes specified by subscription id and removes the missing attributes if not passed when removeMissing flag is set.
-     * @summary Update Subscription Attribute
-     * @param {string} subscriptionId 
-     * @param {boolean} [removeMissing] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Array<SubscriptionAttribute>} [subscriptionAttribute] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    updateSubscriptionAttributeRaw(requestParameters: UpdateSubscriptionAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SubscriptionAttribute>>>;
-
-    /**
-     * Updates the list of subscription attributes specified by subscription id and removes the missing attributes if not passed when removeMissing flag is set.
-     * Update Subscription Attribute
-     */
-    updateSubscriptionAttribute(requestParameters: UpdateSubscriptionAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SubscriptionAttribute>>;
-
-    /**
-     * Insert / Updates the Value of the given Key in the Subscription Data bag.
-     * @summary Update Subscription Data
-     * @param {string} subscriptionId Unique Identifier of the Subscription you want to insert / update the Databag for
-     * @param {string} subscriptionDataId URLEncoded Key for the Value you want to Insert / Update from the Subscription DataBag
-     * @param {string} [updateMode] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {any} [body] Data Object you are trying to insert / update
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    updateSubscriptionDataRaw(requestParameters: UpdateSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
-
-    /**
-     * Insert / Updates the Value of the given Key in the Subscription Data bag.
-     * Update Subscription Data
-     */
-    updateSubscriptionData(requestParameters: UpdateSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
-
-    /**
-     * Update the frequency on an existing subscription
-     * @summary Update Subscription Frequency
-     * @param {string} subscriptionId The subscription identifier.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Frequency} [frequency] The requested frequency for update
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    updateSubscriptionFrequencyRaw(requestParameters: UpdateSubscriptionFrequencyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
-
-    /**
-     * Update the frequency on an existing subscription
-     * Update Subscription Frequency
-     */
-    updateSubscriptionFrequency(requestParameters: UpdateSubscriptionFrequencyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
-
-    /**
-     * Insert / Updates the Value of the given Key in the SubscriptionItem Data bag.
-     * @summary Update Subscription Item Data
-     * @param {string} subscriptionId Unique Identifier of the Subscription you want to get the Items for
-     * @param {string} subscriptionItemId Unique Identifier of the SubscriptionItem you want to Insert / Update the Databag for
-     * @param {string} subscriptionItemDataId URLEncoded Key for the Value you want to Insert / Update from the SubscriptionItem DataBag
-     * @param {string} [updateMode] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {any} [body] Data Object you are trying to insert / update
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    updateSubscriptionItemDataRaw(requestParameters: UpdateSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
-
-    /**
-     * Insert / Updates the Value of the given Key in the SubscriptionItem Data bag.
-     * Update Subscription Item Data
-     */
-    updateSubscriptionItemData(requestParameters: UpdateSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
-
-    /**
-     * Upsert Inventory Tags
-     * @summary Upsert Inventory Tags
-     * @param {string} subscriptionId 
-     * @param {string} subscriptionItemId 
-     * @param {string} [updateMode] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Array<InventoryTags>} [inventoryTags] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    upsertInventoryTagsRaw(requestParameters: UpsertInventoryTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
-
-    /**
-     * Upsert Inventory Tags
-     * Upsert Inventory Tags
-     */
-    upsertInventoryTags(requestParameters: UpsertInventoryTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
+* SubscriptionApiService - interface
+* 
+* @export
+* @interface SubscriptionApi
+*/
+export interface SubscriptionApiService {
+    /**
+    * Add a subscription item in existing subscription.
+    * @summary Add Subscription Item
+    * @param {string} subscriptionId subscription id
+    * @param {string} [updateMode] Determines the update strategy for this update (ApplyToOriginal, ApplyToDraft).
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {SubscriptionItem} [subscriptionItem] subscription item to add.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    addSubscriptionItemRaw(requestParameters: subscriptionApiParams.AddSubscriptionItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
+
+    /**
+    * Add a subscription item in existing subscription.
+    * Add Subscription Item
+    */
+    addSubscriptionItem(requestParameters: subscriptionApiParams.AddSubscriptionItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
+
+    /**
+    * Apply coupon to the Subscription.
+    * @summary Apply Coupon
+    * @param {string} subscriptionId Unique identifier of the Subscription with which to associate the coupon.
+    * @param {string} couponCode Coupon code that the customer supplies to get the discounted price.
+    * @param {string} [updateMode] updateMode\&quot;&gt;Determines the update strategy for this update (ApplyToOriginal, ApplyToDraft).
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    applyCouponRaw(requestParameters: subscriptionApiParams.ApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
+
+    /**
+    * Apply coupon to the Subscription.
+    * Apply Coupon
+    */
+    applyCoupon(requestParameters: subscriptionApiParams.ApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
+
+    /**
+    * Updates the price list on the subscription.
+    * @summary Change Pricelist On Subscription
+    * @param {string} subscriptionId The subscription identifier.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {SubscriptionPriceList} [subscriptionPriceList] The price list to be applied.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    changePricelistOnSubscriptionRaw(requestParameters: subscriptionApiParams.ChangePricelistOnSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
+
+    /**
+    * Updates the price list on the subscription.
+    * Change Pricelist On Subscription
+    */
+    changePricelistOnSubscription(requestParameters: subscriptionApiParams.ChangePricelistOnSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
+
+    /**
+    * Delete subscription draft
+    * @summary Delete subscription draft
+    * @param {string} subscriptionId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    clearSubscriptionDraftRaw(requestParameters: subscriptionApiParams.ClearSubscriptionDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
+
+    /**
+    * Delete subscription draft
+    * Delete subscription draft
+    */
+    clearSubscriptionDraft(requestParameters: subscriptionApiParams.ClearSubscriptionDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
+
+    /**
+    * Convert the subscription to order.
+    * @summary Convert To Order
+    * @param {string} subscriptionId The subscription identifier.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    convertToOrderRaw(requestParameters: subscriptionApiParams.ConvertToOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+
+    /**
+    * Convert the subscription to order.
+    * Convert To Order
+    */
+    convertToOrder(requestParameters: subscriptionApiParams.ConvertToOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+
+    /**
+    * Creates and validates a new subscription.
+    * @summary Creates Subscription
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {SubscriptionRuntimeSubscription} [subscriptionRuntimeSubscription] The subscription.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    createSubscriptionRaw(requestParameters: subscriptionApiParams.CreateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
+
+    /**
+    * Creates and validates a new subscription.
+    * Creates Subscription
+    */
+    createSubscription(requestParameters: subscriptionApiParams.CreateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
+
+    /**
+    * Creates list of subscription attributes specified by subscription Id.
+    * @summary Create Subscription Attributes
+    * @param {string} subscriptionId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<SubscriptionAttribute>} [subscriptionAttribute] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    createSubscriptionAttributesRaw(requestParameters: subscriptionApiParams.CreateSubscriptionAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SubscriptionAttribute>>>;
+
+    /**
+    * Creates list of subscription attributes specified by subscription Id.
+    * Create Subscription Attributes
+    */
+    createSubscriptionAttributes(requestParameters: subscriptionApiParams.CreateSubscriptionAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SubscriptionAttribute>>;
+
+    /**
+    * Delete Value of the given Key in the SubscriptionData bag.
+    * @summary Delete Subscription Data
+    * @param {string} subscriptionId Unique Identifier of the Subscription you want to Delete the Databag for
+    * @param {string} subscriptionDataId URLEncoded Key for the Value you want to Delete from the Subscription DataBag
+    * @param {string} [updateMode] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    deleteSubscriptionDataRaw(requestParameters: subscriptionApiParams.DeleteSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
+
+    /**
+    * Delete Value of the given Key in the SubscriptionData bag.
+    * Delete Subscription Data
+    */
+    deleteSubscriptionData(requestParameters: subscriptionApiParams.DeleteSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
+
+    /**
+    * Removes a particular subscription item from the subscription
+    * @summary Delete Subscription Item
+    * @param {string} subscriptionId subscription id
+    * @param {string} subscriptionItemId subscription item id
+    * @param {string} [updateMode] Determines the update strategy for this update (ApplyToOriginal, ApplyToDraft).
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {SubscriptionReason} [subscriptionReason] cancellation reason
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    deleteSubscriptionItemRaw(requestParameters: subscriptionApiParams.DeleteSubscriptionItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
+
+    /**
+    * Removes a particular subscription item from the subscription
+    * Delete Subscription Item
+    */
+    deleteSubscriptionItem(requestParameters: subscriptionApiParams.DeleteSubscriptionItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
+
+    /**
+    * Deletes the Value of the given Key in the SubscriptionItem Data bag.
+    * @summary Delete Subscription Item Data
+    * @param {string} subscriptionId Unique Identifier of the Subscription you want to get the Items for
+    * @param {string} subscriptionItemId Unique Identifier of the SubscriptionItem you want to delete the Databag for
+    * @param {string} subscriptionItemDataId URLEncoded Key for the Value you want to Delete from the SubscriptionItem DataBag
+    * @param {string} [updateMode] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    deleteSubscriptionItemDataRaw(requestParameters: subscriptionApiParams.DeleteSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
+
+    /**
+    * Deletes the Value of the given Key in the SubscriptionItem Data bag.
+    * Delete Subscription Item Data
+    */
+    deleteSubscriptionItemData(requestParameters: subscriptionApiParams.DeleteSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
+
+    /**
+    * Gets valid shipping methods for subscription
+    * @summary Get Available Shipment Methods
+    * @param {string} subscriptionId 
+    * @param {boolean} [draft] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    getAvailableShipmentMethodsRaw(requestParameters: subscriptionApiParams.GetAvailableShipmentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeShippingRate>>>;
+
+    /**
+    * Gets valid shipping methods for subscription
+    * Get Available Shipment Methods
+    */
+    getAvailableShipmentMethods(requestParameters: subscriptionApiParams.GetAvailableShipmentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeShippingRate>>;
+
+    /**
+    * Gets available subscription action reasons for the given category. If no category is supplied will give available Cancel action reasons.
+    * @summary Get Reasons
+    * @param {string} [category] Action to get available reasons for. Defaults to CANCEL
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    getReasonsRaw(requestParameters: subscriptionApiParams.GetReasonsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionReasonCollection>>;
+
+    /**
+    * Gets available subscription action reasons for the given category. If no category is supplied will give available Cancel action reasons.
+    * Get Reasons
+    */
+    getReasons(requestParameters: subscriptionApiParams.GetReasonsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionReasonCollection>;
+
+    /**
+    * Retrieves the details of a subscription specified by the subscription ID.
+    * @summary Gets Subscription
+    * @param {string} subscriptionId The subscription identifier.
+    * @param {boolean} [draft] return draft version of subscription.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    getSubscriptionRaw(requestParameters: subscriptionApiParams.GetSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
+
+    /**
+    * Retrieves the details of a subscription specified by the subscription ID.
+    * Gets Subscription
+    */
+    getSubscription(requestParameters: subscriptionApiParams.GetSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
+
+    /**
+    * Gets the list of attributes specified by subscription Id.
+    * @summary Get Subscription Attributes
+    * @param {string} subscriptionId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    getSubscriptionAttributesRaw(requestParameters: subscriptionApiParams.GetSubscriptionAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SubscriptionAttribute>>>;
+
+    /**
+    * Gets the list of attributes specified by subscription Id.
+    * Get Subscription Attributes
+    */
+    getSubscriptionAttributes(requestParameters: subscriptionApiParams.GetSubscriptionAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SubscriptionAttribute>>;
+
+    /**
+    * Retrieves all the values in the Subscription Data bag
+    * @summary Get subscription Data
+    * @param {string} subscriptionId Unique Identifier of the Subscription whose Data you want to get
+    * @param {boolean} [draft] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    getSubscriptionDataRaw(requestParameters: subscriptionApiParams.GetSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
+
+    /**
+    * Retrieves all the values in the Subscription Data bag
+    * Get subscription Data
+    */
+    getSubscriptionData(requestParameters: subscriptionApiParams.GetSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
+
+    /**
+    * Retrieves a specific value in the SubscriptionItem Data bag.
+    * @summary Get Subscription Item Data
+    * @param {string} subscriptionId Unique Identifier of the Subscription you want to get the Subscription Items for
+    * @param {string} subscriptionItemId Unique Identifier of the SubscriptionItem whose Data you want to get
+    * @param {boolean} [draft] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    getSubscriptionItemDataRaw(requestParameters: subscriptionApiParams.GetSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
+
+    /**
+    * Retrieves a specific value in the SubscriptionItem Data bag.
+    * Get Subscription Item Data
+    */
+    getSubscriptionItemData(requestParameters: subscriptionApiParams.GetSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
+
+    /**
+    * Retrieves a list of subscriptions according to any specified filter criteria and sort options.
+    * @summary Get Subscriptions
+    * @param {number} [startIndex] The start index.
+    * @param {number} [pageSize] Size of the page.
+    * @param {string} [sortBy] The sort by.
+    * @param {string} [filter] The filter.
+    * @param {string} [q] The q.
+    * @param {number} [qLimit] The q limit.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    getSubscriptionsRaw(requestParameters: subscriptionApiParams.GetSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscriptionCollection>>;
+
+    /**
+    * Retrieves a list of subscriptions according to any specified filter criteria and sort options.
+    * Get Subscriptions
+    */
+    getSubscriptions(requestParameters: subscriptionApiParams.GetSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscriptionCollection>;
+
+    /**
+    * Lets the user place an instant order from the subscription.
+    * @summary Order Now
+    * @param {string} subscriptionId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    orderNowRaw(requestParameters: subscriptionApiParams.OrderNowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
+
+    /**
+    * Lets the user place an instant order from the subscription.
+    * Order Now
+    */
+    orderNow(requestParameters: subscriptionApiParams.OrderNowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
+
+    /**
+    * Lets the user place an order from Partial Draft.
+    * @summary Order Partial Subscription
+    * @param {string} subscriptionId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    orderPartialSubscriptionRaw(requestParameters: subscriptionApiParams.OrderPartialSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
+
+    /**
+    * Lets the user place an order from Partial Draft.
+    * Order Partial Subscription
+    */
+    orderPartialSubscription(requestParameters: subscriptionApiParams.OrderPartialSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
+
+    /**
+    * Perform the specified action on subscription. Available actions are Activate, Pause, and Cancel.
+    * @summary Perform Subscription Action
+    * @param {string} subscriptionId The subscription identifier.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {SubscriptionAction} [subscriptionAction] Action to perform, which can be \&quot;Activate,\&quot; \&quot;Pause,\&quot; \&quot;Cancel\&quot;.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    performSubscriptionActionRaw(requestParameters: subscriptionApiParams.PerformSubscriptionActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
+
+    /**
+    * Perform the specified action on subscription. Available actions are Activate, Pause, and Cancel.
+    * Perform Subscription Action
+    */
+    performSubscriptionAction(requestParameters: subscriptionApiParams.PerformSubscriptionActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
+
+    /**
+    * Remove coupons from subscription and draft
+    * @summary Remove coupons from subscription and draft
+    * @param {string} subscriptionId 
+    * @param {string} [updateMode] Determines the update strategy for this update (ApplyToOriginal, ApplyToDraft).
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {SubscriptionCoupons} [subscriptionCoupons] CouponCodes
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    removeCouponRaw(requestParameters: subscriptionApiParams.RemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
+
+    /**
+    * Remove coupons from subscription and draft
+    * Remove coupons from subscription and draft
+    */
+    removeCoupon(requestParameters: subscriptionApiParams.RemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
+
+    /**
+    * Skips the next continuity order for the subscription.
+    * @summary Skip Subscription
+    * @param {string} subscriptionId The subscription identifier.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    skipSubscriptionRaw(requestParameters: subscriptionApiParams.SkipSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
+
+    /**
+    * Skips the next continuity order for the subscription.
+    * Skip Subscription
+    */
+    skipSubscription(requestParameters: subscriptionApiParams.SkipSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
+
+    /**
+    * Update item, shipping and handling adjustments on the subscription.
+    * @summary Update Adjustments
+    * @param {string} subscriptionId The subscription identifier.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {SubscriptionAdjustment} [subscriptionAdjustment] Adjustments for subscription.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    updateAdjustmentsRaw(requestParameters: subscriptionApiParams.UpdateAdjustmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
+
+    /**
+    * Update item, shipping and handling adjustments on the subscription.
+    * Update Adjustments
+    */
+    updateAdjustments(requestParameters: subscriptionApiParams.UpdateAdjustmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
+
+    /**
+    * Modifies the Fulfillment Info for a subscription.
+    * @summary Update Fulfillment Info
+    * @param {string} subscriptionId The subscription identifier.
+    * @param {string} [updateMode] Determines the update strategy for this update (ApplyToOriginal, ApplyToDraft).
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {FulfillmentInfo} [fulfillmentInfo] New fulfillment info for subscription.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    updateFulfillmentInfoRaw(requestParameters: subscriptionApiParams.UpdateFulfillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FulfillmentInfo>>;
+
+    /**
+    * Modifies the Fulfillment Info for a subscription.
+    * Update Fulfillment Info
+    */
+    updateFulfillmentInfo(requestParameters: subscriptionApiParams.UpdateFulfillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillmentInfo>;
+
+    /**
+    * Updates the installment plan on the subscription.
+    * @summary Update Installment plan
+    * @param {string} subscriptionId The subscription identifier.
+    * @param {string} [updateMode] Determines the update strategy for this update (ApplyToOriginal, ApplyToDraft).
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {InstallmentPlanRequest} [installmentPlanRequest] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    updateInstallmentPlanRaw(requestParameters: subscriptionApiParams.UpdateInstallmentPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
+
+    /**
+    * Updates the installment plan on the subscription.
+    * Update Installment plan
+    */
+    updateInstallmentPlan(requestParameters: subscriptionApiParams.UpdateInstallmentPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
+
+    /**
+    * Update Item Quantity on existing subscription.
+    * @summary Update Item Quantity
+    * @param {string} subscriptionId subscription id
+    * @param {string} subscriptionItemId subscription item id
+    * @param {number} quantity New quantity for the specified subscription item.
+    * @param {string} [updateMode] Determines the update strategy for this update (ApplyToOriginal, ApplyToDraft).
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {SubscriptionReason} [subscriptionReason] cancellation reason if item quantity is decreased.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    updateItemQuantityRaw(requestParameters: subscriptionApiParams.UpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
+
+    /**
+    * Update Item Quantity on existing subscription.
+    * Update Item Quantity
+    */
+    updateItemQuantity(requestParameters: subscriptionApiParams.UpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
+
+    /**
+    * Updates the next order date on an existing subscription
+    * @summary Update Next Order Date
+    * @param {string} subscriptionId The subscription identifier.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {SubscriptionNextOrderDate} [subscriptionNextOrderDate] The Next Order date to be set.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    updateNextOrderDateRaw(requestParameters: subscriptionApiParams.UpdateNextOrderDateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
+
+    /**
+    * Updates the next order date on an existing subscription
+    * Update Next Order Date
+    */
+    updateNextOrderDate(requestParameters: subscriptionApiParams.UpdateNextOrderDateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
+
+    /**
+    * Updates the payment on the subscription.
+    * @summary Update Payment
+    * @param {string} subscriptionId The subscription identifier.
+    * @param {string} [updateMode] Determines the update strategy for this update (ApplyToOriginal, ApplyToDraft).
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Payment} [payment] The new payment to be applied.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    updatePaymentRaw(requestParameters: subscriptionApiParams.UpdatePaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
+
+    /**
+    * Updates the payment on the subscription.
+    * Update Payment
+    */
+    updatePayment(requestParameters: subscriptionApiParams.UpdatePaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
+
+    /**
+    * Update the info for an existing subscription
+    * @summary Update Subscription
+    * @param {string} subscriptionId The subscription identifier.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {SubscriptionRuntimeSubscription} [subscriptionRuntimeSubscription] The subscription.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    updateSubscriptionRaw(requestParameters: subscriptionApiParams.UpdateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
+
+    /**
+    * Update the info for an existing subscription
+    * Update Subscription
+    */
+    updateSubscription(requestParameters: subscriptionApiParams.UpdateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
+
+    /**
+    * Updates the list of subscription attributes specified by subscription id and removes the missing attributes if not passed when removeMissing flag is set.
+    * @summary Update Subscription Attribute
+    * @param {string} subscriptionId 
+    * @param {boolean} [removeMissing] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<SubscriptionAttribute>} [subscriptionAttribute] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    updateSubscriptionAttributeRaw(requestParameters: subscriptionApiParams.UpdateSubscriptionAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SubscriptionAttribute>>>;
+
+    /**
+    * Updates the list of subscription attributes specified by subscription id and removes the missing attributes if not passed when removeMissing flag is set.
+    * Update Subscription Attribute
+    */
+    updateSubscriptionAttribute(requestParameters: subscriptionApiParams.UpdateSubscriptionAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SubscriptionAttribute>>;
+
+    /**
+    * Insert / Updates the Value of the given Key in the Subscription Data bag.
+    * @summary Update Subscription Data
+    * @param {string} subscriptionId Unique Identifier of the Subscription you want to insert / update the Databag for
+    * @param {string} subscriptionDataId URLEncoded Key for the Value you want to Insert / Update from the Subscription DataBag
+    * @param {string} [updateMode] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {any} [body] Data Object you are trying to insert / update
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    updateSubscriptionDataRaw(requestParameters: subscriptionApiParams.UpdateSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
+
+    /**
+    * Insert / Updates the Value of the given Key in the Subscription Data bag.
+    * Update Subscription Data
+    */
+    updateSubscriptionData(requestParameters: subscriptionApiParams.UpdateSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
+
+    /**
+    * Update the frequency on an existing subscription
+    * @summary Update Subscription Frequency
+    * @param {string} subscriptionId The subscription identifier.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Frequency} [frequency] The requested frequency for update
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    updateSubscriptionFrequencyRaw(requestParameters: subscriptionApiParams.UpdateSubscriptionFrequencyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
+
+    /**
+    * Update the frequency on an existing subscription
+    * Update Subscription Frequency
+    */
+    updateSubscriptionFrequency(requestParameters: subscriptionApiParams.UpdateSubscriptionFrequencyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
+
+    /**
+    * Insert / Updates the Value of the given Key in the SubscriptionItem Data bag.
+    * @summary Update Subscription Item Data
+    * @param {string} subscriptionId Unique Identifier of the Subscription you want to get the Items for
+    * @param {string} subscriptionItemId Unique Identifier of the SubscriptionItem you want to Insert / Update the Databag for
+    * @param {string} subscriptionItemDataId URLEncoded Key for the Value you want to Insert / Update from the SubscriptionItem DataBag
+    * @param {string} [updateMode] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {any} [body] Data Object you are trying to insert / update
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    updateSubscriptionItemDataRaw(requestParameters: subscriptionApiParams.UpdateSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
+
+    /**
+    * Insert / Updates the Value of the given Key in the SubscriptionItem Data bag.
+    * Update Subscription Item Data
+    */
+    updateSubscriptionItemData(requestParameters: subscriptionApiParams.UpdateSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
+
+    /**
+    * Upsert Inventory Tags
+    * @summary Upsert Inventory Tags
+    * @param {string} subscriptionId 
+    * @param {string} subscriptionItemId 
+    * @param {string} [updateMode] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<InventoryTags>} [inventoryTags] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    upsertInventoryTagsRaw(requestParameters: subscriptionApiParams.UpsertInventoryTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
+
+    /**
+    * Upsert Inventory Tags
+    * Upsert Inventory Tags
+    */
+    upsertInventoryTags(requestParameters: subscriptionApiParams.UpsertInventoryTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
 
 }
+
 
 /**
  * 
  */
-export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiInterface {
+export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -909,7 +879,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async addSubscriptionItemRaw(requestParameters: AddSubscriptionItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
+    async addSubscriptionItemRaw(requestParameters: subscriptionApiParams.AddSubscriptionItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling addSubscriptionItem.');
         }
@@ -949,7 +919,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Add a subscription item in existing subscription.
      * Add Subscription Item
      */
-    async addSubscriptionItem(requestParameters: AddSubscriptionItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
+    async addSubscriptionItem(requestParameters: subscriptionApiParams.AddSubscriptionItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
         const response = await this.addSubscriptionItemRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -960,7 +930,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async applyCouponRaw(requestParameters: ApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
+    async applyCouponRaw(requestParameters: subscriptionApiParams.ApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling applyCoupon.');
         }
@@ -1001,7 +971,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Apply coupon to the Subscription.
      * Apply Coupon
      */
-    async applyCoupon(requestParameters: ApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
+    async applyCoupon(requestParameters: subscriptionApiParams.ApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
         const response = await this.applyCouponRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1012,7 +982,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async changePricelistOnSubscriptionRaw(requestParameters: ChangePricelistOnSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
+    async changePricelistOnSubscriptionRaw(requestParameters: subscriptionApiParams.ChangePricelistOnSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling changePricelistOnSubscription.');
         }
@@ -1048,7 +1018,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Updates the price list on the subscription.
      * Change Pricelist On Subscription
      */
-    async changePricelistOnSubscription(requestParameters: ChangePricelistOnSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
+    async changePricelistOnSubscription(requestParameters: subscriptionApiParams.ChangePricelistOnSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
         const response = await this.changePricelistOnSubscriptionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1059,7 +1029,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async clearSubscriptionDraftRaw(requestParameters: ClearSubscriptionDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
+    async clearSubscriptionDraftRaw(requestParameters: subscriptionApiParams.ClearSubscriptionDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling clearSubscriptionDraft.');
         }
@@ -1092,7 +1062,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Delete subscription draft
      * Delete subscription draft
      */
-    async clearSubscriptionDraft(requestParameters: ClearSubscriptionDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
+    async clearSubscriptionDraft(requestParameters: subscriptionApiParams.ClearSubscriptionDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
         const response = await this.clearSubscriptionDraftRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1103,7 +1073,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async convertToOrderRaw(requestParameters: ConvertToOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+    async convertToOrderRaw(requestParameters: subscriptionApiParams.ConvertToOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling convertToOrder.');
         }
@@ -1136,7 +1106,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Convert the subscription to order.
      * Convert To Order
      */
-    async convertToOrder(requestParameters: ConvertToOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+    async convertToOrder(requestParameters: subscriptionApiParams.ConvertToOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.convertToOrderRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1147,7 +1117,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async createSubscriptionRaw(requestParameters: CreateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
+    async createSubscriptionRaw(requestParameters: subscriptionApiParams.CreateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -1179,7 +1149,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Creates and validates a new subscription.
      * Creates Subscription
      */
-    async createSubscription(requestParameters: CreateSubscriptionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
+    async createSubscription(requestParameters: subscriptionApiParams.CreateSubscriptionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
         const response = await this.createSubscriptionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1190,7 +1160,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async createSubscriptionAttributesRaw(requestParameters: CreateSubscriptionAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SubscriptionAttribute>>> {
+    async createSubscriptionAttributesRaw(requestParameters: subscriptionApiParams.CreateSubscriptionAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SubscriptionAttribute>>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling createSubscriptionAttributes.');
         }
@@ -1226,7 +1196,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Creates list of subscription attributes specified by subscription Id.
      * Create Subscription Attributes
      */
-    async createSubscriptionAttributes(requestParameters: CreateSubscriptionAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SubscriptionAttribute>> {
+    async createSubscriptionAttributes(requestParameters: subscriptionApiParams.CreateSubscriptionAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SubscriptionAttribute>> {
         const response = await this.createSubscriptionAttributesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1237,7 +1207,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async deleteSubscriptionDataRaw(requestParameters: DeleteSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async deleteSubscriptionDataRaw(requestParameters: subscriptionApiParams.DeleteSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling deleteSubscriptionData.');
         }
@@ -1274,7 +1244,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Delete Value of the given Key in the SubscriptionData bag.
      * Delete Subscription Data
      */
-    async deleteSubscriptionData(requestParameters: DeleteSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async deleteSubscriptionData(requestParameters: subscriptionApiParams.DeleteSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
         const response = await this.deleteSubscriptionDataRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1285,7 +1255,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async deleteSubscriptionItemRaw(requestParameters: DeleteSubscriptionItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
+    async deleteSubscriptionItemRaw(requestParameters: subscriptionApiParams.DeleteSubscriptionItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling deleteSubscriptionItem.');
         }
@@ -1329,7 +1299,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Removes a particular subscription item from the subscription
      * Delete Subscription Item
      */
-    async deleteSubscriptionItem(requestParameters: DeleteSubscriptionItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
+    async deleteSubscriptionItem(requestParameters: subscriptionApiParams.DeleteSubscriptionItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
         const response = await this.deleteSubscriptionItemRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1340,7 +1310,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async deleteSubscriptionItemDataRaw(requestParameters: DeleteSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async deleteSubscriptionItemDataRaw(requestParameters: subscriptionApiParams.DeleteSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling deleteSubscriptionItemData.');
         }
@@ -1381,7 +1351,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Deletes the Value of the given Key in the SubscriptionItem Data bag.
      * Delete Subscription Item Data
      */
-    async deleteSubscriptionItemData(requestParameters: DeleteSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async deleteSubscriptionItemData(requestParameters: subscriptionApiParams.DeleteSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
         const response = await this.deleteSubscriptionItemDataRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1392,7 +1362,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async getAvailableShipmentMethodsRaw(requestParameters: GetAvailableShipmentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeShippingRate>>> {
+    async getAvailableShipmentMethodsRaw(requestParameters: subscriptionApiParams.GetAvailableShipmentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeShippingRate>>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling getAvailableShipmentMethods.');
         }
@@ -1429,7 +1399,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Gets valid shipping methods for subscription
      * Get Available Shipment Methods
      */
-    async getAvailableShipmentMethods(requestParameters: GetAvailableShipmentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeShippingRate>> {
+    async getAvailableShipmentMethods(requestParameters: subscriptionApiParams.GetAvailableShipmentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeShippingRate>> {
         const response = await this.getAvailableShipmentMethodsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1440,7 +1410,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async getReasonsRaw(requestParameters: GetReasonsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionReasonCollection>> {
+    async getReasonsRaw(requestParameters: subscriptionApiParams.GetReasonsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionReasonCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.category !== undefined) {
@@ -1473,7 +1443,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Gets available subscription action reasons for the given category. If no category is supplied will give available Cancel action reasons.
      * Get Reasons
      */
-    async getReasons(requestParameters: GetReasonsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionReasonCollection> {
+    async getReasons(requestParameters: subscriptionApiParams.GetReasonsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionReasonCollection> {
         const response = await this.getReasonsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1484,7 +1454,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async getSubscriptionRaw(requestParameters: GetSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
+    async getSubscriptionRaw(requestParameters: subscriptionApiParams.GetSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling getSubscription.');
         }
@@ -1521,7 +1491,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Retrieves the details of a subscription specified by the subscription ID.
      * Gets Subscription
      */
-    async getSubscription(requestParameters: GetSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
+    async getSubscription(requestParameters: subscriptionApiParams.GetSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
         const response = await this.getSubscriptionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1532,7 +1502,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async getSubscriptionAttributesRaw(requestParameters: GetSubscriptionAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SubscriptionAttribute>>> {
+    async getSubscriptionAttributesRaw(requestParameters: subscriptionApiParams.GetSubscriptionAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SubscriptionAttribute>>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling getSubscriptionAttributes.');
         }
@@ -1565,7 +1535,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Gets the list of attributes specified by subscription Id.
      * Get Subscription Attributes
      */
-    async getSubscriptionAttributes(requestParameters: GetSubscriptionAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SubscriptionAttribute>> {
+    async getSubscriptionAttributes(requestParameters: subscriptionApiParams.GetSubscriptionAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SubscriptionAttribute>> {
         const response = await this.getSubscriptionAttributesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1576,7 +1546,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async getSubscriptionDataRaw(requestParameters: GetSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async getSubscriptionDataRaw(requestParameters: subscriptionApiParams.GetSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling getSubscriptionData.');
         }
@@ -1613,7 +1583,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Retrieves all the values in the Subscription Data bag
      * Get subscription Data
      */
-    async getSubscriptionData(requestParameters: GetSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async getSubscriptionData(requestParameters: subscriptionApiParams.GetSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
         const response = await this.getSubscriptionDataRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1624,7 +1594,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async getSubscriptionItemDataRaw(requestParameters: GetSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async getSubscriptionItemDataRaw(requestParameters: subscriptionApiParams.GetSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling getSubscriptionItemData.');
         }
@@ -1665,7 +1635,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Retrieves a specific value in the SubscriptionItem Data bag.
      * Get Subscription Item Data
      */
-    async getSubscriptionItemData(requestParameters: GetSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async getSubscriptionItemData(requestParameters: subscriptionApiParams.GetSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
         const response = await this.getSubscriptionItemDataRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1676,7 +1646,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async getSubscriptionsRaw(requestParameters: GetSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscriptionCollection>> {
+    async getSubscriptionsRaw(requestParameters: subscriptionApiParams.GetSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscriptionCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -1729,7 +1699,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Retrieves a list of subscriptions according to any specified filter criteria and sort options.
      * Get Subscriptions
      */
-    async getSubscriptions(requestParameters: GetSubscriptionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscriptionCollection> {
+    async getSubscriptions(requestParameters: subscriptionApiParams.GetSubscriptionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscriptionCollection> {
         const response = await this.getSubscriptionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1740,7 +1710,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async orderNowRaw(requestParameters: OrderNowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
+    async orderNowRaw(requestParameters: subscriptionApiParams.OrderNowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling orderNow.');
         }
@@ -1773,7 +1743,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Lets the user place an instant order from the subscription.
      * Order Now
      */
-    async orderNow(requestParameters: OrderNowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
+    async orderNow(requestParameters: subscriptionApiParams.OrderNowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
         const response = await this.orderNowRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1784,7 +1754,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async orderPartialSubscriptionRaw(requestParameters: OrderPartialSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
+    async orderPartialSubscriptionRaw(requestParameters: subscriptionApiParams.OrderPartialSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling orderPartialSubscription.');
         }
@@ -1817,7 +1787,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Lets the user place an order from Partial Draft.
      * Order Partial Subscription
      */
-    async orderPartialSubscription(requestParameters: OrderPartialSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
+    async orderPartialSubscription(requestParameters: subscriptionApiParams.OrderPartialSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
         const response = await this.orderPartialSubscriptionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1828,7 +1798,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async performSubscriptionActionRaw(requestParameters: PerformSubscriptionActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
+    async performSubscriptionActionRaw(requestParameters: subscriptionApiParams.PerformSubscriptionActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling performSubscriptionAction.');
         }
@@ -1864,7 +1834,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Perform the specified action on subscription. Available actions are Activate, Pause, and Cancel.
      * Perform Subscription Action
      */
-    async performSubscriptionAction(requestParameters: PerformSubscriptionActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
+    async performSubscriptionAction(requestParameters: subscriptionApiParams.PerformSubscriptionActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
         const response = await this.performSubscriptionActionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1875,7 +1845,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async removeCouponRaw(requestParameters: RemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
+    async removeCouponRaw(requestParameters: subscriptionApiParams.RemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling removeCoupon.');
         }
@@ -1915,7 +1885,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Remove coupons from subscription and draft
      * Remove coupons from subscription and draft
      */
-    async removeCoupon(requestParameters: RemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
+    async removeCoupon(requestParameters: subscriptionApiParams.RemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
         const response = await this.removeCouponRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1926,7 +1896,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async skipSubscriptionRaw(requestParameters: SkipSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
+    async skipSubscriptionRaw(requestParameters: subscriptionApiParams.SkipSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling skipSubscription.');
         }
@@ -1959,7 +1929,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Skips the next continuity order for the subscription.
      * Skip Subscription
      */
-    async skipSubscription(requestParameters: SkipSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
+    async skipSubscription(requestParameters: subscriptionApiParams.SkipSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
         const response = await this.skipSubscriptionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1970,7 +1940,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async updateAdjustmentsRaw(requestParameters: UpdateAdjustmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
+    async updateAdjustmentsRaw(requestParameters: subscriptionApiParams.UpdateAdjustmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling updateAdjustments.');
         }
@@ -2006,7 +1976,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Update item, shipping and handling adjustments on the subscription.
      * Update Adjustments
      */
-    async updateAdjustments(requestParameters: UpdateAdjustmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
+    async updateAdjustments(requestParameters: subscriptionApiParams.UpdateAdjustmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
         const response = await this.updateAdjustmentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2017,7 +1987,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async updateFulfillmentInfoRaw(requestParameters: UpdateFulfillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FulfillmentInfo>> {
+    async updateFulfillmentInfoRaw(requestParameters: subscriptionApiParams.UpdateFulfillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FulfillmentInfo>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling updateFulfillmentInfo.');
         }
@@ -2057,7 +2027,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Modifies the Fulfillment Info for a subscription.
      * Update Fulfillment Info
      */
-    async updateFulfillmentInfo(requestParameters: UpdateFulfillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillmentInfo> {
+    async updateFulfillmentInfo(requestParameters: subscriptionApiParams.UpdateFulfillmentInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillmentInfo> {
         const response = await this.updateFulfillmentInfoRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2068,7 +2038,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async updateInstallmentPlanRaw(requestParameters: UpdateInstallmentPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
+    async updateInstallmentPlanRaw(requestParameters: subscriptionApiParams.UpdateInstallmentPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling updateInstallmentPlan.');
         }
@@ -2108,7 +2078,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Updates the installment plan on the subscription.
      * Update Installment plan
      */
-    async updateInstallmentPlan(requestParameters: UpdateInstallmentPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
+    async updateInstallmentPlan(requestParameters: subscriptionApiParams.UpdateInstallmentPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
         const response = await this.updateInstallmentPlanRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2119,7 +2089,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async updateItemQuantityRaw(requestParameters: UpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
+    async updateItemQuantityRaw(requestParameters: subscriptionApiParams.UpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling updateItemQuantity.');
         }
@@ -2167,7 +2137,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Update Item Quantity on existing subscription.
      * Update Item Quantity
      */
-    async updateItemQuantity(requestParameters: UpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
+    async updateItemQuantity(requestParameters: subscriptionApiParams.UpdateItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
         const response = await this.updateItemQuantityRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2178,7 +2148,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async updateNextOrderDateRaw(requestParameters: UpdateNextOrderDateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
+    async updateNextOrderDateRaw(requestParameters: subscriptionApiParams.UpdateNextOrderDateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling updateNextOrderDate.');
         }
@@ -2214,7 +2184,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Updates the next order date on an existing subscription
      * Update Next Order Date
      */
-    async updateNextOrderDate(requestParameters: UpdateNextOrderDateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
+    async updateNextOrderDate(requestParameters: subscriptionApiParams.UpdateNextOrderDateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
         const response = await this.updateNextOrderDateRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2225,7 +2195,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async updatePaymentRaw(requestParameters: UpdatePaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
+    async updatePaymentRaw(requestParameters: subscriptionApiParams.UpdatePaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling updatePayment.');
         }
@@ -2265,7 +2235,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Updates the payment on the subscription.
      * Update Payment
      */
-    async updatePayment(requestParameters: UpdatePaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
+    async updatePayment(requestParameters: subscriptionApiParams.UpdatePaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
         const response = await this.updatePaymentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2276,7 +2246,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async updateSubscriptionRaw(requestParameters: UpdateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
+    async updateSubscriptionRaw(requestParameters: subscriptionApiParams.UpdateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling updateSubscription.');
         }
@@ -2312,7 +2282,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Update the info for an existing subscription
      * Update Subscription
      */
-    async updateSubscription(requestParameters: UpdateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
+    async updateSubscription(requestParameters: subscriptionApiParams.UpdateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
         const response = await this.updateSubscriptionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2323,7 +2293,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async updateSubscriptionAttributeRaw(requestParameters: UpdateSubscriptionAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SubscriptionAttribute>>> {
+    async updateSubscriptionAttributeRaw(requestParameters: subscriptionApiParams.UpdateSubscriptionAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SubscriptionAttribute>>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling updateSubscriptionAttribute.');
         }
@@ -2363,7 +2333,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Updates the list of subscription attributes specified by subscription id and removes the missing attributes if not passed when removeMissing flag is set.
      * Update Subscription Attribute
      */
-    async updateSubscriptionAttribute(requestParameters: UpdateSubscriptionAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SubscriptionAttribute>> {
+    async updateSubscriptionAttribute(requestParameters: subscriptionApiParams.UpdateSubscriptionAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SubscriptionAttribute>> {
         const response = await this.updateSubscriptionAttributeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2374,7 +2344,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async updateSubscriptionDataRaw(requestParameters: UpdateSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async updateSubscriptionDataRaw(requestParameters: subscriptionApiParams.UpdateSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling updateSubscriptionData.');
         }
@@ -2418,7 +2388,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Insert / Updates the Value of the given Key in the Subscription Data bag.
      * Update Subscription Data
      */
-    async updateSubscriptionData(requestParameters: UpdateSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async updateSubscriptionData(requestParameters: subscriptionApiParams.UpdateSubscriptionDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
         const response = await this.updateSubscriptionDataRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2429,7 +2399,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async updateSubscriptionFrequencyRaw(requestParameters: UpdateSubscriptionFrequencyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
+    async updateSubscriptionFrequencyRaw(requestParameters: subscriptionApiParams.UpdateSubscriptionFrequencyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling updateSubscriptionFrequency.');
         }
@@ -2465,7 +2435,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Update the frequency on an existing subscription
      * Update Subscription Frequency
      */
-    async updateSubscriptionFrequency(requestParameters: UpdateSubscriptionFrequencyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
+    async updateSubscriptionFrequency(requestParameters: subscriptionApiParams.UpdateSubscriptionFrequencyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
         const response = await this.updateSubscriptionFrequencyRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2476,7 +2446,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async updateSubscriptionItemDataRaw(requestParameters: UpdateSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async updateSubscriptionItemDataRaw(requestParameters: subscriptionApiParams.UpdateSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling updateSubscriptionItemData.');
         }
@@ -2524,7 +2494,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Insert / Updates the Value of the given Key in the SubscriptionItem Data bag.
      * Update Subscription Item Data
      */
-    async updateSubscriptionItemData(requestParameters: UpdateSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async updateSubscriptionItemData(requestParameters: subscriptionApiParams.UpdateSubscriptionItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
         const response = await this.updateSubscriptionItemDataRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2535,7 +2505,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async upsertInventoryTagsRaw(requestParameters: UpsertInventoryTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
+    async upsertInventoryTagsRaw(requestParameters: subscriptionApiParams.UpsertInventoryTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling upsertInventoryTags.');
         }
@@ -2579,7 +2549,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Upsert Inventory Tags
      * Upsert Inventory Tags
      */
-    async upsertInventoryTags(requestParameters: UpsertInventoryTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
+    async upsertInventoryTags(requestParameters: subscriptionApiParams.UpsertInventoryTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
         const response = await this.upsertInventoryTagsRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -20,85 +20,86 @@ import type {
   ResolvedPriceList,
 } from '../models';
 
-export interface StorefrontGetPriceListRequest {
-    priceListCode: string;
-    responseFields?: string;
+
+export namespace priceListsApiParams { 
+    export interface StorefrontGetPriceListRequest {
+        priceListCode: string;
+        responseFields?: string;
+    }
+    export interface StorefrontGetResolvedPriceListRequest {
+        customerAccountId?: number;
+        responseFields?: string;
+    }
+    export interface StorefrontGetResolvedPriceList2Request {
+        responseFields?: string;
+        body?: object;
+    }
+}
+/**
+* PriceListsApiService - interface
+* 
+* @export
+* @interface PriceListsApi
+*/
+export interface PriceListsApiService {
+    /**
+    * Retrieves the price list for the given priceListCode
+    * @summary Get price list
+    * @param {string} priceListCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof PriceListsApiInterface
+    */
+    storefrontGetPriceListRaw(requestParameters: priceListsApiParams.StorefrontGetPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogRuntimesPriceList>>;
+
+    /**
+    * Retrieves the price list for the given priceListCode
+    * Get price list
+    */
+    storefrontGetPriceList(requestParameters: priceListsApiParams.StorefrontGetPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogRuntimesPriceList>;
+
+    /**
+    * 
+    * @summary Get resolved price list
+    * @param {number} [customerAccountId] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof PriceListsApiInterface
+    */
+    storefrontGetResolvedPriceListRaw(requestParameters: priceListsApiParams.StorefrontGetResolvedPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ResolvedPriceList>>;
+
+    /**
+    * 
+    * Get resolved price list
+    */
+    storefrontGetResolvedPriceList(requestParameters: priceListsApiParams.StorefrontGetResolvedPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ResolvedPriceList>;
+
+    /**
+    * 
+    * @summary Get resolved price list
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {object} [body] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof PriceListsApiInterface
+    */
+    storefrontGetResolvedPriceList2Raw(requestParameters: priceListsApiParams.StorefrontGetResolvedPriceList2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ResolvedPriceList>>;
+
+    /**
+    * 
+    * Get resolved price list
+    */
+    storefrontGetResolvedPriceList2(requestParameters: priceListsApiParams.StorefrontGetResolvedPriceList2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ResolvedPriceList>;
+
 }
 
-export interface StorefrontGetResolvedPriceListRequest {
-    customerAccountId?: number;
-    responseFields?: string;
-}
-
-export interface StorefrontGetResolvedPriceList2Request {
-    responseFields?: string;
-    body?: object;
-}
 
 /**
- * PriceListsApi - interface
- * 
- * @export
- * @interface PriceListsApiInterface
- */
-export interface PriceListsApiInterface {
-    /**
-     * Retrieves the price list for the given priceListCode
-     * @summary Get price list
-     * @param {string} priceListCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PriceListsApiInterface
-     */
-    storefrontGetPriceListRaw(requestParameters: StorefrontGetPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogRuntimesPriceList>>;
-
-    /**
-     * Retrieves the price list for the given priceListCode
-     * Get price list
-     */
-    storefrontGetPriceList(requestParameters: StorefrontGetPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogRuntimesPriceList>;
-
-    /**
-     * 
-     * @summary Get resolved price list
-     * @param {number} [customerAccountId] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PriceListsApiInterface
-     */
-    storefrontGetResolvedPriceListRaw(requestParameters: StorefrontGetResolvedPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ResolvedPriceList>>;
-
-    /**
-     * 
-     * Get resolved price list
-     */
-    storefrontGetResolvedPriceList(requestParameters: StorefrontGetResolvedPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ResolvedPriceList>;
-
-    /**
-     * 
-     * @summary Get resolved price list
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {object} [body] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PriceListsApiInterface
-     */
-    storefrontGetResolvedPriceList2Raw(requestParameters: StorefrontGetResolvedPriceList2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ResolvedPriceList>>;
-
-    /**
-     * 
-     * Get resolved price list
-     */
-    storefrontGetResolvedPriceList2(requestParameters: StorefrontGetResolvedPriceList2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ResolvedPriceList>;
-
-}
-
-/**
  * 
  */
-export class PriceListsApi extends runtime.BaseAPI implements PriceListsApiInterface {
+export class PriceListsApi extends runtime.BaseAPI implements PriceListsApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -109,7 +110,7 @@ export class PriceListsApi extends runtime.BaseAPI implements PriceListsApiInter
      */
 
 
-    async storefrontGetPriceListRaw(requestParameters: StorefrontGetPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogRuntimesPriceList>> {
+    async storefrontGetPriceListRaw(requestParameters: priceListsApiParams.StorefrontGetPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogRuntimesPriceList>> {
         if (requestParameters.priceListCode === null || requestParameters.priceListCode === undefined) {
             throw new runtime.RequiredError('priceListCode','Required parameter requestParameters.priceListCode was null or undefined when calling storefrontGetPriceList.');
         }
@@ -142,7 +143,7 @@ export class PriceListsApi extends runtime.BaseAPI implements PriceListsApiInter
      * Retrieves the price list for the given priceListCode
      * Get price list
      */
-    async storefrontGetPriceList(requestParameters: StorefrontGetPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogRuntimesPriceList> {
+    async storefrontGetPriceList(requestParameters: priceListsApiParams.StorefrontGetPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogRuntimesPriceList> {
         const response = await this.storefrontGetPriceListRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -153,7 +154,7 @@ export class PriceListsApi extends runtime.BaseAPI implements PriceListsApiInter
      */
 
 
-    async storefrontGetResolvedPriceListRaw(requestParameters: StorefrontGetResolvedPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ResolvedPriceList>> {
+    async storefrontGetResolvedPriceListRaw(requestParameters: priceListsApiParams.StorefrontGetResolvedPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ResolvedPriceList>> {
         const queryParameters: any = {};
 
         if (requestParameters.customerAccountId !== undefined) {
@@ -186,7 +187,7 @@ export class PriceListsApi extends runtime.BaseAPI implements PriceListsApiInter
      * 
      * Get resolved price list
      */
-    async storefrontGetResolvedPriceList(requestParameters: StorefrontGetResolvedPriceListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ResolvedPriceList> {
+    async storefrontGetResolvedPriceList(requestParameters: priceListsApiParams.StorefrontGetResolvedPriceListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ResolvedPriceList> {
         const response = await this.storefrontGetResolvedPriceListRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -197,7 +198,7 @@ export class PriceListsApi extends runtime.BaseAPI implements PriceListsApiInter
      */
 
 
-    async storefrontGetResolvedPriceList2Raw(requestParameters: StorefrontGetResolvedPriceList2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ResolvedPriceList>> {
+    async storefrontGetResolvedPriceList2Raw(requestParameters: priceListsApiParams.StorefrontGetResolvedPriceList2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ResolvedPriceList>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -229,7 +230,7 @@ export class PriceListsApi extends runtime.BaseAPI implements PriceListsApiInter
      * 
      * Get resolved price list
      */
-    async storefrontGetResolvedPriceList2(requestParameters: StorefrontGetResolvedPriceList2Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ResolvedPriceList> {
+    async storefrontGetResolvedPriceList2(requestParameters: priceListsApiParams.StorefrontGetResolvedPriceList2Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ResolvedPriceList> {
         const response = await this.storefrontGetResolvedPriceList2Raw(requestParameters, initOverrides);
         return await response.value();
     }

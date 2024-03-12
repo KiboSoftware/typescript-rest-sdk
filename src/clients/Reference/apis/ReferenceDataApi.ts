@@ -31,289 +31,280 @@ import type {
   UnitOfMeasureCollection,
 } from '../models';
 
-export interface GetAddressSchemaRequest {
-    countryCode: string;
-    responseFields?: string;
-}
 
-export interface GetAddressSchemasRequest {
-    responseFields?: string;
+export namespace referenceDataApiParams { 
+    export interface GetAddressSchemaRequest {
+        countryCode: string;
+        responseFields?: string;
+    }
+    export interface GetAddressSchemasRequest {
+        responseFields?: string;
+    }
+    export interface GetBehaviorRequest {
+        behaviorId: number;
+        responseFields?: string;
+    }
+    export interface GetBehaviorCategoriesRequest {
+        responseFields?: string;
+    }
+    export interface GetBehaviorCategoryRequest {
+        categoryId: number;
+        responseFields?: string;
+    }
+    export interface GetBehaviorsRequest {
+        userType?: string;
+        responseFields?: string;
+    }
+    export interface GetContentLocalesRequest {
+        responseFields?: string;
+    }
+    export interface GetCountriesRequest {
+        responseFields?: string;
+    }
+    export interface GetCountriesWithStatesRequest {
+        responseFields?: string;
+    }
+    export interface GetCurrenciesRequest {
+        responseFields?: string;
+    }
+    export interface GetTimeZonesRequest {
+        responseFields?: string;
+    }
+    export interface GetTopLevelDomainsRequest {
+        responseFields?: string;
+    }
+    export interface GetUnitsOfMeasureRequest {
+        filter?: string;
+        responseFields?: string;
+    }
 }
-
-export interface GetBehaviorRequest {
-    behaviorId: number;
-    responseFields?: string;
-}
-
-export interface GetBehaviorCategoriesRequest {
-    responseFields?: string;
-}
-
-export interface GetBehaviorCategoryRequest {
-    categoryId: number;
-    responseFields?: string;
-}
-
-export interface GetBehaviorsRequest {
-    userType?: string;
-    responseFields?: string;
-}
-
-export interface GetContentLocalesRequest {
-    responseFields?: string;
-}
-
-export interface GetCountriesRequest {
-    responseFields?: string;
-}
-
-export interface GetCountriesWithStatesRequest {
-    responseFields?: string;
-}
-
-export interface GetCurrenciesRequest {
-    responseFields?: string;
-}
-
-export interface GetTimeZonesRequest {
-    responseFields?: string;
-}
-
-export interface GetTopLevelDomainsRequest {
-    responseFields?: string;
-}
-
-export interface GetUnitsOfMeasureRequest {
-    filter?: string;
-    responseFields?: string;
-}
-
 /**
- * ReferenceDataApi - interface
- * 
- * @export
- * @interface ReferenceDataApiInterface
- */
-export interface ReferenceDataApiInterface {
+* ReferenceDataApiService - interface
+* 
+* @export
+* @interface ReferenceDataApi
+*/
+export interface ReferenceDataApiService {
     /**
-     * Get Address Schema
-     * @summary Get Address Schema
-     * @param {string} countryCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReferenceDataApiInterface
-     */
-    getAddressSchemaRaw(requestParameters: GetAddressSchemaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddressSchema>>;
+    * Get Address Schema
+    * @summary Get Address Schema
+    * @param {string} countryCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReferenceDataApiInterface
+    */
+    getAddressSchemaRaw(requestParameters: referenceDataApiParams.GetAddressSchemaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddressSchema>>;
 
     /**
-     * Get Address Schema
-     * Get Address Schema
-     */
-    getAddressSchema(requestParameters: GetAddressSchemaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddressSchema>;
+    * Get Address Schema
+    * Get Address Schema
+    */
+    getAddressSchema(requestParameters: referenceDataApiParams.GetAddressSchemaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddressSchema>;
 
     /**
-     * Get Address Schemas
-     * @summary Get Address Schemas
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReferenceDataApiInterface
-     */
-    getAddressSchemasRaw(requestParameters: GetAddressSchemasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddressSchemaCollection>>;
+    * Get Address Schemas
+    * @summary Get Address Schemas
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReferenceDataApiInterface
+    */
+    getAddressSchemasRaw(requestParameters: referenceDataApiParams.GetAddressSchemasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddressSchemaCollection>>;
 
     /**
-     * Get Address Schemas
-     * Get Address Schemas
-     */
-    getAddressSchemas(requestParameters: GetAddressSchemasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddressSchemaCollection>;
+    * Get Address Schemas
+    * Get Address Schemas
+    */
+    getAddressSchemas(requestParameters: referenceDataApiParams.GetAddressSchemasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddressSchemaCollection>;
 
     /**
-     * 
-     * @summary Retrieves the details of a behavior specified by its behavior ID
-     * @param {number} behaviorId Unique identifier of the behavior for which you want details.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReferenceDataApiInterface
-     */
-    getBehaviorRaw(requestParameters: GetBehaviorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Behavior>>;
+    * 
+    * @summary Retrieves the details of a behavior specified by its behavior ID
+    * @param {number} behaviorId Unique identifier of the behavior for which you want details.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReferenceDataApiInterface
+    */
+    getBehaviorRaw(requestParameters: referenceDataApiParams.GetBehaviorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Behavior>>;
 
     /**
-     * 
-     * Retrieves the details of a behavior specified by its behavior ID
-     */
-    getBehavior(requestParameters: GetBehaviorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Behavior>;
+    * 
+    * Retrieves the details of a behavior specified by its behavior ID
+    */
+    getBehavior(requestParameters: referenceDataApiParams.GetBehaviorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Behavior>;
 
     /**
-     * 
-     * @summary Retrieves a list of all behavior categories
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReferenceDataApiInterface
-     */
-    getBehaviorCategoriesRaw(requestParameters: GetBehaviorCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BehaviorCategoryCollection>>;
+    * 
+    * @summary Retrieves a list of all behavior categories
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReferenceDataApiInterface
+    */
+    getBehaviorCategoriesRaw(requestParameters: referenceDataApiParams.GetBehaviorCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BehaviorCategoryCollection>>;
 
     /**
-     * 
-     * Retrieves a list of all behavior categories
-     */
-    getBehaviorCategories(requestParameters: GetBehaviorCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BehaviorCategoryCollection>;
+    * 
+    * Retrieves a list of all behavior categories
+    */
+    getBehaviorCategories(requestParameters: referenceDataApiParams.GetBehaviorCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BehaviorCategoryCollection>;
 
     /**
-     * 
-     * @summary Retrieves the details of a behavior specified by its behavior ID
-     * @param {number} categoryId Unique identifier of the behavior category for which you want details.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReferenceDataApiInterface
-     */
-    getBehaviorCategoryRaw(requestParameters: GetBehaviorCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BehaviorCategory>>;
+    * 
+    * @summary Retrieves the details of a behavior specified by its behavior ID
+    * @param {number} categoryId Unique identifier of the behavior category for which you want details.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReferenceDataApiInterface
+    */
+    getBehaviorCategoryRaw(requestParameters: referenceDataApiParams.GetBehaviorCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BehaviorCategory>>;
 
     /**
-     * 
-     * Retrieves the details of a behavior specified by its behavior ID
-     */
-    getBehaviorCategory(requestParameters: GetBehaviorCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BehaviorCategory>;
+    * 
+    * Retrieves the details of a behavior specified by its behavior ID
+    */
+    getBehaviorCategory(requestParameters: referenceDataApiParams.GetBehaviorCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BehaviorCategory>;
 
     /**
-     * 
-     * @summary Retrieves a list of all behaviors
-     * @param {string} [userType] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReferenceDataApiInterface
-     */
-    getBehaviorsRaw(requestParameters: GetBehaviorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BehaviorCollection>>;
+    * 
+    * @summary Retrieves a list of all behaviors
+    * @param {string} [userType] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReferenceDataApiInterface
+    */
+    getBehaviorsRaw(requestParameters: referenceDataApiParams.GetBehaviorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BehaviorCollection>>;
 
     /**
-     * 
-     * Retrieves a list of all behaviors
-     */
-    getBehaviors(requestParameters: GetBehaviorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BehaviorCollection>;
+    * 
+    * Retrieves a list of all behaviors
+    */
+    getBehaviors(requestParameters: referenceDataApiParams.GetBehaviorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BehaviorCollection>;
 
     /**
-     * Get the full list of Content Locales supported by the system
-     * @summary Get the full list of Content Locales supported by the system
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReferenceDataApiInterface
-     */
-    getContentLocalesRaw(requestParameters: GetContentLocalesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContentLocaleCollection>>;
+    * Get the full list of Content Locales supported by the system
+    * @summary Get the full list of Content Locales supported by the system
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReferenceDataApiInterface
+    */
+    getContentLocalesRaw(requestParameters: referenceDataApiParams.GetContentLocalesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContentLocaleCollection>>;
 
     /**
-     * Get the full list of Content Locales supported by the system
-     * Get the full list of Content Locales supported by the system
-     */
-    getContentLocales(requestParameters: GetContentLocalesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ContentLocaleCollection>;
+    * Get the full list of Content Locales supported by the system
+    * Get the full list of Content Locales supported by the system
+    */
+    getContentLocales(requestParameters: referenceDataApiParams.GetContentLocalesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ContentLocaleCollection>;
 
     /**
-     * Get the full list of Countries supported by the system
-     * @summary Get the full list of Countries supported by the system
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReferenceDataApiInterface
-     */
-    getCountriesRaw(requestParameters: GetCountriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountryCollection>>;
+    * Get the full list of Countries supported by the system
+    * @summary Get the full list of Countries supported by the system
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReferenceDataApiInterface
+    */
+    getCountriesRaw(requestParameters: referenceDataApiParams.GetCountriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountryCollection>>;
 
     /**
-     * Get the full list of Countries supported by the system
-     * Get the full list of Countries supported by the system
-     */
-    getCountries(requestParameters: GetCountriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountryCollection>;
+    * Get the full list of Countries supported by the system
+    * Get the full list of Countries supported by the system
+    */
+    getCountries(requestParameters: referenceDataApiParams.GetCountriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountryCollection>;
 
     /**
-     * Get the full list of Countries supported by the system
-     * @summary Get the full list of Countries supported by the system
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReferenceDataApiInterface
-     */
-    getCountriesWithStatesRaw(requestParameters: GetCountriesWithStatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountryWithStatesCollection>>;
+    * Get the full list of Countries supported by the system
+    * @summary Get the full list of Countries supported by the system
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReferenceDataApiInterface
+    */
+    getCountriesWithStatesRaw(requestParameters: referenceDataApiParams.GetCountriesWithStatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountryWithStatesCollection>>;
 
     /**
-     * Get the full list of Countries supported by the system
-     * Get the full list of Countries supported by the system
-     */
-    getCountriesWithStates(requestParameters: GetCountriesWithStatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountryWithStatesCollection>;
+    * Get the full list of Countries supported by the system
+    * Get the full list of Countries supported by the system
+    */
+    getCountriesWithStates(requestParameters: referenceDataApiParams.GetCountriesWithStatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountryWithStatesCollection>;
 
     /**
-     * Get the full list of Currencies supported by the system
-     * @summary Get the full list of Currencies supported by the system
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReferenceDataApiInterface
-     */
-    getCurrenciesRaw(requestParameters: GetCurrenciesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CurrencyCollection>>;
+    * Get the full list of Currencies supported by the system
+    * @summary Get the full list of Currencies supported by the system
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReferenceDataApiInterface
+    */
+    getCurrenciesRaw(requestParameters: referenceDataApiParams.GetCurrenciesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CurrencyCollection>>;
 
     /**
-     * Get the full list of Currencies supported by the system
-     * Get the full list of Currencies supported by the system
-     */
-    getCurrencies(requestParameters: GetCurrenciesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CurrencyCollection>;
+    * Get the full list of Currencies supported by the system
+    * Get the full list of Currencies supported by the system
+    */
+    getCurrencies(requestParameters: referenceDataApiParams.GetCurrenciesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CurrencyCollection>;
 
     /**
-     * Get the full list of TimeZones supported by the system
-     * @summary Get the full list of TimeZones supported by the system
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReferenceDataApiInterface
-     */
-    getTimeZonesRaw(requestParameters: GetTimeZonesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TimeZoneCollection>>;
+    * Get the full list of TimeZones supported by the system
+    * @summary Get the full list of TimeZones supported by the system
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReferenceDataApiInterface
+    */
+    getTimeZonesRaw(requestParameters: referenceDataApiParams.GetTimeZonesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TimeZoneCollection>>;
 
     /**
-     * Get the full list of TimeZones supported by the system
-     * Get the full list of TimeZones supported by the system
-     */
-    getTimeZones(requestParameters: GetTimeZonesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TimeZoneCollection>;
+    * Get the full list of TimeZones supported by the system
+    * Get the full list of TimeZones supported by the system
+    */
+    getTimeZones(requestParameters: referenceDataApiParams.GetTimeZonesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TimeZoneCollection>;
 
     /**
-     * Get a full list of the supported top level domains
-     * @summary Get a full list of the supported top level domains
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReferenceDataApiInterface
-     */
-    getTopLevelDomainsRaw(requestParameters: GetTopLevelDomainsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TopLevelDomainCollection>>;
+    * Get a full list of the supported top level domains
+    * @summary Get a full list of the supported top level domains
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReferenceDataApiInterface
+    */
+    getTopLevelDomainsRaw(requestParameters: referenceDataApiParams.GetTopLevelDomainsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TopLevelDomainCollection>>;
 
     /**
-     * Get a full list of the supported top level domains
-     * Get a full list of the supported top level domains
-     */
-    getTopLevelDomains(requestParameters: GetTopLevelDomainsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TopLevelDomainCollection>;
+    * Get a full list of the supported top level domains
+    * Get a full list of the supported top level domains
+    */
+    getTopLevelDomains(requestParameters: referenceDataApiParams.GetTopLevelDomainsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TopLevelDomainCollection>;
 
     /**
-     * Get a full list of the units of measure
-     * @summary Get a full list of the units of measure
-     * @param {string} [filter] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ReferenceDataApiInterface
-     */
-    getUnitsOfMeasureRaw(requestParameters: GetUnitsOfMeasureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UnitOfMeasureCollection>>;
+    * Get a full list of the units of measure
+    * @summary Get a full list of the units of measure
+    * @param {string} [filter] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReferenceDataApiInterface
+    */
+    getUnitsOfMeasureRaw(requestParameters: referenceDataApiParams.GetUnitsOfMeasureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UnitOfMeasureCollection>>;
 
     /**
-     * Get a full list of the units of measure
-     * Get a full list of the units of measure
-     */
-    getUnitsOfMeasure(requestParameters: GetUnitsOfMeasureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UnitOfMeasureCollection>;
+    * Get a full list of the units of measure
+    * Get a full list of the units of measure
+    */
+    getUnitsOfMeasure(requestParameters: referenceDataApiParams.GetUnitsOfMeasureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UnitOfMeasureCollection>;
 
 }
+
 
 /**
  * 
  */
-export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataApiInterface {
+export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -324,7 +315,7 @@ export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataAp
      */
 
 
-    async getAddressSchemaRaw(requestParameters: GetAddressSchemaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddressSchema>> {
+    async getAddressSchemaRaw(requestParameters: referenceDataApiParams.GetAddressSchemaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddressSchema>> {
         if (requestParameters.countryCode === null || requestParameters.countryCode === undefined) {
             throw new runtime.RequiredError('countryCode','Required parameter requestParameters.countryCode was null or undefined when calling getAddressSchema.');
         }
@@ -357,7 +348,7 @@ export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataAp
      * Get Address Schema
      * Get Address Schema
      */
-    async getAddressSchema(requestParameters: GetAddressSchemaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddressSchema> {
+    async getAddressSchema(requestParameters: referenceDataApiParams.GetAddressSchemaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddressSchema> {
         const response = await this.getAddressSchemaRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -368,7 +359,7 @@ export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataAp
      */
 
 
-    async getAddressSchemasRaw(requestParameters: GetAddressSchemasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddressSchemaCollection>> {
+    async getAddressSchemasRaw(requestParameters: referenceDataApiParams.GetAddressSchemasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddressSchemaCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -397,7 +388,7 @@ export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataAp
      * Get Address Schemas
      * Get Address Schemas
      */
-    async getAddressSchemas(requestParameters: GetAddressSchemasRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddressSchemaCollection> {
+    async getAddressSchemas(requestParameters: referenceDataApiParams.GetAddressSchemasRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddressSchemaCollection> {
         const response = await this.getAddressSchemasRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -408,7 +399,7 @@ export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataAp
      */
 
 
-    async getBehaviorRaw(requestParameters: GetBehaviorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Behavior>> {
+    async getBehaviorRaw(requestParameters: referenceDataApiParams.GetBehaviorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Behavior>> {
         if (requestParameters.behaviorId === null || requestParameters.behaviorId === undefined) {
             throw new runtime.RequiredError('behaviorId','Required parameter requestParameters.behaviorId was null or undefined when calling getBehavior.');
         }
@@ -441,7 +432,7 @@ export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataAp
      * 
      * Retrieves the details of a behavior specified by its behavior ID
      */
-    async getBehavior(requestParameters: GetBehaviorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Behavior> {
+    async getBehavior(requestParameters: referenceDataApiParams.GetBehaviorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Behavior> {
         const response = await this.getBehaviorRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -452,7 +443,7 @@ export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataAp
      */
 
 
-    async getBehaviorCategoriesRaw(requestParameters: GetBehaviorCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BehaviorCategoryCollection>> {
+    async getBehaviorCategoriesRaw(requestParameters: referenceDataApiParams.GetBehaviorCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BehaviorCategoryCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -481,7 +472,7 @@ export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataAp
      * 
      * Retrieves a list of all behavior categories
      */
-    async getBehaviorCategories(requestParameters: GetBehaviorCategoriesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BehaviorCategoryCollection> {
+    async getBehaviorCategories(requestParameters: referenceDataApiParams.GetBehaviorCategoriesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BehaviorCategoryCollection> {
         const response = await this.getBehaviorCategoriesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -492,7 +483,7 @@ export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataAp
      */
 
 
-    async getBehaviorCategoryRaw(requestParameters: GetBehaviorCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BehaviorCategory>> {
+    async getBehaviorCategoryRaw(requestParameters: referenceDataApiParams.GetBehaviorCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BehaviorCategory>> {
         if (requestParameters.categoryId === null || requestParameters.categoryId === undefined) {
             throw new runtime.RequiredError('categoryId','Required parameter requestParameters.categoryId was null or undefined when calling getBehaviorCategory.');
         }
@@ -525,7 +516,7 @@ export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataAp
      * 
      * Retrieves the details of a behavior specified by its behavior ID
      */
-    async getBehaviorCategory(requestParameters: GetBehaviorCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BehaviorCategory> {
+    async getBehaviorCategory(requestParameters: referenceDataApiParams.GetBehaviorCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BehaviorCategory> {
         const response = await this.getBehaviorCategoryRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -536,7 +527,7 @@ export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataAp
      */
 
 
-    async getBehaviorsRaw(requestParameters: GetBehaviorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BehaviorCollection>> {
+    async getBehaviorsRaw(requestParameters: referenceDataApiParams.GetBehaviorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BehaviorCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.userType !== undefined) {
@@ -569,7 +560,7 @@ export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataAp
      * 
      * Retrieves a list of all behaviors
      */
-    async getBehaviors(requestParameters: GetBehaviorsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BehaviorCollection> {
+    async getBehaviors(requestParameters: referenceDataApiParams.GetBehaviorsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BehaviorCollection> {
         const response = await this.getBehaviorsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -580,7 +571,7 @@ export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataAp
      */
 
 
-    async getContentLocalesRaw(requestParameters: GetContentLocalesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContentLocaleCollection>> {
+    async getContentLocalesRaw(requestParameters: referenceDataApiParams.GetContentLocalesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContentLocaleCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -609,7 +600,7 @@ export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataAp
      * Get the full list of Content Locales supported by the system
      * Get the full list of Content Locales supported by the system
      */
-    async getContentLocales(requestParameters: GetContentLocalesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ContentLocaleCollection> {
+    async getContentLocales(requestParameters: referenceDataApiParams.GetContentLocalesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ContentLocaleCollection> {
         const response = await this.getContentLocalesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -620,7 +611,7 @@ export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataAp
      */
 
 
-    async getCountriesRaw(requestParameters: GetCountriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountryCollection>> {
+    async getCountriesRaw(requestParameters: referenceDataApiParams.GetCountriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountryCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -649,7 +640,7 @@ export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataAp
      * Get the full list of Countries supported by the system
      * Get the full list of Countries supported by the system
      */
-    async getCountries(requestParameters: GetCountriesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountryCollection> {
+    async getCountries(requestParameters: referenceDataApiParams.GetCountriesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountryCollection> {
         const response = await this.getCountriesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -660,7 +651,7 @@ export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataAp
      */
 
 
-    async getCountriesWithStatesRaw(requestParameters: GetCountriesWithStatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountryWithStatesCollection>> {
+    async getCountriesWithStatesRaw(requestParameters: referenceDataApiParams.GetCountriesWithStatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountryWithStatesCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -689,7 +680,7 @@ export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataAp
      * Get the full list of Countries supported by the system
      * Get the full list of Countries supported by the system
      */
-    async getCountriesWithStates(requestParameters: GetCountriesWithStatesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountryWithStatesCollection> {
+    async getCountriesWithStates(requestParameters: referenceDataApiParams.GetCountriesWithStatesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountryWithStatesCollection> {
         const response = await this.getCountriesWithStatesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -700,7 +691,7 @@ export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataAp
      */
 
 
-    async getCurrenciesRaw(requestParameters: GetCurrenciesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CurrencyCollection>> {
+    async getCurrenciesRaw(requestParameters: referenceDataApiParams.GetCurrenciesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CurrencyCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -729,7 +720,7 @@ export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataAp
      * Get the full list of Currencies supported by the system
      * Get the full list of Currencies supported by the system
      */
-    async getCurrencies(requestParameters: GetCurrenciesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CurrencyCollection> {
+    async getCurrencies(requestParameters: referenceDataApiParams.GetCurrenciesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CurrencyCollection> {
         const response = await this.getCurrenciesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -740,7 +731,7 @@ export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataAp
      */
 
 
-    async getTimeZonesRaw(requestParameters: GetTimeZonesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TimeZoneCollection>> {
+    async getTimeZonesRaw(requestParameters: referenceDataApiParams.GetTimeZonesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TimeZoneCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -769,7 +760,7 @@ export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataAp
      * Get the full list of TimeZones supported by the system
      * Get the full list of TimeZones supported by the system
      */
-    async getTimeZones(requestParameters: GetTimeZonesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TimeZoneCollection> {
+    async getTimeZones(requestParameters: referenceDataApiParams.GetTimeZonesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TimeZoneCollection> {
         const response = await this.getTimeZonesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -780,7 +771,7 @@ export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataAp
      */
 
 
-    async getTopLevelDomainsRaw(requestParameters: GetTopLevelDomainsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TopLevelDomainCollection>> {
+    async getTopLevelDomainsRaw(requestParameters: referenceDataApiParams.GetTopLevelDomainsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TopLevelDomainCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -809,7 +800,7 @@ export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataAp
      * Get a full list of the supported top level domains
      * Get a full list of the supported top level domains
      */
-    async getTopLevelDomains(requestParameters: GetTopLevelDomainsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TopLevelDomainCollection> {
+    async getTopLevelDomains(requestParameters: referenceDataApiParams.GetTopLevelDomainsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TopLevelDomainCollection> {
         const response = await this.getTopLevelDomainsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -820,7 +811,7 @@ export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataAp
      */
 
 
-    async getUnitsOfMeasureRaw(requestParameters: GetUnitsOfMeasureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UnitOfMeasureCollection>> {
+    async getUnitsOfMeasureRaw(requestParameters: referenceDataApiParams.GetUnitsOfMeasureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UnitOfMeasureCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.filter !== undefined) {
@@ -853,7 +844,7 @@ export class ReferenceDataApi extends runtime.BaseAPI implements ReferenceDataAp
      * Get a full list of the units of measure
      * Get a full list of the units of measure
      */
-    async getUnitsOfMeasure(requestParameters: GetUnitsOfMeasureRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UnitOfMeasureCollection> {
+    async getUnitsOfMeasure(requestParameters: referenceDataApiParams.GetUnitsOfMeasureRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UnitOfMeasureCollection> {
         const response = await this.getUnitsOfMeasureRaw(requestParameters, initOverrides);
         return await response.value();
     }

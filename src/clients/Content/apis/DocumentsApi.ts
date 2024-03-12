@@ -24,555 +24,539 @@ import type {
   DocumentMoveSummary,
 } from '../models';
 
-export interface CopyDocumentsRequest {
-    documentListName: string;
-    responseFields?: string;
-    documentCopyRequest?: DocumentCopyRequest;
-}
 
-export interface CreateDocumentRequest {
-    documentListName: string;
-    responseFields?: string;
-    document?: Document;
+export namespace documentsApiParams { 
+    export interface CopyDocumentsRequest {
+        documentListName: string;
+        responseFields?: string;
+        documentCopyRequest?: DocumentCopyRequest;
+    }
+    export interface CreateDocumentRequest {
+        documentListName: string;
+        responseFields?: string;
+        document?: Document;
+    }
+    export interface DeleteByPathRequest {
+        documentListName: string;
+        path?: string;
+    }
+    export interface DeleteDocumentRequest {
+        documentListName: string;
+        documentId: string;
+    }
+    export interface DeleteDocumentContentRequest {
+        documentListName: string;
+        documentId: string;
+    }
+    export interface DeleteTreeDocumentContentRequest {
+        documentListName: string;
+        documentName: string;
+        contentHttpRequestMessage?: ContentHttpRequestMessage;
+    }
+    export interface GetDocumentRequest {
+        documentListName: string;
+        documentId: string;
+        includeInactive?: boolean;
+        responseFields?: string;
+    }
+    export interface GetDocumentContentRequest {
+        documentListName: string;
+        documentId: string;
+        responseFields?: string;
+    }
+    export interface GetDocumentContentHeadRequest {
+        documentListName: string;
+        documentId: string;
+        includeInactive?: string;
+        responseFields?: string;
+    }
+    export interface GetDocumentsRequest {
+        documentListName: string;
+        filter?: string;
+        sortBy?: string;
+        pageSize?: number;
+        startIndex?: number;
+        includeInactive?: boolean;
+        path?: string;
+        includeSubPaths?: boolean;
+        queryScope?: string;
+        responseFields?: string;
+    }
+    export interface GetTreeDocumentRequest {
+        documentListName: string;
+        documentName: string;
+        includeInactive?: boolean;
+        responseFields?: string;
+    }
+    export interface GetTreeDocumentContentRequest {
+        documentListName: string;
+        documentName: string;
+        responseFields?: string;
+    }
+    export interface GetTreeDocumentContentHeadRequest {
+        documentListName: string;
+        documentName: string;
+        responseFields?: string;
+    }
+    export interface MoveByPathRequest {
+        documentListName: string;
+        sourcePath?: string;
+        destPath?: string;
+        renameDuplicates?: boolean;
+        previewMode?: boolean;
+        responseFields?: string;
+    }
+    export interface PatchDocumentRequest {
+        documentListName: string;
+        documentId: string;
+        responseFields?: string;
+        document?: Document;
+    }
+    export interface TransformDocumentContentRequest {
+        documentListName: string;
+        documentId: string;
+        width?: number;
+        height?: number;
+        max?: number;
+        maxWidth?: number;
+        maxHeight?: number;
+        crop?: string;
+        quality?: number;
+        responseFields?: string;
+    }
+    export interface TransformTreeDocumentContentRequest {
+        documentListName: string;
+        documentName: string;
+        width?: number;
+        height?: number;
+        max?: number;
+        maxWidth?: number;
+        maxHeight?: number;
+        crop?: string;
+        quality?: number;
+        responseFields?: string;
+    }
+    export interface UpdateDocumentRequest {
+        documentListName: string;
+        documentId: string;
+        responseFields?: string;
+        document?: Document;
+    }
+    export interface UpdateDocumentContentRequest {
+        documentListName: string;
+        documentId: string;
+        responseFields?: string;
+        contentHttpRequestMessage?: ContentHttpRequestMessage;
+    }
+    export interface UpdateTreeDocumentContentRequest {
+        documentListName: string;
+        documentName: string;
+        responseFields?: string;
+        contentHttpRequestMessage?: ContentHttpRequestMessage;
+    }
 }
-
-export interface DeleteByPathRequest {
-    documentListName: string;
-    path?: string;
-}
-
-export interface DeleteDocumentRequest {
-    documentListName: string;
-    documentId: string;
-}
-
-export interface DeleteDocumentContentRequest {
-    documentListName: string;
-    documentId: string;
-}
-
-export interface DeleteTreeDocumentContentRequest {
-    documentListName: string;
-    documentName: string;
-    contentHttpRequestMessage?: ContentHttpRequestMessage;
-}
-
-export interface GetDocumentRequest {
-    documentListName: string;
-    documentId: string;
-    includeInactive?: boolean;
-    responseFields?: string;
-}
-
-export interface GetDocumentContentRequest {
-    documentListName: string;
-    documentId: string;
-    responseFields?: string;
-}
-
-export interface GetDocumentContentHeadRequest {
-    documentListName: string;
-    documentId: string;
-    includeInactive?: string;
-    responseFields?: string;
-}
-
-export interface GetDocumentsRequest {
-    documentListName: string;
-    filter?: string;
-    sortBy?: string;
-    pageSize?: number;
-    startIndex?: number;
-    includeInactive?: boolean;
-    path?: string;
-    includeSubPaths?: boolean;
-    queryScope?: string;
-    responseFields?: string;
-}
-
-export interface GetTreeDocumentRequest {
-    documentListName: string;
-    documentName: string;
-    includeInactive?: boolean;
-    responseFields?: string;
-}
-
-export interface GetTreeDocumentContentRequest {
-    documentListName: string;
-    documentName: string;
-    responseFields?: string;
-}
-
-export interface GetTreeDocumentContentHeadRequest {
-    documentListName: string;
-    documentName: string;
-    responseFields?: string;
-}
-
-export interface MoveByPathRequest {
-    documentListName: string;
-    sourcePath?: string;
-    destPath?: string;
-    renameDuplicates?: boolean;
-    previewMode?: boolean;
-    responseFields?: string;
-}
-
-export interface PatchDocumentRequest {
-    documentListName: string;
-    documentId: string;
-    responseFields?: string;
-    document?: Document;
-}
-
-export interface TransformDocumentContentRequest {
-    documentListName: string;
-    documentId: string;
-    width?: number;
-    height?: number;
-    max?: number;
-    maxWidth?: number;
-    maxHeight?: number;
-    crop?: string;
-    quality?: number;
-    responseFields?: string;
-}
-
-export interface TransformTreeDocumentContentRequest {
-    documentListName: string;
-    documentName: string;
-    width?: number;
-    height?: number;
-    max?: number;
-    maxWidth?: number;
-    maxHeight?: number;
-    crop?: string;
-    quality?: number;
-    responseFields?: string;
-}
-
-export interface UpdateDocumentRequest {
-    documentListName: string;
-    documentId: string;
-    responseFields?: string;
-    document?: Document;
-}
-
-export interface UpdateDocumentContentRequest {
-    documentListName: string;
-    documentId: string;
-    responseFields?: string;
-    contentHttpRequestMessage?: ContentHttpRequestMessage;
-}
-
-export interface UpdateTreeDocumentContentRequest {
-    documentListName: string;
-    documentName: string;
-    responseFields?: string;
-    contentHttpRequestMessage?: ContentHttpRequestMessage;
-}
-
 /**
- * DocumentsApi - interface
- * 
- * @export
- * @interface DocumentsApiInterface
- */
-export interface DocumentsApiInterface {
+* DocumentsApiService - interface
+* 
+* @export
+* @interface DocumentsApi
+*/
+export interface DocumentsApiService {
     /**
-     * Copy Document
-     * @summary Copy Document
-     * @param {string} documentListName DocumentListName name where the documents reside
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {DocumentCopyRequest} [documentCopyRequest] Request containing Document Ids to copy and the destination path
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DocumentsApiInterface
-     */
-    copyDocumentsRaw(requestParameters: CopyDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentCopyResponse>>;
+    * Copy Document
+    * @summary Copy Document
+    * @param {string} documentListName DocumentListName name where the documents reside
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {DocumentCopyRequest} [documentCopyRequest] Request containing Document Ids to copy and the destination path
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DocumentsApiInterface
+    */
+    copyDocumentsRaw(requestParameters: documentsApiParams.CopyDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentCopyResponse>>;
 
     /**
-     * Copy Document
-     * Copy Document
-     */
-    copyDocuments(requestParameters: CopyDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentCopyResponse>;
+    * Copy Document
+    * Copy Document
+    */
+    copyDocuments(requestParameters: documentsApiParams.CopyDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentCopyResponse>;
 
     /**
-     * Create Document
-     * @summary Create Document
-     * @param {string} documentListName 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Document} [document] The Mozu.Content.Contracts.Document to Add to the Mozu.Content.Contracts.DocumentList
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DocumentsApiInterface
-     */
-    createDocumentRaw(requestParameters: CreateDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Document>>;
+    * Create Document
+    * @summary Create Document
+    * @param {string} documentListName 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Document} [document] The Mozu.Content.Contracts.Document to Add to the Mozu.Content.Contracts.DocumentList
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DocumentsApiInterface
+    */
+    createDocumentRaw(requestParameters: documentsApiParams.CreateDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Document>>;
 
     /**
-     * Create Document
-     * Create Document
-     */
-    createDocument(requestParameters: CreateDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Document>;
+    * Create Document
+    * Create Document
+    */
+    createDocument(requestParameters: documentsApiParams.CreateDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Document>;
 
     /**
-     * Delete Document
-     * @summary Delete Document
-     * @param {string} documentListName 
-     * @param {string} [path] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DocumentsApiInterface
-     */
-    deleteByPathRaw(requestParameters: DeleteByPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Delete Document
+    * @summary Delete Document
+    * @param {string} documentListName 
+    * @param {string} [path] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DocumentsApiInterface
+    */
+    deleteByPathRaw(requestParameters: documentsApiParams.DeleteByPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Delete Document
-     * Delete Document
-     */
-    deleteByPath(requestParameters: DeleteByPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Delete Document
+    * Delete Document
+    */
+    deleteByPath(requestParameters: documentsApiParams.DeleteByPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Delete Document
-     * @summary Delete Document
-     * @param {string} documentListName 
-     * @param {string} documentId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DocumentsApiInterface
-     */
-    deleteDocumentRaw(requestParameters: DeleteDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Delete Document
+    * @summary Delete Document
+    * @param {string} documentListName 
+    * @param {string} documentId 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DocumentsApiInterface
+    */
+    deleteDocumentRaw(requestParameters: documentsApiParams.DeleteDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Delete Document
-     * Delete Document
-     */
-    deleteDocument(requestParameters: DeleteDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Delete Document
+    * Delete Document
+    */
+    deleteDocument(requestParameters: documentsApiParams.DeleteDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Delete Document Content
-     * @summary Delete Document Content
-     * @param {string} documentListName 
-     * @param {string} documentId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DocumentsApiInterface
-     */
-    deleteDocumentContentRaw(requestParameters: DeleteDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Delete Document Content
+    * @summary Delete Document Content
+    * @param {string} documentListName 
+    * @param {string} documentId 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DocumentsApiInterface
+    */
+    deleteDocumentContentRaw(requestParameters: documentsApiParams.DeleteDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Delete Document Content
-     * Delete Document Content
-     */
-    deleteDocumentContent(requestParameters: DeleteDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Delete Document Content
+    * Delete Document Content
+    */
+    deleteDocumentContent(requestParameters: documentsApiParams.DeleteDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Delete Document Content by Path
-     * @summary Delete Document Content by Path
-     * @param {string} documentListName 
-     * @param {string} documentName 
-     * @param {ContentHttpRequestMessage} [contentHttpRequestMessage] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DocumentsApiInterface
-     */
-    deleteTreeDocumentContentRaw(requestParameters: DeleteTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Delete Document Content by Path
+    * @summary Delete Document Content by Path
+    * @param {string} documentListName 
+    * @param {string} documentName 
+    * @param {ContentHttpRequestMessage} [contentHttpRequestMessage] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DocumentsApiInterface
+    */
+    deleteTreeDocumentContentRaw(requestParameters: documentsApiParams.DeleteTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Delete Document Content by Path
-     * Delete Document Content by Path
-     */
-    deleteTreeDocumentContent(requestParameters: DeleteTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Delete Document Content by Path
+    * Delete Document Content by Path
+    */
+    deleteTreeDocumentContent(requestParameters: documentsApiParams.DeleteTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Get Document
-     * @summary Get Document
-     * @param {string} documentListName 
-     * @param {string} documentId 
-     * @param {boolean} [includeInactive] if this call should include a adocument that isn\&#39;t active in the given preview date
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DocumentsApiInterface
-     */
-    getDocumentRaw(requestParameters: GetDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Document>>;
+    * Get Document
+    * @summary Get Document
+    * @param {string} documentListName 
+    * @param {string} documentId 
+    * @param {boolean} [includeInactive] if this call should include a adocument that isn\&#39;t active in the given preview date
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DocumentsApiInterface
+    */
+    getDocumentRaw(requestParameters: documentsApiParams.GetDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Document>>;
 
     /**
-     * Get Document
-     * Get Document
-     */
-    getDocument(requestParameters: GetDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Document>;
+    * Get Document
+    * Get Document
+    */
+    getDocument(requestParameters: documentsApiParams.GetDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Document>;
 
     /**
-     * Get Document Content
-     * @summary Get Document Content
-     * @param {string} documentListName 
-     * @param {string} documentId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DocumentsApiInterface
-     */
-    getDocumentContentRaw(requestParameters: GetDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Get Document Content
+    * @summary Get Document Content
+    * @param {string} documentListName 
+    * @param {string} documentId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DocumentsApiInterface
+    */
+    getDocumentContentRaw(requestParameters: documentsApiParams.GetDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Get Document Content
-     * Get Document Content
-     */
-    getDocumentContent(requestParameters: GetDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Get Document Content
+    * Get Document Content
+    */
+    getDocumentContent(requestParameters: documentsApiParams.GetDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Get Document Content Headers
-     * @summary Get Document Content Headers
-     * @param {string} documentListName 
-     * @param {string} documentId 
-     * @param {string} [includeInactive] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DocumentsApiInterface
-     */
-    getDocumentContentHeadRaw(requestParameters: GetDocumentContentHeadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Get Document Content Headers
+    * @summary Get Document Content Headers
+    * @param {string} documentListName 
+    * @param {string} documentId 
+    * @param {string} [includeInactive] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DocumentsApiInterface
+    */
+    getDocumentContentHeadRaw(requestParameters: documentsApiParams.GetDocumentContentHeadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Get Document Content Headers
-     * Get Document Content Headers
-     */
-    getDocumentContentHead(requestParameters: GetDocumentContentHeadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Get Document Content Headers
+    * Get Document Content Headers
+    */
+    getDocumentContentHead(requestParameters: documentsApiParams.GetDocumentContentHeadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Get Documents
-     * @summary Get Documents
-     * @param {string} documentListName 
-     * @param {string} [filter] Mozu.Content.Contracts.PropertyType filter expression to match against document properties. &lt;seealso cref&#x3D;\&quot;T:Mozu.Core.FilterParsing.FilterParser\&quot; /&gt;
-     * @param {string} [sortBy] Sort expression.  &lt;seealso cref&#x3D;\&quot;T:Mozu.Core.FilterParsing.SortParser\&quot; /&gt;
-     * @param {number} [pageSize] Page size
-     * @param {number} [startIndex] First item in the page to return from the total result set
-     * @param {boolean} [includeInactive] if this call should include a adocument that isn\&#39;t active in the given preview date
-     * @param {string} [path] path from which to return documents
-     * @param {boolean} [includeSubPaths] if true this call will populate Subpaths
-     * @param {string} [queryScope] Determines if the path parameter is used to scope the query to the specified path or ignored for a global scope.              Defaults to specified path only. Valid values are: SpecifiedPathOnly, Global
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DocumentsApiInterface
-     */
-    getDocumentsRaw(requestParameters: GetDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentCollection>>;
+    * Get Documents
+    * @summary Get Documents
+    * @param {string} documentListName 
+    * @param {string} [filter] Mozu.Content.Contracts.PropertyType filter expression to match against document properties. &lt;seealso cref&#x3D;\&quot;T:Mozu.Core.FilterParsing.FilterParser\&quot; /&gt;
+    * @param {string} [sortBy] Sort expression.  &lt;seealso cref&#x3D;\&quot;T:Mozu.Core.FilterParsing.SortParser\&quot; /&gt;
+    * @param {number} [pageSize] Page size
+    * @param {number} [startIndex] First item in the page to return from the total result set
+    * @param {boolean} [includeInactive] if this call should include a adocument that isn\&#39;t active in the given preview date
+    * @param {string} [path] path from which to return documents
+    * @param {boolean} [includeSubPaths] if true this call will populate Subpaths
+    * @param {string} [queryScope] Determines if the path parameter is used to scope the query to the specified path or ignored for a global scope.              Defaults to specified path only. Valid values are: SpecifiedPathOnly, Global
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DocumentsApiInterface
+    */
+    getDocumentsRaw(requestParameters: documentsApiParams.GetDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentCollection>>;
 
     /**
-     * Get Documents
-     * Get Documents
-     */
-    getDocuments(requestParameters: GetDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentCollection>;
+    * Get Documents
+    * Get Documents
+    */
+    getDocuments(requestParameters: documentsApiParams.GetDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentCollection>;
 
     /**
-     * Retrieves a specific Document within the specified ContentCollection using the specified document name, unique within a specific folder with the specified documentId, version, and status.
-     * @summary Get Document by Path
-     * @param {string} documentListName 
-     * @param {string} documentName 
-     * @param {boolean} [includeInactive] if this call should include a document that isn\&#39;t active in the given preview date
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DocumentsApiInterface
-     */
-    getTreeDocumentRaw(requestParameters: GetTreeDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Document>>;
+    * Retrieves a specific Document within the specified ContentCollection using the specified document name, unique within a specific folder with the specified documentId, version, and status.
+    * @summary Get Document by Path
+    * @param {string} documentListName 
+    * @param {string} documentName 
+    * @param {boolean} [includeInactive] if this call should include a document that isn\&#39;t active in the given preview date
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DocumentsApiInterface
+    */
+    getTreeDocumentRaw(requestParameters: documentsApiParams.GetTreeDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Document>>;
 
     /**
-     * Retrieves a specific Document within the specified ContentCollection using the specified document name, unique within a specific folder with the specified documentId, version, and status.
-     * Get Document by Path
-     */
-    getTreeDocument(requestParameters: GetTreeDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Document>;
+    * Retrieves a specific Document within the specified ContentCollection using the specified document name, unique within a specific folder with the specified documentId, version, and status.
+    * Get Document by Path
+    */
+    getTreeDocument(requestParameters: documentsApiParams.GetTreeDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Document>;
 
     /**
-     * Returns transformations on a document. For example, resizing an image.
-     * @summary Get Document Content by Path
-     * @param {string} documentListName 
-     * @param {string} documentName 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DocumentsApiInterface
-     */
-    getTreeDocumentContentRaw(requestParameters: GetTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Returns transformations on a document. For example, resizing an image.
+    * @summary Get Document Content by Path
+    * @param {string} documentListName 
+    * @param {string} documentName 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DocumentsApiInterface
+    */
+    getTreeDocumentContentRaw(requestParameters: documentsApiParams.GetTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Returns transformations on a document. For example, resizing an image.
-     * Get Document Content by Path
-     */
-    getTreeDocumentContent(requestParameters: GetTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Returns transformations on a document. For example, resizing an image.
+    * Get Document Content by Path
+    */
+    getTreeDocumentContent(requestParameters: documentsApiParams.GetTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Get Document Content Headers by Path
-     * @summary Get Document Content Headers by Path
-     * @param {string} documentListName 
-     * @param {string} documentName 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DocumentsApiInterface
-     */
-    getTreeDocumentContentHeadRaw(requestParameters: GetTreeDocumentContentHeadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Get Document Content Headers by Path
+    * @summary Get Document Content Headers by Path
+    * @param {string} documentListName 
+    * @param {string} documentName 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DocumentsApiInterface
+    */
+    getTreeDocumentContentHeadRaw(requestParameters: documentsApiParams.GetTreeDocumentContentHeadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Get Document Content Headers by Path
-     * Get Document Content Headers by Path
-     */
-    getTreeDocumentContentHead(requestParameters: GetTreeDocumentContentHeadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Get Document Content Headers by Path
+    * Get Document Content Headers by Path
+    */
+    getTreeDocumentContentHead(requestParameters: documentsApiParams.GetTreeDocumentContentHeadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Move Document
-     * @summary Move Document
-     * @param {string} documentListName DocumentListName name where the document resides
-     * @param {string} [sourcePath] Source path
-     * @param {string} [destPath] Destination path
-     * @param {boolean} [renameDuplicates] Flag to rename file if duplicate filename exists in destination (defaults to true)
-     * @param {boolean} [previewMode] Flag to denote whether to preview move operation or actually perform (defaults to false)
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DocumentsApiInterface
-     */
-    moveByPathRaw(requestParameters: MoveByPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentMoveSummary>>;
+    * Move Document
+    * @summary Move Document
+    * @param {string} documentListName DocumentListName name where the document resides
+    * @param {string} [sourcePath] Source path
+    * @param {string} [destPath] Destination path
+    * @param {boolean} [renameDuplicates] Flag to rename file if duplicate filename exists in destination (defaults to true)
+    * @param {boolean} [previewMode] Flag to denote whether to preview move operation or actually perform (defaults to false)
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DocumentsApiInterface
+    */
+    moveByPathRaw(requestParameters: documentsApiParams.MoveByPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentMoveSummary>>;
 
     /**
-     * Move Document
-     * Move Document
-     */
-    moveByPath(requestParameters: MoveByPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentMoveSummary>;
+    * Move Document
+    * Move Document
+    */
+    moveByPath(requestParameters: documentsApiParams.MoveByPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentMoveSummary>;
 
     /**
-     * Patch Document
-     * @summary Patch Document
-     * @param {string} documentListName 
-     * @param {string} documentId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Document} [document] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DocumentsApiInterface
-     */
-    patchDocumentRaw(requestParameters: PatchDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Document>>;
+    * Patch Document
+    * @summary Patch Document
+    * @param {string} documentListName 
+    * @param {string} documentId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Document} [document] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DocumentsApiInterface
+    */
+    patchDocumentRaw(requestParameters: documentsApiParams.PatchDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Document>>;
 
     /**
-     * Patch Document
-     * Patch Document
-     */
-    patchDocument(requestParameters: PatchDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Document>;
+    * Patch Document
+    * Patch Document
+    */
+    patchDocument(requestParameters: documentsApiParams.PatchDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Document>;
 
     /**
-     * Returns transformations on a document. For example, resizing an image.
-     * @summary Get Resized Image
-     * @param {string} documentListName 
-     * @param {string} documentId 
-     * @param {number} [width] 
-     * @param {number} [height] 
-     * @param {number} [max] 
-     * @param {number} [maxWidth] 
-     * @param {number} [maxHeight] 
-     * @param {string} [crop] 
-     * @param {number} [quality] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DocumentsApiInterface
-     */
-    transformDocumentContentRaw(requestParameters: TransformDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Returns transformations on a document. For example, resizing an image.
+    * @summary Get Resized Image
+    * @param {string} documentListName 
+    * @param {string} documentId 
+    * @param {number} [width] 
+    * @param {number} [height] 
+    * @param {number} [max] 
+    * @param {number} [maxWidth] 
+    * @param {number} [maxHeight] 
+    * @param {string} [crop] 
+    * @param {number} [quality] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DocumentsApiInterface
+    */
+    transformDocumentContentRaw(requestParameters: documentsApiParams.TransformDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Returns transformations on a document. For example, resizing an image.
-     * Get Resized Image
-     */
-    transformDocumentContent(requestParameters: TransformDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Returns transformations on a document. For example, resizing an image.
+    * Get Resized Image
+    */
+    transformDocumentContent(requestParameters: documentsApiParams.TransformDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Returns transformations on a document. For example, resizing an image. By Path
-     * @summary Get Resized Image by Path
-     * @param {string} documentListName 
-     * @param {string} documentName 
-     * @param {number} [width] 
-     * @param {number} [height] 
-     * @param {number} [max] 
-     * @param {number} [maxWidth] 
-     * @param {number} [maxHeight] 
-     * @param {string} [crop] 
-     * @param {number} [quality] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DocumentsApiInterface
-     */
-    transformTreeDocumentContentRaw(requestParameters: TransformTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Returns transformations on a document. For example, resizing an image. By Path
+    * @summary Get Resized Image by Path
+    * @param {string} documentListName 
+    * @param {string} documentName 
+    * @param {number} [width] 
+    * @param {number} [height] 
+    * @param {number} [max] 
+    * @param {number} [maxWidth] 
+    * @param {number} [maxHeight] 
+    * @param {string} [crop] 
+    * @param {number} [quality] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DocumentsApiInterface
+    */
+    transformTreeDocumentContentRaw(requestParameters: documentsApiParams.TransformTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Returns transformations on a document. For example, resizing an image. By Path
-     * Get Resized Image by Path
-     */
-    transformTreeDocumentContent(requestParameters: TransformTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Returns transformations on a document. For example, resizing an image. By Path
+    * Get Resized Image by Path
+    */
+    transformTreeDocumentContent(requestParameters: documentsApiParams.TransformTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Update Document
-     * @summary Update Document
-     * @param {string} documentListName DocumentListName name where the document resides
-     * @param {string} documentId Id of the document to update
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Document} [document] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DocumentsApiInterface
-     */
-    updateDocumentRaw(requestParameters: UpdateDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Document>>;
+    * Update Document
+    * @summary Update Document
+    * @param {string} documentListName DocumentListName name where the document resides
+    * @param {string} documentId Id of the document to update
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Document} [document] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DocumentsApiInterface
+    */
+    updateDocumentRaw(requestParameters: documentsApiParams.UpdateDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Document>>;
 
     /**
-     * Update Document
-     * Update Document
-     */
-    updateDocument(requestParameters: UpdateDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Document>;
+    * Update Document
+    * Update Document
+    */
+    updateDocument(requestParameters: documentsApiParams.UpdateDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Document>;
 
     /**
-     * Update Document Content
-     * @summary Update Document Content
-     * @param {string} documentListName 
-     * @param {string} documentId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {ContentHttpRequestMessage} [contentHttpRequestMessage] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DocumentsApiInterface
-     */
-    updateDocumentContentRaw(requestParameters: UpdateDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Update Document Content
+    * @summary Update Document Content
+    * @param {string} documentListName 
+    * @param {string} documentId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ContentHttpRequestMessage} [contentHttpRequestMessage] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DocumentsApiInterface
+    */
+    updateDocumentContentRaw(requestParameters: documentsApiParams.UpdateDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Update Document Content
-     * Update Document Content
-     */
-    updateDocumentContent(requestParameters: UpdateDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Update Document Content
+    * Update Document Content
+    */
+    updateDocumentContent(requestParameters: documentsApiParams.UpdateDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Update Document Content by Path
-     * @summary Update Document Content by Path
-     * @param {string} documentListName The Mozu.Content.Contracts.DocumentList in which the document resides
-     * @param {string} documentName 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {ContentHttpRequestMessage} [contentHttpRequestMessage] Binary document content to store must be less than 16M
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DocumentsApiInterface
-     */
-    updateTreeDocumentContentRaw(requestParameters: UpdateTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Update Document Content by Path
+    * @summary Update Document Content by Path
+    * @param {string} documentListName The Mozu.Content.Contracts.DocumentList in which the document resides
+    * @param {string} documentName 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ContentHttpRequestMessage} [contentHttpRequestMessage] Binary document content to store must be less than 16M
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DocumentsApiInterface
+    */
+    updateTreeDocumentContentRaw(requestParameters: documentsApiParams.UpdateTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Update Document Content by Path
-     * Update Document Content by Path
-     */
-    updateTreeDocumentContent(requestParameters: UpdateTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Update Document Content by Path
+    * Update Document Content by Path
+    */
+    updateTreeDocumentContent(requestParameters: documentsApiParams.UpdateTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
 }
+
 
 /**
  * 
  */
-export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterface {
+export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -583,7 +567,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      */
 
 
-    async copyDocumentsRaw(requestParameters: CopyDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentCopyResponse>> {
+    async copyDocumentsRaw(requestParameters: documentsApiParams.CopyDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentCopyResponse>> {
         if (requestParameters.documentListName === null || requestParameters.documentListName === undefined) {
             throw new runtime.RequiredError('documentListName','Required parameter requestParameters.documentListName was null or undefined when calling copyDocuments.');
         }
@@ -596,7 +580,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'text/plain';
+        headerParameters['Content-Type'] = 'application/json';
 
 
 
@@ -619,7 +603,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      * Copy Document
      * Copy Document
      */
-    async copyDocuments(requestParameters: CopyDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentCopyResponse> {
+    async copyDocuments(requestParameters: documentsApiParams.CopyDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentCopyResponse> {
         const response = await this.copyDocumentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -630,7 +614,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      */
 
 
-    async createDocumentRaw(requestParameters: CreateDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Document>> {
+    async createDocumentRaw(requestParameters: documentsApiParams.CreateDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Document>> {
         if (requestParameters.documentListName === null || requestParameters.documentListName === undefined) {
             throw new runtime.RequiredError('documentListName','Required parameter requestParameters.documentListName was null or undefined when calling createDocument.');
         }
@@ -643,7 +627,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'text/plain';
+        headerParameters['Content-Type'] = 'application/json';
 
 
 
@@ -666,7 +650,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      * Create Document
      * Create Document
      */
-    async createDocument(requestParameters: CreateDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Document> {
+    async createDocument(requestParameters: documentsApiParams.CreateDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Document> {
         const response = await this.createDocumentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -677,7 +661,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      */
 
 
-    async deleteByPathRaw(requestParameters: DeleteByPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteByPathRaw(requestParameters: documentsApiParams.DeleteByPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.documentListName === null || requestParameters.documentListName === undefined) {
             throw new runtime.RequiredError('documentListName','Required parameter requestParameters.documentListName was null or undefined when calling deleteByPath.');
         }
@@ -710,7 +694,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      * Delete Document
      * Delete Document
      */
-    async deleteByPath(requestParameters: DeleteByPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteByPath(requestParameters: documentsApiParams.DeleteByPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteByPathRaw(requestParameters, initOverrides);
     }
 
@@ -720,7 +704,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      */
 
 
-    async deleteDocumentRaw(requestParameters: DeleteDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteDocumentRaw(requestParameters: documentsApiParams.DeleteDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.documentListName === null || requestParameters.documentListName === undefined) {
             throw new runtime.RequiredError('documentListName','Required parameter requestParameters.documentListName was null or undefined when calling deleteDocument.');
         }
@@ -753,7 +737,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      * Delete Document
      * Delete Document
      */
-    async deleteDocument(requestParameters: DeleteDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteDocument(requestParameters: documentsApiParams.DeleteDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteDocumentRaw(requestParameters, initOverrides);
     }
 
@@ -763,7 +747,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      */
 
 
-    async deleteDocumentContentRaw(requestParameters: DeleteDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteDocumentContentRaw(requestParameters: documentsApiParams.DeleteDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.documentListName === null || requestParameters.documentListName === undefined) {
             throw new runtime.RequiredError('documentListName','Required parameter requestParameters.documentListName was null or undefined when calling deleteDocumentContent.');
         }
@@ -796,7 +780,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      * Delete Document Content
      * Delete Document Content
      */
-    async deleteDocumentContent(requestParameters: DeleteDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteDocumentContent(requestParameters: documentsApiParams.DeleteDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteDocumentContentRaw(requestParameters, initOverrides);
     }
 
@@ -806,7 +790,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      */
 
 
-    async deleteTreeDocumentContentRaw(requestParameters: DeleteTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteTreeDocumentContentRaw(requestParameters: documentsApiParams.DeleteTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.documentListName === null || requestParameters.documentListName === undefined) {
             throw new runtime.RequiredError('documentListName','Required parameter requestParameters.documentListName was null or undefined when calling deleteTreeDocumentContent.');
         }
@@ -819,7 +803,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'text/plain';
+        headerParameters['Content-Type'] = 'application/json';
 
 
 
@@ -842,7 +826,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      * Delete Document Content by Path
      * Delete Document Content by Path
      */
-    async deleteTreeDocumentContent(requestParameters: DeleteTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteTreeDocumentContent(requestParameters: documentsApiParams.DeleteTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteTreeDocumentContentRaw(requestParameters, initOverrides);
     }
 
@@ -852,7 +836,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      */
 
 
-    async getDocumentRaw(requestParameters: GetDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Document>> {
+    async getDocumentRaw(requestParameters: documentsApiParams.GetDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Document>> {
         if (requestParameters.documentListName === null || requestParameters.documentListName === undefined) {
             throw new runtime.RequiredError('documentListName','Required parameter requestParameters.documentListName was null or undefined when calling getDocument.');
         }
@@ -893,7 +877,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      * Get Document
      * Get Document
      */
-    async getDocument(requestParameters: GetDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Document> {
+    async getDocument(requestParameters: documentsApiParams.GetDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Document> {
         const response = await this.getDocumentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -904,7 +888,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      */
 
 
-    async getDocumentContentRaw(requestParameters: GetDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async getDocumentContentRaw(requestParameters: documentsApiParams.GetDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.documentListName === null || requestParameters.documentListName === undefined) {
             throw new runtime.RequiredError('documentListName','Required parameter requestParameters.documentListName was null or undefined when calling getDocumentContent.');
         }
@@ -941,7 +925,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      * Get Document Content
      * Get Document Content
      */
-    async getDocumentContent(requestParameters: GetDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async getDocumentContent(requestParameters: documentsApiParams.GetDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getDocumentContentRaw(requestParameters, initOverrides);
     }
 
@@ -951,7 +935,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      */
 
 
-    async getDocumentContentHeadRaw(requestParameters: GetDocumentContentHeadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async getDocumentContentHeadRaw(requestParameters: documentsApiParams.GetDocumentContentHeadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.documentListName === null || requestParameters.documentListName === undefined) {
             throw new runtime.RequiredError('documentListName','Required parameter requestParameters.documentListName was null or undefined when calling getDocumentContentHead.');
         }
@@ -992,7 +976,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      * Get Document Content Headers
      * Get Document Content Headers
      */
-    async getDocumentContentHead(requestParameters: GetDocumentContentHeadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async getDocumentContentHead(requestParameters: documentsApiParams.GetDocumentContentHeadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getDocumentContentHeadRaw(requestParameters, initOverrides);
     }
 
@@ -1002,7 +986,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      */
 
 
-    async getDocumentsRaw(requestParameters: GetDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentCollection>> {
+    async getDocumentsRaw(requestParameters: documentsApiParams.GetDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentCollection>> {
         if (requestParameters.documentListName === null || requestParameters.documentListName === undefined) {
             throw new runtime.RequiredError('documentListName','Required parameter requestParameters.documentListName was null or undefined when calling getDocuments.');
         }
@@ -1067,7 +1051,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      * Get Documents
      * Get Documents
      */
-    async getDocuments(requestParameters: GetDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentCollection> {
+    async getDocuments(requestParameters: documentsApiParams.GetDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentCollection> {
         const response = await this.getDocumentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1078,7 +1062,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      */
 
 
-    async getTreeDocumentRaw(requestParameters: GetTreeDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Document>> {
+    async getTreeDocumentRaw(requestParameters: documentsApiParams.GetTreeDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Document>> {
         if (requestParameters.documentListName === null || requestParameters.documentListName === undefined) {
             throw new runtime.RequiredError('documentListName','Required parameter requestParameters.documentListName was null or undefined when calling getTreeDocument.');
         }
@@ -1119,7 +1103,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      * Retrieves a specific Document within the specified ContentCollection using the specified document name, unique within a specific folder with the specified documentId, version, and status.
      * Get Document by Path
      */
-    async getTreeDocument(requestParameters: GetTreeDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Document> {
+    async getTreeDocument(requestParameters: documentsApiParams.GetTreeDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Document> {
         const response = await this.getTreeDocumentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1130,7 +1114,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      */
 
 
-    async getTreeDocumentContentRaw(requestParameters: GetTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async getTreeDocumentContentRaw(requestParameters: documentsApiParams.GetTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.documentListName === null || requestParameters.documentListName === undefined) {
             throw new runtime.RequiredError('documentListName','Required parameter requestParameters.documentListName was null or undefined when calling getTreeDocumentContent.');
         }
@@ -1167,7 +1151,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      * Returns transformations on a document. For example, resizing an image.
      * Get Document Content by Path
      */
-    async getTreeDocumentContent(requestParameters: GetTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async getTreeDocumentContent(requestParameters: documentsApiParams.GetTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getTreeDocumentContentRaw(requestParameters, initOverrides);
     }
 
@@ -1177,7 +1161,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      */
 
 
-    async getTreeDocumentContentHeadRaw(requestParameters: GetTreeDocumentContentHeadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async getTreeDocumentContentHeadRaw(requestParameters: documentsApiParams.GetTreeDocumentContentHeadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.documentListName === null || requestParameters.documentListName === undefined) {
             throw new runtime.RequiredError('documentListName','Required parameter requestParameters.documentListName was null or undefined when calling getTreeDocumentContentHead.');
         }
@@ -1214,7 +1198,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      * Get Document Content Headers by Path
      * Get Document Content Headers by Path
      */
-    async getTreeDocumentContentHead(requestParameters: GetTreeDocumentContentHeadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async getTreeDocumentContentHead(requestParameters: documentsApiParams.GetTreeDocumentContentHeadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getTreeDocumentContentHeadRaw(requestParameters, initOverrides);
     }
 
@@ -1224,7 +1208,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      */
 
 
-    async moveByPathRaw(requestParameters: MoveByPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentMoveSummary>> {
+    async moveByPathRaw(requestParameters: documentsApiParams.MoveByPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentMoveSummary>> {
         if (requestParameters.documentListName === null || requestParameters.documentListName === undefined) {
             throw new runtime.RequiredError('documentListName','Required parameter requestParameters.documentListName was null or undefined when calling moveByPath.');
         }
@@ -1273,7 +1257,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      * Move Document
      * Move Document
      */
-    async moveByPath(requestParameters: MoveByPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentMoveSummary> {
+    async moveByPath(requestParameters: documentsApiParams.MoveByPathRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentMoveSummary> {
         const response = await this.moveByPathRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1284,7 +1268,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      */
 
 
-    async patchDocumentRaw(requestParameters: PatchDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Document>> {
+    async patchDocumentRaw(requestParameters: documentsApiParams.PatchDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Document>> {
         if (requestParameters.documentListName === null || requestParameters.documentListName === undefined) {
             throw new runtime.RequiredError('documentListName','Required parameter requestParameters.documentListName was null or undefined when calling patchDocument.');
         }
@@ -1301,7 +1285,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'text/plain';
+        headerParameters['Content-Type'] = 'application/json';
 
 
 
@@ -1324,7 +1308,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      * Patch Document
      * Patch Document
      */
-    async patchDocument(requestParameters: PatchDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Document> {
+    async patchDocument(requestParameters: documentsApiParams.PatchDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Document> {
         const response = await this.patchDocumentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1335,7 +1319,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      */
 
 
-    async transformDocumentContentRaw(requestParameters: TransformDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async transformDocumentContentRaw(requestParameters: documentsApiParams.TransformDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.documentListName === null || requestParameters.documentListName === undefined) {
             throw new runtime.RequiredError('documentListName','Required parameter requestParameters.documentListName was null or undefined when calling transformDocumentContent.');
         }
@@ -1400,7 +1384,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      * Returns transformations on a document. For example, resizing an image.
      * Get Resized Image
      */
-    async transformDocumentContent(requestParameters: TransformDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async transformDocumentContent(requestParameters: documentsApiParams.TransformDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.transformDocumentContentRaw(requestParameters, initOverrides);
     }
 
@@ -1410,7 +1394,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      */
 
 
-    async transformTreeDocumentContentRaw(requestParameters: TransformTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async transformTreeDocumentContentRaw(requestParameters: documentsApiParams.TransformTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.documentListName === null || requestParameters.documentListName === undefined) {
             throw new runtime.RequiredError('documentListName','Required parameter requestParameters.documentListName was null or undefined when calling transformTreeDocumentContent.');
         }
@@ -1475,7 +1459,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      * Returns transformations on a document. For example, resizing an image. By Path
      * Get Resized Image by Path
      */
-    async transformTreeDocumentContent(requestParameters: TransformTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async transformTreeDocumentContent(requestParameters: documentsApiParams.TransformTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.transformTreeDocumentContentRaw(requestParameters, initOverrides);
     }
 
@@ -1485,7 +1469,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      */
 
 
-    async updateDocumentRaw(requestParameters: UpdateDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Document>> {
+    async updateDocumentRaw(requestParameters: documentsApiParams.UpdateDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Document>> {
         if (requestParameters.documentListName === null || requestParameters.documentListName === undefined) {
             throw new runtime.RequiredError('documentListName','Required parameter requestParameters.documentListName was null or undefined when calling updateDocument.');
         }
@@ -1502,7 +1486,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'text/plain';
+        headerParameters['Content-Type'] = 'application/json';
 
 
 
@@ -1525,7 +1509,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      * Update Document
      * Update Document
      */
-    async updateDocument(requestParameters: UpdateDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Document> {
+    async updateDocument(requestParameters: documentsApiParams.UpdateDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Document> {
         const response = await this.updateDocumentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1536,7 +1520,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      */
 
 
-    async updateDocumentContentRaw(requestParameters: UpdateDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async updateDocumentContentRaw(requestParameters: documentsApiParams.UpdateDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.documentListName === null || requestParameters.documentListName === undefined) {
             throw new runtime.RequiredError('documentListName','Required parameter requestParameters.documentListName was null or undefined when calling updateDocumentContent.');
         }
@@ -1553,7 +1537,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'text/plain';
+        headerParameters['Content-Type'] = 'application/json';
 
 
 
@@ -1576,7 +1560,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      * Update Document Content
      * Update Document Content
      */
-    async updateDocumentContent(requestParameters: UpdateDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async updateDocumentContent(requestParameters: documentsApiParams.UpdateDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.updateDocumentContentRaw(requestParameters, initOverrides);
     }
 
@@ -1586,7 +1570,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      */
 
 
-    async updateTreeDocumentContentRaw(requestParameters: UpdateTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async updateTreeDocumentContentRaw(requestParameters: documentsApiParams.UpdateTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.documentListName === null || requestParameters.documentListName === undefined) {
             throw new runtime.RequiredError('documentListName','Required parameter requestParameters.documentListName was null or undefined when calling updateTreeDocumentContent.');
         }
@@ -1603,7 +1587,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'text/plain';
+        headerParameters['Content-Type'] = 'application/json';
 
 
 
@@ -1626,7 +1610,7 @@ export class DocumentsApi extends runtime.BaseAPI implements DocumentsApiInterfa
      * Update Document Content by Path
      * Update Document Content by Path
      */
-    async updateTreeDocumentContent(requestParameters: UpdateTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async updateTreeDocumentContent(requestParameters: documentsApiParams.UpdateTreeDocumentContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.updateTreeDocumentContentRaw(requestParameters, initOverrides);
     }
 

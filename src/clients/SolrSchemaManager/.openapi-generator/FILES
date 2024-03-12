@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 apis/FieldTypeDefinitionApi.ts
 apis/SchemaDefinitionApi.ts
 apis/SuggestDefinitionApi.ts

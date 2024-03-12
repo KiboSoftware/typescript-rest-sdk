@@ -19,157 +19,148 @@ import type {
   ShipmentAttribute,
 } from '../models';
 
-export interface DeleteShipmentAttributeUsingDELETERequest {
-    key: string;
-    shipmentNumber: number;
-    xVolTenant: number;
-    xVolSite?: number;
-}
 
-export interface GetShipmentAttributeUsingGETRequest {
-    key: string;
-    shipmentNumber: number;
-    xVolTenant: number;
-    xVolSite?: number;
-    responseFields?: string;
+export namespace shipmentAttributesApiParams { 
+    export interface DeleteShipmentAttributeRequest {
+        key: string;
+        shipmentNumber: number;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface GetShipmentAttributeRequest {
+        key: string;
+        shipmentNumber: number;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface GetShipmentAttributesRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface SetShipmentAttributeRequest {
+        key: string;
+        shipmentNumber: number;
+        xVolTenant: number;
+        attribute: ShipmentAttribute;
+        xVolSite?: number;
+    }
+    export interface SetShipmentAttributesRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        attributes: Array<ShipmentAttribute>;
+        xVolSite?: number;
+    }
 }
-
-export interface GetShipmentAttributesUsingGETRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface SetShipmentAttributeUsingPUTRequest {
-    key: string;
-    shipmentNumber: number;
-    xVolTenant: number;
-    attribute: ShipmentAttribute;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface SetShipmentAttributesUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    attributes: Array<ShipmentAttribute>;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
 /**
- * ShipmentAttributesApi - interface
- * 
- * @export
- * @interface ShipmentAttributesApiInterface
- */
-export interface ShipmentAttributesApiInterface {
+* ShipmentAttributesApiService - interface
+* 
+* @export
+* @interface ShipmentAttributesApi
+*/
+export interface ShipmentAttributesApiService {
     /**
-     * deleteShipmentAttribute
-     * @summary deleteShipmentAttribute
-     * @param {string} key key
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentAttributesApiInterface
-     */
-    deleteShipmentAttributeUsingDELETERaw(requestParameters: DeleteShipmentAttributeUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * deleteShipmentAttribute
+    * @summary deleteShipmentAttribute
+    * @param {string} key key
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentAttributesApiInterface
+    */
+    deleteShipmentAttributeRaw(requestParameters: shipmentAttributesApiParams.DeleteShipmentAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * deleteShipmentAttribute
-     * deleteShipmentAttribute
-     */
-    deleteShipmentAttributeUsingDELETE(requestParameters: DeleteShipmentAttributeUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * deleteShipmentAttribute
+    * deleteShipmentAttribute
+    */
+    deleteShipmentAttribute(requestParameters: shipmentAttributesApiParams.DeleteShipmentAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * getShipmentAttribute
-     * @summary getShipmentAttribute
-     * @param {string} key key
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentAttributesApiInterface
-     */
-    getShipmentAttributeUsingGETRaw(requestParameters: GetShipmentAttributeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShipmentAttribute>>;
+    * getShipmentAttribute
+    * @summary getShipmentAttribute
+    * @param {string} key key
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentAttributesApiInterface
+    */
+    getShipmentAttributeRaw(requestParameters: shipmentAttributesApiParams.GetShipmentAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShipmentAttribute>>;
 
     /**
-     * getShipmentAttribute
-     * getShipmentAttribute
-     */
-    getShipmentAttributeUsingGET(requestParameters: GetShipmentAttributeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShipmentAttribute>;
+    * getShipmentAttribute
+    * getShipmentAttribute
+    */
+    getShipmentAttribute(requestParameters: shipmentAttributesApiParams.GetShipmentAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShipmentAttribute>;
 
     /**
-     * getShipmentAttributes
-     * @summary getShipmentAttributes
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentAttributesApiInterface
-     */
-    getShipmentAttributesUsingGETRaw(requestParameters: GetShipmentAttributesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ShipmentAttribute>>>;
+    * getShipmentAttributes
+    * @summary getShipmentAttributes
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentAttributesApiInterface
+    */
+    getShipmentAttributesRaw(requestParameters: shipmentAttributesApiParams.GetShipmentAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ShipmentAttribute>>>;
 
     /**
-     * getShipmentAttributes
-     * getShipmentAttributes
-     */
-    getShipmentAttributesUsingGET(requestParameters: GetShipmentAttributesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ShipmentAttribute>>;
+    * getShipmentAttributes
+    * getShipmentAttributes
+    */
+    getShipmentAttributes(requestParameters: shipmentAttributesApiParams.GetShipmentAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ShipmentAttribute>>;
 
     /**
-     * setShipmentAttribute
-     * @summary setShipmentAttribute
-     * @param {string} key key
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {ShipmentAttribute} attribute attribute
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentAttributesApiInterface
-     */
-    setShipmentAttributeUsingPUTRaw(requestParameters: SetShipmentAttributeUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShipmentAttribute>>;
+    * setShipmentAttribute
+    * @summary setShipmentAttribute
+    * @param {string} key key
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {ShipmentAttribute} attribute attribute
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentAttributesApiInterface
+    */
+    setShipmentAttributeRaw(requestParameters: shipmentAttributesApiParams.SetShipmentAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShipmentAttribute>>;
 
     /**
-     * setShipmentAttribute
-     * setShipmentAttribute
-     */
-    setShipmentAttributeUsingPUT(requestParameters: SetShipmentAttributeUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShipmentAttribute>;
+    * setShipmentAttribute
+    * setShipmentAttribute
+    */
+    setShipmentAttribute(requestParameters: shipmentAttributesApiParams.SetShipmentAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShipmentAttribute>;
 
     /**
-     * setShipmentAttributes
-     * @summary setShipmentAttributes
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {Array<ShipmentAttribute>} attributes attributes
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentAttributesApiInterface
-     */
-    setShipmentAttributesUsingPUTRaw(requestParameters: SetShipmentAttributesUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ShipmentAttribute>>>;
+    * setShipmentAttributes
+    * @summary setShipmentAttributes
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {Array<ShipmentAttribute>} attributes attributes
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentAttributesApiInterface
+    */
+    setShipmentAttributesRaw(requestParameters: shipmentAttributesApiParams.SetShipmentAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ShipmentAttribute>>>;
 
     /**
-     * setShipmentAttributes
-     * setShipmentAttributes
-     */
-    setShipmentAttributesUsingPUT(requestParameters: SetShipmentAttributesUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ShipmentAttribute>>;
+    * setShipmentAttributes
+    * setShipmentAttributes
+    */
+    setShipmentAttributes(requestParameters: shipmentAttributesApiParams.SetShipmentAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ShipmentAttribute>>;
 
 }
+
 
 /**
  * 
  */
-export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAttributesApiInterface {
+export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAttributesApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -180,17 +171,17 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
      */
 
 
-    async deleteShipmentAttributeUsingDELETERaw(requestParameters: DeleteShipmentAttributeUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteShipmentAttributeRaw(requestParameters: shipmentAttributesApiParams.DeleteShipmentAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.key === null || requestParameters.key === undefined) {
-            throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling deleteShipmentAttributeUsingDELETE.');
+            throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling deleteShipmentAttribute.');
         }
 
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling deleteShipmentAttributeUsingDELETE.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling deleteShipmentAttribute.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteShipmentAttributeUsingDELETE.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteShipmentAttribute.');
         }
 
         const queryParameters: any = {};
@@ -225,8 +216,8 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
      * deleteShipmentAttribute
      * deleteShipmentAttribute
      */
-    async deleteShipmentAttributeUsingDELETE(requestParameters: DeleteShipmentAttributeUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.deleteShipmentAttributeUsingDELETERaw(requestParameters, initOverrides);
+    async deleteShipmentAttribute(requestParameters: shipmentAttributesApiParams.DeleteShipmentAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteShipmentAttributeRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -235,24 +226,20 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
      */
 
 
-    async getShipmentAttributeUsingGETRaw(requestParameters: GetShipmentAttributeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShipmentAttribute>> {
+    async getShipmentAttributeRaw(requestParameters: shipmentAttributesApiParams.GetShipmentAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShipmentAttribute>> {
         if (requestParameters.key === null || requestParameters.key === undefined) {
-            throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling getShipmentAttributeUsingGET.');
+            throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling getShipmentAttribute.');
         }
 
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getShipmentAttributeUsingGET.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getShipmentAttribute.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipmentAttributeUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipmentAttribute.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -284,8 +271,8 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
      * getShipmentAttribute
      * getShipmentAttribute
      */
-    async getShipmentAttributeUsingGET(requestParameters: GetShipmentAttributeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShipmentAttribute> {
-        const response = await this.getShipmentAttributeUsingGETRaw(requestParameters, initOverrides);
+    async getShipmentAttribute(requestParameters: shipmentAttributesApiParams.GetShipmentAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShipmentAttribute> {
+        const response = await this.getShipmentAttributeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -295,20 +282,16 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
      */
 
 
-    async getShipmentAttributesUsingGETRaw(requestParameters: GetShipmentAttributesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ShipmentAttribute>>> {
+    async getShipmentAttributesRaw(requestParameters: shipmentAttributesApiParams.GetShipmentAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ShipmentAttribute>>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getShipmentAttributesUsingGET.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getShipmentAttributes.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipmentAttributesUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipmentAttributes.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -340,8 +323,8 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
      * getShipmentAttributes
      * getShipmentAttributes
      */
-    async getShipmentAttributesUsingGET(requestParameters: GetShipmentAttributesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ShipmentAttribute>> {
-        const response = await this.getShipmentAttributesUsingGETRaw(requestParameters, initOverrides);
+    async getShipmentAttributes(requestParameters: shipmentAttributesApiParams.GetShipmentAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ShipmentAttribute>> {
+        const response = await this.getShipmentAttributesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -351,28 +334,24 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
      */
 
 
-    async setShipmentAttributeUsingPUTRaw(requestParameters: SetShipmentAttributeUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShipmentAttribute>> {
+    async setShipmentAttributeRaw(requestParameters: shipmentAttributesApiParams.SetShipmentAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShipmentAttribute>> {
         if (requestParameters.key === null || requestParameters.key === undefined) {
-            throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling setShipmentAttributeUsingPUT.');
+            throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling setShipmentAttribute.');
         }
 
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling setShipmentAttributeUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling setShipmentAttribute.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling setShipmentAttributeUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling setShipmentAttribute.');
         }
 
         if (requestParameters.attribute === null || requestParameters.attribute === undefined) {
-            throw new runtime.RequiredError('attribute','Required parameter requestParameters.attribute was null or undefined when calling setShipmentAttributeUsingPUT.');
+            throw new runtime.RequiredError('attribute','Required parameter requestParameters.attribute was null or undefined when calling setShipmentAttribute.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -407,8 +386,8 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
      * setShipmentAttribute
      * setShipmentAttribute
      */
-    async setShipmentAttributeUsingPUT(requestParameters: SetShipmentAttributeUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShipmentAttribute> {
-        const response = await this.setShipmentAttributeUsingPUTRaw(requestParameters, initOverrides);
+    async setShipmentAttribute(requestParameters: shipmentAttributesApiParams.SetShipmentAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShipmentAttribute> {
+        const response = await this.setShipmentAttributeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -418,24 +397,20 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
      */
 
 
-    async setShipmentAttributesUsingPUTRaw(requestParameters: SetShipmentAttributesUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ShipmentAttribute>>> {
+    async setShipmentAttributesRaw(requestParameters: shipmentAttributesApiParams.SetShipmentAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ShipmentAttribute>>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling setShipmentAttributesUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling setShipmentAttributes.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling setShipmentAttributesUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling setShipmentAttributes.');
         }
 
         if (requestParameters.attributes === null || requestParameters.attributes === undefined) {
-            throw new runtime.RequiredError('attributes','Required parameter requestParameters.attributes was null or undefined when calling setShipmentAttributesUsingPUT.');
+            throw new runtime.RequiredError('attributes','Required parameter requestParameters.attributes was null or undefined when calling setShipmentAttributes.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -470,8 +445,8 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
      * setShipmentAttributes
      * setShipmentAttributes
      */
-    async setShipmentAttributesUsingPUT(requestParameters: SetShipmentAttributesUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ShipmentAttribute>> {
-        const response = await this.setShipmentAttributesUsingPUTRaw(requestParameters, initOverrides);
+    async setShipmentAttributes(requestParameters: shipmentAttributesApiParams.SetShipmentAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ShipmentAttribute>> {
+        const response = await this.setShipmentAttributesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

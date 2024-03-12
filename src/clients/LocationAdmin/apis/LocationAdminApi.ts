@@ -20,115 +20,115 @@ import type {
   LocationCollection,
 } from '../models';
 
-export interface AddLocationRequest {
-    responseFields?: string;
-    location?: Location;
+
+export namespace locationAdminApiParams { 
+    export interface AddLocationRequest {
+        responseFields?: string;
+        location?: Location;
+    }
+    export interface GetLocationRequest {
+        locationCode: string;
+        responseFields?: string;
+    }
+    export interface GetLocationsRequest {
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        filter?: string;
+        responseFields?: string;
+    }
+    export interface UpdateLocationRequest {
+        locationCode: string;
+        responseFields?: string;
+        location?: Location;
+    }
+}
+/**
+* LocationAdminApiService - interface
+* 
+* @export
+* @interface LocationAdminApi
+*/
+export interface LocationAdminApiService {
+    /**
+    * Add a new location.
+    * @summary Add Location
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Location} [location] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof LocationAdminApiInterface
+    */
+    addLocationRaw(requestParameters: locationAdminApiParams.AddLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>>;
+
+    /**
+    * Add a new location.
+    * Add Location
+    */
+    addLocation(requestParameters: locationAdminApiParams.AddLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location>;
+
+    /**
+    * Get a location by its unique locationCode.
+    * @summary Get Location
+    * @param {string} locationCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof LocationAdminApiInterface
+    */
+    getLocationRaw(requestParameters: locationAdminApiParams.GetLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>>;
+
+    /**
+    * Get a location by its unique locationCode.
+    * Get Location
+    */
+    getLocation(requestParameters: locationAdminApiParams.GetLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location>;
+
+    /**
+    * Get locations with optional filtering and paging.
+    * @summary Get Locations
+    * @param {number} [startIndex] 
+    * @param {number} [pageSize] 
+    * @param {string} [sortBy] 
+    * @param {string} [filter] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof LocationAdminApiInterface
+    */
+    getLocationsRaw(requestParameters: locationAdminApiParams.GetLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationCollection>>;
+
+    /**
+    * Get locations with optional filtering and paging.
+    * Get Locations
+    */
+    getLocations(requestParameters: locationAdminApiParams.GetLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationCollection>;
+
+    /**
+    * Update a location by providing its locationCode.
+    * @summary Update Location
+    * @param {string} locationCode the unique code for a location
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Location} [location] the location update
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof LocationAdminApiInterface
+    */
+    updateLocationRaw(requestParameters: locationAdminApiParams.UpdateLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>>;
+
+    /**
+    * Update a location by providing its locationCode.
+    * Update Location
+    */
+    updateLocation(requestParameters: locationAdminApiParams.UpdateLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location>;
+
 }
 
-export interface GetLocationRequest {
-    locationCode: string;
-    responseFields?: string;
-}
-
-export interface GetLocationsRequest {
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    filter?: string;
-    responseFields?: string;
-}
-
-export interface UpdateLocationRequest {
-    locationCode: string;
-    responseFields?: string;
-    location?: Location;
-}
 
 /**
- * LocationAdminApi - interface
- * 
- * @export
- * @interface LocationAdminApiInterface
- */
-export interface LocationAdminApiInterface {
-    /**
-     * Add a new location.
-     * @summary Add Location
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Location} [location] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof LocationAdminApiInterface
-     */
-    addLocationRaw(requestParameters: AddLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>>;
-
-    /**
-     * Add a new location.
-     * Add Location
-     */
-    addLocation(requestParameters: AddLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location>;
-
-    /**
-     * Get a location by its unique locationCode.
-     * @summary Get Location
-     * @param {string} locationCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof LocationAdminApiInterface
-     */
-    getLocationRaw(requestParameters: GetLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>>;
-
-    /**
-     * Get a location by its unique locationCode.
-     * Get Location
-     */
-    getLocation(requestParameters: GetLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location>;
-
-    /**
-     * Get locations with optional filtering and paging.
-     * @summary Get Locations
-     * @param {number} [startIndex] 
-     * @param {number} [pageSize] 
-     * @param {string} [sortBy] 
-     * @param {string} [filter] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof LocationAdminApiInterface
-     */
-    getLocationsRaw(requestParameters: GetLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationCollection>>;
-
-    /**
-     * Get locations with optional filtering and paging.
-     * Get Locations
-     */
-    getLocations(requestParameters: GetLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationCollection>;
-
-    /**
-     * Update a location by providing its locationCode.
-     * @summary Update Location
-     * @param {string} locationCode the unique code for a location
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Location} [location] the location update
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof LocationAdminApiInterface
-     */
-    updateLocationRaw(requestParameters: UpdateLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>>;
-
-    /**
-     * Update a location by providing its locationCode.
-     * Update Location
-     */
-    updateLocation(requestParameters: UpdateLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location>;
-
-}
-
-/**
  * 
  */
-export class LocationAdminApi extends runtime.BaseAPI implements LocationAdminApiInterface {
+export class LocationAdminApi extends runtime.BaseAPI implements LocationAdminApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -139,7 +139,7 @@ export class LocationAdminApi extends runtime.BaseAPI implements LocationAdminAp
      */
 
 
-    async addLocationRaw(requestParameters: AddLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>> {
+    async addLocationRaw(requestParameters: locationAdminApiParams.AddLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -171,7 +171,7 @@ export class LocationAdminApi extends runtime.BaseAPI implements LocationAdminAp
      * Add a new location.
      * Add Location
      */
-    async addLocation(requestParameters: AddLocationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location> {
+    async addLocation(requestParameters: locationAdminApiParams.AddLocationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location> {
         const response = await this.addLocationRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -182,7 +182,7 @@ export class LocationAdminApi extends runtime.BaseAPI implements LocationAdminAp
      */
 
 
-    async getLocationRaw(requestParameters: GetLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>> {
+    async getLocationRaw(requestParameters: locationAdminApiParams.GetLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>> {
         if (requestParameters.locationCode === null || requestParameters.locationCode === undefined) {
             throw new runtime.RequiredError('locationCode','Required parameter requestParameters.locationCode was null or undefined when calling getLocation.');
         }
@@ -215,7 +215,7 @@ export class LocationAdminApi extends runtime.BaseAPI implements LocationAdminAp
      * Get a location by its unique locationCode.
      * Get Location
      */
-    async getLocation(requestParameters: GetLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location> {
+    async getLocation(requestParameters: locationAdminApiParams.GetLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location> {
         const response = await this.getLocationRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -226,7 +226,7 @@ export class LocationAdminApi extends runtime.BaseAPI implements LocationAdminAp
      */
 
 
-    async getLocationsRaw(requestParameters: GetLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationCollection>> {
+    async getLocationsRaw(requestParameters: locationAdminApiParams.GetLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -271,7 +271,7 @@ export class LocationAdminApi extends runtime.BaseAPI implements LocationAdminAp
      * Get locations with optional filtering and paging.
      * Get Locations
      */
-    async getLocations(requestParameters: GetLocationsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationCollection> {
+    async getLocations(requestParameters: locationAdminApiParams.GetLocationsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationCollection> {
         const response = await this.getLocationsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -282,7 +282,7 @@ export class LocationAdminApi extends runtime.BaseAPI implements LocationAdminAp
      */
 
 
-    async updateLocationRaw(requestParameters: UpdateLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>> {
+    async updateLocationRaw(requestParameters: locationAdminApiParams.UpdateLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>> {
         if (requestParameters.locationCode === null || requestParameters.locationCode === undefined) {
             throw new runtime.RequiredError('locationCode','Required parameter requestParameters.locationCode was null or undefined when calling updateLocation.');
         }
@@ -318,7 +318,7 @@ export class LocationAdminApi extends runtime.BaseAPI implements LocationAdminAp
      * Update a location by providing its locationCode.
      * Update Location
      */
-    async updateLocation(requestParameters: UpdateLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location> {
+    async updateLocation(requestParameters: locationAdminApiParams.UpdateLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location> {
         const response = await this.updateLocationRaw(requestParameters, initOverrides);
         return await response.value();
     }

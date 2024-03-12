@@ -19,65 +19,67 @@ import type {
   ServiceType,
 } from '../models';
 
-export interface GetAllServiceTypesRequest {
-    localeCode: string;
-    responseFields?: string;
+
+export namespace carrierConfigurationGlobalApiParams { 
+    export interface GetAllServiceTypesRequest {
+        localeCode: string;
+        responseFields?: string;
+    }
+    export interface GetCarrierServiceTypesRequest {
+        carrierId: string;
+        localeCode: string;
+        responseFields?: string;
+    }
+}
+/**
+* CarrierConfigurationGlobalApiService - interface
+* 
+* @export
+* @interface CarrierConfigurationGlobalApi
+*/
+export interface CarrierConfigurationGlobalApiService {
+    /**
+    * Used for retrieving the available service types for the Mozu Default Application carriers
+    * @summary Used for retrieving the available service types for the Mozu Default Application carriers
+    * @param {string} localeCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CarrierConfigurationGlobalApiInterface
+    */
+    getAllServiceTypesRaw(requestParameters: carrierConfigurationGlobalApiParams.GetAllServiceTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ServiceType>>>;
+
+    /**
+    * Used for retrieving the available service types for the Mozu Default Application carriers
+    * Used for retrieving the available service types for the Mozu Default Application carriers
+    */
+    getAllServiceTypes(requestParameters: carrierConfigurationGlobalApiParams.GetAllServiceTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ServiceType>>;
+
+    /**
+    * Used for retrieving the available service types for the Mozu Default Application carriers
+    * @summary Used for retrieving the available service types for the Mozu Default Application carriers
+    * @param {string} carrierId 
+    * @param {string} localeCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CarrierConfigurationGlobalApiInterface
+    */
+    getCarrierServiceTypesRaw(requestParameters: carrierConfigurationGlobalApiParams.GetCarrierServiceTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ServiceType>>>;
+
+    /**
+    * Used for retrieving the available service types for the Mozu Default Application carriers
+    * Used for retrieving the available service types for the Mozu Default Application carriers
+    */
+    getCarrierServiceTypes(requestParameters: carrierConfigurationGlobalApiParams.GetCarrierServiceTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ServiceType>>;
+
 }
 
-export interface GetCarrierServiceTypesRequest {
-    carrierId: string;
-    localeCode: string;
-    responseFields?: string;
-}
 
 /**
- * CarrierConfigurationGlobalApi - interface
- * 
- * @export
- * @interface CarrierConfigurationGlobalApiInterface
- */
-export interface CarrierConfigurationGlobalApiInterface {
-    /**
-     * Used for retrieving the available service types for the Mozu Default Application carriers
-     * @summary Used for retrieving the available service types for the Mozu Default Application carriers
-     * @param {string} localeCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CarrierConfigurationGlobalApiInterface
-     */
-    getAllServiceTypesRaw(requestParameters: GetAllServiceTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ServiceType>>>;
-
-    /**
-     * Used for retrieving the available service types for the Mozu Default Application carriers
-     * Used for retrieving the available service types for the Mozu Default Application carriers
-     */
-    getAllServiceTypes(requestParameters: GetAllServiceTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ServiceType>>;
-
-    /**
-     * Used for retrieving the available service types for the Mozu Default Application carriers
-     * @summary Used for retrieving the available service types for the Mozu Default Application carriers
-     * @param {string} carrierId 
-     * @param {string} localeCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CarrierConfigurationGlobalApiInterface
-     */
-    getCarrierServiceTypesRaw(requestParameters: GetCarrierServiceTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ServiceType>>>;
-
-    /**
-     * Used for retrieving the available service types for the Mozu Default Application carriers
-     * Used for retrieving the available service types for the Mozu Default Application carriers
-     */
-    getCarrierServiceTypes(requestParameters: GetCarrierServiceTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ServiceType>>;
-
-}
-
-/**
  * 
  */
-export class CarrierConfigurationGlobalApi extends runtime.BaseAPI implements CarrierConfigurationGlobalApiInterface {
+export class CarrierConfigurationGlobalApi extends runtime.BaseAPI implements CarrierConfigurationGlobalApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -88,7 +90,7 @@ export class CarrierConfigurationGlobalApi extends runtime.BaseAPI implements Ca
      */
 
 
-    async getAllServiceTypesRaw(requestParameters: GetAllServiceTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ServiceType>>> {
+    async getAllServiceTypesRaw(requestParameters: carrierConfigurationGlobalApiParams.GetAllServiceTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ServiceType>>> {
         if (requestParameters.localeCode === null || requestParameters.localeCode === undefined) {
             throw new runtime.RequiredError('localeCode','Required parameter requestParameters.localeCode was null or undefined when calling getAllServiceTypes.');
         }
@@ -121,7 +123,7 @@ export class CarrierConfigurationGlobalApi extends runtime.BaseAPI implements Ca
      * Used for retrieving the available service types for the Mozu Default Application carriers
      * Used for retrieving the available service types for the Mozu Default Application carriers
      */
-    async getAllServiceTypes(requestParameters: GetAllServiceTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ServiceType>> {
+    async getAllServiceTypes(requestParameters: carrierConfigurationGlobalApiParams.GetAllServiceTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ServiceType>> {
         const response = await this.getAllServiceTypesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -132,7 +134,7 @@ export class CarrierConfigurationGlobalApi extends runtime.BaseAPI implements Ca
      */
 
 
-    async getCarrierServiceTypesRaw(requestParameters: GetCarrierServiceTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ServiceType>>> {
+    async getCarrierServiceTypesRaw(requestParameters: carrierConfigurationGlobalApiParams.GetCarrierServiceTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ServiceType>>> {
         if (requestParameters.carrierId === null || requestParameters.carrierId === undefined) {
             throw new runtime.RequiredError('carrierId','Required parameter requestParameters.carrierId was null or undefined when calling getCarrierServiceTypes.');
         }
@@ -169,7 +171,7 @@ export class CarrierConfigurationGlobalApi extends runtime.BaseAPI implements Ca
      * Used for retrieving the available service types for the Mozu Default Application carriers
      * Used for retrieving the available service types for the Mozu Default Application carriers
      */
-    async getCarrierServiceTypes(requestParameters: GetCarrierServiceTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ServiceType>> {
+    async getCarrierServiceTypes(requestParameters: carrierConfigurationGlobalApiParams.GetCarrierServiceTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ServiceType>> {
         const response = await this.getCarrierServiceTypesRaw(requestParameters, initOverrides);
         return await response.value();
     }

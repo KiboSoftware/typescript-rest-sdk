@@ -20,157 +20,155 @@ import type {
   TargetRuleCollection,
 } from '../models';
 
-export interface CreateTargetRuleRequest {
-    responseFields?: string;
-    targetRule?: TargetRule;
-}
 
-export interface DeleteTargetRuleRequest {
-    code: string;
+export namespace targetRulesApiParams { 
+    export interface CreateTargetRuleRequest {
+        responseFields?: string;
+        targetRule?: TargetRule;
+    }
+    export interface DeleteTargetRuleRequest {
+        code: string;
+    }
+    export interface GetTargetRuleRequest {
+        code: string;
+        responseFields?: string;
+    }
+    export interface GetTargetRulesRequest {
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        filter?: string;
+        responseFields?: string;
+    }
+    export interface UpdateTargetRuleRequest {
+        code: string;
+        responseFields?: string;
+        targetRule?: TargetRule;
+    }
+    export interface ValidateTargetRuleRequest {
+        responseFields?: string;
+        targetRule?: TargetRule;
+    }
 }
-
-export interface GetTargetRuleRequest {
-    code: string;
-    responseFields?: string;
-}
-
-export interface GetTargetRulesRequest {
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    filter?: string;
-    responseFields?: string;
-}
-
-export interface UpdateTargetRuleRequest {
-    code: string;
-    responseFields?: string;
-    targetRule?: TargetRule;
-}
-
-export interface ValidateTargetRuleRequest {
-    responseFields?: string;
-    targetRule?: TargetRule;
-}
-
 /**
- * TargetRulesApi - interface
- * 
- * @export
- * @interface TargetRulesApiInterface
- */
-export interface TargetRulesApiInterface {
+* TargetRulesApiService - interface
+* 
+* @export
+* @interface TargetRulesApi
+*/
+export interface TargetRulesApiService {
     /**
-     * Create Target Rule
-     * @summary Create Target Rule
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {TargetRule} [targetRule] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TargetRulesApiInterface
-     */
-    createTargetRuleRaw(requestParameters: CreateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRule>>;
+    * Create Target Rule
+    * @summary Create Target Rule
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {TargetRule} [targetRule] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof TargetRulesApiInterface
+    */
+    createTargetRuleRaw(requestParameters: targetRulesApiParams.CreateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRule>>;
 
     /**
-     * Create Target Rule
-     * Create Target Rule
-     */
-    createTargetRule(requestParameters: CreateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRule>;
+    * Create Target Rule
+    * Create Target Rule
+    */
+    createTargetRule(requestParameters: targetRulesApiParams.CreateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRule>;
 
     /**
-     * Delete Target Rule
-     * @summary Delete Target Rule
-     * @param {string} code 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TargetRulesApiInterface
-     */
-    deleteTargetRuleRaw(requestParameters: DeleteTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Delete Target Rule
+    * @summary Delete Target Rule
+    * @param {string} code 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof TargetRulesApiInterface
+    */
+    deleteTargetRuleRaw(requestParameters: targetRulesApiParams.DeleteTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Delete Target Rule
-     * Delete Target Rule
-     */
-    deleteTargetRule(requestParameters: DeleteTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Delete Target Rule
+    * Delete Target Rule
+    */
+    deleteTargetRule(requestParameters: targetRulesApiParams.DeleteTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Get Target Rule
-     * @summary Get Target Rule
-     * @param {string} code 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TargetRulesApiInterface
-     */
-    getTargetRuleRaw(requestParameters: GetTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRule>>;
+    * Get Target Rule
+    * @summary Get Target Rule
+    * @param {string} code 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof TargetRulesApiInterface
+    */
+    getTargetRuleRaw(requestParameters: targetRulesApiParams.GetTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRule>>;
 
     /**
-     * Get Target Rule
-     * Get Target Rule
-     */
-    getTargetRule(requestParameters: GetTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRule>;
+    * Get Target Rule
+    * Get Target Rule
+    */
+    getTargetRule(requestParameters: targetRulesApiParams.GetTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRule>;
 
     /**
-     * 
-     * @summary Retrieves a list of TargetRules according to any specified filter criteria and sort options
-     * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. The default value is 0.
-     * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200.
-     * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order.
-     * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TargetRulesApiInterface
-     */
-    getTargetRulesRaw(requestParameters: GetTargetRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRuleCollection>>;
+    * 
+    * @summary Retrieves a list of TargetRules according to any specified filter criteria and sort options
+    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. The default value is 0.
+    * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200.
+    * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order.
+    * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof TargetRulesApiInterface
+    */
+    getTargetRulesRaw(requestParameters: targetRulesApiParams.GetTargetRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRuleCollection>>;
 
     /**
-     * 
-     * Retrieves a list of TargetRules according to any specified filter criteria and sort options
-     */
-    getTargetRules(requestParameters: GetTargetRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRuleCollection>;
+    * 
+    * Retrieves a list of TargetRules according to any specified filter criteria and sort options
+    */
+    getTargetRules(requestParameters: targetRulesApiParams.GetTargetRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRuleCollection>;
 
     /**
-     * Update Target Rule
-     * @summary Update Target Rule
-     * @param {string} code 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {TargetRule} [targetRule] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TargetRulesApiInterface
-     */
-    updateTargetRuleRaw(requestParameters: UpdateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRule>>;
+    * Update Target Rule
+    * @summary Update Target Rule
+    * @param {string} code 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {TargetRule} [targetRule] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof TargetRulesApiInterface
+    */
+    updateTargetRuleRaw(requestParameters: targetRulesApiParams.UpdateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRule>>;
 
     /**
-     * Update Target Rule
-     * Update Target Rule
-     */
-    updateTargetRule(requestParameters: UpdateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRule>;
+    * Update Target Rule
+    * Update Target Rule
+    */
+    updateTargetRule(requestParameters: targetRulesApiParams.UpdateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRule>;
 
     /**
-     * Validate Target Rule
-     * @summary Validate Target Rule
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {TargetRule} [targetRule] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TargetRulesApiInterface
-     */
-    validateTargetRuleRaw(requestParameters: ValidateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Validate Target Rule
+    * @summary Validate Target Rule
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {TargetRule} [targetRule] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof TargetRulesApiInterface
+    */
+    validateTargetRuleRaw(requestParameters: targetRulesApiParams.ValidateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Validate Target Rule
-     * Validate Target Rule
-     */
-    validateTargetRule(requestParameters: ValidateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Validate Target Rule
+    * Validate Target Rule
+    */
+    validateTargetRule(requestParameters: targetRulesApiParams.ValidateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
 }
+
 
 /**
  * 
  */
-export class TargetRulesApi extends runtime.BaseAPI implements TargetRulesApiInterface {
+export class TargetRulesApi extends runtime.BaseAPI implements TargetRulesApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -181,7 +179,7 @@ export class TargetRulesApi extends runtime.BaseAPI implements TargetRulesApiInt
      */
 
 
-    async createTargetRuleRaw(requestParameters: CreateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRule>> {
+    async createTargetRuleRaw(requestParameters: targetRulesApiParams.CreateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRule>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -213,7 +211,7 @@ export class TargetRulesApi extends runtime.BaseAPI implements TargetRulesApiInt
      * Create Target Rule
      * Create Target Rule
      */
-    async createTargetRule(requestParameters: CreateTargetRuleRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRule> {
+    async createTargetRule(requestParameters: targetRulesApiParams.CreateTargetRuleRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRule> {
         const response = await this.createTargetRuleRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -224,7 +222,7 @@ export class TargetRulesApi extends runtime.BaseAPI implements TargetRulesApiInt
      */
 
 
-    async deleteTargetRuleRaw(requestParameters: DeleteTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteTargetRuleRaw(requestParameters: targetRulesApiParams.DeleteTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling deleteTargetRule.');
         }
@@ -253,7 +251,7 @@ export class TargetRulesApi extends runtime.BaseAPI implements TargetRulesApiInt
      * Delete Target Rule
      * Delete Target Rule
      */
-    async deleteTargetRule(requestParameters: DeleteTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteTargetRule(requestParameters: targetRulesApiParams.DeleteTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteTargetRuleRaw(requestParameters, initOverrides);
     }
 
@@ -263,7 +261,7 @@ export class TargetRulesApi extends runtime.BaseAPI implements TargetRulesApiInt
      */
 
 
-    async getTargetRuleRaw(requestParameters: GetTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRule>> {
+    async getTargetRuleRaw(requestParameters: targetRulesApiParams.GetTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRule>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling getTargetRule.');
         }
@@ -296,7 +294,7 @@ export class TargetRulesApi extends runtime.BaseAPI implements TargetRulesApiInt
      * Get Target Rule
      * Get Target Rule
      */
-    async getTargetRule(requestParameters: GetTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRule> {
+    async getTargetRule(requestParameters: targetRulesApiParams.GetTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRule> {
         const response = await this.getTargetRuleRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -307,7 +305,7 @@ export class TargetRulesApi extends runtime.BaseAPI implements TargetRulesApiInt
      */
 
 
-    async getTargetRulesRaw(requestParameters: GetTargetRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRuleCollection>> {
+    async getTargetRulesRaw(requestParameters: targetRulesApiParams.GetTargetRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRuleCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -352,7 +350,7 @@ export class TargetRulesApi extends runtime.BaseAPI implements TargetRulesApiInt
      * 
      * Retrieves a list of TargetRules according to any specified filter criteria and sort options
      */
-    async getTargetRules(requestParameters: GetTargetRulesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRuleCollection> {
+    async getTargetRules(requestParameters: targetRulesApiParams.GetTargetRulesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRuleCollection> {
         const response = await this.getTargetRulesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -363,7 +361,7 @@ export class TargetRulesApi extends runtime.BaseAPI implements TargetRulesApiInt
      */
 
 
-    async updateTargetRuleRaw(requestParameters: UpdateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRule>> {
+    async updateTargetRuleRaw(requestParameters: targetRulesApiParams.UpdateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TargetRule>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling updateTargetRule.');
         }
@@ -399,7 +397,7 @@ export class TargetRulesApi extends runtime.BaseAPI implements TargetRulesApiInt
      * Update Target Rule
      * Update Target Rule
      */
-    async updateTargetRule(requestParameters: UpdateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRule> {
+    async updateTargetRule(requestParameters: targetRulesApiParams.UpdateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TargetRule> {
         const response = await this.updateTargetRuleRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -410,7 +408,7 @@ export class TargetRulesApi extends runtime.BaseAPI implements TargetRulesApiInt
      */
 
 
-    async validateTargetRuleRaw(requestParameters: ValidateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async validateTargetRuleRaw(requestParameters: targetRulesApiParams.ValidateTargetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -442,7 +440,7 @@ export class TargetRulesApi extends runtime.BaseAPI implements TargetRulesApiInt
      * Validate Target Rule
      * Validate Target Rule
      */
-    async validateTargetRule(requestParameters: ValidateTargetRuleRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async validateTargetRule(requestParameters: targetRulesApiParams.ValidateTargetRuleRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.validateTargetRuleRaw(requestParameters, initOverrides);
     }
 

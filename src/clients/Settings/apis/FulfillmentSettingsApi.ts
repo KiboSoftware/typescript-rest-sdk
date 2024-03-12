@@ -19,83 +19,84 @@ import type {
   FulfillmentSettings,
 } from '../models';
 
-export interface CreateFulfillmentSettingsRequest {
-    responseFields?: string;
-    fulfillmentSettings?: FulfillmentSettings;
+
+export namespace fulfillmentSettingsApiParams { 
+    export interface CreateFulfillmentSettingsRequest {
+        responseFields?: string;
+        fulfillmentSettings?: FulfillmentSettings;
+    }
+    export interface GetFulfillmentSettingsRequest {
+        responseFields?: string;
+    }
+    export interface UpdateFulfillmentSettingsRequest {
+        responseFields?: string;
+        fulfillmentSettings?: FulfillmentSettings;
+    }
+}
+/**
+* FulfillmentSettingsApiService - interface
+* 
+* @export
+* @interface FulfillmentSettingsApi
+*/
+export interface FulfillmentSettingsApiService {
+    /**
+    * Creates fulfillment settings for the site, which includes bpm settings, ship to store, back order days etc.
+    * @summary Create Fulfillment Settings
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {FulfillmentSettings} [fulfillmentSettings] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof FulfillmentSettingsApiInterface
+    */
+    createFulfillmentSettingsRaw(requestParameters: fulfillmentSettingsApiParams.CreateFulfillmentSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FulfillmentSettings>>;
+
+    /**
+    * Creates fulfillment settings for the site, which includes bpm settings, ship to store, back order days etc.
+    * Create Fulfillment Settings
+    */
+    createFulfillmentSettings(requestParameters: fulfillmentSettingsApiParams.CreateFulfillmentSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillmentSettings>;
+
+    /**
+    * Retrieves existing fulfillment settings defined on the site
+    * @summary Get Fulfillment Settings
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof FulfillmentSettingsApiInterface
+    */
+    getFulfillmentSettingsRaw(requestParameters: fulfillmentSettingsApiParams.GetFulfillmentSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FulfillmentSettings>>;
+
+    /**
+    * Retrieves existing fulfillment settings defined on the site
+    * Get Fulfillment Settings
+    */
+    getFulfillmentSettings(requestParameters: fulfillmentSettingsApiParams.GetFulfillmentSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillmentSettings>;
+
+    /**
+    * Modifies existing fulfillment settings for the site, which includes bpm settings, ship to store, back order days etc.
+    * @summary Update Fulfillment Settings
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {FulfillmentSettings} [fulfillmentSettings] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof FulfillmentSettingsApiInterface
+    */
+    updateFulfillmentSettingsRaw(requestParameters: fulfillmentSettingsApiParams.UpdateFulfillmentSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FulfillmentSettings>>;
+
+    /**
+    * Modifies existing fulfillment settings for the site, which includes bpm settings, ship to store, back order days etc.
+    * Update Fulfillment Settings
+    */
+    updateFulfillmentSettings(requestParameters: fulfillmentSettingsApiParams.UpdateFulfillmentSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillmentSettings>;
+
 }
 
-export interface GetFulfillmentSettingsRequest {
-    responseFields?: string;
-}
-
-export interface UpdateFulfillmentSettingsRequest {
-    responseFields?: string;
-    fulfillmentSettings?: FulfillmentSettings;
-}
 
 /**
- * FulfillmentSettingsApi - interface
- * 
- * @export
- * @interface FulfillmentSettingsApiInterface
- */
-export interface FulfillmentSettingsApiInterface {
-    /**
-     * Creates fulfillment settings for the site, which includes bpm settings, ship to store, back order days etc.
-     * @summary Create Fulfillment Settings
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {FulfillmentSettings} [fulfillmentSettings] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof FulfillmentSettingsApiInterface
-     */
-    createFulfillmentSettingsRaw(requestParameters: CreateFulfillmentSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FulfillmentSettings>>;
-
-    /**
-     * Creates fulfillment settings for the site, which includes bpm settings, ship to store, back order days etc.
-     * Create Fulfillment Settings
-     */
-    createFulfillmentSettings(requestParameters: CreateFulfillmentSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillmentSettings>;
-
-    /**
-     * Retrieves existing fulfillment settings defined on the site
-     * @summary Get Fulfillment Settings
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof FulfillmentSettingsApiInterface
-     */
-    getFulfillmentSettingsRaw(requestParameters: GetFulfillmentSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FulfillmentSettings>>;
-
-    /**
-     * Retrieves existing fulfillment settings defined on the site
-     * Get Fulfillment Settings
-     */
-    getFulfillmentSettings(requestParameters: GetFulfillmentSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillmentSettings>;
-
-    /**
-     * Modifies existing fulfillment settings for the site, which includes bpm settings, ship to store, back order days etc.
-     * @summary Update Fulfillment Settings
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {FulfillmentSettings} [fulfillmentSettings] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof FulfillmentSettingsApiInterface
-     */
-    updateFulfillmentSettingsRaw(requestParameters: UpdateFulfillmentSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FulfillmentSettings>>;
-
-    /**
-     * Modifies existing fulfillment settings for the site, which includes bpm settings, ship to store, back order days etc.
-     * Update Fulfillment Settings
-     */
-    updateFulfillmentSettings(requestParameters: UpdateFulfillmentSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillmentSettings>;
-
-}
-
-/**
  * 
  */
-export class FulfillmentSettingsApi extends runtime.BaseAPI implements FulfillmentSettingsApiInterface {
+export class FulfillmentSettingsApi extends runtime.BaseAPI implements FulfillmentSettingsApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -106,7 +107,7 @@ export class FulfillmentSettingsApi extends runtime.BaseAPI implements Fulfillme
      */
 
 
-    async createFulfillmentSettingsRaw(requestParameters: CreateFulfillmentSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FulfillmentSettings>> {
+    async createFulfillmentSettingsRaw(requestParameters: fulfillmentSettingsApiParams.CreateFulfillmentSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FulfillmentSettings>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -138,7 +139,7 @@ export class FulfillmentSettingsApi extends runtime.BaseAPI implements Fulfillme
      * Creates fulfillment settings for the site, which includes bpm settings, ship to store, back order days etc.
      * Create Fulfillment Settings
      */
-    async createFulfillmentSettings(requestParameters: CreateFulfillmentSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillmentSettings> {
+    async createFulfillmentSettings(requestParameters: fulfillmentSettingsApiParams.CreateFulfillmentSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillmentSettings> {
         const response = await this.createFulfillmentSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -149,7 +150,7 @@ export class FulfillmentSettingsApi extends runtime.BaseAPI implements Fulfillme
      */
 
 
-    async getFulfillmentSettingsRaw(requestParameters: GetFulfillmentSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FulfillmentSettings>> {
+    async getFulfillmentSettingsRaw(requestParameters: fulfillmentSettingsApiParams.GetFulfillmentSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FulfillmentSettings>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -178,7 +179,7 @@ export class FulfillmentSettingsApi extends runtime.BaseAPI implements Fulfillme
      * Retrieves existing fulfillment settings defined on the site
      * Get Fulfillment Settings
      */
-    async getFulfillmentSettings(requestParameters: GetFulfillmentSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillmentSettings> {
+    async getFulfillmentSettings(requestParameters: fulfillmentSettingsApiParams.GetFulfillmentSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillmentSettings> {
         const response = await this.getFulfillmentSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -189,7 +190,7 @@ export class FulfillmentSettingsApi extends runtime.BaseAPI implements Fulfillme
      */
 
 
-    async updateFulfillmentSettingsRaw(requestParameters: UpdateFulfillmentSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FulfillmentSettings>> {
+    async updateFulfillmentSettingsRaw(requestParameters: fulfillmentSettingsApiParams.UpdateFulfillmentSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FulfillmentSettings>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -221,7 +222,7 @@ export class FulfillmentSettingsApi extends runtime.BaseAPI implements Fulfillme
      * Modifies existing fulfillment settings for the site, which includes bpm settings, ship to store, back order days etc.
      * Update Fulfillment Settings
      */
-    async updateFulfillmentSettings(requestParameters: UpdateFulfillmentSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillmentSettings> {
+    async updateFulfillmentSettings(requestParameters: fulfillmentSettingsApiParams.UpdateFulfillmentSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillmentSettings> {
         const response = await this.updateFulfillmentSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }

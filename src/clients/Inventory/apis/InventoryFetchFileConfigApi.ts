@@ -23,111 +23,105 @@ import type {
   MFetchFileConfig,
 } from '../models';
 
-export interface DeleteFetchConfigRequest {
-    xVolTenant: number;
-    fetchFileConfigID: number;
-}
 
-export interface GetFetchConfigRequest {
-    xVolTenant: number;
-    responseFields?: string;
+export namespace inventoryFetchFileConfigApiParams { 
+    export interface DeleteFetchConfigRequest {
+        xVolTenant: number;
+        fetchFileConfigID: number;
+    }
+    export interface GetFetchConfigRequest {
+        xVolTenant: number;
+    }
+    export interface SaveFetchConfigRequest {
+        xVolTenant: number;
+        fetchFileConfigRequest: FetchFileConfigRequest;
+    }
+    export interface TestConnectionRequest {
+        xVolTenant: number;
+        fetchFileConfigID: number;
+    }
 }
-
-export interface SaveFetchConfigRequest {
-    xVolTenant: number;
-    fetchFileConfigRequest: FetchFileConfigRequest;
-    responseFields?: string;
-}
-
-export interface TestConnectionRequest {
-    xVolTenant: number;
-    fetchFileConfigID: number;
-    responseFields?: string;
-}
-
 /**
- * InventoryFetchFileConfigApi - interface
- * 
- * @export
- * @interface InventoryFetchFileConfigApiInterface
- */
-export interface InventoryFetchFileConfigApiInterface {
+* InventoryFetchFileConfigApiService - interface
+* 
+* @export
+* @interface InventoryFetchFileConfigApi
+*/
+export interface InventoryFetchFileConfigApiService {
     /**
-     * Deletes a fetch file config
-     * @summary Delete Fetch Config
-     * @param {number} xVolTenant Tenant ID
-     * @param {number} fetchFileConfigID Id of fetch file config
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InventoryFetchFileConfigApiInterface
-     */
-    deleteFetchConfigRaw(requestParameters: DeleteFetchConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedResponse>>;
+    * Deletes a fetch file config
+    * @summary Delete Fetch Config
+    * @param {number} xVolTenant Tenant ID
+    * @param {number} fetchFileConfigID Id of fetch file config
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof InventoryFetchFileConfigApiInterface
+    */
+    deleteFetchConfigRaw(requestParameters: inventoryFetchFileConfigApiParams.DeleteFetchConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedResponse>>;
 
     /**
-     * Deletes a fetch file config
-     * Delete Fetch Config
-     */
-    deleteFetchConfig(requestParameters: DeleteFetchConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedResponse>;
+    * Deletes a fetch file config
+    * Delete Fetch Config
+    */
+    deleteFetchConfig(requestParameters: inventoryFetchFileConfigApiParams.DeleteFetchConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedResponse>;
 
     /**
-     * Get the Fetch File Configs for the current tenant
-     * @summary Get Fetch Config
-     * @param {number} xVolTenant Tenant ID
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InventoryFetchFileConfigApiInterface
-     */
-    getFetchConfigRaw(requestParameters: GetFetchConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MFetchFileConfig>>;
+    * Get the Fetch File Configs for the current tenant
+    * @summary Get Fetch Config
+    * @param {number} xVolTenant Tenant ID
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof InventoryFetchFileConfigApiInterface
+    */
+    getFetchConfigRaw(requestParameters: inventoryFetchFileConfigApiParams.GetFetchConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MFetchFileConfig>>;
 
     /**
-     * Get the Fetch File Configs for the current tenant
-     * Get Fetch Config
-     */
-    getFetchConfig(requestParameters: GetFetchConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MFetchFileConfig>;
+    * Get the Fetch File Configs for the current tenant
+    * Get Fetch Config
+    */
+    getFetchConfig(requestParameters: inventoryFetchFileConfigApiParams.GetFetchConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MFetchFileConfig>;
 
     /**
-     * Save a new Fetch File Config
-     * @summary Save Fetch Config
-     * @param {number} xVolTenant Tenant ID
-     * @param {FetchFileConfigRequest} fetchFileConfigRequest Request to fetch file configs
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InventoryFetchFileConfigApiInterface
-     */
-    saveFetchConfigRaw(requestParameters: SaveFetchConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>>;
+    * Save a new Fetch File Config
+    * @summary Save Fetch Config
+    * @param {number} xVolTenant Tenant ID
+    * @param {FetchFileConfigRequest} fetchFileConfigRequest Request to fetch file configs
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof InventoryFetchFileConfigApiInterface
+    */
+    saveFetchConfigRaw(requestParameters: inventoryFetchFileConfigApiParams.SaveFetchConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>>;
 
     /**
-     * Save a new Fetch File Config
-     * Save Fetch Config
-     */
-    saveFetchConfig(requestParameters: SaveFetchConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse>;
+    * Save a new Fetch File Config
+    * Save Fetch Config
+    */
+    saveFetchConfig(requestParameters: inventoryFetchFileConfigApiParams.SaveFetchConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse>;
 
     /**
-     * Attempts to connect to a fetch file endpoint and lists current files if successful
-     * @summary Test Connection
-     * @param {number} xVolTenant Tenant ID
-     * @param {number} fetchFileConfigID Id of fetch file config
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InventoryFetchFileConfigApiInterface
-     */
-    testConnectionRaw(requestParameters: TestConnectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FetchFileConnectionResponse>>;
+    * Attempts to connect to a fetch file endpoint and lists current files if successful
+    * @summary Test Connection
+    * @param {number} xVolTenant Tenant ID
+    * @param {number} fetchFileConfigID Id of fetch file config
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof InventoryFetchFileConfigApiInterface
+    */
+    testConnectionRaw(requestParameters: inventoryFetchFileConfigApiParams.TestConnectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FetchFileConnectionResponse>>;
 
     /**
-     * Attempts to connect to a fetch file endpoint and lists current files if successful
-     * Test Connection
-     */
-    testConnection(requestParameters: TestConnectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FetchFileConnectionResponse>;
+    * Attempts to connect to a fetch file endpoint and lists current files if successful
+    * Test Connection
+    */
+    testConnection(requestParameters: inventoryFetchFileConfigApiParams.TestConnectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FetchFileConnectionResponse>;
 
 }
+
 
 /**
  * 
  */
-export class InventoryFetchFileConfigApi extends runtime.BaseAPI implements InventoryFetchFileConfigApiInterface {
+export class InventoryFetchFileConfigApi extends runtime.BaseAPI implements InventoryFetchFileConfigApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -138,7 +132,7 @@ export class InventoryFetchFileConfigApi extends runtime.BaseAPI implements Inve
      */
 
 
-    async deleteFetchConfigRaw(requestParameters: DeleteFetchConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedResponse>> {
+    async deleteFetchConfigRaw(requestParameters: inventoryFetchFileConfigApiParams.DeleteFetchConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteFetchConfig.');
         }
@@ -175,7 +169,7 @@ export class InventoryFetchFileConfigApi extends runtime.BaseAPI implements Inve
      * Deletes a fetch file config
      * Delete Fetch Config
      */
-    async deleteFetchConfig(requestParameters: DeleteFetchConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedResponse> {
+    async deleteFetchConfig(requestParameters: inventoryFetchFileConfigApiParams.DeleteFetchConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedResponse> {
         const response = await this.deleteFetchConfigRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -186,16 +180,12 @@ export class InventoryFetchFileConfigApi extends runtime.BaseAPI implements Inve
      */
 
 
-    async getFetchConfigRaw(requestParameters: GetFetchConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MFetchFileConfig>> {
+    async getFetchConfigRaw(requestParameters: inventoryFetchFileConfigApiParams.GetFetchConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MFetchFileConfig>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getFetchConfig.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -223,7 +213,7 @@ export class InventoryFetchFileConfigApi extends runtime.BaseAPI implements Inve
      * Get the Fetch File Configs for the current tenant
      * Get Fetch Config
      */
-    async getFetchConfig(requestParameters: GetFetchConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MFetchFileConfig> {
+    async getFetchConfig(requestParameters: inventoryFetchFileConfigApiParams.GetFetchConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MFetchFileConfig> {
         const response = await this.getFetchConfigRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -234,7 +224,7 @@ export class InventoryFetchFileConfigApi extends runtime.BaseAPI implements Inve
      */
 
 
-    async saveFetchConfigRaw(requestParameters: SaveFetchConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>> {
+    async saveFetchConfigRaw(requestParameters: inventoryFetchFileConfigApiParams.SaveFetchConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling saveFetchConfig.');
         }
@@ -244,10 +234,6 @@ export class InventoryFetchFileConfigApi extends runtime.BaseAPI implements Inve
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -278,7 +264,7 @@ export class InventoryFetchFileConfigApi extends runtime.BaseAPI implements Inve
      * Save a new Fetch File Config
      * Save Fetch Config
      */
-    async saveFetchConfig(requestParameters: SaveFetchConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse> {
+    async saveFetchConfig(requestParameters: inventoryFetchFileConfigApiParams.SaveFetchConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse> {
         const response = await this.saveFetchConfigRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -289,7 +275,7 @@ export class InventoryFetchFileConfigApi extends runtime.BaseAPI implements Inve
      */
 
 
-    async testConnectionRaw(requestParameters: TestConnectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FetchFileConnectionResponse>> {
+    async testConnectionRaw(requestParameters: inventoryFetchFileConfigApiParams.TestConnectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FetchFileConnectionResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling testConnection.');
         }
@@ -299,10 +285,6 @@ export class InventoryFetchFileConfigApi extends runtime.BaseAPI implements Inve
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -330,7 +312,7 @@ export class InventoryFetchFileConfigApi extends runtime.BaseAPI implements Inve
      * Attempts to connect to a fetch file endpoint and lists current files if successful
      * Test Connection
      */
-    async testConnection(requestParameters: TestConnectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FetchFileConnectionResponse> {
+    async testConnection(requestParameters: inventoryFetchFileConfigApiParams.TestConnectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FetchFileConnectionResponse> {
         const response = await this.testConnectionRaw(requestParameters, initOverrides);
         return await response.value();
     }

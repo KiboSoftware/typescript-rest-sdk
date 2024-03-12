@@ -21,161 +21,159 @@ import type {
   TagNodeTree,
 } from '../models';
 
-export interface CreateTagRequest {
-    responseFields?: string;
-    catalogAdminsTag?: CatalogAdminsTag;
-}
 
-export interface DeleteTagRequest {
-    tagCode: string;
+export namespace tagApiParams { 
+    export interface CreateTagRequest {
+        responseFields?: string;
+        catalogAdminsTag?: CatalogAdminsTag;
+    }
+    export interface DeleteTagRequest {
+        tagCode: string;
+    }
+    export interface GetNodeTreeRequest {
+        tagCode?: string;
+        responseFields?: string;
+    }
+    export interface GetTagRequest {
+        tagCode: string;
+        responseFields?: string;
+    }
+    export interface GetTagsRequest {
+        path?: string;
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        filter?: string;
+        responseGroups?: string;
+        responseFields?: string;
+    }
+    export interface UpdateTagRequest {
+        tagCode: string;
+        responseFields?: string;
+        catalogAdminsTag?: CatalogAdminsTag;
+    }
 }
-
-export interface GetNodeTreeRequest {
-    tagCode?: string;
-    responseFields?: string;
-}
-
-export interface GetTagRequest {
-    tagCode: string;
-    responseFields?: string;
-}
-
-export interface GetTagsRequest {
-    path?: string;
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    filter?: string;
-    responseGroups?: string;
-    responseFields?: string;
-}
-
-export interface UpdateTagRequest {
-    tagCode: string;
-    responseFields?: string;
-    catalogAdminsTag?: CatalogAdminsTag;
-}
-
 /**
- * TagApi - interface
- * 
- * @export
- * @interface TagApiInterface
- */
-export interface TagApiInterface {
+* TagApiService - interface
+* 
+* @export
+* @interface TagApi
+*/
+export interface TagApiService {
     /**
-     * Creates a tag.
-     * @summary Create tag
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CatalogAdminsTag} [catalogAdminsTag] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TagApiInterface
-     */
-    createTagRaw(requestParameters: CreateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsTag>>;
+    * Creates a tag.
+    * @summary Create tag
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CatalogAdminsTag} [catalogAdminsTag] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof TagApiInterface
+    */
+    createTagRaw(requestParameters: tagApiParams.CreateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsTag>>;
 
     /**
-     * Creates a tag.
-     * Create tag
-     */
-    createTag(requestParameters: CreateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsTag>;
+    * Creates a tag.
+    * Create tag
+    */
+    createTag(requestParameters: tagApiParams.CreateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsTag>;
 
     /**
-     * Deletes a Tag specified by its tagCode.
-     * @summary Delete tag
-     * @param {string} tagCode 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TagApiInterface
-     */
-    deleteTagRaw(requestParameters: DeleteTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Deletes a Tag specified by its tagCode.
+    * @summary Delete tag
+    * @param {string} tagCode 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof TagApiInterface
+    */
+    deleteTagRaw(requestParameters: tagApiParams.DeleteTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Deletes a Tag specified by its tagCode.
-     * Delete tag
-     */
-    deleteTag(requestParameters: DeleteTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Deletes a Tag specified by its tagCode.
+    * Delete tag
+    */
+    deleteTag(requestParameters: tagApiParams.DeleteTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Retrieves the tag collection as tag tree for specified tagCode.
-     * @summary Get tag collection as tag tree
-     * @param {string} [tagCode] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TagApiInterface
-     */
-    getNodeTreeRaw(requestParameters: GetNodeTreeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagNodeTree>>;
+    * Retrieves the tag collection as tag tree for specified tagCode.
+    * @summary Get tag collection as tag tree
+    * @param {string} [tagCode] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof TagApiInterface
+    */
+    getNodeTreeRaw(requestParameters: tagApiParams.GetNodeTreeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagNodeTree>>;
 
     /**
-     * Retrieves the tag collection as tag tree for specified tagCode.
-     * Get tag collection as tag tree
-     */
-    getNodeTree(requestParameters: GetNodeTreeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagNodeTree>;
+    * Retrieves the tag collection as tag tree for specified tagCode.
+    * Get tag collection as tag tree
+    */
+    getNodeTree(requestParameters: tagApiParams.GetNodeTreeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagNodeTree>;
 
     /**
-     * Retrieves the details of a single tag.
-     * @summary Get tag
-     * @param {string} tagCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TagApiInterface
-     */
-    getTagRaw(requestParameters: GetTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsTag>>;
+    * Retrieves the details of a single tag.
+    * @summary Get tag
+    * @param {string} tagCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof TagApiInterface
+    */
+    getTagRaw(requestParameters: tagApiParams.GetTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsTag>>;
 
     /**
-     * Retrieves the details of a single tag.
-     * Get tag
-     */
-    getTag(requestParameters: GetTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsTag>;
+    * Retrieves the details of a single tag.
+    * Get tag
+    */
+    getTag(requestParameters: tagApiParams.GetTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsTag>;
 
     /**
-     * Retrieves a list of tags.
-     * @summary Get tags
-     * @param {string} [path] 
-     * @param {number} [startIndex] 
-     * @param {number} [pageSize] 
-     * @param {string} [sortBy] 
-     * @param {string} [filter] 
-     * @param {string} [responseGroups] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TagApiInterface
-     */
-    getTagsRaw(requestParameters: GetTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagCollection>>;
+    * Retrieves a list of tags.
+    * @summary Get tags
+    * @param {string} [path] 
+    * @param {number} [startIndex] 
+    * @param {number} [pageSize] 
+    * @param {string} [sortBy] 
+    * @param {string} [filter] 
+    * @param {string} [responseGroups] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof TagApiInterface
+    */
+    getTagsRaw(requestParameters: tagApiParams.GetTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagCollection>>;
 
     /**
-     * Retrieves a list of tags.
-     * Get tags
-     */
-    getTags(requestParameters: GetTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagCollection>;
+    * Retrieves a list of tags.
+    * Get tags
+    */
+    getTags(requestParameters: tagApiParams.GetTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagCollection>;
 
     /**
-     * Modifies a tag.
-     * @summary Update tag
-     * @param {string} tagCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CatalogAdminsTag} [catalogAdminsTag] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TagApiInterface
-     */
-    updateTagRaw(requestParameters: UpdateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsTag>>;
+    * Modifies a tag.
+    * @summary Update tag
+    * @param {string} tagCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CatalogAdminsTag} [catalogAdminsTag] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof TagApiInterface
+    */
+    updateTagRaw(requestParameters: tagApiParams.UpdateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsTag>>;
 
     /**
-     * Modifies a tag.
-     * Update tag
-     */
-    updateTag(requestParameters: UpdateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsTag>;
+    * Modifies a tag.
+    * Update tag
+    */
+    updateTag(requestParameters: tagApiParams.UpdateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsTag>;
 
 }
+
 
 /**
  * 
  */
-export class TagApi extends runtime.BaseAPI implements TagApiInterface {
+export class TagApi extends runtime.BaseAPI implements TagApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -186,7 +184,7 @@ export class TagApi extends runtime.BaseAPI implements TagApiInterface {
      */
 
 
-    async createTagRaw(requestParameters: CreateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsTag>> {
+    async createTagRaw(requestParameters: tagApiParams.CreateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsTag>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -218,7 +216,7 @@ export class TagApi extends runtime.BaseAPI implements TagApiInterface {
      * Creates a tag.
      * Create tag
      */
-    async createTag(requestParameters: CreateTagRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsTag> {
+    async createTag(requestParameters: tagApiParams.CreateTagRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsTag> {
         const response = await this.createTagRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -229,7 +227,7 @@ export class TagApi extends runtime.BaseAPI implements TagApiInterface {
      */
 
 
-    async deleteTagRaw(requestParameters: DeleteTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteTagRaw(requestParameters: tagApiParams.DeleteTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.tagCode === null || requestParameters.tagCode === undefined) {
             throw new runtime.RequiredError('tagCode','Required parameter requestParameters.tagCode was null or undefined when calling deleteTag.');
         }
@@ -258,7 +256,7 @@ export class TagApi extends runtime.BaseAPI implements TagApiInterface {
      * Deletes a Tag specified by its tagCode.
      * Delete tag
      */
-    async deleteTag(requestParameters: DeleteTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteTag(requestParameters: tagApiParams.DeleteTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteTagRaw(requestParameters, initOverrides);
     }
 
@@ -268,7 +266,7 @@ export class TagApi extends runtime.BaseAPI implements TagApiInterface {
      */
 
 
-    async getNodeTreeRaw(requestParameters: GetNodeTreeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagNodeTree>> {
+    async getNodeTreeRaw(requestParameters: tagApiParams.GetNodeTreeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagNodeTree>> {
         const queryParameters: any = {};
 
         if (requestParameters.tagCode !== undefined) {
@@ -301,7 +299,7 @@ export class TagApi extends runtime.BaseAPI implements TagApiInterface {
      * Retrieves the tag collection as tag tree for specified tagCode.
      * Get tag collection as tag tree
      */
-    async getNodeTree(requestParameters: GetNodeTreeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagNodeTree> {
+    async getNodeTree(requestParameters: tagApiParams.GetNodeTreeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagNodeTree> {
         const response = await this.getNodeTreeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -312,7 +310,7 @@ export class TagApi extends runtime.BaseAPI implements TagApiInterface {
      */
 
 
-    async getTagRaw(requestParameters: GetTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsTag>> {
+    async getTagRaw(requestParameters: tagApiParams.GetTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsTag>> {
         if (requestParameters.tagCode === null || requestParameters.tagCode === undefined) {
             throw new runtime.RequiredError('tagCode','Required parameter requestParameters.tagCode was null or undefined when calling getTag.');
         }
@@ -345,7 +343,7 @@ export class TagApi extends runtime.BaseAPI implements TagApiInterface {
      * Retrieves the details of a single tag.
      * Get tag
      */
-    async getTag(requestParameters: GetTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsTag> {
+    async getTag(requestParameters: tagApiParams.GetTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsTag> {
         const response = await this.getTagRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -356,7 +354,7 @@ export class TagApi extends runtime.BaseAPI implements TagApiInterface {
      */
 
 
-    async getTagsRaw(requestParameters: GetTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagCollection>> {
+    async getTagsRaw(requestParameters: tagApiParams.GetTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.path !== undefined) {
@@ -409,7 +407,7 @@ export class TagApi extends runtime.BaseAPI implements TagApiInterface {
      * Retrieves a list of tags.
      * Get tags
      */
-    async getTags(requestParameters: GetTagsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagCollection> {
+    async getTags(requestParameters: tagApiParams.GetTagsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagCollection> {
         const response = await this.getTagsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -420,7 +418,7 @@ export class TagApi extends runtime.BaseAPI implements TagApiInterface {
      */
 
 
-    async updateTagRaw(requestParameters: UpdateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsTag>> {
+    async updateTagRaw(requestParameters: tagApiParams.UpdateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsTag>> {
         if (requestParameters.tagCode === null || requestParameters.tagCode === undefined) {
             throw new runtime.RequiredError('tagCode','Required parameter requestParameters.tagCode was null or undefined when calling updateTag.');
         }
@@ -456,7 +454,7 @@ export class TagApi extends runtime.BaseAPI implements TagApiInterface {
      * Modifies a tag.
      * Update tag
      */
-    async updateTag(requestParameters: UpdateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsTag> {
+    async updateTag(requestParameters: tagApiParams.UpdateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsTag> {
         const response = await this.updateTagRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -22,129 +22,121 @@ import type {
   ManifestRequest,
 } from '../models';
 
-export interface CreateManifestUsingPOSTRequest {
-    xVolTenant: number;
-    manifestRequestDto: ManifestRequest;
-    xVolSite?: number;
-    responseFields?: string;
-}
 
-export interface GetEligibleShipmentsUsingGETRequest {
-    carrier: string;
-    fulfillmentLocationCode: string;
-    xVolTenant: number;
-    fromDays?: number;
-    xVolSite?: number;
-    responseFields?: string;
+export namespace manifestApiParams { 
+    export interface CreateManifestRequest {
+        xVolTenant: number;
+        manifestRequestDto: ManifestRequest;
+        xVolSite?: number;
+    }
+    export interface GetEligibleShipmentsRequest {
+        carrier: string;
+        fulfillmentLocationCode: string;
+        xVolTenant: number;
+        fromDays?: number;
+        xVolSite?: number;
+    }
+    export interface GetManifestRequest {
+        manifestId: string;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface GetManifestsRequest {
+        fulfillmentLocationCode: string;
+        xVolTenant: number;
+        fromDays?: number;
+        xVolSite?: number;
+    }
 }
-
-export interface GetManifestUsingGETRequest {
-    manifestId: string;
-    xVolTenant: number;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface GetManifestsUsingGETRequest {
-    fulfillmentLocationCode: string;
-    xVolTenant: number;
-    fromDays?: number;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
 /**
- * ManifestApi - interface
- * 
- * @export
- * @interface ManifestApiInterface
- */
-export interface ManifestApiInterface {
+* ManifestApiService - interface
+* 
+* @export
+* @interface ManifestApi
+*/
+export interface ManifestApiService {
     /**
-     * createManifest
-     * @summary createManifest
-     * @param {number} xVolTenant 
-     * @param {ManifestRequest} manifestRequestDto manifestRequestDto
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ManifestApiInterface
-     */
-    createManifestUsingPOSTRaw(requestParameters: CreateManifestUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfManifest>>;
+    * createManifest
+    * @summary createManifest
+    * @param {number} xVolTenant 
+    * @param {ManifestRequest} manifestRequestDto manifestRequestDto
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ManifestApiInterface
+    */
+    createManifestRaw(requestParameters: manifestApiParams.CreateManifestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfManifest>>;
 
     /**
-     * createManifest
-     * createManifest
-     */
-    createManifestUsingPOST(requestParameters: CreateManifestUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfManifest>;
+    * createManifest
+    * createManifest
+    */
+    createManifest(requestParameters: manifestApiParams.CreateManifestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfManifest>;
 
     /**
-     * getEligibleShipments
-     * @summary getEligibleShipments
-     * @param {string} carrier carrier
-     * @param {string} fulfillmentLocationCode fulfillmentLocationCode
-     * @param {number} xVolTenant 
-     * @param {number} [fromDays] fromDays
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ManifestApiInterface
-     */
-    getEligibleShipmentsUsingGETRaw(requestParameters: GetEligibleShipmentsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfShipment>>;
+    * getEligibleShipments
+    * @summary getEligibleShipments
+    * @param {string} carrier carrier
+    * @param {string} fulfillmentLocationCode fulfillmentLocationCode
+    * @param {number} xVolTenant 
+    * @param {number} [fromDays] fromDays
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ManifestApiInterface
+    */
+    getEligibleShipmentsRaw(requestParameters: manifestApiParams.GetEligibleShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfShipment>>;
 
     /**
-     * getEligibleShipments
-     * getEligibleShipments
-     */
-    getEligibleShipmentsUsingGET(requestParameters: GetEligibleShipmentsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfShipment>;
+    * getEligibleShipments
+    * getEligibleShipments
+    */
+    getEligibleShipments(requestParameters: manifestApiParams.GetEligibleShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfShipment>;
 
     /**
-     * getManifest
-     * @summary getManifest
-     * @param {string} manifestId manifestId
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ManifestApiInterface
-     */
-    getManifestUsingGETRaw(requestParameters: GetManifestUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfManifest>>;
+    * getManifest
+    * @summary getManifest
+    * @param {string} manifestId manifestId
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ManifestApiInterface
+    */
+    getManifestRaw(requestParameters: manifestApiParams.GetManifestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfManifest>>;
 
     /**
-     * getManifest
-     * getManifest
-     */
-    getManifestUsingGET(requestParameters: GetManifestUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfManifest>;
+    * getManifest
+    * getManifest
+    */
+    getManifest(requestParameters: manifestApiParams.GetManifestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfManifest>;
 
     /**
-     * getManifests
-     * @summary getManifests
-     * @param {string} fulfillmentLocationCode fulfillmentLocationCode
-     * @param {number} xVolTenant 
-     * @param {number} [fromDays] fromDays
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ManifestApiInterface
-     */
-    getManifestsUsingGETRaw(requestParameters: GetManifestsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfManifest>>;
+    * getManifests
+    * @summary getManifests
+    * @param {string} fulfillmentLocationCode fulfillmentLocationCode
+    * @param {number} xVolTenant 
+    * @param {number} [fromDays] fromDays
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ManifestApiInterface
+    */
+    getManifestsRaw(requestParameters: manifestApiParams.GetManifestsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfManifest>>;
 
     /**
-     * getManifests
-     * getManifests
-     */
-    getManifestsUsingGET(requestParameters: GetManifestsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfManifest>;
+    * getManifests
+    * getManifests
+    */
+    getManifests(requestParameters: manifestApiParams.GetManifestsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfManifest>;
 
 }
+
 
 /**
  * 
  */
-export class ManifestApi extends runtime.BaseAPI implements ManifestApiInterface {
+export class ManifestApi extends runtime.BaseAPI implements ManifestApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -155,20 +147,16 @@ export class ManifestApi extends runtime.BaseAPI implements ManifestApiInterface
      */
 
 
-    async createManifestUsingPOSTRaw(requestParameters: CreateManifestUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfManifest>> {
+    async createManifestRaw(requestParameters: manifestApiParams.CreateManifestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfManifest>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling createManifestUsingPOST.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling createManifest.');
         }
 
         if (requestParameters.manifestRequestDto === null || requestParameters.manifestRequestDto === undefined) {
-            throw new runtime.RequiredError('manifestRequestDto','Required parameter requestParameters.manifestRequestDto was null or undefined when calling createManifestUsingPOST.');
+            throw new runtime.RequiredError('manifestRequestDto','Required parameter requestParameters.manifestRequestDto was null or undefined when calling createManifest.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -203,8 +191,8 @@ export class ManifestApi extends runtime.BaseAPI implements ManifestApiInterface
      * createManifest
      * createManifest
      */
-    async createManifestUsingPOST(requestParameters: CreateManifestUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfManifest> {
-        const response = await this.createManifestUsingPOSTRaw(requestParameters, initOverrides);
+    async createManifest(requestParameters: manifestApiParams.CreateManifestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfManifest> {
+        const response = await this.createManifestRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -214,17 +202,17 @@ export class ManifestApi extends runtime.BaseAPI implements ManifestApiInterface
      */
 
 
-    async getEligibleShipmentsUsingGETRaw(requestParameters: GetEligibleShipmentsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfShipment>> {
+    async getEligibleShipmentsRaw(requestParameters: manifestApiParams.GetEligibleShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfShipment>> {
         if (requestParameters.carrier === null || requestParameters.carrier === undefined) {
-            throw new runtime.RequiredError('carrier','Required parameter requestParameters.carrier was null or undefined when calling getEligibleShipmentsUsingGET.');
+            throw new runtime.RequiredError('carrier','Required parameter requestParameters.carrier was null or undefined when calling getEligibleShipments.');
         }
 
         if (requestParameters.fulfillmentLocationCode === null || requestParameters.fulfillmentLocationCode === undefined) {
-            throw new runtime.RequiredError('fulfillmentLocationCode','Required parameter requestParameters.fulfillmentLocationCode was null or undefined when calling getEligibleShipmentsUsingGET.');
+            throw new runtime.RequiredError('fulfillmentLocationCode','Required parameter requestParameters.fulfillmentLocationCode was null or undefined when calling getEligibleShipments.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getEligibleShipmentsUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getEligibleShipments.');
         }
 
         const queryParameters: any = {};
@@ -239,10 +227,6 @@ export class ManifestApi extends runtime.BaseAPI implements ManifestApiInterface
 
         if (requestParameters.fulfillmentLocationCode !== undefined) {
             queryParameters['fulfillmentLocationCode'] = requestParameters.fulfillmentLocationCode;
-        }
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -275,8 +259,8 @@ export class ManifestApi extends runtime.BaseAPI implements ManifestApiInterface
      * getEligibleShipments
      * getEligibleShipments
      */
-    async getEligibleShipmentsUsingGET(requestParameters: GetEligibleShipmentsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfShipment> {
-        const response = await this.getEligibleShipmentsUsingGETRaw(requestParameters, initOverrides);
+    async getEligibleShipments(requestParameters: manifestApiParams.GetEligibleShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfShipment> {
+        const response = await this.getEligibleShipmentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -286,20 +270,16 @@ export class ManifestApi extends runtime.BaseAPI implements ManifestApiInterface
      */
 
 
-    async getManifestUsingGETRaw(requestParameters: GetManifestUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfManifest>> {
+    async getManifestRaw(requestParameters: manifestApiParams.GetManifestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfManifest>> {
         if (requestParameters.manifestId === null || requestParameters.manifestId === undefined) {
-            throw new runtime.RequiredError('manifestId','Required parameter requestParameters.manifestId was null or undefined when calling getManifestUsingGET.');
+            throw new runtime.RequiredError('manifestId','Required parameter requestParameters.manifestId was null or undefined when calling getManifest.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getManifestUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getManifest.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -331,8 +311,8 @@ export class ManifestApi extends runtime.BaseAPI implements ManifestApiInterface
      * getManifest
      * getManifest
      */
-    async getManifestUsingGET(requestParameters: GetManifestUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfManifest> {
-        const response = await this.getManifestUsingGETRaw(requestParameters, initOverrides);
+    async getManifest(requestParameters: manifestApiParams.GetManifestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfManifest> {
+        const response = await this.getManifestRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -342,13 +322,13 @@ export class ManifestApi extends runtime.BaseAPI implements ManifestApiInterface
      */
 
 
-    async getManifestsUsingGETRaw(requestParameters: GetManifestsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfManifest>> {
+    async getManifestsRaw(requestParameters: manifestApiParams.GetManifestsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfManifest>> {
         if (requestParameters.fulfillmentLocationCode === null || requestParameters.fulfillmentLocationCode === undefined) {
-            throw new runtime.RequiredError('fulfillmentLocationCode','Required parameter requestParameters.fulfillmentLocationCode was null or undefined when calling getManifestsUsingGET.');
+            throw new runtime.RequiredError('fulfillmentLocationCode','Required parameter requestParameters.fulfillmentLocationCode was null or undefined when calling getManifests.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getManifestsUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getManifests.');
         }
 
         const queryParameters: any = {};
@@ -359,10 +339,6 @@ export class ManifestApi extends runtime.BaseAPI implements ManifestApiInterface
 
         if (requestParameters.fulfillmentLocationCode !== undefined) {
             queryParameters['fulfillmentLocationCode'] = requestParameters.fulfillmentLocationCode;
-        }
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -395,8 +371,8 @@ export class ManifestApi extends runtime.BaseAPI implements ManifestApiInterface
      * getManifests
      * getManifests
      */
-    async getManifestsUsingGET(requestParameters: GetManifestsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfManifest> {
-        const response = await this.getManifestsUsingGETRaw(requestParameters, initOverrides);
+    async getManifests(requestParameters: manifestApiParams.GetManifestsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfManifest> {
+        const response = await this.getManifestsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

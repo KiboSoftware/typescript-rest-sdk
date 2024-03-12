@@ -21,43 +21,44 @@ import type {
   BlockAssignmentRequest,
 } from '../models';
 
-export interface BlockAssignmentOperationRequest {
-    xVolTenant: number;
-    blockAssignmentRequest: BlockAssignmentRequest;
-    responseFields?: string;
+
+export namespace inventoryBlockAssignmentApiParams { 
+    export interface BlockAssignmentOperationRequest {
+        xVolTenant: number;
+        blockAssignmentRequest: BlockAssignmentRequest;
+    }
+}
+/**
+* InventoryBlockAssignmentApiService - interface
+* 
+* @export
+* @interface InventoryBlockAssignmentApi
+*/
+export interface InventoryBlockAssignmentApiService {
+    /**
+    * Setting the blockAssignment flag to true for the product based on the given request
+    * @summary Block Assignment
+    * @param {number} xVolTenant Tenant ID
+    * @param {BlockAssignmentRequest} blockAssignmentRequest Request to block assignment on the product
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof InventoryBlockAssignmentApiInterface
+    */
+    blockAssignmentRaw(requestParameters: inventoryBlockAssignmentApiParams.BlockAssignmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>>;
+
+    /**
+    * Setting the blockAssignment flag to true for the product based on the given request
+    * Block Assignment
+    */
+    blockAssignment(requestParameters: inventoryBlockAssignmentApiParams.BlockAssignmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse>;
+
 }
 
-/**
- * InventoryBlockAssignmentApi - interface
- * 
- * @export
- * @interface InventoryBlockAssignmentApiInterface
- */
-export interface InventoryBlockAssignmentApiInterface {
-    /**
-     * Setting the blockAssignment flag to true for the product based on the given request
-     * @summary Block Assignment
-     * @param {number} xVolTenant Tenant ID
-     * @param {BlockAssignmentRequest} blockAssignmentRequest Request to block assignment on the product
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InventoryBlockAssignmentApiInterface
-     */
-    blockAssignmentRaw(requestParameters: BlockAssignmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>>;
-
-    /**
-     * Setting the blockAssignment flag to true for the product based on the given request
-     * Block Assignment
-     */
-    blockAssignment(requestParameters: BlockAssignmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse>;
-
-}
 
 /**
  * 
  */
-export class InventoryBlockAssignmentApi extends runtime.BaseAPI implements InventoryBlockAssignmentApiInterface {
+export class InventoryBlockAssignmentApi extends runtime.BaseAPI implements InventoryBlockAssignmentApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -68,7 +69,7 @@ export class InventoryBlockAssignmentApi extends runtime.BaseAPI implements Inve
      */
 
 
-    async blockAssignmentRaw(requestParameters: BlockAssignmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>> {
+    async blockAssignmentRaw(requestParameters: inventoryBlockAssignmentApiParams.BlockAssignmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling blockAssignment.');
         }
@@ -78,10 +79,6 @@ export class InventoryBlockAssignmentApi extends runtime.BaseAPI implements Inve
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -112,7 +109,7 @@ export class InventoryBlockAssignmentApi extends runtime.BaseAPI implements Inve
      * Setting the blockAssignment flag to true for the product based on the given request
      * Block Assignment
      */
-    async blockAssignment(requestParameters: BlockAssignmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse> {
+    async blockAssignment(requestParameters: inventoryBlockAssignmentApiParams.BlockAssignmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse> {
         const response = await this.blockAssignmentRaw(requestParameters, initOverrides);
         return await response.value();
     }

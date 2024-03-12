@@ -24,607 +24,587 @@ import type {
   CatalogAdminsAttributeVocabularyValue,
 } from '../models';
 
-export interface AddAttributeRequest {
-    responseFields?: string;
-    catalogAdminsAttribute?: CatalogAdminsAttribute;
-}
 
-export interface AddAttributeVocabularyValueRequest {
-    attributeFQN: string;
-    responseFields?: string;
-    catalogAdminsAttributeVocabularyValue?: CatalogAdminsAttributeVocabularyValue;
+export namespace productAttributesApiParams { 
+    export interface AddAttributeRequest {
+        responseFields?: string;
+        catalogAdminsAttribute?: CatalogAdminsAttribute;
+    }
+    export interface AddAttributeVocabularyValueRequest {
+        attributeFQN: string;
+        responseFields?: string;
+        catalogAdminsAttributeVocabularyValue?: CatalogAdminsAttributeVocabularyValue;
+    }
+    export interface AddAttributeVocabularyValueLocalizedContentRequest {
+        attributeFQN: string;
+        value: string;
+        responseFields?: string;
+        attributeVocabularyValueLocalizedContent?: AttributeVocabularyValueLocalizedContent;
+    }
+    export interface AddLocalizedContentRequest {
+        attributeFQN: string;
+        responseFields?: string;
+        catalogAdminsAttributeLocalizedContent?: CatalogAdminsAttributeLocalizedContent;
+    }
+    export interface DeleteAttributeRequest {
+        attributeFQN: string;
+    }
+    export interface DeleteAttributeVocabularyValueRequest {
+        attributeFQN: string;
+        value: string;
+    }
+    export interface DeleteAttributeVocabularyValueLocalizedContentRequest {
+        attributeFQN: string;
+        value: string;
+        localeCode: string;
+    }
+    export interface DeleteLocalizedContentRequest {
+        attributeFQN: string;
+        localeCode: string;
+    }
+    export interface GetAttributeRequest {
+        attributeFQN: string;
+        responseGroups?: string;
+        responseFields?: string;
+    }
+    export interface GetAttributeLocalizedContentRequest {
+        attributeFQN: string;
+        localeCode: string;
+        responseFields?: string;
+    }
+    export interface GetAttributeLocalizedContentsRequest {
+        attributeFQN: string;
+        responseFields?: string;
+    }
+    export interface GetAttributeTypeRulesRequest {
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        filter?: string;
+        responseFields?: string;
+    }
+    export interface GetAttributeVocabularyValueRequest {
+        attributeFQN: string;
+        value: string;
+        responseFields?: string;
+    }
+    export interface GetAttributeVocabularyValueLocalizedContentRequest {
+        attributeFQN: string;
+        value: string;
+        localeCode: string;
+        responseFields?: string;
+    }
+    export interface GetAttributeVocabularyValueLocalizedContentsRequest {
+        attributeFQN: string;
+        value: string;
+        responseFields?: string;
+    }
+    export interface GetAttributeVocabularyValuesRequest {
+        attributeFQN: string;
+        responseGroups?: string;
+        responseFields?: string;
+    }
+    export interface GetAttributesRequest {
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        filter?: string;
+        responseGroups?: string;
+        responseFields?: string;
+    }
+    export interface UpdateAttributeRequest {
+        attributeFQN: string;
+        responseFields?: string;
+        catalogAdminsAttribute?: CatalogAdminsAttribute;
+    }
+    export interface UpdateAttributeVocabularyValueRequest {
+        attributeFQN: string;
+        value: string;
+        responseFields?: string;
+        catalogAdminsAttributeVocabularyValue?: CatalogAdminsAttributeVocabularyValue;
+    }
+    export interface UpdateAttributeVocabularyValueLocalizedContentRequest {
+        attributeFQN: string;
+        value: string;
+        localeCode: string;
+        responseFields?: string;
+        attributeVocabularyValueLocalizedContent?: AttributeVocabularyValueLocalizedContent;
+    }
+    export interface UpdateAttributeVocabularyValueLocalizedContentsRequest {
+        attributeFQN: string;
+        value: string;
+        responseFields?: string;
+        attributeVocabularyValueLocalizedContent?: Array<AttributeVocabularyValueLocalizedContent>;
+    }
+    export interface UpdateAttributeVocabularyValuesRequest {
+        attributeFQN: string;
+        responseFields?: string;
+        catalogAdminsAttributeVocabularyValue?: Array<CatalogAdminsAttributeVocabularyValue>;
+    }
+    export interface UpdateLocalizedContentRequest {
+        attributeFQN: string;
+        localeCode: string;
+        responseFields?: string;
+        catalogAdminsAttributeLocalizedContent?: CatalogAdminsAttributeLocalizedContent;
+    }
+    export interface UpdateLocalizedContentsRequest {
+        attributeFQN: string;
+        responseFields?: string;
+        catalogAdminsAttributeLocalizedContent?: Array<CatalogAdminsAttributeLocalizedContent>;
+    }
 }
-
-export interface AddAttributeVocabularyValueLocalizedContentRequest {
-    attributeFQN: string;
-    value: string;
-    responseFields?: string;
-    attributeVocabularyValueLocalizedContent?: AttributeVocabularyValueLocalizedContent;
-}
-
-export interface AddLocalizedContentRequest {
-    attributeFQN: string;
-    responseFields?: string;
-    catalogAdminsAttributeLocalizedContent?: CatalogAdminsAttributeLocalizedContent;
-}
-
-export interface DeleteAttributeRequest {
-    attributeFQN: string;
-}
-
-export interface DeleteAttributeVocabularyValueRequest {
-    attributeFQN: string;
-    value: string;
-}
-
-export interface DeleteAttributeVocabularyValueLocalizedContentRequest {
-    attributeFQN: string;
-    value: string;
-    localeCode: string;
-}
-
-export interface DeleteLocalizedContentRequest {
-    attributeFQN: string;
-    localeCode: string;
-}
-
-export interface GetAttributeRequest {
-    attributeFQN: string;
-    responseGroups?: string;
-    responseFields?: string;
-}
-
-export interface GetAttributeLocalizedContentRequest {
-    attributeFQN: string;
-    localeCode: string;
-    responseFields?: string;
-}
-
-export interface GetAttributeLocalizedContentsRequest {
-    attributeFQN: string;
-    responseFields?: string;
-}
-
-export interface GetAttributeTypeRulesRequest {
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    filter?: string;
-    responseFields?: string;
-}
-
-export interface GetAttributeVocabularyValueRequest {
-    attributeFQN: string;
-    value: string;
-    responseFields?: string;
-}
-
-export interface GetAttributeVocabularyValueLocalizedContentRequest {
-    attributeFQN: string;
-    value: string;
-    localeCode: string;
-    responseFields?: string;
-}
-
-export interface GetAttributeVocabularyValueLocalizedContentsRequest {
-    attributeFQN: string;
-    value: string;
-    responseFields?: string;
-}
-
-export interface GetAttributeVocabularyValuesRequest {
-    attributeFQN: string;
-    responseGroups?: string;
-    responseFields?: string;
-}
-
-export interface GetAttributesRequest {
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    filter?: string;
-    responseGroups?: string;
-    responseFields?: string;
-}
-
-export interface UpdateAttributeRequest {
-    attributeFQN: string;
-    responseFields?: string;
-    catalogAdminsAttribute?: CatalogAdminsAttribute;
-}
-
-export interface UpdateAttributeVocabularyValueRequest {
-    attributeFQN: string;
-    value: string;
-    responseFields?: string;
-    catalogAdminsAttributeVocabularyValue?: CatalogAdminsAttributeVocabularyValue;
-}
-
-export interface UpdateAttributeVocabularyValueLocalizedContentRequest {
-    attributeFQN: string;
-    value: string;
-    localeCode: string;
-    responseFields?: string;
-    attributeVocabularyValueLocalizedContent?: AttributeVocabularyValueLocalizedContent;
-}
-
-export interface UpdateAttributeVocabularyValueLocalizedContentsRequest {
-    attributeFQN: string;
-    value: string;
-    responseFields?: string;
-    attributeVocabularyValueLocalizedContent?: Array<AttributeVocabularyValueLocalizedContent>;
-}
-
-export interface UpdateAttributeVocabularyValuesRequest {
-    attributeFQN: string;
-    responseFields?: string;
-    catalogAdminsAttributeVocabularyValue?: Array<CatalogAdminsAttributeVocabularyValue>;
-}
-
-export interface UpdateLocalizedContentRequest {
-    attributeFQN: string;
-    localeCode: string;
-    responseFields?: string;
-    catalogAdminsAttributeLocalizedContent?: CatalogAdminsAttributeLocalizedContent;
-}
-
-export interface UpdateLocalizedContentsRequest {
-    attributeFQN: string;
-    responseFields?: string;
-    catalogAdminsAttributeLocalizedContent?: Array<CatalogAdminsAttributeLocalizedContent>;
-}
-
 /**
- * ProductAttributesApi - interface
- * 
- * @export
- * @interface ProductAttributesApiInterface
- */
-export interface ProductAttributesApiInterface {
+* ProductAttributesApiService - interface
+* 
+* @export
+* @interface ProductAttributesApi
+*/
+export interface ProductAttributesApiService {
     /**
-     * Add / Create Attribute
-     * @summary Add a product attribute
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CatalogAdminsAttribute} [catalogAdminsAttribute] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductAttributesApiInterface
-     */
-    addAttributeRaw(requestParameters: AddAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttribute>>;
+    * Add / Create Attribute
+    * @summary Add a product attribute
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CatalogAdminsAttribute} [catalogAdminsAttribute] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductAttributesApiInterface
+    */
+    addAttributeRaw(requestParameters: productAttributesApiParams.AddAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttribute>>;
 
     /**
-     * Add / Create Attribute
-     * Add a product attribute
-     */
-    addAttribute(requestParameters: AddAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttribute>;
+    * Add / Create Attribute
+    * Add a product attribute
+    */
+    addAttribute(requestParameters: productAttributesApiParams.AddAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttribute>;
 
     /**
-     * Add product attribute vocabulary value
-     * @summary Add product attribute vocabulary value
-     * @param {string} attributeFQN 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CatalogAdminsAttributeVocabularyValue} [catalogAdminsAttributeVocabularyValue] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductAttributesApiInterface
-     */
-    addAttributeVocabularyValueRaw(requestParameters: AddAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeVocabularyValue>>;
+    * Add product attribute vocabulary value
+    * @summary Add product attribute vocabulary value
+    * @param {string} attributeFQN 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CatalogAdminsAttributeVocabularyValue} [catalogAdminsAttributeVocabularyValue] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductAttributesApiInterface
+    */
+    addAttributeVocabularyValueRaw(requestParameters: productAttributesApiParams.AddAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeVocabularyValue>>;
 
     /**
-     * Add product attribute vocabulary value
-     * Add product attribute vocabulary value
-     */
-    addAttributeVocabularyValue(requestParameters: AddAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeVocabularyValue>;
+    * Add product attribute vocabulary value
+    * Add product attribute vocabulary value
+    */
+    addAttributeVocabularyValue(requestParameters: productAttributesApiParams.AddAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeVocabularyValue>;
 
     /**
-     * 
-     * @summary Add product attribute vocabulary value
-     * @param {string} attributeFQN 
-     * @param {string} value 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {AttributeVocabularyValueLocalizedContent} [attributeVocabularyValueLocalizedContent] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductAttributesApiInterface
-     */
-    addAttributeVocabularyValueLocalizedContentRaw(requestParameters: AddAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeVocabularyValueLocalizedContent>>;
+    * 
+    * @summary Add product attribute vocabulary value
+    * @param {string} attributeFQN 
+    * @param {string} value 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {AttributeVocabularyValueLocalizedContent} [attributeVocabularyValueLocalizedContent] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductAttributesApiInterface
+    */
+    addAttributeVocabularyValueLocalizedContentRaw(requestParameters: productAttributesApiParams.AddAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeVocabularyValueLocalizedContent>>;
 
     /**
-     * 
-     * Add product attribute vocabulary value
-     */
-    addAttributeVocabularyValueLocalizedContent(requestParameters: AddAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeVocabularyValueLocalizedContent>;
+    * 
+    * Add product attribute vocabulary value
+    */
+    addAttributeVocabularyValueLocalizedContent(requestParameters: productAttributesApiParams.AddAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeVocabularyValueLocalizedContent>;
 
     /**
-     * 
-     * @summary Add product attribute localized content
-     * @param {string} attributeFQN 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CatalogAdminsAttributeLocalizedContent} [catalogAdminsAttributeLocalizedContent] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductAttributesApiInterface
-     */
-    addLocalizedContentRaw(requestParameters: AddLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeLocalizedContent>>;
+    * 
+    * @summary Add product attribute localized content
+    * @param {string} attributeFQN 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CatalogAdminsAttributeLocalizedContent} [catalogAdminsAttributeLocalizedContent] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductAttributesApiInterface
+    */
+    addLocalizedContentRaw(requestParameters: productAttributesApiParams.AddLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeLocalizedContent>>;
 
     /**
-     * 
-     * Add product attribute localized content
-     */
-    addLocalizedContent(requestParameters: AddLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeLocalizedContent>;
+    * 
+    * Add product attribute localized content
+    */
+    addLocalizedContent(requestParameters: productAttributesApiParams.AddLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeLocalizedContent>;
 
     /**
-     * 
-     * @summary Delete product attribute
-     * @param {string} attributeFQN 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductAttributesApiInterface
-     */
-    deleteAttributeRaw(requestParameters: DeleteAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * 
+    * @summary Delete product attribute
+    * @param {string} attributeFQN 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductAttributesApiInterface
+    */
+    deleteAttributeRaw(requestParameters: productAttributesApiParams.DeleteAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * 
-     * Delete product attribute
-     */
-    deleteAttribute(requestParameters: DeleteAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * 
+    * Delete product attribute
+    */
+    deleteAttribute(requestParameters: productAttributesApiParams.DeleteAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * 
-     * @summary Delete product attribute vocabulary value
-     * @param {string} attributeFQN 
-     * @param {string} value 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductAttributesApiInterface
-     */
-    deleteAttributeVocabularyValueRaw(requestParameters: DeleteAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * 
+    * @summary Delete product attribute vocabulary value
+    * @param {string} attributeFQN 
+    * @param {string} value 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductAttributesApiInterface
+    */
+    deleteAttributeVocabularyValueRaw(requestParameters: productAttributesApiParams.DeleteAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * 
-     * Delete product attribute vocabulary value
-     */
-    deleteAttributeVocabularyValue(requestParameters: DeleteAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * 
+    * Delete product attribute vocabulary value
+    */
+    deleteAttributeVocabularyValue(requestParameters: productAttributesApiParams.DeleteAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * 
-     * @summary Delete product attribute vocabulary value localized content
-     * @param {string} attributeFQN 
-     * @param {string} value 
-     * @param {string} localeCode 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductAttributesApiInterface
-     */
-    deleteAttributeVocabularyValueLocalizedContentRaw(requestParameters: DeleteAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * 
+    * @summary Delete product attribute vocabulary value localized content
+    * @param {string} attributeFQN 
+    * @param {string} value 
+    * @param {string} localeCode 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductAttributesApiInterface
+    */
+    deleteAttributeVocabularyValueLocalizedContentRaw(requestParameters: productAttributesApiParams.DeleteAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * 
-     * Delete product attribute vocabulary value localized content
-     */
-    deleteAttributeVocabularyValueLocalizedContent(requestParameters: DeleteAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * 
+    * Delete product attribute vocabulary value localized content
+    */
+    deleteAttributeVocabularyValueLocalizedContent(requestParameters: productAttributesApiParams.DeleteAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * 
-     * @summary Delete product attribute localized content
-     * @param {string} attributeFQN 
-     * @param {string} localeCode 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductAttributesApiInterface
-     */
-    deleteLocalizedContentRaw(requestParameters: DeleteLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * 
+    * @summary Delete product attribute localized content
+    * @param {string} attributeFQN 
+    * @param {string} localeCode 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductAttributesApiInterface
+    */
+    deleteLocalizedContentRaw(requestParameters: productAttributesApiParams.DeleteLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * 
-     * Delete product attribute localized content
-     */
-    deleteLocalizedContent(requestParameters: DeleteLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * 
+    * Delete product attribute localized content
+    */
+    deleteLocalizedContent(requestParameters: productAttributesApiParams.DeleteLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * 
-     * @summary Get product attribute
-     * @param {string} attributeFQN 
-     * @param {string} [responseGroups] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductAttributesApiInterface
-     */
-    getAttributeRaw(requestParameters: GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttribute>>;
+    * 
+    * @summary Get product attribute
+    * @param {string} attributeFQN 
+    * @param {string} [responseGroups] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductAttributesApiInterface
+    */
+    getAttributeRaw(requestParameters: productAttributesApiParams.GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttribute>>;
 
     /**
-     * 
-     * Get product attribute
-     */
-    getAttribute(requestParameters: GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttribute>;
+    * 
+    * Get product attribute
+    */
+    getAttribute(requestParameters: productAttributesApiParams.GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttribute>;
 
     /**
-     * 
-     * @summary Get product attribute localized content
-     * @param {string} attributeFQN 
-     * @param {string} localeCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductAttributesApiInterface
-     */
-    getAttributeLocalizedContentRaw(requestParameters: GetAttributeLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeLocalizedContent>>;
+    * 
+    * @summary Get product attribute localized content
+    * @param {string} attributeFQN 
+    * @param {string} localeCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductAttributesApiInterface
+    */
+    getAttributeLocalizedContentRaw(requestParameters: productAttributesApiParams.GetAttributeLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeLocalizedContent>>;
 
     /**
-     * 
-     * Get product attribute localized content
-     */
-    getAttributeLocalizedContent(requestParameters: GetAttributeLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeLocalizedContent>;
+    * 
+    * Get product attribute localized content
+    */
+    getAttributeLocalizedContent(requestParameters: productAttributesApiParams.GetAttributeLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeLocalizedContent>;
 
     /**
-     * 
-     * @summary Get product attribute localized contents
-     * @param {string} attributeFQN 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductAttributesApiInterface
-     */
-    getAttributeLocalizedContentsRaw(requestParameters: GetAttributeLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsAttributeLocalizedContent>>>;
+    * 
+    * @summary Get product attribute localized contents
+    * @param {string} attributeFQN 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductAttributesApiInterface
+    */
+    getAttributeLocalizedContentsRaw(requestParameters: productAttributesApiParams.GetAttributeLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsAttributeLocalizedContent>>>;
 
     /**
-     * 
-     * Get product attribute localized contents
-     */
-    getAttributeLocalizedContents(requestParameters: GetAttributeLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsAttributeLocalizedContent>>;
+    * 
+    * Get product attribute localized contents
+    */
+    getAttributeLocalizedContents(requestParameters: productAttributesApiParams.GetAttributeLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsAttributeLocalizedContent>>;
 
     /**
-     * Retrieves a paged list of attribute type rules according to any specified filter criteria and sort options.
-     * @summary Get attribute type rules
-     * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
-     * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
-     * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
-     * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductAttributesApiInterface
-     */
-    getAttributeTypeRulesRaw(requestParameters: GetAttributeTypeRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeTypeRuleCollection>>;
+    * Retrieves a paged list of attribute type rules according to any specified filter criteria and sort options.
+    * @summary Get attribute type rules
+    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
+    * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+    * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+    * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductAttributesApiInterface
+    */
+    getAttributeTypeRulesRaw(requestParameters: productAttributesApiParams.GetAttributeTypeRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeTypeRuleCollection>>;
 
     /**
-     * Retrieves a paged list of attribute type rules according to any specified filter criteria and sort options.
-     * Get attribute type rules
-     */
-    getAttributeTypeRules(requestParameters: GetAttributeTypeRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeTypeRuleCollection>;
+    * Retrieves a paged list of attribute type rules according to any specified filter criteria and sort options.
+    * Get attribute type rules
+    */
+    getAttributeTypeRules(requestParameters: productAttributesApiParams.GetAttributeTypeRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeTypeRuleCollection>;
 
     /**
-     * 
-     * @summary Get product attribute vocabulary value
-     * @param {string} attributeFQN 
-     * @param {string} value 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductAttributesApiInterface
-     */
-    getAttributeVocabularyValueRaw(requestParameters: GetAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeVocabularyValue>>;
+    * 
+    * @summary Get product attribute vocabulary value
+    * @param {string} attributeFQN 
+    * @param {string} value 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductAttributesApiInterface
+    */
+    getAttributeVocabularyValueRaw(requestParameters: productAttributesApiParams.GetAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeVocabularyValue>>;
 
     /**
-     * 
-     * Get product attribute vocabulary value
-     */
-    getAttributeVocabularyValue(requestParameters: GetAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeVocabularyValue>;
+    * 
+    * Get product attribute vocabulary value
+    */
+    getAttributeVocabularyValue(requestParameters: productAttributesApiParams.GetAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeVocabularyValue>;
 
     /**
-     * 
-     * @summary Get product attribute vocabulary value localized content
-     * @param {string} attributeFQN 
-     * @param {string} value 
-     * @param {string} localeCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductAttributesApiInterface
-     */
-    getAttributeVocabularyValueLocalizedContentRaw(requestParameters: GetAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeVocabularyValueLocalizedContent>>;
+    * 
+    * @summary Get product attribute vocabulary value localized content
+    * @param {string} attributeFQN 
+    * @param {string} value 
+    * @param {string} localeCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductAttributesApiInterface
+    */
+    getAttributeVocabularyValueLocalizedContentRaw(requestParameters: productAttributesApiParams.GetAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeVocabularyValueLocalizedContent>>;
 
     /**
-     * 
-     * Get product attribute vocabulary value localized content
-     */
-    getAttributeVocabularyValueLocalizedContent(requestParameters: GetAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeVocabularyValueLocalizedContent>;
+    * 
+    * Get product attribute vocabulary value localized content
+    */
+    getAttributeVocabularyValueLocalizedContent(requestParameters: productAttributesApiParams.GetAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeVocabularyValueLocalizedContent>;
 
     /**
-     * 
-     * @summary Get product attribute vocabulary value localized content
-     * @param {string} attributeFQN 
-     * @param {string} value 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductAttributesApiInterface
-     */
-    getAttributeVocabularyValueLocalizedContentsRaw(requestParameters: GetAttributeVocabularyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeVocabularyValueLocalizedContent>>>;
+    * 
+    * @summary Get product attribute vocabulary value localized content
+    * @param {string} attributeFQN 
+    * @param {string} value 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductAttributesApiInterface
+    */
+    getAttributeVocabularyValueLocalizedContentsRaw(requestParameters: productAttributesApiParams.GetAttributeVocabularyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeVocabularyValueLocalizedContent>>>;
 
     /**
-     * 
-     * Get product attribute vocabulary value localized content
-     */
-    getAttributeVocabularyValueLocalizedContents(requestParameters: GetAttributeVocabularyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeVocabularyValueLocalizedContent>>;
+    * 
+    * Get product attribute vocabulary value localized content
+    */
+    getAttributeVocabularyValueLocalizedContents(requestParameters: productAttributesApiParams.GetAttributeVocabularyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeVocabularyValueLocalizedContent>>;
 
     /**
-     * 
-     * @summary Get product attribute vocabulary values
-     * @param {string} attributeFQN 
-     * @param {string} [responseGroups] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductAttributesApiInterface
-     */
-    getAttributeVocabularyValuesRaw(requestParameters: GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsAttributeVocabularyValue>>>;
+    * 
+    * @summary Get product attribute vocabulary values
+    * @param {string} attributeFQN 
+    * @param {string} [responseGroups] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductAttributesApiInterface
+    */
+    getAttributeVocabularyValuesRaw(requestParameters: productAttributesApiParams.GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsAttributeVocabularyValue>>>;
 
     /**
-     * 
-     * Get product attribute vocabulary values
-     */
-    getAttributeVocabularyValues(requestParameters: GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsAttributeVocabularyValue>>;
+    * 
+    * Get product attribute vocabulary values
+    */
+    getAttributeVocabularyValues(requestParameters: productAttributesApiParams.GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsAttributeVocabularyValue>>;
 
     /**
-     * Get product attributes
-     * @summary Get product attributes
-     * @param {number} [startIndex] 
-     * @param {number} [pageSize] 
-     * @param {string} [sortBy] 
-     * @param {string} [filter] 
-     * @param {string} [responseGroups] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductAttributesApiInterface
-     */
-    getAttributesRaw(requestParameters: GetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeCollection>>;
+    * Get product attributes
+    * @summary Get product attributes
+    * @param {number} [startIndex] 
+    * @param {number} [pageSize] 
+    * @param {string} [sortBy] 
+    * @param {string} [filter] 
+    * @param {string} [responseGroups] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductAttributesApiInterface
+    */
+    getAttributesRaw(requestParameters: productAttributesApiParams.GetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeCollection>>;
 
     /**
-     * Get product attributes
-     * Get product attributes
-     */
-    getAttributes(requestParameters: GetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeCollection>;
+    * Get product attributes
+    * Get product attributes
+    */
+    getAttributes(requestParameters: productAttributesApiParams.GetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeCollection>;
 
     /**
-     * 
-     * @summary Update a product attribute
-     * @param {string} attributeFQN 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CatalogAdminsAttribute} [catalogAdminsAttribute] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductAttributesApiInterface
-     */
-    updateAttributeRaw(requestParameters: UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttribute>>;
+    * 
+    * @summary Update a product attribute
+    * @param {string} attributeFQN 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CatalogAdminsAttribute} [catalogAdminsAttribute] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductAttributesApiInterface
+    */
+    updateAttributeRaw(requestParameters: productAttributesApiParams.UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttribute>>;
 
     /**
-     * 
-     * Update a product attribute
-     */
-    updateAttribute(requestParameters: UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttribute>;
+    * 
+    * Update a product attribute
+    */
+    updateAttribute(requestParameters: productAttributesApiParams.UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttribute>;
 
     /**
-     * 
-     * @summary Update product attribute vocabulary value
-     * @param {string} attributeFQN 
-     * @param {string} value 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CatalogAdminsAttributeVocabularyValue} [catalogAdminsAttributeVocabularyValue] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductAttributesApiInterface
-     */
-    updateAttributeVocabularyValueRaw(requestParameters: UpdateAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeVocabularyValue>>;
+    * 
+    * @summary Update product attribute vocabulary value
+    * @param {string} attributeFQN 
+    * @param {string} value 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CatalogAdminsAttributeVocabularyValue} [catalogAdminsAttributeVocabularyValue] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductAttributesApiInterface
+    */
+    updateAttributeVocabularyValueRaw(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeVocabularyValue>>;
 
     /**
-     * 
-     * Update product attribute vocabulary value
-     */
-    updateAttributeVocabularyValue(requestParameters: UpdateAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeVocabularyValue>;
+    * 
+    * Update product attribute vocabulary value
+    */
+    updateAttributeVocabularyValue(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeVocabularyValue>;
 
     /**
-     * 
-     * @summary Update product attribute vocabulary value localized content
-     * @param {string} attributeFQN 
-     * @param {string} value 
-     * @param {string} localeCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {AttributeVocabularyValueLocalizedContent} [attributeVocabularyValueLocalizedContent] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductAttributesApiInterface
-     */
-    updateAttributeVocabularyValueLocalizedContentRaw(requestParameters: UpdateAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeVocabularyValueLocalizedContent>>;
+    * 
+    * @summary Update product attribute vocabulary value localized content
+    * @param {string} attributeFQN 
+    * @param {string} value 
+    * @param {string} localeCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {AttributeVocabularyValueLocalizedContent} [attributeVocabularyValueLocalizedContent] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductAttributesApiInterface
+    */
+    updateAttributeVocabularyValueLocalizedContentRaw(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeVocabularyValueLocalizedContent>>;
 
     /**
-     * 
-     * Update product attribute vocabulary value localized content
-     */
-    updateAttributeVocabularyValueLocalizedContent(requestParameters: UpdateAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeVocabularyValueLocalizedContent>;
+    * 
+    * Update product attribute vocabulary value localized content
+    */
+    updateAttributeVocabularyValueLocalizedContent(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeVocabularyValueLocalizedContent>;
 
     /**
-     * 
-     * @summary Update product attribute vocabulary value localized content
-     * @param {string} attributeFQN 
-     * @param {string} value 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Array<AttributeVocabularyValueLocalizedContent>} [attributeVocabularyValueLocalizedContent] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductAttributesApiInterface
-     */
-    updateAttributeVocabularyValueLocalizedContentsRaw(requestParameters: UpdateAttributeVocabularyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeVocabularyValueLocalizedContent>>>;
+    * 
+    * @summary Update product attribute vocabulary value localized content
+    * @param {string} attributeFQN 
+    * @param {string} value 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<AttributeVocabularyValueLocalizedContent>} [attributeVocabularyValueLocalizedContent] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductAttributesApiInterface
+    */
+    updateAttributeVocabularyValueLocalizedContentsRaw(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeVocabularyValueLocalizedContent>>>;
 
     /**
-     * 
-     * Update product attribute vocabulary value localized content
-     */
-    updateAttributeVocabularyValueLocalizedContents(requestParameters: UpdateAttributeVocabularyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeVocabularyValueLocalizedContent>>;
+    * 
+    * Update product attribute vocabulary value localized content
+    */
+    updateAttributeVocabularyValueLocalizedContents(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeVocabularyValueLocalizedContent>>;
 
     /**
-     * 
-     * @summary Update product attribute vocabulary values
-     * @param {string} attributeFQN 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Array<CatalogAdminsAttributeVocabularyValue>} [catalogAdminsAttributeVocabularyValue] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductAttributesApiInterface
-     */
-    updateAttributeVocabularyValuesRaw(requestParameters: UpdateAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsAttributeVocabularyValue>>>;
+    * 
+    * @summary Update product attribute vocabulary values
+    * @param {string} attributeFQN 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<CatalogAdminsAttributeVocabularyValue>} [catalogAdminsAttributeVocabularyValue] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductAttributesApiInterface
+    */
+    updateAttributeVocabularyValuesRaw(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsAttributeVocabularyValue>>>;
 
     /**
-     * 
-     * Update product attribute vocabulary values
-     */
-    updateAttributeVocabularyValues(requestParameters: UpdateAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsAttributeVocabularyValue>>;
+    * 
+    * Update product attribute vocabulary values
+    */
+    updateAttributeVocabularyValues(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsAttributeVocabularyValue>>;
 
     /**
-     * 
-     * @summary Update product attribute localized content
-     * @param {string} attributeFQN 
-     * @param {string} localeCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CatalogAdminsAttributeLocalizedContent} [catalogAdminsAttributeLocalizedContent] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductAttributesApiInterface
-     */
-    updateLocalizedContentRaw(requestParameters: UpdateLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeLocalizedContent>>;
+    * 
+    * @summary Update product attribute localized content
+    * @param {string} attributeFQN 
+    * @param {string} localeCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CatalogAdminsAttributeLocalizedContent} [catalogAdminsAttributeLocalizedContent] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductAttributesApiInterface
+    */
+    updateLocalizedContentRaw(requestParameters: productAttributesApiParams.UpdateLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeLocalizedContent>>;
 
     /**
-     * 
-     * Update product attribute localized content
-     */
-    updateLocalizedContent(requestParameters: UpdateLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeLocalizedContent>;
+    * 
+    * Update product attribute localized content
+    */
+    updateLocalizedContent(requestParameters: productAttributesApiParams.UpdateLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeLocalizedContent>;
 
     /**
-     * 
-     * @summary Update product attribute localized content
-     * @param {string} attributeFQN 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Array<CatalogAdminsAttributeLocalizedContent>} [catalogAdminsAttributeLocalizedContent] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductAttributesApiInterface
-     */
-    updateLocalizedContentsRaw(requestParameters: UpdateLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsAttributeLocalizedContent>>>;
+    * 
+    * @summary Update product attribute localized content
+    * @param {string} attributeFQN 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<CatalogAdminsAttributeLocalizedContent>} [catalogAdminsAttributeLocalizedContent] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductAttributesApiInterface
+    */
+    updateLocalizedContentsRaw(requestParameters: productAttributesApiParams.UpdateLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsAttributeLocalizedContent>>>;
 
     /**
-     * 
-     * Update product attribute localized content
-     */
-    updateLocalizedContents(requestParameters: UpdateLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsAttributeLocalizedContent>>;
+    * 
+    * Update product attribute localized content
+    */
+    updateLocalizedContents(requestParameters: productAttributesApiParams.UpdateLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsAttributeLocalizedContent>>;
 
 }
+
 
 /**
  * 
  */
-export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttributesApiInterface {
+export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttributesApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -635,7 +615,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      */
 
 
-    async addAttributeRaw(requestParameters: AddAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttribute>> {
+    async addAttributeRaw(requestParameters: productAttributesApiParams.AddAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttribute>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -667,7 +647,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      * Add / Create Attribute
      * Add a product attribute
      */
-    async addAttribute(requestParameters: AddAttributeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttribute> {
+    async addAttribute(requestParameters: productAttributesApiParams.AddAttributeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttribute> {
         const response = await this.addAttributeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -678,7 +658,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      */
 
 
-    async addAttributeVocabularyValueRaw(requestParameters: AddAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeVocabularyValue>> {
+    async addAttributeVocabularyValueRaw(requestParameters: productAttributesApiParams.AddAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeVocabularyValue>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling addAttributeVocabularyValue.');
         }
@@ -714,7 +694,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      * Add product attribute vocabulary value
      * Add product attribute vocabulary value
      */
-    async addAttributeVocabularyValue(requestParameters: AddAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeVocabularyValue> {
+    async addAttributeVocabularyValue(requestParameters: productAttributesApiParams.AddAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeVocabularyValue> {
         const response = await this.addAttributeVocabularyValueRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -725,7 +705,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      */
 
 
-    async addAttributeVocabularyValueLocalizedContentRaw(requestParameters: AddAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeVocabularyValueLocalizedContent>> {
+    async addAttributeVocabularyValueLocalizedContentRaw(requestParameters: productAttributesApiParams.AddAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeVocabularyValueLocalizedContent>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling addAttributeVocabularyValueLocalizedContent.');
         }
@@ -765,7 +745,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      * 
      * Add product attribute vocabulary value
      */
-    async addAttributeVocabularyValueLocalizedContent(requestParameters: AddAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeVocabularyValueLocalizedContent> {
+    async addAttributeVocabularyValueLocalizedContent(requestParameters: productAttributesApiParams.AddAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeVocabularyValueLocalizedContent> {
         const response = await this.addAttributeVocabularyValueLocalizedContentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -776,7 +756,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      */
 
 
-    async addLocalizedContentRaw(requestParameters: AddLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeLocalizedContent>> {
+    async addLocalizedContentRaw(requestParameters: productAttributesApiParams.AddLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeLocalizedContent>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling addLocalizedContent.');
         }
@@ -812,7 +792,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      * 
      * Add product attribute localized content
      */
-    async addLocalizedContent(requestParameters: AddLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeLocalizedContent> {
+    async addLocalizedContent(requestParameters: productAttributesApiParams.AddLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeLocalizedContent> {
         const response = await this.addLocalizedContentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -823,7 +803,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      */
 
 
-    async deleteAttributeRaw(requestParameters: DeleteAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteAttributeRaw(requestParameters: productAttributesApiParams.DeleteAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling deleteAttribute.');
         }
@@ -852,7 +832,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      * 
      * Delete product attribute
      */
-    async deleteAttribute(requestParameters: DeleteAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteAttribute(requestParameters: productAttributesApiParams.DeleteAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteAttributeRaw(requestParameters, initOverrides);
     }
 
@@ -862,7 +842,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      */
 
 
-    async deleteAttributeVocabularyValueRaw(requestParameters: DeleteAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteAttributeVocabularyValueRaw(requestParameters: productAttributesApiParams.DeleteAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling deleteAttributeVocabularyValue.');
         }
@@ -895,7 +875,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      * 
      * Delete product attribute vocabulary value
      */
-    async deleteAttributeVocabularyValue(requestParameters: DeleteAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteAttributeVocabularyValue(requestParameters: productAttributesApiParams.DeleteAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteAttributeVocabularyValueRaw(requestParameters, initOverrides);
     }
 
@@ -905,7 +885,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      */
 
 
-    async deleteAttributeVocabularyValueLocalizedContentRaw(requestParameters: DeleteAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteAttributeVocabularyValueLocalizedContentRaw(requestParameters: productAttributesApiParams.DeleteAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling deleteAttributeVocabularyValueLocalizedContent.');
         }
@@ -942,7 +922,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      * 
      * Delete product attribute vocabulary value localized content
      */
-    async deleteAttributeVocabularyValueLocalizedContent(requestParameters: DeleteAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteAttributeVocabularyValueLocalizedContent(requestParameters: productAttributesApiParams.DeleteAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteAttributeVocabularyValueLocalizedContentRaw(requestParameters, initOverrides);
     }
 
@@ -952,7 +932,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      */
 
 
-    async deleteLocalizedContentRaw(requestParameters: DeleteLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteLocalizedContentRaw(requestParameters: productAttributesApiParams.DeleteLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling deleteLocalizedContent.');
         }
@@ -985,7 +965,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      * 
      * Delete product attribute localized content
      */
-    async deleteLocalizedContent(requestParameters: DeleteLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteLocalizedContent(requestParameters: productAttributesApiParams.DeleteLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteLocalizedContentRaw(requestParameters, initOverrides);
     }
 
@@ -995,7 +975,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      */
 
 
-    async getAttributeRaw(requestParameters: GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttribute>> {
+    async getAttributeRaw(requestParameters: productAttributesApiParams.GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttribute>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling getAttribute.');
         }
@@ -1032,7 +1012,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      * 
      * Get product attribute
      */
-    async getAttribute(requestParameters: GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttribute> {
+    async getAttribute(requestParameters: productAttributesApiParams.GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttribute> {
         const response = await this.getAttributeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1043,7 +1023,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      */
 
 
-    async getAttributeLocalizedContentRaw(requestParameters: GetAttributeLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeLocalizedContent>> {
+    async getAttributeLocalizedContentRaw(requestParameters: productAttributesApiParams.GetAttributeLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeLocalizedContent>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling getAttributeLocalizedContent.');
         }
@@ -1080,7 +1060,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      * 
      * Get product attribute localized content
      */
-    async getAttributeLocalizedContent(requestParameters: GetAttributeLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeLocalizedContent> {
+    async getAttributeLocalizedContent(requestParameters: productAttributesApiParams.GetAttributeLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeLocalizedContent> {
         const response = await this.getAttributeLocalizedContentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1091,7 +1071,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      */
 
 
-    async getAttributeLocalizedContentsRaw(requestParameters: GetAttributeLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsAttributeLocalizedContent>>> {
+    async getAttributeLocalizedContentsRaw(requestParameters: productAttributesApiParams.GetAttributeLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsAttributeLocalizedContent>>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling getAttributeLocalizedContents.');
         }
@@ -1124,7 +1104,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      * 
      * Get product attribute localized contents
      */
-    async getAttributeLocalizedContents(requestParameters: GetAttributeLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsAttributeLocalizedContent>> {
+    async getAttributeLocalizedContents(requestParameters: productAttributesApiParams.GetAttributeLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsAttributeLocalizedContent>> {
         const response = await this.getAttributeLocalizedContentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1135,7 +1115,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      */
 
 
-    async getAttributeTypeRulesRaw(requestParameters: GetAttributeTypeRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeTypeRuleCollection>> {
+    async getAttributeTypeRulesRaw(requestParameters: productAttributesApiParams.GetAttributeTypeRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeTypeRuleCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -1180,7 +1160,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      * Retrieves a paged list of attribute type rules according to any specified filter criteria and sort options.
      * Get attribute type rules
      */
-    async getAttributeTypeRules(requestParameters: GetAttributeTypeRulesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeTypeRuleCollection> {
+    async getAttributeTypeRules(requestParameters: productAttributesApiParams.GetAttributeTypeRulesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeTypeRuleCollection> {
         const response = await this.getAttributeTypeRulesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1191,7 +1171,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      */
 
 
-    async getAttributeVocabularyValueRaw(requestParameters: GetAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeVocabularyValue>> {
+    async getAttributeVocabularyValueRaw(requestParameters: productAttributesApiParams.GetAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeVocabularyValue>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling getAttributeVocabularyValue.');
         }
@@ -1228,7 +1208,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      * 
      * Get product attribute vocabulary value
      */
-    async getAttributeVocabularyValue(requestParameters: GetAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeVocabularyValue> {
+    async getAttributeVocabularyValue(requestParameters: productAttributesApiParams.GetAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeVocabularyValue> {
         const response = await this.getAttributeVocabularyValueRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1239,7 +1219,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      */
 
 
-    async getAttributeVocabularyValueLocalizedContentRaw(requestParameters: GetAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeVocabularyValueLocalizedContent>> {
+    async getAttributeVocabularyValueLocalizedContentRaw(requestParameters: productAttributesApiParams.GetAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeVocabularyValueLocalizedContent>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling getAttributeVocabularyValueLocalizedContent.');
         }
@@ -1280,7 +1260,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      * 
      * Get product attribute vocabulary value localized content
      */
-    async getAttributeVocabularyValueLocalizedContent(requestParameters: GetAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeVocabularyValueLocalizedContent> {
+    async getAttributeVocabularyValueLocalizedContent(requestParameters: productAttributesApiParams.GetAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeVocabularyValueLocalizedContent> {
         const response = await this.getAttributeVocabularyValueLocalizedContentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1291,7 +1271,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      */
 
 
-    async getAttributeVocabularyValueLocalizedContentsRaw(requestParameters: GetAttributeVocabularyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeVocabularyValueLocalizedContent>>> {
+    async getAttributeVocabularyValueLocalizedContentsRaw(requestParameters: productAttributesApiParams.GetAttributeVocabularyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeVocabularyValueLocalizedContent>>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling getAttributeVocabularyValueLocalizedContents.');
         }
@@ -1328,7 +1308,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      * 
      * Get product attribute vocabulary value localized content
      */
-    async getAttributeVocabularyValueLocalizedContents(requestParameters: GetAttributeVocabularyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeVocabularyValueLocalizedContent>> {
+    async getAttributeVocabularyValueLocalizedContents(requestParameters: productAttributesApiParams.GetAttributeVocabularyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeVocabularyValueLocalizedContent>> {
         const response = await this.getAttributeVocabularyValueLocalizedContentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1339,7 +1319,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      */
 
 
-    async getAttributeVocabularyValuesRaw(requestParameters: GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsAttributeVocabularyValue>>> {
+    async getAttributeVocabularyValuesRaw(requestParameters: productAttributesApiParams.GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsAttributeVocabularyValue>>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling getAttributeVocabularyValues.');
         }
@@ -1376,7 +1356,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      * 
      * Get product attribute vocabulary values
      */
-    async getAttributeVocabularyValues(requestParameters: GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsAttributeVocabularyValue>> {
+    async getAttributeVocabularyValues(requestParameters: productAttributesApiParams.GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsAttributeVocabularyValue>> {
         const response = await this.getAttributeVocabularyValuesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1387,7 +1367,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      */
 
 
-    async getAttributesRaw(requestParameters: GetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeCollection>> {
+    async getAttributesRaw(requestParameters: productAttributesApiParams.GetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -1436,7 +1416,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      * Get product attributes
      * Get product attributes
      */
-    async getAttributes(requestParameters: GetAttributesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeCollection> {
+    async getAttributes(requestParameters: productAttributesApiParams.GetAttributesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeCollection> {
         const response = await this.getAttributesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1447,7 +1427,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      */
 
 
-    async updateAttributeRaw(requestParameters: UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttribute>> {
+    async updateAttributeRaw(requestParameters: productAttributesApiParams.UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttribute>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling updateAttribute.');
         }
@@ -1483,7 +1463,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      * 
      * Update a product attribute
      */
-    async updateAttribute(requestParameters: UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttribute> {
+    async updateAttribute(requestParameters: productAttributesApiParams.UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttribute> {
         const response = await this.updateAttributeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1494,7 +1474,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      */
 
 
-    async updateAttributeVocabularyValueRaw(requestParameters: UpdateAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeVocabularyValue>> {
+    async updateAttributeVocabularyValueRaw(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeVocabularyValue>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling updateAttributeVocabularyValue.');
         }
@@ -1534,7 +1514,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      * 
      * Update product attribute vocabulary value
      */
-    async updateAttributeVocabularyValue(requestParameters: UpdateAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeVocabularyValue> {
+    async updateAttributeVocabularyValue(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeVocabularyValue> {
         const response = await this.updateAttributeVocabularyValueRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1545,7 +1525,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      */
 
 
-    async updateAttributeVocabularyValueLocalizedContentRaw(requestParameters: UpdateAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeVocabularyValueLocalizedContent>> {
+    async updateAttributeVocabularyValueLocalizedContentRaw(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeVocabularyValueLocalizedContent>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling updateAttributeVocabularyValueLocalizedContent.');
         }
@@ -1589,7 +1569,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      * 
      * Update product attribute vocabulary value localized content
      */
-    async updateAttributeVocabularyValueLocalizedContent(requestParameters: UpdateAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeVocabularyValueLocalizedContent> {
+    async updateAttributeVocabularyValueLocalizedContent(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeVocabularyValueLocalizedContent> {
         const response = await this.updateAttributeVocabularyValueLocalizedContentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1600,7 +1580,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      */
 
 
-    async updateAttributeVocabularyValueLocalizedContentsRaw(requestParameters: UpdateAttributeVocabularyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeVocabularyValueLocalizedContent>>> {
+    async updateAttributeVocabularyValueLocalizedContentsRaw(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeVocabularyValueLocalizedContent>>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling updateAttributeVocabularyValueLocalizedContents.');
         }
@@ -1640,7 +1620,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      * 
      * Update product attribute vocabulary value localized content
      */
-    async updateAttributeVocabularyValueLocalizedContents(requestParameters: UpdateAttributeVocabularyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeVocabularyValueLocalizedContent>> {
+    async updateAttributeVocabularyValueLocalizedContents(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeVocabularyValueLocalizedContent>> {
         const response = await this.updateAttributeVocabularyValueLocalizedContentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1651,7 +1631,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      */
 
 
-    async updateAttributeVocabularyValuesRaw(requestParameters: UpdateAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsAttributeVocabularyValue>>> {
+    async updateAttributeVocabularyValuesRaw(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsAttributeVocabularyValue>>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling updateAttributeVocabularyValues.');
         }
@@ -1687,7 +1667,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      * 
      * Update product attribute vocabulary values
      */
-    async updateAttributeVocabularyValues(requestParameters: UpdateAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsAttributeVocabularyValue>> {
+    async updateAttributeVocabularyValues(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsAttributeVocabularyValue>> {
         const response = await this.updateAttributeVocabularyValuesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1698,7 +1678,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      */
 
 
-    async updateLocalizedContentRaw(requestParameters: UpdateLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeLocalizedContent>> {
+    async updateLocalizedContentRaw(requestParameters: productAttributesApiParams.UpdateLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeLocalizedContent>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling updateLocalizedContent.');
         }
@@ -1738,7 +1718,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      * 
      * Update product attribute localized content
      */
-    async updateLocalizedContent(requestParameters: UpdateLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeLocalizedContent> {
+    async updateLocalizedContent(requestParameters: productAttributesApiParams.UpdateLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeLocalizedContent> {
         const response = await this.updateLocalizedContentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1749,7 +1729,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      */
 
 
-    async updateLocalizedContentsRaw(requestParameters: UpdateLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsAttributeLocalizedContent>>> {
+    async updateLocalizedContentsRaw(requestParameters: productAttributesApiParams.UpdateLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsAttributeLocalizedContent>>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling updateLocalizedContents.');
         }
@@ -1785,7 +1765,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
      * 
      * Update product attribute localized content
      */
-    async updateLocalizedContents(requestParameters: UpdateLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsAttributeLocalizedContent>> {
+    async updateLocalizedContents(requestParameters: productAttributesApiParams.UpdateLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsAttributeLocalizedContent>> {
         const response = await this.updateLocalizedContentsRaw(requestParameters, initOverrides);
         return await response.value();
     }

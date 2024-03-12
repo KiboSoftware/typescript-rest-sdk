@@ -19,65 +19,67 @@ import type {
   DiscountSettings,
 } from '../models';
 
-export interface GetDiscountSettingsRequest {
-    catalogId: number;
-    responseFields?: string;
+
+export namespace discountSettingsApiParams { 
+    export interface GetDiscountSettingsRequest {
+        catalogId: number;
+        responseFields?: string;
+    }
+    export interface UpdateDiscountSettingsRequest {
+        catalogId: number;
+        responseFields?: string;
+        discountSettings?: DiscountSettings;
+    }
+}
+/**
+* DiscountSettingsApiService - interface
+* 
+* @export
+* @interface DiscountSettingsApi
+*/
+export interface DiscountSettingsApiService {
+    /**
+    * 
+    * @summary Get discount settings
+    * @param {number} catalogId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DiscountSettingsApiInterface
+    */
+    getDiscountSettingsRaw(requestParameters: discountSettingsApiParams.GetDiscountSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountSettings>>;
+
+    /**
+    * 
+    * Get discount settings
+    */
+    getDiscountSettings(requestParameters: discountSettingsApiParams.GetDiscountSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountSettings>;
+
+    /**
+    * 
+    * @summary Update discount settings
+    * @param {number} catalogId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {DiscountSettings} [discountSettings] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DiscountSettingsApiInterface
+    */
+    updateDiscountSettingsRaw(requestParameters: discountSettingsApiParams.UpdateDiscountSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountSettings>>;
+
+    /**
+    * 
+    * Update discount settings
+    */
+    updateDiscountSettings(requestParameters: discountSettingsApiParams.UpdateDiscountSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountSettings>;
+
 }
 
-export interface UpdateDiscountSettingsRequest {
-    catalogId: number;
-    responseFields?: string;
-    discountSettings?: DiscountSettings;
-}
 
 /**
- * DiscountSettingsApi - interface
- * 
- * @export
- * @interface DiscountSettingsApiInterface
- */
-export interface DiscountSettingsApiInterface {
-    /**
-     * 
-     * @summary Get discount settings
-     * @param {number} catalogId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DiscountSettingsApiInterface
-     */
-    getDiscountSettingsRaw(requestParameters: GetDiscountSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountSettings>>;
-
-    /**
-     * 
-     * Get discount settings
-     */
-    getDiscountSettings(requestParameters: GetDiscountSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountSettings>;
-
-    /**
-     * 
-     * @summary Update discount settings
-     * @param {number} catalogId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {DiscountSettings} [discountSettings] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DiscountSettingsApiInterface
-     */
-    updateDiscountSettingsRaw(requestParameters: UpdateDiscountSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountSettings>>;
-
-    /**
-     * 
-     * Update discount settings
-     */
-    updateDiscountSettings(requestParameters: UpdateDiscountSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountSettings>;
-
-}
-
-/**
  * 
  */
-export class DiscountSettingsApi extends runtime.BaseAPI implements DiscountSettingsApiInterface {
+export class DiscountSettingsApi extends runtime.BaseAPI implements DiscountSettingsApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -88,7 +90,7 @@ export class DiscountSettingsApi extends runtime.BaseAPI implements DiscountSett
      */
 
 
-    async getDiscountSettingsRaw(requestParameters: GetDiscountSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountSettings>> {
+    async getDiscountSettingsRaw(requestParameters: discountSettingsApiParams.GetDiscountSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountSettings>> {
         if (requestParameters.catalogId === null || requestParameters.catalogId === undefined) {
             throw new runtime.RequiredError('catalogId','Required parameter requestParameters.catalogId was null or undefined when calling getDiscountSettings.');
         }
@@ -121,7 +123,7 @@ export class DiscountSettingsApi extends runtime.BaseAPI implements DiscountSett
      * 
      * Get discount settings
      */
-    async getDiscountSettings(requestParameters: GetDiscountSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountSettings> {
+    async getDiscountSettings(requestParameters: discountSettingsApiParams.GetDiscountSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountSettings> {
         const response = await this.getDiscountSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -132,7 +134,7 @@ export class DiscountSettingsApi extends runtime.BaseAPI implements DiscountSett
      */
 
 
-    async updateDiscountSettingsRaw(requestParameters: UpdateDiscountSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountSettings>> {
+    async updateDiscountSettingsRaw(requestParameters: discountSettingsApiParams.UpdateDiscountSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountSettings>> {
         if (requestParameters.catalogId === null || requestParameters.catalogId === undefined) {
             throw new runtime.RequiredError('catalogId','Required parameter requestParameters.catalogId was null or undefined when calling updateDiscountSettings.');
         }
@@ -168,7 +170,7 @@ export class DiscountSettingsApi extends runtime.BaseAPI implements DiscountSett
      * 
      * Update discount settings
      */
-    async updateDiscountSettings(requestParameters: UpdateDiscountSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountSettings> {
+    async updateDiscountSettings(requestParameters: discountSettingsApiParams.UpdateDiscountSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountSettings> {
         const response = await this.updateDiscountSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }

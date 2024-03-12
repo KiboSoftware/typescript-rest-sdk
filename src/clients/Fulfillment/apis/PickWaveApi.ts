@@ -25,245 +25,225 @@ import type {
   EntityModelOfRenderedContent,
 } from '../models';
 
-export interface ClosePickWaveUsingPUTRequest {
-    pickWaveNumber: number;
-    xVolTenant: number;
-    closePickWaveDto: ClosePickWave;
-    xVolSite?: number;
-    responseFields?: string;
-}
 
-export interface CreatePickWaveUsingPOSTRequest {
-    xVolTenant: number;
-    createPickWaveDto: CreatePickWave;
-    xVolSite?: number;
-    responseFields?: string;
+export namespace pickWaveApiParams { 
+    export interface ClosePickWaveRequest {
+        pickWaveNumber: number;
+        xVolTenant: number;
+        closePickWaveDto: ClosePickWave;
+        xVolSite?: number;
+    }
+    export interface CreatePickWaveRequest {
+        xVolTenant: number;
+        createPickWaveDto: CreatePickWave;
+        xVolSite?: number;
+    }
+    export interface GetOpenPickWavesRequest {
+        fulfillmentLocationCode: string;
+        xVolTenant: number;
+        shipmentType?: string;
+        userDisplayName?: string;
+        userId?: string;
+        xVolSite?: number;
+    }
+    export interface GetPickWaveRequest {
+        pickWaveNumber: number;
+        xVolTenant: number;
+        sortContents?: string;
+        xVolSite?: number;
+    }
+    export interface GetPickWaveDetailsRequest {
+        pickWaveNumber: number;
+        xVolTenant: number;
+        sortContentsByLocator?: string;
+        xVolSite?: number;
+    }
+    export interface GetShipmentsInPickWaveRequest {
+        pickWaveNumber: number;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface RenderOrderPickSheetsRequest {
+        pickWaveNumber: number;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface RenderPickWaveRequest {
+        pickWaveNumber: number;
+        xVolTenant: number;
+        printPackingLists?: boolean;
+        printPickWave?: boolean;
+        printSingleOrderSheets?: boolean;
+        xVolSite?: number;
+    }
 }
-
-export interface GetOpenPickWavesUsingGETRequest {
-    fulfillmentLocationCode: string;
-    xVolTenant: number;
-    shipmentType?: string;
-    userDisplayName?: string;
-    userId?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface GetPickWaveDetailsUsingGETRequest {
-    pickWaveNumber: number;
-    xVolTenant: number;
-    sortContentsByLocator?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface GetPickWaveUsingGETRequest {
-    pickWaveNumber: number;
-    xVolTenant: number;
-    sortContents?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface GetShipmentsInPickWaveUsingGETRequest {
-    pickWaveNumber: number;
-    xVolTenant: number;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface RenderOrderPickSheetsUsingGETRequest {
-    pickWaveNumber: number;
-    xVolTenant: number;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface RenderPickWaveUsingGETRequest {
-    pickWaveNumber: number;
-    xVolTenant: number;
-    printPackingLists?: boolean;
-    printPickWave?: boolean;
-    printSingleOrderSheets?: boolean;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
 /**
- * PickWaveApi - interface
- * 
- * @export
- * @interface PickWaveApiInterface
- */
-export interface PickWaveApiInterface {
+* PickWaveApiService - interface
+* 
+* @export
+* @interface PickWaveApi
+*/
+export interface PickWaveApiService {
     /**
-     * closePickWave
-     * @summary closePickWave
-     * @param {number} pickWaveNumber pickWaveNumber
-     * @param {number} xVolTenant 
-     * @param {ClosePickWave} closePickWaveDto closePickWaveDto
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PickWaveApiInterface
-     */
-    closePickWaveUsingPUTRaw(requestParameters: ClosePickWaveUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfPickWave>>;
+    * closePickWave
+    * @summary closePickWave
+    * @param {number} pickWaveNumber pickWaveNumber
+    * @param {number} xVolTenant 
+    * @param {ClosePickWave} closePickWaveDto closePickWaveDto
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof PickWaveApiInterface
+    */
+    closePickWaveRaw(requestParameters: pickWaveApiParams.ClosePickWaveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfPickWave>>;
 
     /**
-     * closePickWave
-     * closePickWave
-     */
-    closePickWaveUsingPUT(requestParameters: ClosePickWaveUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfPickWave>;
+    * closePickWave
+    * closePickWave
+    */
+    closePickWave(requestParameters: pickWaveApiParams.ClosePickWaveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfPickWave>;
 
     /**
-     * createPickWave
-     * @summary createPickWave
-     * @param {number} xVolTenant 
-     * @param {CreatePickWave} createPickWaveDto createPickWaveDto
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PickWaveApiInterface
-     */
-    createPickWaveUsingPOSTRaw(requestParameters: CreatePickWaveUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfPickWave>>;
+    * createPickWave
+    * @summary createPickWave
+    * @param {number} xVolTenant 
+    * @param {CreatePickWave} createPickWaveDto createPickWaveDto
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof PickWaveApiInterface
+    */
+    createPickWaveRaw(requestParameters: pickWaveApiParams.CreatePickWaveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfPickWave>>;
 
     /**
-     * createPickWave
-     * createPickWave
-     */
-    createPickWaveUsingPOST(requestParameters: CreatePickWaveUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfPickWave>;
+    * createPickWave
+    * createPickWave
+    */
+    createPickWave(requestParameters: pickWaveApiParams.CreatePickWaveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfPickWave>;
 
     /**
-     * getOpenPickWaves
-     * @summary getOpenPickWaves
-     * @param {string} fulfillmentLocationCode fulfillmentLocationCode
-     * @param {number} xVolTenant 
-     * @param {string} [shipmentType] shipmentType
-     * @param {string} [userDisplayName] userDisplayName
-     * @param {string} [userId] userId
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PickWaveApiInterface
-     */
-    getOpenPickWavesUsingGETRaw(requestParameters: GetOpenPickWavesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfPickWave>>;
+    * getOpenPickWaves
+    * @summary getOpenPickWaves
+    * @param {string} fulfillmentLocationCode fulfillmentLocationCode
+    * @param {number} xVolTenant 
+    * @param {string} [shipmentType] shipmentType
+    * @param {string} [userDisplayName] userDisplayName
+    * @param {string} [userId] userId
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof PickWaveApiInterface
+    */
+    getOpenPickWavesRaw(requestParameters: pickWaveApiParams.GetOpenPickWavesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfPickWave>>;
 
     /**
-     * getOpenPickWaves
-     * getOpenPickWaves
-     */
-    getOpenPickWavesUsingGET(requestParameters: GetOpenPickWavesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfPickWave>;
+    * getOpenPickWaves
+    * getOpenPickWaves
+    */
+    getOpenPickWaves(requestParameters: pickWaveApiParams.GetOpenPickWavesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfPickWave>;
 
     /**
-     * getPickWaveDetails
-     * @summary getPickWaveDetails
-     * @param {number} pickWaveNumber pickWaveNumber
-     * @param {number} xVolTenant 
-     * @param {string} [sortContentsByLocator] sortContentsByLocator
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PickWaveApiInterface
-     */
-    getPickWaveDetailsUsingGETRaw(requestParameters: GetPickWaveDetailsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfPickWaveDetail>>;
+    * getPickWave
+    * @summary getPickWave
+    * @param {number} pickWaveNumber pickWaveNumber
+    * @param {number} xVolTenant 
+    * @param {string} [sortContents] 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof PickWaveApiInterface
+    */
+    getPickWaveRaw(requestParameters: pickWaveApiParams.GetPickWaveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfPickWave>>;
 
     /**
-     * getPickWaveDetails
-     * getPickWaveDetails
-     */
-    getPickWaveDetailsUsingGET(requestParameters: GetPickWaveDetailsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfPickWaveDetail>;
+    * getPickWave
+    * getPickWave
+    */
+    getPickWave(requestParameters: pickWaveApiParams.GetPickWaveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfPickWave>;
 
     /**
-     * getPickWave
-     * @summary getPickWave
-     * @param {number} pickWaveNumber pickWaveNumber
-     * @param {number} xVolTenant 
-     * @param {string} [sortContents] 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PickWaveApiInterface
-     */
-    getPickWaveUsingGETRaw(requestParameters: GetPickWaveUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfPickWave>>;
+    * getPickWaveDetails
+    * @summary getPickWaveDetails
+    * @param {number} pickWaveNumber pickWaveNumber
+    * @param {number} xVolTenant 
+    * @param {string} [sortContentsByLocator] sortContentsByLocator
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof PickWaveApiInterface
+    */
+    getPickWaveDetailsRaw(requestParameters: pickWaveApiParams.GetPickWaveDetailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfPickWaveDetail>>;
 
     /**
-     * getPickWave
-     * getPickWave
-     */
-    getPickWaveUsingGET(requestParameters: GetPickWaveUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfPickWave>;
+    * getPickWaveDetails
+    * getPickWaveDetails
+    */
+    getPickWaveDetails(requestParameters: pickWaveApiParams.GetPickWaveDetailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfPickWaveDetail>;
 
     /**
-     * getShipmentsInPickWave
-     * @summary getShipmentsInPickWave
-     * @param {number} pickWaveNumber pickWaveNumber
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PickWaveApiInterface
-     */
-    getShipmentsInPickWaveUsingGETRaw(requestParameters: GetShipmentsInPickWaveUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfShipment>>;
+    * getShipmentsInPickWave
+    * @summary getShipmentsInPickWave
+    * @param {number} pickWaveNumber pickWaveNumber
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof PickWaveApiInterface
+    */
+    getShipmentsInPickWaveRaw(requestParameters: pickWaveApiParams.GetShipmentsInPickWaveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfShipment>>;
 
     /**
-     * getShipmentsInPickWave
-     * getShipmentsInPickWave
-     */
-    getShipmentsInPickWaveUsingGET(requestParameters: GetShipmentsInPickWaveUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfShipment>;
+    * getShipmentsInPickWave
+    * getShipmentsInPickWave
+    */
+    getShipmentsInPickWave(requestParameters: pickWaveApiParams.GetShipmentsInPickWaveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfShipment>;
 
     /**
-     * renderOrderPickSheets
-     * @summary renderOrderPickSheets
-     * @param {number} pickWaveNumber pickWaveNumber
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PickWaveApiInterface
-     */
-    renderOrderPickSheetsUsingGETRaw(requestParameters: RenderOrderPickSheetsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>>;
+    * renderOrderPickSheets
+    * @summary renderOrderPickSheets
+    * @param {number} pickWaveNumber pickWaveNumber
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof PickWaveApiInterface
+    */
+    renderOrderPickSheetsRaw(requestParameters: pickWaveApiParams.RenderOrderPickSheetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>>;
 
     /**
-     * renderOrderPickSheets
-     * renderOrderPickSheets
-     */
-    renderOrderPickSheetsUsingGET(requestParameters: RenderOrderPickSheetsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent>;
+    * renderOrderPickSheets
+    * renderOrderPickSheets
+    */
+    renderOrderPickSheets(requestParameters: pickWaveApiParams.RenderOrderPickSheetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent>;
 
     /**
-     * renderPickWave
-     * @summary renderPickWave
-     * @param {number} pickWaveNumber pickWaveNumber
-     * @param {number} xVolTenant 
-     * @param {boolean} [printPackingLists] printPackingLists
-     * @param {boolean} [printPickWave] printPickWave
-     * @param {boolean} [printSingleOrderSheets] printSingleOrderSheets
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PickWaveApiInterface
-     */
-    renderPickWaveUsingGETRaw(requestParameters: RenderPickWaveUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>>;
+    * renderPickWave
+    * @summary renderPickWave
+    * @param {number} pickWaveNumber pickWaveNumber
+    * @param {number} xVolTenant 
+    * @param {boolean} [printPackingLists] printPackingLists
+    * @param {boolean} [printPickWave] printPickWave
+    * @param {boolean} [printSingleOrderSheets] printSingleOrderSheets
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof PickWaveApiInterface
+    */
+    renderPickWaveRaw(requestParameters: pickWaveApiParams.RenderPickWaveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>>;
 
     /**
-     * renderPickWave
-     * renderPickWave
-     */
-    renderPickWaveUsingGET(requestParameters: RenderPickWaveUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent>;
+    * renderPickWave
+    * renderPickWave
+    */
+    renderPickWave(requestParameters: pickWaveApiParams.RenderPickWaveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent>;
 
 }
+
 
 /**
  * 
  */
-export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiInterface {
+export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -274,24 +254,20 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiInterface
      */
 
 
-    async closePickWaveUsingPUTRaw(requestParameters: ClosePickWaveUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfPickWave>> {
+    async closePickWaveRaw(requestParameters: pickWaveApiParams.ClosePickWaveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfPickWave>> {
         if (requestParameters.pickWaveNumber === null || requestParameters.pickWaveNumber === undefined) {
-            throw new runtime.RequiredError('pickWaveNumber','Required parameter requestParameters.pickWaveNumber was null or undefined when calling closePickWaveUsingPUT.');
+            throw new runtime.RequiredError('pickWaveNumber','Required parameter requestParameters.pickWaveNumber was null or undefined when calling closePickWave.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling closePickWaveUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling closePickWave.');
         }
 
         if (requestParameters.closePickWaveDto === null || requestParameters.closePickWaveDto === undefined) {
-            throw new runtime.RequiredError('closePickWaveDto','Required parameter requestParameters.closePickWaveDto was null or undefined when calling closePickWaveUsingPUT.');
+            throw new runtime.RequiredError('closePickWaveDto','Required parameter requestParameters.closePickWaveDto was null or undefined when calling closePickWave.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -326,8 +302,8 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiInterface
      * closePickWave
      * closePickWave
      */
-    async closePickWaveUsingPUT(requestParameters: ClosePickWaveUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfPickWave> {
-        const response = await this.closePickWaveUsingPUTRaw(requestParameters, initOverrides);
+    async closePickWave(requestParameters: pickWaveApiParams.ClosePickWaveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfPickWave> {
+        const response = await this.closePickWaveRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -337,20 +313,16 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiInterface
      */
 
 
-    async createPickWaveUsingPOSTRaw(requestParameters: CreatePickWaveUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfPickWave>> {
+    async createPickWaveRaw(requestParameters: pickWaveApiParams.CreatePickWaveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfPickWave>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling createPickWaveUsingPOST.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling createPickWave.');
         }
 
         if (requestParameters.createPickWaveDto === null || requestParameters.createPickWaveDto === undefined) {
-            throw new runtime.RequiredError('createPickWaveDto','Required parameter requestParameters.createPickWaveDto was null or undefined when calling createPickWaveUsingPOST.');
+            throw new runtime.RequiredError('createPickWaveDto','Required parameter requestParameters.createPickWaveDto was null or undefined when calling createPickWave.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -385,8 +357,8 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiInterface
      * createPickWave
      * createPickWave
      */
-    async createPickWaveUsingPOST(requestParameters: CreatePickWaveUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfPickWave> {
-        const response = await this.createPickWaveUsingPOSTRaw(requestParameters, initOverrides);
+    async createPickWave(requestParameters: pickWaveApiParams.CreatePickWaveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfPickWave> {
+        const response = await this.createPickWaveRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -396,13 +368,13 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiInterface
      */
 
 
-    async getOpenPickWavesUsingGETRaw(requestParameters: GetOpenPickWavesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfPickWave>> {
+    async getOpenPickWavesRaw(requestParameters: pickWaveApiParams.GetOpenPickWavesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfPickWave>> {
         if (requestParameters.fulfillmentLocationCode === null || requestParameters.fulfillmentLocationCode === undefined) {
-            throw new runtime.RequiredError('fulfillmentLocationCode','Required parameter requestParameters.fulfillmentLocationCode was null or undefined when calling getOpenPickWavesUsingGET.');
+            throw new runtime.RequiredError('fulfillmentLocationCode','Required parameter requestParameters.fulfillmentLocationCode was null or undefined when calling getOpenPickWaves.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getOpenPickWavesUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getOpenPickWaves.');
         }
 
         const queryParameters: any = {};
@@ -417,10 +389,6 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiInterface
 
         if (requestParameters.userId !== undefined) {
             queryParameters['userId'] = requestParameters.userId;
-        }
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -453,68 +421,8 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiInterface
      * getOpenPickWaves
      * getOpenPickWaves
      */
-    async getOpenPickWavesUsingGET(requestParameters: GetOpenPickWavesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfPickWave> {
-        const response = await this.getOpenPickWavesUsingGETRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * getPickWaveDetails
-     * getPickWaveDetails
-     */
-
-
-    async getPickWaveDetailsUsingGETRaw(requestParameters: GetPickWaveDetailsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfPickWaveDetail>> {
-        if (requestParameters.pickWaveNumber === null || requestParameters.pickWaveNumber === undefined) {
-            throw new runtime.RequiredError('pickWaveNumber','Required parameter requestParameters.pickWaveNumber was null or undefined when calling getPickWaveDetailsUsingGET.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getPickWaveDetailsUsingGET.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.sortContentsByLocator !== undefined) {
-            queryParameters['sortContentsByLocator'] = requestParameters.sortContentsByLocator;
-        }
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
-
-
-
-
-
-        await this.addAuthorizationHeaders(headerParameters)
-        
-        const response = await this.request({
-            path: `/commerce/pickwaves/{pickWaveNumber}/pickWaveDetails`.replace(`{${"pickWaveNumber"}}`, encodeURIComponent(String(requestParameters.pickWaveNumber))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response);
-    }
-
-    /**
-     * getPickWaveDetails
-     * getPickWaveDetails
-     */
-    async getPickWaveDetailsUsingGET(requestParameters: GetPickWaveDetailsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfPickWaveDetail> {
-        const response = await this.getPickWaveDetailsUsingGETRaw(requestParameters, initOverrides);
+    async getOpenPickWaves(requestParameters: pickWaveApiParams.GetOpenPickWavesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfPickWave> {
+        const response = await this.getOpenPickWavesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -524,23 +432,19 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiInterface
      */
 
 
-    async getPickWaveUsingGETRaw(requestParameters: GetPickWaveUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfPickWave>> {
+    async getPickWaveRaw(requestParameters: pickWaveApiParams.GetPickWaveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfPickWave>> {
         if (requestParameters.pickWaveNumber === null || requestParameters.pickWaveNumber === undefined) {
-            throw new runtime.RequiredError('pickWaveNumber','Required parameter requestParameters.pickWaveNumber was null or undefined when calling getPickWaveUsingGET.');
+            throw new runtime.RequiredError('pickWaveNumber','Required parameter requestParameters.pickWaveNumber was null or undefined when calling getPickWave.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getPickWaveUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getPickWave.');
         }
 
         const queryParameters: any = {};
 
         if (requestParameters.sortContents !== undefined) {
             queryParameters['sortContents'] = requestParameters.sortContents;
-        }
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -573,8 +477,64 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiInterface
      * getPickWave
      * getPickWave
      */
-    async getPickWaveUsingGET(requestParameters: GetPickWaveUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfPickWave> {
-        const response = await this.getPickWaveUsingGETRaw(requestParameters, initOverrides);
+    async getPickWave(requestParameters: pickWaveApiParams.GetPickWaveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfPickWave> {
+        const response = await this.getPickWaveRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * getPickWaveDetails
+     * getPickWaveDetails
+     */
+
+
+    async getPickWaveDetailsRaw(requestParameters: pickWaveApiParams.GetPickWaveDetailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfPickWaveDetail>> {
+        if (requestParameters.pickWaveNumber === null || requestParameters.pickWaveNumber === undefined) {
+            throw new runtime.RequiredError('pickWaveNumber','Required parameter requestParameters.pickWaveNumber was null or undefined when calling getPickWaveDetails.');
+        }
+
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getPickWaveDetails.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.sortContentsByLocator !== undefined) {
+            queryParameters['sortContentsByLocator'] = requestParameters.sortContentsByLocator;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
+            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
+        }
+
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/pickwaves/{pickWaveNumber}/pickWaveDetails`.replace(`{${"pickWaveNumber"}}`, encodeURIComponent(String(requestParameters.pickWaveNumber))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * getPickWaveDetails
+     * getPickWaveDetails
+     */
+    async getPickWaveDetails(requestParameters: pickWaveApiParams.GetPickWaveDetailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfPickWaveDetail> {
+        const response = await this.getPickWaveDetailsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -584,20 +544,16 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiInterface
      */
 
 
-    async getShipmentsInPickWaveUsingGETRaw(requestParameters: GetShipmentsInPickWaveUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfShipment>> {
+    async getShipmentsInPickWaveRaw(requestParameters: pickWaveApiParams.GetShipmentsInPickWaveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfShipment>> {
         if (requestParameters.pickWaveNumber === null || requestParameters.pickWaveNumber === undefined) {
-            throw new runtime.RequiredError('pickWaveNumber','Required parameter requestParameters.pickWaveNumber was null or undefined when calling getShipmentsInPickWaveUsingGET.');
+            throw new runtime.RequiredError('pickWaveNumber','Required parameter requestParameters.pickWaveNumber was null or undefined when calling getShipmentsInPickWave.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipmentsInPickWaveUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipmentsInPickWave.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -629,8 +585,8 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiInterface
      * getShipmentsInPickWave
      * getShipmentsInPickWave
      */
-    async getShipmentsInPickWaveUsingGET(requestParameters: GetShipmentsInPickWaveUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfShipment> {
-        const response = await this.getShipmentsInPickWaveUsingGETRaw(requestParameters, initOverrides);
+    async getShipmentsInPickWave(requestParameters: pickWaveApiParams.GetShipmentsInPickWaveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfShipment> {
+        const response = await this.getShipmentsInPickWaveRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -640,20 +596,16 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiInterface
      */
 
 
-    async renderOrderPickSheetsUsingGETRaw(requestParameters: RenderOrderPickSheetsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>> {
+    async renderOrderPickSheetsRaw(requestParameters: pickWaveApiParams.RenderOrderPickSheetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>> {
         if (requestParameters.pickWaveNumber === null || requestParameters.pickWaveNumber === undefined) {
-            throw new runtime.RequiredError('pickWaveNumber','Required parameter requestParameters.pickWaveNumber was null or undefined when calling renderOrderPickSheetsUsingGET.');
+            throw new runtime.RequiredError('pickWaveNumber','Required parameter requestParameters.pickWaveNumber was null or undefined when calling renderOrderPickSheets.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling renderOrderPickSheetsUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling renderOrderPickSheets.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -685,8 +637,8 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiInterface
      * renderOrderPickSheets
      * renderOrderPickSheets
      */
-    async renderOrderPickSheetsUsingGET(requestParameters: RenderOrderPickSheetsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent> {
-        const response = await this.renderOrderPickSheetsUsingGETRaw(requestParameters, initOverrides);
+    async renderOrderPickSheets(requestParameters: pickWaveApiParams.RenderOrderPickSheetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent> {
+        const response = await this.renderOrderPickSheetsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -696,13 +648,13 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiInterface
      */
 
 
-    async renderPickWaveUsingGETRaw(requestParameters: RenderPickWaveUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>> {
+    async renderPickWaveRaw(requestParameters: pickWaveApiParams.RenderPickWaveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>> {
         if (requestParameters.pickWaveNumber === null || requestParameters.pickWaveNumber === undefined) {
-            throw new runtime.RequiredError('pickWaveNumber','Required parameter requestParameters.pickWaveNumber was null or undefined when calling renderPickWaveUsingGET.');
+            throw new runtime.RequiredError('pickWaveNumber','Required parameter requestParameters.pickWaveNumber was null or undefined when calling renderPickWave.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling renderPickWaveUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling renderPickWave.');
         }
 
         const queryParameters: any = {};
@@ -717,10 +669,6 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiInterface
 
         if (requestParameters.printSingleOrderSheets !== undefined) {
             queryParameters['printSingleOrderSheets'] = requestParameters.printSingleOrderSheets;
-        }
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -753,8 +701,8 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiInterface
      * renderPickWave
      * renderPickWave
      */
-    async renderPickWaveUsingGET(requestParameters: RenderPickWaveUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent> {
-        const response = await this.renderPickWaveUsingGETRaw(requestParameters, initOverrides);
+    async renderPickWave(requestParameters: pickWaveApiParams.RenderPickWaveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent> {
+        const response = await this.renderPickWaveRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

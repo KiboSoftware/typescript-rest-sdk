@@ -23,461 +23,457 @@ import type {
   VisualSearchResult,
 } from '../models';
 
-export interface SearchDebugRequest {
-    query?: string;
-    filter?: string;
-    facetTemplate?: string;
-    facetTemplateSubset?: string;
-    facet?: string;
-    facetFieldRangeQuery?: string;
-    facetHierPrefix?: string;
-    facetHierValue?: string;
-    facetHierDepth?: string;
-    facetStartIndex?: string;
-    facetPageSize?: string;
-    facetSettings?: string;
-    facetValueFilter?: string;
-    sortBy?: string;
-    sliceSearchResults?: boolean;
-    pageSize?: number;
-    startIndex?: number;
-    searchSettings?: string;
-    enableSearchTuningRules?: boolean;
-    searchTuningRuleContext?: string;
-    searchTuningRuleCode?: string;
-    responseGroups?: string;
-    facetTemplateExclude?: string;
-    facetPrefix?: string;
-    responseOptions?: string;
-    cursorMark?: string;
-    facetValueSort?: string;
-    returnUrl?: boolean;
-    mid?: string;
-    omitNamespace?: boolean;
-    campaignId?: string;
-    merchandizingRuleCode?: string;
-    responseFields?: string;
-    rows?: number;
-    start?: number;
-    q?: string;
-}
 
-export interface StorefrontGetRandomAccessCursorRequest {
-    query?: string;
-    filter?: string;
-    pageSize?: number;
-    responseFields?: string;
+export namespace productSearchApiParams { 
+    export interface SearchDebugRequest {
+        query?: string;
+        filter?: string;
+        facetTemplate?: string;
+        facetTemplateSubset?: string;
+        facet?: string;
+        facetFieldRangeQuery?: string;
+        facetHierPrefix?: string;
+        facetHierValue?: string;
+        facetHierDepth?: string;
+        facetStartIndex?: string;
+        facetPageSize?: string;
+        facetSettings?: string;
+        facetValueFilter?: string;
+        sortBy?: string;
+        sliceSearchResults?: boolean;
+        pageSize?: number;
+        startIndex?: number;
+        searchSettings?: string;
+        enableSearchTuningRules?: boolean;
+        searchTuningRuleContext?: string;
+        searchTuningRuleCode?: string;
+        responseGroups?: string;
+        facetTemplateExclude?: string;
+        facetPrefix?: string;
+        responseOptions?: string;
+        cursorMark?: string;
+        facetValueSort?: string;
+        returnUrl?: boolean;
+        mid?: string;
+        omitNamespace?: boolean;
+        campaignId?: string;
+        merchandizingRuleCode?: string;
+        responseFields?: string;
+        rows?: number;
+        start?: number;
+        q?: string;
+    }
+    export interface StorefrontGetRandomAccessCursorRequest {
+        query?: string;
+        filter?: string;
+        pageSize?: number;
+        responseFields?: string;
+    }
+    export interface StorefrontSearchRequest {
+        query?: string;
+        filter?: string;
+        facetTemplate?: string;
+        facetTemplateSubset?: string;
+        facet?: string;
+        facetFieldRangeQuery?: string;
+        facetHierPrefix?: string;
+        facetHierValue?: string;
+        facetHierDepth?: string;
+        facetStartIndex?: string;
+        facetPageSize?: string;
+        facetSettings?: string;
+        facetValueFilter?: string;
+        sortBy?: string;
+        pageSize?: number;
+        startIndex?: number;
+        searchSettings?: string;
+        enableSearchTuningRules?: boolean;
+        searchTuningRuleContext?: string;
+        searchTuningRuleCode?: string;
+        responseGroups?: string;
+        facetTemplateExclude?: string;
+        facetPrefix?: string;
+        responseOptions?: string;
+        cursorMark?: string;
+        facetValueSort?: string;
+        defaultSort?: string;
+        shouldSlice?: boolean;
+        mid?: string;
+        omitNamespace?: boolean;
+        includeAllImages?: boolean;
+        spellcorrectOverride?: string;
+        useSubscriptionPricing?: boolean;
+        merchandizingRuleCode?: string;
+        responseFields?: string;
+    }
+    export interface StorefrontSiteSearchRequest {
+        query?: string;
+        filter?: string;
+        facetTemplate?: string;
+        facetTemplateSubset?: string;
+        facet?: string;
+        facetFieldRangeQuery?: string;
+        facetHierPrefix?: string;
+        facetHierValue?: string;
+        facetHierDepth?: string;
+        facetStartIndex?: string;
+        facetPageSize?: string;
+        facetSettings?: string;
+        facetValueFilter?: string;
+        sortBy?: string;
+        pageSize?: number;
+        startIndex?: number;
+        searchSettings?: string;
+        enableSearchTuningRules?: boolean;
+        searchTuningRuleContext?: string;
+        searchTuningRuleCode?: string;
+        responseGroups?: string;
+        facetTemplateExclude?: string;
+        facetPrefix?: string;
+        responseOptions?: string;
+        cursorMark?: string;
+        facetValueSort?: string;
+        defaultSort?: string;
+        shouldSlice?: boolean;
+        mid?: string;
+        fieldList?: string;
+        omitNamespace?: boolean;
+        includeAllImages?: boolean;
+        spellcorrectOverride?: string;
+        useSubscriptionPricing?: boolean;
+        merchandizingRuleCode?: string;
+        responseFields?: string;
+    }
+    export interface StorefrontSuggestRequest {
+        query?: string;
+        groups?: string;
+        pageSize?: number;
+        mid?: string;
+        filter?: string;
+        responseFields?: string;
+    }
+    export interface StorefrontSuggest2Request {
+        query?: string;
+        groups?: string;
+        pageSize?: number;
+        searchSettingsName?: string;
+        mid?: string;
+        filter?: string;
+        responseFields?: string;
+    }
+    export interface StorefrontVisualSearchRequest {
+        searchTerm: string;
+        filters?: Array<RequestFilter>;
+        returnfields?: Array<string>;
+        searchfields?: Array<string>;
+        ignoregrouping?: boolean;
+        numResults?: number;
+        pageNumber?: number;
+        applicationId?: string;
+        catalogId?: string;
+        sessionId?: string;
+        trackingId?: string;
+        apiKey?: string;
+        revision?: string;
+        cip?: string;
+        displayDebug?: boolean;
+        responseFields?: string;
+    }
+    export interface SuggestDebugRequest {
+        groups?: string;
+        query?: string;
+        pageSize?: number;
+        searchSettingsName?: string;
+        mid?: string;
+        filter?: string;
+        campaignId?: string;
+        returnUrl?: boolean;
+        responseFields?: string;
+    }
 }
-
-export interface StorefrontSearchRequest {
-    query?: string;
-    filter?: string;
-    facetTemplate?: string;
-    facetTemplateSubset?: string;
-    facet?: string;
-    facetFieldRangeQuery?: string;
-    facetHierPrefix?: string;
-    facetHierValue?: string;
-    facetHierDepth?: string;
-    facetStartIndex?: string;
-    facetPageSize?: string;
-    facetSettings?: string;
-    facetValueFilter?: string;
-    sortBy?: string;
-    pageSize?: number;
-    startIndex?: number;
-    searchSettings?: string;
-    enableSearchTuningRules?: boolean;
-    searchTuningRuleContext?: string;
-    searchTuningRuleCode?: string;
-    responseGroups?: string;
-    facetTemplateExclude?: string;
-    facetPrefix?: string;
-    responseOptions?: string;
-    cursorMark?: string;
-    facetValueSort?: string;
-    defaultSort?: string;
-    shouldSlice?: boolean;
-    mid?: string;
-    omitNamespace?: boolean;
-    includeAllImages?: boolean;
-    spellcorrectOverride?: string;
-    useSubscriptionPricing?: boolean;
-    merchandizingRuleCode?: string;
-    responseFields?: string;
-}
-
-export interface StorefrontSiteSearchRequest {
-    query?: string;
-    filter?: string;
-    facetTemplate?: string;
-    facetTemplateSubset?: string;
-    facet?: string;
-    facetFieldRangeQuery?: string;
-    facetHierPrefix?: string;
-    facetHierValue?: string;
-    facetHierDepth?: string;
-    facetStartIndex?: string;
-    facetPageSize?: string;
-    facetSettings?: string;
-    facetValueFilter?: string;
-    sortBy?: string;
-    pageSize?: number;
-    startIndex?: number;
-    searchSettings?: string;
-    enableSearchTuningRules?: boolean;
-    searchTuningRuleContext?: string;
-    searchTuningRuleCode?: string;
-    responseGroups?: string;
-    facetTemplateExclude?: string;
-    facetPrefix?: string;
-    responseOptions?: string;
-    cursorMark?: string;
-    facetValueSort?: string;
-    defaultSort?: string;
-    shouldSlice?: boolean;
-    mid?: string;
-    fieldList?: string;
-    omitNamespace?: boolean;
-    includeAllImages?: boolean;
-    spellcorrectOverride?: string;
-    useSubscriptionPricing?: boolean;
-    merchandizingRuleCode?: string;
-    responseFields?: string;
-}
-
-export interface StorefrontSuggestRequest {
-    query?: string;
-    groups?: string;
-    pageSize?: number;
-    mid?: string;
-    filter?: string;
-    responseFields?: string;
-}
-
-export interface StorefrontSuggest2Request {
-    query?: string;
-    groups?: string;
-    pageSize?: number;
-    searchSettingsName?: string;
-    mid?: string;
-    filter?: string;
-    responseFields?: string;
-}
-
-export interface StorefrontVisualSearchRequest {
-    searchTerm: string;
-    filters?: Array<RequestFilter>;
-    returnfields?: Array<string>;
-    searchfields?: Array<string>;
-    ignoregrouping?: boolean;
-    numResults?: number;
-    pageNumber?: number;
-    applicationId?: string;
-    catalogId?: string;
-    sessionId?: string;
-    trackingId?: string;
-    apiKey?: string;
-    revision?: string;
-    cip?: string;
-    displayDebug?: boolean;
-    responseFields?: string;
-}
-
-export interface SuggestDebugRequest {
-    groups?: string;
-    query?: string;
-    pageSize?: number;
-    searchSettingsName?: string;
-    mid?: string;
-    filter?: string;
-    campaignId?: string;
-    returnUrl?: boolean;
-    responseFields?: string;
-}
-
 /**
- * ProductSearchApi - interface
- * 
- * @export
- * @interface ProductSearchApiInterface
- */
-export interface ProductSearchApiInterface {
+* ProductSearchApiService - interface
+* 
+* @export
+* @interface ProductSearchApi
+*/
+export interface ProductSearchApiService {
     /**
-     * Searches the items displayed on the storefront for products or product options that the shopper types in a search query. Used for debugging explain plans from solr
-     * @summary Searches the items displayed on the storefront. Used for debugging explain plans from solr
-     * @param {string} [query] The terms to search on.
-     * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
-     * @param {string} [facetTemplate] The template to use for what facets to compute. ex: categoryId:id
-     * @param {string} [facetTemplateSubset] If you only want to return a subset of the facets defined in the template. ex: category,price,rating
-     * @param {string} [facet] Fields to facet on in addition to the optionally provided facetTemplate. ex: category,price,rating
-     * @param {string} [facetFieldRangeQuery] Facet field range. ex: field:[val+TO+val] can also label
-     * @param {string} [facetHierPrefix] Facet hierarchy prefix. Skip these levels on a hierarchical facet. ex: field:foo/bar/bing
-     * @param {string} [facetHierValue] Find the node to start with given a unique lookup value, instead of requiring a prefix path. ex: field:bing
-     * @param {string} [facetHierDepth] Facet hierarchy depth. Number of levels to return. ex: category:1
-     * @param {string} [facetStartIndex] Facet offset
-     * @param {string} [facetPageSize] Facet page size
-     * @param {string} [facetSettings] Deprecated
-     * @param {string} [facetValueFilter] Apply facet values as a filter. ex: category:3,price:[* TO 100]
-     * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
-     * @param {boolean} [sliceSearchResults] Whether to slice results or not
-     * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 12 and the maximum value is 200. Optional.
-     * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. The default value is 0. Optional.
-     * @param {string} [searchSettings] The name of a SiteSearchSettings (search relevancy settings) scheme to use. Defaults to whichever Settings is marked as IsDefault&#x3D;true.
-     * @param {boolean} [enableSearchTuningRules] Use search-tuning-rules or not
-     * @param {string} [searchTuningRuleContext] The filters which the search tuning rules will match on.
-     * @param {string} [searchTuningRuleCode] Search-Tuning-Rule Code
-     * @param {string} [responseGroups] A list of property groups to return instead of using the granular responseFields param. ex: categories,properties,options
-     * @param {string} [facetTemplateExclude] 
-     * @param {string} [facetPrefix] 
-     * @param {string} [responseOptions] 
-     * @param {string} [cursorMark] Pass in * to begin a deep page operation. The response will include a nextCursorMark value. Pass this into the next call. Continue with this pattern until nextCursorMark is null.
-     * @param {string} [facetValueSort] 
-     * @param {boolean} [returnUrl] Only respond with the request made to the search-engine, for one \&quot;groups\&quot; parameter value. Default is false. Optional parameter.
-     * @param {string} [mid] Personalization Id (Monetate Id)
-     * @param {boolean} [omitNamespace] 
-     * @param {string} [campaignId] 
-     * @param {string} [merchandizingRuleCode] Optional. Use a specific search-merchandizing-rule code if provided.
-     * @param {string} [responseFields] 
-     * @param {number} [rows] 
-     * @param {number} [start] 
-     * @param {string} [q] optional alternative to query for debugging tools
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductSearchApiInterface
-     */
-    searchDebugRaw(requestParameters: SearchDebugRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Searches the items displayed on the storefront for products or product options that the shopper types in a search query. Used for debugging explain plans from solr
+    * @summary Searches the items displayed on the storefront. Used for debugging explain plans from solr
+    * @param {string} [query] The terms to search on.
+    * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
+    * @param {string} [facetTemplate] The template to use for what facets to compute. ex: categoryId:id
+    * @param {string} [facetTemplateSubset] If you only want to return a subset of the facets defined in the template. ex: category,price,rating
+    * @param {string} [facet] Fields to facet on in addition to the optionally provided facetTemplate. ex: category,price,rating
+    * @param {string} [facetFieldRangeQuery] Facet field range. ex: field:[val+TO+val] can also label
+    * @param {string} [facetHierPrefix] Facet hierarchy prefix. Skip these levels on a hierarchical facet. ex: field:foo/bar/bing
+    * @param {string} [facetHierValue] Find the node to start with given a unique lookup value, instead of requiring a prefix path. ex: field:bing
+    * @param {string} [facetHierDepth] Facet hierarchy depth. Number of levels to return. ex: category:1
+    * @param {string} [facetStartIndex] Facet offset
+    * @param {string} [facetPageSize] Facet page size
+    * @param {string} [facetSettings] Deprecated
+    * @param {string} [facetValueFilter] Apply facet values as a filter. ex: category:3,price:[* TO 100]
+    * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+    * @param {boolean} [sliceSearchResults] Whether to slice results or not
+    * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 12 and the maximum value is 200. Optional.
+    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. The default value is 0. Optional.
+    * @param {string} [searchSettings] The name of a SiteSearchSettings (search relevancy settings) scheme to use. Defaults to whichever Settings is marked as IsDefault&#x3D;true.
+    * @param {boolean} [enableSearchTuningRules] Use search-tuning-rules or not
+    * @param {string} [searchTuningRuleContext] The filters which the search tuning rules will match on.
+    * @param {string} [searchTuningRuleCode] Search-Tuning-Rule Code
+    * @param {string} [responseGroups] A list of property groups to return instead of using the granular responseFields param. ex: categories,properties,options
+    * @param {string} [facetTemplateExclude] 
+    * @param {string} [facetPrefix] 
+    * @param {string} [responseOptions] 
+    * @param {string} [cursorMark] Pass in * to begin a deep page operation. The response will include a nextCursorMark value. Pass this into the next call. Continue with this pattern until nextCursorMark is null.
+    * @param {string} [facetValueSort] 
+    * @param {boolean} [returnUrl] Only respond with the request made to the search-engine, for one \&quot;groups\&quot; parameter value. Default is false. Optional parameter.
+    * @param {string} [mid] Personalization Id (Monetate Id)
+    * @param {boolean} [omitNamespace] 
+    * @param {string} [campaignId] 
+    * @param {string} [merchandizingRuleCode] Optional. Use a specific search-merchandizing-rule code if provided.
+    * @param {string} [responseFields] 
+    * @param {number} [rows] 
+    * @param {number} [start] 
+    * @param {string} [q] optional alternative to query for debugging tools
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductSearchApiInterface
+    */
+    searchDebugRaw(requestParameters: productSearchApiParams.SearchDebugRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Searches the items displayed on the storefront for products or product options that the shopper types in a search query. Used for debugging explain plans from solr
-     * Searches the items displayed on the storefront. Used for debugging explain plans from solr
-     */
-    searchDebug(requestParameters: SearchDebugRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Searches the items displayed on the storefront for products or product options that the shopper types in a search query. Used for debugging explain plans from solr
+    * Searches the items displayed on the storefront. Used for debugging explain plans from solr
+    */
+    searchDebug(requestParameters: productSearchApiParams.SearchDebugRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Generate a list of cursors that then allows you to retrieve all products with efficient deep paging.     Optionally provide a query and/or filter to generate a cursor for a subset of products.     After retrieving the cursor, provide a cursorMark to the cursorMark argument of the /search or /getProducts operations.     You may provide cursorMarks in any order or even in parallel operations.
-     * @summary Gets list of cursors for search results
-     * @param {string} [query] Optional terms to search on. Only matching products will be included in the cursor.
-     * @param {string} [filter] Optional set of filter expressions to filter on. Only matching products will be included in the cursor.
-     * @param {number} [pageSize] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductSearchApiInterface
-     */
-    storefrontGetRandomAccessCursorRaw(requestParameters: StorefrontGetRandomAccessCursorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchRandomAccessCursor>>;
+    * Generate a list of cursors that then allows you to retrieve all products with efficient deep paging.     Optionally provide a query and/or filter to generate a cursor for a subset of products.     After retrieving the cursor, provide a cursorMark to the cursorMark argument of the /search or /getProducts operations.     You may provide cursorMarks in any order or even in parallel operations.
+    * @summary Gets list of cursors for search results
+    * @param {string} [query] Optional terms to search on. Only matching products will be included in the cursor.
+    * @param {string} [filter] Optional set of filter expressions to filter on. Only matching products will be included in the cursor.
+    * @param {number} [pageSize] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductSearchApiInterface
+    */
+    storefrontGetRandomAccessCursorRaw(requestParameters: productSearchApiParams.StorefrontGetRandomAccessCursorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchRandomAccessCursor>>;
 
     /**
-     * Generate a list of cursors that then allows you to retrieve all products with efficient deep paging.     Optionally provide a query and/or filter to generate a cursor for a subset of products.     After retrieving the cursor, provide a cursorMark to the cursorMark argument of the /search or /getProducts operations.     You may provide cursorMarks in any order or even in parallel operations.
-     * Gets list of cursors for search results
-     */
-    storefrontGetRandomAccessCursor(requestParameters: StorefrontGetRandomAccessCursorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchRandomAccessCursor>;
+    * Generate a list of cursors that then allows you to retrieve all products with efficient deep paging.     Optionally provide a query and/or filter to generate a cursor for a subset of products.     After retrieving the cursor, provide a cursorMark to the cursorMark argument of the /search or /getProducts operations.     You may provide cursorMarks in any order or even in parallel operations.
+    * Gets list of cursors for search results
+    */
+    storefrontGetRandomAccessCursor(requestParameters: productSearchApiParams.StorefrontGetRandomAccessCursorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchRandomAccessCursor>;
 
     /**
-     * Searches the categories displayed on the storefront for products or product options that the shopper types in a search query.
-     * @summary Search for products.
-     * @param {string} [query] The terms to search on.
-     * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
-     * @param {string} [facetTemplate] 
-     * @param {string} [facetTemplateSubset] 
-     * @param {string} [facet] 
-     * @param {string} [facetFieldRangeQuery] 
-     * @param {string} [facetHierPrefix] 
-     * @param {string} [facetHierValue] 
-     * @param {string} [facetHierDepth] 
-     * @param {string} [facetStartIndex] 
-     * @param {string} [facetPageSize] 
-     * @param {string} [facetSettings] 
-     * @param {string} [facetValueFilter] 
-     * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
-     * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 12 and the maximum value is 200. Optional.
-     * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. The default value is 0. Optional.
-     * @param {string} [searchSettings] 
-     * @param {boolean} [enableSearchTuningRules] 
-     * @param {string} [searchTuningRuleContext] 
-     * @param {string} [searchTuningRuleCode] 
-     * @param {string} [responseGroups] 
-     * @param {string} [facetTemplateExclude] 
-     * @param {string} [facetPrefix] 
-     * @param {string} [responseOptions] 
-     * @param {string} [cursorMark] Pass in * to begin a deep page operation. The response will include a nextCursorMark value. Pass this into the next call. Continue with this pattern until nextCursorMark is null.
-     * @param {string} [facetValueSort] 
-     * @param {string} [defaultSort] 
-     * @param {boolean} [shouldSlice] 
-     * @param {string} [mid] 
-     * @param {boolean} [omitNamespace] 
-     * @param {boolean} [includeAllImages] Optional. If true return all images instead of default images.
-     * @param {string} [spellcorrectOverride] 
-     * @param {boolean} [useSubscriptionPricing] 
-     * @param {string} [merchandizingRuleCode] Optional. Use a specific search-merchandizing-rule code if provided.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductSearchApiInterface
-     */
-    storefrontSearchRaw(requestParameters: StorefrontSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchResult>>;
+    * Searches the categories displayed on the storefront for products or product options that the shopper types in a search query.
+    * @summary Search for products.
+    * @param {string} [query] The terms to search on.
+    * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
+    * @param {string} [facetTemplate] 
+    * @param {string} [facetTemplateSubset] 
+    * @param {string} [facet] 
+    * @param {string} [facetFieldRangeQuery] 
+    * @param {string} [facetHierPrefix] 
+    * @param {string} [facetHierValue] 
+    * @param {string} [facetHierDepth] 
+    * @param {string} [facetStartIndex] 
+    * @param {string} [facetPageSize] 
+    * @param {string} [facetSettings] 
+    * @param {string} [facetValueFilter] 
+    * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+    * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 12 and the maximum value is 200. Optional.
+    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. The default value is 0. Optional.
+    * @param {string} [searchSettings] 
+    * @param {boolean} [enableSearchTuningRules] 
+    * @param {string} [searchTuningRuleContext] 
+    * @param {string} [searchTuningRuleCode] 
+    * @param {string} [responseGroups] 
+    * @param {string} [facetTemplateExclude] 
+    * @param {string} [facetPrefix] 
+    * @param {string} [responseOptions] 
+    * @param {string} [cursorMark] Pass in * to begin a deep page operation. The response will include a nextCursorMark value. Pass this into the next call. Continue with this pattern until nextCursorMark is null.
+    * @param {string} [facetValueSort] 
+    * @param {string} [defaultSort] 
+    * @param {boolean} [shouldSlice] 
+    * @param {string} [mid] 
+    * @param {boolean} [omitNamespace] 
+    * @param {boolean} [includeAllImages] Optional. If true return all images instead of default images.
+    * @param {string} [spellcorrectOverride] 
+    * @param {boolean} [useSubscriptionPricing] 
+    * @param {string} [merchandizingRuleCode] Optional. Use a specific search-merchandizing-rule code if provided.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductSearchApiInterface
+    */
+    storefrontSearchRaw(requestParameters: productSearchApiParams.StorefrontSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchResult>>;
 
     /**
-     * Searches the categories displayed on the storefront for products or product options that the shopper types in a search query.
-     * Search for products.
-     */
-    storefrontSearch(requestParameters: StorefrontSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchResult>;
+    * Searches the categories displayed on the storefront for products or product options that the shopper types in a search query.
+    * Search for products.
+    */
+    storefrontSearch(requestParameters: productSearchApiParams.StorefrontSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchResult>;
 
     /**
-     * Site Search - Searches the items displayed on the storefront.
-     * @summary Site Search - Searches the items displayed on the storefront.
-     * @param {string} [query] The terms to search on.
-     * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
-     * @param {string} [facetTemplate] 
-     * @param {string} [facetTemplateSubset] 
-     * @param {string} [facet] 
-     * @param {string} [facetFieldRangeQuery] 
-     * @param {string} [facetHierPrefix] 
-     * @param {string} [facetHierValue] 
-     * @param {string} [facetHierDepth] 
-     * @param {string} [facetStartIndex] 
-     * @param {string} [facetPageSize] 
-     * @param {string} [facetSettings] 
-     * @param {string} [facetValueFilter] 
-     * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
-     * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 12 and the maximum value is 200. Optional.
-     * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. The default value is 0. Optional.
-     * @param {string} [searchSettings] 
-     * @param {boolean} [enableSearchTuningRules] 
-     * @param {string} [searchTuningRuleContext] 
-     * @param {string} [searchTuningRuleCode] 
-     * @param {string} [responseGroups] 
-     * @param {string} [facetTemplateExclude] 
-     * @param {string} [facetPrefix] 
-     * @param {string} [responseOptions] 
-     * @param {string} [cursorMark] Pass in * to begin a deep page operation. The response will include a nextCursorMark value. Pass this into the next call. Continue with this pattern until nextCursorMark is null.
-     * @param {string} [facetValueSort] 
-     * @param {string} [defaultSort] 
-     * @param {boolean} [shouldSlice] 
-     * @param {string} [mid] 
-     * @param {string} [fieldList] 
-     * @param {boolean} [omitNamespace] 
-     * @param {boolean} [includeAllImages] Optional. If true return all images instead of default images.
-     * @param {string} [spellcorrectOverride] 
-     * @param {boolean} [useSubscriptionPricing] 
-     * @param {string} [merchandizingRuleCode] Optional. Use a specific search-merchandizing-rule code if provided.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductSearchApiInterface
-     */
-    storefrontSiteSearchRaw(requestParameters: StorefrontSiteSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchResult>>;
+    * Site Search - Searches the items displayed on the storefront.
+    * @summary Site Search - Searches the items displayed on the storefront.
+    * @param {string} [query] The terms to search on.
+    * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
+    * @param {string} [facetTemplate] 
+    * @param {string} [facetTemplateSubset] 
+    * @param {string} [facet] 
+    * @param {string} [facetFieldRangeQuery] 
+    * @param {string} [facetHierPrefix] 
+    * @param {string} [facetHierValue] 
+    * @param {string} [facetHierDepth] 
+    * @param {string} [facetStartIndex] 
+    * @param {string} [facetPageSize] 
+    * @param {string} [facetSettings] 
+    * @param {string} [facetValueFilter] 
+    * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+    * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 12 and the maximum value is 200. Optional.
+    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. The default value is 0. Optional.
+    * @param {string} [searchSettings] 
+    * @param {boolean} [enableSearchTuningRules] 
+    * @param {string} [searchTuningRuleContext] 
+    * @param {string} [searchTuningRuleCode] 
+    * @param {string} [responseGroups] 
+    * @param {string} [facetTemplateExclude] 
+    * @param {string} [facetPrefix] 
+    * @param {string} [responseOptions] 
+    * @param {string} [cursorMark] Pass in * to begin a deep page operation. The response will include a nextCursorMark value. Pass this into the next call. Continue with this pattern until nextCursorMark is null.
+    * @param {string} [facetValueSort] 
+    * @param {string} [defaultSort] 
+    * @param {boolean} [shouldSlice] 
+    * @param {string} [mid] 
+    * @param {string} [fieldList] 
+    * @param {boolean} [omitNamespace] 
+    * @param {boolean} [includeAllImages] Optional. If true return all images instead of default images.
+    * @param {string} [spellcorrectOverride] 
+    * @param {boolean} [useSubscriptionPricing] 
+    * @param {string} [merchandizingRuleCode] Optional. Use a specific search-merchandizing-rule code if provided.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductSearchApiInterface
+    */
+    storefrontSiteSearchRaw(requestParameters: productSearchApiParams.StorefrontSiteSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchResult>>;
 
     /**
-     * Site Search - Searches the items displayed on the storefront.
-     * Site Search - Searches the items displayed on the storefront.
-     */
-    storefrontSiteSearch(requestParameters: StorefrontSiteSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchResult>;
+    * Site Search - Searches the items displayed on the storefront.
+    * Site Search - Searches the items displayed on the storefront.
+    */
+    storefrontSiteSearch(requestParameters: productSearchApiParams.StorefrontSiteSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchResult>;
 
     /**
-     * Suggests possible search terms as the shopper enters search text.
-     * @summary Gets suggested search terms
-     * @param {string} [query] Comma delimited list of suggestion groups that should be returned. The default is everything
-     * @param {string} [groups] 
-     * @param {number} [pageSize] Indicates the maximum number of entities to return from a query. The default value is 10 and the maximum value is 200. Optional.
-     * @param {string} [mid] 
-     * @param {string} [filter] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductSearchApiInterface
-     */
-    storefrontSuggestRaw(requestParameters: StorefrontSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSuggestionResult>>;
+    * Suggests possible search terms as the shopper enters search text.
+    * @summary Gets suggested search terms
+    * @param {string} [query] Comma delimited list of suggestion groups that should be returned. The default is everything
+    * @param {string} [groups] 
+    * @param {number} [pageSize] Indicates the maximum number of entities to return from a query. The default value is 10 and the maximum value is 200. Optional.
+    * @param {string} [mid] 
+    * @param {string} [filter] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductSearchApiInterface
+    */
+    storefrontSuggestRaw(requestParameters: productSearchApiParams.StorefrontSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSuggestionResult>>;
 
     /**
-     * Suggests possible search terms as the shopper enters search text.
-     * Gets suggested search terms
-     */
-    storefrontSuggest(requestParameters: StorefrontSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSuggestionResult>;
+    * Suggests possible search terms as the shopper enters search text.
+    * Gets suggested search terms
+    */
+    storefrontSuggest(requestParameters: productSearchApiParams.StorefrontSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSuggestionResult>;
 
     /**
-     * Suggests possible search terms as the shopper enters search text.
-     * @summary Gets suggested search terms
-     * @param {string} [query] Comma delimited list of suggestion groups that should be returned. The default is everything
-     * @param {string} [groups] 
-     * @param {number} [pageSize] Indicates the maximum number of entities to return from a query. The default value is 10 and the maximum value is 200. Optional.
-     * @param {string} [searchSettingsName] 
-     * @param {string} [mid] 
-     * @param {string} [filter] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductSearchApiInterface
-     */
-    storefrontSuggest2Raw(requestParameters: StorefrontSuggest2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSuggestionResult>>;
+    * Suggests possible search terms as the shopper enters search text.
+    * @summary Gets suggested search terms
+    * @param {string} [query] Comma delimited list of suggestion groups that should be returned. The default is everything
+    * @param {string} [groups] 
+    * @param {number} [pageSize] Indicates the maximum number of entities to return from a query. The default value is 10 and the maximum value is 200. Optional.
+    * @param {string} [searchSettingsName] 
+    * @param {string} [mid] 
+    * @param {string} [filter] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductSearchApiInterface
+    */
+    storefrontSuggest2Raw(requestParameters: productSearchApiParams.StorefrontSuggest2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSuggestionResult>>;
 
     /**
-     * Suggests possible search terms as the shopper enters search text.
-     * Gets suggested search terms
-     */
-    storefrontSuggest2(requestParameters: StorefrontSuggest2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSuggestionResult>;
+    * Suggests possible search terms as the shopper enters search text.
+    * Gets suggested search terms
+    */
+    storefrontSuggest2(requestParameters: productSearchApiParams.StorefrontSuggest2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSuggestionResult>;
 
     /**
-     * Type ahead - Searches the items displayed on the storefront.
-     * @summary Type ahead - Searches the items displayed on the storefront.
-     * @param {string} searchTerm 
-     * @param {Array<RequestFilter>} [filters] 
-     * @param {Array<string>} [returnfields] 
-     * @param {Array<string>} [searchfields] 
-     * @param {boolean} [ignoregrouping] 
-     * @param {number} [numResults] 
-     * @param {number} [pageNumber] 
-     * @param {string} [applicationId] 
-     * @param {string} [catalogId] 
-     * @param {string} [sessionId] 
-     * @param {string} [trackingId] 
-     * @param {string} [apiKey] 
-     * @param {string} [revision] 
-     * @param {string} [cip] 
-     * @param {boolean} [displayDebug] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductSearchApiInterface
-     */
-    storefrontVisualSearchRaw(requestParameters: StorefrontVisualSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VisualSearchResult>>;
+    * Type ahead - Searches the items displayed on the storefront.
+    * @summary Type ahead - Searches the items displayed on the storefront.
+    * @param {string} searchTerm 
+    * @param {Array<RequestFilter>} [filters] 
+    * @param {Array<string>} [returnfields] 
+    * @param {Array<string>} [searchfields] 
+    * @param {boolean} [ignoregrouping] 
+    * @param {number} [numResults] 
+    * @param {number} [pageNumber] 
+    * @param {string} [applicationId] 
+    * @param {string} [catalogId] 
+    * @param {string} [sessionId] 
+    * @param {string} [trackingId] 
+    * @param {string} [apiKey] 
+    * @param {string} [revision] 
+    * @param {string} [cip] 
+    * @param {boolean} [displayDebug] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductSearchApiInterface
+    */
+    storefrontVisualSearchRaw(requestParameters: productSearchApiParams.StorefrontVisualSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VisualSearchResult>>;
 
     /**
-     * Type ahead - Searches the items displayed on the storefront.
-     * Type ahead - Searches the items displayed on the storefront.
-     */
-    storefrontVisualSearch(requestParameters: StorefrontVisualSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VisualSearchResult>;
+    * Type ahead - Searches the items displayed on the storefront.
+    * Type ahead - Searches the items displayed on the storefront.
+    */
+    storefrontVisualSearch(requestParameters: productSearchApiParams.StorefrontVisualSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VisualSearchResult>;
 
     /**
-     * Comma delimited list of suggestion groups that should be returned. The default is everything. e.g. categories, products.
-     * @summary Debugging relevancy for the Suggest endpoint
-     * @param {string} [groups] Comma delimited list of suggestion groups that should be returned. The default is everything. e.g. categories, products
-     * @param {string} [query] The terms to search on.
-     * @param {number} [pageSize] Indicates the maximum number of entities to return from a query. The default value is 10 and the maximum value is 200. Optional.
-     * @param {string} [searchSettingsName] Specific Search Configuration. Optional parameter
-     * @param {string} [mid] Session Id. Optional parameter
-     * @param {string} [filter] 
-     * @param {string} [campaignId] Used to debug with a specific campaign. Optional parameter
-     * @param {boolean} [returnUrl] Only respond with the request made to the search-engine, for one \&quot;groups\&quot; parameter value. Default is false. Optional parameter.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductSearchApiInterface
-     */
-    suggestDebugRaw(requestParameters: SuggestDebugRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Comma delimited list of suggestion groups that should be returned. The default is everything. e.g. categories, products.
+    * @summary Debugging relevancy for the Suggest endpoint
+    * @param {string} [groups] Comma delimited list of suggestion groups that should be returned. The default is everything. e.g. categories, products
+    * @param {string} [query] The terms to search on.
+    * @param {number} [pageSize] Indicates the maximum number of entities to return from a query. The default value is 10 and the maximum value is 200. Optional.
+    * @param {string} [searchSettingsName] Specific Search Configuration. Optional parameter
+    * @param {string} [mid] Session Id. Optional parameter
+    * @param {string} [filter] 
+    * @param {string} [campaignId] Used to debug with a specific campaign. Optional parameter
+    * @param {boolean} [returnUrl] Only respond with the request made to the search-engine, for one \&quot;groups\&quot; parameter value. Default is false. Optional parameter.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductSearchApiInterface
+    */
+    suggestDebugRaw(requestParameters: productSearchApiParams.SuggestDebugRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Comma delimited list of suggestion groups that should be returned. The default is everything. e.g. categories, products.
-     * Debugging relevancy for the Suggest endpoint
-     */
-    suggestDebug(requestParameters: SuggestDebugRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Comma delimited list of suggestion groups that should be returned. The default is everything. e.g. categories, products.
+    * Debugging relevancy for the Suggest endpoint
+    */
+    suggestDebug(requestParameters: productSearchApiParams.SuggestDebugRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
 }
+
 
 /**
  * 
  */
-export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchApiInterface {
+export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -488,7 +484,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      */
 
 
-    async searchDebugRaw(requestParameters: SearchDebugRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async searchDebugRaw(requestParameters: productSearchApiParams.SearchDebugRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         if (requestParameters.query !== undefined) {
@@ -657,7 +653,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      * Searches the items displayed on the storefront for products or product options that the shopper types in a search query. Used for debugging explain plans from solr
      * Searches the items displayed on the storefront. Used for debugging explain plans from solr
      */
-    async searchDebug(requestParameters: SearchDebugRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async searchDebug(requestParameters: productSearchApiParams.SearchDebugRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.searchDebugRaw(requestParameters, initOverrides);
     }
 
@@ -667,7 +663,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      */
 
 
-    async storefrontGetRandomAccessCursorRaw(requestParameters: StorefrontGetRandomAccessCursorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchRandomAccessCursor>> {
+    async storefrontGetRandomAccessCursorRaw(requestParameters: productSearchApiParams.StorefrontGetRandomAccessCursorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchRandomAccessCursor>> {
         const queryParameters: any = {};
 
         if (requestParameters.query !== undefined) {
@@ -708,7 +704,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      * Generate a list of cursors that then allows you to retrieve all products with efficient deep paging.     Optionally provide a query and/or filter to generate a cursor for a subset of products.     After retrieving the cursor, provide a cursorMark to the cursorMark argument of the /search or /getProducts operations.     You may provide cursorMarks in any order or even in parallel operations.
      * Gets list of cursors for search results
      */
-    async storefrontGetRandomAccessCursor(requestParameters: StorefrontGetRandomAccessCursorRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchRandomAccessCursor> {
+    async storefrontGetRandomAccessCursor(requestParameters: productSearchApiParams.StorefrontGetRandomAccessCursorRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchRandomAccessCursor> {
         const response = await this.storefrontGetRandomAccessCursorRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -719,7 +715,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      */
 
 
-    async storefrontSearchRaw(requestParameters: StorefrontSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchResult>> {
+    async storefrontSearchRaw(requestParameters: productSearchApiParams.StorefrontSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchResult>> {
         const queryParameters: any = {};
 
         if (requestParameters.query !== undefined) {
@@ -884,7 +880,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      * Searches the categories displayed on the storefront for products or product options that the shopper types in a search query.
      * Search for products.
      */
-    async storefrontSearch(requestParameters: StorefrontSearchRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchResult> {
+    async storefrontSearch(requestParameters: productSearchApiParams.StorefrontSearchRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchResult> {
         const response = await this.storefrontSearchRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -895,7 +891,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      */
 
 
-    async storefrontSiteSearchRaw(requestParameters: StorefrontSiteSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchResult>> {
+    async storefrontSiteSearchRaw(requestParameters: productSearchApiParams.StorefrontSiteSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchResult>> {
         const queryParameters: any = {};
 
         if (requestParameters.query !== undefined) {
@@ -1064,7 +1060,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      * Site Search - Searches the items displayed on the storefront.
      * Site Search - Searches the items displayed on the storefront.
      */
-    async storefrontSiteSearch(requestParameters: StorefrontSiteSearchRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchResult> {
+    async storefrontSiteSearch(requestParameters: productSearchApiParams.StorefrontSiteSearchRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchResult> {
         const response = await this.storefrontSiteSearchRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1075,7 +1071,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      */
 
 
-    async storefrontSuggestRaw(requestParameters: StorefrontSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSuggestionResult>> {
+    async storefrontSuggestRaw(requestParameters: productSearchApiParams.StorefrontSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSuggestionResult>> {
         const queryParameters: any = {};
 
         if (requestParameters.query !== undefined) {
@@ -1124,7 +1120,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      * Suggests possible search terms as the shopper enters search text.
      * Gets suggested search terms
      */
-    async storefrontSuggest(requestParameters: StorefrontSuggestRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSuggestionResult> {
+    async storefrontSuggest(requestParameters: productSearchApiParams.StorefrontSuggestRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSuggestionResult> {
         const response = await this.storefrontSuggestRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1135,7 +1131,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      */
 
 
-    async storefrontSuggest2Raw(requestParameters: StorefrontSuggest2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSuggestionResult>> {
+    async storefrontSuggest2Raw(requestParameters: productSearchApiParams.StorefrontSuggest2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSuggestionResult>> {
         const queryParameters: any = {};
 
         if (requestParameters.query !== undefined) {
@@ -1188,7 +1184,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      * Suggests possible search terms as the shopper enters search text.
      * Gets suggested search terms
      */
-    async storefrontSuggest2(requestParameters: StorefrontSuggest2Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSuggestionResult> {
+    async storefrontSuggest2(requestParameters: productSearchApiParams.StorefrontSuggest2Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSuggestionResult> {
         const response = await this.storefrontSuggest2Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1199,7 +1195,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      */
 
 
-    async storefrontVisualSearchRaw(requestParameters: StorefrontVisualSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VisualSearchResult>> {
+    async storefrontVisualSearchRaw(requestParameters: productSearchApiParams.StorefrontVisualSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VisualSearchResult>> {
         if (requestParameters.searchTerm === null || requestParameters.searchTerm === undefined) {
             throw new runtime.RequiredError('searchTerm','Required parameter requestParameters.searchTerm was null or undefined when calling storefrontVisualSearch.');
         }
@@ -1292,7 +1288,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      * Type ahead - Searches the items displayed on the storefront.
      * Type ahead - Searches the items displayed on the storefront.
      */
-    async storefrontVisualSearch(requestParameters: StorefrontVisualSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VisualSearchResult> {
+    async storefrontVisualSearch(requestParameters: productSearchApiParams.StorefrontVisualSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VisualSearchResult> {
         const response = await this.storefrontVisualSearchRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1303,7 +1299,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      */
 
 
-    async suggestDebugRaw(requestParameters: SuggestDebugRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async suggestDebugRaw(requestParameters: productSearchApiParams.SuggestDebugRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         if (requestParameters.groups !== undefined) {
@@ -1364,7 +1360,7 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
      * Comma delimited list of suggestion groups that should be returned. The default is everything. e.g. categories, products.
      * Debugging relevancy for the Suggest endpoint
      */
-    async suggestDebug(requestParameters: SuggestDebugRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async suggestDebug(requestParameters: productSearchApiParams.SuggestDebugRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.suggestDebugRaw(requestParameters, initOverrides);
     }
 

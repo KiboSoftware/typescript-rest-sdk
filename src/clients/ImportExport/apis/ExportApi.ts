@@ -19,109 +19,109 @@ import type {
   ExportJob,
 } from '../models';
 
-export interface DeleteRequest {
-    id: string;
+
+export namespace exportApiParams { 
+    export interface DeleteRequest {
+        id: string;
+    }
+    export interface CreateRequest {
+        responseFields?: string;
+        exportJob?: ExportJob;
+    }
+    export interface GetRequest {
+        id: string;
+        responseFields?: string;
+    }
+    export interface ListRequest {
+        startIndex?: number;
+        pageSize?: number;
+        filter?: string;
+        responseFields?: string;
+    }
+}
+/**
+* ExportApiService - interface
+* 
+* @export
+* @interface ExportApi
+*/
+export interface ExportApiService {
+    /**
+    * Delete
+    * @summary Delete
+    * @param {string} id 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ExportApiInterface
+    */
+    _deleteRaw(requestParameters: exportApiParams.DeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+    * Delete
+    * Delete
+    */
+    _delete(requestParameters: exportApiParams.DeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+    * Create
+    * @summary Create
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ExportJob} [exportJob] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ExportApiInterface
+    */
+    createRaw(requestParameters: exportApiParams.CreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportJob>>;
+
+    /**
+    * Create
+    * Create
+    */
+    create(requestParameters: exportApiParams.CreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExportJob>;
+
+    /**
+    * Get
+    * @summary Get
+    * @param {string} id 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ExportApiInterface
+    */
+    getRaw(requestParameters: exportApiParams.GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportJob>>;
+
+    /**
+    * Get
+    * Get
+    */
+    get(requestParameters: exportApiParams.GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExportJob>;
+
+    /**
+    * List
+    * @summary List
+    * @param {number} [startIndex] 
+    * @param {number} [pageSize] 
+    * @param {string} [filter] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ExportApiInterface
+    */
+    listRaw(requestParameters: exportApiParams.ListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExportJob>>>;
+
+    /**
+    * List
+    * List
+    */
+    list(requestParameters: exportApiParams.ListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExportJob>>;
+
 }
 
-export interface CreateRequest {
-    responseFields?: string;
-    exportJob?: ExportJob;
-}
-
-export interface GetRequest {
-    id: string;
-    responseFields?: string;
-}
-
-export interface ListRequest {
-    startIndex?: number;
-    pageSize?: number;
-    filter?: string;
-    responseFields?: string;
-}
 
 /**
- * ExportApi - interface
- * 
- * @export
- * @interface ExportApiInterface
- */
-export interface ExportApiInterface {
-    /**
-     * Delete
-     * @summary Delete
-     * @param {string} id 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ExportApiInterface
-     */
-    _deleteRaw(requestParameters: DeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     * Delete
-     * Delete
-     */
-    _delete(requestParameters: DeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * Create
-     * @summary Create
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {ExportJob} [exportJob] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ExportApiInterface
-     */
-    createRaw(requestParameters: CreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportJob>>;
-
-    /**
-     * Create
-     * Create
-     */
-    create(requestParameters: CreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExportJob>;
-
-    /**
-     * Get
-     * @summary Get
-     * @param {string} id 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ExportApiInterface
-     */
-    getRaw(requestParameters: GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportJob>>;
-
-    /**
-     * Get
-     * Get
-     */
-    get(requestParameters: GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExportJob>;
-
-    /**
-     * List
-     * @summary List
-     * @param {number} [startIndex] 
-     * @param {number} [pageSize] 
-     * @param {string} [filter] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ExportApiInterface
-     */
-    listRaw(requestParameters: ListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExportJob>>>;
-
-    /**
-     * List
-     * List
-     */
-    list(requestParameters: ListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExportJob>>;
-
-}
-
-/**
  * 
  */
-export class ExportApi extends runtime.BaseAPI implements ExportApiInterface {
+export class ExportApi extends runtime.BaseAPI implements ExportApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -132,7 +132,7 @@ export class ExportApi extends runtime.BaseAPI implements ExportApiInterface {
      */
 
 
-    async _deleteRaw(requestParameters: DeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async _deleteRaw(requestParameters: exportApiParams.DeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling _delete.');
         }
@@ -161,7 +161,7 @@ export class ExportApi extends runtime.BaseAPI implements ExportApiInterface {
      * Delete
      * Delete
      */
-    async _delete(requestParameters: DeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async _delete(requestParameters: exportApiParams.DeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this._deleteRaw(requestParameters, initOverrides);
     }
 
@@ -171,7 +171,7 @@ export class ExportApi extends runtime.BaseAPI implements ExportApiInterface {
      */
 
 
-    async createRaw(requestParameters: CreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportJob>> {
+    async createRaw(requestParameters: exportApiParams.CreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportJob>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -203,7 +203,7 @@ export class ExportApi extends runtime.BaseAPI implements ExportApiInterface {
      * Create
      * Create
      */
-    async create(requestParameters: CreateRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExportJob> {
+    async create(requestParameters: exportApiParams.CreateRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExportJob> {
         const response = await this.createRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -214,7 +214,7 @@ export class ExportApi extends runtime.BaseAPI implements ExportApiInterface {
      */
 
 
-    async getRaw(requestParameters: GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportJob>> {
+    async getRaw(requestParameters: exportApiParams.GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportJob>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling get.');
         }
@@ -247,7 +247,7 @@ export class ExportApi extends runtime.BaseAPI implements ExportApiInterface {
      * Get
      * Get
      */
-    async get(requestParameters: GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExportJob> {
+    async get(requestParameters: exportApiParams.GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExportJob> {
         const response = await this.getRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -258,7 +258,7 @@ export class ExportApi extends runtime.BaseAPI implements ExportApiInterface {
      */
 
 
-    async listRaw(requestParameters: ListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExportJob>>> {
+    async listRaw(requestParameters: exportApiParams.ListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExportJob>>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -299,7 +299,7 @@ export class ExportApi extends runtime.BaseAPI implements ExportApiInterface {
      * List
      * List
      */
-    async list(requestParameters: ListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExportJob>> {
+    async list(requestParameters: exportApiParams.ListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExportJob>> {
         const response = await this.listRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -19,61 +19,63 @@ import type {
   CampaignResult,
 } from '../models';
 
-export interface GetCampaignRequest {
-    campaignId: string;
-    responseFields?: string;
+
+export namespace campaignsApiParams { 
+    export interface GetCampaignRequest {
+        campaignId: string;
+        responseFields?: string;
+    }
+    export interface GetCampaignsRequest {
+        responseFields?: string;
+    }
+}
+/**
+* CampaignsApiService - interface
+* 
+* @export
+* @interface CampaignsApi
+*/
+export interface CampaignsApiService {
+    /**
+    * Get a specific campaign by campaign id.
+    * @summary Get a search campaign
+    * @param {string} campaignId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CampaignsApiInterface
+    */
+    getCampaignRaw(requestParameters: campaignsApiParams.GetCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CampaignResult>>;
+
+    /**
+    * Get a specific campaign by campaign id.
+    * Get a search campaign
+    */
+    getCampaign(requestParameters: campaignsApiParams.GetCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CampaignResult>;
+
+    /**
+    * Get list of Search campaigns.
+    * @summary Get search campaigns
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CampaignsApiInterface
+    */
+    getCampaignsRaw(requestParameters: campaignsApiParams.GetCampaignsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CampaignResult>>>;
+
+    /**
+    * Get list of Search campaigns.
+    * Get search campaigns
+    */
+    getCampaigns(requestParameters: campaignsApiParams.GetCampaignsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CampaignResult>>;
+
 }
 
-export interface GetCampaignsRequest {
-    responseFields?: string;
-}
 
 /**
- * CampaignsApi - interface
- * 
- * @export
- * @interface CampaignsApiInterface
- */
-export interface CampaignsApiInterface {
-    /**
-     * Get a specific campaign by campaign id.
-     * @summary Get a search campaign
-     * @param {string} campaignId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CampaignsApiInterface
-     */
-    getCampaignRaw(requestParameters: GetCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CampaignResult>>;
-
-    /**
-     * Get a specific campaign by campaign id.
-     * Get a search campaign
-     */
-    getCampaign(requestParameters: GetCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CampaignResult>;
-
-    /**
-     * Get list of Search campaigns.
-     * @summary Get search campaigns
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CampaignsApiInterface
-     */
-    getCampaignsRaw(requestParameters: GetCampaignsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CampaignResult>>>;
-
-    /**
-     * Get list of Search campaigns.
-     * Get search campaigns
-     */
-    getCampaigns(requestParameters: GetCampaignsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CampaignResult>>;
-
-}
-
-/**
  * 
  */
-export class CampaignsApi extends runtime.BaseAPI implements CampaignsApiInterface {
+export class CampaignsApi extends runtime.BaseAPI implements CampaignsApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -84,7 +86,7 @@ export class CampaignsApi extends runtime.BaseAPI implements CampaignsApiInterfa
      */
 
 
-    async getCampaignRaw(requestParameters: GetCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CampaignResult>> {
+    async getCampaignRaw(requestParameters: campaignsApiParams.GetCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CampaignResult>> {
         if (requestParameters.campaignId === null || requestParameters.campaignId === undefined) {
             throw new runtime.RequiredError('campaignId','Required parameter requestParameters.campaignId was null or undefined when calling getCampaign.');
         }
@@ -117,7 +119,7 @@ export class CampaignsApi extends runtime.BaseAPI implements CampaignsApiInterfa
      * Get a specific campaign by campaign id.
      * Get a search campaign
      */
-    async getCampaign(requestParameters: GetCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CampaignResult> {
+    async getCampaign(requestParameters: campaignsApiParams.GetCampaignRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CampaignResult> {
         const response = await this.getCampaignRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -128,7 +130,7 @@ export class CampaignsApi extends runtime.BaseAPI implements CampaignsApiInterfa
      */
 
 
-    async getCampaignsRaw(requestParameters: GetCampaignsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CampaignResult>>> {
+    async getCampaignsRaw(requestParameters: campaignsApiParams.GetCampaignsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CampaignResult>>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -157,7 +159,7 @@ export class CampaignsApi extends runtime.BaseAPI implements CampaignsApiInterfa
      * Get list of Search campaigns.
      * Get search campaigns
      */
-    async getCampaigns(requestParameters: GetCampaignsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CampaignResult>> {
+    async getCampaigns(requestParameters: campaignsApiParams.GetCampaignsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CampaignResult>> {
         const response = await this.getCampaignsRaw(requestParameters, initOverrides);
         return await response.value();
     }

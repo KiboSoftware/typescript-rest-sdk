@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 apis/ReservationApi.ts
 apis/index.ts
 index.ts

@@ -20,137 +20,136 @@ import type {
   PriceListCollection,
 } from '../models';
 
-export interface AddPriceListRequest {
-    responseFields?: string;
-    catalogAdminsPriceList?: CatalogAdminsPriceList;
+
+export namespace priceListsApiParams { 
+    export interface AddPriceListRequest {
+        responseFields?: string;
+        catalogAdminsPriceList?: CatalogAdminsPriceList;
+    }
+    export interface DeletePriceListRequest {
+        priceListCode: string;
+        cascadeDeleteEntries?: boolean;
+    }
+    export interface GetPriceListRequest {
+        priceListCode: string;
+        responseFields?: string;
+    }
+    export interface GetPriceListsRequest {
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        filter?: string;
+        responseFields?: string;
+    }
+    export interface UpdatePriceListRequest {
+        priceListCode: string;
+        responseFields?: string;
+        catalogAdminsPriceList?: CatalogAdminsPriceList;
+    }
+}
+/**
+* PriceListsApiService - interface
+* 
+* @export
+* @interface PriceListsApi
+*/
+export interface PriceListsApiService {
+    /**
+    * 
+    * @summary Add price list
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CatalogAdminsPriceList} [catalogAdminsPriceList] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof PriceListsApiInterface
+    */
+    addPriceListRaw(requestParameters: priceListsApiParams.AddPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsPriceList>>;
+
+    /**
+    * 
+    * Add price list
+    */
+    addPriceList(requestParameters: priceListsApiParams.AddPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsPriceList>;
+
+    /**
+    * 
+    * @summary Delete price list
+    * @param {string} priceListCode 
+    * @param {boolean} [cascadeDeleteEntries] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof PriceListsApiInterface
+    */
+    deletePriceListRaw(requestParameters: priceListsApiParams.DeletePriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+    * 
+    * Delete price list
+    */
+    deletePriceList(requestParameters: priceListsApiParams.DeletePriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+    * 
+    * @summary Get price list
+    * @param {string} priceListCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof PriceListsApiInterface
+    */
+    getPriceListRaw(requestParameters: priceListsApiParams.GetPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsPriceList>>;
+
+    /**
+    * 
+    * Get price list
+    */
+    getPriceList(requestParameters: priceListsApiParams.GetPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsPriceList>;
+
+    /**
+    * 
+    * @summary Get price lists
+    * @param {number} [startIndex] 
+    * @param {number} [pageSize] 
+    * @param {string} [sortBy] 
+    * @param {string} [filter] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof PriceListsApiInterface
+    */
+    getPriceListsRaw(requestParameters: priceListsApiParams.GetPriceListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListCollection>>;
+
+    /**
+    * 
+    * Get price lists
+    */
+    getPriceLists(requestParameters: priceListsApiParams.GetPriceListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListCollection>;
+
+    /**
+    * 
+    * @summary Update price list
+    * @param {string} priceListCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CatalogAdminsPriceList} [catalogAdminsPriceList] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof PriceListsApiInterface
+    */
+    updatePriceListRaw(requestParameters: priceListsApiParams.UpdatePriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsPriceList>>;
+
+    /**
+    * 
+    * Update price list
+    */
+    updatePriceList(requestParameters: priceListsApiParams.UpdatePriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsPriceList>;
+
 }
 
-export interface DeletePriceListRequest {
-    priceListCode: string;
-    cascadeDeleteEntries?: boolean;
-}
-
-export interface GetPriceListRequest {
-    priceListCode: string;
-    responseFields?: string;
-}
-
-export interface GetPriceListsRequest {
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    filter?: string;
-    responseFields?: string;
-}
-
-export interface UpdatePriceListRequest {
-    priceListCode: string;
-    responseFields?: string;
-    catalogAdminsPriceList?: CatalogAdminsPriceList;
-}
 
 /**
- * PriceListsApi - interface
- * 
- * @export
- * @interface PriceListsApiInterface
- */
-export interface PriceListsApiInterface {
-    /**
-     * 
-     * @summary Add price list
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CatalogAdminsPriceList} [catalogAdminsPriceList] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PriceListsApiInterface
-     */
-    addPriceListRaw(requestParameters: AddPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsPriceList>>;
-
-    /**
-     * 
-     * Add price list
-     */
-    addPriceList(requestParameters: AddPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsPriceList>;
-
-    /**
-     * 
-     * @summary Delete price list
-     * @param {string} priceListCode 
-     * @param {boolean} [cascadeDeleteEntries] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PriceListsApiInterface
-     */
-    deletePriceListRaw(requestParameters: DeletePriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     * 
-     * Delete price list
-     */
-    deletePriceList(requestParameters: DeletePriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * 
-     * @summary Get price list
-     * @param {string} priceListCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PriceListsApiInterface
-     */
-    getPriceListRaw(requestParameters: GetPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsPriceList>>;
-
-    /**
-     * 
-     * Get price list
-     */
-    getPriceList(requestParameters: GetPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsPriceList>;
-
-    /**
-     * 
-     * @summary Get price lists
-     * @param {number} [startIndex] 
-     * @param {number} [pageSize] 
-     * @param {string} [sortBy] 
-     * @param {string} [filter] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PriceListsApiInterface
-     */
-    getPriceListsRaw(requestParameters: GetPriceListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListCollection>>;
-
-    /**
-     * 
-     * Get price lists
-     */
-    getPriceLists(requestParameters: GetPriceListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListCollection>;
-
-    /**
-     * 
-     * @summary Update price list
-     * @param {string} priceListCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CatalogAdminsPriceList} [catalogAdminsPriceList] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PriceListsApiInterface
-     */
-    updatePriceListRaw(requestParameters: UpdatePriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsPriceList>>;
-
-    /**
-     * 
-     * Update price list
-     */
-    updatePriceList(requestParameters: UpdatePriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsPriceList>;
-
-}
-
-/**
  * 
  */
-export class PriceListsApi extends runtime.BaseAPI implements PriceListsApiInterface {
+export class PriceListsApi extends runtime.BaseAPI implements PriceListsApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -161,7 +160,7 @@ export class PriceListsApi extends runtime.BaseAPI implements PriceListsApiInter
      */
 
 
-    async addPriceListRaw(requestParameters: AddPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsPriceList>> {
+    async addPriceListRaw(requestParameters: priceListsApiParams.AddPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsPriceList>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -193,7 +192,7 @@ export class PriceListsApi extends runtime.BaseAPI implements PriceListsApiInter
      * 
      * Add price list
      */
-    async addPriceList(requestParameters: AddPriceListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsPriceList> {
+    async addPriceList(requestParameters: priceListsApiParams.AddPriceListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsPriceList> {
         const response = await this.addPriceListRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -204,7 +203,7 @@ export class PriceListsApi extends runtime.BaseAPI implements PriceListsApiInter
      */
 
 
-    async deletePriceListRaw(requestParameters: DeletePriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deletePriceListRaw(requestParameters: priceListsApiParams.DeletePriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.priceListCode === null || requestParameters.priceListCode === undefined) {
             throw new runtime.RequiredError('priceListCode','Required parameter requestParameters.priceListCode was null or undefined when calling deletePriceList.');
         }
@@ -237,7 +236,7 @@ export class PriceListsApi extends runtime.BaseAPI implements PriceListsApiInter
      * 
      * Delete price list
      */
-    async deletePriceList(requestParameters: DeletePriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deletePriceList(requestParameters: priceListsApiParams.DeletePriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deletePriceListRaw(requestParameters, initOverrides);
     }
 
@@ -247,7 +246,7 @@ export class PriceListsApi extends runtime.BaseAPI implements PriceListsApiInter
      */
 
 
-    async getPriceListRaw(requestParameters: GetPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsPriceList>> {
+    async getPriceListRaw(requestParameters: priceListsApiParams.GetPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsPriceList>> {
         if (requestParameters.priceListCode === null || requestParameters.priceListCode === undefined) {
             throw new runtime.RequiredError('priceListCode','Required parameter requestParameters.priceListCode was null or undefined when calling getPriceList.');
         }
@@ -280,7 +279,7 @@ export class PriceListsApi extends runtime.BaseAPI implements PriceListsApiInter
      * 
      * Get price list
      */
-    async getPriceList(requestParameters: GetPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsPriceList> {
+    async getPriceList(requestParameters: priceListsApiParams.GetPriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsPriceList> {
         const response = await this.getPriceListRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -291,7 +290,7 @@ export class PriceListsApi extends runtime.BaseAPI implements PriceListsApiInter
      */
 
 
-    async getPriceListsRaw(requestParameters: GetPriceListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListCollection>> {
+    async getPriceListsRaw(requestParameters: priceListsApiParams.GetPriceListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -336,7 +335,7 @@ export class PriceListsApi extends runtime.BaseAPI implements PriceListsApiInter
      * 
      * Get price lists
      */
-    async getPriceLists(requestParameters: GetPriceListsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListCollection> {
+    async getPriceLists(requestParameters: priceListsApiParams.GetPriceListsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListCollection> {
         const response = await this.getPriceListsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -347,7 +346,7 @@ export class PriceListsApi extends runtime.BaseAPI implements PriceListsApiInter
      */
 
 
-    async updatePriceListRaw(requestParameters: UpdatePriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsPriceList>> {
+    async updatePriceListRaw(requestParameters: priceListsApiParams.UpdatePriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsPriceList>> {
         if (requestParameters.priceListCode === null || requestParameters.priceListCode === undefined) {
             throw new runtime.RequiredError('priceListCode','Required parameter requestParameters.priceListCode was null or undefined when calling updatePriceList.');
         }
@@ -383,7 +382,7 @@ export class PriceListsApi extends runtime.BaseAPI implements PriceListsApiInter
      * 
      * Update price list
      */
-    async updatePriceList(requestParameters: UpdatePriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsPriceList> {
+    async updatePriceList(requestParameters: priceListsApiParams.UpdatePriceListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsPriceList> {
         const response = await this.updatePriceListRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -25,439 +25,425 @@ import type {
   ShippingStates,
 } from '../models';
 
-export interface CreateOrderHandlingFeeRuleRequest {
-    profilecode: string;
-    responseFields?: string;
-    handlingFeeRule?: HandlingFeeRule;
-}
 
-export interface CreateProductHandlingFeeRuleRequest {
-    profilecode: string;
-    responseFields?: string;
-    handlingFeeRule?: HandlingFeeRule;
+export namespace shippingProfileApiParams { 
+    export interface CreateOrderHandlingFeeRuleRequest {
+        profilecode: string;
+        responseFields?: string;
+        handlingFeeRule?: HandlingFeeRule;
+    }
+    export interface CreateProductHandlingFeeRuleRequest {
+        profilecode: string;
+        responseFields?: string;
+        handlingFeeRule?: HandlingFeeRule;
+    }
+    export interface CreateShippingInclusionRuleRequest {
+        profilecode: string;
+        responseFields?: string;
+        shippingInclusionRule?: ShippingInclusionRule;
+    }
+    export interface DeleteOrderHandlingFeeRuleRequest {
+        profilecode: string;
+        id: string;
+    }
+    export interface DeleteProductHandlingFeeRuleRequest {
+        profilecode: string;
+        id: string;
+    }
+    export interface DeleteShippingInclusionRuleRequest {
+        profilecode: string;
+        id: string;
+    }
+    export interface GetOrderHandlingFeeRuleRequest {
+        profilecode: string;
+        id: string;
+        responseFields?: string;
+    }
+    export interface GetOrderHandlingFeeRulesRequest {
+        profilecode: string;
+        responseFields?: string;
+    }
+    export interface GetProductHandlingFeeRuleRequest {
+        profilecode: string;
+        id: string;
+        responseFields?: string;
+    }
+    export interface GetProductHandlingFeeRulesRequest {
+        profilecode: string;
+        responseFields?: string;
+    }
+    export interface GetProfilesRequest {
+        responseFields?: string;
+    }
+    export interface GetShippingInclusionRuleRequest {
+        profilecode: string;
+        id: string;
+        responseFields?: string;
+    }
+    export interface GetShippingInclusionRulesRequest {
+        profilecode: string;
+        responseFields?: string;
+    }
+    export interface GetStatesRequest {
+        profileCode: string;
+        responseFields?: string;
+    }
+    export interface UpdateOrderHandlingFeeRuleRequest {
+        profilecode: string;
+        id: string;
+        responseFields?: string;
+        handlingFeeRule?: HandlingFeeRule;
+    }
+    export interface UpdateProductHandlingFeeRuleRequest {
+        profilecode: string;
+        id: string;
+        responseFields?: string;
+        handlingFeeRule?: HandlingFeeRule;
+    }
+    export interface UpdateShippingInclusionRuleRequest {
+        profilecode: string;
+        id: string;
+        responseFields?: string;
+        shippingInclusionRule?: ShippingInclusionRule;
+    }
+    export interface UpdateStatesRequest {
+        profilecode: string;
+        responseFields?: string;
+        shippingStates?: Array<ShippingStates>;
+    }
 }
-
-export interface CreateShippingInclusionRuleRequest {
-    profilecode: string;
-    responseFields?: string;
-    shippingInclusionRule?: ShippingInclusionRule;
-}
-
-export interface DeleteOrderHandlingFeeRuleRequest {
-    profilecode: string;
-    id: string;
-}
-
-export interface DeleteProductHandlingFeeRuleRequest {
-    profilecode: string;
-    id: string;
-}
-
-export interface DeleteShippingInclusionRuleRequest {
-    profilecode: string;
-    id: string;
-}
-
-export interface GetOrderHandlingFeeRuleRequest {
-    profilecode: string;
-    id: string;
-    responseFields?: string;
-}
-
-export interface GetOrderHandlingFeeRulesRequest {
-    profilecode: string;
-    responseFields?: string;
-}
-
-export interface GetProductHandlingFeeRuleRequest {
-    profilecode: string;
-    id: string;
-    responseFields?: string;
-}
-
-export interface GetProductHandlingFeeRulesRequest {
-    profilecode: string;
-    responseFields?: string;
-}
-
-export interface GetProfilesRequest {
-    responseFields?: string;
-}
-
-export interface GetShippingInclusionRuleRequest {
-    profilecode: string;
-    id: string;
-    responseFields?: string;
-}
-
-export interface GetShippingInclusionRulesRequest {
-    profilecode: string;
-    responseFields?: string;
-}
-
-export interface GetStatesRequest {
-    profileCode: string;
-    responseFields?: string;
-}
-
-export interface UpdateOrderHandlingFeeRuleRequest {
-    profilecode: string;
-    id: string;
-    responseFields?: string;
-    handlingFeeRule?: HandlingFeeRule;
-}
-
-export interface UpdateProductHandlingFeeRuleRequest {
-    profilecode: string;
-    id: string;
-    responseFields?: string;
-    handlingFeeRule?: HandlingFeeRule;
-}
-
-export interface UpdateShippingInclusionRuleRequest {
-    profilecode: string;
-    id: string;
-    responseFields?: string;
-    shippingInclusionRule?: ShippingInclusionRule;
-}
-
-export interface UpdateStatesRequest {
-    profilecode: string;
-    responseFields?: string;
-    shippingStates?: Array<ShippingStates>;
-}
-
 /**
- * ShippingProfileApi - interface
- * 
- * @export
- * @interface ShippingProfileApiInterface
- */
-export interface ShippingProfileApiInterface {
+* ShippingProfileApiService - interface
+* 
+* @export
+* @interface ShippingProfileApi
+*/
+export interface ShippingProfileApiService {
     /**
-     * Create Order Handling Fee Rule
-     * @summary Create Order Handling Fee Rule
-     * @param {string} profilecode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {HandlingFeeRule} [handlingFeeRule] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShippingProfileApiInterface
-     */
-    createOrderHandlingFeeRuleRaw(requestParameters: CreateOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRule>>;
+    * Create Order Handling Fee Rule
+    * @summary Create Order Handling Fee Rule
+    * @param {string} profilecode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {HandlingFeeRule} [handlingFeeRule] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShippingProfileApiInterface
+    */
+    createOrderHandlingFeeRuleRaw(requestParameters: shippingProfileApiParams.CreateOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRule>>;
 
     /**
-     * Create Order Handling Fee Rule
-     * Create Order Handling Fee Rule
-     */
-    createOrderHandlingFeeRule(requestParameters: CreateOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRule>;
+    * Create Order Handling Fee Rule
+    * Create Order Handling Fee Rule
+    */
+    createOrderHandlingFeeRule(requestParameters: shippingProfileApiParams.CreateOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRule>;
 
     /**
-     * Create Product Handling Fee Rule
-     * @summary Create Product Handling Fee Rule
-     * @param {string} profilecode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {HandlingFeeRule} [handlingFeeRule] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShippingProfileApiInterface
-     */
-    createProductHandlingFeeRuleRaw(requestParameters: CreateProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRule>>;
+    * Create Product Handling Fee Rule
+    * @summary Create Product Handling Fee Rule
+    * @param {string} profilecode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {HandlingFeeRule} [handlingFeeRule] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShippingProfileApiInterface
+    */
+    createProductHandlingFeeRuleRaw(requestParameters: shippingProfileApiParams.CreateProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRule>>;
 
     /**
-     * Create Product Handling Fee Rule
-     * Create Product Handling Fee Rule
-     */
-    createProductHandlingFeeRule(requestParameters: CreateProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRule>;
+    * Create Product Handling Fee Rule
+    * Create Product Handling Fee Rule
+    */
+    createProductHandlingFeeRule(requestParameters: shippingProfileApiParams.CreateProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRule>;
 
     /**
-     * Create Shipping Inclusion Rule
-     * @summary Create Shipping Inclusion Rule
-     * @param {string} profilecode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {ShippingInclusionRule} [shippingInclusionRule] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShippingProfileApiInterface
-     */
-    createShippingInclusionRuleRaw(requestParameters: CreateShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingInclusionRule>>;
+    * Create Shipping Inclusion Rule
+    * @summary Create Shipping Inclusion Rule
+    * @param {string} profilecode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ShippingInclusionRule} [shippingInclusionRule] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShippingProfileApiInterface
+    */
+    createShippingInclusionRuleRaw(requestParameters: shippingProfileApiParams.CreateShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingInclusionRule>>;
 
     /**
-     * Create Shipping Inclusion Rule
-     * Create Shipping Inclusion Rule
-     */
-    createShippingInclusionRule(requestParameters: CreateShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingInclusionRule>;
+    * Create Shipping Inclusion Rule
+    * Create Shipping Inclusion Rule
+    */
+    createShippingInclusionRule(requestParameters: shippingProfileApiParams.CreateShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingInclusionRule>;
 
     /**
-     * Delete Order Handling Fee Rule
-     * @summary Delete Order Handling Fee Rule
-     * @param {string} profilecode 
-     * @param {string} id 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShippingProfileApiInterface
-     */
-    deleteOrderHandlingFeeRuleRaw(requestParameters: DeleteOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingAdminHttpResponseMessage>>;
+    * Delete Order Handling Fee Rule
+    * @summary Delete Order Handling Fee Rule
+    * @param {string} profilecode 
+    * @param {string} id 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShippingProfileApiInterface
+    */
+    deleteOrderHandlingFeeRuleRaw(requestParameters: shippingProfileApiParams.DeleteOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingAdminHttpResponseMessage>>;
 
     /**
-     * Delete Order Handling Fee Rule
-     * Delete Order Handling Fee Rule
-     */
-    deleteOrderHandlingFeeRule(requestParameters: DeleteOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingAdminHttpResponseMessage>;
+    * Delete Order Handling Fee Rule
+    * Delete Order Handling Fee Rule
+    */
+    deleteOrderHandlingFeeRule(requestParameters: shippingProfileApiParams.DeleteOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingAdminHttpResponseMessage>;
 
     /**
-     * Delete Product Handling Fee Rule
-     * @summary Delete Product Handling Fee Rule
-     * @param {string} profilecode 
-     * @param {string} id 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShippingProfileApiInterface
-     */
-    deleteProductHandlingFeeRuleRaw(requestParameters: DeleteProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Delete Product Handling Fee Rule
+    * @summary Delete Product Handling Fee Rule
+    * @param {string} profilecode 
+    * @param {string} id 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShippingProfileApiInterface
+    */
+    deleteProductHandlingFeeRuleRaw(requestParameters: shippingProfileApiParams.DeleteProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Delete Product Handling Fee Rule
-     * Delete Product Handling Fee Rule
-     */
-    deleteProductHandlingFeeRule(requestParameters: DeleteProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Delete Product Handling Fee Rule
+    * Delete Product Handling Fee Rule
+    */
+    deleteProductHandlingFeeRule(requestParameters: shippingProfileApiParams.DeleteProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Delete Shipping Inclusion Rule
-     * @summary Delete Shipping Inclusion Rule
-     * @param {string} profilecode 
-     * @param {string} id 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShippingProfileApiInterface
-     */
-    deleteShippingInclusionRuleRaw(requestParameters: DeleteShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Delete Shipping Inclusion Rule
+    * @summary Delete Shipping Inclusion Rule
+    * @param {string} profilecode 
+    * @param {string} id 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShippingProfileApiInterface
+    */
+    deleteShippingInclusionRuleRaw(requestParameters: shippingProfileApiParams.DeleteShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Delete Shipping Inclusion Rule
-     * Delete Shipping Inclusion Rule
-     */
-    deleteShippingInclusionRule(requestParameters: DeleteShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Delete Shipping Inclusion Rule
+    * Delete Shipping Inclusion Rule
+    */
+    deleteShippingInclusionRule(requestParameters: shippingProfileApiParams.DeleteShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Get Order Handling Fee Rule
-     * @summary Get Order Handling Fee Rule
-     * @param {string} profilecode 
-     * @param {string} id 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShippingProfileApiInterface
-     */
-    getOrderHandlingFeeRuleRaw(requestParameters: GetOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRule>>;
+    * Get Order Handling Fee Rule
+    * @summary Get Order Handling Fee Rule
+    * @param {string} profilecode 
+    * @param {string} id 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShippingProfileApiInterface
+    */
+    getOrderHandlingFeeRuleRaw(requestParameters: shippingProfileApiParams.GetOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRule>>;
 
     /**
-     * Get Order Handling Fee Rule
-     * Get Order Handling Fee Rule
-     */
-    getOrderHandlingFeeRule(requestParameters: GetOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRule>;
+    * Get Order Handling Fee Rule
+    * Get Order Handling Fee Rule
+    */
+    getOrderHandlingFeeRule(requestParameters: shippingProfileApiParams.GetOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRule>;
 
     /**
-     * Get Order Handling Fee Rules
-     * @summary Get Order Handling Fee Rules
-     * @param {string} profilecode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShippingProfileApiInterface
-     */
-    getOrderHandlingFeeRulesRaw(requestParameters: GetOrderHandlingFeeRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRuleCollection>>;
+    * Get Order Handling Fee Rules
+    * @summary Get Order Handling Fee Rules
+    * @param {string} profilecode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShippingProfileApiInterface
+    */
+    getOrderHandlingFeeRulesRaw(requestParameters: shippingProfileApiParams.GetOrderHandlingFeeRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRuleCollection>>;
 
     /**
-     * Get Order Handling Fee Rules
-     * Get Order Handling Fee Rules
-     */
-    getOrderHandlingFeeRules(requestParameters: GetOrderHandlingFeeRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRuleCollection>;
+    * Get Order Handling Fee Rules
+    * Get Order Handling Fee Rules
+    */
+    getOrderHandlingFeeRules(requestParameters: shippingProfileApiParams.GetOrderHandlingFeeRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRuleCollection>;
 
     /**
-     * Get Product Handling Fee Rule
-     * @summary Get Product Handling Fee Rule
-     * @param {string} profilecode 
-     * @param {string} id 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShippingProfileApiInterface
-     */
-    getProductHandlingFeeRuleRaw(requestParameters: GetProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRule>>;
+    * Get Product Handling Fee Rule
+    * @summary Get Product Handling Fee Rule
+    * @param {string} profilecode 
+    * @param {string} id 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShippingProfileApiInterface
+    */
+    getProductHandlingFeeRuleRaw(requestParameters: shippingProfileApiParams.GetProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRule>>;
 
     /**
-     * Get Product Handling Fee Rule
-     * Get Product Handling Fee Rule
-     */
-    getProductHandlingFeeRule(requestParameters: GetProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRule>;
+    * Get Product Handling Fee Rule
+    * Get Product Handling Fee Rule
+    */
+    getProductHandlingFeeRule(requestParameters: shippingProfileApiParams.GetProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRule>;
 
     /**
-     * Get Product Handling Fee Rules
-     * @summary Get Product Handling Fee Rules
-     * @param {string} profilecode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShippingProfileApiInterface
-     */
-    getProductHandlingFeeRulesRaw(requestParameters: GetProductHandlingFeeRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRuleCollection>>;
+    * Get Product Handling Fee Rules
+    * @summary Get Product Handling Fee Rules
+    * @param {string} profilecode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShippingProfileApiInterface
+    */
+    getProductHandlingFeeRulesRaw(requestParameters: shippingProfileApiParams.GetProductHandlingFeeRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRuleCollection>>;
 
     /**
-     * Get Product Handling Fee Rules
-     * Get Product Handling Fee Rules
-     */
-    getProductHandlingFeeRules(requestParameters: GetProductHandlingFeeRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRuleCollection>;
+    * Get Product Handling Fee Rules
+    * Get Product Handling Fee Rules
+    */
+    getProductHandlingFeeRules(requestParameters: shippingProfileApiParams.GetProductHandlingFeeRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRuleCollection>;
 
     /**
-     * Get Shipping Profiles for the Tenant/Master Catalog
-     * @summary Get Shipping Profiles for the Tenant/Master Catalog
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShippingProfileApiInterface
-     */
-    getProfilesRaw(requestParameters: GetProfilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingProfileCollection>>;
+    * Get Shipping Profiles for the Tenant/Master Catalog
+    * @summary Get Shipping Profiles for the Tenant/Master Catalog
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShippingProfileApiInterface
+    */
+    getProfilesRaw(requestParameters: shippingProfileApiParams.GetProfilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingProfileCollection>>;
 
     /**
-     * Get Shipping Profiles for the Tenant/Master Catalog
-     * Get Shipping Profiles for the Tenant/Master Catalog
-     */
-    getProfiles(requestParameters: GetProfilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingProfileCollection>;
+    * Get Shipping Profiles for the Tenant/Master Catalog
+    * Get Shipping Profiles for the Tenant/Master Catalog
+    */
+    getProfiles(requestParameters: shippingProfileApiParams.GetProfilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingProfileCollection>;
 
     /**
-     * Get Shipping Inclusion Rule
-     * @summary Get Shipping Inclusion Rule
-     * @param {string} profilecode 
-     * @param {string} id 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShippingProfileApiInterface
-     */
-    getShippingInclusionRuleRaw(requestParameters: GetShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingInclusionRule>>;
+    * Get Shipping Inclusion Rule
+    * @summary Get Shipping Inclusion Rule
+    * @param {string} profilecode 
+    * @param {string} id 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShippingProfileApiInterface
+    */
+    getShippingInclusionRuleRaw(requestParameters: shippingProfileApiParams.GetShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingInclusionRule>>;
 
     /**
-     * Get Shipping Inclusion Rule
-     * Get Shipping Inclusion Rule
-     */
-    getShippingInclusionRule(requestParameters: GetShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingInclusionRule>;
+    * Get Shipping Inclusion Rule
+    * Get Shipping Inclusion Rule
+    */
+    getShippingInclusionRule(requestParameters: shippingProfileApiParams.GetShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingInclusionRule>;
 
     /**
-     * Get Shipping Inclusion Rules
-     * @summary Get Shipping Inclusion Rules
-     * @param {string} profilecode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShippingProfileApiInterface
-     */
-    getShippingInclusionRulesRaw(requestParameters: GetShippingInclusionRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingInclusionRuleCollection>>;
+    * Get Shipping Inclusion Rules
+    * @summary Get Shipping Inclusion Rules
+    * @param {string} profilecode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShippingProfileApiInterface
+    */
+    getShippingInclusionRulesRaw(requestParameters: shippingProfileApiParams.GetShippingInclusionRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingInclusionRuleCollection>>;
 
     /**
-     * Get Shipping Inclusion Rules
-     * Get Shipping Inclusion Rules
-     */
-    getShippingInclusionRules(requestParameters: GetShippingInclusionRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingInclusionRuleCollection>;
+    * Get Shipping Inclusion Rules
+    * Get Shipping Inclusion Rules
+    */
+    getShippingInclusionRules(requestParameters: shippingProfileApiParams.GetShippingInclusionRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingInclusionRuleCollection>;
 
     /**
-     * 
-     * @summary Get Configured Shipping States
-     * @param {string} profileCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShippingProfileApiInterface
-     */
-    getStatesRaw(requestParameters: GetStatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ShippingStates>>>;
+    * 
+    * @summary Get Configured Shipping States
+    * @param {string} profileCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShippingProfileApiInterface
+    */
+    getStatesRaw(requestParameters: shippingProfileApiParams.GetStatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ShippingStates>>>;
 
     /**
-     * 
-     * Get Configured Shipping States
-     */
-    getStates(requestParameters: GetStatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ShippingStates>>;
+    * 
+    * Get Configured Shipping States
+    */
+    getStates(requestParameters: shippingProfileApiParams.GetStatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ShippingStates>>;
 
     /**
-     * Update Order Handling Fee Rule
-     * @summary Update Order Handling Fee Rule
-     * @param {string} profilecode 
-     * @param {string} id 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {HandlingFeeRule} [handlingFeeRule] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShippingProfileApiInterface
-     */
-    updateOrderHandlingFeeRuleRaw(requestParameters: UpdateOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRule>>;
+    * Update Order Handling Fee Rule
+    * @summary Update Order Handling Fee Rule
+    * @param {string} profilecode 
+    * @param {string} id 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {HandlingFeeRule} [handlingFeeRule] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShippingProfileApiInterface
+    */
+    updateOrderHandlingFeeRuleRaw(requestParameters: shippingProfileApiParams.UpdateOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRule>>;
 
     /**
-     * Update Order Handling Fee Rule
-     * Update Order Handling Fee Rule
-     */
-    updateOrderHandlingFeeRule(requestParameters: UpdateOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRule>;
+    * Update Order Handling Fee Rule
+    * Update Order Handling Fee Rule
+    */
+    updateOrderHandlingFeeRule(requestParameters: shippingProfileApiParams.UpdateOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRule>;
 
     /**
-     * Update Product Handling Fee Rule
-     * @summary Update Product Handling Fee Rule
-     * @param {string} profilecode 
-     * @param {string} id 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {HandlingFeeRule} [handlingFeeRule] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShippingProfileApiInterface
-     */
-    updateProductHandlingFeeRuleRaw(requestParameters: UpdateProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRule>>;
+    * Update Product Handling Fee Rule
+    * @summary Update Product Handling Fee Rule
+    * @param {string} profilecode 
+    * @param {string} id 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {HandlingFeeRule} [handlingFeeRule] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShippingProfileApiInterface
+    */
+    updateProductHandlingFeeRuleRaw(requestParameters: shippingProfileApiParams.UpdateProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRule>>;
 
     /**
-     * Update Product Handling Fee Rule
-     * Update Product Handling Fee Rule
-     */
-    updateProductHandlingFeeRule(requestParameters: UpdateProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRule>;
+    * Update Product Handling Fee Rule
+    * Update Product Handling Fee Rule
+    */
+    updateProductHandlingFeeRule(requestParameters: shippingProfileApiParams.UpdateProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRule>;
 
     /**
-     * Update Shipping Inclusion Rule
-     * @summary Update Shipping Inclusion Rule
-     * @param {string} profilecode 
-     * @param {string} id 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {ShippingInclusionRule} [shippingInclusionRule] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShippingProfileApiInterface
-     */
-    updateShippingInclusionRuleRaw(requestParameters: UpdateShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingInclusionRule>>;
+    * Update Shipping Inclusion Rule
+    * @summary Update Shipping Inclusion Rule
+    * @param {string} profilecode 
+    * @param {string} id 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ShippingInclusionRule} [shippingInclusionRule] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShippingProfileApiInterface
+    */
+    updateShippingInclusionRuleRaw(requestParameters: shippingProfileApiParams.UpdateShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingInclusionRule>>;
 
     /**
-     * Update Shipping Inclusion Rule
-     * Update Shipping Inclusion Rule
-     */
-    updateShippingInclusionRule(requestParameters: UpdateShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingInclusionRule>;
+    * Update Shipping Inclusion Rule
+    * Update Shipping Inclusion Rule
+    */
+    updateShippingInclusionRule(requestParameters: shippingProfileApiParams.UpdateShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingInclusionRule>;
 
     /**
-     * Update States
-     * @summary Update States
-     * @param {string} profilecode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Array<ShippingStates>} [shippingStates] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShippingProfileApiInterface
-     */
-    updateStatesRaw(requestParameters: UpdateStatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ShippingStates>>>;
+    * Update States
+    * @summary Update States
+    * @param {string} profilecode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<ShippingStates>} [shippingStates] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShippingProfileApiInterface
+    */
+    updateStatesRaw(requestParameters: shippingProfileApiParams.UpdateStatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ShippingStates>>>;
 
     /**
-     * Update States
-     * Update States
-     */
-    updateStates(requestParameters: UpdateStatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ShippingStates>>;
+    * Update States
+    * Update States
+    */
+    updateStates(requestParameters: shippingProfileApiParams.UpdateStatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ShippingStates>>;
 
 }
+
 
 /**
  * 
  */
-export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfileApiInterface {
+export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfileApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -468,7 +454,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      */
 
 
-    async createOrderHandlingFeeRuleRaw(requestParameters: CreateOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRule>> {
+    async createOrderHandlingFeeRuleRaw(requestParameters: shippingProfileApiParams.CreateOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRule>> {
         if (requestParameters.profilecode === null || requestParameters.profilecode === undefined) {
             throw new runtime.RequiredError('profilecode','Required parameter requestParameters.profilecode was null or undefined when calling createOrderHandlingFeeRule.');
         }
@@ -504,7 +490,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      * Create Order Handling Fee Rule
      * Create Order Handling Fee Rule
      */
-    async createOrderHandlingFeeRule(requestParameters: CreateOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRule> {
+    async createOrderHandlingFeeRule(requestParameters: shippingProfileApiParams.CreateOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRule> {
         const response = await this.createOrderHandlingFeeRuleRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -515,7 +501,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      */
 
 
-    async createProductHandlingFeeRuleRaw(requestParameters: CreateProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRule>> {
+    async createProductHandlingFeeRuleRaw(requestParameters: shippingProfileApiParams.CreateProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRule>> {
         if (requestParameters.profilecode === null || requestParameters.profilecode === undefined) {
             throw new runtime.RequiredError('profilecode','Required parameter requestParameters.profilecode was null or undefined when calling createProductHandlingFeeRule.');
         }
@@ -551,7 +537,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      * Create Product Handling Fee Rule
      * Create Product Handling Fee Rule
      */
-    async createProductHandlingFeeRule(requestParameters: CreateProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRule> {
+    async createProductHandlingFeeRule(requestParameters: shippingProfileApiParams.CreateProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRule> {
         const response = await this.createProductHandlingFeeRuleRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -562,7 +548,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      */
 
 
-    async createShippingInclusionRuleRaw(requestParameters: CreateShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingInclusionRule>> {
+    async createShippingInclusionRuleRaw(requestParameters: shippingProfileApiParams.CreateShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingInclusionRule>> {
         if (requestParameters.profilecode === null || requestParameters.profilecode === undefined) {
             throw new runtime.RequiredError('profilecode','Required parameter requestParameters.profilecode was null or undefined when calling createShippingInclusionRule.');
         }
@@ -598,7 +584,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      * Create Shipping Inclusion Rule
      * Create Shipping Inclusion Rule
      */
-    async createShippingInclusionRule(requestParameters: CreateShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingInclusionRule> {
+    async createShippingInclusionRule(requestParameters: shippingProfileApiParams.CreateShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingInclusionRule> {
         const response = await this.createShippingInclusionRuleRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -609,7 +595,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      */
 
 
-    async deleteOrderHandlingFeeRuleRaw(requestParameters: DeleteOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingAdminHttpResponseMessage>> {
+    async deleteOrderHandlingFeeRuleRaw(requestParameters: shippingProfileApiParams.DeleteOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingAdminHttpResponseMessage>> {
         if (requestParameters.profilecode === null || requestParameters.profilecode === undefined) {
             throw new runtime.RequiredError('profilecode','Required parameter requestParameters.profilecode was null or undefined when calling deleteOrderHandlingFeeRule.');
         }
@@ -642,7 +628,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      * Delete Order Handling Fee Rule
      * Delete Order Handling Fee Rule
      */
-    async deleteOrderHandlingFeeRule(requestParameters: DeleteOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingAdminHttpResponseMessage> {
+    async deleteOrderHandlingFeeRule(requestParameters: shippingProfileApiParams.DeleteOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingAdminHttpResponseMessage> {
         const response = await this.deleteOrderHandlingFeeRuleRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -653,7 +639,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      */
 
 
-    async deleteProductHandlingFeeRuleRaw(requestParameters: DeleteProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteProductHandlingFeeRuleRaw(requestParameters: shippingProfileApiParams.DeleteProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.profilecode === null || requestParameters.profilecode === undefined) {
             throw new runtime.RequiredError('profilecode','Required parameter requestParameters.profilecode was null or undefined when calling deleteProductHandlingFeeRule.');
         }
@@ -686,7 +672,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      * Delete Product Handling Fee Rule
      * Delete Product Handling Fee Rule
      */
-    async deleteProductHandlingFeeRule(requestParameters: DeleteProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteProductHandlingFeeRule(requestParameters: shippingProfileApiParams.DeleteProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteProductHandlingFeeRuleRaw(requestParameters, initOverrides);
     }
 
@@ -696,7 +682,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      */
 
 
-    async deleteShippingInclusionRuleRaw(requestParameters: DeleteShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteShippingInclusionRuleRaw(requestParameters: shippingProfileApiParams.DeleteShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.profilecode === null || requestParameters.profilecode === undefined) {
             throw new runtime.RequiredError('profilecode','Required parameter requestParameters.profilecode was null or undefined when calling deleteShippingInclusionRule.');
         }
@@ -729,7 +715,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      * Delete Shipping Inclusion Rule
      * Delete Shipping Inclusion Rule
      */
-    async deleteShippingInclusionRule(requestParameters: DeleteShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteShippingInclusionRule(requestParameters: shippingProfileApiParams.DeleteShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteShippingInclusionRuleRaw(requestParameters, initOverrides);
     }
 
@@ -739,7 +725,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      */
 
 
-    async getOrderHandlingFeeRuleRaw(requestParameters: GetOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRule>> {
+    async getOrderHandlingFeeRuleRaw(requestParameters: shippingProfileApiParams.GetOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRule>> {
         if (requestParameters.profilecode === null || requestParameters.profilecode === undefined) {
             throw new runtime.RequiredError('profilecode','Required parameter requestParameters.profilecode was null or undefined when calling getOrderHandlingFeeRule.');
         }
@@ -776,7 +762,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      * Get Order Handling Fee Rule
      * Get Order Handling Fee Rule
      */
-    async getOrderHandlingFeeRule(requestParameters: GetOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRule> {
+    async getOrderHandlingFeeRule(requestParameters: shippingProfileApiParams.GetOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRule> {
         const response = await this.getOrderHandlingFeeRuleRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -787,7 +773,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      */
 
 
-    async getOrderHandlingFeeRulesRaw(requestParameters: GetOrderHandlingFeeRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRuleCollection>> {
+    async getOrderHandlingFeeRulesRaw(requestParameters: shippingProfileApiParams.GetOrderHandlingFeeRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRuleCollection>> {
         if (requestParameters.profilecode === null || requestParameters.profilecode === undefined) {
             throw new runtime.RequiredError('profilecode','Required parameter requestParameters.profilecode was null or undefined when calling getOrderHandlingFeeRules.');
         }
@@ -820,7 +806,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      * Get Order Handling Fee Rules
      * Get Order Handling Fee Rules
      */
-    async getOrderHandlingFeeRules(requestParameters: GetOrderHandlingFeeRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRuleCollection> {
+    async getOrderHandlingFeeRules(requestParameters: shippingProfileApiParams.GetOrderHandlingFeeRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRuleCollection> {
         const response = await this.getOrderHandlingFeeRulesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -831,7 +817,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      */
 
 
-    async getProductHandlingFeeRuleRaw(requestParameters: GetProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRule>> {
+    async getProductHandlingFeeRuleRaw(requestParameters: shippingProfileApiParams.GetProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRule>> {
         if (requestParameters.profilecode === null || requestParameters.profilecode === undefined) {
             throw new runtime.RequiredError('profilecode','Required parameter requestParameters.profilecode was null or undefined when calling getProductHandlingFeeRule.');
         }
@@ -868,7 +854,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      * Get Product Handling Fee Rule
      * Get Product Handling Fee Rule
      */
-    async getProductHandlingFeeRule(requestParameters: GetProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRule> {
+    async getProductHandlingFeeRule(requestParameters: shippingProfileApiParams.GetProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRule> {
         const response = await this.getProductHandlingFeeRuleRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -879,7 +865,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      */
 
 
-    async getProductHandlingFeeRulesRaw(requestParameters: GetProductHandlingFeeRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRuleCollection>> {
+    async getProductHandlingFeeRulesRaw(requestParameters: shippingProfileApiParams.GetProductHandlingFeeRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRuleCollection>> {
         if (requestParameters.profilecode === null || requestParameters.profilecode === undefined) {
             throw new runtime.RequiredError('profilecode','Required parameter requestParameters.profilecode was null or undefined when calling getProductHandlingFeeRules.');
         }
@@ -912,7 +898,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      * Get Product Handling Fee Rules
      * Get Product Handling Fee Rules
      */
-    async getProductHandlingFeeRules(requestParameters: GetProductHandlingFeeRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRuleCollection> {
+    async getProductHandlingFeeRules(requestParameters: shippingProfileApiParams.GetProductHandlingFeeRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRuleCollection> {
         const response = await this.getProductHandlingFeeRulesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -923,7 +909,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      */
 
 
-    async getProfilesRaw(requestParameters: GetProfilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingProfileCollection>> {
+    async getProfilesRaw(requestParameters: shippingProfileApiParams.GetProfilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingProfileCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -952,7 +938,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      * Get Shipping Profiles for the Tenant/Master Catalog
      * Get Shipping Profiles for the Tenant/Master Catalog
      */
-    async getProfiles(requestParameters: GetProfilesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingProfileCollection> {
+    async getProfiles(requestParameters: shippingProfileApiParams.GetProfilesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingProfileCollection> {
         const response = await this.getProfilesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -963,7 +949,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      */
 
 
-    async getShippingInclusionRuleRaw(requestParameters: GetShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingInclusionRule>> {
+    async getShippingInclusionRuleRaw(requestParameters: shippingProfileApiParams.GetShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingInclusionRule>> {
         if (requestParameters.profilecode === null || requestParameters.profilecode === undefined) {
             throw new runtime.RequiredError('profilecode','Required parameter requestParameters.profilecode was null or undefined when calling getShippingInclusionRule.');
         }
@@ -1000,7 +986,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      * Get Shipping Inclusion Rule
      * Get Shipping Inclusion Rule
      */
-    async getShippingInclusionRule(requestParameters: GetShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingInclusionRule> {
+    async getShippingInclusionRule(requestParameters: shippingProfileApiParams.GetShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingInclusionRule> {
         const response = await this.getShippingInclusionRuleRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1011,7 +997,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      */
 
 
-    async getShippingInclusionRulesRaw(requestParameters: GetShippingInclusionRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingInclusionRuleCollection>> {
+    async getShippingInclusionRulesRaw(requestParameters: shippingProfileApiParams.GetShippingInclusionRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingInclusionRuleCollection>> {
         if (requestParameters.profilecode === null || requestParameters.profilecode === undefined) {
             throw new runtime.RequiredError('profilecode','Required parameter requestParameters.profilecode was null or undefined when calling getShippingInclusionRules.');
         }
@@ -1044,7 +1030,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      * Get Shipping Inclusion Rules
      * Get Shipping Inclusion Rules
      */
-    async getShippingInclusionRules(requestParameters: GetShippingInclusionRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingInclusionRuleCollection> {
+    async getShippingInclusionRules(requestParameters: shippingProfileApiParams.GetShippingInclusionRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingInclusionRuleCollection> {
         const response = await this.getShippingInclusionRulesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1055,7 +1041,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      */
 
 
-    async getStatesRaw(requestParameters: GetStatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ShippingStates>>> {
+    async getStatesRaw(requestParameters: shippingProfileApiParams.GetStatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ShippingStates>>> {
         if (requestParameters.profileCode === null || requestParameters.profileCode === undefined) {
             throw new runtime.RequiredError('profileCode','Required parameter requestParameters.profileCode was null or undefined when calling getStates.');
         }
@@ -1088,7 +1074,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      * 
      * Get Configured Shipping States
      */
-    async getStates(requestParameters: GetStatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ShippingStates>> {
+    async getStates(requestParameters: shippingProfileApiParams.GetStatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ShippingStates>> {
         const response = await this.getStatesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1099,7 +1085,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      */
 
 
-    async updateOrderHandlingFeeRuleRaw(requestParameters: UpdateOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRule>> {
+    async updateOrderHandlingFeeRuleRaw(requestParameters: shippingProfileApiParams.UpdateOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRule>> {
         if (requestParameters.profilecode === null || requestParameters.profilecode === undefined) {
             throw new runtime.RequiredError('profilecode','Required parameter requestParameters.profilecode was null or undefined when calling updateOrderHandlingFeeRule.');
         }
@@ -1139,7 +1125,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      * Update Order Handling Fee Rule
      * Update Order Handling Fee Rule
      */
-    async updateOrderHandlingFeeRule(requestParameters: UpdateOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRule> {
+    async updateOrderHandlingFeeRule(requestParameters: shippingProfileApiParams.UpdateOrderHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRule> {
         const response = await this.updateOrderHandlingFeeRuleRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1150,7 +1136,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      */
 
 
-    async updateProductHandlingFeeRuleRaw(requestParameters: UpdateProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRule>> {
+    async updateProductHandlingFeeRuleRaw(requestParameters: shippingProfileApiParams.UpdateProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<HandlingFeeRule>> {
         if (requestParameters.profilecode === null || requestParameters.profilecode === undefined) {
             throw new runtime.RequiredError('profilecode','Required parameter requestParameters.profilecode was null or undefined when calling updateProductHandlingFeeRule.');
         }
@@ -1190,7 +1176,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      * Update Product Handling Fee Rule
      * Update Product Handling Fee Rule
      */
-    async updateProductHandlingFeeRule(requestParameters: UpdateProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRule> {
+    async updateProductHandlingFeeRule(requestParameters: shippingProfileApiParams.UpdateProductHandlingFeeRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<HandlingFeeRule> {
         const response = await this.updateProductHandlingFeeRuleRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1201,7 +1187,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      */
 
 
-    async updateShippingInclusionRuleRaw(requestParameters: UpdateShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingInclusionRule>> {
+    async updateShippingInclusionRuleRaw(requestParameters: shippingProfileApiParams.UpdateShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShippingInclusionRule>> {
         if (requestParameters.profilecode === null || requestParameters.profilecode === undefined) {
             throw new runtime.RequiredError('profilecode','Required parameter requestParameters.profilecode was null or undefined when calling updateShippingInclusionRule.');
         }
@@ -1241,7 +1227,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      * Update Shipping Inclusion Rule
      * Update Shipping Inclusion Rule
      */
-    async updateShippingInclusionRule(requestParameters: UpdateShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingInclusionRule> {
+    async updateShippingInclusionRule(requestParameters: shippingProfileApiParams.UpdateShippingInclusionRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShippingInclusionRule> {
         const response = await this.updateShippingInclusionRuleRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1252,7 +1238,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      */
 
 
-    async updateStatesRaw(requestParameters: UpdateStatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ShippingStates>>> {
+    async updateStatesRaw(requestParameters: shippingProfileApiParams.UpdateStatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ShippingStates>>> {
         if (requestParameters.profilecode === null || requestParameters.profilecode === undefined) {
             throw new runtime.RequiredError('profilecode','Required parameter requestParameters.profilecode was null or undefined when calling updateStates.');
         }
@@ -1288,7 +1274,7 @@ export class ShippingProfileApi extends runtime.BaseAPI implements ShippingProfi
      * Update States
      * Update States
      */
-    async updateStates(requestParameters: UpdateStatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ShippingStates>> {
+    async updateStates(requestParameters: shippingProfileApiParams.UpdateStatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ShippingStates>> {
         const response = await this.updateStatesRaw(requestParameters, initOverrides);
         return await response.value();
     }

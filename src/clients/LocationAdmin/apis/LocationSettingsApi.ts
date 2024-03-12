@@ -20,85 +20,86 @@ import type {
   LocationUsageCollection,
 } from '../models';
 
-export interface GetLocationUsageRequest {
-    code: string;
-    responseFields?: string;
+
+export namespace locationSettingsApiParams { 
+    export interface GetLocationUsageRequest {
+        code: string;
+        responseFields?: string;
+    }
+    export interface GetLocationUsagesRequest {
+        responseFields?: string;
+    }
+    export interface UpdateLocationUsageAsyncRequest {
+        code: string;
+        responseFields?: string;
+        locationUsage?: LocationUsage;
+    }
+}
+/**
+* LocationSettingsApiService - interface
+* 
+* @export
+* @interface LocationSettingsApi
+*/
+export interface LocationSettingsApiService {
+    /**
+    * Get a locationUsage for the Site.
+    * @summary Get Location Usage
+    * @param {string} code 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof LocationSettingsApiInterface
+    */
+    getLocationUsageRaw(requestParameters: locationSettingsApiParams.GetLocationUsageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationUsage>>;
+
+    /**
+    * Get a locationUsage for the Site.
+    * Get Location Usage
+    */
+    getLocationUsage(requestParameters: locationSettingsApiParams.GetLocationUsageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationUsage>;
+
+    /**
+    * Get the locationUsages for the Site.
+    * @summary Get Location Usages
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof LocationSettingsApiInterface
+    */
+    getLocationUsagesRaw(requestParameters: locationSettingsApiParams.GetLocationUsagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationUsageCollection>>;
+
+    /**
+    * Get the locationUsages for the Site.
+    * Get Location Usages
+    */
+    getLocationUsages(requestParameters: locationSettingsApiParams.GetLocationUsagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationUsageCollection>;
+
+    /**
+    * Update a locationUsage for the Site.
+    * @summary Update Location Usage Async
+    * @param {string} code 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {LocationUsage} [locationUsage] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof LocationSettingsApiInterface
+    */
+    updateLocationUsageAsyncRaw(requestParameters: locationSettingsApiParams.UpdateLocationUsageAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationUsage>>;
+
+    /**
+    * Update a locationUsage for the Site.
+    * Update Location Usage Async
+    */
+    updateLocationUsageAsync(requestParameters: locationSettingsApiParams.UpdateLocationUsageAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationUsage>;
+
 }
 
-export interface GetLocationUsagesRequest {
-    responseFields?: string;
-}
-
-export interface UpdateLocationUsageAsyncRequest {
-    code: string;
-    responseFields?: string;
-    locationUsage?: LocationUsage;
-}
 
 /**
- * LocationSettingsApi - interface
- * 
- * @export
- * @interface LocationSettingsApiInterface
- */
-export interface LocationSettingsApiInterface {
-    /**
-     * Get a locationUsage for the Site.
-     * @summary Get Location Usage
-     * @param {string} code 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof LocationSettingsApiInterface
-     */
-    getLocationUsageRaw(requestParameters: GetLocationUsageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationUsage>>;
-
-    /**
-     * Get a locationUsage for the Site.
-     * Get Location Usage
-     */
-    getLocationUsage(requestParameters: GetLocationUsageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationUsage>;
-
-    /**
-     * Get the locationUsages for the Site.
-     * @summary Get Location Usages
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof LocationSettingsApiInterface
-     */
-    getLocationUsagesRaw(requestParameters: GetLocationUsagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationUsageCollection>>;
-
-    /**
-     * Get the locationUsages for the Site.
-     * Get Location Usages
-     */
-    getLocationUsages(requestParameters: GetLocationUsagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationUsageCollection>;
-
-    /**
-     * Update a locationUsage for the Site.
-     * @summary Update Location Usage Async
-     * @param {string} code 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {LocationUsage} [locationUsage] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof LocationSettingsApiInterface
-     */
-    updateLocationUsageAsyncRaw(requestParameters: UpdateLocationUsageAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationUsage>>;
-
-    /**
-     * Update a locationUsage for the Site.
-     * Update Location Usage Async
-     */
-    updateLocationUsageAsync(requestParameters: UpdateLocationUsageAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationUsage>;
-
-}
-
-/**
  * 
  */
-export class LocationSettingsApi extends runtime.BaseAPI implements LocationSettingsApiInterface {
+export class LocationSettingsApi extends runtime.BaseAPI implements LocationSettingsApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -109,7 +110,7 @@ export class LocationSettingsApi extends runtime.BaseAPI implements LocationSett
      */
 
 
-    async getLocationUsageRaw(requestParameters: GetLocationUsageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationUsage>> {
+    async getLocationUsageRaw(requestParameters: locationSettingsApiParams.GetLocationUsageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationUsage>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling getLocationUsage.');
         }
@@ -142,7 +143,7 @@ export class LocationSettingsApi extends runtime.BaseAPI implements LocationSett
      * Get a locationUsage for the Site.
      * Get Location Usage
      */
-    async getLocationUsage(requestParameters: GetLocationUsageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationUsage> {
+    async getLocationUsage(requestParameters: locationSettingsApiParams.GetLocationUsageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationUsage> {
         const response = await this.getLocationUsageRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -153,7 +154,7 @@ export class LocationSettingsApi extends runtime.BaseAPI implements LocationSett
      */
 
 
-    async getLocationUsagesRaw(requestParameters: GetLocationUsagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationUsageCollection>> {
+    async getLocationUsagesRaw(requestParameters: locationSettingsApiParams.GetLocationUsagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationUsageCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -182,7 +183,7 @@ export class LocationSettingsApi extends runtime.BaseAPI implements LocationSett
      * Get the locationUsages for the Site.
      * Get Location Usages
      */
-    async getLocationUsages(requestParameters: GetLocationUsagesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationUsageCollection> {
+    async getLocationUsages(requestParameters: locationSettingsApiParams.GetLocationUsagesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationUsageCollection> {
         const response = await this.getLocationUsagesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -193,7 +194,7 @@ export class LocationSettingsApi extends runtime.BaseAPI implements LocationSett
      */
 
 
-    async updateLocationUsageAsyncRaw(requestParameters: UpdateLocationUsageAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationUsage>> {
+    async updateLocationUsageAsyncRaw(requestParameters: locationSettingsApiParams.UpdateLocationUsageAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationUsage>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling updateLocationUsageAsync.');
         }
@@ -229,7 +230,7 @@ export class LocationSettingsApi extends runtime.BaseAPI implements LocationSett
      * Update a locationUsage for the Site.
      * Update Location Usage Async
      */
-    async updateLocationUsageAsync(requestParameters: UpdateLocationUsageAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationUsage> {
+    async updateLocationUsageAsync(requestParameters: locationSettingsApiParams.UpdateLocationUsageAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationUsage> {
         const response = await this.updateLocationUsageAsyncRaw(requestParameters, initOverrides);
         return await response.value();
     }

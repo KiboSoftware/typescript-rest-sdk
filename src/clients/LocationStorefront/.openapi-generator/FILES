@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 apis/LocationApi.ts
 apis/index.ts
 index.ts

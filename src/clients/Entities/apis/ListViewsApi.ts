@@ -20,137 +20,136 @@ import type {
   ListViewCollection,
 } from '../models';
 
-export interface CreateEntityListViewRequest {
-    entityListFullName: string;
-    responseFields?: string;
-    listView?: ListView;
+
+export namespace listViewsApiParams { 
+    export interface CreateEntityListViewRequest {
+        entityListFullName: string;
+        responseFields?: string;
+        listView?: ListView;
+    }
+    export interface DeleteEntityListViewRequest {
+        entityListFullName: string;
+        viewName: string;
+    }
+    export interface GetEntityListViewRequest {
+        entityListFullName: string;
+        viewName: string;
+        responseFields?: string;
+    }
+    export interface GetEntityListViewsRequest {
+        entityListFullName: string;
+        responseFields?: string;
+    }
+    export interface UpdateEntityListViewRequest {
+        entityListFullName: string;
+        viewName: string;
+        responseFields?: string;
+        listView?: ListView;
+    }
+}
+/**
+* ListViewsApiService - interface
+* 
+* @export
+* @interface ListViewsApi
+*/
+export interface ListViewsApiService {
+    /**
+    * Create a new ListView definition for a specific EntityList for a specific tenant
+    * @summary Add ListView
+    * @param {string} entityListFullName The full name of the EntityList including namespace in name@nameSpace format
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ListView} [listView] The new ListView definition
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ListViewsApiInterface
+    */
+    createEntityListViewRaw(requestParameters: listViewsApiParams.CreateEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListView>>;
+
+    /**
+    * Create a new ListView definition for a specific EntityList for a specific tenant
+    * Add ListView
+    */
+    createEntityListView(requestParameters: listViewsApiParams.CreateEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListView>;
+
+    /**
+    * Delete an existing ListView definition for a specific EntityList for a specific tenant
+    * @summary Delete ListView
+    * @param {string} entityListFullName The full name of the EntityList including namespace in name@nameSpace format
+    * @param {string} viewName The name of the ListView to delete
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ListViewsApiInterface
+    */
+    deleteEntityListViewRaw(requestParameters: listViewsApiParams.DeleteEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+    * Delete an existing ListView definition for a specific EntityList for a specific tenant
+    * Delete ListView
+    */
+    deleteEntityListView(requestParameters: listViewsApiParams.DeleteEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+    * Returns a specific ListView definition for a specific EntityList for a specific tenant
+    * @summary Get ListView
+    * @param {string} entityListFullName The full name of the EntityList including namespace in name@nameSpace format
+    * @param {string} viewName The name of the ListView
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ListViewsApiInterface
+    */
+    getEntityListViewRaw(requestParameters: listViewsApiParams.GetEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListView>>;
+
+    /**
+    * Returns a specific ListView definition for a specific EntityList for a specific tenant
+    * Get ListView
+    */
+    getEntityListView(requestParameters: listViewsApiParams.GetEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListView>;
+
+    /**
+    * Get all of the defined ListViews for a specific EntityList for a specific tenant
+    * @summary Get  ListViews
+    * @param {string} entityListFullName The full name of the EntityList including namespace in name@nameSpace format
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ListViewsApiInterface
+    */
+    getEntityListViewsRaw(requestParameters: listViewsApiParams.GetEntityListViewsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListViewCollection>>;
+
+    /**
+    * Get all of the defined ListViews for a specific EntityList for a specific tenant
+    * Get  ListViews
+    */
+    getEntityListViews(requestParameters: listViewsApiParams.GetEntityListViewsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListViewCollection>;
+
+    /**
+    * Update an existing ListView definition for a specific EntityList for a specific tenant
+    * @summary Update ListView
+    * @param {string} entityListFullName The full name of the EntityList including namespace in name@nameSpace format
+    * @param {string} viewName The name of the ListView
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ListView} [listView] The udpated ListView definition
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ListViewsApiInterface
+    */
+    updateEntityListViewRaw(requestParameters: listViewsApiParams.UpdateEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListView>>;
+
+    /**
+    * Update an existing ListView definition for a specific EntityList for a specific tenant
+    * Update ListView
+    */
+    updateEntityListView(requestParameters: listViewsApiParams.UpdateEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListView>;
+
 }
 
-export interface DeleteEntityListViewRequest {
-    entityListFullName: string;
-    viewName: string;
-}
-
-export interface GetEntityListViewRequest {
-    entityListFullName: string;
-    viewName: string;
-    responseFields?: string;
-}
-
-export interface GetEntityListViewsRequest {
-    entityListFullName: string;
-    responseFields?: string;
-}
-
-export interface UpdateEntityListViewRequest {
-    entityListFullName: string;
-    viewName: string;
-    responseFields?: string;
-    listView?: ListView;
-}
 
 /**
- * ListViewsApi - interface
- * 
- * @export
- * @interface ListViewsApiInterface
- */
-export interface ListViewsApiInterface {
-    /**
-     * Create a new ListView definition for a specific EntityList for a specific tenant
-     * @summary Add ListView
-     * @param {string} entityListFullName The full name of the EntityList including namespace in name@nameSpace format
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {ListView} [listView] The new ListView definition
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ListViewsApiInterface
-     */
-    createEntityListViewRaw(requestParameters: CreateEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListView>>;
-
-    /**
-     * Create a new ListView definition for a specific EntityList for a specific tenant
-     * Add ListView
-     */
-    createEntityListView(requestParameters: CreateEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListView>;
-
-    /**
-     * Delete an existing ListView definition for a specific EntityList for a specific tenant
-     * @summary Delete ListView
-     * @param {string} entityListFullName The full name of the EntityList including namespace in name@nameSpace format
-     * @param {string} viewName The name of the ListView to delete
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ListViewsApiInterface
-     */
-    deleteEntityListViewRaw(requestParameters: DeleteEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     * Delete an existing ListView definition for a specific EntityList for a specific tenant
-     * Delete ListView
-     */
-    deleteEntityListView(requestParameters: DeleteEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * Returns a specific ListView definition for a specific EntityList for a specific tenant
-     * @summary Get ListView
-     * @param {string} entityListFullName The full name of the EntityList including namespace in name@nameSpace format
-     * @param {string} viewName The name of the ListView
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ListViewsApiInterface
-     */
-    getEntityListViewRaw(requestParameters: GetEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListView>>;
-
-    /**
-     * Returns a specific ListView definition for a specific EntityList for a specific tenant
-     * Get ListView
-     */
-    getEntityListView(requestParameters: GetEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListView>;
-
-    /**
-     * Get all of the defined ListViews for a specific EntityList for a specific tenant
-     * @summary Get  ListViews
-     * @param {string} entityListFullName The full name of the EntityList including namespace in name@nameSpace format
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ListViewsApiInterface
-     */
-    getEntityListViewsRaw(requestParameters: GetEntityListViewsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListViewCollection>>;
-
-    /**
-     * Get all of the defined ListViews for a specific EntityList for a specific tenant
-     * Get  ListViews
-     */
-    getEntityListViews(requestParameters: GetEntityListViewsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListViewCollection>;
-
-    /**
-     * Update an existing ListView definition for a specific EntityList for a specific tenant
-     * @summary Update ListView
-     * @param {string} entityListFullName The full name of the EntityList including namespace in name@nameSpace format
-     * @param {string} viewName The name of the ListView
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {ListView} [listView] The udpated ListView definition
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ListViewsApiInterface
-     */
-    updateEntityListViewRaw(requestParameters: UpdateEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListView>>;
-
-    /**
-     * Update an existing ListView definition for a specific EntityList for a specific tenant
-     * Update ListView
-     */
-    updateEntityListView(requestParameters: UpdateEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListView>;
-
-}
-
-/**
  * 
  */
-export class ListViewsApi extends runtime.BaseAPI implements ListViewsApiInterface {
+export class ListViewsApi extends runtime.BaseAPI implements ListViewsApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -161,7 +160,7 @@ export class ListViewsApi extends runtime.BaseAPI implements ListViewsApiInterfa
      */
 
 
-    async createEntityListViewRaw(requestParameters: CreateEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListView>> {
+    async createEntityListViewRaw(requestParameters: listViewsApiParams.CreateEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListView>> {
         if (requestParameters.entityListFullName === null || requestParameters.entityListFullName === undefined) {
             throw new runtime.RequiredError('entityListFullName','Required parameter requestParameters.entityListFullName was null or undefined when calling createEntityListView.');
         }
@@ -197,7 +196,7 @@ export class ListViewsApi extends runtime.BaseAPI implements ListViewsApiInterfa
      * Create a new ListView definition for a specific EntityList for a specific tenant
      * Add ListView
      */
-    async createEntityListView(requestParameters: CreateEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListView> {
+    async createEntityListView(requestParameters: listViewsApiParams.CreateEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListView> {
         const response = await this.createEntityListViewRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -208,7 +207,7 @@ export class ListViewsApi extends runtime.BaseAPI implements ListViewsApiInterfa
      */
 
 
-    async deleteEntityListViewRaw(requestParameters: DeleteEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteEntityListViewRaw(requestParameters: listViewsApiParams.DeleteEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.entityListFullName === null || requestParameters.entityListFullName === undefined) {
             throw new runtime.RequiredError('entityListFullName','Required parameter requestParameters.entityListFullName was null or undefined when calling deleteEntityListView.');
         }
@@ -241,7 +240,7 @@ export class ListViewsApi extends runtime.BaseAPI implements ListViewsApiInterfa
      * Delete an existing ListView definition for a specific EntityList for a specific tenant
      * Delete ListView
      */
-    async deleteEntityListView(requestParameters: DeleteEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteEntityListView(requestParameters: listViewsApiParams.DeleteEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteEntityListViewRaw(requestParameters, initOverrides);
     }
 
@@ -251,7 +250,7 @@ export class ListViewsApi extends runtime.BaseAPI implements ListViewsApiInterfa
      */
 
 
-    async getEntityListViewRaw(requestParameters: GetEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListView>> {
+    async getEntityListViewRaw(requestParameters: listViewsApiParams.GetEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListView>> {
         if (requestParameters.entityListFullName === null || requestParameters.entityListFullName === undefined) {
             throw new runtime.RequiredError('entityListFullName','Required parameter requestParameters.entityListFullName was null or undefined when calling getEntityListView.');
         }
@@ -288,7 +287,7 @@ export class ListViewsApi extends runtime.BaseAPI implements ListViewsApiInterfa
      * Returns a specific ListView definition for a specific EntityList for a specific tenant
      * Get ListView
      */
-    async getEntityListView(requestParameters: GetEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListView> {
+    async getEntityListView(requestParameters: listViewsApiParams.GetEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListView> {
         const response = await this.getEntityListViewRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -299,7 +298,7 @@ export class ListViewsApi extends runtime.BaseAPI implements ListViewsApiInterfa
      */
 
 
-    async getEntityListViewsRaw(requestParameters: GetEntityListViewsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListViewCollection>> {
+    async getEntityListViewsRaw(requestParameters: listViewsApiParams.GetEntityListViewsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListViewCollection>> {
         if (requestParameters.entityListFullName === null || requestParameters.entityListFullName === undefined) {
             throw new runtime.RequiredError('entityListFullName','Required parameter requestParameters.entityListFullName was null or undefined when calling getEntityListViews.');
         }
@@ -332,7 +331,7 @@ export class ListViewsApi extends runtime.BaseAPI implements ListViewsApiInterfa
      * Get all of the defined ListViews for a specific EntityList for a specific tenant
      * Get  ListViews
      */
-    async getEntityListViews(requestParameters: GetEntityListViewsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListViewCollection> {
+    async getEntityListViews(requestParameters: listViewsApiParams.GetEntityListViewsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListViewCollection> {
         const response = await this.getEntityListViewsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -343,7 +342,7 @@ export class ListViewsApi extends runtime.BaseAPI implements ListViewsApiInterfa
      */
 
 
-    async updateEntityListViewRaw(requestParameters: UpdateEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListView>> {
+    async updateEntityListViewRaw(requestParameters: listViewsApiParams.UpdateEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListView>> {
         if (requestParameters.entityListFullName === null || requestParameters.entityListFullName === undefined) {
             throw new runtime.RequiredError('entityListFullName','Required parameter requestParameters.entityListFullName was null or undefined when calling updateEntityListView.');
         }
@@ -383,7 +382,7 @@ export class ListViewsApi extends runtime.BaseAPI implements ListViewsApiInterfa
      * Update an existing ListView definition for a specific EntityList for a specific tenant
      * Update ListView
      */
-    async updateEntityListView(requestParameters: UpdateEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListView> {
+    async updateEntityListView(requestParameters: listViewsApiParams.UpdateEntityListViewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListView> {
         const response = await this.updateEntityListViewRaw(requestParameters, initOverrides);
         return await response.value();
     }

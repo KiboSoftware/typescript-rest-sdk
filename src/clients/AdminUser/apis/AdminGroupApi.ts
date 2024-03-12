@@ -20,183 +20,180 @@ import type {
   AdminGroupCollection,
 } from '../models';
 
-export interface AddAdminGroupRequest {
-    responseFields?: string;
-    adminGroup?: AdminGroup;
-}
 
-export interface AddUsersRequest {
-    groupCode: string;
-    responseFields?: string;
-    requestBody?: Array<string>;
+export namespace adminGroupApiParams { 
+    export interface AddAdminGroupRequest {
+        responseFields?: string;
+        adminGroup?: AdminGroup;
+    }
+    export interface AddUsersRequest {
+        groupCode: string;
+        responseFields?: string;
+        requestBody?: Array<string>;
+    }
+    export interface DeleteAdminGroupRequest {
+        groupCode: string;
+    }
+    export interface GetAdminGroupRequest {
+        groupCode: string;
+        responseFields?: string;
+    }
+    export interface GetAdminGroupsRequest {
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        filter?: string;
+        responseFields?: string;
+    }
+    export interface RemoveUsersRequest {
+        groupCode: string;
+        responseFields?: string;
+        requestBody?: Array<string>;
+    }
+    export interface UpdateAdminGroupRequest {
+        groupCode: string;
+        responseFields?: string;
+        adminGroup?: AdminGroup;
+    }
 }
-
-export interface DeleteAdminGroupRequest {
-    groupCode: string;
-}
-
-export interface GetAdminGroupRequest {
-    groupCode: string;
-    responseFields?: string;
-}
-
-export interface GetAdminGroupsRequest {
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    filter?: string;
-    responseFields?: string;
-}
-
-export interface RemoveUsersRequest {
-    groupCode: string;
-    responseFields?: string;
-    requestBody?: Array<string>;
-}
-
-export interface UpdateAdminGroupRequest {
-    groupCode: string;
-    responseFields?: string;
-    adminGroup?: AdminGroup;
-}
-
 /**
- * AdminGroupApi - interface
- * 
- * @export
- * @interface AdminGroupApiInterface
- */
-export interface AdminGroupApiInterface {
+* AdminGroupApiService - interface
+* 
+* @export
+* @interface AdminGroupApi
+*/
+export interface AdminGroupApiService {
     /**
-     * Add a admin group
-     * @summary Add a admin group
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {AdminGroup} [adminGroup] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AdminGroupApiInterface
-     */
-    addAdminGroupRaw(requestParameters: AddAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminGroup>>;
+    * Add a admin group
+    * @summary Add a admin group
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {AdminGroup} [adminGroup] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof AdminGroupApiInterface
+    */
+    addAdminGroupRaw(requestParameters: adminGroupApiParams.AddAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminGroup>>;
 
     /**
-     * Add a admin group
-     * Add a admin group
-     */
-    addAdminGroup(requestParameters: AddAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdminGroup>;
+    * Add a admin group
+    * Add a admin group
+    */
+    addAdminGroup(requestParameters: adminGroupApiParams.AddAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdminGroup>;
 
     /**
-     * Add users to admin group
-     * @summary Add users to admin group
-     * @param {string} groupCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Array<string>} [requestBody] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AdminGroupApiInterface
-     */
-    addUsersRaw(requestParameters: AddUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminGroup>>;
+    * Add users to admin group
+    * @summary Add users to admin group
+    * @param {string} groupCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<string>} [requestBody] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof AdminGroupApiInterface
+    */
+    addUsersRaw(requestParameters: adminGroupApiParams.AddUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminGroup>>;
 
     /**
-     * Add users to admin group
-     * Add users to admin group
-     */
-    addUsers(requestParameters: AddUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdminGroup>;
+    * Add users to admin group
+    * Add users to admin group
+    */
+    addUsers(requestParameters: adminGroupApiParams.AddUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdminGroup>;
 
     /**
-     * Deletes a Admin Group
-     * @summary Deletes a Admin Group
-     * @param {string} groupCode 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AdminGroupApiInterface
-     */
-    deleteAdminGroupRaw(requestParameters: DeleteAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Deletes a Admin Group
+    * @summary Deletes a Admin Group
+    * @param {string} groupCode 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof AdminGroupApiInterface
+    */
+    deleteAdminGroupRaw(requestParameters: adminGroupApiParams.DeleteAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Deletes a Admin Group
-     * Deletes a Admin Group
-     */
-    deleteAdminGroup(requestParameters: DeleteAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Deletes a Admin Group
+    * Deletes a Admin Group
+    */
+    deleteAdminGroup(requestParameters: adminGroupApiParams.DeleteAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Gets a Admin group by id
-     * @summary Get Admin Group
-     * @param {string} groupCode groupCode
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AdminGroupApiInterface
-     */
-    getAdminGroupRaw(requestParameters: GetAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminGroup>>;
+    * Gets a Admin group by id
+    * @summary Get Admin Group
+    * @param {string} groupCode groupCode
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof AdminGroupApiInterface
+    */
+    getAdminGroupRaw(requestParameters: adminGroupApiParams.GetAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminGroup>>;
 
     /**
-     * Gets a Admin group by id
-     * Get Admin Group
-     */
-    getAdminGroup(requestParameters: GetAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdminGroup>;
+    * Gets a Admin group by id
+    * Get Admin Group
+    */
+    getAdminGroup(requestParameters: adminGroupApiParams.GetAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdminGroup>;
 
     /**
-     * Gets a collection of user groups
-     * @summary Get Admin Groups
-     * @param {number} [startIndex] 
-     * @param {number} [pageSize] 
-     * @param {string} [sortBy] 
-     * @param {string} [filter] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AdminGroupApiInterface
-     */
-    getAdminGroupsRaw(requestParameters: GetAdminGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminGroupCollection>>;
+    * Gets a collection of user groups
+    * @summary Get Admin Groups
+    * @param {number} [startIndex] 
+    * @param {number} [pageSize] 
+    * @param {string} [sortBy] 
+    * @param {string} [filter] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof AdminGroupApiInterface
+    */
+    getAdminGroupsRaw(requestParameters: adminGroupApiParams.GetAdminGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminGroupCollection>>;
 
     /**
-     * Gets a collection of user groups
-     * Get Admin Groups
-     */
-    getAdminGroups(requestParameters: GetAdminGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdminGroupCollection>;
+    * Gets a collection of user groups
+    * Get Admin Groups
+    */
+    getAdminGroups(requestParameters: adminGroupApiParams.GetAdminGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdminGroupCollection>;
 
     /**
-     * Remove users from admin group
-     * @summary Remove users from admin group
-     * @param {string} groupCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Array<string>} [requestBody] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AdminGroupApiInterface
-     */
-    removeUsersRaw(requestParameters: RemoveUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Remove users from admin group
+    * @summary Remove users from admin group
+    * @param {string} groupCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<string>} [requestBody] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof AdminGroupApiInterface
+    */
+    removeUsersRaw(requestParameters: adminGroupApiParams.RemoveUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Remove users from admin group
-     * Remove users from admin group
-     */
-    removeUsers(requestParameters: RemoveUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Remove users from admin group
+    * Remove users from admin group
+    */
+    removeUsers(requestParameters: adminGroupApiParams.RemoveUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Update an existing adminGroup
-     * @summary Update an existing adminGroup
-     * @param {string} groupCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {AdminGroup} [adminGroup] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AdminGroupApiInterface
-     */
-    updateAdminGroupRaw(requestParameters: UpdateAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminGroup>>;
+    * Update an existing adminGroup
+    * @summary Update an existing adminGroup
+    * @param {string} groupCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {AdminGroup} [adminGroup] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof AdminGroupApiInterface
+    */
+    updateAdminGroupRaw(requestParameters: adminGroupApiParams.UpdateAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminGroup>>;
 
     /**
-     * Update an existing adminGroup
-     * Update an existing adminGroup
-     */
-    updateAdminGroup(requestParameters: UpdateAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdminGroup>;
+    * Update an existing adminGroup
+    * Update an existing adminGroup
+    */
+    updateAdminGroup(requestParameters: adminGroupApiParams.UpdateAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdminGroup>;
 
 }
+
 
 /**
  * 
  */
-export class AdminGroupApi extends runtime.BaseAPI implements AdminGroupApiInterface {
+export class AdminGroupApi extends runtime.BaseAPI implements AdminGroupApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -207,7 +204,7 @@ export class AdminGroupApi extends runtime.BaseAPI implements AdminGroupApiInter
      */
 
 
-    async addAdminGroupRaw(requestParameters: AddAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminGroup>> {
+    async addAdminGroupRaw(requestParameters: adminGroupApiParams.AddAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminGroup>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -239,7 +236,7 @@ export class AdminGroupApi extends runtime.BaseAPI implements AdminGroupApiInter
      * Add a admin group
      * Add a admin group
      */
-    async addAdminGroup(requestParameters: AddAdminGroupRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdminGroup> {
+    async addAdminGroup(requestParameters: adminGroupApiParams.AddAdminGroupRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdminGroup> {
         const response = await this.addAdminGroupRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -250,7 +247,7 @@ export class AdminGroupApi extends runtime.BaseAPI implements AdminGroupApiInter
      */
 
 
-    async addUsersRaw(requestParameters: AddUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminGroup>> {
+    async addUsersRaw(requestParameters: adminGroupApiParams.AddUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminGroup>> {
         if (requestParameters.groupCode === null || requestParameters.groupCode === undefined) {
             throw new runtime.RequiredError('groupCode','Required parameter requestParameters.groupCode was null or undefined when calling addUsers.');
         }
@@ -286,7 +283,7 @@ export class AdminGroupApi extends runtime.BaseAPI implements AdminGroupApiInter
      * Add users to admin group
      * Add users to admin group
      */
-    async addUsers(requestParameters: AddUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdminGroup> {
+    async addUsers(requestParameters: adminGroupApiParams.AddUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdminGroup> {
         const response = await this.addUsersRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -297,7 +294,7 @@ export class AdminGroupApi extends runtime.BaseAPI implements AdminGroupApiInter
      */
 
 
-    async deleteAdminGroupRaw(requestParameters: DeleteAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteAdminGroupRaw(requestParameters: adminGroupApiParams.DeleteAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.groupCode === null || requestParameters.groupCode === undefined) {
             throw new runtime.RequiredError('groupCode','Required parameter requestParameters.groupCode was null or undefined when calling deleteAdminGroup.');
         }
@@ -326,7 +323,7 @@ export class AdminGroupApi extends runtime.BaseAPI implements AdminGroupApiInter
      * Deletes a Admin Group
      * Deletes a Admin Group
      */
-    async deleteAdminGroup(requestParameters: DeleteAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteAdminGroup(requestParameters: adminGroupApiParams.DeleteAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteAdminGroupRaw(requestParameters, initOverrides);
     }
 
@@ -336,7 +333,7 @@ export class AdminGroupApi extends runtime.BaseAPI implements AdminGroupApiInter
      */
 
 
-    async getAdminGroupRaw(requestParameters: GetAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminGroup>> {
+    async getAdminGroupRaw(requestParameters: adminGroupApiParams.GetAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminGroup>> {
         if (requestParameters.groupCode === null || requestParameters.groupCode === undefined) {
             throw new runtime.RequiredError('groupCode','Required parameter requestParameters.groupCode was null or undefined when calling getAdminGroup.');
         }
@@ -369,7 +366,7 @@ export class AdminGroupApi extends runtime.BaseAPI implements AdminGroupApiInter
      * Gets a Admin group by id
      * Get Admin Group
      */
-    async getAdminGroup(requestParameters: GetAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdminGroup> {
+    async getAdminGroup(requestParameters: adminGroupApiParams.GetAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdminGroup> {
         const response = await this.getAdminGroupRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -380,7 +377,7 @@ export class AdminGroupApi extends runtime.BaseAPI implements AdminGroupApiInter
      */
 
 
-    async getAdminGroupsRaw(requestParameters: GetAdminGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminGroupCollection>> {
+    async getAdminGroupsRaw(requestParameters: adminGroupApiParams.GetAdminGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminGroupCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -425,7 +422,7 @@ export class AdminGroupApi extends runtime.BaseAPI implements AdminGroupApiInter
      * Gets a collection of user groups
      * Get Admin Groups
      */
-    async getAdminGroups(requestParameters: GetAdminGroupsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdminGroupCollection> {
+    async getAdminGroups(requestParameters: adminGroupApiParams.GetAdminGroupsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdminGroupCollection> {
         const response = await this.getAdminGroupsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -436,7 +433,7 @@ export class AdminGroupApi extends runtime.BaseAPI implements AdminGroupApiInter
      */
 
 
-    async removeUsersRaw(requestParameters: RemoveUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async removeUsersRaw(requestParameters: adminGroupApiParams.RemoveUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.groupCode === null || requestParameters.groupCode === undefined) {
             throw new runtime.RequiredError('groupCode','Required parameter requestParameters.groupCode was null or undefined when calling removeUsers.');
         }
@@ -472,7 +469,7 @@ export class AdminGroupApi extends runtime.BaseAPI implements AdminGroupApiInter
      * Remove users from admin group
      * Remove users from admin group
      */
-    async removeUsers(requestParameters: RemoveUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async removeUsers(requestParameters: adminGroupApiParams.RemoveUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.removeUsersRaw(requestParameters, initOverrides);
     }
 
@@ -482,7 +479,7 @@ export class AdminGroupApi extends runtime.BaseAPI implements AdminGroupApiInter
      */
 
 
-    async updateAdminGroupRaw(requestParameters: UpdateAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminGroup>> {
+    async updateAdminGroupRaw(requestParameters: adminGroupApiParams.UpdateAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminGroup>> {
         if (requestParameters.groupCode === null || requestParameters.groupCode === undefined) {
             throw new runtime.RequiredError('groupCode','Required parameter requestParameters.groupCode was null or undefined when calling updateAdminGroup.');
         }
@@ -518,7 +515,7 @@ export class AdminGroupApi extends runtime.BaseAPI implements AdminGroupApiInter
      * Update an existing adminGroup
      * Update an existing adminGroup
      */
-    async updateAdminGroup(requestParameters: UpdateAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdminGroup> {
+    async updateAdminGroup(requestParameters: adminGroupApiParams.UpdateAdminGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdminGroup> {
         const response = await this.updateAdminGroupRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -20,135 +20,134 @@ import type {
   LocationLocationGroup,
 } from '../models';
 
-export interface AddLocationGroupRequest {
-    responseFields?: string;
-    locationLocationGroup?: LocationLocationGroup;
+
+export namespace locationGroupApiParams { 
+    export interface AddLocationGroupRequest {
+        responseFields?: string;
+        locationLocationGroup?: LocationLocationGroup;
+    }
+    export interface DeleteLocationGroupRequest {
+        locationGroupCode: string;
+    }
+    export interface GetLocationGroupRequest {
+        locationGroupCode: string;
+        responseFields?: string;
+    }
+    export interface GetLocationGroupsRequest {
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        filter?: string;
+        responseFields?: string;
+    }
+    export interface UpdateLocationGroupRequest {
+        locationGroupCode: string;
+        responseFields?: string;
+        locationLocationGroup?: LocationLocationGroup;
+    }
+}
+/**
+* LocationGroupApiService - interface
+* 
+* @export
+* @interface LocationGroupApi
+*/
+export interface LocationGroupApiService {
+    /**
+    * Add a location group.
+    * @summary Add Location Group
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {LocationLocationGroup} [locationLocationGroup] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof LocationGroupApiInterface
+    */
+    addLocationGroupRaw(requestParameters: locationGroupApiParams.AddLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationLocationGroup>>;
+
+    /**
+    * Add a location group.
+    * Add Location Group
+    */
+    addLocationGroup(requestParameters: locationGroupApiParams.AddLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationLocationGroup>;
+
+    /**
+    * Deletes a location group specified by location group code.
+    * @summary Delete Location Group
+    * @param {string} locationGroupCode 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof LocationGroupApiInterface
+    */
+    deleteLocationGroupRaw(requestParameters: locationGroupApiParams.DeleteLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+    * Deletes a location group specified by location group code.
+    * Delete Location Group
+    */
+    deleteLocationGroup(requestParameters: locationGroupApiParams.DeleteLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+    * Gets a location group by code.
+    * @summary Get Location Group
+    * @param {string} locationGroupCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof LocationGroupApiInterface
+    */
+    getLocationGroupRaw(requestParameters: locationGroupApiParams.GetLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationLocationGroup>>;
+
+    /**
+    * Gets a location group by code.
+    * Get Location Group
+    */
+    getLocationGroup(requestParameters: locationGroupApiParams.GetLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationLocationGroup>;
+
+    /**
+    * Gets a collection of location groups.
+    * @summary Get Location Groups
+    * @param {number} [startIndex] 
+    * @param {number} [pageSize] 
+    * @param {string} [sortBy] 
+    * @param {string} [filter] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof LocationGroupApiInterface
+    */
+    getLocationGroupsRaw(requestParameters: locationGroupApiParams.GetLocationGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationGroupCollection>>;
+
+    /**
+    * Gets a collection of location groups.
+    * Get Location Groups
+    */
+    getLocationGroups(requestParameters: locationGroupApiParams.GetLocationGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationGroupCollection>;
+
+    /**
+    * Update an existing location group.
+    * @summary Update Location Group
+    * @param {string} locationGroupCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {LocationLocationGroup} [locationLocationGroup] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof LocationGroupApiInterface
+    */
+    updateLocationGroupRaw(requestParameters: locationGroupApiParams.UpdateLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationLocationGroup>>;
+
+    /**
+    * Update an existing location group.
+    * Update Location Group
+    */
+    updateLocationGroup(requestParameters: locationGroupApiParams.UpdateLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationLocationGroup>;
+
 }
 
-export interface DeleteLocationGroupRequest {
-    locationGroupCode: string;
-}
-
-export interface GetLocationGroupRequest {
-    locationGroupCode: string;
-    responseFields?: string;
-}
-
-export interface GetLocationGroupsRequest {
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    filter?: string;
-    responseFields?: string;
-}
-
-export interface UpdateLocationGroupRequest {
-    locationGroupCode: string;
-    responseFields?: string;
-    locationLocationGroup?: LocationLocationGroup;
-}
 
 /**
- * LocationGroupApi - interface
- * 
- * @export
- * @interface LocationGroupApiInterface
- */
-export interface LocationGroupApiInterface {
-    /**
-     * Add a location group.
-     * @summary Add Location Group
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {LocationLocationGroup} [locationLocationGroup] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof LocationGroupApiInterface
-     */
-    addLocationGroupRaw(requestParameters: AddLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationLocationGroup>>;
-
-    /**
-     * Add a location group.
-     * Add Location Group
-     */
-    addLocationGroup(requestParameters: AddLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationLocationGroup>;
-
-    /**
-     * Deletes a location group specified by location group code.
-     * @summary Delete Location Group
-     * @param {string} locationGroupCode 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof LocationGroupApiInterface
-     */
-    deleteLocationGroupRaw(requestParameters: DeleteLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     * Deletes a location group specified by location group code.
-     * Delete Location Group
-     */
-    deleteLocationGroup(requestParameters: DeleteLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * Gets a location group by code.
-     * @summary Get Location Group
-     * @param {string} locationGroupCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof LocationGroupApiInterface
-     */
-    getLocationGroupRaw(requestParameters: GetLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationLocationGroup>>;
-
-    /**
-     * Gets a location group by code.
-     * Get Location Group
-     */
-    getLocationGroup(requestParameters: GetLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationLocationGroup>;
-
-    /**
-     * Gets a collection of location groups.
-     * @summary Get Location Groups
-     * @param {number} [startIndex] 
-     * @param {number} [pageSize] 
-     * @param {string} [sortBy] 
-     * @param {string} [filter] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof LocationGroupApiInterface
-     */
-    getLocationGroupsRaw(requestParameters: GetLocationGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationGroupCollection>>;
-
-    /**
-     * Gets a collection of location groups.
-     * Get Location Groups
-     */
-    getLocationGroups(requestParameters: GetLocationGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationGroupCollection>;
-
-    /**
-     * Update an existing location group.
-     * @summary Update Location Group
-     * @param {string} locationGroupCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {LocationLocationGroup} [locationLocationGroup] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof LocationGroupApiInterface
-     */
-    updateLocationGroupRaw(requestParameters: UpdateLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationLocationGroup>>;
-
-    /**
-     * Update an existing location group.
-     * Update Location Group
-     */
-    updateLocationGroup(requestParameters: UpdateLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationLocationGroup>;
-
-}
-
-/**
  * 
  */
-export class LocationGroupApi extends runtime.BaseAPI implements LocationGroupApiInterface {
+export class LocationGroupApi extends runtime.BaseAPI implements LocationGroupApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -159,7 +158,7 @@ export class LocationGroupApi extends runtime.BaseAPI implements LocationGroupAp
      */
 
 
-    async addLocationGroupRaw(requestParameters: AddLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationLocationGroup>> {
+    async addLocationGroupRaw(requestParameters: locationGroupApiParams.AddLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationLocationGroup>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -191,7 +190,7 @@ export class LocationGroupApi extends runtime.BaseAPI implements LocationGroupAp
      * Add a location group.
      * Add Location Group
      */
-    async addLocationGroup(requestParameters: AddLocationGroupRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationLocationGroup> {
+    async addLocationGroup(requestParameters: locationGroupApiParams.AddLocationGroupRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationLocationGroup> {
         const response = await this.addLocationGroupRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -202,7 +201,7 @@ export class LocationGroupApi extends runtime.BaseAPI implements LocationGroupAp
      */
 
 
-    async deleteLocationGroupRaw(requestParameters: DeleteLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteLocationGroupRaw(requestParameters: locationGroupApiParams.DeleteLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.locationGroupCode === null || requestParameters.locationGroupCode === undefined) {
             throw new runtime.RequiredError('locationGroupCode','Required parameter requestParameters.locationGroupCode was null or undefined when calling deleteLocationGroup.');
         }
@@ -231,7 +230,7 @@ export class LocationGroupApi extends runtime.BaseAPI implements LocationGroupAp
      * Deletes a location group specified by location group code.
      * Delete Location Group
      */
-    async deleteLocationGroup(requestParameters: DeleteLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteLocationGroup(requestParameters: locationGroupApiParams.DeleteLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteLocationGroupRaw(requestParameters, initOverrides);
     }
 
@@ -241,7 +240,7 @@ export class LocationGroupApi extends runtime.BaseAPI implements LocationGroupAp
      */
 
 
-    async getLocationGroupRaw(requestParameters: GetLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationLocationGroup>> {
+    async getLocationGroupRaw(requestParameters: locationGroupApiParams.GetLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationLocationGroup>> {
         if (requestParameters.locationGroupCode === null || requestParameters.locationGroupCode === undefined) {
             throw new runtime.RequiredError('locationGroupCode','Required parameter requestParameters.locationGroupCode was null or undefined when calling getLocationGroup.');
         }
@@ -274,7 +273,7 @@ export class LocationGroupApi extends runtime.BaseAPI implements LocationGroupAp
      * Gets a location group by code.
      * Get Location Group
      */
-    async getLocationGroup(requestParameters: GetLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationLocationGroup> {
+    async getLocationGroup(requestParameters: locationGroupApiParams.GetLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationLocationGroup> {
         const response = await this.getLocationGroupRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -285,7 +284,7 @@ export class LocationGroupApi extends runtime.BaseAPI implements LocationGroupAp
      */
 
 
-    async getLocationGroupsRaw(requestParameters: GetLocationGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationGroupCollection>> {
+    async getLocationGroupsRaw(requestParameters: locationGroupApiParams.GetLocationGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationGroupCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -330,7 +329,7 @@ export class LocationGroupApi extends runtime.BaseAPI implements LocationGroupAp
      * Gets a collection of location groups.
      * Get Location Groups
      */
-    async getLocationGroups(requestParameters: GetLocationGroupsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationGroupCollection> {
+    async getLocationGroups(requestParameters: locationGroupApiParams.GetLocationGroupsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationGroupCollection> {
         const response = await this.getLocationGroupsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -341,7 +340,7 @@ export class LocationGroupApi extends runtime.BaseAPI implements LocationGroupAp
      */
 
 
-    async updateLocationGroupRaw(requestParameters: UpdateLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationLocationGroup>> {
+    async updateLocationGroupRaw(requestParameters: locationGroupApiParams.UpdateLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationLocationGroup>> {
         if (requestParameters.locationGroupCode === null || requestParameters.locationGroupCode === undefined) {
             throw new runtime.RequiredError('locationGroupCode','Required parameter requestParameters.locationGroupCode was null or undefined when calling updateLocationGroup.');
         }
@@ -377,7 +376,7 @@ export class LocationGroupApi extends runtime.BaseAPI implements LocationGroupAp
      * Update an existing location group.
      * Update Location Group
      */
-    async updateLocationGroup(requestParameters: UpdateLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationLocationGroup> {
+    async updateLocationGroup(requestParameters: locationGroupApiParams.UpdateLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationLocationGroup> {
         const response = await this.updateLocationGroupRaw(requestParameters, initOverrides);
         return await response.value();
     }

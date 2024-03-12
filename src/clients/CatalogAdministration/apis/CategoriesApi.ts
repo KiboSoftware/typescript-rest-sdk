@@ -24,393 +24,382 @@ import type {
   DynamicExpression,
 } from '../models';
 
-export interface AddCategoryRequest {
-    incrementSequence?: boolean;
-    useProvidedId?: boolean;
-    responseFields?: string;
-    catalogAdminsCategory?: CatalogAdminsCategory;
-}
 
-export interface AddCategoryAttributeRequest {
-    categoryId: number;
-    responseFields?: string;
-    catalogAdminsCategoryAttribute?: CatalogAdminsCategoryAttribute;
+export namespace categoriesApiParams { 
+    export interface AddCategoryRequest {
+        incrementSequence?: boolean;
+        useProvidedId?: boolean;
+        responseFields?: string;
+        catalogAdminsCategory?: CatalogAdminsCategory;
+    }
+    export interface AddCategoryAttributeRequest {
+        categoryId: number;
+        responseFields?: string;
+        catalogAdminsCategoryAttribute?: CatalogAdminsCategoryAttribute;
+    }
+    export interface AddProductsToCategoryRequest {
+        categoryId: number;
+        responseFields?: string;
+        requestBody?: Array<string>;
+    }
+    export interface DeleteCategoryAttributeRequest {
+        categoryId: number;
+        attributeFQN: string;
+    }
+    export interface DeleteCategoryByIdRequest {
+        categoryId: number;
+        cascadeDelete?: boolean;
+        forceDelete?: boolean;
+        reassignToParent?: boolean;
+    }
+    export interface GetCategoriesRequest {
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        filter?: string;
+        includeAttributes?: boolean;
+        responseGroups?: string;
+        responseFields?: string;
+    }
+    export interface GetCategoryRequest {
+        categoryId: number;
+        includeAttributes?: boolean;
+        responseFields?: string;
+    }
+    export interface GetCategoryAttributeRequest {
+        categoryId: number;
+        attributeFQN: string;
+        responseFields?: string;
+    }
+    export interface GetCategoryAttributesRequest {
+        categoryId: number;
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        filter?: string;
+        responseFields?: string;
+    }
+    export interface GetChildCategoriesRequest {
+        categoryId: number;
+        responseFields?: string;
+    }
+    export interface RemoveProductsFromCategoryRequest {
+        categoryId: number;
+        responseFields?: string;
+        requestBody?: Array<string>;
+    }
+    export interface UpdateCategoryRequest {
+        categoryId: number;
+        cascadeVisibility?: boolean;
+        responseFields?: string;
+        catalogAdminsCategory?: CatalogAdminsCategory;
+    }
+    export interface UpdateCategoryAttributeRequest {
+        categoryId: number;
+        attributeFQN: string;
+        responseFields?: string;
+        catalogAdminsCategoryAttribute?: CatalogAdminsCategoryAttribute;
+    }
+    export interface ValidateDynamicExpressionRequest {
+        responseFields?: string;
+        dynamicExpression?: DynamicExpression;
+    }
+    export interface ValidateRealTimeDynamicExpressionRequest {
+        responseFields?: string;
+        dynamicExpression?: DynamicExpression;
+    }
 }
-
-export interface AddProductsToCategoryRequest {
-    categoryId: number;
-    responseFields?: string;
-    requestBody?: Array<string>;
-}
-
-export interface DeleteCategoryAttributeRequest {
-    categoryId: number;
-    attributeFQN: string;
-}
-
-export interface DeleteCategoryByIdRequest {
-    categoryId: number;
-    cascadeDelete?: boolean;
-    forceDelete?: boolean;
-    reassignToParent?: boolean;
-}
-
-export interface GetCategoriesRequest {
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    filter?: string;
-    includeAttributes?: boolean;
-    responseGroups?: string;
-    responseFields?: string;
-}
-
-export interface GetCategoryRequest {
-    categoryId: number;
-    includeAttributes?: boolean;
-    responseFields?: string;
-}
-
-export interface GetCategoryAttributeRequest {
-    categoryId: number;
-    attributeFQN: string;
-    responseFields?: string;
-}
-
-export interface GetCategoryAttributesRequest {
-    categoryId: number;
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    filter?: string;
-    responseFields?: string;
-}
-
-export interface GetChildCategoriesRequest {
-    categoryId: number;
-    responseFields?: string;
-}
-
-export interface RemoveProductsFromCategoryRequest {
-    categoryId: number;
-    responseFields?: string;
-    requestBody?: Array<string>;
-}
-
-export interface UpdateCategoryRequest {
-    categoryId: number;
-    cascadeVisibility?: boolean;
-    responseFields?: string;
-    catalogAdminsCategory?: CatalogAdminsCategory;
-}
-
-export interface UpdateCategoryAttributeRequest {
-    categoryId: number;
-    attributeFQN: string;
-    responseFields?: string;
-    catalogAdminsCategoryAttribute?: CatalogAdminsCategoryAttribute;
-}
-
-export interface ValidateDynamicExpressionRequest {
-    responseFields?: string;
-    dynamicExpression?: DynamicExpression;
-}
-
-export interface ValidateRealTimeDynamicExpressionRequest {
-    responseFields?: string;
-    dynamicExpression?: DynamicExpression;
-}
-
 /**
- * CategoriesApi - interface
- * 
- * @export
- * @interface CategoriesApiInterface
- */
-export interface CategoriesApiInterface {
+* CategoriesApiService - interface
+* 
+* @export
+* @interface CategoriesApi
+*/
+export interface CategoriesApiService {
     /**
-     * dds a new category to the catalog\'s category hierarchy. Specify a ParentCategoryID to determine where to locate the category in the hierarchy; if not specified it becomes a top-level category.
-     * @summary Add category
-     * @param {boolean} [incrementSequence] Sets the sequence number of the category to the current max sequence value plus 1 (e.g. 5 + 1 &#x3D; 6)
-     * @param {boolean} [useProvidedId] If true, the provided Id value will be used as the CategoryId. If omitted or false, the system will generate a CategoryId
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CatalogAdminsCategory} [catalogAdminsCategory] Properties of the new category. Required properties ParentCategoryID and Content.Name.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CategoriesApiInterface
-     */
-    addCategoryRaw(requestParameters: AddCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategory>>;
+    * dds a new category to the catalog\'s category hierarchy. Specify a ParentCategoryID to determine where to locate the category in the hierarchy; if not specified it becomes a top-level category.
+    * @summary Add category
+    * @param {boolean} [incrementSequence] Sets the sequence number of the category to the current max sequence value plus 1 (e.g. 5 + 1 &#x3D; 6)
+    * @param {boolean} [useProvidedId] If true, the provided Id value will be used as the CategoryId. If omitted or false, the system will generate a CategoryId
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CatalogAdminsCategory} [catalogAdminsCategory] Properties of the new category. Required properties ParentCategoryID and Content.Name.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CategoriesApiInterface
+    */
+    addCategoryRaw(requestParameters: categoriesApiParams.AddCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategory>>;
 
     /**
-     * dds a new category to the catalog\'s category hierarchy. Specify a ParentCategoryID to determine where to locate the category in the hierarchy; if not specified it becomes a top-level category.
-     * Add category
-     */
-    addCategory(requestParameters: AddCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategory>;
+    * dds a new category to the catalog\'s category hierarchy. Specify a ParentCategoryID to determine where to locate the category in the hierarchy; if not specified it becomes a top-level category.
+    * Add category
+    */
+    addCategory(requestParameters: categoriesApiParams.AddCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategory>;
 
     /**
-     * Adds a new category attribute to the category.
-     * @summary Add category attribute
-     * @param {number} categoryId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CatalogAdminsCategoryAttribute} [catalogAdminsCategoryAttribute] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CategoriesApiInterface
-     */
-    addCategoryAttributeRaw(requestParameters: AddCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryAttribute>>;
+    * Adds a new category attribute to the category.
+    * @summary Add category attribute
+    * @param {number} categoryId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CatalogAdminsCategoryAttribute} [catalogAdminsCategoryAttribute] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CategoriesApiInterface
+    */
+    addCategoryAttributeRaw(requestParameters: categoriesApiParams.AddCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryAttribute>>;
 
     /**
-     * Adds a new category attribute to the category.
-     * Add category attribute
-     */
-    addCategoryAttribute(requestParameters: AddCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryAttribute>;
+    * Adds a new category attribute to the category.
+    * Add category attribute
+    */
+    addCategoryAttribute(requestParameters: categoriesApiParams.AddCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryAttribute>;
 
     /**
-     * Adds the products in the provided product code list to the specified category.
-     * @summary Add products to category
-     * @param {number} categoryId Unique identifier of the category that you want produts added to.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Array<string>} [requestBody] A list of products to be added to the category.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CategoriesApiInterface
-     */
-    addProductsToCategoryRaw(requestParameters: AddProductsToCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Adds the products in the provided product code list to the specified category.
+    * @summary Add products to category
+    * @param {number} categoryId Unique identifier of the category that you want produts added to.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<string>} [requestBody] A list of products to be added to the category.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CategoriesApiInterface
+    */
+    addProductsToCategoryRaw(requestParameters: categoriesApiParams.AddProductsToCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Adds the products in the provided product code list to the specified category.
-     * Add products to category
-     */
-    addProductsToCategory(requestParameters: AddProductsToCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Adds the products in the provided product code list to the specified category.
+    * Add products to category
+    */
+    addProductsToCategory(requestParameters: categoriesApiParams.AddProductsToCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Deletes the category attribute specified by its attributeFQN.
-     * @summary Delete category attribute
-     * @param {number} categoryId 
-     * @param {string} attributeFQN 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CategoriesApiInterface
-     */
-    deleteCategoryAttributeRaw(requestParameters: DeleteCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Deletes the category attribute specified by its attributeFQN.
+    * @summary Delete category attribute
+    * @param {number} categoryId 
+    * @param {string} attributeFQN 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CategoriesApiInterface
+    */
+    deleteCategoryAttributeRaw(requestParameters: categoriesApiParams.DeleteCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Deletes the category attribute specified by its attributeFQN.
-     * Delete category attribute
-     */
-    deleteCategoryAttribute(requestParameters: DeleteCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Deletes the category attribute specified by its attributeFQN.
+    * Delete category attribute
+    */
+    deleteCategoryAttribute(requestParameters: categoriesApiParams.DeleteCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Deletes the category specified by its category ID.
-     * @summary Delete category
-     * @param {number} categoryId Unique identifier of the category that you want to delete.
-     * @param {boolean} [cascadeDelete] If true, any subcategories of a category are deleted when this category is deleted. Otherwise only the given category is deleted. Default is false.
-     * @param {boolean} [forceDelete] If true, category (and optionally subcategories) will be deleted even if there are products referecing them.  Default is false.
-     * @param {boolean} [reassignToParent] If true, and child categories of the given category will be reassigned to the parent of the given category. Only applies if cascadeDelete is false. Default is false.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CategoriesApiInterface
-     */
-    deleteCategoryByIdRaw(requestParameters: DeleteCategoryByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Deletes the category specified by its category ID.
+    * @summary Delete category
+    * @param {number} categoryId Unique identifier of the category that you want to delete.
+    * @param {boolean} [cascadeDelete] If true, any subcategories of a category are deleted when this category is deleted. Otherwise only the given category is deleted. Default is false.
+    * @param {boolean} [forceDelete] If true, category (and optionally subcategories) will be deleted even if there are products referecing them.  Default is false.
+    * @param {boolean} [reassignToParent] If true, and child categories of the given category will be reassigned to the parent of the given category. Only applies if cascadeDelete is false. Default is false.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CategoriesApiInterface
+    */
+    deleteCategoryByIdRaw(requestParameters: categoriesApiParams.DeleteCategoryByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Deletes the category specified by its category ID.
-     * Delete category
-     */
-    deleteCategoryById(requestParameters: DeleteCategoryByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Deletes the category specified by its category ID.
+    * Delete category
+    */
+    deleteCategoryById(requestParameters: categoriesApiParams.DeleteCategoryByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Retrieves a list of categories according to any specified filter criteria and sort options.
-     * @summary Get categories
-     * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. The default value is 0.
-     * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200.
-     * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order.
-     * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
-     * @param {boolean} [includeAttributes] 
-     * @param {string} [responseGroups] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CategoriesApiInterface
-     */
-    getCategoriesRaw(requestParameters: GetCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryPagedCollection>>;
+    * Retrieves a list of categories according to any specified filter criteria and sort options.
+    * @summary Get categories
+    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. The default value is 0.
+    * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200.
+    * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order.
+    * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
+    * @param {boolean} [includeAttributes] 
+    * @param {string} [responseGroups] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CategoriesApiInterface
+    */
+    getCategoriesRaw(requestParameters: categoriesApiParams.GetCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryPagedCollection>>;
 
     /**
-     * Retrieves a list of categories according to any specified filter criteria and sort options.
-     * Get categories
-     */
-    getCategories(requestParameters: GetCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryPagedCollection>;
+    * Retrieves a list of categories according to any specified filter criteria and sort options.
+    * Get categories
+    */
+    getCategories(requestParameters: categoriesApiParams.GetCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryPagedCollection>;
 
     /**
-     * Retrieves the details of a single category.
-     * @summary Get category
-     * @param {number} categoryId Unique identifier of the category.
-     * @param {boolean} [includeAttributes] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CategoriesApiInterface
-     */
-    getCategoryRaw(requestParameters: GetCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategory>>;
+    * Retrieves the details of a single category.
+    * @summary Get category
+    * @param {number} categoryId Unique identifier of the category.
+    * @param {boolean} [includeAttributes] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CategoriesApiInterface
+    */
+    getCategoryRaw(requestParameters: categoriesApiParams.GetCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategory>>;
 
     /**
-     * Retrieves the details of a single category.
-     * Get category
-     */
-    getCategory(requestParameters: GetCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategory>;
+    * Retrieves the details of a single category.
+    * Get category
+    */
+    getCategory(requestParameters: categoriesApiParams.GetCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategory>;
 
     /**
-     * Retrieves the details of a single category attribute.
-     * @summary Get category attribute
-     * @param {number} categoryId 
-     * @param {string} attributeFQN 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CategoriesApiInterface
-     */
-    getCategoryAttributeRaw(requestParameters: GetCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryAttribute>>;
+    * Retrieves the details of a single category attribute.
+    * @summary Get category attribute
+    * @param {number} categoryId 
+    * @param {string} attributeFQN 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CategoriesApiInterface
+    */
+    getCategoryAttributeRaw(requestParameters: categoriesApiParams.GetCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryAttribute>>;
 
     /**
-     * Retrieves the details of a single category attribute.
-     * Get category attribute
-     */
-    getCategoryAttribute(requestParameters: GetCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryAttribute>;
+    * Retrieves the details of a single category attribute.
+    * Get category attribute
+    */
+    getCategoryAttribute(requestParameters: categoriesApiParams.GetCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryAttribute>;
 
     /**
-     * Retrieves a list of category attributes.
-     * @summary Get category attributes
-     * @param {number} categoryId 
-     * @param {number} [startIndex] 
-     * @param {number} [pageSize] 
-     * @param {string} [sortBy] 
-     * @param {string} [filter] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CategoriesApiInterface
-     */
-    getCategoryAttributesRaw(requestParameters: GetCategoryAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CategoryAttributeCollection>>;
+    * Retrieves a list of category attributes.
+    * @summary Get category attributes
+    * @param {number} categoryId 
+    * @param {number} [startIndex] 
+    * @param {number} [pageSize] 
+    * @param {string} [sortBy] 
+    * @param {string} [filter] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CategoriesApiInterface
+    */
+    getCategoryAttributesRaw(requestParameters: categoriesApiParams.GetCategoryAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CategoryAttributeCollection>>;
 
     /**
-     * Retrieves a list of category attributes.
-     * Get category attributes
-     */
-    getCategoryAttributes(requestParameters: GetCategoryAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryAttributeCollection>;
+    * Retrieves a list of category attributes.
+    * Get category attributes
+    */
+    getCategoryAttributes(requestParameters: categoriesApiParams.GetCategoryAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryAttributeCollection>;
 
     /**
-     * Retrieves the immediate subcategories of a category.
-     * @summary Get child categories
-     * @param {number} categoryId Unique identifier of the category whose subcategories you want to get.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CategoriesApiInterface
-     */
-    getChildCategoriesRaw(requestParameters: GetChildCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryCollection>>;
+    * Retrieves the immediate subcategories of a category.
+    * @summary Get child categories
+    * @param {number} categoryId Unique identifier of the category whose subcategories you want to get.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CategoriesApiInterface
+    */
+    getChildCategoriesRaw(requestParameters: categoriesApiParams.GetChildCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryCollection>>;
 
     /**
-     * Retrieves the immediate subcategories of a category.
-     * Get child categories
-     */
-    getChildCategories(requestParameters: GetChildCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryCollection>;
+    * Retrieves the immediate subcategories of a category.
+    * Get child categories
+    */
+    getChildCategories(requestParameters: categoriesApiParams.GetChildCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryCollection>;
 
     /**
-     * Removes the products in the provided product code list from the specified category.
-     * @summary Remove products from category
-     * @param {number} categoryId Unique identifier of the category that you want products removed from.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Array<string>} [requestBody] A list of products to be removed from the category.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CategoriesApiInterface
-     */
-    removeProductsFromCategoryRaw(requestParameters: RemoveProductsFromCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Removes the products in the provided product code list from the specified category.
+    * @summary Remove products from category
+    * @param {number} categoryId Unique identifier of the category that you want products removed from.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<string>} [requestBody] A list of products to be removed from the category.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CategoriesApiInterface
+    */
+    removeProductsFromCategoryRaw(requestParameters: categoriesApiParams.RemoveProductsFromCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Removes the products in the provided product code list from the specified category.
-     * Remove products from category
-     */
-    removeProductsFromCategory(requestParameters: RemoveProductsFromCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Removes the products in the provided product code list from the specified category.
+    * Remove products from category
+    */
+    removeProductsFromCategory(requestParameters: categoriesApiParams.RemoveProductsFromCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Modifies a category such as moving it to another location in the category tree, or changing          whether it is visible on the storefront. This PUT replaces the existing resource, so be sure          to include all the information that you want to maintain for the category. Any unspecified          properties are set to null.
-     * @summary Update category
-     * @param {number} categoryId Unique identifier of the category that you want to modify. Required.
-     * @param {boolean} [cascadeVisibility] If true, when changing the display option for the category, change it for all subcategories also. Optional.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CatalogAdminsCategory} [catalogAdminsCategory] Properties of the category that you want to modify. Required properties ParentCategoryID and Content.Name.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CategoriesApiInterface
-     */
-    updateCategoryRaw(requestParameters: UpdateCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategory>>;
+    * Modifies a category such as moving it to another location in the category tree, or changing          whether it is visible on the storefront. This PUT replaces the existing resource, so be sure          to include all the information that you want to maintain for the category. Any unspecified          properties are set to null.
+    * @summary Update category
+    * @param {number} categoryId Unique identifier of the category that you want to modify. Required.
+    * @param {boolean} [cascadeVisibility] If true, when changing the display option for the category, change it for all subcategories also. Optional.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CatalogAdminsCategory} [catalogAdminsCategory] Properties of the category that you want to modify. Required properties ParentCategoryID and Content.Name.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CategoriesApiInterface
+    */
+    updateCategoryRaw(requestParameters: categoriesApiParams.UpdateCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategory>>;
 
     /**
-     * Modifies a category such as moving it to another location in the category tree, or changing          whether it is visible on the storefront. This PUT replaces the existing resource, so be sure          to include all the information that you want to maintain for the category. Any unspecified          properties are set to null.
-     * Update category
-     */
-    updateCategory(requestParameters: UpdateCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategory>;
+    * Modifies a category such as moving it to another location in the category tree, or changing          whether it is visible on the storefront. This PUT replaces the existing resource, so be sure          to include all the information that you want to maintain for the category. Any unspecified          properties are set to null.
+    * Update category
+    */
+    updateCategory(requestParameters: categoriesApiParams.UpdateCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategory>;
 
     /**
-     * Modifies the category attribute.
-     * @summary Update category attribute
-     * @param {number} categoryId 
-     * @param {string} attributeFQN 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CatalogAdminsCategoryAttribute} [catalogAdminsCategoryAttribute] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CategoriesApiInterface
-     */
-    updateCategoryAttributeRaw(requestParameters: UpdateCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryAttribute>>;
+    * Modifies the category attribute.
+    * @summary Update category attribute
+    * @param {number} categoryId 
+    * @param {string} attributeFQN 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CatalogAdminsCategoryAttribute} [catalogAdminsCategoryAttribute] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CategoriesApiInterface
+    */
+    updateCategoryAttributeRaw(requestParameters: categoriesApiParams.UpdateCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryAttribute>>;
 
     /**
-     * Modifies the category attribute.
-     * Update category attribute
-     */
-    updateCategoryAttribute(requestParameters: UpdateCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryAttribute>;
+    * Modifies the category attribute.
+    * Update category attribute
+    */
+    updateCategoryAttribute(requestParameters: categoriesApiParams.UpdateCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryAttribute>;
 
     /**
-     * 
-     * @summary Validate dynamic category expression
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {DynamicExpression} [dynamicExpression] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CategoriesApiInterface
-     */
-    validateDynamicExpressionRaw(requestParameters: ValidateDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DynamicExpression>>;
+    * 
+    * @summary Validate dynamic category expression
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {DynamicExpression} [dynamicExpression] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CategoriesApiInterface
+    */
+    validateDynamicExpressionRaw(requestParameters: categoriesApiParams.ValidateDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DynamicExpression>>;
 
     /**
-     * 
-     * Validate dynamic category expression
-     */
-    validateDynamicExpression(requestParameters: ValidateDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DynamicExpression>;
+    * 
+    * Validate dynamic category expression
+    */
+    validateDynamicExpression(requestParameters: categoriesApiParams.ValidateDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DynamicExpression>;
 
     /**
-     * 
-     * @summary Validate realtime dynamic category expression
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {DynamicExpression} [dynamicExpression] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CategoriesApiInterface
-     */
-    validateRealTimeDynamicExpressionRaw(requestParameters: ValidateRealTimeDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DynamicExpression>>;
+    * 
+    * @summary Validate realtime dynamic category expression
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {DynamicExpression} [dynamicExpression] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CategoriesApiInterface
+    */
+    validateRealTimeDynamicExpressionRaw(requestParameters: categoriesApiParams.ValidateRealTimeDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DynamicExpression>>;
 
     /**
-     * 
-     * Validate realtime dynamic category expression
-     */
-    validateRealTimeDynamicExpression(requestParameters: ValidateRealTimeDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DynamicExpression>;
+    * 
+    * Validate realtime dynamic category expression
+    */
+    validateRealTimeDynamicExpression(requestParameters: categoriesApiParams.ValidateRealTimeDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DynamicExpression>;
 
 }
+
 
 /**
  * 
  */
-export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInterface {
+export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -421,7 +410,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      */
 
 
-    async addCategoryRaw(requestParameters: AddCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategory>> {
+    async addCategoryRaw(requestParameters: categoriesApiParams.AddCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategory>> {
         const queryParameters: any = {};
 
         if (requestParameters.incrementSequence !== undefined) {
@@ -461,7 +450,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      * dds a new category to the catalog\'s category hierarchy. Specify a ParentCategoryID to determine where to locate the category in the hierarchy; if not specified it becomes a top-level category.
      * Add category
      */
-    async addCategory(requestParameters: AddCategoryRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategory> {
+    async addCategory(requestParameters: categoriesApiParams.AddCategoryRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategory> {
         const response = await this.addCategoryRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -472,7 +461,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      */
 
 
-    async addCategoryAttributeRaw(requestParameters: AddCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryAttribute>> {
+    async addCategoryAttributeRaw(requestParameters: categoriesApiParams.AddCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryAttribute>> {
         if (requestParameters.categoryId === null || requestParameters.categoryId === undefined) {
             throw new runtime.RequiredError('categoryId','Required parameter requestParameters.categoryId was null or undefined when calling addCategoryAttribute.');
         }
@@ -508,7 +497,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      * Adds a new category attribute to the category.
      * Add category attribute
      */
-    async addCategoryAttribute(requestParameters: AddCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryAttribute> {
+    async addCategoryAttribute(requestParameters: categoriesApiParams.AddCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryAttribute> {
         const response = await this.addCategoryAttributeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -519,7 +508,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      */
 
 
-    async addProductsToCategoryRaw(requestParameters: AddProductsToCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addProductsToCategoryRaw(requestParameters: categoriesApiParams.AddProductsToCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.categoryId === null || requestParameters.categoryId === undefined) {
             throw new runtime.RequiredError('categoryId','Required parameter requestParameters.categoryId was null or undefined when calling addProductsToCategory.');
         }
@@ -555,7 +544,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      * Adds the products in the provided product code list to the specified category.
      * Add products to category
      */
-    async addProductsToCategory(requestParameters: AddProductsToCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async addProductsToCategory(requestParameters: categoriesApiParams.AddProductsToCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.addProductsToCategoryRaw(requestParameters, initOverrides);
     }
 
@@ -565,7 +554,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      */
 
 
-    async deleteCategoryAttributeRaw(requestParameters: DeleteCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteCategoryAttributeRaw(requestParameters: categoriesApiParams.DeleteCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.categoryId === null || requestParameters.categoryId === undefined) {
             throw new runtime.RequiredError('categoryId','Required parameter requestParameters.categoryId was null or undefined when calling deleteCategoryAttribute.');
         }
@@ -598,7 +587,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      * Deletes the category attribute specified by its attributeFQN.
      * Delete category attribute
      */
-    async deleteCategoryAttribute(requestParameters: DeleteCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteCategoryAttribute(requestParameters: categoriesApiParams.DeleteCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteCategoryAttributeRaw(requestParameters, initOverrides);
     }
 
@@ -608,7 +597,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      */
 
 
-    async deleteCategoryByIdRaw(requestParameters: DeleteCategoryByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteCategoryByIdRaw(requestParameters: categoriesApiParams.DeleteCategoryByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.categoryId === null || requestParameters.categoryId === undefined) {
             throw new runtime.RequiredError('categoryId','Required parameter requestParameters.categoryId was null or undefined when calling deleteCategoryById.');
         }
@@ -649,7 +638,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      * Deletes the category specified by its category ID.
      * Delete category
      */
-    async deleteCategoryById(requestParameters: DeleteCategoryByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteCategoryById(requestParameters: categoriesApiParams.DeleteCategoryByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteCategoryByIdRaw(requestParameters, initOverrides);
     }
 
@@ -659,7 +648,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      */
 
 
-    async getCategoriesRaw(requestParameters: GetCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryPagedCollection>> {
+    async getCategoriesRaw(requestParameters: categoriesApiParams.GetCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryPagedCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -712,7 +701,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      * Retrieves a list of categories according to any specified filter criteria and sort options.
      * Get categories
      */
-    async getCategories(requestParameters: GetCategoriesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryPagedCollection> {
+    async getCategories(requestParameters: categoriesApiParams.GetCategoriesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryPagedCollection> {
         const response = await this.getCategoriesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -723,7 +712,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      */
 
 
-    async getCategoryRaw(requestParameters: GetCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategory>> {
+    async getCategoryRaw(requestParameters: categoriesApiParams.GetCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategory>> {
         if (requestParameters.categoryId === null || requestParameters.categoryId === undefined) {
             throw new runtime.RequiredError('categoryId','Required parameter requestParameters.categoryId was null or undefined when calling getCategory.');
         }
@@ -760,7 +749,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      * Retrieves the details of a single category.
      * Get category
      */
-    async getCategory(requestParameters: GetCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategory> {
+    async getCategory(requestParameters: categoriesApiParams.GetCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategory> {
         const response = await this.getCategoryRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -771,7 +760,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      */
 
 
-    async getCategoryAttributeRaw(requestParameters: GetCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryAttribute>> {
+    async getCategoryAttributeRaw(requestParameters: categoriesApiParams.GetCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryAttribute>> {
         if (requestParameters.categoryId === null || requestParameters.categoryId === undefined) {
             throw new runtime.RequiredError('categoryId','Required parameter requestParameters.categoryId was null or undefined when calling getCategoryAttribute.');
         }
@@ -808,7 +797,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      * Retrieves the details of a single category attribute.
      * Get category attribute
      */
-    async getCategoryAttribute(requestParameters: GetCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryAttribute> {
+    async getCategoryAttribute(requestParameters: categoriesApiParams.GetCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryAttribute> {
         const response = await this.getCategoryAttributeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -819,7 +808,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      */
 
 
-    async getCategoryAttributesRaw(requestParameters: GetCategoryAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CategoryAttributeCollection>> {
+    async getCategoryAttributesRaw(requestParameters: categoriesApiParams.GetCategoryAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CategoryAttributeCollection>> {
         if (requestParameters.categoryId === null || requestParameters.categoryId === undefined) {
             throw new runtime.RequiredError('categoryId','Required parameter requestParameters.categoryId was null or undefined when calling getCategoryAttributes.');
         }
@@ -868,7 +857,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      * Retrieves a list of category attributes.
      * Get category attributes
      */
-    async getCategoryAttributes(requestParameters: GetCategoryAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryAttributeCollection> {
+    async getCategoryAttributes(requestParameters: categoriesApiParams.GetCategoryAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryAttributeCollection> {
         const response = await this.getCategoryAttributesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -879,7 +868,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      */
 
 
-    async getChildCategoriesRaw(requestParameters: GetChildCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryCollection>> {
+    async getChildCategoriesRaw(requestParameters: categoriesApiParams.GetChildCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryCollection>> {
         if (requestParameters.categoryId === null || requestParameters.categoryId === undefined) {
             throw new runtime.RequiredError('categoryId','Required parameter requestParameters.categoryId was null or undefined when calling getChildCategories.');
         }
@@ -912,7 +901,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      * Retrieves the immediate subcategories of a category.
      * Get child categories
      */
-    async getChildCategories(requestParameters: GetChildCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryCollection> {
+    async getChildCategories(requestParameters: categoriesApiParams.GetChildCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryCollection> {
         const response = await this.getChildCategoriesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -923,7 +912,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      */
 
 
-    async removeProductsFromCategoryRaw(requestParameters: RemoveProductsFromCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async removeProductsFromCategoryRaw(requestParameters: categoriesApiParams.RemoveProductsFromCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.categoryId === null || requestParameters.categoryId === undefined) {
             throw new runtime.RequiredError('categoryId','Required parameter requestParameters.categoryId was null or undefined when calling removeProductsFromCategory.');
         }
@@ -959,7 +948,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      * Removes the products in the provided product code list from the specified category.
      * Remove products from category
      */
-    async removeProductsFromCategory(requestParameters: RemoveProductsFromCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async removeProductsFromCategory(requestParameters: categoriesApiParams.RemoveProductsFromCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.removeProductsFromCategoryRaw(requestParameters, initOverrides);
     }
 
@@ -969,7 +958,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      */
 
 
-    async updateCategoryRaw(requestParameters: UpdateCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategory>> {
+    async updateCategoryRaw(requestParameters: categoriesApiParams.UpdateCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategory>> {
         if (requestParameters.categoryId === null || requestParameters.categoryId === undefined) {
             throw new runtime.RequiredError('categoryId','Required parameter requestParameters.categoryId was null or undefined when calling updateCategory.');
         }
@@ -1009,7 +998,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      * Modifies a category such as moving it to another location in the category tree, or changing          whether it is visible on the storefront. This PUT replaces the existing resource, so be sure          to include all the information that you want to maintain for the category. Any unspecified          properties are set to null.
      * Update category
      */
-    async updateCategory(requestParameters: UpdateCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategory> {
+    async updateCategory(requestParameters: categoriesApiParams.UpdateCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategory> {
         const response = await this.updateCategoryRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1020,7 +1009,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      */
 
 
-    async updateCategoryAttributeRaw(requestParameters: UpdateCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryAttribute>> {
+    async updateCategoryAttributeRaw(requestParameters: categoriesApiParams.UpdateCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryAttribute>> {
         if (requestParameters.categoryId === null || requestParameters.categoryId === undefined) {
             throw new runtime.RequiredError('categoryId','Required parameter requestParameters.categoryId was null or undefined when calling updateCategoryAttribute.');
         }
@@ -1060,7 +1049,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      * Modifies the category attribute.
      * Update category attribute
      */
-    async updateCategoryAttribute(requestParameters: UpdateCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryAttribute> {
+    async updateCategoryAttribute(requestParameters: categoriesApiParams.UpdateCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryAttribute> {
         const response = await this.updateCategoryAttributeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1071,7 +1060,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      */
 
 
-    async validateDynamicExpressionRaw(requestParameters: ValidateDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DynamicExpression>> {
+    async validateDynamicExpressionRaw(requestParameters: categoriesApiParams.ValidateDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DynamicExpression>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -1103,7 +1092,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      * 
      * Validate dynamic category expression
      */
-    async validateDynamicExpression(requestParameters: ValidateDynamicExpressionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DynamicExpression> {
+    async validateDynamicExpression(requestParameters: categoriesApiParams.ValidateDynamicExpressionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DynamicExpression> {
         const response = await this.validateDynamicExpressionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1114,7 +1103,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      */
 
 
-    async validateRealTimeDynamicExpressionRaw(requestParameters: ValidateRealTimeDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DynamicExpression>> {
+    async validateRealTimeDynamicExpressionRaw(requestParameters: categoriesApiParams.ValidateRealTimeDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DynamicExpression>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -1146,7 +1135,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInter
      * 
      * Validate realtime dynamic category expression
      */
-    async validateRealTimeDynamicExpression(requestParameters: ValidateRealTimeDynamicExpressionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DynamicExpression> {
+    async validateRealTimeDynamicExpression(requestParameters: categoriesApiParams.ValidateRealTimeDynamicExpressionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DynamicExpression> {
         const response = await this.validateRealTimeDynamicExpressionRaw(requestParameters, initOverrides);
         return await response.value();
     }

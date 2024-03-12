@@ -24,339 +24,330 @@ import type {
   ProductTypeChangeResponse,
 } from '../models';
 
-export interface AddProductRequest {
-    batchJobCode?: string;
-    responseFields?: string;
-    catalogAdminsProduct?: CatalogAdminsProduct;
-}
 
-export interface AddProductInCatalogRequest {
-    productCode: string;
-    responseFields?: string;
-    productInCatalogInfo?: ProductInCatalogInfo;
+export namespace productsApiParams { 
+    export interface AddProductRequest {
+        batchJobCode?: string;
+        responseFields?: string;
+        catalogAdminsProduct?: CatalogAdminsProduct;
+    }
+    export interface AddProductInCatalogRequest {
+        productCode: string;
+        responseFields?: string;
+        productInCatalogInfo?: ProductInCatalogInfo;
+    }
+    export interface ChangeProductTypeRequest {
+        productCode: string;
+        responseFields?: string;
+        productTypeChangeRequest?: ProductTypeChangeRequest;
+    }
+    export interface DeleteProductRequest {
+        productCode: string;
+        batchJobCode?: string;
+    }
+    export interface DeleteProductInCatalogRequest {
+        productCode: string;
+        catalogId: number;
+    }
+    export interface GetProductRequest {
+        productCode: string;
+        responseGroups?: string;
+        responseFields?: string;
+    }
+    export interface GetProductInCatalogRequest {
+        productCode: string;
+        catalogId: number;
+        responseFields?: string;
+    }
+    export interface GetProductInCatalogsRequest {
+        productCode: string;
+        responseFields?: string;
+    }
+    export interface GetProductsRequest {
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        responseGroups?: string;
+        filter?: string;
+        q?: string;
+        qLimit?: number;
+        noCount?: boolean;
+        responseFields?: string;
+    }
+    export interface RenameProductCodesRequest {
+        responseFields?: string;
+        productCodeRename?: Array<ProductCodeRename>;
+    }
+    export interface UpdateProductRequest {
+        productCode: string;
+        batchJobCode?: string;
+        responseFields?: string;
+        catalogAdminsProduct?: CatalogAdminsProduct;
+    }
+    export interface UpdateProductInCatalogRequest {
+        productCode: string;
+        catalogId: number;
+        responseFields?: string;
+        productInCatalogInfo?: ProductInCatalogInfo;
+    }
+    export interface UpdateProductInCatalogsRequest {
+        productCode: string;
+        responseFields?: string;
+        productInCatalogInfo?: Array<ProductInCatalogInfo>;
+    }
 }
-
-export interface ChangeProductTypeRequest {
-    productCode: string;
-    responseFields?: string;
-    productTypeChangeRequest?: ProductTypeChangeRequest;
-}
-
-export interface DeleteProductRequest {
-    productCode: string;
-    batchJobCode?: string;
-}
-
-export interface DeleteProductInCatalogRequest {
-    productCode: string;
-    catalogId: number;
-}
-
-export interface GetProductRequest {
-    productCode: string;
-    responseGroups?: string;
-    responseFields?: string;
-}
-
-export interface GetProductInCatalogRequest {
-    productCode: string;
-    catalogId: number;
-    responseFields?: string;
-}
-
-export interface GetProductInCatalogsRequest {
-    productCode: string;
-    responseFields?: string;
-}
-
-export interface GetProductsRequest {
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    responseGroups?: string;
-    filter?: string;
-    q?: string;
-    qLimit?: number;
-    noCount?: boolean;
-    responseFields?: string;
-}
-
-export interface RenameProductCodesRequest {
-    responseFields?: string;
-    productCodeRename?: Array<ProductCodeRename>;
-}
-
-export interface UpdateProductRequest {
-    productCode: string;
-    batchJobCode?: string;
-    responseFields?: string;
-    catalogAdminsProduct?: CatalogAdminsProduct;
-}
-
-export interface UpdateProductInCatalogRequest {
-    productCode: string;
-    catalogId: number;
-    responseFields?: string;
-    productInCatalogInfo?: ProductInCatalogInfo;
-}
-
-export interface UpdateProductInCatalogsRequest {
-    productCode: string;
-    responseFields?: string;
-    productInCatalogInfo?: Array<ProductInCatalogInfo>;
-}
-
 /**
- * ProductsApi - interface
- * 
- * @export
- * @interface ProductsApiInterface
- */
-export interface ProductsApiInterface {
+* ProductsApiService - interface
+* 
+* @export
+* @interface ProductsApi
+*/
+export interface ProductsApiService {
     /**
-     * Creates a new product. You supply a product name, product code, price and other product characteristics such as its attributes, categories where the product belongs, whether the product has configurable options, stand-alone options, and so on.
-     * @summary Add product
-     * @param {string} [batchJobCode] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CatalogAdminsProduct} [catalogAdminsProduct] Properties of the new product. Required properties: ProductCode, Content.ProductName, and Price.ListPrice. Mozu.ProductAdmin.Contracts.Product
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductsApiInterface
-     */
-    addProductRaw(requestParameters: AddProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProduct>>;
+    * Creates a new product. You supply a product name, product code, price and other product characteristics such as its attributes, categories where the product belongs, whether the product has configurable options, stand-alone options, and so on.
+    * @summary Add product
+    * @param {string} [batchJobCode] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CatalogAdminsProduct} [catalogAdminsProduct] Properties of the new product. Required properties: ProductCode, Content.ProductName, and Price.ListPrice. Mozu.ProductAdmin.Contracts.Product
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    addProductRaw(requestParameters: productsApiParams.AddProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProduct>>;
 
     /**
-     * Creates a new product. You supply a product name, product code, price and other product characteristics such as its attributes, categories where the product belongs, whether the product has configurable options, stand-alone options, and so on.
-     * Add product
-     */
-    addProduct(requestParameters: AddProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProduct>;
+    * Creates a new product. You supply a product name, product code, price and other product characteristics such as its attributes, categories where the product belongs, whether the product has configurable options, stand-alone options, and so on.
+    * Add product
+    */
+    addProduct(requestParameters: productsApiParams.AddProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProduct>;
 
     /**
-     * 
-     * @summary Add product in catalog
-     * @param {string} productCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {ProductInCatalogInfo} [productInCatalogInfo] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductsApiInterface
-     */
-    addProductInCatalogRaw(requestParameters: AddProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductInCatalogInfo>>;
+    * 
+    * @summary Add product in catalog
+    * @param {string} productCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ProductInCatalogInfo} [productInCatalogInfo] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    addProductInCatalogRaw(requestParameters: productsApiParams.AddProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductInCatalogInfo>>;
 
     /**
-     * 
-     * Add product in catalog
-     */
-    addProductInCatalog(requestParameters: AddProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductInCatalogInfo>;
+    * 
+    * Add product in catalog
+    */
+    addProductInCatalog(requestParameters: productsApiParams.AddProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductInCatalogInfo>;
 
     /**
-     * Change a product\'s product type.
-     * @summary Change product type.
-     * @param {string} productCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {ProductTypeChangeRequest} [productTypeChangeRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductsApiInterface
-     */
-    changeProductTypeRaw(requestParameters: ChangeProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductTypeChangeResponse>>;
+    * Change a product\'s product type.
+    * @summary Change product type.
+    * @param {string} productCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ProductTypeChangeRequest} [productTypeChangeRequest] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    changeProductTypeRaw(requestParameters: productsApiParams.ChangeProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductTypeChangeResponse>>;
 
     /**
-     * Change a product\'s product type.
-     * Change product type.
-     */
-    changeProductType(requestParameters: ChangeProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductTypeChangeResponse>;
+    * Change a product\'s product type.
+    * Change product type.
+    */
+    changeProductType(requestParameters: productsApiParams.ChangeProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductTypeChangeResponse>;
 
     /**
-     * Deletes the product specified by its product code.
-     * @summary Delete product
-     * @param {string} productCode Merchant-created code associated with the product, for example, a SKU. Required.
-     * @param {string} [batchJobCode] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductsApiInterface
-     */
-    deleteProductRaw(requestParameters: DeleteProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Deletes the product specified by its product code.
+    * @summary Delete product
+    * @param {string} productCode Merchant-created code associated with the product, for example, a SKU. Required.
+    * @param {string} [batchJobCode] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    deleteProductRaw(requestParameters: productsApiParams.DeleteProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Deletes the product specified by its product code.
-     * Delete product
-     */
-    deleteProduct(requestParameters: DeleteProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Deletes the product specified by its product code.
+    * Delete product
+    */
+    deleteProduct(requestParameters: productsApiParams.DeleteProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * 
-     * @summary Delete product in catalog
-     * @param {string} productCode 
-     * @param {number} catalogId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductsApiInterface
-     */
-    deleteProductInCatalogRaw(requestParameters: DeleteProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * 
+    * @summary Delete product in catalog
+    * @param {string} productCode 
+    * @param {number} catalogId 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    deleteProductInCatalogRaw(requestParameters: productsApiParams.DeleteProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * 
-     * Delete product in catalog
-     */
-    deleteProductInCatalog(requestParameters: DeleteProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * 
+    * Delete product in catalog
+    */
+    deleteProductInCatalog(requestParameters: productsApiParams.DeleteProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Retrieves details about a product based on the specified response group. For example, to get the BaseProductCode of a product.
-     * @summary Get product
-     * @param {string} productCode Merchant-created code associated with the product, for example, a SKU. Required.
-     * @param {string} [responseGroups] Used to get more specific information from the request. For example to get discounts applied to a product use the AppliedProducts response group. Available response groups: ApplicableDiscounts, VariationOptions, and BaseProductCode.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductsApiInterface
-     */
-    getProductRaw(requestParameters: GetProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProduct>>;
+    * Retrieves details about a product based on the specified response group. For example, to get the BaseProductCode of a product.
+    * @summary Get product
+    * @param {string} productCode Merchant-created code associated with the product, for example, a SKU. Required.
+    * @param {string} [responseGroups] Used to get more specific information from the request. For example to get discounts applied to a product use the AppliedProducts response group. Available response groups: ApplicableDiscounts, VariationOptions, and BaseProductCode.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    getProductRaw(requestParameters: productsApiParams.GetProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProduct>>;
 
     /**
-     * Retrieves details about a product based on the specified response group. For example, to get the BaseProductCode of a product.
-     * Get product
-     */
-    getProduct(requestParameters: GetProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProduct>;
+    * Retrieves details about a product based on the specified response group. For example, to get the BaseProductCode of a product.
+    * Get product
+    */
+    getProduct(requestParameters: productsApiParams.GetProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProduct>;
 
     /**
-     * 
-     * @summary Get product in catalog
-     * @param {string} productCode 
-     * @param {number} catalogId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductsApiInterface
-     */
-    getProductInCatalogRaw(requestParameters: GetProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductInCatalogInfo>>;
+    * 
+    * @summary Get product in catalog
+    * @param {string} productCode 
+    * @param {number} catalogId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    getProductInCatalogRaw(requestParameters: productsApiParams.GetProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductInCatalogInfo>>;
 
     /**
-     * 
-     * Get product in catalog
-     */
-    getProductInCatalog(requestParameters: GetProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductInCatalogInfo>;
+    * 
+    * Get product in catalog
+    */
+    getProductInCatalog(requestParameters: productsApiParams.GetProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductInCatalogInfo>;
 
     /**
-     * 
-     * @summary Update products in catalog
-     * @param {string} productCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductsApiInterface
-     */
-    getProductInCatalogsRaw(requestParameters: GetProductInCatalogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductInCatalogInfo>>>;
+    * 
+    * @summary Update products in catalog
+    * @param {string} productCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    getProductInCatalogsRaw(requestParameters: productsApiParams.GetProductInCatalogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductInCatalogInfo>>>;
 
     /**
-     * 
-     * Update products in catalog
-     */
-    getProductInCatalogs(requestParameters: GetProductInCatalogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductInCatalogInfo>>;
+    * 
+    * Update products in catalog
+    */
+    getProductInCatalogs(requestParameters: productsApiParams.GetProductInCatalogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductInCatalogInfo>>;
 
     /**
-     * Retrieves a list of products according to any specified filter criteria and sort options.
-     * @summary Get products
-     * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0.
-     * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a single query. The default value is 20 and the maximum value is 200.
-     * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending or descending order. For example, to sort the results by “ID” ascending then by “CreateDate” descending, use: id asc,createdate desc.
-     * @param {string} [responseGroups] Used to get more specific information from the request. For example to get discounts applied to a product use the AppliedProducts response group. Available response groups: ApplicableDiscounts, VariationOptions, and BaseProductCode.
-     * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
-     * @param {string} [q] 
-     * @param {number} [qLimit] 
-     * @param {boolean} [noCount] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductsApiInterface
-     */
-    getProductsRaw(requestParameters: GetProductsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductCollection>>;
+    * Retrieves a list of products according to any specified filter criteria and sort options.
+    * @summary Get products
+    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0.
+    * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a single query. The default value is 20 and the maximum value is 200.
+    * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending or descending order. For example, to sort the results by “ID” ascending then by “CreateDate” descending, use: id asc,createdate desc.
+    * @param {string} [responseGroups] Used to get more specific information from the request. For example to get discounts applied to a product use the AppliedProducts response group. Available response groups: ApplicableDiscounts, VariationOptions, and BaseProductCode.
+    * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
+    * @param {string} [q] 
+    * @param {number} [qLimit] 
+    * @param {boolean} [noCount] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    getProductsRaw(requestParameters: productsApiParams.GetProductsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductCollection>>;
 
     /**
-     * Retrieves a list of products according to any specified filter criteria and sort options.
-     * Get products
-     */
-    getProducts(requestParameters: GetProductsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductCollection>;
+    * Retrieves a list of products according to any specified filter criteria and sort options.
+    * Get products
+    */
+    getProducts(requestParameters: productsApiParams.GetProductsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductCollection>;
 
     /**
-     * Action that allows productCodes to be Renamed. Changing the resource identifier of a product could cause problems for established products.
-     * @summary Rename product codes
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Array<ProductCodeRename>} [productCodeRename] An array specifying the existing productCode and the new productCode it should be renamed to
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductsApiInterface
-     */
-    renameProductCodesRaw(requestParameters: RenameProductCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Action that allows productCodes to be Renamed. Changing the resource identifier of a product could cause problems for established products.
+    * @summary Rename product codes
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<ProductCodeRename>} [productCodeRename] An array specifying the existing productCode and the new productCode it should be renamed to
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    renameProductCodesRaw(requestParameters: productsApiParams.RenameProductCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Action that allows productCodes to be Renamed. Changing the resource identifier of a product could cause problems for established products.
-     * Rename product codes
-     */
-    renameProductCodes(requestParameters: RenameProductCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Action that allows productCodes to be Renamed. Changing the resource identifier of a product could cause problems for established products.
+    * Rename product codes
+    */
+    renameProductCodes(requestParameters: productsApiParams.RenameProductCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Modifies an existing product.
-     * @summary Update product
-     * @param {string} productCode Merchant-created code associated with the product, for example, a SKU. Required.
-     * @param {string} [batchJobCode] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CatalogAdminsProduct} [catalogAdminsProduct] Properties of the product that you want to update. Required properties: ProductCode, Content.ProductName, and Price.ListPrice.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductsApiInterface
-     */
-    updateProductRaw(requestParameters: UpdateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProduct>>;
+    * Modifies an existing product.
+    * @summary Update product
+    * @param {string} productCode Merchant-created code associated with the product, for example, a SKU. Required.
+    * @param {string} [batchJobCode] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CatalogAdminsProduct} [catalogAdminsProduct] Properties of the product that you want to update. Required properties: ProductCode, Content.ProductName, and Price.ListPrice.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    updateProductRaw(requestParameters: productsApiParams.UpdateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProduct>>;
 
     /**
-     * Modifies an existing product.
-     * Update product
-     */
-    updateProduct(requestParameters: UpdateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProduct>;
+    * Modifies an existing product.
+    * Update product
+    */
+    updateProduct(requestParameters: productsApiParams.UpdateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProduct>;
 
     /**
-     * 
-     * @summary Update product in catalog
-     * @param {string} productCode 
-     * @param {number} catalogId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {ProductInCatalogInfo} [productInCatalogInfo] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductsApiInterface
-     */
-    updateProductInCatalogRaw(requestParameters: UpdateProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductInCatalogInfo>>;
+    * 
+    * @summary Update product in catalog
+    * @param {string} productCode 
+    * @param {number} catalogId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ProductInCatalogInfo} [productInCatalogInfo] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    updateProductInCatalogRaw(requestParameters: productsApiParams.UpdateProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductInCatalogInfo>>;
 
     /**
-     * 
-     * Update product in catalog
-     */
-    updateProductInCatalog(requestParameters: UpdateProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductInCatalogInfo>;
+    * 
+    * Update product in catalog
+    */
+    updateProductInCatalog(requestParameters: productsApiParams.UpdateProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductInCatalogInfo>;
 
     /**
-     * Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs.
-     * @summary Update products in catalog
-     * @param {string} productCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Array<ProductInCatalogInfo>} [productInCatalogInfo] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductsApiInterface
-     */
-    updateProductInCatalogsRaw(requestParameters: UpdateProductInCatalogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductInCatalogInfo>>>;
+    * Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs.
+    * @summary Update products in catalog
+    * @param {string} productCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<ProductInCatalogInfo>} [productInCatalogInfo] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    updateProductInCatalogsRaw(requestParameters: productsApiParams.UpdateProductInCatalogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductInCatalogInfo>>>;
 
     /**
-     * Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs.
-     * Update products in catalog
-     */
-    updateProductInCatalogs(requestParameters: UpdateProductInCatalogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductInCatalogInfo>>;
+    * Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs.
+    * Update products in catalog
+    */
+    updateProductInCatalogs(requestParameters: productsApiParams.UpdateProductInCatalogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductInCatalogInfo>>;
 
 }
+
 
 /**
  * 
  */
-export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface {
+export class ProductsApi extends runtime.BaseAPI implements ProductsApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -367,7 +358,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      */
 
 
-    async addProductRaw(requestParameters: AddProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProduct>> {
+    async addProductRaw(requestParameters: productsApiParams.AddProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProduct>> {
         const queryParameters: any = {};
 
         if (requestParameters.batchJobCode !== undefined) {
@@ -403,7 +394,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      * Creates a new product. You supply a product name, product code, price and other product characteristics such as its attributes, categories where the product belongs, whether the product has configurable options, stand-alone options, and so on.
      * Add product
      */
-    async addProduct(requestParameters: AddProductRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProduct> {
+    async addProduct(requestParameters: productsApiParams.AddProductRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProduct> {
         const response = await this.addProductRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -414,7 +405,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      */
 
 
-    async addProductInCatalogRaw(requestParameters: AddProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductInCatalogInfo>> {
+    async addProductInCatalogRaw(requestParameters: productsApiParams.AddProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductInCatalogInfo>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling addProductInCatalog.');
         }
@@ -450,7 +441,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      * 
      * Add product in catalog
      */
-    async addProductInCatalog(requestParameters: AddProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductInCatalogInfo> {
+    async addProductInCatalog(requestParameters: productsApiParams.AddProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductInCatalogInfo> {
         const response = await this.addProductInCatalogRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -461,7 +452,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      */
 
 
-    async changeProductTypeRaw(requestParameters: ChangeProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductTypeChangeResponse>> {
+    async changeProductTypeRaw(requestParameters: productsApiParams.ChangeProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductTypeChangeResponse>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling changeProductType.');
         }
@@ -497,7 +488,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      * Change a product\'s product type.
      * Change product type.
      */
-    async changeProductType(requestParameters: ChangeProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductTypeChangeResponse> {
+    async changeProductType(requestParameters: productsApiParams.ChangeProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductTypeChangeResponse> {
         const response = await this.changeProductTypeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -508,7 +499,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      */
 
 
-    async deleteProductRaw(requestParameters: DeleteProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteProductRaw(requestParameters: productsApiParams.DeleteProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling deleteProduct.');
         }
@@ -541,7 +532,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      * Deletes the product specified by its product code.
      * Delete product
      */
-    async deleteProduct(requestParameters: DeleteProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteProduct(requestParameters: productsApiParams.DeleteProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteProductRaw(requestParameters, initOverrides);
     }
 
@@ -551,7 +542,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      */
 
 
-    async deleteProductInCatalogRaw(requestParameters: DeleteProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteProductInCatalogRaw(requestParameters: productsApiParams.DeleteProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling deleteProductInCatalog.');
         }
@@ -584,7 +575,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      * 
      * Delete product in catalog
      */
-    async deleteProductInCatalog(requestParameters: DeleteProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteProductInCatalog(requestParameters: productsApiParams.DeleteProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteProductInCatalogRaw(requestParameters, initOverrides);
     }
 
@@ -594,7 +585,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      */
 
 
-    async getProductRaw(requestParameters: GetProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProduct>> {
+    async getProductRaw(requestParameters: productsApiParams.GetProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProduct>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling getProduct.');
         }
@@ -631,7 +622,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      * Retrieves details about a product based on the specified response group. For example, to get the BaseProductCode of a product.
      * Get product
      */
-    async getProduct(requestParameters: GetProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProduct> {
+    async getProduct(requestParameters: productsApiParams.GetProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProduct> {
         const response = await this.getProductRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -642,7 +633,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      */
 
 
-    async getProductInCatalogRaw(requestParameters: GetProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductInCatalogInfo>> {
+    async getProductInCatalogRaw(requestParameters: productsApiParams.GetProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductInCatalogInfo>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling getProductInCatalog.');
         }
@@ -679,7 +670,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      * 
      * Get product in catalog
      */
-    async getProductInCatalog(requestParameters: GetProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductInCatalogInfo> {
+    async getProductInCatalog(requestParameters: productsApiParams.GetProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductInCatalogInfo> {
         const response = await this.getProductInCatalogRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -690,7 +681,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      */
 
 
-    async getProductInCatalogsRaw(requestParameters: GetProductInCatalogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductInCatalogInfo>>> {
+    async getProductInCatalogsRaw(requestParameters: productsApiParams.GetProductInCatalogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductInCatalogInfo>>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling getProductInCatalogs.');
         }
@@ -723,7 +714,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      * 
      * Update products in catalog
      */
-    async getProductInCatalogs(requestParameters: GetProductInCatalogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductInCatalogInfo>> {
+    async getProductInCatalogs(requestParameters: productsApiParams.GetProductInCatalogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductInCatalogInfo>> {
         const response = await this.getProductInCatalogsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -734,7 +725,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      */
 
 
-    async getProductsRaw(requestParameters: GetProductsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductCollection>> {
+    async getProductsRaw(requestParameters: productsApiParams.GetProductsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -795,7 +786,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      * Retrieves a list of products according to any specified filter criteria and sort options.
      * Get products
      */
-    async getProducts(requestParameters: GetProductsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductCollection> {
+    async getProducts(requestParameters: productsApiParams.GetProductsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductCollection> {
         const response = await this.getProductsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -806,7 +797,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      */
 
 
-    async renameProductCodesRaw(requestParameters: RenameProductCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async renameProductCodesRaw(requestParameters: productsApiParams.RenameProductCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -838,7 +829,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      * Action that allows productCodes to be Renamed. Changing the resource identifier of a product could cause problems for established products.
      * Rename product codes
      */
-    async renameProductCodes(requestParameters: RenameProductCodesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async renameProductCodes(requestParameters: productsApiParams.RenameProductCodesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.renameProductCodesRaw(requestParameters, initOverrides);
     }
 
@@ -848,7 +839,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      */
 
 
-    async updateProductRaw(requestParameters: UpdateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProduct>> {
+    async updateProductRaw(requestParameters: productsApiParams.UpdateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProduct>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling updateProduct.');
         }
@@ -888,7 +879,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      * Modifies an existing product.
      * Update product
      */
-    async updateProduct(requestParameters: UpdateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProduct> {
+    async updateProduct(requestParameters: productsApiParams.UpdateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProduct> {
         const response = await this.updateProductRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -899,7 +890,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      */
 
 
-    async updateProductInCatalogRaw(requestParameters: UpdateProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductInCatalogInfo>> {
+    async updateProductInCatalogRaw(requestParameters: productsApiParams.UpdateProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductInCatalogInfo>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling updateProductInCatalog.');
         }
@@ -939,7 +930,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      * 
      * Update product in catalog
      */
-    async updateProductInCatalog(requestParameters: UpdateProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductInCatalogInfo> {
+    async updateProductInCatalog(requestParameters: productsApiParams.UpdateProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductInCatalogInfo> {
         const response = await this.updateProductInCatalogRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -950,7 +941,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      */
 
 
-    async updateProductInCatalogsRaw(requestParameters: UpdateProductInCatalogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductInCatalogInfo>>> {
+    async updateProductInCatalogsRaw(requestParameters: productsApiParams.UpdateProductInCatalogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductInCatalogInfo>>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling updateProductInCatalogs.');
         }
@@ -986,7 +977,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      * Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs.
      * Update products in catalog
      */
-    async updateProductInCatalogs(requestParameters: UpdateProductInCatalogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductInCatalogInfo>> {
+    async updateProductInCatalogs(requestParameters: productsApiParams.UpdateProductInCatalogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductInCatalogInfo>> {
         const response = await this.updateProductInCatalogsRaw(requestParameters, initOverrides);
         return await response.value();
     }

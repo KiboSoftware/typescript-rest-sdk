@@ -20,63 +20,65 @@ import type {
   ProductSearchPreviewResult,
 } from '../models';
 
-export interface SearchPreviewAsyncRequest {
-    responseFields?: string;
-    findProductsPreviewParameters?: FindProductsPreviewParameters;
+
+export namespace searchPreviewApiParams { 
+    export interface SearchPreviewAsyncRequest {
+        responseFields?: string;
+        findProductsPreviewParameters?: FindProductsPreviewParameters;
+    }
+    export interface SiteSearchPreviewAsyncRequest {
+        responseFields?: string;
+        findProductsPreviewParameters?: FindProductsPreviewParameters;
+    }
+}
+/**
+* SearchPreviewApiService - interface
+* 
+* @export
+* @interface SearchPreviewApi
+*/
+export interface SearchPreviewApiService {
+    /**
+    * Though this endpoint only returns data, the decision has been made to make it a POST because the request body will be larger than what a url length can contain.
+    * @summary Search preview
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {FindProductsPreviewParameters} [findProductsPreviewParameters] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SearchPreviewApiInterface
+    */
+    searchPreviewAsyncRaw(requestParameters: searchPreviewApiParams.SearchPreviewAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchPreviewResult>>;
+
+    /**
+    * Though this endpoint only returns data, the decision has been made to make it a POST because the request body will be larger than what a url length can contain.
+    * Search preview
+    */
+    searchPreviewAsync(requestParameters: searchPreviewApiParams.SearchPreviewAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchPreviewResult>;
+
+    /**
+    * Though this endpoint only returns data, the decision has been made to make it a POST because the request body will be larger than what a url length can contain.
+    * @summary Site search preview
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {FindProductsPreviewParameters} [findProductsPreviewParameters] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SearchPreviewApiInterface
+    */
+    siteSearchPreviewAsyncRaw(requestParameters: searchPreviewApiParams.SiteSearchPreviewAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchPreviewResult>>;
+
+    /**
+    * Though this endpoint only returns data, the decision has been made to make it a POST because the request body will be larger than what a url length can contain.
+    * Site search preview
+    */
+    siteSearchPreviewAsync(requestParameters: searchPreviewApiParams.SiteSearchPreviewAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchPreviewResult>;
+
 }
 
-export interface SiteSearchPreviewAsyncRequest {
-    responseFields?: string;
-    findProductsPreviewParameters?: FindProductsPreviewParameters;
-}
 
 /**
- * SearchPreviewApi - interface
- * 
- * @export
- * @interface SearchPreviewApiInterface
- */
-export interface SearchPreviewApiInterface {
-    /**
-     * Though this endpoint only returns data, the decision has been made to make it a POST because the request body will be larger than what a url length can contain.
-     * @summary Search preview
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {FindProductsPreviewParameters} [findProductsPreviewParameters] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchPreviewApiInterface
-     */
-    searchPreviewAsyncRaw(requestParameters: SearchPreviewAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchPreviewResult>>;
-
-    /**
-     * Though this endpoint only returns data, the decision has been made to make it a POST because the request body will be larger than what a url length can contain.
-     * Search preview
-     */
-    searchPreviewAsync(requestParameters: SearchPreviewAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchPreviewResult>;
-
-    /**
-     * Though this endpoint only returns data, the decision has been made to make it a POST because the request body will be larger than what a url length can contain.
-     * @summary Site search preview
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {FindProductsPreviewParameters} [findProductsPreviewParameters] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchPreviewApiInterface
-     */
-    siteSearchPreviewAsyncRaw(requestParameters: SiteSearchPreviewAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchPreviewResult>>;
-
-    /**
-     * Though this endpoint only returns data, the decision has been made to make it a POST because the request body will be larger than what a url length can contain.
-     * Site search preview
-     */
-    siteSearchPreviewAsync(requestParameters: SiteSearchPreviewAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchPreviewResult>;
-
-}
-
-/**
  * 
  */
-export class SearchPreviewApi extends runtime.BaseAPI implements SearchPreviewApiInterface {
+export class SearchPreviewApi extends runtime.BaseAPI implements SearchPreviewApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -87,7 +89,7 @@ export class SearchPreviewApi extends runtime.BaseAPI implements SearchPreviewAp
      */
 
 
-    async searchPreviewAsyncRaw(requestParameters: SearchPreviewAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchPreviewResult>> {
+    async searchPreviewAsyncRaw(requestParameters: searchPreviewApiParams.SearchPreviewAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchPreviewResult>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -119,7 +121,7 @@ export class SearchPreviewApi extends runtime.BaseAPI implements SearchPreviewAp
      * Though this endpoint only returns data, the decision has been made to make it a POST because the request body will be larger than what a url length can contain.
      * Search preview
      */
-    async searchPreviewAsync(requestParameters: SearchPreviewAsyncRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchPreviewResult> {
+    async searchPreviewAsync(requestParameters: searchPreviewApiParams.SearchPreviewAsyncRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchPreviewResult> {
         const response = await this.searchPreviewAsyncRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -130,7 +132,7 @@ export class SearchPreviewApi extends runtime.BaseAPI implements SearchPreviewAp
      */
 
 
-    async siteSearchPreviewAsyncRaw(requestParameters: SiteSearchPreviewAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchPreviewResult>> {
+    async siteSearchPreviewAsyncRaw(requestParameters: searchPreviewApiParams.SiteSearchPreviewAsyncRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSearchPreviewResult>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -162,7 +164,7 @@ export class SearchPreviewApi extends runtime.BaseAPI implements SearchPreviewAp
      * Though this endpoint only returns data, the decision has been made to make it a POST because the request body will be larger than what a url length can contain.
      * Site search preview
      */
-    async siteSearchPreviewAsync(requestParameters: SiteSearchPreviewAsyncRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchPreviewResult> {
+    async siteSearchPreviewAsync(requestParameters: searchPreviewApiParams.SiteSearchPreviewAsyncRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSearchPreviewResult> {
         const response = await this.siteSearchPreviewAsyncRaw(requestParameters, initOverrides);
         return await response.value();
     }

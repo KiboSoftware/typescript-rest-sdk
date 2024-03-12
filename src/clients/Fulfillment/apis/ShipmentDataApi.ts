@@ -16,260 +16,299 @@
 import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
 
-export interface DeleteShipmentDataByKeyUsingDELETERequest {
-    key: string;
-    shipmentNumber: number;
-    xVolTenant: number;
-    xVolSite?: number;
-}
 
-export interface DeleteShipmentDataUsingDELETERequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    xVolSite?: number;
+export namespace shipmentDataApiParams { 
+    export interface DeleteShipmentDataRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface DeleteShipmentDataByKeyRequest {
+        key: string;
+        shipmentNumber: number;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface DeleteShipmentItemDataRequest {
+        lineId: number;
+        shipmentNumber: number;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface DeleteShipmentItemDataByKeyRequest {
+        key: string;
+        lineId: number;
+        shipmentNumber: number;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface GetShipmentDataRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface GetShipmentItemDataRequest {
+        lineId: number;
+        shipmentNumber: number;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface ReplaceShipmentDataRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        data: { [key: string]: object; };
+        merge?: boolean;
+        xVolSite?: number;
+    }
+    export interface ReplaceShipmentItemDataRequest {
+        lineId: number;
+        shipmentNumber: number;
+        xVolTenant: number;
+        data: { [key: string]: object; };
+        merge?: boolean;
+        xVolSite?: number;
+    }
 }
-
-export interface DeleteShipmentItemDataByKeyUsingDELETERequest {
-    key: string;
-    lineId: number;
-    shipmentNumber: number;
-    xVolTenant: number;
-    xVolSite?: number;
-}
-
-export interface DeleteShipmentItemDataUsingDELETERequest {
-    lineId: number;
-    shipmentNumber: number;
-    xVolTenant: number;
-    xVolSite?: number;
-}
-
-export interface GetShipmentDataUsingGETRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface GetShipmentItemDataUsingGETRequest {
-    lineId: number;
-    shipmentNumber: number;
-    xVolTenant: number;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface ReplaceShipmentDataUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    data: { [key: string]: object; };
-    merge?: boolean;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface ReplaceShipmentItemDataUsingPUTRequest {
-    lineId: number;
-    shipmentNumber: number;
-    xVolTenant: number;
-    data: { [key: string]: object; };
-    merge?: boolean;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
 /**
- * ShipmentDataApi - interface
- * 
- * @export
- * @interface ShipmentDataApiInterface
- */
-export interface ShipmentDataApiInterface {
+* ShipmentDataApiService - interface
+* 
+* @export
+* @interface ShipmentDataApi
+*/
+export interface ShipmentDataApiService {
     /**
-     * deleteShipmentDataByKey
-     * @summary deleteShipmentDataByKey
-     * @param {string} key key
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentDataApiInterface
-     */
-    deleteShipmentDataByKeyUsingDELETERaw(requestParameters: DeleteShipmentDataByKeyUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * deleteShipmentData
+    * @summary deleteShipmentData
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentDataApiInterface
+    */
+    deleteShipmentDataRaw(requestParameters: shipmentDataApiParams.DeleteShipmentDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * deleteShipmentDataByKey
-     * deleteShipmentDataByKey
-     */
-    deleteShipmentDataByKeyUsingDELETE(requestParameters: DeleteShipmentDataByKeyUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * deleteShipmentData
+    * deleteShipmentData
+    */
+    deleteShipmentData(requestParameters: shipmentDataApiParams.DeleteShipmentDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * deleteShipmentData
-     * @summary deleteShipmentData
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentDataApiInterface
-     */
-    deleteShipmentDataUsingDELETERaw(requestParameters: DeleteShipmentDataUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * deleteShipmentDataByKey
+    * @summary deleteShipmentDataByKey
+    * @param {string} key key
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentDataApiInterface
+    */
+    deleteShipmentDataByKeyRaw(requestParameters: shipmentDataApiParams.DeleteShipmentDataByKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * deleteShipmentData
-     * deleteShipmentData
-     */
-    deleteShipmentDataUsingDELETE(requestParameters: DeleteShipmentDataUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * deleteShipmentDataByKey
+    * deleteShipmentDataByKey
+    */
+    deleteShipmentDataByKey(requestParameters: shipmentDataApiParams.DeleteShipmentDataByKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * deleteShipmentItemDataByKey
-     * @summary deleteShipmentItemDataByKey
-     * @param {string} key key
-     * @param {number} lineId lineId
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentDataApiInterface
-     */
-    deleteShipmentItemDataByKeyUsingDELETERaw(requestParameters: DeleteShipmentItemDataByKeyUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * deleteShipmentItemData
+    * @summary deleteShipmentItemData
+    * @param {number} lineId lineId
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentDataApiInterface
+    */
+    deleteShipmentItemDataRaw(requestParameters: shipmentDataApiParams.DeleteShipmentItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * deleteShipmentItemDataByKey
-     * deleteShipmentItemDataByKey
-     */
-    deleteShipmentItemDataByKeyUsingDELETE(requestParameters: DeleteShipmentItemDataByKeyUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * deleteShipmentItemData
+    * deleteShipmentItemData
+    */
+    deleteShipmentItemData(requestParameters: shipmentDataApiParams.DeleteShipmentItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * deleteShipmentItemData
-     * @summary deleteShipmentItemData
-     * @param {number} lineId lineId
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentDataApiInterface
-     */
-    deleteShipmentItemDataUsingDELETERaw(requestParameters: DeleteShipmentItemDataUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * deleteShipmentItemDataByKey
+    * @summary deleteShipmentItemDataByKey
+    * @param {string} key key
+    * @param {number} lineId lineId
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentDataApiInterface
+    */
+    deleteShipmentItemDataByKeyRaw(requestParameters: shipmentDataApiParams.DeleteShipmentItemDataByKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * deleteShipmentItemData
-     * deleteShipmentItemData
-     */
-    deleteShipmentItemDataUsingDELETE(requestParameters: DeleteShipmentItemDataUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * deleteShipmentItemDataByKey
+    * deleteShipmentItemDataByKey
+    */
+    deleteShipmentItemDataByKey(requestParameters: shipmentDataApiParams.DeleteShipmentItemDataByKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * getShipmentData
-     * @summary getShipmentData
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentDataApiInterface
-     */
-    getShipmentDataUsingGETRaw(requestParameters: GetShipmentDataUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>>;
+    * getShipmentData
+    * @summary getShipmentData
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentDataApiInterface
+    */
+    getShipmentDataRaw(requestParameters: shipmentDataApiParams.GetShipmentDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>>;
 
     /**
-     * getShipmentData
-     * getShipmentData
-     */
-    getShipmentDataUsingGET(requestParameters: GetShipmentDataUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }>;
+    * getShipmentData
+    * getShipmentData
+    */
+    getShipmentData(requestParameters: shipmentDataApiParams.GetShipmentDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }>;
 
     /**
-     * getShipmentItemData
-     * @summary getShipmentItemData
-     * @param {number} lineId lineId
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentDataApiInterface
-     */
-    getShipmentItemDataUsingGETRaw(requestParameters: GetShipmentItemDataUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>>;
+    * getShipmentItemData
+    * @summary getShipmentItemData
+    * @param {number} lineId lineId
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentDataApiInterface
+    */
+    getShipmentItemDataRaw(requestParameters: shipmentDataApiParams.GetShipmentItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>>;
 
     /**
-     * getShipmentItemData
-     * getShipmentItemData
-     */
-    getShipmentItemDataUsingGET(requestParameters: GetShipmentItemDataUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }>;
+    * getShipmentItemData
+    * getShipmentItemData
+    */
+    getShipmentItemData(requestParameters: shipmentDataApiParams.GetShipmentItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }>;
 
     /**
-     * replaceShipmentData
-     * @summary replaceShipmentData
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {{ [key: string]: object; }} data data
-     * @param {boolean} [merge] merge
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentDataApiInterface
-     */
-    replaceShipmentDataUsingPUTRaw(requestParameters: ReplaceShipmentDataUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>>;
+    * replaceShipmentData
+    * @summary replaceShipmentData
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {{ [key: string]: object; }} data data
+    * @param {boolean} [merge] merge
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentDataApiInterface
+    */
+    replaceShipmentDataRaw(requestParameters: shipmentDataApiParams.ReplaceShipmentDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>>;
 
     /**
-     * replaceShipmentData
-     * replaceShipmentData
-     */
-    replaceShipmentDataUsingPUT(requestParameters: ReplaceShipmentDataUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }>;
+    * replaceShipmentData
+    * replaceShipmentData
+    */
+    replaceShipmentData(requestParameters: shipmentDataApiParams.ReplaceShipmentDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }>;
 
     /**
-     * replaceShipmentItemData
-     * @summary replaceShipmentItemData
-     * @param {number} lineId lineId
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {{ [key: string]: object; }} data data
-     * @param {boolean} [merge] merge
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentDataApiInterface
-     */
-    replaceShipmentItemDataUsingPUTRaw(requestParameters: ReplaceShipmentItemDataUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>>;
+    * replaceShipmentItemData
+    * @summary replaceShipmentItemData
+    * @param {number} lineId lineId
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {{ [key: string]: object; }} data data
+    * @param {boolean} [merge] merge
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentDataApiInterface
+    */
+    replaceShipmentItemDataRaw(requestParameters: shipmentDataApiParams.ReplaceShipmentItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>>;
 
     /**
-     * replaceShipmentItemData
-     * replaceShipmentItemData
-     */
-    replaceShipmentItemDataUsingPUT(requestParameters: ReplaceShipmentItemDataUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }>;
+    * replaceShipmentItemData
+    * replaceShipmentItemData
+    */
+    replaceShipmentItemData(requestParameters: shipmentDataApiParams.ReplaceShipmentItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }>;
 
 }
+
 
 /**
  * 
  */
-export class ShipmentDataApi extends runtime.BaseAPI implements ShipmentDataApiInterface {
+export class ShipmentDataApi extends runtime.BaseAPI implements ShipmentDataApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
     }
     /**
+     * deleteShipmentData
+     * deleteShipmentData
+     */
+
+
+    async deleteShipmentDataRaw(requestParameters: shipmentDataApiParams.DeleteShipmentDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling deleteShipmentData.');
+        }
+
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteShipmentData.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
+            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
+        }
+
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/shipments/{shipmentNumber}/data`.replace(`{${"shipmentNumber"}}`, encodeURIComponent(String(requestParameters.shipmentNumber))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * deleteShipmentData
+     * deleteShipmentData
+     */
+    async deleteShipmentData(requestParameters: shipmentDataApiParams.DeleteShipmentDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteShipmentDataRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * deleteShipmentDataByKey
      * deleteShipmentDataByKey
      */
 
 
-    async deleteShipmentDataByKeyUsingDELETERaw(requestParameters: DeleteShipmentDataByKeyUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteShipmentDataByKeyRaw(requestParameters: shipmentDataApiParams.DeleteShipmentDataByKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.key === null || requestParameters.key === undefined) {
-            throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling deleteShipmentDataByKeyUsingDELETE.');
+            throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling deleteShipmentDataByKey.');
         }
 
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling deleteShipmentDataByKeyUsingDELETE.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling deleteShipmentDataByKey.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteShipmentDataByKeyUsingDELETE.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteShipmentDataByKey.');
         }
 
         const queryParameters: any = {};
@@ -304,23 +343,27 @@ export class ShipmentDataApi extends runtime.BaseAPI implements ShipmentDataApiI
      * deleteShipmentDataByKey
      * deleteShipmentDataByKey
      */
-    async deleteShipmentDataByKeyUsingDELETE(requestParameters: DeleteShipmentDataByKeyUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.deleteShipmentDataByKeyUsingDELETERaw(requestParameters, initOverrides);
+    async deleteShipmentDataByKey(requestParameters: shipmentDataApiParams.DeleteShipmentDataByKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteShipmentDataByKeyRaw(requestParameters, initOverrides);
     }
 
     /**
-     * deleteShipmentData
-     * deleteShipmentData
+     * deleteShipmentItemData
+     * deleteShipmentItemData
      */
 
 
-    async deleteShipmentDataUsingDELETERaw(requestParameters: DeleteShipmentDataUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteShipmentItemDataRaw(requestParameters: shipmentDataApiParams.DeleteShipmentItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.lineId === null || requestParameters.lineId === undefined) {
+            throw new runtime.RequiredError('lineId','Required parameter requestParameters.lineId was null or undefined when calling deleteShipmentItemData.');
+        }
+
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling deleteShipmentDataUsingDELETE.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling deleteShipmentItemData.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteShipmentDataUsingDELETE.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteShipmentItemData.');
         }
 
         const queryParameters: any = {};
@@ -342,7 +385,7 @@ export class ShipmentDataApi extends runtime.BaseAPI implements ShipmentDataApiI
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
-            path: `/commerce/shipments/{shipmentNumber}/data`.replace(`{${"shipmentNumber"}}`, encodeURIComponent(String(requestParameters.shipmentNumber))),
+            path: `/commerce/shipments/{shipmentNumber}/items/{lineId}/data`.replace(`{${"lineId"}}`, encodeURIComponent(String(requestParameters.lineId))).replace(`{${"shipmentNumber"}}`, encodeURIComponent(String(requestParameters.shipmentNumber))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -352,11 +395,11 @@ export class ShipmentDataApi extends runtime.BaseAPI implements ShipmentDataApiI
     }
 
     /**
-     * deleteShipmentData
-     * deleteShipmentData
+     * deleteShipmentItemData
+     * deleteShipmentItemData
      */
-    async deleteShipmentDataUsingDELETE(requestParameters: DeleteShipmentDataUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.deleteShipmentDataUsingDELETERaw(requestParameters, initOverrides);
+    async deleteShipmentItemData(requestParameters: shipmentDataApiParams.DeleteShipmentItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteShipmentItemDataRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -365,21 +408,21 @@ export class ShipmentDataApi extends runtime.BaseAPI implements ShipmentDataApiI
      */
 
 
-    async deleteShipmentItemDataByKeyUsingDELETERaw(requestParameters: DeleteShipmentItemDataByKeyUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteShipmentItemDataByKeyRaw(requestParameters: shipmentDataApiParams.DeleteShipmentItemDataByKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.key === null || requestParameters.key === undefined) {
-            throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling deleteShipmentItemDataByKeyUsingDELETE.');
+            throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling deleteShipmentItemDataByKey.');
         }
 
         if (requestParameters.lineId === null || requestParameters.lineId === undefined) {
-            throw new runtime.RequiredError('lineId','Required parameter requestParameters.lineId was null or undefined when calling deleteShipmentItemDataByKeyUsingDELETE.');
+            throw new runtime.RequiredError('lineId','Required parameter requestParameters.lineId was null or undefined when calling deleteShipmentItemDataByKey.');
         }
 
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling deleteShipmentItemDataByKeyUsingDELETE.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling deleteShipmentItemDataByKey.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteShipmentItemDataByKeyUsingDELETE.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteShipmentItemDataByKey.');
         }
 
         const queryParameters: any = {};
@@ -414,63 +457,8 @@ export class ShipmentDataApi extends runtime.BaseAPI implements ShipmentDataApiI
      * deleteShipmentItemDataByKey
      * deleteShipmentItemDataByKey
      */
-    async deleteShipmentItemDataByKeyUsingDELETE(requestParameters: DeleteShipmentItemDataByKeyUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.deleteShipmentItemDataByKeyUsingDELETERaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * deleteShipmentItemData
-     * deleteShipmentItemData
-     */
-
-
-    async deleteShipmentItemDataUsingDELETERaw(requestParameters: DeleteShipmentItemDataUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.lineId === null || requestParameters.lineId === undefined) {
-            throw new runtime.RequiredError('lineId','Required parameter requestParameters.lineId was null or undefined when calling deleteShipmentItemDataUsingDELETE.');
-        }
-
-        if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling deleteShipmentItemDataUsingDELETE.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteShipmentItemDataUsingDELETE.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
-
-
-
-
-
-        await this.addAuthorizationHeaders(headerParameters)
-        
-        const response = await this.request({
-            path: `/commerce/shipments/{shipmentNumber}/items/{lineId}/data`.replace(`{${"lineId"}}`, encodeURIComponent(String(requestParameters.lineId))).replace(`{${"shipmentNumber"}}`, encodeURIComponent(String(requestParameters.shipmentNumber))),
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * deleteShipmentItemData
-     * deleteShipmentItemData
-     */
-    async deleteShipmentItemDataUsingDELETE(requestParameters: DeleteShipmentItemDataUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.deleteShipmentItemDataUsingDELETERaw(requestParameters, initOverrides);
+    async deleteShipmentItemDataByKey(requestParameters: shipmentDataApiParams.DeleteShipmentItemDataByKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteShipmentItemDataByKeyRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -479,20 +467,16 @@ export class ShipmentDataApi extends runtime.BaseAPI implements ShipmentDataApiI
      */
 
 
-    async getShipmentDataUsingGETRaw(requestParameters: GetShipmentDataUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>> {
+    async getShipmentDataRaw(requestParameters: shipmentDataApiParams.GetShipmentDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getShipmentDataUsingGET.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getShipmentData.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipmentDataUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipmentData.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -524,8 +508,8 @@ export class ShipmentDataApi extends runtime.BaseAPI implements ShipmentDataApiI
      * getShipmentData
      * getShipmentData
      */
-    async getShipmentDataUsingGET(requestParameters: GetShipmentDataUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }> {
-        const response = await this.getShipmentDataUsingGETRaw(requestParameters, initOverrides);
+    async getShipmentData(requestParameters: shipmentDataApiParams.GetShipmentDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }> {
+        const response = await this.getShipmentDataRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -535,24 +519,20 @@ export class ShipmentDataApi extends runtime.BaseAPI implements ShipmentDataApiI
      */
 
 
-    async getShipmentItemDataUsingGETRaw(requestParameters: GetShipmentItemDataUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>> {
+    async getShipmentItemDataRaw(requestParameters: shipmentDataApiParams.GetShipmentItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>> {
         if (requestParameters.lineId === null || requestParameters.lineId === undefined) {
-            throw new runtime.RequiredError('lineId','Required parameter requestParameters.lineId was null or undefined when calling getShipmentItemDataUsingGET.');
+            throw new runtime.RequiredError('lineId','Required parameter requestParameters.lineId was null or undefined when calling getShipmentItemData.');
         }
 
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getShipmentItemDataUsingGET.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getShipmentItemData.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipmentItemDataUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipmentItemData.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -584,8 +564,8 @@ export class ShipmentDataApi extends runtime.BaseAPI implements ShipmentDataApiI
      * getShipmentItemData
      * getShipmentItemData
      */
-    async getShipmentItemDataUsingGET(requestParameters: GetShipmentItemDataUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }> {
-        const response = await this.getShipmentItemDataUsingGETRaw(requestParameters, initOverrides);
+    async getShipmentItemData(requestParameters: shipmentDataApiParams.GetShipmentItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }> {
+        const response = await this.getShipmentItemDataRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -595,27 +575,23 @@ export class ShipmentDataApi extends runtime.BaseAPI implements ShipmentDataApiI
      */
 
 
-    async replaceShipmentDataUsingPUTRaw(requestParameters: ReplaceShipmentDataUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>> {
+    async replaceShipmentDataRaw(requestParameters: shipmentDataApiParams.ReplaceShipmentDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling replaceShipmentDataUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling replaceShipmentData.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling replaceShipmentDataUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling replaceShipmentData.');
         }
 
         if (requestParameters.data === null || requestParameters.data === undefined) {
-            throw new runtime.RequiredError('data','Required parameter requestParameters.data was null or undefined when calling replaceShipmentDataUsingPUT.');
+            throw new runtime.RequiredError('data','Required parameter requestParameters.data was null or undefined when calling replaceShipmentData.');
         }
 
         const queryParameters: any = {};
 
         if (requestParameters.merge !== undefined) {
             queryParameters['merge'] = requestParameters.merge;
-        }
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -651,8 +627,8 @@ export class ShipmentDataApi extends runtime.BaseAPI implements ShipmentDataApiI
      * replaceShipmentData
      * replaceShipmentData
      */
-    async replaceShipmentDataUsingPUT(requestParameters: ReplaceShipmentDataUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }> {
-        const response = await this.replaceShipmentDataUsingPUTRaw(requestParameters, initOverrides);
+    async replaceShipmentData(requestParameters: shipmentDataApiParams.ReplaceShipmentDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }> {
+        const response = await this.replaceShipmentDataRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -662,31 +638,27 @@ export class ShipmentDataApi extends runtime.BaseAPI implements ShipmentDataApiI
      */
 
 
-    async replaceShipmentItemDataUsingPUTRaw(requestParameters: ReplaceShipmentItemDataUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>> {
+    async replaceShipmentItemDataRaw(requestParameters: shipmentDataApiParams.ReplaceShipmentItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>> {
         if (requestParameters.lineId === null || requestParameters.lineId === undefined) {
-            throw new runtime.RequiredError('lineId','Required parameter requestParameters.lineId was null or undefined when calling replaceShipmentItemDataUsingPUT.');
+            throw new runtime.RequiredError('lineId','Required parameter requestParameters.lineId was null or undefined when calling replaceShipmentItemData.');
         }
 
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling replaceShipmentItemDataUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling replaceShipmentItemData.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling replaceShipmentItemDataUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling replaceShipmentItemData.');
         }
 
         if (requestParameters.data === null || requestParameters.data === undefined) {
-            throw new runtime.RequiredError('data','Required parameter requestParameters.data was null or undefined when calling replaceShipmentItemDataUsingPUT.');
+            throw new runtime.RequiredError('data','Required parameter requestParameters.data was null or undefined when calling replaceShipmentItemData.');
         }
 
         const queryParameters: any = {};
 
         if (requestParameters.merge !== undefined) {
             queryParameters['merge'] = requestParameters.merge;
-        }
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -722,8 +694,8 @@ export class ShipmentDataApi extends runtime.BaseAPI implements ShipmentDataApiI
      * replaceShipmentItemData
      * replaceShipmentItemData
      */
-    async replaceShipmentItemDataUsingPUT(requestParameters: ReplaceShipmentItemDataUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }> {
-        const response = await this.replaceShipmentItemDataUsingPUTRaw(requestParameters, initOverrides);
+    async replaceShipmentItemData(requestParameters: shipmentDataApiParams.ReplaceShipmentItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }> {
+        const response = await this.replaceShipmentItemDataRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

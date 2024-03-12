@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 apis/BatchJobApi.ts
 apis/ExportApi.ts
 apis/FilesApi.ts

@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 apis/OrderRoutingDataListApi.ts
 apis/OrderRoutingFilterApi.ts
 apis/OrderRoutingGroupApi.ts

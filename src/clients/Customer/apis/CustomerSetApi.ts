@@ -20,69 +20,71 @@ import type {
   CustomerSetCollection,
 } from '../models';
 
-export interface GetCustomerSetRequest {
-    code: string;
-    responseFields?: string;
+
+export namespace customerSetApiParams { 
+    export interface GetCustomerSetRequest {
+        code: string;
+        responseFields?: string;
+    }
+    export interface GetCustomerSetsRequest {
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        responseGroups?: string;
+        responseFields?: string;
+    }
+}
+/**
+* CustomerSetApiService - interface
+* 
+* @export
+* @interface CustomerSetApi
+*/
+export interface CustomerSetApiService {
+    /**
+    * Retrieves the name of a customer group specified the customer group ID.
+    * @summary Get Customer Set
+    * @param {string} code Unique identifier of a customer group.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CustomerSetApiInterface
+    */
+    getCustomerSetRaw(requestParameters: customerSetApiParams.GetCustomerSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerSet>>;
+
+    /**
+    * Retrieves the name of a customer group specified the customer group ID.
+    * Get Customer Set
+    */
+    getCustomerSet(requestParameters: customerSetApiParams.GetCustomerSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerSet>;
+
+    /**
+    * Retrieves a list of all customerSets defined for the site according to any specified filter criteria and sort options.
+    * @summary Get Customer Sets
+    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.               For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
+    * @param {number} [pageSize] Used to page results from a query.               Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+    * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+    * @param {string} [responseGroups] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CustomerSetApiInterface
+    */
+    getCustomerSetsRaw(requestParameters: customerSetApiParams.GetCustomerSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerSetCollection>>;
+
+    /**
+    * Retrieves a list of all customerSets defined for the site according to any specified filter criteria and sort options.
+    * Get Customer Sets
+    */
+    getCustomerSets(requestParameters: customerSetApiParams.GetCustomerSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerSetCollection>;
+
 }
 
-export interface GetCustomerSetsRequest {
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    responseGroups?: string;
-    responseFields?: string;
-}
 
 /**
- * CustomerSetApi - interface
- * 
- * @export
- * @interface CustomerSetApiInterface
- */
-export interface CustomerSetApiInterface {
-    /**
-     * Retrieves the name of a customer group specified the customer group ID.
-     * @summary Get Customer Set
-     * @param {string} code Unique identifier of a customer group.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CustomerSetApiInterface
-     */
-    getCustomerSetRaw(requestParameters: GetCustomerSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerSet>>;
-
-    /**
-     * Retrieves the name of a customer group specified the customer group ID.
-     * Get Customer Set
-     */
-    getCustomerSet(requestParameters: GetCustomerSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerSet>;
-
-    /**
-     * Retrieves a list of all customerSets defined for the site according to any specified filter criteria and sort options.
-     * @summary Get Customer Sets
-     * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.               For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
-     * @param {number} [pageSize] Used to page results from a query.               Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
-     * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
-     * @param {string} [responseGroups] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CustomerSetApiInterface
-     */
-    getCustomerSetsRaw(requestParameters: GetCustomerSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerSetCollection>>;
-
-    /**
-     * Retrieves a list of all customerSets defined for the site according to any specified filter criteria and sort options.
-     * Get Customer Sets
-     */
-    getCustomerSets(requestParameters: GetCustomerSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerSetCollection>;
-
-}
-
-/**
  * 
  */
-export class CustomerSetApi extends runtime.BaseAPI implements CustomerSetApiInterface {
+export class CustomerSetApi extends runtime.BaseAPI implements CustomerSetApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -93,7 +95,7 @@ export class CustomerSetApi extends runtime.BaseAPI implements CustomerSetApiInt
      */
 
 
-    async getCustomerSetRaw(requestParameters: GetCustomerSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerSet>> {
+    async getCustomerSetRaw(requestParameters: customerSetApiParams.GetCustomerSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerSet>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling getCustomerSet.');
         }
@@ -126,7 +128,7 @@ export class CustomerSetApi extends runtime.BaseAPI implements CustomerSetApiInt
      * Retrieves the name of a customer group specified the customer group ID.
      * Get Customer Set
      */
-    async getCustomerSet(requestParameters: GetCustomerSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerSet> {
+    async getCustomerSet(requestParameters: customerSetApiParams.GetCustomerSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerSet> {
         const response = await this.getCustomerSetRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -137,7 +139,7 @@ export class CustomerSetApi extends runtime.BaseAPI implements CustomerSetApiInt
      */
 
 
-    async getCustomerSetsRaw(requestParameters: GetCustomerSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerSetCollection>> {
+    async getCustomerSetsRaw(requestParameters: customerSetApiParams.GetCustomerSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerSetCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -182,7 +184,7 @@ export class CustomerSetApi extends runtime.BaseAPI implements CustomerSetApiInt
      * Retrieves a list of all customerSets defined for the site according to any specified filter criteria and sort options.
      * Get Customer Sets
      */
-    async getCustomerSets(requestParameters: GetCustomerSetsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerSetCollection> {
+    async getCustomerSets(requestParameters: customerSetApiParams.GetCustomerSetsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerSetCollection> {
         const response = await this.getCustomerSetsRaw(requestParameters, initOverrides);
         return await response.value();
     }

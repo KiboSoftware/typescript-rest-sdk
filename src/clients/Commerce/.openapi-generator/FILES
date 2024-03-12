@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 apis/CartApi.ts
 apis/ChannelApi.ts
 apis/ChannelGroupApi.ts

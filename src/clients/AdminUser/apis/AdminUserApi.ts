@@ -24,345 +24,335 @@ import type {
   User,
 } from '../models';
 
-export interface AddUserRoleRequest {
-    userId: string;
-    roleId: number;
-    responseFields?: string;
-}
 
-export interface ChangePasswordRequest {
-    userId: string;
-    responseFields?: string;
-    adminUserPasswordInfo?: AdminUserPasswordInfo;
+export namespace adminUserApiParams { 
+    export interface AddUserRoleRequest {
+        userId: string;
+        roleId: number;
+        responseFields?: string;
+    }
+    export interface ChangePasswordRequest {
+        userId: string;
+        responseFields?: string;
+        adminUserPasswordInfo?: AdminUserPasswordInfo;
+    }
+    export interface ChangeUserPasswordRequest {
+        userId: string;
+        responseFields?: string;
+        changeUserPasswordInfo?: ChangeUserPasswordInfo;
+    }
+    export interface CreateUserRequest {
+        responseFields?: string;
+        user?: User;
+    }
+    export interface DeleteUserRequest {
+        userId: string;
+    }
+    export interface GetTenantScopesForUserRequest {
+        userId: string;
+        responseFields?: string;
+    }
+    export interface GetUserRequest {
+        userId: string;
+        responseFields?: string;
+    }
+    export interface GetUserByIdRequest {
+        userId: string;
+        responseGroups?: string;
+        responseFields?: string;
+    }
+    export interface GetUserRolesRequest {
+        userId: string;
+        responseFields?: string;
+    }
+    export interface GetUsersRequest {
+        emailAddress?: string;
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        filter?: string;
+        responseGroups?: string;
+        responseFields?: string;
+    }
+    export interface RemoveUserRoleRequest {
+        userId: string;
+        roleId: number;
+    }
+    export interface ResetPasswordRequest {
+        responseFields?: string;
+        adminUserResetPasswordInfo?: AdminUserResetPasswordInfo;
+    }
+    export interface UnlockUserRequest {
+        userId: string;
+        responseFields?: string;
+    }
+    export interface UpdateUserRequest {
+        userId: string;
+        responseFields?: string;
+        user?: User;
+    }
 }
-
-export interface ChangeUserPasswordRequest {
-    userId: string;
-    responseFields?: string;
-    changeUserPasswordInfo?: ChangeUserPasswordInfo;
-}
-
-export interface CreateUserRequest {
-    responseFields?: string;
-    user?: User;
-}
-
-export interface DeleteUserRequest {
-    userId: string;
-}
-
-export interface GetTenantScopesForUserRequest {
-    userId: string;
-    responseFields?: string;
-}
-
-export interface GetUserRequest {
-    userId: string;
-    responseFields?: string;
-}
-
-export interface GetUserByIdRequest {
-    userId: string;
-    responseGroups?: string;
-    responseFields?: string;
-}
-
-export interface GetUserRolesRequest {
-    userId: string;
-    responseFields?: string;
-}
-
-export interface GetUsersRequest {
-    emailAddress?: string;
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    filter?: string;
-    responseGroups?: string;
-    responseFields?: string;
-}
-
-export interface RemoveUserRoleRequest {
-    userId: string;
-    roleId: number;
-}
-
-export interface ResetPasswordRequest {
-    responseFields?: string;
-    adminUserResetPasswordInfo?: AdminUserResetPasswordInfo;
-}
-
-export interface UnlockUserRequest {
-    userId: string;
-    responseFields?: string;
-}
-
-export interface UpdateUserRequest {
-    userId: string;
-    responseFields?: string;
-    user?: User;
-}
-
 /**
- * AdminUserApi - interface
- * 
- * @export
- * @interface AdminUserApiInterface
- */
-export interface AdminUserApiInterface {
+* AdminUserApiService - interface
+* 
+* @export
+* @interface AdminUserApi
+*/
+export interface AdminUserApiService {
     /**
-     * Adds a role to the specified user\'s Admin account.
-     * @summary Add User Role
-     * @param {string} userId Unique identifier of the user who receives the role.
-     * @param {number} roleId Unique identifier of the role to add.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AdminUserApiInterface
-     */
-    addUserRoleRaw(requestParameters: AddUserRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Adds a role to the specified user\'s Admin account.
+    * @summary Add User Role
+    * @param {string} userId Unique identifier of the user who receives the role.
+    * @param {number} roleId Unique identifier of the role to add.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof AdminUserApiInterface
+    */
+    addUserRoleRaw(requestParameters: adminUserApiParams.AddUserRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Adds a role to the specified user\'s Admin account.
-     * Add User Role
-     */
-    addUserRole(requestParameters: AddUserRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Adds a role to the specified user\'s Admin account.
+    * Add User Role
+    */
+    addUserRole(requestParameters: adminUserApiParams.AddUserRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * 
-     * @summary Changes a user\'s password
-     * @param {string} userId Unique identifier of the user for whom to change the password.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {AdminUserPasswordInfo} [adminUserPasswordInfo] Old password and new password.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AdminUserApiInterface
-     */
-    changePasswordRaw(requestParameters: ChangePasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * 
+    * @summary Changes a user\'s password
+    * @param {string} userId Unique identifier of the user for whom to change the password.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {AdminUserPasswordInfo} [adminUserPasswordInfo] Old password and new password.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof AdminUserApiInterface
+    */
+    changePasswordRaw(requestParameters: adminUserApiParams.ChangePasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * 
-     * Changes a user\'s password
-     */
-    changePassword(requestParameters: ChangePasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * 
+    * Changes a user\'s password
+    */
+    changePassword(requestParameters: adminUserApiParams.ChangePasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Changes a user\'s password to the provided new password
-     * @summary Change User Password
-     * @param {string} userId Unique identifier of the user for whom to change the password.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {ChangeUserPasswordInfo} [changeUserPasswordInfo] New password info for this user
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AdminUserApiInterface
-     */
-    changeUserPasswordRaw(requestParameters: ChangeUserPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Changes a user\'s password to the provided new password
+    * @summary Change User Password
+    * @param {string} userId Unique identifier of the user for whom to change the password.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ChangeUserPasswordInfo} [changeUserPasswordInfo] New password info for this user
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof AdminUserApiInterface
+    */
+    changeUserPasswordRaw(requestParameters: adminUserApiParams.ChangeUserPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Changes a user\'s password to the provided new password
-     * Change User Password
-     */
-    changeUserPassword(requestParameters: ChangeUserPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Changes a user\'s password to the provided new password
+    * Change User Password
+    */
+    changeUserPassword(requestParameters: adminUserApiParams.ChangeUserPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Creates a new user
-     * @summary Creates a new user
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {User} [user] The user to be created
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AdminUserApiInterface
-     */
-    createUserRaw(requestParameters: CreateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>>;
+    * Creates a new user
+    * @summary Creates a new user
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {User} [user] The user to be created
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof AdminUserApiInterface
+    */
+    createUserRaw(requestParameters: adminUserApiParams.CreateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>>;
 
     /**
-     * Creates a new user
-     * Creates a new user
-     */
-    createUser(requestParameters: CreateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<User>;
+    * Creates a new user
+    * Creates a new user
+    */
+    createUser(requestParameters: adminUserApiParams.CreateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<User>;
 
     /**
-     * Removes a user account from the site.
-     * @summary Delete User
-     * @param {string} userId Unique identifier of the user account to delete.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AdminUserApiInterface
-     */
-    deleteUserRaw(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Removes a user account from the site.
+    * @summary Delete User
+    * @param {string} userId Unique identifier of the user account to delete.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof AdminUserApiInterface
+    */
+    deleteUserRaw(requestParameters: adminUserApiParams.DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Removes a user account from the site.
-     * Delete User
-     */
-    deleteUser(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Removes a user account from the site.
+    * Delete User
+    */
+    deleteUser(requestParameters: adminUserApiParams.DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Get tenant scope for users
-     * @summary Get tenant scope for users
-     * @param {string} userId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AdminUserApiInterface
-     */
-    getTenantScopesForUserRaw(requestParameters: GetTenantScopesForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantCollection>>;
+    * Get tenant scope for users
+    * @summary Get tenant scope for users
+    * @param {string} userId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof AdminUserApiInterface
+    */
+    getTenantScopesForUserRaw(requestParameters: adminUserApiParams.GetTenantScopesForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantCollection>>;
 
     /**
-     * Get tenant scope for users
-     * Get tenant scope for users
-     */
-    getTenantScopesForUser(requestParameters: GetTenantScopesForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantCollection>;
+    * Get tenant scope for users
+    * Get tenant scope for users
+    */
+    getTenantScopesForUser(requestParameters: adminUserApiParams.GetTenantScopesForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantCollection>;
 
     /**
-     * Retrieves the details of a user specified by user ID.
-     * @summary Get User
-     * @param {string} userId Unique identifier of the user whose details you want to view.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AdminUserApiInterface
-     */
-    getUserRaw(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>>;
+    * Retrieves the details of a user specified by user ID.
+    * @summary Get User
+    * @param {string} userId Unique identifier of the user whose details you want to view.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof AdminUserApiInterface
+    */
+    getUserRaw(requestParameters: adminUserApiParams.GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>>;
 
     /**
-     * Retrieves the details of a user specified by user ID.
-     * Get User
-     */
-    getUser(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<User>;
+    * Retrieves the details of a user specified by user ID.
+    * Get User
+    */
+    getUser(requestParameters: adminUserApiParams.GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<User>;
 
     /**
-     * Retrieves the details of a user specified by user ID.
-     * @summary Get User By Id
-     * @param {string} userId Unique identifier of the user whose details you want to view.
-     * @param {string} [responseGroups] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AdminUserApiInterface
-     */
-    getUserByIdRaw(requestParameters: GetUserByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>>;
+    * Retrieves the details of a user specified by user ID.
+    * @summary Get User By Id
+    * @param {string} userId Unique identifier of the user whose details you want to view.
+    * @param {string} [responseGroups] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof AdminUserApiInterface
+    */
+    getUserByIdRaw(requestParameters: adminUserApiParams.GetUserByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>>;
 
     /**
-     * Retrieves the details of a user specified by user ID.
-     * Get User By Id
-     */
-    getUserById(requestParameters: GetUserByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<User>;
+    * Retrieves the details of a user specified by user ID.
+    * Get User By Id
+    */
+    getUserById(requestParameters: adminUserApiParams.GetUserByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<User>;
 
     /**
-     * Retrieves all the roles for a specified user on the specified tenant.
-     * @summary Get User Roles
-     * @param {string} userId Unique identifier of the user.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AdminUserApiInterface
-     */
-    getUserRolesRaw(requestParameters: GetUserRolesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminUserUserRoleCollection>>;
+    * Retrieves all the roles for a specified user on the specified tenant.
+    * @summary Get User Roles
+    * @param {string} userId Unique identifier of the user.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof AdminUserApiInterface
+    */
+    getUserRolesRaw(requestParameters: adminUserApiParams.GetUserRolesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminUserUserRoleCollection>>;
 
     /**
-     * Retrieves all the roles for a specified user on the specified tenant.
-     * Get User Roles
-     */
-    getUserRoles(requestParameters: GetUserRolesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdminUserUserRoleCollection>;
+    * Retrieves all the roles for a specified user on the specified tenant.
+    * Get User Roles
+    */
+    getUserRoles(requestParameters: adminUserApiParams.GetUserRolesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdminUserUserRoleCollection>;
 
     /**
-     * Retrieves a list of Admin users for a specified site according to any specified filter criteria and sort options.
-     * @summary Get Users
-     * @param {string} [emailAddress] 
-     * @param {number} [startIndex] 
-     * @param {number} [pageSize] 
-     * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
-     * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
-     * @param {string} [responseGroups] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AdminUserApiInterface
-     */
-    getUsersRaw(requestParameters: GetUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Retrieves a list of Admin users for a specified site according to any specified filter criteria and sort options.
+    * @summary Get Users
+    * @param {string} [emailAddress] 
+    * @param {number} [startIndex] 
+    * @param {number} [pageSize] 
+    * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+    * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
+    * @param {string} [responseGroups] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof AdminUserApiInterface
+    */
+    getUsersRaw(requestParameters: adminUserApiParams.GetUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Retrieves a list of Admin users for a specified site according to any specified filter criteria and sort options.
-     * Get Users
-     */
-    getUsers(requestParameters: GetUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Retrieves a list of Admin users for a specified site according to any specified filter criteria and sort options.
+    * Get Users
+    */
+    getUsers(requestParameters: adminUserApiParams.GetUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Removes a role from the specified Admin account.
-     * @summary Remove User Role
-     * @param {string} userId Unique identifier of the user with the role to delete.
-     * @param {number} roleId Unique identifer of the role to delete.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AdminUserApiInterface
-     */
-    removeUserRoleRaw(requestParameters: RemoveUserRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Removes a role from the specified Admin account.
+    * @summary Remove User Role
+    * @param {string} userId Unique identifier of the user with the role to delete.
+    * @param {number} roleId Unique identifer of the role to delete.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof AdminUserApiInterface
+    */
+    removeUserRoleRaw(requestParameters: adminUserApiParams.RemoveUserRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Removes a role from the specified Admin account.
-     * Remove User Role
-     */
-    removeUserRole(requestParameters: RemoveUserRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Removes a role from the specified Admin account.
+    * Remove User Role
+    */
+    removeUserRole(requestParameters: adminUserApiParams.RemoveUserRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Resets the password for a user specified by email address.
-     * @summary Reset Password
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {AdminUserResetPasswordInfo} [adminUserResetPasswordInfo] Email address of the user who has requested a password reset.               Note that the site ID is passed in the request header.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AdminUserApiInterface
-     */
-    resetPasswordRaw(requestParameters: ResetPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Resets the password for a user specified by email address.
+    * @summary Reset Password
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {AdminUserResetPasswordInfo} [adminUserResetPasswordInfo] Email address of the user who has requested a password reset.               Note that the site ID is passed in the request header.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof AdminUserApiInterface
+    */
+    resetPasswordRaw(requestParameters: adminUserApiParams.ResetPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Resets the password for a user specified by email address.
-     * Reset Password
-     */
-    resetPassword(requestParameters: ResetPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Resets the password for a user specified by email address.
+    * Reset Password
+    */
+    resetPassword(requestParameters: adminUserApiParams.ResetPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * 
-     * @summary Enables the user
-     * @param {string} userId The user id.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AdminUserApiInterface
-     */
-    unlockUserRaw(requestParameters: UnlockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * 
+    * @summary Enables the user
+    * @param {string} userId The user id.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof AdminUserApiInterface
+    */
+    unlockUserRaw(requestParameters: adminUserApiParams.UnlockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * 
-     * Enables the user
-     */
-    unlockUser(requestParameters: UnlockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * 
+    * Enables the user
+    */
+    unlockUser(requestParameters: adminUserApiParams.UnlockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Modifies user information for a specified user.
-     * @summary Update User
-     * @param {string} userId Unique identifier of the user whose login information you want to change.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {User} [user] Details of the new user account. Required properties: EmailAddress, FirstName, LastName, and Password. Note that the site ID is passed in the request header.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AdminUserApiInterface
-     */
-    updateUserRaw(requestParameters: UpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>>;
+    * Modifies user information for a specified user.
+    * @summary Update User
+    * @param {string} userId Unique identifier of the user whose login information you want to change.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {User} [user] Details of the new user account. Required properties: EmailAddress, FirstName, LastName, and Password. Note that the site ID is passed in the request header.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof AdminUserApiInterface
+    */
+    updateUserRaw(requestParameters: adminUserApiParams.UpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>>;
 
     /**
-     * Modifies user information for a specified user.
-     * Update User
-     */
-    updateUser(requestParameters: UpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<User>;
+    * Modifies user information for a specified user.
+    * Update User
+    */
+    updateUser(requestParameters: adminUserApiParams.UpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<User>;
 
 }
+
 
 /**
  * 
  */
-export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterface {
+export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -373,7 +363,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      */
 
 
-    async addUserRoleRaw(requestParameters: AddUserRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addUserRoleRaw(requestParameters: adminUserApiParams.AddUserRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.userId === null || requestParameters.userId === undefined) {
             throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling addUserRole.');
         }
@@ -410,7 +400,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      * Adds a role to the specified user\'s Admin account.
      * Add User Role
      */
-    async addUserRole(requestParameters: AddUserRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async addUserRole(requestParameters: adminUserApiParams.AddUserRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.addUserRoleRaw(requestParameters, initOverrides);
     }
 
@@ -420,7 +410,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      */
 
 
-    async changePasswordRaw(requestParameters: ChangePasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async changePasswordRaw(requestParameters: adminUserApiParams.ChangePasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.userId === null || requestParameters.userId === undefined) {
             throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling changePassword.');
         }
@@ -456,7 +446,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      * 
      * Changes a user\'s password
      */
-    async changePassword(requestParameters: ChangePasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async changePassword(requestParameters: adminUserApiParams.ChangePasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.changePasswordRaw(requestParameters, initOverrides);
     }
 
@@ -466,7 +456,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      */
 
 
-    async changeUserPasswordRaw(requestParameters: ChangeUserPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async changeUserPasswordRaw(requestParameters: adminUserApiParams.ChangeUserPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.userId === null || requestParameters.userId === undefined) {
             throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling changeUserPassword.');
         }
@@ -502,7 +492,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      * Changes a user\'s password to the provided new password
      * Change User Password
      */
-    async changeUserPassword(requestParameters: ChangeUserPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async changeUserPassword(requestParameters: adminUserApiParams.ChangeUserPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.changeUserPasswordRaw(requestParameters, initOverrides);
     }
 
@@ -512,7 +502,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      */
 
 
-    async createUserRaw(requestParameters: CreateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
+    async createUserRaw(requestParameters: adminUserApiParams.CreateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -544,7 +534,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      * Creates a new user
      * Creates a new user
      */
-    async createUser(requestParameters: CreateUserRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<User> {
+    async createUser(requestParameters: adminUserApiParams.CreateUserRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<User> {
         const response = await this.createUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -555,7 +545,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      */
 
 
-    async deleteUserRaw(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteUserRaw(requestParameters: adminUserApiParams.DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.userId === null || requestParameters.userId === undefined) {
             throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling deleteUser.');
         }
@@ -584,7 +574,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      * Removes a user account from the site.
      * Delete User
      */
-    async deleteUser(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteUser(requestParameters: adminUserApiParams.DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteUserRaw(requestParameters, initOverrides);
     }
 
@@ -594,7 +584,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      */
 
 
-    async getTenantScopesForUserRaw(requestParameters: GetTenantScopesForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantCollection>> {
+    async getTenantScopesForUserRaw(requestParameters: adminUserApiParams.GetTenantScopesForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantCollection>> {
         if (requestParameters.userId === null || requestParameters.userId === undefined) {
             throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getTenantScopesForUser.');
         }
@@ -627,7 +617,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      * Get tenant scope for users
      * Get tenant scope for users
      */
-    async getTenantScopesForUser(requestParameters: GetTenantScopesForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantCollection> {
+    async getTenantScopesForUser(requestParameters: adminUserApiParams.GetTenantScopesForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantCollection> {
         const response = await this.getTenantScopesForUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -638,7 +628,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      */
 
 
-    async getUserRaw(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
+    async getUserRaw(requestParameters: adminUserApiParams.GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
         if (requestParameters.userId === null || requestParameters.userId === undefined) {
             throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getUser.');
         }
@@ -671,7 +661,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      * Retrieves the details of a user specified by user ID.
      * Get User
      */
-    async getUser(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<User> {
+    async getUser(requestParameters: adminUserApiParams.GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<User> {
         const response = await this.getUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -682,7 +672,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      */
 
 
-    async getUserByIdRaw(requestParameters: GetUserByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
+    async getUserByIdRaw(requestParameters: adminUserApiParams.GetUserByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
         if (requestParameters.userId === null || requestParameters.userId === undefined) {
             throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getUserById.');
         }
@@ -719,7 +709,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      * Retrieves the details of a user specified by user ID.
      * Get User By Id
      */
-    async getUserById(requestParameters: GetUserByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<User> {
+    async getUserById(requestParameters: adminUserApiParams.GetUserByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<User> {
         const response = await this.getUserByIdRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -730,7 +720,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      */
 
 
-    async getUserRolesRaw(requestParameters: GetUserRolesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminUserUserRoleCollection>> {
+    async getUserRolesRaw(requestParameters: adminUserApiParams.GetUserRolesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminUserUserRoleCollection>> {
         if (requestParameters.userId === null || requestParameters.userId === undefined) {
             throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getUserRoles.');
         }
@@ -763,7 +753,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      * Retrieves all the roles for a specified user on the specified tenant.
      * Get User Roles
      */
-    async getUserRoles(requestParameters: GetUserRolesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdminUserUserRoleCollection> {
+    async getUserRoles(requestParameters: adminUserApiParams.GetUserRolesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdminUserUserRoleCollection> {
         const response = await this.getUserRolesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -774,7 +764,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      */
 
 
-    async getUsersRaw(requestParameters: GetUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async getUsersRaw(requestParameters: adminUserApiParams.GetUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         if (requestParameters.emailAddress !== undefined) {
@@ -827,7 +817,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      * Retrieves a list of Admin users for a specified site according to any specified filter criteria and sort options.
      * Get Users
      */
-    async getUsers(requestParameters: GetUsersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async getUsers(requestParameters: adminUserApiParams.GetUsersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getUsersRaw(requestParameters, initOverrides);
     }
 
@@ -837,7 +827,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      */
 
 
-    async removeUserRoleRaw(requestParameters: RemoveUserRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async removeUserRoleRaw(requestParameters: adminUserApiParams.RemoveUserRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.userId === null || requestParameters.userId === undefined) {
             throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling removeUserRole.');
         }
@@ -870,7 +860,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      * Removes a role from the specified Admin account.
      * Remove User Role
      */
-    async removeUserRole(requestParameters: RemoveUserRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async removeUserRole(requestParameters: adminUserApiParams.RemoveUserRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.removeUserRoleRaw(requestParameters, initOverrides);
     }
 
@@ -880,7 +870,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      */
 
 
-    async resetPasswordRaw(requestParameters: ResetPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async resetPasswordRaw(requestParameters: adminUserApiParams.ResetPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -912,7 +902,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      * Resets the password for a user specified by email address.
      * Reset Password
      */
-    async resetPassword(requestParameters: ResetPasswordRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async resetPassword(requestParameters: adminUserApiParams.ResetPasswordRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.resetPasswordRaw(requestParameters, initOverrides);
     }
 
@@ -922,7 +912,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      */
 
 
-    async unlockUserRaw(requestParameters: UnlockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async unlockUserRaw(requestParameters: adminUserApiParams.UnlockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.userId === null || requestParameters.userId === undefined) {
             throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling unlockUser.');
         }
@@ -955,7 +945,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      * 
      * Enables the user
      */
-    async unlockUser(requestParameters: UnlockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async unlockUser(requestParameters: adminUserApiParams.UnlockUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.unlockUserRaw(requestParameters, initOverrides);
     }
 
@@ -965,7 +955,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      */
 
 
-    async updateUserRaw(requestParameters: UpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
+    async updateUserRaw(requestParameters: adminUserApiParams.UpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
         if (requestParameters.userId === null || requestParameters.userId === undefined) {
             throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling updateUser.');
         }
@@ -1001,7 +991,7 @@ export class AdminUserApi extends runtime.BaseAPI implements AdminUserApiInterfa
      * Modifies user information for a specified user.
      * Update User
      */
-    async updateUser(requestParameters: UpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<User> {
+    async updateUser(requestParameters: adminUserApiParams.UpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<User> {
         const response = await this.updateUserRaw(requestParameters, initOverrides);
         return await response.value();
     }

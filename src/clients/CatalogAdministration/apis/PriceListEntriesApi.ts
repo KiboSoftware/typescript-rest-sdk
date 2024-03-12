@@ -21,247 +21,243 @@ import type {
   PriceListEntryCollection,
 } from '../models';
 
-export interface AddPriceListEntryRequest {
-    priceListCode: string;
-    responseFields?: string;
-    priceListEntry?: PriceListEntry;
-}
 
-export interface BulkAddPriceListEntriesRequest {
-    publishEvents?: boolean;
-    invalidateCache?: boolean;
-    allowPartialSuccess?: boolean;
-    batchJobCode?: string;
-    responseFields?: string;
-    priceListEntry?: Array<PriceListEntry>;
+export namespace priceListEntriesApiParams { 
+    export interface AddPriceListEntryRequest {
+        priceListCode: string;
+        responseFields?: string;
+        priceListEntry?: PriceListEntry;
+    }
+    export interface BulkAddPriceListEntriesRequest {
+        publishEvents?: boolean;
+        invalidateCache?: boolean;
+        allowPartialSuccess?: boolean;
+        batchJobCode?: string;
+        responseFields?: string;
+        priceListEntry?: Array<PriceListEntry>;
+    }
+    export interface BulkDeletePriceListEntriesRequest {
+        publishEvents?: boolean;
+        invalidateCache?: boolean;
+        allowPartialSuccess?: boolean;
+        batchJobCode?: string;
+        responseFields?: string;
+        priceListEntry?: Array<PriceListEntry>;
+    }
+    export interface BulkUpdatePriceListEntriesRequest {
+        publishEvents?: boolean;
+        invalidateCache?: boolean;
+        allowPartialSuccess?: boolean;
+        batchJobCode?: string;
+        responseFields?: string;
+        priceListEntry?: Array<PriceListEntry>;
+    }
+    export interface DeletePriceListEntryRequest {
+        priceListCode: string;
+        productCode: string;
+        currencyCode: string;
+        startDate?: string;
+    }
+    export interface GetPriceListEntriesRequest {
+        priceListCode: string;
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        filter?: string;
+        responseFields?: string;
+    }
+    export interface GetPriceListEntryRequest {
+        priceListCode: string;
+        productCode: string;
+        currencyCode: string;
+        startDate?: string;
+        responseFields?: string;
+    }
+    export interface UpdatePriceListEntryRequest {
+        priceListCode: string;
+        productCode: string;
+        currencyCode: string;
+        startDate?: string;
+        responseFields?: string;
+        priceListEntry?: PriceListEntry;
+    }
 }
-
-export interface BulkDeletePriceListEntriesRequest {
-    publishEvents?: boolean;
-    invalidateCache?: boolean;
-    allowPartialSuccess?: boolean;
-    batchJobCode?: string;
-    responseFields?: string;
-    priceListEntry?: Array<PriceListEntry>;
-}
-
-export interface BulkUpdatePriceListEntriesRequest {
-    publishEvents?: boolean;
-    invalidateCache?: boolean;
-    allowPartialSuccess?: boolean;
-    batchJobCode?: string;
-    responseFields?: string;
-    priceListEntry?: Array<PriceListEntry>;
-}
-
-export interface DeletePriceListEntryRequest {
-    priceListCode: string;
-    productCode: string;
-    currencyCode: string;
-    startDate?: string;
-}
-
-export interface GetPriceListEntriesRequest {
-    priceListCode: string;
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    filter?: string;
-    responseFields?: string;
-}
-
-export interface GetPriceListEntryRequest {
-    priceListCode: string;
-    productCode: string;
-    currencyCode: string;
-    startDate?: string;
-    responseFields?: string;
-}
-
-export interface UpdatePriceListEntryRequest {
-    priceListCode: string;
-    productCode: string;
-    currencyCode: string;
-    startDate?: string;
-    responseFields?: string;
-    priceListEntry?: PriceListEntry;
-}
-
 /**
- * PriceListEntriesApi - interface
- * 
- * @export
- * @interface PriceListEntriesApiInterface
- */
-export interface PriceListEntriesApiInterface {
+* PriceListEntriesApiService - interface
+* 
+* @export
+* @interface PriceListEntriesApi
+*/
+export interface PriceListEntriesApiService {
     /**
-     * 
-     * @summary Add price list entry
-     * @param {string} priceListCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {PriceListEntry} [priceListEntry] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PriceListEntriesApiInterface
-     */
-    addPriceListEntryRaw(requestParameters: AddPriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListEntry>>;
+    * 
+    * @summary Add price list entry
+    * @param {string} priceListCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {PriceListEntry} [priceListEntry] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof PriceListEntriesApiInterface
+    */
+    addPriceListEntryRaw(requestParameters: priceListEntriesApiParams.AddPriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListEntry>>;
 
     /**
-     * 
-     * Add price list entry
-     */
-    addPriceListEntry(requestParameters: AddPriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListEntry>;
+    * 
+    * Add price list entry
+    */
+    addPriceListEntry(requestParameters: priceListEntriesApiParams.AddPriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListEntry>;
 
     /**
-     * 
-     * @summary Bulk add price list entries
-     * @param {boolean} [publishEvents] 
-     * @param {boolean} [invalidateCache] 
-     * @param {boolean} [allowPartialSuccess] 
-     * @param {string} [batchJobCode] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Array<PriceListEntry>} [priceListEntry] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PriceListEntriesApiInterface
-     */
-    bulkAddPriceListEntriesRaw(requestParameters: BulkAddPriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListBulkResult>>;
+    * 
+    * @summary Bulk add price list entries
+    * @param {boolean} [publishEvents] 
+    * @param {boolean} [invalidateCache] 
+    * @param {boolean} [allowPartialSuccess] 
+    * @param {string} [batchJobCode] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<PriceListEntry>} [priceListEntry] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof PriceListEntriesApiInterface
+    */
+    bulkAddPriceListEntriesRaw(requestParameters: priceListEntriesApiParams.BulkAddPriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListBulkResult>>;
 
     /**
-     * 
-     * Bulk add price list entries
-     */
-    bulkAddPriceListEntries(requestParameters: BulkAddPriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListBulkResult>;
+    * 
+    * Bulk add price list entries
+    */
+    bulkAddPriceListEntries(requestParameters: priceListEntriesApiParams.BulkAddPriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListBulkResult>;
 
     /**
-     * 
-     * @summary Bulk delete price list entries
-     * @param {boolean} [publishEvents] 
-     * @param {boolean} [invalidateCache] 
-     * @param {boolean} [allowPartialSuccess] 
-     * @param {string} [batchJobCode] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Array<PriceListEntry>} [priceListEntry] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PriceListEntriesApiInterface
-     */
-    bulkDeletePriceListEntriesRaw(requestParameters: BulkDeletePriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListBulkResult>>;
+    * 
+    * @summary Bulk delete price list entries
+    * @param {boolean} [publishEvents] 
+    * @param {boolean} [invalidateCache] 
+    * @param {boolean} [allowPartialSuccess] 
+    * @param {string} [batchJobCode] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<PriceListEntry>} [priceListEntry] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof PriceListEntriesApiInterface
+    */
+    bulkDeletePriceListEntriesRaw(requestParameters: priceListEntriesApiParams.BulkDeletePriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListBulkResult>>;
 
     /**
-     * 
-     * Bulk delete price list entries
-     */
-    bulkDeletePriceListEntries(requestParameters: BulkDeletePriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListBulkResult>;
+    * 
+    * Bulk delete price list entries
+    */
+    bulkDeletePriceListEntries(requestParameters: priceListEntriesApiParams.BulkDeletePriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListBulkResult>;
 
     /**
-     * 
-     * @summary Bulk update price list entries
-     * @param {boolean} [publishEvents] 
-     * @param {boolean} [invalidateCache] 
-     * @param {boolean} [allowPartialSuccess] 
-     * @param {string} [batchJobCode] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Array<PriceListEntry>} [priceListEntry] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PriceListEntriesApiInterface
-     */
-    bulkUpdatePriceListEntriesRaw(requestParameters: BulkUpdatePriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListBulkResult>>;
+    * 
+    * @summary Bulk update price list entries
+    * @param {boolean} [publishEvents] 
+    * @param {boolean} [invalidateCache] 
+    * @param {boolean} [allowPartialSuccess] 
+    * @param {string} [batchJobCode] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<PriceListEntry>} [priceListEntry] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof PriceListEntriesApiInterface
+    */
+    bulkUpdatePriceListEntriesRaw(requestParameters: priceListEntriesApiParams.BulkUpdatePriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListBulkResult>>;
 
     /**
-     * 
-     * Bulk update price list entries
-     */
-    bulkUpdatePriceListEntries(requestParameters: BulkUpdatePriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListBulkResult>;
+    * 
+    * Bulk update price list entries
+    */
+    bulkUpdatePriceListEntries(requestParameters: priceListEntriesApiParams.BulkUpdatePriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListBulkResult>;
 
     /**
-     * 
-     * @summary Delete price list entry
-     * @param {string} priceListCode 
-     * @param {string} productCode 
-     * @param {string} currencyCode 
-     * @param {string} [startDate] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PriceListEntriesApiInterface
-     */
-    deletePriceListEntryRaw(requestParameters: DeletePriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * 
+    * @summary Delete price list entry
+    * @param {string} priceListCode 
+    * @param {string} productCode 
+    * @param {string} currencyCode 
+    * @param {string} [startDate] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof PriceListEntriesApiInterface
+    */
+    deletePriceListEntryRaw(requestParameters: priceListEntriesApiParams.DeletePriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * 
-     * Delete price list entry
-     */
-    deletePriceListEntry(requestParameters: DeletePriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * 
+    * Delete price list entry
+    */
+    deletePriceListEntry(requestParameters: priceListEntriesApiParams.DeletePriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * 
-     * @summary Get price list entries
-     * @param {string} priceListCode 
-     * @param {number} [startIndex] 
-     * @param {number} [pageSize] 
-     * @param {string} [sortBy] 
-     * @param {string} [filter] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PriceListEntriesApiInterface
-     */
-    getPriceListEntriesRaw(requestParameters: GetPriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListEntryCollection>>;
+    * 
+    * @summary Get price list entries
+    * @param {string} priceListCode 
+    * @param {number} [startIndex] 
+    * @param {number} [pageSize] 
+    * @param {string} [sortBy] 
+    * @param {string} [filter] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof PriceListEntriesApiInterface
+    */
+    getPriceListEntriesRaw(requestParameters: priceListEntriesApiParams.GetPriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListEntryCollection>>;
 
     /**
-     * 
-     * Get price list entries
-     */
-    getPriceListEntries(requestParameters: GetPriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListEntryCollection>;
+    * 
+    * Get price list entries
+    */
+    getPriceListEntries(requestParameters: priceListEntriesApiParams.GetPriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListEntryCollection>;
 
     /**
-     * 
-     * @summary Get price list entry
-     * @param {string} priceListCode 
-     * @param {string} productCode 
-     * @param {string} currencyCode 
-     * @param {string} [startDate] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PriceListEntriesApiInterface
-     */
-    getPriceListEntryRaw(requestParameters: GetPriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListEntry>>;
+    * 
+    * @summary Get price list entry
+    * @param {string} priceListCode 
+    * @param {string} productCode 
+    * @param {string} currencyCode 
+    * @param {string} [startDate] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof PriceListEntriesApiInterface
+    */
+    getPriceListEntryRaw(requestParameters: priceListEntriesApiParams.GetPriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListEntry>>;
 
     /**
-     * 
-     * Get price list entry
-     */
-    getPriceListEntry(requestParameters: GetPriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListEntry>;
+    * 
+    * Get price list entry
+    */
+    getPriceListEntry(requestParameters: priceListEntriesApiParams.GetPriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListEntry>;
 
     /**
-     * 
-     * @summary Update price list entry
-     * @param {string} priceListCode 
-     * @param {string} productCode 
-     * @param {string} currencyCode 
-     * @param {string} [startDate] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {PriceListEntry} [priceListEntry] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PriceListEntriesApiInterface
-     */
-    updatePriceListEntryRaw(requestParameters: UpdatePriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListEntry>>;
+    * 
+    * @summary Update price list entry
+    * @param {string} priceListCode 
+    * @param {string} productCode 
+    * @param {string} currencyCode 
+    * @param {string} [startDate] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {PriceListEntry} [priceListEntry] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof PriceListEntriesApiInterface
+    */
+    updatePriceListEntryRaw(requestParameters: priceListEntriesApiParams.UpdatePriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListEntry>>;
 
     /**
-     * 
-     * Update price list entry
-     */
-    updatePriceListEntry(requestParameters: UpdatePriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListEntry>;
+    * 
+    * Update price list entry
+    */
+    updatePriceListEntry(requestParameters: priceListEntriesApiParams.UpdatePriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListEntry>;
 
 }
+
 
 /**
  * 
  */
-export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEntriesApiInterface {
+export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEntriesApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -272,7 +268,7 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
      */
 
 
-    async addPriceListEntryRaw(requestParameters: AddPriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListEntry>> {
+    async addPriceListEntryRaw(requestParameters: priceListEntriesApiParams.AddPriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListEntry>> {
         if (requestParameters.priceListCode === null || requestParameters.priceListCode === undefined) {
             throw new runtime.RequiredError('priceListCode','Required parameter requestParameters.priceListCode was null or undefined when calling addPriceListEntry.');
         }
@@ -308,7 +304,7 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
      * 
      * Add price list entry
      */
-    async addPriceListEntry(requestParameters: AddPriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListEntry> {
+    async addPriceListEntry(requestParameters: priceListEntriesApiParams.AddPriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListEntry> {
         const response = await this.addPriceListEntryRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -319,7 +315,7 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
      */
 
 
-    async bulkAddPriceListEntriesRaw(requestParameters: BulkAddPriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListBulkResult>> {
+    async bulkAddPriceListEntriesRaw(requestParameters: priceListEntriesApiParams.BulkAddPriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListBulkResult>> {
         const queryParameters: any = {};
 
         if (requestParameters.publishEvents !== undefined) {
@@ -367,7 +363,7 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
      * 
      * Bulk add price list entries
      */
-    async bulkAddPriceListEntries(requestParameters: BulkAddPriceListEntriesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListBulkResult> {
+    async bulkAddPriceListEntries(requestParameters: priceListEntriesApiParams.BulkAddPriceListEntriesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListBulkResult> {
         const response = await this.bulkAddPriceListEntriesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -378,7 +374,7 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
      */
 
 
-    async bulkDeletePriceListEntriesRaw(requestParameters: BulkDeletePriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListBulkResult>> {
+    async bulkDeletePriceListEntriesRaw(requestParameters: priceListEntriesApiParams.BulkDeletePriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListBulkResult>> {
         const queryParameters: any = {};
 
         if (requestParameters.publishEvents !== undefined) {
@@ -426,7 +422,7 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
      * 
      * Bulk delete price list entries
      */
-    async bulkDeletePriceListEntries(requestParameters: BulkDeletePriceListEntriesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListBulkResult> {
+    async bulkDeletePriceListEntries(requestParameters: priceListEntriesApiParams.BulkDeletePriceListEntriesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListBulkResult> {
         const response = await this.bulkDeletePriceListEntriesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -437,7 +433,7 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
      */
 
 
-    async bulkUpdatePriceListEntriesRaw(requestParameters: BulkUpdatePriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListBulkResult>> {
+    async bulkUpdatePriceListEntriesRaw(requestParameters: priceListEntriesApiParams.BulkUpdatePriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListBulkResult>> {
         const queryParameters: any = {};
 
         if (requestParameters.publishEvents !== undefined) {
@@ -485,7 +481,7 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
      * 
      * Bulk update price list entries
      */
-    async bulkUpdatePriceListEntries(requestParameters: BulkUpdatePriceListEntriesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListBulkResult> {
+    async bulkUpdatePriceListEntries(requestParameters: priceListEntriesApiParams.BulkUpdatePriceListEntriesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListBulkResult> {
         const response = await this.bulkUpdatePriceListEntriesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -496,7 +492,7 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
      */
 
 
-    async deletePriceListEntryRaw(requestParameters: DeletePriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deletePriceListEntryRaw(requestParameters: priceListEntriesApiParams.DeletePriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.priceListCode === null || requestParameters.priceListCode === undefined) {
             throw new runtime.RequiredError('priceListCode','Required parameter requestParameters.priceListCode was null or undefined when calling deletePriceListEntry.');
         }
@@ -537,7 +533,7 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
      * 
      * Delete price list entry
      */
-    async deletePriceListEntry(requestParameters: DeletePriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deletePriceListEntry(requestParameters: priceListEntriesApiParams.DeletePriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deletePriceListEntryRaw(requestParameters, initOverrides);
     }
 
@@ -547,7 +543,7 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
      */
 
 
-    async getPriceListEntriesRaw(requestParameters: GetPriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListEntryCollection>> {
+    async getPriceListEntriesRaw(requestParameters: priceListEntriesApiParams.GetPriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListEntryCollection>> {
         if (requestParameters.priceListCode === null || requestParameters.priceListCode === undefined) {
             throw new runtime.RequiredError('priceListCode','Required parameter requestParameters.priceListCode was null or undefined when calling getPriceListEntries.');
         }
@@ -596,7 +592,7 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
      * 
      * Get price list entries
      */
-    async getPriceListEntries(requestParameters: GetPriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListEntryCollection> {
+    async getPriceListEntries(requestParameters: priceListEntriesApiParams.GetPriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListEntryCollection> {
         const response = await this.getPriceListEntriesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -607,7 +603,7 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
      */
 
 
-    async getPriceListEntryRaw(requestParameters: GetPriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListEntry>> {
+    async getPriceListEntryRaw(requestParameters: priceListEntriesApiParams.GetPriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListEntry>> {
         if (requestParameters.priceListCode === null || requestParameters.priceListCode === undefined) {
             throw new runtime.RequiredError('priceListCode','Required parameter requestParameters.priceListCode was null or undefined when calling getPriceListEntry.');
         }
@@ -652,7 +648,7 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
      * 
      * Get price list entry
      */
-    async getPriceListEntry(requestParameters: GetPriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListEntry> {
+    async getPriceListEntry(requestParameters: priceListEntriesApiParams.GetPriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListEntry> {
         const response = await this.getPriceListEntryRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -663,7 +659,7 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
      */
 
 
-    async updatePriceListEntryRaw(requestParameters: UpdatePriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListEntry>> {
+    async updatePriceListEntryRaw(requestParameters: priceListEntriesApiParams.UpdatePriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListEntry>> {
         if (requestParameters.priceListCode === null || requestParameters.priceListCode === undefined) {
             throw new runtime.RequiredError('priceListCode','Required parameter requestParameters.priceListCode was null or undefined when calling updatePriceListEntry.');
         }
@@ -711,7 +707,7 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
      * 
      * Update price list entry
      */
-    async updatePriceListEntry(requestParameters: UpdatePriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListEntry> {
+    async updatePriceListEntry(requestParameters: priceListEntriesApiParams.UpdatePriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListEntry> {
         const response = await this.updatePriceListEntryRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -23,115 +23,107 @@ import type {
   TransitionCartRequest,
 } from '../models';
 
-export interface AllocateInventoryOperationRequest {
-    xVolTenant: number;
-    allocateInventoryRequest: AllocateInventoryRequest;
-    responseFields?: string;
-}
 
-export interface DeallocateInventoryRequest {
-    xVolTenant: number;
-    allocateInventoryRequest: AllocateInventoryRequest;
-    responseFields?: string;
+export namespace inventoryAllocationApiParams { 
+    export interface AllocateInventoryOperationRequest {
+        xVolTenant: number;
+        allocateInventoryRequest: AllocateInventoryRequest;
+    }
+    export interface DeallocateInventoryRequest {
+        xVolTenant: number;
+        allocateInventoryRequest: AllocateInventoryRequest;
+    }
+    export interface FulfillInventoryRequest {
+        xVolTenant: number;
+        allocateInventoryRequest: AllocateInventoryRequest;
+    }
+    export interface TransitionCartOperationRequest {
+        xVolTenant: number;
+        transitionCartRequest: TransitionCartRequest;
+    }
 }
-
-export interface FulfillInventoryRequest {
-    xVolTenant: number;
-    allocateInventoryRequest: AllocateInventoryRequest;
-    responseFields?: string;
-}
-
-export interface TransitionCartOperationRequest {
-    xVolTenant: number;
-    transitionCartRequest: TransitionCartRequest;
-    responseFields?: string;
-}
-
 /**
- * InventoryAllocationApi - interface
- * 
- * @export
- * @interface InventoryAllocationApiInterface
- */
-export interface InventoryAllocationApiInterface {
+* InventoryAllocationApiService - interface
+* 
+* @export
+* @interface InventoryAllocationApi
+*/
+export interface InventoryAllocationApiService {
     /**
-     * Allocates inventory based on the given request
-     * @summary Allocate Inventory
-     * @param {number} xVolTenant Tenant ID
-     * @param {AllocateInventoryRequest} allocateInventoryRequest Request to allocate inventory
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InventoryAllocationApiInterface
-     */
-    allocateInventoryRaw(requestParameters: AllocateInventoryOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobQueueResponse>>;
+    * Allocates inventory based on the given request
+    * @summary Allocate Inventory
+    * @param {number} xVolTenant Tenant ID
+    * @param {AllocateInventoryRequest} allocateInventoryRequest Request to allocate inventory
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof InventoryAllocationApiInterface
+    */
+    allocateInventoryRaw(requestParameters: inventoryAllocationApiParams.AllocateInventoryOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobQueueResponse>>;
 
     /**
-     * Allocates inventory based on the given request
-     * Allocate Inventory
-     */
-    allocateInventory(requestParameters: AllocateInventoryOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobQueueResponse>;
+    * Allocates inventory based on the given request
+    * Allocate Inventory
+    */
+    allocateInventory(requestParameters: inventoryAllocationApiParams.AllocateInventoryOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobQueueResponse>;
 
     /**
-     * Deallocates inventory based on the given request
-     * @summary Deallocate Inventory
-     * @param {number} xVolTenant Tenant ID
-     * @param {AllocateInventoryRequest} allocateInventoryRequest Request to allocate inventory
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InventoryAllocationApiInterface
-     */
-    deallocateInventoryRaw(requestParameters: DeallocateInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>>;
+    * Deallocates inventory based on the given request
+    * @summary Deallocate Inventory
+    * @param {number} xVolTenant Tenant ID
+    * @param {AllocateInventoryRequest} allocateInventoryRequest Request to allocate inventory
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof InventoryAllocationApiInterface
+    */
+    deallocateInventoryRaw(requestParameters: inventoryAllocationApiParams.DeallocateInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>>;
 
     /**
-     * Deallocates inventory based on the given request
-     * Deallocate Inventory
-     */
-    deallocateInventory(requestParameters: DeallocateInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse>;
+    * Deallocates inventory based on the given request
+    * Deallocate Inventory
+    */
+    deallocateInventory(requestParameters: inventoryAllocationApiParams.DeallocateInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse>;
 
     /**
-     * Fulfills inventory based on the given request
-     * @summary Fulfill Inventory
-     * @param {number} xVolTenant Tenant ID
-     * @param {AllocateInventoryRequest} allocateInventoryRequest Request to allocate inventory
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InventoryAllocationApiInterface
-     */
-    fulfillInventoryRaw(requestParameters: FulfillInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>>;
+    * Fulfills inventory based on the given request
+    * @summary Fulfill Inventory
+    * @param {number} xVolTenant Tenant ID
+    * @param {AllocateInventoryRequest} allocateInventoryRequest Request to allocate inventory
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof InventoryAllocationApiInterface
+    */
+    fulfillInventoryRaw(requestParameters: inventoryAllocationApiParams.FulfillInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>>;
 
     /**
-     * Fulfills inventory based on the given request
-     * Fulfill Inventory
-     */
-    fulfillInventory(requestParameters: FulfillInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse>;
+    * Fulfills inventory based on the given request
+    * Fulfill Inventory
+    */
+    fulfillInventory(requestParameters: inventoryAllocationApiParams.FulfillInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse>;
 
     /**
-     * Transitions a cart allocation into a normal order/shipment allocation
-     * @summary Transition Cart
-     * @param {number} xVolTenant Tenant ID
-     * @param {TransitionCartRequest} transitionCartRequest Request needed for transitioning cart allocations to order/shipment allocations
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InventoryAllocationApiInterface
-     */
-    transitionCartRaw(requestParameters: TransitionCartOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>>;
+    * Transitions a cart allocation into a normal order/shipment allocation
+    * @summary Transition Cart
+    * @param {number} xVolTenant Tenant ID
+    * @param {TransitionCartRequest} transitionCartRequest Request needed for transitioning cart allocations to order/shipment allocations
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof InventoryAllocationApiInterface
+    */
+    transitionCartRaw(requestParameters: inventoryAllocationApiParams.TransitionCartOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>>;
 
     /**
-     * Transitions a cart allocation into a normal order/shipment allocation
-     * Transition Cart
-     */
-    transitionCart(requestParameters: TransitionCartOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse>;
+    * Transitions a cart allocation into a normal order/shipment allocation
+    * Transition Cart
+    */
+    transitionCart(requestParameters: inventoryAllocationApiParams.TransitionCartOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse>;
 
 }
+
 
 /**
  * 
  */
-export class InventoryAllocationApi extends runtime.BaseAPI implements InventoryAllocationApiInterface {
+export class InventoryAllocationApi extends runtime.BaseAPI implements InventoryAllocationApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -142,7 +134,7 @@ export class InventoryAllocationApi extends runtime.BaseAPI implements Inventory
      */
 
 
-    async allocateInventoryRaw(requestParameters: AllocateInventoryOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobQueueResponse>> {
+    async allocateInventoryRaw(requestParameters: inventoryAllocationApiParams.AllocateInventoryOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobQueueResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling allocateInventory.');
         }
@@ -152,10 +144,6 @@ export class InventoryAllocationApi extends runtime.BaseAPI implements Inventory
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -186,7 +174,7 @@ export class InventoryAllocationApi extends runtime.BaseAPI implements Inventory
      * Allocates inventory based on the given request
      * Allocate Inventory
      */
-    async allocateInventory(requestParameters: AllocateInventoryOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobQueueResponse> {
+    async allocateInventory(requestParameters: inventoryAllocationApiParams.AllocateInventoryOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobQueueResponse> {
         const response = await this.allocateInventoryRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -197,7 +185,7 @@ export class InventoryAllocationApi extends runtime.BaseAPI implements Inventory
      */
 
 
-    async deallocateInventoryRaw(requestParameters: DeallocateInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>> {
+    async deallocateInventoryRaw(requestParameters: inventoryAllocationApiParams.DeallocateInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deallocateInventory.');
         }
@@ -207,10 +195,6 @@ export class InventoryAllocationApi extends runtime.BaseAPI implements Inventory
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -241,7 +225,7 @@ export class InventoryAllocationApi extends runtime.BaseAPI implements Inventory
      * Deallocates inventory based on the given request
      * Deallocate Inventory
      */
-    async deallocateInventory(requestParameters: DeallocateInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse> {
+    async deallocateInventory(requestParameters: inventoryAllocationApiParams.DeallocateInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse> {
         const response = await this.deallocateInventoryRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -252,7 +236,7 @@ export class InventoryAllocationApi extends runtime.BaseAPI implements Inventory
      */
 
 
-    async fulfillInventoryRaw(requestParameters: FulfillInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>> {
+    async fulfillInventoryRaw(requestParameters: inventoryAllocationApiParams.FulfillInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling fulfillInventory.');
         }
@@ -262,10 +246,6 @@ export class InventoryAllocationApi extends runtime.BaseAPI implements Inventory
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -296,7 +276,7 @@ export class InventoryAllocationApi extends runtime.BaseAPI implements Inventory
      * Fulfills inventory based on the given request
      * Fulfill Inventory
      */
-    async fulfillInventory(requestParameters: FulfillInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse> {
+    async fulfillInventory(requestParameters: inventoryAllocationApiParams.FulfillInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse> {
         const response = await this.fulfillInventoryRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -307,7 +287,7 @@ export class InventoryAllocationApi extends runtime.BaseAPI implements Inventory
      */
 
 
-    async transitionCartRaw(requestParameters: TransitionCartOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>> {
+    async transitionCartRaw(requestParameters: inventoryAllocationApiParams.TransitionCartOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling transitionCart.');
         }
@@ -317,10 +297,6 @@ export class InventoryAllocationApi extends runtime.BaseAPI implements Inventory
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -351,7 +327,7 @@ export class InventoryAllocationApi extends runtime.BaseAPI implements Inventory
      * Transitions a cart allocation into a normal order/shipment allocation
      * Transition Cart
      */
-    async transitionCart(requestParameters: TransitionCartOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse> {
+    async transitionCart(requestParameters: inventoryAllocationApiParams.TransitionCartOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse> {
         const response = await this.transitionCartRaw(requestParameters, initOverrides);
         return await response.value();
     }

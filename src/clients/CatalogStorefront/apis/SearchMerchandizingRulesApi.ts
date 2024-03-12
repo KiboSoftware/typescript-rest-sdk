@@ -19,41 +19,44 @@ import type {
   SearchMerchandizingRuleParameters,
 } from '../models';
 
-export interface PreviewSearchMerchandizingRuleRequest {
-    responseFields?: string;
-    searchMerchandizingRuleParameters?: SearchMerchandizingRuleParameters;
+
+export namespace searchMerchandizingRulesApiParams { 
+    export interface PreviewSearchMerchandizingRuleRequest {
+        responseFields?: string;
+        searchMerchandizingRuleParameters?: SearchMerchandizingRuleParameters;
+    }
+}
+/**
+* SearchMerchandizingRulesApiService - interface
+* 
+* @export
+* @interface SearchMerchandizingRulesApi
+*/
+export interface SearchMerchandizingRulesApiService {
+    /**
+    * Preview search results with given SearchMerchandizingRule object
+    * @summary Preview search merchandizing rule
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {SearchMerchandizingRuleParameters} [searchMerchandizingRuleParameters] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SearchMerchandizingRulesApiInterface
+    */
+    previewSearchMerchandizingRuleRaw(requestParameters: searchMerchandizingRulesApiParams.PreviewSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
+
+    /**
+    * Preview search results with given SearchMerchandizingRule object
+    * Preview search merchandizing rule
+    */
+    previewSearchMerchandizingRule(requestParameters: searchMerchandizingRulesApiParams.PreviewSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
+
 }
 
-/**
- * SearchMerchandizingRulesApi - interface
- * 
- * @export
- * @interface SearchMerchandizingRulesApiInterface
- */
-export interface SearchMerchandizingRulesApiInterface {
-    /**
-     * Preview search results with given SearchMerchandizingRule object
-     * @summary Preview search merchandizing rule
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {SearchMerchandizingRuleParameters} [searchMerchandizingRuleParameters] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchMerchandizingRulesApiInterface
-     */
-    previewSearchMerchandizingRuleRaw(requestParameters: PreviewSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
-
-    /**
-     * Preview search results with given SearchMerchandizingRule object
-     * Preview search merchandizing rule
-     */
-    previewSearchMerchandizingRule(requestParameters: PreviewSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
-
-}
 
 /**
  * 
  */
-export class SearchMerchandizingRulesApi extends runtime.BaseAPI implements SearchMerchandizingRulesApiInterface {
+export class SearchMerchandizingRulesApi extends runtime.BaseAPI implements SearchMerchandizingRulesApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -64,7 +67,7 @@ export class SearchMerchandizingRulesApi extends runtime.BaseAPI implements Sear
      */
 
 
-    async previewSearchMerchandizingRuleRaw(requestParameters: PreviewSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async previewSearchMerchandizingRuleRaw(requestParameters: searchMerchandizingRulesApiParams.PreviewSearchMerchandizingRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -96,7 +99,7 @@ export class SearchMerchandizingRulesApi extends runtime.BaseAPI implements Sear
      * Preview search results with given SearchMerchandizingRule object
      * Preview search merchandizing rule
      */
-    async previewSearchMerchandizingRule(requestParameters: PreviewSearchMerchandizingRuleRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async previewSearchMerchandizingRule(requestParameters: searchMerchandizingRulesApiParams.PreviewSearchMerchandizingRuleRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
         const response = await this.previewSearchMerchandizingRuleRaw(requestParameters, initOverrides);
         return await response.value();
     }

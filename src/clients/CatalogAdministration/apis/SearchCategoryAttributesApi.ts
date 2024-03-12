@@ -19,51 +19,54 @@ import type {
   CatalogAdminsCategoryPagedCollection,
 } from '../models';
 
-export interface SearchCategoryAttributesRequest {
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    filter?: string;
-    includeAttributes?: boolean;
-    responseGroups?: string;
-    responseFields?: string;
+
+export namespace searchCategoryAttributesApiParams { 
+    export interface SearchCategoryAttributesRequest {
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        filter?: string;
+        includeAttributes?: boolean;
+        responseGroups?: string;
+        responseFields?: string;
+    }
+}
+/**
+* SearchCategoryAttributesApiService - interface
+* 
+* @export
+* @interface SearchCategoryAttributesApi
+*/
+export interface SearchCategoryAttributesApiService {
+    /**
+    * Retrieves a list of categories according to any specified filter criteria and sort options for attributes.
+    * @summary Search Category Attributes
+    * @param {number} [startIndex] 
+    * @param {number} [pageSize] 
+    * @param {string} [sortBy] 
+    * @param {string} [filter] 
+    * @param {boolean} [includeAttributes] 
+    * @param {string} [responseGroups] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SearchCategoryAttributesApiInterface
+    */
+    searchCategoryAttributesRaw(requestParameters: searchCategoryAttributesApiParams.SearchCategoryAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryPagedCollection>>;
+
+    /**
+    * Retrieves a list of categories according to any specified filter criteria and sort options for attributes.
+    * Search Category Attributes
+    */
+    searchCategoryAttributes(requestParameters: searchCategoryAttributesApiParams.SearchCategoryAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryPagedCollection>;
+
 }
 
-/**
- * SearchCategoryAttributesApi - interface
- * 
- * @export
- * @interface SearchCategoryAttributesApiInterface
- */
-export interface SearchCategoryAttributesApiInterface {
-    /**
-     * Retrieves a list of categories according to any specified filter criteria and sort options for attributes.
-     * @summary Search Category Attributes
-     * @param {number} [startIndex] 
-     * @param {number} [pageSize] 
-     * @param {string} [sortBy] 
-     * @param {string} [filter] 
-     * @param {boolean} [includeAttributes] 
-     * @param {string} [responseGroups] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchCategoryAttributesApiInterface
-     */
-    searchCategoryAttributesRaw(requestParameters: SearchCategoryAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryPagedCollection>>;
-
-    /**
-     * Retrieves a list of categories according to any specified filter criteria and sort options for attributes.
-     * Search Category Attributes
-     */
-    searchCategoryAttributes(requestParameters: SearchCategoryAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryPagedCollection>;
-
-}
 
 /**
  * 
  */
-export class SearchCategoryAttributesApi extends runtime.BaseAPI implements SearchCategoryAttributesApiInterface {
+export class SearchCategoryAttributesApi extends runtime.BaseAPI implements SearchCategoryAttributesApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -74,7 +77,7 @@ export class SearchCategoryAttributesApi extends runtime.BaseAPI implements Sear
      */
 
 
-    async searchCategoryAttributesRaw(requestParameters: SearchCategoryAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryPagedCollection>> {
+    async searchCategoryAttributesRaw(requestParameters: searchCategoryAttributesApiParams.SearchCategoryAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryPagedCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -127,7 +130,7 @@ export class SearchCategoryAttributesApi extends runtime.BaseAPI implements Sear
      * Retrieves a list of categories according to any specified filter criteria and sort options for attributes.
      * Search Category Attributes
      */
-    async searchCategoryAttributes(requestParameters: SearchCategoryAttributesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryPagedCollection> {
+    async searchCategoryAttributes(requestParameters: searchCategoryAttributesApiParams.SearchCategoryAttributesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryPagedCollection> {
         const response = await this.searchCategoryAttributesRaw(requestParameters, initOverrides);
         return await response.value();
     }

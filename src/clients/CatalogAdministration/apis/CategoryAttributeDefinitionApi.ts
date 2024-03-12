@@ -21,143 +21,142 @@ import type {
   ExtensibleAttributeVocabularyValue,
 } from '../models';
 
-export interface CreateAttributeRequest {
-    responseFields?: string;
-    extensibleAttribute?: ExtensibleAttribute;
+
+export namespace categoryAttributeDefinitionApiParams { 
+    export interface CreateAttributeRequest {
+        responseFields?: string;
+        extensibleAttribute?: ExtensibleAttribute;
+    }
+    export interface GetAttributeRequest {
+        attributeFQN: string;
+        responseGroups?: string;
+        responseFields?: string;
+    }
+    export interface GetAttributeVocabularyValuesRequest {
+        attributeFQN: string;
+        responseGroups?: string;
+        responseFields?: string;
+    }
+    export interface GetAttributesRequest {
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        responseGroups?: string;
+        filter?: string;
+        responseFields?: string;
+    }
+    export interface UpdateAttributeRequest {
+        attributeFQN: string;
+        responseFields?: string;
+        extensibleAttribute?: ExtensibleAttribute;
+    }
+}
+/**
+* CategoryAttributeDefinitionApiService - interface
+* 
+* @export
+* @interface CategoryAttributeDefinitionApi
+*/
+export interface CategoryAttributeDefinitionApiService {
+    /**
+    * Create Attribute
+    * @summary Create Attribute
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ExtensibleAttribute} [extensibleAttribute] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CategoryAttributeDefinitionApiInterface
+    */
+    createAttributeRaw(requestParameters: categoryAttributeDefinitionApiParams.CreateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtensibleAttribute>>;
+
+    /**
+    * Create Attribute
+    * Create Attribute
+    */
+    createAttribute(requestParameters: categoryAttributeDefinitionApiParams.CreateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtensibleAttribute>;
+
+    /**
+    * Get Attribute
+    * @summary Get Attribute
+    * @param {string} attributeFQN 
+    * @param {string} [responseGroups] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CategoryAttributeDefinitionApiInterface
+    */
+    getAttributeRaw(requestParameters: categoryAttributeDefinitionApiParams.GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtensibleAttribute>>;
+
+    /**
+    * Get Attribute
+    * Get Attribute
+    */
+    getAttribute(requestParameters: categoryAttributeDefinitionApiParams.GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtensibleAttribute>;
+
+    /**
+    * Get Attribute Vocabulary Values
+    * @summary Get Attribute Vocabulary Values
+    * @param {string} attributeFQN 
+    * @param {string} [responseGroups] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CategoryAttributeDefinitionApiInterface
+    */
+    getAttributeVocabularyValuesRaw(requestParameters: categoryAttributeDefinitionApiParams.GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtensibleAttributeVocabularyValue>>>;
+
+    /**
+    * Get Attribute Vocabulary Values
+    * Get Attribute Vocabulary Values
+    */
+    getAttributeVocabularyValues(requestParameters: categoryAttributeDefinitionApiParams.GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtensibleAttributeVocabularyValue>>;
+
+    /**
+    * Get Attributes
+    * @summary Get Attributes
+    * @param {number} [startIndex] 
+    * @param {number} [pageSize] 
+    * @param {string} [sortBy] 
+    * @param {string} [responseGroups] 
+    * @param {string} [filter] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CategoryAttributeDefinitionApiInterface
+    */
+    getAttributesRaw(requestParameters: categoryAttributeDefinitionApiParams.GetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtensibleAttributeCollection>>;
+
+    /**
+    * Get Attributes
+    * Get Attributes
+    */
+    getAttributes(requestParameters: categoryAttributeDefinitionApiParams.GetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtensibleAttributeCollection>;
+
+    /**
+    * Update Attribute
+    * @summary Update Attribute
+    * @param {string} attributeFQN 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ExtensibleAttribute} [extensibleAttribute] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CategoryAttributeDefinitionApiInterface
+    */
+    updateAttributeRaw(requestParameters: categoryAttributeDefinitionApiParams.UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtensibleAttribute>>;
+
+    /**
+    * Update Attribute
+    * Update Attribute
+    */
+    updateAttribute(requestParameters: categoryAttributeDefinitionApiParams.UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtensibleAttribute>;
+
 }
 
-export interface GetAttributeRequest {
-    attributeFQN: string;
-    responseGroups?: string;
-    responseFields?: string;
-}
-
-export interface GetAttributeVocabularyValuesRequest {
-    attributeFQN: string;
-    responseGroups?: string;
-    responseFields?: string;
-}
-
-export interface GetAttributesRequest {
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    responseGroups?: string;
-    filter?: string;
-    responseFields?: string;
-}
-
-export interface UpdateAttributeRequest {
-    attributeFQN: string;
-    responseFields?: string;
-    extensibleAttribute?: ExtensibleAttribute;
-}
 
 /**
- * CategoryAttributeDefinitionApi - interface
- * 
- * @export
- * @interface CategoryAttributeDefinitionApiInterface
- */
-export interface CategoryAttributeDefinitionApiInterface {
-    /**
-     * Create Attribute
-     * @summary Create Attribute
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {ExtensibleAttribute} [extensibleAttribute] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CategoryAttributeDefinitionApiInterface
-     */
-    createAttributeRaw(requestParameters: CreateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtensibleAttribute>>;
-
-    /**
-     * Create Attribute
-     * Create Attribute
-     */
-    createAttribute(requestParameters: CreateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtensibleAttribute>;
-
-    /**
-     * Get Attribute
-     * @summary Get Attribute
-     * @param {string} attributeFQN 
-     * @param {string} [responseGroups] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CategoryAttributeDefinitionApiInterface
-     */
-    getAttributeRaw(requestParameters: GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtensibleAttribute>>;
-
-    /**
-     * Get Attribute
-     * Get Attribute
-     */
-    getAttribute(requestParameters: GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtensibleAttribute>;
-
-    /**
-     * Get Attribute Vocabulary Values
-     * @summary Get Attribute Vocabulary Values
-     * @param {string} attributeFQN 
-     * @param {string} [responseGroups] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CategoryAttributeDefinitionApiInterface
-     */
-    getAttributeVocabularyValuesRaw(requestParameters: GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtensibleAttributeVocabularyValue>>>;
-
-    /**
-     * Get Attribute Vocabulary Values
-     * Get Attribute Vocabulary Values
-     */
-    getAttributeVocabularyValues(requestParameters: GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtensibleAttributeVocabularyValue>>;
-
-    /**
-     * Get Attributes
-     * @summary Get Attributes
-     * @param {number} [startIndex] 
-     * @param {number} [pageSize] 
-     * @param {string} [sortBy] 
-     * @param {string} [responseGroups] 
-     * @param {string} [filter] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CategoryAttributeDefinitionApiInterface
-     */
-    getAttributesRaw(requestParameters: GetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtensibleAttributeCollection>>;
-
-    /**
-     * Get Attributes
-     * Get Attributes
-     */
-    getAttributes(requestParameters: GetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtensibleAttributeCollection>;
-
-    /**
-     * Update Attribute
-     * @summary Update Attribute
-     * @param {string} attributeFQN 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {ExtensibleAttribute} [extensibleAttribute] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CategoryAttributeDefinitionApiInterface
-     */
-    updateAttributeRaw(requestParameters: UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtensibleAttribute>>;
-
-    /**
-     * Update Attribute
-     * Update Attribute
-     */
-    updateAttribute(requestParameters: UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtensibleAttribute>;
-
-}
-
-/**
  * 
  */
-export class CategoryAttributeDefinitionApi extends runtime.BaseAPI implements CategoryAttributeDefinitionApiInterface {
+export class CategoryAttributeDefinitionApi extends runtime.BaseAPI implements CategoryAttributeDefinitionApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -168,7 +167,7 @@ export class CategoryAttributeDefinitionApi extends runtime.BaseAPI implements C
      */
 
 
-    async createAttributeRaw(requestParameters: CreateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtensibleAttribute>> {
+    async createAttributeRaw(requestParameters: categoryAttributeDefinitionApiParams.CreateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtensibleAttribute>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -200,7 +199,7 @@ export class CategoryAttributeDefinitionApi extends runtime.BaseAPI implements C
      * Create Attribute
      * Create Attribute
      */
-    async createAttribute(requestParameters: CreateAttributeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtensibleAttribute> {
+    async createAttribute(requestParameters: categoryAttributeDefinitionApiParams.CreateAttributeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtensibleAttribute> {
         const response = await this.createAttributeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -211,7 +210,7 @@ export class CategoryAttributeDefinitionApi extends runtime.BaseAPI implements C
      */
 
 
-    async getAttributeRaw(requestParameters: GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtensibleAttribute>> {
+    async getAttributeRaw(requestParameters: categoryAttributeDefinitionApiParams.GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtensibleAttribute>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling getAttribute.');
         }
@@ -248,7 +247,7 @@ export class CategoryAttributeDefinitionApi extends runtime.BaseAPI implements C
      * Get Attribute
      * Get Attribute
      */
-    async getAttribute(requestParameters: GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtensibleAttribute> {
+    async getAttribute(requestParameters: categoryAttributeDefinitionApiParams.GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtensibleAttribute> {
         const response = await this.getAttributeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -259,7 +258,7 @@ export class CategoryAttributeDefinitionApi extends runtime.BaseAPI implements C
      */
 
 
-    async getAttributeVocabularyValuesRaw(requestParameters: GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtensibleAttributeVocabularyValue>>> {
+    async getAttributeVocabularyValuesRaw(requestParameters: categoryAttributeDefinitionApiParams.GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtensibleAttributeVocabularyValue>>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling getAttributeVocabularyValues.');
         }
@@ -296,7 +295,7 @@ export class CategoryAttributeDefinitionApi extends runtime.BaseAPI implements C
      * Get Attribute Vocabulary Values
      * Get Attribute Vocabulary Values
      */
-    async getAttributeVocabularyValues(requestParameters: GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtensibleAttributeVocabularyValue>> {
+    async getAttributeVocabularyValues(requestParameters: categoryAttributeDefinitionApiParams.GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtensibleAttributeVocabularyValue>> {
         const response = await this.getAttributeVocabularyValuesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -307,7 +306,7 @@ export class CategoryAttributeDefinitionApi extends runtime.BaseAPI implements C
      */
 
 
-    async getAttributesRaw(requestParameters: GetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtensibleAttributeCollection>> {
+    async getAttributesRaw(requestParameters: categoryAttributeDefinitionApiParams.GetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtensibleAttributeCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -356,7 +355,7 @@ export class CategoryAttributeDefinitionApi extends runtime.BaseAPI implements C
      * Get Attributes
      * Get Attributes
      */
-    async getAttributes(requestParameters: GetAttributesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtensibleAttributeCollection> {
+    async getAttributes(requestParameters: categoryAttributeDefinitionApiParams.GetAttributesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtensibleAttributeCollection> {
         const response = await this.getAttributesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -367,7 +366,7 @@ export class CategoryAttributeDefinitionApi extends runtime.BaseAPI implements C
      */
 
 
-    async updateAttributeRaw(requestParameters: UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtensibleAttribute>> {
+    async updateAttributeRaw(requestParameters: categoryAttributeDefinitionApiParams.UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtensibleAttribute>> {
         if (requestParameters.attributeFQN === null || requestParameters.attributeFQN === undefined) {
             throw new runtime.RequiredError('attributeFQN','Required parameter requestParameters.attributeFQN was null or undefined when calling updateAttribute.');
         }
@@ -403,7 +402,7 @@ export class CategoryAttributeDefinitionApi extends runtime.BaseAPI implements C
      * Update Attribute
      * Update Attribute
      */
-    async updateAttribute(requestParameters: UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtensibleAttribute> {
+    async updateAttribute(requestParameters: categoryAttributeDefinitionApiParams.UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtensibleAttribute> {
         const response = await this.updateAttributeRaw(requestParameters, initOverrides);
         return await response.value();
     }

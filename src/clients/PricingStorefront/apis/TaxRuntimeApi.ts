@@ -20,41 +20,44 @@ import type {
   TaxableOrder,
 } from '../models';
 
-export interface EstimateTaxesRequest {
-    responseFields?: string;
-    taxableOrder?: TaxableOrder;
+
+export namespace taxRuntimeApiParams { 
+    export interface EstimateTaxesRequest {
+        responseFields?: string;
+        taxableOrder?: TaxableOrder;
+    }
+}
+/**
+* TaxRuntimeApiService - interface
+* 
+* @export
+* @interface TaxRuntimeApi
+*/
+export interface TaxRuntimeApiService {
+    /**
+    * Estimate Taxes
+    * @summary Estimate Taxes
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {TaxableOrder} [taxableOrder] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof TaxRuntimeApiInterface
+    */
+    estimateTaxesRaw(requestParameters: taxRuntimeApiParams.EstimateTaxesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderTaxContext>>;
+
+    /**
+    * Estimate Taxes
+    * Estimate Taxes
+    */
+    estimateTaxes(requestParameters: taxRuntimeApiParams.EstimateTaxesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderTaxContext>;
+
 }
 
-/**
- * TaxRuntimeApi - interface
- * 
- * @export
- * @interface TaxRuntimeApiInterface
- */
-export interface TaxRuntimeApiInterface {
-    /**
-     * Estimate Taxes
-     * @summary Estimate Taxes
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {TaxableOrder} [taxableOrder] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TaxRuntimeApiInterface
-     */
-    estimateTaxesRaw(requestParameters: EstimateTaxesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderTaxContext>>;
-
-    /**
-     * Estimate Taxes
-     * Estimate Taxes
-     */
-    estimateTaxes(requestParameters: EstimateTaxesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderTaxContext>;
-
-}
 
 /**
  * 
  */
-export class TaxRuntimeApi extends runtime.BaseAPI implements TaxRuntimeApiInterface {
+export class TaxRuntimeApi extends runtime.BaseAPI implements TaxRuntimeApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -65,7 +68,7 @@ export class TaxRuntimeApi extends runtime.BaseAPI implements TaxRuntimeApiInter
      */
 
 
-    async estimateTaxesRaw(requestParameters: EstimateTaxesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderTaxContext>> {
+    async estimateTaxesRaw(requestParameters: taxRuntimeApiParams.EstimateTaxesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderTaxContext>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -97,7 +100,7 @@ export class TaxRuntimeApi extends runtime.BaseAPI implements TaxRuntimeApiInter
      * Estimate Taxes
      * Estimate Taxes
      */
-    async estimateTaxes(requestParameters: EstimateTaxesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderTaxContext> {
+    async estimateTaxes(requestParameters: taxRuntimeApiParams.EstimateTaxesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderTaxContext> {
         const response = await this.estimateTaxesRaw(requestParameters, initOverrides);
         return await response.value();
     }

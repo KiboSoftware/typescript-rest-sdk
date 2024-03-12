@@ -21,109 +21,104 @@ import type {
   SubstituteItemsRequest,
 } from '../models';
 
-export interface AddSubstituteItemsUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    substituteItemsRequestDto: SubstituteItemsRequest;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
 
-export interface GetSubstituteItemsUsingGETRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    originalLineId?: number;
-    productCode?: string;
-    xVolSite?: number;
-    responseFields?: string;
+export namespace substitutionsApiParams { 
+    export interface AddSubstituteItemsRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        substituteItemsRequestDto: SubstituteItemsRequest;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface GetSubstituteItemsRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        originalLineId?: number;
+        productCode?: string;
+        xVolSite?: number;
+    }
+    export interface RemoveSubstituteItemsRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        substituteItemsRequestDto: SubstituteItemsRequest;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
 }
-
-export interface RemoveSubstituteItemsUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    substituteItemsRequestDto: SubstituteItemsRequest;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
 /**
- * SubstitutionsApi - interface
- * 
- * @export
- * @interface SubstitutionsApiInterface
- */
-export interface SubstitutionsApiInterface {
+* SubstitutionsApiService - interface
+* 
+* @export
+* @interface SubstitutionsApi
+*/
+export interface SubstitutionsApiService {
     /**
-     * addSubstituteItems
-     * @summary addSubstituteItems
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {SubstituteItemsRequest} substituteItemsRequestDto substituteItemsRequestDto
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubstitutionsApiInterface
-     */
-    addSubstituteItemsUsingPUTRaw(requestParameters: AddSubstituteItemsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+    * addSubstituteItems
+    * @summary addSubstituteItems
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {SubstituteItemsRequest} substituteItemsRequestDto substituteItemsRequestDto
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubstitutionsApiInterface
+    */
+    addSubstituteItemsRaw(requestParameters: substitutionsApiParams.AddSubstituteItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
 
     /**
-     * addSubstituteItems
-     * addSubstituteItems
-     */
-    addSubstituteItemsUsingPUT(requestParameters: AddSubstituteItemsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+    * addSubstituteItems
+    * addSubstituteItems
+    */
+    addSubstituteItems(requestParameters: substitutionsApiParams.AddSubstituteItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
 
     /**
-     * getSubstituteItems
-     * @summary getSubstituteItems
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {number} [originalLineId] 
-     * @param {string} [productCode] 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubstitutionsApiInterface
-     */
-    getSubstituteItemsUsingGETRaw(requestParameters: GetSubstituteItemsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfSubstitutableItemResponse>>;
+    * getSubstituteItems
+    * @summary getSubstituteItems
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {number} [originalLineId] 
+    * @param {string} [productCode] 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubstitutionsApiInterface
+    */
+    getSubstituteItemsRaw(requestParameters: substitutionsApiParams.GetSubstituteItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfSubstitutableItemResponse>>;
 
     /**
-     * getSubstituteItems
-     * getSubstituteItems
-     */
-    getSubstituteItemsUsingGET(requestParameters: GetSubstituteItemsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfSubstitutableItemResponse>;
+    * getSubstituteItems
+    * getSubstituteItems
+    */
+    getSubstituteItems(requestParameters: substitutionsApiParams.GetSubstituteItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfSubstitutableItemResponse>;
 
     /**
-     * removeSubstituteItems
-     * @summary removeSubstituteItems
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {SubstituteItemsRequest} substituteItemsRequestDto substituteItemsRequestDto
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubstitutionsApiInterface
-     */
-    removeSubstituteItemsUsingPUTRaw(requestParameters: RemoveSubstituteItemsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+    * removeSubstituteItems
+    * @summary removeSubstituteItems
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {SubstituteItemsRequest} substituteItemsRequestDto substituteItemsRequestDto
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubstitutionsApiInterface
+    */
+    removeSubstituteItemsRaw(requestParameters: substitutionsApiParams.RemoveSubstituteItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
 
     /**
-     * removeSubstituteItems
-     * removeSubstituteItems
-     */
-    removeSubstituteItemsUsingPUT(requestParameters: RemoveSubstituteItemsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+    * removeSubstituteItems
+    * removeSubstituteItems
+    */
+    removeSubstituteItems(requestParameters: substitutionsApiParams.RemoveSubstituteItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
 
 }
+
 
 /**
  * 
  */
-export class SubstitutionsApi extends runtime.BaseAPI implements SubstitutionsApiInterface {
+export class SubstitutionsApi extends runtime.BaseAPI implements SubstitutionsApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -134,24 +129,20 @@ export class SubstitutionsApi extends runtime.BaseAPI implements SubstitutionsAp
      */
 
 
-    async addSubstituteItemsUsingPUTRaw(requestParameters: AddSubstituteItemsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async addSubstituteItemsRaw(requestParameters: substitutionsApiParams.AddSubstituteItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling addSubstituteItemsUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling addSubstituteItems.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling addSubstituteItemsUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling addSubstituteItems.');
         }
 
         if (requestParameters.substituteItemsRequestDto === null || requestParameters.substituteItemsRequestDto === undefined) {
-            throw new runtime.RequiredError('substituteItemsRequestDto','Required parameter requestParameters.substituteItemsRequestDto was null or undefined when calling addSubstituteItemsUsingPUT.');
+            throw new runtime.RequiredError('substituteItemsRequestDto','Required parameter requestParameters.substituteItemsRequestDto was null or undefined when calling addSubstituteItems.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -190,8 +181,8 @@ export class SubstitutionsApi extends runtime.BaseAPI implements SubstitutionsAp
      * addSubstituteItems
      * addSubstituteItems
      */
-    async addSubstituteItemsUsingPUT(requestParameters: AddSubstituteItemsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.addSubstituteItemsUsingPUTRaw(requestParameters, initOverrides);
+    async addSubstituteItems(requestParameters: substitutionsApiParams.AddSubstituteItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.addSubstituteItemsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -201,13 +192,13 @@ export class SubstitutionsApi extends runtime.BaseAPI implements SubstitutionsAp
      */
 
 
-    async getSubstituteItemsUsingGETRaw(requestParameters: GetSubstituteItemsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfSubstitutableItemResponse>> {
+    async getSubstituteItemsRaw(requestParameters: substitutionsApiParams.GetSubstituteItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfSubstitutableItemResponse>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getSubstituteItemsUsingGET.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getSubstituteItems.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getSubstituteItemsUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getSubstituteItems.');
         }
 
         const queryParameters: any = {};
@@ -218,10 +209,6 @@ export class SubstitutionsApi extends runtime.BaseAPI implements SubstitutionsAp
 
         if (requestParameters.productCode !== undefined) {
             queryParameters['productCode'] = requestParameters.productCode;
-        }
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -254,8 +241,8 @@ export class SubstitutionsApi extends runtime.BaseAPI implements SubstitutionsAp
      * getSubstituteItems
      * getSubstituteItems
      */
-    async getSubstituteItemsUsingGET(requestParameters: GetSubstituteItemsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfSubstitutableItemResponse> {
-        const response = await this.getSubstituteItemsUsingGETRaw(requestParameters, initOverrides);
+    async getSubstituteItems(requestParameters: substitutionsApiParams.GetSubstituteItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfSubstitutableItemResponse> {
+        const response = await this.getSubstituteItemsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -265,24 +252,20 @@ export class SubstitutionsApi extends runtime.BaseAPI implements SubstitutionsAp
      */
 
 
-    async removeSubstituteItemsUsingPUTRaw(requestParameters: RemoveSubstituteItemsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async removeSubstituteItemsRaw(requestParameters: substitutionsApiParams.RemoveSubstituteItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling removeSubstituteItemsUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling removeSubstituteItems.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling removeSubstituteItemsUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling removeSubstituteItems.');
         }
 
         if (requestParameters.substituteItemsRequestDto === null || requestParameters.substituteItemsRequestDto === undefined) {
-            throw new runtime.RequiredError('substituteItemsRequestDto','Required parameter requestParameters.substituteItemsRequestDto was null or undefined when calling removeSubstituteItemsUsingPUT.');
+            throw new runtime.RequiredError('substituteItemsRequestDto','Required parameter requestParameters.substituteItemsRequestDto was null or undefined when calling removeSubstituteItems.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -321,8 +304,8 @@ export class SubstitutionsApi extends runtime.BaseAPI implements SubstitutionsAp
      * removeSubstituteItems
      * removeSubstituteItems
      */
-    async removeSubstituteItemsUsingPUT(requestParameters: RemoveSubstituteItemsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.removeSubstituteItemsUsingPUTRaw(requestParameters, initOverrides);
+    async removeSubstituteItems(requestParameters: substitutionsApiParams.RemoveSubstituteItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.removeSubstituteItemsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

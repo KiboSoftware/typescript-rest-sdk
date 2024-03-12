@@ -19,113 +19,113 @@ import type {
   DropLocation,
 } from '../models';
 
-export interface DownloadRequest {
-    id: string;
-    responseFields?: string;
+
+export namespace filesApiParams { 
+    export interface DownloadRequest {
+        id: string;
+        responseFields?: string;
+    }
+    export interface GetRequest {
+        id: string;
+        responseFields?: string;
+    }
+    export interface GetPublicLinkRequest {
+        id: string;
+        hourDuration?: number;
+        responseFields?: string;
+    }
+    export interface UploadRequest {
+        fileType?: string;
+        fileName?: string;
+        responseFields?: string;
+        body?: Blob;
+    }
+}
+/**
+* FilesApiService - interface
+* 
+* @export
+* @interface FilesApi
+*/
+export interface FilesApiService {
+    /**
+    * Download
+    * @summary Download
+    * @param {string} id 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof FilesApiInterface
+    */
+    downloadRaw(requestParameters: filesApiParams.DownloadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+    * Download
+    * Download
+    */
+    download(requestParameters: filesApiParams.DownloadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+    * Get
+    * @summary Get
+    * @param {string} id 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof FilesApiInterface
+    */
+    getRaw(requestParameters: filesApiParams.GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DropLocation>>;
+
+    /**
+    * Get
+    * Get
+    */
+    get(requestParameters: filesApiParams.GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DropLocation>;
+
+    /**
+    * Get Public Link
+    * @summary Get Public Link
+    * @param {string} id 
+    * @param {number} [hourDuration] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof FilesApiInterface
+    */
+    getPublicLinkRaw(requestParameters: filesApiParams.GetPublicLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
+
+    /**
+    * Get Public Link
+    * Get Public Link
+    */
+    getPublicLink(requestParameters: filesApiParams.GetPublicLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
+
+    /**
+    * Upload
+    * @summary Upload
+    * @param {string} [fileType] 
+    * @param {string} [fileName] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Blob} [body] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof FilesApiInterface
+    */
+    uploadRaw(requestParameters: filesApiParams.UploadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DropLocation>>;
+
+    /**
+    * Upload
+    * Upload
+    */
+    upload(requestParameters: filesApiParams.UploadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DropLocation>;
+
 }
 
-export interface GetRequest {
-    id: string;
-    responseFields?: string;
-}
-
-export interface GetPublicLinkRequest {
-    id: string;
-    hourDuration?: number;
-    responseFields?: string;
-}
-
-export interface UploadRequest {
-    fileType?: string;
-    fileName?: string;
-    responseFields?: string;
-    body?: Blob;
-}
 
 /**
- * FilesApi - interface
- * 
- * @export
- * @interface FilesApiInterface
- */
-export interface FilesApiInterface {
-    /**
-     * Download
-     * @summary Download
-     * @param {string} id 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof FilesApiInterface
-     */
-    downloadRaw(requestParameters: DownloadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     * Download
-     * Download
-     */
-    download(requestParameters: DownloadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * Get
-     * @summary Get
-     * @param {string} id 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof FilesApiInterface
-     */
-    getRaw(requestParameters: GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DropLocation>>;
-
-    /**
-     * Get
-     * Get
-     */
-    get(requestParameters: GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DropLocation>;
-
-    /**
-     * Get Public Link
-     * @summary Get Public Link
-     * @param {string} id 
-     * @param {number} [hourDuration] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof FilesApiInterface
-     */
-    getPublicLinkRaw(requestParameters: GetPublicLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
-
-    /**
-     * Get Public Link
-     * Get Public Link
-     */
-    getPublicLink(requestParameters: GetPublicLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
-
-    /**
-     * Upload
-     * @summary Upload
-     * @param {string} [fileType] 
-     * @param {string} [fileName] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Blob} [body] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof FilesApiInterface
-     */
-    uploadRaw(requestParameters: UploadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DropLocation>>;
-
-    /**
-     * Upload
-     * Upload
-     */
-    upload(requestParameters: UploadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DropLocation>;
-
-}
-
-/**
  * 
  */
-export class FilesApi extends runtime.BaseAPI implements FilesApiInterface {
+export class FilesApi extends runtime.BaseAPI implements FilesApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -136,7 +136,7 @@ export class FilesApi extends runtime.BaseAPI implements FilesApiInterface {
      */
 
 
-    async downloadRaw(requestParameters: DownloadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async downloadRaw(requestParameters: filesApiParams.DownloadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling download.');
         }
@@ -169,7 +169,7 @@ export class FilesApi extends runtime.BaseAPI implements FilesApiInterface {
      * Download
      * Download
      */
-    async download(requestParameters: DownloadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async download(requestParameters: filesApiParams.DownloadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.downloadRaw(requestParameters, initOverrides);
     }
 
@@ -179,7 +179,7 @@ export class FilesApi extends runtime.BaseAPI implements FilesApiInterface {
      */
 
 
-    async getRaw(requestParameters: GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DropLocation>> {
+    async getRaw(requestParameters: filesApiParams.GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DropLocation>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling get.');
         }
@@ -212,7 +212,7 @@ export class FilesApi extends runtime.BaseAPI implements FilesApiInterface {
      * Get
      * Get
      */
-    async get(requestParameters: GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DropLocation> {
+    async get(requestParameters: filesApiParams.GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DropLocation> {
         const response = await this.getRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -223,7 +223,7 @@ export class FilesApi extends runtime.BaseAPI implements FilesApiInterface {
      */
 
 
-    async getPublicLinkRaw(requestParameters: GetPublicLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async getPublicLinkRaw(requestParameters: filesApiParams.GetPublicLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getPublicLink.');
         }
@@ -260,7 +260,7 @@ export class FilesApi extends runtime.BaseAPI implements FilesApiInterface {
      * Get Public Link
      * Get Public Link
      */
-    async getPublicLink(requestParameters: GetPublicLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+    async getPublicLink(requestParameters: filesApiParams.GetPublicLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
         const response = await this.getPublicLinkRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -271,7 +271,7 @@ export class FilesApi extends runtime.BaseAPI implements FilesApiInterface {
      */
 
 
-    async uploadRaw(requestParameters: UploadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DropLocation>> {
+    async uploadRaw(requestParameters: filesApiParams.UploadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DropLocation>> {
         const queryParameters: any = {};
 
         if (requestParameters.fileType !== undefined) {
@@ -311,7 +311,7 @@ export class FilesApi extends runtime.BaseAPI implements FilesApiInterface {
      * Upload
      * Upload
      */
-    async upload(requestParameters: UploadRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DropLocation> {
+    async upload(requestParameters: filesApiParams.UploadRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DropLocation> {
         const response = await this.uploadRaw(requestParameters, initOverrides);
         return await response.value();
     }

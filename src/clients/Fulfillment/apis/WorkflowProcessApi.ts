@@ -20,188 +20,174 @@ import type {
   PagedModelOfEntityModelOfWorkflowProcess,
 } from '../models';
 
-export interface GetDefinitionImageUsingGETRequest {
-    containerIdOrAlias: string;
-    processId: string;
-    xVolTenant: number;
-    xVolSite?: number;
-    responseFields?: string;
-}
 
-export interface GetWorkflowProcessByShipmentTypeLocationCodeUsingGETRequest {
-    locationCode: string;
-    shipmentType: string;
-    xVolTenant: number;
-    xVolSite?: number;
-    responseFields?: string;
+export namespace workflowProcessApiParams { 
+    export interface GetDefinitionImageRequest {
+        containerIdOrAlias: string;
+        processId: string;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface GetWorkflowProcessRequest {
+        containerIdOrAlias: string;
+        processId: string;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface GetWorkflowProcessByShipmentTypeRequest {
+        shipmentType: string;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface GetWorkflowProcessByShipmentTypeLocationCodeRequest {
+        locationCode: string;
+        shipmentType: string;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface GetWorkflowProcessByShipmentTypeLocationGroupCodeRequest {
+        locationGroupCode: string;
+        shipmentType: string;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface GetWorkflowProcessesRequest {
+        xVolTenant: number;
+        page?: number;
+        pageSize?: number;
+        sort?: string;
+        xVolSite?: number;
+    }
 }
-
-export interface GetWorkflowProcessByShipmentTypeLocationGroupCodeUsingGETRequest {
-    locationGroupCode: string;
-    shipmentType: string;
-    xVolTenant: number;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface GetWorkflowProcessByShipmentTypeUsingGETRequest {
-    shipmentType: string;
-    xVolTenant: number;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface GetWorkflowProcessUsingGETRequest {
-    containerIdOrAlias: string;
-    processId: string;
-    xVolTenant: number;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface GetWorkflowProcessesUsingGETRequest {
-    xVolTenant: number;
-    page?: number;
-    pageSize?: number;
-    sort?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
 /**
- * WorkflowProcessApi - interface
- * 
- * @export
- * @interface WorkflowProcessApiInterface
- */
-export interface WorkflowProcessApiInterface {
+* WorkflowProcessApiService - interface
+* 
+* @export
+* @interface WorkflowProcessApi
+*/
+export interface WorkflowProcessApiService {
     /**
-     * getDefinitionImage
-     * @summary getDefinitionImage
-     * @param {string} containerIdOrAlias containerIdOrAlias
-     * @param {string} processId processId
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof WorkflowProcessApiInterface
-     */
-    getDefinitionImageUsingGETRaw(requestParameters: GetDefinitionImageUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
+    * getDefinitionImage
+    * @summary getDefinitionImage
+    * @param {string} containerIdOrAlias containerIdOrAlias
+    * @param {string} processId processId
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof WorkflowProcessApiInterface
+    */
+    getDefinitionImageRaw(requestParameters: workflowProcessApiParams.GetDefinitionImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
 
     /**
-     * getDefinitionImage
-     * getDefinitionImage
-     */
-    getDefinitionImageUsingGET(requestParameters: GetDefinitionImageUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
+    * getDefinitionImage
+    * getDefinitionImage
+    */
+    getDefinitionImage(requestParameters: workflowProcessApiParams.GetDefinitionImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
 
     /**
-     * getWorkflowProcessByShipmentTypeLocationCode
-     * @summary getWorkflowProcessByShipmentTypeLocationCode
-     * @param {string} locationCode locationCode
-     * @param {string} shipmentType shipmentType
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof WorkflowProcessApiInterface
-     */
-    getWorkflowProcessByShipmentTypeLocationCodeUsingGETRaw(requestParameters: GetWorkflowProcessByShipmentTypeLocationCodeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfWorkflowProcess>>;
+    * getWorkflowProcess
+    * @summary getWorkflowProcess
+    * @param {string} containerIdOrAlias containerIdOrAlias
+    * @param {string} processId processId
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof WorkflowProcessApiInterface
+    */
+    getWorkflowProcessRaw(requestParameters: workflowProcessApiParams.GetWorkflowProcessRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfWorkflowProcess>>;
 
     /**
-     * getWorkflowProcessByShipmentTypeLocationCode
-     * getWorkflowProcessByShipmentTypeLocationCode
-     */
-    getWorkflowProcessByShipmentTypeLocationCodeUsingGET(requestParameters: GetWorkflowProcessByShipmentTypeLocationCodeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfWorkflowProcess>;
+    * getWorkflowProcess
+    * getWorkflowProcess
+    */
+    getWorkflowProcess(requestParameters: workflowProcessApiParams.GetWorkflowProcessRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfWorkflowProcess>;
 
     /**
-     * getWorkflowProcessByShipmentTypeLocationGroupCode
-     * @summary getWorkflowProcessByShipmentTypeLocationGroupCode
-     * @param {string} locationGroupCode locationGroupCode
-     * @param {string} shipmentType shipmentType
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof WorkflowProcessApiInterface
-     */
-    getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGETRaw(requestParameters: GetWorkflowProcessByShipmentTypeLocationGroupCodeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfWorkflowProcess>>;
+    * getWorkflowProcessByShipmentType
+    * @summary getWorkflowProcessByShipmentType
+    * @param {string} shipmentType shipmentType
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @deprecated
+    * @throws {RequiredError}
+    * @memberof WorkflowProcessApiInterface
+    */
+    getWorkflowProcessByShipmentTypeRaw(requestParameters: workflowProcessApiParams.GetWorkflowProcessByShipmentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfWorkflowProcess>>;
 
     /**
-     * getWorkflowProcessByShipmentTypeLocationGroupCode
-     * getWorkflowProcessByShipmentTypeLocationGroupCode
-     */
-    getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGET(requestParameters: GetWorkflowProcessByShipmentTypeLocationGroupCodeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfWorkflowProcess>;
+    * getWorkflowProcessByShipmentType
+    * getWorkflowProcessByShipmentType
+    */
+    getWorkflowProcessByShipmentType(requestParameters: workflowProcessApiParams.GetWorkflowProcessByShipmentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfWorkflowProcess>;
 
     /**
-     * getWorkflowProcessByShipmentType
-     * @summary getWorkflowProcessByShipmentType
-     * @param {string} shipmentType shipmentType
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @deprecated
-     * @throws {RequiredError}
-     * @memberof WorkflowProcessApiInterface
-     */
-    getWorkflowProcessByShipmentTypeUsingGETRaw(requestParameters: GetWorkflowProcessByShipmentTypeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfWorkflowProcess>>;
+    * getWorkflowProcessByShipmentTypeLocationCode
+    * @summary getWorkflowProcessByShipmentTypeLocationCode
+    * @param {string} locationCode locationCode
+    * @param {string} shipmentType shipmentType
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof WorkflowProcessApiInterface
+    */
+    getWorkflowProcessByShipmentTypeLocationCodeRaw(requestParameters: workflowProcessApiParams.GetWorkflowProcessByShipmentTypeLocationCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfWorkflowProcess>>;
 
     /**
-     * getWorkflowProcessByShipmentType
-     * getWorkflowProcessByShipmentType
-     */
-    getWorkflowProcessByShipmentTypeUsingGET(requestParameters: GetWorkflowProcessByShipmentTypeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfWorkflowProcess>;
+    * getWorkflowProcessByShipmentTypeLocationCode
+    * getWorkflowProcessByShipmentTypeLocationCode
+    */
+    getWorkflowProcessByShipmentTypeLocationCode(requestParameters: workflowProcessApiParams.GetWorkflowProcessByShipmentTypeLocationCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfWorkflowProcess>;
 
     /**
-     * getWorkflowProcess
-     * @summary getWorkflowProcess
-     * @param {string} containerIdOrAlias containerIdOrAlias
-     * @param {string} processId processId
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof WorkflowProcessApiInterface
-     */
-    getWorkflowProcessUsingGETRaw(requestParameters: GetWorkflowProcessUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfWorkflowProcess>>;
+    * getWorkflowProcessByShipmentTypeLocationGroupCode
+    * @summary getWorkflowProcessByShipmentTypeLocationGroupCode
+    * @param {string} locationGroupCode locationGroupCode
+    * @param {string} shipmentType shipmentType
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof WorkflowProcessApiInterface
+    */
+    getWorkflowProcessByShipmentTypeLocationGroupCodeRaw(requestParameters: workflowProcessApiParams.GetWorkflowProcessByShipmentTypeLocationGroupCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfWorkflowProcess>>;
 
     /**
-     * getWorkflowProcess
-     * getWorkflowProcess
-     */
-    getWorkflowProcessUsingGET(requestParameters: GetWorkflowProcessUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfWorkflowProcess>;
+    * getWorkflowProcessByShipmentTypeLocationGroupCode
+    * getWorkflowProcessByShipmentTypeLocationGroupCode
+    */
+    getWorkflowProcessByShipmentTypeLocationGroupCode(requestParameters: workflowProcessApiParams.GetWorkflowProcessByShipmentTypeLocationGroupCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfWorkflowProcess>;
 
     /**
-     * getWorkflowProcesses
-     * @summary getWorkflowProcesses
-     * @param {number} xVolTenant 
-     * @param {number} [page] 
-     * @param {number} [pageSize] 
-     * @param {string} [sort] 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof WorkflowProcessApiInterface
-     */
-    getWorkflowProcessesUsingGETRaw(requestParameters: GetWorkflowProcessesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PagedModelOfEntityModelOfWorkflowProcess>>;
+    * getWorkflowProcesses
+    * @summary getWorkflowProcesses
+    * @param {number} xVolTenant 
+    * @param {number} [page] 
+    * @param {number} [pageSize] 
+    * @param {string} [sort] 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof WorkflowProcessApiInterface
+    */
+    getWorkflowProcessesRaw(requestParameters: workflowProcessApiParams.GetWorkflowProcessesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PagedModelOfEntityModelOfWorkflowProcess>>;
 
     /**
-     * getWorkflowProcesses
-     * getWorkflowProcesses
-     */
-    getWorkflowProcessesUsingGET(requestParameters: GetWorkflowProcessesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PagedModelOfEntityModelOfWorkflowProcess>;
+    * getWorkflowProcesses
+    * getWorkflowProcesses
+    */
+    getWorkflowProcesses(requestParameters: workflowProcessApiParams.GetWorkflowProcessesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PagedModelOfEntityModelOfWorkflowProcess>;
 
 }
+
 
 /**
  * 
  */
-export class WorkflowProcessApi extends runtime.BaseAPI implements WorkflowProcessApiInterface {
+export class WorkflowProcessApi extends runtime.BaseAPI implements WorkflowProcessApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -212,24 +198,20 @@ export class WorkflowProcessApi extends runtime.BaseAPI implements WorkflowProce
      */
 
 
-    async getDefinitionImageUsingGETRaw(requestParameters: GetDefinitionImageUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async getDefinitionImageRaw(requestParameters: workflowProcessApiParams.GetDefinitionImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
         if (requestParameters.containerIdOrAlias === null || requestParameters.containerIdOrAlias === undefined) {
-            throw new runtime.RequiredError('containerIdOrAlias','Required parameter requestParameters.containerIdOrAlias was null or undefined when calling getDefinitionImageUsingGET.');
+            throw new runtime.RequiredError('containerIdOrAlias','Required parameter requestParameters.containerIdOrAlias was null or undefined when calling getDefinitionImage.');
         }
 
         if (requestParameters.processId === null || requestParameters.processId === undefined) {
-            throw new runtime.RequiredError('processId','Required parameter requestParameters.processId was null or undefined when calling getDefinitionImageUsingGET.');
+            throw new runtime.RequiredError('processId','Required parameter requestParameters.processId was null or undefined when calling getDefinitionImage.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getDefinitionImageUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getDefinitionImage.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -261,184 +243,8 @@ export class WorkflowProcessApi extends runtime.BaseAPI implements WorkflowProce
      * getDefinitionImage
      * getDefinitionImage
      */
-    async getDefinitionImageUsingGET(requestParameters: GetDefinitionImageUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.getDefinitionImageUsingGETRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * getWorkflowProcessByShipmentTypeLocationCode
-     * getWorkflowProcessByShipmentTypeLocationCode
-     */
-
-
-    async getWorkflowProcessByShipmentTypeLocationCodeUsingGETRaw(requestParameters: GetWorkflowProcessByShipmentTypeLocationCodeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfWorkflowProcess>> {
-        if (requestParameters.locationCode === null || requestParameters.locationCode === undefined) {
-            throw new runtime.RequiredError('locationCode','Required parameter requestParameters.locationCode was null or undefined when calling getWorkflowProcessByShipmentTypeLocationCodeUsingGET.');
-        }
-
-        if (requestParameters.shipmentType === null || requestParameters.shipmentType === undefined) {
-            throw new runtime.RequiredError('shipmentType','Required parameter requestParameters.shipmentType was null or undefined when calling getWorkflowProcessByShipmentTypeLocationCodeUsingGET.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getWorkflowProcessByShipmentTypeLocationCodeUsingGET.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
-
-
-
-
-
-        await this.addAuthorizationHeaders(headerParameters)
-        
-        const response = await this.request({
-            path: `/commerce/processes/shipmentType/{shipmentType}/location/{locationCode}`.replace(`{${"locationCode"}}`, encodeURIComponent(String(requestParameters.locationCode))).replace(`{${"shipmentType"}}`, encodeURIComponent(String(requestParameters.shipmentType))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response);
-    }
-
-    /**
-     * getWorkflowProcessByShipmentTypeLocationCode
-     * getWorkflowProcessByShipmentTypeLocationCode
-     */
-    async getWorkflowProcessByShipmentTypeLocationCodeUsingGET(requestParameters: GetWorkflowProcessByShipmentTypeLocationCodeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfWorkflowProcess> {
-        const response = await this.getWorkflowProcessByShipmentTypeLocationCodeUsingGETRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * getWorkflowProcessByShipmentTypeLocationGroupCode
-     * getWorkflowProcessByShipmentTypeLocationGroupCode
-     */
-
-
-    async getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGETRaw(requestParameters: GetWorkflowProcessByShipmentTypeLocationGroupCodeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfWorkflowProcess>> {
-        if (requestParameters.locationGroupCode === null || requestParameters.locationGroupCode === undefined) {
-            throw new runtime.RequiredError('locationGroupCode','Required parameter requestParameters.locationGroupCode was null or undefined when calling getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGET.');
-        }
-
-        if (requestParameters.shipmentType === null || requestParameters.shipmentType === undefined) {
-            throw new runtime.RequiredError('shipmentType','Required parameter requestParameters.shipmentType was null or undefined when calling getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGET.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGET.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
-
-
-
-
-
-        await this.addAuthorizationHeaders(headerParameters)
-        
-        const response = await this.request({
-            path: `/commerce/processes/shipmentType/{shipmentType}/locationGroup/{locationGroupCode}`.replace(`{${"locationGroupCode"}}`, encodeURIComponent(String(requestParameters.locationGroupCode))).replace(`{${"shipmentType"}}`, encodeURIComponent(String(requestParameters.shipmentType))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response);
-    }
-
-    /**
-     * getWorkflowProcessByShipmentTypeLocationGroupCode
-     * getWorkflowProcessByShipmentTypeLocationGroupCode
-     */
-    async getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGET(requestParameters: GetWorkflowProcessByShipmentTypeLocationGroupCodeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfWorkflowProcess> {
-        const response = await this.getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGETRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * getWorkflowProcessByShipmentType
-     * getWorkflowProcessByShipmentType
-     */
-
-
-    async getWorkflowProcessByShipmentTypeUsingGETRaw(requestParameters: GetWorkflowProcessByShipmentTypeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfWorkflowProcess>> {
-        if (requestParameters.shipmentType === null || requestParameters.shipmentType === undefined) {
-            throw new runtime.RequiredError('shipmentType','Required parameter requestParameters.shipmentType was null or undefined when calling getWorkflowProcessByShipmentTypeUsingGET.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getWorkflowProcessByShipmentTypeUsingGET.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
-
-
-
-
-
-        await this.addAuthorizationHeaders(headerParameters)
-        
-        const response = await this.request({
-            path: `/commerce/processes/shipmentType/{shipmentType}`.replace(`{${"shipmentType"}}`, encodeURIComponent(String(requestParameters.shipmentType))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response);
-    }
-
-    /**
-     * getWorkflowProcessByShipmentType
-     * getWorkflowProcessByShipmentType
-     */
-    async getWorkflowProcessByShipmentTypeUsingGET(requestParameters: GetWorkflowProcessByShipmentTypeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfWorkflowProcess> {
-        const response = await this.getWorkflowProcessByShipmentTypeUsingGETRaw(requestParameters, initOverrides);
+    async getDefinitionImage(requestParameters: workflowProcessApiParams.GetDefinitionImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.getDefinitionImageRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -448,24 +254,20 @@ export class WorkflowProcessApi extends runtime.BaseAPI implements WorkflowProce
      */
 
 
-    async getWorkflowProcessUsingGETRaw(requestParameters: GetWorkflowProcessUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfWorkflowProcess>> {
+    async getWorkflowProcessRaw(requestParameters: workflowProcessApiParams.GetWorkflowProcessRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfWorkflowProcess>> {
         if (requestParameters.containerIdOrAlias === null || requestParameters.containerIdOrAlias === undefined) {
-            throw new runtime.RequiredError('containerIdOrAlias','Required parameter requestParameters.containerIdOrAlias was null or undefined when calling getWorkflowProcessUsingGET.');
+            throw new runtime.RequiredError('containerIdOrAlias','Required parameter requestParameters.containerIdOrAlias was null or undefined when calling getWorkflowProcess.');
         }
 
         if (requestParameters.processId === null || requestParameters.processId === undefined) {
-            throw new runtime.RequiredError('processId','Required parameter requestParameters.processId was null or undefined when calling getWorkflowProcessUsingGET.');
+            throw new runtime.RequiredError('processId','Required parameter requestParameters.processId was null or undefined when calling getWorkflowProcess.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getWorkflowProcessUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getWorkflowProcess.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -497,8 +299,172 @@ export class WorkflowProcessApi extends runtime.BaseAPI implements WorkflowProce
      * getWorkflowProcess
      * getWorkflowProcess
      */
-    async getWorkflowProcessUsingGET(requestParameters: GetWorkflowProcessUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfWorkflowProcess> {
-        const response = await this.getWorkflowProcessUsingGETRaw(requestParameters, initOverrides);
+    async getWorkflowProcess(requestParameters: workflowProcessApiParams.GetWorkflowProcessRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfWorkflowProcess> {
+        const response = await this.getWorkflowProcessRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * getWorkflowProcessByShipmentType
+     * getWorkflowProcessByShipmentType
+     */
+
+
+    async getWorkflowProcessByShipmentTypeRaw(requestParameters: workflowProcessApiParams.GetWorkflowProcessByShipmentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfWorkflowProcess>> {
+        if (requestParameters.shipmentType === null || requestParameters.shipmentType === undefined) {
+            throw new runtime.RequiredError('shipmentType','Required parameter requestParameters.shipmentType was null or undefined when calling getWorkflowProcessByShipmentType.');
+        }
+
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getWorkflowProcessByShipmentType.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
+            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
+        }
+
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/processes/shipmentType/{shipmentType}`.replace(`{${"shipmentType"}}`, encodeURIComponent(String(requestParameters.shipmentType))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * getWorkflowProcessByShipmentType
+     * getWorkflowProcessByShipmentType
+     */
+    async getWorkflowProcessByShipmentType(requestParameters: workflowProcessApiParams.GetWorkflowProcessByShipmentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfWorkflowProcess> {
+        const response = await this.getWorkflowProcessByShipmentTypeRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * getWorkflowProcessByShipmentTypeLocationCode
+     * getWorkflowProcessByShipmentTypeLocationCode
+     */
+
+
+    async getWorkflowProcessByShipmentTypeLocationCodeRaw(requestParameters: workflowProcessApiParams.GetWorkflowProcessByShipmentTypeLocationCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfWorkflowProcess>> {
+        if (requestParameters.locationCode === null || requestParameters.locationCode === undefined) {
+            throw new runtime.RequiredError('locationCode','Required parameter requestParameters.locationCode was null or undefined when calling getWorkflowProcessByShipmentTypeLocationCode.');
+        }
+
+        if (requestParameters.shipmentType === null || requestParameters.shipmentType === undefined) {
+            throw new runtime.RequiredError('shipmentType','Required parameter requestParameters.shipmentType was null or undefined when calling getWorkflowProcessByShipmentTypeLocationCode.');
+        }
+
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getWorkflowProcessByShipmentTypeLocationCode.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
+            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
+        }
+
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/processes/shipmentType/{shipmentType}/location/{locationCode}`.replace(`{${"locationCode"}}`, encodeURIComponent(String(requestParameters.locationCode))).replace(`{${"shipmentType"}}`, encodeURIComponent(String(requestParameters.shipmentType))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * getWorkflowProcessByShipmentTypeLocationCode
+     * getWorkflowProcessByShipmentTypeLocationCode
+     */
+    async getWorkflowProcessByShipmentTypeLocationCode(requestParameters: workflowProcessApiParams.GetWorkflowProcessByShipmentTypeLocationCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfWorkflowProcess> {
+        const response = await this.getWorkflowProcessByShipmentTypeLocationCodeRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * getWorkflowProcessByShipmentTypeLocationGroupCode
+     * getWorkflowProcessByShipmentTypeLocationGroupCode
+     */
+
+
+    async getWorkflowProcessByShipmentTypeLocationGroupCodeRaw(requestParameters: workflowProcessApiParams.GetWorkflowProcessByShipmentTypeLocationGroupCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfWorkflowProcess>> {
+        if (requestParameters.locationGroupCode === null || requestParameters.locationGroupCode === undefined) {
+            throw new runtime.RequiredError('locationGroupCode','Required parameter requestParameters.locationGroupCode was null or undefined when calling getWorkflowProcessByShipmentTypeLocationGroupCode.');
+        }
+
+        if (requestParameters.shipmentType === null || requestParameters.shipmentType === undefined) {
+            throw new runtime.RequiredError('shipmentType','Required parameter requestParameters.shipmentType was null or undefined when calling getWorkflowProcessByShipmentTypeLocationGroupCode.');
+        }
+
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getWorkflowProcessByShipmentTypeLocationGroupCode.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
+            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
+        }
+
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/processes/shipmentType/{shipmentType}/locationGroup/{locationGroupCode}`.replace(`{${"locationGroupCode"}}`, encodeURIComponent(String(requestParameters.locationGroupCode))).replace(`{${"shipmentType"}}`, encodeURIComponent(String(requestParameters.shipmentType))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * getWorkflowProcessByShipmentTypeLocationGroupCode
+     * getWorkflowProcessByShipmentTypeLocationGroupCode
+     */
+    async getWorkflowProcessByShipmentTypeLocationGroupCode(requestParameters: workflowProcessApiParams.GetWorkflowProcessByShipmentTypeLocationGroupCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfWorkflowProcess> {
+        const response = await this.getWorkflowProcessByShipmentTypeLocationGroupCodeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -508,9 +474,9 @@ export class WorkflowProcessApi extends runtime.BaseAPI implements WorkflowProce
      */
 
 
-    async getWorkflowProcessesUsingGETRaw(requestParameters: GetWorkflowProcessesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PagedModelOfEntityModelOfWorkflowProcess>> {
+    async getWorkflowProcessesRaw(requestParameters: workflowProcessApiParams.GetWorkflowProcessesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PagedModelOfEntityModelOfWorkflowProcess>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getWorkflowProcessesUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getWorkflowProcesses.');
         }
 
         const queryParameters: any = {};
@@ -525,10 +491,6 @@ export class WorkflowProcessApi extends runtime.BaseAPI implements WorkflowProce
 
         if (requestParameters.sort !== undefined) {
             queryParameters['sort'] = requestParameters.sort;
-        }
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -561,8 +523,8 @@ export class WorkflowProcessApi extends runtime.BaseAPI implements WorkflowProce
      * getWorkflowProcesses
      * getWorkflowProcesses
      */
-    async getWorkflowProcessesUsingGET(requestParameters: GetWorkflowProcessesUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PagedModelOfEntityModelOfWorkflowProcess> {
-        const response = await this.getWorkflowProcessesUsingGETRaw(requestParameters, initOverrides);
+    async getWorkflowProcesses(requestParameters: workflowProcessApiParams.GetWorkflowProcessesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PagedModelOfEntityModelOfWorkflowProcess> {
+        const response = await this.getWorkflowProcessesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

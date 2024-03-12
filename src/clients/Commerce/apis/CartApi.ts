@@ -24,944 +24,909 @@ import type {
   ExtendedProperty,
 } from '../models';
 
-export interface AddExtendedPropertiesRequest {
-    responseFields?: string;
-    extendedProperty?: Array<ExtendedProperty>;
-}
 
-export interface AddItemToCartRequest {
-    zipCode?: string;
-    responseFields?: string;
-    cartItem?: CartItem;
+export namespace cartApiParams { 
+    export interface AddExtendedPropertiesRequest {
+        responseFields?: string;
+        extendedProperty?: Array<ExtendedProperty>;
+    }
+    export interface AddItemToCartRequest {
+        zipCode?: string;
+        responseFields?: string;
+        cartItem?: CartItem;
+    }
+    export interface AddItemToCartByCartIdRequest {
+        cartId: string;
+        zipCode?: string;
+        responseFields?: string;
+        cartItem?: CartItem;
+    }
+    export interface AddItemsToCartRequest {
+        throwErrorOnInvalidItems?: boolean;
+        zipCode?: string;
+        responseFields?: string;
+        cartItem?: Array<CartItem>;
+    }
+    export interface AddItemsToCartByCartIdRequest {
+        cartId: string;
+        throwErrorOnInvalidItems?: boolean;
+        zipCode?: string;
+        responseFields?: string;
+        cartItem?: Array<CartItem>;
+    }
+    export interface ApplyCouponRequest {
+        cartId: string;
+        couponCode: string;
+        responseFields?: string;
+    }
+    export interface DeleteCartRequest {
+        cartId: string;
+    }
+    export interface DeleteCartItemRequest {
+        cartItemId: string;
+    }
+    export interface DeleteCartItemByCartIdRequest {
+        cartId: string;
+        cartItemId: string;
+    }
+    export interface DeleteExtendedPropertiesRequest {
+        requestBody?: Array<string>;
+    }
+    export interface DeleteExtendedPropertyRequest {
+        key: string;
+    }
+    export interface DeleteUserCartRequest {
+        userId: string;
+    }
+    export interface GetCartRequest {
+        cartId: string;
+        responseFields?: string;
+    }
+    export interface GetCartItemRequest {
+        cartItemId: string;
+        responseFields?: string;
+    }
+    export interface GetCartItemByCartIdRequest {
+        cartId: string;
+        cartItemId: string;
+        responseFields?: string;
+    }
+    export interface GetCartItemsRequest {
+        responseFields?: string;
+    }
+    export interface GetCartItemsByCartIdRequest {
+        cartId: string;
+        responseFields?: string;
+    }
+    export interface GetCartSummaryRequest {
+        responseFields?: string;
+    }
+    export interface GetCartSummaryByCartIdRequest {
+        cartId: string;
+        responseFields?: string;
+    }
+    export interface GetExtendedPropertiesRequest {
+        responseFields?: string;
+    }
+    export interface GetMessagesRequest {
+        responseFields?: string;
+    }
+    export interface GetOrCreateCartRequest {
+        responseFields?: string;
+    }
+    export interface GetOrCreateUserCartRequest {
+        userId: string;
+        responseFields?: string;
+    }
+    export interface GetUserCartRequest {
+        userId: string;
+        responseFields?: string;
+    }
+    export interface GetUserCartSummaryRequest {
+        userId: string;
+        responseFields?: string;
+    }
+    export interface RejectSuggestedDiscountRequest {
+        cartId: string;
+        discountId: number;
+        responseFields?: string;
+    }
+    export interface RemoveAllCartItemsByCartIdRequest {
+        cartId: string;
+    }
+    export interface RemoveCouponRequest {
+        cartId: string;
+        couponCode: string;
+    }
+    export interface RemoveCouponsRequest {
+        cartId: string;
+    }
+    export interface RemoveMessageRequest {
+        messageId: string;
+    }
+    export interface UpdateCartRequest {
+        responseFields?: string;
+        cart?: Cart;
+    }
+    export interface UpdateCartByCartIdRequest {
+        cartId: string;
+        responseFields?: string;
+        cart?: Cart;
+    }
+    export interface UpdateCartItemRequest {
+        cartItemId: string;
+        zipCode?: string;
+        responseFields?: string;
+        cartItem?: CartItem;
+    }
+    export interface UpdateCartItemByCartIdRequest {
+        cartId: string;
+        cartItemId: string;
+        zipCode?: string;
+        responseFields?: string;
+        cartItem?: CartItem;
+    }
+    export interface UpdateCartItemQuantityRequest {
+        cartItemId: string;
+        quantity: number;
+        responseFields?: string;
+    }
+    export interface UpdateCartItemQuantityByCartIdRequest {
+        cartId: string;
+        cartItemId: string;
+        quantity: number;
+        responseFields?: string;
+    }
+    export interface UpdateExtendedPropertiesRequest {
+        upsert?: boolean;
+        responseFields?: string;
+        extendedProperty?: Array<ExtendedProperty>;
+    }
+    export interface UpdateExtendedPropertyRequest {
+        key: string;
+        upsert?: boolean;
+        responseFields?: string;
+        extendedProperty?: ExtendedProperty;
+    }
+    export interface UpdateUserCartRequest {
+        userId: string;
+        responseFields?: string;
+        cart?: Cart;
+    }
 }
-
-export interface AddItemToCartByCartIdRequest {
-    cartId: string;
-    zipCode?: string;
-    responseFields?: string;
-    cartItem?: CartItem;
-}
-
-export interface AddItemsToCartRequest {
-    throwErrorOnInvalidItems?: boolean;
-    zipCode?: string;
-    responseFields?: string;
-    cartItem?: Array<CartItem>;
-}
-
-export interface AddItemsToCartByCartIdRequest {
-    cartId: string;
-    throwErrorOnInvalidItems?: boolean;
-    zipCode?: string;
-    responseFields?: string;
-    cartItem?: Array<CartItem>;
-}
-
-export interface ApplyCouponRequest {
-    cartId: string;
-    couponCode: string;
-    responseFields?: string;
-}
-
-export interface DeleteCartRequest {
-    cartId: string;
-}
-
-export interface DeleteCartItemRequest {
-    cartItemId: string;
-}
-
-export interface DeleteCartItemByCartIdRequest {
-    cartId: string;
-    cartItemId: string;
-}
-
-export interface DeleteExtendedPropertiesRequest {
-    requestBody?: Array<string>;
-}
-
-export interface DeleteExtendedPropertyRequest {
-    key: string;
-}
-
-export interface DeleteUserCartRequest {
-    userId: string;
-}
-
-export interface GetCartRequest {
-    cartId: string;
-    responseFields?: string;
-}
-
-export interface GetCartItemRequest {
-    cartItemId: string;
-    responseFields?: string;
-}
-
-export interface GetCartItemByCartIdRequest {
-    cartId: string;
-    cartItemId: string;
-    responseFields?: string;
-}
-
-export interface GetCartItemsRequest {
-    responseFields?: string;
-}
-
-export interface GetCartItemsByCartIdRequest {
-    cartId: string;
-    responseFields?: string;
-}
-
-export interface GetCartSummaryRequest {
-    responseFields?: string;
-}
-
-export interface GetCartSummaryByCartIdRequest {
-    cartId: string;
-    responseFields?: string;
-}
-
-export interface GetExtendedPropertiesRequest {
-    responseFields?: string;
-}
-
-export interface GetMessagesRequest {
-    responseFields?: string;
-}
-
-export interface GetOrCreateCartRequest {
-    responseFields?: string;
-}
-
-export interface GetOrCreateUserCartRequest {
-    userId: string;
-    responseFields?: string;
-}
-
-export interface GetUserCartRequest {
-    userId: string;
-    responseFields?: string;
-}
-
-export interface GetUserCartSummaryRequest {
-    userId: string;
-    responseFields?: string;
-}
-
-export interface RejectSuggestedDiscountRequest {
-    cartId: string;
-    discountId: number;
-    responseFields?: string;
-}
-
-export interface RemoveAllCartItemsByCartIdRequest {
-    cartId: string;
-}
-
-export interface RemoveCouponRequest {
-    cartId: string;
-    couponCode: string;
-}
-
-export interface RemoveCouponsRequest {
-    cartId: string;
-}
-
-export interface RemoveMessageRequest {
-    messageId: string;
-}
-
-export interface UpdateCartRequest {
-    responseFields?: string;
-    cart?: Cart;
-}
-
-export interface UpdateCartByCartIdRequest {
-    cartId: string;
-    responseFields?: string;
-    cart?: Cart;
-}
-
-export interface UpdateCartItemRequest {
-    cartItemId: string;
-    zipCode?: string;
-    responseFields?: string;
-    cartItem?: CartItem;
-}
-
-export interface UpdateCartItemByCartIdRequest {
-    cartId: string;
-    cartItemId: string;
-    zipCode?: string;
-    responseFields?: string;
-    cartItem?: CartItem;
-}
-
-export interface UpdateCartItemQuantityRequest {
-    cartItemId: string;
-    quantity: number;
-    responseFields?: string;
-}
-
-export interface UpdateCartItemQuantityByCartIdRequest {
-    cartId: string;
-    cartItemId: string;
-    quantity: number;
-    responseFields?: string;
-}
-
-export interface UpdateExtendedPropertiesRequest {
-    upsert?: boolean;
-    responseFields?: string;
-    extendedProperty?: Array<ExtendedProperty>;
-}
-
-export interface UpdateExtendedPropertyRequest {
-    key: string;
-    upsert?: boolean;
-    responseFields?: string;
-    extendedProperty?: ExtendedProperty;
-}
-
-export interface UpdateUserCartRequest {
-    userId: string;
-    responseFields?: string;
-    cart?: Cart;
-}
-
 /**
- * CartApi - interface
- * 
- * @export
- * @interface CartApiInterface
- */
-export interface CartApiInterface {
+* CartApiService - interface
+* 
+* @export
+* @interface CartApi
+*/
+export interface CartApiService {
     /**
-     * Add Extended Properties on the current cart. Store an arbitrary number of cart extended properties such as tracking strings, marketing sources, affiliates, sales personnel/data, and so on, on a per cart basis. Each cart may have none, one, or more than one entry in the extended properties collection, and all values in the extended properties collection are represented as strings. When you create an order from a cart, all extended properties are retained from the cart and copied to the order.
-     * @summary Adds extended properties
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Array<ExtendedProperty>} [extendedProperty] Extended properties
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    addExtendedPropertiesRaw(requestParameters: AddExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtendedProperty>>>;
+    * Add Extended Properties on the current cart. Store an arbitrary number of cart extended properties such as tracking strings, marketing sources, affiliates, sales personnel/data, and so on, on a per cart basis. Each cart may have none, one, or more than one entry in the extended properties collection, and all values in the extended properties collection are represented as strings. When you create an order from a cart, all extended properties are retained from the cart and copied to the order.
+    * @summary Adds extended properties
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<ExtendedProperty>} [extendedProperty] Extended properties
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    addExtendedPropertiesRaw(requestParameters: cartApiParams.AddExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtendedProperty>>>;
 
     /**
-     * Add Extended Properties on the current cart. Store an arbitrary number of cart extended properties such as tracking strings, marketing sources, affiliates, sales personnel/data, and so on, on a per cart basis. Each cart may have none, one, or more than one entry in the extended properties collection, and all values in the extended properties collection are represented as strings. When you create an order from a cart, all extended properties are retained from the cart and copied to the order.
-     * Adds extended properties
-     */
-    addExtendedProperties(requestParameters: AddExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtendedProperty>>;
+    * Add Extended Properties on the current cart. Store an arbitrary number of cart extended properties such as tracking strings, marketing sources, affiliates, sales personnel/data, and so on, on a per cart basis. Each cart may have none, one, or more than one entry in the extended properties collection, and all values in the extended properties collection are represented as strings. When you create an order from a cart, all extended properties are retained from the cart and copied to the order.
+    * Adds extended properties
+    */
+    addExtendedProperties(requestParameters: cartApiParams.AddExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtendedProperty>>;
 
     /**
-     * Adds a product or other item to the cart of the current shopper.
-     * @summary Add Item To Cart
-     * @param {string} [zipCode] Zip Code used for inventory reservation if cart having STH items.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CartItem} [cartItem] All properties of the new cart item. Required property: Product.ProductCode.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    addItemToCartRaw(requestParameters: AddItemToCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>>;
+    * Adds a product or other item to the cart of the current shopper.
+    * @summary Add Item To Cart
+    * @param {string} [zipCode] Zip Code used for inventory reservation if cart having STH items.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CartItem} [cartItem] All properties of the new cart item. Required property: Product.ProductCode.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    addItemToCartRaw(requestParameters: cartApiParams.AddItemToCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>>;
 
     /**
-     * Adds a product or other item to the cart of the current shopper.
-     * Add Item To Cart
-     */
-    addItemToCart(requestParameters: AddItemToCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem>;
+    * Adds a product or other item to the cart of the current shopper.
+    * Add Item To Cart
+    */
+    addItemToCart(requestParameters: cartApiParams.AddItemToCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem>;
 
     /**
-     * \"Adds a product or a cart item to the cart specified by the cart ID.
-     * @summary Add Item To Cart By CartId
-     * @param {string} cartId Unique identifier of the cart.
-     * @param {string} [zipCode] Zip Code used for inventory reservation if cart having STH items.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CartItem} [cartItem] All properties of the new cart item. Required property: Product.ProductCode.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    addItemToCartByCartIdRaw(requestParameters: AddItemToCartByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>>;
+    * \"Adds a product or a cart item to the cart specified by the cart ID.
+    * @summary Add Item To Cart By CartId
+    * @param {string} cartId Unique identifier of the cart.
+    * @param {string} [zipCode] Zip Code used for inventory reservation if cart having STH items.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CartItem} [cartItem] All properties of the new cart item. Required property: Product.ProductCode.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    addItemToCartByCartIdRaw(requestParameters: cartApiParams.AddItemToCartByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>>;
 
     /**
-     * \"Adds a product or a cart item to the cart specified by the cart ID.
-     * Add Item To Cart By CartId
-     */
-    addItemToCartByCartId(requestParameters: AddItemToCartByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem>;
+    * \"Adds a product or a cart item to the cart specified by the cart ID.
+    * Add Item To Cart By CartId
+    */
+    addItemToCartByCartId(requestParameters: cartApiParams.AddItemToCartByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem>;
 
     /**
-     * Adds multiple cart items to the cart of the current shopper.
-     * @summary Add Items To Cart
-     * @param {boolean} [throwErrorOnInvalidItems] When set to true none of the items will be added when some items are invalid. when set to false valid items are added and invalid items are removed
-     * @param {string} [zipCode] Zip Code used for inventory reservation if cart having STH items.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Array<CartItem>} [cartItem] The items to add to the cart
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    addItemsToCartRaw(requestParameters: AddItemsToCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Adds multiple cart items to the cart of the current shopper.
+    * @summary Add Items To Cart
+    * @param {boolean} [throwErrorOnInvalidItems] When set to true none of the items will be added when some items are invalid. when set to false valid items are added and invalid items are removed
+    * @param {string} [zipCode] Zip Code used for inventory reservation if cart having STH items.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<CartItem>} [cartItem] The items to add to the cart
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    addItemsToCartRaw(requestParameters: cartApiParams.AddItemsToCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Adds multiple cart items to the cart of the current shopper.
-     * Add Items To Cart
-     */
-    addItemsToCart(requestParameters: AddItemsToCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Adds multiple cart items to the cart of the current shopper.
+    * Add Items To Cart
+    */
+    addItemsToCart(requestParameters: cartApiParams.AddItemsToCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Adds multiple cart items to the cart specified by cartId.
-     * @summary Add Items To Cart By CartId
-     * @param {string} cartId Unique identifier of the cart.
-     * @param {boolean} [throwErrorOnInvalidItems] When set to true none of the items will be added when some items are invalid. when set to false valid items are added and invalid items are removed
-     * @param {string} [zipCode] Zip Code used for inventory reservation if cart having STH items.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Array<CartItem>} [cartItem] The items to add to the cart
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    addItemsToCartByCartIdRaw(requestParameters: AddItemsToCartByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Adds multiple cart items to the cart specified by cartId.
+    * @summary Add Items To Cart By CartId
+    * @param {string} cartId Unique identifier of the cart.
+    * @param {boolean} [throwErrorOnInvalidItems] When set to true none of the items will be added when some items are invalid. when set to false valid items are added and invalid items are removed
+    * @param {string} [zipCode] Zip Code used for inventory reservation if cart having STH items.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<CartItem>} [cartItem] The items to add to the cart
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    addItemsToCartByCartIdRaw(requestParameters: cartApiParams.AddItemsToCartByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Adds multiple cart items to the cart specified by cartId.
-     * Add Items To Cart By CartId
-     */
-    addItemsToCartByCartId(requestParameters: AddItemsToCartByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Adds multiple cart items to the cart specified by cartId.
+    * Add Items To Cart By CartId
+    */
+    addItemsToCartByCartId(requestParameters: cartApiParams.AddItemsToCartByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Apply coupon to the cart.
-     * @summary Apply Coupon
-     * @param {string} cartId Unique identifier of the cart with which to associate the coupon.
-     * @param {string} couponCode Coupon code that the customer supplies to get the discounted price.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    applyCouponRaw(requestParameters: ApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>>;
+    * Apply coupon to the cart.
+    * @summary Apply Coupon
+    * @param {string} cartId Unique identifier of the cart with which to associate the coupon.
+    * @param {string} couponCode Coupon code that the customer supplies to get the discounted price.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    applyCouponRaw(requestParameters: cartApiParams.ApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>>;
 
     /**
-     * Apply coupon to the cart.
-     * Apply Coupon
-     */
-    applyCoupon(requestParameters: ApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart>;
+    * Apply coupon to the cart.
+    * Apply Coupon
+    */
+    applyCoupon(requestParameters: cartApiParams.ApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart>;
 
     /**
-     * Deletes the cart by cart ID.
-     * @summary Delete cart
-     * @param {string} cartId Unique identifier of the cart.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    deleteCartRaw(requestParameters: DeleteCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Deletes the cart by cart ID.
+    * @summary Delete cart
+    * @param {string} cartId Unique identifier of the cart.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    deleteCartRaw(requestParameters: cartApiParams.DeleteCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Deletes the cart by cart ID.
-     * Delete cart
-     */
-    deleteCart(requestParameters: DeleteCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Deletes the cart by cart ID.
+    * Delete cart
+    */
+    deleteCart(requestParameters: cartApiParams.DeleteCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Removes a particular cart item from the cart of the current shopper.
-     * @summary Delete Cart Item
-     * @param {string} cartItemId Unique identifier of the cart item.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    deleteCartItemRaw(requestParameters: DeleteCartItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Removes a particular cart item from the cart of the current shopper.
+    * @summary Delete Cart Item
+    * @param {string} cartItemId Unique identifier of the cart item.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    deleteCartItemRaw(requestParameters: cartApiParams.DeleteCartItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Removes a particular cart item from the cart of the current shopper.
-     * Delete Cart Item
-     */
-    deleteCartItem(requestParameters: DeleteCartItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Removes a particular cart item from the cart of the current shopper.
+    * Delete Cart Item
+    */
+    deleteCartItem(requestParameters: cartApiParams.DeleteCartItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Removes a particular cart item from the cart specified by cart item Id and cart Id.
-     * @summary Delete Cart Item By CartId
-     * @param {string} cartId Unique identifier of the cart.
-     * @param {string} cartItemId Unique identifier of the cart item.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    deleteCartItemByCartIdRaw(requestParameters: DeleteCartItemByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Removes a particular cart item from the cart specified by cart item Id and cart Id.
+    * @summary Delete Cart Item By CartId
+    * @param {string} cartId Unique identifier of the cart.
+    * @param {string} cartItemId Unique identifier of the cart item.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    deleteCartItemByCartIdRaw(requestParameters: cartApiParams.DeleteCartItemByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Removes a particular cart item from the cart specified by cart item Id and cart Id.
-     * Delete Cart Item By CartId
-     */
-    deleteCartItemByCartId(requestParameters: DeleteCartItemByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Removes a particular cart item from the cart specified by cart item Id and cart Id.
+    * Delete Cart Item By CartId
+    */
+    deleteCartItemByCartId(requestParameters: cartApiParams.DeleteCartItemByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * eletes the cart of the current shopper.
-     * @summary Delete Current Cart
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
+    * eletes the cart of the current shopper.
+    * @summary Delete Current Cart
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
     deleteCurrentCartRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * eletes the cart of the current shopper.
-     * Delete Current Cart
-     */
+    * eletes the cart of the current shopper.
+    * Delete Current Cart
+    */
     deleteCurrentCart(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Delete extended properties on the current cart.
-     * @summary Delete extended properties.
-     * @param {Array<string>} [requestBody] Extended properties.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    deleteExtendedPropertiesRaw(requestParameters: DeleteExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Delete extended properties on the current cart.
+    * @summary Delete extended properties.
+    * @param {Array<string>} [requestBody] Extended properties.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    deleteExtendedPropertiesRaw(requestParameters: cartApiParams.DeleteExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Delete extended properties on the current cart.
-     * Delete extended properties.
-     */
-    deleteExtendedProperties(requestParameters: DeleteExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Delete extended properties on the current cart.
+    * Delete extended properties.
+    */
+    deleteExtendedProperties(requestParameters: cartApiParams.DeleteExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Delete extended property on the current cart using the key.
-     * @summary Delete Extended Property
-     * @param {string} key Unique identifier of the extended property
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    deleteExtendedPropertyRaw(requestParameters: DeleteExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Delete extended property on the current cart using the key.
+    * @summary Delete Extended Property
+    * @param {string} key Unique identifier of the extended property
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    deleteExtendedPropertyRaw(requestParameters: cartApiParams.DeleteExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Delete extended property on the current cart using the key.
-     * Delete Extended Property
-     */
-    deleteExtendedProperty(requestParameters: DeleteExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Delete extended property on the current cart using the key.
+    * Delete Extended Property
+    */
+    deleteExtendedProperty(requestParameters: cartApiParams.DeleteExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Deletes the cart of the user by user ID.
-     * @summary Delete User Cart
-     * @param {string} userId Unique identifier of the user.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    deleteUserCartRaw(requestParameters: DeleteUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Deletes the cart of the user by user ID.
+    * @summary Delete User Cart
+    * @param {string} userId Unique identifier of the user.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    deleteUserCartRaw(requestParameters: cartApiParams.DeleteUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Deletes the cart of the user by user ID.
-     * Delete User Cart
-     */
-    deleteUserCart(requestParameters: DeleteUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Deletes the cart of the user by user ID.
+    * Delete User Cart
+    */
+    deleteUserCart(requestParameters: cartApiParams.DeleteUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Retrieves the details of the cart specified by cart ID.
-     * @summary Get Cart
-     * @param {string} cartId Unique identifier of the cart.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    getCartRaw(requestParameters: GetCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>>;
+    * Retrieves the details of the cart specified by cart ID.
+    * @summary Get Cart
+    * @param {string} cartId Unique identifier of the cart.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    getCartRaw(requestParameters: cartApiParams.GetCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>>;
 
     /**
-     * Retrieves the details of the cart specified by cart ID.
-     * Get Cart
-     */
-    getCart(requestParameters: GetCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart>;
+    * Retrieves the details of the cart specified by cart ID.
+    * Get Cart
+    */
+    getCart(requestParameters: cartApiParams.GetCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart>;
 
     /**
-     * Retrieves an individual cart item from the cart of the current shopper specified by its cart item Id.
-     * @summary Get Cart Item
-     * @param {string} cartItemId Unique identifier of the cart item.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    getCartItemRaw(requestParameters: GetCartItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>>;
+    * Retrieves an individual cart item from the cart of the current shopper specified by its cart item Id.
+    * @summary Get Cart Item
+    * @param {string} cartItemId Unique identifier of the cart item.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    getCartItemRaw(requestParameters: cartApiParams.GetCartItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>>;
 
     /**
-     * Retrieves an individual cart item from the cart of the current shopper specified by its cart item Id.
-     * Get Cart Item
-     */
-    getCartItem(requestParameters: GetCartItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem>;
+    * Retrieves an individual cart item from the cart of the current shopper specified by its cart item Id.
+    * Get Cart Item
+    */
+    getCartItem(requestParameters: cartApiParams.GetCartItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem>;
 
     /**
-     * Retrieves an individual cart item from the cart by cart Id and cart item Id.
-     * @summary Get Cart Item By CartId
-     * @param {string} cartId Unique identifier of the cart.
-     * @param {string} cartItemId Unique identifier of the cart item.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    getCartItemByCartIdRaw(requestParameters: GetCartItemByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>>;
+    * Retrieves an individual cart item from the cart by cart Id and cart item Id.
+    * @summary Get Cart Item By CartId
+    * @param {string} cartId Unique identifier of the cart.
+    * @param {string} cartItemId Unique identifier of the cart item.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    getCartItemByCartIdRaw(requestParameters: cartApiParams.GetCartItemByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>>;
 
     /**
-     * Retrieves an individual cart item from the cart by cart Id and cart item Id.
-     * Get Cart Item By CartId
-     */
-    getCartItemByCartId(requestParameters: GetCartItemByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem>;
+    * Retrieves an individual cart item from the cart by cart Id and cart item Id.
+    * Get Cart Item By CartId
+    */
+    getCartItemByCartId(requestParameters: cartApiParams.GetCartItemByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem>;
 
     /**
-     * Retrieves the details of each cart item such as the product name, stock count, unit price, discounts, quantity ordered and total price
-     * @summary Get Cart Items
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    getCartItemsRaw(requestParameters: GetCartItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItemCollection>>;
+    * Retrieves the details of each cart item such as the product name, stock count, unit price, discounts, quantity ordered and total price
+    * @summary Get Cart Items
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    getCartItemsRaw(requestParameters: cartApiParams.GetCartItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItemCollection>>;
 
     /**
-     * Retrieves the details of each cart item such as the product name, stock count, unit price, discounts, quantity ordered and total price
-     * Get Cart Items
-     */
-    getCartItems(requestParameters: GetCartItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItemCollection>;
+    * Retrieves the details of each cart item such as the product name, stock count, unit price, discounts, quantity ordered and total price
+    * Get Cart Items
+    */
+    getCartItems(requestParameters: cartApiParams.GetCartItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItemCollection>;
 
     /**
-     * Retrieves the details of each cart item such as the product name, stock count, unit price, discounts, quantity ordered and total price for the cart by cartId.
-     * @summary Get Cart Items By CartId
-     * @param {string} cartId Unique identifier of the cart.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    getCartItemsByCartIdRaw(requestParameters: GetCartItemsByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItemCollection>>;
+    * Retrieves the details of each cart item such as the product name, stock count, unit price, discounts, quantity ordered and total price for the cart by cartId.
+    * @summary Get Cart Items By CartId
+    * @param {string} cartId Unique identifier of the cart.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    getCartItemsByCartIdRaw(requestParameters: cartApiParams.GetCartItemsByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItemCollection>>;
 
     /**
-     * Retrieves the details of each cart item such as the product name, stock count, unit price, discounts, quantity ordered and total price for the cart by cartId.
-     * Get Cart Items By CartId
-     */
-    getCartItemsByCartId(requestParameters: GetCartItemsByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItemCollection>;
+    * Retrieves the details of each cart item such as the product name, stock count, unit price, discounts, quantity ordered and total price for the cart by cartId.
+    * Get Cart Items By CartId
+    */
+    getCartItemsByCartId(requestParameters: cartApiParams.GetCartItemsByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItemCollection>;
 
     /**
-     * Retrieves the number of items in the active cart, total cost of items in the cart and the cart expiration. (Anonymous shoppers cart expires in 14 days.)
-     * @summary Get Cart Summary
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    getCartSummaryRaw(requestParameters: GetCartSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartSummary>>;
+    * Retrieves the number of items in the active cart, total cost of items in the cart and the cart expiration. (Anonymous shoppers cart expires in 14 days.)
+    * @summary Get Cart Summary
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    getCartSummaryRaw(requestParameters: cartApiParams.GetCartSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartSummary>>;
 
     /**
-     * Retrieves the number of items in the active cart, total cost of items in the cart and the cart expiration. (Anonymous shoppers cart expires in 14 days.)
-     * Get Cart Summary
-     */
-    getCartSummary(requestParameters: GetCartSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartSummary>;
+    * Retrieves the number of items in the active cart, total cost of items in the cart and the cart expiration. (Anonymous shoppers cart expires in 14 days.)
+    * Get Cart Summary
+    */
+    getCartSummary(requestParameters: cartApiParams.GetCartSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartSummary>;
 
     /**
-     * Retrieves the number of items in the specified cart, total cost of items in the cart, and whether the cart has expired by cartId. All anonymous idle carts that do not proceed to checkout expire after 14 days.
-     * @summary Get Cart Summary By Cart Id
-     * @param {string} cartId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    getCartSummaryByCartIdRaw(requestParameters: GetCartSummaryByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartSummary>>;
+    * Retrieves the number of items in the specified cart, total cost of items in the cart, and whether the cart has expired by cartId. All anonymous idle carts that do not proceed to checkout expire after 14 days.
+    * @summary Get Cart Summary By Cart Id
+    * @param {string} cartId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    getCartSummaryByCartIdRaw(requestParameters: cartApiParams.GetCartSummaryByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartSummary>>;
 
     /**
-     * Retrieves the number of items in the specified cart, total cost of items in the cart, and whether the cart has expired by cartId. All anonymous idle carts that do not proceed to checkout expire after 14 days.
-     * Get Cart Summary By Cart Id
-     */
-    getCartSummaryByCartId(requestParameters: GetCartSummaryByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartSummary>;
+    * Retrieves the number of items in the specified cart, total cost of items in the cart, and whether the cart has expired by cartId. All anonymous idle carts that do not proceed to checkout expire after 14 days.
+    * Get Cart Summary By Cart Id
+    */
+    getCartSummaryByCartId(requestParameters: cartApiParams.GetCartSummaryByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartSummary>;
 
     /**
-     * Get extended properties on a cart.
-     * @summary Get Extended Properties
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    getExtendedPropertiesRaw(requestParameters: GetExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtendedProperty>>>;
+    * Get extended properties on a cart.
+    * @summary Get Extended Properties
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    getExtendedPropertiesRaw(requestParameters: cartApiParams.GetExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtendedProperty>>>;
 
     /**
-     * Get extended properties on a cart.
-     * Get Extended Properties
-     */
-    getExtendedProperties(requestParameters: GetExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtendedProperty>>;
+    * Get extended properties on a cart.
+    * Get Extended Properties
+    */
+    getExtendedProperties(requestParameters: cartApiParams.GetExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtendedProperty>>;
 
     /**
-     * Retrieves messages to and from the current shopper. These are messages supplied by the system to notify the shopper of price increases or decreases or product unavailability.
-     * @summary Get Messages
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    getMessagesRaw(requestParameters: GetMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartChangeMessageCollection>>;
+    * Retrieves messages to and from the current shopper. These are messages supplied by the system to notify the shopper of price increases or decreases or product unavailability.
+    * @summary Get Messages
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    getMessagesRaw(requestParameters: cartApiParams.GetMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartChangeMessageCollection>>;
 
     /**
-     * Retrieves messages to and from the current shopper. These are messages supplied by the system to notify the shopper of price increases or decreases or product unavailability.
-     * Get Messages
-     */
-    getMessages(requestParameters: GetMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartChangeMessageCollection>;
+    * Retrieves messages to and from the current shopper. These are messages supplied by the system to notify the shopper of price increases or decreases or product unavailability.
+    * Get Messages
+    */
+    getMessages(requestParameters: cartApiParams.GetMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartChangeMessageCollection>;
 
     /**
-     * Retrieves a cart\'s contents for the current shopper.  If the shopper does not have an active cart on the site, one is created.
-     * @summary Get Or Create Cart
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    getOrCreateCartRaw(requestParameters: GetOrCreateCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>>;
+    * Retrieves a cart\'s contents for the current shopper.  If the shopper does not have an active cart on the site, one is created.
+    * @summary Get Or Create Cart
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    getOrCreateCartRaw(requestParameters: cartApiParams.GetOrCreateCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>>;
 
     /**
-     * Retrieves a cart\'s contents for the current shopper.  If the shopper does not have an active cart on the site, one is created.
-     * Get Or Create Cart
-     */
-    getOrCreateCart(requestParameters: GetOrCreateCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart>;
+    * Retrieves a cart\'s contents for the current shopper.  If the shopper does not have an active cart on the site, one is created.
+    * Get Or Create Cart
+    */
+    getOrCreateCart(requestParameters: cartApiParams.GetOrCreateCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart>;
 
     /**
-     * Get the current cart or create a new cart for the user specified by user ID.
-     * @summary Get Or Create User Cart
-     * @param {string} userId Unique identifier of the user.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    getOrCreateUserCartRaw(requestParameters: GetOrCreateUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>>;
+    * Get the current cart or create a new cart for the user specified by user ID.
+    * @summary Get Or Create User Cart
+    * @param {string} userId Unique identifier of the user.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    getOrCreateUserCartRaw(requestParameters: cartApiParams.GetOrCreateUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>>;
 
     /**
-     * Get the current cart or create a new cart for the user specified by user ID.
-     * Get Or Create User Cart
-     */
-    getOrCreateUserCart(requestParameters: GetOrCreateUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart>;
+    * Get the current cart or create a new cart for the user specified by user ID.
+    * Get Or Create User Cart
+    */
+    getOrCreateUserCart(requestParameters: cartApiParams.GetOrCreateUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart>;
 
     /**
-     * Retrieves the details of the user\'s cart from the user ID.Shoppers are not allowed to execute this call. If this ever changes, then auth logic will need to be added
-     * @summary Get User Cart
-     * @param {string} userId Unique identifier of the user.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    getUserCartRaw(requestParameters: GetUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>>;
+    * Retrieves the details of the user\'s cart from the user ID.Shoppers are not allowed to execute this call. If this ever changes, then auth logic will need to be added
+    * @summary Get User Cart
+    * @param {string} userId Unique identifier of the user.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    getUserCartRaw(requestParameters: cartApiParams.GetUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>>;
 
     /**
-     * Retrieves the details of the user\'s cart from the user ID.Shoppers are not allowed to execute this call. If this ever changes, then auth logic will need to be added
-     * Get User Cart
-     */
-    getUserCart(requestParameters: GetUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart>;
+    * Retrieves the details of the user\'s cart from the user ID.Shoppers are not allowed to execute this call. If this ever changes, then auth logic will need to be added
+    * Get User Cart
+    */
+    getUserCart(requestParameters: cartApiParams.GetUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart>;
 
     /**
-     * Retrieves the number of items in the active cart, total cost of items in the cart and the cart expiration by userId. All anonymous idle carts that do not proceed to checkout expire after 14 days.
-     * @summary Get User Cart Summary
-     * @param {string} userId Unique identifier of the user.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    getUserCartSummaryRaw(requestParameters: GetUserCartSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartSummary>>;
+    * Retrieves the number of items in the active cart, total cost of items in the cart and the cart expiration by userId. All anonymous idle carts that do not proceed to checkout expire after 14 days.
+    * @summary Get User Cart Summary
+    * @param {string} userId Unique identifier of the user.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    getUserCartSummaryRaw(requestParameters: cartApiParams.GetUserCartSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartSummary>>;
 
     /**
-     * Retrieves the number of items in the active cart, total cost of items in the cart and the cart expiration by userId. All anonymous idle carts that do not proceed to checkout expire after 14 days.
-     * Get User Cart Summary
-     */
-    getUserCartSummary(requestParameters: GetUserCartSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartSummary>;
+    * Retrieves the number of items in the active cart, total cost of items in the cart and the cart expiration by userId. All anonymous idle carts that do not proceed to checkout expire after 14 days.
+    * Get User Cart Summary
+    */
+    getUserCartSummary(requestParameters: cartApiParams.GetUserCartSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartSummary>;
 
     /**
-     * Reject Suggested Discount
-     * @summary Reject Suggested Discount
-     * @param {string} cartId Unique Identifier of the Cart
-     * @param {number} discountId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    rejectSuggestedDiscountRaw(requestParameters: RejectSuggestedDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>>;
+    * Reject Suggested Discount
+    * @summary Reject Suggested Discount
+    * @param {string} cartId Unique Identifier of the Cart
+    * @param {number} discountId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    rejectSuggestedDiscountRaw(requestParameters: cartApiParams.RejectSuggestedDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>>;
 
     /**
-     * Reject Suggested Discount
-     * Reject Suggested Discount
-     */
-    rejectSuggestedDiscount(requestParameters: RejectSuggestedDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart>;
+    * Reject Suggested Discount
+    * Reject Suggested Discount
+    */
+    rejectSuggestedDiscount(requestParameters: cartApiParams.RejectSuggestedDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart>;
 
     /**
-     * Clears all the cart items from the cart of a current shopper.
-     * @summary Remove All Cart Items
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
+    * Clears all the cart items from the cart of a current shopper.
+    * @summary Remove All Cart Items
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
     removeAllCartItemsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>>;
 
     /**
-     * Clears all the cart items from the cart of a current shopper.
-     * Remove All Cart Items
-     */
+    * Clears all the cart items from the cart of a current shopper.
+    * Remove All Cart Items
+    */
     removeAllCartItems(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart>;
 
     /**
-     * Clears all the cart items from the cart by the cartId.
-     * @summary Remove All Cart Items By CartId
-     * @param {string} cartId Unique identifier of the cart.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    removeAllCartItemsByCartIdRaw(requestParameters: RemoveAllCartItemsByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>>;
+    * Clears all the cart items from the cart by the cartId.
+    * @summary Remove All Cart Items By CartId
+    * @param {string} cartId Unique identifier of the cart.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    removeAllCartItemsByCartIdRaw(requestParameters: cartApiParams.RemoveAllCartItemsByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>>;
 
     /**
-     * Clears all the cart items from the cart by the cartId.
-     * Remove All Cart Items By CartId
-     */
-    removeAllCartItemsByCartId(requestParameters: RemoveAllCartItemsByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart>;
+    * Clears all the cart items from the cart by the cartId.
+    * Remove All Cart Items By CartId
+    */
+    removeAllCartItemsByCartId(requestParameters: cartApiParams.RemoveAllCartItemsByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart>;
 
     /**
-     * Removes all messages associated with the cart of the current shopper.
-     * @summary Remove All Messages
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
+    * Removes all messages associated with the cart of the current shopper.
+    * @summary Remove All Messages
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
     removeAllMessagesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Removes all messages associated with the cart of the current shopper.
-     * Remove All Messages
-     */
+    * Removes all messages associated with the cart of the current shopper.
+    * Remove All Messages
+    */
     removeAllMessages(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Remove Coupon
-     * @summary Remove Coupon
-     * @param {string} cartId Unique identifier of the cart with the coupon you want to remove.
-     * @param {string} couponCode Coupon code to remove.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    removeCouponRaw(requestParameters: RemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>>;
+    * Remove Coupon
+    * @summary Remove Coupon
+    * @param {string} cartId Unique identifier of the cart with the coupon you want to remove.
+    * @param {string} couponCode Coupon code to remove.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    removeCouponRaw(requestParameters: cartApiParams.RemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>>;
 
     /**
-     * Remove Coupon
-     * Remove Coupon
-     */
-    removeCoupon(requestParameters: RemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart>;
+    * Remove Coupon
+    * Remove Coupon
+    */
+    removeCoupon(requestParameters: cartApiParams.RemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart>;
 
     /**
-     * Removes all coupons that had been previously applied to the cart.
-     * @summary Remove Coupons
-     * @param {string} cartId Unique identifier of the cart with the coupon you want to remove.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    removeCouponsRaw(requestParameters: RemoveCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>>;
+    * Removes all coupons that had been previously applied to the cart.
+    * @summary Remove Coupons
+    * @param {string} cartId Unique identifier of the cart with the coupon you want to remove.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    removeCouponsRaw(requestParameters: cartApiParams.RemoveCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>>;
 
     /**
-     * Removes all coupons that had been previously applied to the cart.
-     * Remove Coupons
-     */
-    removeCoupons(requestParameters: RemoveCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart>;
+    * Removes all coupons that had been previously applied to the cart.
+    * Remove Coupons
+    */
+    removeCoupons(requestParameters: cartApiParams.RemoveCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart>;
 
     /**
-     * Removes a single message associated with the cart of the current shopper specified by messageId.
-     * @summary Remove Message
-     * @param {string} messageId Unique identifier of the message to delete.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    removeMessageRaw(requestParameters: RemoveMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Removes a single message associated with the cart of the current shopper specified by messageId.
+    * @summary Remove Message
+    * @param {string} messageId Unique identifier of the message to delete.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    removeMessageRaw(requestParameters: cartApiParams.RemoveMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Removes a single message associated with the cart of the current shopper specified by messageId.
-     * Remove Message
-     */
-    removeMessage(requestParameters: RemoveMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Removes a single message associated with the cart of the current shopper specified by messageId.
+    * Remove Message
+    */
+    removeMessage(requestParameters: cartApiParams.RemoveMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Updates the cart of the current shopper.
-     * @summary Update Cart
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Cart} [cart] All properties of the cart to update. Required property: Product.ProductCode.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    updateCartRaw(requestParameters: UpdateCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>>;
+    * Updates the cart of the current shopper.
+    * @summary Update Cart
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Cart} [cart] All properties of the cart to update. Required property: Product.ProductCode.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    updateCartRaw(requestParameters: cartApiParams.UpdateCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>>;
 
     /**
-     * Updates the cart of the current shopper.
-     * Update Cart
-     */
-    updateCart(requestParameters: UpdateCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart>;
+    * Updates the cart of the current shopper.
+    * Update Cart
+    */
+    updateCart(requestParameters: cartApiParams.UpdateCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart>;
 
     /**
-     * Updates the cart specified by cart ID
-     * @summary Update Cart By Cart Id
-     * @param {string} cartId Unique identifier of the cart.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Cart} [cart] All properties of the cart to update. Required property: Product.ProductCode.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    updateCartByCartIdRaw(requestParameters: UpdateCartByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>>;
+    * Updates the cart specified by cart ID
+    * @summary Update Cart By Cart Id
+    * @param {string} cartId Unique identifier of the cart.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Cart} [cart] All properties of the cart to update. Required property: Product.ProductCode.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    updateCartByCartIdRaw(requestParameters: cartApiParams.UpdateCartByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>>;
 
     /**
-     * Updates the cart specified by cart ID
-     * Update Cart By Cart Id
-     */
-    updateCartByCartId(requestParameters: UpdateCartByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart>;
+    * Updates the cart specified by cart ID
+    * Update Cart By Cart Id
+    */
+    updateCartByCartId(requestParameters: cartApiParams.UpdateCartByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart>;
 
     /**
-     * Updates a particular cart item in the cart of the current shopper.
-     * @summary Update Cart Item
-     * @param {string} cartItemId Unique identifier of the cart item.
-     * @param {string} [zipCode] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CartItem} [cartItem] All properties of the updated cart item. Required property: Product.ProductCode.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    updateCartItemRaw(requestParameters: UpdateCartItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>>;
+    * Updates a particular cart item in the cart of the current shopper.
+    * @summary Update Cart Item
+    * @param {string} cartItemId Unique identifier of the cart item.
+    * @param {string} [zipCode] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CartItem} [cartItem] All properties of the updated cart item. Required property: Product.ProductCode.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    updateCartItemRaw(requestParameters: cartApiParams.UpdateCartItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>>;
 
     /**
-     * Updates a particular cart item in the cart of the current shopper.
-     * Update Cart Item
-     */
-    updateCartItem(requestParameters: UpdateCartItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem>;
+    * Updates a particular cart item in the cart of the current shopper.
+    * Update Cart Item
+    */
+    updateCartItem(requestParameters: cartApiParams.UpdateCartItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem>;
 
     /**
-     * Updates a particular cart item in the cart specified by card Id.
-     * @summary Update Cart Item By CartId
-     * @param {string} cartId Unique identifier of the cart.
-     * @param {string} cartItemId Unique identifier of the cart item.
-     * @param {string} [zipCode] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CartItem} [cartItem] All properties of the updated cart item. Required property: Product.ProductCode.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    updateCartItemByCartIdRaw(requestParameters: UpdateCartItemByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>>;
+    * Updates a particular cart item in the cart specified by card Id.
+    * @summary Update Cart Item By CartId
+    * @param {string} cartId Unique identifier of the cart.
+    * @param {string} cartItemId Unique identifier of the cart item.
+    * @param {string} [zipCode] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CartItem} [cartItem] All properties of the updated cart item. Required property: Product.ProductCode.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    updateCartItemByCartIdRaw(requestParameters: cartApiParams.UpdateCartItemByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>>;
 
     /**
-     * Updates a particular cart item in the cart specified by card Id.
-     * Update Cart Item By CartId
-     */
-    updateCartItemByCartId(requestParameters: UpdateCartItemByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem>;
+    * Updates a particular cart item in the cart specified by card Id.
+    * Update Cart Item By CartId
+    */
+    updateCartItemByCartId(requestParameters: cartApiParams.UpdateCartItemByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem>;
 
     /**
-     * Updates the quantity of an individual cart item in the cart of the current shopper.
-     * @summary Update Cart Item Quantity
-     * @param {string} cartItemId Unique identifier of the cart item.
-     * @param {number} quantity New quantity for the specified cart item.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    updateCartItemQuantityRaw(requestParameters: UpdateCartItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>>;
+    * Updates the quantity of an individual cart item in the cart of the current shopper.
+    * @summary Update Cart Item Quantity
+    * @param {string} cartItemId Unique identifier of the cart item.
+    * @param {number} quantity New quantity for the specified cart item.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    updateCartItemQuantityRaw(requestParameters: cartApiParams.UpdateCartItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>>;
 
     /**
-     * Updates the quantity of an individual cart item in the cart of the current shopper.
-     * Update Cart Item Quantity
-     */
-    updateCartItemQuantity(requestParameters: UpdateCartItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem>;
+    * Updates the quantity of an individual cart item in the cart of the current shopper.
+    * Update Cart Item Quantity
+    */
+    updateCartItemQuantity(requestParameters: cartApiParams.UpdateCartItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem>;
 
     /**
-     * Updates the quantity of an individual cart item in the cart specified by cart Id.
-     * @summary Update Cart Item Quantity By CartId
-     * @param {string} cartId Unique identifier of the cart.
-     * @param {string} cartItemId Unique identifier of the cart item.
-     * @param {number} quantity New quantity for the specified cart item.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    updateCartItemQuantityByCartIdRaw(requestParameters: UpdateCartItemQuantityByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>>;
+    * Updates the quantity of an individual cart item in the cart specified by cart Id.
+    * @summary Update Cart Item Quantity By CartId
+    * @param {string} cartId Unique identifier of the cart.
+    * @param {string} cartItemId Unique identifier of the cart item.
+    * @param {number} quantity New quantity for the specified cart item.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    updateCartItemQuantityByCartIdRaw(requestParameters: cartApiParams.UpdateCartItemQuantityByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>>;
 
     /**
-     * Updates the quantity of an individual cart item in the cart specified by cart Id.
-     * Update Cart Item Quantity By CartId
-     */
-    updateCartItemQuantityByCartId(requestParameters: UpdateCartItemQuantityByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem>;
+    * Updates the quantity of an individual cart item in the cart specified by cart Id.
+    * Update Cart Item Quantity By CartId
+    */
+    updateCartItemQuantityByCartId(requestParameters: cartApiParams.UpdateCartItemQuantityByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem>;
 
     /**
-     * Update extended properties on the current cart.
-     * @summary Update Extended Properties
-     * @param {boolean} [upsert] Allow insert or update
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Array<ExtendedProperty>} [extendedProperty] Extended properties
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    updateExtendedPropertiesRaw(requestParameters: UpdateExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtendedProperty>>>;
+    * Update extended properties on the current cart.
+    * @summary Update Extended Properties
+    * @param {boolean} [upsert] Allow insert or update
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<ExtendedProperty>} [extendedProperty] Extended properties
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    updateExtendedPropertiesRaw(requestParameters: cartApiParams.UpdateExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtendedProperty>>>;
 
     /**
-     * Update extended properties on the current cart.
-     * Update Extended Properties
-     */
-    updateExtendedProperties(requestParameters: UpdateExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtendedProperty>>;
+    * Update extended properties on the current cart.
+    * Update Extended Properties
+    */
+    updateExtendedProperties(requestParameters: cartApiParams.UpdateExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtendedProperty>>;
 
     /**
-     * Update extended property on the current cart using the key.
-     * @summary Update extended property
-     * @param {string} key Unique identifier of the cart item
-     * @param {boolean} [upsert] Extended property
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {ExtendedProperty} [extendedProperty] Extended property
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    updateExtendedPropertyRaw(requestParameters: UpdateExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtendedProperty>>;
+    * Update extended property on the current cart using the key.
+    * @summary Update extended property
+    * @param {string} key Unique identifier of the cart item
+    * @param {boolean} [upsert] Extended property
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ExtendedProperty} [extendedProperty] Extended property
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    updateExtendedPropertyRaw(requestParameters: cartApiParams.UpdateExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtendedProperty>>;
 
     /**
-     * Update extended property on the current cart using the key.
-     * Update extended property
-     */
-    updateExtendedProperty(requestParameters: UpdateExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtendedProperty>;
+    * Update extended property on the current cart using the key.
+    * Update extended property
+    */
+    updateExtendedProperty(requestParameters: cartApiParams.UpdateExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtendedProperty>;
 
     /**
-     * Updates the cart of the user specified by user ID.
-     * @summary Update User Cart
-     * @param {string} userId Unique identifier of the user.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Cart} [cart] All properties of the cart to update. Required property: Product.ProductCode.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CartApiInterface
-     */
-    updateUserCartRaw(requestParameters: UpdateUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>>;
+    * Updates the cart of the user specified by user ID.
+    * @summary Update User Cart
+    * @param {string} userId Unique identifier of the user.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Cart} [cart] All properties of the cart to update. Required property: Product.ProductCode.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CartApiInterface
+    */
+    updateUserCartRaw(requestParameters: cartApiParams.UpdateUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>>;
 
     /**
-     * Updates the cart of the user specified by user ID.
-     * Update User Cart
-     */
-    updateUserCart(requestParameters: UpdateUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart>;
+    * Updates the cart of the user specified by user ID.
+    * Update User Cart
+    */
+    updateUserCart(requestParameters: cartApiParams.UpdateUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart>;
 
 }
+
 
 /**
  * 
  */
-export class CartApi extends runtime.BaseAPI implements CartApiInterface {
+export class CartApi extends runtime.BaseAPI implements CartApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -972,7 +937,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async addExtendedPropertiesRaw(requestParameters: AddExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtendedProperty>>> {
+    async addExtendedPropertiesRaw(requestParameters: cartApiParams.AddExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtendedProperty>>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -1004,7 +969,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Add Extended Properties on the current cart. Store an arbitrary number of cart extended properties such as tracking strings, marketing sources, affiliates, sales personnel/data, and so on, on a per cart basis. Each cart may have none, one, or more than one entry in the extended properties collection, and all values in the extended properties collection are represented as strings. When you create an order from a cart, all extended properties are retained from the cart and copied to the order.
      * Adds extended properties
      */
-    async addExtendedProperties(requestParameters: AddExtendedPropertiesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtendedProperty>> {
+    async addExtendedProperties(requestParameters: cartApiParams.AddExtendedPropertiesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtendedProperty>> {
         const response = await this.addExtendedPropertiesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1015,7 +980,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async addItemToCartRaw(requestParameters: AddItemToCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>> {
+    async addItemToCartRaw(requestParameters: cartApiParams.AddItemToCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>> {
         const queryParameters: any = {};
 
         if (requestParameters.zipCode !== undefined) {
@@ -1051,7 +1016,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Adds a product or other item to the cart of the current shopper.
      * Add Item To Cart
      */
-    async addItemToCart(requestParameters: AddItemToCartRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem> {
+    async addItemToCart(requestParameters: cartApiParams.AddItemToCartRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem> {
         const response = await this.addItemToCartRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1062,7 +1027,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async addItemToCartByCartIdRaw(requestParameters: AddItemToCartByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>> {
+    async addItemToCartByCartIdRaw(requestParameters: cartApiParams.AddItemToCartByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>> {
         if (requestParameters.cartId === null || requestParameters.cartId === undefined) {
             throw new runtime.RequiredError('cartId','Required parameter requestParameters.cartId was null or undefined when calling addItemToCartByCartId.');
         }
@@ -1102,7 +1067,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * \"Adds a product or a cart item to the cart specified by the cart ID.
      * Add Item To Cart By CartId
      */
-    async addItemToCartByCartId(requestParameters: AddItemToCartByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem> {
+    async addItemToCartByCartId(requestParameters: cartApiParams.AddItemToCartByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem> {
         const response = await this.addItemToCartByCartIdRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1113,7 +1078,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async addItemsToCartRaw(requestParameters: AddItemsToCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addItemsToCartRaw(requestParameters: cartApiParams.AddItemsToCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         if (requestParameters.throwErrorOnInvalidItems !== undefined) {
@@ -1153,7 +1118,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Adds multiple cart items to the cart of the current shopper.
      * Add Items To Cart
      */
-    async addItemsToCart(requestParameters: AddItemsToCartRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async addItemsToCart(requestParameters: cartApiParams.AddItemsToCartRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.addItemsToCartRaw(requestParameters, initOverrides);
     }
 
@@ -1163,7 +1128,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async addItemsToCartByCartIdRaw(requestParameters: AddItemsToCartByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addItemsToCartByCartIdRaw(requestParameters: cartApiParams.AddItemsToCartByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.cartId === null || requestParameters.cartId === undefined) {
             throw new runtime.RequiredError('cartId','Required parameter requestParameters.cartId was null or undefined when calling addItemsToCartByCartId.');
         }
@@ -1207,7 +1172,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Adds multiple cart items to the cart specified by cartId.
      * Add Items To Cart By CartId
      */
-    async addItemsToCartByCartId(requestParameters: AddItemsToCartByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async addItemsToCartByCartId(requestParameters: cartApiParams.AddItemsToCartByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.addItemsToCartByCartIdRaw(requestParameters, initOverrides);
     }
 
@@ -1217,7 +1182,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async applyCouponRaw(requestParameters: ApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>> {
+    async applyCouponRaw(requestParameters: cartApiParams.ApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>> {
         if (requestParameters.cartId === null || requestParameters.cartId === undefined) {
             throw new runtime.RequiredError('cartId','Required parameter requestParameters.cartId was null or undefined when calling applyCoupon.');
         }
@@ -1254,7 +1219,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Apply coupon to the cart.
      * Apply Coupon
      */
-    async applyCoupon(requestParameters: ApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart> {
+    async applyCoupon(requestParameters: cartApiParams.ApplyCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart> {
         const response = await this.applyCouponRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1265,7 +1230,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async deleteCartRaw(requestParameters: DeleteCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteCartRaw(requestParameters: cartApiParams.DeleteCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.cartId === null || requestParameters.cartId === undefined) {
             throw new runtime.RequiredError('cartId','Required parameter requestParameters.cartId was null or undefined when calling deleteCart.');
         }
@@ -1294,7 +1259,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Deletes the cart by cart ID.
      * Delete cart
      */
-    async deleteCart(requestParameters: DeleteCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteCart(requestParameters: cartApiParams.DeleteCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteCartRaw(requestParameters, initOverrides);
     }
 
@@ -1304,7 +1269,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async deleteCartItemRaw(requestParameters: DeleteCartItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteCartItemRaw(requestParameters: cartApiParams.DeleteCartItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.cartItemId === null || requestParameters.cartItemId === undefined) {
             throw new runtime.RequiredError('cartItemId','Required parameter requestParameters.cartItemId was null or undefined when calling deleteCartItem.');
         }
@@ -1333,7 +1298,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Removes a particular cart item from the cart of the current shopper.
      * Delete Cart Item
      */
-    async deleteCartItem(requestParameters: DeleteCartItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteCartItem(requestParameters: cartApiParams.DeleteCartItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteCartItemRaw(requestParameters, initOverrides);
     }
 
@@ -1343,7 +1308,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async deleteCartItemByCartIdRaw(requestParameters: DeleteCartItemByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteCartItemByCartIdRaw(requestParameters: cartApiParams.DeleteCartItemByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.cartId === null || requestParameters.cartId === undefined) {
             throw new runtime.RequiredError('cartId','Required parameter requestParameters.cartId was null or undefined when calling deleteCartItemByCartId.');
         }
@@ -1376,7 +1341,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Removes a particular cart item from the cart specified by cart item Id and cart Id.
      * Delete Cart Item By CartId
      */
-    async deleteCartItemByCartId(requestParameters: DeleteCartItemByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteCartItemByCartId(requestParameters: cartApiParams.DeleteCartItemByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteCartItemByCartIdRaw(requestParameters, initOverrides);
     }
 
@@ -1421,7 +1386,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async deleteExtendedPropertiesRaw(requestParameters: DeleteExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteExtendedPropertiesRaw(requestParameters: cartApiParams.DeleteExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1449,7 +1414,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Delete extended properties on the current cart.
      * Delete extended properties.
      */
-    async deleteExtendedProperties(requestParameters: DeleteExtendedPropertiesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteExtendedProperties(requestParameters: cartApiParams.DeleteExtendedPropertiesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteExtendedPropertiesRaw(requestParameters, initOverrides);
     }
 
@@ -1459,7 +1424,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async deleteExtendedPropertyRaw(requestParameters: DeleteExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteExtendedPropertyRaw(requestParameters: cartApiParams.DeleteExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.key === null || requestParameters.key === undefined) {
             throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling deleteExtendedProperty.');
         }
@@ -1488,7 +1453,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Delete extended property on the current cart using the key.
      * Delete Extended Property
      */
-    async deleteExtendedProperty(requestParameters: DeleteExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteExtendedProperty(requestParameters: cartApiParams.DeleteExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteExtendedPropertyRaw(requestParameters, initOverrides);
     }
 
@@ -1498,7 +1463,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async deleteUserCartRaw(requestParameters: DeleteUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteUserCartRaw(requestParameters: cartApiParams.DeleteUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.userId === null || requestParameters.userId === undefined) {
             throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling deleteUserCart.');
         }
@@ -1527,7 +1492,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Deletes the cart of the user by user ID.
      * Delete User Cart
      */
-    async deleteUserCart(requestParameters: DeleteUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteUserCart(requestParameters: cartApiParams.DeleteUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteUserCartRaw(requestParameters, initOverrides);
     }
 
@@ -1537,7 +1502,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async getCartRaw(requestParameters: GetCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>> {
+    async getCartRaw(requestParameters: cartApiParams.GetCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>> {
         if (requestParameters.cartId === null || requestParameters.cartId === undefined) {
             throw new runtime.RequiredError('cartId','Required parameter requestParameters.cartId was null or undefined when calling getCart.');
         }
@@ -1570,7 +1535,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Retrieves the details of the cart specified by cart ID.
      * Get Cart
      */
-    async getCart(requestParameters: GetCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart> {
+    async getCart(requestParameters: cartApiParams.GetCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart> {
         const response = await this.getCartRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1581,7 +1546,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async getCartItemRaw(requestParameters: GetCartItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>> {
+    async getCartItemRaw(requestParameters: cartApiParams.GetCartItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>> {
         if (requestParameters.cartItemId === null || requestParameters.cartItemId === undefined) {
             throw new runtime.RequiredError('cartItemId','Required parameter requestParameters.cartItemId was null or undefined when calling getCartItem.');
         }
@@ -1614,7 +1579,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Retrieves an individual cart item from the cart of the current shopper specified by its cart item Id.
      * Get Cart Item
      */
-    async getCartItem(requestParameters: GetCartItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem> {
+    async getCartItem(requestParameters: cartApiParams.GetCartItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem> {
         const response = await this.getCartItemRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1625,7 +1590,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async getCartItemByCartIdRaw(requestParameters: GetCartItemByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>> {
+    async getCartItemByCartIdRaw(requestParameters: cartApiParams.GetCartItemByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>> {
         if (requestParameters.cartId === null || requestParameters.cartId === undefined) {
             throw new runtime.RequiredError('cartId','Required parameter requestParameters.cartId was null or undefined when calling getCartItemByCartId.');
         }
@@ -1662,7 +1627,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Retrieves an individual cart item from the cart by cart Id and cart item Id.
      * Get Cart Item By CartId
      */
-    async getCartItemByCartId(requestParameters: GetCartItemByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem> {
+    async getCartItemByCartId(requestParameters: cartApiParams.GetCartItemByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem> {
         const response = await this.getCartItemByCartIdRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1673,7 +1638,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async getCartItemsRaw(requestParameters: GetCartItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItemCollection>> {
+    async getCartItemsRaw(requestParameters: cartApiParams.GetCartItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItemCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -1702,7 +1667,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Retrieves the details of each cart item such as the product name, stock count, unit price, discounts, quantity ordered and total price
      * Get Cart Items
      */
-    async getCartItems(requestParameters: GetCartItemsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItemCollection> {
+    async getCartItems(requestParameters: cartApiParams.GetCartItemsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItemCollection> {
         const response = await this.getCartItemsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1713,7 +1678,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async getCartItemsByCartIdRaw(requestParameters: GetCartItemsByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItemCollection>> {
+    async getCartItemsByCartIdRaw(requestParameters: cartApiParams.GetCartItemsByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItemCollection>> {
         if (requestParameters.cartId === null || requestParameters.cartId === undefined) {
             throw new runtime.RequiredError('cartId','Required parameter requestParameters.cartId was null or undefined when calling getCartItemsByCartId.');
         }
@@ -1746,7 +1711,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Retrieves the details of each cart item such as the product name, stock count, unit price, discounts, quantity ordered and total price for the cart by cartId.
      * Get Cart Items By CartId
      */
-    async getCartItemsByCartId(requestParameters: GetCartItemsByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItemCollection> {
+    async getCartItemsByCartId(requestParameters: cartApiParams.GetCartItemsByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItemCollection> {
         const response = await this.getCartItemsByCartIdRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1757,7 +1722,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async getCartSummaryRaw(requestParameters: GetCartSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartSummary>> {
+    async getCartSummaryRaw(requestParameters: cartApiParams.GetCartSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartSummary>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -1786,7 +1751,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Retrieves the number of items in the active cart, total cost of items in the cart and the cart expiration. (Anonymous shoppers cart expires in 14 days.)
      * Get Cart Summary
      */
-    async getCartSummary(requestParameters: GetCartSummaryRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartSummary> {
+    async getCartSummary(requestParameters: cartApiParams.GetCartSummaryRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartSummary> {
         const response = await this.getCartSummaryRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1797,7 +1762,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async getCartSummaryByCartIdRaw(requestParameters: GetCartSummaryByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartSummary>> {
+    async getCartSummaryByCartIdRaw(requestParameters: cartApiParams.GetCartSummaryByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartSummary>> {
         if (requestParameters.cartId === null || requestParameters.cartId === undefined) {
             throw new runtime.RequiredError('cartId','Required parameter requestParameters.cartId was null or undefined when calling getCartSummaryByCartId.');
         }
@@ -1830,7 +1795,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Retrieves the number of items in the specified cart, total cost of items in the cart, and whether the cart has expired by cartId. All anonymous idle carts that do not proceed to checkout expire after 14 days.
      * Get Cart Summary By Cart Id
      */
-    async getCartSummaryByCartId(requestParameters: GetCartSummaryByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartSummary> {
+    async getCartSummaryByCartId(requestParameters: cartApiParams.GetCartSummaryByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartSummary> {
         const response = await this.getCartSummaryByCartIdRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1841,7 +1806,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async getExtendedPropertiesRaw(requestParameters: GetExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtendedProperty>>> {
+    async getExtendedPropertiesRaw(requestParameters: cartApiParams.GetExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtendedProperty>>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -1870,7 +1835,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Get extended properties on a cart.
      * Get Extended Properties
      */
-    async getExtendedProperties(requestParameters: GetExtendedPropertiesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtendedProperty>> {
+    async getExtendedProperties(requestParameters: cartApiParams.GetExtendedPropertiesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtendedProperty>> {
         const response = await this.getExtendedPropertiesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1881,7 +1846,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async getMessagesRaw(requestParameters: GetMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartChangeMessageCollection>> {
+    async getMessagesRaw(requestParameters: cartApiParams.GetMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartChangeMessageCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -1910,7 +1875,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Retrieves messages to and from the current shopper. These are messages supplied by the system to notify the shopper of price increases or decreases or product unavailability.
      * Get Messages
      */
-    async getMessages(requestParameters: GetMessagesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartChangeMessageCollection> {
+    async getMessages(requestParameters: cartApiParams.GetMessagesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartChangeMessageCollection> {
         const response = await this.getMessagesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1921,7 +1886,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async getOrCreateCartRaw(requestParameters: GetOrCreateCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>> {
+    async getOrCreateCartRaw(requestParameters: cartApiParams.GetOrCreateCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -1950,7 +1915,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Retrieves a cart\'s contents for the current shopper.  If the shopper does not have an active cart on the site, one is created.
      * Get Or Create Cart
      */
-    async getOrCreateCart(requestParameters: GetOrCreateCartRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart> {
+    async getOrCreateCart(requestParameters: cartApiParams.GetOrCreateCartRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart> {
         const response = await this.getOrCreateCartRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1961,7 +1926,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async getOrCreateUserCartRaw(requestParameters: GetOrCreateUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>> {
+    async getOrCreateUserCartRaw(requestParameters: cartApiParams.GetOrCreateUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>> {
         if (requestParameters.userId === null || requestParameters.userId === undefined) {
             throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getOrCreateUserCart.');
         }
@@ -1994,7 +1959,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Get the current cart or create a new cart for the user specified by user ID.
      * Get Or Create User Cart
      */
-    async getOrCreateUserCart(requestParameters: GetOrCreateUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart> {
+    async getOrCreateUserCart(requestParameters: cartApiParams.GetOrCreateUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart> {
         const response = await this.getOrCreateUserCartRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2005,7 +1970,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async getUserCartRaw(requestParameters: GetUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>> {
+    async getUserCartRaw(requestParameters: cartApiParams.GetUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>> {
         if (requestParameters.userId === null || requestParameters.userId === undefined) {
             throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getUserCart.');
         }
@@ -2038,7 +2003,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Retrieves the details of the user\'s cart from the user ID.Shoppers are not allowed to execute this call. If this ever changes, then auth logic will need to be added
      * Get User Cart
      */
-    async getUserCart(requestParameters: GetUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart> {
+    async getUserCart(requestParameters: cartApiParams.GetUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart> {
         const response = await this.getUserCartRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2049,7 +2014,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async getUserCartSummaryRaw(requestParameters: GetUserCartSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartSummary>> {
+    async getUserCartSummaryRaw(requestParameters: cartApiParams.GetUserCartSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartSummary>> {
         if (requestParameters.userId === null || requestParameters.userId === undefined) {
             throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getUserCartSummary.');
         }
@@ -2082,7 +2047,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Retrieves the number of items in the active cart, total cost of items in the cart and the cart expiration by userId. All anonymous idle carts that do not proceed to checkout expire after 14 days.
      * Get User Cart Summary
      */
-    async getUserCartSummary(requestParameters: GetUserCartSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartSummary> {
+    async getUserCartSummary(requestParameters: cartApiParams.GetUserCartSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartSummary> {
         const response = await this.getUserCartSummaryRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2093,7 +2058,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async rejectSuggestedDiscountRaw(requestParameters: RejectSuggestedDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>> {
+    async rejectSuggestedDiscountRaw(requestParameters: cartApiParams.RejectSuggestedDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>> {
         if (requestParameters.cartId === null || requestParameters.cartId === undefined) {
             throw new runtime.RequiredError('cartId','Required parameter requestParameters.cartId was null or undefined when calling rejectSuggestedDiscount.');
         }
@@ -2130,7 +2095,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Reject Suggested Discount
      * Reject Suggested Discount
      */
-    async rejectSuggestedDiscount(requestParameters: RejectSuggestedDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart> {
+    async rejectSuggestedDiscount(requestParameters: cartApiParams.RejectSuggestedDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart> {
         const response = await this.rejectSuggestedDiscountRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2177,7 +2142,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async removeAllCartItemsByCartIdRaw(requestParameters: RemoveAllCartItemsByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>> {
+    async removeAllCartItemsByCartIdRaw(requestParameters: cartApiParams.RemoveAllCartItemsByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>> {
         if (requestParameters.cartId === null || requestParameters.cartId === undefined) {
             throw new runtime.RequiredError('cartId','Required parameter requestParameters.cartId was null or undefined when calling removeAllCartItemsByCartId.');
         }
@@ -2206,7 +2171,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Clears all the cart items from the cart by the cartId.
      * Remove All Cart Items By CartId
      */
-    async removeAllCartItemsByCartId(requestParameters: RemoveAllCartItemsByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart> {
+    async removeAllCartItemsByCartId(requestParameters: cartApiParams.RemoveAllCartItemsByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart> {
         const response = await this.removeAllCartItemsByCartIdRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2252,7 +2217,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async removeCouponRaw(requestParameters: RemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>> {
+    async removeCouponRaw(requestParameters: cartApiParams.RemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>> {
         if (requestParameters.cartId === null || requestParameters.cartId === undefined) {
             throw new runtime.RequiredError('cartId','Required parameter requestParameters.cartId was null or undefined when calling removeCoupon.');
         }
@@ -2285,7 +2250,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Remove Coupon
      * Remove Coupon
      */
-    async removeCoupon(requestParameters: RemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart> {
+    async removeCoupon(requestParameters: cartApiParams.RemoveCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart> {
         const response = await this.removeCouponRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2296,7 +2261,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async removeCouponsRaw(requestParameters: RemoveCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>> {
+    async removeCouponsRaw(requestParameters: cartApiParams.RemoveCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>> {
         if (requestParameters.cartId === null || requestParameters.cartId === undefined) {
             throw new runtime.RequiredError('cartId','Required parameter requestParameters.cartId was null or undefined when calling removeCoupons.');
         }
@@ -2325,7 +2290,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Removes all coupons that had been previously applied to the cart.
      * Remove Coupons
      */
-    async removeCoupons(requestParameters: RemoveCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart> {
+    async removeCoupons(requestParameters: cartApiParams.RemoveCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart> {
         const response = await this.removeCouponsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2336,7 +2301,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async removeMessageRaw(requestParameters: RemoveMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async removeMessageRaw(requestParameters: cartApiParams.RemoveMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.messageId === null || requestParameters.messageId === undefined) {
             throw new runtime.RequiredError('messageId','Required parameter requestParameters.messageId was null or undefined when calling removeMessage.');
         }
@@ -2365,7 +2330,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Removes a single message associated with the cart of the current shopper specified by messageId.
      * Remove Message
      */
-    async removeMessage(requestParameters: RemoveMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async removeMessage(requestParameters: cartApiParams.RemoveMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.removeMessageRaw(requestParameters, initOverrides);
     }
 
@@ -2375,7 +2340,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async updateCartRaw(requestParameters: UpdateCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>> {
+    async updateCartRaw(requestParameters: cartApiParams.UpdateCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -2407,7 +2372,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Updates the cart of the current shopper.
      * Update Cart
      */
-    async updateCart(requestParameters: UpdateCartRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart> {
+    async updateCart(requestParameters: cartApiParams.UpdateCartRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart> {
         const response = await this.updateCartRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2418,7 +2383,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async updateCartByCartIdRaw(requestParameters: UpdateCartByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>> {
+    async updateCartByCartIdRaw(requestParameters: cartApiParams.UpdateCartByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>> {
         if (requestParameters.cartId === null || requestParameters.cartId === undefined) {
             throw new runtime.RequiredError('cartId','Required parameter requestParameters.cartId was null or undefined when calling updateCartByCartId.');
         }
@@ -2454,7 +2419,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Updates the cart specified by cart ID
      * Update Cart By Cart Id
      */
-    async updateCartByCartId(requestParameters: UpdateCartByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart> {
+    async updateCartByCartId(requestParameters: cartApiParams.UpdateCartByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart> {
         const response = await this.updateCartByCartIdRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2465,7 +2430,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async updateCartItemRaw(requestParameters: UpdateCartItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>> {
+    async updateCartItemRaw(requestParameters: cartApiParams.UpdateCartItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>> {
         if (requestParameters.cartItemId === null || requestParameters.cartItemId === undefined) {
             throw new runtime.RequiredError('cartItemId','Required parameter requestParameters.cartItemId was null or undefined when calling updateCartItem.');
         }
@@ -2505,7 +2470,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Updates a particular cart item in the cart of the current shopper.
      * Update Cart Item
      */
-    async updateCartItem(requestParameters: UpdateCartItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem> {
+    async updateCartItem(requestParameters: cartApiParams.UpdateCartItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem> {
         const response = await this.updateCartItemRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2516,7 +2481,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async updateCartItemByCartIdRaw(requestParameters: UpdateCartItemByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>> {
+    async updateCartItemByCartIdRaw(requestParameters: cartApiParams.UpdateCartItemByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>> {
         if (requestParameters.cartId === null || requestParameters.cartId === undefined) {
             throw new runtime.RequiredError('cartId','Required parameter requestParameters.cartId was null or undefined when calling updateCartItemByCartId.');
         }
@@ -2560,7 +2525,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Updates a particular cart item in the cart specified by card Id.
      * Update Cart Item By CartId
      */
-    async updateCartItemByCartId(requestParameters: UpdateCartItemByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem> {
+    async updateCartItemByCartId(requestParameters: cartApiParams.UpdateCartItemByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem> {
         const response = await this.updateCartItemByCartIdRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2571,7 +2536,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async updateCartItemQuantityRaw(requestParameters: UpdateCartItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>> {
+    async updateCartItemQuantityRaw(requestParameters: cartApiParams.UpdateCartItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>> {
         if (requestParameters.cartItemId === null || requestParameters.cartItemId === undefined) {
             throw new runtime.RequiredError('cartItemId','Required parameter requestParameters.cartItemId was null or undefined when calling updateCartItemQuantity.');
         }
@@ -2608,7 +2573,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Updates the quantity of an individual cart item in the cart of the current shopper.
      * Update Cart Item Quantity
      */
-    async updateCartItemQuantity(requestParameters: UpdateCartItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem> {
+    async updateCartItemQuantity(requestParameters: cartApiParams.UpdateCartItemQuantityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem> {
         const response = await this.updateCartItemQuantityRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2619,7 +2584,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async updateCartItemQuantityByCartIdRaw(requestParameters: UpdateCartItemQuantityByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>> {
+    async updateCartItemQuantityByCartIdRaw(requestParameters: cartApiParams.UpdateCartItemQuantityByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CartItem>> {
         if (requestParameters.cartId === null || requestParameters.cartId === undefined) {
             throw new runtime.RequiredError('cartId','Required parameter requestParameters.cartId was null or undefined when calling updateCartItemQuantityByCartId.');
         }
@@ -2660,7 +2625,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Updates the quantity of an individual cart item in the cart specified by cart Id.
      * Update Cart Item Quantity By CartId
      */
-    async updateCartItemQuantityByCartId(requestParameters: UpdateCartItemQuantityByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem> {
+    async updateCartItemQuantityByCartId(requestParameters: cartApiParams.UpdateCartItemQuantityByCartIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CartItem> {
         const response = await this.updateCartItemQuantityByCartIdRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2671,7 +2636,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async updateExtendedPropertiesRaw(requestParameters: UpdateExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtendedProperty>>> {
+    async updateExtendedPropertiesRaw(requestParameters: cartApiParams.UpdateExtendedPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExtendedProperty>>> {
         const queryParameters: any = {};
 
         if (requestParameters.upsert !== undefined) {
@@ -2707,7 +2672,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Update extended properties on the current cart.
      * Update Extended Properties
      */
-    async updateExtendedProperties(requestParameters: UpdateExtendedPropertiesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtendedProperty>> {
+    async updateExtendedProperties(requestParameters: cartApiParams.UpdateExtendedPropertiesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExtendedProperty>> {
         const response = await this.updateExtendedPropertiesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2718,7 +2683,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async updateExtendedPropertyRaw(requestParameters: UpdateExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtendedProperty>> {
+    async updateExtendedPropertyRaw(requestParameters: cartApiParams.UpdateExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtendedProperty>> {
         if (requestParameters.key === null || requestParameters.key === undefined) {
             throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling updateExtendedProperty.');
         }
@@ -2758,7 +2723,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Update extended property on the current cart using the key.
      * Update extended property
      */
-    async updateExtendedProperty(requestParameters: UpdateExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtendedProperty> {
+    async updateExtendedProperty(requestParameters: cartApiParams.UpdateExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtendedProperty> {
         const response = await this.updateExtendedPropertyRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2769,7 +2734,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      */
 
 
-    async updateUserCartRaw(requestParameters: UpdateUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>> {
+    async updateUserCartRaw(requestParameters: cartApiParams.UpdateUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Cart>> {
         if (requestParameters.userId === null || requestParameters.userId === undefined) {
             throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling updateUserCart.');
         }
@@ -2805,7 +2770,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiInterface {
      * Updates the cart of the user specified by user ID.
      * Update User Cart
      */
-    async updateUserCart(requestParameters: UpdateUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart> {
+    async updateUserCart(requestParameters: cartApiParams.UpdateUserCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Cart> {
         const response = await this.updateUserCartRaw(requestParameters, initOverrides);
         return await response.value();
     }

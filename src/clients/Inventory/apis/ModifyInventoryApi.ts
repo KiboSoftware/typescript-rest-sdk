@@ -28,167 +28,153 @@ import type {
   RefreshRequest,
 } from '../models';
 
-export interface DeleteRequest {
-    xVolTenant: number;
-    deleteItemRequest: DeleteItemRequest;
-    xVolSite?: number;
-    responseFields?: string;
-}
 
-export interface AdjustOperationRequest {
-    xVolTenant: number;
-    adjustRequest: AdjustRequest;
-    responseFields?: string;
+export namespace modifyInventoryApiParams { 
+    export interface DeleteRequest {
+        xVolTenant: number;
+        deleteItemRequest: DeleteItemRequest;
+        xVolSite?: number;
+    }
+    export interface AdjustOperationRequest {
+        xVolTenant: number;
+        adjustRequest: AdjustRequest;
+    }
+    export interface DeleteFutureInventoryRequest {
+        xVolTenant: number;
+        deleteFutureItemRequest: DeleteFutureItemRequest;
+        xVolSite?: number;
+    }
+    export interface DeleteItemsOperationRequest {
+        xVolTenant: number;
+        deleteItemsRequest: DeleteItemsRequest;
+        xVolSite?: number;
+    }
+    export interface RedistributeInventoryAcrossTagsRequest {
+        xVolTenant: number;
+    }
+    export interface RefreshOperationRequest {
+        xVolTenant: number;
+        refreshRequest: RefreshRequest;
+    }
 }
-
-export interface DeleteFutureInventoryRequest {
-    xVolTenant: number;
-    deleteFutureItemRequest: DeleteFutureItemRequest;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface DeleteItemsOperationRequest {
-    xVolTenant: number;
-    deleteItemsRequest: DeleteItemsRequest;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface RedistributeInventoryAcrossTagsRequest {
-    xVolTenant: number;
-    responseFields?: string;
-}
-
-export interface RefreshOperationRequest {
-    xVolTenant: number;
-    refreshRequest: RefreshRequest;
-    responseFields?: string;
-}
-
 /**
- * ModifyInventoryApi - interface
- * 
- * @export
- * @interface ModifyInventoryApiInterface
- */
-export interface ModifyInventoryApiInterface {
+* ModifyInventoryApiService - interface
+* 
+* @export
+* @interface ModifyInventoryApi
+*/
+export interface ModifyInventoryApiService {
     /**
-     * Delete Inventory
-     * @summary Delete
-     * @param {number} xVolTenant Tenant ID
-     * @param {DeleteItemRequest} deleteItemRequest Request to delete item(s)
-     * @param {number} [xVolSite] Site ID
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ModifyInventoryApiInterface
-     */
-    _deleteRaw(requestParameters: DeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteItemResponse>>;
+    * Delete Inventory
+    * @summary Delete
+    * @param {number} xVolTenant Tenant ID
+    * @param {DeleteItemRequest} deleteItemRequest Request to delete item(s)
+    * @param {number} [xVolSite] Site ID
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ModifyInventoryApiInterface
+    */
+    _deleteRaw(requestParameters: modifyInventoryApiParams.DeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteItemResponse>>;
 
     /**
-     * Delete Inventory
-     * Delete
-     */
-    _delete(requestParameters: DeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteItemResponse>;
+    * Delete Inventory
+    * Delete
+    */
+    _delete(requestParameters: modifyInventoryApiParams.DeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteItemResponse>;
 
     /**
-     * Adjust Inventory
-     * @summary Adjust
-     * @param {number} xVolTenant Tenant ID
-     * @param {AdjustRequest} adjustRequest Request to adjust inventory
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ModifyInventoryApiInterface
-     */
-    adjustRaw(requestParameters: AdjustOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobIDResponse>>;
+    * Adjust Inventory
+    * @summary Adjust
+    * @param {number} xVolTenant Tenant ID
+    * @param {AdjustRequest} adjustRequest Request to adjust inventory
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ModifyInventoryApiInterface
+    */
+    adjustRaw(requestParameters: modifyInventoryApiParams.AdjustOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobIDResponse>>;
 
     /**
-     * Adjust Inventory
-     * Adjust
-     */
-    adjust(requestParameters: AdjustOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobIDResponse>;
+    * Adjust Inventory
+    * Adjust
+    */
+    adjust(requestParameters: modifyInventoryApiParams.AdjustOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobIDResponse>;
 
     /**
-     * Delete Future Inventory
-     * @summary Delete-future-inventory
-     * @param {number} xVolTenant Tenant ID
-     * @param {DeleteFutureItemRequest} deleteFutureItemRequest Request to delete future item(s)
-     * @param {number} [xVolSite] Site ID
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ModifyInventoryApiInterface
-     */
-    deleteFutureInventoryRaw(requestParameters: DeleteFutureInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteFutureItemResponse>>;
+    * Delete Future Inventory
+    * @summary Delete-future-inventory
+    * @param {number} xVolTenant Tenant ID
+    * @param {DeleteFutureItemRequest} deleteFutureItemRequest Request to delete future item(s)
+    * @param {number} [xVolSite] Site ID
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ModifyInventoryApiInterface
+    */
+    deleteFutureInventoryRaw(requestParameters: modifyInventoryApiParams.DeleteFutureInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteFutureItemResponse>>;
 
     /**
-     * Delete Future Inventory
-     * Delete-future-inventory
-     */
-    deleteFutureInventory(requestParameters: DeleteFutureInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteFutureItemResponse>;
+    * Delete Future Inventory
+    * Delete-future-inventory
+    */
+    deleteFutureInventory(requestParameters: modifyInventoryApiParams.DeleteFutureInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteFutureItemResponse>;
 
     /**
-     * Delete Multiple Inventory
-     * @summary Delete-items
-     * @param {number} xVolTenant Tenant ID
-     * @param {DeleteItemsRequest} deleteItemsRequest Request to batch delete items
-     * @param {number} [xVolSite] Site ID
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ModifyInventoryApiInterface
-     */
-    deleteItemsRaw(requestParameters: DeleteItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteItemResponse>>;
+    * Delete Multiple Inventory
+    * @summary Delete-items
+    * @param {number} xVolTenant Tenant ID
+    * @param {DeleteItemsRequest} deleteItemsRequest Request to batch delete items
+    * @param {number} [xVolSite] Site ID
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ModifyInventoryApiInterface
+    */
+    deleteItemsRaw(requestParameters: modifyInventoryApiParams.DeleteItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteItemResponse>>;
 
     /**
-     * Delete Multiple Inventory
-     * Delete-items
-     */
-    deleteItems(requestParameters: DeleteItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteItemResponse>;
+    * Delete Multiple Inventory
+    * Delete-items
+    */
+    deleteItems(requestParameters: modifyInventoryApiParams.DeleteItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteItemResponse>;
 
     /**
-     * Create jobs to redistribute inventory across tags for the given tenant
-     * @summary Redistribute Inventory Across Tags
-     * @param {number} xVolTenant Tenant ID
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ModifyInventoryApiInterface
-     */
-    redistributeInventoryAcrossTagsRaw(requestParameters: RedistributeInventoryAcrossTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobQueueResponse>>>;
+    * Create jobs to redistribute inventory across tags for the given tenant
+    * @summary Redistribute Inventory Across Tags
+    * @param {number} xVolTenant Tenant ID
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ModifyInventoryApiInterface
+    */
+    redistributeInventoryAcrossTagsRaw(requestParameters: modifyInventoryApiParams.RedistributeInventoryAcrossTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobQueueResponse>>>;
 
     /**
-     * Create jobs to redistribute inventory across tags for the given tenant
-     * Redistribute Inventory Across Tags
-     */
-    redistributeInventoryAcrossTags(requestParameters: RedistributeInventoryAcrossTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobQueueResponse>>;
+    * Create jobs to redistribute inventory across tags for the given tenant
+    * Redistribute Inventory Across Tags
+    */
+    redistributeInventoryAcrossTags(requestParameters: modifyInventoryApiParams.RedistributeInventoryAcrossTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobQueueResponse>>;
 
     /**
-     * Refresh Inventory
-     * @summary Refresh
-     * @param {number} xVolTenant Tenant ID
-     * @param {RefreshRequest} refreshRequest Request to refresh inventory
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ModifyInventoryApiInterface
-     */
-    refreshRaw(requestParameters: RefreshOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobIDResponse>>;
+    * Refresh Inventory
+    * @summary Refresh
+    * @param {number} xVolTenant Tenant ID
+    * @param {RefreshRequest} refreshRequest Request to refresh inventory
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ModifyInventoryApiInterface
+    */
+    refreshRaw(requestParameters: modifyInventoryApiParams.RefreshOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobIDResponse>>;
 
     /**
-     * Refresh Inventory
-     * Refresh
-     */
-    refresh(requestParameters: RefreshOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobIDResponse>;
+    * Refresh Inventory
+    * Refresh
+    */
+    refresh(requestParameters: modifyInventoryApiParams.RefreshOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobIDResponse>;
 
 }
+
 
 /**
  * 
  */
-export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInventoryApiInterface {
+export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInventoryApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -199,7 +185,7 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
      */
 
 
-    async _deleteRaw(requestParameters: DeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteItemResponse>> {
+    async _deleteRaw(requestParameters: modifyInventoryApiParams.DeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteItemResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling _delete.');
         }
@@ -209,10 +195,6 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -247,7 +229,7 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
      * Delete Inventory
      * Delete
      */
-    async _delete(requestParameters: DeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteItemResponse> {
+    async _delete(requestParameters: modifyInventoryApiParams.DeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteItemResponse> {
         const response = await this._deleteRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -258,7 +240,7 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
      */
 
 
-    async adjustRaw(requestParameters: AdjustOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobIDResponse>> {
+    async adjustRaw(requestParameters: modifyInventoryApiParams.AdjustOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobIDResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling adjust.');
         }
@@ -268,10 +250,6 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -302,7 +280,7 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
      * Adjust Inventory
      * Adjust
      */
-    async adjust(requestParameters: AdjustOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobIDResponse> {
+    async adjust(requestParameters: modifyInventoryApiParams.AdjustOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobIDResponse> {
         const response = await this.adjustRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -313,7 +291,7 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
      */
 
 
-    async deleteFutureInventoryRaw(requestParameters: DeleteFutureInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteFutureItemResponse>> {
+    async deleteFutureInventoryRaw(requestParameters: modifyInventoryApiParams.DeleteFutureInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteFutureItemResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteFutureInventory.');
         }
@@ -323,10 +301,6 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -361,7 +335,7 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
      * Delete Future Inventory
      * Delete-future-inventory
      */
-    async deleteFutureInventory(requestParameters: DeleteFutureInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteFutureItemResponse> {
+    async deleteFutureInventory(requestParameters: modifyInventoryApiParams.DeleteFutureInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteFutureItemResponse> {
         const response = await this.deleteFutureInventoryRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -372,7 +346,7 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
      */
 
 
-    async deleteItemsRaw(requestParameters: DeleteItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteItemResponse>> {
+    async deleteItemsRaw(requestParameters: modifyInventoryApiParams.DeleteItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteItemResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteItems.');
         }
@@ -382,10 +356,6 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -420,7 +390,7 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
      * Delete Multiple Inventory
      * Delete-items
      */
-    async deleteItems(requestParameters: DeleteItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteItemResponse> {
+    async deleteItems(requestParameters: modifyInventoryApiParams.DeleteItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteItemResponse> {
         const response = await this.deleteItemsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -431,16 +401,12 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
      */
 
 
-    async redistributeInventoryAcrossTagsRaw(requestParameters: RedistributeInventoryAcrossTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobQueueResponse>>> {
+    async redistributeInventoryAcrossTagsRaw(requestParameters: modifyInventoryApiParams.RedistributeInventoryAcrossTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobQueueResponse>>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling redistributeInventoryAcrossTags.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -468,7 +434,7 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
      * Create jobs to redistribute inventory across tags for the given tenant
      * Redistribute Inventory Across Tags
      */
-    async redistributeInventoryAcrossTags(requestParameters: RedistributeInventoryAcrossTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobQueueResponse>> {
+    async redistributeInventoryAcrossTags(requestParameters: modifyInventoryApiParams.RedistributeInventoryAcrossTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobQueueResponse>> {
         const response = await this.redistributeInventoryAcrossTagsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -479,7 +445,7 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
      */
 
 
-    async refreshRaw(requestParameters: RefreshOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobIDResponse>> {
+    async refreshRaw(requestParameters: modifyInventoryApiParams.RefreshOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobIDResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling refresh.');
         }
@@ -489,10 +455,6 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -523,7 +485,7 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
      * Refresh Inventory
      * Refresh
      */
-    async refresh(requestParameters: RefreshOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobIDResponse> {
+    async refresh(requestParameters: modifyInventoryApiParams.RefreshOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobIDResponse> {
         const response = await this.refreshRaw(requestParameters, initOverrides);
         return await response.value();
     }

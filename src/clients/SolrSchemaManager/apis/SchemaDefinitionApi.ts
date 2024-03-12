@@ -19,133 +19,132 @@ import type {
   SchemaDefinition,
 } from '../models';
 
-export interface GetSchemaDefinitionRequest {
-    language: string;
-    published?: boolean;
-    responseFields?: string;
+
+export namespace schemaDefinitionApiParams { 
+    export interface GetSchemaDefinitionRequest {
+        language: string;
+        published?: boolean;
+        responseFields?: string;
+    }
+    export interface ListSchemaDefinitionsRequest {
+        responseFields?: string;
+    }
+    export interface PublishRequest {
+        language: string;
+        reindex?: boolean;
+        responseFields?: string;
+    }
+    export interface RevertRequest {
+        language: string;
+        responseFields?: string;
+    }
+    export interface UpdateSchemaDefinitionRequest {
+        language: string;
+        responseFields?: string;
+        schemaDefinition?: SchemaDefinition;
+    }
+}
+/**
+* SchemaDefinitionApiService - interface
+* 
+* @export
+* @interface SchemaDefinitionApi
+*/
+export interface SchemaDefinitionApiService {
+    /**
+    * Get Schema Definition
+    * @summary Get Schema Definition
+    * @param {string} language 
+    * @param {boolean} [published] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SchemaDefinitionApiInterface
+    */
+    getSchemaDefinitionRaw(requestParameters: schemaDefinitionApiParams.GetSchemaDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SchemaDefinition>>;
+
+    /**
+    * Get Schema Definition
+    * Get Schema Definition
+    */
+    getSchemaDefinition(requestParameters: schemaDefinitionApiParams.GetSchemaDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SchemaDefinition>;
+
+    /**
+    * List Schema Definitions
+    * @summary List Schema Definitions
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SchemaDefinitionApiInterface
+    */
+    listSchemaDefinitionsRaw(requestParameters: schemaDefinitionApiParams.ListSchemaDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SchemaDefinition>>>;
+
+    /**
+    * List Schema Definitions
+    * List Schema Definitions
+    */
+    listSchemaDefinitions(requestParameters: schemaDefinitionApiParams.ListSchemaDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SchemaDefinition>>;
+
+    /**
+    * Publish
+    * @summary Publish
+    * @param {string} language 
+    * @param {boolean} [reindex] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SchemaDefinitionApiInterface
+    */
+    publishRaw(requestParameters: schemaDefinitionApiParams.PublishRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<boolean>>;
+
+    /**
+    * Publish
+    * Publish
+    */
+    publish(requestParameters: schemaDefinitionApiParams.PublishRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<boolean>;
+
+    /**
+    * Revert
+    * @summary Revert
+    * @param {string} language 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SchemaDefinitionApiInterface
+    */
+    revertRaw(requestParameters: schemaDefinitionApiParams.RevertRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<boolean>>;
+
+    /**
+    * Revert
+    * Revert
+    */
+    revert(requestParameters: schemaDefinitionApiParams.RevertRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<boolean>;
+
+    /**
+    * Update Schema Definition
+    * @summary Update Schema Definition
+    * @param {string} language 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {SchemaDefinition} [schemaDefinition] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SchemaDefinitionApiInterface
+    */
+    updateSchemaDefinitionRaw(requestParameters: schemaDefinitionApiParams.UpdateSchemaDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SchemaDefinition>>;
+
+    /**
+    * Update Schema Definition
+    * Update Schema Definition
+    */
+    updateSchemaDefinition(requestParameters: schemaDefinitionApiParams.UpdateSchemaDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SchemaDefinition>;
+
 }
 
-export interface ListSchemaDefinitionsRequest {
-    responseFields?: string;
-}
-
-export interface PublishRequest {
-    language: string;
-    reindex?: boolean;
-    responseFields?: string;
-}
-
-export interface RevertRequest {
-    language: string;
-    responseFields?: string;
-}
-
-export interface UpdateSchemaDefinitionRequest {
-    language: string;
-    responseFields?: string;
-    schemaDefinition?: SchemaDefinition;
-}
 
 /**
- * SchemaDefinitionApi - interface
- * 
- * @export
- * @interface SchemaDefinitionApiInterface
- */
-export interface SchemaDefinitionApiInterface {
-    /**
-     * Get Schema Definition
-     * @summary Get Schema Definition
-     * @param {string} language 
-     * @param {boolean} [published] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SchemaDefinitionApiInterface
-     */
-    getSchemaDefinitionRaw(requestParameters: GetSchemaDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SchemaDefinition>>;
-
-    /**
-     * Get Schema Definition
-     * Get Schema Definition
-     */
-    getSchemaDefinition(requestParameters: GetSchemaDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SchemaDefinition>;
-
-    /**
-     * List Schema Definitions
-     * @summary List Schema Definitions
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SchemaDefinitionApiInterface
-     */
-    listSchemaDefinitionsRaw(requestParameters: ListSchemaDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SchemaDefinition>>>;
-
-    /**
-     * List Schema Definitions
-     * List Schema Definitions
-     */
-    listSchemaDefinitions(requestParameters: ListSchemaDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SchemaDefinition>>;
-
-    /**
-     * Publish
-     * @summary Publish
-     * @param {string} language 
-     * @param {boolean} [reindex] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SchemaDefinitionApiInterface
-     */
-    publishRaw(requestParameters: PublishRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<boolean>>;
-
-    /**
-     * Publish
-     * Publish
-     */
-    publish(requestParameters: PublishRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<boolean>;
-
-    /**
-     * Revert
-     * @summary Revert
-     * @param {string} language 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SchemaDefinitionApiInterface
-     */
-    revertRaw(requestParameters: RevertRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<boolean>>;
-
-    /**
-     * Revert
-     * Revert
-     */
-    revert(requestParameters: RevertRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<boolean>;
-
-    /**
-     * Update Schema Definition
-     * @summary Update Schema Definition
-     * @param {string} language 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {SchemaDefinition} [schemaDefinition] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SchemaDefinitionApiInterface
-     */
-    updateSchemaDefinitionRaw(requestParameters: UpdateSchemaDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SchemaDefinition>>;
-
-    /**
-     * Update Schema Definition
-     * Update Schema Definition
-     */
-    updateSchemaDefinition(requestParameters: UpdateSchemaDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SchemaDefinition>;
-
-}
-
-/**
  * 
  */
-export class SchemaDefinitionApi extends runtime.BaseAPI implements SchemaDefinitionApiInterface {
+export class SchemaDefinitionApi extends runtime.BaseAPI implements SchemaDefinitionApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -156,7 +155,7 @@ export class SchemaDefinitionApi extends runtime.BaseAPI implements SchemaDefini
      */
 
 
-    async getSchemaDefinitionRaw(requestParameters: GetSchemaDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SchemaDefinition>> {
+    async getSchemaDefinitionRaw(requestParameters: schemaDefinitionApiParams.GetSchemaDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SchemaDefinition>> {
         if (requestParameters.language === null || requestParameters.language === undefined) {
             throw new runtime.RequiredError('language','Required parameter requestParameters.language was null or undefined when calling getSchemaDefinition.');
         }
@@ -193,7 +192,7 @@ export class SchemaDefinitionApi extends runtime.BaseAPI implements SchemaDefini
      * Get Schema Definition
      * Get Schema Definition
      */
-    async getSchemaDefinition(requestParameters: GetSchemaDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SchemaDefinition> {
+    async getSchemaDefinition(requestParameters: schemaDefinitionApiParams.GetSchemaDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SchemaDefinition> {
         const response = await this.getSchemaDefinitionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -204,7 +203,7 @@ export class SchemaDefinitionApi extends runtime.BaseAPI implements SchemaDefini
      */
 
 
-    async listSchemaDefinitionsRaw(requestParameters: ListSchemaDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SchemaDefinition>>> {
+    async listSchemaDefinitionsRaw(requestParameters: schemaDefinitionApiParams.ListSchemaDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SchemaDefinition>>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -233,7 +232,7 @@ export class SchemaDefinitionApi extends runtime.BaseAPI implements SchemaDefini
      * List Schema Definitions
      * List Schema Definitions
      */
-    async listSchemaDefinitions(requestParameters: ListSchemaDefinitionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SchemaDefinition>> {
+    async listSchemaDefinitions(requestParameters: schemaDefinitionApiParams.ListSchemaDefinitionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SchemaDefinition>> {
         const response = await this.listSchemaDefinitionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -244,7 +243,7 @@ export class SchemaDefinitionApi extends runtime.BaseAPI implements SchemaDefini
      */
 
 
-    async publishRaw(requestParameters: PublishRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<boolean>> {
+    async publishRaw(requestParameters: schemaDefinitionApiParams.PublishRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<boolean>> {
         if (requestParameters.language === null || requestParameters.language === undefined) {
             throw new runtime.RequiredError('language','Required parameter requestParameters.language was null or undefined when calling publish.');
         }
@@ -281,7 +280,7 @@ export class SchemaDefinitionApi extends runtime.BaseAPI implements SchemaDefini
      * Publish
      * Publish
      */
-    async publish(requestParameters: PublishRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<boolean> {
+    async publish(requestParameters: schemaDefinitionApiParams.PublishRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<boolean> {
         const response = await this.publishRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -292,7 +291,7 @@ export class SchemaDefinitionApi extends runtime.BaseAPI implements SchemaDefini
      */
 
 
-    async revertRaw(requestParameters: RevertRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<boolean>> {
+    async revertRaw(requestParameters: schemaDefinitionApiParams.RevertRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<boolean>> {
         if (requestParameters.language === null || requestParameters.language === undefined) {
             throw new runtime.RequiredError('language','Required parameter requestParameters.language was null or undefined when calling revert.');
         }
@@ -325,7 +324,7 @@ export class SchemaDefinitionApi extends runtime.BaseAPI implements SchemaDefini
      * Revert
      * Revert
      */
-    async revert(requestParameters: RevertRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<boolean> {
+    async revert(requestParameters: schemaDefinitionApiParams.RevertRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<boolean> {
         const response = await this.revertRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -336,7 +335,7 @@ export class SchemaDefinitionApi extends runtime.BaseAPI implements SchemaDefini
      */
 
 
-    async updateSchemaDefinitionRaw(requestParameters: UpdateSchemaDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SchemaDefinition>> {
+    async updateSchemaDefinitionRaw(requestParameters: schemaDefinitionApiParams.UpdateSchemaDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SchemaDefinition>> {
         if (requestParameters.language === null || requestParameters.language === undefined) {
             throw new runtime.RequiredError('language','Required parameter requestParameters.language was null or undefined when calling updateSchemaDefinition.');
         }
@@ -349,7 +348,7 @@ export class SchemaDefinitionApi extends runtime.BaseAPI implements SchemaDefini
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'text/plain';
+        headerParameters['Content-Type'] = 'application/json';
 
 
 
@@ -372,7 +371,7 @@ export class SchemaDefinitionApi extends runtime.BaseAPI implements SchemaDefini
      * Update Schema Definition
      * Update Schema Definition
      */
-    async updateSchemaDefinition(requestParameters: UpdateSchemaDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SchemaDefinition> {
+    async updateSchemaDefinition(requestParameters: schemaDefinitionApiParams.UpdateSchemaDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SchemaDefinition> {
         const response = await this.updateSchemaDefinitionRaw(requestParameters, initOverrides);
         return await response.value();
     }

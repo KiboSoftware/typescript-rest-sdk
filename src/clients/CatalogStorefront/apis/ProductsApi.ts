@@ -31,339 +31,333 @@ import type {
   ProductValidationSummary,
 } from '../models';
 
-export interface StorefrontConfigureProductRequest {
-    productCode: string;
-    includeOptionDetails?: boolean;
-    skipInventoryCheck?: boolean;
-    quantity?: number;
-    purchaseLocation?: string;
-    variationProductCodeFilter?: string;
-    useSubscriptionPricing?: boolean;
-    subscriptionFrequency?: string;
-    responseFields?: string;
-    productOptionSelections?: ProductOptionSelections;
-}
 
-export interface StorefrontGetProductRequest {
-    productCode: string;
-    variationProductCode?: string;
-    responseGroups?: string;
-    allowInactive?: boolean;
-    skipInventoryCheck?: boolean;
-    supressOutOfStock404?: boolean;
-    quantity?: number;
-    acceptVariantProductCode?: boolean;
-    purchaseLocation?: string;
-    variationProductCodeFilter?: string;
-    sliceValue?: string;
-    includeAllImages?: boolean;
-    useSubscriptionPricing?: boolean;
-    responseFields?: string;
+export namespace productsApiParams { 
+    export interface StorefrontConfigureProductRequest {
+        productCode: string;
+        includeOptionDetails?: boolean;
+        skipInventoryCheck?: boolean;
+        quantity?: number;
+        purchaseLocation?: string;
+        variationProductCodeFilter?: string;
+        useSubscriptionPricing?: boolean;
+        subscriptionFrequency?: string;
+        responseFields?: string;
+        productOptionSelections?: ProductOptionSelections;
+    }
+    export interface StorefrontGetProductRequest {
+        productCode: string;
+        variationProductCode?: string;
+        responseGroups?: string;
+        allowInactive?: boolean;
+        skipInventoryCheck?: boolean;
+        supressOutOfStock404?: boolean;
+        quantity?: number;
+        acceptVariantProductCode?: boolean;
+        purchaseLocation?: string;
+        variationProductCodeFilter?: string;
+        sliceValue?: string;
+        includeAllImages?: boolean;
+        useSubscriptionPricing?: boolean;
+        responseFields?: string;
+    }
+    export interface StorefrontGetProductCostsRequest {
+        responseFields?: string;
+        productCostQuery?: ProductCostQuery;
+    }
+    export interface StorefrontGetProductForIndexingRequest {
+        productCode: string;
+        responseGroups?: string;
+        productVersion?: number;
+        lastModifiedDate?: string;
+        responseFields?: string;
+    }
+    export interface StorefrontGetProductInventoriesRequest {
+        responseFields?: string;
+        locationInventoryQuery?: LocationInventoryQuery;
+    }
+    export interface StorefrontGetProductInventoryRequest {
+        productCode: string;
+        locationCodes?: string;
+        includeFutureInventory?: boolean;
+        includeSegmentedInventory?: boolean;
+        responseFields?: string;
+    }
+    export interface StorefrontGetProductsRequest {
+        filter?: string;
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        responseGroups?: string;
+        responseOptions?: string;
+        cursorMark?: string;
+        defaultSort?: string;
+        mid?: string;
+        includeAllImages?: boolean;
+        useSubscriptionPricing?: boolean;
+        includeProductDetailsOnlyProperty?: boolean;
+        responseFields?: string;
+    }
+    export interface StorefrontProductSubstitutionsRequest {
+        productCode: string;
+        responseFields?: string;
+    }
+    export interface StorefrontValidateDiscountsRequest {
+        productCode: string;
+        variationProductCode?: string;
+        customerAccountId?: number;
+        allowInactive?: boolean;
+        skipInventoryCheck?: boolean;
+        responseFields?: string;
+        discountSelections?: DiscountSelections;
+    }
+    export interface StorefrontValidateProductRequest {
+        productCode: string;
+        skipInventoryCheck?: boolean;
+        quantity?: number;
+        skipDefaults?: boolean;
+        purchaseLocation?: string;
+        useSubscriptionPricing?: boolean;
+        recalculateDynamicCategories?: boolean;
+        acceptVariantProductCode?: boolean;
+        responseFields?: string;
+        productOptionSelections?: ProductOptionSelections;
+    }
 }
-
-export interface StorefrontGetProductCostsRequest {
-    responseFields?: string;
-    productCostQuery?: ProductCostQuery;
-}
-
-export interface StorefrontGetProductForIndexingRequest {
-    productCode: string;
-    responseGroups?: string;
-    productVersion?: number;
-    lastModifiedDate?: string;
-    responseFields?: string;
-}
-
-export interface StorefrontGetProductInventoriesRequest {
-    responseFields?: string;
-    locationInventoryQuery?: LocationInventoryQuery;
-}
-
-export interface StorefrontGetProductInventoryRequest {
-    productCode: string;
-    locationCodes?: string;
-    includeFutureInventory?: boolean;
-    includeSegmentedInventory?: boolean;
-    responseFields?: string;
-}
-
-export interface StorefrontGetProductsRequest {
-    filter?: string;
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    responseGroups?: string;
-    responseOptions?: string;
-    cursorMark?: string;
-    defaultSort?: string;
-    mid?: string;
-    includeAllImages?: boolean;
-    useSubscriptionPricing?: boolean;
-    includeProductDetailsOnlyProperty?: boolean;
-    responseFields?: string;
-}
-
-export interface StorefrontProductSubstitutionsRequest {
-    productCode: string;
-    responseFields?: string;
-}
-
-export interface StorefrontValidateDiscountsRequest {
-    productCode: string;
-    variationProductCode?: string;
-    customerAccountId?: number;
-    allowInactive?: boolean;
-    skipInventoryCheck?: boolean;
-    responseFields?: string;
-    discountSelections?: DiscountSelections;
-}
-
-export interface StorefrontValidateProductRequest {
-    productCode: string;
-    skipInventoryCheck?: boolean;
-    quantity?: number;
-    skipDefaults?: boolean;
-    purchaseLocation?: string;
-    useSubscriptionPricing?: boolean;
-    recalculateDynamicCategories?: boolean;
-    acceptVariantProductCode?: boolean;
-    responseFields?: string;
-    productOptionSelections?: ProductOptionSelections;
-}
-
 /**
- * ProductsApi - interface
- * 
- * @export
- * @interface ProductsApiInterface
- */
-export interface ProductsApiInterface {
+* ProductsApiService - interface
+* 
+* @export
+* @interface ProductsApi
+*/
+export interface ProductsApiService {
     /**
-     * Creates a new product selection. A create occurs each time a shopper selects a product option as they configure a product. Once all the required product options are configured, the product can be added to a cart.
-     * @summary Configures a variant product
-     * @param {string} productCode Merchant-created code for the product being configured, for example, a SKU. Max length: 30.
-     * @param {boolean} [includeOptionDetails] If true, the response returns product details such as. If false, returns a product summary such as the product name, price, and sale price.
-     * @param {boolean} [skipInventoryCheck] Determines whether or not to check inventory on an item when validating
-     * @param {number} [quantity] Optional.  If specified, will be used for returning pricing based on volume if applicable.  Defaults to 1 if not specified.
-     * @param {string} [purchaseLocation] 
-     * @param {string} [variationProductCodeFilter] 
-     * @param {boolean} [useSubscriptionPricing] 
-     * @param {string} [subscriptionFrequency] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {ProductOptionSelections} [productOptionSelections] Shopper-selected options.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductsApiInterface
-     */
-    storefrontConfigureProductRaw(requestParameters: StorefrontConfigureProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConfiguredProduct>>;
+    * Creates a new product selection. A create occurs each time a shopper selects a product option as they configure a product. Once all the required product options are configured, the product can be added to a cart.
+    * @summary Configures a variant product
+    * @param {string} productCode Merchant-created code for the product being configured, for example, a SKU. Max length: 30.
+    * @param {boolean} [includeOptionDetails] If true, the response returns product details such as. If false, returns a product summary such as the product name, price, and sale price.
+    * @param {boolean} [skipInventoryCheck] Determines whether or not to check inventory on an item when validating
+    * @param {number} [quantity] Optional.  If specified, will be used for returning pricing based on volume if applicable.  Defaults to 1 if not specified.
+    * @param {string} [purchaseLocation] 
+    * @param {string} [variationProductCodeFilter] 
+    * @param {boolean} [useSubscriptionPricing] 
+    * @param {string} [subscriptionFrequency] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ProductOptionSelections} [productOptionSelections] Shopper-selected options.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    storefrontConfigureProductRaw(requestParameters: productsApiParams.StorefrontConfigureProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConfiguredProduct>>;
 
     /**
-     * Creates a new product selection. A create occurs each time a shopper selects a product option as they configure a product. Once all the required product options are configured, the product can be added to a cart.
-     * Configures a variant product
-     */
-    storefrontConfigureProduct(requestParameters: StorefrontConfigureProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConfiguredProduct>;
+    * Creates a new product selection. A create occurs each time a shopper selects a product option as they configure a product. Once all the required product options are configured, the product can be added to a cart.
+    * Configures a variant product
+    */
+    storefrontConfigureProduct(requestParameters: productsApiParams.StorefrontConfigureProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConfiguredProduct>;
 
     /**
-     * Retrieves information about a single product given its product code.
-     * @summary Get a product
-     * @param {string} productCode Required. Merchant-created code associated with the product, for example, a SKU. Max length: 30.
-     * @param {string} [variationProductCode] Optional. Merchant-created code associated with a specific product variation. Max length: #.
-     * @param {string} [responseGroups] Optional. Response groups to be determined.
-     * @param {boolean} [allowInactive] Optional. If true, return a product if it is located but inactive.
-     * @param {boolean} [skipInventoryCheck] Determines whether or not to check inventory on an item when validating
-     * @param {boolean} [supressOutOfStock404] Optional. If true, will still return the product, even if product is out of stock and the out of stock behavior is set to “Hide Product in Store”. If false or omitted, the same product will return a 404 not found. Suppressing the 404 not found is useful for site SEO.
-     * @param {number} [quantity] Optional.  If specified, will be used for returning pricing based on volume if applicable.  Defaults to 1 if not specified.
-     * @param {boolean} [acceptVariantProductCode] 
-     * @param {string} [purchaseLocation] 
-     * @param {string} [variationProductCodeFilter] 
-     * @param {string} [sliceValue] 
-     * @param {boolean} [includeAllImages] 
-     * @param {boolean} [useSubscriptionPricing] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductsApiInterface
-     */
-    storefrontGetProductRaw(requestParameters: StorefrontGetProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogRuntimesProduct>>;
+    * Retrieves information about a single product given its product code.
+    * @summary Get a product
+    * @param {string} productCode Required. Merchant-created code associated with the product, for example, a SKU. Max length: 30.
+    * @param {string} [variationProductCode] Optional. Merchant-created code associated with a specific product variation. Max length: #.
+    * @param {string} [responseGroups] Optional. Response groups to be determined.
+    * @param {boolean} [allowInactive] Optional. If true, return a product if it is located but inactive.
+    * @param {boolean} [skipInventoryCheck] Determines whether or not to check inventory on an item when validating
+    * @param {boolean} [supressOutOfStock404] Optional. If true, will still return the product, even if product is out of stock and the out of stock behavior is set to “Hide Product in Store”. If false or omitted, the same product will return a 404 not found. Suppressing the 404 not found is useful for site SEO.
+    * @param {number} [quantity] Optional.  If specified, will be used for returning pricing based on volume if applicable.  Defaults to 1 if not specified.
+    * @param {boolean} [acceptVariantProductCode] 
+    * @param {string} [purchaseLocation] 
+    * @param {string} [variationProductCodeFilter] 
+    * @param {string} [sliceValue] 
+    * @param {boolean} [includeAllImages] 
+    * @param {boolean} [useSubscriptionPricing] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    storefrontGetProductRaw(requestParameters: productsApiParams.StorefrontGetProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogRuntimesProduct>>;
 
     /**
-     * Retrieves information about a single product given its product code.
-     * Get a product
-     */
-    storefrontGetProduct(requestParameters: StorefrontGetProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogRuntimesProduct>;
+    * Retrieves information about a single product given its product code.
+    * Get a product
+    */
+    storefrontGetProduct(requestParameters: productsApiParams.StorefrontGetProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogRuntimesProduct>;
 
     /**
-     * Get costs for products
-     * @summary Get costs for products
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {ProductCostQuery} [productCostQuery] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductsApiInterface
-     */
-    storefrontGetProductCostsRaw(requestParameters: StorefrontGetProductCostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductCostCollection>>;
+    * Get costs for products
+    * @summary Get costs for products
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ProductCostQuery} [productCostQuery] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    storefrontGetProductCostsRaw(requestParameters: productsApiParams.StorefrontGetProductCostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductCostCollection>>;
 
     /**
-     * Get costs for products
-     * Get costs for products
-     */
-    storefrontGetProductCosts(requestParameters: StorefrontGetProductCostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductCostCollection>;
+    * Get costs for products
+    * Get costs for products
+    */
+    storefrontGetProductCosts(requestParameters: productsApiParams.StorefrontGetProductCostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductCostCollection>;
 
     /**
-     * Retrieves information about a single product given its product code for Mozu to index in the search engine
-     * @summary Get a product for indexing
-     * @param {string} productCode Required. Merchant-created code associated with the product, for example, a SKU. Max length: 30.
-     * @param {string} [responseGroups] Optional. Response groups to be determined.
-     * @param {number} [productVersion] Optional. The current version of the product to use for latency checking.                If this instance of Product Runtime is configured to run against a replicated database node that has a lesser version than this value, it will read from the primary database node to prevent stale data.
-     * @param {string} [lastModifiedDate] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductsApiInterface
-     */
-    storefrontGetProductForIndexingRaw(requestParameters: StorefrontGetProductForIndexingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductForIndexing>>;
+    * Retrieves information about a single product given its product code for Mozu to index in the search engine
+    * @summary Get a product for indexing
+    * @param {string} productCode Required. Merchant-created code associated with the product, for example, a SKU. Max length: 30.
+    * @param {string} [responseGroups] Optional. Response groups to be determined.
+    * @param {number} [productVersion] Optional. The current version of the product to use for latency checking.                If this instance of Product Runtime is configured to run against a replicated database node that has a lesser version than this value, it will read from the primary database node to prevent stale data.
+    * @param {string} [lastModifiedDate] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    storefrontGetProductForIndexingRaw(requestParameters: productsApiParams.StorefrontGetProductForIndexingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductForIndexing>>;
 
     /**
-     * Retrieves information about a single product given its product code for Mozu to index in the search engine
-     * Get a product for indexing
-     */
-    storefrontGetProductForIndexing(requestParameters: StorefrontGetProductForIndexingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductForIndexing>;
+    * Retrieves information about a single product given its product code for Mozu to index in the search engine
+    * Get a product for indexing
+    */
+    storefrontGetProductForIndexing(requestParameters: productsApiParams.StorefrontGetProductForIndexingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductForIndexing>;
 
     /**
-     * Get location inventories for a list of products
-     * @summary Get location inventories for a list of products
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {LocationInventoryQuery} [locationInventoryQuery] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductsApiInterface
-     */
-    storefrontGetProductInventoriesRaw(requestParameters: StorefrontGetProductInventoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationInventoryCollection>>;
+    * Get location inventories for a list of products
+    * @summary Get location inventories for a list of products
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {LocationInventoryQuery} [locationInventoryQuery] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    storefrontGetProductInventoriesRaw(requestParameters: productsApiParams.StorefrontGetProductInventoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationInventoryCollection>>;
 
     /**
-     * Get location inventories for a list of products
-     * Get location inventories for a list of products
-     */
-    storefrontGetProductInventories(requestParameters: StorefrontGetProductInventoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationInventoryCollection>;
+    * Get location inventories for a list of products
+    * Get location inventories for a list of products
+    */
+    storefrontGetProductInventories(requestParameters: productsApiParams.StorefrontGetProductInventoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationInventoryCollection>;
 
     /**
-     * Get product inventory
-     * @summary Get product inventory
-     * @param {string} productCode 
-     * @param {string} [locationCodes] 
-     * @param {boolean} [includeFutureInventory] 
-     * @param {boolean} [includeSegmentedInventory] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductsApiInterface
-     */
-    storefrontGetProductInventoryRaw(requestParameters: StorefrontGetProductInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationInventoryCollection>>;
+    * Get product inventory
+    * @summary Get product inventory
+    * @param {string} productCode 
+    * @param {string} [locationCodes] 
+    * @param {boolean} [includeFutureInventory] 
+    * @param {boolean} [includeSegmentedInventory] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    storefrontGetProductInventoryRaw(requestParameters: productsApiParams.StorefrontGetProductInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationInventoryCollection>>;
 
     /**
-     * Get product inventory
-     * Get product inventory
-     */
-    storefrontGetProductInventory(requestParameters: StorefrontGetProductInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationInventoryCollection>;
+    * Get product inventory
+    * Get product inventory
+    */
+    storefrontGetProductInventory(requestParameters: productsApiParams.StorefrontGetProductInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationInventoryCollection>;
 
     /**
-     * Retrieves a list of products that appear on the storefront according to any specified filter criteria and sort options.
-     * @summary Get a list of products
-     * @param {string} [filter] Optional. A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than, gt &#x3D; greater than or equals, le &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains.
-     * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a pageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. Default value: 0.
-     * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a single query. Default value: 20. Maximum value: 200.
-     * @param {string} [sortBy] Optional. Sort the results by and the order in which the results appear. Either ascending order (a-z) which accepts \&#39;asc\&#39; or \&#39;ASC\&#39; or descending order (z-a) which accepts \&#39;desc\&#39; or \&#39;DESC\&#39;. The sortBy parameter follows an available property. For example, to sort the results by “ID” ascending then by “CreateDate” descending, use: id asc,createdate desc.
-     * @param {string} [responseGroups] Optional. Response groups to be determined.
-     * @param {string} [responseOptions] 
-     * @param {string} [cursorMark] Pass in * to begin a deep page operation. The response will include a nextCursorMark value. Pass this into the next call. Continue with this pattern until nextCursorMark is null.
-     * @param {string} [defaultSort] 
-     * @param {string} [mid] 
-     * @param {boolean} [includeAllImages] Optional. If true return all images instead of default images.
-     * @param {boolean} [useSubscriptionPricing] 
-     * @param {boolean} [includeProductDetailsOnlyProperty] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductsApiInterface
-     */
-    storefrontGetProductsRaw(requestParameters: StorefrontGetProductsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogRuntimesProductCollection>>;
+    * Retrieves a list of products that appear on the storefront according to any specified filter criteria and sort options.
+    * @summary Get a list of products
+    * @param {string} [filter] Optional. A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than, gt &#x3D; greater than or equals, le &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains.
+    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a pageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. Default value: 0.
+    * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a single query. Default value: 20. Maximum value: 200.
+    * @param {string} [sortBy] Optional. Sort the results by and the order in which the results appear. Either ascending order (a-z) which accepts \&#39;asc\&#39; or \&#39;ASC\&#39; or descending order (z-a) which accepts \&#39;desc\&#39; or \&#39;DESC\&#39;. The sortBy parameter follows an available property. For example, to sort the results by “ID” ascending then by “CreateDate” descending, use: id asc,createdate desc.
+    * @param {string} [responseGroups] Optional. Response groups to be determined.
+    * @param {string} [responseOptions] 
+    * @param {string} [cursorMark] Pass in * to begin a deep page operation. The response will include a nextCursorMark value. Pass this into the next call. Continue with this pattern until nextCursorMark is null.
+    * @param {string} [defaultSort] 
+    * @param {string} [mid] 
+    * @param {boolean} [includeAllImages] Optional. If true return all images instead of default images.
+    * @param {boolean} [useSubscriptionPricing] 
+    * @param {boolean} [includeProductDetailsOnlyProperty] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    storefrontGetProductsRaw(requestParameters: productsApiParams.StorefrontGetProductsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogRuntimesProductCollection>>;
 
     /**
-     * Retrieves a list of products that appear on the storefront according to any specified filter criteria and sort options.
-     * Get a list of products
-     */
-    storefrontGetProducts(requestParameters: StorefrontGetProductsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogRuntimesProductCollection>;
+    * Retrieves a list of products that appear on the storefront according to any specified filter criteria and sort options.
+    * Get a list of products
+    */
+    storefrontGetProducts(requestParameters: productsApiParams.StorefrontGetProductsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogRuntimesProductCollection>;
 
     /**
-     * Returns a list of up to 10 products that can be substituted for the provided product code.
-     * @summary Get product substitutions
-     * @param {string} productCode 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductsApiInterface
-     */
-    storefrontProductSubstitutionsRaw(requestParameters: StorefrontProductSubstitutionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSubstituteCollection>>;
+    * Returns a list of up to 10 products that can be substituted for the provided product code.
+    * @summary Get product substitutions
+    * @param {string} productCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    storefrontProductSubstitutionsRaw(requestParameters: productsApiParams.StorefrontProductSubstitutionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSubstituteCollection>>;
 
     /**
-     * Returns a list of up to 10 products that can be substituted for the provided product code.
-     * Get product substitutions
-     */
-    storefrontProductSubstitutions(requestParameters: StorefrontProductSubstitutionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSubstituteCollection>;
+    * Returns a list of up to 10 products that can be substituted for the provided product code.
+    * Get product substitutions
+    */
+    storefrontProductSubstitutions(requestParameters: productsApiParams.StorefrontProductSubstitutionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSubstituteCollection>;
 
     /**
-     * Validate if a collection of discounts is valid for a product.  This includes discounts that would normally be considered order level discounts.
-     * @summary Validates discounts for a product
-     * @param {string} productCode 
-     * @param {string} [variationProductCode] 
-     * @param {number} [customerAccountId] Customer Id may be set in the querystring or in the user claims bag if the caller context is a shopper.
-     * @param {boolean} [allowInactive] 
-     * @param {boolean} [skipInventoryCheck] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {DiscountSelections} [discountSelections] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductsApiInterface
-     */
-    storefrontValidateDiscountsRaw(requestParameters: StorefrontValidateDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountValidationSummary>>;
+    * Validate if a collection of discounts is valid for a product.  This includes discounts that would normally be considered order level discounts.
+    * @summary Validates discounts for a product
+    * @param {string} productCode 
+    * @param {string} [variationProductCode] 
+    * @param {number} [customerAccountId] Customer Id may be set in the querystring or in the user claims bag if the caller context is a shopper.
+    * @param {boolean} [allowInactive] 
+    * @param {boolean} [skipInventoryCheck] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {DiscountSelections} [discountSelections] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    storefrontValidateDiscountsRaw(requestParameters: productsApiParams.StorefrontValidateDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountValidationSummary>>;
 
     /**
-     * Validate if a collection of discounts is valid for a product.  This includes discounts that would normally be considered order level discounts.
-     * Validates discounts for a product
-     */
-    storefrontValidateDiscounts(requestParameters: StorefrontValidateDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountValidationSummary>;
+    * Validate if a collection of discounts is valid for a product.  This includes discounts that would normally be considered order level discounts.
+    * Validates discounts for a product
+    */
+    storefrontValidateDiscounts(requestParameters: productsApiParams.StorefrontValidateDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountValidationSummary>;
 
     /**
-     * Validate the final state of shopper-selected options.
-     * @summary Validates a variant product
-     * @param {string} productCode Merchant-created code of product being validated.
-     * @param {boolean} [skipInventoryCheck] Determines whether or not to check inventory on an item when validating
-     * @param {number} [quantity] Optional.  If specified, will be used for returning pricing based on volume if applicable.  Defaults to 1 if not specified.
-     * @param {boolean} [skipDefaults] Determines whether or not to add configured default-extras on an item when validating
-     * @param {string} [purchaseLocation] 
-     * @param {boolean} [useSubscriptionPricing] 
-     * @param {boolean} [recalculateDynamicCategories] 
-     * @param {boolean} [acceptVariantProductCode] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {ProductOptionSelections} [productOptionSelections] Final state of shopper selected options.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductsApiInterface
-     */
-    storefrontValidateProductRaw(requestParameters: StorefrontValidateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductValidationSummary>>;
+    * Validate the final state of shopper-selected options.
+    * @summary Validates a variant product
+    * @param {string} productCode Merchant-created code of product being validated.
+    * @param {boolean} [skipInventoryCheck] Determines whether or not to check inventory on an item when validating
+    * @param {number} [quantity] Optional.  If specified, will be used for returning pricing based on volume if applicable.  Defaults to 1 if not specified.
+    * @param {boolean} [skipDefaults] Determines whether or not to add configured default-extras on an item when validating
+    * @param {string} [purchaseLocation] 
+    * @param {boolean} [useSubscriptionPricing] 
+    * @param {boolean} [recalculateDynamicCategories] 
+    * @param {boolean} [acceptVariantProductCode] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ProductOptionSelections} [productOptionSelections] Final state of shopper selected options.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    storefrontValidateProductRaw(requestParameters: productsApiParams.StorefrontValidateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductValidationSummary>>;
 
     /**
-     * Validate the final state of shopper-selected options.
-     * Validates a variant product
-     */
-    storefrontValidateProduct(requestParameters: StorefrontValidateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductValidationSummary>;
+    * Validate the final state of shopper-selected options.
+    * Validates a variant product
+    */
+    storefrontValidateProduct(requestParameters: productsApiParams.StorefrontValidateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductValidationSummary>;
 
 }
+
 
 /**
  * 
  */
-export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface {
+export class ProductsApi extends runtime.BaseAPI implements ProductsApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -374,7 +368,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      */
 
 
-    async storefrontConfigureProductRaw(requestParameters: StorefrontConfigureProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConfiguredProduct>> {
+    async storefrontConfigureProductRaw(requestParameters: productsApiParams.StorefrontConfigureProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConfiguredProduct>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling storefrontConfigureProduct.');
         }
@@ -438,7 +432,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      * Creates a new product selection. A create occurs each time a shopper selects a product option as they configure a product. Once all the required product options are configured, the product can be added to a cart.
      * Configures a variant product
      */
-    async storefrontConfigureProduct(requestParameters: StorefrontConfigureProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConfiguredProduct> {
+    async storefrontConfigureProduct(requestParameters: productsApiParams.StorefrontConfigureProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConfiguredProduct> {
         const response = await this.storefrontConfigureProductRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -449,7 +443,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      */
 
 
-    async storefrontGetProductRaw(requestParameters: StorefrontGetProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogRuntimesProduct>> {
+    async storefrontGetProductRaw(requestParameters: productsApiParams.StorefrontGetProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogRuntimesProduct>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling storefrontGetProduct.');
         }
@@ -530,7 +524,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      * Retrieves information about a single product given its product code.
      * Get a product
      */
-    async storefrontGetProduct(requestParameters: StorefrontGetProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogRuntimesProduct> {
+    async storefrontGetProduct(requestParameters: productsApiParams.StorefrontGetProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogRuntimesProduct> {
         const response = await this.storefrontGetProductRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -541,7 +535,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      */
 
 
-    async storefrontGetProductCostsRaw(requestParameters: StorefrontGetProductCostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductCostCollection>> {
+    async storefrontGetProductCostsRaw(requestParameters: productsApiParams.StorefrontGetProductCostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductCostCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -573,7 +567,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      * Get costs for products
      * Get costs for products
      */
-    async storefrontGetProductCosts(requestParameters: StorefrontGetProductCostsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductCostCollection> {
+    async storefrontGetProductCosts(requestParameters: productsApiParams.StorefrontGetProductCostsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductCostCollection> {
         const response = await this.storefrontGetProductCostsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -584,7 +578,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      */
 
 
-    async storefrontGetProductForIndexingRaw(requestParameters: StorefrontGetProductForIndexingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductForIndexing>> {
+    async storefrontGetProductForIndexingRaw(requestParameters: productsApiParams.StorefrontGetProductForIndexingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductForIndexing>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling storefrontGetProductForIndexing.');
         }
@@ -629,7 +623,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      * Retrieves information about a single product given its product code for Mozu to index in the search engine
      * Get a product for indexing
      */
-    async storefrontGetProductForIndexing(requestParameters: StorefrontGetProductForIndexingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductForIndexing> {
+    async storefrontGetProductForIndexing(requestParameters: productsApiParams.StorefrontGetProductForIndexingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductForIndexing> {
         const response = await this.storefrontGetProductForIndexingRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -640,7 +634,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      */
 
 
-    async storefrontGetProductInventoriesRaw(requestParameters: StorefrontGetProductInventoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationInventoryCollection>> {
+    async storefrontGetProductInventoriesRaw(requestParameters: productsApiParams.StorefrontGetProductInventoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationInventoryCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -672,7 +666,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      * Get location inventories for a list of products
      * Get location inventories for a list of products
      */
-    async storefrontGetProductInventories(requestParameters: StorefrontGetProductInventoriesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationInventoryCollection> {
+    async storefrontGetProductInventories(requestParameters: productsApiParams.StorefrontGetProductInventoriesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationInventoryCollection> {
         const response = await this.storefrontGetProductInventoriesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -683,7 +677,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      */
 
 
-    async storefrontGetProductInventoryRaw(requestParameters: StorefrontGetProductInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationInventoryCollection>> {
+    async storefrontGetProductInventoryRaw(requestParameters: productsApiParams.StorefrontGetProductInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationInventoryCollection>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling storefrontGetProductInventory.');
         }
@@ -728,7 +722,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      * Get product inventory
      * Get product inventory
      */
-    async storefrontGetProductInventory(requestParameters: StorefrontGetProductInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationInventoryCollection> {
+    async storefrontGetProductInventory(requestParameters: productsApiParams.StorefrontGetProductInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationInventoryCollection> {
         const response = await this.storefrontGetProductInventoryRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -739,7 +733,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      */
 
 
-    async storefrontGetProductsRaw(requestParameters: StorefrontGetProductsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogRuntimesProductCollection>> {
+    async storefrontGetProductsRaw(requestParameters: productsApiParams.StorefrontGetProductsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogRuntimesProductCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.filter !== undefined) {
@@ -816,7 +810,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      * Retrieves a list of products that appear on the storefront according to any specified filter criteria and sort options.
      * Get a list of products
      */
-    async storefrontGetProducts(requestParameters: StorefrontGetProductsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogRuntimesProductCollection> {
+    async storefrontGetProducts(requestParameters: productsApiParams.StorefrontGetProductsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogRuntimesProductCollection> {
         const response = await this.storefrontGetProductsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -827,7 +821,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      */
 
 
-    async storefrontProductSubstitutionsRaw(requestParameters: StorefrontProductSubstitutionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSubstituteCollection>> {
+    async storefrontProductSubstitutionsRaw(requestParameters: productsApiParams.StorefrontProductSubstitutionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductSubstituteCollection>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling storefrontProductSubstitutions.');
         }
@@ -860,7 +854,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      * Returns a list of up to 10 products that can be substituted for the provided product code.
      * Get product substitutions
      */
-    async storefrontProductSubstitutions(requestParameters: StorefrontProductSubstitutionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSubstituteCollection> {
+    async storefrontProductSubstitutions(requestParameters: productsApiParams.StorefrontProductSubstitutionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductSubstituteCollection> {
         const response = await this.storefrontProductSubstitutionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -871,7 +865,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      */
 
 
-    async storefrontValidateDiscountsRaw(requestParameters: StorefrontValidateDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountValidationSummary>> {
+    async storefrontValidateDiscountsRaw(requestParameters: productsApiParams.StorefrontValidateDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountValidationSummary>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling storefrontValidateDiscounts.');
         }
@@ -923,7 +917,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      * Validate if a collection of discounts is valid for a product.  This includes discounts that would normally be considered order level discounts.
      * Validates discounts for a product
      */
-    async storefrontValidateDiscounts(requestParameters: StorefrontValidateDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountValidationSummary> {
+    async storefrontValidateDiscounts(requestParameters: productsApiParams.StorefrontValidateDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountValidationSummary> {
         const response = await this.storefrontValidateDiscountsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -934,7 +928,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      */
 
 
-    async storefrontValidateProductRaw(requestParameters: StorefrontValidateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductValidationSummary>> {
+    async storefrontValidateProductRaw(requestParameters: productsApiParams.StorefrontValidateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductValidationSummary>> {
         if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
             throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling storefrontValidateProduct.');
         }
@@ -998,7 +992,7 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiInterface
      * Validate the final state of shopper-selected options.
      * Validates a variant product
      */
-    async storefrontValidateProduct(requestParameters: StorefrontValidateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductValidationSummary> {
+    async storefrontValidateProduct(requestParameters: productsApiParams.StorefrontValidateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductValidationSummary> {
         const response = await this.storefrontValidateProductRaw(requestParameters, initOverrides);
         return await response.value();
     }

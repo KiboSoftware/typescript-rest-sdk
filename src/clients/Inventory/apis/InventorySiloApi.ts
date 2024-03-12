@@ -20,43 +20,44 @@ import type {
   UpdateTenantSiloConfigRequest,
 } from '../models';
 
-export interface UpdateTenantSiloConfigOperationRequest {
-    xVolTenant: number;
-    updateTenantSiloConfigRequest: UpdateTenantSiloConfigRequest;
-    responseFields?: string;
+
+export namespace inventorySiloApiParams { 
+    export interface UpdateTenantSiloConfigOperationRequest {
+        xVolTenant: number;
+        updateTenantSiloConfigRequest: UpdateTenantSiloConfigRequest;
+    }
+}
+/**
+* InventorySiloApiService - interface
+* 
+* @export
+* @interface InventorySiloApi
+*/
+export interface InventorySiloApiService {
+    /**
+    * Updates tenant silo config
+    * @summary Update Tenant Silo Config
+    * @param {number} xVolTenant Tenant ID
+    * @param {UpdateTenantSiloConfigRequest} updateTenantSiloConfigRequest Request to create tenant silo config
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof InventorySiloApiInterface
+    */
+    updateTenantSiloConfigRaw(requestParameters: inventorySiloApiParams.UpdateTenantSiloConfigOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantSiloConfigModel>>;
+
+    /**
+    * Updates tenant silo config
+    * Update Tenant Silo Config
+    */
+    updateTenantSiloConfig(requestParameters: inventorySiloApiParams.UpdateTenantSiloConfigOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantSiloConfigModel>;
+
 }
 
-/**
- * InventorySiloApi - interface
- * 
- * @export
- * @interface InventorySiloApiInterface
- */
-export interface InventorySiloApiInterface {
-    /**
-     * Updates tenant silo config
-     * @summary Update Tenant Silo Config
-     * @param {number} xVolTenant Tenant ID
-     * @param {UpdateTenantSiloConfigRequest} updateTenantSiloConfigRequest Request to create tenant silo config
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InventorySiloApiInterface
-     */
-    updateTenantSiloConfigRaw(requestParameters: UpdateTenantSiloConfigOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantSiloConfigModel>>;
-
-    /**
-     * Updates tenant silo config
-     * Update Tenant Silo Config
-     */
-    updateTenantSiloConfig(requestParameters: UpdateTenantSiloConfigOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantSiloConfigModel>;
-
-}
 
 /**
  * 
  */
-export class InventorySiloApi extends runtime.BaseAPI implements InventorySiloApiInterface {
+export class InventorySiloApi extends runtime.BaseAPI implements InventorySiloApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -67,7 +68,7 @@ export class InventorySiloApi extends runtime.BaseAPI implements InventorySiloAp
      */
 
 
-    async updateTenantSiloConfigRaw(requestParameters: UpdateTenantSiloConfigOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantSiloConfigModel>> {
+    async updateTenantSiloConfigRaw(requestParameters: inventorySiloApiParams.UpdateTenantSiloConfigOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantSiloConfigModel>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateTenantSiloConfig.');
         }
@@ -77,10 +78,6 @@ export class InventorySiloApi extends runtime.BaseAPI implements InventorySiloAp
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -111,7 +108,7 @@ export class InventorySiloApi extends runtime.BaseAPI implements InventorySiloAp
      * Updates tenant silo config
      * Update Tenant Silo Config
      */
-    async updateTenantSiloConfig(requestParameters: UpdateTenantSiloConfigOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantSiloConfigModel> {
+    async updateTenantSiloConfig(requestParameters: inventorySiloApiParams.UpdateTenantSiloConfigOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantSiloConfigModel> {
         const response = await this.updateTenantSiloConfigRaw(requestParameters, initOverrides);
         return await response.value();
     }

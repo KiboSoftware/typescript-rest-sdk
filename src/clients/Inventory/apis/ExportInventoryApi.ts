@@ -32,281 +32,258 @@ import type {
   UpdateExportSettingsS3Response,
 } from '../models';
 
-export interface CreateExportSettingsOperationRequest {
-    xVolTenant: number;
-    createExportSettingsRequest: CreateExportSettingsRequest;
-    responseFields?: string;
-}
 
-export interface CreateExportSettingsFTPOperationRequest {
-    xVolTenant: number;
-    createExportSettingsFTPRequest: CreateExportSettingsFTPRequest;
-    responseFields?: string;
+export namespace exportInventoryApiParams { 
+    export interface CreateExportSettingsOperationRequest {
+        xVolTenant: number;
+        createExportSettingsRequest: CreateExportSettingsRequest;
+    }
+    export interface CreateExportSettingsFTPOperationRequest {
+        xVolTenant: number;
+        createExportSettingsFTPRequest: CreateExportSettingsFTPRequest;
+    }
+    export interface CreateExportSettingsS3OperationRequest {
+        xVolTenant: number;
+        createExportSettingsS3Request: CreateExportSettingsS3Request;
+    }
+    export interface DeleteExportSettingsRequest {
+        xVolTenant: number;
+        exportSettingsName: string;
+    }
+    export interface DeleteExportSettingsFTPRequest {
+        xVolTenant: number;
+        exportSettingsName: string;
+        exportSettingsFTPName?: string;
+    }
+    export interface DeleteExportSettingsS3Request {
+        xVolTenant: number;
+        exportSettingsName: string;
+        exportSettingsS3Name?: string;
+    }
+    export interface GetExportSettingsRequest {
+        xVolTenant: number;
+        exportSettingsName: string;
+    }
+    export interface RunExportRequest {
+        xVolTenant: number;
+        exportInventoryRequest: ExportInventoryRequest;
+    }
+    export interface UpdateExportSettingsOperationRequest {
+        xVolTenant: number;
+        updateExportSettingsRequest: UpdateExportSettingsRequest;
+    }
+    export interface UpdateExportSettingsFTPOperationRequest {
+        xVolTenant: number;
+        updateExportSettingsFTPRequest: UpdateExportSettingsFTPRequest;
+    }
+    export interface UpdateExportSettingsS3OperationRequest {
+        xVolTenant: number;
+        updateExportSettingsS3Request: UpdateExportSettingsS3Request;
+    }
 }
-
-export interface CreateExportSettingsS3OperationRequest {
-    xVolTenant: number;
-    createExportSettingsS3Request: CreateExportSettingsS3Request;
-    responseFields?: string;
-}
-
-export interface DeleteExportSettingsRequest {
-    xVolTenant: number;
-    exportSettingsName: string;
-}
-
-export interface DeleteExportSettingsFTPRequest {
-    xVolTenant: number;
-    exportSettingsName: string;
-    exportSettingsFTPName?: string;
-}
-
-export interface DeleteExportSettingsS3Request {
-    xVolTenant: number;
-    exportSettingsName: string;
-    exportSettingsS3Name?: string;
-}
-
-export interface GetExportSettingsRequest {
-    xVolTenant: number;
-    exportSettingsName: string;
-    responseFields?: string;
-}
-
-export interface RunExportRequest {
-    xVolTenant: number;
-    exportInventoryRequest: ExportInventoryRequest;
-    responseFields?: string;
-}
-
-export interface UpdateExportSettingsOperationRequest {
-    xVolTenant: number;
-    updateExportSettingsRequest: UpdateExportSettingsRequest;
-    responseFields?: string;
-}
-
-export interface UpdateExportSettingsFTPOperationRequest {
-    xVolTenant: number;
-    updateExportSettingsFTPRequest: UpdateExportSettingsFTPRequest;
-    responseFields?: string;
-}
-
-export interface UpdateExportSettingsS3OperationRequest {
-    xVolTenant: number;
-    updateExportSettingsS3Request: UpdateExportSettingsS3Request;
-    responseFields?: string;
-}
-
 /**
- * ExportInventoryApi - interface
- * 
- * @export
- * @interface ExportInventoryApiInterface
- */
-export interface ExportInventoryApiInterface {
+* ExportInventoryApiService - interface
+* 
+* @export
+* @interface ExportInventoryApi
+*/
+export interface ExportInventoryApiService {
     /**
-     * Create an Export Settings
-     * @summary Create Export Settings
-     * @param {number} xVolTenant Tenant ID
-     * @param {CreateExportSettingsRequest} createExportSettingsRequest Request to create a new Export Settings
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ExportInventoryApiInterface
-     */
-    createExportSettingsRaw(requestParameters: CreateExportSettingsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportSettingsResponse>>;
+    * Create an Export Settings
+    * @summary Create Export Settings
+    * @param {number} xVolTenant Tenant ID
+    * @param {CreateExportSettingsRequest} createExportSettingsRequest Request to create a new Export Settings
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ExportInventoryApiInterface
+    */
+    createExportSettingsRaw(requestParameters: exportInventoryApiParams.CreateExportSettingsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportSettingsResponse>>;
 
     /**
-     * Create an Export Settings
-     * Create Export Settings
-     */
-    createExportSettings(requestParameters: CreateExportSettingsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExportSettingsResponse>;
+    * Create an Export Settings
+    * Create Export Settings
+    */
+    createExportSettings(requestParameters: exportInventoryApiParams.CreateExportSettingsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExportSettingsResponse>;
 
     /**
-     * Create an Export Settings FTP
-     * @summary Create Export Settings FTP
-     * @param {number} xVolTenant Tenant ID
-     * @param {CreateExportSettingsFTPRequest} createExportSettingsFTPRequest Request to create a new Export Settings FTP
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ExportInventoryApiInterface
-     */
-    createExportSettingsFTPRaw(requestParameters: CreateExportSettingsFTPOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportSettingsResponse>>;
+    * Create an Export Settings FTP
+    * @summary Create Export Settings FTP
+    * @param {number} xVolTenant Tenant ID
+    * @param {CreateExportSettingsFTPRequest} createExportSettingsFTPRequest Request to create a new Export Settings FTP
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ExportInventoryApiInterface
+    */
+    createExportSettingsFTPRaw(requestParameters: exportInventoryApiParams.CreateExportSettingsFTPOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportSettingsResponse>>;
 
     /**
-     * Create an Export Settings FTP
-     * Create Export Settings FTP
-     */
-    createExportSettingsFTP(requestParameters: CreateExportSettingsFTPOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExportSettingsResponse>;
+    * Create an Export Settings FTP
+    * Create Export Settings FTP
+    */
+    createExportSettingsFTP(requestParameters: exportInventoryApiParams.CreateExportSettingsFTPOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExportSettingsResponse>;
 
     /**
-     * Create an Export Settings S3
-     * @summary Create Export Settings S3
-     * @param {number} xVolTenant Tenant ID
-     * @param {CreateExportSettingsS3Request} createExportSettingsS3Request Request to create a new Export Settings S3
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ExportInventoryApiInterface
-     */
-    createExportSettingsS3Raw(requestParameters: CreateExportSettingsS3OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportSettingsResponse>>;
+    * Create an Export Settings S3
+    * @summary Create Export Settings S3
+    * @param {number} xVolTenant Tenant ID
+    * @param {CreateExportSettingsS3Request} createExportSettingsS3Request Request to create a new Export Settings S3
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ExportInventoryApiInterface
+    */
+    createExportSettingsS3Raw(requestParameters: exportInventoryApiParams.CreateExportSettingsS3OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportSettingsResponse>>;
 
     /**
-     * Create an Export Settings S3
-     * Create Export Settings S3
-     */
-    createExportSettingsS3(requestParameters: CreateExportSettingsS3OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExportSettingsResponse>;
+    * Create an Export Settings S3
+    * Create Export Settings S3
+    */
+    createExportSettingsS3(requestParameters: exportInventoryApiParams.CreateExportSettingsS3OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExportSettingsResponse>;
 
     /**
-     * Deletes an Export Settings
-     * @summary Delete Export Settings
-     * @param {number} xVolTenant Tenant ID
-     * @param {string} exportSettingsName Export Settings Name
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ExportInventoryApiInterface
-     */
-    deleteExportSettingsRaw(requestParameters: DeleteExportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>>;
+    * Deletes an Export Settings
+    * @summary Delete Export Settings
+    * @param {number} xVolTenant Tenant ID
+    * @param {string} exportSettingsName Export Settings Name
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ExportInventoryApiInterface
+    */
+    deleteExportSettingsRaw(requestParameters: exportInventoryApiParams.DeleteExportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>>;
 
     /**
-     * Deletes an Export Settings
-     * Delete Export Settings
-     */
-    deleteExportSettings(requestParameters: DeleteExportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedCountResponse>;
+    * Deletes an Export Settings
+    * Delete Export Settings
+    */
+    deleteExportSettings(requestParameters: exportInventoryApiParams.DeleteExportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedCountResponse>;
 
     /**
-     * Deletes an Export Settings FTP. Not specifying exportSettingsFTPID deletes ALL ftp settings for the specified export settings.
-     * @summary Delete Export Settings FTP
-     * @param {number} xVolTenant Tenant ID
-     * @param {string} exportSettingsName Export Settings Name
-     * @param {string} [exportSettingsFTPName] Export Settings FTP Name
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ExportInventoryApiInterface
-     */
-    deleteExportSettingsFTPRaw(requestParameters: DeleteExportSettingsFTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>>;
+    * Deletes an Export Settings FTP. Not specifying exportSettingsFTPID deletes ALL ftp settings for the specified export settings.
+    * @summary Delete Export Settings FTP
+    * @param {number} xVolTenant Tenant ID
+    * @param {string} exportSettingsName Export Settings Name
+    * @param {string} [exportSettingsFTPName] Export Settings FTP Name
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ExportInventoryApiInterface
+    */
+    deleteExportSettingsFTPRaw(requestParameters: exportInventoryApiParams.DeleteExportSettingsFTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>>;
 
     /**
-     * Deletes an Export Settings FTP. Not specifying exportSettingsFTPID deletes ALL ftp settings for the specified export settings.
-     * Delete Export Settings FTP
-     */
-    deleteExportSettingsFTP(requestParameters: DeleteExportSettingsFTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedCountResponse>;
+    * Deletes an Export Settings FTP. Not specifying exportSettingsFTPID deletes ALL ftp settings for the specified export settings.
+    * Delete Export Settings FTP
+    */
+    deleteExportSettingsFTP(requestParameters: exportInventoryApiParams.DeleteExportSettingsFTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedCountResponse>;
 
     /**
-     * Deletes an Export Settings S3. Not specifying exportSettingsS3ID deletes ALL s3 settings for the specified export settings.
-     * @summary Delete Export Settings S3
-     * @param {number} xVolTenant Tenant ID
-     * @param {string} exportSettingsName Export Settings Name
-     * @param {string} [exportSettingsS3Name] Export Settings S3 Name
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ExportInventoryApiInterface
-     */
-    deleteExportSettingsS3Raw(requestParameters: DeleteExportSettingsS3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>>;
+    * Deletes an Export Settings S3. Not specifying exportSettingsS3ID deletes ALL s3 settings for the specified export settings.
+    * @summary Delete Export Settings S3
+    * @param {number} xVolTenant Tenant ID
+    * @param {string} exportSettingsName Export Settings Name
+    * @param {string} [exportSettingsS3Name] Export Settings S3 Name
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ExportInventoryApiInterface
+    */
+    deleteExportSettingsS3Raw(requestParameters: exportInventoryApiParams.DeleteExportSettingsS3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>>;
 
     /**
-     * Deletes an Export Settings S3. Not specifying exportSettingsS3ID deletes ALL s3 settings for the specified export settings.
-     * Delete Export Settings S3
-     */
-    deleteExportSettingsS3(requestParameters: DeleteExportSettingsS3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedCountResponse>;
+    * Deletes an Export Settings S3. Not specifying exportSettingsS3ID deletes ALL s3 settings for the specified export settings.
+    * Delete Export Settings S3
+    */
+    deleteExportSettingsS3(requestParameters: exportInventoryApiParams.DeleteExportSettingsS3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedCountResponse>;
 
     /**
-     * Get an export settings
-     * @summary Get Export Settings
-     * @param {number} xVolTenant Tenant ID
-     * @param {string} exportSettingsName Export Settings Name
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ExportInventoryApiInterface
-     */
-    getExportSettingsRaw(requestParameters: GetExportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<GetExportSettingsResponse>>>;
+    * Get an export settings
+    * @summary Get Export Settings
+    * @param {number} xVolTenant Tenant ID
+    * @param {string} exportSettingsName Export Settings Name
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ExportInventoryApiInterface
+    */
+    getExportSettingsRaw(requestParameters: exportInventoryApiParams.GetExportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<GetExportSettingsResponse>>>;
 
     /**
-     * Get an export settings
-     * Get Export Settings
-     */
-    getExportSettings(requestParameters: GetExportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<GetExportSettingsResponse>>;
+    * Get an export settings
+    * Get Export Settings
+    */
+    getExportSettings(requestParameters: exportInventoryApiParams.GetExportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<GetExportSettingsResponse>>;
 
     /**
-     * Run Export Settings Job
-     * @summary Run Export
-     * @param {number} xVolTenant Tenant ID
-     * @param {ExportInventoryRequest} exportInventoryRequest Request to run an inventory export
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ExportInventoryApiInterface
-     */
-    runExportRaw(requestParameters: RunExportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportInventoryResponse>>;
+    * Run Export Settings Job
+    * @summary Run Export
+    * @param {number} xVolTenant Tenant ID
+    * @param {ExportInventoryRequest} exportInventoryRequest Request to run an inventory export
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ExportInventoryApiInterface
+    */
+    runExportRaw(requestParameters: exportInventoryApiParams.RunExportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportInventoryResponse>>;
 
     /**
-     * Run Export Settings Job
-     * Run Export
-     */
-    runExport(requestParameters: RunExportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExportInventoryResponse>;
+    * Run Export Settings Job
+    * Run Export
+    */
+    runExport(requestParameters: exportInventoryApiParams.RunExportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExportInventoryResponse>;
 
     /**
-     * Update an Export Settings
-     * @summary Update Export Settings
-     * @param {number} xVolTenant Tenant ID
-     * @param {UpdateExportSettingsRequest} updateExportSettingsRequest Request to update an existing Export Settings
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ExportInventoryApiInterface
-     */
-    updateExportSettingsRaw(requestParameters: UpdateExportSettingsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateExportSettingsResponse>>;
+    * Update an Export Settings
+    * @summary Update Export Settings
+    * @param {number} xVolTenant Tenant ID
+    * @param {UpdateExportSettingsRequest} updateExportSettingsRequest Request to update an existing Export Settings
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ExportInventoryApiInterface
+    */
+    updateExportSettingsRaw(requestParameters: exportInventoryApiParams.UpdateExportSettingsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateExportSettingsResponse>>;
 
     /**
-     * Update an Export Settings
-     * Update Export Settings
-     */
-    updateExportSettings(requestParameters: UpdateExportSettingsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateExportSettingsResponse>;
+    * Update an Export Settings
+    * Update Export Settings
+    */
+    updateExportSettings(requestParameters: exportInventoryApiParams.UpdateExportSettingsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateExportSettingsResponse>;
 
     /**
-     * Update an Export Settings FTP
-     * @summary Update Export Settings FTP
-     * @param {number} xVolTenant Tenant ID
-     * @param {UpdateExportSettingsFTPRequest} updateExportSettingsFTPRequest Request to update an existing Export Settings FTP
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ExportInventoryApiInterface
-     */
-    updateExportSettingsFTPRaw(requestParameters: UpdateExportSettingsFTPOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateExportSettingsFTPResponse>>;
+    * Update an Export Settings FTP
+    * @summary Update Export Settings FTP
+    * @param {number} xVolTenant Tenant ID
+    * @param {UpdateExportSettingsFTPRequest} updateExportSettingsFTPRequest Request to update an existing Export Settings FTP
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ExportInventoryApiInterface
+    */
+    updateExportSettingsFTPRaw(requestParameters: exportInventoryApiParams.UpdateExportSettingsFTPOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateExportSettingsFTPResponse>>;
 
     /**
-     * Update an Export Settings FTP
-     * Update Export Settings FTP
-     */
-    updateExportSettingsFTP(requestParameters: UpdateExportSettingsFTPOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateExportSettingsFTPResponse>;
+    * Update an Export Settings FTP
+    * Update Export Settings FTP
+    */
+    updateExportSettingsFTP(requestParameters: exportInventoryApiParams.UpdateExportSettingsFTPOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateExportSettingsFTPResponse>;
 
     /**
-     * Update an Export Settings S3
-     * @summary Update Export Settings S3
-     * @param {number} xVolTenant Tenant ID
-     * @param {UpdateExportSettingsS3Request} updateExportSettingsS3Request Request to update an existing Export Settings S3
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ExportInventoryApiInterface
-     */
-    updateExportSettingsS3Raw(requestParameters: UpdateExportSettingsS3OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateExportSettingsS3Response>>;
+    * Update an Export Settings S3
+    * @summary Update Export Settings S3
+    * @param {number} xVolTenant Tenant ID
+    * @param {UpdateExportSettingsS3Request} updateExportSettingsS3Request Request to update an existing Export Settings S3
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ExportInventoryApiInterface
+    */
+    updateExportSettingsS3Raw(requestParameters: exportInventoryApiParams.UpdateExportSettingsS3OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateExportSettingsS3Response>>;
 
     /**
-     * Update an Export Settings S3
-     * Update Export Settings S3
-     */
-    updateExportSettingsS3(requestParameters: UpdateExportSettingsS3OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateExportSettingsS3Response>;
+    * Update an Export Settings S3
+    * Update Export Settings S3
+    */
+    updateExportSettingsS3(requestParameters: exportInventoryApiParams.UpdateExportSettingsS3OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateExportSettingsS3Response>;
 
 }
+
 
 /**
  * 
  */
-export class ExportInventoryApi extends runtime.BaseAPI implements ExportInventoryApiInterface {
+export class ExportInventoryApi extends runtime.BaseAPI implements ExportInventoryApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -317,7 +294,7 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
      */
 
 
-    async createExportSettingsRaw(requestParameters: CreateExportSettingsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportSettingsResponse>> {
+    async createExportSettingsRaw(requestParameters: exportInventoryApiParams.CreateExportSettingsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportSettingsResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling createExportSettings.');
         }
@@ -327,10 +304,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -361,7 +334,7 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
      * Create an Export Settings
      * Create Export Settings
      */
-    async createExportSettings(requestParameters: CreateExportSettingsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExportSettingsResponse> {
+    async createExportSettings(requestParameters: exportInventoryApiParams.CreateExportSettingsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExportSettingsResponse> {
         const response = await this.createExportSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -372,7 +345,7 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
      */
 
 
-    async createExportSettingsFTPRaw(requestParameters: CreateExportSettingsFTPOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportSettingsResponse>> {
+    async createExportSettingsFTPRaw(requestParameters: exportInventoryApiParams.CreateExportSettingsFTPOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportSettingsResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling createExportSettingsFTP.');
         }
@@ -382,10 +355,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -416,7 +385,7 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
      * Create an Export Settings FTP
      * Create Export Settings FTP
      */
-    async createExportSettingsFTP(requestParameters: CreateExportSettingsFTPOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExportSettingsResponse> {
+    async createExportSettingsFTP(requestParameters: exportInventoryApiParams.CreateExportSettingsFTPOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExportSettingsResponse> {
         const response = await this.createExportSettingsFTPRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -427,7 +396,7 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
      */
 
 
-    async createExportSettingsS3Raw(requestParameters: CreateExportSettingsS3OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportSettingsResponse>> {
+    async createExportSettingsS3Raw(requestParameters: exportInventoryApiParams.CreateExportSettingsS3OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportSettingsResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling createExportSettingsS3.');
         }
@@ -437,10 +406,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -471,7 +436,7 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
      * Create an Export Settings S3
      * Create Export Settings S3
      */
-    async createExportSettingsS3(requestParameters: CreateExportSettingsS3OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExportSettingsResponse> {
+    async createExportSettingsS3(requestParameters: exportInventoryApiParams.CreateExportSettingsS3OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExportSettingsResponse> {
         const response = await this.createExportSettingsS3Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -482,7 +447,7 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
      */
 
 
-    async deleteExportSettingsRaw(requestParameters: DeleteExportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>> {
+    async deleteExportSettingsRaw(requestParameters: exportInventoryApiParams.DeleteExportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteExportSettings.');
         }
@@ -523,7 +488,7 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
      * Deletes an Export Settings
      * Delete Export Settings
      */
-    async deleteExportSettings(requestParameters: DeleteExportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedCountResponse> {
+    async deleteExportSettings(requestParameters: exportInventoryApiParams.DeleteExportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedCountResponse> {
         const response = await this.deleteExportSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -534,7 +499,7 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
      */
 
 
-    async deleteExportSettingsFTPRaw(requestParameters: DeleteExportSettingsFTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>> {
+    async deleteExportSettingsFTPRaw(requestParameters: exportInventoryApiParams.DeleteExportSettingsFTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteExportSettingsFTP.');
         }
@@ -575,7 +540,7 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
      * Deletes an Export Settings FTP. Not specifying exportSettingsFTPID deletes ALL ftp settings for the specified export settings.
      * Delete Export Settings FTP
      */
-    async deleteExportSettingsFTP(requestParameters: DeleteExportSettingsFTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedCountResponse> {
+    async deleteExportSettingsFTP(requestParameters: exportInventoryApiParams.DeleteExportSettingsFTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedCountResponse> {
         const response = await this.deleteExportSettingsFTPRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -586,7 +551,7 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
      */
 
 
-    async deleteExportSettingsS3Raw(requestParameters: DeleteExportSettingsS3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>> {
+    async deleteExportSettingsS3Raw(requestParameters: exportInventoryApiParams.DeleteExportSettingsS3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteExportSettingsS3.');
         }
@@ -627,7 +592,7 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
      * Deletes an Export Settings S3. Not specifying exportSettingsS3ID deletes ALL s3 settings for the specified export settings.
      * Delete Export Settings S3
      */
-    async deleteExportSettingsS3(requestParameters: DeleteExportSettingsS3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedCountResponse> {
+    async deleteExportSettingsS3(requestParameters: exportInventoryApiParams.DeleteExportSettingsS3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedCountResponse> {
         const response = await this.deleteExportSettingsS3Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -638,7 +603,7 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
      */
 
 
-    async getExportSettingsRaw(requestParameters: GetExportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<GetExportSettingsResponse>>> {
+    async getExportSettingsRaw(requestParameters: exportInventoryApiParams.GetExportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<GetExportSettingsResponse>>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getExportSettings.');
         }
@@ -651,10 +616,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
 
         if (requestParameters.exportSettingsName !== undefined) {
             queryParameters['exportSettingsName'] = requestParameters.exportSettingsName;
-        }
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -683,7 +644,7 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
      * Get an export settings
      * Get Export Settings
      */
-    async getExportSettings(requestParameters: GetExportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<GetExportSettingsResponse>> {
+    async getExportSettings(requestParameters: exportInventoryApiParams.GetExportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<GetExportSettingsResponse>> {
         const response = await this.getExportSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -694,7 +655,7 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
      */
 
 
-    async runExportRaw(requestParameters: RunExportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportInventoryResponse>> {
+    async runExportRaw(requestParameters: exportInventoryApiParams.RunExportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportInventoryResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling runExport.');
         }
@@ -704,10 +665,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -738,7 +695,7 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
      * Run Export Settings Job
      * Run Export
      */
-    async runExport(requestParameters: RunExportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExportInventoryResponse> {
+    async runExport(requestParameters: exportInventoryApiParams.RunExportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExportInventoryResponse> {
         const response = await this.runExportRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -749,7 +706,7 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
      */
 
 
-    async updateExportSettingsRaw(requestParameters: UpdateExportSettingsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateExportSettingsResponse>> {
+    async updateExportSettingsRaw(requestParameters: exportInventoryApiParams.UpdateExportSettingsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateExportSettingsResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateExportSettings.');
         }
@@ -759,10 +716,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -793,7 +746,7 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
      * Update an Export Settings
      * Update Export Settings
      */
-    async updateExportSettings(requestParameters: UpdateExportSettingsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateExportSettingsResponse> {
+    async updateExportSettings(requestParameters: exportInventoryApiParams.UpdateExportSettingsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateExportSettingsResponse> {
         const response = await this.updateExportSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -804,7 +757,7 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
      */
 
 
-    async updateExportSettingsFTPRaw(requestParameters: UpdateExportSettingsFTPOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateExportSettingsFTPResponse>> {
+    async updateExportSettingsFTPRaw(requestParameters: exportInventoryApiParams.UpdateExportSettingsFTPOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateExportSettingsFTPResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateExportSettingsFTP.');
         }
@@ -814,10 +767,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -848,7 +797,7 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
      * Update an Export Settings FTP
      * Update Export Settings FTP
      */
-    async updateExportSettingsFTP(requestParameters: UpdateExportSettingsFTPOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateExportSettingsFTPResponse> {
+    async updateExportSettingsFTP(requestParameters: exportInventoryApiParams.UpdateExportSettingsFTPOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateExportSettingsFTPResponse> {
         const response = await this.updateExportSettingsFTPRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -859,7 +808,7 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
      */
 
 
-    async updateExportSettingsS3Raw(requestParameters: UpdateExportSettingsS3OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateExportSettingsS3Response>> {
+    async updateExportSettingsS3Raw(requestParameters: exportInventoryApiParams.UpdateExportSettingsS3OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateExportSettingsS3Response>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateExportSettingsS3.');
         }
@@ -869,10 +818,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -903,7 +848,7 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
      * Update an Export Settings S3
      * Update Export Settings S3
      */
-    async updateExportSettingsS3(requestParameters: UpdateExportSettingsS3OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateExportSettingsS3Response> {
+    async updateExportSettingsS3(requestParameters: exportInventoryApiParams.UpdateExportSettingsS3OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateExportSettingsS3Response> {
         const response = await this.updateExportSettingsS3Raw(requestParameters, initOverrides);
         return await response.value();
     }

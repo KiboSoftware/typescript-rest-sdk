@@ -20,135 +20,134 @@ import type {
   ChannelGroupCollection,
 } from '../models';
 
-export interface CreateChannelGroupRequest {
-    responseFields?: string;
-    channelGroup?: ChannelGroup;
+
+export namespace channelGroupApiParams { 
+    export interface CreateChannelGroupRequest {
+        responseFields?: string;
+        channelGroup?: ChannelGroup;
+    }
+    export interface DeleteChannelGroupRequest {
+        code: string;
+    }
+    export interface GetChannelGroupRequest {
+        code: string;
+        responseFields?: string;
+    }
+    export interface GetChannelGroupsRequest {
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        filter?: string;
+        responseFields?: string;
+    }
+    export interface UpdateChannelGroupRequest {
+        code: string;
+        responseFields?: string;
+        channelGroup?: ChannelGroup;
+    }
+}
+/**
+* ChannelGroupApiService - interface
+* 
+* @export
+* @interface ChannelGroupApi
+*/
+export interface ChannelGroupApiService {
+    /**
+    * Creates a new channel group.
+    * @summary Creates Channel Group.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ChannelGroup} [channelGroup] All properties of the channel group to place.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ChannelGroupApiInterface
+    */
+    createChannelGroupRaw(requestParameters: channelGroupApiParams.CreateChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelGroup>>;
+
+    /**
+    * Creates a new channel group.
+    * Creates Channel Group.
+    */
+    createChannelGroup(requestParameters: channelGroupApiParams.CreateChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelGroup>;
+
+    /**
+    * Deletes a channel grop specified by group code.
+    * @summary Delete Channel Group
+    * @param {string} code ID of the channel to update.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ChannelGroupApiInterface
+    */
+    deleteChannelGroupRaw(requestParameters: channelGroupApiParams.DeleteChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+    * Deletes a channel grop specified by group code.
+    * Delete Channel Group
+    */
+    deleteChannelGroup(requestParameters: channelGroupApiParams.DeleteChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+    * Retrieves the details of an channel group specified by the code.
+    * @summary Get Channel Group
+    * @param {string} code Unique identifier of the channel whose details you want.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ChannelGroupApiInterface
+    */
+    getChannelGroupRaw(requestParameters: channelGroupApiParams.GetChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelGroup>>;
+
+    /**
+    * Retrieves the details of an channel group specified by the code.
+    * Get Channel Group
+    */
+    getChannelGroup(requestParameters: channelGroupApiParams.GetChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelGroup>;
+
+    /**
+    * Retrieves a list of channel groups according to any specified filter criteria and sort options.
+    * @summary Get Channel Groups
+    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.               For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
+    * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+    * @param {string} [sortBy] The element to sort the results by and the channel in which the results appear. Either ascending (a-z) or descending (z-a) channel. Optional.
+    * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals,               gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ChannelGroupApiInterface
+    */
+    getChannelGroupsRaw(requestParameters: channelGroupApiParams.GetChannelGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelGroupCollection>>;
+
+    /**
+    * Retrieves a list of channel groups according to any specified filter criteria and sort options.
+    * Get Channel Groups
+    */
+    getChannelGroups(requestParameters: channelGroupApiParams.GetChannelGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelGroupCollection>;
+
+    /**
+    * Updates a specific channel group.
+    * @summary Updates Channel Group.
+    * @param {string} code ID of the channel to update.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ChannelGroup} [channelGroup] All properties of the channel group to place.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ChannelGroupApiInterface
+    */
+    updateChannelGroupRaw(requestParameters: channelGroupApiParams.UpdateChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelGroup>>;
+
+    /**
+    * Updates a specific channel group.
+    * Updates Channel Group.
+    */
+    updateChannelGroup(requestParameters: channelGroupApiParams.UpdateChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelGroup>;
+
 }
 
-export interface DeleteChannelGroupRequest {
-    code: string;
-}
-
-export interface GetChannelGroupRequest {
-    code: string;
-    responseFields?: string;
-}
-
-export interface GetChannelGroupsRequest {
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    filter?: string;
-    responseFields?: string;
-}
-
-export interface UpdateChannelGroupRequest {
-    code: string;
-    responseFields?: string;
-    channelGroup?: ChannelGroup;
-}
 
 /**
- * ChannelGroupApi - interface
- * 
- * @export
- * @interface ChannelGroupApiInterface
- */
-export interface ChannelGroupApiInterface {
-    /**
-     * Creates a new channel group.
-     * @summary Creates Channel Group.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {ChannelGroup} [channelGroup] All properties of the channel group to place.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChannelGroupApiInterface
-     */
-    createChannelGroupRaw(requestParameters: CreateChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelGroup>>;
-
-    /**
-     * Creates a new channel group.
-     * Creates Channel Group.
-     */
-    createChannelGroup(requestParameters: CreateChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelGroup>;
-
-    /**
-     * Deletes a channel grop specified by group code.
-     * @summary Delete Channel Group
-     * @param {string} code ID of the channel to update.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChannelGroupApiInterface
-     */
-    deleteChannelGroupRaw(requestParameters: DeleteChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     * Deletes a channel grop specified by group code.
-     * Delete Channel Group
-     */
-    deleteChannelGroup(requestParameters: DeleteChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * Retrieves the details of an channel group specified by the code.
-     * @summary Get Channel Group
-     * @param {string} code Unique identifier of the channel whose details you want.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChannelGroupApiInterface
-     */
-    getChannelGroupRaw(requestParameters: GetChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelGroup>>;
-
-    /**
-     * Retrieves the details of an channel group specified by the code.
-     * Get Channel Group
-     */
-    getChannelGroup(requestParameters: GetChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelGroup>;
-
-    /**
-     * Retrieves a list of channel groups according to any specified filter criteria and sort options.
-     * @summary Get Channel Groups
-     * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.               For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
-     * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
-     * @param {string} [sortBy] The element to sort the results by and the channel in which the results appear. Either ascending (a-z) or descending (z-a) channel. Optional.
-     * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals,               gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChannelGroupApiInterface
-     */
-    getChannelGroupsRaw(requestParameters: GetChannelGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelGroupCollection>>;
-
-    /**
-     * Retrieves a list of channel groups according to any specified filter criteria and sort options.
-     * Get Channel Groups
-     */
-    getChannelGroups(requestParameters: GetChannelGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelGroupCollection>;
-
-    /**
-     * Updates a specific channel group.
-     * @summary Updates Channel Group.
-     * @param {string} code ID of the channel to update.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {ChannelGroup} [channelGroup] All properties of the channel group to place.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChannelGroupApiInterface
-     */
-    updateChannelGroupRaw(requestParameters: UpdateChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelGroup>>;
-
-    /**
-     * Updates a specific channel group.
-     * Updates Channel Group.
-     */
-    updateChannelGroup(requestParameters: UpdateChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelGroup>;
-
-}
-
-/**
  * 
  */
-export class ChannelGroupApi extends runtime.BaseAPI implements ChannelGroupApiInterface {
+export class ChannelGroupApi extends runtime.BaseAPI implements ChannelGroupApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -159,7 +158,7 @@ export class ChannelGroupApi extends runtime.BaseAPI implements ChannelGroupApiI
      */
 
 
-    async createChannelGroupRaw(requestParameters: CreateChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelGroup>> {
+    async createChannelGroupRaw(requestParameters: channelGroupApiParams.CreateChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelGroup>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -191,7 +190,7 @@ export class ChannelGroupApi extends runtime.BaseAPI implements ChannelGroupApiI
      * Creates a new channel group.
      * Creates Channel Group.
      */
-    async createChannelGroup(requestParameters: CreateChannelGroupRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelGroup> {
+    async createChannelGroup(requestParameters: channelGroupApiParams.CreateChannelGroupRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelGroup> {
         const response = await this.createChannelGroupRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -202,7 +201,7 @@ export class ChannelGroupApi extends runtime.BaseAPI implements ChannelGroupApiI
      */
 
 
-    async deleteChannelGroupRaw(requestParameters: DeleteChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteChannelGroupRaw(requestParameters: channelGroupApiParams.DeleteChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling deleteChannelGroup.');
         }
@@ -231,7 +230,7 @@ export class ChannelGroupApi extends runtime.BaseAPI implements ChannelGroupApiI
      * Deletes a channel grop specified by group code.
      * Delete Channel Group
      */
-    async deleteChannelGroup(requestParameters: DeleteChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteChannelGroup(requestParameters: channelGroupApiParams.DeleteChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteChannelGroupRaw(requestParameters, initOverrides);
     }
 
@@ -241,7 +240,7 @@ export class ChannelGroupApi extends runtime.BaseAPI implements ChannelGroupApiI
      */
 
 
-    async getChannelGroupRaw(requestParameters: GetChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelGroup>> {
+    async getChannelGroupRaw(requestParameters: channelGroupApiParams.GetChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelGroup>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling getChannelGroup.');
         }
@@ -274,7 +273,7 @@ export class ChannelGroupApi extends runtime.BaseAPI implements ChannelGroupApiI
      * Retrieves the details of an channel group specified by the code.
      * Get Channel Group
      */
-    async getChannelGroup(requestParameters: GetChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelGroup> {
+    async getChannelGroup(requestParameters: channelGroupApiParams.GetChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelGroup> {
         const response = await this.getChannelGroupRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -285,7 +284,7 @@ export class ChannelGroupApi extends runtime.BaseAPI implements ChannelGroupApiI
      */
 
 
-    async getChannelGroupsRaw(requestParameters: GetChannelGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelGroupCollection>> {
+    async getChannelGroupsRaw(requestParameters: channelGroupApiParams.GetChannelGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelGroupCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -330,7 +329,7 @@ export class ChannelGroupApi extends runtime.BaseAPI implements ChannelGroupApiI
      * Retrieves a list of channel groups according to any specified filter criteria and sort options.
      * Get Channel Groups
      */
-    async getChannelGroups(requestParameters: GetChannelGroupsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelGroupCollection> {
+    async getChannelGroups(requestParameters: channelGroupApiParams.GetChannelGroupsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelGroupCollection> {
         const response = await this.getChannelGroupsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -341,7 +340,7 @@ export class ChannelGroupApi extends runtime.BaseAPI implements ChannelGroupApiI
      */
 
 
-    async updateChannelGroupRaw(requestParameters: UpdateChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelGroup>> {
+    async updateChannelGroupRaw(requestParameters: channelGroupApiParams.UpdateChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelGroup>> {
         if (requestParameters.code === null || requestParameters.code === undefined) {
             throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling updateChannelGroup.');
         }
@@ -377,7 +376,7 @@ export class ChannelGroupApi extends runtime.BaseAPI implements ChannelGroupApiI
      * Updates a specific channel group.
      * Updates Channel Group.
      */
-    async updateChannelGroup(requestParameters: UpdateChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelGroup> {
+    async updateChannelGroup(requestParameters: channelGroupApiParams.UpdateChannelGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelGroup> {
         const response = await this.updateChannelGroupRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -20,137 +20,136 @@ import type {
   CarrierConfigurationCollection,
 } from '../models';
 
-export interface CreateConfigurationRequest {
-    carrierId: string;
-    responseFields?: string;
-    carrierConfiguration?: CarrierConfiguration;
+
+export namespace carrierConfigurationApiParams { 
+    export interface CreateConfigurationRequest {
+        carrierId: string;
+        responseFields?: string;
+        carrierConfiguration?: CarrierConfiguration;
+    }
+    export interface DeleteConfigurationRequest {
+        carrierId: string;
+    }
+    export interface GetConfigurationRequest {
+        carrierId: string;
+        responseFields?: string;
+    }
+    export interface GetConfigurationsRequest {
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        filter?: string;
+        responseFields?: string;
+    }
+    export interface UpdateConfigurationRequest {
+        carrierId: string;
+        responseFields?: string;
+        carrierConfiguration?: CarrierConfiguration;
+    }
+}
+/**
+* CarrierConfigurationApiService - interface
+* 
+* @export
+* @interface CarrierConfigurationApi
+*/
+export interface CarrierConfigurationApiService {
+    /**
+    * Create Carrier Configuration
+    * @summary Create Carrier Configuration
+    * @param {string} carrierId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CarrierConfiguration} [carrierConfiguration] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CarrierConfigurationApiInterface
+    */
+    createConfigurationRaw(requestParameters: carrierConfigurationApiParams.CreateConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierConfiguration>>;
+
+    /**
+    * Create Carrier Configuration
+    * Create Carrier Configuration
+    */
+    createConfiguration(requestParameters: carrierConfigurationApiParams.CreateConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierConfiguration>;
+
+    /**
+    * Delete an existing Carrier Configuration
+    * @summary Delete an existing Carrier Configuration
+    * @param {string} carrierId 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CarrierConfigurationApiInterface
+    */
+    deleteConfigurationRaw(requestParameters: carrierConfigurationApiParams.DeleteConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+    * Delete an existing Carrier Configuration
+    * Delete an existing Carrier Configuration
+    */
+    deleteConfiguration(requestParameters: carrierConfigurationApiParams.DeleteConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+    * Get Carrier Configuration (for this particular site)
+    * @summary Get Carrier Configuration (for this particular site)
+    * @param {string} carrierId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CarrierConfigurationApiInterface
+    */
+    getConfigurationRaw(requestParameters: carrierConfigurationApiParams.GetConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierConfiguration>>;
+
+    /**
+    * Get Carrier Configuration (for this particular site)
+    * Get Carrier Configuration (for this particular site)
+    */
+    getConfiguration(requestParameters: carrierConfigurationApiParams.GetConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierConfiguration>;
+
+    /**
+    * 
+    * @summary Retrieves a list of Carrier Configurations according to any specified filter criteria and sort options
+    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
+    * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+    * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+    * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CarrierConfigurationApiInterface
+    */
+    getConfigurationsRaw(requestParameters: carrierConfigurationApiParams.GetConfigurationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierConfigurationCollection>>;
+
+    /**
+    * 
+    * Retrieves a list of Carrier Configurations according to any specified filter criteria and sort options
+    */
+    getConfigurations(requestParameters: carrierConfigurationApiParams.GetConfigurationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierConfigurationCollection>;
+
+    /**
+    * Update an existing Carrier Configuration
+    * @summary Update an existing Carrier Configuration
+    * @param {string} carrierId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CarrierConfiguration} [carrierConfiguration] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CarrierConfigurationApiInterface
+    */
+    updateConfigurationRaw(requestParameters: carrierConfigurationApiParams.UpdateConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierConfiguration>>;
+
+    /**
+    * Update an existing Carrier Configuration
+    * Update an existing Carrier Configuration
+    */
+    updateConfiguration(requestParameters: carrierConfigurationApiParams.UpdateConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierConfiguration>;
+
 }
 
-export interface DeleteConfigurationRequest {
-    carrierId: string;
-}
-
-export interface GetConfigurationRequest {
-    carrierId: string;
-    responseFields?: string;
-}
-
-export interface GetConfigurationsRequest {
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    filter?: string;
-    responseFields?: string;
-}
-
-export interface UpdateConfigurationRequest {
-    carrierId: string;
-    responseFields?: string;
-    carrierConfiguration?: CarrierConfiguration;
-}
 
 /**
- * CarrierConfigurationApi - interface
- * 
- * @export
- * @interface CarrierConfigurationApiInterface
- */
-export interface CarrierConfigurationApiInterface {
-    /**
-     * Create Carrier Configuration
-     * @summary Create Carrier Configuration
-     * @param {string} carrierId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CarrierConfiguration} [carrierConfiguration] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CarrierConfigurationApiInterface
-     */
-    createConfigurationRaw(requestParameters: CreateConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierConfiguration>>;
-
-    /**
-     * Create Carrier Configuration
-     * Create Carrier Configuration
-     */
-    createConfiguration(requestParameters: CreateConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierConfiguration>;
-
-    /**
-     * Delete an existing Carrier Configuration
-     * @summary Delete an existing Carrier Configuration
-     * @param {string} carrierId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CarrierConfigurationApiInterface
-     */
-    deleteConfigurationRaw(requestParameters: DeleteConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     * Delete an existing Carrier Configuration
-     * Delete an existing Carrier Configuration
-     */
-    deleteConfiguration(requestParameters: DeleteConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * Get Carrier Configuration (for this particular site)
-     * @summary Get Carrier Configuration (for this particular site)
-     * @param {string} carrierId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CarrierConfigurationApiInterface
-     */
-    getConfigurationRaw(requestParameters: GetConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierConfiguration>>;
-
-    /**
-     * Get Carrier Configuration (for this particular site)
-     * Get Carrier Configuration (for this particular site)
-     */
-    getConfiguration(requestParameters: GetConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierConfiguration>;
-
-    /**
-     * 
-     * @summary Retrieves a list of Carrier Configurations according to any specified filter criteria and sort options
-     * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
-     * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
-     * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
-     * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CarrierConfigurationApiInterface
-     */
-    getConfigurationsRaw(requestParameters: GetConfigurationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierConfigurationCollection>>;
-
-    /**
-     * 
-     * Retrieves a list of Carrier Configurations according to any specified filter criteria and sort options
-     */
-    getConfigurations(requestParameters: GetConfigurationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierConfigurationCollection>;
-
-    /**
-     * Update an existing Carrier Configuration
-     * @summary Update an existing Carrier Configuration
-     * @param {string} carrierId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CarrierConfiguration} [carrierConfiguration] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CarrierConfigurationApiInterface
-     */
-    updateConfigurationRaw(requestParameters: UpdateConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierConfiguration>>;
-
-    /**
-     * Update an existing Carrier Configuration
-     * Update an existing Carrier Configuration
-     */
-    updateConfiguration(requestParameters: UpdateConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierConfiguration>;
-
-}
-
-/**
  * 
  */
-export class CarrierConfigurationApi extends runtime.BaseAPI implements CarrierConfigurationApiInterface {
+export class CarrierConfigurationApi extends runtime.BaseAPI implements CarrierConfigurationApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -161,7 +160,7 @@ export class CarrierConfigurationApi extends runtime.BaseAPI implements CarrierC
      */
 
 
-    async createConfigurationRaw(requestParameters: CreateConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierConfiguration>> {
+    async createConfigurationRaw(requestParameters: carrierConfigurationApiParams.CreateConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierConfiguration>> {
         if (requestParameters.carrierId === null || requestParameters.carrierId === undefined) {
             throw new runtime.RequiredError('carrierId','Required parameter requestParameters.carrierId was null or undefined when calling createConfiguration.');
         }
@@ -197,7 +196,7 @@ export class CarrierConfigurationApi extends runtime.BaseAPI implements CarrierC
      * Create Carrier Configuration
      * Create Carrier Configuration
      */
-    async createConfiguration(requestParameters: CreateConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierConfiguration> {
+    async createConfiguration(requestParameters: carrierConfigurationApiParams.CreateConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierConfiguration> {
         const response = await this.createConfigurationRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -208,7 +207,7 @@ export class CarrierConfigurationApi extends runtime.BaseAPI implements CarrierC
      */
 
 
-    async deleteConfigurationRaw(requestParameters: DeleteConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteConfigurationRaw(requestParameters: carrierConfigurationApiParams.DeleteConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.carrierId === null || requestParameters.carrierId === undefined) {
             throw new runtime.RequiredError('carrierId','Required parameter requestParameters.carrierId was null or undefined when calling deleteConfiguration.');
         }
@@ -237,7 +236,7 @@ export class CarrierConfigurationApi extends runtime.BaseAPI implements CarrierC
      * Delete an existing Carrier Configuration
      * Delete an existing Carrier Configuration
      */
-    async deleteConfiguration(requestParameters: DeleteConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteConfiguration(requestParameters: carrierConfigurationApiParams.DeleteConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteConfigurationRaw(requestParameters, initOverrides);
     }
 
@@ -247,7 +246,7 @@ export class CarrierConfigurationApi extends runtime.BaseAPI implements CarrierC
      */
 
 
-    async getConfigurationRaw(requestParameters: GetConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierConfiguration>> {
+    async getConfigurationRaw(requestParameters: carrierConfigurationApiParams.GetConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierConfiguration>> {
         if (requestParameters.carrierId === null || requestParameters.carrierId === undefined) {
             throw new runtime.RequiredError('carrierId','Required parameter requestParameters.carrierId was null or undefined when calling getConfiguration.');
         }
@@ -280,7 +279,7 @@ export class CarrierConfigurationApi extends runtime.BaseAPI implements CarrierC
      * Get Carrier Configuration (for this particular site)
      * Get Carrier Configuration (for this particular site)
      */
-    async getConfiguration(requestParameters: GetConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierConfiguration> {
+    async getConfiguration(requestParameters: carrierConfigurationApiParams.GetConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierConfiguration> {
         const response = await this.getConfigurationRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -291,7 +290,7 @@ export class CarrierConfigurationApi extends runtime.BaseAPI implements CarrierC
      */
 
 
-    async getConfigurationsRaw(requestParameters: GetConfigurationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierConfigurationCollection>> {
+    async getConfigurationsRaw(requestParameters: carrierConfigurationApiParams.GetConfigurationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierConfigurationCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -336,7 +335,7 @@ export class CarrierConfigurationApi extends runtime.BaseAPI implements CarrierC
      * 
      * Retrieves a list of Carrier Configurations according to any specified filter criteria and sort options
      */
-    async getConfigurations(requestParameters: GetConfigurationsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierConfigurationCollection> {
+    async getConfigurations(requestParameters: carrierConfigurationApiParams.GetConfigurationsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierConfigurationCollection> {
         const response = await this.getConfigurationsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -347,7 +346,7 @@ export class CarrierConfigurationApi extends runtime.BaseAPI implements CarrierC
      */
 
 
-    async updateConfigurationRaw(requestParameters: UpdateConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierConfiguration>> {
+    async updateConfigurationRaw(requestParameters: carrierConfigurationApiParams.UpdateConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierConfiguration>> {
         if (requestParameters.carrierId === null || requestParameters.carrierId === undefined) {
             throw new runtime.RequiredError('carrierId','Required parameter requestParameters.carrierId was null or undefined when calling updateConfiguration.');
         }
@@ -383,7 +382,7 @@ export class CarrierConfigurationApi extends runtime.BaseAPI implements CarrierC
      * Update an existing Carrier Configuration
      * Update an existing Carrier Configuration
      */
-    async updateConfiguration(requestParameters: UpdateConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierConfiguration> {
+    async updateConfiguration(requestParameters: carrierConfigurationApiParams.UpdateConfigurationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierConfiguration> {
         const response = await this.updateConfigurationRaw(requestParameters, initOverrides);
         return await response.value();
     }

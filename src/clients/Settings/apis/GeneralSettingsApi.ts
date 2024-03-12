@@ -21,204 +21,200 @@ import type {
   TaxableTerritory,
 } from '../models';
 
-export interface AddTaxableTerritoryRequest {
-    responseFields?: string;
-    taxableTerritory?: TaxableTerritory;
-}
 
-export interface CreateCustomRouteSettingsRequest {
-    responseFields?: string;
-    customRouteSettings?: CustomRouteSettings;
+export namespace generalSettingsApiParams { 
+    export interface AddTaxableTerritoryRequest {
+        responseFields?: string;
+        taxableTerritory?: TaxableTerritory;
+    }
+    export interface CreateCustomRouteSettingsRequest {
+        responseFields?: string;
+        customRouteSettings?: CustomRouteSettings;
+    }
+    export interface GetCustomRouteSettingsRequest {
+        responseFields?: string;
+    }
+    export interface GetGeneralSettingsRequest {
+        responseFields?: string;
+    }
+    export interface GetTaxableTerritoriesRequest {
+        responseFields?: string;
+    }
+    export interface UpdateCustomRouteSettingsRequest {
+        responseFields?: string;
+        customRouteSettings?: CustomRouteSettings;
+    }
+    export interface UpdateGeneralSettingsRequest {
+        responseFields?: string;
+        generalSettings?: GeneralSettings;
+    }
+    export interface UpdateTaxableTerritoriesRequest {
+        responseFields?: string;
+        taxableTerritory?: Array<TaxableTerritory>;
+    }
 }
-
-export interface GetCustomRouteSettingsRequest {
-    responseFields?: string;
-}
-
-export interface GetGeneralSettingsRequest {
-    responseFields?: string;
-}
-
-export interface GetTaxableTerritoriesRequest {
-    responseFields?: string;
-}
-
-export interface UpdateCustomRouteSettingsRequest {
-    responseFields?: string;
-    customRouteSettings?: CustomRouteSettings;
-}
-
-export interface UpdateGeneralSettingsRequest {
-    responseFields?: string;
-    generalSettings?: GeneralSettings;
-}
-
-export interface UpdateTaxableTerritoriesRequest {
-    responseFields?: string;
-    taxableTerritory?: Array<TaxableTerritory>;
-}
-
 /**
- * GeneralSettingsApi - interface
- * 
- * @export
- * @interface GeneralSettingsApiInterface
- */
-export interface GeneralSettingsApiInterface {
+* GeneralSettingsApiService - interface
+* 
+* @export
+* @interface GeneralSettingsApi
+*/
+export interface GeneralSettingsApiService {
     /**
-     * Creates taxble territories for the site.
-     * @summary Adds Taxable Territory
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {TaxableTerritory} [taxableTerritory] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof GeneralSettingsApiInterface
-     */
-    addTaxableTerritoryRaw(requestParameters: AddTaxableTerritoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TaxableTerritory>>;
+    * Creates taxble territories for the site.
+    * @summary Adds Taxable Territory
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {TaxableTerritory} [taxableTerritory] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof GeneralSettingsApiInterface
+    */
+    addTaxableTerritoryRaw(requestParameters: generalSettingsApiParams.AddTaxableTerritoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TaxableTerritory>>;
 
     /**
-     * Creates taxble territories for the site.
-     * Adds Taxable Territory
-     */
-    addTaxableTerritory(requestParameters: AddTaxableTerritoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TaxableTerritory>;
+    * Creates taxble territories for the site.
+    * Adds Taxable Territory
+    */
+    addTaxableTerritory(requestParameters: generalSettingsApiParams.AddTaxableTerritoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TaxableTerritory>;
 
     /**
-     * Creates Custom Route Settings on a tenant which includes routes, validators and mappings
-     * @summary Create Custom Route Settings
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CustomRouteSettings} [customRouteSettings] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof GeneralSettingsApiInterface
-     */
-    createCustomRouteSettingsRaw(requestParameters: CreateCustomRouteSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomRouteSettings>>;
+    * Creates Custom Route Settings on a tenant which includes routes, validators and mappings
+    * @summary Create Custom Route Settings
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CustomRouteSettings} [customRouteSettings] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof GeneralSettingsApiInterface
+    */
+    createCustomRouteSettingsRaw(requestParameters: generalSettingsApiParams.CreateCustomRouteSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomRouteSettings>>;
 
     /**
-     * Creates Custom Route Settings on a tenant which includes routes, validators and mappings
-     * Create Custom Route Settings
-     */
-    createCustomRouteSettings(requestParameters: CreateCustomRouteSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomRouteSettings>;
+    * Creates Custom Route Settings on a tenant which includes routes, validators and mappings
+    * Create Custom Route Settings
+    */
+    createCustomRouteSettings(requestParameters: generalSettingsApiParams.CreateCustomRouteSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomRouteSettings>;
 
     /**
-     * Deletes all existing custom route settings defined on the tenant
-     * @summary Delete Custom Route Settings
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof GeneralSettingsApiInterface
-     */
+    * Deletes all existing custom route settings defined on the tenant
+    * @summary Delete Custom Route Settings
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof GeneralSettingsApiInterface
+    */
     deleteCustomRouteSettingsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Deletes all existing custom route settings defined on the tenant
-     * Delete Custom Route Settings
-     */
+    * Deletes all existing custom route settings defined on the tenant
+    * Delete Custom Route Settings
+    */
     deleteCustomRouteSettings(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Retrieves Custom Route Settings on a tenant which includes routes, validators and mappings
-     * @summary Get Custom Route Settings
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof GeneralSettingsApiInterface
-     */
-    getCustomRouteSettingsRaw(requestParameters: GetCustomRouteSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomRouteSettings>>;
+    * Retrieves Custom Route Settings on a tenant which includes routes, validators and mappings
+    * @summary Get Custom Route Settings
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof GeneralSettingsApiInterface
+    */
+    getCustomRouteSettingsRaw(requestParameters: generalSettingsApiParams.GetCustomRouteSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomRouteSettings>>;
 
     /**
-     * Retrieves Custom Route Settings on a tenant which includes routes, validators and mappings
-     * Get Custom Route Settings
-     */
-    getCustomRouteSettings(requestParameters: GetCustomRouteSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomRouteSettings>;
+    * Retrieves Custom Route Settings on a tenant which includes routes, validators and mappings
+    * Get Custom Route Settings
+    */
+    getCustomRouteSettings(requestParameters: generalSettingsApiParams.GetCustomRouteSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomRouteSettings>;
 
     /**
-     * Retrieves list of general settings for the site, which includes settings like theme, email, address validation etc.
-     * @summary Get General Settings
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof GeneralSettingsApiInterface
-     */
-    getGeneralSettingsRaw(requestParameters: GetGeneralSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GeneralSettings>>;
+    * Retrieves list of general settings for the site, which includes settings like theme, email, address validation etc.
+    * @summary Get General Settings
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof GeneralSettingsApiInterface
+    */
+    getGeneralSettingsRaw(requestParameters: generalSettingsApiParams.GetGeneralSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GeneralSettings>>;
 
     /**
-     * Retrieves list of general settings for the site, which includes settings like theme, email, address validation etc.
-     * Get General Settings
-     */
-    getGeneralSettings(requestParameters: GetGeneralSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GeneralSettings>;
+    * Retrieves list of general settings for the site, which includes settings like theme, email, address validation etc.
+    * Get General Settings
+    */
+    getGeneralSettings(requestParameters: generalSettingsApiParams.GetGeneralSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GeneralSettings>;
 
     /**
-     * Retrieves list of taxble territories for the site.
-     * @summary Get Taxable Territories
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof GeneralSettingsApiInterface
-     */
-    getTaxableTerritoriesRaw(requestParameters: GetTaxableTerritoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<TaxableTerritory>>>;
+    * Retrieves list of taxble territories for the site.
+    * @summary Get Taxable Territories
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof GeneralSettingsApiInterface
+    */
+    getTaxableTerritoriesRaw(requestParameters: generalSettingsApiParams.GetTaxableTerritoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<TaxableTerritory>>>;
 
     /**
-     * Retrieves list of taxble territories for the site.
-     * Get Taxable Territories
-     */
-    getTaxableTerritories(requestParameters: GetTaxableTerritoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<TaxableTerritory>>;
+    * Retrieves list of taxble territories for the site.
+    * Get Taxable Territories
+    */
+    getTaxableTerritories(requestParameters: generalSettingsApiParams.GetTaxableTerritoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<TaxableTerritory>>;
 
     /**
-     * Updates existing custom route settings defined on the tenant
-     * @summary Update Custom Route Settings
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CustomRouteSettings} [customRouteSettings] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof GeneralSettingsApiInterface
-     */
-    updateCustomRouteSettingsRaw(requestParameters: UpdateCustomRouteSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomRouteSettings>>;
+    * Updates existing custom route settings defined on the tenant
+    * @summary Update Custom Route Settings
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CustomRouteSettings} [customRouteSettings] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof GeneralSettingsApiInterface
+    */
+    updateCustomRouteSettingsRaw(requestParameters: generalSettingsApiParams.UpdateCustomRouteSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomRouteSettings>>;
 
     /**
-     * Updates existing custom route settings defined on the tenant
-     * Update Custom Route Settings
-     */
-    updateCustomRouteSettings(requestParameters: UpdateCustomRouteSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomRouteSettings>;
+    * Updates existing custom route settings defined on the tenant
+    * Update Custom Route Settings
+    */
+    updateCustomRouteSettings(requestParameters: generalSettingsApiParams.UpdateCustomRouteSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomRouteSettings>;
 
     /**
-     * Updates general settings for the site, which includes settings like theme, email, address validation etc
-     * @summary Update General Settings
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {GeneralSettings} [generalSettings] Properties of the updated general settings.  Required properties: WebsiteName, SiteTimeZone, SiteTimeFormat, SenderEmailAddress, and ReplyEmailAddress.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof GeneralSettingsApiInterface
-     */
-    updateGeneralSettingsRaw(requestParameters: UpdateGeneralSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GeneralSettings>>;
+    * Updates general settings for the site, which includes settings like theme, email, address validation etc
+    * @summary Update General Settings
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {GeneralSettings} [generalSettings] Properties of the updated general settings.  Required properties: WebsiteName, SiteTimeZone, SiteTimeFormat, SenderEmailAddress, and ReplyEmailAddress.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof GeneralSettingsApiInterface
+    */
+    updateGeneralSettingsRaw(requestParameters: generalSettingsApiParams.UpdateGeneralSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GeneralSettings>>;
 
     /**
-     * Updates general settings for the site, which includes settings like theme, email, address validation etc
-     * Update General Settings
-     */
-    updateGeneralSettings(requestParameters: UpdateGeneralSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GeneralSettings>;
+    * Updates general settings for the site, which includes settings like theme, email, address validation etc
+    * Update General Settings
+    */
+    updateGeneralSettings(requestParameters: generalSettingsApiParams.UpdateGeneralSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GeneralSettings>;
 
     /**
-     * Updates taxble territories for the site.
-     * @summary Update Taxable Territories
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {Array<TaxableTerritory>} [taxableTerritory] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof GeneralSettingsApiInterface
-     */
-    updateTaxableTerritoriesRaw(requestParameters: UpdateTaxableTerritoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<TaxableTerritory>>>;
+    * Updates taxble territories for the site.
+    * @summary Update Taxable Territories
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<TaxableTerritory>} [taxableTerritory] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof GeneralSettingsApiInterface
+    */
+    updateTaxableTerritoriesRaw(requestParameters: generalSettingsApiParams.UpdateTaxableTerritoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<TaxableTerritory>>>;
 
     /**
-     * Updates taxble territories for the site.
-     * Update Taxable Territories
-     */
-    updateTaxableTerritories(requestParameters: UpdateTaxableTerritoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<TaxableTerritory>>;
+    * Updates taxble territories for the site.
+    * Update Taxable Territories
+    */
+    updateTaxableTerritories(requestParameters: generalSettingsApiParams.UpdateTaxableTerritoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<TaxableTerritory>>;
 
 }
+
 
 /**
  * 
  */
-export class GeneralSettingsApi extends runtime.BaseAPI implements GeneralSettingsApiInterface {
+export class GeneralSettingsApi extends runtime.BaseAPI implements GeneralSettingsApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -229,7 +225,7 @@ export class GeneralSettingsApi extends runtime.BaseAPI implements GeneralSettin
      */
 
 
-    async addTaxableTerritoryRaw(requestParameters: AddTaxableTerritoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TaxableTerritory>> {
+    async addTaxableTerritoryRaw(requestParameters: generalSettingsApiParams.AddTaxableTerritoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TaxableTerritory>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -261,7 +257,7 @@ export class GeneralSettingsApi extends runtime.BaseAPI implements GeneralSettin
      * Creates taxble territories for the site.
      * Adds Taxable Territory
      */
-    async addTaxableTerritory(requestParameters: AddTaxableTerritoryRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TaxableTerritory> {
+    async addTaxableTerritory(requestParameters: generalSettingsApiParams.AddTaxableTerritoryRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TaxableTerritory> {
         const response = await this.addTaxableTerritoryRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -272,7 +268,7 @@ export class GeneralSettingsApi extends runtime.BaseAPI implements GeneralSettin
      */
 
 
-    async createCustomRouteSettingsRaw(requestParameters: CreateCustomRouteSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomRouteSettings>> {
+    async createCustomRouteSettingsRaw(requestParameters: generalSettingsApiParams.CreateCustomRouteSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomRouteSettings>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -304,7 +300,7 @@ export class GeneralSettingsApi extends runtime.BaseAPI implements GeneralSettin
      * Creates Custom Route Settings on a tenant which includes routes, validators and mappings
      * Create Custom Route Settings
      */
-    async createCustomRouteSettings(requestParameters: CreateCustomRouteSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomRouteSettings> {
+    async createCustomRouteSettings(requestParameters: generalSettingsApiParams.CreateCustomRouteSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomRouteSettings> {
         const response = await this.createCustomRouteSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -350,7 +346,7 @@ export class GeneralSettingsApi extends runtime.BaseAPI implements GeneralSettin
      */
 
 
-    async getCustomRouteSettingsRaw(requestParameters: GetCustomRouteSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomRouteSettings>> {
+    async getCustomRouteSettingsRaw(requestParameters: generalSettingsApiParams.GetCustomRouteSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomRouteSettings>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -379,7 +375,7 @@ export class GeneralSettingsApi extends runtime.BaseAPI implements GeneralSettin
      * Retrieves Custom Route Settings on a tenant which includes routes, validators and mappings
      * Get Custom Route Settings
      */
-    async getCustomRouteSettings(requestParameters: GetCustomRouteSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomRouteSettings> {
+    async getCustomRouteSettings(requestParameters: generalSettingsApiParams.GetCustomRouteSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomRouteSettings> {
         const response = await this.getCustomRouteSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -390,7 +386,7 @@ export class GeneralSettingsApi extends runtime.BaseAPI implements GeneralSettin
      */
 
 
-    async getGeneralSettingsRaw(requestParameters: GetGeneralSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GeneralSettings>> {
+    async getGeneralSettingsRaw(requestParameters: generalSettingsApiParams.GetGeneralSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GeneralSettings>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -419,7 +415,7 @@ export class GeneralSettingsApi extends runtime.BaseAPI implements GeneralSettin
      * Retrieves list of general settings for the site, which includes settings like theme, email, address validation etc.
      * Get General Settings
      */
-    async getGeneralSettings(requestParameters: GetGeneralSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GeneralSettings> {
+    async getGeneralSettings(requestParameters: generalSettingsApiParams.GetGeneralSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GeneralSettings> {
         const response = await this.getGeneralSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -430,7 +426,7 @@ export class GeneralSettingsApi extends runtime.BaseAPI implements GeneralSettin
      */
 
 
-    async getTaxableTerritoriesRaw(requestParameters: GetTaxableTerritoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<TaxableTerritory>>> {
+    async getTaxableTerritoriesRaw(requestParameters: generalSettingsApiParams.GetTaxableTerritoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<TaxableTerritory>>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -459,7 +455,7 @@ export class GeneralSettingsApi extends runtime.BaseAPI implements GeneralSettin
      * Retrieves list of taxble territories for the site.
      * Get Taxable Territories
      */
-    async getTaxableTerritories(requestParameters: GetTaxableTerritoriesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<TaxableTerritory>> {
+    async getTaxableTerritories(requestParameters: generalSettingsApiParams.GetTaxableTerritoriesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<TaxableTerritory>> {
         const response = await this.getTaxableTerritoriesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -470,7 +466,7 @@ export class GeneralSettingsApi extends runtime.BaseAPI implements GeneralSettin
      */
 
 
-    async updateCustomRouteSettingsRaw(requestParameters: UpdateCustomRouteSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomRouteSettings>> {
+    async updateCustomRouteSettingsRaw(requestParameters: generalSettingsApiParams.UpdateCustomRouteSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomRouteSettings>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -502,7 +498,7 @@ export class GeneralSettingsApi extends runtime.BaseAPI implements GeneralSettin
      * Updates existing custom route settings defined on the tenant
      * Update Custom Route Settings
      */
-    async updateCustomRouteSettings(requestParameters: UpdateCustomRouteSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomRouteSettings> {
+    async updateCustomRouteSettings(requestParameters: generalSettingsApiParams.UpdateCustomRouteSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomRouteSettings> {
         const response = await this.updateCustomRouteSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -513,7 +509,7 @@ export class GeneralSettingsApi extends runtime.BaseAPI implements GeneralSettin
      */
 
 
-    async updateGeneralSettingsRaw(requestParameters: UpdateGeneralSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GeneralSettings>> {
+    async updateGeneralSettingsRaw(requestParameters: generalSettingsApiParams.UpdateGeneralSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GeneralSettings>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -545,7 +541,7 @@ export class GeneralSettingsApi extends runtime.BaseAPI implements GeneralSettin
      * Updates general settings for the site, which includes settings like theme, email, address validation etc
      * Update General Settings
      */
-    async updateGeneralSettings(requestParameters: UpdateGeneralSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GeneralSettings> {
+    async updateGeneralSettings(requestParameters: generalSettingsApiParams.UpdateGeneralSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GeneralSettings> {
         const response = await this.updateGeneralSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -556,7 +552,7 @@ export class GeneralSettingsApi extends runtime.BaseAPI implements GeneralSettin
      */
 
 
-    async updateTaxableTerritoriesRaw(requestParameters: UpdateTaxableTerritoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<TaxableTerritory>>> {
+    async updateTaxableTerritoriesRaw(requestParameters: generalSettingsApiParams.UpdateTaxableTerritoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<TaxableTerritory>>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -588,7 +584,7 @@ export class GeneralSettingsApi extends runtime.BaseAPI implements GeneralSettin
      * Updates taxble territories for the site.
      * Update Taxable Territories
      */
-    async updateTaxableTerritories(requestParameters: UpdateTaxableTerritoriesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<TaxableTerritory>> {
+    async updateTaxableTerritories(requestParameters: generalSettingsApiParams.UpdateTaxableTerritoriesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<TaxableTerritory>> {
         const response = await this.updateTaxableTerritoriesRaw(requestParameters, initOverrides);
         return await response.value();
     }

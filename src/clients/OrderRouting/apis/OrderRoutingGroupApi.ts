@@ -21,175 +21,163 @@ import type {
   LocationSort,
 } from '../models';
 
-export interface DeleteGroupUsingDELETERequest {
-    groupID: number;
-    xVolSite: number;
-    xVolTenant: number;
-}
 
-export interface GetGroupUsingGETRequest {
-    groupID: number;
-    xVolSite: number;
-    xVolTenant: number;
-    responseFields?: string;
+export namespace orderRoutingGroupApiParams { 
+    export interface DeleteGroupRequest {
+        groupID: number;
+        xVolSite: number;
+        xVolTenant: number;
+    }
+    export interface GetGroupRequest {
+        groupID: number;
+        xVolSite: number;
+        xVolTenant: number;
+    }
+    export interface SaveGroupRequest {
+        xVolSite: number;
+        xVolTenant: number;
+        loc: LocationGroupModel;
+    }
+    export interface SetGroupFiltersRequest {
+        groupID: number;
+        xVolSite: number;
+        xVolTenant: number;
+        filterIDs: Array<number>;
+    }
+    export interface SetGroupSortsRequest {
+        groupID: number;
+        xVolSite: number;
+        xVolTenant: number;
+        sorts: Array<LocationSort>;
+    }
+    export interface TestGroupRequest {
+        xVolSite: number;
+        xVolTenant: number;
+    }
 }
-
-export interface SaveGroupUsingPOSTRequest {
-    xVolSite: number;
-    xVolTenant: number;
-    loc: LocationGroupModel;
-    responseFields?: string;
-}
-
-export interface SetGroupFiltersUsingPOSTRequest {
-    groupID: number;
-    xVolSite: number;
-    xVolTenant: number;
-    filterIDs: Array<number>;
-    responseFields?: string;
-}
-
-export interface SetGroupSortsUsingPOSTRequest {
-    groupID: number;
-    xVolSite: number;
-    xVolTenant: number;
-    sorts: Array<LocationSort>;
-    responseFields?: string;
-}
-
-export interface TestGroupUsingGETRequest {
-    xVolSite: number;
-    xVolTenant: number;
-    responseFields?: string;
-}
-
 /**
- * OrderRoutingGroupApi - interface
- * 
- * @export
- * @interface OrderRoutingGroupApiInterface
- */
-export interface OrderRoutingGroupApiInterface {
+* OrderRoutingGroupApiService - interface
+* 
+* @export
+* @interface OrderRoutingGroupApi
+*/
+export interface OrderRoutingGroupApiService {
     /**
-     * deleteGroup
-     * @summary deleteGroup
-     * @param {number} groupID groupID
-     * @param {number} xVolSite 
-     * @param {number} xVolTenant 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrderRoutingGroupApiInterface
-     */
-    deleteGroupUsingDELETERaw(requestParameters: DeleteGroupUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * deleteGroup
+    * @summary deleteGroup
+    * @param {number} groupID groupID
+    * @param {number} xVolSite 
+    * @param {number} xVolTenant 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof OrderRoutingGroupApiInterface
+    */
+    deleteGroupRaw(requestParameters: orderRoutingGroupApiParams.DeleteGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * deleteGroup
-     * deleteGroup
-     */
-    deleteGroupUsingDELETE(requestParameters: DeleteGroupUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * deleteGroup
+    * deleteGroup
+    */
+    deleteGroup(requestParameters: orderRoutingGroupApiParams.DeleteGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * getGroup
-     * @summary getGroup
-     * @param {number} groupID groupID
-     * @param {number} xVolSite 
-     * @param {number} xVolTenant 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrderRoutingGroupApiInterface
-     */
-    getGroupUsingGETRaw(requestParameters: GetGroupUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDocumentationLocationGroup>>;
+    * getGroup
+    * @summary getGroup
+    * @param {number} groupID groupID
+    * @param {number} xVolSite 
+    * @param {number} xVolTenant 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof OrderRoutingGroupApiInterface
+    */
+    getGroupRaw(requestParameters: orderRoutingGroupApiParams.GetGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDocumentationLocationGroup>>;
 
     /**
-     * getGroup
-     * getGroup
-     */
-    getGroupUsingGET(requestParameters: GetGroupUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDocumentationLocationGroup>;
+    * getGroup
+    * getGroup
+    */
+    getGroup(requestParameters: orderRoutingGroupApiParams.GetGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDocumentationLocationGroup>;
 
     /**
-     * saveGroup
-     * @summary saveGroup
-     * @param {number} xVolSite 
-     * @param {number} xVolTenant 
-     * @param {LocationGroupModel} loc loc
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrderRoutingGroupApiInterface
-     */
-    saveGroupUsingPOSTRaw(requestParameters: SaveGroupUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDocumentationLocationGroup>>;
+    * saveGroup
+    * @summary saveGroup
+    * @param {number} xVolSite 
+    * @param {number} xVolTenant 
+    * @param {LocationGroupModel} loc loc
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof OrderRoutingGroupApiInterface
+    */
+    saveGroupRaw(requestParameters: orderRoutingGroupApiParams.SaveGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDocumentationLocationGroup>>;
 
     /**
-     * saveGroup
-     * saveGroup
-     */
-    saveGroupUsingPOST(requestParameters: SaveGroupUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDocumentationLocationGroup>;
+    * saveGroup
+    * saveGroup
+    */
+    saveGroup(requestParameters: orderRoutingGroupApiParams.SaveGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDocumentationLocationGroup>;
 
     /**
-     * setGroupFilters
-     * @summary setGroupFilters
-     * @param {number} groupID groupID
-     * @param {number} xVolSite 
-     * @param {number} xVolTenant 
-     * @param {Array<number>} filterIDs filterIDs
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrderRoutingGroupApiInterface
-     */
-    setGroupFiltersUsingPOSTRaw(requestParameters: SetGroupFiltersUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDocumentationLocationGroup>>;
+    * setGroupFilters
+    * @summary setGroupFilters
+    * @param {number} groupID groupID
+    * @param {number} xVolSite 
+    * @param {number} xVolTenant 
+    * @param {Array<number>} filterIDs filterIDs
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof OrderRoutingGroupApiInterface
+    */
+    setGroupFiltersRaw(requestParameters: orderRoutingGroupApiParams.SetGroupFiltersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDocumentationLocationGroup>>;
 
     /**
-     * setGroupFilters
-     * setGroupFilters
-     */
-    setGroupFiltersUsingPOST(requestParameters: SetGroupFiltersUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDocumentationLocationGroup>;
+    * setGroupFilters
+    * setGroupFilters
+    */
+    setGroupFilters(requestParameters: orderRoutingGroupApiParams.SetGroupFiltersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDocumentationLocationGroup>;
 
     /**
-     * setGroupSorts
-     * @summary setGroupSorts
-     * @param {number} groupID groupID
-     * @param {number} xVolSite 
-     * @param {number} xVolTenant 
-     * @param {Array<LocationSort>} sorts sorts
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrderRoutingGroupApiInterface
-     */
-    setGroupSortsUsingPOSTRaw(requestParameters: SetGroupSortsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDocumentationLocationGroup>>;
+    * setGroupSorts
+    * @summary setGroupSorts
+    * @param {number} groupID groupID
+    * @param {number} xVolSite 
+    * @param {number} xVolTenant 
+    * @param {Array<LocationSort>} sorts sorts
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof OrderRoutingGroupApiInterface
+    */
+    setGroupSortsRaw(requestParameters: orderRoutingGroupApiParams.SetGroupSortsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDocumentationLocationGroup>>;
 
     /**
-     * setGroupSorts
-     * setGroupSorts
-     */
-    setGroupSortsUsingPOST(requestParameters: SetGroupSortsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDocumentationLocationGroup>;
+    * setGroupSorts
+    * setGroupSorts
+    */
+    setGroupSorts(requestParameters: orderRoutingGroupApiParams.SetGroupSortsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDocumentationLocationGroup>;
 
     /**
-     * testGroup
-     * @summary testGroup
-     * @param {number} xVolSite 
-     * @param {number} xVolTenant 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrderRoutingGroupApiInterface
-     */
-    testGroupUsingGETRaw(requestParameters: TestGroupUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDocumentationLocationGroup>>;
+    * testGroup
+    * @summary testGroup
+    * @param {number} xVolSite 
+    * @param {number} xVolTenant 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof OrderRoutingGroupApiInterface
+    */
+    testGroupRaw(requestParameters: orderRoutingGroupApiParams.TestGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDocumentationLocationGroup>>;
 
     /**
-     * testGroup
-     * testGroup
-     */
-    testGroupUsingGET(requestParameters: TestGroupUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDocumentationLocationGroup>;
+    * testGroup
+    * testGroup
+    */
+    testGroup(requestParameters: orderRoutingGroupApiParams.TestGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDocumentationLocationGroup>;
 
 }
+
 
 /**
  * 
  */
-export class OrderRoutingGroupApi extends runtime.BaseAPI implements OrderRoutingGroupApiInterface {
+export class OrderRoutingGroupApi extends runtime.BaseAPI implements OrderRoutingGroupApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -200,17 +188,17 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI implements OrderRoutin
      */
 
 
-    async deleteGroupUsingDELETERaw(requestParameters: DeleteGroupUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteGroupRaw(requestParameters: orderRoutingGroupApiParams.DeleteGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.groupID === null || requestParameters.groupID === undefined) {
-            throw new runtime.RequiredError('groupID','Required parameter requestParameters.groupID was null or undefined when calling deleteGroupUsingDELETE.');
+            throw new runtime.RequiredError('groupID','Required parameter requestParameters.groupID was null or undefined when calling deleteGroup.');
         }
 
         if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling deleteGroupUsingDELETE.');
+            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling deleteGroup.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteGroupUsingDELETE.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteGroup.');
         }
 
         const queryParameters: any = {};
@@ -245,8 +233,8 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI implements OrderRoutin
      * deleteGroup
      * deleteGroup
      */
-    async deleteGroupUsingDELETE(requestParameters: DeleteGroupUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.deleteGroupUsingDELETERaw(requestParameters, initOverrides);
+    async deleteGroup(requestParameters: orderRoutingGroupApiParams.DeleteGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteGroupRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -255,24 +243,20 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI implements OrderRoutin
      */
 
 
-    async getGroupUsingGETRaw(requestParameters: GetGroupUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDocumentationLocationGroup>> {
+    async getGroupRaw(requestParameters: orderRoutingGroupApiParams.GetGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDocumentationLocationGroup>> {
         if (requestParameters.groupID === null || requestParameters.groupID === undefined) {
-            throw new runtime.RequiredError('groupID','Required parameter requestParameters.groupID was null or undefined when calling getGroupUsingGET.');
+            throw new runtime.RequiredError('groupID','Required parameter requestParameters.groupID was null or undefined when calling getGroup.');
         }
 
         if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling getGroupUsingGET.');
+            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling getGroup.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getGroupUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getGroup.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -304,8 +288,8 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI implements OrderRoutin
      * getGroup
      * getGroup
      */
-    async getGroupUsingGET(requestParameters: GetGroupUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDocumentationLocationGroup> {
-        const response = await this.getGroupUsingGETRaw(requestParameters, initOverrides);
+    async getGroup(requestParameters: orderRoutingGroupApiParams.GetGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDocumentationLocationGroup> {
+        const response = await this.getGroupRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -315,24 +299,20 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI implements OrderRoutin
      */
 
 
-    async saveGroupUsingPOSTRaw(requestParameters: SaveGroupUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDocumentationLocationGroup>> {
+    async saveGroupRaw(requestParameters: orderRoutingGroupApiParams.SaveGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDocumentationLocationGroup>> {
         if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling saveGroupUsingPOST.');
+            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling saveGroup.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling saveGroupUsingPOST.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling saveGroup.');
         }
 
         if (requestParameters.loc === null || requestParameters.loc === undefined) {
-            throw new runtime.RequiredError('loc','Required parameter requestParameters.loc was null or undefined when calling saveGroupUsingPOST.');
+            throw new runtime.RequiredError('loc','Required parameter requestParameters.loc was null or undefined when calling saveGroup.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -367,8 +347,8 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI implements OrderRoutin
      * saveGroup
      * saveGroup
      */
-    async saveGroupUsingPOST(requestParameters: SaveGroupUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDocumentationLocationGroup> {
-        const response = await this.saveGroupUsingPOSTRaw(requestParameters, initOverrides);
+    async saveGroup(requestParameters: orderRoutingGroupApiParams.SaveGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDocumentationLocationGroup> {
+        const response = await this.saveGroupRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -378,28 +358,24 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI implements OrderRoutin
      */
 
 
-    async setGroupFiltersUsingPOSTRaw(requestParameters: SetGroupFiltersUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDocumentationLocationGroup>> {
+    async setGroupFiltersRaw(requestParameters: orderRoutingGroupApiParams.SetGroupFiltersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDocumentationLocationGroup>> {
         if (requestParameters.groupID === null || requestParameters.groupID === undefined) {
-            throw new runtime.RequiredError('groupID','Required parameter requestParameters.groupID was null or undefined when calling setGroupFiltersUsingPOST.');
+            throw new runtime.RequiredError('groupID','Required parameter requestParameters.groupID was null or undefined when calling setGroupFilters.');
         }
 
         if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling setGroupFiltersUsingPOST.');
+            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling setGroupFilters.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling setGroupFiltersUsingPOST.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling setGroupFilters.');
         }
 
         if (requestParameters.filterIDs === null || requestParameters.filterIDs === undefined) {
-            throw new runtime.RequiredError('filterIDs','Required parameter requestParameters.filterIDs was null or undefined when calling setGroupFiltersUsingPOST.');
+            throw new runtime.RequiredError('filterIDs','Required parameter requestParameters.filterIDs was null or undefined when calling setGroupFilters.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -434,8 +410,8 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI implements OrderRoutin
      * setGroupFilters
      * setGroupFilters
      */
-    async setGroupFiltersUsingPOST(requestParameters: SetGroupFiltersUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDocumentationLocationGroup> {
-        const response = await this.setGroupFiltersUsingPOSTRaw(requestParameters, initOverrides);
+    async setGroupFilters(requestParameters: orderRoutingGroupApiParams.SetGroupFiltersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDocumentationLocationGroup> {
+        const response = await this.setGroupFiltersRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -445,28 +421,24 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI implements OrderRoutin
      */
 
 
-    async setGroupSortsUsingPOSTRaw(requestParameters: SetGroupSortsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDocumentationLocationGroup>> {
+    async setGroupSortsRaw(requestParameters: orderRoutingGroupApiParams.SetGroupSortsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDocumentationLocationGroup>> {
         if (requestParameters.groupID === null || requestParameters.groupID === undefined) {
-            throw new runtime.RequiredError('groupID','Required parameter requestParameters.groupID was null or undefined when calling setGroupSortsUsingPOST.');
+            throw new runtime.RequiredError('groupID','Required parameter requestParameters.groupID was null or undefined when calling setGroupSorts.');
         }
 
         if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling setGroupSortsUsingPOST.');
+            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling setGroupSorts.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling setGroupSortsUsingPOST.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling setGroupSorts.');
         }
 
         if (requestParameters.sorts === null || requestParameters.sorts === undefined) {
-            throw new runtime.RequiredError('sorts','Required parameter requestParameters.sorts was null or undefined when calling setGroupSortsUsingPOST.');
+            throw new runtime.RequiredError('sorts','Required parameter requestParameters.sorts was null or undefined when calling setGroupSorts.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -501,8 +473,8 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI implements OrderRoutin
      * setGroupSorts
      * setGroupSorts
      */
-    async setGroupSortsUsingPOST(requestParameters: SetGroupSortsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDocumentationLocationGroup> {
-        const response = await this.setGroupSortsUsingPOSTRaw(requestParameters, initOverrides);
+    async setGroupSorts(requestParameters: orderRoutingGroupApiParams.SetGroupSortsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDocumentationLocationGroup> {
+        const response = await this.setGroupSortsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -512,20 +484,16 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI implements OrderRoutin
      */
 
 
-    async testGroupUsingGETRaw(requestParameters: TestGroupUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDocumentationLocationGroup>> {
+    async testGroupRaw(requestParameters: orderRoutingGroupApiParams.TestGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDocumentationLocationGroup>> {
         if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling testGroupUsingGET.');
+            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling testGroup.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling testGroupUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling testGroup.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -557,8 +525,8 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI implements OrderRoutin
      * testGroup
      * testGroup
      */
-    async testGroupUsingGET(requestParameters: TestGroupUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDocumentationLocationGroup> {
-        const response = await this.testGroupUsingGETRaw(requestParameters, initOverrides);
+    async testGroup(requestParameters: orderRoutingGroupApiParams.TestGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDocumentationLocationGroup> {
+        const response = await this.testGroupRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

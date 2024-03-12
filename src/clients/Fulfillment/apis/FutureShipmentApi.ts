@@ -22,137 +22,129 @@ import type {
   FutureShipmentUpdateDateRequest,
 } from '../models';
 
-export interface CreateFutureShipmentsForFutureAllocatableItemsUsingPOSTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    futureItemsRequestDto: FutureItemsRequest;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
 
-export interface CreateFutureShipmentsForItemsUsingPOSTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    futureItemsRequestDto: FutureItemsRequest;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
+export namespace futureShipmentApiParams { 
+    export interface CreateFutureShipmentsForFutureAllocatableItemsRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        futureItemsRequestDto: FutureItemsRequest;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface CreateFutureShipmentsForItemsRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        futureItemsRequestDto: FutureItemsRequest;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface FutureShipmentToReadyRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface UpdateFutureShipmentDateRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        futureShipmentUpdateDateRequestDto: FutureShipmentUpdateDateRequest;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
 }
-
-export interface FutureShipmentToReadyUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface UpdateFutureShipmentDateUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    futureShipmentUpdateDateRequestDto: FutureShipmentUpdateDateRequest;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
 /**
- * FutureShipmentApi - interface
- * 
- * @export
- * @interface FutureShipmentApiInterface
- */
-export interface FutureShipmentApiInterface {
+* FutureShipmentApiService - interface
+* 
+* @export
+* @interface FutureShipmentApi
+*/
+export interface FutureShipmentApiService {
     /**
-     * createFutureShipmentsForFutureAllocatableItems
-     * @summary createFutureShipmentsForFutureAllocatableItems
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {FutureItemsRequest} futureItemsRequestDto futureItemsRequestDto
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof FutureShipmentApiInterface
-     */
-    createFutureShipmentsForFutureAllocatableItemsUsingPOSTRaw(requestParameters: CreateFutureShipmentsForFutureAllocatableItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfEntityModelOfShipment>>;
+    * createFutureShipmentsForFutureAllocatableItems
+    * @summary createFutureShipmentsForFutureAllocatableItems
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {FutureItemsRequest} futureItemsRequestDto futureItemsRequestDto
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof FutureShipmentApiInterface
+    */
+    createFutureShipmentsForFutureAllocatableItemsRaw(requestParameters: futureShipmentApiParams.CreateFutureShipmentsForFutureAllocatableItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfEntityModelOfShipment>>;
 
     /**
-     * createFutureShipmentsForFutureAllocatableItems
-     * createFutureShipmentsForFutureAllocatableItems
-     */
-    createFutureShipmentsForFutureAllocatableItemsUsingPOST(requestParameters: CreateFutureShipmentsForFutureAllocatableItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfEntityModelOfShipment>;
+    * createFutureShipmentsForFutureAllocatableItems
+    * createFutureShipmentsForFutureAllocatableItems
+    */
+    createFutureShipmentsForFutureAllocatableItems(requestParameters: futureShipmentApiParams.CreateFutureShipmentsForFutureAllocatableItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfEntityModelOfShipment>;
 
     /**
-     * createFutureShipmentsForItems
-     * @summary createFutureShipmentsForItems
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {FutureItemsRequest} futureItemsRequestDto futureItemsRequestDto
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof FutureShipmentApiInterface
-     */
-    createFutureShipmentsForItemsUsingPOSTRaw(requestParameters: CreateFutureShipmentsForItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfEntityModelOfShipment>>;
+    * createFutureShipmentsForItems
+    * @summary createFutureShipmentsForItems
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {FutureItemsRequest} futureItemsRequestDto futureItemsRequestDto
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof FutureShipmentApiInterface
+    */
+    createFutureShipmentsForItemsRaw(requestParameters: futureShipmentApiParams.CreateFutureShipmentsForItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfEntityModelOfShipment>>;
 
     /**
-     * createFutureShipmentsForItems
-     * createFutureShipmentsForItems
-     */
-    createFutureShipmentsForItemsUsingPOST(requestParameters: CreateFutureShipmentsForItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfEntityModelOfShipment>;
+    * createFutureShipmentsForItems
+    * createFutureShipmentsForItems
+    */
+    createFutureShipmentsForItems(requestParameters: futureShipmentApiParams.CreateFutureShipmentsForItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfEntityModelOfShipment>;
 
     /**
-     * futureShipmentToReady
-     * @summary futureShipmentToReady
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof FutureShipmentApiInterface
-     */
-    futureShipmentToReadyUsingPUTRaw(requestParameters: FutureShipmentToReadyUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+    * futureShipmentToReady
+    * @summary futureShipmentToReady
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof FutureShipmentApiInterface
+    */
+    futureShipmentToReadyRaw(requestParameters: futureShipmentApiParams.FutureShipmentToReadyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
 
     /**
-     * futureShipmentToReady
-     * futureShipmentToReady
-     */
-    futureShipmentToReadyUsingPUT(requestParameters: FutureShipmentToReadyUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+    * futureShipmentToReady
+    * futureShipmentToReady
+    */
+    futureShipmentToReady(requestParameters: futureShipmentApiParams.FutureShipmentToReadyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
 
     /**
-     * updateFutureShipmentDate
-     * @summary updateFutureShipmentDate
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {FutureShipmentUpdateDateRequest} futureShipmentUpdateDateRequestDto futureShipmentUpdateDateRequestDto
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof FutureShipmentApiInterface
-     */
-    updateFutureShipmentDateUsingPUTRaw(requestParameters: UpdateFutureShipmentDateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+    * updateFutureShipmentDate
+    * @summary updateFutureShipmentDate
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {FutureShipmentUpdateDateRequest} futureShipmentUpdateDateRequestDto futureShipmentUpdateDateRequestDto
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof FutureShipmentApiInterface
+    */
+    updateFutureShipmentDateRaw(requestParameters: futureShipmentApiParams.UpdateFutureShipmentDateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
 
     /**
-     * updateFutureShipmentDate
-     * updateFutureShipmentDate
-     */
-    updateFutureShipmentDateUsingPUT(requestParameters: UpdateFutureShipmentDateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+    * updateFutureShipmentDate
+    * updateFutureShipmentDate
+    */
+    updateFutureShipmentDate(requestParameters: futureShipmentApiParams.UpdateFutureShipmentDateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
 
 }
+
 
 /**
  * 
  */
-export class FutureShipmentApi extends runtime.BaseAPI implements FutureShipmentApiInterface {
+export class FutureShipmentApi extends runtime.BaseAPI implements FutureShipmentApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -163,24 +155,20 @@ export class FutureShipmentApi extends runtime.BaseAPI implements FutureShipment
      */
 
 
-    async createFutureShipmentsForFutureAllocatableItemsUsingPOSTRaw(requestParameters: CreateFutureShipmentsForFutureAllocatableItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfEntityModelOfShipment>> {
+    async createFutureShipmentsForFutureAllocatableItemsRaw(requestParameters: futureShipmentApiParams.CreateFutureShipmentsForFutureAllocatableItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfEntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling createFutureShipmentsForFutureAllocatableItemsUsingPOST.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling createFutureShipmentsForFutureAllocatableItems.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling createFutureShipmentsForFutureAllocatableItemsUsingPOST.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling createFutureShipmentsForFutureAllocatableItems.');
         }
 
         if (requestParameters.futureItemsRequestDto === null || requestParameters.futureItemsRequestDto === undefined) {
-            throw new runtime.RequiredError('futureItemsRequestDto','Required parameter requestParameters.futureItemsRequestDto was null or undefined when calling createFutureShipmentsForFutureAllocatableItemsUsingPOST.');
+            throw new runtime.RequiredError('futureItemsRequestDto','Required parameter requestParameters.futureItemsRequestDto was null or undefined when calling createFutureShipmentsForFutureAllocatableItems.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -219,8 +207,8 @@ export class FutureShipmentApi extends runtime.BaseAPI implements FutureShipment
      * createFutureShipmentsForFutureAllocatableItems
      * createFutureShipmentsForFutureAllocatableItems
      */
-    async createFutureShipmentsForFutureAllocatableItemsUsingPOST(requestParameters: CreateFutureShipmentsForFutureAllocatableItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfEntityModelOfShipment> {
-        const response = await this.createFutureShipmentsForFutureAllocatableItemsUsingPOSTRaw(requestParameters, initOverrides);
+    async createFutureShipmentsForFutureAllocatableItems(requestParameters: futureShipmentApiParams.CreateFutureShipmentsForFutureAllocatableItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfEntityModelOfShipment> {
+        const response = await this.createFutureShipmentsForFutureAllocatableItemsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -230,24 +218,20 @@ export class FutureShipmentApi extends runtime.BaseAPI implements FutureShipment
      */
 
 
-    async createFutureShipmentsForItemsUsingPOSTRaw(requestParameters: CreateFutureShipmentsForItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfEntityModelOfShipment>> {
+    async createFutureShipmentsForItemsRaw(requestParameters: futureShipmentApiParams.CreateFutureShipmentsForItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfEntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling createFutureShipmentsForItemsUsingPOST.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling createFutureShipmentsForItems.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling createFutureShipmentsForItemsUsingPOST.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling createFutureShipmentsForItems.');
         }
 
         if (requestParameters.futureItemsRequestDto === null || requestParameters.futureItemsRequestDto === undefined) {
-            throw new runtime.RequiredError('futureItemsRequestDto','Required parameter requestParameters.futureItemsRequestDto was null or undefined when calling createFutureShipmentsForItemsUsingPOST.');
+            throw new runtime.RequiredError('futureItemsRequestDto','Required parameter requestParameters.futureItemsRequestDto was null or undefined when calling createFutureShipmentsForItems.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -286,8 +270,8 @@ export class FutureShipmentApi extends runtime.BaseAPI implements FutureShipment
      * createFutureShipmentsForItems
      * createFutureShipmentsForItems
      */
-    async createFutureShipmentsForItemsUsingPOST(requestParameters: CreateFutureShipmentsForItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfEntityModelOfShipment> {
-        const response = await this.createFutureShipmentsForItemsUsingPOSTRaw(requestParameters, initOverrides);
+    async createFutureShipmentsForItems(requestParameters: futureShipmentApiParams.CreateFutureShipmentsForItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfEntityModelOfShipment> {
+        const response = await this.createFutureShipmentsForItemsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -297,20 +281,16 @@ export class FutureShipmentApi extends runtime.BaseAPI implements FutureShipment
      */
 
 
-    async futureShipmentToReadyUsingPUTRaw(requestParameters: FutureShipmentToReadyUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async futureShipmentToReadyRaw(requestParameters: futureShipmentApiParams.FutureShipmentToReadyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling futureShipmentToReadyUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling futureShipmentToReady.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling futureShipmentToReadyUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling futureShipmentToReady.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -346,8 +326,8 @@ export class FutureShipmentApi extends runtime.BaseAPI implements FutureShipment
      * futureShipmentToReady
      * futureShipmentToReady
      */
-    async futureShipmentToReadyUsingPUT(requestParameters: FutureShipmentToReadyUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.futureShipmentToReadyUsingPUTRaw(requestParameters, initOverrides);
+    async futureShipmentToReady(requestParameters: futureShipmentApiParams.FutureShipmentToReadyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.futureShipmentToReadyRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -357,24 +337,20 @@ export class FutureShipmentApi extends runtime.BaseAPI implements FutureShipment
      */
 
 
-    async updateFutureShipmentDateUsingPUTRaw(requestParameters: UpdateFutureShipmentDateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async updateFutureShipmentDateRaw(requestParameters: futureShipmentApiParams.UpdateFutureShipmentDateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateFutureShipmentDateUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateFutureShipmentDate.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateFutureShipmentDateUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateFutureShipmentDate.');
         }
 
         if (requestParameters.futureShipmentUpdateDateRequestDto === null || requestParameters.futureShipmentUpdateDateRequestDto === undefined) {
-            throw new runtime.RequiredError('futureShipmentUpdateDateRequestDto','Required parameter requestParameters.futureShipmentUpdateDateRequestDto was null or undefined when calling updateFutureShipmentDateUsingPUT.');
+            throw new runtime.RequiredError('futureShipmentUpdateDateRequestDto','Required parameter requestParameters.futureShipmentUpdateDateRequestDto was null or undefined when calling updateFutureShipmentDate.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -413,8 +389,8 @@ export class FutureShipmentApi extends runtime.BaseAPI implements FutureShipment
      * updateFutureShipmentDate
      * updateFutureShipmentDate
      */
-    async updateFutureShipmentDateUsingPUT(requestParameters: UpdateFutureShipmentDateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.updateFutureShipmentDateUsingPUTRaw(requestParameters, initOverrides);
+    async updateFutureShipmentDate(requestParameters: futureShipmentApiParams.UpdateFutureShipmentDateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.updateFutureShipmentDateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

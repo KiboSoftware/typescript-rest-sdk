@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 apis/AddressValidationApi.ts
 apis/B2BAccountApi.ts
 apis/B2BContactApi.ts

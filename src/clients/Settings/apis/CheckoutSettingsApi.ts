@@ -21,165 +21,162 @@ import type {
   ExternalPaymentWorkflowDefinition,
 } from '../models';
 
-export interface AddThirdPartyPaymentWorkflowRequest {
-    responseFields?: string;
-    externalPaymentWorkflowDefinition?: ExternalPaymentWorkflowDefinition;
-}
 
-export interface DeleteThirdPartyPaymentWorkflowRequest {
-    fullyQualifiedName: string;
+export namespace checkoutSettingsApiParams { 
+    export interface AddThirdPartyPaymentWorkflowRequest {
+        responseFields?: string;
+        externalPaymentWorkflowDefinition?: ExternalPaymentWorkflowDefinition;
+    }
+    export interface DeleteThirdPartyPaymentWorkflowRequest {
+        fullyQualifiedName: string;
+    }
+    export interface GetCheckoutSettingsRequest {
+        responseFields?: string;
+    }
+    export interface GetCustomerCheckoutSettingsRequest {
+        responseFields?: string;
+    }
+    export interface GetThirdPartyPaymentWorkflowWithValuesRequest {
+        fullyQualifiedName: string;
+        responseFields?: string;
+    }
+    export interface GetThirdPartyPaymentWorkflowsRequest {
+        responseFields?: string;
+    }
+    export interface UpdateCustomerCheckoutSettingsRequest {
+        responseFields?: string;
+        customerCheckoutSettings?: CustomerCheckoutSettings;
+    }
 }
-
-export interface GetCheckoutSettingsRequest {
-    responseFields?: string;
-}
-
-export interface GetCustomerCheckoutSettingsRequest {
-    responseFields?: string;
-}
-
-export interface GetThirdPartyPaymentWorkflowWithValuesRequest {
-    fullyQualifiedName: string;
-    responseFields?: string;
-}
-
-export interface GetThirdPartyPaymentWorkflowsRequest {
-    responseFields?: string;
-}
-
-export interface UpdateCustomerCheckoutSettingsRequest {
-    responseFields?: string;
-    customerCheckoutSettings?: CustomerCheckoutSettings;
-}
-
 /**
- * CheckoutSettingsApi - interface
- * 
- * @export
- * @interface CheckoutSettingsApiInterface
- */
-export interface CheckoutSettingsApiInterface {
+* CheckoutSettingsApiService - interface
+* 
+* @export
+* @interface CheckoutSettingsApi
+*/
+export interface CheckoutSettingsApiService {
     /**
-     * Adds a third party payment workflow definition in the context of a site
-     * @summary Add Third Party Payment Workflow
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {ExternalPaymentWorkflowDefinition} [externalPaymentWorkflowDefinition] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CheckoutSettingsApiInterface
-     */
-    addThirdPartyPaymentWorkflowRaw(requestParameters: AddThirdPartyPaymentWorkflowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Adds a third party payment workflow definition in the context of a site
+    * @summary Add Third Party Payment Workflow
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ExternalPaymentWorkflowDefinition} [externalPaymentWorkflowDefinition] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CheckoutSettingsApiInterface
+    */
+    addThirdPartyPaymentWorkflowRaw(requestParameters: checkoutSettingsApiParams.AddThirdPartyPaymentWorkflowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Adds a third party payment workflow definition in the context of a site
-     * Add Third Party Payment Workflow
-     */
-    addThirdPartyPaymentWorkflow(requestParameters: AddThirdPartyPaymentWorkflowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Adds a third party payment workflow definition in the context of a site
+    * Add Third Party Payment Workflow
+    */
+    addThirdPartyPaymentWorkflow(requestParameters: checkoutSettingsApiParams.AddThirdPartyPaymentWorkflowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Deletes a third party payment workflow definition defined for the site
-     * @summary Delete Third Party Payment Workflow
-     * @param {string} fullyQualifiedName 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CheckoutSettingsApiInterface
-     */
-    deleteThirdPartyPaymentWorkflowRaw(requestParameters: DeleteThirdPartyPaymentWorkflowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    * Deletes a third party payment workflow definition defined for the site
+    * @summary Delete Third Party Payment Workflow
+    * @param {string} fullyQualifiedName 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CheckoutSettingsApiInterface
+    */
+    deleteThirdPartyPaymentWorkflowRaw(requestParameters: checkoutSettingsApiParams.DeleteThirdPartyPaymentWorkflowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Deletes a third party payment workflow definition defined for the site
-     * Delete Third Party Payment Workflow
-     */
-    deleteThirdPartyPaymentWorkflow(requestParameters: DeleteThirdPartyPaymentWorkflowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    * Deletes a third party payment workflow definition defined for the site
+    * Delete Third Party Payment Workflow
+    */
+    deleteThirdPartyPaymentWorkflow(requestParameters: checkoutSettingsApiParams.DeleteThirdPartyPaymentWorkflowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Retrieves all checkout settings defined for the site: Payment settings, such as the payment gateway ID and credentials,   supported credit cards, and more; Customer Checkout settings, such as whether login is required, and any   custom attributes; and Order Processing settings, such as when payment is authorized and captured, and any custom attributes.
-     * @summary Get Checkout Settings
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CheckoutSettingsApiInterface
-     */
-    getCheckoutSettingsRaw(requestParameters: GetCheckoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckoutSettings>>;
+    * Retrieves all checkout settings defined for the site: Payment settings, such as the payment gateway ID and credentials,   supported credit cards, and more; Customer Checkout settings, such as whether login is required, and any   custom attributes; and Order Processing settings, such as when payment is authorized and captured, and any custom attributes.
+    * @summary Get Checkout Settings
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CheckoutSettingsApiInterface
+    */
+    getCheckoutSettingsRaw(requestParameters: checkoutSettingsApiParams.GetCheckoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckoutSettings>>;
 
     /**
-     * Retrieves all checkout settings defined for the site: Payment settings, such as the payment gateway ID and credentials,   supported credit cards, and more; Customer Checkout settings, such as whether login is required, and any   custom attributes; and Order Processing settings, such as when payment is authorized and captured, and any custom attributes.
-     * Get Checkout Settings
-     */
-    getCheckoutSettings(requestParameters: GetCheckoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CheckoutSettings>;
+    * Retrieves all checkout settings defined for the site: Payment settings, such as the payment gateway ID and credentials,   supported credit cards, and more; Customer Checkout settings, such as whether login is required, and any   custom attributes; and Order Processing settings, such as when payment is authorized and captured, and any custom attributes.
+    * Get Checkout Settings
+    */
+    getCheckoutSettings(requestParameters: checkoutSettingsApiParams.GetCheckoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CheckoutSettings>;
 
     /**
-     * Retrieves existing customer checkout settings including the checkout type, which determines whether the   customer must be logged in when placing an order. Also lists any custom customer checkout attributes.
-     * @summary Get Customer Checkout Settings
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CheckoutSettingsApiInterface
-     */
-    getCustomerCheckoutSettingsRaw(requestParameters: GetCustomerCheckoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCheckoutSettings>>;
+    * Retrieves existing customer checkout settings including the checkout type, which determines whether the   customer must be logged in when placing an order. Also lists any custom customer checkout attributes.
+    * @summary Get Customer Checkout Settings
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CheckoutSettingsApiInterface
+    */
+    getCustomerCheckoutSettingsRaw(requestParameters: checkoutSettingsApiParams.GetCustomerCheckoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCheckoutSettings>>;
 
     /**
-     * Retrieves existing customer checkout settings including the checkout type, which determines whether the   customer must be logged in when placing an order. Also lists any custom customer checkout attributes.
-     * Get Customer Checkout Settings
-     */
-    getCustomerCheckoutSettings(requestParameters: GetCustomerCheckoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCheckoutSettings>;
+    * Retrieves existing customer checkout settings including the checkout type, which determines whether the   customer must be logged in when placing an order. Also lists any custom customer checkout attributes.
+    * Get Customer Checkout Settings
+    */
+    getCustomerCheckoutSettings(requestParameters: checkoutSettingsApiParams.GetCustomerCheckoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCheckoutSettings>;
 
     /**
-     * Gets a third party payment workflow specified by workflow definition which includes credential values
-     * @summary Get Third Party Payment Workflow With Values
-     * @param {string} fullyQualifiedName 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CheckoutSettingsApiInterface
-     */
-    getThirdPartyPaymentWorkflowWithValuesRaw(requestParameters: GetThirdPartyPaymentWorkflowWithValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExternalPaymentWorkflowDefinition>>;
+    * Gets a third party payment workflow specified by workflow definition which includes credential values
+    * @summary Get Third Party Payment Workflow With Values
+    * @param {string} fullyQualifiedName 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CheckoutSettingsApiInterface
+    */
+    getThirdPartyPaymentWorkflowWithValuesRaw(requestParameters: checkoutSettingsApiParams.GetThirdPartyPaymentWorkflowWithValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExternalPaymentWorkflowDefinition>>;
 
     /**
-     * Gets a third party payment workflow specified by workflow definition which includes credential values
-     * Get Third Party Payment Workflow With Values
-     */
-    getThirdPartyPaymentWorkflowWithValues(requestParameters: GetThirdPartyPaymentWorkflowWithValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExternalPaymentWorkflowDefinition>;
+    * Gets a third party payment workflow specified by workflow definition which includes credential values
+    * Get Third Party Payment Workflow With Values
+    */
+    getThirdPartyPaymentWorkflowWithValues(requestParameters: checkoutSettingsApiParams.GetThirdPartyPaymentWorkflowWithValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExternalPaymentWorkflowDefinition>;
 
     /**
-     * Retrieves list of external payment workflow definitions.
-     * @summary Get Third Party Payment Workflows
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CheckoutSettingsApiInterface
-     */
-    getThirdPartyPaymentWorkflowsRaw(requestParameters: GetThirdPartyPaymentWorkflowsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExternalPaymentWorkflowDefinition>>>;
+    * Retrieves list of external payment workflow definitions.
+    * @summary Get Third Party Payment Workflows
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CheckoutSettingsApiInterface
+    */
+    getThirdPartyPaymentWorkflowsRaw(requestParameters: checkoutSettingsApiParams.GetThirdPartyPaymentWorkflowsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExternalPaymentWorkflowDefinition>>>;
 
     /**
-     * Retrieves list of external payment workflow definitions.
-     * Get Third Party Payment Workflows
-     */
-    getThirdPartyPaymentWorkflows(requestParameters: GetThirdPartyPaymentWorkflowsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExternalPaymentWorkflowDefinition>>;
+    * Retrieves list of external payment workflow definitions.
+    * Get Third Party Payment Workflows
+    */
+    getThirdPartyPaymentWorkflows(requestParameters: checkoutSettingsApiParams.GetThirdPartyPaymentWorkflowsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExternalPaymentWorkflowDefinition>>;
 
     /**
-     * Modifies existing customer checkout settings. When a shopper starts the process of checking out,   the Checkout Service checks these settings to render the checkout page.   This is where you can specify whether shoppers must be logged in \"LoginRequired\"  or not \"LoginOptional\" to checkout. You can also update your own customer checkout requirements, for example, to add a tracking code.
-     * @summary Update Customer Checkout Settings
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CustomerCheckoutSettings} [customerCheckoutSettings] Properties of the customer checkout settings to update.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CheckoutSettingsApiInterface
-     */
-    updateCustomerCheckoutSettingsRaw(requestParameters: UpdateCustomerCheckoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCheckoutSettings>>;
+    * Modifies existing customer checkout settings. When a shopper starts the process of checking out,   the Checkout Service checks these settings to render the checkout page.   This is where you can specify whether shoppers must be logged in \"LoginRequired\"  or not \"LoginOptional\" to checkout. You can also update your own customer checkout requirements, for example, to add a tracking code.
+    * @summary Update Customer Checkout Settings
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CustomerCheckoutSettings} [customerCheckoutSettings] Properties of the customer checkout settings to update.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CheckoutSettingsApiInterface
+    */
+    updateCustomerCheckoutSettingsRaw(requestParameters: checkoutSettingsApiParams.UpdateCustomerCheckoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCheckoutSettings>>;
 
     /**
-     * Modifies existing customer checkout settings. When a shopper starts the process of checking out,   the Checkout Service checks these settings to render the checkout page.   This is where you can specify whether shoppers must be logged in \"LoginRequired\"  or not \"LoginOptional\" to checkout. You can also update your own customer checkout requirements, for example, to add a tracking code.
-     * Update Customer Checkout Settings
-     */
-    updateCustomerCheckoutSettings(requestParameters: UpdateCustomerCheckoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCheckoutSettings>;
+    * Modifies existing customer checkout settings. When a shopper starts the process of checking out,   the Checkout Service checks these settings to render the checkout page.   This is where you can specify whether shoppers must be logged in \"LoginRequired\"  or not \"LoginOptional\" to checkout. You can also update your own customer checkout requirements, for example, to add a tracking code.
+    * Update Customer Checkout Settings
+    */
+    updateCustomerCheckoutSettings(requestParameters: checkoutSettingsApiParams.UpdateCustomerCheckoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCheckoutSettings>;
 
 }
+
 
 /**
  * 
  */
-export class CheckoutSettingsApi extends runtime.BaseAPI implements CheckoutSettingsApiInterface {
+export class CheckoutSettingsApi extends runtime.BaseAPI implements CheckoutSettingsApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -190,7 +187,7 @@ export class CheckoutSettingsApi extends runtime.BaseAPI implements CheckoutSett
      */
 
 
-    async addThirdPartyPaymentWorkflowRaw(requestParameters: AddThirdPartyPaymentWorkflowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addThirdPartyPaymentWorkflowRaw(requestParameters: checkoutSettingsApiParams.AddThirdPartyPaymentWorkflowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -222,7 +219,7 @@ export class CheckoutSettingsApi extends runtime.BaseAPI implements CheckoutSett
      * Adds a third party payment workflow definition in the context of a site
      * Add Third Party Payment Workflow
      */
-    async addThirdPartyPaymentWorkflow(requestParameters: AddThirdPartyPaymentWorkflowRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async addThirdPartyPaymentWorkflow(requestParameters: checkoutSettingsApiParams.AddThirdPartyPaymentWorkflowRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.addThirdPartyPaymentWorkflowRaw(requestParameters, initOverrides);
     }
 
@@ -232,7 +229,7 @@ export class CheckoutSettingsApi extends runtime.BaseAPI implements CheckoutSett
      */
 
 
-    async deleteThirdPartyPaymentWorkflowRaw(requestParameters: DeleteThirdPartyPaymentWorkflowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteThirdPartyPaymentWorkflowRaw(requestParameters: checkoutSettingsApiParams.DeleteThirdPartyPaymentWorkflowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.fullyQualifiedName === null || requestParameters.fullyQualifiedName === undefined) {
             throw new runtime.RequiredError('fullyQualifiedName','Required parameter requestParameters.fullyQualifiedName was null or undefined when calling deleteThirdPartyPaymentWorkflow.');
         }
@@ -261,7 +258,7 @@ export class CheckoutSettingsApi extends runtime.BaseAPI implements CheckoutSett
      * Deletes a third party payment workflow definition defined for the site
      * Delete Third Party Payment Workflow
      */
-    async deleteThirdPartyPaymentWorkflow(requestParameters: DeleteThirdPartyPaymentWorkflowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteThirdPartyPaymentWorkflow(requestParameters: checkoutSettingsApiParams.DeleteThirdPartyPaymentWorkflowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteThirdPartyPaymentWorkflowRaw(requestParameters, initOverrides);
     }
 
@@ -271,7 +268,7 @@ export class CheckoutSettingsApi extends runtime.BaseAPI implements CheckoutSett
      */
 
 
-    async getCheckoutSettingsRaw(requestParameters: GetCheckoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckoutSettings>> {
+    async getCheckoutSettingsRaw(requestParameters: checkoutSettingsApiParams.GetCheckoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckoutSettings>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -300,7 +297,7 @@ export class CheckoutSettingsApi extends runtime.BaseAPI implements CheckoutSett
      * Retrieves all checkout settings defined for the site: Payment settings, such as the payment gateway ID and credentials,   supported credit cards, and more; Customer Checkout settings, such as whether login is required, and any   custom attributes; and Order Processing settings, such as when payment is authorized and captured, and any custom attributes.
      * Get Checkout Settings
      */
-    async getCheckoutSettings(requestParameters: GetCheckoutSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CheckoutSettings> {
+    async getCheckoutSettings(requestParameters: checkoutSettingsApiParams.GetCheckoutSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CheckoutSettings> {
         const response = await this.getCheckoutSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -311,7 +308,7 @@ export class CheckoutSettingsApi extends runtime.BaseAPI implements CheckoutSett
      */
 
 
-    async getCustomerCheckoutSettingsRaw(requestParameters: GetCustomerCheckoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCheckoutSettings>> {
+    async getCustomerCheckoutSettingsRaw(requestParameters: checkoutSettingsApiParams.GetCustomerCheckoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCheckoutSettings>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -340,7 +337,7 @@ export class CheckoutSettingsApi extends runtime.BaseAPI implements CheckoutSett
      * Retrieves existing customer checkout settings including the checkout type, which determines whether the   customer must be logged in when placing an order. Also lists any custom customer checkout attributes.
      * Get Customer Checkout Settings
      */
-    async getCustomerCheckoutSettings(requestParameters: GetCustomerCheckoutSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCheckoutSettings> {
+    async getCustomerCheckoutSettings(requestParameters: checkoutSettingsApiParams.GetCustomerCheckoutSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCheckoutSettings> {
         const response = await this.getCustomerCheckoutSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -351,7 +348,7 @@ export class CheckoutSettingsApi extends runtime.BaseAPI implements CheckoutSett
      */
 
 
-    async getThirdPartyPaymentWorkflowWithValuesRaw(requestParameters: GetThirdPartyPaymentWorkflowWithValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExternalPaymentWorkflowDefinition>> {
+    async getThirdPartyPaymentWorkflowWithValuesRaw(requestParameters: checkoutSettingsApiParams.GetThirdPartyPaymentWorkflowWithValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExternalPaymentWorkflowDefinition>> {
         if (requestParameters.fullyQualifiedName === null || requestParameters.fullyQualifiedName === undefined) {
             throw new runtime.RequiredError('fullyQualifiedName','Required parameter requestParameters.fullyQualifiedName was null or undefined when calling getThirdPartyPaymentWorkflowWithValues.');
         }
@@ -384,7 +381,7 @@ export class CheckoutSettingsApi extends runtime.BaseAPI implements CheckoutSett
      * Gets a third party payment workflow specified by workflow definition which includes credential values
      * Get Third Party Payment Workflow With Values
      */
-    async getThirdPartyPaymentWorkflowWithValues(requestParameters: GetThirdPartyPaymentWorkflowWithValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExternalPaymentWorkflowDefinition> {
+    async getThirdPartyPaymentWorkflowWithValues(requestParameters: checkoutSettingsApiParams.GetThirdPartyPaymentWorkflowWithValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExternalPaymentWorkflowDefinition> {
         const response = await this.getThirdPartyPaymentWorkflowWithValuesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -395,7 +392,7 @@ export class CheckoutSettingsApi extends runtime.BaseAPI implements CheckoutSett
      */
 
 
-    async getThirdPartyPaymentWorkflowsRaw(requestParameters: GetThirdPartyPaymentWorkflowsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExternalPaymentWorkflowDefinition>>> {
+    async getThirdPartyPaymentWorkflowsRaw(requestParameters: checkoutSettingsApiParams.GetThirdPartyPaymentWorkflowsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExternalPaymentWorkflowDefinition>>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -424,7 +421,7 @@ export class CheckoutSettingsApi extends runtime.BaseAPI implements CheckoutSett
      * Retrieves list of external payment workflow definitions.
      * Get Third Party Payment Workflows
      */
-    async getThirdPartyPaymentWorkflows(requestParameters: GetThirdPartyPaymentWorkflowsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExternalPaymentWorkflowDefinition>> {
+    async getThirdPartyPaymentWorkflows(requestParameters: checkoutSettingsApiParams.GetThirdPartyPaymentWorkflowsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExternalPaymentWorkflowDefinition>> {
         const response = await this.getThirdPartyPaymentWorkflowsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -435,7 +432,7 @@ export class CheckoutSettingsApi extends runtime.BaseAPI implements CheckoutSett
      */
 
 
-    async updateCustomerCheckoutSettingsRaw(requestParameters: UpdateCustomerCheckoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCheckoutSettings>> {
+    async updateCustomerCheckoutSettingsRaw(requestParameters: checkoutSettingsApiParams.UpdateCustomerCheckoutSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerCheckoutSettings>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -467,7 +464,7 @@ export class CheckoutSettingsApi extends runtime.BaseAPI implements CheckoutSett
      * Modifies existing customer checkout settings. When a shopper starts the process of checking out,   the Checkout Service checks these settings to render the checkout page.   This is where you can specify whether shoppers must be logged in \"LoginRequired\"  or not \"LoginOptional\" to checkout. You can also update your own customer checkout requirements, for example, to add a tracking code.
      * Update Customer Checkout Settings
      */
-    async updateCustomerCheckoutSettings(requestParameters: UpdateCustomerCheckoutSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCheckoutSettings> {
+    async updateCustomerCheckoutSettings(requestParameters: checkoutSettingsApiParams.UpdateCustomerCheckoutSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerCheckoutSettings> {
         const response = await this.updateCustomerCheckoutSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }

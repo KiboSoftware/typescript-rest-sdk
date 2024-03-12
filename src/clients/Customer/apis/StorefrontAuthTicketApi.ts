@@ -20,83 +20,84 @@ import type {
   CustomerUserAuthInfo,
 } from '../models';
 
-export interface CreateAnonymousShopperAuthTicketRequest {
-    responseFields?: string;
+
+export namespace storefrontAuthTicketApiParams { 
+    export interface CreateAnonymousShopperAuthTicketRequest {
+        responseFields?: string;
+    }
+    export interface CreateUserAuthTicketRequest {
+        responseFields?: string;
+        customerUserAuthInfo?: CustomerUserAuthInfo;
+    }
+    export interface RefreshUserAuthTicketRequest {
+        refreshToken?: string;
+        responseFields?: string;
+    }
+}
+/**
+* StorefrontAuthTicketApiService - interface
+* 
+* @export
+* @interface StorefrontAuthTicketApi
+*/
+export interface StorefrontAuthTicketApiService {
+    /**
+    * Authenticates anonymous shopper for the site.
+    * @summary Create Anonymous Shopper Auth Ticket
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof StorefrontAuthTicketApiInterface
+    */
+    createAnonymousShopperAuthTicketRaw(requestParameters: storefrontAuthTicketApiParams.CreateAnonymousShopperAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>>;
+
+    /**
+    * Authenticates anonymous shopper for the site.
+    * Create Anonymous Shopper Auth Ticket
+    */
+    createAnonymousShopperAuthTicket(requestParameters: storefrontAuthTicketApiParams.CreateAnonymousShopperAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket>;
+
+    /**
+    * Authenticates a user for a particular site given a set of user credentials.
+    * @summary Create User Auth Ticket
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CustomerUserAuthInfo} [customerUserAuthInfo] User\&#39;s email address and password.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof StorefrontAuthTicketApiInterface
+    */
+    createUserAuthTicketRaw(requestParameters: storefrontAuthTicketApiParams.CreateUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>>;
+
+    /**
+    * Authenticates a user for a particular site given a set of user credentials.
+    * Create User Auth Ticket
+    */
+    createUserAuthTicket(requestParameters: storefrontAuthTicketApiParams.CreateUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket>;
+
+    /**
+    * Refreshes a user\'s authentication.
+    * @summary Refresh User Auth Ticket
+    * @param {string} [refreshToken] The user\&#39;s refresh token.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof StorefrontAuthTicketApiInterface
+    */
+    refreshUserAuthTicketRaw(requestParameters: storefrontAuthTicketApiParams.RefreshUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>>;
+
+    /**
+    * Refreshes a user\'s authentication.
+    * Refresh User Auth Ticket
+    */
+    refreshUserAuthTicket(requestParameters: storefrontAuthTicketApiParams.RefreshUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket>;
+
 }
 
-export interface CreateUserAuthTicketRequest {
-    responseFields?: string;
-    customerUserAuthInfo?: CustomerUserAuthInfo;
-}
-
-export interface RefreshUserAuthTicketRequest {
-    refreshToken?: string;
-    responseFields?: string;
-}
 
 /**
- * StorefrontAuthTicketApi - interface
- * 
- * @export
- * @interface StorefrontAuthTicketApiInterface
- */
-export interface StorefrontAuthTicketApiInterface {
-    /**
-     * Authenticates anonymous shopper for the site.
-     * @summary Create Anonymous Shopper Auth Ticket
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof StorefrontAuthTicketApiInterface
-     */
-    createAnonymousShopperAuthTicketRaw(requestParameters: CreateAnonymousShopperAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>>;
-
-    /**
-     * Authenticates anonymous shopper for the site.
-     * Create Anonymous Shopper Auth Ticket
-     */
-    createAnonymousShopperAuthTicket(requestParameters: CreateAnonymousShopperAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket>;
-
-    /**
-     * Authenticates a user for a particular site given a set of user credentials.
-     * @summary Create User Auth Ticket
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CustomerUserAuthInfo} [customerUserAuthInfo] User\&#39;s email address and password.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof StorefrontAuthTicketApiInterface
-     */
-    createUserAuthTicketRaw(requestParameters: CreateUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>>;
-
-    /**
-     * Authenticates a user for a particular site given a set of user credentials.
-     * Create User Auth Ticket
-     */
-    createUserAuthTicket(requestParameters: CreateUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket>;
-
-    /**
-     * Refreshes a user\'s authentication.
-     * @summary Refresh User Auth Ticket
-     * @param {string} [refreshToken] The user\&#39;s refresh token.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof StorefrontAuthTicketApiInterface
-     */
-    refreshUserAuthTicketRaw(requestParameters: RefreshUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>>;
-
-    /**
-     * Refreshes a user\'s authentication.
-     * Refresh User Auth Ticket
-     */
-    refreshUserAuthTicket(requestParameters: RefreshUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket>;
-
-}
-
-/**
  * 
  */
-export class StorefrontAuthTicketApi extends runtime.BaseAPI implements StorefrontAuthTicketApiInterface {
+export class StorefrontAuthTicketApi extends runtime.BaseAPI implements StorefrontAuthTicketApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -107,7 +108,7 @@ export class StorefrontAuthTicketApi extends runtime.BaseAPI implements Storefro
      */
 
 
-    async createAnonymousShopperAuthTicketRaw(requestParameters: CreateAnonymousShopperAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>> {
+    async createAnonymousShopperAuthTicketRaw(requestParameters: storefrontAuthTicketApiParams.CreateAnonymousShopperAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -136,7 +137,7 @@ export class StorefrontAuthTicketApi extends runtime.BaseAPI implements Storefro
      * Authenticates anonymous shopper for the site.
      * Create Anonymous Shopper Auth Ticket
      */
-    async createAnonymousShopperAuthTicket(requestParameters: CreateAnonymousShopperAuthTicketRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket> {
+    async createAnonymousShopperAuthTicket(requestParameters: storefrontAuthTicketApiParams.CreateAnonymousShopperAuthTicketRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket> {
         const response = await this.createAnonymousShopperAuthTicketRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -147,7 +148,7 @@ export class StorefrontAuthTicketApi extends runtime.BaseAPI implements Storefro
      */
 
 
-    async createUserAuthTicketRaw(requestParameters: CreateUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>> {
+    async createUserAuthTicketRaw(requestParameters: storefrontAuthTicketApiParams.CreateUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -179,7 +180,7 @@ export class StorefrontAuthTicketApi extends runtime.BaseAPI implements Storefro
      * Authenticates a user for a particular site given a set of user credentials.
      * Create User Auth Ticket
      */
-    async createUserAuthTicket(requestParameters: CreateUserAuthTicketRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket> {
+    async createUserAuthTicket(requestParameters: storefrontAuthTicketApiParams.CreateUserAuthTicketRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket> {
         const response = await this.createUserAuthTicketRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -190,7 +191,7 @@ export class StorefrontAuthTicketApi extends runtime.BaseAPI implements Storefro
      */
 
 
-    async refreshUserAuthTicketRaw(requestParameters: RefreshUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>> {
+    async refreshUserAuthTicketRaw(requestParameters: storefrontAuthTicketApiParams.RefreshUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>> {
         const queryParameters: any = {};
 
         if (requestParameters.refreshToken !== undefined) {
@@ -223,7 +224,7 @@ export class StorefrontAuthTicketApi extends runtime.BaseAPI implements Storefro
      * Refreshes a user\'s authentication.
      * Refresh User Auth Ticket
      */
-    async refreshUserAuthTicket(requestParameters: RefreshUserAuthTicketRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket> {
+    async refreshUserAuthTicket(requestParameters: storefrontAuthTicketApiParams.RefreshUserAuthTicketRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket> {
         const response = await this.refreshUserAuthTicketRaw(requestParameters, initOverrides);
         return await response.value();
     }

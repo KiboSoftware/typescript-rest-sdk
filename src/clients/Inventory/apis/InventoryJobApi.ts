@@ -21,119 +21,115 @@ import type {
   JobQueueResponse,
 } from '../models';
 
-export interface DeleteAllOldInventoryRequest {
-    xVolTenant: number;
-    months: number;
-}
 
-export interface DeleteOldInventoryRequest {
-    xVolTenant: number;
-    months: number;
+export namespace inventoryJobApiParams { 
+    export interface DeleteAllOldInventoryRequest {
+        xVolTenant: number;
+        months: number;
+    }
+    export interface DeleteOldInventoryRequest {
+        xVolTenant: number;
+        months: number;
+    }
+    export interface GetJobRequest {
+        xVolTenant: number;
+        jobID: number;
+    }
+    export interface GetJobsRequest {
+        xVolTenant: number;
+        locationCode?: string;
+        limit?: number;
+        owner?: string;
+        types?: Array<GetJobsTypesEnum>;
+        originalFilename?: string;
+    }
 }
-
-export interface GetJobRequest {
-    xVolTenant: number;
-    jobID: number;
-    responseFields?: string;
-}
-
-export interface GetJobsRequest {
-    xVolTenant: number;
-    locationCode?: string;
-    limit?: number;
-    owner?: string;
-    types?: Array<GetJobsTypesEnum>;
-    originalFilename?: string;
-    responseFields?: string;
-}
-
 /**
- * InventoryJobApi - interface
- * 
- * @export
- * @interface InventoryJobApiInterface
- */
-export interface InventoryJobApiInterface {
+* InventoryJobApiService - interface
+* 
+* @export
+* @interface InventoryJobApi
+*/
+export interface InventoryJobApiService {
     /**
-     * Deletes older records from inventory table of all silos
-     * @summary Delete All Old Inventory
-     * @param {number} xVolTenant Tenant ID
-     * @param {number} months The x months before which we want the records to get deleted
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InventoryJobApiInterface
-     */
-    deleteAllOldInventoryRaw(requestParameters: DeleteAllOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobIDResponse>>>;
+    * Deletes older records from inventory table of all silos
+    * @summary Delete All Old Inventory
+    * @param {number} xVolTenant Tenant ID
+    * @param {number} months The x months before which we want the records to get deleted
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof InventoryJobApiInterface
+    */
+    deleteAllOldInventoryRaw(requestParameters: inventoryJobApiParams.DeleteAllOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobIDResponse>>>;
 
     /**
-     * Deletes older records from inventory table of all silos
-     * Delete All Old Inventory
-     */
-    deleteAllOldInventory(requestParameters: DeleteAllOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobIDResponse>>;
+    * Deletes older records from inventory table of all silos
+    * Delete All Old Inventory
+    */
+    deleteAllOldInventory(requestParameters: inventoryJobApiParams.DeleteAllOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobIDResponse>>;
 
     /**
-     * Deletes older records from inventory table
-     * @summary Delete Old Inventory
-     * @param {number} xVolTenant Tenant ID
-     * @param {number} months The x months before which we want the records to get deleted
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InventoryJobApiInterface
-     */
-    deleteOldInventoryRaw(requestParameters: DeleteOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobIDResponse>>;
+    * Deletes older records from inventory table
+    * @summary Delete Old Inventory
+    * @param {number} xVolTenant Tenant ID
+    * @param {number} months The x months before which we want the records to get deleted
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof InventoryJobApiInterface
+    */
+    deleteOldInventoryRaw(requestParameters: inventoryJobApiParams.DeleteOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobIDResponse>>;
 
     /**
-     * Deletes older records from inventory table
-     * Delete Old Inventory
-     */
-    deleteOldInventory(requestParameters: DeleteOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobIDResponse>;
+    * Deletes older records from inventory table
+    * Delete Old Inventory
+    */
+    deleteOldInventory(requestParameters: inventoryJobApiParams.DeleteOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobIDResponse>;
 
     /**
-     * Get the specified job
-     * @summary Get Job
-     * @param {number} xVolTenant Tenant ID
-     * @param {number} jobID Id of bin to get
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InventoryJobApiInterface
-     */
-    getJobRaw(requestParameters: GetJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobQueueResponse>>;
+    * Get the specified job
+    * @summary Get Job
+    * @param {number} xVolTenant Tenant ID
+    * @param {number} jobID Id of bin to get
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof InventoryJobApiInterface
+    */
+    getJobRaw(requestParameters: inventoryJobApiParams.GetJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobQueueResponse>>;
 
     /**
-     * Get the specified job
-     * Get Job
-     */
-    getJob(requestParameters: GetJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobQueueResponse>;
+    * Get the specified job
+    * Get Job
+    */
+    getJob(requestParameters: inventoryJobApiParams.GetJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobQueueResponse>;
 
     /**
-     * Get the requested jobs
-     * @summary Get Jobs
-     * @param {number} xVolTenant Tenant ID
-     * @param {string} [locationCode] Tenant specified unique Identifier of the owning location
-     * @param {number} [limit] The maximum number of results to return, defaults to 100 for most
-     * @param {string} [owner] User that owns the job
-     * @param {Array<'REFRESH' | 'ADJUST' | 'RELEASE_SHIPMENTS' | 'CREATE_PICK_WAVE' | 'CLOSE_PICK_WAVE' | 'PUT_AWAY_FILE' | 'SHORT_PICK_ERROR' | 'BIN_AUDIT_START' | 'BIN_AUDIT_COMPLETION' | 'CREATE_BIN_AUDIT' | 'RELEASE_PENDING_ITEMS'>} [types] Type of the Job Queue Request
-     * @param {string} [originalFilename] The full name of the file that was picked up at the secure droppoint server before being split up by location.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InventoryJobApiInterface
-     */
-    getJobsRaw(requestParameters: GetJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobQueueResponse>>>;
+    * Get the requested jobs
+    * @summary Get Jobs
+    * @param {number} xVolTenant Tenant ID
+    * @param {string} [locationCode] Tenant specified unique Identifier of the owning location
+    * @param {number} [limit] The maximum number of results to return, defaults to 100 for most
+    * @param {string} [owner] User that owns the job
+    * @param {Array<'REFRESH' | 'ADJUST' | 'RELEASE_SHIPMENTS' | 'CREATE_PICK_WAVE' | 'CLOSE_PICK_WAVE' | 'PUT_AWAY_FILE' | 'SHORT_PICK_ERROR' | 'BIN_AUDIT_START' | 'BIN_AUDIT_COMPLETION' | 'CREATE_BIN_AUDIT' | 'RELEASE_PENDING_ITEMS'>} [types] Type of the Job Queue Request
+    * @param {string} [originalFilename] The full name of the file that was picked up at the secure droppoint server before being split up by location.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof InventoryJobApiInterface
+    */
+    getJobsRaw(requestParameters: inventoryJobApiParams.GetJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobQueueResponse>>>;
 
     /**
-     * Get the requested jobs
-     * Get Jobs
-     */
-    getJobs(requestParameters: GetJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobQueueResponse>>;
+    * Get the requested jobs
+    * Get Jobs
+    */
+    getJobs(requestParameters: inventoryJobApiParams.GetJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobQueueResponse>>;
 
 }
+
 
 /**
  * 
  */
-export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiInterface {
+export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -144,7 +140,7 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiI
      */
 
 
-    async deleteAllOldInventoryRaw(requestParameters: DeleteAllOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobIDResponse>>> {
+    async deleteAllOldInventoryRaw(requestParameters: inventoryJobApiParams.DeleteAllOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobIDResponse>>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteAllOldInventory.');
         }
@@ -181,7 +177,7 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiI
      * Deletes older records from inventory table of all silos
      * Delete All Old Inventory
      */
-    async deleteAllOldInventory(requestParameters: DeleteAllOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobIDResponse>> {
+    async deleteAllOldInventory(requestParameters: inventoryJobApiParams.DeleteAllOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobIDResponse>> {
         const response = await this.deleteAllOldInventoryRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -192,7 +188,7 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiI
      */
 
 
-    async deleteOldInventoryRaw(requestParameters: DeleteOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobIDResponse>> {
+    async deleteOldInventoryRaw(requestParameters: inventoryJobApiParams.DeleteOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobIDResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteOldInventory.');
         }
@@ -229,7 +225,7 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiI
      * Deletes older records from inventory table
      * Delete Old Inventory
      */
-    async deleteOldInventory(requestParameters: DeleteOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobIDResponse> {
+    async deleteOldInventory(requestParameters: inventoryJobApiParams.DeleteOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobIDResponse> {
         const response = await this.deleteOldInventoryRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -240,7 +236,7 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiI
      */
 
 
-    async getJobRaw(requestParameters: GetJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobQueueResponse>> {
+    async getJobRaw(requestParameters: inventoryJobApiParams.GetJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobQueueResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getJob.');
         }
@@ -250,10 +246,6 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiI
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -281,7 +273,7 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiI
      * Get the specified job
      * Get Job
      */
-    async getJob(requestParameters: GetJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobQueueResponse> {
+    async getJob(requestParameters: inventoryJobApiParams.GetJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JobQueueResponse> {
         const response = await this.getJobRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -292,7 +284,7 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiI
      */
 
 
-    async getJobsRaw(requestParameters: GetJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobQueueResponse>>> {
+    async getJobsRaw(requestParameters: inventoryJobApiParams.GetJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobQueueResponse>>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getJobs.');
         }
@@ -317,10 +309,6 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiI
 
         if (requestParameters.originalFilename !== undefined) {
             queryParameters['originalFilename'] = requestParameters.originalFilename;
-        }
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -349,7 +337,7 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiI
      * Get the requested jobs
      * Get Jobs
      */
-    async getJobs(requestParameters: GetJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobQueueResponse>> {
+    async getJobs(requestParameters: inventoryJobApiParams.GetJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobQueueResponse>> {
         const response = await this.getJobsRaw(requestParameters, initOverrides);
         return await response.value();
     }

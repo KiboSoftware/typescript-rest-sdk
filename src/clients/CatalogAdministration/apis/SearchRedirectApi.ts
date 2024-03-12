@@ -20,129 +20,128 @@ import type {
   SearchRedirectCollection,
 } from '../models';
 
-export interface AddSearchRedirectRequest {
-    fromSystemDefault?: boolean;
-    responseFields?: string;
-    searchRedirect?: SearchRedirect;
+
+export namespace searchRedirectApiParams { 
+    export interface AddSearchRedirectRequest {
+        fromSystemDefault?: boolean;
+        responseFields?: string;
+        searchRedirect?: SearchRedirect;
+    }
+    export interface DeleteSearchRedirectRequest {
+        redirectId: string;
+    }
+    export interface GetSearchRedirectRequest {
+        redirectId: string;
+        responseFields?: string;
+    }
+    export interface GetSearchRedirectsRequest {
+        responseFields?: string;
+    }
+    export interface UpdateSearchRedirectRequest {
+        redirectId: string;
+        responseFields?: string;
+        searchRedirect?: SearchRedirect;
+    }
+}
+/**
+* SearchRedirectApiService - interface
+* 
+* @export
+* @interface SearchRedirectApi
+*/
+export interface SearchRedirectApiService {
+    /**
+    * Adds a search redirect for a specific site.
+    * @summary Add search redirect
+    * @param {boolean} [fromSystemDefault] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {SearchRedirect} [searchRedirect] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SearchRedirectApiInterface
+    */
+    addSearchRedirectRaw(requestParameters: searchRedirectApiParams.AddSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchRedirect>>;
+
+    /**
+    * Adds a search redirect for a specific site.
+    * Add search redirect
+    */
+    addSearchRedirect(requestParameters: searchRedirectApiParams.AddSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchRedirect>;
+
+    /**
+    * Deletes a specific redirect for a site.
+    * @summary Delete search redirect
+    * @param {string} redirectId 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SearchRedirectApiInterface
+    */
+    deleteSearchRedirectRaw(requestParameters: searchRedirectApiParams.DeleteSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchRedirect>>;
+
+    /**
+    * Deletes a specific redirect for a site.
+    * Delete search redirect
+    */
+    deleteSearchRedirect(requestParameters: searchRedirectApiParams.DeleteSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchRedirect>;
+
+    /**
+    * Get search redirect by redirect id.
+    * @summary Get search redirect
+    * @param {string} redirectId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SearchRedirectApiInterface
+    */
+    getSearchRedirectRaw(requestParameters: searchRedirectApiParams.GetSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchRedirect>>;
+
+    /**
+    * Get search redirect by redirect id.
+    * Get search redirect
+    */
+    getSearchRedirect(requestParameters: searchRedirectApiParams.GetSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchRedirect>;
+
+    /**
+    * Get search redirect list.
+    * @summary Get search redirects
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SearchRedirectApiInterface
+    */
+    getSearchRedirectsRaw(requestParameters: searchRedirectApiParams.GetSearchRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchRedirectCollection>>;
+
+    /**
+    * Get search redirect list.
+    * Get search redirects
+    */
+    getSearchRedirects(requestParameters: searchRedirectApiParams.GetSearchRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchRedirectCollection>;
+
+    /**
+    * Update a search redirect for a specific site.
+    * @summary Update search redirect
+    * @param {string} redirectId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {SearchRedirect} [searchRedirect] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SearchRedirectApiInterface
+    */
+    updateSearchRedirectRaw(requestParameters: searchRedirectApiParams.UpdateSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchRedirect>>;
+
+    /**
+    * Update a search redirect for a specific site.
+    * Update search redirect
+    */
+    updateSearchRedirect(requestParameters: searchRedirectApiParams.UpdateSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchRedirect>;
+
 }
 
-export interface DeleteSearchRedirectRequest {
-    redirectId: string;
-}
-
-export interface GetSearchRedirectRequest {
-    redirectId: string;
-    responseFields?: string;
-}
-
-export interface GetSearchRedirectsRequest {
-    responseFields?: string;
-}
-
-export interface UpdateSearchRedirectRequest {
-    redirectId: string;
-    responseFields?: string;
-    searchRedirect?: SearchRedirect;
-}
 
 /**
- * SearchRedirectApi - interface
- * 
- * @export
- * @interface SearchRedirectApiInterface
- */
-export interface SearchRedirectApiInterface {
-    /**
-     * Adds a search redirect for a specific site.
-     * @summary Add search redirect
-     * @param {boolean} [fromSystemDefault] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {SearchRedirect} [searchRedirect] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchRedirectApiInterface
-     */
-    addSearchRedirectRaw(requestParameters: AddSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchRedirect>>;
-
-    /**
-     * Adds a search redirect for a specific site.
-     * Add search redirect
-     */
-    addSearchRedirect(requestParameters: AddSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchRedirect>;
-
-    /**
-     * Deletes a specific redirect for a site.
-     * @summary Delete search redirect
-     * @param {string} redirectId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchRedirectApiInterface
-     */
-    deleteSearchRedirectRaw(requestParameters: DeleteSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchRedirect>>;
-
-    /**
-     * Deletes a specific redirect for a site.
-     * Delete search redirect
-     */
-    deleteSearchRedirect(requestParameters: DeleteSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchRedirect>;
-
-    /**
-     * Get search redirect by redirect id.
-     * @summary Get search redirect
-     * @param {string} redirectId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchRedirectApiInterface
-     */
-    getSearchRedirectRaw(requestParameters: GetSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchRedirect>>;
-
-    /**
-     * Get search redirect by redirect id.
-     * Get search redirect
-     */
-    getSearchRedirect(requestParameters: GetSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchRedirect>;
-
-    /**
-     * Get search redirect list.
-     * @summary Get search redirects
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchRedirectApiInterface
-     */
-    getSearchRedirectsRaw(requestParameters: GetSearchRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchRedirectCollection>>;
-
-    /**
-     * Get search redirect list.
-     * Get search redirects
-     */
-    getSearchRedirects(requestParameters: GetSearchRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchRedirectCollection>;
-
-    /**
-     * Update a search redirect for a specific site.
-     * @summary Update search redirect
-     * @param {string} redirectId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {SearchRedirect} [searchRedirect] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchRedirectApiInterface
-     */
-    updateSearchRedirectRaw(requestParameters: UpdateSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchRedirect>>;
-
-    /**
-     * Update a search redirect for a specific site.
-     * Update search redirect
-     */
-    updateSearchRedirect(requestParameters: UpdateSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchRedirect>;
-
-}
-
-/**
  * 
  */
-export class SearchRedirectApi extends runtime.BaseAPI implements SearchRedirectApiInterface {
+export class SearchRedirectApi extends runtime.BaseAPI implements SearchRedirectApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -153,7 +152,7 @@ export class SearchRedirectApi extends runtime.BaseAPI implements SearchRedirect
      */
 
 
-    async addSearchRedirectRaw(requestParameters: AddSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchRedirect>> {
+    async addSearchRedirectRaw(requestParameters: searchRedirectApiParams.AddSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchRedirect>> {
         const queryParameters: any = {};
 
         if (requestParameters.fromSystemDefault !== undefined) {
@@ -189,7 +188,7 @@ export class SearchRedirectApi extends runtime.BaseAPI implements SearchRedirect
      * Adds a search redirect for a specific site.
      * Add search redirect
      */
-    async addSearchRedirect(requestParameters: AddSearchRedirectRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchRedirect> {
+    async addSearchRedirect(requestParameters: searchRedirectApiParams.AddSearchRedirectRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchRedirect> {
         const response = await this.addSearchRedirectRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -200,7 +199,7 @@ export class SearchRedirectApi extends runtime.BaseAPI implements SearchRedirect
      */
 
 
-    async deleteSearchRedirectRaw(requestParameters: DeleteSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchRedirect>> {
+    async deleteSearchRedirectRaw(requestParameters: searchRedirectApiParams.DeleteSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchRedirect>> {
         if (requestParameters.redirectId === null || requestParameters.redirectId === undefined) {
             throw new runtime.RequiredError('redirectId','Required parameter requestParameters.redirectId was null or undefined when calling deleteSearchRedirect.');
         }
@@ -229,7 +228,7 @@ export class SearchRedirectApi extends runtime.BaseAPI implements SearchRedirect
      * Deletes a specific redirect for a site.
      * Delete search redirect
      */
-    async deleteSearchRedirect(requestParameters: DeleteSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchRedirect> {
+    async deleteSearchRedirect(requestParameters: searchRedirectApiParams.DeleteSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchRedirect> {
         const response = await this.deleteSearchRedirectRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -240,7 +239,7 @@ export class SearchRedirectApi extends runtime.BaseAPI implements SearchRedirect
      */
 
 
-    async getSearchRedirectRaw(requestParameters: GetSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchRedirect>> {
+    async getSearchRedirectRaw(requestParameters: searchRedirectApiParams.GetSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchRedirect>> {
         if (requestParameters.redirectId === null || requestParameters.redirectId === undefined) {
             throw new runtime.RequiredError('redirectId','Required parameter requestParameters.redirectId was null or undefined when calling getSearchRedirect.');
         }
@@ -273,7 +272,7 @@ export class SearchRedirectApi extends runtime.BaseAPI implements SearchRedirect
      * Get search redirect by redirect id.
      * Get search redirect
      */
-    async getSearchRedirect(requestParameters: GetSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchRedirect> {
+    async getSearchRedirect(requestParameters: searchRedirectApiParams.GetSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchRedirect> {
         const response = await this.getSearchRedirectRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -284,7 +283,7 @@ export class SearchRedirectApi extends runtime.BaseAPI implements SearchRedirect
      */
 
 
-    async getSearchRedirectsRaw(requestParameters: GetSearchRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchRedirectCollection>> {
+    async getSearchRedirectsRaw(requestParameters: searchRedirectApiParams.GetSearchRedirectsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchRedirectCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -313,7 +312,7 @@ export class SearchRedirectApi extends runtime.BaseAPI implements SearchRedirect
      * Get search redirect list.
      * Get search redirects
      */
-    async getSearchRedirects(requestParameters: GetSearchRedirectsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchRedirectCollection> {
+    async getSearchRedirects(requestParameters: searchRedirectApiParams.GetSearchRedirectsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchRedirectCollection> {
         const response = await this.getSearchRedirectsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -324,7 +323,7 @@ export class SearchRedirectApi extends runtime.BaseAPI implements SearchRedirect
      */
 
 
-    async updateSearchRedirectRaw(requestParameters: UpdateSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchRedirect>> {
+    async updateSearchRedirectRaw(requestParameters: searchRedirectApiParams.UpdateSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchRedirect>> {
         if (requestParameters.redirectId === null || requestParameters.redirectId === undefined) {
             throw new runtime.RequiredError('redirectId','Required parameter requestParameters.redirectId was null or undefined when calling updateSearchRedirect.');
         }
@@ -360,7 +359,7 @@ export class SearchRedirectApi extends runtime.BaseAPI implements SearchRedirect
      * Update a search redirect for a specific site.
      * Update search redirect
      */
-    async updateSearchRedirect(requestParameters: UpdateSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchRedirect> {
+    async updateSearchRedirect(requestParameters: searchRedirectApiParams.UpdateSearchRedirectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchRedirect> {
         const response = await this.updateSearchRedirectRaw(requestParameters, initOverrides);
         return await response.value();
     }

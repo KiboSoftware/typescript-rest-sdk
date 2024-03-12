@@ -22,75 +22,73 @@ import type {
   ShipmentGiftReceiptRequest,
 } from '../models';
 
-export interface ItemGiftReceiptUpdateUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    itemGiftReceiptRequestDto: ItemGiftReceiptRequest;
-    xVolSite?: number;
-    responseFields?: string;
-}
 
-export interface ShipmentGiftReceiptUpdateUsingPUTRequest {
-    orderId: string;
-    xVolTenant: number;
-    shipmentGiftReceiptRequestDto: ShipmentGiftReceiptRequest;
-    xVolSite?: number;
-    responseFields?: string;
+export namespace giftReceiptApiParams { 
+    export interface ItemGiftReceiptUpdateRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        itemGiftReceiptRequestDto: ItemGiftReceiptRequest;
+        xVolSite?: number;
+    }
+    export interface ShipmentGiftReceiptUpdateRequest {
+        orderId: string;
+        xVolTenant: number;
+        shipmentGiftReceiptRequestDto: ShipmentGiftReceiptRequest;
+        xVolSite?: number;
+    }
 }
-
 /**
- * GiftReceiptApi - interface
- * 
- * @export
- * @interface GiftReceiptApiInterface
- */
-export interface GiftReceiptApiInterface {
+* GiftReceiptApiService - interface
+* 
+* @export
+* @interface GiftReceiptApi
+*/
+export interface GiftReceiptApiService {
     /**
-     * itemGiftReceiptUpdate
-     * @summary itemGiftReceiptUpdate
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {ItemGiftReceiptRequest} itemGiftReceiptRequestDto itemGiftReceiptRequestDto
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof GiftReceiptApiInterface
-     */
-    itemGiftReceiptUpdateUsingPUTRaw(requestParameters: ItemGiftReceiptUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+    * itemGiftReceiptUpdate
+    * @summary itemGiftReceiptUpdate
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {ItemGiftReceiptRequest} itemGiftReceiptRequestDto itemGiftReceiptRequestDto
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof GiftReceiptApiInterface
+    */
+    itemGiftReceiptUpdateRaw(requestParameters: giftReceiptApiParams.ItemGiftReceiptUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
 
     /**
-     * itemGiftReceiptUpdate
-     * itemGiftReceiptUpdate
-     */
-    itemGiftReceiptUpdateUsingPUT(requestParameters: ItemGiftReceiptUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+    * itemGiftReceiptUpdate
+    * itemGiftReceiptUpdate
+    */
+    itemGiftReceiptUpdate(requestParameters: giftReceiptApiParams.ItemGiftReceiptUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
 
     /**
-     * shipmentGiftReceiptUpdate
-     * @summary shipmentGiftReceiptUpdate
-     * @param {string} orderId orderId
-     * @param {number} xVolTenant 
-     * @param {ShipmentGiftReceiptRequest} shipmentGiftReceiptRequestDto shipmentGiftReceiptRequestDto
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof GiftReceiptApiInterface
-     */
-    shipmentGiftReceiptUpdateUsingPUTRaw(requestParameters: ShipmentGiftReceiptUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfShipment>>;
+    * shipmentGiftReceiptUpdate
+    * @summary shipmentGiftReceiptUpdate
+    * @param {string} orderId orderId
+    * @param {number} xVolTenant 
+    * @param {ShipmentGiftReceiptRequest} shipmentGiftReceiptRequestDto shipmentGiftReceiptRequestDto
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof GiftReceiptApiInterface
+    */
+    shipmentGiftReceiptUpdateRaw(requestParameters: giftReceiptApiParams.ShipmentGiftReceiptUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfShipment>>;
 
     /**
-     * shipmentGiftReceiptUpdate
-     * shipmentGiftReceiptUpdate
-     */
-    shipmentGiftReceiptUpdateUsingPUT(requestParameters: ShipmentGiftReceiptUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfShipment>;
+    * shipmentGiftReceiptUpdate
+    * shipmentGiftReceiptUpdate
+    */
+    shipmentGiftReceiptUpdate(requestParameters: giftReceiptApiParams.ShipmentGiftReceiptUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfShipment>;
 
 }
+
 
 /**
  * 
  */
-export class GiftReceiptApi extends runtime.BaseAPI implements GiftReceiptApiInterface {
+export class GiftReceiptApi extends runtime.BaseAPI implements GiftReceiptApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -101,24 +99,20 @@ export class GiftReceiptApi extends runtime.BaseAPI implements GiftReceiptApiInt
      */
 
 
-    async itemGiftReceiptUpdateUsingPUTRaw(requestParameters: ItemGiftReceiptUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async itemGiftReceiptUpdateRaw(requestParameters: giftReceiptApiParams.ItemGiftReceiptUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling itemGiftReceiptUpdateUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling itemGiftReceiptUpdate.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling itemGiftReceiptUpdateUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling itemGiftReceiptUpdate.');
         }
 
         if (requestParameters.itemGiftReceiptRequestDto === null || requestParameters.itemGiftReceiptRequestDto === undefined) {
-            throw new runtime.RequiredError('itemGiftReceiptRequestDto','Required parameter requestParameters.itemGiftReceiptRequestDto was null or undefined when calling itemGiftReceiptUpdateUsingPUT.');
+            throw new runtime.RequiredError('itemGiftReceiptRequestDto','Required parameter requestParameters.itemGiftReceiptRequestDto was null or undefined when calling itemGiftReceiptUpdate.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -153,8 +147,8 @@ export class GiftReceiptApi extends runtime.BaseAPI implements GiftReceiptApiInt
      * itemGiftReceiptUpdate
      * itemGiftReceiptUpdate
      */
-    async itemGiftReceiptUpdateUsingPUT(requestParameters: ItemGiftReceiptUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.itemGiftReceiptUpdateUsingPUTRaw(requestParameters, initOverrides);
+    async itemGiftReceiptUpdate(requestParameters: giftReceiptApiParams.ItemGiftReceiptUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.itemGiftReceiptUpdateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -164,24 +158,20 @@ export class GiftReceiptApi extends runtime.BaseAPI implements GiftReceiptApiInt
      */
 
 
-    async shipmentGiftReceiptUpdateUsingPUTRaw(requestParameters: ShipmentGiftReceiptUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfShipment>> {
+    async shipmentGiftReceiptUpdateRaw(requestParameters: giftReceiptApiParams.ShipmentGiftReceiptUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfShipment>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
-            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling shipmentGiftReceiptUpdateUsingPUT.');
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling shipmentGiftReceiptUpdate.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling shipmentGiftReceiptUpdateUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling shipmentGiftReceiptUpdate.');
         }
 
         if (requestParameters.shipmentGiftReceiptRequestDto === null || requestParameters.shipmentGiftReceiptRequestDto === undefined) {
-            throw new runtime.RequiredError('shipmentGiftReceiptRequestDto','Required parameter requestParameters.shipmentGiftReceiptRequestDto was null or undefined when calling shipmentGiftReceiptUpdateUsingPUT.');
+            throw new runtime.RequiredError('shipmentGiftReceiptRequestDto','Required parameter requestParameters.shipmentGiftReceiptRequestDto was null or undefined when calling shipmentGiftReceiptUpdate.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -216,8 +206,8 @@ export class GiftReceiptApi extends runtime.BaseAPI implements GiftReceiptApiInt
      * shipmentGiftReceiptUpdate
      * shipmentGiftReceiptUpdate
      */
-    async shipmentGiftReceiptUpdateUsingPUT(requestParameters: ShipmentGiftReceiptUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfShipment> {
-        const response = await this.shipmentGiftReceiptUpdateUsingPUTRaw(requestParameters, initOverrides);
+    async shipmentGiftReceiptUpdate(requestParameters: giftReceiptApiParams.ShipmentGiftReceiptUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfShipment> {
+        const response = await this.shipmentGiftReceiptUpdateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -20,85 +20,83 @@ import type {
   PagedModelOfEntityModelOfShipment,
 } from '../models';
 
-export interface GetShipmentUsingGET1Request {
-    shipmentNumber: number;
-    xVolTenant: number;
-    xVolSite?: number;
-    responseFields?: string;
-}
 
-export interface GetShipmentsUsingGET1Request {
-    xVolTenant: number;
-    bypassSearchIndex?: boolean;
-    filter?: string;
-    isLate?: boolean;
-    page?: number;
-    pageSize?: number;
-    quickSearch?: string;
-    sort?: string;
-    workflowTaskName?: string;
-    xVolSite?: number;
-    responseFields?: string;
+export namespace storefrontApiParams { 
+    export interface GetShipment1Request {
+        shipmentNumber: number;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface GetShipments1Request {
+        xVolTenant: number;
+        bypassSearchIndex?: boolean;
+        filter?: string;
+        isLate?: boolean;
+        page?: number;
+        pageSize?: number;
+        quickSearch?: string;
+        sort?: string;
+        workflowTaskName?: string;
+        xVolSite?: number;
+    }
 }
-
 /**
- * StorefrontApi - interface
- * 
- * @export
- * @interface StorefrontApiInterface
- */
-export interface StorefrontApiInterface {
+* StorefrontApiService - interface
+* 
+* @export
+* @interface StorefrontApi
+*/
+export interface StorefrontApiService {
     /**
-     * getShipment
-     * @summary getShipment
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof StorefrontApiInterface
-     */
-    getShipmentUsingGET1Raw(requestParameters: GetShipmentUsingGET1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+    * getShipment
+    * @summary getShipment
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof StorefrontApiInterface
+    */
+    getShipment1Raw(requestParameters: storefrontApiParams.GetShipment1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
 
     /**
-     * getShipment
-     * getShipment
-     */
-    getShipmentUsingGET1(requestParameters: GetShipmentUsingGET1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+    * getShipment
+    * getShipment
+    */
+    getShipment1(requestParameters: storefrontApiParams.GetShipment1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
 
     /**
-     * getShipments
-     * @summary getShipments
-     * @param {number} xVolTenant 
-     * @param {boolean} [bypassSearchIndex] 
-     * @param {string} [filter] 
-     * @param {boolean} [isLate] 
-     * @param {number} [page] 
-     * @param {number} [pageSize] 
-     * @param {string} [quickSearch] 
-     * @param {string} [sort] 
-     * @param {string} [workflowTaskName] 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof StorefrontApiInterface
-     */
-    getShipmentsUsingGET1Raw(requestParameters: GetShipmentsUsingGET1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PagedModelOfEntityModelOfShipment>>;
+    * getShipments
+    * @summary getShipments
+    * @param {number} xVolTenant 
+    * @param {boolean} [bypassSearchIndex] 
+    * @param {string} [filter] 
+    * @param {boolean} [isLate] 
+    * @param {number} [page] 
+    * @param {number} [pageSize] 
+    * @param {string} [quickSearch] 
+    * @param {string} [sort] 
+    * @param {string} [workflowTaskName] 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof StorefrontApiInterface
+    */
+    getShipments1Raw(requestParameters: storefrontApiParams.GetShipments1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PagedModelOfEntityModelOfShipment>>;
 
     /**
-     * getShipments
-     * getShipments
-     */
-    getShipmentsUsingGET1(requestParameters: GetShipmentsUsingGET1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PagedModelOfEntityModelOfShipment>;
+    * getShipments
+    * getShipments
+    */
+    getShipments1(requestParameters: storefrontApiParams.GetShipments1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PagedModelOfEntityModelOfShipment>;
 
 }
+
 
 /**
  * 
  */
-export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInterface {
+export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -109,20 +107,16 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
      */
 
 
-    async getShipmentUsingGET1Raw(requestParameters: GetShipmentUsingGET1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async getShipment1Raw(requestParameters: storefrontApiParams.GetShipment1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getShipmentUsingGET1.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getShipment1.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipmentUsingGET1.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipment1.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -154,8 +148,8 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
      * getShipment
      * getShipment
      */
-    async getShipmentUsingGET1(requestParameters: GetShipmentUsingGET1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.getShipmentUsingGET1Raw(requestParameters, initOverrides);
+    async getShipment1(requestParameters: storefrontApiParams.GetShipment1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.getShipment1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -165,9 +159,9 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
      */
 
 
-    async getShipmentsUsingGET1Raw(requestParameters: GetShipmentsUsingGET1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PagedModelOfEntityModelOfShipment>> {
+    async getShipments1Raw(requestParameters: storefrontApiParams.GetShipments1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PagedModelOfEntityModelOfShipment>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipmentsUsingGET1.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipments1.');
         }
 
         const queryParameters: any = {};
@@ -204,10 +198,6 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
             queryParameters['workflowTaskName'] = requestParameters.workflowTaskName;
         }
 
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
-
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
@@ -238,8 +228,8 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
      * getShipments
      * getShipments
      */
-    async getShipmentsUsingGET1(requestParameters: GetShipmentsUsingGET1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PagedModelOfEntityModelOfShipment> {
-        const response = await this.getShipmentsUsingGET1Raw(requestParameters, initOverrides);
+    async getShipments1(requestParameters: storefrontApiParams.GetShipments1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PagedModelOfEntityModelOfShipment> {
+        const response = await this.getShipments1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 

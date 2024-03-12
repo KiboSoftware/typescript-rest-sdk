@@ -4529,7 +4529,7 @@ export interface ProductInCatalogInfo {
      * @type {boolean}
      * @memberof ProductInCatalogInfo
      */
-    isSeoContentOverridden?: boolean | null;
+    isSEOContentOverridden?: boolean | null;
     /**
      * 
      * @type {ProductLocalizedSEOContent}

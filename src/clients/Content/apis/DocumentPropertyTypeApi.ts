@@ -20,131 +20,130 @@ import type {
   PropertyTypeCollection,
 } from '../models';
 
-export interface CreatePropertyTypeRequest {
-    responseFields?: string;
-    propertyType?: PropertyType;
+
+export namespace documentPropertyTypeApiParams { 
+    export interface CreatePropertyTypeRequest {
+        responseFields?: string;
+        propertyType?: PropertyType;
+    }
+    export interface DeletePropertyTypeRequest {
+        propertyTypeName: string;
+    }
+    export interface GetPropertyTypeRequest {
+        propertyTypeName: string;
+        responseFields?: string;
+    }
+    export interface GetPropertyTypesRequest {
+        pageSize?: number;
+        startIndex?: number;
+        responseFields?: string;
+    }
+    export interface UpdatePropertyTypeRequest {
+        propertyTypeName: string;
+        responseFields?: string;
+        propertyType?: PropertyType;
+    }
+}
+/**
+* DocumentPropertyTypeApiService - interface
+* 
+* @export
+* @interface DocumentPropertyTypeApi
+*/
+export interface DocumentPropertyTypeApiService {
+    /**
+    * Create Property Type
+    * @summary Create Property Type
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {PropertyType} [propertyType] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DocumentPropertyTypeApiInterface
+    */
+    createPropertyTypeRaw(requestParameters: documentPropertyTypeApiParams.CreatePropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PropertyType>>;
+
+    /**
+    * Create Property Type
+    * Create Property Type
+    */
+    createPropertyType(requestParameters: documentPropertyTypeApiParams.CreatePropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PropertyType>;
+
+    /**
+    * Delete Property Type
+    * @summary Delete Property Type
+    * @param {string} propertyTypeName 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DocumentPropertyTypeApiInterface
+    */
+    deletePropertyTypeRaw(requestParameters: documentPropertyTypeApiParams.DeletePropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+    * Delete Property Type
+    * Delete Property Type
+    */
+    deletePropertyType(requestParameters: documentPropertyTypeApiParams.DeletePropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+    * Get Property Type
+    * @summary Get Property Type
+    * @param {string} propertyTypeName 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DocumentPropertyTypeApiInterface
+    */
+    getPropertyTypeRaw(requestParameters: documentPropertyTypeApiParams.GetPropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PropertyType>>;
+
+    /**
+    * Get Property Type
+    * Get Property Type
+    */
+    getPropertyType(requestParameters: documentPropertyTypeApiParams.GetPropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PropertyType>;
+
+    /**
+    * Retrieves a PagedCollection of PropertyTypes
+    * @summary Get Property Types
+    * @param {number} [pageSize] 
+    * @param {number} [startIndex] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DocumentPropertyTypeApiInterface
+    */
+    getPropertyTypesRaw(requestParameters: documentPropertyTypeApiParams.GetPropertyTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PropertyTypeCollection>>;
+
+    /**
+    * Retrieves a PagedCollection of PropertyTypes
+    * Get Property Types
+    */
+    getPropertyTypes(requestParameters: documentPropertyTypeApiParams.GetPropertyTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PropertyTypeCollection>;
+
+    /**
+    * Update Property Type
+    * @summary Update Property Type
+    * @param {string} propertyTypeName 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {PropertyType} [propertyType] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DocumentPropertyTypeApiInterface
+    */
+    updatePropertyTypeRaw(requestParameters: documentPropertyTypeApiParams.UpdatePropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PropertyType>>;
+
+    /**
+    * Update Property Type
+    * Update Property Type
+    */
+    updatePropertyType(requestParameters: documentPropertyTypeApiParams.UpdatePropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PropertyType>;
+
 }
 
-export interface DeletePropertyTypeRequest {
-    propertyTypeName: string;
-}
-
-export interface GetPropertyTypeRequest {
-    propertyTypeName: string;
-    responseFields?: string;
-}
-
-export interface GetPropertyTypesRequest {
-    pageSize?: number;
-    startIndex?: number;
-    responseFields?: string;
-}
-
-export interface UpdatePropertyTypeRequest {
-    propertyTypeName: string;
-    responseFields?: string;
-    propertyType?: PropertyType;
-}
 
 /**
- * DocumentPropertyTypeApi - interface
- * 
- * @export
- * @interface DocumentPropertyTypeApiInterface
- */
-export interface DocumentPropertyTypeApiInterface {
-    /**
-     * Create Property Type
-     * @summary Create Property Type
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {PropertyType} [propertyType] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DocumentPropertyTypeApiInterface
-     */
-    createPropertyTypeRaw(requestParameters: CreatePropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PropertyType>>;
-
-    /**
-     * Create Property Type
-     * Create Property Type
-     */
-    createPropertyType(requestParameters: CreatePropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PropertyType>;
-
-    /**
-     * Delete Property Type
-     * @summary Delete Property Type
-     * @param {string} propertyTypeName 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DocumentPropertyTypeApiInterface
-     */
-    deletePropertyTypeRaw(requestParameters: DeletePropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     * Delete Property Type
-     * Delete Property Type
-     */
-    deletePropertyType(requestParameters: DeletePropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * Get Property Type
-     * @summary Get Property Type
-     * @param {string} propertyTypeName 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DocumentPropertyTypeApiInterface
-     */
-    getPropertyTypeRaw(requestParameters: GetPropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PropertyType>>;
-
-    /**
-     * Get Property Type
-     * Get Property Type
-     */
-    getPropertyType(requestParameters: GetPropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PropertyType>;
-
-    /**
-     * Retrieves a PagedCollection of PropertyTypes
-     * @summary Get Property Types
-     * @param {number} [pageSize] 
-     * @param {number} [startIndex] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DocumentPropertyTypeApiInterface
-     */
-    getPropertyTypesRaw(requestParameters: GetPropertyTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PropertyTypeCollection>>;
-
-    /**
-     * Retrieves a PagedCollection of PropertyTypes
-     * Get Property Types
-     */
-    getPropertyTypes(requestParameters: GetPropertyTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PropertyTypeCollection>;
-
-    /**
-     * Update Property Type
-     * @summary Update Property Type
-     * @param {string} propertyTypeName 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {PropertyType} [propertyType] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DocumentPropertyTypeApiInterface
-     */
-    updatePropertyTypeRaw(requestParameters: UpdatePropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PropertyType>>;
-
-    /**
-     * Update Property Type
-     * Update Property Type
-     */
-    updatePropertyType(requestParameters: UpdatePropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PropertyType>;
-
-}
-
-/**
  * 
  */
-export class DocumentPropertyTypeApi extends runtime.BaseAPI implements DocumentPropertyTypeApiInterface {
+export class DocumentPropertyTypeApi extends runtime.BaseAPI implements DocumentPropertyTypeApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -155,7 +154,7 @@ export class DocumentPropertyTypeApi extends runtime.BaseAPI implements Document
      */
 
 
-    async createPropertyTypeRaw(requestParameters: CreatePropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PropertyType>> {
+    async createPropertyTypeRaw(requestParameters: documentPropertyTypeApiParams.CreatePropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PropertyType>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -164,7 +163,7 @@ export class DocumentPropertyTypeApi extends runtime.BaseAPI implements Document
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'text/plain';
+        headerParameters['Content-Type'] = 'application/json';
 
 
 
@@ -187,7 +186,7 @@ export class DocumentPropertyTypeApi extends runtime.BaseAPI implements Document
      * Create Property Type
      * Create Property Type
      */
-    async createPropertyType(requestParameters: CreatePropertyTypeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PropertyType> {
+    async createPropertyType(requestParameters: documentPropertyTypeApiParams.CreatePropertyTypeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PropertyType> {
         const response = await this.createPropertyTypeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -198,7 +197,7 @@ export class DocumentPropertyTypeApi extends runtime.BaseAPI implements Document
      */
 
 
-    async deletePropertyTypeRaw(requestParameters: DeletePropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deletePropertyTypeRaw(requestParameters: documentPropertyTypeApiParams.DeletePropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.propertyTypeName === null || requestParameters.propertyTypeName === undefined) {
             throw new runtime.RequiredError('propertyTypeName','Required parameter requestParameters.propertyTypeName was null or undefined when calling deletePropertyType.');
         }
@@ -227,7 +226,7 @@ export class DocumentPropertyTypeApi extends runtime.BaseAPI implements Document
      * Delete Property Type
      * Delete Property Type
      */
-    async deletePropertyType(requestParameters: DeletePropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deletePropertyType(requestParameters: documentPropertyTypeApiParams.DeletePropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deletePropertyTypeRaw(requestParameters, initOverrides);
     }
 
@@ -237,7 +236,7 @@ export class DocumentPropertyTypeApi extends runtime.BaseAPI implements Document
      */
 
 
-    async getPropertyTypeRaw(requestParameters: GetPropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PropertyType>> {
+    async getPropertyTypeRaw(requestParameters: documentPropertyTypeApiParams.GetPropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PropertyType>> {
         if (requestParameters.propertyTypeName === null || requestParameters.propertyTypeName === undefined) {
             throw new runtime.RequiredError('propertyTypeName','Required parameter requestParameters.propertyTypeName was null or undefined when calling getPropertyType.');
         }
@@ -270,7 +269,7 @@ export class DocumentPropertyTypeApi extends runtime.BaseAPI implements Document
      * Get Property Type
      * Get Property Type
      */
-    async getPropertyType(requestParameters: GetPropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PropertyType> {
+    async getPropertyType(requestParameters: documentPropertyTypeApiParams.GetPropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PropertyType> {
         const response = await this.getPropertyTypeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -281,7 +280,7 @@ export class DocumentPropertyTypeApi extends runtime.BaseAPI implements Document
      */
 
 
-    async getPropertyTypesRaw(requestParameters: GetPropertyTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PropertyTypeCollection>> {
+    async getPropertyTypesRaw(requestParameters: documentPropertyTypeApiParams.GetPropertyTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PropertyTypeCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.pageSize !== undefined) {
@@ -318,7 +317,7 @@ export class DocumentPropertyTypeApi extends runtime.BaseAPI implements Document
      * Retrieves a PagedCollection of PropertyTypes
      * Get Property Types
      */
-    async getPropertyTypes(requestParameters: GetPropertyTypesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PropertyTypeCollection> {
+    async getPropertyTypes(requestParameters: documentPropertyTypeApiParams.GetPropertyTypesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PropertyTypeCollection> {
         const response = await this.getPropertyTypesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -329,7 +328,7 @@ export class DocumentPropertyTypeApi extends runtime.BaseAPI implements Document
      */
 
 
-    async updatePropertyTypeRaw(requestParameters: UpdatePropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PropertyType>> {
+    async updatePropertyTypeRaw(requestParameters: documentPropertyTypeApiParams.UpdatePropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PropertyType>> {
         if (requestParameters.propertyTypeName === null || requestParameters.propertyTypeName === undefined) {
             throw new runtime.RequiredError('propertyTypeName','Required parameter requestParameters.propertyTypeName was null or undefined when calling updatePropertyType.');
         }
@@ -342,7 +341,7 @@ export class DocumentPropertyTypeApi extends runtime.BaseAPI implements Document
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'text/plain';
+        headerParameters['Content-Type'] = 'application/json';
 
 
 
@@ -365,7 +364,7 @@ export class DocumentPropertyTypeApi extends runtime.BaseAPI implements Document
      * Update Property Type
      * Update Property Type
      */
-    async updatePropertyType(requestParameters: UpdatePropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PropertyType> {
+    async updatePropertyType(requestParameters: documentPropertyTypeApiParams.UpdatePropertyTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PropertyType> {
         const response = await this.updatePropertyTypeRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -21,131 +21,131 @@ import type {
   EventSubscriptionCollection,
 } from '../models';
 
-export interface GetDeliveryAttemptSummariesRequest {
-    subscriptionId: string;
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    filter?: string;
-    responseFields?: string;
+
+export namespace subscriptionApiParams { 
+    export interface GetDeliveryAttemptSummariesRequest {
+        subscriptionId: string;
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        filter?: string;
+        responseFields?: string;
+    }
+    export interface GetDeliveryAttemptSummariesAllSubscriptionsRequest {
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        filter?: string;
+        responseFields?: string;
+    }
+    export interface GetDeliveryAttemptSummaryRequest {
+        subscriptionId: string;
+        processId: number;
+        responseFields?: string;
+    }
+    export interface GetSubscriptionsRequest {
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        filter?: string;
+        responseGroups?: string;
+        responseFields?: string;
+    }
+}
+/**
+* SubscriptionApiService - interface
+* 
+* @export
+* @interface SubscriptionApi
+*/
+export interface SubscriptionApiService {
+    /**
+    * Get delivery attempts for the specified subscription
+    * @summary Get Delivery Attempt Summaries
+    * @param {string} subscriptionId Subscription Identifier.
+    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
+    * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+    * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+    * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    getDeliveryAttemptSummariesRaw(requestParameters: subscriptionApiParams.GetDeliveryAttemptSummariesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventDeliverySummaryCollection>>;
+
+    /**
+    * Get delivery attempts for the specified subscription
+    * Get Delivery Attempt Summaries
+    */
+    getDeliveryAttemptSummaries(requestParameters: subscriptionApiParams.GetDeliveryAttemptSummariesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventDeliverySummaryCollection>;
+
+    /**
+    * Get delivery attempts
+    * @summary Get Delivery Attempt Summaries All Subscriptions
+    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
+    * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+    * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+    * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    getDeliveryAttemptSummariesAllSubscriptionsRaw(requestParameters: subscriptionApiParams.GetDeliveryAttemptSummariesAllSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventDeliverySummaryCollection>>;
+
+    /**
+    * Get delivery attempts
+    * Get Delivery Attempt Summaries All Subscriptions
+    */
+    getDeliveryAttemptSummariesAllSubscriptions(requestParameters: subscriptionApiParams.GetDeliveryAttemptSummariesAllSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventDeliverySummaryCollection>;
+
+    /**
+    * Get delivery attempt summary
+    * @summary Get Delivery Attempt Summary
+    * @param {string} subscriptionId 
+    * @param {number} processId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    getDeliveryAttemptSummaryRaw(requestParameters: subscriptionApiParams.GetDeliveryAttemptSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventDeliverySummary>>;
+
+    /**
+    * Get delivery attempt summary
+    * Get Delivery Attempt Summary
+    */
+    getDeliveryAttemptSummary(requestParameters: subscriptionApiParams.GetDeliveryAttemptSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventDeliverySummary>;
+
+    /**
+    * Retrieves a list of events according to any specified filter criteria and sort options.
+    * @summary Get Subscriptions
+    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
+    * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+    * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+    * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
+    * @param {string} [responseGroups] Used to get more specific information from the request.  Available response groups: SubscribingSites.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    getSubscriptionsRaw(requestParameters: subscriptionApiParams.GetSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventSubscriptionCollection>>;
+
+    /**
+    * Retrieves a list of events according to any specified filter criteria and sort options.
+    * Get Subscriptions
+    */
+    getSubscriptions(requestParameters: subscriptionApiParams.GetSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventSubscriptionCollection>;
+
 }
 
-export interface GetDeliveryAttemptSummariesAllSubscriptionsRequest {
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    filter?: string;
-    responseFields?: string;
-}
-
-export interface GetDeliveryAttemptSummaryRequest {
-    subscriptionId: string;
-    processId: number;
-    responseFields?: string;
-}
-
-export interface GetSubscriptionsRequest {
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    filter?: string;
-    responseGroups?: string;
-    responseFields?: string;
-}
 
 /**
- * SubscriptionApi - interface
- * 
- * @export
- * @interface SubscriptionApiInterface
- */
-export interface SubscriptionApiInterface {
-    /**
-     * Get delivery attempts for the specified subscription
-     * @summary Get Delivery Attempt Summaries
-     * @param {string} subscriptionId Subscription Identifier.
-     * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
-     * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
-     * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
-     * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    getDeliveryAttemptSummariesRaw(requestParameters: GetDeliveryAttemptSummariesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventDeliverySummaryCollection>>;
-
-    /**
-     * Get delivery attempts for the specified subscription
-     * Get Delivery Attempt Summaries
-     */
-    getDeliveryAttemptSummaries(requestParameters: GetDeliveryAttemptSummariesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventDeliverySummaryCollection>;
-
-    /**
-     * Get delivery attempts
-     * @summary Get Delivery Attempt Summaries All Subscriptions
-     * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
-     * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
-     * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
-     * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    getDeliveryAttemptSummariesAllSubscriptionsRaw(requestParameters: GetDeliveryAttemptSummariesAllSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventDeliverySummaryCollection>>;
-
-    /**
-     * Get delivery attempts
-     * Get Delivery Attempt Summaries All Subscriptions
-     */
-    getDeliveryAttemptSummariesAllSubscriptions(requestParameters: GetDeliveryAttemptSummariesAllSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventDeliverySummaryCollection>;
-
-    /**
-     * Get delivery attempt summary
-     * @summary Get Delivery Attempt Summary
-     * @param {string} subscriptionId 
-     * @param {number} processId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    getDeliveryAttemptSummaryRaw(requestParameters: GetDeliveryAttemptSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventDeliverySummary>>;
-
-    /**
-     * Get delivery attempt summary
-     * Get Delivery Attempt Summary
-     */
-    getDeliveryAttemptSummary(requestParameters: GetDeliveryAttemptSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventDeliverySummary>;
-
-    /**
-     * Retrieves a list of events according to any specified filter criteria and sort options.
-     * @summary Get Subscriptions
-     * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
-     * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
-     * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
-     * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
-     * @param {string} [responseGroups] Used to get more specific information from the request.  Available response groups: SubscribingSites.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SubscriptionApiInterface
-     */
-    getSubscriptionsRaw(requestParameters: GetSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventSubscriptionCollection>>;
-
-    /**
-     * Retrieves a list of events according to any specified filter criteria and sort options.
-     * Get Subscriptions
-     */
-    getSubscriptions(requestParameters: GetSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventSubscriptionCollection>;
-
-}
-
-/**
  * 
  */
-export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiInterface {
+export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -156,7 +156,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async getDeliveryAttemptSummariesRaw(requestParameters: GetDeliveryAttemptSummariesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventDeliverySummaryCollection>> {
+    async getDeliveryAttemptSummariesRaw(requestParameters: subscriptionApiParams.GetDeliveryAttemptSummariesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventDeliverySummaryCollection>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling getDeliveryAttemptSummaries.');
         }
@@ -205,7 +205,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Get delivery attempts for the specified subscription
      * Get Delivery Attempt Summaries
      */
-    async getDeliveryAttemptSummaries(requestParameters: GetDeliveryAttemptSummariesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventDeliverySummaryCollection> {
+    async getDeliveryAttemptSummaries(requestParameters: subscriptionApiParams.GetDeliveryAttemptSummariesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventDeliverySummaryCollection> {
         const response = await this.getDeliveryAttemptSummariesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -216,7 +216,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async getDeliveryAttemptSummariesAllSubscriptionsRaw(requestParameters: GetDeliveryAttemptSummariesAllSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventDeliverySummaryCollection>> {
+    async getDeliveryAttemptSummariesAllSubscriptionsRaw(requestParameters: subscriptionApiParams.GetDeliveryAttemptSummariesAllSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventDeliverySummaryCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -261,7 +261,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Get delivery attempts
      * Get Delivery Attempt Summaries All Subscriptions
      */
-    async getDeliveryAttemptSummariesAllSubscriptions(requestParameters: GetDeliveryAttemptSummariesAllSubscriptionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventDeliverySummaryCollection> {
+    async getDeliveryAttemptSummariesAllSubscriptions(requestParameters: subscriptionApiParams.GetDeliveryAttemptSummariesAllSubscriptionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventDeliverySummaryCollection> {
         const response = await this.getDeliveryAttemptSummariesAllSubscriptionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -272,7 +272,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async getDeliveryAttemptSummaryRaw(requestParameters: GetDeliveryAttemptSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventDeliverySummary>> {
+    async getDeliveryAttemptSummaryRaw(requestParameters: subscriptionApiParams.GetDeliveryAttemptSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventDeliverySummary>> {
         if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
             throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling getDeliveryAttemptSummary.');
         }
@@ -309,7 +309,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Get delivery attempt summary
      * Get Delivery Attempt Summary
      */
-    async getDeliveryAttemptSummary(requestParameters: GetDeliveryAttemptSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventDeliverySummary> {
+    async getDeliveryAttemptSummary(requestParameters: subscriptionApiParams.GetDeliveryAttemptSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventDeliverySummary> {
         const response = await this.getDeliveryAttemptSummaryRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -320,7 +320,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      */
 
 
-    async getSubscriptionsRaw(requestParameters: GetSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventSubscriptionCollection>> {
+    async getSubscriptionsRaw(requestParameters: subscriptionApiParams.GetSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventSubscriptionCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -369,7 +369,7 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiI
      * Retrieves a list of events according to any specified filter criteria and sort options.
      * Get Subscriptions
      */
-    async getSubscriptions(requestParameters: GetSubscriptionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventSubscriptionCollection> {
+    async getSubscriptions(requestParameters: subscriptionApiParams.GetSubscriptionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventSubscriptionCollection> {
         const response = await this.getSubscriptionsRaw(requestParameters, initOverrides);
         return await response.value();
     }

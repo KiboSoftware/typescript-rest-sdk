@@ -21,123 +21,117 @@ import type {
   InventoryTag,
 } from '../models';
 
-export interface CreateTagRequest {
-    xVolTenant: number;
-    tagCategoryName: string;
-    inventoryTag: InventoryTag;
-    responseFields?: string;
-}
 
-export interface DeleteTagRequest {
-    xVolTenant: number;
-    tagCategoryName: string;
-    tagValue: string;
+export namespace inventoryTagApiParams { 
+    export interface CreateTagRequest {
+        xVolTenant: number;
+        tagCategoryName: string;
+        inventoryTag: InventoryTag;
+    }
+    export interface DeleteTagRequest {
+        xVolTenant: number;
+        tagCategoryName: string;
+        tagValue: string;
+    }
+    export interface GetTagRequest {
+        xVolTenant: number;
+        tagCategoryName: string;
+        tagValue: string;
+    }
+    export interface UpdateTagRequest {
+        xVolTenant: number;
+        tagCategoryName: string;
+        tagValue: string;
+        inventoryTag: InventoryTag;
+    }
 }
-
-export interface GetTagRequest {
-    xVolTenant: number;
-    tagCategoryName: string;
-    tagValue: string;
-    responseFields?: string;
-}
-
-export interface UpdateTagRequest {
-    xVolTenant: number;
-    tagCategoryName: string;
-    tagValue: string;
-    inventoryTag: InventoryTag;
-    responseFields?: string;
-}
-
 /**
- * InventoryTagApi - interface
- * 
- * @export
- * @interface InventoryTagApiInterface
- */
-export interface InventoryTagApiInterface {
+* InventoryTagApiService - interface
+* 
+* @export
+* @interface InventoryTagApi
+*/
+export interface InventoryTagApiService {
     /**
-     * Create a tag
-     * @summary Create Tag
-     * @param {number} xVolTenant Tenant ID
-     * @param {string} tagCategoryName Tag Category Name
-     * @param {InventoryTag} inventoryTag Request create or modify Tag
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InventoryTagApiInterface
-     */
-    createTagRaw(requestParameters: CreateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventoryTag>>;
+    * Create a tag
+    * @summary Create Tag
+    * @param {number} xVolTenant Tenant ID
+    * @param {string} tagCategoryName Tag Category Name
+    * @param {InventoryTag} inventoryTag Request create or modify Tag
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof InventoryTagApiInterface
+    */
+    createTagRaw(requestParameters: inventoryTagApiParams.CreateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventoryTag>>;
 
     /**
-     * Create a tag
-     * Create Tag
-     */
-    createTag(requestParameters: CreateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InventoryTag>;
+    * Create a tag
+    * Create Tag
+    */
+    createTag(requestParameters: inventoryTagApiParams.CreateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InventoryTag>;
 
     /**
-     * Delete a Tag
-     * @summary Delete Tag
-     * @param {number} xVolTenant Tenant ID
-     * @param {string} tagCategoryName Tag Category Name
-     * @param {string} tagValue Tag Value
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InventoryTagApiInterface
-     */
-    deleteTagRaw(requestParameters: DeleteTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>>;
+    * Delete a Tag
+    * @summary Delete Tag
+    * @param {number} xVolTenant Tenant ID
+    * @param {string} tagCategoryName Tag Category Name
+    * @param {string} tagValue Tag Value
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof InventoryTagApiInterface
+    */
+    deleteTagRaw(requestParameters: inventoryTagApiParams.DeleteTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>>;
 
     /**
-     * Delete a Tag
-     * Delete Tag
-     */
-    deleteTag(requestParameters: DeleteTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedCountResponse>;
+    * Delete a Tag
+    * Delete Tag
+    */
+    deleteTag(requestParameters: inventoryTagApiParams.DeleteTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedCountResponse>;
 
     /**
-     * Get a tag
-     * @summary Get Tag
-     * @param {number} xVolTenant Tenant ID
-     * @param {string} tagCategoryName Tag Category Name
-     * @param {string} tagValue Tag Value
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InventoryTagApiInterface
-     */
-    getTagRaw(requestParameters: GetTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventoryTag>>;
+    * Get a tag
+    * @summary Get Tag
+    * @param {number} xVolTenant Tenant ID
+    * @param {string} tagCategoryName Tag Category Name
+    * @param {string} tagValue Tag Value
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof InventoryTagApiInterface
+    */
+    getTagRaw(requestParameters: inventoryTagApiParams.GetTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventoryTag>>;
 
     /**
-     * Get a tag
-     * Get Tag
-     */
-    getTag(requestParameters: GetTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InventoryTag>;
+    * Get a tag
+    * Get Tag
+    */
+    getTag(requestParameters: inventoryTagApiParams.GetTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InventoryTag>;
 
     /**
-     * Update the designated tag
-     * @summary Update Tag
-     * @param {number} xVolTenant Tenant ID
-     * @param {string} tagCategoryName Tag Category Name
-     * @param {string} tagValue Tag Value
-     * @param {InventoryTag} inventoryTag Request create or modify Tag
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InventoryTagApiInterface
-     */
-    updateTagRaw(requestParameters: UpdateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventoryTag>>;
+    * Update the designated tag
+    * @summary Update Tag
+    * @param {number} xVolTenant Tenant ID
+    * @param {string} tagCategoryName Tag Category Name
+    * @param {string} tagValue Tag Value
+    * @param {InventoryTag} inventoryTag Request create or modify Tag
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof InventoryTagApiInterface
+    */
+    updateTagRaw(requestParameters: inventoryTagApiParams.UpdateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventoryTag>>;
 
     /**
-     * Update the designated tag
-     * Update Tag
-     */
-    updateTag(requestParameters: UpdateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InventoryTag>;
+    * Update the designated tag
+    * Update Tag
+    */
+    updateTag(requestParameters: inventoryTagApiParams.UpdateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InventoryTag>;
 
 }
+
 
 /**
  * 
  */
-export class InventoryTagApi extends runtime.BaseAPI implements InventoryTagApiInterface {
+export class InventoryTagApi extends runtime.BaseAPI implements InventoryTagApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -148,7 +142,7 @@ export class InventoryTagApi extends runtime.BaseAPI implements InventoryTagApiI
      */
 
 
-    async createTagRaw(requestParameters: CreateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventoryTag>> {
+    async createTagRaw(requestParameters: inventoryTagApiParams.CreateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventoryTag>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling createTag.');
         }
@@ -165,10 +159,6 @@ export class InventoryTagApi extends runtime.BaseAPI implements InventoryTagApiI
 
         if (requestParameters.tagCategoryName !== undefined) {
             queryParameters['tagCategoryName'] = requestParameters.tagCategoryName;
-        }
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -200,7 +190,7 @@ export class InventoryTagApi extends runtime.BaseAPI implements InventoryTagApiI
      * Create a tag
      * Create Tag
      */
-    async createTag(requestParameters: CreateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InventoryTag> {
+    async createTag(requestParameters: inventoryTagApiParams.CreateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InventoryTag> {
         const response = await this.createTagRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -211,7 +201,7 @@ export class InventoryTagApi extends runtime.BaseAPI implements InventoryTagApiI
      */
 
 
-    async deleteTagRaw(requestParameters: DeleteTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>> {
+    async deleteTagRaw(requestParameters: inventoryTagApiParams.DeleteTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteTag.');
         }
@@ -260,7 +250,7 @@ export class InventoryTagApi extends runtime.BaseAPI implements InventoryTagApiI
      * Delete a Tag
      * Delete Tag
      */
-    async deleteTag(requestParameters: DeleteTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedCountResponse> {
+    async deleteTag(requestParameters: inventoryTagApiParams.DeleteTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedCountResponse> {
         const response = await this.deleteTagRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -271,7 +261,7 @@ export class InventoryTagApi extends runtime.BaseAPI implements InventoryTagApiI
      */
 
 
-    async getTagRaw(requestParameters: GetTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventoryTag>> {
+    async getTagRaw(requestParameters: inventoryTagApiParams.GetTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventoryTag>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getTag.');
         }
@@ -292,10 +282,6 @@ export class InventoryTagApi extends runtime.BaseAPI implements InventoryTagApiI
 
         if (requestParameters.tagValue !== undefined) {
             queryParameters['tagValue'] = requestParameters.tagValue;
-        }
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -324,7 +310,7 @@ export class InventoryTagApi extends runtime.BaseAPI implements InventoryTagApiI
      * Get a tag
      * Get Tag
      */
-    async getTag(requestParameters: GetTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InventoryTag> {
+    async getTag(requestParameters: inventoryTagApiParams.GetTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InventoryTag> {
         const response = await this.getTagRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -335,7 +321,7 @@ export class InventoryTagApi extends runtime.BaseAPI implements InventoryTagApiI
      */
 
 
-    async updateTagRaw(requestParameters: UpdateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventoryTag>> {
+    async updateTagRaw(requestParameters: inventoryTagApiParams.UpdateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventoryTag>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
             throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateTag.');
         }
@@ -360,10 +346,6 @@ export class InventoryTagApi extends runtime.BaseAPI implements InventoryTagApiI
 
         if (requestParameters.tagValue !== undefined) {
             queryParameters['tagValue'] = requestParameters.tagValue;
-        }
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -395,7 +377,7 @@ export class InventoryTagApi extends runtime.BaseAPI implements InventoryTagApiI
      * Update the designated tag
      * Update Tag
      */
-    async updateTag(requestParameters: UpdateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InventoryTag> {
+    async updateTag(requestParameters: inventoryTagApiParams.UpdateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InventoryTag> {
         const response = await this.updateTagRaw(requestParameters, initOverrides);
         return await response.value();
     }

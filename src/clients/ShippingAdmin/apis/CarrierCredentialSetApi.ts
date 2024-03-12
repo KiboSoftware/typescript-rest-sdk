@@ -20,143 +20,142 @@ import type {
   CarrierCredentialSetCollection,
 } from '../models';
 
-export interface CreateCarrierCredentialSetRequest {
-    carrierId: string;
-    responseFields?: string;
-    carrierCredentialSet?: CarrierCredentialSet;
+
+export namespace carrierCredentialSetApiParams { 
+    export interface CreateCarrierCredentialSetRequest {
+        carrierId: string;
+        responseFields?: string;
+        carrierCredentialSet?: CarrierCredentialSet;
+    }
+    export interface DeleteCarrierCredentialSetRequest {
+        carrierId: string;
+        code: string;
+    }
+    export interface GetCarrierCredentialSetRequest {
+        carrierId: string;
+        code: string;
+        responseFields?: string;
+    }
+    export interface GetCarrierCredentialSetsRequest {
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        filter?: string;
+        responseFields?: string;
+    }
+    export interface UpdateCarrierCredentialSetRequest {
+        carrierId: string;
+        code: string;
+        responseFields?: string;
+        carrierCredentialSet?: CarrierCredentialSet;
+    }
+}
+/**
+* CarrierCredentialSetApiService - interface
+* 
+* @export
+* @interface CarrierCredentialSetApi
+*/
+export interface CarrierCredentialSetApiService {
+    /**
+    * hippingAdmin.Contracts.Carriers.CarrierCredentialSet.
+    * @summary Creates a Mozu
+    * @param {string} carrierId The carrier ID.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CarrierCredentialSet} [carrierCredentialSet] The carrier credential set data.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CarrierCredentialSetApiInterface
+    */
+    createCarrierCredentialSetRaw(requestParameters: carrierCredentialSetApiParams.CreateCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierCredentialSet>>;
+
+    /**
+    * hippingAdmin.Contracts.Carriers.CarrierCredentialSet.
+    * Creates a Mozu
+    */
+    createCarrierCredentialSet(requestParameters: carrierCredentialSetApiParams.CreateCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierCredentialSet>;
+
+    /**
+    * hippingAdmin.Contracts.Carriers.CarrierCredentialSet with the specified carrier and code.
+    * @summary Deletes a Mozu
+    * @param {string} carrierId The carrier ID.
+    * @param {string} code The carrier credential set code.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CarrierCredentialSetApiInterface
+    */
+    deleteCarrierCredentialSetRaw(requestParameters: carrierCredentialSetApiParams.DeleteCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+    * hippingAdmin.Contracts.Carriers.CarrierCredentialSet with the specified carrier and code.
+    * Deletes a Mozu
+    */
+    deleteCarrierCredentialSet(requestParameters: carrierCredentialSetApiParams.DeleteCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+    * hippingAdmin.Contracts.Carriers.CarrierCredentialSet with the specified carrier and code.
+    * @summary Returns a Mozu
+    * @param {string} carrierId The carrier ID.
+    * @param {string} code The carrier credential set code.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CarrierCredentialSetApiInterface
+    */
+    getCarrierCredentialSetRaw(requestParameters: carrierCredentialSetApiParams.GetCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierCredentialSet>>;
+
+    /**
+    * hippingAdmin.Contracts.Carriers.CarrierCredentialSet with the specified carrier and code.
+    * Returns a Mozu
+    */
+    getCarrierCredentialSet(requestParameters: carrierCredentialSetApiParams.GetCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierCredentialSet>;
+
+    /**
+    * hippingAdmin.Contracts.Carriers.CarrierCredentialSetCollection\">collection</see> of <see cref=\"T:Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSet\">carrier credential sets</see> with the specified filters and options.
+    * @summary Returns a <see cref=\"T:Mozu
+    * @param {number} [startIndex] The starting index.
+    * @param {number} [pageSize] The page size.
+    * @param {string} [sortBy] Any sorting filters.
+    * @param {string} [filter] Any query filters.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CarrierCredentialSetApiInterface
+    */
+    getCarrierCredentialSetsRaw(requestParameters: carrierCredentialSetApiParams.GetCarrierCredentialSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierCredentialSetCollection>>;
+
+    /**
+    * hippingAdmin.Contracts.Carriers.CarrierCredentialSetCollection\">collection</see> of <see cref=\"T:Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSet\">carrier credential sets</see> with the specified filters and options.
+    * Returns a <see cref=\"T:Mozu
+    */
+    getCarrierCredentialSets(requestParameters: carrierCredentialSetApiParams.GetCarrierCredentialSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierCredentialSetCollection>;
+
+    /**
+    * hippingAdmin.Contracts.Carriers.CarrierCredentialSet with the specified carrier and code.
+    * @summary Updates a Mozu
+    * @param {string} carrierId The carrier ID.
+    * @param {string} code The carrier credential set code.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CarrierCredentialSet} [carrierCredentialSet] The carrier credential set data.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CarrierCredentialSetApiInterface
+    */
+    updateCarrierCredentialSetRaw(requestParameters: carrierCredentialSetApiParams.UpdateCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierCredentialSet>>;
+
+    /**
+    * hippingAdmin.Contracts.Carriers.CarrierCredentialSet with the specified carrier and code.
+    * Updates a Mozu
+    */
+    updateCarrierCredentialSet(requestParameters: carrierCredentialSetApiParams.UpdateCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierCredentialSet>;
+
 }
 
-export interface DeleteCarrierCredentialSetRequest {
-    carrierId: string;
-    code: string;
-}
-
-export interface GetCarrierCredentialSetRequest {
-    carrierId: string;
-    code: string;
-    responseFields?: string;
-}
-
-export interface GetCarrierCredentialSetsRequest {
-    startIndex?: number;
-    pageSize?: number;
-    sortBy?: string;
-    filter?: string;
-    responseFields?: string;
-}
-
-export interface UpdateCarrierCredentialSetRequest {
-    carrierId: string;
-    code: string;
-    responseFields?: string;
-    carrierCredentialSet?: CarrierCredentialSet;
-}
 
 /**
- * CarrierCredentialSetApi - interface
- * 
- * @export
- * @interface CarrierCredentialSetApiInterface
- */
-export interface CarrierCredentialSetApiInterface {
-    /**
-     * hippingAdmin.Contracts.Carriers.CarrierCredentialSet.
-     * @summary Creates a Mozu
-     * @param {string} carrierId The carrier ID.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CarrierCredentialSet} [carrierCredentialSet] The carrier credential set data.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CarrierCredentialSetApiInterface
-     */
-    createCarrierCredentialSetRaw(requestParameters: CreateCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierCredentialSet>>;
-
-    /**
-     * hippingAdmin.Contracts.Carriers.CarrierCredentialSet.
-     * Creates a Mozu
-     */
-    createCarrierCredentialSet(requestParameters: CreateCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierCredentialSet>;
-
-    /**
-     * hippingAdmin.Contracts.Carriers.CarrierCredentialSet with the specified carrier and code.
-     * @summary Deletes a Mozu
-     * @param {string} carrierId The carrier ID.
-     * @param {string} code The carrier credential set code.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CarrierCredentialSetApiInterface
-     */
-    deleteCarrierCredentialSetRaw(requestParameters: DeleteCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     * hippingAdmin.Contracts.Carriers.CarrierCredentialSet with the specified carrier and code.
-     * Deletes a Mozu
-     */
-    deleteCarrierCredentialSet(requestParameters: DeleteCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * hippingAdmin.Contracts.Carriers.CarrierCredentialSet with the specified carrier and code.
-     * @summary Returns a Mozu
-     * @param {string} carrierId The carrier ID.
-     * @param {string} code The carrier credential set code.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CarrierCredentialSetApiInterface
-     */
-    getCarrierCredentialSetRaw(requestParameters: GetCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierCredentialSet>>;
-
-    /**
-     * hippingAdmin.Contracts.Carriers.CarrierCredentialSet with the specified carrier and code.
-     * Returns a Mozu
-     */
-    getCarrierCredentialSet(requestParameters: GetCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierCredentialSet>;
-
-    /**
-     * hippingAdmin.Contracts.Carriers.CarrierCredentialSetCollection\">collection</see> of <see cref=\"T:Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSet\">carrier credential sets</see> with the specified filters and options.
-     * @summary Returns a <see cref=\"T:Mozu
-     * @param {number} [startIndex] The starting index.
-     * @param {number} [pageSize] The page size.
-     * @param {string} [sortBy] Any sorting filters.
-     * @param {string} [filter] Any query filters.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CarrierCredentialSetApiInterface
-     */
-    getCarrierCredentialSetsRaw(requestParameters: GetCarrierCredentialSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierCredentialSetCollection>>;
-
-    /**
-     * hippingAdmin.Contracts.Carriers.CarrierCredentialSetCollection\">collection</see> of <see cref=\"T:Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSet\">carrier credential sets</see> with the specified filters and options.
-     * Returns a <see cref=\"T:Mozu
-     */
-    getCarrierCredentialSets(requestParameters: GetCarrierCredentialSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierCredentialSetCollection>;
-
-    /**
-     * hippingAdmin.Contracts.Carriers.CarrierCredentialSet with the specified carrier and code.
-     * @summary Updates a Mozu
-     * @param {string} carrierId The carrier ID.
-     * @param {string} code The carrier credential set code.
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {CarrierCredentialSet} [carrierCredentialSet] The carrier credential set data.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CarrierCredentialSetApiInterface
-     */
-    updateCarrierCredentialSetRaw(requestParameters: UpdateCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierCredentialSet>>;
-
-    /**
-     * hippingAdmin.Contracts.Carriers.CarrierCredentialSet with the specified carrier and code.
-     * Updates a Mozu
-     */
-    updateCarrierCredentialSet(requestParameters: UpdateCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierCredentialSet>;
-
-}
-
-/**
  * 
  */
-export class CarrierCredentialSetApi extends runtime.BaseAPI implements CarrierCredentialSetApiInterface {
+export class CarrierCredentialSetApi extends runtime.BaseAPI implements CarrierCredentialSetApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -167,7 +166,7 @@ export class CarrierCredentialSetApi extends runtime.BaseAPI implements CarrierC
      */
 
 
-    async createCarrierCredentialSetRaw(requestParameters: CreateCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierCredentialSet>> {
+    async createCarrierCredentialSetRaw(requestParameters: carrierCredentialSetApiParams.CreateCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierCredentialSet>> {
         if (requestParameters.carrierId === null || requestParameters.carrierId === undefined) {
             throw new runtime.RequiredError('carrierId','Required parameter requestParameters.carrierId was null or undefined when calling createCarrierCredentialSet.');
         }
@@ -203,7 +202,7 @@ export class CarrierCredentialSetApi extends runtime.BaseAPI implements CarrierC
      * hippingAdmin.Contracts.Carriers.CarrierCredentialSet.
      * Creates a Mozu
      */
-    async createCarrierCredentialSet(requestParameters: CreateCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierCredentialSet> {
+    async createCarrierCredentialSet(requestParameters: carrierCredentialSetApiParams.CreateCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierCredentialSet> {
         const response = await this.createCarrierCredentialSetRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -214,7 +213,7 @@ export class CarrierCredentialSetApi extends runtime.BaseAPI implements CarrierC
      */
 
 
-    async deleteCarrierCredentialSetRaw(requestParameters: DeleteCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteCarrierCredentialSetRaw(requestParameters: carrierCredentialSetApiParams.DeleteCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.carrierId === null || requestParameters.carrierId === undefined) {
             throw new runtime.RequiredError('carrierId','Required parameter requestParameters.carrierId was null or undefined when calling deleteCarrierCredentialSet.');
         }
@@ -247,7 +246,7 @@ export class CarrierCredentialSetApi extends runtime.BaseAPI implements CarrierC
      * hippingAdmin.Contracts.Carriers.CarrierCredentialSet with the specified carrier and code.
      * Deletes a Mozu
      */
-    async deleteCarrierCredentialSet(requestParameters: DeleteCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteCarrierCredentialSet(requestParameters: carrierCredentialSetApiParams.DeleteCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteCarrierCredentialSetRaw(requestParameters, initOverrides);
     }
 
@@ -257,7 +256,7 @@ export class CarrierCredentialSetApi extends runtime.BaseAPI implements CarrierC
      */
 
 
-    async getCarrierCredentialSetRaw(requestParameters: GetCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierCredentialSet>> {
+    async getCarrierCredentialSetRaw(requestParameters: carrierCredentialSetApiParams.GetCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierCredentialSet>> {
         if (requestParameters.carrierId === null || requestParameters.carrierId === undefined) {
             throw new runtime.RequiredError('carrierId','Required parameter requestParameters.carrierId was null or undefined when calling getCarrierCredentialSet.');
         }
@@ -294,7 +293,7 @@ export class CarrierCredentialSetApi extends runtime.BaseAPI implements CarrierC
      * hippingAdmin.Contracts.Carriers.CarrierCredentialSet with the specified carrier and code.
      * Returns a Mozu
      */
-    async getCarrierCredentialSet(requestParameters: GetCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierCredentialSet> {
+    async getCarrierCredentialSet(requestParameters: carrierCredentialSetApiParams.GetCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierCredentialSet> {
         const response = await this.getCarrierCredentialSetRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -305,7 +304,7 @@ export class CarrierCredentialSetApi extends runtime.BaseAPI implements CarrierC
      */
 
 
-    async getCarrierCredentialSetsRaw(requestParameters: GetCarrierCredentialSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierCredentialSetCollection>> {
+    async getCarrierCredentialSetsRaw(requestParameters: carrierCredentialSetApiParams.GetCarrierCredentialSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierCredentialSetCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -350,7 +349,7 @@ export class CarrierCredentialSetApi extends runtime.BaseAPI implements CarrierC
      * hippingAdmin.Contracts.Carriers.CarrierCredentialSetCollection\">collection</see> of <see cref=\"T:Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSet\">carrier credential sets</see> with the specified filters and options.
      * Returns a <see cref=\"T:Mozu
      */
-    async getCarrierCredentialSets(requestParameters: GetCarrierCredentialSetsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierCredentialSetCollection> {
+    async getCarrierCredentialSets(requestParameters: carrierCredentialSetApiParams.GetCarrierCredentialSetsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierCredentialSetCollection> {
         const response = await this.getCarrierCredentialSetsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -361,7 +360,7 @@ export class CarrierCredentialSetApi extends runtime.BaseAPI implements CarrierC
      */
 
 
-    async updateCarrierCredentialSetRaw(requestParameters: UpdateCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierCredentialSet>> {
+    async updateCarrierCredentialSetRaw(requestParameters: carrierCredentialSetApiParams.UpdateCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CarrierCredentialSet>> {
         if (requestParameters.carrierId === null || requestParameters.carrierId === undefined) {
             throw new runtime.RequiredError('carrierId','Required parameter requestParameters.carrierId was null or undefined when calling updateCarrierCredentialSet.');
         }
@@ -401,7 +400,7 @@ export class CarrierCredentialSetApi extends runtime.BaseAPI implements CarrierC
      * hippingAdmin.Contracts.Carriers.CarrierCredentialSet with the specified carrier and code.
      * Updates a Mozu
      */
-    async updateCarrierCredentialSet(requestParameters: UpdateCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierCredentialSet> {
+    async updateCarrierCredentialSet(requestParameters: carrierCredentialSetApiParams.UpdateCarrierCredentialSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CarrierCredentialSet> {
         const response = await this.updateCarrierCredentialSetRaw(requestParameters, initOverrides);
         return await response.value();
     }

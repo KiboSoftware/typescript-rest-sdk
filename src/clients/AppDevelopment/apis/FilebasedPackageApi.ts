@@ -19,43 +19,46 @@ import type {
   AppDevHttpResponseMessage,
 } from '../models';
 
-export interface GetFileRequest {
-    applicationKey: string;
-    fileName?: string;
-    responseFields?: string;
+
+export namespace filebasedPackageApiParams { 
+    export interface GetFileRequest {
+        applicationKey: string;
+        fileName?: string;
+        responseFields?: string;
+    }
+}
+/**
+* FilebasedPackageApiService - interface
+* 
+* @export
+* @interface FilebasedPackageApi
+*/
+export interface FilebasedPackageApiService {
+    /**
+    * Get File
+    * @summary Get File
+    * @param {string} applicationKey 
+    * @param {string} [fileName] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof FilebasedPackageApiInterface
+    */
+    getFileRaw(requestParameters: filebasedPackageApiParams.GetFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevHttpResponseMessage>>;
+
+    /**
+    * Get File
+    * Get File
+    */
+    getFile(requestParameters: filebasedPackageApiParams.GetFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevHttpResponseMessage>;
+
 }
 
-/**
- * FilebasedPackageApi - interface
- * 
- * @export
- * @interface FilebasedPackageApiInterface
- */
-export interface FilebasedPackageApiInterface {
-    /**
-     * Get File
-     * @summary Get File
-     * @param {string} applicationKey 
-     * @param {string} [fileName] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof FilebasedPackageApiInterface
-     */
-    getFileRaw(requestParameters: GetFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevHttpResponseMessage>>;
-
-    /**
-     * Get File
-     * Get File
-     */
-    getFile(requestParameters: GetFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevHttpResponseMessage>;
-
-}
 
 /**
  * 
  */
-export class FilebasedPackageApi extends runtime.BaseAPI implements FilebasedPackageApiInterface {
+export class FilebasedPackageApi extends runtime.BaseAPI implements FilebasedPackageApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -66,7 +69,7 @@ export class FilebasedPackageApi extends runtime.BaseAPI implements FilebasedPac
      */
 
 
-    async getFileRaw(requestParameters: GetFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevHttpResponseMessage>> {
+    async getFileRaw(requestParameters: filebasedPackageApiParams.GetFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AppDevHttpResponseMessage>> {
         if (requestParameters.applicationKey === null || requestParameters.applicationKey === undefined) {
             throw new runtime.RequiredError('applicationKey','Required parameter requestParameters.applicationKey was null or undefined when calling getFile.');
         }
@@ -103,7 +106,7 @@ export class FilebasedPackageApi extends runtime.BaseAPI implements FilebasedPac
      * Get File
      * Get File
      */
-    async getFile(requestParameters: GetFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevHttpResponseMessage> {
+    async getFile(requestParameters: filebasedPackageApiParams.GetFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevHttpResponseMessage> {
         const response = await this.getFileRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -44,1474 +44,1270 @@ import type {
   TransferShipment,
 } from '../models';
 
-export interface BackorderItemsUpdateUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    backorderItemsUpdateRequestDto: BackorderItemsUpdateRequest;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
 
-export interface BackorderItemsUsingPOSTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    backorderItemsRequestDto: BackorderItemsRequest;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
+export namespace shipmentApiParams { 
+    export interface BackorderItemsOperationRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        backorderItemsRequestDto: BackorderItemsRequest;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface BackorderItemsUpdateOperationRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        backorderItemsUpdateRequestDto: BackorderItemsUpdateRequest;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface BackorderShipmentOperationRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        backorderShipmentRequestDto: BackorderShipmentRequest;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface CancelItemsOperationRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        cancelItemsRequestDto: CancelItemsRequest;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface CancelShipmentRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        cancelShipmentRequestDto: CancelShipment;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface CancelShipmentsRequest {
+        orderId: string;
+        xVolTenant: number;
+        cancelShipmentRequestDto: CancelShipment;
+        xVolSite?: number;
+    }
+    export interface CustomerAtCurbsideRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        pickupInfo: { [key: string]: object; };
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface CustomerAtStoreRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface CustomerCareItemsRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        rejectItemsRequestDto: RejectItemsRequest;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface CustomerCareShipmentRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        rejectShipmentRequestDto: RejectShipment;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface CustomerInTransitRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface DeleteShipmentRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface DeleteShipmentsOfOrderRequest {
+        orderId: string;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface DestinationUpdateRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        destinationDto: FulfillmentAPIProductionProfileDestination;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface ExecuteRequest {
+        shipmentNumber: number;
+        taskName: string;
+        xVolTenant: number;
+        taskCompleteDto: TaskComplete;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface FulfillShipmentRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface GetLocationSummaryReportRequest {
+        locationCodes: Array<string>;
+        startDateTime: string;
+        xVolTenant: number;
+        bypassSearchIndex?: boolean;
+        xVolSite?: number;
+    }
+    export interface GetShipmentRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface GetShipmentStepCountByShipmentTypeRequest {
+        shipmentType: string;
+        xVolTenant: number;
+        assignedLocations?: Array<string>;
+        xVolSite?: number;
+    }
+    export interface GetShipmentsRequest {
+        xVolTenant: number;
+        bypassSearchIndex?: boolean;
+        filter?: string;
+        isLate?: boolean;
+        page?: number;
+        pageSize?: number;
+        quickSearch?: string;
+        sort?: string;
+        workflowTaskName?: string;
+        xVolSite?: number;
+    }
+    export interface GetTasksRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface ItemsReadyForPrepRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        readyForPrepItemsRequestDto: ReadyForPrepItemsRequest;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface NewShipmentRequest {
+        xVolTenant: number;
+        newShipment: FulfillmentAPIProductionProfileShipment;
+        xVolSite?: number;
+    }
+    export interface NewShipmentsRequest {
+        xVolTenant: number;
+        newShipments: Array<FulfillmentAPIProductionProfileShipment>;
+        xVolSite?: number;
+    }
+    export interface PickupItemsOperationRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        pickupItemsRequestDto: PickupItemsRequest;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface ReassignItemsOperationRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        reassignItemsRequestDto: ReassignItemsRequest;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface ReassignShipmentRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        reassignShipmentRequestDto: ReassignShipment;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface ReceiveTransferRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface RefreshShipmentRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        ifMatch?: string;
+        shouldLog?: boolean;
+        xVolSite?: number;
+    }
+    export interface RejectItemsOperationRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        rejectItemsRequestDto: RejectItemsRequest;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface RejectShipmentRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        rejectShipmentRequestDto: RejectShipment;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface RenderOrderSummary1Request {
+        shipmentNumber: number;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface RenderPackingSlipRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface ReplaceShipmentRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        newShipment: FulfillmentAPIProductionProfileShipment;
+        ifMatch?: string;
+        updateFields?: Array<string>;
+        xVolSite?: number;
+    }
+    export interface ResendItemEmailRequest {
+        lineId: number;
+        shipmentNumber: number;
+        xVolTenant: number;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface ResendShipmentEmailRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface RetryFulfillingShipmentRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface RevertRequest {
+        shipmentNumber: number;
+        taskName: string;
+        xVolTenant: number;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface SearchAndReceiveTransferRequest {
+        search: string;
+        xVolTenant: number;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface SearchReceivableShipmentRequest {
+        search: string;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface SkipTaskRequest {
+        shipmentNumber: number;
+        taskName: string;
+        xVolTenant: number;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface TransferItemsOperationRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        transferItemsRequestDto: TransferItemsRequest;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface TransferShipmentRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        transferShipmentRequestDto: TransferShipment;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface UpdateFulfillmentFieldsRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        items: Array<FulfillmentAPIProductionProfileItem>;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface UpdateGiftCardInfoRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        giftCardInfoRequestDto: GiftCardInfoRequest;
+        ifMatch?: string;
+        xVolSite?: number;
+    }
+    export interface WorkflowDefinitionImageRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
+    export interface WorkflowInstanceImageRequest {
+        shipmentNumber: number;
+        xVolTenant: number;
+        xVolSite?: number;
+    }
 }
-
-export interface BackorderShipmentUsingPOSTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    backorderShipmentRequestDto: BackorderShipmentRequest;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface CancelItemsUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    cancelItemsRequestDto: CancelItemsRequest;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface CancelShipmentUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    cancelShipmentRequestDto: CancelShipment;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface CancelShipmentsUsingPUTRequest {
-    orderId: string;
-    xVolTenant: number;
-    cancelShipmentRequestDto: CancelShipment;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface CustomerAtCurbsideUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    pickupInfo: { [key: string]: object; };
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface CustomerAtStoreUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface CustomerCareItemsUsingPOSTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    rejectItemsRequestDto: RejectItemsRequest;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface CustomerCareShipmentUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    rejectShipmentRequestDto: RejectShipment;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface CustomerInTransitUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface DeleteShipmentUsingDELETERequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    ifMatch?: string;
-    xVolSite?: number;
-}
-
-export interface DeleteShipmentsOfOrderUsingDELETERequest {
-    orderId: string;
-    xVolTenant: number;
-    xVolSite?: number;
-}
-
-export interface DestinationUpdateUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    destinationDto: FulfillmentAPIProductionProfileDestination;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface ExecuteUsingPUTRequest {
-    shipmentNumber: number;
-    taskName: string;
-    xVolTenant: number;
-    taskCompleteDto: TaskComplete;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface FulfillShipmentUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface GetLocationSummaryReportUsingGETRequest {
-    locationCodes: Array<string>;
-    startDateTime: string;
-    xVolTenant: number;
-    bypassSearchIndex?: boolean;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface GetShipmentStepCountByShipmentTypeUsingGETRequest {
-    shipmentType: string;
-    xVolTenant: number;
-    assignedLocations?: Array<string>;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface GetShipmentUsingGETRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface GetShipmentsUsingGETRequest {
-    xVolTenant: number;
-    bypassSearchIndex?: boolean;
-    filter?: string;
-    isLate?: boolean;
-    page?: number;
-    pageSize?: number;
-    quickSearch?: string;
-    sort?: string;
-    workflowTaskName?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface GetTasksUsingGETRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface ItemsReadyForPrepUsingPOSTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    readyForPrepItemsRequestDto: ReadyForPrepItemsRequest;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface NewShipmentUsingPOSTRequest {
-    xVolTenant: number;
-    newShipment: FulfillmentAPIProductionProfileShipment;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface NewShipmentsUsingPOSTRequest {
-    xVolTenant: number;
-    newShipments: Array<FulfillmentAPIProductionProfileShipment>;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface PickupItemsUsingPOSTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    pickupItemsRequestDto: PickupItemsRequest;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface ReassignItemsUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    reassignItemsRequestDto: ReassignItemsRequest;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface ReassignShipmentUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    reassignShipmentRequestDto: ReassignShipment;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface ReceiveTransferUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface RefreshShipmentUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    ifMatch?: string;
-    shouldLog?: boolean;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface RejectItemsUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    rejectItemsRequestDto: RejectItemsRequest;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface RejectShipmentUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    rejectShipmentRequestDto: RejectShipment;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface RenderOrderSummaryUsingGET1Request {
-    shipmentNumber: number;
-    xVolTenant: number;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface RenderPackingSlipUsingGETRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface ReplaceShipmentUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    newShipment: FulfillmentAPIProductionProfileShipment;
-    ifMatch?: string;
-    updateFields?: Array<string>;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface ResendItemEmailUsingPUTRequest {
-    lineId: number;
-    shipmentNumber: number;
-    xVolTenant: number;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface ResendShipmentEmailUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface RetryFulfillingShipmentUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface RevertUsingPUTRequest {
-    shipmentNumber: number;
-    taskName: string;
-    xVolTenant: number;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface SearchAndReceiveTransferUsingPUTRequest {
-    search: string;
-    xVolTenant: number;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface SearchReceivableShipmentUsingGETRequest {
-    search: string;
-    xVolTenant: number;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface SkipTaskUsingPUTRequest {
-    shipmentNumber: number;
-    taskName: string;
-    xVolTenant: number;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface TransferItemsUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    transferItemsRequestDto: TransferItemsRequest;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface TransferShipmentUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    transferShipmentRequestDto: TransferShipment;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface UpdateFulfillmentFieldsUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    items: Array<FulfillmentAPIProductionProfileItem>;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface UpdateGiftCardInfoUsingPUTRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    giftCardInfoRequestDto: GiftCardInfoRequest;
-    ifMatch?: string;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface WorkflowDefinitionImageUsingGETRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
-export interface WorkflowInstanceImageUsingGETRequest {
-    shipmentNumber: number;
-    xVolTenant: number;
-    xVolSite?: number;
-    responseFields?: string;
-}
-
 /**
- * ShipmentApi - interface
- * 
- * @export
- * @interface ShipmentApiInterface
- */
-export interface ShipmentApiInterface {
-    /**
-     * backorderItemsUpdate
-     * @summary backorderItemsUpdate
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {BackorderItemsUpdateRequest} backorderItemsUpdateRequestDto backorderItemsUpdateRequestDto
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    backorderItemsUpdateUsingPUTRaw(requestParameters: BackorderItemsUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * backorderItemsUpdate
-     * backorderItemsUpdate
-     */
-    backorderItemsUpdateUsingPUT(requestParameters: BackorderItemsUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * backorderItems
-     * @summary backorderItems
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {BackorderItemsRequest} backorderItemsRequestDto backorderItemsRequestDto
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    backorderItemsUsingPOSTRaw(requestParameters: BackorderItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * backorderItems
-     * backorderItems
-     */
-    backorderItemsUsingPOST(requestParameters: BackorderItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * backorderShipment
-     * @summary backorderShipment
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {BackorderShipmentRequest} backorderShipmentRequestDto backorderShipmentRequestDto
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    backorderShipmentUsingPOSTRaw(requestParameters: BackorderShipmentUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * backorderShipment
-     * backorderShipment
-     */
-    backorderShipmentUsingPOST(requestParameters: BackorderShipmentUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * cancelItems
-     * @summary cancelItems
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {CancelItemsRequest} cancelItemsRequestDto cancelItemsRequestDto
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    cancelItemsUsingPUTRaw(requestParameters: CancelItemsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * cancelItems
-     * cancelItems
-     */
-    cancelItemsUsingPUT(requestParameters: CancelItemsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * cancelShipment
-     * @summary cancelShipment
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {CancelShipment} cancelShipmentRequestDto cancelShipmentRequestDto
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    cancelShipmentUsingPUTRaw(requestParameters: CancelShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * cancelShipment
-     * cancelShipment
-     */
-    cancelShipmentUsingPUT(requestParameters: CancelShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * cancelShipments
-     * @summary cancelShipments
-     * @param {string} orderId orderId
-     * @param {number} xVolTenant 
-     * @param {CancelShipment} cancelShipmentRequestDto cancelShipmentRequestDto
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    cancelShipmentsUsingPUTRaw(requestParameters: CancelShipmentsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfShipment>>;
-
-    /**
-     * cancelShipments
-     * cancelShipments
-     */
-    cancelShipmentsUsingPUT(requestParameters: CancelShipmentsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfShipment>;
-
-    /**
-     * customerAtCurbside
-     * @summary customerAtCurbside
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {{ [key: string]: object; }} pickupInfo pickupInfo
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    customerAtCurbsideUsingPUTRaw(requestParameters: CustomerAtCurbsideUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * customerAtCurbside
-     * customerAtCurbside
-     */
-    customerAtCurbsideUsingPUT(requestParameters: CustomerAtCurbsideUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * customerAtStore
-     * @summary customerAtStore
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    customerAtStoreUsingPUTRaw(requestParameters: CustomerAtStoreUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * customerAtStore
-     * customerAtStore
-     */
-    customerAtStoreUsingPUT(requestParameters: CustomerAtStoreUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * customerCareItems
-     * @summary customerCareItems
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {RejectItemsRequest} rejectItemsRequestDto rejectItemsRequestDto
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    customerCareItemsUsingPOSTRaw(requestParameters: CustomerCareItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * customerCareItems
-     * customerCareItems
-     */
-    customerCareItemsUsingPOST(requestParameters: CustomerCareItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * customerCareShipment
-     * @summary customerCareShipment
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {RejectShipment} rejectShipmentRequestDto rejectShipmentRequestDto
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    customerCareShipmentUsingPUTRaw(requestParameters: CustomerCareShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * customerCareShipment
-     * customerCareShipment
-     */
-    customerCareShipmentUsingPUT(requestParameters: CustomerCareShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * customerInTransit
-     * @summary customerInTransit
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    customerInTransitUsingPUTRaw(requestParameters: CustomerInTransitUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * customerInTransit
-     * customerInTransit
-     */
-    customerInTransitUsingPUT(requestParameters: CustomerInTransitUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * deleteShipment
-     * @summary deleteShipment
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    deleteShipmentUsingDELETERaw(requestParameters: DeleteShipmentUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     * deleteShipment
-     * deleteShipment
-     */
-    deleteShipmentUsingDELETE(requestParameters: DeleteShipmentUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * deleteShipmentsOfOrder
-     * @summary deleteShipmentsOfOrder
-     * @param {string} orderId orderId
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    deleteShipmentsOfOrderUsingDELETERaw(requestParameters: DeleteShipmentsOfOrderUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     * deleteShipmentsOfOrder
-     * deleteShipmentsOfOrder
-     */
-    deleteShipmentsOfOrderUsingDELETE(requestParameters: DeleteShipmentsOfOrderUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * destinationUpdate
-     * @summary destinationUpdate
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {FulfillmentAPIProductionProfileDestination} destinationDto destinationDto
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    destinationUpdateUsingPUTRaw(requestParameters: DestinationUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * destinationUpdate
-     * destinationUpdate
-     */
-    destinationUpdateUsingPUT(requestParameters: DestinationUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * execute
-     * @summary execute
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {string} taskName taskName
-     * @param {number} xVolTenant 
-     * @param {TaskComplete} taskCompleteDto taskCompleteDto
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    executeUsingPUTRaw(requestParameters: ExecuteUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * execute
-     * execute
-     */
-    executeUsingPUT(requestParameters: ExecuteUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * fulfillShipment
-     * @summary fulfillShipment
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    fulfillShipmentUsingPUTRaw(requestParameters: FulfillShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * fulfillShipment
-     * fulfillShipment
-     */
-    fulfillShipmentUsingPUT(requestParameters: FulfillShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * getLocationSummaryReport
-     * @summary getLocationSummaryReport
-     * @param {Array<string>} locationCodes locationCodes
-     * @param {string} startDateTime startDateTime
-     * @param {number} xVolTenant 
-     * @param {boolean} [bypassSearchIndex] bypassSearchIndex
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    getLocationSummaryReportUsingGETRaw(requestParameters: GetLocationSummaryReportUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfLocationSummary>>;
-
-    /**
-     * getLocationSummaryReport
-     * getLocationSummaryReport
-     */
-    getLocationSummaryReportUsingGET(requestParameters: GetLocationSummaryReportUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfLocationSummary>;
-
-    /**
-     * getShipmentStepCountByShipmentType
-     * @summary getShipmentStepCountByShipmentType
-     * @param {string} shipmentType shipmentType
-     * @param {number} xVolTenant 
-     * @param {Array<string>} [assignedLocations] assignedLocations
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    getShipmentStepCountByShipmentTypeUsingGETRaw(requestParameters: GetShipmentStepCountByShipmentTypeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfDashboardResponse>>;
-
-    /**
-     * getShipmentStepCountByShipmentType
-     * getShipmentStepCountByShipmentType
-     */
-    getShipmentStepCountByShipmentTypeUsingGET(requestParameters: GetShipmentStepCountByShipmentTypeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfDashboardResponse>;
-
-    /**
-     * getShipment
-     * @summary getShipment
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    getShipmentUsingGETRaw(requestParameters: GetShipmentUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * getShipment
-     * getShipment
-     */
-    getShipmentUsingGET(requestParameters: GetShipmentUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * getShipments
-     * @summary getShipments
-     * @param {number} xVolTenant 
-     * @param {boolean} [bypassSearchIndex] 
-     * @param {string} [filter] 
-     * @param {boolean} [isLate] 
-     * @param {number} [page] 
-     * @param {number} [pageSize] 
-     * @param {string} [quickSearch] 
-     * @param {string} [sort] 
-     * @param {string} [workflowTaskName] 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    getShipmentsUsingGETRaw(requestParameters: GetShipmentsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PagedModelOfEntityModelOfShipment>>;
-
-    /**
-     * getShipments
-     * getShipments
-     */
-    getShipmentsUsingGET(requestParameters: GetShipmentsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PagedModelOfEntityModelOfShipment>;
-
-    /**
-     * getTasks
-     * @summary getTasks
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    getTasksUsingGETRaw(requestParameters: GetTasksUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfTask>>;
-
-    /**
-     * getTasks
-     * getTasks
-     */
-    getTasksUsingGET(requestParameters: GetTasksUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfTask>;
-
-    /**
-     * itemsReadyForPrep
-     * @summary itemsReadyForPrep
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {ReadyForPrepItemsRequest} readyForPrepItemsRequestDto readyForPrepItemsRequestDto
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    itemsReadyForPrepUsingPOSTRaw(requestParameters: ItemsReadyForPrepUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * itemsReadyForPrep
-     * itemsReadyForPrep
-     */
-    itemsReadyForPrepUsingPOST(requestParameters: ItemsReadyForPrepUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * newShipment
-     * @summary newShipment
-     * @param {number} xVolTenant 
-     * @param {FulfillmentAPIProductionProfileShipment} newShipment newShipment
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    newShipmentUsingPOSTRaw(requestParameters: NewShipmentUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * newShipment
-     * newShipment
-     */
-    newShipmentUsingPOST(requestParameters: NewShipmentUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * newShipments
-     * @summary newShipments
-     * @param {number} xVolTenant 
-     * @param {Array<FulfillmentAPIProductionProfileShipment>} newShipments newShipments
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    newShipmentsUsingPOSTRaw(requestParameters: NewShipmentsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfEntityModelOfShipment>>;
-
-    /**
-     * newShipments
-     * newShipments
-     */
-    newShipmentsUsingPOST(requestParameters: NewShipmentsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfEntityModelOfShipment>;
-
-    /**
-     * pickupItems
-     * @summary pickupItems
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {PickupItemsRequest} pickupItemsRequestDto pickupItemsRequestDto
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    pickupItemsUsingPOSTRaw(requestParameters: PickupItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * pickupItems
-     * pickupItems
-     */
-    pickupItemsUsingPOST(requestParameters: PickupItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * reassignItems
-     * @summary reassignItems
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {ReassignItemsRequest} reassignItemsRequestDto reassignItemsRequestDto
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    reassignItemsUsingPUTRaw(requestParameters: ReassignItemsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * reassignItems
-     * reassignItems
-     */
-    reassignItemsUsingPUT(requestParameters: ReassignItemsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * reassignShipment
-     * @summary reassignShipment
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {ReassignShipment} reassignShipmentRequestDto reassignShipmentRequestDto
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    reassignShipmentUsingPUTRaw(requestParameters: ReassignShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * reassignShipment
-     * reassignShipment
-     */
-    reassignShipmentUsingPUT(requestParameters: ReassignShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * receiveTransfer
-     * @summary receiveTransfer
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    receiveTransferUsingPUTRaw(requestParameters: ReceiveTransferUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * receiveTransfer
-     * receiveTransfer
-     */
-    receiveTransferUsingPUT(requestParameters: ReceiveTransferUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * refreshShipment
-     * @summary refreshShipment
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {string} [ifMatch] If-Match
-     * @param {boolean} [shouldLog] shouldLog
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    refreshShipmentUsingPUTRaw(requestParameters: RefreshShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * refreshShipment
-     * refreshShipment
-     */
-    refreshShipmentUsingPUT(requestParameters: RefreshShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * rejectItems
-     * @summary rejectItems
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {RejectItemsRequest} rejectItemsRequestDto rejectItemsRequestDto
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    rejectItemsUsingPUTRaw(requestParameters: RejectItemsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * rejectItems
-     * rejectItems
-     */
-    rejectItemsUsingPUT(requestParameters: RejectItemsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * rejectShipment
-     * @summary rejectShipment
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {RejectShipment} rejectShipmentRequestDto rejectShipmentRequestDto
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    rejectShipmentUsingPUTRaw(requestParameters: RejectShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * rejectShipment
-     * rejectShipment
-     */
-    rejectShipmentUsingPUT(requestParameters: RejectShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * renderOrderSummary
-     * @summary renderOrderSummary
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    renderOrderSummaryUsingGET1Raw(requestParameters: RenderOrderSummaryUsingGET1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>>;
-
-    /**
-     * renderOrderSummary
-     * renderOrderSummary
-     */
-    renderOrderSummaryUsingGET1(requestParameters: RenderOrderSummaryUsingGET1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent>;
-
-    /**
-     * renderPackingSlip
-     * @summary renderPackingSlip
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    renderPackingSlipUsingGETRaw(requestParameters: RenderPackingSlipUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>>;
-
-    /**
-     * renderPackingSlip
-     * renderPackingSlip
-     */
-    renderPackingSlipUsingGET(requestParameters: RenderPackingSlipUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent>;
-
-    /**
-     * replaceShipment
-     * @summary replaceShipment
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {FulfillmentAPIProductionProfileShipment} newShipment newShipment
-     * @param {string} [ifMatch] If-Match
-     * @param {Array<string>} [updateFields] updateFields
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    replaceShipmentUsingPUTRaw(requestParameters: ReplaceShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * replaceShipment
-     * replaceShipment
-     */
-    replaceShipmentUsingPUT(requestParameters: ReplaceShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * resendItemEmail
-     * @summary resendItemEmail
-     * @param {number} lineId lineId
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    resendItemEmailUsingPUTRaw(requestParameters: ResendItemEmailUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     * resendItemEmail
-     * resendItemEmail
-     */
-    resendItemEmailUsingPUT(requestParameters: ResendItemEmailUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * resendShipmentEmail
-     * @summary resendShipmentEmail
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    resendShipmentEmailUsingPUTRaw(requestParameters: ResendShipmentEmailUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     * resendShipmentEmail
-     * resendShipmentEmail
-     */
-    resendShipmentEmailUsingPUT(requestParameters: ResendShipmentEmailUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * retryFulfillingShipment
-     * @summary retryFulfillingShipment
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    retryFulfillingShipmentUsingPUTRaw(requestParameters: RetryFulfillingShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * retryFulfillingShipment
-     * retryFulfillingShipment
-     */
-    retryFulfillingShipmentUsingPUT(requestParameters: RetryFulfillingShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * revert
-     * @summary revert
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {string} taskName taskName
-     * @param {number} xVolTenant 
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    revertUsingPUTRaw(requestParameters: RevertUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * revert
-     * revert
-     */
-    revertUsingPUT(requestParameters: RevertUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * searchAndReceiveTransfer
-     * @summary searchAndReceiveTransfer
-     * @param {string} search search
-     * @param {number} xVolTenant 
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    searchAndReceiveTransferUsingPUTRaw(requestParameters: SearchAndReceiveTransferUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * searchAndReceiveTransfer
-     * searchAndReceiveTransfer
-     */
-    searchAndReceiveTransferUsingPUT(requestParameters: SearchAndReceiveTransferUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * searchReceivableShipment
-     * @summary searchReceivableShipment
-     * @param {string} search search
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    searchReceivableShipmentUsingGETRaw(requestParameters: SearchReceivableShipmentUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * searchReceivableShipment
-     * searchReceivableShipment
-     */
-    searchReceivableShipmentUsingGET(requestParameters: SearchReceivableShipmentUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * skipTask
-     * @summary skipTask
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {string} taskName taskName
-     * @param {number} xVolTenant 
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    skipTaskUsingPUTRaw(requestParameters: SkipTaskUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * skipTask
-     * skipTask
-     */
-    skipTaskUsingPUT(requestParameters: SkipTaskUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * transferItems
-     * @summary transferItems
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {TransferItemsRequest} transferItemsRequestDto transferItemsRequestDto
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    transferItemsUsingPUTRaw(requestParameters: TransferItemsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * transferItems
-     * transferItems
-     */
-    transferItemsUsingPUT(requestParameters: TransferItemsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * transferShipment
-     * @summary transferShipment
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {TransferShipment} transferShipmentRequestDto transferShipmentRequestDto
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    transferShipmentUsingPUTRaw(requestParameters: TransferShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * transferShipment
-     * transferShipment
-     */
-    transferShipmentUsingPUT(requestParameters: TransferShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * updateFulfillmentFields
-     * @summary updateFulfillmentFields
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {Array<FulfillmentAPIProductionProfileItem>} items items
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    updateFulfillmentFieldsUsingPUTRaw(requestParameters: UpdateFulfillmentFieldsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * updateFulfillmentFields
-     * updateFulfillmentFields
-     */
-    updateFulfillmentFieldsUsingPUT(requestParameters: UpdateFulfillmentFieldsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * updateGiftCardInfo
-     * @summary updateGiftCardInfo
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {GiftCardInfoRequest} giftCardInfoRequestDto giftCardInfoRequestDto
-     * @param {string} [ifMatch] If-Match
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    updateGiftCardInfoUsingPUTRaw(requestParameters: UpdateGiftCardInfoUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
-
-    /**
-     * updateGiftCardInfo
-     * updateGiftCardInfo
-     */
-    updateGiftCardInfoUsingPUT(requestParameters: UpdateGiftCardInfoUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
-
-    /**
-     * workflowDefinitionImage
-     * @summary workflowDefinitionImage
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    workflowDefinitionImageUsingGETRaw(requestParameters: WorkflowDefinitionImageUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
-
-    /**
-     * workflowDefinitionImage
-     * workflowDefinitionImage
-     */
-    workflowDefinitionImageUsingGET(requestParameters: WorkflowDefinitionImageUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
-
-    /**
-     * workflowInstanceImage
-     * @summary workflowInstanceImage
-     * @param {number} shipmentNumber shipmentNumber
-     * @param {number} xVolTenant 
-     * @param {number} [xVolSite] 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ShipmentApiInterface
-     */
-    workflowInstanceImageUsingGETRaw(requestParameters: WorkflowInstanceImageUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
-
-    /**
-     * workflowInstanceImage
-     * workflowInstanceImage
-     */
-    workflowInstanceImageUsingGET(requestParameters: WorkflowInstanceImageUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
+* ShipmentApiService - interface
+* 
+* @export
+* @interface ShipmentApi
+*/
+export interface ShipmentApiService {
+    /**
+    * backorderItems
+    * @summary backorderItems
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {BackorderItemsRequest} backorderItemsRequestDto backorderItemsRequestDto
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    backorderItemsRaw(requestParameters: shipmentApiParams.BackorderItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * backorderItems
+    * backorderItems
+    */
+    backorderItems(requestParameters: shipmentApiParams.BackorderItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * backorderItemsUpdate
+    * @summary backorderItemsUpdate
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {BackorderItemsUpdateRequest} backorderItemsUpdateRequestDto backorderItemsUpdateRequestDto
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    backorderItemsUpdateRaw(requestParameters: shipmentApiParams.BackorderItemsUpdateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * backorderItemsUpdate
+    * backorderItemsUpdate
+    */
+    backorderItemsUpdate(requestParameters: shipmentApiParams.BackorderItemsUpdateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * backorderShipment
+    * @summary backorderShipment
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {BackorderShipmentRequest} backorderShipmentRequestDto backorderShipmentRequestDto
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    backorderShipmentRaw(requestParameters: shipmentApiParams.BackorderShipmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * backorderShipment
+    * backorderShipment
+    */
+    backorderShipment(requestParameters: shipmentApiParams.BackorderShipmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * cancelItems
+    * @summary cancelItems
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {CancelItemsRequest} cancelItemsRequestDto cancelItemsRequestDto
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    cancelItemsRaw(requestParameters: shipmentApiParams.CancelItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * cancelItems
+    * cancelItems
+    */
+    cancelItems(requestParameters: shipmentApiParams.CancelItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * cancelShipment
+    * @summary cancelShipment
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {CancelShipment} cancelShipmentRequestDto cancelShipmentRequestDto
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    cancelShipmentRaw(requestParameters: shipmentApiParams.CancelShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * cancelShipment
+    * cancelShipment
+    */
+    cancelShipment(requestParameters: shipmentApiParams.CancelShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * cancelShipments
+    * @summary cancelShipments
+    * @param {string} orderId orderId
+    * @param {number} xVolTenant 
+    * @param {CancelShipment} cancelShipmentRequestDto cancelShipmentRequestDto
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    cancelShipmentsRaw(requestParameters: shipmentApiParams.CancelShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfShipment>>;
+
+    /**
+    * cancelShipments
+    * cancelShipments
+    */
+    cancelShipments(requestParameters: shipmentApiParams.CancelShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfShipment>;
+
+    /**
+    * customerAtCurbside
+    * @summary customerAtCurbside
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {{ [key: string]: object; }} pickupInfo pickupInfo
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    customerAtCurbsideRaw(requestParameters: shipmentApiParams.CustomerAtCurbsideRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * customerAtCurbside
+    * customerAtCurbside
+    */
+    customerAtCurbside(requestParameters: shipmentApiParams.CustomerAtCurbsideRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * customerAtStore
+    * @summary customerAtStore
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    customerAtStoreRaw(requestParameters: shipmentApiParams.CustomerAtStoreRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * customerAtStore
+    * customerAtStore
+    */
+    customerAtStore(requestParameters: shipmentApiParams.CustomerAtStoreRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * customerCareItems
+    * @summary customerCareItems
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {RejectItemsRequest} rejectItemsRequestDto rejectItemsRequestDto
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    customerCareItemsRaw(requestParameters: shipmentApiParams.CustomerCareItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * customerCareItems
+    * customerCareItems
+    */
+    customerCareItems(requestParameters: shipmentApiParams.CustomerCareItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * customerCareShipment
+    * @summary customerCareShipment
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {RejectShipment} rejectShipmentRequestDto rejectShipmentRequestDto
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    customerCareShipmentRaw(requestParameters: shipmentApiParams.CustomerCareShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * customerCareShipment
+    * customerCareShipment
+    */
+    customerCareShipment(requestParameters: shipmentApiParams.CustomerCareShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * customerInTransit
+    * @summary customerInTransit
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    customerInTransitRaw(requestParameters: shipmentApiParams.CustomerInTransitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * customerInTransit
+    * customerInTransit
+    */
+    customerInTransit(requestParameters: shipmentApiParams.CustomerInTransitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * deleteShipment
+    * @summary deleteShipment
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    deleteShipmentRaw(requestParameters: shipmentApiParams.DeleteShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+    * deleteShipment
+    * deleteShipment
+    */
+    deleteShipment(requestParameters: shipmentApiParams.DeleteShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+    * deleteShipmentsOfOrder
+    * @summary deleteShipmentsOfOrder
+    * @param {string} orderId orderId
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    deleteShipmentsOfOrderRaw(requestParameters: shipmentApiParams.DeleteShipmentsOfOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+    * deleteShipmentsOfOrder
+    * deleteShipmentsOfOrder
+    */
+    deleteShipmentsOfOrder(requestParameters: shipmentApiParams.DeleteShipmentsOfOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+    * destinationUpdate
+    * @summary destinationUpdate
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {FulfillmentAPIProductionProfileDestination} destinationDto destinationDto
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    destinationUpdateRaw(requestParameters: shipmentApiParams.DestinationUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * destinationUpdate
+    * destinationUpdate
+    */
+    destinationUpdate(requestParameters: shipmentApiParams.DestinationUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * execute
+    * @summary execute
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {string} taskName taskName
+    * @param {number} xVolTenant 
+    * @param {TaskComplete} taskCompleteDto taskCompleteDto
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    executeRaw(requestParameters: shipmentApiParams.ExecuteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * execute
+    * execute
+    */
+    execute(requestParameters: shipmentApiParams.ExecuteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * fulfillShipment
+    * @summary fulfillShipment
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    fulfillShipmentRaw(requestParameters: shipmentApiParams.FulfillShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * fulfillShipment
+    * fulfillShipment
+    */
+    fulfillShipment(requestParameters: shipmentApiParams.FulfillShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * getLocationSummaryReport
+    * @summary getLocationSummaryReport
+    * @param {Array<string>} locationCodes locationCodes
+    * @param {string} startDateTime startDateTime
+    * @param {number} xVolTenant 
+    * @param {boolean} [bypassSearchIndex] bypassSearchIndex
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    getLocationSummaryReportRaw(requestParameters: shipmentApiParams.GetLocationSummaryReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfLocationSummary>>;
+
+    /**
+    * getLocationSummaryReport
+    * getLocationSummaryReport
+    */
+    getLocationSummaryReport(requestParameters: shipmentApiParams.GetLocationSummaryReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfLocationSummary>;
+
+    /**
+    * getShipment
+    * @summary getShipment
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    getShipmentRaw(requestParameters: shipmentApiParams.GetShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * getShipment
+    * getShipment
+    */
+    getShipment(requestParameters: shipmentApiParams.GetShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * getShipmentStepCountByShipmentType
+    * @summary getShipmentStepCountByShipmentType
+    * @param {string} shipmentType shipmentType
+    * @param {number} xVolTenant 
+    * @param {Array<string>} [assignedLocations] assignedLocations
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    getShipmentStepCountByShipmentTypeRaw(requestParameters: shipmentApiParams.GetShipmentStepCountByShipmentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfDashboardResponse>>;
+
+    /**
+    * getShipmentStepCountByShipmentType
+    * getShipmentStepCountByShipmentType
+    */
+    getShipmentStepCountByShipmentType(requestParameters: shipmentApiParams.GetShipmentStepCountByShipmentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfDashboardResponse>;
+
+    /**
+    * getShipments
+    * @summary getShipments
+    * @param {number} xVolTenant 
+    * @param {boolean} [bypassSearchIndex] 
+    * @param {string} [filter] 
+    * @param {boolean} [isLate] 
+    * @param {number} [page] 
+    * @param {number} [pageSize] 
+    * @param {string} [quickSearch] 
+    * @param {string} [sort] 
+    * @param {string} [workflowTaskName] 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    getShipmentsRaw(requestParameters: shipmentApiParams.GetShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PagedModelOfEntityModelOfShipment>>;
+
+    /**
+    * getShipments
+    * getShipments
+    */
+    getShipments(requestParameters: shipmentApiParams.GetShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PagedModelOfEntityModelOfShipment>;
+
+    /**
+    * getTasks
+    * @summary getTasks
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    getTasksRaw(requestParameters: shipmentApiParams.GetTasksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfTask>>;
+
+    /**
+    * getTasks
+    * getTasks
+    */
+    getTasks(requestParameters: shipmentApiParams.GetTasksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfTask>;
+
+    /**
+    * itemsReadyForPrep
+    * @summary itemsReadyForPrep
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {ReadyForPrepItemsRequest} readyForPrepItemsRequestDto readyForPrepItemsRequestDto
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    itemsReadyForPrepRaw(requestParameters: shipmentApiParams.ItemsReadyForPrepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * itemsReadyForPrep
+    * itemsReadyForPrep
+    */
+    itemsReadyForPrep(requestParameters: shipmentApiParams.ItemsReadyForPrepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * newShipment
+    * @summary newShipment
+    * @param {number} xVolTenant 
+    * @param {FulfillmentAPIProductionProfileShipment} newShipment newShipment
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    newShipmentRaw(requestParameters: shipmentApiParams.NewShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * newShipment
+    * newShipment
+    */
+    newShipment(requestParameters: shipmentApiParams.NewShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * newShipments
+    * @summary newShipments
+    * @param {number} xVolTenant 
+    * @param {Array<FulfillmentAPIProductionProfileShipment>} newShipments newShipments
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    newShipmentsRaw(requestParameters: shipmentApiParams.NewShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfEntityModelOfShipment>>;
+
+    /**
+    * newShipments
+    * newShipments
+    */
+    newShipments(requestParameters: shipmentApiParams.NewShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfEntityModelOfShipment>;
+
+    /**
+    * pickupItems
+    * @summary pickupItems
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {PickupItemsRequest} pickupItemsRequestDto pickupItemsRequestDto
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    pickupItemsRaw(requestParameters: shipmentApiParams.PickupItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * pickupItems
+    * pickupItems
+    */
+    pickupItems(requestParameters: shipmentApiParams.PickupItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * reassignItems
+    * @summary reassignItems
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {ReassignItemsRequest} reassignItemsRequestDto reassignItemsRequestDto
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    reassignItemsRaw(requestParameters: shipmentApiParams.ReassignItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * reassignItems
+    * reassignItems
+    */
+    reassignItems(requestParameters: shipmentApiParams.ReassignItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * reassignShipment
+    * @summary reassignShipment
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {ReassignShipment} reassignShipmentRequestDto reassignShipmentRequestDto
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    reassignShipmentRaw(requestParameters: shipmentApiParams.ReassignShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * reassignShipment
+    * reassignShipment
+    */
+    reassignShipment(requestParameters: shipmentApiParams.ReassignShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * receiveTransfer
+    * @summary receiveTransfer
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    receiveTransferRaw(requestParameters: shipmentApiParams.ReceiveTransferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * receiveTransfer
+    * receiveTransfer
+    */
+    receiveTransfer(requestParameters: shipmentApiParams.ReceiveTransferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * refreshShipment
+    * @summary refreshShipment
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {string} [ifMatch] If-Match
+    * @param {boolean} [shouldLog] shouldLog
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    refreshShipmentRaw(requestParameters: shipmentApiParams.RefreshShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * refreshShipment
+    * refreshShipment
+    */
+    refreshShipment(requestParameters: shipmentApiParams.RefreshShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * rejectItems
+    * @summary rejectItems
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {RejectItemsRequest} rejectItemsRequestDto rejectItemsRequestDto
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    rejectItemsRaw(requestParameters: shipmentApiParams.RejectItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * rejectItems
+    * rejectItems
+    */
+    rejectItems(requestParameters: shipmentApiParams.RejectItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * rejectShipment
+    * @summary rejectShipment
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {RejectShipment} rejectShipmentRequestDto rejectShipmentRequestDto
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    rejectShipmentRaw(requestParameters: shipmentApiParams.RejectShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * rejectShipment
+    * rejectShipment
+    */
+    rejectShipment(requestParameters: shipmentApiParams.RejectShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * renderOrderSummary
+    * @summary renderOrderSummary
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    renderOrderSummary1Raw(requestParameters: shipmentApiParams.RenderOrderSummary1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>>;
+
+    /**
+    * renderOrderSummary
+    * renderOrderSummary
+    */
+    renderOrderSummary1(requestParameters: shipmentApiParams.RenderOrderSummary1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent>;
+
+    /**
+    * renderPackingSlip
+    * @summary renderPackingSlip
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    renderPackingSlipRaw(requestParameters: shipmentApiParams.RenderPackingSlipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>>;
+
+    /**
+    * renderPackingSlip
+    * renderPackingSlip
+    */
+    renderPackingSlip(requestParameters: shipmentApiParams.RenderPackingSlipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent>;
+
+    /**
+    * replaceShipment
+    * @summary replaceShipment
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {FulfillmentAPIProductionProfileShipment} newShipment newShipment
+    * @param {string} [ifMatch] If-Match
+    * @param {Array<string>} [updateFields] updateFields
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    replaceShipmentRaw(requestParameters: shipmentApiParams.ReplaceShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * replaceShipment
+    * replaceShipment
+    */
+    replaceShipment(requestParameters: shipmentApiParams.ReplaceShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * resendItemEmail
+    * @summary resendItemEmail
+    * @param {number} lineId lineId
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    resendItemEmailRaw(requestParameters: shipmentApiParams.ResendItemEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+    * resendItemEmail
+    * resendItemEmail
+    */
+    resendItemEmail(requestParameters: shipmentApiParams.ResendItemEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+    * resendShipmentEmail
+    * @summary resendShipmentEmail
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    resendShipmentEmailRaw(requestParameters: shipmentApiParams.ResendShipmentEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+    * resendShipmentEmail
+    * resendShipmentEmail
+    */
+    resendShipmentEmail(requestParameters: shipmentApiParams.ResendShipmentEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+    * retryFulfillingShipment
+    * @summary retryFulfillingShipment
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    retryFulfillingShipmentRaw(requestParameters: shipmentApiParams.RetryFulfillingShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * retryFulfillingShipment
+    * retryFulfillingShipment
+    */
+    retryFulfillingShipment(requestParameters: shipmentApiParams.RetryFulfillingShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * revert
+    * @summary revert
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {string} taskName taskName
+    * @param {number} xVolTenant 
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    revertRaw(requestParameters: shipmentApiParams.RevertRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * revert
+    * revert
+    */
+    revert(requestParameters: shipmentApiParams.RevertRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * searchAndReceiveTransfer
+    * @summary searchAndReceiveTransfer
+    * @param {string} search search
+    * @param {number} xVolTenant 
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    searchAndReceiveTransferRaw(requestParameters: shipmentApiParams.SearchAndReceiveTransferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * searchAndReceiveTransfer
+    * searchAndReceiveTransfer
+    */
+    searchAndReceiveTransfer(requestParameters: shipmentApiParams.SearchAndReceiveTransferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * searchReceivableShipment
+    * @summary searchReceivableShipment
+    * @param {string} search search
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    searchReceivableShipmentRaw(requestParameters: shipmentApiParams.SearchReceivableShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * searchReceivableShipment
+    * searchReceivableShipment
+    */
+    searchReceivableShipment(requestParameters: shipmentApiParams.SearchReceivableShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * skipTask
+    * @summary skipTask
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {string} taskName taskName
+    * @param {number} xVolTenant 
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    skipTaskRaw(requestParameters: shipmentApiParams.SkipTaskRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * skipTask
+    * skipTask
+    */
+    skipTask(requestParameters: shipmentApiParams.SkipTaskRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * transferItems
+    * @summary transferItems
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {TransferItemsRequest} transferItemsRequestDto transferItemsRequestDto
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    transferItemsRaw(requestParameters: shipmentApiParams.TransferItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * transferItems
+    * transferItems
+    */
+    transferItems(requestParameters: shipmentApiParams.TransferItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * transferShipment
+    * @summary transferShipment
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {TransferShipment} transferShipmentRequestDto transferShipmentRequestDto
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    transferShipmentRaw(requestParameters: shipmentApiParams.TransferShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * transferShipment
+    * transferShipment
+    */
+    transferShipment(requestParameters: shipmentApiParams.TransferShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * updateFulfillmentFields
+    * @summary updateFulfillmentFields
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {Array<FulfillmentAPIProductionProfileItem>} items items
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    updateFulfillmentFieldsRaw(requestParameters: shipmentApiParams.UpdateFulfillmentFieldsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * updateFulfillmentFields
+    * updateFulfillmentFields
+    */
+    updateFulfillmentFields(requestParameters: shipmentApiParams.UpdateFulfillmentFieldsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * updateGiftCardInfo
+    * @summary updateGiftCardInfo
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {GiftCardInfoRequest} giftCardInfoRequestDto giftCardInfoRequestDto
+    * @param {string} [ifMatch] If-Match
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    updateGiftCardInfoRaw(requestParameters: shipmentApiParams.UpdateGiftCardInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+
+    /**
+    * updateGiftCardInfo
+    * updateGiftCardInfo
+    */
+    updateGiftCardInfo(requestParameters: shipmentApiParams.UpdateGiftCardInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+
+    /**
+    * workflowDefinitionImage
+    * @summary workflowDefinitionImage
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    workflowDefinitionImageRaw(requestParameters: shipmentApiParams.WorkflowDefinitionImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
+
+    /**
+    * workflowDefinitionImage
+    * workflowDefinitionImage
+    */
+    workflowDefinitionImage(requestParameters: shipmentApiParams.WorkflowDefinitionImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
+
+    /**
+    * workflowInstanceImage
+    * @summary workflowInstanceImage
+    * @param {number} shipmentNumber shipmentNumber
+    * @param {number} xVolTenant 
+    * @param {number} [xVolSite] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShipmentApiInterface
+    */
+    workflowInstanceImageRaw(requestParameters: shipmentApiParams.WorkflowInstanceImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
+
+    /**
+    * workflowInstanceImage
+    * workflowInstanceImage
+    */
+    workflowInstanceImage(requestParameters: shipmentApiParams.WorkflowInstanceImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
 
 }
+
 
 /**
  * 
  */
-export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface {
+export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
     }
     /**
-     * backorderItemsUpdate
-     * backorderItemsUpdate
-     */
-
-
-    async backorderItemsUpdateUsingPUTRaw(requestParameters: BackorderItemsUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
-        if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling backorderItemsUpdateUsingPUT.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling backorderItemsUpdateUsingPUT.');
-        }
-
-        if (requestParameters.backorderItemsUpdateRequestDto === null || requestParameters.backorderItemsUpdateRequestDto === undefined) {
-            throw new runtime.RequiredError('backorderItemsUpdateRequestDto','Required parameter requestParameters.backorderItemsUpdateRequestDto was null or undefined when calling backorderItemsUpdateUsingPUT.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
-            headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
-
-
-
-
-
-        await this.addAuthorizationHeaders(headerParameters)
-        
-        const response = await this.request({
-            path: `/commerce/shipments/{shipmentNumber}/backorderedItems`.replace(`{${"shipmentNumber"}}`, encodeURIComponent(String(requestParameters.shipmentNumber))),
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: requestParameters.backorderItemsUpdateRequestDto,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response);
-    }
-
-    /**
-     * backorderItemsUpdate
-     * backorderItemsUpdate
-     */
-    async backorderItemsUpdateUsingPUT(requestParameters: BackorderItemsUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.backorderItemsUpdateUsingPUTRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
      * backorderItems
      * backorderItems
      */
 
 
-    async backorderItemsUsingPOSTRaw(requestParameters: BackorderItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async backorderItemsRaw(requestParameters: shipmentApiParams.BackorderItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling backorderItemsUsingPOST.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling backorderItems.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling backorderItemsUsingPOST.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling backorderItems.');
         }
 
         if (requestParameters.backorderItemsRequestDto === null || requestParameters.backorderItemsRequestDto === undefined) {
-            throw new runtime.RequiredError('backorderItemsRequestDto','Required parameter requestParameters.backorderItemsRequestDto was null or undefined when calling backorderItemsUsingPOST.');
+            throw new runtime.RequiredError('backorderItemsRequestDto','Required parameter requestParameters.backorderItemsRequestDto was null or undefined when calling backorderItems.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -1550,8 +1346,71 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * backorderItems
      * backorderItems
      */
-    async backorderItemsUsingPOST(requestParameters: BackorderItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.backorderItemsUsingPOSTRaw(requestParameters, initOverrides);
+    async backorderItems(requestParameters: shipmentApiParams.BackorderItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.backorderItemsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * backorderItemsUpdate
+     * backorderItemsUpdate
+     */
+
+
+    async backorderItemsUpdateRaw(requestParameters: shipmentApiParams.BackorderItemsUpdateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+        if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling backorderItemsUpdate.');
+        }
+
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling backorderItemsUpdate.');
+        }
+
+        if (requestParameters.backorderItemsUpdateRequestDto === null || requestParameters.backorderItemsUpdateRequestDto === undefined) {
+            throw new runtime.RequiredError('backorderItemsUpdateRequestDto','Required parameter requestParameters.backorderItemsUpdateRequestDto was null or undefined when calling backorderItemsUpdate.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
+            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
+        }
+
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/shipments/{shipmentNumber}/backorderedItems`.replace(`{${"shipmentNumber"}}`, encodeURIComponent(String(requestParameters.shipmentNumber))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.backorderItemsUpdateRequestDto,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * backorderItemsUpdate
+     * backorderItemsUpdate
+     */
+    async backorderItemsUpdate(requestParameters: shipmentApiParams.BackorderItemsUpdateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.backorderItemsUpdateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1561,24 +1420,20 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async backorderShipmentUsingPOSTRaw(requestParameters: BackorderShipmentUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async backorderShipmentRaw(requestParameters: shipmentApiParams.BackorderShipmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling backorderShipmentUsingPOST.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling backorderShipment.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling backorderShipmentUsingPOST.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling backorderShipment.');
         }
 
         if (requestParameters.backorderShipmentRequestDto === null || requestParameters.backorderShipmentRequestDto === undefined) {
-            throw new runtime.RequiredError('backorderShipmentRequestDto','Required parameter requestParameters.backorderShipmentRequestDto was null or undefined when calling backorderShipmentUsingPOST.');
+            throw new runtime.RequiredError('backorderShipmentRequestDto','Required parameter requestParameters.backorderShipmentRequestDto was null or undefined when calling backorderShipment.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -1617,8 +1472,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * backorderShipment
      * backorderShipment
      */
-    async backorderShipmentUsingPOST(requestParameters: BackorderShipmentUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.backorderShipmentUsingPOSTRaw(requestParameters, initOverrides);
+    async backorderShipment(requestParameters: shipmentApiParams.BackorderShipmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.backorderShipmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1628,24 +1483,20 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async cancelItemsUsingPUTRaw(requestParameters: CancelItemsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async cancelItemsRaw(requestParameters: shipmentApiParams.CancelItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling cancelItemsUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling cancelItems.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling cancelItemsUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling cancelItems.');
         }
 
         if (requestParameters.cancelItemsRequestDto === null || requestParameters.cancelItemsRequestDto === undefined) {
-            throw new runtime.RequiredError('cancelItemsRequestDto','Required parameter requestParameters.cancelItemsRequestDto was null or undefined when calling cancelItemsUsingPUT.');
+            throw new runtime.RequiredError('cancelItemsRequestDto','Required parameter requestParameters.cancelItemsRequestDto was null or undefined when calling cancelItems.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -1684,8 +1535,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * cancelItems
      * cancelItems
      */
-    async cancelItemsUsingPUT(requestParameters: CancelItemsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.cancelItemsUsingPUTRaw(requestParameters, initOverrides);
+    async cancelItems(requestParameters: shipmentApiParams.CancelItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.cancelItemsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1695,24 +1546,20 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async cancelShipmentUsingPUTRaw(requestParameters: CancelShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async cancelShipmentRaw(requestParameters: shipmentApiParams.CancelShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling cancelShipmentUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling cancelShipment.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling cancelShipmentUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling cancelShipment.');
         }
 
         if (requestParameters.cancelShipmentRequestDto === null || requestParameters.cancelShipmentRequestDto === undefined) {
-            throw new runtime.RequiredError('cancelShipmentRequestDto','Required parameter requestParameters.cancelShipmentRequestDto was null or undefined when calling cancelShipmentUsingPUT.');
+            throw new runtime.RequiredError('cancelShipmentRequestDto','Required parameter requestParameters.cancelShipmentRequestDto was null or undefined when calling cancelShipment.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -1751,8 +1598,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * cancelShipment
      * cancelShipment
      */
-    async cancelShipmentUsingPUT(requestParameters: CancelShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.cancelShipmentUsingPUTRaw(requestParameters, initOverrides);
+    async cancelShipment(requestParameters: shipmentApiParams.CancelShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.cancelShipmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1762,24 +1609,20 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async cancelShipmentsUsingPUTRaw(requestParameters: CancelShipmentsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfShipment>> {
+    async cancelShipmentsRaw(requestParameters: shipmentApiParams.CancelShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfShipment>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
-            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling cancelShipmentsUsingPUT.');
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling cancelShipments.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling cancelShipmentsUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling cancelShipments.');
         }
 
         if (requestParameters.cancelShipmentRequestDto === null || requestParameters.cancelShipmentRequestDto === undefined) {
-            throw new runtime.RequiredError('cancelShipmentRequestDto','Required parameter requestParameters.cancelShipmentRequestDto was null or undefined when calling cancelShipmentsUsingPUT.');
+            throw new runtime.RequiredError('cancelShipmentRequestDto','Required parameter requestParameters.cancelShipmentRequestDto was null or undefined when calling cancelShipments.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -1814,8 +1657,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * cancelShipments
      * cancelShipments
      */
-    async cancelShipmentsUsingPUT(requestParameters: CancelShipmentsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfShipment> {
-        const response = await this.cancelShipmentsUsingPUTRaw(requestParameters, initOverrides);
+    async cancelShipments(requestParameters: shipmentApiParams.CancelShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfShipment> {
+        const response = await this.cancelShipmentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1825,24 +1668,20 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async customerAtCurbsideUsingPUTRaw(requestParameters: CustomerAtCurbsideUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async customerAtCurbsideRaw(requestParameters: shipmentApiParams.CustomerAtCurbsideRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling customerAtCurbsideUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling customerAtCurbside.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling customerAtCurbsideUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling customerAtCurbside.');
         }
 
         if (requestParameters.pickupInfo === null || requestParameters.pickupInfo === undefined) {
-            throw new runtime.RequiredError('pickupInfo','Required parameter requestParameters.pickupInfo was null or undefined when calling customerAtCurbsideUsingPUT.');
+            throw new runtime.RequiredError('pickupInfo','Required parameter requestParameters.pickupInfo was null or undefined when calling customerAtCurbside.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -1881,8 +1720,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * customerAtCurbside
      * customerAtCurbside
      */
-    async customerAtCurbsideUsingPUT(requestParameters: CustomerAtCurbsideUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.customerAtCurbsideUsingPUTRaw(requestParameters, initOverrides);
+    async customerAtCurbside(requestParameters: shipmentApiParams.CustomerAtCurbsideRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.customerAtCurbsideRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1892,20 +1731,16 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async customerAtStoreUsingPUTRaw(requestParameters: CustomerAtStoreUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async customerAtStoreRaw(requestParameters: shipmentApiParams.CustomerAtStoreRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling customerAtStoreUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling customerAtStore.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling customerAtStoreUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling customerAtStore.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -1941,8 +1776,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * customerAtStore
      * customerAtStore
      */
-    async customerAtStoreUsingPUT(requestParameters: CustomerAtStoreUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.customerAtStoreUsingPUTRaw(requestParameters, initOverrides);
+    async customerAtStore(requestParameters: shipmentApiParams.CustomerAtStoreRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.customerAtStoreRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1952,24 +1787,20 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async customerCareItemsUsingPOSTRaw(requestParameters: CustomerCareItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async customerCareItemsRaw(requestParameters: shipmentApiParams.CustomerCareItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling customerCareItemsUsingPOST.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling customerCareItems.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling customerCareItemsUsingPOST.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling customerCareItems.');
         }
 
         if (requestParameters.rejectItemsRequestDto === null || requestParameters.rejectItemsRequestDto === undefined) {
-            throw new runtime.RequiredError('rejectItemsRequestDto','Required parameter requestParameters.rejectItemsRequestDto was null or undefined when calling customerCareItemsUsingPOST.');
+            throw new runtime.RequiredError('rejectItemsRequestDto','Required parameter requestParameters.rejectItemsRequestDto was null or undefined when calling customerCareItems.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -2008,8 +1839,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * customerCareItems
      * customerCareItems
      */
-    async customerCareItemsUsingPOST(requestParameters: CustomerCareItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.customerCareItemsUsingPOSTRaw(requestParameters, initOverrides);
+    async customerCareItems(requestParameters: shipmentApiParams.CustomerCareItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.customerCareItemsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2019,24 +1850,20 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async customerCareShipmentUsingPUTRaw(requestParameters: CustomerCareShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async customerCareShipmentRaw(requestParameters: shipmentApiParams.CustomerCareShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling customerCareShipmentUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling customerCareShipment.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling customerCareShipmentUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling customerCareShipment.');
         }
 
         if (requestParameters.rejectShipmentRequestDto === null || requestParameters.rejectShipmentRequestDto === undefined) {
-            throw new runtime.RequiredError('rejectShipmentRequestDto','Required parameter requestParameters.rejectShipmentRequestDto was null or undefined when calling customerCareShipmentUsingPUT.');
+            throw new runtime.RequiredError('rejectShipmentRequestDto','Required parameter requestParameters.rejectShipmentRequestDto was null or undefined when calling customerCareShipment.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -2075,8 +1902,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * customerCareShipment
      * customerCareShipment
      */
-    async customerCareShipmentUsingPUT(requestParameters: CustomerCareShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.customerCareShipmentUsingPUTRaw(requestParameters, initOverrides);
+    async customerCareShipment(requestParameters: shipmentApiParams.CustomerCareShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.customerCareShipmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2086,20 +1913,16 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async customerInTransitUsingPUTRaw(requestParameters: CustomerInTransitUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async customerInTransitRaw(requestParameters: shipmentApiParams.CustomerInTransitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling customerInTransitUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling customerInTransit.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling customerInTransitUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling customerInTransit.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -2135,8 +1958,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * customerInTransit
      * customerInTransit
      */
-    async customerInTransitUsingPUT(requestParameters: CustomerInTransitUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.customerInTransitUsingPUTRaw(requestParameters, initOverrides);
+    async customerInTransit(requestParameters: shipmentApiParams.CustomerInTransitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.customerInTransitRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2146,13 +1969,13 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async deleteShipmentUsingDELETERaw(requestParameters: DeleteShipmentUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteShipmentRaw(requestParameters: shipmentApiParams.DeleteShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling deleteShipmentUsingDELETE.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling deleteShipment.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteShipmentUsingDELETE.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteShipment.');
         }
 
         const queryParameters: any = {};
@@ -2191,8 +2014,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * deleteShipment
      * deleteShipment
      */
-    async deleteShipmentUsingDELETE(requestParameters: DeleteShipmentUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.deleteShipmentUsingDELETERaw(requestParameters, initOverrides);
+    async deleteShipment(requestParameters: shipmentApiParams.DeleteShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteShipmentRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -2201,13 +2024,13 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async deleteShipmentsOfOrderUsingDELETERaw(requestParameters: DeleteShipmentsOfOrderUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteShipmentsOfOrderRaw(requestParameters: shipmentApiParams.DeleteShipmentsOfOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
-            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling deleteShipmentsOfOrderUsingDELETE.');
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling deleteShipmentsOfOrder.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteShipmentsOfOrderUsingDELETE.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteShipmentsOfOrder.');
         }
 
         const queryParameters: any = {};
@@ -2242,8 +2065,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * deleteShipmentsOfOrder
      * deleteShipmentsOfOrder
      */
-    async deleteShipmentsOfOrderUsingDELETE(requestParameters: DeleteShipmentsOfOrderUsingDELETERequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.deleteShipmentsOfOrderUsingDELETERaw(requestParameters, initOverrides);
+    async deleteShipmentsOfOrder(requestParameters: shipmentApiParams.DeleteShipmentsOfOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteShipmentsOfOrderRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -2252,24 +2075,20 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async destinationUpdateUsingPUTRaw(requestParameters: DestinationUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async destinationUpdateRaw(requestParameters: shipmentApiParams.DestinationUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling destinationUpdateUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling destinationUpdate.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling destinationUpdateUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling destinationUpdate.');
         }
 
         if (requestParameters.destinationDto === null || requestParameters.destinationDto === undefined) {
-            throw new runtime.RequiredError('destinationDto','Required parameter requestParameters.destinationDto was null or undefined when calling destinationUpdateUsingPUT.');
+            throw new runtime.RequiredError('destinationDto','Required parameter requestParameters.destinationDto was null or undefined when calling destinationUpdate.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -2308,8 +2127,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * destinationUpdate
      * destinationUpdate
      */
-    async destinationUpdateUsingPUT(requestParameters: DestinationUpdateUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.destinationUpdateUsingPUTRaw(requestParameters, initOverrides);
+    async destinationUpdate(requestParameters: shipmentApiParams.DestinationUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.destinationUpdateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2319,28 +2138,24 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async executeUsingPUTRaw(requestParameters: ExecuteUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async executeRaw(requestParameters: shipmentApiParams.ExecuteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling executeUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling execute.');
         }
 
         if (requestParameters.taskName === null || requestParameters.taskName === undefined) {
-            throw new runtime.RequiredError('taskName','Required parameter requestParameters.taskName was null or undefined when calling executeUsingPUT.');
+            throw new runtime.RequiredError('taskName','Required parameter requestParameters.taskName was null or undefined when calling execute.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling executeUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling execute.');
         }
 
         if (requestParameters.taskCompleteDto === null || requestParameters.taskCompleteDto === undefined) {
-            throw new runtime.RequiredError('taskCompleteDto','Required parameter requestParameters.taskCompleteDto was null or undefined when calling executeUsingPUT.');
+            throw new runtime.RequiredError('taskCompleteDto','Required parameter requestParameters.taskCompleteDto was null or undefined when calling execute.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -2379,8 +2194,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * execute
      * execute
      */
-    async executeUsingPUT(requestParameters: ExecuteUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.executeUsingPUTRaw(requestParameters, initOverrides);
+    async execute(requestParameters: shipmentApiParams.ExecuteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.executeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2390,20 +2205,16 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async fulfillShipmentUsingPUTRaw(requestParameters: FulfillShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async fulfillShipmentRaw(requestParameters: shipmentApiParams.FulfillShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling fulfillShipmentUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling fulfillShipment.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling fulfillShipmentUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling fulfillShipment.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -2439,8 +2250,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * fulfillShipment
      * fulfillShipment
      */
-    async fulfillShipmentUsingPUT(requestParameters: FulfillShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.fulfillShipmentUsingPUTRaw(requestParameters, initOverrides);
+    async fulfillShipment(requestParameters: shipmentApiParams.FulfillShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.fulfillShipmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2450,17 +2261,17 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async getLocationSummaryReportUsingGETRaw(requestParameters: GetLocationSummaryReportUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfLocationSummary>> {
+    async getLocationSummaryReportRaw(requestParameters: shipmentApiParams.GetLocationSummaryReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfLocationSummary>> {
         if (requestParameters.locationCodes === null || requestParameters.locationCodes === undefined) {
-            throw new runtime.RequiredError('locationCodes','Required parameter requestParameters.locationCodes was null or undefined when calling getLocationSummaryReportUsingGET.');
+            throw new runtime.RequiredError('locationCodes','Required parameter requestParameters.locationCodes was null or undefined when calling getLocationSummaryReport.');
         }
 
         if (requestParameters.startDateTime === null || requestParameters.startDateTime === undefined) {
-            throw new runtime.RequiredError('startDateTime','Required parameter requestParameters.startDateTime was null or undefined when calling getLocationSummaryReportUsingGET.');
+            throw new runtime.RequiredError('startDateTime','Required parameter requestParameters.startDateTime was null or undefined when calling getLocationSummaryReport.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getLocationSummaryReportUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getLocationSummaryReport.');
         }
 
         const queryParameters: any = {};
@@ -2475,10 +2286,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
 
         if (requestParameters.startDateTime !== undefined) {
             queryParameters['startDateTime'] = requestParameters.startDateTime;
-        }
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -2511,8 +2318,60 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * getLocationSummaryReport
      * getLocationSummaryReport
      */
-    async getLocationSummaryReportUsingGET(requestParameters: GetLocationSummaryReportUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfLocationSummary> {
-        const response = await this.getLocationSummaryReportUsingGETRaw(requestParameters, initOverrides);
+    async getLocationSummaryReport(requestParameters: shipmentApiParams.GetLocationSummaryReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfLocationSummary> {
+        const response = await this.getLocationSummaryReportRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * getShipment
+     * getShipment
+     */
+
+
+    async getShipmentRaw(requestParameters: shipmentApiParams.GetShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+        if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getShipment.');
+        }
+
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipment.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
+            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
+        }
+
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/shipments/{shipmentNumber}`.replace(`{${"shipmentNumber"}}`, encodeURIComponent(String(requestParameters.shipmentNumber))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * getShipment
+     * getShipment
+     */
+    async getShipment(requestParameters: shipmentApiParams.GetShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.getShipmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2522,13 +2381,13 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async getShipmentStepCountByShipmentTypeUsingGETRaw(requestParameters: GetShipmentStepCountByShipmentTypeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfDashboardResponse>> {
+    async getShipmentStepCountByShipmentTypeRaw(requestParameters: shipmentApiParams.GetShipmentStepCountByShipmentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfDashboardResponse>> {
         if (requestParameters.shipmentType === null || requestParameters.shipmentType === undefined) {
-            throw new runtime.RequiredError('shipmentType','Required parameter requestParameters.shipmentType was null or undefined when calling getShipmentStepCountByShipmentTypeUsingGET.');
+            throw new runtime.RequiredError('shipmentType','Required parameter requestParameters.shipmentType was null or undefined when calling getShipmentStepCountByShipmentType.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipmentStepCountByShipmentTypeUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipmentStepCountByShipmentType.');
         }
 
         const queryParameters: any = {};
@@ -2539,10 +2398,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
 
         if (requestParameters.shipmentType !== undefined) {
             queryParameters['shipmentType'] = requestParameters.shipmentType;
-        }
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -2575,64 +2430,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * getShipmentStepCountByShipmentType
      * getShipmentStepCountByShipmentType
      */
-    async getShipmentStepCountByShipmentTypeUsingGET(requestParameters: GetShipmentStepCountByShipmentTypeUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfDashboardResponse> {
-        const response = await this.getShipmentStepCountByShipmentTypeUsingGETRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * getShipment
-     * getShipment
-     */
-
-
-    async getShipmentUsingGETRaw(requestParameters: GetShipmentUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
-        if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getShipmentUsingGET.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipmentUsingGET.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
-
-
-
-
-
-        await this.addAuthorizationHeaders(headerParameters)
-        
-        const response = await this.request({
-            path: `/commerce/shipments/{shipmentNumber}`.replace(`{${"shipmentNumber"}}`, encodeURIComponent(String(requestParameters.shipmentNumber))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response);
-    }
-
-    /**
-     * getShipment
-     * getShipment
-     */
-    async getShipmentUsingGET(requestParameters: GetShipmentUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.getShipmentUsingGETRaw(requestParameters, initOverrides);
+    async getShipmentStepCountByShipmentType(requestParameters: shipmentApiParams.GetShipmentStepCountByShipmentTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfDashboardResponse> {
+        const response = await this.getShipmentStepCountByShipmentTypeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2642,9 +2441,9 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async getShipmentsUsingGETRaw(requestParameters: GetShipmentsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PagedModelOfEntityModelOfShipment>> {
+    async getShipmentsRaw(requestParameters: shipmentApiParams.GetShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PagedModelOfEntityModelOfShipment>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipmentsUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipments.');
         }
 
         const queryParameters: any = {};
@@ -2681,10 +2480,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
             queryParameters['workflowTaskName'] = requestParameters.workflowTaskName;
         }
 
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
-
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
@@ -2715,8 +2510,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * getShipments
      * getShipments
      */
-    async getShipmentsUsingGET(requestParameters: GetShipmentsUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PagedModelOfEntityModelOfShipment> {
-        const response = await this.getShipmentsUsingGETRaw(requestParameters, initOverrides);
+    async getShipments(requestParameters: shipmentApiParams.GetShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PagedModelOfEntityModelOfShipment> {
+        const response = await this.getShipmentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2726,20 +2521,16 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async getTasksUsingGETRaw(requestParameters: GetTasksUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfTask>> {
+    async getTasksRaw(requestParameters: shipmentApiParams.GetTasksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfTask>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getTasksUsingGET.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getTasks.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getTasksUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getTasks.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -2771,8 +2562,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * getTasks
      * getTasks
      */
-    async getTasksUsingGET(requestParameters: GetTasksUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfTask> {
-        const response = await this.getTasksUsingGETRaw(requestParameters, initOverrides);
+    async getTasks(requestParameters: shipmentApiParams.GetTasksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfTask> {
+        const response = await this.getTasksRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2782,24 +2573,20 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async itemsReadyForPrepUsingPOSTRaw(requestParameters: ItemsReadyForPrepUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async itemsReadyForPrepRaw(requestParameters: shipmentApiParams.ItemsReadyForPrepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling itemsReadyForPrepUsingPOST.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling itemsReadyForPrep.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling itemsReadyForPrepUsingPOST.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling itemsReadyForPrep.');
         }
 
         if (requestParameters.readyForPrepItemsRequestDto === null || requestParameters.readyForPrepItemsRequestDto === undefined) {
-            throw new runtime.RequiredError('readyForPrepItemsRequestDto','Required parameter requestParameters.readyForPrepItemsRequestDto was null or undefined when calling itemsReadyForPrepUsingPOST.');
+            throw new runtime.RequiredError('readyForPrepItemsRequestDto','Required parameter requestParameters.readyForPrepItemsRequestDto was null or undefined when calling itemsReadyForPrep.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -2838,8 +2625,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * itemsReadyForPrep
      * itemsReadyForPrep
      */
-    async itemsReadyForPrepUsingPOST(requestParameters: ItemsReadyForPrepUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.itemsReadyForPrepUsingPOSTRaw(requestParameters, initOverrides);
+    async itemsReadyForPrep(requestParameters: shipmentApiParams.ItemsReadyForPrepRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.itemsReadyForPrepRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2849,20 +2636,16 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async newShipmentUsingPOSTRaw(requestParameters: NewShipmentUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async newShipmentRaw(requestParameters: shipmentApiParams.NewShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling newShipmentUsingPOST.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling newShipment.');
         }
 
         if (requestParameters.newShipment === null || requestParameters.newShipment === undefined) {
-            throw new runtime.RequiredError('newShipment','Required parameter requestParameters.newShipment was null or undefined when calling newShipmentUsingPOST.');
+            throw new runtime.RequiredError('newShipment','Required parameter requestParameters.newShipment was null or undefined when calling newShipment.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -2897,8 +2680,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * newShipment
      * newShipment
      */
-    async newShipmentUsingPOST(requestParameters: NewShipmentUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.newShipmentUsingPOSTRaw(requestParameters, initOverrides);
+    async newShipment(requestParameters: shipmentApiParams.NewShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.newShipmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2908,20 +2691,16 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async newShipmentsUsingPOSTRaw(requestParameters: NewShipmentsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfEntityModelOfShipment>> {
+    async newShipmentsRaw(requestParameters: shipmentApiParams.NewShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfEntityModelOfShipment>> {
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling newShipmentsUsingPOST.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling newShipments.');
         }
 
         if (requestParameters.newShipments === null || requestParameters.newShipments === undefined) {
-            throw new runtime.RequiredError('newShipments','Required parameter requestParameters.newShipments was null or undefined when calling newShipmentsUsingPOST.');
+            throw new runtime.RequiredError('newShipments','Required parameter requestParameters.newShipments was null or undefined when calling newShipments.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -2956,8 +2735,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * newShipments
      * newShipments
      */
-    async newShipmentsUsingPOST(requestParameters: NewShipmentsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfEntityModelOfShipment> {
-        const response = await this.newShipmentsUsingPOSTRaw(requestParameters, initOverrides);
+    async newShipments(requestParameters: shipmentApiParams.NewShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfEntityModelOfShipment> {
+        const response = await this.newShipmentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2967,24 +2746,20 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async pickupItemsUsingPOSTRaw(requestParameters: PickupItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async pickupItemsRaw(requestParameters: shipmentApiParams.PickupItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling pickupItemsUsingPOST.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling pickupItems.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling pickupItemsUsingPOST.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling pickupItems.');
         }
 
         if (requestParameters.pickupItemsRequestDto === null || requestParameters.pickupItemsRequestDto === undefined) {
-            throw new runtime.RequiredError('pickupItemsRequestDto','Required parameter requestParameters.pickupItemsRequestDto was null or undefined when calling pickupItemsUsingPOST.');
+            throw new runtime.RequiredError('pickupItemsRequestDto','Required parameter requestParameters.pickupItemsRequestDto was null or undefined when calling pickupItems.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -3023,8 +2798,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * pickupItems
      * pickupItems
      */
-    async pickupItemsUsingPOST(requestParameters: PickupItemsUsingPOSTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.pickupItemsUsingPOSTRaw(requestParameters, initOverrides);
+    async pickupItems(requestParameters: shipmentApiParams.PickupItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.pickupItemsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3034,24 +2809,20 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async reassignItemsUsingPUTRaw(requestParameters: ReassignItemsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async reassignItemsRaw(requestParameters: shipmentApiParams.ReassignItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling reassignItemsUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling reassignItems.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling reassignItemsUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling reassignItems.');
         }
 
         if (requestParameters.reassignItemsRequestDto === null || requestParameters.reassignItemsRequestDto === undefined) {
-            throw new runtime.RequiredError('reassignItemsRequestDto','Required parameter requestParameters.reassignItemsRequestDto was null or undefined when calling reassignItemsUsingPUT.');
+            throw new runtime.RequiredError('reassignItemsRequestDto','Required parameter requestParameters.reassignItemsRequestDto was null or undefined when calling reassignItems.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -3090,8 +2861,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * reassignItems
      * reassignItems
      */
-    async reassignItemsUsingPUT(requestParameters: ReassignItemsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.reassignItemsUsingPUTRaw(requestParameters, initOverrides);
+    async reassignItems(requestParameters: shipmentApiParams.ReassignItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.reassignItemsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3101,24 +2872,20 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async reassignShipmentUsingPUTRaw(requestParameters: ReassignShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async reassignShipmentRaw(requestParameters: shipmentApiParams.ReassignShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling reassignShipmentUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling reassignShipment.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling reassignShipmentUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling reassignShipment.');
         }
 
         if (requestParameters.reassignShipmentRequestDto === null || requestParameters.reassignShipmentRequestDto === undefined) {
-            throw new runtime.RequiredError('reassignShipmentRequestDto','Required parameter requestParameters.reassignShipmentRequestDto was null or undefined when calling reassignShipmentUsingPUT.');
+            throw new runtime.RequiredError('reassignShipmentRequestDto','Required parameter requestParameters.reassignShipmentRequestDto was null or undefined when calling reassignShipment.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -3157,8 +2924,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * reassignShipment
      * reassignShipment
      */
-    async reassignShipmentUsingPUT(requestParameters: ReassignShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.reassignShipmentUsingPUTRaw(requestParameters, initOverrides);
+    async reassignShipment(requestParameters: shipmentApiParams.ReassignShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.reassignShipmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3168,20 +2935,16 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async receiveTransferUsingPUTRaw(requestParameters: ReceiveTransferUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async receiveTransferRaw(requestParameters: shipmentApiParams.ReceiveTransferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling receiveTransferUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling receiveTransfer.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling receiveTransferUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling receiveTransfer.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -3217,8 +2980,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * receiveTransfer
      * receiveTransfer
      */
-    async receiveTransferUsingPUT(requestParameters: ReceiveTransferUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.receiveTransferUsingPUTRaw(requestParameters, initOverrides);
+    async receiveTransfer(requestParameters: shipmentApiParams.ReceiveTransferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.receiveTransferRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3228,23 +2991,19 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async refreshShipmentUsingPUTRaw(requestParameters: RefreshShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async refreshShipmentRaw(requestParameters: shipmentApiParams.RefreshShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling refreshShipmentUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling refreshShipment.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling refreshShipmentUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling refreshShipment.');
         }
 
         const queryParameters: any = {};
 
         if (requestParameters.shouldLog !== undefined) {
             queryParameters['shouldLog'] = requestParameters.shouldLog;
-        }
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -3281,8 +3040,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * refreshShipment
      * refreshShipment
      */
-    async refreshShipmentUsingPUT(requestParameters: RefreshShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.refreshShipmentUsingPUTRaw(requestParameters, initOverrides);
+    async refreshShipment(requestParameters: shipmentApiParams.RefreshShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.refreshShipmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3292,24 +3051,20 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async rejectItemsUsingPUTRaw(requestParameters: RejectItemsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async rejectItemsRaw(requestParameters: shipmentApiParams.RejectItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling rejectItemsUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling rejectItems.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling rejectItemsUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling rejectItems.');
         }
 
         if (requestParameters.rejectItemsRequestDto === null || requestParameters.rejectItemsRequestDto === undefined) {
-            throw new runtime.RequiredError('rejectItemsRequestDto','Required parameter requestParameters.rejectItemsRequestDto was null or undefined when calling rejectItemsUsingPUT.');
+            throw new runtime.RequiredError('rejectItemsRequestDto','Required parameter requestParameters.rejectItemsRequestDto was null or undefined when calling rejectItems.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -3348,8 +3103,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * rejectItems
      * rejectItems
      */
-    async rejectItemsUsingPUT(requestParameters: RejectItemsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.rejectItemsUsingPUTRaw(requestParameters, initOverrides);
+    async rejectItems(requestParameters: shipmentApiParams.RejectItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.rejectItemsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3359,24 +3114,20 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async rejectShipmentUsingPUTRaw(requestParameters: RejectShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async rejectShipmentRaw(requestParameters: shipmentApiParams.RejectShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling rejectShipmentUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling rejectShipment.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling rejectShipmentUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling rejectShipment.');
         }
 
         if (requestParameters.rejectShipmentRequestDto === null || requestParameters.rejectShipmentRequestDto === undefined) {
-            throw new runtime.RequiredError('rejectShipmentRequestDto','Required parameter requestParameters.rejectShipmentRequestDto was null or undefined when calling rejectShipmentUsingPUT.');
+            throw new runtime.RequiredError('rejectShipmentRequestDto','Required parameter requestParameters.rejectShipmentRequestDto was null or undefined when calling rejectShipment.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -3415,8 +3166,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * rejectShipment
      * rejectShipment
      */
-    async rejectShipmentUsingPUT(requestParameters: RejectShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.rejectShipmentUsingPUTRaw(requestParameters, initOverrides);
+    async rejectShipment(requestParameters: shipmentApiParams.RejectShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.rejectShipmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3426,20 +3177,16 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async renderOrderSummaryUsingGET1Raw(requestParameters: RenderOrderSummaryUsingGET1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>> {
+    async renderOrderSummary1Raw(requestParameters: shipmentApiParams.RenderOrderSummary1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling renderOrderSummaryUsingGET1.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling renderOrderSummary1.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling renderOrderSummaryUsingGET1.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling renderOrderSummary1.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -3471,8 +3218,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * renderOrderSummary
      * renderOrderSummary
      */
-    async renderOrderSummaryUsingGET1(requestParameters: RenderOrderSummaryUsingGET1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent> {
-        const response = await this.renderOrderSummaryUsingGET1Raw(requestParameters, initOverrides);
+    async renderOrderSummary1(requestParameters: shipmentApiParams.RenderOrderSummary1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent> {
+        const response = await this.renderOrderSummary1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3482,20 +3229,16 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async renderPackingSlipUsingGETRaw(requestParameters: RenderPackingSlipUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>> {
+    async renderPackingSlipRaw(requestParameters: shipmentApiParams.RenderPackingSlipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling renderPackingSlipUsingGET.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling renderPackingSlip.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling renderPackingSlipUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling renderPackingSlip.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -3527,8 +3270,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * renderPackingSlip
      * renderPackingSlip
      */
-    async renderPackingSlipUsingGET(requestParameters: RenderPackingSlipUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent> {
-        const response = await this.renderPackingSlipUsingGETRaw(requestParameters, initOverrides);
+    async renderPackingSlip(requestParameters: shipmentApiParams.RenderPackingSlipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent> {
+        const response = await this.renderPackingSlipRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3538,27 +3281,23 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async replaceShipmentUsingPUTRaw(requestParameters: ReplaceShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async replaceShipmentRaw(requestParameters: shipmentApiParams.ReplaceShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling replaceShipmentUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling replaceShipment.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling replaceShipmentUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling replaceShipment.');
         }
 
         if (requestParameters.newShipment === null || requestParameters.newShipment === undefined) {
-            throw new runtime.RequiredError('newShipment','Required parameter requestParameters.newShipment was null or undefined when calling replaceShipmentUsingPUT.');
+            throw new runtime.RequiredError('newShipment','Required parameter requestParameters.newShipment was null or undefined when calling replaceShipment.');
         }
 
         const queryParameters: any = {};
 
         if (requestParameters.updateFields) {
             queryParameters['updateFields'] = requestParameters.updateFields;
-        }
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -3598,8 +3337,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * replaceShipment
      * replaceShipment
      */
-    async replaceShipmentUsingPUT(requestParameters: ReplaceShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.replaceShipmentUsingPUTRaw(requestParameters, initOverrides);
+    async replaceShipment(requestParameters: shipmentApiParams.ReplaceShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.replaceShipmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3609,24 +3348,20 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async resendItemEmailUsingPUTRaw(requestParameters: ResendItemEmailUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async resendItemEmailRaw(requestParameters: shipmentApiParams.ResendItemEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.lineId === null || requestParameters.lineId === undefined) {
-            throw new runtime.RequiredError('lineId','Required parameter requestParameters.lineId was null or undefined when calling resendItemEmailUsingPUT.');
+            throw new runtime.RequiredError('lineId','Required parameter requestParameters.lineId was null or undefined when calling resendItemEmail.');
         }
 
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling resendItemEmailUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling resendItemEmail.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling resendItemEmailUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling resendItemEmail.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -3662,8 +3397,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * resendItemEmail
      * resendItemEmail
      */
-    async resendItemEmailUsingPUT(requestParameters: ResendItemEmailUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.resendItemEmailUsingPUTRaw(requestParameters, initOverrides);
+    async resendItemEmail(requestParameters: shipmentApiParams.ResendItemEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.resendItemEmailRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -3672,20 +3407,16 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async resendShipmentEmailUsingPUTRaw(requestParameters: ResendShipmentEmailUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async resendShipmentEmailRaw(requestParameters: shipmentApiParams.ResendShipmentEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling resendShipmentEmailUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling resendShipmentEmail.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling resendShipmentEmailUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling resendShipmentEmail.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -3721,8 +3452,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * resendShipmentEmail
      * resendShipmentEmail
      */
-    async resendShipmentEmailUsingPUT(requestParameters: ResendShipmentEmailUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.resendShipmentEmailUsingPUTRaw(requestParameters, initOverrides);
+    async resendShipmentEmail(requestParameters: shipmentApiParams.ResendShipmentEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.resendShipmentEmailRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -3731,20 +3462,16 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async retryFulfillingShipmentUsingPUTRaw(requestParameters: RetryFulfillingShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async retryFulfillingShipmentRaw(requestParameters: shipmentApiParams.RetryFulfillingShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling retryFulfillingShipmentUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling retryFulfillingShipment.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling retryFulfillingShipmentUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling retryFulfillingShipment.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -3780,8 +3507,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * retryFulfillingShipment
      * retryFulfillingShipment
      */
-    async retryFulfillingShipmentUsingPUT(requestParameters: RetryFulfillingShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.retryFulfillingShipmentUsingPUTRaw(requestParameters, initOverrides);
+    async retryFulfillingShipment(requestParameters: shipmentApiParams.RetryFulfillingShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.retryFulfillingShipmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3791,24 +3518,20 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async revertUsingPUTRaw(requestParameters: RevertUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async revertRaw(requestParameters: shipmentApiParams.RevertRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling revertUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling revert.');
         }
 
         if (requestParameters.taskName === null || requestParameters.taskName === undefined) {
-            throw new runtime.RequiredError('taskName','Required parameter requestParameters.taskName was null or undefined when calling revertUsingPUT.');
+            throw new runtime.RequiredError('taskName','Required parameter requestParameters.taskName was null or undefined when calling revert.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling revertUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling revert.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -3844,8 +3567,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * revert
      * revert
      */
-    async revertUsingPUT(requestParameters: RevertUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.revertUsingPUTRaw(requestParameters, initOverrides);
+    async revert(requestParameters: shipmentApiParams.RevertRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.revertRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3855,20 +3578,16 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async searchAndReceiveTransferUsingPUTRaw(requestParameters: SearchAndReceiveTransferUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async searchAndReceiveTransferRaw(requestParameters: shipmentApiParams.SearchAndReceiveTransferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.search === null || requestParameters.search === undefined) {
-            throw new runtime.RequiredError('search','Required parameter requestParameters.search was null or undefined when calling searchAndReceiveTransferUsingPUT.');
+            throw new runtime.RequiredError('search','Required parameter requestParameters.search was null or undefined when calling searchAndReceiveTransfer.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling searchAndReceiveTransferUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling searchAndReceiveTransfer.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -3904,8 +3623,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * searchAndReceiveTransfer
      * searchAndReceiveTransfer
      */
-    async searchAndReceiveTransferUsingPUT(requestParameters: SearchAndReceiveTransferUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.searchAndReceiveTransferUsingPUTRaw(requestParameters, initOverrides);
+    async searchAndReceiveTransfer(requestParameters: shipmentApiParams.SearchAndReceiveTransferRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.searchAndReceiveTransferRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3915,20 +3634,16 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async searchReceivableShipmentUsingGETRaw(requestParameters: SearchReceivableShipmentUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async searchReceivableShipmentRaw(requestParameters: shipmentApiParams.SearchReceivableShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.search === null || requestParameters.search === undefined) {
-            throw new runtime.RequiredError('search','Required parameter requestParameters.search was null or undefined when calling searchReceivableShipmentUsingGET.');
+            throw new runtime.RequiredError('search','Required parameter requestParameters.search was null or undefined when calling searchReceivableShipment.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling searchReceivableShipmentUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling searchReceivableShipment.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -3960,8 +3675,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * searchReceivableShipment
      * searchReceivableShipment
      */
-    async searchReceivableShipmentUsingGET(requestParameters: SearchReceivableShipmentUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.searchReceivableShipmentUsingGETRaw(requestParameters, initOverrides);
+    async searchReceivableShipment(requestParameters: shipmentApiParams.SearchReceivableShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.searchReceivableShipmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3971,24 +3686,20 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async skipTaskUsingPUTRaw(requestParameters: SkipTaskUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async skipTaskRaw(requestParameters: shipmentApiParams.SkipTaskRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling skipTaskUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling skipTask.');
         }
 
         if (requestParameters.taskName === null || requestParameters.taskName === undefined) {
-            throw new runtime.RequiredError('taskName','Required parameter requestParameters.taskName was null or undefined when calling skipTaskUsingPUT.');
+            throw new runtime.RequiredError('taskName','Required parameter requestParameters.taskName was null or undefined when calling skipTask.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling skipTaskUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling skipTask.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -4024,8 +3735,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * skipTask
      * skipTask
      */
-    async skipTaskUsingPUT(requestParameters: SkipTaskUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.skipTaskUsingPUTRaw(requestParameters, initOverrides);
+    async skipTask(requestParameters: shipmentApiParams.SkipTaskRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.skipTaskRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -4035,24 +3746,20 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async transferItemsUsingPUTRaw(requestParameters: TransferItemsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async transferItemsRaw(requestParameters: shipmentApiParams.TransferItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling transferItemsUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling transferItems.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling transferItemsUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling transferItems.');
         }
 
         if (requestParameters.transferItemsRequestDto === null || requestParameters.transferItemsRequestDto === undefined) {
-            throw new runtime.RequiredError('transferItemsRequestDto','Required parameter requestParameters.transferItemsRequestDto was null or undefined when calling transferItemsUsingPUT.');
+            throw new runtime.RequiredError('transferItemsRequestDto','Required parameter requestParameters.transferItemsRequestDto was null or undefined when calling transferItems.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -4091,8 +3798,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * transferItems
      * transferItems
      */
-    async transferItemsUsingPUT(requestParameters: TransferItemsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.transferItemsUsingPUTRaw(requestParameters, initOverrides);
+    async transferItems(requestParameters: shipmentApiParams.TransferItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.transferItemsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -4102,24 +3809,20 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async transferShipmentUsingPUTRaw(requestParameters: TransferShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async transferShipmentRaw(requestParameters: shipmentApiParams.TransferShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling transferShipmentUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling transferShipment.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling transferShipmentUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling transferShipment.');
         }
 
         if (requestParameters.transferShipmentRequestDto === null || requestParameters.transferShipmentRequestDto === undefined) {
-            throw new runtime.RequiredError('transferShipmentRequestDto','Required parameter requestParameters.transferShipmentRequestDto was null or undefined when calling transferShipmentUsingPUT.');
+            throw new runtime.RequiredError('transferShipmentRequestDto','Required parameter requestParameters.transferShipmentRequestDto was null or undefined when calling transferShipment.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -4158,8 +3861,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * transferShipment
      * transferShipment
      */
-    async transferShipmentUsingPUT(requestParameters: TransferShipmentUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.transferShipmentUsingPUTRaw(requestParameters, initOverrides);
+    async transferShipment(requestParameters: shipmentApiParams.TransferShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.transferShipmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -4169,24 +3872,20 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async updateFulfillmentFieldsUsingPUTRaw(requestParameters: UpdateFulfillmentFieldsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async updateFulfillmentFieldsRaw(requestParameters: shipmentApiParams.UpdateFulfillmentFieldsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateFulfillmentFieldsUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateFulfillmentFields.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateFulfillmentFieldsUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateFulfillmentFields.');
         }
 
         if (requestParameters.items === null || requestParameters.items === undefined) {
-            throw new runtime.RequiredError('items','Required parameter requestParameters.items was null or undefined when calling updateFulfillmentFieldsUsingPUT.');
+            throw new runtime.RequiredError('items','Required parameter requestParameters.items was null or undefined when calling updateFulfillmentFields.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -4225,8 +3924,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * updateFulfillmentFields
      * updateFulfillmentFields
      */
-    async updateFulfillmentFieldsUsingPUT(requestParameters: UpdateFulfillmentFieldsUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.updateFulfillmentFieldsUsingPUTRaw(requestParameters, initOverrides);
+    async updateFulfillmentFields(requestParameters: shipmentApiParams.UpdateFulfillmentFieldsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.updateFulfillmentFieldsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -4236,24 +3935,20 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async updateGiftCardInfoUsingPUTRaw(requestParameters: UpdateGiftCardInfoUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async updateGiftCardInfoRaw(requestParameters: shipmentApiParams.UpdateGiftCardInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateGiftCardInfoUsingPUT.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateGiftCardInfo.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateGiftCardInfoUsingPUT.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateGiftCardInfo.');
         }
 
         if (requestParameters.giftCardInfoRequestDto === null || requestParameters.giftCardInfoRequestDto === undefined) {
-            throw new runtime.RequiredError('giftCardInfoRequestDto','Required parameter requestParameters.giftCardInfoRequestDto was null or undefined when calling updateGiftCardInfoUsingPUT.');
+            throw new runtime.RequiredError('giftCardInfoRequestDto','Required parameter requestParameters.giftCardInfoRequestDto was null or undefined when calling updateGiftCardInfo.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -4292,8 +3987,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * updateGiftCardInfo
      * updateGiftCardInfo
      */
-    async updateGiftCardInfoUsingPUT(requestParameters: UpdateGiftCardInfoUsingPUTRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
-        const response = await this.updateGiftCardInfoUsingPUTRaw(requestParameters, initOverrides);
+    async updateGiftCardInfo(requestParameters: shipmentApiParams.UpdateGiftCardInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+        const response = await this.updateGiftCardInfoRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -4303,20 +3998,16 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async workflowDefinitionImageUsingGETRaw(requestParameters: WorkflowDefinitionImageUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async workflowDefinitionImageRaw(requestParameters: shipmentApiParams.WorkflowDefinitionImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling workflowDefinitionImageUsingGET.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling workflowDefinitionImage.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling workflowDefinitionImageUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling workflowDefinitionImage.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -4348,8 +4039,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * workflowDefinitionImage
      * workflowDefinitionImage
      */
-    async workflowDefinitionImageUsingGET(requestParameters: WorkflowDefinitionImageUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.workflowDefinitionImageUsingGETRaw(requestParameters, initOverrides);
+    async workflowDefinitionImage(requestParameters: shipmentApiParams.WorkflowDefinitionImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.workflowDefinitionImageRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -4359,20 +4050,16 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      */
 
 
-    async workflowInstanceImageUsingGETRaw(requestParameters: WorkflowInstanceImageUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async workflowInstanceImageRaw(requestParameters: shipmentApiParams.WorkflowInstanceImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
-            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling workflowInstanceImageUsingGET.');
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling workflowInstanceImage.');
         }
 
         if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling workflowInstanceImageUsingGET.');
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling workflowInstanceImage.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -4404,8 +4091,8 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiInterface
      * workflowInstanceImage
      * workflowInstanceImage
      */
-    async workflowInstanceImageUsingGET(requestParameters: WorkflowInstanceImageUsingGETRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.workflowInstanceImageUsingGETRaw(requestParameters, initOverrides);
+    async workflowInstanceImage(requestParameters: shipmentApiParams.WorkflowInstanceImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.workflowInstanceImageRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

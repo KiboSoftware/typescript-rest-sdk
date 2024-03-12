@@ -19,41 +19,44 @@ import type {
   TenantTenant,
 } from '../models';
 
-export interface GetTenantRequest {
-    tenantId: number;
-    responseFields?: string;
+
+export namespace tenantsApiParams { 
+    export interface GetTenantRequest {
+        tenantId: number;
+        responseFields?: string;
+    }
+}
+/**
+* TenantsApiService - interface
+* 
+* @export
+* @interface TenantsApi
+*/
+export interface TenantsApiService {
+    /**
+    * Get Tenant by ID
+    * @summary Get Tenant by ID
+    * @param {number} tenantId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof TenantsApiInterface
+    */
+    getTenantRaw(requestParameters: tenantsApiParams.GetTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantTenant>>;
+
+    /**
+    * Get Tenant by ID
+    * Get Tenant by ID
+    */
+    getTenant(requestParameters: tenantsApiParams.GetTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantTenant>;
+
 }
 
-/**
- * TenantsApi - interface
- * 
- * @export
- * @interface TenantsApiInterface
- */
-export interface TenantsApiInterface {
-    /**
-     * Get Tenant by ID
-     * @summary Get Tenant by ID
-     * @param {number} tenantId 
-     * @param {string} [responseFields] limits which fields are returned in the response body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TenantsApiInterface
-     */
-    getTenantRaw(requestParameters: GetTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantTenant>>;
-
-    /**
-     * Get Tenant by ID
-     * Get Tenant by ID
-     */
-    getTenant(requestParameters: GetTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantTenant>;
-
-}
 
 /**
  * 
  */
-export class TenantsApi extends runtime.BaseAPI implements TenantsApiInterface {
+export class TenantsApi extends runtime.BaseAPI implements TenantsApiService {
     constructor(configuration?) {
         super(configuration)
         this.basePathTemplate = basePathTemplate
@@ -64,7 +67,7 @@ export class TenantsApi extends runtime.BaseAPI implements TenantsApiInterface {
      */
 
 
-    async getTenantRaw(requestParameters: GetTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantTenant>> {
+    async getTenantRaw(requestParameters: tenantsApiParams.GetTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantTenant>> {
         if (requestParameters.tenantId === null || requestParameters.tenantId === undefined) {
             throw new runtime.RequiredError('tenantId','Required parameter requestParameters.tenantId was null or undefined when calling getTenant.');
         }
@@ -97,7 +100,7 @@ export class TenantsApi extends runtime.BaseAPI implements TenantsApiInterface {
      * Get Tenant by ID
      * Get Tenant by ID
      */
-    async getTenant(requestParameters: GetTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantTenant> {
+    async getTenant(requestParameters: tenantsApiParams.GetTenantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TenantTenant> {
         const response = await this.getTenantRaw(requestParameters, initOverrides);
         return await response.value();
     }
