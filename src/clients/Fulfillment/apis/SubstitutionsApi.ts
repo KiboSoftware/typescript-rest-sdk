@@ -25,24 +25,18 @@ import type {
 export namespace substitutionsApiParams { 
     export interface AddSubstituteItemsRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         substituteItemsRequestDto: SubstituteItemsRequest;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface GetSubstituteItemsRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         originalLineId?: number;
         productCode?: string;
-        xVolSite?: number;
     }
     export interface RemoveSubstituteItemsRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         substituteItemsRequestDto: SubstituteItemsRequest;
         ifMatch?: string;
-        xVolSite?: number;
     }
 }
 /**
@@ -56,10 +50,8 @@ export interface SubstitutionsApiService {
     * addSubstituteItems
     * @summary addSubstituteItems
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {SubstituteItemsRequest} substituteItemsRequestDto substituteItemsRequestDto
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof SubstitutionsApiInterface
@@ -76,10 +68,8 @@ export interface SubstitutionsApiService {
     * getSubstituteItems
     * @summary getSubstituteItems
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {number} [originalLineId] 
     * @param {string} [productCode] 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof SubstitutionsApiInterface
@@ -96,10 +86,8 @@ export interface SubstitutionsApiService {
     * removeSubstituteItems
     * @summary removeSubstituteItems
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {SubstituteItemsRequest} substituteItemsRequestDto substituteItemsRequestDto
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof SubstitutionsApiInterface
@@ -134,10 +122,6 @@ export class SubstitutionsApi extends runtime.BaseAPI implements SubstitutionsAp
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling addSubstituteItems.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling addSubstituteItems.');
-        }
-
         if (requestParameters.substituteItemsRequestDto === null || requestParameters.substituteItemsRequestDto === undefined) {
             throw new runtime.RequiredError('substituteItemsRequestDto','Required parameter requestParameters.substituteItemsRequestDto was null or undefined when calling addSubstituteItems.');
         }
@@ -150,14 +134,6 @@ export class SubstitutionsApi extends runtime.BaseAPI implements SubstitutionsAp
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -197,10 +173,6 @@ export class SubstitutionsApi extends runtime.BaseAPI implements SubstitutionsAp
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getSubstituteItems.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getSubstituteItems.');
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters.originalLineId !== undefined) {
@@ -212,14 +184,6 @@ export class SubstitutionsApi extends runtime.BaseAPI implements SubstitutionsAp
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -257,10 +221,6 @@ export class SubstitutionsApi extends runtime.BaseAPI implements SubstitutionsAp
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling removeSubstituteItems.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling removeSubstituteItems.');
-        }
-
         if (requestParameters.substituteItemsRequestDto === null || requestParameters.substituteItemsRequestDto === undefined) {
             throw new runtime.RequiredError('substituteItemsRequestDto','Required parameter requestParameters.substituteItemsRequestDto was null or undefined when calling removeSubstituteItems.');
         }
@@ -273,14 +233,6 @@ export class SubstitutionsApi extends runtime.BaseAPI implements SubstitutionsAp
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 

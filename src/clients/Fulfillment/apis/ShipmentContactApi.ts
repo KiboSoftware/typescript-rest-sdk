@@ -24,45 +24,31 @@ import type {
 export namespace shipmentContactApiParams { 
     export interface DeleteAlternateContactRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface GetAlternateContactRequest {
         shipmentNumber: number;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface GetCustomerContactRequest {
         shipmentNumber: number;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface GetDestinationContactRequest {
         shipmentNumber: number;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface UpdateAlternateContactRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         updateContactRequest: UpdateContactRequest;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface UpdateCustomerContactRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         updateContactRequest: UpdateContactRequest;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface UpdateDestinationContactRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         updateContactRequest: UpdateContactRequest;
         ifMatch?: string;
-        xVolSite?: number;
     }
 }
 /**
@@ -76,9 +62,7 @@ export interface ShipmentContactApiService {
     * deleteAlternateContact
     * @summary deleteAlternateContact
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentContactApiInterface
@@ -95,8 +79,6 @@ export interface ShipmentContactApiService {
     * getAlternateContact
     * @summary getAlternateContact
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentContactApiInterface
@@ -113,8 +95,6 @@ export interface ShipmentContactApiService {
     * getCustomerContact
     * @summary getCustomerContact
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentContactApiInterface
@@ -131,8 +111,6 @@ export interface ShipmentContactApiService {
     * getDestinationContact
     * @summary getDestinationContact
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentContactApiInterface
@@ -149,10 +127,8 @@ export interface ShipmentContactApiService {
     * updateAlternateContact
     * @summary updateAlternateContact
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {UpdateContactRequest} updateContactRequest updateContactRequest
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentContactApiInterface
@@ -169,10 +145,8 @@ export interface ShipmentContactApiService {
     * updateCustomerContact
     * @summary updateCustomerContact
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {UpdateContactRequest} updateContactRequest updateContactRequest
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentContactApiInterface
@@ -189,10 +163,8 @@ export interface ShipmentContactApiService {
     * updateDestinationContact
     * @summary updateDestinationContact
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {UpdateContactRequest} updateContactRequest updateContactRequest
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentContactApiInterface
@@ -227,24 +199,12 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling deleteAlternateContact.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteAlternateContact.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -282,21 +242,9 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getAlternateContact.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getAlternateContact.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -334,21 +282,9 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getCustomerContact.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getCustomerContact.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -386,21 +322,9 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getDestinationContact.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getDestinationContact.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -438,10 +362,6 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateAlternateContact.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateAlternateContact.');
-        }
-
         if (requestParameters.updateContactRequest === null || requestParameters.updateContactRequest === undefined) {
             throw new runtime.RequiredError('updateContactRequest','Required parameter requestParameters.updateContactRequest was null or undefined when calling updateAlternateContact.');
         }
@@ -454,14 +374,6 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -501,10 +413,6 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateCustomerContact.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateCustomerContact.');
-        }
-
         if (requestParameters.updateContactRequest === null || requestParameters.updateContactRequest === undefined) {
             throw new runtime.RequiredError('updateContactRequest','Required parameter requestParameters.updateContactRequest was null or undefined when calling updateCustomerContact.');
         }
@@ -517,14 +425,6 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -564,10 +464,6 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateDestinationContact.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateDestinationContact.');
-        }
-
         if (requestParameters.updateContactRequest === null || requestParameters.updateContactRequest === undefined) {
             throw new runtime.RequiredError('updateContactRequest','Required parameter requestParameters.updateContactRequest was null or undefined when calling updateDestinationContact.');
         }
@@ -580,14 +476,6 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 

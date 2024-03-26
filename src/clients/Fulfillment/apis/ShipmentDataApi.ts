@@ -20,53 +20,37 @@ import { basePathTemplate } from '../api-path';
 export namespace shipmentDataApiParams { 
     export interface DeleteShipmentDataRequest {
         shipmentNumber: number;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface DeleteShipmentDataByKeyRequest {
         key: string;
         shipmentNumber: number;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface DeleteShipmentItemDataRequest {
         lineId: number;
         shipmentNumber: number;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface DeleteShipmentItemDataByKeyRequest {
         key: string;
         lineId: number;
         shipmentNumber: number;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface GetShipmentDataRequest {
         shipmentNumber: number;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface GetShipmentItemDataRequest {
         lineId: number;
         shipmentNumber: number;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface ReplaceShipmentDataRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         data: { [key: string]: object; };
         merge?: boolean;
-        xVolSite?: number;
     }
     export interface ReplaceShipmentItemDataRequest {
         lineId: number;
         shipmentNumber: number;
-        xVolTenant: number;
         data: { [key: string]: object; };
         merge?: boolean;
-        xVolSite?: number;
     }
 }
 /**
@@ -80,8 +64,6 @@ export interface ShipmentDataApiService {
     * deleteShipmentData
     * @summary deleteShipmentData
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentDataApiInterface
@@ -99,8 +81,6 @@ export interface ShipmentDataApiService {
     * @summary deleteShipmentDataByKey
     * @param {string} key key
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentDataApiInterface
@@ -118,8 +98,6 @@ export interface ShipmentDataApiService {
     * @summary deleteShipmentItemData
     * @param {number} lineId lineId
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentDataApiInterface
@@ -138,8 +116,6 @@ export interface ShipmentDataApiService {
     * @param {string} key key
     * @param {number} lineId lineId
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentDataApiInterface
@@ -156,8 +132,6 @@ export interface ShipmentDataApiService {
     * getShipmentData
     * @summary getShipmentData
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentDataApiInterface
@@ -175,8 +149,6 @@ export interface ShipmentDataApiService {
     * @summary getShipmentItemData
     * @param {number} lineId lineId
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentDataApiInterface
@@ -193,10 +165,8 @@ export interface ShipmentDataApiService {
     * replaceShipmentData
     * @summary replaceShipmentData
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {{ [key: string]: object; }} data data
     * @param {boolean} [merge] merge
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentDataApiInterface
@@ -214,10 +184,8 @@ export interface ShipmentDataApiService {
     * @summary replaceShipmentItemData
     * @param {number} lineId lineId
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {{ [key: string]: object; }} data data
     * @param {boolean} [merge] merge
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentDataApiInterface
@@ -252,21 +220,9 @@ export class ShipmentDataApi extends runtime.BaseAPI implements ShipmentDataApiS
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling deleteShipmentData.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteShipmentData.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -307,21 +263,9 @@ export class ShipmentDataApi extends runtime.BaseAPI implements ShipmentDataApiS
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling deleteShipmentDataByKey.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteShipmentDataByKey.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -362,21 +306,9 @@ export class ShipmentDataApi extends runtime.BaseAPI implements ShipmentDataApiS
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling deleteShipmentItemData.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteShipmentItemData.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -421,21 +353,9 @@ export class ShipmentDataApi extends runtime.BaseAPI implements ShipmentDataApiS
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling deleteShipmentItemDataByKey.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteShipmentItemDataByKey.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -472,21 +392,9 @@ export class ShipmentDataApi extends runtime.BaseAPI implements ShipmentDataApiS
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getShipmentData.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipmentData.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -528,21 +436,9 @@ export class ShipmentDataApi extends runtime.BaseAPI implements ShipmentDataApiS
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getShipmentItemData.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipmentItemData.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -580,10 +476,6 @@ export class ShipmentDataApi extends runtime.BaseAPI implements ShipmentDataApiS
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling replaceShipmentData.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling replaceShipmentData.');
-        }
-
         if (requestParameters.data === null || requestParameters.data === undefined) {
             throw new runtime.RequiredError('data','Required parameter requestParameters.data was null or undefined when calling replaceShipmentData.');
         }
@@ -597,14 +489,6 @@ export class ShipmentDataApi extends runtime.BaseAPI implements ShipmentDataApiS
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -647,10 +531,6 @@ export class ShipmentDataApi extends runtime.BaseAPI implements ShipmentDataApiS
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling replaceShipmentItemData.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling replaceShipmentItemData.');
-        }
-
         if (requestParameters.data === null || requestParameters.data === undefined) {
             throw new runtime.RequiredError('data','Required parameter requestParameters.data was null or undefined when calling replaceShipmentItemData.');
         }
@@ -664,14 +544,6 @@ export class ShipmentDataApi extends runtime.BaseAPI implements ShipmentDataApiS
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 

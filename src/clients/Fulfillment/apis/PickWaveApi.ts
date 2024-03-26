@@ -29,52 +29,36 @@ import type {
 export namespace pickWaveApiParams { 
     export interface ClosePickWaveRequest {
         pickWaveNumber: number;
-        xVolTenant: number;
         closePickWaveDto: ClosePickWave;
-        xVolSite?: number;
     }
     export interface CreatePickWaveRequest {
-        xVolTenant: number;
         createPickWaveDto: CreatePickWave;
-        xVolSite?: number;
     }
     export interface GetOpenPickWavesRequest {
         fulfillmentLocationCode: string;
-        xVolTenant: number;
         shipmentType?: string;
         userDisplayName?: string;
         userId?: string;
-        xVolSite?: number;
     }
     export interface GetPickWaveRequest {
         pickWaveNumber: number;
-        xVolTenant: number;
         sortContents?: string;
-        xVolSite?: number;
     }
     export interface GetPickWaveDetailsRequest {
         pickWaveNumber: number;
-        xVolTenant: number;
         sortContentsByLocator?: string;
-        xVolSite?: number;
     }
     export interface GetShipmentsInPickWaveRequest {
         pickWaveNumber: number;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface RenderOrderPickSheetsRequest {
         pickWaveNumber: number;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface RenderPickWaveRequest {
         pickWaveNumber: number;
-        xVolTenant: number;
         printPackingLists?: boolean;
         printPickWave?: boolean;
         printSingleOrderSheets?: boolean;
-        xVolSite?: number;
     }
 }
 /**
@@ -88,9 +72,7 @@ export interface PickWaveApiService {
     * closePickWave
     * @summary closePickWave
     * @param {number} pickWaveNumber pickWaveNumber
-    * @param {number} xVolTenant 
     * @param {ClosePickWave} closePickWaveDto closePickWaveDto
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof PickWaveApiInterface
@@ -106,9 +88,7 @@ export interface PickWaveApiService {
     /**
     * createPickWave
     * @summary createPickWave
-    * @param {number} xVolTenant 
     * @param {CreatePickWave} createPickWaveDto createPickWaveDto
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof PickWaveApiInterface
@@ -125,11 +105,9 @@ export interface PickWaveApiService {
     * getOpenPickWaves
     * @summary getOpenPickWaves
     * @param {string} fulfillmentLocationCode fulfillmentLocationCode
-    * @param {number} xVolTenant 
     * @param {string} [shipmentType] shipmentType
     * @param {string} [userDisplayName] userDisplayName
     * @param {string} [userId] userId
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof PickWaveApiInterface
@@ -146,9 +124,7 @@ export interface PickWaveApiService {
     * getPickWave
     * @summary getPickWave
     * @param {number} pickWaveNumber pickWaveNumber
-    * @param {number} xVolTenant 
     * @param {string} [sortContents] 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof PickWaveApiInterface
@@ -165,9 +141,7 @@ export interface PickWaveApiService {
     * getPickWaveDetails
     * @summary getPickWaveDetails
     * @param {number} pickWaveNumber pickWaveNumber
-    * @param {number} xVolTenant 
     * @param {string} [sortContentsByLocator] sortContentsByLocator
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof PickWaveApiInterface
@@ -184,8 +158,6 @@ export interface PickWaveApiService {
     * getShipmentsInPickWave
     * @summary getShipmentsInPickWave
     * @param {number} pickWaveNumber pickWaveNumber
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof PickWaveApiInterface
@@ -202,8 +174,6 @@ export interface PickWaveApiService {
     * renderOrderPickSheets
     * @summary renderOrderPickSheets
     * @param {number} pickWaveNumber pickWaveNumber
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof PickWaveApiInterface
@@ -220,11 +190,9 @@ export interface PickWaveApiService {
     * renderPickWave
     * @summary renderPickWave
     * @param {number} pickWaveNumber pickWaveNumber
-    * @param {number} xVolTenant 
     * @param {boolean} [printPackingLists] printPackingLists
     * @param {boolean} [printPickWave] printPickWave
     * @param {boolean} [printSingleOrderSheets] printSingleOrderSheets
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof PickWaveApiInterface
@@ -259,10 +227,6 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiService {
             throw new runtime.RequiredError('pickWaveNumber','Required parameter requestParameters.pickWaveNumber was null or undefined when calling closePickWave.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling closePickWave.');
-        }
-
         if (requestParameters.closePickWaveDto === null || requestParameters.closePickWaveDto === undefined) {
             throw new runtime.RequiredError('closePickWaveDto','Required parameter requestParameters.closePickWaveDto was null or undefined when calling closePickWave.');
         }
@@ -272,14 +236,6 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiService {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -314,10 +270,6 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiService {
 
 
     async createPickWaveRaw(requestParameters: pickWaveApiParams.CreatePickWaveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfPickWave>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling createPickWave.');
-        }
-
         if (requestParameters.createPickWaveDto === null || requestParameters.createPickWaveDto === undefined) {
             throw new runtime.RequiredError('createPickWaveDto','Required parameter requestParameters.createPickWaveDto was null or undefined when calling createPickWave.');
         }
@@ -327,14 +279,6 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiService {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -373,10 +317,6 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiService {
             throw new runtime.RequiredError('fulfillmentLocationCode','Required parameter requestParameters.fulfillmentLocationCode was null or undefined when calling getOpenPickWaves.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getOpenPickWaves.');
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters.shipmentType !== undefined) {
@@ -392,14 +332,6 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiService {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -437,10 +369,6 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiService {
             throw new runtime.RequiredError('pickWaveNumber','Required parameter requestParameters.pickWaveNumber was null or undefined when calling getPickWave.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getPickWave.');
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters.sortContents !== undefined) {
@@ -448,14 +376,6 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiService {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -493,10 +413,6 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiService {
             throw new runtime.RequiredError('pickWaveNumber','Required parameter requestParameters.pickWaveNumber was null or undefined when calling getPickWaveDetails.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getPickWaveDetails.');
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters.sortContentsByLocator !== undefined) {
@@ -504,14 +420,6 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiService {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -549,21 +457,9 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiService {
             throw new runtime.RequiredError('pickWaveNumber','Required parameter requestParameters.pickWaveNumber was null or undefined when calling getShipmentsInPickWave.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipmentsInPickWave.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -601,21 +497,9 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiService {
             throw new runtime.RequiredError('pickWaveNumber','Required parameter requestParameters.pickWaveNumber was null or undefined when calling renderOrderPickSheets.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling renderOrderPickSheets.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -653,10 +537,6 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiService {
             throw new runtime.RequiredError('pickWaveNumber','Required parameter requestParameters.pickWaveNumber was null or undefined when calling renderPickWave.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling renderPickWave.');
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters.printPackingLists !== undefined) {
@@ -672,14 +552,6 @@ export class PickWaveApi extends runtime.BaseAPI implements PickWaveApiService {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 

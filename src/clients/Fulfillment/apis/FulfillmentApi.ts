@@ -18,18 +18,6 @@ import { basePathTemplate } from '../api-path';
 
 
 export namespace fulfillmentApiParams { 
-    export interface GetFeaturesRequest {
-        xVolTenant: number;
-        xVolSite?: number;
-    }
-    export interface GetPublicSettingsRequest {
-        xVolTenant: number;
-        xVolSite?: number;
-    }
-    export interface GetTenantAttributesRequest {
-        xVolTenant: number;
-        xVolSite?: number;
-    }
 }
 /**
 * FulfillmentApiService - interface
@@ -41,53 +29,47 @@ export interface FulfillmentApiService {
     /**
     * getFeatures
     * @summary getFeatures
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof FulfillmentApiInterface
     */
-    getFeaturesRaw(requestParameters: fulfillmentApiParams.GetFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>>;
+    getFeaturesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>>;
 
     /**
     * getFeatures
     * getFeatures
     */
-    getFeatures(requestParameters: fulfillmentApiParams.GetFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }>;
+    getFeatures(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }>;
 
     /**
     * getPublicSettings
     * @summary getPublicSettings
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof FulfillmentApiInterface
     */
-    getPublicSettingsRaw(requestParameters: fulfillmentApiParams.GetPublicSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>>;
+    getPublicSettingsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>>;
 
     /**
     * getPublicSettings
     * getPublicSettings
     */
-    getPublicSettings(requestParameters: fulfillmentApiParams.GetPublicSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }>;
+    getPublicSettings(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }>;
 
     /**
     * getTenantAttributes
     * @summary getTenantAttributes
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof FulfillmentApiInterface
     */
-    getTenantAttributesRaw(requestParameters: fulfillmentApiParams.GetTenantAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>>;
+    getTenantAttributesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>>;
 
     /**
     * getTenantAttributes
     * getTenantAttributes
     */
-    getTenantAttributes(requestParameters: fulfillmentApiParams.GetTenantAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }>;
+    getTenantAttributes(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }>;
 
 }
 
@@ -106,22 +88,10 @@ export class FulfillmentApi extends runtime.BaseAPI implements FulfillmentApiSer
      */
 
 
-    async getFeaturesRaw(requestParameters: fulfillmentApiParams.GetFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getFeatures.');
-        }
-
+    async getFeaturesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -143,8 +113,8 @@ export class FulfillmentApi extends runtime.BaseAPI implements FulfillmentApiSer
      * getFeatures
      * getFeatures
      */
-    async getFeatures(requestParameters: fulfillmentApiParams.GetFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }> {
-        const response = await this.getFeaturesRaw(requestParameters, initOverrides);
+    async getFeatures(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }> {
+        const response = await this.getFeaturesRaw(initOverrides);
         return await response.value();
     }
 
@@ -154,22 +124,10 @@ export class FulfillmentApi extends runtime.BaseAPI implements FulfillmentApiSer
      */
 
 
-    async getPublicSettingsRaw(requestParameters: fulfillmentApiParams.GetPublicSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getPublicSettings.');
-        }
-
+    async getPublicSettingsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -191,8 +149,8 @@ export class FulfillmentApi extends runtime.BaseAPI implements FulfillmentApiSer
      * getPublicSettings
      * getPublicSettings
      */
-    async getPublicSettings(requestParameters: fulfillmentApiParams.GetPublicSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }> {
-        const response = await this.getPublicSettingsRaw(requestParameters, initOverrides);
+    async getPublicSettings(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }> {
+        const response = await this.getPublicSettingsRaw(initOverrides);
         return await response.value();
     }
 
@@ -202,22 +160,10 @@ export class FulfillmentApi extends runtime.BaseAPI implements FulfillmentApiSer
      */
 
 
-    async getTenantAttributesRaw(requestParameters: fulfillmentApiParams.GetTenantAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getTenantAttributes.');
-        }
-
+    async getTenantAttributesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -239,8 +185,8 @@ export class FulfillmentApi extends runtime.BaseAPI implements FulfillmentApiSer
      * getTenantAttributes
      * getTenantAttributes
      */
-    async getTenantAttributes(requestParameters: fulfillmentApiParams.GetTenantAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }> {
-        const response = await this.getTenantAttributesRaw(requestParameters, initOverrides);
+    async getTenantAttributes(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }> {
+        const response = await this.getTenantAttributesRaw(initOverrides);
         return await response.value();
     }
 

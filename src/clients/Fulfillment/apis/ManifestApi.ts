@@ -25,27 +25,19 @@ import type {
 
 export namespace manifestApiParams { 
     export interface CreateManifestRequest {
-        xVolTenant: number;
         manifestRequestDto: ManifestRequest;
-        xVolSite?: number;
     }
     export interface GetEligibleShipmentsRequest {
         carrier: string;
         fulfillmentLocationCode: string;
-        xVolTenant: number;
         fromDays?: number;
-        xVolSite?: number;
     }
     export interface GetManifestRequest {
         manifestId: string;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface GetManifestsRequest {
         fulfillmentLocationCode: string;
-        xVolTenant: number;
         fromDays?: number;
-        xVolSite?: number;
     }
 }
 /**
@@ -58,9 +50,7 @@ export interface ManifestApiService {
     /**
     * createManifest
     * @summary createManifest
-    * @param {number} xVolTenant 
     * @param {ManifestRequest} manifestRequestDto manifestRequestDto
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ManifestApiInterface
@@ -78,9 +68,7 @@ export interface ManifestApiService {
     * @summary getEligibleShipments
     * @param {string} carrier carrier
     * @param {string} fulfillmentLocationCode fulfillmentLocationCode
-    * @param {number} xVolTenant 
     * @param {number} [fromDays] fromDays
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ManifestApiInterface
@@ -97,8 +85,6 @@ export interface ManifestApiService {
     * getManifest
     * @summary getManifest
     * @param {string} manifestId manifestId
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ManifestApiInterface
@@ -115,9 +101,7 @@ export interface ManifestApiService {
     * getManifests
     * @summary getManifests
     * @param {string} fulfillmentLocationCode fulfillmentLocationCode
-    * @param {number} xVolTenant 
     * @param {number} [fromDays] fromDays
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ManifestApiInterface
@@ -148,10 +132,6 @@ export class ManifestApi extends runtime.BaseAPI implements ManifestApiService {
 
 
     async createManifestRaw(requestParameters: manifestApiParams.CreateManifestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfManifest>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling createManifest.');
-        }
-
         if (requestParameters.manifestRequestDto === null || requestParameters.manifestRequestDto === undefined) {
             throw new runtime.RequiredError('manifestRequestDto','Required parameter requestParameters.manifestRequestDto was null or undefined when calling createManifest.');
         }
@@ -161,14 +141,6 @@ export class ManifestApi extends runtime.BaseAPI implements ManifestApiService {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -211,10 +183,6 @@ export class ManifestApi extends runtime.BaseAPI implements ManifestApiService {
             throw new runtime.RequiredError('fulfillmentLocationCode','Required parameter requestParameters.fulfillmentLocationCode was null or undefined when calling getEligibleShipments.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getEligibleShipments.');
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters.carrier !== undefined) {
@@ -230,14 +198,6 @@ export class ManifestApi extends runtime.BaseAPI implements ManifestApiService {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -275,21 +235,9 @@ export class ManifestApi extends runtime.BaseAPI implements ManifestApiService {
             throw new runtime.RequiredError('manifestId','Required parameter requestParameters.manifestId was null or undefined when calling getManifest.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getManifest.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -327,10 +275,6 @@ export class ManifestApi extends runtime.BaseAPI implements ManifestApiService {
             throw new runtime.RequiredError('fulfillmentLocationCode','Required parameter requestParameters.fulfillmentLocationCode was null or undefined when calling getManifests.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getManifests.');
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters.fromDays !== undefined) {
@@ -342,14 +286,6 @@ export class ManifestApi extends runtime.BaseAPI implements ManifestApiService {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 

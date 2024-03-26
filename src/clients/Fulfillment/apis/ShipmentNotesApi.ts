@@ -25,24 +25,18 @@ export namespace shipmentNotesApiParams {
     export interface DeleteShipmentNoteRequest {
         noteId: string;
         shipmentNumber: number;
-        xVolTenant: number;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface NewShipmentNoteRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         shipmentNoteDto: FulfillmentAPIProductionProfileShipmentNote;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface UpdateShipmentNoteRequest {
         noteId: string;
         shipmentNumber: number;
-        xVolTenant: number;
         shipmentNoteDto: FulfillmentAPIProductionProfileShipmentNote;
         ifMatch?: string;
-        xVolSite?: number;
     }
 }
 /**
@@ -57,9 +51,7 @@ export interface ShipmentNotesApiService {
     * @summary deleteShipmentNote
     * @param {string} noteId noteId
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentNotesApiInterface
@@ -76,10 +68,8 @@ export interface ShipmentNotesApiService {
     * newShipmentNote
     * @summary newShipmentNote
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {FulfillmentAPIProductionProfileShipmentNote} shipmentNoteDto shipmentNoteDto
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentNotesApiInterface
@@ -97,10 +87,8 @@ export interface ShipmentNotesApiService {
     * @summary updateShipmentNote
     * @param {string} noteId noteId
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {FulfillmentAPIProductionProfileShipmentNote} shipmentNoteDto shipmentNoteDto
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentNotesApiInterface
@@ -139,24 +127,12 @@ export class ShipmentNotesApi extends runtime.BaseAPI implements ShipmentNotesAp
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling deleteShipmentNote.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteShipmentNote.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -194,10 +170,6 @@ export class ShipmentNotesApi extends runtime.BaseAPI implements ShipmentNotesAp
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling newShipmentNote.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling newShipmentNote.');
-        }
-
         if (requestParameters.shipmentNoteDto === null || requestParameters.shipmentNoteDto === undefined) {
             throw new runtime.RequiredError('shipmentNoteDto','Required parameter requestParameters.shipmentNoteDto was null or undefined when calling newShipmentNote.');
         }
@@ -210,14 +182,6 @@ export class ShipmentNotesApi extends runtime.BaseAPI implements ShipmentNotesAp
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -261,10 +225,6 @@ export class ShipmentNotesApi extends runtime.BaseAPI implements ShipmentNotesAp
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateShipmentNote.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateShipmentNote.');
-        }
-
         if (requestParameters.shipmentNoteDto === null || requestParameters.shipmentNoteDto === undefined) {
             throw new runtime.RequiredError('shipmentNoteDto','Required parameter requestParameters.shipmentNoteDto was null or undefined when calling updateShipmentNote.');
         }
@@ -277,14 +237,6 @@ export class ShipmentNotesApi extends runtime.BaseAPI implements ShipmentNotesAp
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 

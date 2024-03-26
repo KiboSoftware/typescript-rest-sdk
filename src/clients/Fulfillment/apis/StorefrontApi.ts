@@ -24,11 +24,8 @@ import type {
 export namespace storefrontApiParams { 
     export interface GetShipment1Request {
         shipmentNumber: number;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface GetShipments1Request {
-        xVolTenant: number;
         bypassSearchIndex?: boolean;
         filter?: string;
         isLate?: boolean;
@@ -37,7 +34,6 @@ export namespace storefrontApiParams {
         quickSearch?: string;
         sort?: string;
         workflowTaskName?: string;
-        xVolSite?: number;
     }
 }
 /**
@@ -51,8 +47,6 @@ export interface StorefrontApiService {
     * getShipment
     * @summary getShipment
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof StorefrontApiInterface
@@ -68,7 +62,6 @@ export interface StorefrontApiService {
     /**
     * getShipments
     * @summary getShipments
-    * @param {number} xVolTenant 
     * @param {boolean} [bypassSearchIndex] 
     * @param {string} [filter] 
     * @param {boolean} [isLate] 
@@ -77,7 +70,6 @@ export interface StorefrontApiService {
     * @param {string} [quickSearch] 
     * @param {string} [sort] 
     * @param {string} [workflowTaskName] 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof StorefrontApiInterface
@@ -112,21 +104,9 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiServi
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getShipment1.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipment1.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -160,10 +140,6 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiServi
 
 
     async getShipments1Raw(requestParameters: storefrontApiParams.GetShipments1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PagedModelOfEntityModelOfShipment>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipments1.');
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters.bypassSearchIndex !== undefined) {
@@ -200,14 +176,6 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiServi
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
-
 
 
 
@@ -228,7 +196,7 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiServi
      * getShipments
      * getShipments
      */
-    async getShipments1(requestParameters: storefrontApiParams.GetShipments1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PagedModelOfEntityModelOfShipment> {
+    async getShipments1(requestParameters: storefrontApiParams.GetShipments1Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PagedModelOfEntityModelOfShipment> {
         const response = await this.getShipments1Raw(requestParameters, initOverrides);
         return await response.value();
     }

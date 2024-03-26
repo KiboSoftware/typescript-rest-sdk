@@ -26,15 +26,11 @@ import type {
 export namespace giftReceiptApiParams { 
     export interface ItemGiftReceiptUpdateRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         itemGiftReceiptRequestDto: ItemGiftReceiptRequest;
-        xVolSite?: number;
     }
     export interface ShipmentGiftReceiptUpdateRequest {
         orderId: string;
-        xVolTenant: number;
         shipmentGiftReceiptRequestDto: ShipmentGiftReceiptRequest;
-        xVolSite?: number;
     }
 }
 /**
@@ -48,9 +44,7 @@ export interface GiftReceiptApiService {
     * itemGiftReceiptUpdate
     * @summary itemGiftReceiptUpdate
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {ItemGiftReceiptRequest} itemGiftReceiptRequestDto itemGiftReceiptRequestDto
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof GiftReceiptApiInterface
@@ -67,9 +61,7 @@ export interface GiftReceiptApiService {
     * shipmentGiftReceiptUpdate
     * @summary shipmentGiftReceiptUpdate
     * @param {string} orderId orderId
-    * @param {number} xVolTenant 
     * @param {ShipmentGiftReceiptRequest} shipmentGiftReceiptRequestDto shipmentGiftReceiptRequestDto
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof GiftReceiptApiInterface
@@ -104,10 +96,6 @@ export class GiftReceiptApi extends runtime.BaseAPI implements GiftReceiptApiSer
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling itemGiftReceiptUpdate.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling itemGiftReceiptUpdate.');
-        }
-
         if (requestParameters.itemGiftReceiptRequestDto === null || requestParameters.itemGiftReceiptRequestDto === undefined) {
             throw new runtime.RequiredError('itemGiftReceiptRequestDto','Required parameter requestParameters.itemGiftReceiptRequestDto was null or undefined when calling itemGiftReceiptUpdate.');
         }
@@ -117,14 +105,6 @@ export class GiftReceiptApi extends runtime.BaseAPI implements GiftReceiptApiSer
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -163,10 +143,6 @@ export class GiftReceiptApi extends runtime.BaseAPI implements GiftReceiptApiSer
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling shipmentGiftReceiptUpdate.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling shipmentGiftReceiptUpdate.');
-        }
-
         if (requestParameters.shipmentGiftReceiptRequestDto === null || requestParameters.shipmentGiftReceiptRequestDto === undefined) {
             throw new runtime.RequiredError('shipmentGiftReceiptRequestDto','Required parameter requestParameters.shipmentGiftReceiptRequestDto was null or undefined when calling shipmentGiftReceiptUpdate.');
         }
@@ -176,14 +152,6 @@ export class GiftReceiptApi extends runtime.BaseAPI implements GiftReceiptApiSer
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 

@@ -20,9 +20,7 @@ import { basePathTemplate } from '../api-path';
 export namespace shippingNotificationApiParams { 
     export interface HandleCarrierNotificationRequest {
         carrier: string;
-        xVolTenant: number;
         paramMap: any | null;
-        xVolSite?: number;
     }
 }
 /**
@@ -36,9 +34,7 @@ export interface ShippingNotificationApiService {
     * handleCarrierNotification
     * @summary handleCarrierNotification
     * @param {string} carrier carrier
-    * @param {number} xVolTenant 
     * @param {any} paramMap paramMap
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShippingNotificationApiInterface
@@ -73,10 +69,6 @@ export class ShippingNotificationApi extends runtime.BaseAPI implements Shipping
             throw new runtime.RequiredError('carrier','Required parameter requestParameters.carrier was null or undefined when calling handleCarrierNotification.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling handleCarrierNotification.');
-        }
-
         if (requestParameters.paramMap === null || requestParameters.paramMap === undefined) {
             throw new runtime.RequiredError('paramMap','Required parameter requestParameters.paramMap was null or undefined when calling handleCarrierNotification.');
         }
@@ -84,14 +76,6 @@ export class ShippingNotificationApi extends runtime.BaseAPI implements Shipping
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 

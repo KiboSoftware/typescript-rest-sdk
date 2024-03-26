@@ -26,32 +26,20 @@ import type {
 
 
 export namespace routingApiParams { 
-    export interface GetSampleRequestRequest {
-        xVolSite: number;
-        xVolTenant: number;
-    }
     export interface GetSuggestionLogRequest {
-        xVolSite: number;
-        xVolTenant: number;
         externalResponseID?: string;
         orderID?: number;
         responseID?: number;
         suggestionID?: number;
     }
     export interface SuggestCandidatesRequest {
-        xVolSite: number;
-        xVolTenant: number;
         request: CandidateSuggestionsRequest;
     }
     export interface SuggestRoutingRequest {
-        xVolSite: number;
-        xVolTenant: number;
         request: SuggestionRequest;
         returnSuggestionLog?: boolean;
     }
     export interface SuggestRoutingTestRequest {
-        xVolSite: number;
-        xVolTenant: number;
         request: SuggestionTestRequest;
         returnSuggestionLog?: boolean;
     }
@@ -66,25 +54,21 @@ export interface RoutingApiService {
     /**
     * getSampleRequest
     * @summary getSampleRequest
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof RoutingApiInterface
     */
-    getSampleRequestRaw(requestParameters: routingApiParams.GetSampleRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestionRequest>>;
+    getSampleRequestRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestionRequest>>;
 
     /**
     * getSampleRequest
     * getSampleRequest
     */
-    getSampleRequest(requestParameters: routingApiParams.GetSampleRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestionRequest>;
+    getSampleRequest(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestionRequest>;
 
     /**
     * getSuggestionLog
     * @summary getSuggestionLog
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {string} [externalResponseID] externalResponseID
     * @param {number} [orderID] orderID
     * @param {number} [responseID] responseID
@@ -104,8 +88,6 @@ export interface RoutingApiService {
     /**
     * suggestCandidates
     * @summary suggestCandidates
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {CandidateSuggestionsRequest} request request
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -122,8 +104,6 @@ export interface RoutingApiService {
     /**
     * suggestRouting
     * @summary suggestRouting
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {SuggestionRequest} request request
     * @param {boolean} [returnSuggestionLog] returnSuggestionLog
     * @param {*} [options] Override http request option.
@@ -141,8 +121,6 @@ export interface RoutingApiService {
     /**
     * suggestRoutingTest
     * @summary suggestRoutingTest
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {SuggestionTestRequest} request request
     * @param {boolean} [returnSuggestionLog] returnSuggestionLog
     * @param {*} [options] Override http request option.
@@ -174,26 +152,10 @@ export class RoutingApi extends runtime.BaseAPI implements RoutingApiService {
      */
 
 
-    async getSampleRequestRaw(requestParameters: routingApiParams.GetSampleRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestionRequest>> {
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling getSampleRequest.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getSampleRequest.');
-        }
-
+    async getSampleRequestRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestionRequest>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -215,8 +177,8 @@ export class RoutingApi extends runtime.BaseAPI implements RoutingApiService {
      * getSampleRequest
      * getSampleRequest
      */
-    async getSampleRequest(requestParameters: routingApiParams.GetSampleRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestionRequest> {
-        const response = await this.getSampleRequestRaw(requestParameters, initOverrides);
+    async getSampleRequest(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestionRequest> {
+        const response = await this.getSampleRequestRaw(initOverrides);
         return await response.value();
     }
 
@@ -227,14 +189,6 @@ export class RoutingApi extends runtime.BaseAPI implements RoutingApiService {
 
 
     async getSuggestionLogRaw(requestParameters: routingApiParams.GetSuggestionLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SuggestionLog>>> {
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling getSuggestionLog.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getSuggestionLog.');
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters.externalResponseID !== undefined) {
@@ -254,14 +208,6 @@ export class RoutingApi extends runtime.BaseAPI implements RoutingApiService {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -283,7 +229,7 @@ export class RoutingApi extends runtime.BaseAPI implements RoutingApiService {
      * getSuggestionLog
      * getSuggestionLog
      */
-    async getSuggestionLog(requestParameters: routingApiParams.GetSuggestionLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SuggestionLog>> {
+    async getSuggestionLog(requestParameters: routingApiParams.GetSuggestionLogRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SuggestionLog>> {
         const response = await this.getSuggestionLogRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -295,14 +241,6 @@ export class RoutingApi extends runtime.BaseAPI implements RoutingApiService {
 
 
     async suggestCandidatesRaw(requestParameters: routingApiParams.SuggestCandidatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CandidateSuggestionsResponse>> {
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling suggestCandidates.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling suggestCandidates.');
-        }
-
         if (requestParameters.request === null || requestParameters.request === undefined) {
             throw new runtime.RequiredError('request','Required parameter requestParameters.request was null or undefined when calling suggestCandidates.');
         }
@@ -312,14 +250,6 @@ export class RoutingApi extends runtime.BaseAPI implements RoutingApiService {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -354,14 +284,6 @@ export class RoutingApi extends runtime.BaseAPI implements RoutingApiService {
 
 
     async suggestRoutingRaw(requestParameters: routingApiParams.SuggestRoutingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestionResponse>> {
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling suggestRouting.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling suggestRouting.');
-        }
-
         if (requestParameters.request === null || requestParameters.request === undefined) {
             throw new runtime.RequiredError('request','Required parameter requestParameters.request was null or undefined when calling suggestRouting.');
         }
@@ -375,14 +297,6 @@ export class RoutingApi extends runtime.BaseAPI implements RoutingApiService {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -417,14 +331,6 @@ export class RoutingApi extends runtime.BaseAPI implements RoutingApiService {
 
 
     async suggestRoutingTestRaw(requestParameters: routingApiParams.SuggestRoutingTestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestionResponse>> {
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling suggestRoutingTest.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling suggestRoutingTest.');
-        }
-
         if (requestParameters.request === null || requestParameters.request === undefined) {
             throw new runtime.RequiredError('request','Required parameter requestParameters.request was null or undefined when calling suggestRoutingTest.');
         }
@@ -438,14 +344,6 @@ export class RoutingApi extends runtime.BaseAPI implements RoutingApiService {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 

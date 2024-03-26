@@ -35,37 +35,25 @@ import type {
 
 export namespace inventoryBinApiParams { 
     export interface CreateBinOperationRequest {
-        xVolTenant: number;
         createBinRequest: CreateBinRequest;
     }
-    export interface GetBinStatusesRequest {
-        xVolTenant: number;
-    }
-    export interface GetBinTypesRequest {
-        xVolTenant: number;
-    }
     export interface GetBinsRequest {
-        xVolTenant: number;
         locationID: number;
         searchTerm?: number;
         perPage?: number;
         page?: number;
     }
     export interface LoadInventoryRequest {
-        xVolTenant: number;
         loadBinInventoryRequest: LoadBinInventoryRequest;
     }
     export interface SearchBinsRequest {
-        xVolTenant: number;
         binSearchRequest: BinSearchRequest;
     }
     export interface UpdateBinOperationRequest {
-        xVolTenant: number;
         binId: number;
         updateBinRequest: UpdateBinRequest;
     }
     export interface UpdateBinsOperationRequest {
-        xVolTenant: number;
         updateBinsRequest: UpdateBinsRequest;
     }
 }
@@ -79,7 +67,6 @@ export interface InventoryBinApiService {
     /**
     * Create a bin
     * @summary Create Bin
-    * @param {number} xVolTenant Tenant ID
     * @param {CreateBinRequest} createBinRequest Request to create a new bin
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -96,39 +83,36 @@ export interface InventoryBinApiService {
     /**
     * Get list of bin statuses
     * @summary Get Bin Statuses
-    * @param {number} xVolTenant Tenant ID
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof InventoryBinApiInterface
     */
-    getBinStatusesRaw(requestParameters: inventoryBinApiParams.GetBinStatusesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<BinStatusModel>>>;
+    getBinStatusesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<BinStatusModel>>>;
 
     /**
     * Get list of bin statuses
     * Get Bin Statuses
     */
-    getBinStatuses(requestParameters: inventoryBinApiParams.GetBinStatusesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<BinStatusModel>>;
+    getBinStatuses(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<BinStatusModel>>;
 
     /**
     * Get list of bin types
     * @summary Get Bin Types
-    * @param {number} xVolTenant Tenant ID
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof InventoryBinApiInterface
     */
-    getBinTypesRaw(requestParameters: inventoryBinApiParams.GetBinTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<BinTypeModel>>>;
+    getBinTypesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<BinTypeModel>>>;
 
     /**
     * Get list of bin types
     * Get Bin Types
     */
-    getBinTypes(requestParameters: inventoryBinApiParams.GetBinTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<BinTypeModel>>;
+    getBinTypes(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<BinTypeModel>>;
 
     /**
     * Get a list of bins
     * @summary Get Bins
-    * @param {number} xVolTenant Tenant ID
     * @param {number} locationID Id of location
     * @param {number} [searchTerm] Term to match in bins
     * @param {number} [perPage] Results per page
@@ -148,7 +132,6 @@ export interface InventoryBinApiService {
     /**
     * Loads bin inventory for designated bins
     * @summary Load Inventory
-    * @param {number} xVolTenant Tenant ID
     * @param {LoadBinInventoryRequest} loadBinInventoryRequest Request to load bin inventory
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -165,7 +148,6 @@ export interface InventoryBinApiService {
     /**
     * Search bins for a inventory by bin name or any product identifier
     * @summary Search Bins
-    * @param {number} xVolTenant Tenant ID
     * @param {BinSearchRequest} binSearchRequest Request to allocate inventory
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -182,7 +164,6 @@ export interface InventoryBinApiService {
     /**
     * Update the designated bin
     * @summary Update Bin
-    * @param {number} xVolTenant Tenant ID
     * @param {number} binId Id of bin to update
     * @param {UpdateBinRequest} updateBinRequest Request to update a bin
     * @param {*} [options] Override http request option.
@@ -200,7 +181,6 @@ export interface InventoryBinApiService {
     /**
     * Update the designated bins
     * @summary Update Bins
-    * @param {number} xVolTenant Tenant ID
     * @param {UpdateBinsRequest} updateBinsRequest Request to update multiple bins
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -232,10 +212,6 @@ export class InventoryBinApi extends runtime.BaseAPI implements InventoryBinApiS
 
 
     async createBinRaw(requestParameters: inventoryBinApiParams.CreateBinOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BinIDResponse>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling createBin.');
-        }
-
         if (requestParameters.createBinRequest === null || requestParameters.createBinRequest === undefined) {
             throw new runtime.RequiredError('createBinRequest','Required parameter requestParameters.createBinRequest was null or undefined when calling createBin.');
         }
@@ -245,10 +221,6 @@ export class InventoryBinApi extends runtime.BaseAPI implements InventoryBinApiS
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -282,18 +254,10 @@ export class InventoryBinApi extends runtime.BaseAPI implements InventoryBinApiS
      */
 
 
-    async getBinStatusesRaw(requestParameters: inventoryBinApiParams.GetBinStatusesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<BinStatusModel>>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getBinStatuses.');
-        }
-
+    async getBinStatusesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<BinStatusModel>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -315,8 +279,8 @@ export class InventoryBinApi extends runtime.BaseAPI implements InventoryBinApiS
      * Get list of bin statuses
      * Get Bin Statuses
      */
-    async getBinStatuses(requestParameters: inventoryBinApiParams.GetBinStatusesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<BinStatusModel>> {
-        const response = await this.getBinStatusesRaw(requestParameters, initOverrides);
+    async getBinStatuses(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<BinStatusModel>> {
+        const response = await this.getBinStatusesRaw(initOverrides);
         return await response.value();
     }
 
@@ -326,18 +290,10 @@ export class InventoryBinApi extends runtime.BaseAPI implements InventoryBinApiS
      */
 
 
-    async getBinTypesRaw(requestParameters: inventoryBinApiParams.GetBinTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<BinTypeModel>>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getBinTypes.');
-        }
-
+    async getBinTypesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<BinTypeModel>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -359,8 +315,8 @@ export class InventoryBinApi extends runtime.BaseAPI implements InventoryBinApiS
      * Get list of bin types
      * Get Bin Types
      */
-    async getBinTypes(requestParameters: inventoryBinApiParams.GetBinTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<BinTypeModel>> {
-        const response = await this.getBinTypesRaw(requestParameters, initOverrides);
+    async getBinTypes(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<BinTypeModel>> {
+        const response = await this.getBinTypesRaw(initOverrides);
         return await response.value();
     }
 
@@ -371,10 +327,6 @@ export class InventoryBinApi extends runtime.BaseAPI implements InventoryBinApiS
 
 
     async getBinsRaw(requestParameters: inventoryBinApiParams.GetBinsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BinResponseModel>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getBins.');
-        }
-
         if (requestParameters.locationID === null || requestParameters.locationID === undefined) {
             throw new runtime.RequiredError('locationID','Required parameter requestParameters.locationID was null or undefined when calling getBins.');
         }
@@ -398,10 +350,6 @@ export class InventoryBinApi extends runtime.BaseAPI implements InventoryBinApiS
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -435,10 +383,6 @@ export class InventoryBinApi extends runtime.BaseAPI implements InventoryBinApiS
 
 
     async loadInventoryRaw(requestParameters: inventoryBinApiParams.LoadInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoadBinInventoryResponse>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling loadInventory.');
-        }
-
         if (requestParameters.loadBinInventoryRequest === null || requestParameters.loadBinInventoryRequest === undefined) {
             throw new runtime.RequiredError('loadBinInventoryRequest','Required parameter requestParameters.loadBinInventoryRequest was null or undefined when calling loadInventory.');
         }
@@ -448,10 +392,6 @@ export class InventoryBinApi extends runtime.BaseAPI implements InventoryBinApiS
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -486,10 +426,6 @@ export class InventoryBinApi extends runtime.BaseAPI implements InventoryBinApiS
 
 
     async searchBinsRaw(requestParameters: inventoryBinApiParams.SearchBinsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BinSearchResponse>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling searchBins.');
-        }
-
         if (requestParameters.binSearchRequest === null || requestParameters.binSearchRequest === undefined) {
             throw new runtime.RequiredError('binSearchRequest','Required parameter requestParameters.binSearchRequest was null or undefined when calling searchBins.');
         }
@@ -499,10 +435,6 @@ export class InventoryBinApi extends runtime.BaseAPI implements InventoryBinApiS
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -537,10 +469,6 @@ export class InventoryBinApi extends runtime.BaseAPI implements InventoryBinApiS
 
 
     async updateBinRaw(requestParameters: inventoryBinApiParams.UpdateBinOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Bin>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateBin.');
-        }
-
         if (requestParameters.binId === null || requestParameters.binId === undefined) {
             throw new runtime.RequiredError('binId','Required parameter requestParameters.binId was null or undefined when calling updateBin.');
         }
@@ -554,10 +482,6 @@ export class InventoryBinApi extends runtime.BaseAPI implements InventoryBinApiS
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -592,10 +516,6 @@ export class InventoryBinApi extends runtime.BaseAPI implements InventoryBinApiS
 
 
     async updateBinsRaw(requestParameters: inventoryBinApiParams.UpdateBinsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateBinsResponse>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateBins.');
-        }
-
         if (requestParameters.updateBinsRequest === null || requestParameters.updateBinsRequest === undefined) {
             throw new runtime.RequiredError('updateBinsRequest','Required parameter requestParameters.updateBinsRequest was null or undefined when calling updateBins.');
         }
@@ -605,10 +525,6 @@ export class InventoryBinApi extends runtime.BaseAPI implements InventoryBinApiS
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 

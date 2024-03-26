@@ -31,29 +31,18 @@ import type {
 
 export namespace modifyInventoryApiParams { 
     export interface DeleteRequest {
-        xVolTenant: number;
         deleteItemRequest: DeleteItemRequest;
-        xVolSite?: number;
     }
     export interface AdjustOperationRequest {
-        xVolTenant: number;
         adjustRequest: AdjustRequest;
     }
     export interface DeleteFutureInventoryRequest {
-        xVolTenant: number;
         deleteFutureItemRequest: DeleteFutureItemRequest;
-        xVolSite?: number;
     }
     export interface DeleteItemsOperationRequest {
-        xVolTenant: number;
         deleteItemsRequest: DeleteItemsRequest;
-        xVolSite?: number;
-    }
-    export interface RedistributeInventoryAcrossTagsRequest {
-        xVolTenant: number;
     }
     export interface RefreshOperationRequest {
-        xVolTenant: number;
         refreshRequest: RefreshRequest;
     }
 }
@@ -67,9 +56,7 @@ export interface ModifyInventoryApiService {
     /**
     * Delete Inventory
     * @summary Delete
-    * @param {number} xVolTenant Tenant ID
     * @param {DeleteItemRequest} deleteItemRequest Request to delete item(s)
-    * @param {number} [xVolSite] Site ID
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ModifyInventoryApiInterface
@@ -85,7 +72,6 @@ export interface ModifyInventoryApiService {
     /**
     * Adjust Inventory
     * @summary Adjust
-    * @param {number} xVolTenant Tenant ID
     * @param {AdjustRequest} adjustRequest Request to adjust inventory
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -102,9 +88,7 @@ export interface ModifyInventoryApiService {
     /**
     * Delete Future Inventory
     * @summary Delete-future-inventory
-    * @param {number} xVolTenant Tenant ID
     * @param {DeleteFutureItemRequest} deleteFutureItemRequest Request to delete future item(s)
-    * @param {number} [xVolSite] Site ID
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ModifyInventoryApiInterface
@@ -120,9 +104,7 @@ export interface ModifyInventoryApiService {
     /**
     * Delete Multiple Inventory
     * @summary Delete-items
-    * @param {number} xVolTenant Tenant ID
     * @param {DeleteItemsRequest} deleteItemsRequest Request to batch delete items
-    * @param {number} [xVolSite] Site ID
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ModifyInventoryApiInterface
@@ -138,23 +120,21 @@ export interface ModifyInventoryApiService {
     /**
     * Create jobs to redistribute inventory across tags for the given tenant
     * @summary Redistribute Inventory Across Tags
-    * @param {number} xVolTenant Tenant ID
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ModifyInventoryApiInterface
     */
-    redistributeInventoryAcrossTagsRaw(requestParameters: modifyInventoryApiParams.RedistributeInventoryAcrossTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobQueueResponse>>>;
+    redistributeInventoryAcrossTagsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobQueueResponse>>>;
 
     /**
     * Create jobs to redistribute inventory across tags for the given tenant
     * Redistribute Inventory Across Tags
     */
-    redistributeInventoryAcrossTags(requestParameters: modifyInventoryApiParams.RedistributeInventoryAcrossTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobQueueResponse>>;
+    redistributeInventoryAcrossTags(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobQueueResponse>>;
 
     /**
     * Refresh Inventory
     * @summary Refresh
-    * @param {number} xVolTenant Tenant ID
     * @param {RefreshRequest} refreshRequest Request to refresh inventory
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -186,10 +166,6 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
 
 
     async _deleteRaw(requestParameters: modifyInventoryApiParams.DeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteItemResponse>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling _delete.');
-        }
-
         if (requestParameters.deleteItemRequest === null || requestParameters.deleteItemRequest === undefined) {
             throw new runtime.RequiredError('deleteItemRequest','Required parameter requestParameters.deleteItemRequest was null or undefined when calling _delete.');
         }
@@ -199,14 +175,6 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
 
 
 
@@ -241,10 +209,6 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
 
 
     async adjustRaw(requestParameters: modifyInventoryApiParams.AdjustOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobIDResponse>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling adjust.');
-        }
-
         if (requestParameters.adjustRequest === null || requestParameters.adjustRequest === undefined) {
             throw new runtime.RequiredError('adjustRequest','Required parameter requestParameters.adjustRequest was null or undefined when calling adjust.');
         }
@@ -254,10 +218,6 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -292,10 +252,6 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
 
 
     async deleteFutureInventoryRaw(requestParameters: modifyInventoryApiParams.DeleteFutureInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteFutureItemResponse>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteFutureInventory.');
-        }
-
         if (requestParameters.deleteFutureItemRequest === null || requestParameters.deleteFutureItemRequest === undefined) {
             throw new runtime.RequiredError('deleteFutureItemRequest','Required parameter requestParameters.deleteFutureItemRequest was null or undefined when calling deleteFutureInventory.');
         }
@@ -305,14 +261,6 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
 
 
 
@@ -347,10 +295,6 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
 
 
     async deleteItemsRaw(requestParameters: modifyInventoryApiParams.DeleteItemsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteItemResponse>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteItems.');
-        }
-
         if (requestParameters.deleteItemsRequest === null || requestParameters.deleteItemsRequest === undefined) {
             throw new runtime.RequiredError('deleteItemsRequest','Required parameter requestParameters.deleteItemsRequest was null or undefined when calling deleteItems.');
         }
@@ -360,14 +304,6 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
 
 
 
@@ -401,18 +337,10 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
      */
 
 
-    async redistributeInventoryAcrossTagsRaw(requestParameters: modifyInventoryApiParams.RedistributeInventoryAcrossTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobQueueResponse>>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling redistributeInventoryAcrossTags.');
-        }
-
+    async redistributeInventoryAcrossTagsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobQueueResponse>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -434,8 +362,8 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
      * Create jobs to redistribute inventory across tags for the given tenant
      * Redistribute Inventory Across Tags
      */
-    async redistributeInventoryAcrossTags(requestParameters: modifyInventoryApiParams.RedistributeInventoryAcrossTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobQueueResponse>> {
-        const response = await this.redistributeInventoryAcrossTagsRaw(requestParameters, initOverrides);
+    async redistributeInventoryAcrossTags(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobQueueResponse>> {
+        const response = await this.redistributeInventoryAcrossTagsRaw(initOverrides);
         return await response.value();
     }
 
@@ -446,10 +374,6 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
 
 
     async refreshRaw(requestParameters: modifyInventoryApiParams.RefreshOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobIDResponse>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling refresh.');
-        }
-
         if (requestParameters.refreshRequest === null || requestParameters.refreshRequest === undefined) {
             throw new runtime.RequiredError('refreshRequest','Required parameter requestParameters.refreshRequest was null or undefined when calling refresh.');
         }
@@ -459,10 +383,6 @@ export class ModifyInventoryApi extends runtime.BaseAPI implements ModifyInvento
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 

@@ -35,49 +35,38 @@ import type {
 
 export namespace exportInventoryApiParams { 
     export interface CreateExportSettingsOperationRequest {
-        xVolTenant: number;
         createExportSettingsRequest: CreateExportSettingsRequest;
     }
     export interface CreateExportSettingsFTPOperationRequest {
-        xVolTenant: number;
         createExportSettingsFTPRequest: CreateExportSettingsFTPRequest;
     }
     export interface CreateExportSettingsS3OperationRequest {
-        xVolTenant: number;
         createExportSettingsS3Request: CreateExportSettingsS3Request;
     }
     export interface DeleteExportSettingsRequest {
-        xVolTenant: number;
         exportSettingsName: string;
     }
     export interface DeleteExportSettingsFTPRequest {
-        xVolTenant: number;
         exportSettingsName: string;
         exportSettingsFTPName?: string;
     }
     export interface DeleteExportSettingsS3Request {
-        xVolTenant: number;
         exportSettingsName: string;
         exportSettingsS3Name?: string;
     }
     export interface GetExportSettingsRequest {
-        xVolTenant: number;
         exportSettingsName: string;
     }
     export interface RunExportRequest {
-        xVolTenant: number;
         exportInventoryRequest: ExportInventoryRequest;
     }
     export interface UpdateExportSettingsOperationRequest {
-        xVolTenant: number;
         updateExportSettingsRequest: UpdateExportSettingsRequest;
     }
     export interface UpdateExportSettingsFTPOperationRequest {
-        xVolTenant: number;
         updateExportSettingsFTPRequest: UpdateExportSettingsFTPRequest;
     }
     export interface UpdateExportSettingsS3OperationRequest {
-        xVolTenant: number;
         updateExportSettingsS3Request: UpdateExportSettingsS3Request;
     }
 }
@@ -91,7 +80,6 @@ export interface ExportInventoryApiService {
     /**
     * Create an Export Settings
     * @summary Create Export Settings
-    * @param {number} xVolTenant Tenant ID
     * @param {CreateExportSettingsRequest} createExportSettingsRequest Request to create a new Export Settings
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -108,7 +96,6 @@ export interface ExportInventoryApiService {
     /**
     * Create an Export Settings FTP
     * @summary Create Export Settings FTP
-    * @param {number} xVolTenant Tenant ID
     * @param {CreateExportSettingsFTPRequest} createExportSettingsFTPRequest Request to create a new Export Settings FTP
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -125,7 +112,6 @@ export interface ExportInventoryApiService {
     /**
     * Create an Export Settings S3
     * @summary Create Export Settings S3
-    * @param {number} xVolTenant Tenant ID
     * @param {CreateExportSettingsS3Request} createExportSettingsS3Request Request to create a new Export Settings S3
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -142,7 +128,6 @@ export interface ExportInventoryApiService {
     /**
     * Deletes an Export Settings
     * @summary Delete Export Settings
-    * @param {number} xVolTenant Tenant ID
     * @param {string} exportSettingsName Export Settings Name
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -159,7 +144,6 @@ export interface ExportInventoryApiService {
     /**
     * Deletes an Export Settings FTP. Not specifying exportSettingsFTPID deletes ALL ftp settings for the specified export settings.
     * @summary Delete Export Settings FTP
-    * @param {number} xVolTenant Tenant ID
     * @param {string} exportSettingsName Export Settings Name
     * @param {string} [exportSettingsFTPName] Export Settings FTP Name
     * @param {*} [options] Override http request option.
@@ -177,7 +161,6 @@ export interface ExportInventoryApiService {
     /**
     * Deletes an Export Settings S3. Not specifying exportSettingsS3ID deletes ALL s3 settings for the specified export settings.
     * @summary Delete Export Settings S3
-    * @param {number} xVolTenant Tenant ID
     * @param {string} exportSettingsName Export Settings Name
     * @param {string} [exportSettingsS3Name] Export Settings S3 Name
     * @param {*} [options] Override http request option.
@@ -195,7 +178,6 @@ export interface ExportInventoryApiService {
     /**
     * Get an export settings
     * @summary Get Export Settings
-    * @param {number} xVolTenant Tenant ID
     * @param {string} exportSettingsName Export Settings Name
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -212,7 +194,6 @@ export interface ExportInventoryApiService {
     /**
     * Run Export Settings Job
     * @summary Run Export
-    * @param {number} xVolTenant Tenant ID
     * @param {ExportInventoryRequest} exportInventoryRequest Request to run an inventory export
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -229,7 +210,6 @@ export interface ExportInventoryApiService {
     /**
     * Update an Export Settings
     * @summary Update Export Settings
-    * @param {number} xVolTenant Tenant ID
     * @param {UpdateExportSettingsRequest} updateExportSettingsRequest Request to update an existing Export Settings
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -246,7 +226,6 @@ export interface ExportInventoryApiService {
     /**
     * Update an Export Settings FTP
     * @summary Update Export Settings FTP
-    * @param {number} xVolTenant Tenant ID
     * @param {UpdateExportSettingsFTPRequest} updateExportSettingsFTPRequest Request to update an existing Export Settings FTP
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -263,7 +242,6 @@ export interface ExportInventoryApiService {
     /**
     * Update an Export Settings S3
     * @summary Update Export Settings S3
-    * @param {number} xVolTenant Tenant ID
     * @param {UpdateExportSettingsS3Request} updateExportSettingsS3Request Request to update an existing Export Settings S3
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -295,10 +273,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
 
 
     async createExportSettingsRaw(requestParameters: exportInventoryApiParams.CreateExportSettingsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportSettingsResponse>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling createExportSettings.');
-        }
-
         if (requestParameters.createExportSettingsRequest === null || requestParameters.createExportSettingsRequest === undefined) {
             throw new runtime.RequiredError('createExportSettingsRequest','Required parameter requestParameters.createExportSettingsRequest was null or undefined when calling createExportSettings.');
         }
@@ -308,10 +282,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -346,10 +316,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
 
 
     async createExportSettingsFTPRaw(requestParameters: exportInventoryApiParams.CreateExportSettingsFTPOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportSettingsResponse>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling createExportSettingsFTP.');
-        }
-
         if (requestParameters.createExportSettingsFTPRequest === null || requestParameters.createExportSettingsFTPRequest === undefined) {
             throw new runtime.RequiredError('createExportSettingsFTPRequest','Required parameter requestParameters.createExportSettingsFTPRequest was null or undefined when calling createExportSettingsFTP.');
         }
@@ -359,10 +325,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -397,10 +359,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
 
 
     async createExportSettingsS3Raw(requestParameters: exportInventoryApiParams.CreateExportSettingsS3OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportSettingsResponse>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling createExportSettingsS3.');
-        }
-
         if (requestParameters.createExportSettingsS3Request === null || requestParameters.createExportSettingsS3Request === undefined) {
             throw new runtime.RequiredError('createExportSettingsS3Request','Required parameter requestParameters.createExportSettingsS3Request was null or undefined when calling createExportSettingsS3.');
         }
@@ -410,10 +368,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -448,10 +402,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
 
 
     async deleteExportSettingsRaw(requestParameters: exportInventoryApiParams.DeleteExportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteExportSettings.');
-        }
-
         if (requestParameters.exportSettingsName === null || requestParameters.exportSettingsName === undefined) {
             throw new runtime.RequiredError('exportSettingsName','Required parameter requestParameters.exportSettingsName was null or undefined when calling deleteExportSettings.');
         }
@@ -463,10 +413,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -500,10 +446,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
 
 
     async deleteExportSettingsFTPRaw(requestParameters: exportInventoryApiParams.DeleteExportSettingsFTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteExportSettingsFTP.');
-        }
-
         if (requestParameters.exportSettingsName === null || requestParameters.exportSettingsName === undefined) {
             throw new runtime.RequiredError('exportSettingsName','Required parameter requestParameters.exportSettingsName was null or undefined when calling deleteExportSettingsFTP.');
         }
@@ -515,10 +457,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -552,10 +490,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
 
 
     async deleteExportSettingsS3Raw(requestParameters: exportInventoryApiParams.DeleteExportSettingsS3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteExportSettingsS3.');
-        }
-
         if (requestParameters.exportSettingsName === null || requestParameters.exportSettingsName === undefined) {
             throw new runtime.RequiredError('exportSettingsName','Required parameter requestParameters.exportSettingsName was null or undefined when calling deleteExportSettingsS3.');
         }
@@ -567,10 +501,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -604,10 +534,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
 
 
     async getExportSettingsRaw(requestParameters: exportInventoryApiParams.GetExportSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<GetExportSettingsResponse>>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getExportSettings.');
-        }
-
         if (requestParameters.exportSettingsName === null || requestParameters.exportSettingsName === undefined) {
             throw new runtime.RequiredError('exportSettingsName','Required parameter requestParameters.exportSettingsName was null or undefined when calling getExportSettings.');
         }
@@ -619,10 +545,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -656,10 +578,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
 
 
     async runExportRaw(requestParameters: exportInventoryApiParams.RunExportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExportInventoryResponse>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling runExport.');
-        }
-
         if (requestParameters.exportInventoryRequest === null || requestParameters.exportInventoryRequest === undefined) {
             throw new runtime.RequiredError('exportInventoryRequest','Required parameter requestParameters.exportInventoryRequest was null or undefined when calling runExport.');
         }
@@ -669,10 +587,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -707,10 +621,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
 
 
     async updateExportSettingsRaw(requestParameters: exportInventoryApiParams.UpdateExportSettingsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateExportSettingsResponse>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateExportSettings.');
-        }
-
         if (requestParameters.updateExportSettingsRequest === null || requestParameters.updateExportSettingsRequest === undefined) {
             throw new runtime.RequiredError('updateExportSettingsRequest','Required parameter requestParameters.updateExportSettingsRequest was null or undefined when calling updateExportSettings.');
         }
@@ -720,10 +630,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -758,10 +664,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
 
 
     async updateExportSettingsFTPRaw(requestParameters: exportInventoryApiParams.UpdateExportSettingsFTPOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateExportSettingsFTPResponse>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateExportSettingsFTP.');
-        }
-
         if (requestParameters.updateExportSettingsFTPRequest === null || requestParameters.updateExportSettingsFTPRequest === undefined) {
             throw new runtime.RequiredError('updateExportSettingsFTPRequest','Required parameter requestParameters.updateExportSettingsFTPRequest was null or undefined when calling updateExportSettingsFTP.');
         }
@@ -771,10 +673,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -809,10 +707,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
 
 
     async updateExportSettingsS3Raw(requestParameters: exportInventoryApiParams.UpdateExportSettingsS3OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateExportSettingsS3Response>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateExportSettingsS3.');
-        }
-
         if (requestParameters.updateExportSettingsS3Request === null || requestParameters.updateExportSettingsS3Request === undefined) {
             throw new runtime.RequiredError('updateExportSettingsS3Request','Required parameter requestParameters.updateExportSettingsS3Request was null or undefined when calling updateExportSettingsS3.');
         }
@@ -822,10 +716,6 @@ export class ExportInventoryApi extends runtime.BaseAPI implements ExportInvento
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 

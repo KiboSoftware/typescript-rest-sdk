@@ -4,8 +4,9 @@ import { tenantDataMemCache } from '../utilities/tenant-data-mem-cache'
 export class TenantManager {
   private _sdkAuth: any
   private _homeApiUrl: string
+  private _fetchApi: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>
 
-  constructor(sdkAuth: any, homeHost?: string) {
+  constructor(sdkAuth: any, homeHost?: string, fetchApi = fetch) {
     if (!sdkAuth) {
       throw new Error('Tenant manager requires sdk auth client instance')
     }
@@ -14,6 +15,7 @@ export class TenantManager {
     }
     this._homeApiUrl = `https://${homeHost}/api`
     this._sdkAuth = sdkAuth
+    this._fetchApi = fetchApi
   }
 
   async getTenant(tenantId: number | string) {
@@ -22,7 +24,7 @@ export class TenantManager {
         return tenantDataMemCache.get(tenantId.toString())
       }
       const authToken = await this._sdkAuth.getAccessToken()
-      const response = await fetch(`${this._homeApiUrl}/platform/tenants/${tenantId}`, {
+      const response = await this._fetchApi(`${this._homeApiUrl}/platform/tenants/${tenantId}`, {
         headers: { Authorization: `Bearer ${authToken}` },
       })
       if (response.status > 200) {

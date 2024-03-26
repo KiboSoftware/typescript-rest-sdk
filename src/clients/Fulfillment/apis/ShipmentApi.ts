@@ -48,130 +48,91 @@ import type {
 export namespace shipmentApiParams { 
     export interface BackorderItemsOperationRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         backorderItemsRequestDto: BackorderItemsRequest;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface BackorderItemsUpdateOperationRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         backorderItemsUpdateRequestDto: BackorderItemsUpdateRequest;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface BackorderShipmentOperationRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         backorderShipmentRequestDto: BackorderShipmentRequest;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface CancelItemsOperationRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         cancelItemsRequestDto: CancelItemsRequest;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface CancelShipmentRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         cancelShipmentRequestDto: CancelShipment;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface CancelShipmentsRequest {
         orderId: string;
-        xVolTenant: number;
         cancelShipmentRequestDto: CancelShipment;
-        xVolSite?: number;
     }
     export interface CustomerAtCurbsideRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         pickupInfo: { [key: string]: object; };
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface CustomerAtStoreRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface CustomerCareItemsRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         rejectItemsRequestDto: RejectItemsRequest;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface CustomerCareShipmentRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         rejectShipmentRequestDto: RejectShipment;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface CustomerInTransitRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface DeleteShipmentRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface DeleteShipmentsOfOrderRequest {
         orderId: string;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface DestinationUpdateRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         destinationDto: FulfillmentAPIProductionProfileDestination;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface ExecuteRequest {
         shipmentNumber: number;
         taskName: string;
-        xVolTenant: number;
         taskCompleteDto: TaskComplete;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface FulfillShipmentRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface GetLocationSummaryReportRequest {
         locationCodes: Array<string>;
         startDateTime: string;
-        xVolTenant: number;
         bypassSearchIndex?: boolean;
-        xVolSite?: number;
     }
     export interface GetShipmentRequest {
         shipmentNumber: number;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface GetShipmentStepCountByShipmentTypeRequest {
         shipmentType: string;
-        xVolTenant: number;
         assignedLocations?: Array<string>;
-        xVolSite?: number;
     }
     export interface GetShipmentsRequest {
-        xVolTenant: number;
         bypassSearchIndex?: boolean;
         filter?: string;
         isLate?: boolean;
@@ -180,177 +141,122 @@ export namespace shipmentApiParams {
         quickSearch?: string;
         sort?: string;
         workflowTaskName?: string;
-        xVolSite?: number;
     }
     export interface GetTasksRequest {
         shipmentNumber: number;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface ItemsReadyForPrepRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         readyForPrepItemsRequestDto: ReadyForPrepItemsRequest;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface NewShipmentRequest {
-        xVolTenant: number;
         newShipment: FulfillmentAPIProductionProfileShipment;
-        xVolSite?: number;
     }
     export interface NewShipmentsRequest {
-        xVolTenant: number;
         newShipments: Array<FulfillmentAPIProductionProfileShipment>;
-        xVolSite?: number;
     }
     export interface PickupItemsOperationRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         pickupItemsRequestDto: PickupItemsRequest;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface ReassignItemsOperationRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         reassignItemsRequestDto: ReassignItemsRequest;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface ReassignShipmentRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         reassignShipmentRequestDto: ReassignShipment;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface ReceiveTransferRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface RefreshShipmentRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         ifMatch?: string;
         shouldLog?: boolean;
-        xVolSite?: number;
     }
     export interface RejectItemsOperationRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         rejectItemsRequestDto: RejectItemsRequest;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface RejectShipmentRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         rejectShipmentRequestDto: RejectShipment;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface RenderOrderSummary1Request {
         shipmentNumber: number;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface RenderPackingSlipRequest {
         shipmentNumber: number;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface ReplaceShipmentRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         newShipment: FulfillmentAPIProductionProfileShipment;
         ifMatch?: string;
         updateFields?: Array<string>;
-        xVolSite?: number;
     }
     export interface ResendItemEmailRequest {
         lineId: number;
         shipmentNumber: number;
-        xVolTenant: number;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface ResendShipmentEmailRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface RetryFulfillingShipmentRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface RevertRequest {
         shipmentNumber: number;
         taskName: string;
-        xVolTenant: number;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface SearchAndReceiveTransferRequest {
         search: string;
-        xVolTenant: number;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface SearchReceivableShipmentRequest {
         search: string;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface SkipTaskRequest {
         shipmentNumber: number;
         taskName: string;
-        xVolTenant: number;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface TransferItemsOperationRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         transferItemsRequestDto: TransferItemsRequest;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface TransferShipmentRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         transferShipmentRequestDto: TransferShipment;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface UpdateFulfillmentFieldsRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         items: Array<FulfillmentAPIProductionProfileItem>;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface UpdateGiftCardInfoRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         giftCardInfoRequestDto: GiftCardInfoRequest;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface WorkflowDefinitionImageRequest {
         shipmentNumber: number;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface WorkflowInstanceImageRequest {
         shipmentNumber: number;
-        xVolTenant: number;
-        xVolSite?: number;
     }
 }
 /**
@@ -364,10 +270,8 @@ export interface ShipmentApiService {
     * backorderItems
     * @summary backorderItems
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {BackorderItemsRequest} backorderItemsRequestDto backorderItemsRequestDto
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -384,10 +288,8 @@ export interface ShipmentApiService {
     * backorderItemsUpdate
     * @summary backorderItemsUpdate
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {BackorderItemsUpdateRequest} backorderItemsUpdateRequestDto backorderItemsUpdateRequestDto
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -404,10 +306,8 @@ export interface ShipmentApiService {
     * backorderShipment
     * @summary backorderShipment
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {BackorderShipmentRequest} backorderShipmentRequestDto backorderShipmentRequestDto
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -424,10 +324,8 @@ export interface ShipmentApiService {
     * cancelItems
     * @summary cancelItems
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {CancelItemsRequest} cancelItemsRequestDto cancelItemsRequestDto
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -444,10 +342,8 @@ export interface ShipmentApiService {
     * cancelShipment
     * @summary cancelShipment
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {CancelShipment} cancelShipmentRequestDto cancelShipmentRequestDto
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -464,9 +360,7 @@ export interface ShipmentApiService {
     * cancelShipments
     * @summary cancelShipments
     * @param {string} orderId orderId
-    * @param {number} xVolTenant 
     * @param {CancelShipment} cancelShipmentRequestDto cancelShipmentRequestDto
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -483,10 +377,8 @@ export interface ShipmentApiService {
     * customerAtCurbside
     * @summary customerAtCurbside
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {{ [key: string]: object; }} pickupInfo pickupInfo
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -503,9 +395,7 @@ export interface ShipmentApiService {
     * customerAtStore
     * @summary customerAtStore
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -522,10 +412,8 @@ export interface ShipmentApiService {
     * customerCareItems
     * @summary customerCareItems
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {RejectItemsRequest} rejectItemsRequestDto rejectItemsRequestDto
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -542,10 +430,8 @@ export interface ShipmentApiService {
     * customerCareShipment
     * @summary customerCareShipment
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {RejectShipment} rejectShipmentRequestDto rejectShipmentRequestDto
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -562,9 +448,7 @@ export interface ShipmentApiService {
     * customerInTransit
     * @summary customerInTransit
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -581,9 +465,7 @@ export interface ShipmentApiService {
     * deleteShipment
     * @summary deleteShipment
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -600,8 +482,6 @@ export interface ShipmentApiService {
     * deleteShipmentsOfOrder
     * @summary deleteShipmentsOfOrder
     * @param {string} orderId orderId
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -618,10 +498,8 @@ export interface ShipmentApiService {
     * destinationUpdate
     * @summary destinationUpdate
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {FulfillmentAPIProductionProfileDestination} destinationDto destinationDto
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -639,10 +517,8 @@ export interface ShipmentApiService {
     * @summary execute
     * @param {number} shipmentNumber shipmentNumber
     * @param {string} taskName taskName
-    * @param {number} xVolTenant 
     * @param {TaskComplete} taskCompleteDto taskCompleteDto
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -659,9 +535,7 @@ export interface ShipmentApiService {
     * fulfillShipment
     * @summary fulfillShipment
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -679,9 +553,7 @@ export interface ShipmentApiService {
     * @summary getLocationSummaryReport
     * @param {Array<string>} locationCodes locationCodes
     * @param {string} startDateTime startDateTime
-    * @param {number} xVolTenant 
     * @param {boolean} [bypassSearchIndex] bypassSearchIndex
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -698,8 +570,6 @@ export interface ShipmentApiService {
     * getShipment
     * @summary getShipment
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -716,9 +586,7 @@ export interface ShipmentApiService {
     * getShipmentStepCountByShipmentType
     * @summary getShipmentStepCountByShipmentType
     * @param {string} shipmentType shipmentType
-    * @param {number} xVolTenant 
     * @param {Array<string>} [assignedLocations] assignedLocations
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -734,7 +602,6 @@ export interface ShipmentApiService {
     /**
     * getShipments
     * @summary getShipments
-    * @param {number} xVolTenant 
     * @param {boolean} [bypassSearchIndex] 
     * @param {string} [filter] 
     * @param {boolean} [isLate] 
@@ -743,7 +610,6 @@ export interface ShipmentApiService {
     * @param {string} [quickSearch] 
     * @param {string} [sort] 
     * @param {string} [workflowTaskName] 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -760,8 +626,6 @@ export interface ShipmentApiService {
     * getTasks
     * @summary getTasks
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -778,10 +642,8 @@ export interface ShipmentApiService {
     * itemsReadyForPrep
     * @summary itemsReadyForPrep
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {ReadyForPrepItemsRequest} readyForPrepItemsRequestDto readyForPrepItemsRequestDto
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -797,9 +659,7 @@ export interface ShipmentApiService {
     /**
     * newShipment
     * @summary newShipment
-    * @param {number} xVolTenant 
     * @param {FulfillmentAPIProductionProfileShipment} newShipment newShipment
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -815,9 +675,7 @@ export interface ShipmentApiService {
     /**
     * newShipments
     * @summary newShipments
-    * @param {number} xVolTenant 
     * @param {Array<FulfillmentAPIProductionProfileShipment>} newShipments newShipments
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -834,10 +692,8 @@ export interface ShipmentApiService {
     * pickupItems
     * @summary pickupItems
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {PickupItemsRequest} pickupItemsRequestDto pickupItemsRequestDto
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -854,10 +710,8 @@ export interface ShipmentApiService {
     * reassignItems
     * @summary reassignItems
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {ReassignItemsRequest} reassignItemsRequestDto reassignItemsRequestDto
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -874,10 +728,8 @@ export interface ShipmentApiService {
     * reassignShipment
     * @summary reassignShipment
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {ReassignShipment} reassignShipmentRequestDto reassignShipmentRequestDto
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -894,9 +746,7 @@ export interface ShipmentApiService {
     * receiveTransfer
     * @summary receiveTransfer
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -913,10 +763,8 @@ export interface ShipmentApiService {
     * refreshShipment
     * @summary refreshShipment
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {string} [ifMatch] If-Match
     * @param {boolean} [shouldLog] shouldLog
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -933,10 +781,8 @@ export interface ShipmentApiService {
     * rejectItems
     * @summary rejectItems
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {RejectItemsRequest} rejectItemsRequestDto rejectItemsRequestDto
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -953,10 +799,8 @@ export interface ShipmentApiService {
     * rejectShipment
     * @summary rejectShipment
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {RejectShipment} rejectShipmentRequestDto rejectShipmentRequestDto
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -973,8 +817,6 @@ export interface ShipmentApiService {
     * renderOrderSummary
     * @summary renderOrderSummary
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -991,8 +833,6 @@ export interface ShipmentApiService {
     * renderPackingSlip
     * @summary renderPackingSlip
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -1009,11 +849,9 @@ export interface ShipmentApiService {
     * replaceShipment
     * @summary replaceShipment
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {FulfillmentAPIProductionProfileShipment} newShipment newShipment
     * @param {string} [ifMatch] If-Match
     * @param {Array<string>} [updateFields] updateFields
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -1031,9 +869,7 @@ export interface ShipmentApiService {
     * @summary resendItemEmail
     * @param {number} lineId lineId
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -1050,9 +886,7 @@ export interface ShipmentApiService {
     * resendShipmentEmail
     * @summary resendShipmentEmail
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -1069,9 +903,7 @@ export interface ShipmentApiService {
     * retryFulfillingShipment
     * @summary retryFulfillingShipment
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -1089,9 +921,7 @@ export interface ShipmentApiService {
     * @summary revert
     * @param {number} shipmentNumber shipmentNumber
     * @param {string} taskName taskName
-    * @param {number} xVolTenant 
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -1108,9 +938,7 @@ export interface ShipmentApiService {
     * searchAndReceiveTransfer
     * @summary searchAndReceiveTransfer
     * @param {string} search search
-    * @param {number} xVolTenant 
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -1127,8 +955,6 @@ export interface ShipmentApiService {
     * searchReceivableShipment
     * @summary searchReceivableShipment
     * @param {string} search search
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -1146,9 +972,7 @@ export interface ShipmentApiService {
     * @summary skipTask
     * @param {number} shipmentNumber shipmentNumber
     * @param {string} taskName taskName
-    * @param {number} xVolTenant 
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -1165,10 +989,8 @@ export interface ShipmentApiService {
     * transferItems
     * @summary transferItems
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {TransferItemsRequest} transferItemsRequestDto transferItemsRequestDto
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -1185,10 +1007,8 @@ export interface ShipmentApiService {
     * transferShipment
     * @summary transferShipment
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {TransferShipment} transferShipmentRequestDto transferShipmentRequestDto
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -1205,10 +1025,8 @@ export interface ShipmentApiService {
     * updateFulfillmentFields
     * @summary updateFulfillmentFields
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {Array<FulfillmentAPIProductionProfileItem>} items items
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -1225,10 +1043,8 @@ export interface ShipmentApiService {
     * updateGiftCardInfo
     * @summary updateGiftCardInfo
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {GiftCardInfoRequest} giftCardInfoRequestDto giftCardInfoRequestDto
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -1245,8 +1061,6 @@ export interface ShipmentApiService {
     * workflowDefinitionImage
     * @summary workflowDefinitionImage
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -1263,8 +1077,6 @@ export interface ShipmentApiService {
     * workflowInstanceImage
     * @summary workflowInstanceImage
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentApiInterface
@@ -1299,10 +1111,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling backorderItems.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling backorderItems.');
-        }
-
         if (requestParameters.backorderItemsRequestDto === null || requestParameters.backorderItemsRequestDto === undefined) {
             throw new runtime.RequiredError('backorderItemsRequestDto','Required parameter requestParameters.backorderItemsRequestDto was null or undefined when calling backorderItems.');
         }
@@ -1315,14 +1123,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -1362,10 +1162,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling backorderItemsUpdate.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling backorderItemsUpdate.');
-        }
-
         if (requestParameters.backorderItemsUpdateRequestDto === null || requestParameters.backorderItemsUpdateRequestDto === undefined) {
             throw new runtime.RequiredError('backorderItemsUpdateRequestDto','Required parameter requestParameters.backorderItemsUpdateRequestDto was null or undefined when calling backorderItemsUpdate.');
         }
@@ -1378,14 +1174,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -1425,10 +1213,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling backorderShipment.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling backorderShipment.');
-        }
-
         if (requestParameters.backorderShipmentRequestDto === null || requestParameters.backorderShipmentRequestDto === undefined) {
             throw new runtime.RequiredError('backorderShipmentRequestDto','Required parameter requestParameters.backorderShipmentRequestDto was null or undefined when calling backorderShipment.');
         }
@@ -1441,14 +1225,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -1488,10 +1264,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling cancelItems.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling cancelItems.');
-        }
-
         if (requestParameters.cancelItemsRequestDto === null || requestParameters.cancelItemsRequestDto === undefined) {
             throw new runtime.RequiredError('cancelItemsRequestDto','Required parameter requestParameters.cancelItemsRequestDto was null or undefined when calling cancelItems.');
         }
@@ -1504,14 +1276,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -1551,10 +1315,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling cancelShipment.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling cancelShipment.');
-        }
-
         if (requestParameters.cancelShipmentRequestDto === null || requestParameters.cancelShipmentRequestDto === undefined) {
             throw new runtime.RequiredError('cancelShipmentRequestDto','Required parameter requestParameters.cancelShipmentRequestDto was null or undefined when calling cancelShipment.');
         }
@@ -1567,14 +1327,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -1614,10 +1366,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling cancelShipments.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling cancelShipments.');
-        }
-
         if (requestParameters.cancelShipmentRequestDto === null || requestParameters.cancelShipmentRequestDto === undefined) {
             throw new runtime.RequiredError('cancelShipmentRequestDto','Required parameter requestParameters.cancelShipmentRequestDto was null or undefined when calling cancelShipments.');
         }
@@ -1627,14 +1375,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -1673,10 +1413,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling customerAtCurbside.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling customerAtCurbside.');
-        }
-
         if (requestParameters.pickupInfo === null || requestParameters.pickupInfo === undefined) {
             throw new runtime.RequiredError('pickupInfo','Required parameter requestParameters.pickupInfo was null or undefined when calling customerAtCurbside.');
         }
@@ -1689,14 +1425,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -1736,24 +1464,12 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling customerAtStore.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling customerAtStore.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -1792,10 +1508,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling customerCareItems.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling customerCareItems.');
-        }
-
         if (requestParameters.rejectItemsRequestDto === null || requestParameters.rejectItemsRequestDto === undefined) {
             throw new runtime.RequiredError('rejectItemsRequestDto','Required parameter requestParameters.rejectItemsRequestDto was null or undefined when calling customerCareItems.');
         }
@@ -1808,14 +1520,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -1855,10 +1559,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling customerCareShipment.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling customerCareShipment.');
-        }
-
         if (requestParameters.rejectShipmentRequestDto === null || requestParameters.rejectShipmentRequestDto === undefined) {
             throw new runtime.RequiredError('rejectShipmentRequestDto','Required parameter requestParameters.rejectShipmentRequestDto was null or undefined when calling customerCareShipment.');
         }
@@ -1871,14 +1571,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -1918,24 +1610,12 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling customerInTransit.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling customerInTransit.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -1974,24 +1654,12 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling deleteShipment.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteShipment.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -2029,21 +1697,9 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling deleteShipmentsOfOrder.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteShipmentsOfOrder.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -2080,10 +1736,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling destinationUpdate.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling destinationUpdate.');
-        }
-
         if (requestParameters.destinationDto === null || requestParameters.destinationDto === undefined) {
             throw new runtime.RequiredError('destinationDto','Required parameter requestParameters.destinationDto was null or undefined when calling destinationUpdate.');
         }
@@ -2096,14 +1748,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -2147,10 +1791,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('taskName','Required parameter requestParameters.taskName was null or undefined when calling execute.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling execute.');
-        }
-
         if (requestParameters.taskCompleteDto === null || requestParameters.taskCompleteDto === undefined) {
             throw new runtime.RequiredError('taskCompleteDto','Required parameter requestParameters.taskCompleteDto was null or undefined when calling execute.');
         }
@@ -2163,14 +1803,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -2210,24 +1842,12 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling fulfillShipment.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling fulfillShipment.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -2270,10 +1890,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('startDateTime','Required parameter requestParameters.startDateTime was null or undefined when calling getLocationSummaryReport.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getLocationSummaryReport.');
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters.bypassSearchIndex !== undefined) {
@@ -2289,14 +1905,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -2334,21 +1942,9 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getShipment.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipment.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -2386,10 +1982,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentType','Required parameter requestParameters.shipmentType was null or undefined when calling getShipmentStepCountByShipmentType.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipmentStepCountByShipmentType.');
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters.assignedLocations) {
@@ -2401,14 +1993,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -2442,10 +2026,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
 
 
     async getShipmentsRaw(requestParameters: shipmentApiParams.GetShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PagedModelOfEntityModelOfShipment>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipments.');
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters.bypassSearchIndex !== undefined) {
@@ -2482,14 +2062,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
-
 
 
 
@@ -2510,7 +2082,7 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
      * getShipments
      * getShipments
      */
-    async getShipments(requestParameters: shipmentApiParams.GetShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PagedModelOfEntityModelOfShipment> {
+    async getShipments(requestParameters: shipmentApiParams.GetShipmentsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PagedModelOfEntityModelOfShipment> {
         const response = await this.getShipmentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2526,21 +2098,9 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getTasks.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getTasks.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -2578,10 +2138,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling itemsReadyForPrep.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling itemsReadyForPrep.');
-        }
-
         if (requestParameters.readyForPrepItemsRequestDto === null || requestParameters.readyForPrepItemsRequestDto === undefined) {
             throw new runtime.RequiredError('readyForPrepItemsRequestDto','Required parameter requestParameters.readyForPrepItemsRequestDto was null or undefined when calling itemsReadyForPrep.');
         }
@@ -2594,14 +2150,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -2637,10 +2185,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
 
 
     async newShipmentRaw(requestParameters: shipmentApiParams.NewShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling newShipment.');
-        }
-
         if (requestParameters.newShipment === null || requestParameters.newShipment === undefined) {
             throw new runtime.RequiredError('newShipment','Required parameter requestParameters.newShipment was null or undefined when calling newShipment.');
         }
@@ -2650,14 +2194,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -2692,10 +2228,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
 
 
     async newShipmentsRaw(requestParameters: shipmentApiParams.NewShipmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfEntityModelOfShipment>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling newShipments.');
-        }
-
         if (requestParameters.newShipments === null || requestParameters.newShipments === undefined) {
             throw new runtime.RequiredError('newShipments','Required parameter requestParameters.newShipments was null or undefined when calling newShipments.');
         }
@@ -2705,14 +2237,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -2751,10 +2275,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling pickupItems.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling pickupItems.');
-        }
-
         if (requestParameters.pickupItemsRequestDto === null || requestParameters.pickupItemsRequestDto === undefined) {
             throw new runtime.RequiredError('pickupItemsRequestDto','Required parameter requestParameters.pickupItemsRequestDto was null or undefined when calling pickupItems.');
         }
@@ -2767,14 +2287,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -2814,10 +2326,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling reassignItems.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling reassignItems.');
-        }
-
         if (requestParameters.reassignItemsRequestDto === null || requestParameters.reassignItemsRequestDto === undefined) {
             throw new runtime.RequiredError('reassignItemsRequestDto','Required parameter requestParameters.reassignItemsRequestDto was null or undefined when calling reassignItems.');
         }
@@ -2830,14 +2338,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -2877,10 +2377,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling reassignShipment.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling reassignShipment.');
-        }
-
         if (requestParameters.reassignShipmentRequestDto === null || requestParameters.reassignShipmentRequestDto === undefined) {
             throw new runtime.RequiredError('reassignShipmentRequestDto','Required parameter requestParameters.reassignShipmentRequestDto was null or undefined when calling reassignShipment.');
         }
@@ -2893,14 +2389,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -2940,24 +2428,12 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling receiveTransfer.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling receiveTransfer.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -2996,10 +2472,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling refreshShipment.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling refreshShipment.');
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters.shouldLog !== undefined) {
@@ -3010,14 +2482,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -3056,10 +2520,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling rejectItems.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling rejectItems.');
-        }
-
         if (requestParameters.rejectItemsRequestDto === null || requestParameters.rejectItemsRequestDto === undefined) {
             throw new runtime.RequiredError('rejectItemsRequestDto','Required parameter requestParameters.rejectItemsRequestDto was null or undefined when calling rejectItems.');
         }
@@ -3072,14 +2532,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -3119,10 +2571,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling rejectShipment.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling rejectShipment.');
-        }
-
         if (requestParameters.rejectShipmentRequestDto === null || requestParameters.rejectShipmentRequestDto === undefined) {
             throw new runtime.RequiredError('rejectShipmentRequestDto','Required parameter requestParameters.rejectShipmentRequestDto was null or undefined when calling rejectShipment.');
         }
@@ -3135,14 +2583,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -3182,21 +2622,9 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling renderOrderSummary1.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling renderOrderSummary1.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -3234,21 +2662,9 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling renderPackingSlip.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling renderPackingSlip.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -3286,10 +2702,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling replaceShipment.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling replaceShipment.');
-        }
-
         if (requestParameters.newShipment === null || requestParameters.newShipment === undefined) {
             throw new runtime.RequiredError('newShipment','Required parameter requestParameters.newShipment was null or undefined when calling replaceShipment.');
         }
@@ -3306,14 +2718,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -3357,24 +2761,12 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling resendItemEmail.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling resendItemEmail.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -3412,24 +2804,12 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling resendShipmentEmail.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling resendShipmentEmail.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -3467,24 +2847,12 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling retryFulfillingShipment.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling retryFulfillingShipment.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -3527,24 +2895,12 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('taskName','Required parameter requestParameters.taskName was null or undefined when calling revert.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling revert.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -3583,24 +2939,12 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('search','Required parameter requestParameters.search was null or undefined when calling searchAndReceiveTransfer.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling searchAndReceiveTransfer.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -3639,21 +2983,9 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('search','Required parameter requestParameters.search was null or undefined when calling searchReceivableShipment.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling searchReceivableShipment.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -3695,24 +3027,12 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('taskName','Required parameter requestParameters.taskName was null or undefined when calling skipTask.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling skipTask.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -3751,10 +3071,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling transferItems.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling transferItems.');
-        }
-
         if (requestParameters.transferItemsRequestDto === null || requestParameters.transferItemsRequestDto === undefined) {
             throw new runtime.RequiredError('transferItemsRequestDto','Required parameter requestParameters.transferItemsRequestDto was null or undefined when calling transferItems.');
         }
@@ -3767,14 +3083,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -3814,10 +3122,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling transferShipment.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling transferShipment.');
-        }
-
         if (requestParameters.transferShipmentRequestDto === null || requestParameters.transferShipmentRequestDto === undefined) {
             throw new runtime.RequiredError('transferShipmentRequestDto','Required parameter requestParameters.transferShipmentRequestDto was null or undefined when calling transferShipment.');
         }
@@ -3830,14 +3134,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -3877,10 +3173,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateFulfillmentFields.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateFulfillmentFields.');
-        }
-
         if (requestParameters.items === null || requestParameters.items === undefined) {
             throw new runtime.RequiredError('items','Required parameter requestParameters.items was null or undefined when calling updateFulfillmentFields.');
         }
@@ -3893,14 +3185,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -3940,10 +3224,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateGiftCardInfo.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateGiftCardInfo.');
-        }
-
         if (requestParameters.giftCardInfoRequestDto === null || requestParameters.giftCardInfoRequestDto === undefined) {
             throw new runtime.RequiredError('giftCardInfoRequestDto','Required parameter requestParameters.giftCardInfoRequestDto was null or undefined when calling updateGiftCardInfo.');
         }
@@ -3956,14 +3236,6 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -4003,21 +3275,9 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling workflowDefinitionImage.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling workflowDefinitionImage.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -4055,21 +3315,9 @@ export class ShipmentApi extends runtime.BaseAPI implements ShipmentApiService {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling workflowInstanceImage.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling workflowInstanceImage.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 

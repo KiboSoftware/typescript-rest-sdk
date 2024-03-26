@@ -26,30 +26,22 @@ import type {
 export namespace futureShipmentApiParams { 
     export interface CreateFutureShipmentsForFutureAllocatableItemsRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         futureItemsRequestDto: FutureItemsRequest;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface CreateFutureShipmentsForItemsRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         futureItemsRequestDto: FutureItemsRequest;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface FutureShipmentToReadyRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         ifMatch?: string;
-        xVolSite?: number;
     }
     export interface UpdateFutureShipmentDateRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         futureShipmentUpdateDateRequestDto: FutureShipmentUpdateDateRequest;
         ifMatch?: string;
-        xVolSite?: number;
     }
 }
 /**
@@ -63,10 +55,8 @@ export interface FutureShipmentApiService {
     * createFutureShipmentsForFutureAllocatableItems
     * @summary createFutureShipmentsForFutureAllocatableItems
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {FutureItemsRequest} futureItemsRequestDto futureItemsRequestDto
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof FutureShipmentApiInterface
@@ -83,10 +73,8 @@ export interface FutureShipmentApiService {
     * createFutureShipmentsForItems
     * @summary createFutureShipmentsForItems
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {FutureItemsRequest} futureItemsRequestDto futureItemsRequestDto
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof FutureShipmentApiInterface
@@ -103,9 +91,7 @@ export interface FutureShipmentApiService {
     * futureShipmentToReady
     * @summary futureShipmentToReady
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof FutureShipmentApiInterface
@@ -122,10 +108,8 @@ export interface FutureShipmentApiService {
     * updateFutureShipmentDate
     * @summary updateFutureShipmentDate
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {FutureShipmentUpdateDateRequest} futureShipmentUpdateDateRequestDto futureShipmentUpdateDateRequestDto
     * @param {string} [ifMatch] If-Match
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof FutureShipmentApiInterface
@@ -160,10 +144,6 @@ export class FutureShipmentApi extends runtime.BaseAPI implements FutureShipment
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling createFutureShipmentsForFutureAllocatableItems.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling createFutureShipmentsForFutureAllocatableItems.');
-        }
-
         if (requestParameters.futureItemsRequestDto === null || requestParameters.futureItemsRequestDto === undefined) {
             throw new runtime.RequiredError('futureItemsRequestDto','Required parameter requestParameters.futureItemsRequestDto was null or undefined when calling createFutureShipmentsForFutureAllocatableItems.');
         }
@@ -176,14 +156,6 @@ export class FutureShipmentApi extends runtime.BaseAPI implements FutureShipment
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -223,10 +195,6 @@ export class FutureShipmentApi extends runtime.BaseAPI implements FutureShipment
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling createFutureShipmentsForItems.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling createFutureShipmentsForItems.');
-        }
-
         if (requestParameters.futureItemsRequestDto === null || requestParameters.futureItemsRequestDto === undefined) {
             throw new runtime.RequiredError('futureItemsRequestDto','Required parameter requestParameters.futureItemsRequestDto was null or undefined when calling createFutureShipmentsForItems.');
         }
@@ -239,14 +207,6 @@ export class FutureShipmentApi extends runtime.BaseAPI implements FutureShipment
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -286,24 +246,12 @@ export class FutureShipmentApi extends runtime.BaseAPI implements FutureShipment
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling futureShipmentToReady.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling futureShipmentToReady.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 
@@ -342,10 +290,6 @@ export class FutureShipmentApi extends runtime.BaseAPI implements FutureShipment
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateFutureShipmentDate.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateFutureShipmentDate.');
-        }
-
         if (requestParameters.futureShipmentUpdateDateRequestDto === null || requestParameters.futureShipmentUpdateDateRequestDto === undefined) {
             throw new runtime.RequiredError('futureShipmentUpdateDateRequestDto','Required parameter requestParameters.futureShipmentUpdateDateRequestDto was null or undefined when calling updateFutureShipmentDate.');
         }
@@ -358,14 +302,6 @@ export class FutureShipmentApi extends runtime.BaseAPI implements FutureShipment
 
         if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
             headerParameters['If-Match'] = String(requestParameters.ifMatch);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
         }
 
 

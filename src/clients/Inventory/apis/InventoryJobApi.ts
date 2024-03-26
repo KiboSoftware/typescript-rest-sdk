@@ -24,19 +24,15 @@ import type {
 
 export namespace inventoryJobApiParams { 
     export interface DeleteAllOldInventoryRequest {
-        xVolTenant: number;
         months: number;
     }
     export interface DeleteOldInventoryRequest {
-        xVolTenant: number;
         months: number;
     }
     export interface GetJobRequest {
-        xVolTenant: number;
         jobID: number;
     }
     export interface GetJobsRequest {
-        xVolTenant: number;
         locationCode?: string;
         limit?: number;
         owner?: string;
@@ -54,7 +50,6 @@ export interface InventoryJobApiService {
     /**
     * Deletes older records from inventory table of all silos
     * @summary Delete All Old Inventory
-    * @param {number} xVolTenant Tenant ID
     * @param {number} months The x months before which we want the records to get deleted
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -71,7 +66,6 @@ export interface InventoryJobApiService {
     /**
     * Deletes older records from inventory table
     * @summary Delete Old Inventory
-    * @param {number} xVolTenant Tenant ID
     * @param {number} months The x months before which we want the records to get deleted
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -88,7 +82,6 @@ export interface InventoryJobApiService {
     /**
     * Get the specified job
     * @summary Get Job
-    * @param {number} xVolTenant Tenant ID
     * @param {number} jobID Id of bin to get
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -105,7 +98,6 @@ export interface InventoryJobApiService {
     /**
     * Get the requested jobs
     * @summary Get Jobs
-    * @param {number} xVolTenant Tenant ID
     * @param {string} [locationCode] Tenant specified unique Identifier of the owning location
     * @param {number} [limit] The maximum number of results to return, defaults to 100 for most
     * @param {string} [owner] User that owns the job
@@ -141,10 +133,6 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiS
 
 
     async deleteAllOldInventoryRaw(requestParameters: inventoryJobApiParams.DeleteAllOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobIDResponse>>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteAllOldInventory.');
-        }
-
         if (requestParameters.months === null || requestParameters.months === undefined) {
             throw new runtime.RequiredError('months','Required parameter requestParameters.months was null or undefined when calling deleteAllOldInventory.');
         }
@@ -152,10 +140,6 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiS
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -189,10 +173,6 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiS
 
 
     async deleteOldInventoryRaw(requestParameters: inventoryJobApiParams.DeleteOldInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobIDResponse>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteOldInventory.');
-        }
-
         if (requestParameters.months === null || requestParameters.months === undefined) {
             throw new runtime.RequiredError('months','Required parameter requestParameters.months was null or undefined when calling deleteOldInventory.');
         }
@@ -200,10 +180,6 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiS
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -237,10 +213,6 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiS
 
 
     async getJobRaw(requestParameters: inventoryJobApiParams.GetJobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobQueueResponse>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getJob.');
-        }
-
         if (requestParameters.jobID === null || requestParameters.jobID === undefined) {
             throw new runtime.RequiredError('jobID','Required parameter requestParameters.jobID was null or undefined when calling getJob.');
         }
@@ -248,10 +220,6 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiS
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -285,10 +253,6 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiS
 
 
     async getJobsRaw(requestParameters: inventoryJobApiParams.GetJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<JobQueueResponse>>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getJobs.');
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters.locationCode !== undefined) {
@@ -313,10 +277,6 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiS
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
-
 
 
 
@@ -337,7 +297,7 @@ export class InventoryJobApi extends runtime.BaseAPI implements InventoryJobApiS
      * Get the requested jobs
      * Get Jobs
      */
-    async getJobs(requestParameters: inventoryJobApiParams.GetJobsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobQueueResponse>> {
+    async getJobs(requestParameters: inventoryJobApiParams.GetJobsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<JobQueueResponse>> {
         const response = await this.getJobsRaw(requestParameters, initOverrides);
         return await response.value();
     }

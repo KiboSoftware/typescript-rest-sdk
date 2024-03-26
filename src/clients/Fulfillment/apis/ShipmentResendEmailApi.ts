@@ -20,13 +20,9 @@ import { basePathTemplate } from '../api-path';
 export namespace shipmentResendEmailApiParams { 
     export interface ResendShipmentCancelEmailRequest {
         shipmentNumber: number;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface ResendShipmentFulfillEmailRequest {
         shipmentNumber: number;
-        xVolTenant: number;
-        xVolSite?: number;
     }
 }
 /**
@@ -40,8 +36,6 @@ export interface ShipmentResendEmailApiService {
     * resendShipmentCancelEmail
     * @summary resendShipmentCancelEmail
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentResendEmailApiInterface
@@ -58,8 +52,6 @@ export interface ShipmentResendEmailApiService {
     * resendShipmentFulfillEmail
     * @summary resendShipmentFulfillEmail
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentResendEmailApiInterface
@@ -94,21 +86,9 @@ export class ShipmentResendEmailApi extends runtime.BaseAPI implements ShipmentR
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling resendShipmentCancelEmail.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling resendShipmentCancelEmail.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -145,21 +125,9 @@ export class ShipmentResendEmailApi extends runtime.BaseAPI implements ShipmentR
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling resendShipmentFulfillEmail.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling resendShipmentFulfillEmail.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 

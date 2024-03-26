@@ -26,36 +26,18 @@ import type {
 export namespace orderRoutingFilterApiParams { 
     export interface DeleteFilterRequest {
         filterID: number;
-        xVolSite: number;
-        xVolTenant: number;
     }
     export interface GetFilterRequest {
         filterID: number;
-        xVolSite: number;
-        xVolTenant: number;
     }
     export interface SaveCriteriaSetFilterRequest {
-        xVolSite: number;
-        xVolTenant: number;
         loc: LocationCriteriaSetFilter;
     }
     export interface SaveCustomDataListFilterRequest {
-        xVolSite: number;
-        xVolTenant: number;
         filter: CustomDataListFilter;
     }
     export interface SaveCustomDataValueFilterRequest {
-        xVolSite: number;
-        xVolTenant: number;
         customDataValueFilter: CustomDataValueFilter;
-    }
-    export interface TestFilterRequest {
-        xVolSite: number;
-        xVolTenant: number;
-    }
-    export interface TestSetFilterRequest {
-        xVolSite: number;
-        xVolTenant: number;
     }
 }
 /**
@@ -69,8 +51,6 @@ export interface OrderRoutingFilterApiService {
     * deleteFilter
     * @summary deleteFilter
     * @param {number} filterID filterID
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof OrderRoutingFilterApiInterface
@@ -87,8 +67,6 @@ export interface OrderRoutingFilterApiService {
     * getFilter
     * @summary getFilter
     * @param {number} filterID filterID
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof OrderRoutingFilterApiInterface
@@ -104,8 +82,6 @@ export interface OrderRoutingFilterApiService {
     /**
     * saveCriteriaSetFilter
     * @summary saveCriteriaSetFilter
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {LocationCriteriaSetFilter} loc loc
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -122,8 +98,6 @@ export interface OrderRoutingFilterApiService {
     /**
     * saveCustomDataListFilter
     * @summary saveCustomDataListFilter
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {CustomDataListFilter} filter filter
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -140,8 +114,6 @@ export interface OrderRoutingFilterApiService {
     /**
     * saveCustomDataValueFilter
     * @summary saveCustomDataValueFilter
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {CustomDataValueFilter} customDataValueFilter customDataValueFilter
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -158,36 +130,32 @@ export interface OrderRoutingFilterApiService {
     /**
     * testFilter
     * @summary testFilter
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof OrderRoutingFilterApiInterface
     */
-    testFilterRaw(requestParameters: orderRoutingFilterApiParams.TestFilterRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>>;
+    testFilterRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>>;
 
     /**
     * testFilter
     * testFilter
     */
-    testFilter(requestParameters: orderRoutingFilterApiParams.TestFilterRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter>;
+    testFilter(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter>;
 
     /**
     * testSetFilter
     * @summary testSetFilter
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof OrderRoutingFilterApiInterface
     */
-    testSetFilterRaw(requestParameters: orderRoutingFilterApiParams.TestSetFilterRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>>;
+    testSetFilterRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>>;
 
     /**
     * testSetFilter
     * testSetFilter
     */
-    testSetFilter(requestParameters: orderRoutingFilterApiParams.TestSetFilterRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter>;
+    testSetFilter(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter>;
 
 }
 
@@ -211,25 +179,9 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI implements OrderRouti
             throw new runtime.RequiredError('filterID','Required parameter requestParameters.filterID was null or undefined when calling deleteFilter.');
         }
 
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling deleteFilter.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteFilter.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -266,25 +218,9 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI implements OrderRouti
             throw new runtime.RequiredError('filterID','Required parameter requestParameters.filterID was null or undefined when calling getFilter.');
         }
 
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling getFilter.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getFilter.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -318,14 +254,6 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI implements OrderRouti
 
 
     async saveCriteriaSetFilterRaw(requestParameters: orderRoutingFilterApiParams.SaveCriteriaSetFilterRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>> {
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling saveCriteriaSetFilter.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling saveCriteriaSetFilter.');
-        }
-
         if (requestParameters.loc === null || requestParameters.loc === undefined) {
             throw new runtime.RequiredError('loc','Required parameter requestParameters.loc was null or undefined when calling saveCriteriaSetFilter.');
         }
@@ -335,14 +263,6 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI implements OrderRouti
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -377,14 +297,6 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI implements OrderRouti
 
 
     async saveCustomDataListFilterRaw(requestParameters: orderRoutingFilterApiParams.SaveCustomDataListFilterRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>> {
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling saveCustomDataListFilter.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling saveCustomDataListFilter.');
-        }
-
         if (requestParameters.filter === null || requestParameters.filter === undefined) {
             throw new runtime.RequiredError('filter','Required parameter requestParameters.filter was null or undefined when calling saveCustomDataListFilter.');
         }
@@ -394,14 +306,6 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI implements OrderRouti
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -436,14 +340,6 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI implements OrderRouti
 
 
     async saveCustomDataValueFilterRaw(requestParameters: orderRoutingFilterApiParams.SaveCustomDataValueFilterRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>> {
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling saveCustomDataValueFilter.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling saveCustomDataValueFilter.');
-        }
-
         if (requestParameters.customDataValueFilter === null || requestParameters.customDataValueFilter === undefined) {
             throw new runtime.RequiredError('customDataValueFilter','Required parameter requestParameters.customDataValueFilter was null or undefined when calling saveCustomDataValueFilter.');
         }
@@ -453,14 +349,6 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI implements OrderRouti
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -494,26 +382,10 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI implements OrderRouti
      */
 
 
-    async testFilterRaw(requestParameters: orderRoutingFilterApiParams.TestFilterRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>> {
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling testFilter.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling testFilter.');
-        }
-
+    async testFilterRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -535,8 +407,8 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI implements OrderRouti
      * testFilter
      * testFilter
      */
-    async testFilter(requestParameters: orderRoutingFilterApiParams.TestFilterRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter> {
-        const response = await this.testFilterRaw(requestParameters, initOverrides);
+    async testFilter(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter> {
+        const response = await this.testFilterRaw(initOverrides);
         return await response.value();
     }
 
@@ -546,26 +418,10 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI implements OrderRouti
      */
 
 
-    async testSetFilterRaw(requestParameters: orderRoutingFilterApiParams.TestSetFilterRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>> {
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling testSetFilter.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling testSetFilter.');
-        }
-
+    async testSetFilterRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AbstractFilter>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -587,8 +443,8 @@ export class OrderRoutingFilterApi extends runtime.BaseAPI implements OrderRouti
      * testSetFilter
      * testSetFilter
      */
-    async testSetFilter(requestParameters: orderRoutingFilterApiParams.TestSetFilterRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter> {
-        const response = await this.testSetFilterRaw(requestParameters, initOverrides);
+    async testSetFilter(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AbstractFilter> {
+        const response = await this.testSetFilterRaw(initOverrides);
         return await response.value();
     }
 

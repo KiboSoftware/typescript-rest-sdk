@@ -25,14 +25,10 @@ import type {
 
 export namespace inventoryApiParams { 
     export interface AggregateOperationRequest {
-        xVolTenant: number;
         aggregateRequest: AggregateRequest;
-        xVolSite?: number;
     }
     export interface PostQueryInventoryRequest {
-        xVolTenant: number;
         inventoryRequest: InventoryRequest;
-        xVolSite?: number;
     }
 }
 /**
@@ -45,9 +41,7 @@ export interface InventoryApiService {
     /**
     * Aggregates Inventory
     * @summary Aggregate
-    * @param {number} xVolTenant Tenant ID
     * @param {AggregateRequest} aggregateRequest Request to aggregate inventory
-    * @param {number} [xVolSite] Site ID
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof InventoryApiInterface
@@ -63,9 +57,7 @@ export interface InventoryApiService {
     /**
     * Queries for specified inventory at given location
     * @summary Post Query Inventory
-    * @param {number} xVolTenant Tenant ID
     * @param {InventoryRequest} inventoryRequest Request to get inventory
-    * @param {number} [xVolSite] Site ID
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof InventoryApiInterface
@@ -96,10 +88,6 @@ export class InventoryApi extends runtime.BaseAPI implements InventoryApiService
 
 
     async aggregateRaw(requestParameters: inventoryApiParams.AggregateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AggregateResponse>>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling aggregate.');
-        }
-
         if (requestParameters.aggregateRequest === null || requestParameters.aggregateRequest === undefined) {
             throw new runtime.RequiredError('aggregateRequest','Required parameter requestParameters.aggregateRequest was null or undefined when calling aggregate.');
         }
@@ -109,14 +97,6 @@ export class InventoryApi extends runtime.BaseAPI implements InventoryApiService
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
 
 
 
@@ -151,10 +131,6 @@ export class InventoryApi extends runtime.BaseAPI implements InventoryApiService
 
 
     async postQueryInventoryRaw(requestParameters: inventoryApiParams.PostQueryInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<InventoryInventoryResponse>>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling postQueryInventory.');
-        }
-
         if (requestParameters.inventoryRequest === null || requestParameters.inventoryRequest === undefined) {
             throw new runtime.RequiredError('inventoryRequest','Required parameter requestParameters.inventoryRequest was null or undefined when calling postQueryInventory.');
         }
@@ -164,14 +140,6 @@ export class InventoryApi extends runtime.BaseAPI implements InventoryApiService
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
 
 
 

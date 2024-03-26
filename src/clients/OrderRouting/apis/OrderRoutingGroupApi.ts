@@ -25,34 +25,20 @@ import type {
 export namespace orderRoutingGroupApiParams { 
     export interface DeleteGroupRequest {
         groupID: number;
-        xVolSite: number;
-        xVolTenant: number;
     }
     export interface GetGroupRequest {
         groupID: number;
-        xVolSite: number;
-        xVolTenant: number;
     }
     export interface SaveGroupRequest {
-        xVolSite: number;
-        xVolTenant: number;
         loc: LocationGroupModel;
     }
     export interface SetGroupFiltersRequest {
         groupID: number;
-        xVolSite: number;
-        xVolTenant: number;
         filterIDs: Array<number>;
     }
     export interface SetGroupSortsRequest {
         groupID: number;
-        xVolSite: number;
-        xVolTenant: number;
         sorts: Array<LocationSort>;
-    }
-    export interface TestGroupRequest {
-        xVolSite: number;
-        xVolTenant: number;
     }
 }
 /**
@@ -66,8 +52,6 @@ export interface OrderRoutingGroupApiService {
     * deleteGroup
     * @summary deleteGroup
     * @param {number} groupID groupID
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof OrderRoutingGroupApiInterface
@@ -84,8 +68,6 @@ export interface OrderRoutingGroupApiService {
     * getGroup
     * @summary getGroup
     * @param {number} groupID groupID
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof OrderRoutingGroupApiInterface
@@ -101,8 +83,6 @@ export interface OrderRoutingGroupApiService {
     /**
     * saveGroup
     * @summary saveGroup
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {LocationGroupModel} loc loc
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -120,8 +100,6 @@ export interface OrderRoutingGroupApiService {
     * setGroupFilters
     * @summary setGroupFilters
     * @param {number} groupID groupID
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {Array<number>} filterIDs filterIDs
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -139,8 +117,6 @@ export interface OrderRoutingGroupApiService {
     * setGroupSorts
     * @summary setGroupSorts
     * @param {number} groupID groupID
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {Array<LocationSort>} sorts sorts
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -157,19 +133,17 @@ export interface OrderRoutingGroupApiService {
     /**
     * testGroup
     * @summary testGroup
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof OrderRoutingGroupApiInterface
     */
-    testGroupRaw(requestParameters: orderRoutingGroupApiParams.TestGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDocumentationLocationGroup>>;
+    testGroupRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDocumentationLocationGroup>>;
 
     /**
     * testGroup
     * testGroup
     */
-    testGroup(requestParameters: orderRoutingGroupApiParams.TestGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDocumentationLocationGroup>;
+    testGroup(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDocumentationLocationGroup>;
 
 }
 
@@ -193,25 +167,9 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI implements OrderRoutin
             throw new runtime.RequiredError('groupID','Required parameter requestParameters.groupID was null or undefined when calling deleteGroup.');
         }
 
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling deleteGroup.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteGroup.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -248,25 +206,9 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI implements OrderRoutin
             throw new runtime.RequiredError('groupID','Required parameter requestParameters.groupID was null or undefined when calling getGroup.');
         }
 
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling getGroup.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getGroup.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -300,14 +242,6 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI implements OrderRoutin
 
 
     async saveGroupRaw(requestParameters: orderRoutingGroupApiParams.SaveGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDocumentationLocationGroup>> {
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling saveGroup.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling saveGroup.');
-        }
-
         if (requestParameters.loc === null || requestParameters.loc === undefined) {
             throw new runtime.RequiredError('loc','Required parameter requestParameters.loc was null or undefined when calling saveGroup.');
         }
@@ -317,14 +251,6 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI implements OrderRoutin
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -363,14 +289,6 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI implements OrderRoutin
             throw new runtime.RequiredError('groupID','Required parameter requestParameters.groupID was null or undefined when calling setGroupFilters.');
         }
 
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling setGroupFilters.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling setGroupFilters.');
-        }
-
         if (requestParameters.filterIDs === null || requestParameters.filterIDs === undefined) {
             throw new runtime.RequiredError('filterIDs','Required parameter requestParameters.filterIDs was null or undefined when calling setGroupFilters.');
         }
@@ -380,14 +298,6 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI implements OrderRoutin
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -426,14 +336,6 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI implements OrderRoutin
             throw new runtime.RequiredError('groupID','Required parameter requestParameters.groupID was null or undefined when calling setGroupSorts.');
         }
 
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling setGroupSorts.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling setGroupSorts.');
-        }
-
         if (requestParameters.sorts === null || requestParameters.sorts === undefined) {
             throw new runtime.RequiredError('sorts','Required parameter requestParameters.sorts was null or undefined when calling setGroupSorts.');
         }
@@ -443,14 +345,6 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI implements OrderRoutin
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -484,26 +378,10 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI implements OrderRoutin
      */
 
 
-    async testGroupRaw(requestParameters: orderRoutingGroupApiParams.TestGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDocumentationLocationGroup>> {
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling testGroup.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling testGroup.');
-        }
-
+    async testGroupRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiDocumentationLocationGroup>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -525,8 +403,8 @@ export class OrderRoutingGroupApi extends runtime.BaseAPI implements OrderRoutin
      * testGroup
      * testGroup
      */
-    async testGroup(requestParameters: orderRoutingGroupApiParams.TestGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDocumentationLocationGroup> {
-        const response = await this.testGroupRaw(requestParameters, initOverrides);
+    async testGroup(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiDocumentationLocationGroup> {
+        const response = await this.testGroupRaw(initOverrides);
         return await response.value();
     }
 

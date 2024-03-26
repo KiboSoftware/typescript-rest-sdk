@@ -23,24 +23,16 @@ import type {
 
 export namespace orderRoutingDataListApiParams { 
     export interface CreateCustomDataListRequest {
-        xVolSite: number;
-        xVolTenant: number;
         customDataList: CustomDataList;
     }
     export interface DeleteCustomDataListRequest {
         dataListID: number;
-        xVolSite: number;
-        xVolTenant: number;
     }
     export interface GetCustomDataListRequest {
         dataListID: number;
-        xVolSite: number;
-        xVolTenant: number;
     }
     export interface UpdateCustomDataListRequest {
         dataListID: number;
-        xVolSite: number;
-        xVolTenant: number;
         newDataList: CustomDataList;
     }
 }
@@ -54,8 +46,6 @@ export interface OrderRoutingDataListApiService {
     /**
     * createCustomDataList
     * @summary createCustomDataList
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {CustomDataList} customDataList customDataList
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -73,8 +63,6 @@ export interface OrderRoutingDataListApiService {
     * deleteCustomDataList
     * @summary deleteCustomDataList
     * @param {number} dataListID dataListID
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof OrderRoutingDataListApiInterface
@@ -91,8 +79,6 @@ export interface OrderRoutingDataListApiService {
     * getCustomDataList
     * @summary getCustomDataList
     * @param {number} dataListID dataListID
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof OrderRoutingDataListApiInterface
@@ -109,8 +95,6 @@ export interface OrderRoutingDataListApiService {
     * updateCustomDataList
     * @summary updateCustomDataList
     * @param {number} dataListID dataListID
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {CustomDataList} newDataList newDataList
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -142,14 +126,6 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI implements OrderRou
 
 
     async createCustomDataListRaw(requestParameters: orderRoutingDataListApiParams.CreateCustomDataListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDataListResponse>> {
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling createCustomDataList.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling createCustomDataList.');
-        }
-
         if (requestParameters.customDataList === null || requestParameters.customDataList === undefined) {
             throw new runtime.RequiredError('customDataList','Required parameter requestParameters.customDataList was null or undefined when calling createCustomDataList.');
         }
@@ -159,14 +135,6 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI implements OrderRou
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -205,25 +173,9 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI implements OrderRou
             throw new runtime.RequiredError('dataListID','Required parameter requestParameters.dataListID was null or undefined when calling deleteCustomDataList.');
         }
 
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling deleteCustomDataList.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteCustomDataList.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -260,25 +212,9 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI implements OrderRou
             throw new runtime.RequiredError('dataListID','Required parameter requestParameters.dataListID was null or undefined when calling getCustomDataList.');
         }
 
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling getCustomDataList.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getCustomDataList.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -316,14 +252,6 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI implements OrderRou
             throw new runtime.RequiredError('dataListID','Required parameter requestParameters.dataListID was null or undefined when calling updateCustomDataList.');
         }
 
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling updateCustomDataList.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateCustomDataList.');
-        }
-
         if (requestParameters.newDataList === null || requestParameters.newDataList === undefined) {
             throw new runtime.RequiredError('newDataList','Required parameter requestParameters.newDataList was null or undefined when calling updateCustomDataList.');
         }
@@ -333,14 +261,6 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI implements OrderRou
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 

@@ -24,12 +24,8 @@ import type {
 export namespace orderRoutingLocationApiParams { 
     export interface GetLocationByLocationCodeRequest {
         locationCode: string;
-        xVolSite: number;
-        xVolTenant: number;
     }
     export interface GetLocationsRequest {
-        xVolSite: number;
-        xVolTenant: number;
         pageNum?: number;
         pageSize?: number;
     }
@@ -45,8 +41,6 @@ export interface OrderRoutingLocationApiService {
     * getLocationByLocationCode
     * @summary getLocationByLocationCode
     * @param {string} locationCode locationCode
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant x-vol-tenant
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof OrderRoutingLocationApiInterface
@@ -62,8 +56,6 @@ export interface OrderRoutingLocationApiService {
     /**
     * getLocations
     * @summary getLocations
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant x-vol-tenant
     * @param {number} [pageNum] pageNum
     * @param {number} [pageSize] pageSize
     * @param {*} [options] Override http request option.
@@ -100,25 +92,9 @@ export class OrderRoutingLocationApi extends runtime.BaseAPI implements OrderRou
             throw new runtime.RequiredError('locationCode','Required parameter requestParameters.locationCode was null or undefined when calling getLocationByLocationCode.');
         }
 
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling getLocationByLocationCode.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getLocationByLocationCode.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -152,14 +128,6 @@ export class OrderRoutingLocationApi extends runtime.BaseAPI implements OrderRou
 
 
     async getLocationsRaw(requestParameters: orderRoutingLocationApiParams.GetLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationListResponseModel>> {
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling getLocations.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getLocations.');
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters.pageNum !== undefined) {
@@ -171,14 +139,6 @@ export class OrderRoutingLocationApi extends runtime.BaseAPI implements OrderRou
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -200,7 +160,7 @@ export class OrderRoutingLocationApi extends runtime.BaseAPI implements OrderRou
      * getLocations
      * getLocations
      */
-    async getLocations(requestParameters: orderRoutingLocationApiParams.GetLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationListResponseModel> {
+    async getLocations(requestParameters: orderRoutingLocationApiParams.GetLocationsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationListResponseModel> {
         const response = await this.getLocationsRaw(requestParameters, initOverrides);
         return await response.value();
     }

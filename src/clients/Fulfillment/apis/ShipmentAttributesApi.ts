@@ -24,32 +24,22 @@ export namespace shipmentAttributesApiParams {
     export interface DeleteShipmentAttributeRequest {
         key: string;
         shipmentNumber: number;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface GetShipmentAttributeRequest {
         key: string;
         shipmentNumber: number;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface GetShipmentAttributesRequest {
         shipmentNumber: number;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface SetShipmentAttributeRequest {
         key: string;
         shipmentNumber: number;
-        xVolTenant: number;
         attribute: ShipmentAttribute;
-        xVolSite?: number;
     }
     export interface SetShipmentAttributesRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         attributes: Array<ShipmentAttribute>;
-        xVolSite?: number;
     }
 }
 /**
@@ -64,8 +54,6 @@ export interface ShipmentAttributesApiService {
     * @summary deleteShipmentAttribute
     * @param {string} key key
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentAttributesApiInterface
@@ -83,8 +71,6 @@ export interface ShipmentAttributesApiService {
     * @summary getShipmentAttribute
     * @param {string} key key
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentAttributesApiInterface
@@ -101,8 +87,6 @@ export interface ShipmentAttributesApiService {
     * getShipmentAttributes
     * @summary getShipmentAttributes
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentAttributesApiInterface
@@ -120,9 +104,7 @@ export interface ShipmentAttributesApiService {
     * @summary setShipmentAttribute
     * @param {string} key key
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {ShipmentAttribute} attribute attribute
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentAttributesApiInterface
@@ -139,9 +121,7 @@ export interface ShipmentAttributesApiService {
     * setShipmentAttributes
     * @summary setShipmentAttributes
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {Array<ShipmentAttribute>} attributes attributes
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentAttributesApiInterface
@@ -180,21 +160,9 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling deleteShipmentAttribute.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteShipmentAttribute.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -235,21 +203,9 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getShipmentAttribute.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipmentAttribute.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -287,21 +243,9 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getShipmentAttributes.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipmentAttributes.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -343,10 +287,6 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling setShipmentAttribute.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling setShipmentAttribute.');
-        }
-
         if (requestParameters.attribute === null || requestParameters.attribute === undefined) {
             throw new runtime.RequiredError('attribute','Required parameter requestParameters.attribute was null or undefined when calling setShipmentAttribute.');
         }
@@ -356,14 +296,6 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -402,10 +334,6 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling setShipmentAttributes.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling setShipmentAttributes.');
-        }
-
         if (requestParameters.attributes === null || requestParameters.attributes === undefined) {
             throw new runtime.RequiredError('attributes','Required parameter requestParameters.attributes was null or undefined when calling setShipmentAttributes.');
         }
@@ -415,14 +343,6 @@ export class ShipmentAttributesApi extends runtime.BaseAPI implements ShipmentAt
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 

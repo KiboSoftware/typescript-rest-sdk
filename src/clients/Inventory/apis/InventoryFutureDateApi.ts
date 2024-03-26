@@ -24,7 +24,6 @@ import type {
 
 export namespace inventoryFutureDateApiParams { 
     export interface AdjustFutureDateOperationRequest {
-        xVolTenant: number;
         futureInventoryID: number;
         adjustFutureDateRequest: AdjustFutureDateRequest;
     }
@@ -39,7 +38,6 @@ export interface InventoryFutureDateApiService {
     /**
     * Adjust future_date of future inventory
     * @summary Adjust Future Date
-    * @param {number} xVolTenant Tenant ID
     * @param {number} futureInventoryID id of the future_inventory row in db
     * @param {AdjustFutureDateRequest} adjustFutureDateRequest Request for adjusting the future date
     * @param {*} [options] Override http request option.
@@ -72,10 +70,6 @@ export class InventoryFutureDateApi extends runtime.BaseAPI implements Inventory
 
 
     async adjustFutureDateRaw(requestParameters: inventoryFutureDateApiParams.AdjustFutureDateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JobQueueResponse>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling adjustFutureDate.');
-        }
-
         if (requestParameters.futureInventoryID === null || requestParameters.futureInventoryID === undefined) {
             throw new runtime.RequiredError('futureInventoryID','Required parameter requestParameters.futureInventoryID was null or undefined when calling adjustFutureDate.');
         }
@@ -89,10 +83,6 @@ export class InventoryFutureDateApi extends runtime.BaseAPI implements Inventory
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 

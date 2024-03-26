@@ -24,7 +24,6 @@ import type {
 
 export namespace shipmentInventoryAllocationApiParams { 
     export interface GetShipmentInventoryAllocationsRequest {
-        xVolTenant: number;
         shipmentInventoryAllocationRequest: ShipmentInventoryAllocationRequest;
     }
 }
@@ -38,7 +37,6 @@ export interface ShipmentInventoryAllocationApiService {
     /**
     * Get future Inventory Allocations by shipment Ids
     * @summary Get Shipment Inventory Allocations
-    * @param {number} xVolTenant Tenant ID
     * @param {ShipmentInventoryAllocationRequest} shipmentInventoryAllocationRequest Request to future and current inventory allocations of item
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -70,10 +68,6 @@ export class ShipmentInventoryAllocationApi extends runtime.BaseAPI implements S
 
 
     async getShipmentInventoryAllocationsRaw(requestParameters: shipmentInventoryAllocationApiParams.GetShipmentInventoryAllocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShipmentInventoryAllocationResponse>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getShipmentInventoryAllocations.');
-        }
-
         if (requestParameters.shipmentInventoryAllocationRequest === null || requestParameters.shipmentInventoryAllocationRequest === undefined) {
             throw new runtime.RequiredError('shipmentInventoryAllocationRequest','Required parameter requestParameters.shipmentInventoryAllocationRequest was null or undefined when calling getShipmentInventoryAllocations.');
         }
@@ -83,10 +77,6 @@ export class ShipmentInventoryAllocationApi extends runtime.BaseAPI implements S
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 

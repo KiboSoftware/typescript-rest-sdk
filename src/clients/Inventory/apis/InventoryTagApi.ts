@@ -24,22 +24,18 @@ import type {
 
 export namespace inventoryTagApiParams { 
     export interface CreateTagRequest {
-        xVolTenant: number;
         tagCategoryName: string;
         inventoryTag: InventoryTag;
     }
     export interface DeleteTagRequest {
-        xVolTenant: number;
         tagCategoryName: string;
         tagValue: string;
     }
     export interface GetTagRequest {
-        xVolTenant: number;
         tagCategoryName: string;
         tagValue: string;
     }
     export interface UpdateTagRequest {
-        xVolTenant: number;
         tagCategoryName: string;
         tagValue: string;
         inventoryTag: InventoryTag;
@@ -55,7 +51,6 @@ export interface InventoryTagApiService {
     /**
     * Create a tag
     * @summary Create Tag
-    * @param {number} xVolTenant Tenant ID
     * @param {string} tagCategoryName Tag Category Name
     * @param {InventoryTag} inventoryTag Request create or modify Tag
     * @param {*} [options] Override http request option.
@@ -73,7 +68,6 @@ export interface InventoryTagApiService {
     /**
     * Delete a Tag
     * @summary Delete Tag
-    * @param {number} xVolTenant Tenant ID
     * @param {string} tagCategoryName Tag Category Name
     * @param {string} tagValue Tag Value
     * @param {*} [options] Override http request option.
@@ -91,7 +85,6 @@ export interface InventoryTagApiService {
     /**
     * Get a tag
     * @summary Get Tag
-    * @param {number} xVolTenant Tenant ID
     * @param {string} tagCategoryName Tag Category Name
     * @param {string} tagValue Tag Value
     * @param {*} [options] Override http request option.
@@ -109,7 +102,6 @@ export interface InventoryTagApiService {
     /**
     * Update the designated tag
     * @summary Update Tag
-    * @param {number} xVolTenant Tenant ID
     * @param {string} tagCategoryName Tag Category Name
     * @param {string} tagValue Tag Value
     * @param {InventoryTag} inventoryTag Request create or modify Tag
@@ -143,10 +135,6 @@ export class InventoryTagApi extends runtime.BaseAPI implements InventoryTagApiS
 
 
     async createTagRaw(requestParameters: inventoryTagApiParams.CreateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventoryTag>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling createTag.');
-        }
-
         if (requestParameters.tagCategoryName === null || requestParameters.tagCategoryName === undefined) {
             throw new runtime.RequiredError('tagCategoryName','Required parameter requestParameters.tagCategoryName was null or undefined when calling createTag.');
         }
@@ -164,10 +152,6 @@ export class InventoryTagApi extends runtime.BaseAPI implements InventoryTagApiS
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -202,10 +186,6 @@ export class InventoryTagApi extends runtime.BaseAPI implements InventoryTagApiS
 
 
     async deleteTagRaw(requestParameters: inventoryTagApiParams.DeleteTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteTag.');
-        }
-
         if (requestParameters.tagCategoryName === null || requestParameters.tagCategoryName === undefined) {
             throw new runtime.RequiredError('tagCategoryName','Required parameter requestParameters.tagCategoryName was null or undefined when calling deleteTag.');
         }
@@ -225,10 +205,6 @@ export class InventoryTagApi extends runtime.BaseAPI implements InventoryTagApiS
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -262,10 +238,6 @@ export class InventoryTagApi extends runtime.BaseAPI implements InventoryTagApiS
 
 
     async getTagRaw(requestParameters: inventoryTagApiParams.GetTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventoryTag>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getTag.');
-        }
-
         if (requestParameters.tagCategoryName === null || requestParameters.tagCategoryName === undefined) {
             throw new runtime.RequiredError('tagCategoryName','Required parameter requestParameters.tagCategoryName was null or undefined when calling getTag.');
         }
@@ -285,10 +257,6 @@ export class InventoryTagApi extends runtime.BaseAPI implements InventoryTagApiS
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -322,10 +290,6 @@ export class InventoryTagApi extends runtime.BaseAPI implements InventoryTagApiS
 
 
     async updateTagRaw(requestParameters: inventoryTagApiParams.UpdateTagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InventoryTag>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateTag.');
-        }
-
         if (requestParameters.tagCategoryName === null || requestParameters.tagCategoryName === undefined) {
             throw new runtime.RequiredError('tagCategoryName','Required parameter requestParameters.tagCategoryName was null or undefined when calling updateTag.');
         }
@@ -351,10 +315,6 @@ export class InventoryTagApi extends runtime.BaseAPI implements InventoryTagApiS
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 

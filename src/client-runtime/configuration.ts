@@ -45,7 +45,7 @@ export class Configuration {
           this.fetchApi,
           cacheHandler as any
         )
-        this._tenantDataManager = new TenantManager(this._authClient, authHost)
+        this._tenantDataManager = new TenantManager(this._authClient, authHost, params.fetchApi)
       }
     }
   }

@@ -25,38 +25,26 @@ export namespace workflowProcessApiParams {
     export interface GetDefinitionImageRequest {
         containerIdOrAlias: string;
         processId: string;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface GetWorkflowProcessRequest {
         containerIdOrAlias: string;
         processId: string;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface GetWorkflowProcessByShipmentTypeRequest {
         shipmentType: string;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface GetWorkflowProcessByShipmentTypeLocationCodeRequest {
         locationCode: string;
         shipmentType: string;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface GetWorkflowProcessByShipmentTypeLocationGroupCodeRequest {
         locationGroupCode: string;
         shipmentType: string;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface GetWorkflowProcessesRequest {
-        xVolTenant: number;
         page?: number;
         pageSize?: number;
         sort?: string;
-        xVolSite?: number;
     }
 }
 /**
@@ -71,8 +59,6 @@ export interface WorkflowProcessApiService {
     * @summary getDefinitionImage
     * @param {string} containerIdOrAlias containerIdOrAlias
     * @param {string} processId processId
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof WorkflowProcessApiInterface
@@ -90,8 +76,6 @@ export interface WorkflowProcessApiService {
     * @summary getWorkflowProcess
     * @param {string} containerIdOrAlias containerIdOrAlias
     * @param {string} processId processId
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof WorkflowProcessApiInterface
@@ -108,8 +92,6 @@ export interface WorkflowProcessApiService {
     * getWorkflowProcessByShipmentType
     * @summary getWorkflowProcessByShipmentType
     * @param {string} shipmentType shipmentType
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @deprecated
     * @throws {RequiredError}
@@ -128,8 +110,6 @@ export interface WorkflowProcessApiService {
     * @summary getWorkflowProcessByShipmentTypeLocationCode
     * @param {string} locationCode locationCode
     * @param {string} shipmentType shipmentType
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof WorkflowProcessApiInterface
@@ -147,8 +127,6 @@ export interface WorkflowProcessApiService {
     * @summary getWorkflowProcessByShipmentTypeLocationGroupCode
     * @param {string} locationGroupCode locationGroupCode
     * @param {string} shipmentType shipmentType
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof WorkflowProcessApiInterface
@@ -164,11 +142,9 @@ export interface WorkflowProcessApiService {
     /**
     * getWorkflowProcesses
     * @summary getWorkflowProcesses
-    * @param {number} xVolTenant 
     * @param {number} [page] 
     * @param {number} [pageSize] 
     * @param {string} [sort] 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof WorkflowProcessApiInterface
@@ -207,21 +183,9 @@ export class WorkflowProcessApi extends runtime.BaseAPI implements WorkflowProce
             throw new runtime.RequiredError('processId','Required parameter requestParameters.processId was null or undefined when calling getDefinitionImage.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getDefinitionImage.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -263,21 +227,9 @@ export class WorkflowProcessApi extends runtime.BaseAPI implements WorkflowProce
             throw new runtime.RequiredError('processId','Required parameter requestParameters.processId was null or undefined when calling getWorkflowProcess.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getWorkflowProcess.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -315,21 +267,9 @@ export class WorkflowProcessApi extends runtime.BaseAPI implements WorkflowProce
             throw new runtime.RequiredError('shipmentType','Required parameter requestParameters.shipmentType was null or undefined when calling getWorkflowProcessByShipmentType.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getWorkflowProcessByShipmentType.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -371,21 +311,9 @@ export class WorkflowProcessApi extends runtime.BaseAPI implements WorkflowProce
             throw new runtime.RequiredError('shipmentType','Required parameter requestParameters.shipmentType was null or undefined when calling getWorkflowProcessByShipmentTypeLocationCode.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getWorkflowProcessByShipmentTypeLocationCode.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -427,21 +355,9 @@ export class WorkflowProcessApi extends runtime.BaseAPI implements WorkflowProce
             throw new runtime.RequiredError('shipmentType','Required parameter requestParameters.shipmentType was null or undefined when calling getWorkflowProcessByShipmentTypeLocationGroupCode.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getWorkflowProcessByShipmentTypeLocationGroupCode.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -475,10 +391,6 @@ export class WorkflowProcessApi extends runtime.BaseAPI implements WorkflowProce
 
 
     async getWorkflowProcessesRaw(requestParameters: workflowProcessApiParams.GetWorkflowProcessesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PagedModelOfEntityModelOfWorkflowProcess>> {
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getWorkflowProcesses.');
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters.page !== undefined) {
@@ -494,14 +406,6 @@ export class WorkflowProcessApi extends runtime.BaseAPI implements WorkflowProce
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -523,7 +427,7 @@ export class WorkflowProcessApi extends runtime.BaseAPI implements WorkflowProce
      * getWorkflowProcesses
      * getWorkflowProcesses
      */
-    async getWorkflowProcesses(requestParameters: workflowProcessApiParams.GetWorkflowProcessesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PagedModelOfEntityModelOfWorkflowProcess> {
+    async getWorkflowProcesses(requestParameters: workflowProcessApiParams.GetWorkflowProcessesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PagedModelOfEntityModelOfWorkflowProcess> {
         const response = await this.getWorkflowProcessesRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -23,13 +23,9 @@ import type {
 export namespace renditionApiParams { 
     export interface RenderOrderSummaryRequest {
         orderId: string;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface RenderReturnReceiptRequest {
         returnId: string;
-        xVolTenant: number;
-        xVolSite?: number;
     }
 }
 /**
@@ -43,8 +39,6 @@ export interface RenditionApiService {
     * renderOrderSummary
     * @summary renderOrderSummary
     * @param {string} orderId orderId
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof RenditionApiInterface
@@ -61,8 +55,6 @@ export interface RenditionApiService {
     * renderReturnReceipt
     * @summary renderReturnReceipt
     * @param {string} returnId returnId
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof RenditionApiInterface
@@ -97,21 +89,9 @@ export class RenditionApi extends runtime.BaseAPI implements RenditionApiService
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling renderOrderSummary.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling renderOrderSummary.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -149,21 +129,9 @@ export class RenditionApi extends runtime.BaseAPI implements RenditionApiService
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling renderReturnReceipt.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling renderReturnReceipt.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 

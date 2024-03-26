@@ -24,39 +24,23 @@ import type {
 export namespace orderRoutingSettingsApiParams { 
     export interface DeleteFilterAttributeRequest {
         attributeName: string;
-        xVolSite: number;
-        xVolTenant: number;
     }
     export interface DeleteSettingsRequest {
         tenantID: number;
-        xVolSite: number;
-        xVolTenant: number;
         siteID?: number;
     }
     export interface GetFilterAttributeRequest {
         attributeName: string;
-        xVolSite: number;
-        xVolTenant: number;
-    }
-    export interface GetFilterAttributesRequest {
-        xVolSite: number;
-        xVolTenant: number;
     }
     export interface GetSettingsRequest {
-        xVolSite: number;
-        xVolTenant: number;
         getDefaults?: boolean;
         siteID?: number;
         tenantID?: number;
     }
     export interface SaveFilterAttributeRequest {
-        xVolSite: number;
-        xVolTenant: number;
         attribute: FilterAttribute;
     }
     export interface SaveSettingsRequest {
-        xVolSite: number;
-        xVolTenant: number;
         settings: OrderRoutingSettings;
     }
 }
@@ -71,8 +55,6 @@ export interface OrderRoutingSettingsApiService {
     * deleteFilterAttribute
     * @summary deleteFilterAttribute
     * @param {string} attributeName attributeName
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof OrderRoutingSettingsApiInterface
@@ -89,8 +71,6 @@ export interface OrderRoutingSettingsApiService {
     * deleteSettings
     * @summary deleteSettings
     * @param {number} tenantID tenantID
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {number} [siteID] siteID
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -108,8 +88,6 @@ export interface OrderRoutingSettingsApiService {
     * getFilterAttribute
     * @summary getFilterAttribute
     * @param {string} attributeName attributeName
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof OrderRoutingSettingsApiInterface
@@ -125,25 +103,21 @@ export interface OrderRoutingSettingsApiService {
     /**
     * getFilterAttributes
     * @summary getFilterAttributes
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof OrderRoutingSettingsApiInterface
     */
-    getFilterAttributesRaw(requestParameters: orderRoutingSettingsApiParams.GetFilterAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<FilterAttribute>>>;
+    getFilterAttributesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<FilterAttribute>>>;
 
     /**
     * getFilterAttributes
     * getFilterAttributes
     */
-    getFilterAttributes(requestParameters: orderRoutingSettingsApiParams.GetFilterAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<FilterAttribute>>;
+    getFilterAttributes(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<FilterAttribute>>;
 
     /**
     * getSettings
     * @summary getSettings
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {boolean} [getDefaults] getDefaults
     * @param {number} [siteID] siteID
     * @param {number} [tenantID] tenantID
@@ -162,8 +136,6 @@ export interface OrderRoutingSettingsApiService {
     /**
     * saveFilterAttribute
     * @summary saveFilterAttribute
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {FilterAttribute} attribute attribute
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -180,8 +152,6 @@ export interface OrderRoutingSettingsApiService {
     /**
     * saveSettings
     * @summary saveSettings
-    * @param {number} xVolSite 
-    * @param {number} xVolTenant 
     * @param {OrderRoutingSettings} settings settings
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -217,25 +187,9 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
             throw new runtime.RequiredError('attributeName','Required parameter requestParameters.attributeName was null or undefined when calling deleteFilterAttribute.');
         }
 
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling deleteFilterAttribute.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteFilterAttribute.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -273,14 +227,6 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
             throw new runtime.RequiredError('tenantID','Required parameter requestParameters.tenantID was null or undefined when calling deleteSettings.');
         }
 
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling deleteSettings.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling deleteSettings.');
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters.siteID !== undefined) {
@@ -292,14 +238,6 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -337,25 +275,9 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
             throw new runtime.RequiredError('attributeName','Required parameter requestParameters.attributeName was null or undefined when calling getFilterAttribute.');
         }
 
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling getFilterAttribute.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getFilterAttribute.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -388,26 +310,10 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
      */
 
 
-    async getFilterAttributesRaw(requestParameters: orderRoutingSettingsApiParams.GetFilterAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<FilterAttribute>>> {
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling getFilterAttributes.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getFilterAttributes.');
-        }
-
+    async getFilterAttributesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<FilterAttribute>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -429,8 +335,8 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
      * getFilterAttributes
      * getFilterAttributes
      */
-    async getFilterAttributes(requestParameters: orderRoutingSettingsApiParams.GetFilterAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<FilterAttribute>> {
-        const response = await this.getFilterAttributesRaw(requestParameters, initOverrides);
+    async getFilterAttributes(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<FilterAttribute>> {
+        const response = await this.getFilterAttributesRaw(initOverrides);
         return await response.value();
     }
 
@@ -441,14 +347,6 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
 
 
     async getSettingsRaw(requestParameters: orderRoutingSettingsApiParams.GetSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderRoutingSettings>> {
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling getSettings.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getSettings.');
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters.getDefaults !== undefined) {
@@ -464,14 +362,6 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -493,7 +383,7 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
      * getSettings
      * getSettings
      */
-    async getSettings(requestParameters: orderRoutingSettingsApiParams.GetSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderRoutingSettings> {
+    async getSettings(requestParameters: orderRoutingSettingsApiParams.GetSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderRoutingSettings> {
         const response = await this.getSettingsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -505,14 +395,6 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
 
 
     async saveFilterAttributeRaw(requestParameters: orderRoutingSettingsApiParams.SaveFilterAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FilterAttribute>> {
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling saveFilterAttribute.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling saveFilterAttribute.');
-        }
-
         if (requestParameters.attribute === null || requestParameters.attribute === undefined) {
             throw new runtime.RequiredError('attribute','Required parameter requestParameters.attribute was null or undefined when calling saveFilterAttribute.');
         }
@@ -522,14 +404,6 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -564,14 +438,6 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
 
 
     async saveSettingsRaw(requestParameters: orderRoutingSettingsApiParams.SaveSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderRoutingSettings>> {
-        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
-            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling saveSettings.');
-        }
-
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling saveSettings.');
-        }
-
         if (requestParameters.settings === null || requestParameters.settings === undefined) {
             throw new runtime.RequiredError('settings','Required parameter requestParameters.settings was null or undefined when calling saveSettings.');
         }
@@ -581,14 +447,6 @@ export class OrderRoutingSettingsApi extends runtime.BaseAPI implements OrderRou
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 

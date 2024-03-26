@@ -25,19 +25,13 @@ import type {
 export namespace customerSurveyApiParams { 
     export interface CreateSurveyRequest {
         shipmentNumber: number;
-        xVolTenant: number;
         customerSurveyDto: CustomerSurvey;
-        xVolSite?: number;
     }
     export interface GetSurveyRequest {
         id: string;
-        xVolTenant: number;
-        xVolSite?: number;
     }
     export interface GetSurveysRequest {
         shipmentNumber: number;
-        xVolTenant: number;
-        xVolSite?: number;
     }
 }
 /**
@@ -51,9 +45,7 @@ export interface CustomerSurveyApiService {
     * createSurvey
     * @summary createSurvey
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
     * @param {CustomerSurvey} customerSurveyDto customerSurveyDto
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof CustomerSurveyApiInterface
@@ -70,8 +62,6 @@ export interface CustomerSurveyApiService {
     * getSurvey
     * @summary getSurvey
     * @param {string} id id
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof CustomerSurveyApiInterface
@@ -88,8 +78,6 @@ export interface CustomerSurveyApiService {
     * getSurveys
     * @summary getSurveys
     * @param {number} shipmentNumber shipmentNumber
-    * @param {number} xVolTenant 
-    * @param {number} [xVolSite] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof CustomerSurveyApiInterface
@@ -124,10 +112,6 @@ export class CustomerSurveyApi extends runtime.BaseAPI implements CustomerSurvey
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling createSurvey.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling createSurvey.');
-        }
-
         if (requestParameters.customerSurveyDto === null || requestParameters.customerSurveyDto === undefined) {
             throw new runtime.RequiredError('customerSurveyDto','Required parameter requestParameters.customerSurveyDto was null or undefined when calling createSurvey.');
         }
@@ -137,14 +121,6 @@ export class CustomerSurveyApi extends runtime.BaseAPI implements CustomerSurvey
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -183,21 +159,9 @@ export class CustomerSurveyApi extends runtime.BaseAPI implements CustomerSurvey
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getSurvey.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getSurvey.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
@@ -235,21 +199,9 @@ export class CustomerSurveyApi extends runtime.BaseAPI implements CustomerSurvey
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getSurveys.');
         }
 
-        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
-            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getSurveys.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
-            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
-        }
-
-        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
-            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
-        }
 
 
 
