@@ -194,10 +194,6 @@ export const AbstractFilterBooleanOperatorEnum = {
     StartsWith: 'filter.logic.starts.with',
     EndsWith: 'filter.logic.ends.with',
     Contains: 'filter.logic.contains',
-    Equal: 'filter.logic.equal',
-    NotEqual: 'filter.logic.not.equal',
-    In: 'filter.logic.in',
-    NotIn: 'filter.logic.not.in',
     Subset: 'filter.logic.subset'
 } as const;
 export type AbstractFilterBooleanOperatorEnum = typeof AbstractFilterBooleanOperatorEnum[keyof typeof AbstractFilterBooleanOperatorEnum];
@@ -1375,10 +1371,6 @@ export const CustomDataListFilterBooleanOperatorEnum = {
     StartsWith: 'filter.logic.starts.with',
     EndsWith: 'filter.logic.ends.with',
     Contains: 'filter.logic.contains',
-    Equal: 'filter.logic.equal',
-    NotEqual: 'filter.logic.not.equal',
-    In: 'filter.logic.in',
-    NotIn: 'filter.logic.not.in',
     Subset: 'filter.logic.subset'
 } as const;
 export type CustomDataListFilterBooleanOperatorEnum = typeof CustomDataListFilterBooleanOperatorEnum[keyof typeof CustomDataListFilterBooleanOperatorEnum];
@@ -1672,10 +1664,6 @@ export const CustomDataValueFilterBooleanOperatorEnum = {
     StartsWith: 'filter.logic.starts.with',
     EndsWith: 'filter.logic.ends.with',
     Contains: 'filter.logic.contains',
-    Equal: 'filter.logic.equal',
-    NotEqual: 'filter.logic.not.equal',
-    In: 'filter.logic.in',
-    NotIn: 'filter.logic.not.in',
     Subset: 'filter.logic.subset'
 } as const;
 export type CustomDataValueFilterBooleanOperatorEnum = typeof CustomDataValueFilterBooleanOperatorEnum[keyof typeof CustomDataValueFilterBooleanOperatorEnum];
@@ -2616,10 +2604,6 @@ export const FilterFormFilterLogicOperatorEnum = {
     StartsWith: 'filter.logic.starts.with',
     EndsWith: 'filter.logic.ends.with',
     Contains: 'filter.logic.contains',
-    Equal: 'filter.logic.equal',
-    NotEqual: 'filter.logic.not.equal',
-    In: 'filter.logic.in',
-    NotIn: 'filter.logic.not.in',
     Subset: 'filter.logic.subset'
 } as const;
 export type FilterFormFilterLogicOperatorEnum = typeof FilterFormFilterLogicOperatorEnum[keyof typeof FilterFormFilterLogicOperatorEnum];
@@ -3610,10 +3594,6 @@ export const LocationCriteriaSetFilterBooleanOperatorEnum = {
     StartsWith: 'filter.logic.starts.with',
     EndsWith: 'filter.logic.ends.with',
     Contains: 'filter.logic.contains',
-    Equal: 'filter.logic.equal',
-    NotEqual: 'filter.logic.not.equal',
-    In: 'filter.logic.in',
-    NotIn: 'filter.logic.not.in',
     Subset: 'filter.logic.subset'
 } as const;
 export type LocationCriteriaSetFilterBooleanOperatorEnum = typeof LocationCriteriaSetFilterBooleanOperatorEnum[keyof typeof LocationCriteriaSetFilterBooleanOperatorEnum];

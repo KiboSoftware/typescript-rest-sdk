@@ -18,6 +18,7 @@ import { basePathTemplate } from '../api-path';
 import type {
   ErrorItem,
   RemoveSpecificShipmentFromConsolidationGroup400Response,
+  MultiValueMapStringString
 } from '../models';
 
 
