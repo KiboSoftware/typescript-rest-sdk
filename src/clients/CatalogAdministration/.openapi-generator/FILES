@@ -2,6 +2,7 @@ apis/CategoriesApi.ts
 apis/CategoryAttributeDefinitionApi.ts
 apis/CouponSetsApi.ts
 apis/CurrencyApi.ts
+apis/DiscountApi.ts
 apis/DiscountSettingsApi.ts
 apis/DiscountsApi.ts
 apis/FacetsApi.ts

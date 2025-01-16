@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Kibo Fulfillment API - Production Profile
- * REST API backing the Kibo Fulfiller User Interface
+ * Kibo Fulfillment Service
+ * OpenAPI Spec for Kibo Fulfillment Service
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -15,12 +15,16 @@
 
 import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
+import type {
+  ErrorItem,
+  RemoveSpecificShipmentFromConsolidationGroup400Response,
+} from '../models';
 
 
 export namespace shippingNotificationApiParams { 
     export interface HandleCarrierNotificationRequest {
         carrier: string;
-        paramMap: any | null;
+        paramMap: MultiValueMapStringString;
     }
 }
 /**
@@ -31,10 +35,10 @@ export namespace shippingNotificationApiParams {
 */
 export interface ShippingNotificationApiService {
     /**
-    * handleCarrierNotification
-    * @summary handleCarrierNotification
-    * @param {string} carrier carrier
-    * @param {any} paramMap paramMap
+    * Handle Carrier Notification
+    * @summary Handle Carrier Notification
+    * @param {string} carrier 
+    * @param {MultiValueMapStringString} paramMap 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShippingNotificationApiInterface
@@ -42,8 +46,8 @@ export interface ShippingNotificationApiService {
     handleCarrierNotificationRaw(requestParameters: shippingNotificationApiParams.HandleCarrierNotificationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
 
     /**
-    * handleCarrierNotification
-    * handleCarrierNotification
+    * Handle Carrier Notification
+    * Handle Carrier Notification
     */
     handleCarrierNotification(requestParameters: shippingNotificationApiParams.HandleCarrierNotificationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
 
@@ -59,8 +63,8 @@ export class ShippingNotificationApi extends runtime.BaseAPI implements Shipping
         this.basePathTemplate = basePathTemplate
     }
     /**
-     * handleCarrierNotification
-     * handleCarrierNotification
+     * Handle Carrier Notification
+     * Handle Carrier Notification
      */
 
 
@@ -75,6 +79,10 @@ export class ShippingNotificationApi extends runtime.BaseAPI implements Shipping
 
         const queryParameters: any = {};
 
+        if (requestParameters.paramMap !== undefined) {
+            queryParameters['paramMap'] = requestParameters.paramMap;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
 
@@ -83,39 +91,19 @@ export class ShippingNotificationApi extends runtime.BaseAPI implements Shipping
 
         await this.addAuthorizationHeaders(headerParameters)
         
-        const consumes: runtime.Consume[] = [
-            { contentType: 'application/x-www-form-urlencoded' },
-        ];
-        // @ts-ignore: canConsumeForm may be unused
-        const canConsumeForm = runtime.canConsumeForm(consumes);
-
-        let formParams: { append(param: string, value: any): any };
-        let useForm = false;
-        if (useForm) {
-            formParams = new FormData();
-        } else {
-            formParams = new URLSearchParams();
-        }
-
-        if (requestParameters.paramMap !== undefined) {
-
-            formParams.append('paramMap', new Blob([JSON.stringify(requestParameters.paramMap)], { type: "application/json", }));
-        }
-
         const response = await this.request({
             path: `/commerce/fulfillment/shipping/notifications/{carrier}`.replace(`{${"carrier"}}`, encodeURIComponent(String(requestParameters.carrier))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: formParams,
         }, initOverrides);
 
         return new runtime.TextApiResponse(response) as any;
     }
 
     /**
-     * handleCarrierNotification
-     * handleCarrierNotification
+     * Handle Carrier Notification
+     * Handle Carrier Notification
      */
     async handleCarrierNotification(requestParameters: shippingNotificationApiParams.HandleCarrierNotificationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
         const response = await this.handleCarrierNotificationRaw(requestParameters, initOverrides);

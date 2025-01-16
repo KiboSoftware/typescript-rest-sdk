@@ -3,49 +3,6 @@
 /**
  * 
  * @export
- * @interface AdminUserMasterCatalog
- */
-export interface AdminUserMasterCatalog {
-    /**
-     * 
-     * @type {number}
-     * @memberof AdminUserMasterCatalog
-     */
-    tenantId?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof AdminUserMasterCatalog
-     */
-    defaultLocaleCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof AdminUserMasterCatalog
-     */
-    defaultCurrencyCode?: string | null;
-    /**
-     * 
-     * @type {Array<Catalog>}
-     * @memberof AdminUserMasterCatalog
-     */
-    catalogs?: Array<Catalog> | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof AdminUserMasterCatalog
-     */
-    id?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof AdminUserMasterCatalog
-     */
-    name?: string | null;
-}
-/**
- * 
- * @export
  * @interface BaseTenantEntity
  */
 export interface BaseTenantEntity {
@@ -218,6 +175,55 @@ export interface TenantAttribute {
 /**
  * 
  * @export
+ * @interface TenantMasterCatalog
+ */
+export interface TenantMasterCatalog {
+    /**
+     * 
+     * @type {number}
+     * @memberof TenantMasterCatalog
+     */
+    tenantId?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof TenantMasterCatalog
+     */
+    defaultLocaleCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof TenantMasterCatalog
+     */
+    defaultCurrencyCode?: string | null;
+    /**
+     * 
+     * @type {Array<Catalog>}
+     * @memberof TenantMasterCatalog
+     */
+    catalogs?: Array<Catalog> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof TenantMasterCatalog
+     */
+    supportedLocaleCodes?: Array<string> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof TenantMasterCatalog
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof TenantMasterCatalog
+     */
+    name?: string | null;
+}
+/**
+ * 
+ * @export
  * @interface TenantTenant
  */
 export interface TenantTenant {
@@ -235,10 +241,10 @@ export interface TenantTenant {
     sites?: Array<Site> | null;
     /**
      * 
-     * @type {Array<AdminUserMasterCatalog>}
+     * @type {Array<TenantMasterCatalog>}
      * @memberof TenantTenant
      */
-    masterCatalogs?: Array<AdminUserMasterCatalog> | null;
+    masterCatalogs?: Array<TenantMasterCatalog> | null;
     /**
      * 
      * @type {string}

@@ -62,6 +62,7 @@ export namespace productSearchApiParams {
         rows?: number;
         start?: number;
         q?: string;
+        collapse?: boolean;
     }
     export interface StorefrontGetRandomAccessCursorRequest {
         query?: string;
@@ -71,6 +72,7 @@ export namespace productSearchApiParams {
     }
     export interface StorefrontSearchRequest {
         query?: string;
+        collapse?: boolean;
         filter?: string;
         facetTemplate?: string;
         facetTemplateSubset?: string;
@@ -108,6 +110,7 @@ export namespace productSearchApiParams {
     }
     export interface StorefrontSiteSearchRequest {
         query?: string;
+        collapse?: boolean;
         filter?: string;
         facetTemplate?: string;
         facetTemplateSubset?: string;
@@ -237,6 +240,7 @@ export interface ProductSearchApiService {
     * @param {number} [rows] 
     * @param {number} [start] 
     * @param {string} [q] optional alternative to query for debugging tools
+    * @param {boolean} [collapse] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ProductSearchApiInterface
@@ -272,6 +276,7 @@ export interface ProductSearchApiService {
     * Searches the categories displayed on the storefront for products or product options that the shopper types in a search query.
     * @summary Search for products.
     * @param {string} [query] The terms to search on.
+    * @param {boolean} [collapse] 
     * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
     * @param {string} [facetTemplate] 
     * @param {string} [facetTemplateSubset] 
@@ -322,6 +327,7 @@ export interface ProductSearchApiService {
     * Site Search - Searches the items displayed on the storefront.
     * @summary Site Search - Searches the items displayed on the storefront.
     * @param {string} [query] The terms to search on.
+    * @param {boolean} [collapse] 
     * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
     * @param {string} [facetTemplate] 
     * @param {string} [facetTemplateSubset] 
@@ -631,6 +637,10 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
             queryParameters['q'] = requestParameters.q;
         }
 
+        if (requestParameters.collapse !== undefined) {
+            queryParameters['collapse'] = requestParameters.collapse;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
 
@@ -720,6 +730,10 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
 
         if (requestParameters.query !== undefined) {
             queryParameters['query'] = requestParameters.query;
+        }
+
+        if (requestParameters.collapse !== undefined) {
+            queryParameters['collapse'] = requestParameters.collapse;
         }
 
         if (requestParameters.filter !== undefined) {
@@ -896,6 +910,10 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
 
         if (requestParameters.query !== undefined) {
             queryParameters['query'] = requestParameters.query;
+        }
+
+        if (requestParameters.collapse !== undefined) {
+            queryParameters['collapse'] = requestParameters.collapse;
         }
 
         if (requestParameters.filter !== undefined) {

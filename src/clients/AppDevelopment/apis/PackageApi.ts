@@ -17,11 +17,12 @@ import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
 import type {
   AppDevPackage,
+  ApplicationBehavior,
   ApplicationSummary,
   ApplicationSummaryCollection,
+  BehaviorCategoryBehaviorCollection,
   PackageCollection,
   PackageRequest,
-  PackageSummaryCollection,
 } from '../models';
 
 
@@ -40,16 +41,6 @@ export namespace packageApiParams {
         responseFields?: string;
         appDevPackage?: AppDevPackage;
     }
-    export interface DeletePackageRequest {
-        applicationKey: string;
-    }
-    export interface GetAllPackagesRequest {
-        startIndex?: number;
-        pageSize?: number;
-        sortBy?: string;
-        filter?: string;
-        responseFields?: string;
-    }
     export interface GetApplicationSummaryChildrenRequest {
         appId: string;
         responseFields?: string;
@@ -67,6 +58,10 @@ export namespace packageApiParams {
         skipDevAccountCheck?: boolean;
         responseFields?: string;
     }
+    export interface GetPackageBehaviorsRequest {
+        packageId: number;
+        responseFields?: string;
+    }
     export interface GetPackagesRequest {
         applicationKey: string;
         startIndex?: number;
@@ -79,6 +74,11 @@ export namespace packageApiParams {
         applicationKey: string;
         responseFields?: string;
         appDevPackage?: AppDevPackage;
+    }
+    export interface UpdatePackageBehaviorsRequest {
+        packageId: number;
+        responseFields?: string;
+        applicationBehavior?: Array<ApplicationBehavior>;
     }
 }
 /**
@@ -142,42 +142,6 @@ export interface PackageApiService {
     createPackage(requestParameters: packageApiParams.CreatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevPackage>;
 
     /**
-    * Use thi operatin to logically delete a package.
-    * @summary Delete Package
-    * @param {string} applicationKey 
-    * @param {*} [options] Override http request option.
-    * @throws {RequiredError}
-    * @memberof PackageApiInterface
-    */
-    deletePackageRaw(requestParameters: packageApiParams.DeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-    * Use thi operatin to logically delete a package.
-    * Delete Package
-    */
-    deletePackage(requestParameters: packageApiParams.DeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-    * Get all packages for a given Developer Account.
-    * @summary Get All Packages
-    * @param {number} [startIndex] 
-    * @param {number} [pageSize] 
-    * @param {string} [sortBy] 
-    * @param {string} [filter] 
-    * @param {string} [responseFields] limits which fields are returned in the response body
-    * @param {*} [options] Override http request option.
-    * @throws {RequiredError}
-    * @memberof PackageApiInterface
-    */
-    getAllPackagesRaw(requestParameters: packageApiParams.GetAllPackagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PackageSummaryCollection>>;
-
-    /**
-    * Get all packages for a given Developer Account.
-    * Get All Packages
-    */
-    getAllPackages(requestParameters: packageApiParams.GetAllPackagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PackageSummaryCollection>;
-
-    /**
     * 
     * @summary Get Application Summary Children
     * @param {string} appId 
@@ -234,6 +198,23 @@ export interface PackageApiService {
     getPackage(requestParameters: packageApiParams.GetPackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevPackage>;
 
     /**
+    * 
+    * @summary Get Package Behaviors
+    * @param {number} packageId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof PackageApiInterface
+    */
+    getPackageBehaviorsRaw(requestParameters: packageApiParams.GetPackageBehaviorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BehaviorCategoryBehaviorCollection>>;
+
+    /**
+    * 
+    * Get Package Behaviors
+    */
+    getPackageBehaviors(requestParameters: packageApiParams.GetPackageBehaviorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BehaviorCategoryBehaviorCollection>;
+
+    /**
     * Use this operation to retieve all packages for a given applicationKey.
     * @summary Get Packages
     * @param {string} applicationKey 
@@ -271,6 +252,24 @@ export interface PackageApiService {
     * Update Package
     */
     updatePackage(requestParameters: packageApiParams.UpdatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevPackage>;
+
+    /**
+    * 
+    * @summary Update Package Behaviors
+    * @param {number} packageId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<ApplicationBehavior>} [applicationBehavior] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof PackageApiInterface
+    */
+    updatePackageBehaviorsRaw(requestParameters: packageApiParams.UpdatePackageBehaviorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BehaviorCategoryBehaviorCollection>>;
+
+    /**
+    * 
+    * Update Package Behaviors
+    */
+    updatePackageBehaviors(requestParameters: packageApiParams.UpdatePackageBehaviorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BehaviorCategoryBehaviorCollection>;
 
 }
 
@@ -418,101 +417,6 @@ export class PackageApi extends runtime.BaseAPI implements PackageApiService {
      */
     async createPackage(requestParameters: packageApiParams.CreatePackageRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevPackage> {
         const response = await this.createPackageRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Use thi operatin to logically delete a package.
-     * Delete Package
-     */
-
-
-    async deletePackageRaw(requestParameters: packageApiParams.DeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.applicationKey === null || requestParameters.applicationKey === undefined) {
-            throw new runtime.RequiredError('applicationKey','Required parameter requestParameters.applicationKey was null or undefined when calling deletePackage.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-
-
-
-
-        await this.addAuthorizationHeaders(headerParameters)
-        
-        const response = await this.request({
-            path: `/platform/appdev/apppackages/{applicationKey}`.replace(`{${"applicationKey"}}`, encodeURIComponent(String(requestParameters.applicationKey))),
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * Use thi operatin to logically delete a package.
-     * Delete Package
-     */
-    async deletePackage(requestParameters: packageApiParams.DeletePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.deletePackageRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * Get all packages for a given Developer Account.
-     * Get All Packages
-     */
-
-
-    async getAllPackagesRaw(requestParameters: packageApiParams.GetAllPackagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PackageSummaryCollection>> {
-        const queryParameters: any = {};
-
-        if (requestParameters.startIndex !== undefined) {
-            queryParameters['startIndex'] = requestParameters.startIndex;
-        }
-
-        if (requestParameters.pageSize !== undefined) {
-            queryParameters['pageSize'] = requestParameters.pageSize;
-        }
-
-        if (requestParameters.sortBy !== undefined) {
-            queryParameters['sortBy'] = requestParameters.sortBy;
-        }
-
-        if (requestParameters.filter !== undefined) {
-            queryParameters['filter'] = requestParameters.filter;
-        }
-
-        if (requestParameters.responseFields !== undefined) {
-            queryParameters['responseFields'] = requestParameters.responseFields;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-
-
-
-
-        await this.addAuthorizationHeaders(headerParameters)
-        
-        const response = await this.request({
-            path: `/platform/appdev/apppackages`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response);
-    }
-
-    /**
-     * Get all packages for a given Developer Account.
-     * Get All Packages
-     */
-    async getAllPackages(requestParameters: packageApiParams.GetAllPackagesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PackageSummaryCollection> {
-        const response = await this.getAllPackagesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -669,6 +573,50 @@ export class PackageApi extends runtime.BaseAPI implements PackageApiService {
     }
 
     /**
+     * 
+     * Get Package Behaviors
+     */
+
+
+    async getPackageBehaviorsRaw(requestParameters: packageApiParams.GetPackageBehaviorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BehaviorCategoryBehaviorCollection>> {
+        if (requestParameters.packageId === null || requestParameters.packageId === undefined) {
+            throw new runtime.RequiredError('packageId','Required parameter requestParameters.packageId was null or undefined when calling getPackageBehaviors.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/platform/appdev/apppackages/{packageId}/behaviors`.replace(`{${"packageId"}}`, encodeURIComponent(String(requestParameters.packageId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * 
+     * Get Package Behaviors
+     */
+    async getPackageBehaviors(requestParameters: packageApiParams.GetPackageBehaviorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BehaviorCategoryBehaviorCollection> {
+        const response = await this.getPackageBehaviorsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Use this operation to retieve all packages for a given applicationKey.
      * Get Packages
      */
@@ -772,6 +720,53 @@ export class PackageApi extends runtime.BaseAPI implements PackageApiService {
      */
     async updatePackage(requestParameters: packageApiParams.UpdatePackageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AppDevPackage> {
         const response = await this.updatePackageRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * 
+     * Update Package Behaviors
+     */
+
+
+    async updatePackageBehaviorsRaw(requestParameters: packageApiParams.UpdatePackageBehaviorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BehaviorCategoryBehaviorCollection>> {
+        if (requestParameters.packageId === null || requestParameters.packageId === undefined) {
+            throw new runtime.RequiredError('packageId','Required parameter requestParameters.packageId was null or undefined when calling updatePackageBehaviors.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/platform/appdev/apppackages/{packageId}/behaviors`.replace(`{${"packageId"}}`, encodeURIComponent(String(requestParameters.packageId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.applicationBehavior,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * 
+     * Update Package Behaviors
+     */
+    async updatePackageBehaviors(requestParameters: packageApiParams.UpdatePackageBehaviorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BehaviorCategoryBehaviorCollection> {
+        const response = await this.updatePackageBehaviorsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

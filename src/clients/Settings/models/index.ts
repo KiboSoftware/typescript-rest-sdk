@@ -278,6 +278,12 @@ export interface EmailTransactionSettings {
      * @type {boolean}
      * @memberof EmailTransactionSettings
      */
+    itemSubstituted?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
     orderFulfillmentDetailsChanged?: boolean | null;
     /**
      * 
@@ -615,6 +621,12 @@ export interface EmailTransactionSettings {
      * @memberof EmailTransactionSettings
      */
     substitutionPaymentRequired?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    digitalItemFulfilled?: boolean | null;
 }
 /**
  * 

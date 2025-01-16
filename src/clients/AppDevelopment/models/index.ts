@@ -1414,6 +1414,81 @@ export interface AuthTicketRequest {
 /**
  * 
  * @export
+ * @interface BehaviorCategoryBehavior
+ */
+export interface BehaviorCategoryBehavior {
+    /**
+     * 
+     * @type {number}
+     * @memberof BehaviorCategoryBehavior
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof BehaviorCategoryBehavior
+     */
+    name?: string | null;
+    /**
+     * 
+     * @type {Array<BehaviorItem>}
+     * @memberof BehaviorCategoryBehavior
+     */
+    behaviorItems?: Array<BehaviorItem> | null;
+}
+/**
+ * 
+ * @export
+ * @interface BehaviorCategoryBehaviorCollection
+ */
+export interface BehaviorCategoryBehaviorCollection {
+    /**
+     * 
+     * @type {number}
+     * @memberof BehaviorCategoryBehaviorCollection
+     */
+    totalCount?: number;
+    /**
+     * 
+     * @type {Array<BehaviorCategoryBehavior>}
+     * @memberof BehaviorCategoryBehaviorCollection
+     */
+    items?: Array<BehaviorCategoryBehavior> | null;
+}
+/**
+ * 
+ * @export
+ * @interface BehaviorItem
+ */
+export interface BehaviorItem {
+    /**
+     * 
+     * @type {number}
+     * @memberof BehaviorItem
+     */
+    id?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof BehaviorItem
+     */
+    categoryId?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof BehaviorItem
+     */
+    name?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof BehaviorItem
+     */
+    isPrivate?: boolean;
+}
+/**
+ * 
+ * @export
  * @interface FileMetadata
  */
 export interface FileMetadata {
@@ -1484,6 +1559,192 @@ export interface FolderMetadata {
      * @memberof FolderMetadata
      */
     subFolders?: Array<FolderMetadata> | null;
+}
+/**
+ * A job that represents the build of a Kibo hosted headless application.
+ * @export
+ * @interface HeadlessAppBuildJob
+ */
+export interface HeadlessAppBuildJob {
+    /**
+     * The unique identifier for a Headless Application Build Job.
+     * @type {string}
+     * @memberof HeadlessAppBuildJob
+     */
+    jobId?: string | null;
+    /**
+     * The name of the third party feature.
+     * @type {string}
+     * @memberof HeadlessAppBuildJob
+     */
+    status?: string | null;
+    /**
+     * The Commit ID for the build job.
+     * @type {string}
+     * @memberof HeadlessAppBuildJob
+     */
+    commitId?: string | null;
+    /**
+     * The time of code commit for the build job.
+     * @type {string}
+     * @memberof HeadlessAppBuildJob
+     */
+    commitTime?: string;
+    /**
+     * The start time for the build job.
+     * @type {string}
+     * @memberof HeadlessAppBuildJob
+     */
+    startTime?: string;
+    /**
+     * The end time for the build job.
+     * @type {string}
+     * @memberof HeadlessAppBuildJob
+     */
+    endTime?: string;
+}
+/**
+ * Response object for looking up headless storefront build jobs.
+ * @export
+ * @interface HeadlessAppBuildJobResponse
+ */
+export interface HeadlessAppBuildJobResponse {
+    /**
+     * A token used for paginating through build jobs on subsequent requests.
+     * @type {string}
+     * @memberof HeadlessAppBuildJobResponse
+     */
+    nextToken?: string | null;
+    /**
+     * A list of items representing headless application build jobs.
+     * @type {Array<HeadlessAppBuildJob>}
+     * @memberof HeadlessAppBuildJobResponse
+     */
+    jobs?: Array<HeadlessAppBuildJob> | null;
+}
+/**
+ * The list of steps taken during the build job with links to logs.
+ * @export
+ * @interface HeadlessAppBuildLog
+ */
+export interface HeadlessAppBuildLog {
+    /**
+     * 
+     * @type {string}
+     * @memberof HeadlessAppBuildLog
+     */
+    jobId?: string | null;
+    /**
+     * 
+     * @type {Array<HeadlessAppBuildStep>}
+     * @memberof HeadlessAppBuildLog
+     */
+    steps?: Array<HeadlessAppBuildStep> | null;
+}
+/**
+ * A job that represents the build of a Kibo hosted headless application.
+ * @export
+ * @interface HeadlessAppBuildStep
+ */
+export interface HeadlessAppBuildStep {
+    /**
+     * The name of the build step producing logs during the build Job.
+     * @type {string}
+     * @memberof HeadlessAppBuildStep
+     */
+    stepName?: string | null;
+    /**
+     * The status result of the step during the build job
+     * @type {string}
+     * @memberof HeadlessAppBuildStep
+     */
+    status?: string | null;
+    /**
+     * The url to access logs generated during the build step.
+     * @type {string}
+     * @memberof HeadlessAppBuildStep
+     */
+    logUrl?: string | null;
+    /**
+     * The start time for the build job step.
+     * @type {string}
+     * @memberof HeadlessAppBuildStep
+     */
+    startTime?: string;
+    /**
+     * The end time for the build job step.
+     * @type {string}
+     * @memberof HeadlessAppBuildStep
+     */
+    endTime?: string;
+}
+/**
+ * Response object representing a s3 object containing headless storefront runtime logs.
+ * @export
+ * @interface HeadlessAppRuntimeLog
+ */
+export interface HeadlessAppRuntimeLog {
+    /**
+     * The key for the s3 log object.
+     * @type {string}
+     * @memberof HeadlessAppRuntimeLog
+     */
+    key?: string | null;
+    /**
+     * The presigned URL to download the log collection, valid for 4 hours.
+     * @type {string}
+     * @memberof HeadlessAppRuntimeLog
+     */
+    logUrl?: string | null;
+    /**
+     * The size of the log collection
+     * @type {number}
+     * @memberof HeadlessAppRuntimeLog
+     */
+    size?: number;
+    /**
+     * The last modified datetime
+     * @type {string}
+     * @memberof HeadlessAppRuntimeLog
+     */
+    lastModified?: string;
+}
+/**
+ * Response object for looking up headless storefront runtime logs.
+ * @export
+ * @interface HeadlessAppRuntimeLogResponse
+ */
+export interface HeadlessAppRuntimeLogResponse {
+    /**
+     * A token used for paginating through runtime logs on subsequent requests.
+     * @type {string}
+     * @memberof HeadlessAppRuntimeLogResponse
+     */
+    nextToken?: string | null;
+    /**
+     * The prefix provided in runtime log lookup
+     * @type {string}
+     * @memberof HeadlessAppRuntimeLogResponse
+     */
+    prefix?: string | null;
+    /**
+     * The max result provided in runtime log lookup
+     * @type {number}
+     * @memberof HeadlessAppRuntimeLogResponse
+     */
+    maxResults?: number;
+    /**
+     * A list of items representing headless application build jobs.
+     * @type {Array<HeadlessAppRuntimeLog>}
+     * @memberof HeadlessAppRuntimeLogResponse
+     */
+    logs?: Array<HeadlessAppRuntimeLog> | null;
+    /**
+     * Flag to indicate if all results were returned. If IsTruncated is true, use NextToken to retrieve additional results.
+     * @type {boolean}
+     * @memberof HeadlessAppRuntimeLogResponse
+     */
+    isTruncated?: boolean;
 }
 /**
  * 
@@ -1634,104 +1895,6 @@ export interface PackageRequest {
      * @memberof PackageRequest
      */
     parentThemeAppKey?: string | null;
-}
-/**
- * 
- * @export
- * @interface PackageSummary
- */
-export interface PackageSummary {
-    /**
-     * Package Id
-     * @type {number}
-     * @memberof PackageSummary
-     */
-    id?: number;
-    /**
-     * Package Name
-     * @type {string}
-     * @memberof PackageSummary
-     */
-    name?: string | null;
-    /**
-     * Application Name
-     * @type {string}
-     * @memberof PackageSummary
-     */
-    applicationName?: string | null;
-    /**
-     * Application Type Id
-     * @type {number}
-     * @memberof PackageSummary
-     */
-    applicationTypeId?: number;
-    /**
-     * Application Major Version
-     * @type {number}
-     * @memberof PackageSummary
-     */
-    majorVersion?: number;
-    /**
-     * Application Minor Version
-     * @type {number}
-     * @memberof PackageSummary
-     */
-    minorVersion?: number;
-    /**
-     * Application Revision
-     * @type {number}
-     * @memberof PackageSummary
-     */
-    revision?: number;
-    /**
-     * IsLocked
-     * @type {boolean}
-     * @memberof PackageSummary
-     */
-    isLocked?: boolean;
-    /**
-     * ApplicationId
-     * @type {number}
-     * @memberof PackageSummary
-     */
-    applicationId?: number;
-}
-/**
- * 
- * @export
- * @interface PackageSummaryCollection
- */
-export interface PackageSummaryCollection {
-    /**
-     * 
-     * @type {number}
-     * @memberof PackageSummaryCollection
-     */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PackageSummaryCollection
-     */
-    pageSize?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PackageSummaryCollection
-     */
-    pageCount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PackageSummaryCollection
-     */
-    totalCount?: number;
-    /**
-     * 
-     * @type {Array<PackageSummary>}
-     * @memberof PackageSummaryCollection
-     */
-    items?: Array<PackageSummary> | null;
 }
 /**
  * 

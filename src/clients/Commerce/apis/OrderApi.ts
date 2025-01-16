@@ -20,8 +20,8 @@ import type {
   AlternateContact,
   BillingInfo,
   CancelReasonCollection,
+  CanceledReason,
   CommerceRuntimeAppliedDiscount,
-  CommerceRuntimeCanceledReason,
   CommerceRuntimeOrderAttribute,
   CommerceRuntimeOrderItem,
   CommerceRuntimePackage,
@@ -35,6 +35,7 @@ import type {
   GiftInfo,
   GiftMessage,
   InventoryTags,
+  ItemQuantityUpdate,
   Order,
   OrderAction,
   OrderCollection,
@@ -47,15 +48,19 @@ import type {
   PaymentCollection,
   Pickup,
   PricingTaxableOrder,
+  ProcessReturnRuleItemCollection,
+  ProcessReturnRuleItemResponse,
   QueuedOrderCollection,
   Refund,
   RefundReasonCollection,
   RepriceCanceledShipmentObject,
   RepriceShipmentObject,
   ShipmentAdjustment,
+  ShipmentAndItemsAdjustment,
   ShipmentItemAdjustment,
   SplitShipmentsObject,
   SubscriptionInfo,
+  SubstituteInfo,
 } from '../models';
 
 
@@ -108,7 +113,7 @@ export namespace orderApiParams {
     export interface CancelOrderRequest {
         orderId: string;
         responseFields?: string;
-        commerceRuntimeCanceledReason?: CommerceRuntimeCanceledReason;
+        canceledReason?: CanceledReason;
     }
     export interface ChangeOrderPriceListRequest {
         orderId: string;
@@ -192,6 +197,10 @@ export namespace orderApiParams {
         updateMode?: string;
         version?: string;
     }
+    export interface DeleteOrderDataRequest {
+        orderId: string;
+        orderDataId: string;
+    }
     export interface DeleteOrderDraftRequest {
         orderId: string;
         version?: string;
@@ -202,6 +211,11 @@ export namespace orderApiParams {
         orderItemId: string;
         updateMode?: string;
         version?: string;
+    }
+    export interface DeleteOrderItemDataRequest {
+        orderId: string;
+        orderItemId: string;
+        orderItemDataId: string;
     }
     export interface DeleteOrderNoteRequest {
         orderId: string;
@@ -283,10 +297,19 @@ export namespace orderApiParams {
         orderId: string;
         responseFields?: string;
     }
+    export interface GetOrderDataRequest {
+        orderId: string;
+        responseFields?: string;
+    }
     export interface GetOrderItemRequest {
         orderId: string;
         orderItemId: string;
         draft?: boolean;
+        responseFields?: string;
+    }
+    export interface GetOrderItemDataRequest {
+        orderId: string;
+        orderItemId: string;
         responseFields?: string;
     }
     export interface GetOrderItemViaLineIdRequest {
@@ -420,6 +443,11 @@ export namespace orderApiParams {
         responseFields?: string;
         digitalWallet?: DigitalWallet;
     }
+    export interface ProcessReturnRulesRequest {
+        orderId: string;
+        responseFields?: string;
+        processReturnRuleItemCollection?: ProcessReturnRuleItemCollection;
+    }
     export interface RemoveAdjustmentRequest {
         orderId: string;
         updateMode?: string;
@@ -506,6 +534,10 @@ export namespace orderApiParams {
         siteId: string;
         responseFields?: string;
     }
+    export interface SplitOrderIntoShipmentRequest {
+        orderId: string;
+        responseFields?: string;
+    }
     export interface SplitShipmentsRequest {
         orderId: string;
         shipmentNumber: string;
@@ -572,6 +604,7 @@ export namespace orderApiParams {
         orderId: string;
         orderItemId: string;
         price: number;
+        isOverRidePriceSalePrice?: boolean;
         updateMode?: string;
         version?: string;
         responseFields?: string;
@@ -583,6 +616,7 @@ export namespace orderApiParams {
         updateMode?: string;
         version?: string;
         responseFields?: string;
+        itemQuantityUpdate?: ItemQuantityUpdate;
     }
     export interface UpdateOrderRequest {
         orderId: string;
@@ -597,6 +631,12 @@ export namespace orderApiParams {
         responseFields?: string;
         commerceRuntimeOrderAttribute?: Array<CommerceRuntimeOrderAttribute>;
     }
+    export interface UpdateOrderDataRequest {
+        orderId: string;
+        orderDataId: string;
+        responseFields?: string;
+        body?: any | null;
+    }
     export interface UpdateOrderDiscountRequest {
         orderId: string;
         discountId: number;
@@ -604,6 +644,13 @@ export namespace orderApiParams {
         version?: string;
         responseFields?: string;
         commerceRuntimeAppliedDiscount?: CommerceRuntimeAppliedDiscount;
+    }
+    export interface UpdateOrderItemDataRequest {
+        orderId: string;
+        orderItemId: string;
+        orderItemDataId: string;
+        responseFields?: string;
+        body?: any | null;
     }
     export interface UpdateOrderItemDiscountRequest {
         orderId: string;
@@ -644,6 +691,12 @@ export namespace orderApiParams {
         responseFields?: string;
         shipmentAdjustment?: ShipmentAdjustment;
     }
+    export interface UpdateShipmentAndItemsAdjustmentRequest {
+        orderId: string;
+        shipmentNumber: number;
+        responseFields?: string;
+        shipmentAndItemsAdjustment?: ShipmentAndItemsAdjustment;
+    }
     export interface UpdateShipmentItemRequest {
         orderId: string;
         shipmentNumber: number;
@@ -674,6 +727,14 @@ export namespace orderApiParams {
         version?: string;
         responseFields?: string;
         inventoryTags?: Array<InventoryTags>;
+    }
+    export interface UpsertSubstituteInfoRequest {
+        orderId: string;
+        orderItemId: string;
+        updateMode?: string;
+        version?: string;
+        responseFields?: string;
+        substituteInfo?: SubstituteInfo;
     }
 }
 /**
@@ -824,7 +885,7 @@ export interface OrderApiService {
     * @summary Cancel Order
     * @param {string} orderId 
     * @param {string} [responseFields] limits which fields are returned in the response body
-    * @param {CommerceRuntimeCanceledReason} [commerceRuntimeCanceledReason] 
+    * @param {CanceledReason} [canceledReason] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof OrderApiInterface
@@ -1115,6 +1176,23 @@ export interface OrderApiService {
     deleteExtendedProperty(requestParameters: orderApiParams.DeleteExtendedPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+    * Delete Value of the given Key in the OrderData bag.
+    * @summary Delete Order Data
+    * @param {string} orderId Unique Identifier of the Order you want to Delete the Databag for
+    * @param {string} orderDataId URLEncoded Key for the Value you want to Delete from the Order DataBag
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof OrderApiInterface
+    */
+    deleteOrderDataRaw(requestParameters: orderApiParams.DeleteOrderDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
+
+    /**
+    * Delete Value of the given Key in the OrderData bag.
+    * Delete Order Data
+    */
+    deleteOrderData(requestParameters: orderApiParams.DeleteOrderDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
+
+    /**
     * Deletes a draft version of an order.
     * @summary Delete Order Draft
     * @param {string} orderId The order ID to update.
@@ -1150,6 +1228,24 @@ export interface OrderApiService {
     * Delete Order Item
     */
     deleteOrderItem(requestParameters: orderApiParams.DeleteOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+
+    /**
+    * Deletes the Value of the given Key in the OrderItem Data bag.
+    * @summary Delete Order Item Data
+    * @param {string} orderId Unique Identifier of the Order you want to get the Items for
+    * @param {string} orderItemId Unique Identifier of the OrderItem you want to delete the Databag for
+    * @param {string} orderItemDataId URLEncoded Key for the Value you want to Delete from the OrderItem DataBag
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof OrderApiInterface
+    */
+    deleteOrderItemDataRaw(requestParameters: orderApiParams.DeleteOrderItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
+
+    /**
+    * Deletes the Value of the given Key in the OrderItem Data bag.
+    * Delete Order Item Data
+    */
+    deleteOrderItemData(requestParameters: orderApiParams.DeleteOrderItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
 
     /**
     * Deletes a specific order note on an order.
@@ -1453,6 +1549,23 @@ export interface OrderApiService {
     getOrderAttributes(requestParameters: orderApiParams.GetOrderAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeOrderAttribute>>;
 
     /**
+    * Retrieves all the values in the Order Data bag
+    * @summary Get Order Data
+    * @param {string} orderId Unique Identifier of the Order whose Data you want to get
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof OrderApiInterface
+    */
+    getOrderDataRaw(requestParameters: orderApiParams.GetOrderDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
+
+    /**
+    * Retrieves all the values in the Order Data bag
+    * Get Order Data
+    */
+    getOrderData(requestParameters: orderApiParams.GetOrderDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
+
+    /**
     * Retrieves the details of a single order item.
     * @summary Get Order Item
     * @param {string} orderId Unique identifier of the order whose item you want to get.
@@ -1470,6 +1583,24 @@ export interface OrderApiService {
     * Get Order Item
     */
     getOrderItem(requestParameters: orderApiParams.GetOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeOrderItem>;
+
+    /**
+    * Retrieves a specific value in the OrderItem Data bag.
+    * @summary Get Order Item Data
+    * @param {string} orderId Unique Identifier of the Order you want to get the Order Items for
+    * @param {string} orderItemId Unique Identifier of the OrderItem whose Data you want to get
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof OrderApiInterface
+    */
+    getOrderItemDataRaw(requestParameters: orderApiParams.GetOrderItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
+
+    /**
+    * Retrieves a specific value in the OrderItem Data bag.
+    * Get Order Item Data
+    */
+    getOrderItemData(requestParameters: orderApiParams.GetOrderItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
 
     /**
     * Retrieves the details of a single order item via its line id.
@@ -1563,7 +1694,7 @@ export interface OrderApiService {
     /**
     * Retrieves a list of orders according to any specified filter criteria and sort options.
     * @summary Get Orders
-    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.               For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
+    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.               For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;50. The default value is 0. Optional.
     * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
     * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
     * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals,               gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
@@ -1694,7 +1825,7 @@ export interface OrderApiService {
     /**
     * Retrieves a list of queued historical orders according to any specified filter criteria and sort options.
     * @summary Get QueuedHistoricalOrders
-    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.               For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
+    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.               For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;50. The default value is 0. Optional.
     * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
     * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
     * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals,               gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
@@ -1732,7 +1863,7 @@ export interface OrderApiService {
     /**
     * Retrieves a list of queuedorders according to any specified filter criteria and sort options.
     * @summary Get Queued Orders
-    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.               For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
+    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.               For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;50. The default value is 0. Optional.
     * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
     * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
     * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals,               gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
@@ -1926,6 +2057,24 @@ export interface OrderApiService {
     * Process Digital Wallet
     */
     processDigitalWallet(requestParameters: orderApiParams.ProcessDigitalWalletRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+
+    /**
+    * Provides fulfillment information for order items such as quantity ordered, fulfilled, and returned. Indicates which items are eligible for return.
+    * @summary Applies the return rules to the shipment items and responds if items are eligible for return.
+    * @param {string} orderId Unique identifier of the order item.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ProcessReturnRuleItemCollection} [processReturnRuleItemCollection] List of the shipments and their items to validate return rules
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof OrderApiInterface
+    */
+    processReturnRulesRaw(requestParameters: orderApiParams.ProcessReturnRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProcessReturnRuleItemResponse>>>;
+
+    /**
+    * Provides fulfillment information for order items such as quantity ordered, fulfilled, and returned. Indicates which items are eligible for return.
+    * Applies the return rules to the shipment items and responds if items are eligible for return.
+    */
+    processReturnRules(requestParameters: orderApiParams.ProcessReturnRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProcessReturnRuleItemResponse>>;
 
     /**
     * Removes an adjustment that had been previously applied to the order.
@@ -2222,6 +2371,23 @@ export interface OrderApiService {
     smsOptOut(requestParameters: orderApiParams.SmsOptOutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+    * Split Order Into Shipment
+    * @summary Split Order Into Shipment
+    * @param {string} orderId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof OrderApiInterface
+    */
+    splitOrderIntoShipmentRaw(requestParameters: orderApiParams.SplitOrderIntoShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeShipment>>>;
+
+    /**
+    * Split Order Into Shipment
+    * Split Order Into Shipment
+    */
+    splitOrderIntoShipment(requestParameters: orderApiParams.SplitOrderIntoShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeShipment>>;
+
+    /**
     * Allows spliting an existing shipment.
     * @summary Split Shipments
     * @param {string} orderId 
@@ -2393,6 +2559,7 @@ export interface OrderApiService {
     * @param {string} orderId Unique identifier of the order item.
     * @param {string} orderItemId Unique identifier of the order item.
     * @param {number} price Price to update the item product to.
+    * @param {boolean} [isOverRidePriceSalePrice] Indicate override price is sale price or list price.
     * @param {string} [updateMode] Determines the update strategy for this update (ApplyAndCommit, ApplyToOriginal, ApplyToDraft)
     * @param {string} [version] Determines whether or not to check versioning of items for concurrency purposes.
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -2417,6 +2584,7 @@ export interface OrderApiService {
     * @param {string} [updateMode] Determines the update strategy for this update (ApplyAndCommit, ApplyToOriginal, ApplyToDraft)
     * @param {string} [version] Determines whether or not to check versioning of items for concurrency purposes.
     * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ItemQuantityUpdate} [itemQuantityUpdate] Update fields on the item.
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof OrderApiInterface
@@ -2469,6 +2637,25 @@ export interface OrderApiService {
     updateOrderAttributes(requestParameters: orderApiParams.UpdateOrderAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeOrderAttribute>>;
 
     /**
+    * Insert / Updates the Value of the given Key in the OrderData bag.
+    * @summary Update Order Data
+    * @param {string} orderId Unique Identifier of the Order you want to insert / update the Databag for
+    * @param {string} orderDataId URLEncoded Key for the Value you want to Insert / Update from the Order DataBag
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {any} [body] Data Object you are trying to insert / update
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof OrderApiInterface
+    */
+    updateOrderDataRaw(requestParameters: orderApiParams.UpdateOrderDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
+
+    /**
+    * Insert / Updates the Value of the given Key in the OrderData bag.
+    * Update Order Data
+    */
+    updateOrderData(requestParameters: orderApiParams.UpdateOrderDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
+
+    /**
     * Update existing discount on the order.
     * @summary Update Order Discount
     * @param {string} orderId Unique identifier of the order with which to associate the coupon.
@@ -2488,6 +2675,26 @@ export interface OrderApiService {
     * Update Order Discount
     */
     updateOrderDiscount(requestParameters: orderApiParams.UpdateOrderDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+
+    /**
+    * Insert / Updates the Value of the given Key in the OrderItem Data bag.
+    * @summary Update Order Item Data
+    * @param {string} orderId Unique Identifier of the Order you want to get the Items for
+    * @param {string} orderItemId Unique Identifier of the OrderItem you want to Insert / Update the Databag for
+    * @param {string} orderItemDataId URLEncoded Key for the Value you want to Insert / Update from the OrderItem DataBag
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {any} [body] Data Object you are trying to insert / update
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof OrderApiInterface
+    */
+    updateOrderItemDataRaw(requestParameters: orderApiParams.UpdateOrderItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
+
+    /**
+    * Insert / Updates the Value of the given Key in the OrderItem Data bag.
+    * Update Order Item Data
+    */
+    updateOrderItemData(requestParameters: orderApiParams.UpdateOrderItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
 
     /**
     * Update a discount on the order item to ignore or unignore it.
@@ -2607,6 +2814,25 @@ export interface OrderApiService {
     updateShipmentAdjustments(requestParameters: orderApiParams.UpdateShipmentAdjustmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment>;
 
     /**
+    * Updates shipment and shipment items adjustment.
+    * @summary Update Shipment and multiple Shipment Items adjustment
+    * @param {string} orderId 
+    * @param {number} shipmentNumber 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ShipmentAndItemsAdjustment} [shipmentAndItemsAdjustment] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof OrderApiInterface
+    */
+    updateShipmentAndItemsAdjustmentRaw(requestParameters: orderApiParams.UpdateShipmentAndItemsAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipment>>;
+
+    /**
+    * Updates shipment and shipment items adjustment.
+    * Update Shipment and multiple Shipment Items adjustment
+    */
+    updateShipmentAndItemsAdjustment(requestParameters: orderApiParams.UpdateShipmentAndItemsAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment>;
+
+    /**
     * Updates shipment item with new shipment adjustment.
     * @summary Update Shipment Item
     * @param {string} orderId 
@@ -2701,6 +2927,27 @@ export interface OrderApiService {
     * Upsert Inventory Tags on OrderItem
     */
     upsertInventoryTags(requestParameters: orderApiParams.UpsertInventoryTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+
+    /**
+    * Updates SubstituteInfo on OrderItem
+    * @summary Updates SubstituteInfo on OrderItem
+    * @param {string} orderId Unique identifier of the order.
+    * @param {string} orderItemId Unique identifier of the order item.
+    * @param {string} [updateMode] Determines the update strategy for this update (ApplyAndCommit, ApplyToOriginal, ApplyToDraft)
+    * @param {string} [version] Determines whether or not to check versioning of items for concurrency purposes.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {SubstituteInfo} [substituteInfo] Mozu.CommerceRuntime.Contracts.Commerce.SubstituteInfo to use as the update source
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof OrderApiInterface
+    */
+    upsertSubstituteInfoRaw(requestParameters: orderApiParams.UpsertSubstituteInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+
+    /**
+    * Updates SubstituteInfo on OrderItem
+    * Updates SubstituteInfo on OrderItem
+    */
+    upsertSubstituteInfo(requestParameters: orderApiParams.UpsertSubstituteInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
 
 }
 
@@ -3116,7 +3363,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiService {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters.commerceRuntimeCanceledReason,
+            body: requestParameters.canceledReason,
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response);
@@ -3865,6 +4112,50 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiService {
     }
 
     /**
+     * Delete Value of the given Key in the OrderData bag.
+     * Delete Order Data
+     */
+
+
+    async deleteOrderDataRaw(requestParameters: orderApiParams.DeleteOrderDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling deleteOrderData.');
+        }
+
+        if (requestParameters.orderDataId === null || requestParameters.orderDataId === undefined) {
+            throw new runtime.RequiredError('orderDataId','Required parameter requestParameters.orderDataId was null or undefined when calling deleteOrderData.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/orders/{orderId}/data/{orderDataId}`.replace(`{${"orderId"}}`, encodeURIComponent(String(requestParameters.orderId))).replace(`{${"orderDataId"}}`, encodeURIComponent(String(requestParameters.orderDataId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
+    }
+
+    /**
+     * Delete Value of the given Key in the OrderData bag.
+     * Delete Order Data
+     */
+    async deleteOrderData(requestParameters: orderApiParams.DeleteOrderDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+        const response = await this.deleteOrderDataRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Deletes a draft version of an order.
      * Delete Order Draft
      */
@@ -3960,6 +4251,54 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiService {
      */
     async deleteOrderItem(requestParameters: orderApiParams.DeleteOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.deleteOrderItemRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Deletes the Value of the given Key in the OrderItem Data bag.
+     * Delete Order Item Data
+     */
+
+
+    async deleteOrderItemDataRaw(requestParameters: orderApiParams.DeleteOrderItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling deleteOrderItemData.');
+        }
+
+        if (requestParameters.orderItemId === null || requestParameters.orderItemId === undefined) {
+            throw new runtime.RequiredError('orderItemId','Required parameter requestParameters.orderItemId was null or undefined when calling deleteOrderItemData.');
+        }
+
+        if (requestParameters.orderItemDataId === null || requestParameters.orderItemDataId === undefined) {
+            throw new runtime.RequiredError('orderItemDataId','Required parameter requestParameters.orderItemDataId was null or undefined when calling deleteOrderItemData.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/orders/{orderId}/item/{orderItemId}/data/{orderItemDataId}`.replace(`{${"orderId"}}`, encodeURIComponent(String(requestParameters.orderId))).replace(`{${"orderItemId"}}`, encodeURIComponent(String(requestParameters.orderItemId))).replace(`{${"orderItemDataId"}}`, encodeURIComponent(String(requestParameters.orderItemDataId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
+    }
+
+    /**
+     * Deletes the Value of the given Key in the OrderItem Data bag.
+     * Delete Order Item Data
+     */
+    async deleteOrderItemData(requestParameters: orderApiParams.DeleteOrderItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+        const response = await this.deleteOrderItemDataRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -4756,6 +5095,50 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiService {
     }
 
     /**
+     * Retrieves all the values in the Order Data bag
+     * Get Order Data
+     */
+
+
+    async getOrderDataRaw(requestParameters: orderApiParams.GetOrderDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getOrderData.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/orders/{orderId}/data`.replace(`{${"orderId"}}`, encodeURIComponent(String(requestParameters.orderId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
+    }
+
+    /**
+     * Retrieves all the values in the Order Data bag
+     * Get Order Data
+     */
+    async getOrderData(requestParameters: orderApiParams.GetOrderDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+        const response = await this.getOrderDataRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Retrieves the details of a single order item.
      * Get Order Item
      */
@@ -4804,6 +5187,54 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiService {
      */
     async getOrderItem(requestParameters: orderApiParams.GetOrderItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeOrderItem> {
         const response = await this.getOrderItemRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves a specific value in the OrderItem Data bag.
+     * Get Order Item Data
+     */
+
+
+    async getOrderItemDataRaw(requestParameters: orderApiParams.GetOrderItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getOrderItemData.');
+        }
+
+        if (requestParameters.orderItemId === null || requestParameters.orderItemId === undefined) {
+            throw new runtime.RequiredError('orderItemId','Required parameter requestParameters.orderItemId was null or undefined when calling getOrderItemData.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/orders/{orderId}/item/{orderItemId}/data`.replace(`{${"orderId"}}`, encodeURIComponent(String(requestParameters.orderId))).replace(`{${"orderItemId"}}`, encodeURIComponent(String(requestParameters.orderItemId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
+    }
+
+    /**
+     * Retrieves a specific value in the OrderItem Data bag.
+     * Get Order Item Data
+     */
+    async getOrderItemData(requestParameters: orderApiParams.GetOrderItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+        const response = await this.getOrderItemDataRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -6026,6 +6457,53 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiService {
     }
 
     /**
+     * Provides fulfillment information for order items such as quantity ordered, fulfilled, and returned. Indicates which items are eligible for return.
+     * Applies the return rules to the shipment items and responds if items are eligible for return.
+     */
+
+
+    async processReturnRulesRaw(requestParameters: orderApiParams.ProcessReturnRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProcessReturnRuleItemResponse>>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling processReturnRules.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/orders/{orderId}/processreturnrules`.replace(`{${"orderId"}}`, encodeURIComponent(String(requestParameters.orderId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.processReturnRuleItemCollection,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Provides fulfillment information for order items such as quantity ordered, fulfilled, and returned. Indicates which items are eligible for return.
+     * Applies the return rules to the shipment items and responds if items are eligible for return.
+     */
+    async processReturnRules(requestParameters: orderApiParams.ProcessReturnRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProcessReturnRuleItemResponse>> {
+        const response = await this.processReturnRulesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Removes an adjustment that had been previously applied to the order.
      * Remove Adjustment
      */
@@ -6807,6 +7285,50 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiService {
     }
 
     /**
+     * Split Order Into Shipment
+     * Split Order Into Shipment
+     */
+
+
+    async splitOrderIntoShipmentRaw(requestParameters: orderApiParams.SplitOrderIntoShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeShipment>>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling splitOrderIntoShipment.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/orders/{orderId}/converttoship`.replace(`{${"orderId"}}`, encodeURIComponent(String(requestParameters.orderId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Split Order Into Shipment
+     * Split Order Into Shipment
+     */
+    async splitOrderIntoShipment(requestParameters: orderApiParams.SplitOrderIntoShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeShipment>> {
+        const response = await this.splitOrderIntoShipmentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Allows spliting an existing shipment.
      * Split Shipments
      */
@@ -7292,6 +7814,10 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiService {
 
         const queryParameters: any = {};
 
+        if (requestParameters.isOverRidePriceSalePrice !== undefined) {
+            queryParameters['isOverRidePriceSalePrice'] = requestParameters.isOverRidePriceSalePrice;
+        }
+
         if (requestParameters.updateMode !== undefined) {
             queryParameters['updateMode'] = requestParameters.updateMode;
         }
@@ -7366,6 +7892,8 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiService {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        headerParameters['Content-Type'] = 'application/json';
+
 
 
 
@@ -7377,6 +7905,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiService {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
+            body: requestParameters.itemQuantityUpdate,
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response);
@@ -7498,6 +8027,57 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiService {
     }
 
     /**
+     * Insert / Updates the Value of the given Key in the OrderData bag.
+     * Update Order Data
+     */
+
+
+    async updateOrderDataRaw(requestParameters: orderApiParams.UpdateOrderDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling updateOrderData.');
+        }
+
+        if (requestParameters.orderDataId === null || requestParameters.orderDataId === undefined) {
+            throw new runtime.RequiredError('orderDataId','Required parameter requestParameters.orderDataId was null or undefined when calling updateOrderData.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/orders/{orderId}/data/{orderDataId}`.replace(`{${"orderId"}}`, encodeURIComponent(String(requestParameters.orderId))).replace(`{${"orderDataId"}}`, encodeURIComponent(String(requestParameters.orderDataId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.body as any,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
+    }
+
+    /**
+     * Insert / Updates the Value of the given Key in the OrderData bag.
+     * Update Order Data
+     */
+    async updateOrderData(requestParameters: orderApiParams.UpdateOrderDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+        const response = await this.updateOrderDataRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Update existing discount on the order.
      * Update Order Discount
      */
@@ -7553,6 +8133,61 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiService {
      */
     async updateOrderDiscount(requestParameters: orderApiParams.UpdateOrderDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.updateOrderDiscountRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Insert / Updates the Value of the given Key in the OrderItem Data bag.
+     * Update Order Item Data
+     */
+
+
+    async updateOrderItemDataRaw(requestParameters: orderApiParams.UpdateOrderItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling updateOrderItemData.');
+        }
+
+        if (requestParameters.orderItemId === null || requestParameters.orderItemId === undefined) {
+            throw new runtime.RequiredError('orderItemId','Required parameter requestParameters.orderItemId was null or undefined when calling updateOrderItemData.');
+        }
+
+        if (requestParameters.orderItemDataId === null || requestParameters.orderItemDataId === undefined) {
+            throw new runtime.RequiredError('orderItemDataId','Required parameter requestParameters.orderItemDataId was null or undefined when calling updateOrderItemData.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/orders/{orderId}/item/{orderItemId}/data/{orderItemDataId}`.replace(`{${"orderId"}}`, encodeURIComponent(String(requestParameters.orderId))).replace(`{${"orderItemId"}}`, encodeURIComponent(String(requestParameters.orderItemId))).replace(`{${"orderItemDataId"}}`, encodeURIComponent(String(requestParameters.orderItemDataId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.body as any,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
+    }
+
+    /**
+     * Insert / Updates the Value of the given Key in the OrderItem Data bag.
+     * Update Order Item Data
+     */
+    async updateOrderItemData(requestParameters: orderApiParams.UpdateOrderItemDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+        const response = await this.updateOrderItemDataRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -7876,6 +8511,57 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiService {
     }
 
     /**
+     * Updates shipment and shipment items adjustment.
+     * Update Shipment and multiple Shipment Items adjustment
+     */
+
+
+    async updateShipmentAndItemsAdjustmentRaw(requestParameters: orderApiParams.UpdateShipmentAndItemsAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeShipment>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling updateShipmentAndItemsAdjustment.');
+        }
+
+        if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
+            throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateShipmentAndItemsAdjustment.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/orders/{orderId}/shipments/{shipmentNumber}/adjustments/bulk`.replace(`{${"orderId"}}`, encodeURIComponent(String(requestParameters.orderId))).replace(`{${"shipmentNumber"}}`, encodeURIComponent(String(requestParameters.shipmentNumber))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.shipmentAndItemsAdjustment,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Updates shipment and shipment items adjustment.
+     * Update Shipment and multiple Shipment Items adjustment
+     */
+    async updateShipmentAndItemsAdjustment(requestParameters: orderApiParams.UpdateShipmentAndItemsAdjustmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment> {
+        const response = await this.updateShipmentAndItemsAdjustmentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Updates shipment item with new shipment adjustment.
      * Update Shipment Item
      */
@@ -8131,6 +8817,65 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiService {
      */
     async upsertInventoryTags(requestParameters: orderApiParams.UpsertInventoryTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.upsertInventoryTagsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Updates SubstituteInfo on OrderItem
+     * Updates SubstituteInfo on OrderItem
+     */
+
+
+    async upsertSubstituteInfoRaw(requestParameters: orderApiParams.UpsertSubstituteInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling upsertSubstituteInfo.');
+        }
+
+        if (requestParameters.orderItemId === null || requestParameters.orderItemId === undefined) {
+            throw new runtime.RequiredError('orderItemId','Required parameter requestParameters.orderItemId was null or undefined when calling upsertSubstituteInfo.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.updateMode !== undefined) {
+            queryParameters['updateMode'] = requestParameters.updateMode;
+        }
+
+        if (requestParameters.version !== undefined) {
+            queryParameters['version'] = requestParameters.version;
+        }
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/orders/{orderId}/items/{orderItemId}/upsertSubstituteInfo`.replace(`{${"orderId"}}`, encodeURIComponent(String(requestParameters.orderId))).replace(`{${"orderItemId"}}`, encodeURIComponent(String(requestParameters.orderItemId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.substituteInfo,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Updates SubstituteInfo on OrderItem
+     * Updates SubstituteInfo on OrderItem
+     */
+    async upsertSubstituteInfo(requestParameters: orderApiParams.UpsertSubstituteInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+        const response = await this.upsertSubstituteInfoRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

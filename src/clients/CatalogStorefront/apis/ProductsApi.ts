@@ -81,6 +81,8 @@ export namespace productsApiParams {
         locationCodes?: string;
         includeFutureInventory?: boolean;
         includeSegmentedInventory?: boolean;
+        serialNumber?: string;
+        condition?: string;
         responseFields?: string;
     }
     export interface StorefrontGetProductsRequest {
@@ -96,10 +98,12 @@ export namespace productsApiParams {
         includeAllImages?: boolean;
         useSubscriptionPricing?: boolean;
         includeProductDetailsOnlyProperty?: boolean;
+        collapse?: boolean;
         responseFields?: string;
     }
     export interface StorefrontProductSubstitutionsRequest {
         productCode: string;
+        preferredProductCode?: string;
         responseFields?: string;
     }
     export interface StorefrontValidateDiscountsRequest {
@@ -246,6 +250,8 @@ export interface ProductsApiService {
     * @param {string} [locationCodes] 
     * @param {boolean} [includeFutureInventory] 
     * @param {boolean} [includeSegmentedInventory] 
+    * @param {string} [serialNumber] 
+    * @param {string} [condition] 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -274,6 +280,7 @@ export interface ProductsApiService {
     * @param {boolean} [includeAllImages] Optional. If true return all images instead of default images.
     * @param {boolean} [useSubscriptionPricing] 
     * @param {boolean} [includeProductDetailsOnlyProperty] 
+    * @param {boolean} [collapse] 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -291,6 +298,7 @@ export interface ProductsApiService {
     * Returns a list of up to 10 products that can be substituted for the provided product code.
     * @summary Get product substitutions
     * @param {string} productCode 
+    * @param {string} [preferredProductCode] 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -696,6 +704,14 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiService {
             queryParameters['includeSegmentedInventory'] = requestParameters.includeSegmentedInventory;
         }
 
+        if (requestParameters.serialNumber !== undefined) {
+            queryParameters['serialNumber'] = requestParameters.serialNumber;
+        }
+
+        if (requestParameters.condition !== undefined) {
+            queryParameters['condition'] = requestParameters.condition;
+        }
+
         if (requestParameters.responseFields !== undefined) {
             queryParameters['responseFields'] = requestParameters.responseFields;
         }
@@ -784,6 +800,10 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiService {
             queryParameters['includeProductDetailsOnlyProperty'] = requestParameters.includeProductDetailsOnlyProperty;
         }
 
+        if (requestParameters.collapse !== undefined) {
+            queryParameters['collapse'] = requestParameters.collapse;
+        }
+
         if (requestParameters.responseFields !== undefined) {
             queryParameters['responseFields'] = requestParameters.responseFields;
         }
@@ -827,6 +847,10 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiService {
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters.preferredProductCode !== undefined) {
+            queryParameters['preferredProductCode'] = requestParameters.preferredProductCode;
+        }
 
         if (requestParameters.responseFields !== undefined) {
             queryParameters['responseFields'] = requestParameters.responseFields;

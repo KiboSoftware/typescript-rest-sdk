@@ -1,6 +1,6 @@
 {
   "name": "@kibocommerce/rest-sdk",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Kibo Commerce Rest client SDK",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,7 @@
   "devDependencies": {
     "@types/isomorphic-fetch": "^0.0.36",
     "@types/jest": "^29.5.0",
-    "@types/node": "^18.11.1",
+    "@types/node": "^18.19.71",
     "jest": "^29.5.0",
     "jest-fetch-mock": "^3.0.3",
     "jest-mock-fetch": "^2.0.5",

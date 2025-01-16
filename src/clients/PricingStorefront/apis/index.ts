@@ -1,5 +1,5 @@
 /* tslint:disable */
 /* eslint-disable */
-export * from './DiscountRuntimeApi';
-export * from './TaxCapabilityApi';
-export * from './TaxRuntimeApi';
+export * from './DiscountsApi';
+export * from './ProductsApi';
+export * from './TaxesApi';

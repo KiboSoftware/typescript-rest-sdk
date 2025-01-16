@@ -3,6 +3,73 @@
 /**
  * 
  * @export
+ * @interface Address
+ */
+export interface Address {
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    address1?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    address2?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    address3?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    address4?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    cityOrTown?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    stateOrProvince?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    postalOrZipCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    countryCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    addressType?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Address
+     */
+    isValidated?: boolean | null;
+}
+/**
+ * 
+ * @export
  * @interface AdminUserAuditInfo
  */
 export interface AdminUserAuditInfo {
@@ -73,128 +140,6 @@ export interface CarrierResponse {
 /**
  * 
  * @export
- * @interface CommerceRuntimeAddress
- */
-export interface CommerceRuntimeAddress {
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    address1?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    address2?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    address3?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    address4?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    cityOrTown?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    stateOrProvince?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    postalOrZipCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    countryCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    addressType?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAddress
-     */
-    isValidated?: boolean | null;
-}
-/**
- * 
- * @export
- * @interface CommerceRuntimeContact
- */
-export interface CommerceRuntimeContact {
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeContact
-     */
-    id?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeContact
-     */
-    email?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeContact
-     */
-    firstName?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeContact
-     */
-    middleNameOrInitial?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeContact
-     */
-    lastNameOrSurname?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeContact
-     */
-    companyOrOrganization?: string | null;
-    /**
-     * 
-     * @type {CommerceRuntimePhone}
-     * @memberof CommerceRuntimeContact
-     */
-    phoneNumbers?: CommerceRuntimePhone;
-    /**
-     * 
-     * @type {CommerceRuntimeAddress}
-     * @memberof CommerceRuntimeContact
-     */
-    address?: CommerceRuntimeAddress;
-}
-/**
- * 
- * @export
  * @interface CommerceRuntimeMeasurement
  */
 export interface CommerceRuntimeMeasurement {
@@ -214,27 +159,82 @@ export interface CommerceRuntimeMeasurement {
 /**
  * 
  * @export
- * @interface CommerceRuntimePhone
+ * @interface ConsolidationReference
  */
-export interface CommerceRuntimePhone {
+export interface ConsolidationReference {
     /**
      * 
      * @type {string}
-     * @memberof CommerceRuntimePhone
+     * @memberof ConsolidationReference
      */
-    home?: string | null;
+    relatedOrderId?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ConsolidationReference
+     */
+    relatedOrderNumber?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ConsolidationReference
+     */
+    relatedShipmentNumber?: number | null;
+}
+/**
+ * 
+ * @export
+ * @interface Contact
+ */
+export interface Contact {
+    /**
+     * 
+     * @type {number}
+     * @memberof Contact
+     */
+    id?: number | null;
     /**
      * 
      * @type {string}
-     * @memberof CommerceRuntimePhone
+     * @memberof Contact
      */
-    mobile?: string | null;
+    email?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof CommerceRuntimePhone
+     * @memberof Contact
      */
-    work?: string | null;
+    firstName?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Contact
+     */
+    middleNameOrInitial?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Contact
+     */
+    lastNameOrSurname?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Contact
+     */
+    companyOrOrganization?: string | null;
+    /**
+     * 
+     * @type {Phone}
+     * @memberof Contact
+     */
+    phoneNumbers?: Phone;
+    /**
+     * 
+     * @type {Address}
+     * @memberof Contact
+     */
+    address?: Address;
 }
 /**
  * 
@@ -433,6 +433,31 @@ export interface PackageLabelResponse {
 /**
  * 
  * @export
+ * @interface Phone
+ */
+export interface Phone {
+    /**
+     * 
+     * @type {string}
+     * @memberof Phone
+     */
+    home?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Phone
+     */
+    mobile?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Phone
+     */
+    work?: string | null;
+}
+/**
+ * 
+ * @export
  * @interface ProductSummary
  */
 export interface ProductSummary {
@@ -511,16 +536,16 @@ export interface RateRequest {
     isoCurrencyCode?: string | null;
     /**
      * 
-     * @type {CommerceRuntimeAddress}
+     * @type {Address}
      * @memberof RateRequest
      */
-    originAddress?: CommerceRuntimeAddress;
+    originAddress?: Address;
     /**
      * 
-     * @type {CommerceRuntimeAddress}
+     * @type {Address}
      * @memberof RateRequest
      */
-    destinationAddress?: CommerceRuntimeAddress;
+    destinationAddress?: Address;
     /**
      * Optional.  If one or more Carrier Ids are specified then only the rates for the specified carrier('s/s') configured service types or shipping methods will be calculated resulting in better performance.
      * @type {Array<string>}
@@ -823,12 +848,13 @@ export interface ShipmentRequest {
      */
     shipmentRequestType?: string | null;
     /**
-     * Designates that the shipment requires a signature for delivery
-     * Not fully implemented...
-     * @type {boolean}
+     * Specify an optional signature option for this shipment.
+     * All packages will inherit this option value automatically.
+     * Set this option on the package level to override this value.
+     * @type {string}
      * @memberof ShipmentRequest
      */
-    requiresSignature?: boolean | null;
+    signatureOption?: string | null;
     /**
      * Returns the Label in the requested format.
      * Specify either "LASER" or "THERMAL" format.
@@ -864,6 +890,12 @@ export interface ShipmentRequest {
      * @memberof ShipmentRequest
      */
     relatedShipmentNumber?: number | null;
+    /**
+     * Consolidation references for Order Number, Shipment Number and Order Id
+     * @type {Array<ConsolidationReference>}
+     * @memberof ShipmentRequest
+     */
+    consolidationReferences?: Array<ConsolidationReference> | null;
 }
 /**
  * The shipping rate for a particular line item
@@ -1064,11 +1096,12 @@ export interface ShippingRuntimePackage {
      */
     customAttributes?: Array<CustomAttribute> | null;
     /**
-     * Package delivery requires a signature when true.
-     * @type {boolean}
+     * Specify an optional signature option for this package.
+     * If not specified, will inherit the option value from the shipment.
+     * @type {string}
      * @memberof ShippingRuntimePackage
      */
-    requiresSignature?: boolean | null;
+    signatureOption?: string | null;
     /**
      * Selected PackagingType.  Shipping provider dependent.
      * @type {string}
@@ -1183,16 +1216,16 @@ export interface ShippingRuntimeShipment {
     orderTotal?: number | null;
     /**
      * 
-     * @type {CommerceRuntimeContact}
+     * @type {Contact}
      * @memberof ShippingRuntimeShipment
      */
-    origin?: CommerceRuntimeContact;
+    origin?: Contact;
     /**
      * 
-     * @type {CommerceRuntimeContact}
+     * @type {Contact}
      * @memberof ShippingRuntimeShipment
      */
-    destination?: CommerceRuntimeContact;
+    destination?: Contact;
     /**
      * 
      * @type {string}

@@ -16,6 +16,7 @@
 import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
 import type {
+  CartAuthTicketRequest,
   CustomerAuthTicket,
   CustomerUserAuthInfo,
 } from '../models';
@@ -29,8 +30,13 @@ export namespace storefrontAuthTicketApiParams {
         responseFields?: string;
         customerUserAuthInfo?: CustomerUserAuthInfo;
     }
+    export interface ImpersonateCartRequest {
+        responseFields?: string;
+        cartAuthTicketRequest?: CartAuthTicketRequest;
+    }
     export interface RefreshUserAuthTicketRequest {
         refreshToken?: string;
+        accountId?: number;
         responseFields?: string;
     }
 }
@@ -75,9 +81,27 @@ export interface StorefrontAuthTicketApiService {
     createUserAuthTicket(requestParameters: storefrontAuthTicketApiParams.CreateUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket>;
 
     /**
+    * 
+    * @summary Impersonate Cart
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CartAuthTicketRequest} [cartAuthTicketRequest] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof StorefrontAuthTicketApiInterface
+    */
+    impersonateCartRaw(requestParameters: storefrontAuthTicketApiParams.ImpersonateCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>>;
+
+    /**
+    * 
+    * Impersonate Cart
+    */
+    impersonateCart(requestParameters: storefrontAuthTicketApiParams.ImpersonateCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket>;
+
+    /**
     * Refreshes a user\'s authentication.
     * @summary Refresh User Auth Ticket
     * @param {string} [refreshToken] The user\&#39;s refresh token.
+    * @param {number} [accountId] Account Id specifies the account for which the user requests an authentication token.
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -186,6 +210,49 @@ export class StorefrontAuthTicketApi extends runtime.BaseAPI implements Storefro
     }
 
     /**
+     * 
+     * Impersonate Cart
+     */
+
+
+    async impersonateCartRaw(requestParameters: storefrontAuthTicketApiParams.ImpersonateCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/customer/authtickets/impersonatecart`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.cartAuthTicketRequest,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * 
+     * Impersonate Cart
+     */
+    async impersonateCart(requestParameters: storefrontAuthTicketApiParams.ImpersonateCartRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket> {
+        const response = await this.impersonateCartRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Refreshes a user\'s authentication.
      * Refresh User Auth Ticket
      */
@@ -196,6 +263,10 @@ export class StorefrontAuthTicketApi extends runtime.BaseAPI implements Storefro
 
         if (requestParameters.refreshToken !== undefined) {
             queryParameters['refreshToken'] = requestParameters.refreshToken;
+        }
+
+        if (requestParameters.accountId !== undefined) {
+            queryParameters['accountId'] = requestParameters.accountId;
         }
 
         if (requestParameters.responseFields !== undefined) {

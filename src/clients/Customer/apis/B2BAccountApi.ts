@@ -69,6 +69,12 @@ export namespace b2BAccountApiParams {
         accountId: number;
         attributeFQN: string;
     }
+    export interface GetAccountsByUserRequest {
+        emailAddress?: string;
+        userName?: string;
+        getAllAccounts?: boolean;
+        responseFields?: string;
+    }
     export interface GetAccountsForSalesRepRequest {
         userId: string;
         responseFields?: string;
@@ -318,6 +324,25 @@ export interface B2BAccountApiService {
     * Delete B2B Account Attribute
     */
     deleteB2BAccountAttribute(requestParameters: b2BAccountApiParams.DeleteB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+    * If emailAddress and userName are both provided, the email address will be used. When getAllAccounts is set to true, all accounts will be returned regardless of the AccountStatus.
+    * @summary Get Account Ids of Active AccountStatus by UserName or Email Address
+    * @param {string} [emailAddress] 
+    * @param {string} [userName] 
+    * @param {boolean} [getAllAccounts] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof B2BAccountApiInterface
+    */
+    getAccountsByUserRaw(requestParameters: b2BAccountApiParams.GetAccountsByUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>>;
+
+    /**
+    * If emailAddress and userName are both provided, the email address will be used. When getAllAccounts is set to true, all accounts will be returned regardless of the AccountStatus.
+    * Get Account Ids of Active AccountStatus by UserName or Email Address
+    */
+    getAccountsByUser(requestParameters: b2BAccountApiParams.GetAccountsByUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>>;
 
     /**
     * Gets list of accounts for the B2B sales rep account.
@@ -1022,6 +1047,58 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiServi
      */
     async deleteB2BAccountAttribute(requestParameters: b2BAccountApiParams.DeleteB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteB2BAccountAttributeRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * If emailAddress and userName are both provided, the email address will be used. When getAllAccounts is set to true, all accounts will be returned regardless of the AccountStatus.
+     * Get Account Ids of Active AccountStatus by UserName or Email Address
+     */
+
+
+    async getAccountsByUserRaw(requestParameters: b2BAccountApiParams.GetAccountsByUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.emailAddress !== undefined) {
+            queryParameters['emailAddress'] = requestParameters.emailAddress;
+        }
+
+        if (requestParameters.userName !== undefined) {
+            queryParameters['userName'] = requestParameters.userName;
+        }
+
+        if (requestParameters.getAllAccounts !== undefined) {
+            queryParameters['getAllAccounts'] = requestParameters.getAllAccounts;
+        }
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/customer/b2baccounts/accountsbyuser`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
+    }
+
+    /**
+     * If emailAddress and userName are both provided, the email address will be used. When getAllAccounts is set to true, all accounts will be returned regardless of the AccountStatus.
+     * Get Account Ids of Active AccountStatus by UserName or Email Address
+     */
+    async getAccountsByUser(requestParameters: b2BAccountApiParams.GetAccountsByUserRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>> {
+        const response = await this.getAccountsByUserRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**

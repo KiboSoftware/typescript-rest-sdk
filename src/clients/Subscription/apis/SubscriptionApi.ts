@@ -52,6 +52,7 @@ export namespace subscriptionApiParams {
     }
     export interface ChangePricelistOnSubscriptionRequest {
         subscriptionId: string;
+        updateMode?: string;
         responseFields?: string;
         subscriptionPriceList?: SubscriptionPriceList;
     }
@@ -168,6 +169,13 @@ export namespace subscriptionApiParams {
         responseFields?: string;
         installmentPlanRequest?: InstallmentPlanRequest;
     }
+    export interface UpdateItemFulfillmentRequest {
+        subscriptionId: string;
+        subscriptionItemId: string;
+        updateMode?: string;
+        responseFields?: string;
+        subscriptionItem?: SubscriptionItem;
+    }
     export interface UpdateItemQuantityRequest {
         subscriptionId: string;
         subscriptionItemId: string;
@@ -275,6 +283,7 @@ export interface SubscriptionApiService {
     * Updates the price list on the subscription.
     * @summary Change Pricelist On Subscription
     * @param {string} subscriptionId The subscription identifier.
+    * @param {string} [updateMode] Determines the update strategy for this update (ApplyToOriginal, ApplyToDraft).
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {SubscriptionPriceList} [subscriptionPriceList] The price list to be applied.
     * @param {*} [options] Override http request option.
@@ -689,6 +698,26 @@ export interface SubscriptionApiService {
     updateInstallmentPlan(requestParameters: subscriptionApiParams.UpdateInstallmentPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
 
     /**
+    * Update Item fulfillment type on existing subscription.
+    * @summary Update Item fulfillment type.
+    * @param {string} subscriptionId subscription id
+    * @param {string} subscriptionItemId subscription item id
+    * @param {string} [updateMode] Determines the update strategy for this update (ApplyToOriginal, ApplyToDraft).
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {SubscriptionItem} [subscriptionItem] subscription item id
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof SubscriptionApiInterface
+    */
+    updateItemFulfillmentRaw(requestParameters: subscriptionApiParams.UpdateItemFulfillmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>>;
+
+    /**
+    * Update Item fulfillment type on existing subscription.
+    * Update Item fulfillment type.
+    */
+    updateItemFulfillment(requestParameters: subscriptionApiParams.UpdateItemFulfillmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription>;
+
+    /**
     * Update Item Quantity on existing subscription.
     * @summary Update Item Quantity
     * @param {string} subscriptionId subscription id
@@ -988,6 +1017,10 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiS
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters.updateMode !== undefined) {
+            queryParameters['updateMode'] = requestParameters.updateMode;
+        }
 
         if (requestParameters.responseFields !== undefined) {
             queryParameters['responseFields'] = requestParameters.responseFields;
@@ -2080,6 +2113,61 @@ export class SubscriptionApi extends runtime.BaseAPI implements SubscriptionApiS
      */
     async updateInstallmentPlan(requestParameters: subscriptionApiParams.UpdateInstallmentPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
         const response = await this.updateInstallmentPlanRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update Item fulfillment type on existing subscription.
+     * Update Item fulfillment type.
+     */
+
+
+    async updateItemFulfillmentRaw(requestParameters: subscriptionApiParams.UpdateItemFulfillmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionRuntimeSubscription>> {
+        if (requestParameters.subscriptionId === null || requestParameters.subscriptionId === undefined) {
+            throw new runtime.RequiredError('subscriptionId','Required parameter requestParameters.subscriptionId was null or undefined when calling updateItemFulfillment.');
+        }
+
+        if (requestParameters.subscriptionItemId === null || requestParameters.subscriptionItemId === undefined) {
+            throw new runtime.RequiredError('subscriptionItemId','Required parameter requestParameters.subscriptionItemId was null or undefined when calling updateItemFulfillment.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.updateMode !== undefined) {
+            queryParameters['updateMode'] = requestParameters.updateMode;
+        }
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/subscriptions/{subscriptionId}/items/{subscriptionItemId}/fulfillment`.replace(`{${"subscriptionId"}}`, encodeURIComponent(String(requestParameters.subscriptionId))).replace(`{${"subscriptionItemId"}}`, encodeURIComponent(String(requestParameters.subscriptionItemId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.subscriptionItem,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Update Item fulfillment type on existing subscription.
+     * Update Item fulfillment type.
+     */
+    async updateItemFulfillment(requestParameters: subscriptionApiParams.UpdateItemFulfillmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionRuntimeSubscription> {
+        const response = await this.updateItemFulfillmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

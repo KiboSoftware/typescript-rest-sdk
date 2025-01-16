@@ -17,6 +17,7 @@ import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
 import type {
   ServiceType,
+  SignatureOption,
 } from '../models';
 
 
@@ -28,6 +29,9 @@ export namespace carrierConfigurationGlobalApiParams {
     export interface GetCarrierServiceTypesRequest {
         carrierId: string;
         localeCode: string;
+        responseFields?: string;
+    }
+    export interface GetSignatureOptionsRequest {
         responseFields?: string;
     }
 }
@@ -72,6 +76,22 @@ export interface CarrierConfigurationGlobalApiService {
     * Used for retrieving the available service types for the Mozu Default Application carriers
     */
     getCarrierServiceTypes(requestParameters: carrierConfigurationGlobalApiParams.GetCarrierServiceTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ServiceType>>;
+
+    /**
+    * Gets all the Signature Options
+    * @summary Gets all the Signature Options
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CarrierConfigurationGlobalApiInterface
+    */
+    getSignatureOptionsRaw(requestParameters: carrierConfigurationGlobalApiParams.GetSignatureOptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SignatureOption>>>;
+
+    /**
+    * Gets all the Signature Options
+    * Gets all the Signature Options
+    */
+    getSignatureOptions(requestParameters: carrierConfigurationGlobalApiParams.GetSignatureOptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SignatureOption>>;
 
 }
 
@@ -173,6 +193,46 @@ export class CarrierConfigurationGlobalApi extends runtime.BaseAPI implements Ca
      */
     async getCarrierServiceTypes(requestParameters: carrierConfigurationGlobalApiParams.GetCarrierServiceTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ServiceType>> {
         const response = await this.getCarrierServiceTypesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Gets all the Signature Options
+     * Gets all the Signature Options
+     */
+
+
+    async getSignatureOptionsRaw(requestParameters: carrierConfigurationGlobalApiParams.GetSignatureOptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SignatureOption>>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/shipping/global/carriers/signatureOptions`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Gets all the Signature Options
+     * Gets all the Signature Options
+     */
+    async getSignatureOptions(requestParameters: carrierConfigurationGlobalApiParams.GetSignatureOptionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SignatureOption>> {
+        const response = await this.getSignatureOptionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

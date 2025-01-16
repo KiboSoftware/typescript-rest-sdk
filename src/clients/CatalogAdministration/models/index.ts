@@ -872,6 +872,13 @@ export interface CatalogAdminsCategory {
      */
     content?: CategoryLocalizedContent;
     /**
+     * Container for language-specific content to display on the storefront. You'll have a container for each supported language (LocaleCode). 
+     * This enables you to display a category in multiple languages yet manage it as a single category internally.
+     * @type {Array<CategoryLocalizedContent>}
+     * @memberof CatalogAdminsCategory
+     */
+    localizedContent?: Array<CategoryLocalizedContent> | null;
+    /**
      * 
      * @type {DynamicExpression}
      * @memberof CatalogAdminsCategory
@@ -1076,7 +1083,14 @@ export interface CatalogAdminsDiscount {
      * @type {DiscountLocalizedContent}
      * @memberof CatalogAdminsDiscount
      */
-    content: DiscountLocalizedContent;
+    content?: DiscountLocalizedContent;
+    /**
+     * Container for the language-specific name of the discount. You will have a container for each supported language (LocaleCode).
+     * This enables you to display the discount name in multiple languages yet manage it as a single discount internally.
+     * @type {Array<DiscountLocalizedContent>}
+     * @memberof CatalogAdminsDiscount
+     */
+    localizedContent?: Array<DiscountLocalizedContent> | null;
     /**
      * Scope to which the discount applies, valid values are: Order, LineItem
      * @type {string}
@@ -1275,6 +1289,61 @@ export interface CatalogAdminsDiscount {
      * @memberof CatalogAdminsDiscount
      */
     isSubscriptionDiscount?: boolean | null;
+    /**
+     * Determines whether the discount is available for every shopper.
+     * @type {boolean}
+     * @memberof CatalogAdminsDiscount
+     */
+    isPublic?: boolean | null;
+    /**
+     * Indicates unique code for the discount, if not present Discount Id is used as a code.
+     * @type {string}
+     * @memberof CatalogAdminsDiscount
+     */
+    code?: string | null;
+    /**
+     * Indicates unique discount labels.
+     * @type {Array<string>}
+     * @memberof CatalogAdminsDiscount
+     */
+    labels?: Array<string> | null;
+}
+/**
+ * Collection of discounts returned as a whole. A collection is not paged.
+ * @export
+ * @interface CatalogAdminsDiscountCollection
+ */
+export interface CatalogAdminsDiscountCollection {
+    /**
+     * 
+     * @type {number}
+     * @memberof CatalogAdminsDiscountCollection
+     */
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CatalogAdminsDiscountCollection
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CatalogAdminsDiscountCollection
+     */
+    pageCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CatalogAdminsDiscountCollection
+     */
+    totalCount?: number;
+    /**
+     * 
+     * @type {Array<CatalogAdminsDiscount>}
+     * @memberof CatalogAdminsDiscountCollection
+     */
+    items?: Array<CatalogAdminsDiscount> | null;
 }
 /**
  * Specifies constraints that must be satified for a discount to be applied to a target.
@@ -1457,6 +1526,32 @@ export interface CatalogAdminsDiscountCondition {
      * @memberof CatalogAdminsDiscountCondition
      */
     continuityRecurrenceSettings?: ContinuityRecurrenceSettings;
+    /**
+     * The discount condition for fulfillment methods, if present the discount will be applied only to these fulfillment methods.
+     * This must be a value defined in FulfillmentMethodConst below.
+     * @type {Array<string>}
+     * @memberof CatalogAdminsDiscountCondition
+     */
+    validFulfillmentMethods?: Array<string> | null;
+    /**
+     * The discount condition for site Ids, if present the discount will be applied only to these sites.
+     * If not present discount will work for all sites in a catalog.
+     * @type {Array<number>}
+     * @memberof CatalogAdminsDiscountCondition
+     */
+    exclusiveSiteIds?: Array<number> | null;
+    /**
+     * 
+     * @type {DynamicExpression}
+     * @memberof CatalogAdminsDiscountCondition
+     */
+    expression?: DynamicExpression;
+    /**
+     * List of locations where the item/order should be fulfilled for the discount to be valid.
+     * @type {Array<string>}
+     * @memberof CatalogAdminsDiscountCondition
+     */
+    exclusiveLocationCodes?: Array<string> | null;
 }
 /**
  * What to discount. Specifies the type of discount (percentage off, monetary amount, or free shipping) and which products, categories, or shipping methods are eligible for the discount.
@@ -1684,6 +1779,12 @@ export interface CatalogAdminsMasterCatalog {
      */
     enableLiveEdit?: boolean | null;
     /**
+     * Master catalog supported locale codes
+     * @type {Array<string>}
+     * @memberof CatalogAdminsMasterCatalog
+     */
+    supportedLocaleCodes?: Array<string> | null;
+    /**
      * Indicates whether the MasterCatalog has been deleted and should no longer be used
      * @type {boolean}
      * @memberof CatalogAdminsMasterCatalog
@@ -1862,6 +1963,12 @@ export interface CatalogAdminsProduct {
      */
     content?: ProductLocalizedContent;
     /**
+     * The content for each locale code supported by the master catalog
+     * @type {Array<ProductLocalizedContent>}
+     * @memberof CatalogAdminsProduct
+     */
+    localizedContent?: Array<ProductLocalizedContent> | null;
+    /**
      * 
      * @type {CatalogAdminsProductPrice}
      * @memberof CatalogAdminsProduct
@@ -1879,6 +1986,12 @@ export interface CatalogAdminsProduct {
      * @memberof CatalogAdminsProduct
      */
     seoContent?: ProductLocalizedSEOContent;
+    /**
+     * 
+     * @type {Array<ProductLocalizedSEOContent>}
+     * @memberof CatalogAdminsProduct
+     */
+    localizedSEOContent?: Array<ProductLocalizedSEOContent> | null;
     /**
      * The Options defined in the product Type that are currently assigned to this product
      * @type {Array<CatalogAdminsProductOption>}
@@ -2361,6 +2474,12 @@ export interface CatalogAdminsProductProperty {
      * @memberof CatalogAdminsProductProperty
      */
     values?: Array<CatalogAdminsProductPropertyValue> | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CatalogAdminsProductProperty
+     */
+    forceOrder?: boolean | null;
 }
 /**
  * A value of a product option for this product. For example, a computer product may have an option called "Memory" that can have the values "6GB,"8GB," and "12GB."
@@ -2596,7 +2715,14 @@ export interface CatalogAdminsThresholdMessage {
      * @type {ThresholdMessageLocalizedContent}
      * @memberof CatalogAdminsThresholdMessage
      */
-    content: ThresholdMessageLocalizedContent;
+    content?: ThresholdMessageLocalizedContent;
+    /**
+     * Container for the language-specific name of the threshold message. You will have a container for each supported language (LocaleCode).
+     * This enables you to display the message in multiple languages yet manage it as a single message internally.
+     * @type {Array<ThresholdMessageLocalizedContent>}
+     * @memberof CatalogAdminsThresholdMessage
+     */
+    localizedContent?: Array<ThresholdMessageLocalizedContent> | null;
     /**
      * 
      * @type {AdminUserAuditInfo}
@@ -2805,10 +2931,10 @@ export interface ChangeProductTypeAction {
     testMode?: boolean;
     /**
      * 
-     * @type {ProductPatchDocument}
+     * @type {ProductV1PatchDocument}
      * @memberof ChangeProductTypeAction
      */
-    patches?: ProductPatchDocument;
+    patches?: ProductV1PatchDocument;
     /**
      * If true and publishing is enabled, actions are applied to a draft version of the product and then the draft is published otherwise
      * changes are saved to the live product.
@@ -2816,6 +2942,55 @@ export interface ChangeProductTypeAction {
      * @memberof ChangeProductTypeAction
      */
     saveAndPublish?: boolean;
+}
+/**
+ * Settings to control product search and indexing behavior
+ * @export
+ * @interface CollapseSettings
+ */
+export interface CollapseSettings {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CollapseSettings
+     */
+    collapseSiteSearch?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CollapseSettings
+     */
+    collapseListing?: boolean | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CollapseSettings
+     */
+    collapseFieldName?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CollapseSettings
+     */
+    boostFieldName?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CollapseSettings
+     */
+    boostRankSiteSearch?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CollapseSettings
+     */
+    boostRankListing?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CollapseSettings
+     */
+    useFieldCache?: boolean | null;
 }
 /**
  * 
@@ -3162,43 +3337,6 @@ export interface CurrencyLocalizationCollection {
     items?: Array<CurrencyLocalization> | null;
 }
 /**
- * Collection of discounts returned as a whole. A collection is not paged.
- * @export
- * @interface DiscountCollection
- */
-export interface DiscountCollection {
-    /**
-     * 
-     * @type {number}
-     * @memberof DiscountCollection
-     */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DiscountCollection
-     */
-    pageSize?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DiscountCollection
-     */
-    pageCount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DiscountCollection
-     */
-    totalCount?: number;
-    /**
-     * 
-     * @type {Array<CatalogAdminsDiscount>}
-     * @memberof DiscountCollection
-     */
-    items?: Array<CatalogAdminsDiscount> | null;
-}
-/**
  * Container for the language-specific name of the discount. You will have a container for each supported language
  * (LocaleCode).
  * This enables you to display the discount name in multiple languages yet manage it as a single discount internally.
@@ -3377,6 +3515,44 @@ export interface Expression {
 /**
  * 
  * @export
+ * @interface ExpressionValidationError
+ */
+export interface ExpressionValidationError {
+    /**
+     * 
+     * @type {string}
+     * @memberof ExpressionValidationError
+     */
+    message?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExpressionValidationError
+     */
+    expression?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface ExpressionValidationResult
+ */
+export interface ExpressionValidationResult {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ExpressionValidationResult
+     */
+    readonly hasErrors?: boolean;
+    /**
+     * 
+     * @type {Array<ExpressionValidationError>}
+     * @memberof ExpressionValidationResult
+     */
+    errors?: Array<ExpressionValidationError> | null;
+}
+/**
+ * 
+ * @export
  * @interface ExtensibleAttribute
  */
 export interface ExtensibleAttribute {
@@ -3506,6 +3682,12 @@ export interface ExtensibleAttribute {
      * @memberof ExtensibleAttribute
      */
     availableForOrderRouting?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ExtensibleAttribute
+     */
+    availableForDiscounts?: boolean;
 }
 /**
  * 
@@ -4367,6 +4549,43 @@ export interface ProductCollectionProduct {
     price?: CatalogAdminsProductPrice;
 }
 /**
+ * Collection of products returned as a whole. A collection is not paged.
+ * @export
+ * @interface ProductCollectionV1
+ */
+export interface ProductCollectionV1 {
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductCollectionV1
+     */
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductCollectionV1
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductCollectionV1
+     */
+    pageCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductCollectionV1
+     */
+    totalCount?: number;
+    /**
+     * 
+     * @type {Array<ProductV1>}
+     * @memberof ProductCollectionV1
+     */
+    items?: Array<ProductV1> | null;
+}
+/**
  * Represents a product and quantity constraint
  * @export
  * @interface ProductDiscountCondition
@@ -4501,18 +4720,6 @@ export interface ProductInCatalogInfo {
      */
     isActive?: boolean | null;
     /**
-     * If true, the content for this product is overridden in the catalog. If false, the MasterCatalog level content will be used for the product.
-     * @type {boolean}
-     * @memberof ProductInCatalogInfo
-     */
-    isContentOverridden?: boolean | null;
-    /**
-     * 
-     * @type {ProductLocalizedContent}
-     * @memberof ProductInCatalogInfo
-     */
-    content?: ProductLocalizedContent;
-    /**
      * If true, the price for this product is overridden in the catalog. If false, the MasterCatalog level price will be used for the product.
      * @type {boolean}
      * @memberof ProductInCatalogInfo
@@ -4524,18 +4731,6 @@ export interface ProductInCatalogInfo {
      * @memberof ProductInCatalogInfo
      */
     price?: CatalogAdminsProductPrice;
-    /**
-     * If true, the SEO content for this product is overridden in the catalog. If false, the MasterCatalog level SEO content will be used for the product.
-     * @type {boolean}
-     * @memberof ProductInCatalogInfo
-     */
-    isSEOContentOverridden?: boolean | null;
-    /**
-     * 
-     * @type {ProductLocalizedSEOContent}
-     * @memberof ProductInCatalogInfo
-     */
-    seoContent?: ProductLocalizedSEOContent;
     /**
      * Categories to which the product belongs for this catalog.
      * @type {Array<ProductCategory>}
@@ -4568,46 +4763,134 @@ export interface ProductInCatalogInfo {
     auditInfo?: AdminUserAuditInfo;
 }
 /**
- * 
+ * Use the Products resource to create and manage products for your store.
+ * You can create products with options that a shopper configures
+ * (such as a T-shirt color and size). The system can manage inventory for all
+ * combinations of your product options, and can calculate tax and shipping costs.
  * @export
- * @interface ProductInCatalogInfoPatchDocument
+ * @interface ProductInCatalogInfoV1
  */
-export interface ProductInCatalogInfoPatchDocument {
+export interface ProductInCatalogInfoV1 {
+    /**
+     * The CatalogId of the catalog that the product is associated with (The catalog must a valid catalog within the MasterCatalog that the product belongs to)
+     * @type {number}
+     * @memberof ProductInCatalogInfoV1
+     */
+    catalogId?: number;
+    /**
+     * If true, the product is marked as available for sale in the catalog. Setting a product to IsActive = false will prevent it from being shown on the customer facing storefront.
+     * @type {boolean}
+     * @memberof ProductInCatalogInfoV1
+     */
+    isActive?: boolean | null;
+    /**
+     * If true, the content for this product is overridden in the catalog. If false, the MasterCatalog level content will be used for the product.
+     * @type {boolean}
+     * @memberof ProductInCatalogInfoV1
+     */
+    isContentOverridden?: boolean | null;
     /**
      * 
-     * @type {Array<ProductInCatalogInfoPatchOperation>}
-     * @memberof ProductInCatalogInfoPatchDocument
+     * @type {ProductLocalizedContent}
+     * @memberof ProductInCatalogInfoV1
      */
-    operations?: Array<ProductInCatalogInfoPatchOperation> | null;
+    content?: ProductLocalizedContent;
+    /**
+     * If true, the price for this product is overridden in the catalog. If false, the MasterCatalog level price will be used for the product.
+     * @type {boolean}
+     * @memberof ProductInCatalogInfoV1
+     */
+    isPriceOverridden?: boolean | null;
+    /**
+     * 
+     * @type {CatalogAdminsProductPrice}
+     * @memberof ProductInCatalogInfoV1
+     */
+    price?: CatalogAdminsProductPrice;
+    /**
+     * If true, the SEO content for this product is overridden in the catalog. If false, the MasterCatalog level SEO content will be used for the product.
+     * @type {boolean}
+     * @memberof ProductInCatalogInfoV1
+     */
+    isSEOContentOverridden?: boolean | null;
+    /**
+     * 
+     * @type {ProductLocalizedSEOContent}
+     * @memberof ProductInCatalogInfoV1
+     */
+    seoContent?: ProductLocalizedSEOContent;
+    /**
+     * Categories to which the product belongs for this catalog.
+     * @type {Array<ProductCategory>}
+     * @memberof ProductInCatalogInfoV1
+     */
+    productCategories?: Array<ProductCategory> | null;
+    /**
+     * 
+     * @type {ProductCategory}
+     * @memberof ProductInCatalogInfoV1
+     */
+    primaryProductCategory?: ProductCategory;
+    /**
+     * Date this product was first Available for sale in the catalog. This is utilized in expressions that reference DaysInCatloag.
+     * @type {string}
+     * @memberof ProductInCatalogInfoV1
+     */
+    dateFirstAvailableInCatalog?: string | null;
+    /**
+     * 
+     * @type {CatalogAdminsActiveDateRange}
+     * @memberof ProductInCatalogInfoV1
+     */
+    activeDateRange?: CatalogAdminsActiveDateRange;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof ProductInCatalogInfoV1
+     */
+    auditInfo?: AdminUserAuditInfo;
 }
 /**
  * 
  * @export
- * @interface ProductInCatalogInfoPatchOperation
+ * @interface ProductInCatalogInfoV1PatchDocument
  */
-export interface ProductInCatalogInfoPatchOperation {
+export interface ProductInCatalogInfoV1PatchDocument {
+    /**
+     * 
+     * @type {Array<ProductInCatalogInfoV1PatchOperation>}
+     * @memberof ProductInCatalogInfoV1PatchDocument
+     */
+    operations?: Array<ProductInCatalogInfoV1PatchOperation> | null;
+}
+/**
+ * 
+ * @export
+ * @interface ProductInCatalogInfoV1PatchOperation
+ */
+export interface ProductInCatalogInfoV1PatchOperation {
     /**
      * 
      * @type {any}
-     * @memberof ProductInCatalogInfoPatchOperation
+     * @memberof ProductInCatalogInfoV1PatchOperation
      */
     value?: any | null;
     /**
      * 
      * @type {string}
-     * @memberof ProductInCatalogInfoPatchOperation
+     * @memberof ProductInCatalogInfoV1PatchOperation
      */
     path?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof ProductInCatalogInfoPatchOperation
+     * @memberof ProductInCatalogInfoV1PatchOperation
      */
     op?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof ProductInCatalogInfoPatchOperation
+     * @memberof ProductInCatalogInfoV1PatchOperation
      */
     from?: string | null;
 }
@@ -4631,10 +4914,10 @@ export interface ProductInCatalogPatchAction {
     catalogId?: number;
     /**
      * 
-     * @type {ProductInCatalogInfoPatchDocument}
+     * @type {ProductInCatalogInfoV1PatchDocument}
      * @memberof ProductInCatalogPatchAction
      */
-    patches?: ProductInCatalogInfoPatchDocument;
+    patches?: ProductInCatalogInfoV1PatchDocument;
     /**
      * If true and publishing is enabled, actions are applied to a draft version of the product and then the draft is published otherwise
      * changes are saved to the live product.
@@ -4805,10 +5088,10 @@ export interface ProductPatchAction {
     productCode?: string | null;
     /**
      * 
-     * @type {ProductPatchDocument}
+     * @type {ProductV1PatchDocument}
      * @memberof ProductPatchAction
      */
-    patches?: ProductPatchDocument;
+    patches?: ProductV1PatchDocument;
     /**
      * If true and publishing is enabled, actions are applied to a draft version of the product and then the draft is published otherwise
      * changes are saved to the live product.
@@ -4816,50 +5099,6 @@ export interface ProductPatchAction {
      * @memberof ProductPatchAction
      */
     saveAndPublish?: boolean;
-}
-/**
- * 
- * @export
- * @interface ProductPatchDocument
- */
-export interface ProductPatchDocument {
-    /**
-     * 
-     * @type {Array<ProductPatchOperation>}
-     * @memberof ProductPatchDocument
-     */
-    operations?: Array<ProductPatchOperation> | null;
-}
-/**
- * 
- * @export
- * @interface ProductPatchOperation
- */
-export interface ProductPatchOperation {
-    /**
-     * 
-     * @type {any}
-     * @memberof ProductPatchOperation
-     */
-    value?: any | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProductPatchOperation
-     */
-    path?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProductPatchOperation
-     */
-    op?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProductPatchOperation
-     */
-    from?: string | null;
 }
 /**
  * List of JsonPatch operations to be applied to a Mozu.ProductAdmin.Contracts.ProductProperty
@@ -5442,6 +5681,314 @@ export interface ProductTypeCollection {
      * @memberof ProductTypeCollection
      */
     items?: Array<ProductType> | null;
+}
+/**
+ * Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs.
+ * @export
+ * @interface ProductV1
+ */
+export interface ProductV1 {
+    /**
+     * Merchant-created code identifier associated with the product, for example, a SKU or product item number.
+     * @type {string}
+     * @memberof ProductV1
+     */
+    productCode?: string | null;
+    /**
+     * Indicates the usage type of this product. Must be one of the values in ProductUsageConst.
+     * @type {string}
+     * @memberof ProductV1
+     */
+    productUsage?: string | null;
+    /**
+     * Indicates the fulfillment types the product supports.
+     * @type {Array<string>}
+     * @memberof ProductV1
+     */
+    fulfillmentTypesSupported?: Array<string> | null;
+    /**
+     * Identifier of the Master Catalog that this product is a member of. System-supplied and read-only
+     * @type {number}
+     * @memberof ProductV1
+     */
+    masterCatalogId?: number | null;
+    /**
+     * System generated monotonically increasing sequence
+     * @type {number}
+     * @memberof ProductV1
+     */
+    productSequence?: number | null;
+    /**
+     * Unique identifier of the productType of the product. Refers to a valid ProductType that was previously created with the ProductType resource.
+     * @type {number}
+     * @memberof ProductV1
+     */
+    productTypeId?: number | null;
+    /**
+     * Read only flag that indicates if the product meets the product type constraints (All adminRequired attributes have a valid value)
+     * @type {boolean}
+     * @memberof ProductV1
+     */
+    isValidForProductType?: boolean | null;
+    /**
+     * This is the base product ProductCode of a product that is a variation. It is read-only and only populated for products that are variations of a configurable base product.
+     * @type {string}
+     * @memberof ProductV1
+     */
+    baseProductCode?: string | null;
+    /**
+     * Catalog specific info for each catalog a product is valid in. There should always be one or more entries here.
+     * @type {Array<ProductInCatalogInfoV1>}
+     * @memberof ProductV1
+     */
+    productInCatalogs?: Array<ProductInCatalogInfoV1> | null;
+    /**
+     * 
+     * @type {ProductLocalizedContent}
+     * @memberof ProductV1
+     */
+    content?: ProductLocalizedContent;
+    /**
+     * 
+     * @type {CatalogAdminsProductPrice}
+     * @memberof ProductV1
+     */
+    price?: CatalogAdminsProductPrice;
+    /**
+     * 
+     * @type {CatalogAdminsProductPricingBehaviorInfo}
+     * @memberof ProductV1
+     */
+    pricingBehavior?: CatalogAdminsProductPricingBehaviorInfo;
+    /**
+     * 
+     * @type {ProductLocalizedSEOContent}
+     * @memberof ProductV1
+     */
+    seoContent?: ProductLocalizedSEOContent;
+    /**
+     * The Options defined in the product Type that are currently assigned to this product
+     * @type {Array<CatalogAdminsProductOption>}
+     * @memberof ProductV1
+     */
+    options?: Array<CatalogAdminsProductOption> | null;
+    /**
+     * The Extras defined in the product Type that are currently assigned to this product
+     * @type {Array<ProductExtra>}
+     * @memberof ProductV1
+     */
+    extras?: Array<ProductExtra> | null;
+    /**
+     * The Properties defined in the product Type that are currently assigned to this product
+     * @type {Array<CatalogAdminsProductProperty>}
+     * @memberof ProductV1
+     */
+    properties?: Array<CatalogAdminsProductProperty> | null;
+    /**
+     * If true, the product is subject to tax.
+     * @type {boolean}
+     * @memberof ProductV1
+     */
+    isTaxable?: boolean | null;
+    /**
+     * 
+     * @type {CatalogAdminsProductInventoryInfo}
+     * @memberof ProductV1
+     */
+    inventoryInfo?: CatalogAdminsProductInventoryInfo;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductV1
+     */
+    shippingClassId?: number | null;
+    /**
+     * If true, the product can be purchased or fulfilled at regular intervals, for example, monthly billing or a subscription.
+     * @type {boolean}
+     * @memberof ProductV1
+     */
+    isRecurring?: boolean | null;
+    /**
+     * UPC code of the product.
+     * @type {string}
+     * @memberof ProductV1
+     */
+    upc?: string | null;
+    /**
+     * 
+     * @type {ProductSupplierInfo}
+     * @memberof ProductV1
+     */
+    supplierInfo?: ProductSupplierInfo;
+    /**
+     * Does this product need to be packaged on its own
+     * @type {boolean}
+     * @memberof ProductV1
+     */
+    isPackagedStandAlone?: boolean | null;
+    /**
+     * When packaged alone this is the package type
+     * @type {string}
+     * @memberof ProductV1
+     */
+    standAlonePackageType?: string | null;
+    /**
+     * 
+     * @type {CommerceRuntimeMeasurement}
+     * @memberof ProductV1
+     */
+    packageHeight?: CommerceRuntimeMeasurement;
+    /**
+     * 
+     * @type {CommerceRuntimeMeasurement}
+     * @memberof ProductV1
+     */
+    packageWidth?: CommerceRuntimeMeasurement;
+    /**
+     * 
+     * @type {CommerceRuntimeMeasurement}
+     * @memberof ProductV1
+     */
+    packageLength?: CommerceRuntimeMeasurement;
+    /**
+     * 
+     * @type {CommerceRuntimeMeasurement}
+     * @memberof ProductV1
+     */
+    packageWeight?: CommerceRuntimeMeasurement;
+    /**
+     * Read only. List of discounts that are available for a product.
+     * @type {Array<CatalogAdminsDiscount>}
+     * @memberof ProductV1
+     */
+    applicableDiscounts?: Array<CatalogAdminsDiscount> | null;
+    /**
+     * Read only. If true, this is a product variation of a product with configurable options. System-supplied and read-only.
+     * @type {boolean}
+     * @memberof ProductV1
+     */
+    isVariation?: boolean;
+    /**
+     * Read only. If IsVariation true, thish provides a unique key to manage the variation of the base product.
+     * @type {string}
+     * @memberof ProductV1
+     */
+    variationKey?: string | null;
+    /**
+     * Read only. If true, this product has configurable options. The product is not purchasable until the shopper selects options that resolve to a product variation. System-supplied and read-only.
+     * @type {boolean}
+     * @memberof ProductV1
+     */
+    hasConfigurableOptions?: boolean;
+    /**
+     * Read only. If true, the product has stand-alone options that a shopper may select. System-supplied and read-only.
+     * @type {boolean}
+     * @memberof ProductV1
+     */
+    hasStandAloneOptions?: boolean;
+    /**
+     * Read only List of variations that exist for a product. This is only populated when IsVariation is true. To get the list of options, the GET request must include the VariationOptions response group.
+     * @type {Array<ProductVariationOption>}
+     * @memberof ProductV1
+     */
+    variationOptions?: Array<ProductVariationOption> | null;
+    /**
+     * 
+     * @type {ProductPublishingInfo}
+     * @memberof ProductV1
+     */
+    publishingInfo?: ProductPublishingInfo;
+    /**
+     * list of other products that are included in a BundleProduct
+     * This requires that the ProductUsage be set to Bundle
+     * @type {Array<CatalogAdminsBundledProduct>}
+     * @memberof ProductV1
+     */
+    bundledProducts?: Array<CatalogAdminsBundledProduct> | null;
+    /**
+     * list of other products that are members of a ProductCollection
+     * This requires that the ProductUsage be set to Collection
+     * @type {Array<ProductCollectionProduct>}
+     * @memberof ProductV1
+     */
+    productCollectionProducts?: Array<ProductCollectionProduct> | null;
+    /**
+     * List of Mozu.ProductAdmin.Contracts.ProductCollectionInfo that this product belongs to
+     * @type {Array<CatalogAdminsProductCollectionInfo>}
+     * @memberof ProductV1
+     */
+    productCollections?: Array<CatalogAdminsProductCollectionInfo> | null;
+    /**
+     * List of the image groups this product uses.
+     * Image groups are used to map different images to different product options.
+     * If the product doesn't have options then all images will be in the default
+     * image group.
+     * @type {Array<CatalogAdminsProductImageGroup>}
+     * @memberof ProductV1
+     */
+    productImageGroups?: Array<CatalogAdminsProductImageGroup> | null;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof ProductV1
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * 
+     * @type {SlicingSettings}
+     * @memberof ProductV1
+     */
+    slicingSettings?: SlicingSettings;
+    /**
+     * When this product belongs to a product collection this is the product id for the primary collection.
+     * @type {string}
+     * @memberof ProductV1
+     */
+    primaryProductCollectionCode?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface ProductV1PatchDocument
+ */
+export interface ProductV1PatchDocument {
+    /**
+     * 
+     * @type {Array<ProductV1PatchOperation>}
+     * @memberof ProductV1PatchDocument
+     */
+    operations?: Array<ProductV1PatchOperation> | null;
+}
+/**
+ * 
+ * @export
+ * @interface ProductV1PatchOperation
+ */
+export interface ProductV1PatchOperation {
+    /**
+     * 
+     * @type {any}
+     * @memberof ProductV1PatchOperation
+     */
+    value?: any | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductV1PatchOperation
+     */
+    path?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductV1PatchOperation
+     */
+    op?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductV1PatchOperation
+     */
+    from?: string | null;
 }
 /**
  * The ProductVariation resource helps merchants manage their products with configurable options. Using this resource, the system creates a matrix of all possible combinations of the product options and the merchant confirms which variations match products for sale. For example, a T-shirt with three color and three size options has nine possible product variations. The system keeps track of inventory for each variation.
@@ -6289,6 +6836,12 @@ export interface SearchSettings {
      * @memberof SearchSettings
      */
     listingSettings?: ListingSettings;
+    /**
+     * 
+     * @type {CollapseSettings}
+     * @memberof SearchSettings
+     */
+    collapseSettings?: CollapseSettings;
     /**
      * 
      * @type {AdminUserAuditInfo}

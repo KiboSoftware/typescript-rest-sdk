@@ -38,10 +38,22 @@ export interface Allocati {
     productCode?: string | null;
     /**
      * 
+     * @type {string}
+     * @memberof Allocati
+     */
+    futureDate?: string | null;
+    /**
+     * 
      * @type {boolean}
      * @memberof Allocati
      */
     isStateChange?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof Allocati
+     */
+    allocationId?: number | null;
 }
 /**
  * 
@@ -295,6 +307,18 @@ export interface Produ {
      * @memberof Produ
      */
     isTaxable?: boolean | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Produ
+     */
+    serialNumber?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Produ
+     */
+    condition?: string | null;
 }
 /**
  * 

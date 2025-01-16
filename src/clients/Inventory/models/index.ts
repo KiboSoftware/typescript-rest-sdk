@@ -112,6 +112,36 @@ export interface AdjustItem {
      */
     quantity?: number;
     /**
+     * Track which lot a product is manufactured in
+     * @type {string}
+     * @memberof AdjustItem
+     */
+    lotCode?: string;
+    /**
+     * Describes the state of the product
+     * @type {string}
+     * @memberof AdjustItem
+     */
+    condition?: string;
+    /**
+     * A serial number unique to a specific, physical unit of inventory
+     * @type {string}
+     * @memberof AdjustItem
+     */
+    serialNumber?: string;
+    /**
+     * Date related to manufacturing, expiry, or use-by
+     * @type {string}
+     * @memberof AdjustItem
+     */
+    date?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AdjustItem
+     */
+    readonly granularInventoryTrackingEnabled?: boolean;
+    /**
      * Associative Map of <String, String> for tagCategoryName => tagName
      * @type {{ [key: string]: string; }}
      * @memberof AdjustItem
@@ -194,10 +224,10 @@ export interface AdjustRequestAllOf {
 export interface AggregateRequest {
     /**
      * List of Items to search on
-     * @type {Array<InventoryItem>}
+     * @type {Array<Item>}
      * @memberof AggregateRequest
      */
-    items: Array<InventoryItem>;
+    items: Array<Item>;
     /**
      * Whether to ignore the safety stock buffer put in place
      * @type {boolean}
@@ -314,10 +344,10 @@ export type AggregateRequestIncludeFutureInventoryEnum = typeof AggregateRequest
 export interface AggregateRequestAllOf {
     /**
      * List of Items to search on
-     * @type {Array<InventoryItem>}
+     * @type {Array<Item>}
      * @memberof AggregateRequestAllOf
      */
-    items?: Array<InventoryItem>;
+    items?: Array<Item>;
     /**
      * Whether to ignore the safety stock buffer put in place
      * @type {boolean}
@@ -580,6 +610,12 @@ export interface AllocateInventoryRequest {
      */
     autoAssign?: boolean;
     /**
+     * flag to determine whether the allocation should run synchronously, defaults to false
+     * @type {boolean}
+     * @memberof AllocateInventoryRequest
+     */
+    runSynchronous?: boolean;
+    /**
      * Location Code
      * @type {string}
      * @memberof AllocateInventoryRequest
@@ -646,6 +682,12 @@ export interface AllocateInventoryRequestAllOf {
      * @memberof AllocateInventoryRequestAllOf
      */
     autoAssign?: boolean;
+    /**
+     * flag to determine whether the allocation should run synchronously, defaults to false
+     * @type {boolean}
+     * @memberof AllocateInventoryRequestAllOf
+     */
+    runSynchronous?: boolean;
 }
 /**
  * Item for Allocation
@@ -749,6 +791,30 @@ export interface AllocateItem {
      * @memberof AllocateItem
      */
     futureDate?: string;
+    /**
+     * Extra Uniqueness Identifier used track which lot a product is manufactured in. Only used in Allocate calls.
+     * @type {string}
+     * @memberof AllocateItem
+     */
+    lotCode?: string;
+    /**
+     * Descriptor for the state of the product. Only used in Allocate calls.
+     * @type {string}
+     * @memberof AllocateItem
+     */
+    condition?: string;
+    /**
+     * A serial number unique to a specific, physical unit of inventory. Limit of 30 characters. Only used in Allocate calls.
+     * @type {string}
+     * @memberof AllocateItem
+     */
+    serialNumber?: string;
+    /**
+     * Used by the retailer for storing information related to manufacturing date or expiry date and use date to allocate for better stock management. Only used in Allocate calls.
+     * @type {string}
+     * @memberof AllocateItem
+     */
+    date?: string;
 }
 /**
  * Base Request Model
@@ -1805,10 +1871,10 @@ export interface DeleteItemsRequest {
     allLocations?: boolean;
     /**
      * List of items to delete. Supports basic regex operators: .*+?^$[]
-     * @type {Array<InventoryItem>}
+     * @type {Array<Item>}
      * @memberof DeleteItemsRequest
      */
-    items?: Array<InventoryItem>;
+    items?: Array<Item>;
     /**
      * Associative Map of <String, String> for tagCategoryName => tagName
      * @type {{ [key: string]: string; }}
@@ -2888,6 +2954,30 @@ export interface InventoryAllocationResponse {
      */
     futureDate?: string;
     /**
+     * 
+     * @type {string}
+     * @memberof InventoryAllocationResponse
+     */
+    lotCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InventoryAllocationResponse
+     */
+    condition?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InventoryAllocationResponse
+     */
+    serialNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InventoryAllocationResponse
+     */
+    date?: string;
+    /**
      * Associative Map of <String, String> for tagCategoryName => tagName
      * @type {{ [key: string]: string; }}
      * @memberof InventoryAllocationResponse
@@ -2950,379 +3040,47 @@ export interface InventoryFutureInventory {
     createDate?: string;
 }
 /**
- * Inventory Response
+ * Request/Response object for a tag
  * @export
- * @interface InventoryInventoryResponse
+ * @interface InventoryInventoryTag
  */
-export interface InventoryInventoryResponse {
+export interface InventoryInventoryTag {
     /**
-     * Location Name
-     * @type {string}
-     * @memberof InventoryInventoryResponse
-     */
-    locationName?: string;
-    /**
-     * Location Code
-     * @type {string}
-     * @memberof InventoryInventoryResponse
-     */
-    locationCode?: string;
-    /**
-     * Tenant Identifier
+     * Tag ID
      * @type {number}
-     * @memberof InventoryInventoryResponse
+     * @memberof InventoryInventoryTag
      */
-    tenantID?: number;
+    tagID?: number;
     /**
-     * The quantity the location has in its possession
-     * @type {number}
-     * @memberof InventoryInventoryResponse
-     */
-    onHand?: number;
-    /**
-     * The quantity the location has that are available for purchase
-     * @type {number}
-     * @memberof InventoryInventoryResponse
-     */
-    available?: number;
-    /**
-     * The quantity the location has that are already allocated.
-     * @type {number}
-     * @memberof InventoryInventoryResponse
-     */
-    allocated?: number;
-    /**
-     * The quantity the location has that are pending.
-     * @type {number}
-     * @memberof InventoryInventoryResponse
-     */
-    pending?: number;
-    /**
-     * Part/Product Number
+     * Tag Value
      * @type {string}
-     * @memberof InventoryInventoryResponse
+     * @memberof InventoryInventoryTag
      */
-    partNumber?: string;
+    tagValue?: string;
     /**
-     * Universal Product Code
-     * @type {string}
-     * @memberof InventoryInventoryResponse
-     */
-    upc?: string;
-    /**
-     * Stock Keeping Unit
-     * @type {string}
-     * @memberof InventoryInventoryResponse
-     */
-    sku?: string;
-    /**
-     * Whether or not the product is blocked for assignment
+     * Whether or not this tag is the default tag for its category.
      * @type {boolean}
-     * @memberof InventoryInventoryResponse
+     * @memberof InventoryInventoryTag
      */
-    blockAssignment?: boolean;
+    isDefault?: boolean;
     /**
-     * Custom field used for store prioritization
+     * Percentage of available inventory this tag will get when the percentage update is performed. Must be between 0 and 100 (inclusive).
      * @type {number}
-     * @memberof InventoryInventoryResponse
+     * @memberof InventoryInventoryTag
      */
-    ltd?: number;
+    percent?: number;
     /**
-     * Absolute minimum quantity of this item that should be in stock at any time
-     * @type {number}
-     * @memberof InventoryInventoryResponse
-     */
-    floor?: number;
-    /**
-     * Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
-     * @type {number}
-     * @memberof InventoryInventoryResponse
-     */
-    safetyStock?: number;
-    /**
-     * The distance in miles from this location to the item's destination
-     * @type {number}
-     * @memberof InventoryInventoryResponse
-     */
-    distance?: number;
-    /**
-     * Whether this location can ship to a consumer
-     * @type {boolean}
-     * @memberof InventoryInventoryResponse
-     */
-    directShip?: boolean;
-    /**
-     * Whether the location can ship to another location (store), thus restocking that location.
-     * @type {boolean}
-     * @memberof InventoryInventoryResponse
-     */
-    transferEnabled?: boolean;
-    /**
-     * Whether a consumer can pick up product at this location (store)
-     * @type {boolean}
-     * @memberof InventoryInventoryResponse
-     */
-    pickup?: boolean;
-    /**
-     * The country code of this location
+     * Date this tag was created
      * @type {string}
-     * @memberof InventoryInventoryResponse
+     * @memberof InventoryInventoryTag
      */
-    countryCode?: string;
+    created?: string;
     /**
-     * The currency identifier for the retailPrice
-     * @type {number}
-     * @memberof InventoryInventoryResponse
-     */
-    currencyID?: number;
-    /**
-     * The price of the product at this location
-     * @type {number}
-     * @memberof InventoryInventoryResponse
-     */
-    retailPrice?: number;
-    /**
-     * The inventory locator name of the individual item
+     * Date this tag was last updated
      * @type {string}
-     * @memberof InventoryInventoryResponse
+     * @memberof InventoryInventoryTag
      */
-    inventoryLocatorName?: string;
-    /**
-     * List of Inventory Attributes
-     * @type {Array<string>}
-     * @memberof InventoryInventoryResponse
-     */
-    attributes?: Array<string>;
-    /**
-     * 
-     * @type {Array<InventoryTagQuantity>}
-     * @memberof InventoryInventoryResponse
-     */
-    taggedInventory?: Array<InventoryTagQuantity>;
-    /**
-     * 
-     * @type {Array<InventoryFutureInventory>}
-     * @memberof InventoryInventoryResponse
-     */
-    futureInventory?: Array<InventoryFutureInventory>;
-    /**
-     * External ID of the item
-     * @type {string}
-     * @memberof InventoryInventoryResponse
-     */
-    externalID?: string;
-    /**
-     * Flag for success
-     * @type {boolean}
-     * @memberof InventoryInventoryResponse
-     */
-    success?: boolean;
-    /**
-     * List of messages
-     * @type {Array<string>}
-     * @memberof InventoryInventoryResponse
-     */
-    messages?: Array<string>;
-    /**
-     * Number of results
-     * @type {number}
-     * @memberof InventoryInventoryResponse
-     */
-    numResults?: number;
-}
-/**
- * 
- * @export
- * @interface InventoryInventoryResponseAllOf
- */
-export interface InventoryInventoryResponseAllOf {
-    /**
-     * Location Name
-     * @type {string}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    locationName?: string;
-    /**
-     * Location Code
-     * @type {string}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    locationCode?: string;
-    /**
-     * Tenant Identifier
-     * @type {number}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    tenantID?: number;
-    /**
-     * The quantity the location has in its possession
-     * @type {number}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    onHand?: number;
-    /**
-     * The quantity the location has that are available for purchase
-     * @type {number}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    available?: number;
-    /**
-     * The quantity the location has that are already allocated.
-     * @type {number}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    allocated?: number;
-    /**
-     * The quantity the location has that are pending.
-     * @type {number}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    pending?: number;
-    /**
-     * Part/Product Number
-     * @type {string}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    partNumber?: string;
-    /**
-     * Universal Product Code
-     * @type {string}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    upc?: string;
-    /**
-     * Stock Keeping Unit
-     * @type {string}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    sku?: string;
-    /**
-     * Whether or not the product is blocked for assignment
-     * @type {boolean}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    blockAssignment?: boolean;
-    /**
-     * Custom field used for store prioritization
-     * @type {number}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    ltd?: number;
-    /**
-     * Absolute minimum quantity of this item that should be in stock at any time
-     * @type {number}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    floor?: number;
-    /**
-     * Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
-     * @type {number}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    safetyStock?: number;
-    /**
-     * The distance in miles from this location to the item's destination
-     * @type {number}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    distance?: number;
-    /**
-     * Whether this location can ship to a consumer
-     * @type {boolean}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    directShip?: boolean;
-    /**
-     * Whether the location can ship to another location (store), thus restocking that location.
-     * @type {boolean}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    transferEnabled?: boolean;
-    /**
-     * Whether a consumer can pick up product at this location (store)
-     * @type {boolean}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    pickup?: boolean;
-    /**
-     * The country code of this location
-     * @type {string}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    countryCode?: string;
-    /**
-     * The currency identifier for the retailPrice
-     * @type {number}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    currencyID?: number;
-    /**
-     * The price of the product at this location
-     * @type {number}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    retailPrice?: number;
-    /**
-     * The inventory locator name of the individual item
-     * @type {string}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    inventoryLocatorName?: string;
-    /**
-     * List of Inventory Attributes
-     * @type {Array<string>}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    attributes?: Array<string>;
-    /**
-     * 
-     * @type {Array<InventoryTagQuantity>}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    taggedInventory?: Array<InventoryTagQuantity>;
-    /**
-     * 
-     * @type {Array<InventoryFutureInventory>}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    futureInventory?: Array<InventoryFutureInventory>;
-    /**
-     * External ID of the item
-     * @type {string}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    externalID?: string;
-}
-/**
- * Item
- * @export
- * @interface InventoryItem
- */
-export interface InventoryItem {
-    /**
-     * Part/Product Number
-     * @type {string}
-     * @memberof InventoryItem
-     */
-    partNumber?: string;
-    /**
-     * Universal Product Code
-     * @type {string}
-     * @memberof InventoryItem
-     */
-    upc?: string;
-    /**
-     * Stock Keeping Unit
-     * @type {string}
-     * @memberof InventoryItem
-     */
-    sku?: string;
-    /**
-     * Associative Map of <String, String> for tagCategoryName => tagName
-     * @type {{ [key: string]: string; }}
-     * @memberof InventoryItem
-     */
-    tags?: { [key: string]: string; };
+    updated?: string;
 }
 /**
  * Product within a bin
@@ -3732,47 +3490,324 @@ export const InventoryRequestAllOfSortByEnumEnum = {
 export type InventoryRequestAllOfSortByEnumEnum = typeof InventoryRequestAllOfSortByEnumEnum[keyof typeof InventoryRequestAllOfSortByEnumEnum];
 
 /**
- * Request/Response object for a tag
+ * Inventory Response
  * @export
- * @interface InventoryTag
+ * @interface InventoryResponse
  */
-export interface InventoryTag {
+export interface InventoryResponse {
     /**
-     * Tag ID
-     * @type {number}
-     * @memberof InventoryTag
-     */
-    tagID?: number;
-    /**
-     * Tag Value
+     * Location Name
      * @type {string}
-     * @memberof InventoryTag
+     * @memberof InventoryResponse
      */
-    tagValue?: string;
+    locationName?: string;
     /**
-     * Whether or not this tag is the default tag for its category.
+     * Location Code
+     * @type {string}
+     * @memberof InventoryResponse
+     */
+    locationCode?: string;
+    /**
+     * Tenant Identifier
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    tenantID?: number;
+    /**
+     * The quantity the location has in its possession
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    onHand?: number;
+    /**
+     * The quantity the location has that are available for purchase
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    available?: number;
+    /**
+     * The quantity the location has that are already allocated.
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    allocated?: number;
+    /**
+     * The quantity the location has that are pending.
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    pending?: number;
+    /**
+     * Part/Product Number
+     * @type {string}
+     * @memberof InventoryResponse
+     */
+    partNumber?: string;
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof InventoryResponse
+     */
+    upc?: string;
+    /**
+     * Stock Keeping Unit
+     * @type {string}
+     * @memberof InventoryResponse
+     */
+    sku?: string;
+    /**
+     * Whether or not the product is blocked for assignment
      * @type {boolean}
-     * @memberof InventoryTag
+     * @memberof InventoryResponse
      */
-    isDefault?: boolean;
+    blockAssignment?: boolean;
     /**
-     * Percentage of available inventory this tag will get when the percentage update is performed. Must be between 0 and 100 (inclusive).
+     * Custom field used for store prioritization
      * @type {number}
-     * @memberof InventoryTag
+     * @memberof InventoryResponse
      */
-    percent?: number;
+    ltd?: number;
     /**
-     * Date this tag was created
-     * @type {string}
-     * @memberof InventoryTag
+     * Absolute minimum quantity of this item that should be in stock at any time
+     * @type {number}
+     * @memberof InventoryResponse
      */
-    created?: string;
+    floor?: number;
     /**
-     * Date this tag was last updated
-     * @type {string}
-     * @memberof InventoryTag
+     * Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
+     * @type {number}
+     * @memberof InventoryResponse
      */
-    updated?: string;
+    safetyStock?: number;
+    /**
+     * The distance in miles from this location to the item's destination
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    distance?: number;
+    /**
+     * Whether this location can ship to a consumer
+     * @type {boolean}
+     * @memberof InventoryResponse
+     */
+    directShip?: boolean;
+    /**
+     * Whether the location can ship to another location (store), thus restocking that location.
+     * @type {boolean}
+     * @memberof InventoryResponse
+     */
+    transferEnabled?: boolean;
+    /**
+     * Whether a consumer can pick up product at this location (store)
+     * @type {boolean}
+     * @memberof InventoryResponse
+     */
+    pickup?: boolean;
+    /**
+     * The country code of this location
+     * @type {string}
+     * @memberof InventoryResponse
+     */
+    countryCode?: string;
+    /**
+     * The inventory locator name of the individual item
+     * @type {string}
+     * @memberof InventoryResponse
+     */
+    inventoryLocatorName?: string;
+    /**
+     * List of Inventory Attributes
+     * @type {Array<string>}
+     * @memberof InventoryResponse
+     */
+    attributes?: Array<string>;
+    /**
+     * 
+     * @type {Array<InventoryTagQuantity>}
+     * @memberof InventoryResponse
+     */
+    taggedInventory?: Array<InventoryTagQuantity>;
+    /**
+     * 
+     * @type {Array<InventoryFutureInventory>}
+     * @memberof InventoryResponse
+     */
+    futureInventory?: Array<InventoryFutureInventory>;
+    /**
+     * External ID of the item
+     * @type {string}
+     * @memberof InventoryResponse
+     */
+    externalID?: string;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof InventoryResponse
+     */
+    success?: boolean;
+    /**
+     * List of messages
+     * @type {Array<string>}
+     * @memberof InventoryResponse
+     */
+    messages?: Array<string>;
+    /**
+     * Number of results
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    numResults?: number;
+}
+/**
+ * 
+ * @export
+ * @interface InventoryResponseAllOf
+ */
+export interface InventoryResponseAllOf {
+    /**
+     * Location Name
+     * @type {string}
+     * @memberof InventoryResponseAllOf
+     */
+    locationName?: string;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof InventoryResponseAllOf
+     */
+    locationCode?: string;
+    /**
+     * Tenant Identifier
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    tenantID?: number;
+    /**
+     * The quantity the location has in its possession
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    onHand?: number;
+    /**
+     * The quantity the location has that are available for purchase
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    available?: number;
+    /**
+     * The quantity the location has that are already allocated.
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    allocated?: number;
+    /**
+     * The quantity the location has that are pending.
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    pending?: number;
+    /**
+     * Part/Product Number
+     * @type {string}
+     * @memberof InventoryResponseAllOf
+     */
+    partNumber?: string;
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof InventoryResponseAllOf
+     */
+    upc?: string;
+    /**
+     * Stock Keeping Unit
+     * @type {string}
+     * @memberof InventoryResponseAllOf
+     */
+    sku?: string;
+    /**
+     * Whether or not the product is blocked for assignment
+     * @type {boolean}
+     * @memberof InventoryResponseAllOf
+     */
+    blockAssignment?: boolean;
+    /**
+     * Custom field used for store prioritization
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    ltd?: number;
+    /**
+     * Absolute minimum quantity of this item that should be in stock at any time
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    floor?: number;
+    /**
+     * Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    safetyStock?: number;
+    /**
+     * The distance in miles from this location to the item's destination
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    distance?: number;
+    /**
+     * Whether this location can ship to a consumer
+     * @type {boolean}
+     * @memberof InventoryResponseAllOf
+     */
+    directShip?: boolean;
+    /**
+     * Whether the location can ship to another location (store), thus restocking that location.
+     * @type {boolean}
+     * @memberof InventoryResponseAllOf
+     */
+    transferEnabled?: boolean;
+    /**
+     * Whether a consumer can pick up product at this location (store)
+     * @type {boolean}
+     * @memberof InventoryResponseAllOf
+     */
+    pickup?: boolean;
+    /**
+     * The country code of this location
+     * @type {string}
+     * @memberof InventoryResponseAllOf
+     */
+    countryCode?: string;
+    /**
+     * The inventory locator name of the individual item
+     * @type {string}
+     * @memberof InventoryResponseAllOf
+     */
+    inventoryLocatorName?: string;
+    /**
+     * List of Inventory Attributes
+     * @type {Array<string>}
+     * @memberof InventoryResponseAllOf
+     */
+    attributes?: Array<string>;
+    /**
+     * 
+     * @type {Array<InventoryTagQuantity>}
+     * @memberof InventoryResponseAllOf
+     */
+    taggedInventory?: Array<InventoryTagQuantity>;
+    /**
+     * 
+     * @type {Array<InventoryFutureInventory>}
+     * @memberof InventoryResponseAllOf
+     */
+    futureInventory?: Array<InventoryFutureInventory>;
+    /**
+     * External ID of the item
+     * @type {string}
+     * @memberof InventoryResponseAllOf
+     */
+    externalID?: string;
 }
 /**
  * Response object for a tag quantity
@@ -3818,6 +3853,61 @@ export interface InventoryTagQuantity {
     futureInventory?: Array<InventoryFutureInventory>;
 }
 /**
+ * Item
+ * @export
+ * @interface Item
+ */
+export interface Item {
+    /**
+     * Part/Product Number
+     * @type {string}
+     * @memberof Item
+     */
+    partNumber?: string;
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof Item
+     */
+    upc?: string;
+    /**
+     * Stock Keeping Unit
+     * @type {string}
+     * @memberof Item
+     */
+    sku?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Item
+     */
+    condition?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Item
+     */
+    lotCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Item
+     */
+    date?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Item
+     */
+    serialNumber?: string;
+    /**
+     * Associative Map of <String, String> for tagCategoryName => tagName
+     * @type {{ [key: string]: string; }}
+     * @memberof Item
+     */
+    tags?: { [key: string]: string; };
+}
+/**
  * Item Quantity Model
  * @export
  * @interface ItemQuantity
@@ -3841,6 +3931,30 @@ export interface ItemQuantity {
      * @memberof ItemQuantity
      */
     sku?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemQuantity
+     */
+    condition?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemQuantity
+     */
+    lotCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemQuantity
+     */
+    date?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemQuantity
+     */
+    serialNumber?: string;
     /**
      * Quantity
      * @type {number}
@@ -4976,6 +5090,466 @@ export const MFetchFileConfigProductMappingEnum = {
 export type MFetchFileConfigProductMappingEnum = typeof MFetchFileConfigProductMappingEnum[keyof typeof MFetchFileConfigProductMappingEnum];
 
 /**
+ * Order Item Information
+ * @export
+ * @interface OrderItemInformation
+ */
+export interface OrderItemInformation {
+    /**
+     * Order Identifier
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    orderID?: number;
+    /**
+     * Order Item Identifier
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    orderItemID?: number;
+    /**
+     * Location Identifier
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    locationID?: number;
+    /**
+     * Flag for whether the location is active
+     * @type {boolean}
+     * @memberof OrderItemInformation
+     */
+    locationActive?: boolean;
+    /**
+     * External Store Identifier
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    locationCode?: number;
+    /**
+     * Location Name
+     * @type {string}
+     * @memberof OrderItemInformation
+     */
+    locationName?: string;
+    /**
+     * Bin Identifier
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    binID?: number;
+    /**
+     * Part/Product Number
+     * @type {string}
+     * @memberof OrderItemInformation
+     */
+    partNumber?: string;
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof OrderItemInformation
+     */
+    upc?: string;
+    /**
+     * Stock Keeping Unit
+     * @type {string}
+     * @memberof OrderItemInformation
+     */
+    sku?: string;
+    /**
+     * Custom field used for store prioritization
+     * @type {string}
+     * @memberof OrderItemInformation
+     */
+    ltd?: string;
+    /**
+     * Absolute minimum quantity of this item that should be in stock at any time
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    floor?: number;
+    /**
+     * Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    safetyStock?: number;
+    /**
+     * The quantity the location has in its possession
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    onHand?: number;
+    /**
+     * The quantity the location has that are available for purchase
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    available?: number;
+    /**
+     * The quantity the location has that are allocated
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    allocated?: number;
+    /**
+     * Total number of allocations
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    allocates?: number;
+    /**
+     * Total number of deallocations
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    deallocates?: number;
+    /**
+     * Total number of fulfillments. Should never be greater than 1.
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    fulfills?: number;
+    /**
+     * Total number of picks (WMS only)
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    picks?: number;
+    /**
+     * Pending quantity (WMS only)
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    pendingQuantity?: number;
+    /**
+     * Order Identifier
+     * @type {Array<OrderItemInformationEvent>}
+     * @memberof OrderItemInformation
+     */
+    events?: Array<OrderItemInformationEvent>;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof OrderItemInformation
+     */
+    success?: boolean;
+    /**
+     * List of messages
+     * @type {Array<string>}
+     * @memberof OrderItemInformation
+     */
+    messages?: Array<string>;
+    /**
+     * Number of results
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    numResults?: number;
+}
+/**
+ * 
+ * @export
+ * @interface OrderItemInformationAllOf
+ */
+export interface OrderItemInformationAllOf {
+    /**
+     * Order Identifier
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    orderID?: number;
+    /**
+     * Order Item Identifier
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    orderItemID?: number;
+    /**
+     * Location Identifier
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    locationID?: number;
+    /**
+     * Flag for whether the location is active
+     * @type {boolean}
+     * @memberof OrderItemInformationAllOf
+     */
+    locationActive?: boolean;
+    /**
+     * External Store Identifier
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    locationCode?: number;
+    /**
+     * Location Name
+     * @type {string}
+     * @memberof OrderItemInformationAllOf
+     */
+    locationName?: string;
+    /**
+     * Bin Identifier
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    binID?: number;
+    /**
+     * Part/Product Number
+     * @type {string}
+     * @memberof OrderItemInformationAllOf
+     */
+    partNumber?: string;
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof OrderItemInformationAllOf
+     */
+    upc?: string;
+    /**
+     * Stock Keeping Unit
+     * @type {string}
+     * @memberof OrderItemInformationAllOf
+     */
+    sku?: string;
+    /**
+     * Custom field used for store prioritization
+     * @type {string}
+     * @memberof OrderItemInformationAllOf
+     */
+    ltd?: string;
+    /**
+     * Absolute minimum quantity of this item that should be in stock at any time
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    floor?: number;
+    /**
+     * Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    safetyStock?: number;
+    /**
+     * The quantity the location has in its possession
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    onHand?: number;
+    /**
+     * The quantity the location has that are available for purchase
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    available?: number;
+    /**
+     * The quantity the location has that are allocated
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    allocated?: number;
+    /**
+     * Total number of allocations
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    allocates?: number;
+    /**
+     * Total number of deallocations
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    deallocates?: number;
+    /**
+     * Total number of fulfillments. Should never be greater than 1.
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    fulfills?: number;
+    /**
+     * Total number of picks (WMS only)
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    picks?: number;
+    /**
+     * Pending quantity (WMS only)
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    pendingQuantity?: number;
+    /**
+     * Order Identifier
+     * @type {Array<OrderItemInformationEvent>}
+     * @memberof OrderItemInformationAllOf
+     */
+    events?: Array<OrderItemInformationEvent>;
+}
+/**
+ * Order Item Information Event
+ * @export
+ * @interface OrderItemInformationEvent
+ */
+export interface OrderItemInformationEvent {
+    /**
+     * Date of the event
+     * @type {string}
+     * @memberof OrderItemInformationEvent
+     */
+    date?: string;
+    /**
+     * Type of event
+     * @type {string}
+     * @memberof OrderItemInformationEvent
+     */
+    eventType?: OrderItemInformationEventEventTypeEnum;
+    /**
+     * Quantity
+     * @type {number}
+     * @memberof OrderItemInformationEvent
+     */
+    quantity?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof OrderItemInformationEvent
+     */
+    success?: boolean;
+    /**
+     * List of messages
+     * @type {Array<string>}
+     * @memberof OrderItemInformationEvent
+     */
+    messages?: Array<string>;
+    /**
+     * Number of results
+     * @type {number}
+     * @memberof OrderItemInformationEvent
+     */
+    numResults?: number;
+}
+
+
+/**
+ * @export
+ */
+export const OrderItemInformationEventEventTypeEnum = {
+    Allocated: 'ALLOCATED',
+    Deallocated: 'DEALLOCATED',
+    Fulfilled: 'FULFILLED',
+    Picked: 'PICKED',
+    DeallocateFulfill: 'DEALLOCATE_FULFILL'
+} as const;
+export type OrderItemInformationEventEventTypeEnum = typeof OrderItemInformationEventEventTypeEnum[keyof typeof OrderItemInformationEventEventTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface OrderItemInformationEventAllOf
+ */
+export interface OrderItemInformationEventAllOf {
+    /**
+     * Date of the event
+     * @type {string}
+     * @memberof OrderItemInformationEventAllOf
+     */
+    date?: string;
+    /**
+     * Type of event
+     * @type {string}
+     * @memberof OrderItemInformationEventAllOf
+     */
+    eventType?: OrderItemInformationEventAllOfEventTypeEnum;
+    /**
+     * Quantity
+     * @type {number}
+     * @memberof OrderItemInformationEventAllOf
+     */
+    quantity?: number;
+}
+
+
+/**
+ * @export
+ */
+export const OrderItemInformationEventAllOfEventTypeEnum = {
+    Allocated: 'ALLOCATED',
+    Deallocated: 'DEALLOCATED',
+    Fulfilled: 'FULFILLED',
+    Picked: 'PICKED',
+    DeallocateFulfill: 'DEALLOCATE_FULFILL'
+} as const;
+export type OrderItemInformationEventAllOfEventTypeEnum = typeof OrderItemInformationEventAllOfEventTypeEnum[keyof typeof OrderItemInformationEventAllOfEventTypeEnum];
+
+/**
+ * Request for getting order item information
+ * @export
+ * @interface OrderItemInformationRequest
+ */
+export interface OrderItemInformationRequest {
+    /**
+     * Order Identifier
+     * @type {number}
+     * @memberof OrderItemInformationRequest
+     */
+    orderID?: number;
+    /**
+     * List of Items to search on
+     * @type {Array<Item>}
+     * @memberof OrderItemInformationRequest
+     */
+    items?: Array<Item>;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof OrderItemInformationRequest
+     */
+    locationCode?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof OrderItemInformationRequest
+     */
+    userID?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof OrderItemInformationRequest
+     */
+    pageSize?: number;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof OrderItemInformationRequest
+     */
+    pageNum?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof OrderItemInformationRequest
+     */
+    sortBy?: string;
+}
+/**
+ * 
+ * @export
+ * @interface OrderItemInformationRequestAllOf
+ */
+export interface OrderItemInformationRequestAllOf {
+    /**
+     * Order Identifier
+     * @type {number}
+     * @memberof OrderItemInformationRequestAllOf
+     */
+    orderID?: number;
+    /**
+     * List of Items to search on
+     * @type {Array<Item>}
+     * @memberof OrderItemInformationRequestAllOf
+     */
+    items?: Array<Item>;
+}
+/**
  * Product Identifier Model
  * @export
  * @interface ProductIdentifier
@@ -5297,6 +5871,36 @@ export interface RefreshItem {
      */
     binID?: number;
     /**
+     * Track which lot a product is manufactured in
+     * @type {string}
+     * @memberof RefreshItem
+     */
+    lotCode?: string;
+    /**
+     * Describes the state of the product
+     * @type {string}
+     * @memberof RefreshItem
+     */
+    condition?: string;
+    /**
+     * A serial number unique to a specific, physical unit of inventory
+     * @type {string}
+     * @memberof RefreshItem
+     */
+    serialNumber?: string;
+    /**
+     * Date related to manufacturing, expiry, or use-by
+     * @type {string}
+     * @memberof RefreshItem
+     */
+    date?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RefreshItem
+     */
+    readonly granularInventoryTrackingEnabled?: boolean;
+    /**
      * Custom field used for store prioritization
      * @type {number}
      * @memberof RefreshItem
@@ -5320,18 +5924,6 @@ export interface RefreshItem {
      * @memberof RefreshItem
      */
     quantity?: number;
-    /**
-     * Stock Keeping Unit
-     * @type {number}
-     * @memberof RefreshItem
-     */
-    retailPrice?: number;
-    /**
-     * The price of the item
-     * @type {number}
-     * @memberof RefreshItem
-     */
-    currencyID?: number;
     /**
      * The inventory locator name of the item
      * @type {string}
@@ -5592,10 +6184,10 @@ export interface TagCategory {
     deletionJobIds?: Array<number>;
     /**
      * Tags within this category
-     * @type {Array<InventoryTag>}
+     * @type {Array<InventoryInventoryTag>}
      * @memberof TagCategory
      */
-    tags?: Array<InventoryTag>;
+    tags?: Array<InventoryInventoryTag>;
 }
 /**
  * Model of a tenant silo config.
@@ -5676,6 +6268,12 @@ export interface TransitionCartItem {
      * @memberof TransitionCartItem
      */
     shipmentID: number;
+    /**
+     * If provided, overrides the order item ID (orderItemID) in the db records
+     * @type {number}
+     * @memberof TransitionCartItem
+     */
+    transitionItemID?: number;
 }
 /**
  * Request needed for transitioning cart allocations to order/shipment allocations

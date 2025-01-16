@@ -18,8 +18,8 @@ import { basePathTemplate } from '../api-path';
 import type {
   AggregateRequest,
   AggregateResponse,
-  InventoryInventoryResponse,
   InventoryRequest,
+  InventoryResponse,
 } from '../models';
 
 
@@ -62,13 +62,13 @@ export interface InventoryApiService {
     * @throws {RequiredError}
     * @memberof InventoryApiInterface
     */
-    postQueryInventoryRaw(requestParameters: inventoryApiParams.PostQueryInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<InventoryInventoryResponse>>>;
+    postQueryInventoryRaw(requestParameters: inventoryApiParams.PostQueryInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<InventoryResponse>>>;
 
     /**
     * Queries for specified inventory at given location
     * Post Query Inventory
     */
-    postQueryInventory(requestParameters: inventoryApiParams.PostQueryInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<InventoryInventoryResponse>>;
+    postQueryInventory(requestParameters: inventoryApiParams.PostQueryInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<InventoryResponse>>;
 
 }
 
@@ -130,7 +130,7 @@ export class InventoryApi extends runtime.BaseAPI implements InventoryApiService
      */
 
 
-    async postQueryInventoryRaw(requestParameters: inventoryApiParams.PostQueryInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<InventoryInventoryResponse>>> {
+    async postQueryInventoryRaw(requestParameters: inventoryApiParams.PostQueryInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<InventoryResponse>>> {
         if (requestParameters.inventoryRequest === null || requestParameters.inventoryRequest === undefined) {
             throw new runtime.RequiredError('inventoryRequest','Required parameter requestParameters.inventoryRequest was null or undefined when calling postQueryInventory.');
         }
@@ -162,7 +162,7 @@ export class InventoryApi extends runtime.BaseAPI implements InventoryApiService
      * Queries for specified inventory at given location
      * Post Query Inventory
      */
-    async postQueryInventory(requestParameters: inventoryApiParams.PostQueryInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<InventoryInventoryResponse>> {
+    async postQueryInventory(requestParameters: inventoryApiParams.PostQueryInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<InventoryResponse>> {
         const response = await this.postQueryInventoryRaw(requestParameters, initOverrides);
         return await response.value();
     }

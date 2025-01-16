@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Api Documentation
- * Api Documentation
+ * Order Routing
+ * Order Routing API
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -16,6 +16,7 @@
 import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
 import type {
+  APIErrorResponse,
   CustomDataList,
   CustomDataListResponse,
 } from '../models';
@@ -23,17 +24,20 @@ import type {
 
 export namespace orderRoutingDataListApiParams { 
     export interface CreateCustomDataListRequest {
+        xVolTenant: number;
+        xVolSite: number;
         customDataList: CustomDataList;
-    }
-    export interface DeleteCustomDataListRequest {
-        dataListID: number;
     }
     export interface GetCustomDataListRequest {
         dataListID: number;
+        xVolTenant: number;
+        xVolSite: number;
     }
     export interface UpdateCustomDataListRequest {
         dataListID: number;
-        newDataList: CustomDataList;
+        xVolTenant: number;
+        xVolSite: number;
+        customDataList: CustomDataList;
     }
 }
 /**
@@ -44,9 +48,11 @@ export namespace orderRoutingDataListApiParams {
 */
 export interface OrderRoutingDataListApiService {
     /**
-    * createCustomDataList
-    * @summary createCustomDataList
-    * @param {CustomDataList} customDataList customDataList
+    * Create Custom Data List
+    * @summary Create Custom Data List
+    * @param {number} xVolTenant Tenant
+    * @param {number} xVolSite Site
+    * @param {CustomDataList} customDataList 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof OrderRoutingDataListApiInterface
@@ -54,31 +60,17 @@ export interface OrderRoutingDataListApiService {
     createCustomDataListRaw(requestParameters: orderRoutingDataListApiParams.CreateCustomDataListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDataListResponse>>;
 
     /**
-    * createCustomDataList
-    * createCustomDataList
+    * Create Custom Data List
+    * Create Custom Data List
     */
     createCustomDataList(requestParameters: orderRoutingDataListApiParams.CreateCustomDataListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDataListResponse>;
 
     /**
-    * deleteCustomDataList
-    * @summary deleteCustomDataList
-    * @param {number} dataListID dataListID
-    * @param {*} [options] Override http request option.
-    * @throws {RequiredError}
-    * @memberof OrderRoutingDataListApiInterface
-    */
-    deleteCustomDataListRaw(requestParameters: orderRoutingDataListApiParams.DeleteCustomDataListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-    * deleteCustomDataList
-    * deleteCustomDataList
-    */
-    deleteCustomDataList(requestParameters: orderRoutingDataListApiParams.DeleteCustomDataListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-    * getCustomDataList
-    * @summary getCustomDataList
-    * @param {number} dataListID dataListID
+    * Get Custom Data List
+    * @summary Get Custom Data List
+    * @param {number} dataListID 
+    * @param {number} xVolTenant Tenant
+    * @param {number} xVolSite Site
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof OrderRoutingDataListApiInterface
@@ -86,16 +78,18 @@ export interface OrderRoutingDataListApiService {
     getCustomDataListRaw(requestParameters: orderRoutingDataListApiParams.GetCustomDataListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDataListResponse>>;
 
     /**
-    * getCustomDataList
-    * getCustomDataList
+    * Get Custom Data List
+    * Get Custom Data List
     */
     getCustomDataList(requestParameters: orderRoutingDataListApiParams.GetCustomDataListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDataListResponse>;
 
     /**
-    * updateCustomDataList
-    * @summary updateCustomDataList
-    * @param {number} dataListID dataListID
-    * @param {CustomDataList} newDataList newDataList
+    * Update Custom Data List
+    * @summary Update Custom Data List
+    * @param {number} dataListID 
+    * @param {number} xVolTenant Tenant
+    * @param {number} xVolSite Site
+    * @param {CustomDataList} customDataList 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof OrderRoutingDataListApiInterface
@@ -103,8 +97,8 @@ export interface OrderRoutingDataListApiService {
     updateCustomDataListRaw(requestParameters: orderRoutingDataListApiParams.UpdateCustomDataListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDataListResponse>>;
 
     /**
-    * updateCustomDataList
-    * updateCustomDataList
+    * Update Custom Data List
+    * Update Custom Data List
     */
     updateCustomDataList(requestParameters: orderRoutingDataListApiParams.UpdateCustomDataListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDataListResponse>;
 
@@ -120,12 +114,20 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI implements OrderRou
         this.basePathTemplate = basePathTemplate
     }
     /**
-     * createCustomDataList
-     * createCustomDataList
+     * Create Custom Data List
+     * Create Custom Data List
      */
 
 
     async createCustomDataListRaw(requestParameters: orderRoutingDataListApiParams.CreateCustomDataListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDataListResponse>> {
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling createCustomDataList.');
+        }
+
+        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
+            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling createCustomDataList.');
+        }
+
         if (requestParameters.customDataList === null || requestParameters.customDataList === undefined) {
             throw new runtime.RequiredError('customDataList','Required parameter requestParameters.customDataList was null or undefined when calling createCustomDataList.');
         }
@@ -135,6 +137,14 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI implements OrderRou
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
+
+        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
+            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
+        }
 
 
 
@@ -154,8 +164,8 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI implements OrderRou
     }
 
     /**
-     * createCustomDataList
-     * createCustomDataList
+     * Create Custom Data List
+     * Create Custom Data List
      */
     async createCustomDataList(requestParameters: orderRoutingDataListApiParams.CreateCustomDataListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDataListResponse> {
         const response = await this.createCustomDataListRaw(requestParameters, initOverrides);
@@ -163,47 +173,8 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI implements OrderRou
     }
 
     /**
-     * deleteCustomDataList
-     * deleteCustomDataList
-     */
-
-
-    async deleteCustomDataListRaw(requestParameters: orderRoutingDataListApiParams.DeleteCustomDataListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.dataListID === null || requestParameters.dataListID === undefined) {
-            throw new runtime.RequiredError('dataListID','Required parameter requestParameters.dataListID was null or undefined when calling deleteCustomDataList.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-
-
-
-
-        await this.addAuthorizationHeaders(headerParameters)
-        
-        const response = await this.request({
-            path: `/commerce/orders/orderrouting/api/v1/dataList/{dataListID}`.replace(`{${"dataListID"}}`, encodeURIComponent(String(requestParameters.dataListID))),
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * deleteCustomDataList
-     * deleteCustomDataList
-     */
-    async deleteCustomDataList(requestParameters: orderRoutingDataListApiParams.DeleteCustomDataListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.deleteCustomDataListRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * getCustomDataList
-     * getCustomDataList
+     * Get Custom Data List
+     * Get Custom Data List
      */
 
 
@@ -212,9 +183,25 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI implements OrderRou
             throw new runtime.RequiredError('dataListID','Required parameter requestParameters.dataListID was null or undefined when calling getCustomDataList.');
         }
 
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getCustomDataList.');
+        }
+
+        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
+            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling getCustomDataList.');
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
+
+        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
+            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
+        }
 
 
 
@@ -233,8 +220,8 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI implements OrderRou
     }
 
     /**
-     * getCustomDataList
-     * getCustomDataList
+     * Get Custom Data List
+     * Get Custom Data List
      */
     async getCustomDataList(requestParameters: orderRoutingDataListApiParams.GetCustomDataListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDataListResponse> {
         const response = await this.getCustomDataListRaw(requestParameters, initOverrides);
@@ -242,8 +229,8 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI implements OrderRou
     }
 
     /**
-     * updateCustomDataList
-     * updateCustomDataList
+     * Update Custom Data List
+     * Update Custom Data List
      */
 
 
@@ -252,8 +239,16 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI implements OrderRou
             throw new runtime.RequiredError('dataListID','Required parameter requestParameters.dataListID was null or undefined when calling updateCustomDataList.');
         }
 
-        if (requestParameters.newDataList === null || requestParameters.newDataList === undefined) {
-            throw new runtime.RequiredError('newDataList','Required parameter requestParameters.newDataList was null or undefined when calling updateCustomDataList.');
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateCustomDataList.');
+        }
+
+        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
+            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling updateCustomDataList.');
+        }
+
+        if (requestParameters.customDataList === null || requestParameters.customDataList === undefined) {
+            throw new runtime.RequiredError('customDataList','Required parameter requestParameters.customDataList was null or undefined when calling updateCustomDataList.');
         }
 
         const queryParameters: any = {};
@@ -261,6 +256,14 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI implements OrderRou
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
+
+        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
+            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
+        }
 
 
 
@@ -273,15 +276,15 @@ export class OrderRoutingDataListApi extends runtime.BaseAPI implements OrderRou
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters.newDataList,
+            body: requestParameters.customDataList,
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response);
     }
 
     /**
-     * updateCustomDataList
-     * updateCustomDataList
+     * Update Custom Data List
+     * Update Custom Data List
      */
     async updateCustomDataList(requestParameters: orderRoutingDataListApiParams.UpdateCustomDataListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDataListResponse> {
         const response = await this.updateCustomDataListRaw(requestParameters, initOverrides);

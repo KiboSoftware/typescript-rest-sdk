@@ -17,8 +17,8 @@ import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
 import type {
   CatalogAdminsDiscount,
+  CatalogAdminsDiscountCollection,
   CatalogAdminsDiscountTarget,
-  DiscountCollection,
   DiscountLocalizedContent,
   DiscountTag,
   DiscountTagCollection,
@@ -203,13 +203,13 @@ export interface DiscountsApiService {
     * @throws {RequiredError}
     * @memberof DiscountsApiInterface
     */
-    getDiscountsRaw(requestParameters: discountsApiParams.GetDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountCollection>>;
+    getDiscountsRaw(requestParameters: discountsApiParams.GetDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscountCollection>>;
 
     /**
     * Retrieves a list of discounts according to any specified filter criteria and sort options.
     * Get discounts
     */
-    getDiscounts(requestParameters: discountsApiParams.GetDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountCollection>;
+    getDiscounts(requestParameters: discountsApiParams.GetDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscountCollection>;
 
     /**
     * Retrieves all tags associated to a discount
@@ -574,7 +574,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
      */
 
 
-    async getDiscountsRaw(requestParameters: discountsApiParams.GetDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscountCollection>> {
+    async getDiscountsRaw(requestParameters: discountsApiParams.GetDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscountCollection>> {
         const queryParameters: any = {};
 
         if (requestParameters.startIndex !== undefined) {
@@ -623,7 +623,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
      * Retrieves a list of discounts according to any specified filter criteria and sort options.
      * Get discounts
      */
-    async getDiscounts(requestParameters: discountsApiParams.GetDiscountsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountCollection> {
+    async getDiscounts(requestParameters: discountsApiParams.GetDiscountsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscountCollection> {
         const response = await this.getDiscountsRaw(requestParameters, initOverrides);
         return await response.value();
     }

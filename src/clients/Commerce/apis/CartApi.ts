@@ -22,6 +22,7 @@ import type {
   CartItemCollection,
   CartSummary,
   ExtendedProperty,
+  ItemQuantityUpdate,
 } from '../models';
 
 
@@ -77,6 +78,7 @@ export namespace cartApiParams {
     }
     export interface DeleteUserCartRequest {
         userId: string;
+        accountId?: number;
     }
     export interface GetCartRequest {
         cartId: string;
@@ -116,14 +118,17 @@ export namespace cartApiParams {
     }
     export interface GetOrCreateUserCartRequest {
         userId: string;
+        accountId?: number;
         responseFields?: string;
     }
     export interface GetUserCartRequest {
         userId: string;
+        accountId?: number;
         responseFields?: string;
     }
     export interface GetUserCartSummaryRequest {
         userId: string;
+        accountId?: number;
         responseFields?: string;
     }
     export interface RejectSuggestedDiscountRequest {
@@ -170,12 +175,14 @@ export namespace cartApiParams {
         cartItemId: string;
         quantity: number;
         responseFields?: string;
+        itemQuantityUpdate?: ItemQuantityUpdate;
     }
     export interface UpdateCartItemQuantityByCartIdRequest {
         cartId: string;
         cartItemId: string;
         quantity: number;
         responseFields?: string;
+        itemQuantityUpdate?: ItemQuantityUpdate;
     }
     export interface UpdateExtendedPropertiesRequest {
         upsert?: boolean;
@@ -190,6 +197,7 @@ export namespace cartApiParams {
     }
     export interface UpdateUserCartRequest {
         userId: string;
+        accountId?: number;
         responseFields?: string;
         cart?: Cart;
     }
@@ -412,6 +420,7 @@ export interface CartApiService {
     * Deletes the cart of the user by user ID.
     * @summary Delete User Cart
     * @param {string} userId Unique identifier of the user.
+    * @param {number} [accountId] Unique identifier of the customer account.
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof CartApiInterface
@@ -594,6 +603,7 @@ export interface CartApiService {
     * Get the current cart or create a new cart for the user specified by user ID.
     * @summary Get Or Create User Cart
     * @param {string} userId Unique identifier of the user.
+    * @param {number} [accountId] Unique identifier of the customer account.
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -611,6 +621,7 @@ export interface CartApiService {
     * Retrieves the details of the user\'s cart from the user ID.Shoppers are not allowed to execute this call. If this ever changes, then auth logic will need to be added
     * @summary Get User Cart
     * @param {string} userId Unique identifier of the user.
+    * @param {number} [accountId] Unique identifier of the customer account.
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -628,6 +639,7 @@ export interface CartApiService {
     * Retrieves the number of items in the active cart, total cost of items in the cart and the cart expiration by userId. All anonymous idle carts that do not proceed to checkout expire after 14 days.
     * @summary Get User Cart Summary
     * @param {string} userId Unique identifier of the user.
+    * @param {number} [accountId] Unique identifier of the customer account.
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -834,6 +846,7 @@ export interface CartApiService {
     * @param {string} cartItemId Unique identifier of the cart item.
     * @param {number} quantity New quantity for the specified cart item.
     * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ItemQuantityUpdate} [itemQuantityUpdate] Update fields on the item.
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof CartApiInterface
@@ -853,6 +866,7 @@ export interface CartApiService {
     * @param {string} cartItemId Unique identifier of the cart item.
     * @param {number} quantity New quantity for the specified cart item.
     * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ItemQuantityUpdate} [itemQuantityUpdate] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof CartApiInterface
@@ -906,6 +920,7 @@ export interface CartApiService {
     * Updates the cart of the user specified by user ID.
     * @summary Update User Cart
     * @param {string} userId Unique identifier of the user.
+    * @param {number} [accountId] Unique identifier of the customer account.
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {Cart} [cart] All properties of the cart to update. Required property: Product.ProductCode.
     * @param {*} [options] Override http request option.
@@ -1470,6 +1485,10 @@ export class CartApi extends runtime.BaseAPI implements CartApiService {
 
         const queryParameters: any = {};
 
+        if (requestParameters.accountId !== undefined) {
+            queryParameters['accountId'] = requestParameters.accountId;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
 
@@ -1479,7 +1498,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiService {
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
-            path: `/commerce/carts/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/commerce/carts/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -1933,6 +1952,10 @@ export class CartApi extends runtime.BaseAPI implements CartApiService {
 
         const queryParameters: any = {};
 
+        if (requestParameters.accountId !== undefined) {
+            queryParameters['accountId'] = requestParameters.accountId;
+        }
+
         if (requestParameters.responseFields !== undefined) {
             queryParameters['responseFields'] = requestParameters.responseFields;
         }
@@ -1977,6 +2000,10 @@ export class CartApi extends runtime.BaseAPI implements CartApiService {
 
         const queryParameters: any = {};
 
+        if (requestParameters.accountId !== undefined) {
+            queryParameters['accountId'] = requestParameters.accountId;
+        }
+
         if (requestParameters.responseFields !== undefined) {
             queryParameters['responseFields'] = requestParameters.responseFields;
         }
@@ -2020,6 +2047,10 @@ export class CartApi extends runtime.BaseAPI implements CartApiService {
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters.accountId !== undefined) {
+            queryParameters['accountId'] = requestParameters.accountId;
+        }
 
         if (requestParameters.responseFields !== undefined) {
             queryParameters['responseFields'] = requestParameters.responseFields;
@@ -2553,6 +2584,8 @@ export class CartApi extends runtime.BaseAPI implements CartApiService {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        headerParameters['Content-Type'] = 'application/json';
+
 
 
 
@@ -2564,6 +2597,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiService {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
+            body: requestParameters.itemQuantityUpdate,
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response);
@@ -2605,6 +2639,8 @@ export class CartApi extends runtime.BaseAPI implements CartApiService {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        headerParameters['Content-Type'] = 'application/json';
+
 
 
 
@@ -2616,6 +2652,7 @@ export class CartApi extends runtime.BaseAPI implements CartApiService {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
+            body: requestParameters.itemQuantityUpdate,
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response);
@@ -2740,6 +2777,10 @@ export class CartApi extends runtime.BaseAPI implements CartApiService {
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters.accountId !== undefined) {
+            queryParameters['accountId'] = requestParameters.accountId;
+        }
 
         if (requestParameters.responseFields !== undefined) {
             queryParameters['responseFields'] = requestParameters.responseFields;

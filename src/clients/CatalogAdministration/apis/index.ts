@@ -4,6 +4,7 @@ export * from './CategoriesApi';
 export * from './CategoryAttributeDefinitionApi';
 export * from './CouponSetsApi';
 export * from './CurrencyApi';
+export * from './DiscountApi';
 export * from './DiscountSettingsApi';
 export * from './DiscountsApi';
 export * from './FacetsApi';

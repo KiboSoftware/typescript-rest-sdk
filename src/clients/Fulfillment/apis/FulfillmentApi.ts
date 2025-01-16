@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Kibo Fulfillment API - Production Profile
- * REST API backing the Kibo Fulfiller User Interface
+ * Kibo Fulfillment Service
+ * OpenAPI Spec for Kibo Fulfillment Service
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -15,6 +15,10 @@
 
 import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
+import type {
+  ErrorItem,
+  RemoveSpecificShipmentFromConsolidationGroup400Response,
+} from '../models';
 
 
 export namespace fulfillmentApiParams { 
@@ -27,8 +31,8 @@ export namespace fulfillmentApiParams {
 */
 export interface FulfillmentApiService {
     /**
-    * getFeatures
-    * @summary getFeatures
+    * Get Fulfillment Feature Flags
+    * @summary Get Fulfillment Feature Flags
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof FulfillmentApiInterface
@@ -36,14 +40,14 @@ export interface FulfillmentApiService {
     getFeaturesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>>;
 
     /**
-    * getFeatures
-    * getFeatures
+    * Get Fulfillment Feature Flags
+    * Get Fulfillment Feature Flags
     */
     getFeatures(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }>;
 
     /**
-    * getPublicSettings
-    * @summary getPublicSettings
+    * Get Public Settings
+    * @summary Get Public Settings
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof FulfillmentApiInterface
@@ -51,14 +55,14 @@ export interface FulfillmentApiService {
     getPublicSettingsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>>;
 
     /**
-    * getPublicSettings
-    * getPublicSettings
+    * Get Public Settings
+    * Get Public Settings
     */
     getPublicSettings(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }>;
 
     /**
-    * getTenantAttributes
-    * @summary getTenantAttributes
+    * Get Fulfillment Tenant Attributes
+    * @summary Get Fulfillment Tenant Attributes
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof FulfillmentApiInterface
@@ -66,8 +70,8 @@ export interface FulfillmentApiService {
     getTenantAttributesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<{ [key: string]: object; }>>;
 
     /**
-    * getTenantAttributes
-    * getTenantAttributes
+    * Get Fulfillment Tenant Attributes
+    * Get Fulfillment Tenant Attributes
     */
     getTenantAttributes(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }>;
 
@@ -83,8 +87,8 @@ export class FulfillmentApi extends runtime.BaseAPI implements FulfillmentApiSer
         this.basePathTemplate = basePathTemplate
     }
     /**
-     * getFeatures
-     * getFeatures
+     * Get Fulfillment Feature Flags
+     * Get Fulfillment Feature Flags
      */
 
 
@@ -110,8 +114,8 @@ export class FulfillmentApi extends runtime.BaseAPI implements FulfillmentApiSer
     }
 
     /**
-     * getFeatures
-     * getFeatures
+     * Get Fulfillment Feature Flags
+     * Get Fulfillment Feature Flags
      */
     async getFeatures(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }> {
         const response = await this.getFeaturesRaw(initOverrides);
@@ -119,8 +123,8 @@ export class FulfillmentApi extends runtime.BaseAPI implements FulfillmentApiSer
     }
 
     /**
-     * getPublicSettings
-     * getPublicSettings
+     * Get Public Settings
+     * Get Public Settings
      */
 
 
@@ -146,8 +150,8 @@ export class FulfillmentApi extends runtime.BaseAPI implements FulfillmentApiSer
     }
 
     /**
-     * getPublicSettings
-     * getPublicSettings
+     * Get Public Settings
+     * Get Public Settings
      */
     async getPublicSettings(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }> {
         const response = await this.getPublicSettingsRaw(initOverrides);
@@ -155,8 +159,8 @@ export class FulfillmentApi extends runtime.BaseAPI implements FulfillmentApiSer
     }
 
     /**
-     * getTenantAttributes
-     * getTenantAttributes
+     * Get Fulfillment Tenant Attributes
+     * Get Fulfillment Tenant Attributes
      */
 
 
@@ -182,8 +186,8 @@ export class FulfillmentApi extends runtime.BaseAPI implements FulfillmentApiSer
     }
 
     /**
-     * getTenantAttributes
-     * getTenantAttributes
+     * Get Fulfillment Tenant Attributes
+     * Get Fulfillment Tenant Attributes
      */
     async getTenantAttributes(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<{ [key: string]: object; }> {
         const response = await this.getTenantAttributesRaw(initOverrides);

@@ -8,6 +8,7 @@ apis/InventoryFutureDateApi.ts
 apis/InventoryJobApi.ts
 apis/InventoryLocationApi.ts
 apis/InventoryLocationGroupApi.ts
+apis/InventoryOrderItemApi.ts
 apis/InventorySiloApi.ts
 apis/InventoryTagApi.ts
 apis/InventoryTagCategoryApi.ts

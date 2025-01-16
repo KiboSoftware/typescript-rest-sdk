@@ -40,6 +40,73 @@ export interface AbstractFulfillmentItem {
 /**
  * 
  * @export
+ * @interface Address
+ */
+export interface Address {
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    address1?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    address2?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    address3?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    address4?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    cityOrTown?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    stateOrProvince?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    postalOrZipCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    countryCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    addressType?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Address
+     */
+    isValidated?: boolean | null;
+}
+/**
+ * 
+ * @export
  * @interface Adjustment
  */
 export interface Adjustment {
@@ -174,6 +241,12 @@ export interface AppliedProductDiscount {
      * @memberof AppliedProductDiscount
      */
     excluded?: boolean | null;
+    /**
+     * Stores any custom data sent from external discounts.
+     * @type {object}
+     * @memberof AppliedProductDiscount
+     */
+    data?: object | null;
 }
 /**
  * Customer's payment details such as payment type (credit card, check by mail, or PayPal)
@@ -197,10 +270,10 @@ export interface BillingInfo {
     paymentWorkflow?: string | null;
     /**
      * 
-     * @type {CommerceRuntimeContact}
+     * @type {Contact}
      * @memberof BillingInfo
      */
-    billingContact?: CommerceRuntimeContact;
+    billingContact?: Contact;
     /**
      * Indicates that billing and shipping address are the same
      * @type {boolean}
@@ -281,6 +354,452 @@ export interface BillingInfo {
      * @memberof BillingInfo
      */
     data?: object | null;
+}
+/**
+ * 
+ * @export
+ * @interface CanceledItem
+ */
+export interface CanceledItem {
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    originalQuantity?: number | null;
+    /**
+     * 
+     * @type {CanceledReason}
+     * @memberof CanceledItem
+     */
+    canceledReason?: CanceledReason;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof CanceledItem
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    lineId?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    originalOrderItemId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    parentId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    productCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    variationProductCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    optionAttributeFQN?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    name?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    fulfillmentLocationCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    imageUrl?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CanceledItem
+     */
+    isTaxable?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    quantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    unitPrice?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    actualPrice?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    overridePrice?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    itemDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    lineItemCost?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    itemTax?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    shipping?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    shippingDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    shippingTax?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    handling?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    handlingDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    handlingTax?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    duty?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CanceledItem
+     */
+    isPackagedStandAlone?: boolean | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    readyForPickupQuantity?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    backorderReleaseDate?: string | null;
+    /**
+     * 
+     * @type {CommerceRuntimePackageMeasurements}
+     * @memberof CanceledItem
+     */
+    measurements?: CommerceRuntimePackageMeasurements;
+    /**
+     * 
+     * @type {Array<CommerceRuntimeProductOption>}
+     * @memberof CanceledItem
+     */
+    options?: Array<CommerceRuntimeProductOption> | null;
+    /**
+     * 
+     * @type {object}
+     * @memberof CanceledItem
+     */
+    data?: object | null;
+    /**
+     * 
+     * @type {object}
+     * @memberof CanceledItem
+     */
+    taxData?: object | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    weightedShipmentAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    weightedLineItemTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    weightedShippingAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    weightedShippingTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    weightedHandlingAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    weightedHandlingTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    weightedDutyAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    taxableShipping?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    taxableLineItemCost?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    taxableHandling?: number;
+    /**
+     * 
+     * @type {Array<FulfillmentField>}
+     * @memberof CanceledItem
+     */
+    fulfillmentFields?: Array<FulfillmentField> | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CanceledItem
+     */
+    isAssemblyRequired?: boolean | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    parentItemId?: string | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof CanceledItem
+     */
+    childItemIds?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<GiftCard>}
+     * @memberof CanceledItem
+     */
+    giftCards?: Array<GiftCard> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    locatorName?: string | null;
+    /**
+     * 
+     * @type {Array<InventoryTags>}
+     * @memberof CanceledItem
+     */
+    inventoryTags?: Array<InventoryTags> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    lineItemAdjustment?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CanceledItem
+     */
+    isReservedInventory?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    cartItemId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    sku?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    partNumber?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    upc?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CanceledItem
+     */
+    isSubstitutable?: boolean | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    originalLineId?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    substituteQuantity?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    purchaseLocation?: string | null;
+    /**
+     * Indicate item is gift or not
+     * @type {boolean}
+     * @memberof CanceledItem
+     */
+    isGift?: boolean | null;
+    /**
+     * Gift message for item
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    giftMessage?: string | null;
+    /**
+     * Determines if the item is using external or internal(catalog) pricing
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    priceMode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    serialNumber?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    condition?: string | null;
+    /**
+     * 
+     * @type {SubstituteInfo}
+     * @memberof CanceledItem
+     */
+    substituteInfo?: SubstituteInfo;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CanceledItem
+     */
+    allowsSubstitution?: boolean | null;
+    /**
+     * 
+     * @type {ReturnRuleInfo}
+     * @memberof CanceledItem
+     */
+    returnRuleInfo?: ReturnRuleInfo;
+}
+/**
+ * 
+ * @export
+ * @interface CanceledReason
+ */
+export interface CanceledReason {
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledReason
+     */
+    reasonCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledReason
+     */
+    description?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledReason
+     */
+    moreInfo?: string | null;
 }
 /**
  * 
@@ -474,10 +993,10 @@ export interface CollectionOfPickupItem {
     status?: string | null;
     /**
      * List of items in the fulfillment unit
-     * @type {Array<CommerceRuntimePickupItem>}
+     * @type {Array<PickupItem>}
      * @memberof CollectionOfPickupItem
      */
-    items?: Array<CommerceRuntimePickupItem> | null;
+    items?: Array<PickupItem> | null;
     /**
      * Date of the pickup
      * @type {string}
@@ -1028,73 +1547,12 @@ export interface CommerceItem {
      * @memberof CommerceItem
      */
     dutyAmount?: number | null;
-}
-/**
- * 
- * @export
- * @interface CommerceRuntimeAddress
- */
-export interface CommerceRuntimeAddress {
     /**
      * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
+     * @type {SubstituteInfo}
+     * @memberof CommerceItem
      */
-    address1?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    address2?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    address3?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    address4?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    cityOrTown?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    stateOrProvince?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    postalOrZipCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    countryCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    addressType?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAddress
-     */
-    isValidated?: boolean | null;
+    substituteInfo?: SubstituteInfo;
 }
 /**
  * Discount applied to the order, which is a negative number to be subtracted from the original price to get the final price. 
@@ -1127,6 +1585,12 @@ export interface CommerceRuntimeAppliedDiscount {
      * @memberof CommerceRuntimeAppliedDiscount
      */
     excluded?: boolean | null;
+    /**
+     * Stores any custom data sent from external discounts.
+     * @type {object}
+     * @memberof CommerceRuntimeAppliedDiscount
+     */
+    data?: object | null;
 }
 /**
  * 
@@ -1170,6 +1634,12 @@ export interface CommerceRuntimeAppliedLineItemProductDiscount {
      * @memberof CommerceRuntimeAppliedLineItemProductDiscount
      */
     excluded?: boolean | null;
+    /**
+     * Stores any custom data sent from external discounts.
+     * @type {object}
+     * @memberof CommerceRuntimeAppliedLineItemProductDiscount
+     */
+    data?: object | null;
 }
 /**
  * 
@@ -1310,416 +1780,6 @@ export interface CommerceRuntimeBundledProduct {
      * @memberof CommerceRuntimeBundledProduct
      */
     fulfillmentStatus?: string | null;
-}
-/**
- * 
- * @export
- * @interface CommerceRuntimeCanceledItem
- */
-export interface CommerceRuntimeCanceledItem {
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    originalQuantity?: number | null;
-    /**
-     * 
-     * @type {CommerceRuntimeCanceledReason}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    canceledReason?: CommerceRuntimeCanceledReason;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    auditInfo?: AdminUserAuditInfo;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    lineId?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    originalOrderItemId?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    parentId?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    productCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    variationProductCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    optionAttributeFQN?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    name?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    fulfillmentLocationCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    imageUrl?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    isTaxable?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    quantity?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    unitPrice?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    actualPrice?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    overridePrice?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    itemDiscount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    lineItemCost?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    itemTax?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    shipping?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    shippingDiscount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    shippingTax?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    handling?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    handlingDiscount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    handlingTax?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    duty?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    isPackagedStandAlone?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    readyForPickupQuantity?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    backorderReleaseDate?: string | null;
-    /**
-     * 
-     * @type {CommerceRuntimePackageMeasurements}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    measurements?: CommerceRuntimePackageMeasurements;
-    /**
-     * 
-     * @type {Array<CommerceRuntimeProductOption>}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    options?: Array<CommerceRuntimeProductOption> | null;
-    /**
-     * 
-     * @type {object}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    data?: object | null;
-    /**
-     * 
-     * @type {object}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    taxData?: object | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    weightedShipmentAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    weightedLineItemTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    weightedShippingAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    weightedShippingTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    weightedHandlingAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    weightedHandlingTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    weightedDutyAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    taxableShipping?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    taxableLineItemCost?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    taxableHandling?: number;
-    /**
-     * 
-     * @type {Array<CommerceRuntimeFulfillmentField>}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    fulfillmentFields?: Array<CommerceRuntimeFulfillmentField> | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    isAssemblyRequired?: boolean | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    parentItemId?: string | null;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    childItemIds?: Array<string> | null;
-    /**
-     * 
-     * @type {Array<CommerceRuntimeGiftCard>}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    giftCards?: Array<CommerceRuntimeGiftCard> | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    locatorName?: string | null;
-    /**
-     * 
-     * @type {Array<InventoryTags>}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    inventoryTags?: Array<InventoryTags> | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    lineItemAdjustment?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    isReservedInventory?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    cartItemId?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    sku?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    partNumber?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    upc?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    isSubstitutable?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    originalLineId?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    substituteQuantity?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    purchaseLocation?: string | null;
-    /**
-     * Indicate item is gift or not
-     * @type {boolean}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    isGift?: boolean | null;
-    /**
-     * Gift message for item
-     * @type {string}
-     * @memberof CommerceRuntimeCanceledItem
-     */
-    giftMessage?: string | null;
-}
-/**
- * 
- * @export
- * @interface CommerceRuntimeCanceledReason
- */
-export interface CommerceRuntimeCanceledReason {
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeCanceledReason
-     */
-    reasonCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeCanceledReason
-     */
-    description?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeCanceledReason
-     */
-    moreInfo?: string | null;
 }
 /**
  * Categories to which the product belongs. Discounts can apply to categories where any product in the category is discounted.
@@ -1880,61 +1940,6 @@ export interface CommerceRuntimeChangeMessage {
 /**
  * 
  * @export
- * @interface CommerceRuntimeContact
- */
-export interface CommerceRuntimeContact {
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeContact
-     */
-    id?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeContact
-     */
-    email?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeContact
-     */
-    firstName?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeContact
-     */
-    middleNameOrInitial?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeContact
-     */
-    lastNameOrSurname?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeContact
-     */
-    companyOrOrganization?: string | null;
-    /**
-     * 
-     * @type {CommerceRuntimePhone}
-     * @memberof CommerceRuntimeContact
-     */
-    phoneNumbers?: CommerceRuntimePhone;
-    /**
-     * 
-     * @type {CommerceRuntimeAddress}
-     * @memberof CommerceRuntimeContact
-     */
-    address?: CommerceRuntimeAddress;
-}
-/**
- * 
- * @export
  * @interface CommerceRuntimeCredit
  */
 export interface CommerceRuntimeCredit {
@@ -1976,62 +1981,6 @@ export interface CommerceRuntimeCredit {
     auditInfo?: AdminUserAuditInfo;
 }
 /**
- * 
- * @export
- * @interface CommerceRuntimeCustomer
- */
-export interface CommerceRuntimeCustomer {
-    /**
-     * 
-     * @type {CommerceRuntimeContact}
-     * @memberof CommerceRuntimeCustomer
-     */
-    customerContact?: CommerceRuntimeContact;
-    /**
-     * Custom data
-     * @type {any}
-     * @memberof CommerceRuntimeCustomer
-     */
-    data?: any | null;
-    /**
-     * Destination Commercial Flag
-     * @type {boolean}
-     * @memberof CommerceRuntimeCustomer
-     */
-    isDestinationCommercial?: boolean | null;
-}
-/**
- * 
- * @export
- * @interface CommerceRuntimeDestination
- */
-export interface CommerceRuntimeDestination {
-    /**
-     * An identifier for this entry.
-     * @type {string}
-     * @memberof CommerceRuntimeDestination
-     */
-    id?: string | null;
-    /**
-     * 
-     * @type {CommerceRuntimeContact}
-     * @memberof CommerceRuntimeDestination
-     */
-    destinationContact?: CommerceRuntimeContact;
-    /**
-     * Indicates that the destination is commercial
-     * @type {boolean}
-     * @memberof CommerceRuntimeDestination
-     */
-    isDestinationCommercial?: boolean | null;
-    /**
-     * Custom data
-     * @type {object}
-     * @memberof CommerceRuntimeDestination
-     */
-    data?: object | null;
-}
-/**
  * Discounts that apply to the order, if any. For example, when the 
  * subtotal of the order exceeds a certain amount, or for free shipping.
  * @export
@@ -2069,31 +2018,6 @@ export interface CommerceRuntimeDiscount {
      * @memberof CommerceRuntimeDiscount
      */
     hasMultipleTargetProducts?: boolean;
-}
-/**
- * 
- * @export
- * @interface CommerceRuntimeFulfillmentField
- */
-export interface CommerceRuntimeFulfillmentField {
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeFulfillmentField
-     */
-    name?: string | null;
-    /**
-     * 
-     * @type {any}
-     * @memberof CommerceRuntimeFulfillmentField
-     */
-    userEnteredValue?: any | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeFulfillmentField
-     */
-    required?: boolean;
 }
 /**
  * 
@@ -2143,73 +2067,6 @@ export interface CommerceRuntimeFutureInventory {
      * @memberof CommerceRuntimeFutureInventory
      */
     createDate?: string | null;
-}
-/**
- * 
- * @export
- * @interface CommerceRuntimeGiftCard
- */
-export interface CommerceRuntimeGiftCard {
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeGiftCard
-     */
-    activationDate?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeGiftCard
-     */
-    cardNumber?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeGiftCard
-     */
-    code?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeGiftCard
-     */
-    creditType?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeGiftCard
-     */
-    creditValue?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeGiftCard
-     */
-    currencyCode?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeGiftCard
-     */
-    currentBalance?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeGiftCard
-     */
-    customerId?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeGiftCard
-     */
-    expirationDate?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeGiftCard
-     */
-    initialBalance?: number | null;
 }
 /**
  * 
@@ -2383,6 +2240,18 @@ export interface CommerceRuntimeOrderItem {
      * @memberof CommerceRuntimeOrderItem
      */
     giftInfo?: GiftInfo;
+    /**
+     * Determines if the item is using external or internal(catalog) pricing
+     * @type {string}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    priceMode?: string | null;
+    /**
+     * 
+     * @type {ReturnRuleInfo}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    returnRuleInfo?: ReturnRuleInfo;
     /**
      * Locale code for language that appears in text and descriptions on the site, for example, en_US. 
      * This is not the currency code. Currently only en_US is supported.
@@ -2668,6 +2537,12 @@ export interface CommerceRuntimeOrderItem {
      * @memberof CommerceRuntimeOrderItem
      */
     lineItemAdjustment?: number | null;
+    /**
+     * 
+     * @type {SubstituteInfo}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    substituteInfo?: SubstituteInfo;
 }
 /**
  * Describes a package that will be shipped to somebody
@@ -2737,16 +2612,16 @@ export interface CommerceRuntimePackage {
     signatureRequired?: boolean | null;
     /**
      * Tracking number and url data for this package
-     * @type {Array<CommerceRuntimeTracking>}
+     * @type {Array<Tracking>}
      * @memberof CommerceRuntimePackage
      */
-    trackings?: Array<CommerceRuntimeTracking> | null;
+    trackings?: Array<Tracking> | null;
     /**
      * PackingSlipItemDetails for this package
-     * @type {Array<PackingSlipItemDetail>}
+     * @type {Array<CommerceRuntimePackingSlipItemDetail>}
      * @memberof CommerceRuntimePackage
      */
-    packingSlipItemDetails?: Array<PackingSlipItemDetail> | null;
+    packingSlipItemDetails?: Array<CommerceRuntimePackingSlipItemDetail> | null;
     /**
      * PackingSlipNumber for this package
      * @type {number}
@@ -2755,10 +2630,10 @@ export interface CommerceRuntimePackage {
     packingSlipNumber?: number | null;
     /**
      * 
-     * @type {Array<CommerceRuntimeTracking>}
+     * @type {Array<Tracking>}
      * @memberof CommerceRuntimePackage
      */
-    returnTrackings?: Array<CommerceRuntimeTracking> | null;
+    returnTrackings?: Array<Tracking> | null;
     /**
      * 
      * @type {Array<string>}
@@ -2904,64 +2779,33 @@ export interface CommerceRuntimePackageMeasurements {
 /**
  * 
  * @export
- * @interface CommerceRuntimePhone
+ * @interface CommerceRuntimePackingSlipItemDetail
  */
-export interface CommerceRuntimePhone {
+export interface CommerceRuntimePackingSlipItemDetail {
     /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimePhone
+     * Gets or Sets Attributes
+     * @type {{ [key: string]: any; }}
+     * @memberof CommerceRuntimePackingSlipItemDetail
      */
-    home?: string | null;
+    attributes?: { [key: string]: any; } | null;
     /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimePhone
-     */
-    mobile?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimePhone
-     */
-    work?: string | null;
-}
-/**
- * Item that goes into the pickup to determine which items will be picked up.
- * @export
- * @interface CommerceRuntimePickupItem
- */
-export interface CommerceRuntimePickupItem {
-    /**
-     * Code of the Product to be fulfilled.
-     * @type {string}
-     * @memberof CommerceRuntimePickupItem
-     */
-    productCode?: string | null;
-    /**
-     * Quantity of the order item
+     * Gets or Sets LineId
      * @type {number}
-     * @memberof CommerceRuntimePickupItem
-     */
-    quantity?: number;
-    /**
-     * The type of fulfillment item
-     * @type {string}
-     * @memberof CommerceRuntimePickupItem
-     */
-    fulfillmentItemType?: string | null;
-    /**
-     * The line id associated with the fulfillment.
-     * @type {number}
-     * @memberof CommerceRuntimePickupItem
+     * @memberof CommerceRuntimePackingSlipItemDetail
      */
     lineId?: number | null;
     /**
-     * 
+     * Gets or Sets OriginalOrderItemId
      * @type {string}
-     * @memberof CommerceRuntimePickupItem
+     * @memberof CommerceRuntimePackingSlipItemDetail
      */
-    optionAttributeFQN?: string | null;
+    originalOrderItemId?: string | null;
+    /**
+     * Gets or Sets Quantity
+     * @type {number}
+     * @memberof CommerceRuntimePackingSlipItemDetail
+     */
+    quantity?: number | null;
 }
 /**
  * The product as it appears on the order item.
@@ -3078,6 +2922,18 @@ export interface CommerceRuntimeProduct {
      */
     productUsage?: string | null;
     /**
+     * Serial Number
+     * @type {string}
+     * @memberof CommerceRuntimeProduct
+     */
+    serialNumber?: string | null;
+    /**
+     * Condition
+     * @type {string}
+     * @memberof CommerceRuntimeProduct
+     */
+    condition?: string | null;
+    /**
      * Products bundled with this product (if the current product is a bundle)
      * @type {Array<CommerceRuntimeBundledProduct>}
      * @memberof CommerceRuntimeProduct
@@ -3085,10 +2941,10 @@ export interface CommerceRuntimeProduct {
     bundledProducts?: Array<CommerceRuntimeBundledProduct> | null;
     /**
      * List of unique product identifiers for an item on shipment
-     * @type {Array<CommerceRuntimeFulfillmentField>}
+     * @type {Array<FulfillmentField>}
      * @memberof CommerceRuntimeProduct
      */
-    fulfillmentFields?: Array<CommerceRuntimeFulfillmentField> | null;
+    fulfillmentFields?: Array<FulfillmentField> | null;
     /**
      * Merchant-created code that uniquely identifies the product.
      * @type {string}
@@ -3252,6 +3108,12 @@ export interface CommerceRuntimeProductPrice {
      * @memberof CommerceRuntimeProductPrice
      */
     priceListEntryMode?: string | null;
+    /**
+     * Indicate that External Price (TenantOverridePrice) is a Sale Price. And is used to calculate the line item discounts.
+     * @type {boolean}
+     * @memberof CommerceRuntimeProductPrice
+     */
+    isOverRidePriceSalePrice?: boolean | null;
 }
 /**
  * 
@@ -3439,16 +3301,16 @@ export interface CommerceRuntimeShipment {
     fulfillmentLocationCode?: string | null;
     /**
      * 
-     * @type {CommerceRuntimeContact}
+     * @type {Contact}
      * @memberof CommerceRuntimeShipment
      */
-    origin?: CommerceRuntimeContact;
+    origin?: Contact;
     /**
      * 
-     * @type {CommerceRuntimeDestination}
+     * @type {Destination}
      * @memberof CommerceRuntimeShipment
      */
-    destination?: CommerceRuntimeDestination;
+    destination?: Destination;
     /**
      * 
      * @type {string}
@@ -3511,10 +3373,10 @@ export interface CommerceRuntimeShipment {
     workflowProcessContainerId?: string | null;
     /**
      * 
-     * @type {CommerceRuntimeWorkflowState}
+     * @type {WorkflowState}
      * @memberof CommerceRuntimeShipment
      */
-    workflowState?: CommerceRuntimeWorkflowState;
+    workflowState?: WorkflowState;
     /**
      * 
      * @type {number}
@@ -3571,10 +3433,10 @@ export interface CommerceRuntimeShipment {
     items?: Array<ShipmentItem> | null;
     /**
      * 
-     * @type {Array<CommerceRuntimeCanceledItem>}
+     * @type {Array<CanceledItem>}
      * @memberof CommerceRuntimeShipment
      */
-    canceledItems?: Array<CommerceRuntimeCanceledItem> | null;
+    canceledItems?: Array<CanceledItem> | null;
     /**
      * 
      * @type {object}
@@ -3745,16 +3607,16 @@ export interface CommerceRuntimeShipment {
     shopperNotes?: FulfillmentShopperNotes;
     /**
      * 
-     * @type {CommerceRuntimeCustomer}
+     * @type {Customer}
      * @memberof CommerceRuntimeShipment
      */
-    customer?: CommerceRuntimeCustomer;
+    customer?: Customer;
     /**
      * 
-     * @type {Array<CommerceRuntimeShipmentNote>}
+     * @type {Array<ShipmentNote>}
      * @memberof CommerceRuntimeShipment
      */
-    shipmentNotes?: Array<CommerceRuntimeShipmentNote> | null;
+    shipmentNotes?: Array<ShipmentNote> | null;
     /**
      * 
      * @type {FulfillmentAlternateContact}
@@ -3763,53 +3625,10 @@ export interface CommerceRuntimeShipment {
     alternateContact?: FulfillmentAlternateContact;
     /**
      * 
-     * @type {Array<CommerceRuntimeSubstitutedItem>}
+     * @type {Array<SubstitutedItem>}
      * @memberof CommerceRuntimeShipment
      */
-    substitutedItems?: Array<CommerceRuntimeSubstitutedItem> | null;
-}
-/**
- * 
- * @export
- * @interface CommerceRuntimeShipmentNote
- */
-export interface CommerceRuntimeShipmentNote {
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof CommerceRuntimeShipmentNote
-     */
-    attributes?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof CommerceRuntimeShipmentNote
-     */
-    auditInfo?: AdminUserAuditInfo;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeShipmentNote
-     */
-    noteId?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeShipmentNote
-     */
-    noteText?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeShipmentNote
-     */
-    role?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeShipmentNote
-     */
-    username?: string | null;
+    substitutedItems?: Array<SubstitutedItem> | null;
 }
 /**
  * 
@@ -3888,579 +3707,6 @@ export interface CommerceRuntimeShippingRate {
     price?: number | null;
 }
 /**
- * Notes that the shopper has added to this order, for example, a gift message or other comments.
- * @export
- * @interface CommerceRuntimeShopperNotes
- */
-export interface CommerceRuntimeShopperNotes {
-    /**
-     * Gift message associated with this order.
-     * @type {string}
-     * @memberof CommerceRuntimeShopperNotes
-     */
-    giftMessage?: string | null;
-    /**
-     * Comments associated with this order.
-     * @type {string}
-     * @memberof CommerceRuntimeShopperNotes
-     */
-    comments?: string | null;
-    /**
-     * DeliveryInstructions associated with this order.
-     * @type {string}
-     * @memberof CommerceRuntimeShopperNotes
-     */
-    deliveryInstructions?: string | null;
-}
-/**
- * 
- * @export
- * @interface CommerceRuntimeSubstitutedItem
- */
-export interface CommerceRuntimeSubstitutedItem {
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    actualPrice?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    allocatedQuantity?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    allowsBackOrder?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    allowsFutureAllocate?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    allowsSubstitution?: boolean | null;
-    /**
-     * 
-     * @type {FulfillmentServiceAppeasementReason}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    appeasementReason?: FulfillmentServiceAppeasementReason;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    attributes?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {FulfillmentServiceAuditInfo}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    auditInfo?: FulfillmentServiceAuditInfo;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    backorderReleaseDate?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    cartItemId?: string | null;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    childItemIds?: Array<string> | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    creditCurrencyCode?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    creditValue?: number | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    data?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    duty?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    expectedDeliveryDate?: string | null;
-    /**
-     * 
-     * @type {Array<FulfillmentServiceFulfillmentField>}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    fulfillmentFields?: Array<FulfillmentServiceFulfillmentField> | null;
-    /**
-     * 
-     * @type {Array<FulfillmentServiceGiftCard>}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    giftCards?: Array<FulfillmentServiceGiftCard> | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    giftMessage?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    goodsType?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    handling?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    handlingDiscount?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    handlingTax?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    height?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    imageUrl?: string | null;
-    /**
-     * 
-     * @type {Array<FulfillmentServiceInventoryTag>}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    inventoryTags?: Array<FulfillmentServiceInventoryTag> | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    isAssemblyRequired?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    isGift?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    isPackagedStandAlone?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    isReservedInventory?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    isTaxable?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    itemDiscount?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    itemTax?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    length?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    lineId?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    lineItemAdjustment?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    lineItemCost?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    locatorName?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    manageStock?: boolean | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    name?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    optionAttributeFQN?: string | null;
-    /**
-     * 
-     * @type {Array<FulfillmentServiceProductOption>}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    options?: Array<FulfillmentServiceProductOption> | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    originalLineId?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    originalOrderItemId?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    originalQuantity?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    overridePrice?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    parentItemId?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    partNumber?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    productCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    purchaseLocation?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    quantity?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    readyForPickupQuantity?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    shipping?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    shippingDiscount?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    shippingTax?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    sku?: string | null;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    substituteItemLineIds?: Array<number> | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    substituteQuantity?: number | null;
-    /**
-     * 
-     * @type {FulfillmentServiceSubstituteReason}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    substituteReason?: FulfillmentServiceSubstituteReason;
-    /**
-     * 
-     * @type {any}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    taxData?: any | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    taxableHandling?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    taxableLineItemCost?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    taxableShipping?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    transferQuantity?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    trueTransferQuantity?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    unitPrice?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    upc?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    variationProductCode?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    weight?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    weightUnit?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    weightedDutyAdjustment?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    weightedHandlingAdjustment?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    weightedHandlingTaxAdjustment?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    weightedLineItemTaxAdjustment?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    weightedShipmentAdjustment?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    weightedShippingAdjustment?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    weightedShippingTaxAdjustment?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeSubstitutedItem
-     */
-    width?: number | null;
-}
-/**
- * 
- * @export
- * @interface CommerceRuntimeTaskInput
- */
-export interface CommerceRuntimeTaskInput {
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeTaskInput
-     */
-    helpMessage?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeTaskInput
-     */
-    label?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeTaskInput
-     */
-    maxLength?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeTaskInput
-     */
-    maximum?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeTaskInput
-     */
-    minLength?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeTaskInput
-     */
-    minimum?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeTaskInput
-     */
-    name?: string | null;
-    /**
-     * 
-     * @type {Array<any>}
-     * @memberof CommerceRuntimeTaskInput
-     */
-    options?: Array<any> | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeTaskInput
-     */
-    pattern?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeTaskInput
-     */
-    required?: boolean | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeTaskInput
-     */
-    type?: string | null;
-}
-/**
  * 
  * @export
  * @interface CommerceRuntimeThresholdMessage
@@ -4504,74 +3750,6 @@ export interface CommerceRuntimeThresholdMessage {
     requiresCouponCode?: boolean;
 }
 /**
- * 
- * @export
- * @interface CommerceRuntimeTracking
- */
-export interface CommerceRuntimeTracking {
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof CommerceRuntimeTracking
-     */
-    attributes?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeTracking
-     */
-    number?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeTracking
-     */
-    url?: string | null;
-}
-/**
- * 
- * @export
- * @interface CommerceRuntimeWorkflowState
- */
-export interface CommerceRuntimeWorkflowState {
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof CommerceRuntimeWorkflowState
-     */
-    attributes?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof CommerceRuntimeWorkflowState
-     */
-    auditInfo?: AdminUserAuditInfo;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeWorkflowState
-     */
-    completedDate?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeWorkflowState
-     */
-    processInstanceId?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeWorkflowState
-     */
-    shipmentState?: string | null;
-    /**
-     * 
-     * @type {Array<FulfillmentTask>}
-     * @memberof CommerceRuntimeWorkflowState
-     */
-    taskList?: Array<FulfillmentTask> | null;
-}
-/**
  * Pricing details for the product listed on a cart item, including the original price, discount amount, and final price.
  * @export
  * @interface CommerceUnitPrice
@@ -4601,6 +3779,117 @@ export interface CommerceUnitPrice {
      * @memberof CommerceUnitPrice
      */
     overrideAmount?: number | null;
+}
+/**
+ * 
+ * @export
+ * @interface Contact
+ */
+export interface Contact {
+    /**
+     * 
+     * @type {number}
+     * @memberof Contact
+     */
+    id?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Contact
+     */
+    email?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Contact
+     */
+    firstName?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Contact
+     */
+    middleNameOrInitial?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Contact
+     */
+    lastNameOrSurname?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Contact
+     */
+    companyOrOrganization?: string | null;
+    /**
+     * 
+     * @type {Phone}
+     * @memberof Contact
+     */
+    phoneNumbers?: Phone;
+    /**
+     * 
+     * @type {Address}
+     * @memberof Contact
+     */
+    address?: Address;
+}
+/**
+ * 
+ * @export
+ * @interface Customer
+ */
+export interface Customer {
+    /**
+     * 
+     * @type {Contact}
+     * @memberof Customer
+     */
+    customerContact?: Contact;
+    /**
+     * Custom data
+     * @type {any}
+     * @memberof Customer
+     */
+    data?: any | null;
+    /**
+     * Destination Commercial Flag
+     * @type {boolean}
+     * @memberof Customer
+     */
+    isDestinationCommercial?: boolean | null;
+}
+/**
+ * 
+ * @export
+ * @interface Destination
+ */
+export interface Destination {
+    /**
+     * An identifier for this entry.
+     * @type {string}
+     * @memberof Destination
+     */
+    id?: string | null;
+    /**
+     * 
+     * @type {Contact}
+     * @memberof Destination
+     */
+    destinationContact?: Contact;
+    /**
+     * Indicates that the destination is commercial
+     * @type {boolean}
+     * @memberof Destination
+     */
+    isDestinationCommercial?: boolean | null;
+    /**
+     * Custom data
+     * @type {object}
+     * @memberof Destination
+     */
+    data?: object | null;
 }
 /**
  * 
@@ -4778,6 +4067,31 @@ export interface FulfillmentAlternateContact {
     phoneNumber?: string | null;
 }
 /**
+ * 
+ * @export
+ * @interface FulfillmentField
+ */
+export interface FulfillmentField {
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentField
+     */
+    name?: string | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof FulfillmentField
+     */
+    userEnteredValue?: any | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentField
+     */
+    required?: boolean;
+}
+/**
  * Shipment information, which includes the shipping address, price, estimated delivery date, tracking information, method (for example, Ground, Overnight, or Pick-up), 
  * carrier (for example, USPS, UPS, FedEx), and current status (for example, Not Shipped, In Transit, Delayed, or Returned To Sender).
  * @export
@@ -4786,10 +4100,10 @@ export interface FulfillmentAlternateContact {
 export interface FulfillmentInfo {
     /**
      * 
-     * @type {CommerceRuntimeContact}
+     * @type {Contact}
      * @memberof FulfillmentInfo
      */
-    fulfillmentContact?: CommerceRuntimeContact;
+    fulfillmentContact?: Contact;
     /**
      * Indicates that the destination is commercial
      * @type {boolean}
@@ -4967,6 +4281,73 @@ export interface FulfillmentServiceGiftCard {
 /**
  * 
  * @export
+ * @interface FulfillmentServiceInventoryAllocation
+ */
+export interface FulfillmentServiceInventoryAllocation {
+    /**
+     * 
+     * @type {FulfillmentServiceAuditInfo}
+     * @memberof FulfillmentServiceInventoryAllocation
+     */
+    auditInfo?: FulfillmentServiceAuditInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentServiceInventoryAllocation
+     */
+    condition?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentServiceInventoryAllocation
+     */
+    date?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentServiceInventoryAllocation
+     */
+    fulfilledDate?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentServiceInventoryAllocation
+     */
+    inventoryId?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentServiceInventoryAllocation
+     */
+    lotCode?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentServiceInventoryAllocation
+     */
+    quantity?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentServiceInventoryAllocation
+     */
+    serialNumber?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentServiceInventoryAllocation
+     */
+    sku?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentServiceInventoryAllocation
+     */
+    status?: string | null;
+}
+/**
+ * 
+ * @export
  * @interface FulfillmentServiceInventoryTag
  */
 export interface FulfillmentServiceInventoryTag {
@@ -5031,6 +4412,68 @@ export interface FulfillmentServiceProductOption {
      * @memberof FulfillmentServiceProductOption
      */
     value?: any | null;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentServiceReturnRuleInfo
+ */
+export interface FulfillmentServiceReturnRuleInfo {
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof FulfillmentServiceReturnRuleInfo
+     */
+    attributes?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentServiceReturnRuleInfo
+     */
+    isReturnable?: boolean | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentServiceReturnRuleInfo
+     */
+    maxDays?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentServiceReturnRuleInfo
+     */
+    maxQty?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentServiceReturnRuleInfo
+     */
+    ruleCode?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentServiceSubstituteInfo
+ */
+export interface FulfillmentServiceSubstituteInfo {
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentServiceSubstituteInfo
+     */
+    optIn?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentServiceSubstituteInfo
+     */
+    substituteProductCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentServiceSubstituteInfo
+     */
+    substituteVariantCode?: string | null;
 }
 /**
  * 
@@ -5120,10 +4563,10 @@ export interface FulfillmentTask {
     description?: string | null;
     /**
      * 
-     * @type {Array<CommerceRuntimeTaskInput>}
+     * @type {Array<TaskInput>}
      * @memberof FulfillmentTask
      */
-    inputs?: Array<CommerceRuntimeTaskInput> | null;
+    inputs?: Array<TaskInput> | null;
     /**
      * 
      * @type {string}
@@ -5185,6 +4628,73 @@ export interface GatewayGiftCard {
      * @memberof GatewayGiftCard
      */
     currencyCode?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface GiftCard
+ */
+export interface GiftCard {
+    /**
+     * 
+     * @type {string}
+     * @memberof GiftCard
+     */
+    activationDate?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof GiftCard
+     */
+    cardNumber?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof GiftCard
+     */
+    code?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof GiftCard
+     */
+    creditType?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof GiftCard
+     */
+    creditValue?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof GiftCard
+     */
+    currencyCode?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof GiftCard
+     */
+    currentBalance?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof GiftCard
+     */
+    customerId?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof GiftCard
+     */
+    expirationDate?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof GiftCard
+     */
+    initialBalance?: number | null;
 }
 /**
  * 
@@ -5384,10 +4894,10 @@ export interface Order {
     availableActions?: Array<string> | null;
     /**
      * 
-     * @type {CommerceRuntimeShopperNotes}
+     * @type {ShopperNotes}
      * @memberof Order
      */
-    shopperNotes?: CommerceRuntimeShopperNotes;
+    shopperNotes?: ShopperNotes;
     /**
      * Unique identifier of the customer account.
      * @type {number}
@@ -6135,37 +5645,6 @@ export interface PackageItem {
     optionAttributeFQN?: string | null;
 }
 /**
- * 
- * @export
- * @interface PackingSlipItemDetail
- */
-export interface PackingSlipItemDetail {
-    /**
-     * Gets or Sets Attributes
-     * @type {{ [key: string]: any; }}
-     * @memberof PackingSlipItemDetail
-     */
-    attributes?: { [key: string]: any; } | null;
-    /**
-     * Gets or Sets LineId
-     * @type {number}
-     * @memberof PackingSlipItemDetail
-     */
-    lineId?: number | null;
-    /**
-     * Gets or Sets OriginalOrderItemId
-     * @type {string}
-     * @memberof PackingSlipItemDetail
-     */
-    originalOrderItemId?: string | null;
-    /**
-     * Gets or Sets Quantity
-     * @type {number}
-     * @memberof PackingSlipItemDetail
-     */
-    quantity?: number | null;
-}
-/**
  * Payment transaction associated with this order. It is the entire payment interchange between the merchant who is forwarding the customer's payment 
  * information and the payment service who is authorizing and capturing payment. Payment can be either by credit card, check, or PayPal. (PayPal not
  * currently supported.)
@@ -6544,6 +6023,12 @@ export interface PaymentInteraction {
      */
     isManual?: boolean;
     /**
+     * If true, indicates payment action is still pending and not yet confirmed.
+     * @type {boolean}
+     * @memberof PaymentInteraction
+     */
+    isPending?: boolean;
+    /**
      * Unique identifier of the transaction supplied by PCIaaS.
      * @type {string}
      * @memberof PaymentInteraction
@@ -6655,6 +6140,31 @@ export interface PaymentToken {
     type?: string | null;
 }
 /**
+ * 
+ * @export
+ * @interface Phone
+ */
+export interface Phone {
+    /**
+     * 
+     * @type {string}
+     * @memberof Phone
+     */
+    home?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Phone
+     */
+    mobile?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Phone
+     */
+    work?: string | null;
+}
+/**
  * Represents a pickup by a customer from a merchant.
  * @export
  * @interface Pickup
@@ -6682,10 +6192,10 @@ export interface Pickup {
     status?: string | null;
     /**
      * List of items in the fulfillment unit
-     * @type {Array<CommerceRuntimePickupItem>}
+     * @type {Array<PickupItem>}
      * @memberof Pickup
      */
-    items?: Array<CommerceRuntimePickupItem> | null;
+    items?: Array<PickupItem> | null;
     /**
      * Date of the pickup
      * @type {string}
@@ -6716,6 +6226,43 @@ export interface Pickup {
      * @memberof Pickup
      */
     changeMessages?: Array<CommerceRuntimeChangeMessage> | null;
+}
+/**
+ * Item that goes into the pickup to determine which items will be picked up.
+ * @export
+ * @interface PickupItem
+ */
+export interface PickupItem {
+    /**
+     * Code of the Product to be fulfilled.
+     * @type {string}
+     * @memberof PickupItem
+     */
+    productCode?: string | null;
+    /**
+     * Quantity of the order item
+     * @type {number}
+     * @memberof PickupItem
+     */
+    quantity?: number;
+    /**
+     * The type of fulfillment item
+     * @type {string}
+     * @memberof PickupItem
+     */
+    fulfillmentItemType?: string | null;
+    /**
+     * The line id associated with the fulfillment.
+     * @type {number}
+     * @memberof PickupItem
+     */
+    lineId?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PickupItem
+     */
+    optionAttributeFQN?: string | null;
 }
 /**
  * 
@@ -6834,6 +6381,18 @@ export interface ProductStock {
     futureInventories?: Array<CommerceRuntimeFutureInventory> | null;
     /**
      * 
+     * @type {number}
+     * @memberof ProductStock
+     */
+    readonly availableFutureInventories?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductStock
+     */
+    readonly totalAvailableStock?: number;
+    /**
+     * 
      * @type {boolean}
      * @memberof ProductStock
      */
@@ -6920,6 +6479,37 @@ export interface Refund {
      * @memberof Refund
      */
     auditInfo?: AdminUserAuditInfo;
+}
+/**
+ * 
+ * @export
+ * @interface ReturnRuleInfo
+ */
+export interface ReturnRuleInfo {
+    /**
+     * Indicate product is returnable or not
+     * @type {boolean}
+     * @memberof ReturnRuleInfo
+     */
+    isReturnable?: boolean | null;
+    /**
+     * Maximum quantity that can be returned
+     * @type {number}
+     * @memberof ReturnRuleInfo
+     */
+    maxQty?: number | null;
+    /**
+     * Return window within which an item can be returned
+     * @type {number}
+     * @memberof ReturnRuleInfo
+     */
+    maxDays?: number | null;
+    /**
+     * Return rule code which is applied
+     * @type {string}
+     * @memberof ReturnRuleInfo
+     */
+    ruleCode?: string | null;
 }
 /**
  * 
@@ -7181,10 +6771,10 @@ export interface ShipmentItem {
     taxableHandling?: number;
     /**
      * 
-     * @type {Array<CommerceRuntimeFulfillmentField>}
+     * @type {Array<FulfillmentField>}
      * @memberof ShipmentItem
      */
-    fulfillmentFields?: Array<CommerceRuntimeFulfillmentField> | null;
+    fulfillmentFields?: Array<FulfillmentField> | null;
     /**
      * 
      * @type {boolean}
@@ -7205,10 +6795,10 @@ export interface ShipmentItem {
     childItemIds?: Array<string> | null;
     /**
      * 
-     * @type {Array<CommerceRuntimeGiftCard>}
+     * @type {Array<GiftCard>}
      * @memberof ShipmentItem
      */
-    giftCards?: Array<CommerceRuntimeGiftCard> | null;
+    giftCards?: Array<GiftCard> | null;
     /**
      * 
      * @type {string}
@@ -7299,6 +6889,85 @@ export interface ShipmentItem {
      * @memberof ShipmentItem
      */
     giftMessage?: string | null;
+    /**
+     * Determines if the item is using external or internal(catalog) pricing
+     * @type {string}
+     * @memberof ShipmentItem
+     */
+    priceMode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShipmentItem
+     */
+    serialNumber?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShipmentItem
+     */
+    condition?: string | null;
+    /**
+     * 
+     * @type {SubstituteInfo}
+     * @memberof ShipmentItem
+     */
+    substituteInfo?: SubstituteInfo;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ShipmentItem
+     */
+    allowsSubstitution?: boolean | null;
+    /**
+     * 
+     * @type {ReturnRuleInfo}
+     * @memberof ShipmentItem
+     */
+    returnRuleInfo?: ReturnRuleInfo;
+}
+/**
+ * 
+ * @export
+ * @interface ShipmentNote
+ */
+export interface ShipmentNote {
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof ShipmentNote
+     */
+    attributes?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof ShipmentNote
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShipmentNote
+     */
+    noteId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShipmentNote
+     */
+    noteText?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShipmentNote
+     */
+    role?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShipmentNote
+     */
+    username?: string | null;
 }
 /**
  * Value of the shipping discount.
@@ -7337,6 +7006,31 @@ export interface ShippingPrice {
      * @memberof ShippingPrice
      */
     price?: number | null;
+}
+/**
+ * Notes that the shopper has added to this order, for example, a gift message or other comments.
+ * @export
+ * @interface ShopperNotes
+ */
+export interface ShopperNotes {
+    /**
+     * Gift message associated with this order.
+     * @type {string}
+     * @memberof ShopperNotes
+     */
+    giftMessage?: string | null;
+    /**
+     * Comments associated with this order.
+     * @type {string}
+     * @memberof ShopperNotes
+     */
+    comments?: string | null;
+    /**
+     * DeliveryInstructions associated with this order.
+     * @type {string}
+     * @memberof ShopperNotes
+     */
+    deliveryInstructions?: string | null;
 }
 /**
  * 
@@ -7827,6 +7521,12 @@ export interface SubscriptionItem {
      * @memberof SubscriptionItem
      */
     dutyAmount?: number | null;
+    /**
+     * 
+     * @type {SubstituteInfo}
+     * @memberof SubscriptionItem
+     */
+    substituteInfo?: SubstituteInfo;
 }
 /**
  * 
@@ -8499,6 +8199,548 @@ export interface SubscriptionRuntimeSubscriptionCollection {
 /**
  * 
  * @export
+ * @interface SubstituteInfo
+ */
+export interface SubstituteInfo {
+    /**
+     * Determines if and when substitution is allowed. Allowed values are `None`, `Yes`, `No`, or `OnlyAtFulfillment`. Default is `None`.
+     * @type {string}
+     * @memberof SubstituteInfo
+     */
+    optIn?: string | null;
+    /**
+     * Allows user to provide a specific product that should be substituted if substitution occurs.
+     * @type {string}
+     * @memberof SubstituteInfo
+     */
+    substituteProductCode?: string | null;
+    /**
+     * Allows user to provide a specific variant that should be substituted if substitution occurs.
+     * @type {string}
+     * @memberof SubstituteInfo
+     */
+    substituteVariantCode?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface SubstitutedItem
+ */
+export interface SubstitutedItem {
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    actualPrice?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    allocatedQuantity?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SubstitutedItem
+     */
+    allowsBackOrder?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SubstitutedItem
+     */
+    allowsFutureAllocate?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SubstitutedItem
+     */
+    allowsSubstitution?: boolean | null;
+    /**
+     * 
+     * @type {FulfillmentServiceAppeasementReason}
+     * @memberof SubstitutedItem
+     */
+    appeasementReason?: FulfillmentServiceAppeasementReason;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof SubstitutedItem
+     */
+    attributes?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {FulfillmentServiceAuditInfo}
+     * @memberof SubstitutedItem
+     */
+    auditInfo?: FulfillmentServiceAuditInfo;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SubstitutedItem
+     */
+    autoSubstitution?: boolean | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutedItem
+     */
+    backorderReleaseDate?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutedItem
+     */
+    cartItemId?: string | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof SubstitutedItem
+     */
+    childItemIds?: Array<string> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutedItem
+     */
+    condition?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutedItem
+     */
+    creditCurrencyCode?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    creditValue?: number | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof SubstitutedItem
+     */
+    data?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    duty?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutedItem
+     */
+    expectedDeliveryDate?: string | null;
+    /**
+     * 
+     * @type {Array<FulfillmentServiceFulfillmentField>}
+     * @memberof SubstitutedItem
+     */
+    fulfillmentFields?: Array<FulfillmentServiceFulfillmentField> | null;
+    /**
+     * 
+     * @type {Array<FulfillmentServiceGiftCard>}
+     * @memberof SubstitutedItem
+     */
+    giftCards?: Array<FulfillmentServiceGiftCard> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutedItem
+     */
+    giftMessage?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutedItem
+     */
+    goodsType?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    handling?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    handlingDiscount?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    handlingTax?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    height?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutedItem
+     */
+    imageUrl?: string | null;
+    /**
+     * 
+     * @type {Array<FulfillmentServiceInventoryAllocation>}
+     * @memberof SubstitutedItem
+     */
+    inventoryAllocations?: Array<FulfillmentServiceInventoryAllocation> | null;
+    /**
+     * 
+     * @type {Array<FulfillmentServiceInventoryTag>}
+     * @memberof SubstitutedItem
+     */
+    inventoryTags?: Array<FulfillmentServiceInventoryTag> | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SubstitutedItem
+     */
+    isAssemblyRequired?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SubstitutedItem
+     */
+    isGift?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SubstitutedItem
+     */
+    isPackagedStandAlone?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SubstitutedItem
+     */
+    isReservedInventory?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SubstitutedItem
+     */
+    isTaxable?: boolean | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    itemDiscount?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    itemTax?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    length?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    lineId?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    lineItemAdjustment?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    lineItemCost?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutedItem
+     */
+    locatorName?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SubstitutedItem
+     */
+    manageStock?: boolean | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutedItem
+     */
+    name?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutedItem
+     */
+    optionAttributeFQN?: string | null;
+    /**
+     * 
+     * @type {Array<FulfillmentServiceProductOption>}
+     * @memberof SubstitutedItem
+     */
+    options?: Array<FulfillmentServiceProductOption> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    originalLineId?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutedItem
+     */
+    originalOrderItemId?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    originalQuantity?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    overridePrice?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutedItem
+     */
+    parentItemId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutedItem
+     */
+    partNumber?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutedItem
+     */
+    priceMode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutedItem
+     */
+    productCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutedItem
+     */
+    purchaseLocation?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    quantity?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    readyForPickupQuantity?: number | null;
+    /**
+     * 
+     * @type {FulfillmentServiceReturnRuleInfo}
+     * @memberof SubstitutedItem
+     */
+    returnRuleInfo?: FulfillmentServiceReturnRuleInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutedItem
+     */
+    serialNumber?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    shipping?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    shippingDiscount?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    shippingTax?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutedItem
+     */
+    sku?: string | null;
+    /**
+     * 
+     * @type {FulfillmentServiceSubstituteInfo}
+     * @memberof SubstitutedItem
+     */
+    substituteInfo?: FulfillmentServiceSubstituteInfo;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof SubstitutedItem
+     */
+    substituteItemLineIds?: Array<number> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    substituteQuantity?: number | null;
+    /**
+     * 
+     * @type {FulfillmentServiceSubstituteReason}
+     * @memberof SubstitutedItem
+     */
+    substituteReason?: FulfillmentServiceSubstituteReason;
+    /**
+     * 
+     * @type {any}
+     * @memberof SubstitutedItem
+     */
+    taxData?: any | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    taxableHandling?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    taxableLineItemCost?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    taxableShipping?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    transferQuantity?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    trueTransferQuantity?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    unitPrice?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutedItem
+     */
+    upc?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutedItem
+     */
+    variationProductCode?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    weight?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutedItem
+     */
+    weightUnit?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    weightedDutyAdjustment?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    weightedHandlingAdjustment?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    weightedHandlingTaxAdjustment?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    weightedLineItemTaxAdjustment?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    weightedShipmentAdjustment?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    weightedShippingAdjustment?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    weightedShippingTaxAdjustment?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutedItem
+     */
+    width?: number | null;
+}
+/**
+ * 
+ * @export
  * @interface SuggestedDiscount
  */
 export interface SuggestedDiscount {
@@ -8532,6 +8774,104 @@ export interface SuggestedDiscount {
      * @memberof SuggestedDiscount
      */
     hasOptions?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface TaskInput
+ */
+export interface TaskInput {
+    /**
+     * 
+     * @type {string}
+     * @memberof TaskInput
+     */
+    helpMessage?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof TaskInput
+     */
+    label?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof TaskInput
+     */
+    maxLength?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof TaskInput
+     */
+    maximum?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TaskInput
+     */
+    minLength?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof TaskInput
+     */
+    minimum?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof TaskInput
+     */
+    name?: string | null;
+    /**
+     * 
+     * @type {Array<any>}
+     * @memberof TaskInput
+     */
+    options?: Array<any> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof TaskInput
+     */
+    pattern?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof TaskInput
+     */
+    required?: boolean | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof TaskInput
+     */
+    type?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface Tracking
+ */
+export interface Tracking {
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof Tracking
+     */
+    attributes?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Tracking
+     */
+    number?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Tracking
+     */
+    url?: string | null;
 }
 /**
  * 
@@ -8575,4 +8915,47 @@ export interface Trial {
      * @memberof Trial
      */
     substituteProductOptions?: Array<CommerceRuntimeProductOption> | null;
+}
+/**
+ * 
+ * @export
+ * @interface WorkflowState
+ */
+export interface WorkflowState {
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof WorkflowState
+     */
+    attributes?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof WorkflowState
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowState
+     */
+    completedDate?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowState
+     */
+    processInstanceId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowState
+     */
+    shipmentState?: string | null;
+    /**
+     * 
+     * @type {Array<FulfillmentTask>}
+     * @memberof WorkflowState
+     */
+    taskList?: Array<FulfillmentTask> | null;
 }

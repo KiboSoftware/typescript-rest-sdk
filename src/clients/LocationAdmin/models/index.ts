@@ -3,6 +3,73 @@
 /**
  * 
  * @export
+ * @interface Address
+ */
+export interface Address {
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    address1?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    address2?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    address3?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    address4?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    cityOrTown?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    stateOrProvince?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    postalOrZipCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    countryCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    addressType?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Address
+     */
+    isValidated?: boolean | null;
+}
+/**
+ * 
+ * @export
  * @interface AdminUserAuditInfo
  */
 export interface AdminUserAuditInfo {
@@ -105,73 +172,6 @@ export interface BpmConfiguration {
      * @memberof BpmConfiguration
      */
     workflowProcessId?: string | null;
-}
-/**
- * 
- * @export
- * @interface CommerceRuntimeAddress
- */
-export interface CommerceRuntimeAddress {
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    address1?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    address2?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    address3?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    address4?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    cityOrTown?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    stateOrProvince?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    postalOrZipCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    countryCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    addressType?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAddress
-     */
-    isValidated?: boolean | null;
 }
 /**
  * 
@@ -305,6 +305,12 @@ export interface CommerceRuntimeAttribute {
      * @memberof CommerceRuntimeAttribute
      */
     availableForOrderRouting?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommerceRuntimeAttribute
+     */
+    availableForDiscounts?: boolean;
 }
 /**
  * 
@@ -587,10 +593,10 @@ export interface Location {
     description?: string | null;
     /**
      * 
-     * @type {CommerceRuntimeAddress}
+     * @type {Address}
      * @memberof Location
      */
-    address?: CommerceRuntimeAddress;
+    address?: Address;
     /**
      * 
      * @type {Coordinates}
@@ -717,6 +723,12 @@ export interface Location {
      * @memberof Location
      */
     processingTimes?: ProcessingTimes;
+    /**
+     * 
+     * @type {Array<SlaConfiguration>}
+     * @memberof Location
+     */
+    slaConfigurations?: Array<SlaConfiguration> | null;
 }
 /**
  * 
@@ -1009,6 +1021,12 @@ export interface LocationGroupConfiguration {
      * @type {string}
      * @memberof LocationGroupConfiguration
      */
+    defaultReturnCarrier?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationGroupConfiguration
+     */
     defaultPrinterType?: string | null;
     /**
      * 
@@ -1088,6 +1106,12 @@ export interface LocationGroupConfiguration {
      * @memberof LocationGroupConfiguration
      */
     maxNumberOfPackingSlipsByGroup?: number | null;
+    /**
+     * 
+     * @type {Array<SlaConfiguration>}
+     * @memberof LocationGroupConfiguration
+     */
+    slaConfigurations?: Array<SlaConfiguration> | null;
 }
 /**
  * 
@@ -1422,6 +1446,12 @@ export interface ShippingMethodMappings {
      * @memberof ShippingMethodMappings
      */
     requireSignatureAmount?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShippingMethodMappings
+     */
+    signatureOption?: string | null;
 }
 /**
  * 
@@ -1465,6 +1495,31 @@ export interface ShippingOriginContact {
      * @memberof ShippingOriginContact
      */
     email?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface SlaConfiguration
+ */
+export interface SlaConfiguration {
+    /**
+     * 
+     * @type {number}
+     * @memberof SlaConfiguration
+     */
+    slaId?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SlaConfiguration
+     */
+    isEnabled?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof SlaConfiguration
+     */
+    targetServiceLevelPercentage?: number;
 }
 /**
  * 

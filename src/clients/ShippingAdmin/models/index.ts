@@ -600,6 +600,31 @@ export interface HttpMethod {
     method?: string | null;
 }
 /**
+ * Option class for signature option
+ * @export
+ * @interface Option
+ */
+export interface Option {
+    /**
+     * User readable value to be shown to the user
+     * @type {string}
+     * @memberof Option
+     */
+    displayName?: string | null;
+    /**
+     * Value required by the actual carrier in carrier request
+     * @type {string}
+     * @memberof Option
+     */
+    carrierValue?: string | null;
+    /**
+     * Value required by other carrier or carrier aggragator like Easypost
+     * @type {string}
+     * @memberof Option
+     */
+    alternateCarrierValue?: string | null;
+}
+/**
  * Service Type aka Shipping Method
  * @export
  * @interface ServiceType
@@ -1025,6 +1050,31 @@ export interface ShippingStates {
      * @memberof ShippingStates
      */
     states?: Set<ShippingAdminState> | null;
+}
+/**
+ * Signature options against a carrier
+ * @export
+ * @interface SignatureOption
+ */
+export interface SignatureOption {
+    /**
+     * If carrier is enabled for signature option.
+     * @type {boolean}
+     * @memberof SignatureOption
+     */
+    isEnabled?: boolean;
+    /**
+     * Supported signature options
+     * @type {Array<Option>}
+     * @memberof SignatureOption
+     */
+    options?: Array<Option> | null;
+    /**
+     * Carrier Id
+     * @type {string}
+     * @memberof SignatureOption
+     */
+    carrierId?: string | null;
 }
 /**
  * 

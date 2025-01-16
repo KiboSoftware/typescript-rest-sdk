@@ -49,7 +49,7 @@ export interface SuggestDefinitionApiService {
     /**
     * Downloads the suggest file for the site
     * @summary Downloads the suggest file for the site
-    * @param {string} language langage code used by the site (en, es, fr)
+    * @param {string} language Language code used by the site (en, es, fr)
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -66,7 +66,7 @@ export interface SuggestDefinitionApiService {
     /**
     * Gets the suggester settings for the site
     * @summary Gets the suggester settings for the site
-    * @param {string} language language code use by the site (en, es, fr)
+    * @param {string} language Language code use by the site (en, es, fr)
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -83,9 +83,9 @@ export interface SuggestDefinitionApiService {
     /**
     * Updates the suggester settings for the site
     * @summary Updates the suggester settings for the site
-    * @param {string} language language code use by the site (en, es, fr)
+    * @param {string} language Language code use by the site (en, es, fr)
     * @param {string} [responseFields] limits which fields are returned in the response body
-    * @param {Suggester} [suggester] suggset definition in
+    * @param {Suggester} [suggester] Suggest definition in
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof SuggestDefinitionApiInterface
@@ -99,8 +99,8 @@ export interface SuggestDefinitionApiService {
     updateSuggestSettings(requestParameters: suggestDefinitionApiParams.UpdateSuggestSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Suggester>;
 
     /**
-    * Uploads a suggest file for the site in tab seperated format)
-    * @summary Uploads a suggest file for the site in tab seperated format)
+    * Uploads a suggest file for the site in tab separated format)
+    * @summary Uploads a suggest file for the site in tab separated format)
     * @param {string} language language code use by the site (en, es, fr)
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
@@ -110,8 +110,8 @@ export interface SuggestDefinitionApiService {
     uploadSuggestRaw(requestParameters: suggestDefinitionApiParams.UploadSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
 
     /**
-    * Uploads a suggest file for the site in tab seperated format)
-    * Uploads a suggest file for the site in tab seperated format)
+    * Uploads a suggest file for the site in tab separated format)
+    * Uploads a suggest file for the site in tab separated format)
     */
     uploadSuggest(requestParameters: suggestDefinitionApiParams.UploadSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
 
@@ -261,8 +261,8 @@ export class SuggestDefinitionApi extends runtime.BaseAPI implements SuggestDefi
     }
 
     /**
-     * Uploads a suggest file for the site in tab seperated format)
-     * Uploads a suggest file for the site in tab seperated format)
+     * Uploads a suggest file for the site in tab separated format)
+     * Uploads a suggest file for the site in tab separated format)
      */
 
 
@@ -296,8 +296,8 @@ export class SuggestDefinitionApi extends runtime.BaseAPI implements SuggestDefi
     }
 
     /**
-     * Uploads a suggest file for the site in tab seperated format)
-     * Uploads a suggest file for the site in tab seperated format)
+     * Uploads a suggest file for the site in tab separated format)
+     * Uploads a suggest file for the site in tab separated format)
      */
     async uploadSuggest(requestParameters: suggestDefinitionApiParams.UploadSuggestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
         const response = await this.uploadSuggestRaw(requestParameters, initOverrides);

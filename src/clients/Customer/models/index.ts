@@ -189,6 +189,73 @@ export interface AccountSalesRep {
     adminUserId?: string | null;
 }
 /**
+ * 
+ * @export
+ * @interface Address
+ */
+export interface Address {
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    address1?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    address2?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    address3?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    address4?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    cityOrTown?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    stateOrProvince?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    postalOrZipCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    countryCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    addressType?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Address
+     */
+    isValidated?: boolean | null;
+}
+/**
  * Address Validation Request
  * @export
  * @interface AddressValidationRequest
@@ -196,10 +263,10 @@ export interface AccountSalesRep {
 export interface AddressValidationRequest {
     /**
      * 
-     * @type {CommerceRuntimeAddress}
+     * @type {Address}
      * @memberof AddressValidationRequest
      */
-    address?: CommerceRuntimeAddress;
+    address?: Address;
 }
 /**
  * Address Validation Response
@@ -209,10 +276,10 @@ export interface AddressValidationRequest {
 export interface AddressValidationResponse {
     /**
      * Address Candidates
-     * @type {Array<CommerceRuntimeAddress>}
+     * @type {Array<Address>}
      * @memberof AddressValidationResponse
      */
-    addressCandidates?: Array<CommerceRuntimeAddress> | null;
+    addressCandidates?: Array<Address> | null;
 }
 /**
  * 
@@ -681,6 +748,31 @@ export interface CardCollection {
 /**
  * 
  * @export
+ * @interface CartAuthTicketRequest
+ */
+export interface CartAuthTicketRequest {
+    /**
+     * Cart Id of the user
+     * @type {string}
+     * @memberof CartAuthTicketRequest
+     */
+    cartId?: string | null;
+    /**
+     * Account Id of the user.
+     * @type {number}
+     * @memberof CartAuthTicketRequest
+     */
+    accountId?: number;
+    /**
+     * User Id of the user.
+     * @type {string}
+     * @memberof CartAuthTicketRequest
+     */
+    userId?: string | null;
+}
+/**
+ * 
+ * @export
  * @interface ChangePasswordResult
  */
 export interface ChangePasswordResult {
@@ -721,73 +813,6 @@ export interface ChangePasswordResultCollection {
      * @memberof ChangePasswordResultCollection
      */
     items?: Array<ChangePasswordResult> | null;
-}
-/**
- * 
- * @export
- * @interface CommerceRuntimeAddress
- */
-export interface CommerceRuntimeAddress {
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    address1?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    address2?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    address3?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    address4?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    cityOrTown?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    stateOrProvince?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    postalOrZipCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    countryCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    addressType?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAddress
-     */
-    isValidated?: boolean | null;
 }
 /**
  * 
@@ -921,6 +946,12 @@ export interface CommerceRuntimeAttribute {
      * @memberof CommerceRuntimeAttribute
      */
     availableForOrderRouting?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommerceRuntimeAttribute
+     */
+    availableForDiscounts?: boolean;
 }
 /**
  * 
@@ -1076,31 +1107,6 @@ export interface CommerceRuntimeAttributeVocabularyValue {
      * @memberof CommerceRuntimeAttributeVocabularyValue
      */
     content?: AttributeValueLocalizedContent;
-}
-/**
- * 
- * @export
- * @interface CommerceRuntimePhone
- */
-export interface CommerceRuntimePhone {
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimePhone
-     */
-    home?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimePhone
-     */
-    mobile?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimePhone
-     */
-    work?: string | null;
 }
 /**
  * Commerce (orders and wishlists) on a customer account which lists all the orders the customer has made with the order date, order amount, and status. Includes cancellations and returns.  Also includes wishlist information.
@@ -1929,16 +1935,16 @@ export interface CustomerContact {
     companyOrOrganization?: string | null;
     /**
      * 
-     * @type {CommerceRuntimePhone}
+     * @type {Phone}
      * @memberof CustomerContact
      */
-    phoneNumbers?: CommerceRuntimePhone;
+    phoneNumbers?: Phone;
     /**
      * 
-     * @type {CommerceRuntimeAddress}
+     * @type {Address}
      * @memberof CustomerContact
      */
-    address?: CommerceRuntimeAddress;
+    address?: Address;
 }
 /**
  * Collection of contacts returned as a whole.
@@ -2567,6 +2573,12 @@ export interface CustomerUserAuthInfo {
      * @memberof CustomerUserAuthInfo
      */
     password?: string | null;
+    /**
+     * Account Id specifies the account for which the user requests an authentication token.
+     * @type {number}
+     * @memberof CustomerUserAuthInfo
+     */
+    accountId?: number | null;
 }
 /**
  * 
@@ -2667,16 +2679,16 @@ export interface ExtendedCustomerContact {
     companyOrOrganization?: string | null;
     /**
      * 
-     * @type {CommerceRuntimePhone}
+     * @type {Phone}
      * @memberof ExtendedCustomerContact
      */
-    phoneNumbers?: CommerceRuntimePhone;
+    phoneNumbers?: Phone;
     /**
      * 
-     * @type {CommerceRuntimeAddress}
+     * @type {Address}
      * @memberof ExtendedCustomerContact
      */
-    address?: CommerceRuntimeAddress;
+    address?: Address;
 }
 /**
  * Collection of contacts returned as a whole.
@@ -2869,6 +2881,31 @@ export interface LoginState {
      * @memberof LoginState
      */
     updatedOn?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface Phone
+ */
+export interface Phone {
+    /**
+     * 
+     * @type {string}
+     * @memberof Phone
+     */
+    home?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Phone
+     */
+    mobile?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Phone
+     */
+    work?: string | null;
 }
 /**
  * Customer purchase order transaction log

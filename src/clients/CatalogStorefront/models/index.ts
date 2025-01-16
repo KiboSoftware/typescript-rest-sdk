@@ -2464,6 +2464,25 @@ export interface FindProductsPreviewParameters {
     campaignSettings?: PreviewCampaignSettings;
 }
 /**
+ * Inventory for a product at a specific location
+ * @export
+ * @interface GranularInventoryField
+ */
+export interface GranularInventoryField {
+    /**
+     * Serial Number
+     * @type {string}
+     * @memberof GranularInventoryField
+     */
+    serialNumber?: string | null;
+    /**
+     * Condition
+     * @type {string}
+     * @memberof GranularInventoryField
+     */
+    condition?: string | null;
+}
+/**
  * The inventory for a product at a specific Location
  * @export
  * @interface LocationInventory
@@ -2616,6 +2635,12 @@ export interface LocationInventoryQuery {
      * @memberof LocationInventoryQuery
      */
     includeSegmentedInventory?: boolean;
+    /**
+     * 
+     * @type {GranularInventoryField}
+     * @memberof LocationInventoryQuery
+     */
+    granularInventoryFields?: GranularInventoryField;
 }
 /**
  * 
@@ -3486,11 +3511,17 @@ export interface ProductSearchResult {
     items?: Array<CatalogRuntimesProduct> | null;
 }
 /**
- * 
+ * Collection used for product substitutions
  * @export
  * @interface ProductSubstituteCollection
  */
 export interface ProductSubstituteCollection {
+    /**
+     * Indicates if a product allows automatic substitutions
+     * @type {boolean}
+     * @memberof ProductSubstituteCollection
+     */
+    allowAutoSubstitutions?: boolean;
     /**
      * 
      * @type {number}
@@ -3546,6 +3577,12 @@ export interface ProductSubstitution {
      * @memberof ProductSubstitution
      */
     mfgPartNumber?: string | null;
+    /**
+     * The list of Bundled products included in this product. This is only populated when ProductUsage=Bundle
+     * @type {Array<CatalogRuntimesBundledProduct>}
+     * @memberof ProductSubstitution
+     */
+    bundledProducts?: Array<CatalogRuntimesBundledProduct> | null;
     /**
      * 
      * @type {CatalogRuntimesProductPrice}
@@ -4014,6 +4051,12 @@ export interface SearchMerchandizingRuleParameters {
      * @memberof SearchMerchandizingRuleParameters
      */
     searchMerchandizingRule?: CatalogRuntimesSearchMerchandizingRule;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SearchMerchandizingRuleParameters
+     */
+    collapse?: boolean | null;
 }
 /**
  * 
