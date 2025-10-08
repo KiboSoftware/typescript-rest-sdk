@@ -24,6 +24,7 @@ import type {
 
 export namespace inventoryBlockAssignmentApiParams { 
     export interface BlockAssignmentOperationRequest {
+        xVolTenant: number;
         blockAssignmentRequest: BlockAssignmentRequest;
     }
 }
@@ -37,6 +38,7 @@ export interface InventoryBlockAssignmentApiService {
     /**
     * Setting the blockAssignment flag to true for the product based on the given request
     * @summary Block Assignment
+    * @param {number} xVolTenant Tenant ID
     * @param {BlockAssignmentRequest} blockAssignmentRequest Request to block assignment on the product
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -68,6 +70,10 @@ export class InventoryBlockAssignmentApi extends runtime.BaseAPI implements Inve
 
 
     async blockAssignmentRaw(requestParameters: inventoryBlockAssignmentApiParams.BlockAssignmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>> {
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling blockAssignment.');
+        }
+
         if (requestParameters.blockAssignmentRequest === null || requestParameters.blockAssignmentRequest === undefined) {
             throw new runtime.RequiredError('blockAssignmentRequest','Required parameter requestParameters.blockAssignmentRequest was null or undefined when calling blockAssignment.');
         }
@@ -77,6 +83,10 @@ export class InventoryBlockAssignmentApi extends runtime.BaseAPI implements Inve
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
 
 
 

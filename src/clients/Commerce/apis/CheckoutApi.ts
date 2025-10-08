@@ -21,9 +21,9 @@ import type {
   CheckoutCollection,
   CheckoutGroupRates,
   CheckoutGroupShippingMethod,
+  CommerceRuntimeDestination,
   CommerceRuntimeOrderAttribute,
   CommerceRuntimeOrderItem,
-  Destination,
   DigitalWallet,
   GiftInfo,
   InventoryTags,
@@ -44,7 +44,7 @@ export namespace checkoutApiParams {
     export interface AddDestinationRequest {
         checkoutId: string;
         responseFields?: string;
-        destination?: Destination;
+        commerceRuntimeDestination?: CommerceRuntimeDestination;
     }
     export interface ApplyCouponRequest {
         checkoutId: string;
@@ -176,7 +176,7 @@ export namespace checkoutApiParams {
         checkoutId: string;
         destinationId: string;
         responseFields?: string;
-        destination?: Destination;
+        commerceRuntimeDestination?: CommerceRuntimeDestination;
     }
     export interface UpdateGiftInfoRequest {
         checkoutId: string;
@@ -245,18 +245,18 @@ export interface CheckoutApiService {
     * @summary Add Destination
     * @param {string} checkoutId 
     * @param {string} [responseFields] limits which fields are returned in the response body
-    * @param {Destination} [destination] 
+    * @param {CommerceRuntimeDestination} [commerceRuntimeDestination] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof CheckoutApiInterface
     */
-    addDestinationRaw(requestParameters: checkoutApiParams.AddDestinationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Destination>>;
+    addDestinationRaw(requestParameters: checkoutApiParams.AddDestinationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeDestination>>;
 
     /**
     * Adds a specific destination to the checkout.
     * Add Destination
     */
-    addDestination(requestParameters: checkoutApiParams.AddDestinationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Destination>;
+    addDestination(requestParameters: checkoutApiParams.AddDestinationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeDestination>;
 
     /**
     * Apply a coupon to the Checkout.
@@ -500,13 +500,13 @@ export interface CheckoutApiService {
     * @throws {RequiredError}
     * @memberof CheckoutApiInterface
     */
-    getDestinationRaw(requestParameters: checkoutApiParams.GetDestinationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Destination>>;
+    getDestinationRaw(requestParameters: checkoutApiParams.GetDestinationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeDestination>>;
 
     /**
     * Gets a destination specified by the checkout Id and destination Id.
     * Get Destination
     */
-    getDestination(requestParameters: checkoutApiParams.GetDestinationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Destination>;
+    getDestination(requestParameters: checkoutApiParams.GetDestinationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeDestination>;
 
     /**
     * Gets all the destinations specified by the checkout Id.
@@ -517,13 +517,13 @@ export interface CheckoutApiService {
     * @throws {RequiredError}
     * @memberof CheckoutApiInterface
     */
-    getDestinationsRaw(requestParameters: checkoutApiParams.GetDestinationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Destination>>>;
+    getDestinationsRaw(requestParameters: checkoutApiParams.GetDestinationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeDestination>>>;
 
     /**
     * Gets all the destinations specified by the checkout Id.
     * Get Destinations
     */
-    getDestinations(requestParameters: checkoutApiParams.GetDestinationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Destination>>;
+    getDestinations(requestParameters: checkoutApiParams.GetDestinationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeDestination>>;
 
     /**
     * Perform an action on the checkout. Available actions depend on the current state of the checkout. If in doubt, get a list of available checkout actions first.
@@ -728,18 +728,18 @@ export interface CheckoutApiService {
     * @param {string} checkoutId 
     * @param {string} destinationId 
     * @param {string} [responseFields] limits which fields are returned in the response body
-    * @param {Destination} [destination] 
+    * @param {CommerceRuntimeDestination} [commerceRuntimeDestination] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof CheckoutApiInterface
     */
-    updateDestinationRaw(requestParameters: checkoutApiParams.UpdateDestinationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Destination>>;
+    updateDestinationRaw(requestParameters: checkoutApiParams.UpdateDestinationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeDestination>>;
 
     /**
     * Updates a destination specified by checkout Id and destination Id.
     * Update Destination
     */
-    updateDestination(requestParameters: checkoutApiParams.UpdateDestinationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Destination>;
+    updateDestination(requestParameters: checkoutApiParams.UpdateDestinationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeDestination>;
 
     /**
     * Update GiftInfo on CheckoutItem
@@ -919,7 +919,7 @@ export class CheckoutApi extends runtime.BaseAPI implements CheckoutApiService {
      */
 
 
-    async addDestinationRaw(requestParameters: checkoutApiParams.AddDestinationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Destination>> {
+    async addDestinationRaw(requestParameters: checkoutApiParams.AddDestinationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeDestination>> {
         if (requestParameters.checkoutId === null || requestParameters.checkoutId === undefined) {
             throw new runtime.RequiredError('checkoutId','Required parameter requestParameters.checkoutId was null or undefined when calling addDestination.');
         }
@@ -945,7 +945,7 @@ export class CheckoutApi extends runtime.BaseAPI implements CheckoutApiService {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters.destination,
+            body: requestParameters.commerceRuntimeDestination,
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response);
@@ -955,7 +955,7 @@ export class CheckoutApi extends runtime.BaseAPI implements CheckoutApiService {
      * Adds a specific destination to the checkout.
      * Add Destination
      */
-    async addDestination(requestParameters: checkoutApiParams.AddDestinationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Destination> {
+    async addDestination(requestParameters: checkoutApiParams.AddDestinationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeDestination> {
         const response = await this.addDestinationRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1577,7 +1577,7 @@ export class CheckoutApi extends runtime.BaseAPI implements CheckoutApiService {
      */
 
 
-    async getDestinationRaw(requestParameters: checkoutApiParams.GetDestinationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Destination>> {
+    async getDestinationRaw(requestParameters: checkoutApiParams.GetDestinationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeDestination>> {
         if (requestParameters.checkoutId === null || requestParameters.checkoutId === undefined) {
             throw new runtime.RequiredError('checkoutId','Required parameter requestParameters.checkoutId was null or undefined when calling getDestination.');
         }
@@ -1614,7 +1614,7 @@ export class CheckoutApi extends runtime.BaseAPI implements CheckoutApiService {
      * Gets a destination specified by the checkout Id and destination Id.
      * Get Destination
      */
-    async getDestination(requestParameters: checkoutApiParams.GetDestinationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Destination> {
+    async getDestination(requestParameters: checkoutApiParams.GetDestinationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeDestination> {
         const response = await this.getDestinationRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1625,7 +1625,7 @@ export class CheckoutApi extends runtime.BaseAPI implements CheckoutApiService {
      */
 
 
-    async getDestinationsRaw(requestParameters: checkoutApiParams.GetDestinationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Destination>>> {
+    async getDestinationsRaw(requestParameters: checkoutApiParams.GetDestinationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CommerceRuntimeDestination>>> {
         if (requestParameters.checkoutId === null || requestParameters.checkoutId === undefined) {
             throw new runtime.RequiredError('checkoutId','Required parameter requestParameters.checkoutId was null or undefined when calling getDestinations.');
         }
@@ -1658,7 +1658,7 @@ export class CheckoutApi extends runtime.BaseAPI implements CheckoutApiService {
      * Gets all the destinations specified by the checkout Id.
      * Get Destinations
      */
-    async getDestinations(requestParameters: checkoutApiParams.GetDestinationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Destination>> {
+    async getDestinations(requestParameters: checkoutApiParams.GetDestinationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CommerceRuntimeDestination>> {
         const response = await this.getDestinationsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2185,7 +2185,7 @@ export class CheckoutApi extends runtime.BaseAPI implements CheckoutApiService {
      */
 
 
-    async updateDestinationRaw(requestParameters: checkoutApiParams.UpdateDestinationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Destination>> {
+    async updateDestinationRaw(requestParameters: checkoutApiParams.UpdateDestinationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CommerceRuntimeDestination>> {
         if (requestParameters.checkoutId === null || requestParameters.checkoutId === undefined) {
             throw new runtime.RequiredError('checkoutId','Required parameter requestParameters.checkoutId was null or undefined when calling updateDestination.');
         }
@@ -2215,7 +2215,7 @@ export class CheckoutApi extends runtime.BaseAPI implements CheckoutApiService {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters.destination,
+            body: requestParameters.commerceRuntimeDestination,
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response);
@@ -2225,7 +2225,7 @@ export class CheckoutApi extends runtime.BaseAPI implements CheckoutApiService {
      * Updates a destination specified by checkout Id and destination Id.
      * Update Destination
      */
-    async updateDestination(requestParameters: checkoutApiParams.UpdateDestinationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Destination> {
+    async updateDestination(requestParameters: checkoutApiParams.UpdateDestinationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeDestination> {
         const response = await this.updateDestinationRaw(requestParameters, initOverrides);
         return await response.value();
     }

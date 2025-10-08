@@ -20,8 +20,8 @@ import type {
   AlternateContact,
   BillingInfo,
   CancelReasonCollection,
-  CanceledReason,
   CommerceRuntimeAppliedDiscount,
+  CommerceRuntimeCanceledReason,
   CommerceRuntimeOrderAttribute,
   CommerceRuntimeOrderItem,
   CommerceRuntimePackage,
@@ -35,6 +35,7 @@ import type {
   GiftInfo,
   GiftMessage,
   InventoryTags,
+  ItemFulfillmentInfo,
   ItemQuantityUpdate,
   Order,
   OrderAction,
@@ -113,7 +114,7 @@ export namespace orderApiParams {
     export interface CancelOrderRequest {
         orderId: string;
         responseFields?: string;
-        canceledReason?: CanceledReason;
+        commerceRuntimeCanceledReason?: CommerceRuntimeCanceledReason;
     }
     export interface ChangeOrderPriceListRequest {
         orderId: string;
@@ -704,6 +705,14 @@ export namespace orderApiParams {
         responseFields?: string;
         shipmentItemAdjustment?: ShipmentItemAdjustment;
     }
+    export interface UpdateShippingAndSuggestionsRequest {
+        orderId: string;
+        orderItemId: string;
+        updateMode?: string;
+        version?: string;
+        responseFields?: string;
+        itemFulfillmentInfo?: ItemFulfillmentInfo;
+    }
     export interface UpdateSubscriptionInfoRequest {
         orderId: string;
         orderItemId: string;
@@ -885,7 +894,7 @@ export interface OrderApiService {
     * @summary Cancel Order
     * @param {string} orderId 
     * @param {string} [responseFields] limits which fields are returned in the response body
-    * @param {CanceledReason} [canceledReason] 
+    * @param {CommerceRuntimeCanceledReason} [commerceRuntimeCanceledReason] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof OrderApiInterface
@@ -2853,6 +2862,27 @@ export interface OrderApiService {
     updateShipmentItem(requestParameters: orderApiParams.UpdateShipmentItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment>;
 
     /**
+    * Updates the shipping and suggestions information of an individual order item in the order.
+    * @summary Update Shipping and Suggestions on the order item.
+    * @param {string} orderId Unique identifier of the order.
+    * @param {string} orderItemId Unique identifier of the order item.
+    * @param {string} [updateMode] Determines the update strategy for this update (ApplyAndCommit, ApplyToOriginal, ApplyToDraft)
+    * @param {string} [version] Determines whether or not to check versioning of items for concurrency purposes.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ItemFulfillmentInfo} [itemFulfillmentInfo] The item fulfillment information to update.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof OrderApiInterface
+    */
+    updateShippingAndSuggestionsRaw(requestParameters: orderApiParams.UpdateShippingAndSuggestionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>>;
+
+    /**
+    * Updates the shipping and suggestions information of an individual order item in the order.
+    * Update Shipping and Suggestions on the order item.
+    */
+    updateShippingAndSuggestions(requestParameters: orderApiParams.UpdateShippingAndSuggestionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order>;
+
+    /**
     * Update a subscription info on the order item.
     * @summary Update Order Item Subscription Info, applies only to Draft Order
     * @param {string} orderId Unique identifier of the order with which to associate the coupon.
@@ -3363,7 +3393,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiService {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters.canceledReason,
+            body: requestParameters.commerceRuntimeCanceledReason,
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response);
@@ -6485,7 +6515,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiService {
         
         const response = await this.request({
             path: `/commerce/orders/{orderId}/processreturnrules`.replace(`{${"orderId"}}`, encodeURIComponent(String(requestParameters.orderId))),
-            method: 'GET',
+            method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: requestParameters.processReturnRuleItemCollection,
@@ -8613,6 +8643,65 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiService {
      */
     async updateShipmentItem(requestParameters: orderApiParams.UpdateShipmentItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CommerceRuntimeShipment> {
         const response = await this.updateShipmentItemRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Updates the shipping and suggestions information of an individual order item in the order.
+     * Update Shipping and Suggestions on the order item.
+     */
+
+
+    async updateShippingAndSuggestionsRaw(requestParameters: orderApiParams.UpdateShippingAndSuggestionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling updateShippingAndSuggestions.');
+        }
+
+        if (requestParameters.orderItemId === null || requestParameters.orderItemId === undefined) {
+            throw new runtime.RequiredError('orderItemId','Required parameter requestParameters.orderItemId was null or undefined when calling updateShippingAndSuggestions.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.updateMode !== undefined) {
+            queryParameters['updateMode'] = requestParameters.updateMode;
+        }
+
+        if (requestParameters.version !== undefined) {
+            queryParameters['version'] = requestParameters.version;
+        }
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/orders/{orderId}/items/{orderItemId}/UpdateShippingAndSuggestions`.replace(`{${"orderId"}}`, encodeURIComponent(String(requestParameters.orderId))).replace(`{${"orderItemId"}}`, encodeURIComponent(String(requestParameters.orderItemId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.itemFulfillmentInfo,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Updates the shipping and suggestions information of an individual order item in the order.
+     * Update Shipping and Suggestions on the order item.
+     */
+    async updateShippingAndSuggestions(requestParameters: orderApiParams.UpdateShippingAndSuggestionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
+        const response = await this.updateShippingAndSuggestionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -106,6 +106,7 @@ export namespace productSearchApiParams {
         spellcorrectOverride?: string;
         useSubscriptionPricing?: boolean;
         merchandizingRuleCode?: string;
+        customerSegments?: string;
         responseFields?: string;
     }
     export interface StorefrontSiteSearchRequest {
@@ -310,6 +311,7 @@ export interface ProductSearchApiService {
     * @param {string} [spellcorrectOverride] 
     * @param {boolean} [useSubscriptionPricing] 
     * @param {string} [merchandizingRuleCode] Optional. Use a specific search-merchandizing-rule code if provided.
+    * @param {string} [customerSegments] 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -866,6 +868,10 @@ export class ProductSearchApi extends runtime.BaseAPI implements ProductSearchAp
 
         if (requestParameters.merchandizingRuleCode !== undefined) {
             queryParameters['merchandizingRuleCode'] = requestParameters.merchandizingRuleCode;
+        }
+
+        if (requestParameters.customerSegments !== undefined) {
+            queryParameters['customerSegments'] = requestParameters.customerSegments;
         }
 
         if (requestParameters.responseFields !== undefined) {

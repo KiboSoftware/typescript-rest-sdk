@@ -16,21 +16,17 @@
 import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
 import type {
-    DeletedCountResponse,
-    TagCategory
+  TagCategory,
 } from '../models';
 
 
-export namespace inventoryTagCategoryApiParams {
+export namespace inventoryTagCategoryApiParams { 
     export interface GetTagCategoryRequest {
+        xVolTenant: number;
         tagCategoryName: string;
     }
-    export interface DeleteTagCategoryRequest {
-        tagCategoryName: string;
-    }
-    export interface UpdateTagCategoryRequest {
-        tagCategoryName: string;
-        tagCategory: TagCategory;
+    export interface GetTagCategoryAllRequest {
+        xVolTenant: number;
     }
 }
 /**
@@ -43,6 +39,7 @@ export interface InventoryTagCategoryApiService {
     /**
     * Get a tag category
     * @summary Get Tag Category
+    * @param {number} xVolTenant Tenant ID
     * @param {string} tagCategoryName Tag Category Name
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -59,50 +56,18 @@ export interface InventoryTagCategoryApiService {
     /**
     * Get all tag categories for a tenant
     * @summary Get Tag Category All
+    * @param {number} xVolTenant Tenant ID
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof InventoryTagCategoryApiInterface
     */
-    getTagCategoryAllRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<TagCategory>>>;
+    getTagCategoryAllRaw(requestParameters: inventoryTagCategoryApiParams.GetTagCategoryAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<TagCategory>>>;
 
     /**
     * Get all tag categories for a tenant
     * Get Tag Category All
     */
-    getTagCategoryAll(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<TagCategory>>;
-
-    /**
-    * Delete a Tag category
-    * @summary Delete Tag Category
-    * @param {string} tagCategoryName Tag Category Name
-    * @param {*} [options] Override http request option.
-    * @throws {RequiredError}
-    * @memberof InventoryTagcategoryApiInterface
-    */
-    deleteTagCategoryRaw(requestParameters: inventoryTagCategoryApiParams.DeleteTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>>;
-
-    /**
-    * Delete a Tag category
-    * Delete Tag Category
-    */
-    deleteTagCategory(requestParameters: inventoryTagCategoryApiParams.DeleteTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedCountResponse>;
-
-    /**
-    * Update the designated tag category
-    * @summary Update Tag Category
-    * @param {string} tagCategoryName Tag Category Name
-    * @param {TagCategory} tagCategory Request create or modify Tag Categories
-    * @param {*} [options] Override http request option.
-    * @throws {RequiredError}
-    * @memberof InventoryTagcategoryApiInterface
-    */
-    updateTagCategoryRaw(requestParameters: inventoryTagCategoryApiParams.UpdateTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagCategory>>;
-
-    /**
-    * Update the designated tag category
-    * Update Tag Category
-    */
-    updateTagCategory(requestParameters: inventoryTagCategoryApiParams.UpdateTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagCategory>;
+    getTagCategoryAll(requestParameters: inventoryTagCategoryApiParams.GetTagCategoryAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<TagCategory>>;
 
 }
 
@@ -122,8 +87,12 @@ export class InventoryTagCategoryApi extends runtime.BaseAPI implements Inventor
 
 
     async getTagCategoryRaw(requestParameters: inventoryTagCategoryApiParams.GetTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagCategory>> {
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getTagCategory.');
+        }
+
         if (requestParameters.tagCategoryName === null || requestParameters.tagCategoryName === undefined) {
-            throw new runtime.RequiredError('tagCategoryName', 'Required parameter requestParameters.tagCategoryName was null or undefined when calling getTagCategory.');
+            throw new runtime.RequiredError('tagCategoryName','Required parameter requestParameters.tagCategoryName was null or undefined when calling getTagCategory.');
         }
 
         const queryParameters: any = {};
@@ -134,12 +103,16 @@ export class InventoryTagCategoryApi extends runtime.BaseAPI implements Inventor
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
+
 
 
 
 
         await this.addAuthorizationHeaders(headerParameters)
-
+        
         const response = await this.request({
             path: `/commerce/inventory/v1/tagCategory/{tag_category_name}`,
             method: 'GET',
@@ -165,17 +138,25 @@ export class InventoryTagCategoryApi extends runtime.BaseAPI implements Inventor
      */
 
 
-    async getTagCategoryAllRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<TagCategory>>> {
+    async getTagCategoryAllRaw(requestParameters: inventoryTagCategoryApiParams.GetTagCategoryAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<TagCategory>>> {
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getTagCategoryAll.');
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
 
 
 
 
 
         await this.addAuthorizationHeaders(headerParameters)
-
+        
         const response = await this.request({
             path: `/commerce/inventory/v1/tagCategory`,
             method: 'GET',
@@ -190,104 +171,9 @@ export class InventoryTagCategoryApi extends runtime.BaseAPI implements Inventor
      * Get all tag categories for a tenant
      * Get Tag Category All
      */
-    async getTagCategoryAll(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<TagCategory>> {
-        const response = await this.getTagCategoryAllRaw(initOverrides);
+    async getTagCategoryAll(requestParameters: inventoryTagCategoryApiParams.GetTagCategoryAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<TagCategory>> {
+        const response = await this.getTagCategoryAllRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
-
-    /**
-         * Delete a Tag category
-         * Delete Tag Category
-         */
-
-
-    async deleteTagCategoryRaw(requestParameters: inventoryTagCategoryApiParams.DeleteTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletedCountResponse>> {
-        if (requestParameters.tagCategoryName === null || requestParameters.tagCategoryName === undefined) {
-            throw new runtime.RequiredError('tagCategoryName', 'Required parameter requestParameters.tagCategoryName was null or undefined when calling deleteTagCategory.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.tagCategoryName !== undefined) {
-            queryParameters['tagCategoryName'] = requestParameters.tagCategoryName;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-
-
-
-
-        await this.addAuthorizationHeaders(headerParameters)
-
-        const response = await this.request({
-            path: `/commerce/inventory/v1/tagCategory/{tag_category_name}`,
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response);
-    }
-
-    /**
-     * Delete a Tag category
-     * Delete Tag Category
-     */
-    async deleteTagCategory(requestParameters: inventoryTagCategoryApiParams.DeleteTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletedCountResponse> {
-        const response = await this.deleteTagCategoryRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Update the designated tag category
-     * Update Tag Category
-     */
-
-
-    async updateTagCategoryRaw(requestParameters: inventoryTagCategoryApiParams.UpdateTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagCategory>> {
-        if (requestParameters.tagCategoryName === null || requestParameters.tagCategoryName === undefined) {
-            throw new runtime.RequiredError('tagCategoryName', 'Required parameter requestParameters.tagCategoryName was null or undefined when calling updateTagCategory.');
-        }
-
-        if (requestParameters.tagCategory === null || requestParameters.tagCategory === undefined) {
-            throw new runtime.RequiredError('tagCategory', 'Required parameter requestParameters.tagCategory was null or undefined when calling updateTagCategory.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.tagCategoryName !== undefined) {
-            queryParameters['tagCategoryName'] = requestParameters.tagCategoryName;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-
-
-
-
-        await this.addAuthorizationHeaders(headerParameters)
-
-        const response = await this.request({
-            path: `/commerce/inventory/v1/tagCategory/{tag_category_name}`,
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: requestParameters.tagCategory,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response);
-    }
-
-    /**
-     * Update the designated tag category
-     * Update Tag Category
-     */
-    async updateTagCategory(requestParameters: inventoryTagCategoryApiParams.UpdateTagCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagCategory> {
-        const response = await this.updateTagCategoryRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
 }

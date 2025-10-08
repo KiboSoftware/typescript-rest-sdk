@@ -23,6 +23,7 @@ import type {
 
 export namespace inventorySiloApiParams { 
     export interface UpdateTenantSiloConfigOperationRequest {
+        xVolTenant: number;
         updateTenantSiloConfigRequest: UpdateTenantSiloConfigRequest;
     }
 }
@@ -36,6 +37,7 @@ export interface InventorySiloApiService {
     /**
     * Updates tenant silo config
     * @summary Update Tenant Silo Config
+    * @param {number} xVolTenant Tenant ID
     * @param {UpdateTenantSiloConfigRequest} updateTenantSiloConfigRequest Request to create tenant silo config
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -67,6 +69,10 @@ export class InventorySiloApi extends runtime.BaseAPI implements InventorySiloAp
 
 
     async updateTenantSiloConfigRaw(requestParameters: inventorySiloApiParams.UpdateTenantSiloConfigOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TenantSiloConfigModel>> {
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling updateTenantSiloConfig.');
+        }
+
         if (requestParameters.updateTenantSiloConfigRequest === null || requestParameters.updateTenantSiloConfigRequest === undefined) {
             throw new runtime.RequiredError('updateTenantSiloConfigRequest','Required parameter requestParameters.updateTenantSiloConfigRequest was null or undefined when calling updateTenantSiloConfig.');
         }
@@ -76,6 +82,10 @@ export class InventorySiloApi extends runtime.BaseAPI implements InventorySiloAp
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
 
 
 

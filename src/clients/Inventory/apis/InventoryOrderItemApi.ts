@@ -23,6 +23,7 @@ import type {
 
 export namespace inventoryOrderItemApiParams { 
     export interface GetOrderItemInformationRequest {
+        xVolTenant: number;
         orderItemInformationRequest: OrderItemInformationRequest;
     }
 }
@@ -36,6 +37,7 @@ export interface InventoryOrderItemApiService {
     /**
     * Get Order Item Information
     * @summary Get Order Item Information
+    * @param {number} xVolTenant Tenant ID
     * @param {OrderItemInformationRequest} orderItemInformationRequest Request to retrieve order item information
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -67,6 +69,10 @@ export class InventoryOrderItemApi extends runtime.BaseAPI implements InventoryO
 
 
     async getOrderItemInformationRaw(requestParameters: inventoryOrderItemApiParams.GetOrderItemInformationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<OrderItemInformation>>> {
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getOrderItemInformation.');
+        }
+
         if (requestParameters.orderItemInformationRequest === null || requestParameters.orderItemInformationRequest === undefined) {
             throw new runtime.RequiredError('orderItemInformationRequest','Required parameter requestParameters.orderItemInformationRequest was null or undefined when calling getOrderItemInformation.');
         }
@@ -76,6 +82,10 @@ export class InventoryOrderItemApi extends runtime.BaseAPI implements InventoryO
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
 
 
 

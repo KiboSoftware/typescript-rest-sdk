@@ -25,6 +25,8 @@ import type {
   RatesResponseGroup,
   ShipmentRequest,
   ShippingRuntimeShipmentResponse,
+  TransitTimesRequest,
+  TransitTimesResponse,
 } from '../models';
 
 
@@ -49,6 +51,10 @@ export namespace shippingApiParams {
         includeRawResponse?: boolean;
         responseFields?: string;
         rateRequest?: RateRequest;
+    }
+    export interface GetTransitTimesRequest {
+        responseFields?: string;
+        transitTimesRequest?: TransitTimesRequest;
     }
 }
 /**
@@ -143,6 +149,23 @@ export interface ShippingApiService {
     * Get Rates
     */
     getRates(requestParameters: shippingApiParams.GetRatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RatesResponse>;
+
+    /**
+    * Get Transit Times
+    * @summary Get Transit Times
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {TransitTimesRequest} [transitTimesRequest] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ShippingApiInterface
+    */
+    getTransitTimesRaw(requestParameters: shippingApiParams.GetTransitTimesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TransitTimesResponse>>;
+
+    /**
+    * Get Transit Times
+    * Get Transit Times
+    */
+    getTransitTimes(requestParameters: shippingApiParams.GetTransitTimesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransitTimesResponse>;
 
 }
 
@@ -372,6 +395,49 @@ export class ShippingApi extends runtime.BaseAPI implements ShippingApiService {
      */
     async getRates(requestParameters: shippingApiParams.GetRatesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RatesResponse> {
         const response = await this.getRatesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get Transit Times
+     * Get Transit Times
+     */
+
+
+    async getTransitTimesRaw(requestParameters: shippingApiParams.GetTransitTimesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TransitTimesResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/catalog/storefront/shipping/transit-times`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.transitTimesRequest,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Get Transit Times
+     * Get Transit Times
+     */
+    async getTransitTimes(requestParameters: shippingApiParams.GetTransitTimesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransitTimesResponse> {
+        const response = await this.getTransitTimesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

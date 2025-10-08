@@ -20,15 +20,38 @@ import type {
   AggregateResponse,
   InventoryRequest,
   InventoryResponse,
+  ItemQuantity,
+  RequestLocation,
 } from '../models';
 
 
 export namespace inventoryApiParams { 
     export interface AggregateOperationRequest {
+        xVolTenant: number;
         aggregateRequest: AggregateRequest;
+        xVolSite?: number;
+    }
+    export interface GetInventoryRequest {
+        xVolTenant: number;
+        type: GetInventoryTypeEnum;
+        xVolSite?: number;
+        items?: Array<ItemQuantity>;
+        requestLocation?: RequestLocation;
+        locationWhitelist?: Array<string>;
+        locationBlacklist?: Array<string>;
+        limit?: number;
+        ignoreSafetyStock?: boolean;
+        includeNegativeInventory?: boolean;
+        shippingLocation?: boolean;
+        transferEnabled?: boolean;
+        pickup?: boolean;
+        includeInAggregate?: boolean;
+        includeAttributes?: boolean;
     }
     export interface PostQueryInventoryRequest {
+        xVolTenant: number;
         inventoryRequest: InventoryRequest;
+        xVolSite?: number;
     }
 }
 /**
@@ -41,7 +64,9 @@ export interface InventoryApiService {
     /**
     * Aggregates Inventory
     * @summary Aggregate
+    * @param {number} xVolTenant Tenant ID
     * @param {AggregateRequest} aggregateRequest Request to aggregate inventory
+    * @param {number} [xVolSite] Site ID
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof InventoryApiInterface
@@ -55,9 +80,41 @@ export interface InventoryApiService {
     aggregate(requestParameters: inventoryApiParams.AggregateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AggregateResponse>>;
 
     /**
+    * Get inventory from specified location
+    * @summary Get Inventory
+    * @param {number} xVolTenant Tenant ID
+    * @param {'ALL' | 'PARTIAL' | 'ANY' | 'ALL_STORES'} type Type of request enum
+    * @param {number} [xVolSite] Site ID
+    * @param {Array<ItemQuantity>} [items] List of Items to search on
+    * @param {RequestLocation} [requestLocation] Location for Request
+    * @param {Array<string>} [locationWhitelist] List of location codes that are allowed to be included in results
+    * @param {Array<string>} [locationBlacklist] List of location codes that are NOT allowed to be included in results
+    * @param {number} [limit] The maximum number of results to return, defaults to 100 for most
+    * @param {boolean} [ignoreSafetyStock] Whether to ignore the safety stock buffer put in place
+    * @param {boolean} [includeNegativeInventory] Whether to allow items with negative inventory in the results
+    * @param {boolean} [shippingLocation] Whether to limit results to locations that are shipping enabled
+    * @param {boolean} [transferEnabled] Filter results by locations that have transfer enabled (true) or don\&#39;t (false)
+    * @param {boolean} [pickup] Filter results by locations that are pickup-enabled (true) or not (false)
+    * @param {boolean} [includeInAggregate] Filter results by locations that have aggregate export enabled (true) or don\&#39;t (false)
+    * @param {boolean} [includeAttributes] Flag to include attributes or not
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof InventoryApiInterface
+    */
+    getInventoryRaw(requestParameters: inventoryApiParams.GetInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<InventoryResponse>>>;
+
+    /**
+    * Get inventory from specified location
+    * Get Inventory
+    */
+    getInventory(requestParameters: inventoryApiParams.GetInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<InventoryResponse>>;
+
+    /**
     * Queries for specified inventory at given location
     * @summary Post Query Inventory
+    * @param {number} xVolTenant Tenant ID
     * @param {InventoryRequest} inventoryRequest Request to get inventory
+    * @param {number} [xVolSite] Site ID
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof InventoryApiInterface
@@ -88,6 +145,10 @@ export class InventoryApi extends runtime.BaseAPI implements InventoryApiService
 
 
     async aggregateRaw(requestParameters: inventoryApiParams.AggregateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AggregateResponse>>> {
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling aggregate.');
+        }
+
         if (requestParameters.aggregateRequest === null || requestParameters.aggregateRequest === undefined) {
             throw new runtime.RequiredError('aggregateRequest','Required parameter requestParameters.aggregateRequest was null or undefined when calling aggregate.');
         }
@@ -97,6 +158,14 @@ export class InventoryApi extends runtime.BaseAPI implements InventoryApiService
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
+
+        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
+            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
+        }
 
 
 
@@ -125,12 +194,120 @@ export class InventoryApi extends runtime.BaseAPI implements InventoryApiService
     }
 
     /**
+     * Get inventory from specified location
+     * Get Inventory
+     */
+
+
+    async getInventoryRaw(requestParameters: inventoryApiParams.GetInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<InventoryResponse>>> {
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getInventory.');
+        }
+
+        if (requestParameters.type === null || requestParameters.type === undefined) {
+            throw new runtime.RequiredError('type','Required parameter requestParameters.type was null or undefined when calling getInventory.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.type !== undefined) {
+            queryParameters['type'] = requestParameters.type;
+        }
+
+        if (requestParameters.items) {
+            queryParameters['items'] = requestParameters.items;
+        }
+
+        if (requestParameters.requestLocation !== undefined) {
+            queryParameters['requestLocation'] = requestParameters.requestLocation;
+        }
+
+        if (requestParameters.locationWhitelist) {
+            queryParameters['locationWhitelist'] = requestParameters.locationWhitelist;
+        }
+
+        if (requestParameters.locationBlacklist) {
+            queryParameters['locationBlacklist'] = requestParameters.locationBlacklist;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.ignoreSafetyStock !== undefined) {
+            queryParameters['ignoreSafetyStock'] = requestParameters.ignoreSafetyStock;
+        }
+
+        if (requestParameters.includeNegativeInventory !== undefined) {
+            queryParameters['includeNegativeInventory'] = requestParameters.includeNegativeInventory;
+        }
+
+        if (requestParameters.shippingLocation !== undefined) {
+            queryParameters['shippingLocation'] = requestParameters.shippingLocation;
+        }
+
+        if (requestParameters.transferEnabled !== undefined) {
+            queryParameters['transferEnabled'] = requestParameters.transferEnabled;
+        }
+
+        if (requestParameters.pickup !== undefined) {
+            queryParameters['pickup'] = requestParameters.pickup;
+        }
+
+        if (requestParameters.includeInAggregate !== undefined) {
+            queryParameters['includeInAggregate'] = requestParameters.includeInAggregate;
+        }
+
+        if (requestParameters.includeAttributes !== undefined) {
+            queryParameters['includeAttributes'] = requestParameters.includeAttributes;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
+
+        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
+            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
+        }
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/inventory/v5/inventory`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Get inventory from specified location
+     * Get Inventory
+     */
+    async getInventory(requestParameters: inventoryApiParams.GetInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<InventoryResponse>> {
+        const response = await this.getInventoryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Queries for specified inventory at given location
      * Post Query Inventory
      */
 
 
     async postQueryInventoryRaw(requestParameters: inventoryApiParams.PostQueryInventoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<InventoryResponse>>> {
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling postQueryInventory.');
+        }
+
         if (requestParameters.inventoryRequest === null || requestParameters.inventoryRequest === undefined) {
             throw new runtime.RequiredError('inventoryRequest','Required parameter requestParameters.inventoryRequest was null or undefined when calling postQueryInventory.');
         }
@@ -140,6 +317,14 @@ export class InventoryApi extends runtime.BaseAPI implements InventoryApiService
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
+
+        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
+            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
+        }
 
 
 
@@ -168,3 +353,14 @@ export class InventoryApi extends runtime.BaseAPI implements InventoryApiService
     }
 
 }
+
+/**
+ * @export
+ */
+export const GetInventoryTypeEnum = {
+    All: 'ALL',
+    Partial: 'PARTIAL',
+    Any: 'ANY',
+    AllStores: 'ALL_STORES'
+} as const;
+export type GetInventoryTypeEnum = typeof GetInventoryTypeEnum[keyof typeof GetInventoryTypeEnum];

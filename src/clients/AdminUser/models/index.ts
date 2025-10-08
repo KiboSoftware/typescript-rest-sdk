@@ -149,6 +149,12 @@ export interface AdminUserMasterCatalog {
     catalogs?: Array<Catalog> | null;
     /**
      * 
+     * @type {Array<string>}
+     * @memberof AdminUserMasterCatalog
+     */
+    supportedLocaleCodes?: Array<string> | null;
+    /**
+     * 
      * @type {number}
      * @memberof AdminUserMasterCatalog
      */
@@ -191,67 +197,6 @@ export interface AdminUserResetPasswordInfo {
      * @memberof AdminUserResetPasswordInfo
      */
     emailAddress?: string | null;
-}
-/**
- * 
- * @export
- * @interface AdminUserTenant
- */
-export interface AdminUserTenant {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof AdminUserTenant
-     */
-    isDevTenant?: boolean;
-    /**
-     * 
-     * @type {Array<Site>}
-     * @memberof AdminUserTenant
-     */
-    sites?: Array<Site> | null;
-    /**
-     * 
-     * @type {Array<AdminUserMasterCatalog>}
-     * @memberof AdminUserTenant
-     */
-    masterCatalogs?: Array<AdminUserMasterCatalog> | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof AdminUserTenant
-     */
-    domain?: string | null;
-    /**
-     * 
-     * @type {Array<TenantAttribute>}
-     * @memberof AdminUserTenant
-     */
-    attributes?: Array<TenantAttribute> | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof AdminUserTenant
-     */
-    expiry?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof AdminUserTenant
-     */
-    isUnified?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof AdminUserTenant
-     */
-    id?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof AdminUserTenant
-     */
-    name?: string | null;
 }
 /**
  * Collection of UserRoles for given user.
@@ -689,6 +634,73 @@ export interface Site {
 /**
  * 
  * @export
+ * @interface Tenant
+ */
+export interface Tenant {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Tenant
+     */
+    isDevTenant?: boolean;
+    /**
+     * 
+     * @type {Array<Site>}
+     * @memberof Tenant
+     */
+    sites?: Array<Site> | null;
+    /**
+     * 
+     * @type {Array<AdminUserMasterCatalog>}
+     * @memberof Tenant
+     */
+    masterCatalogs?: Array<AdminUserMasterCatalog> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Tenant
+     */
+    domain?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Tenant
+     */
+    lastLoginDate?: string | null;
+    /**
+     * 
+     * @type {Array<TenantAttribute>}
+     * @memberof Tenant
+     */
+    attributes?: Array<TenantAttribute> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Tenant
+     */
+    expiry?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Tenant
+     */
+    isUnified?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof Tenant
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Tenant
+     */
+    name?: string | null;
+}
+/**
+ * 
+ * @export
  * @interface TenantAdminUserAuthTicket
  */
 export interface TenantAdminUserAuthTicket {
@@ -739,25 +751,37 @@ export interface TenantAdminUserAuthTicket {
      * @type {string}
      * @memberof TenantAdminUserAuthTicket
      */
+    ssoSession?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof TenantAdminUserAuthTicket
+     */
     refreshTokenExpiration?: string;
     /**
      * 
-     * @type {AdminUserTenant}
+     * @type {Tenant}
      * @memberof TenantAdminUserAuthTicket
      */
-    tenant?: AdminUserTenant;
+    tenant?: Tenant;
     /**
      * 
-     * @type {Array<AdminUserTenant>}
+     * @type {Array<Tenant>}
      * @memberof TenantAdminUserAuthTicket
      */
-    availableTenants?: Array<AdminUserTenant> | null;
+    availableTenants?: Array<Tenant> | null;
     /**
      * 
      * @type {Array<number>}
      * @memberof TenantAdminUserAuthTicket
      */
     grantedBehaviors?: Array<number> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof TenantAdminUserAuthTicket
+     */
+    ssoNameId?: string | null;
 }
 /**
  * 
@@ -834,10 +858,10 @@ export interface TenantCollection {
     totalCount?: number;
     /**
      * 
-     * @type {Array<AdminUserTenant>}
+     * @type {Array<Tenant>}
      * @memberof TenantCollection
      */
-    items?: Array<AdminUserTenant> | null;
+    items?: Array<Tenant> | null;
 }
 /**
  * 

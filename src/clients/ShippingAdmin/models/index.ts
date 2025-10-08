@@ -47,6 +47,25 @@ export interface AppDevHttpContent {
 /**
  * 
  * @export
+ * @interface AttributeValueLocalizedContent
+ */
+export interface AttributeValueLocalizedContent {
+    /**
+     * 
+     * @type {string}
+     * @memberof AttributeValueLocalizedContent
+     */
+    localeCode: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AttributeValueLocalizedContent
+     */
+    value: string;
+}
+/**
+ * 
+ * @export
  * @interface CarrierConfiguration
  */
 export interface CarrierConfiguration {
@@ -432,6 +451,12 @@ export interface CarrierDefinition {
     logoUrl?: string | null;
     /**
      * 
+     * @type {Array<string>}
+     * @memberof CarrierDefinition
+     */
+    features?: Array<string> | null;
+    /**
+     * 
      * @type {Array<CarrierCredentialSetMetadata>}
      * @memberof CarrierDefinition
      */
@@ -442,6 +467,300 @@ export interface CarrierDefinition {
      * @memberof CarrierDefinition
      */
     auditInfo?: AdminUserAuditInfo;
+}
+/**
+ * 
+ * @export
+ * @interface CommerceRuntimeAttribute
+ */
+export interface CommerceRuntimeAttribute {
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeAttribute
+     */
+    id?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAttribute
+     */
+    adminName?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAttribute
+     */
+    namespace?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAttribute
+     */
+    attributeCode: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAttribute
+     */
+    inputType?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAttribute
+     */
+    valueType: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAttribute
+     */
+    dataType?: string | null;
+    /**
+     * 
+     * @type {Array<CommerceRuntimeAttributeMetadataItem>}
+     * @memberof CommerceRuntimeAttribute
+     */
+    attributeMetadata?: Array<CommerceRuntimeAttributeMetadataItem> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAttribute
+     */
+    attributeFQN?: string | null;
+    /**
+     * 
+     * @type {CommerceRuntimeAttributeLocalizedContent}
+     * @memberof CommerceRuntimeAttribute
+     */
+    content?: CommerceRuntimeAttributeLocalizedContent;
+    /**
+     * 
+     * @type {CommerceRuntimeAttributeValidation}
+     * @memberof CommerceRuntimeAttribute
+     */
+    validation?: CommerceRuntimeAttributeValidation;
+    /**
+     * 
+     * @type {Array<CommerceRuntimeAttributeVocabularyValue>}
+     * @memberof CommerceRuntimeAttribute
+     */
+    vocabularyValues?: Array<CommerceRuntimeAttributeVocabularyValue> | null;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof CommerceRuntimeAttribute
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommerceRuntimeAttribute
+     */
+    isActive?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommerceRuntimeAttribute
+     */
+    isRequired?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommerceRuntimeAttribute
+     */
+    isReadOnly?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommerceRuntimeAttribute
+     */
+    isMultiValued?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommerceRuntimeAttribute
+     */
+    isVisible?: boolean | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeAttribute
+     */
+    order?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAttribute
+     */
+    displayGroup: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommerceRuntimeAttribute
+     */
+    availableForOrderRouting?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommerceRuntimeAttribute
+     */
+    availableForDiscounts?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface CommerceRuntimeAttributeCollection
+ */
+export interface CommerceRuntimeAttributeCollection {
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeAttributeCollection
+     */
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeAttributeCollection
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeAttributeCollection
+     */
+    pageCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeAttributeCollection
+     */
+    totalCount?: number;
+    /**
+     * 
+     * @type {Array<CommerceRuntimeAttribute>}
+     * @memberof CommerceRuntimeAttributeCollection
+     */
+    items?: Array<CommerceRuntimeAttribute> | null;
+}
+/**
+ * 
+ * @export
+ * @interface CommerceRuntimeAttributeLocalizedContent
+ */
+export interface CommerceRuntimeAttributeLocalizedContent {
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAttributeLocalizedContent
+     */
+    localeCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAttributeLocalizedContent
+     */
+    value?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface CommerceRuntimeAttributeMetadataItem
+ */
+export interface CommerceRuntimeAttributeMetadataItem {
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAttributeMetadataItem
+     */
+    key: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAttributeMetadataItem
+     */
+    value: string;
+}
+/**
+ * 
+ * @export
+ * @interface CommerceRuntimeAttributeValidation
+ */
+export interface CommerceRuntimeAttributeValidation {
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAttributeValidation
+     */
+    regularExpression?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeAttributeValidation
+     */
+    minStringLength?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeAttributeValidation
+     */
+    maxStringLength?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeAttributeValidation
+     */
+    minNumericValue?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeAttributeValidation
+     */
+    maxNumericValue?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAttributeValidation
+     */
+    minDateTime?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAttributeValidation
+     */
+    maxDateTime?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface CommerceRuntimeAttributeVocabularyValue
+ */
+export interface CommerceRuntimeAttributeVocabularyValue {
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAttributeVocabularyValue
+     */
+    value: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeAttributeVocabularyValue
+     */
+    sequence?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommerceRuntimeAttributeVocabularyValue
+     */
+    isHidden?: boolean | null;
+    /**
+     * 
+     * @type {AttributeValueLocalizedContent}
+     * @memberof CommerceRuntimeAttributeVocabularyValue
+     */
+    content?: AttributeValueLocalizedContent;
 }
 /**
  * 

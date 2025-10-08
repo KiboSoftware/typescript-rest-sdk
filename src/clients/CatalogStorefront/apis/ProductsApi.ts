@@ -42,6 +42,7 @@ export namespace productsApiParams {
         variationProductCodeFilter?: string;
         useSubscriptionPricing?: boolean;
         subscriptionFrequency?: string;
+        customerSegments?: string;
         responseFields?: string;
         productOptionSelections?: ProductOptionSelections;
     }
@@ -59,6 +60,7 @@ export namespace productsApiParams {
         sliceValue?: string;
         includeAllImages?: boolean;
         useSubscriptionPricing?: boolean;
+        customerSegments?: string;
         responseFields?: string;
     }
     export interface StorefrontGetProductCostsRequest {
@@ -99,6 +101,7 @@ export namespace productsApiParams {
         useSubscriptionPricing?: boolean;
         includeProductDetailsOnlyProperty?: boolean;
         collapse?: boolean;
+        customerSegments?: string;
         responseFields?: string;
     }
     export interface StorefrontProductSubstitutionsRequest {
@@ -146,6 +149,7 @@ export interface ProductsApiService {
     * @param {string} [variationProductCodeFilter] 
     * @param {boolean} [useSubscriptionPricing] 
     * @param {string} [subscriptionFrequency] 
+    * @param {string} [customerSegments] 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {ProductOptionSelections} [productOptionSelections] Shopper-selected options.
     * @param {*} [options] Override http request option.
@@ -176,6 +180,7 @@ export interface ProductsApiService {
     * @param {string} [sliceValue] 
     * @param {boolean} [includeAllImages] 
     * @param {boolean} [useSubscriptionPricing] 
+    * @param {string} [customerSegments] 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -281,6 +286,7 @@ export interface ProductsApiService {
     * @param {boolean} [useSubscriptionPricing] 
     * @param {boolean} [includeProductDetailsOnlyProperty] 
     * @param {boolean} [collapse] 
+    * @param {string} [customerSegments] 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -411,6 +417,10 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiService {
             queryParameters['subscriptionFrequency'] = requestParameters.subscriptionFrequency;
         }
 
+        if (requestParameters.customerSegments !== undefined) {
+            queryParameters['customerSegments'] = requestParameters.customerSegments;
+        }
+
         if (requestParameters.responseFields !== undefined) {
             queryParameters['responseFields'] = requestParameters.responseFields;
         }
@@ -504,6 +514,10 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiService {
 
         if (requestParameters.useSubscriptionPricing !== undefined) {
             queryParameters['useSubscriptionPricing'] = requestParameters.useSubscriptionPricing;
+        }
+
+        if (requestParameters.customerSegments !== undefined) {
+            queryParameters['customerSegments'] = requestParameters.customerSegments;
         }
 
         if (requestParameters.responseFields !== undefined) {
@@ -802,6 +816,10 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiService {
 
         if (requestParameters.collapse !== undefined) {
             queryParameters['collapse'] = requestParameters.collapse;
+        }
+
+        if (requestParameters.customerSegments !== undefined) {
+            queryParameters['customerSegments'] = requestParameters.customerSegments;
         }
 
         if (requestParameters.responseFields !== undefined) {

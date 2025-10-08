@@ -5,6 +5,7 @@ export * from './InventoryApi';
 export * from './InventoryAllocationApi';
 export * from './InventoryBinApi';
 export * from './InventoryBlockAssignmentApi';
+export * from './InventoryCacheApi';
 export * from './InventoryFetchFileConfigApi';
 export * from './InventoryFutureDateApi';
 export * from './InventoryJobApi';

@@ -16,6 +16,7 @@
 import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
 import type {
+  FulfillmentInf,
   OrderReservati,
   Reservati,
   ReservationCollecti,
@@ -85,6 +86,7 @@ export namespace reservationApiParams {
         quantity: number;
         runSynchronous?: boolean;
         responseFields?: string;
+        fulfillmentInf?: FulfillmentInf;
     }
     export interface UpdateReservationRequest {
         reservationId: string;
@@ -323,6 +325,7 @@ export interface ReservationApiService {
     * @param {number} quantity 
     * @param {boolean} [runSynchronous] 
     * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {FulfillmentInf} [fulfillmentInf] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ReservationApiInterface
@@ -973,6 +976,8 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiSer
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        headerParameters['Content-Type'] = 'application/json';
+
 
 
 
@@ -984,6 +989,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiSer
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
+            body: requestParameters.fulfillmentInf,
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response);

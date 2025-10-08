@@ -132,69 +132,6 @@ export const ContentHttpVersionPolicy = {
 export type ContentHttpVersionPolicy = typeof ContentHttpVersionPolicy[keyof typeof ContentHttpVersionPolicy];
 
 /**
- * A view provides GET access to documents within the documentList the view belongs to. The view can designate which document fields are returned (projection) and
- * a security model for providing GET access independent of the documentList's security model.
- * @export
- * @interface ContentView
- */
-export interface ContentView {
-    /**
-     * A view is addressed via its name, which is unique within the documentList or documentListType in which it is defined.
-     * @type {string}
-     * @memberof ContentView
-     */
-    name?: string | null;
-    /**
-     * tbd
-     * @type {Array<string>}
-     * @memberof ContentView
-     */
-    usages?: Array<string> | null;
-    /**
-     * The metadata field allows arbitrary data to be stored on the view.
-     * @type {any}
-     * @memberof ContentView
-     */
-    metadata?: any | null;
-    /**
-     * The isVisibleInStorefront field indicates whether documents in the view can be accessed from the Mozu storefront application. If true, the storefront application and storefront client application (javascript tier) 
-     * can GET documents from the view.
-     * @type {boolean}
-     * @memberof ContentView
-     */
-    isVisibleInStorefront?: boolean | null;
-    /**
-     * Filter criteria to apply automatically when documents from this view are accessed, using the standard Mozu filter syntax. Only documents matching the filter criteria will be returned. 
-     * Any filter provided by an operation is combined with the view filter.
-     * @type {string}
-     * @memberof ContentView
-     */
-    filter?: string | null;
-    /**
-     * If view documents are requested with includeInactive=true, then this controls which documents return. If includeInactive is not provided or set to false, then only active documents return.
-     * If not set, or set to "all", then all documents return.
-     * If set to "active", then only documents within the active date range and documents with no active date range are returned.
-     * If set to "scheduled", then only documents with an active date range in the future are returned.
-     * If set to "activeOrScheduled", then only documents that are active or documents with an active date range in the future are returned.
-     * If set to "ended", then only documents with an active date range in the past are returned.
-     * @type {string}
-     * @memberof ContentView
-     */
-    includeInactiveMode?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ContentView
-     */
-    isAdminDefault?: boolean | null;
-    /**
-     * Designation of which document fields are returned (projection) when GETing documents from the view.
-     * @type {Array<ViewField>}
-     * @memberof ContentView
-     */
-    fields?: Array<ViewField> | null;
-}
-/**
  * Container for schema-enforced and schemaless data. A document is primarily used to store content (html, text,
  * numbers, dates, JSON, binary data) that is directly or indirectly used for the storefront website experience
  * and may be addressed via the Hypr theming engine language. A document belongs to a documentList and has an
@@ -686,10 +623,10 @@ export interface DocumentList {
      * An array of one or more views, which each allow GET access to a projection of fields from the documents in the given documentList. 
      * If the documentList is based on a documentListType, then this value will be derived from the documentListType. Views can be added/removed to the documentList, even when
      * the documentList derives from a documentListType.
-     * @type {Array<ContentView>}
+     * @type {Array<View>}
      * @memberof DocumentList
      */
-    views?: Array<ContentView> | null;
+    views?: Array<View> | null;
     /**
      * An array of strings that describes to the Mozu platform the manner(s) in which a documentList can be used. The following values are valid:
      * entitymanager -- the documentList should be visible in the Admin Content/Entities UI, which allows admin users to create, manage and publish documents within the documentList.
@@ -868,10 +805,10 @@ export interface DocumentListType {
     /**
      * An array of one or more views, which each allow GET access to a projection of fields from the documents in the given documentList. 
      * Each documentList created from this documentListType will use this value, but it can be overridden in an individual documentList.
-     * @type {Array<ContentView>}
+     * @type {Array<View>}
      * @memberof DocumentListType
      */
-    views?: Array<ContentView> | null;
+    views?: Array<View> | null;
     /**
      * An array of strings that describes to the Mozu platform the manner(s) in which a documentList can be used. The following values are valid:
      * entitymanager -- the documentList should be visible in the Admin Content/Entities screen, which allows admin users to create, manage and publish documents within the documentList.
@@ -1306,6 +1243,69 @@ export interface PublishSetSummaryPagedCollection {
      * @memberof PublishSetSummaryPagedCollection
      */
     items?: Array<PublishSetSummary> | null;
+}
+/**
+ * A view provides GET access to documents within the documentList the view belongs to. The view can designate which document fields are returned (projection) and
+ * a security model for providing GET access independent of the documentList's security model.
+ * @export
+ * @interface View
+ */
+export interface View {
+    /**
+     * A view is addressed via its name, which is unique within the documentList or documentListType in which it is defined.
+     * @type {string}
+     * @memberof View
+     */
+    name?: string | null;
+    /**
+     * tbd
+     * @type {Array<string>}
+     * @memberof View
+     */
+    usages?: Array<string> | null;
+    /**
+     * The metadata field allows arbitrary data to be stored on the view.
+     * @type {any}
+     * @memberof View
+     */
+    metadata?: any | null;
+    /**
+     * The isVisibleInStorefront field indicates whether documents in the view can be accessed from the Mozu storefront application. If true, the storefront application and storefront client application (javascript tier) 
+     * can GET documents from the view.
+     * @type {boolean}
+     * @memberof View
+     */
+    isVisibleInStorefront?: boolean | null;
+    /**
+     * Filter criteria to apply automatically when documents from this view are accessed, using the standard Mozu filter syntax. Only documents matching the filter criteria will be returned. 
+     * Any filter provided by an operation is combined with the view filter.
+     * @type {string}
+     * @memberof View
+     */
+    filter?: string | null;
+    /**
+     * If view documents are requested with includeInactive=true, then this controls which documents return. If includeInactive is not provided or set to false, then only active documents return.
+     * If not set, or set to "all", then all documents return.
+     * If set to "active", then only documents within the active date range and documents with no active date range are returned.
+     * If set to "scheduled", then only documents with an active date range in the future are returned.
+     * If set to "activeOrScheduled", then only documents that are active or documents with an active date range in the future are returned.
+     * If set to "ended", then only documents with an active date range in the past are returned.
+     * @type {string}
+     * @memberof View
+     */
+    includeInactiveMode?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof View
+     */
+    isAdminDefault?: boolean | null;
+    /**
+     * Designation of which document fields are returned (projection) when GETing documents from the view.
+     * @type {Array<ViewField>}
+     * @memberof View
+     */
+    fields?: Array<ViewField> | null;
 }
 /**
  * The projection of an individual field in a view.

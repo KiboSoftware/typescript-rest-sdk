@@ -2,10 +2,12 @@ apis/CartApi.ts
 apis/ChannelApi.ts
 apis/ChannelGroupApi.ts
 apis/CheckoutApi.ts
+apis/JobApi.ts
 apis/OrderApi.ts
 apis/OrderAttributeDefinitionsApi.ts
 apis/QuoteApi.ts
 apis/ReturnApi.ts
+apis/ReturnAttributeDefinitionsApi.ts
 apis/WishlistApi.ts
 apis/index.ts
 index.ts
