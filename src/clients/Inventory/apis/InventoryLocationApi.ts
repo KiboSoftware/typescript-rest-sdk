@@ -24,12 +24,18 @@ import type {
 
 export namespace inventoryLocationApiParams { 
     export interface GetLocationGroupsRequest {
+        xVolTenant: number;
         locationGroupCode: string;
     }
     export interface GetLocationsRequest {
+        xVolTenant: number;
         locationCode: string;
     }
+    export interface GetLocations0Request {
+        xVolTenant: number;
+    }
     export interface SaveLocationRequest {
+        xVolTenant: number;
         locationRequest: LocationRequest;
     }
 }
@@ -43,6 +49,7 @@ export interface InventoryLocationApiService {
     /**
     * Get LocationGroups
     * @summary Get Location Groups
+    * @param {number} xVolTenant Tenant ID
     * @param {string} locationGroupCode Location Group Code of the location to get
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -59,6 +66,7 @@ export interface InventoryLocationApiService {
     /**
     * Get Locations
     * @summary Get Locations
+    * @param {number} xVolTenant Tenant ID
     * @param {string} locationCode Location Code of the location to get
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -75,21 +83,23 @@ export interface InventoryLocationApiService {
     /**
     * Get Locations
     * @summary Get Locations
+    * @param {number} xVolTenant Tenant ID
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof InventoryLocationApiInterface
     */
-    getLocations_1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationResponse>>>;
+    getLocations_1Raw(requestParameters: inventoryLocationApiParams.GetLocations0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationResponse>>>;
 
     /**
     * Get Locations
     * Get Locations
     */
-    getLocations_1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationResponse>>;
+    getLocations_1(requestParameters: inventoryLocationApiParams.GetLocations0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationResponse>>;
 
     /**
     * Save Location
     * @summary Save Location
+    * @param {number} xVolTenant Tenant ID
     * @param {LocationRequest} locationRequest Location Request Object
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -121,6 +131,10 @@ export class InventoryLocationApi extends runtime.BaseAPI implements InventoryLo
 
 
     async getLocationGroupsRaw(requestParameters: inventoryLocationApiParams.GetLocationGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationGroupResponse>>> {
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getLocationGroups.');
+        }
+
         if (requestParameters.locationGroupCode === null || requestParameters.locationGroupCode === undefined) {
             throw new runtime.RequiredError('locationGroupCode','Required parameter requestParameters.locationGroupCode was null or undefined when calling getLocationGroups.');
         }
@@ -128,6 +142,10 @@ export class InventoryLocationApi extends runtime.BaseAPI implements InventoryLo
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
 
 
 
@@ -161,6 +179,10 @@ export class InventoryLocationApi extends runtime.BaseAPI implements InventoryLo
 
 
     async getLocationsRaw(requestParameters: inventoryLocationApiParams.GetLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationResponse>>> {
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getLocations.');
+        }
+
         if (requestParameters.locationCode === null || requestParameters.locationCode === undefined) {
             throw new runtime.RequiredError('locationCode','Required parameter requestParameters.locationCode was null or undefined when calling getLocations.');
         }
@@ -168,6 +190,10 @@ export class InventoryLocationApi extends runtime.BaseAPI implements InventoryLo
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
 
 
 
@@ -200,10 +226,18 @@ export class InventoryLocationApi extends runtime.BaseAPI implements InventoryLo
      */
 
 
-    async getLocations_1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationResponse>>> {
+    async getLocations_1Raw(requestParameters: inventoryLocationApiParams.GetLocations0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationResponse>>> {
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getLocations_1.');
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
 
 
 
@@ -225,8 +259,8 @@ export class InventoryLocationApi extends runtime.BaseAPI implements InventoryLo
      * Get Locations
      * Get Locations
      */
-    async getLocations_1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationResponse>> {
-        const response = await this.getLocations_1Raw(initOverrides);
+    async getLocations_1(requestParameters: inventoryLocationApiParams.GetLocations0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LocationResponse>> {
+        const response = await this.getLocations_1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -237,6 +271,10 @@ export class InventoryLocationApi extends runtime.BaseAPI implements InventoryLo
 
 
     async saveLocationRaw(requestParameters: inventoryLocationApiParams.SaveLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LocationResponse>>> {
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling saveLocation.');
+        }
+
         if (requestParameters.locationRequest === null || requestParameters.locationRequest === undefined) {
             throw new runtime.RequiredError('locationRequest','Required parameter requestParameters.locationRequest was null or undefined when calling saveLocation.');
         }
@@ -246,6 +284,10 @@ export class InventoryLocationApi extends runtime.BaseAPI implements InventoryLo
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
 
 
 

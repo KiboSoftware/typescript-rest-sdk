@@ -22,6 +22,7 @@ import type {
   DiscountLocalizedContent,
   DiscountTag,
   DiscountTagCollection,
+  ExpressionValidationResult,
   TagCollection,
 } from '../models';
 
@@ -80,6 +81,10 @@ export namespace discountsApiParams {
         discountId: number;
         responseFields?: string;
         catalogAdminsDiscountTarget?: CatalogAdminsDiscountTarget;
+    }
+    export interface ValidateDiscountExpressionRequest {
+        responseFields?: string;
+        catalogAdminsDiscount?: CatalogAdminsDiscount;
     }
 }
 /**
@@ -282,7 +287,7 @@ export interface DiscountsApiService {
     updateDiscountTags(requestParameters: discountsApiParams.UpdateDiscountTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountTagCollection>;
 
     /**
-    * Modifies properties of the discount target, for example, the dollar amount, or precentage off the price.
+    * Modifies properties of the discount target, for example, the dollar amount, or percentage off the price.
     * @summary Update discount target
     * @param {number} discountId Unique identifier of the discount. System-supplied and read-only.
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -294,10 +299,27 @@ export interface DiscountsApiService {
     updateDiscountTargetRaw(requestParameters: discountsApiParams.UpdateDiscountTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscountTarget>>;
 
     /**
-    * Modifies properties of the discount target, for example, the dollar amount, or precentage off the price.
+    * Modifies properties of the discount target, for example, the dollar amount, or percentage off the price.
     * Update discount target
     */
     updateDiscountTarget(requestParameters: discountsApiParams.UpdateDiscountTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscountTarget>;
+
+    /**
+    * Validate a discount expression.
+    * @summary Validate discount expression
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CatalogAdminsDiscount} [catalogAdminsDiscount] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof DiscountsApiInterface
+    */
+    validateDiscountExpressionRaw(requestParameters: discountsApiParams.ValidateDiscountExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExpressionValidationResult>>;
+
+    /**
+    * Validate a discount expression.
+    * Validate discount expression
+    */
+    validateDiscountExpression(requestParameters: discountsApiParams.ValidateDiscountExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExpressionValidationResult>;
 
 }
 
@@ -810,7 +832,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
     }
 
     /**
-     * Modifies properties of the discount target, for example, the dollar amount, or precentage off the price.
+     * Modifies properties of the discount target, for example, the dollar amount, or percentage off the price.
      * Update discount target
      */
 
@@ -848,11 +870,54 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
     }
 
     /**
-     * Modifies properties of the discount target, for example, the dollar amount, or precentage off the price.
+     * Modifies properties of the discount target, for example, the dollar amount, or percentage off the price.
      * Update discount target
      */
     async updateDiscountTarget(requestParameters: discountsApiParams.UpdateDiscountTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscountTarget> {
         const response = await this.updateDiscountTargetRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Validate a discount expression.
+     * Validate discount expression
+     */
+
+
+    async validateDiscountExpressionRaw(requestParameters: discountsApiParams.ValidateDiscountExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExpressionValidationResult>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/catalog/admin/discounts/expressions/validate`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.catalogAdminsDiscount,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Validate a discount expression.
+     * Validate discount expression
+     */
+    async validateDiscountExpression(requestParameters: discountsApiParams.ValidateDiscountExpressionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExpressionValidationResult> {
+        const response = await this.validateDiscountExpressionRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

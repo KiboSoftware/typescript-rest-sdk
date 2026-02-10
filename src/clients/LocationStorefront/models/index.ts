@@ -3,73 +3,6 @@
 /**
  * 
  * @export
- * @interface Address
- */
-export interface Address {
-    /**
-     * 
-     * @type {string}
-     * @memberof Address
-     */
-    address1?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Address
-     */
-    address2?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Address
-     */
-    address3?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Address
-     */
-    address4?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Address
-     */
-    cityOrTown?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Address
-     */
-    stateOrProvince?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Address
-     */
-    postalOrZipCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Address
-     */
-    countryCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Address
-     */
-    addressType?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Address
-     */
-    isValidated?: boolean | null;
-}
-/**
- * 
- * @export
  * @interface AdminUserAuditInfo
  */
 export interface AdminUserAuditInfo {
@@ -116,6 +49,92 @@ export interface AttributeValueLocalizedContent {
      * @memberof AttributeValueLocalizedContent
      */
     value: string;
+}
+/**
+ * 
+ * @export
+ * @interface Capacity
+ */
+export interface Capacity {
+    /**
+     * 
+     * @type {string}
+     * @memberof Capacity
+     */
+    unitOfMeasure?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof Capacity
+     */
+    shipmentsPerUnit?: number | null;
+}
+/**
+ * 
+ * @export
+ * @interface CommerceRuntimeAddress
+ */
+export interface CommerceRuntimeAddress {
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAddress
+     */
+    address1?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAddress
+     */
+    address2?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAddress
+     */
+    address3?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAddress
+     */
+    address4?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAddress
+     */
+    cityOrTown?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAddress
+     */
+    stateOrProvince?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAddress
+     */
+    postalOrZipCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAddress
+     */
+    countryCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAddress
+     */
+    addressType?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommerceRuntimeAddress
+     */
+    isValidated?: boolean | null;
 }
 /**
  * 
@@ -396,6 +415,69 @@ export interface Coordinates {
 /**
  * 
  * @export
+ * @interface CutoffHours
+ */
+export interface CutoffHours {
+    /**
+     * 
+     * @type {string}
+     * @memberof CutoffHours
+     */
+    startTime?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CutoffHours
+     */
+    endTime?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CutoffHours
+     */
+    isClosed?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface CutoffSchedule
+ */
+export interface CutoffSchedule {
+    /**
+     * 
+     * @type {string}
+     * @memberof CutoffSchedule
+     */
+    fulfillmentType?: string | null;
+    /**
+     * 
+     * @type {WeeklyCutoffHours}
+     * @memberof CutoffSchedule
+     */
+    times?: WeeklyCutoffHours;
+}
+/**
+ * 
+ * @export
+ * @interface CutoffTimes
+ */
+export interface CutoffTimes {
+    /**
+     * 
+     * @type {LocationTimeZone}
+     * @memberof CutoffTimes
+     */
+    timeZone?: LocationTimeZone;
+    /**
+     * 
+     * @type {Array<CutoffSchedule>}
+     * @memberof CutoffTimes
+     */
+    schedules?: Array<CutoffSchedule> | null;
+}
+/**
+ * 
+ * @export
  * @interface FulfillmentProcessingTime
  */
 export interface FulfillmentProcessingTime {
@@ -500,10 +582,10 @@ export interface Location {
     description?: string | null;
     /**
      * 
-     * @type {Address}
+     * @type {CommerceRuntimeAddress}
      * @memberof Location
      */
-    address?: Address;
+    address?: CommerceRuntimeAddress;
     /**
      * 
      * @type {Coordinates}
@@ -540,6 +622,12 @@ export interface Location {
      * @memberof Location
      */
     regularHours?: RegularHours;
+    /**
+     * 
+     * @type {CutoffTimes}
+     * @memberof Location
+     */
+    cutoffTimes?: CutoffTimes;
     /**
      * 
      * @type {ShippingOriginContact}
@@ -605,6 +693,12 @@ export interface Location {
      * @type {boolean}
      * @memberof Location
      */
+    deliveryConsolidation?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Location
+     */
     includeInInventoryAggregrate?: boolean;
     /**
      * 
@@ -636,6 +730,12 @@ export interface Location {
      * @memberof Location
      */
     slaConfigurations?: Array<SlaConfiguration> | null;
+    /**
+     * 
+     * @type {Capacity}
+     * @memberof Location
+     */
+    capacity?: Capacity;
 }
 /**
  * 
@@ -714,6 +814,37 @@ export interface LocationCollection {
 /**
  * 
  * @export
+ * @interface LocationTimeZone
+ */
+export interface LocationTimeZone {
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationTimeZone
+     */
+    id?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof LocationTimeZone
+     */
+    offset?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LocationTimeZone
+     */
+    isDaylightSavingsTime?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationTimeZone
+     */
+    ianaCode?: string | null;
+}
+/**
+ * 
+ * @export
  * @interface LocationType
  */
 export interface LocationType {
@@ -748,12 +879,6 @@ export interface ProcessingTimes {
      * @memberof ProcessingTimes
      */
     fulfillment?: Array<FulfillmentProcessingTime> | null;
-    /**
-     * 
-     * @type {TransferTime}
-     * @memberof ProcessingTimes
-     */
-    transfer?: TransferTime;
     /**
      * 
      * @type {ReceiveProcessingTime}
@@ -906,19 +1031,49 @@ export interface SlaConfiguration {
 /**
  * 
  * @export
- * @interface TransferTime
+ * @interface WeeklyCutoffHours
  */
-export interface TransferTime {
+export interface WeeklyCutoffHours {
     /**
      * 
-     * @type {string}
-     * @memberof TransferTime
+     * @type {CutoffHours}
+     * @memberof WeeklyCutoffHours
      */
-    unit?: string | null;
+    sunday?: CutoffHours;
     /**
      * 
-     * @type {number}
-     * @memberof TransferTime
+     * @type {CutoffHours}
+     * @memberof WeeklyCutoffHours
      */
-    value?: number;
+    monday?: CutoffHours;
+    /**
+     * 
+     * @type {CutoffHours}
+     * @memberof WeeklyCutoffHours
+     */
+    tuesday?: CutoffHours;
+    /**
+     * 
+     * @type {CutoffHours}
+     * @memberof WeeklyCutoffHours
+     */
+    wednesday?: CutoffHours;
+    /**
+     * 
+     * @type {CutoffHours}
+     * @memberof WeeklyCutoffHours
+     */
+    thursday?: CutoffHours;
+    /**
+     * 
+     * @type {CutoffHours}
+     * @memberof WeeklyCutoffHours
+     */
+    friday?: CutoffHours;
+    /**
+     * 
+     * @type {CutoffHours}
+     * @memberof WeeklyCutoffHours
+     */
+    saturday?: CutoffHours;
 }

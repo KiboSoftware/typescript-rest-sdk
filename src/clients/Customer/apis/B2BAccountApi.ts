@@ -16,6 +16,7 @@
 import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
 import type {
+  AccountPriorityModel,
   B2BAccount,
   B2BAccountCollection,
   B2BAccountHierarchyResult,
@@ -69,6 +70,10 @@ export namespace b2BAccountApiParams {
         accountId: number;
         attributeFQN: string;
     }
+    export interface DeleteB2BAccountPrioritiesRequest {
+        responseFields?: string;
+        requestBody?: Array<number>;
+    }
     export interface GetAccountsByUserRequest {
         emailAddress?: string;
         userName?: string;
@@ -100,6 +105,9 @@ export namespace b2BAccountApiParams {
     export interface GetB2BAccountHierarchyRequest {
         accountId: number;
         responseGroups?: string;
+        responseFields?: string;
+    }
+    export interface GetB2BAccountPrioritiesRequest {
         responseFields?: string;
     }
     export interface GetB2BAccountsRequest {
@@ -153,6 +161,10 @@ export namespace b2BAccountApiParams {
         attributeFQN: string;
         responseFields?: string;
         customerAttribute?: CustomerAttribute;
+    }
+    export interface UpdateB2BAccountPrioritiesRequest {
+        responseFields?: string;
+        accountPriorityModel?: AccountPriorityModel;
     }
     export interface UpdateB2BAccountStatusRequest {
         accountId: number;
@@ -326,6 +338,23 @@ export interface B2BAccountApiService {
     deleteB2BAccountAttribute(requestParameters: b2BAccountApiParams.DeleteB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+    * 
+    * @summary Deletes the priorities of specified B2B accounts
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<number>} [requestBody] The IDs of the accounts whose priorities are to be deleted.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof B2BAccountApiInterface
+    */
+    deleteB2BAccountPrioritiesRaw(requestParameters: b2BAccountApiParams.DeleteB2BAccountPrioritiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+    * 
+    * Deletes the priorities of specified B2B accounts
+    */
+    deleteB2BAccountPriorities(requestParameters: b2BAccountApiParams.DeleteB2BAccountPrioritiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
     * If emailAddress and userName are both provided, the email address will be used. When getAllAccounts is set to true, all accounts will be returned regardless of the AccountStatus.
     * @summary Get Account Ids of Active AccountStatus by UserName or Email Address
     * @param {string} [emailAddress] 
@@ -435,6 +464,22 @@ export interface B2BAccountApiService {
     * Get B2B Account Hierarchy
     */
     getB2BAccountHierarchy(requestParameters: b2BAccountApiParams.GetB2BAccountHierarchyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccountHierarchyResult>;
+
+    /**
+    * 
+    * @summary Retrieves the priorities of B2B accounts
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof B2BAccountApiInterface
+    */
+    getB2BAccountPrioritiesRaw(requestParameters: b2BAccountApiParams.GetB2BAccountPrioritiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AccountPriorityModel>>;
+
+    /**
+    * 
+    * Retrieves the priorities of B2B accounts
+    */
+    getB2BAccountPriorities(requestParameters: b2BAccountApiParams.GetB2BAccountPrioritiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AccountPriorityModel>;
 
     /**
     * Retrieves a list of B2B accounts according to any filter criteria and sort options.
@@ -591,6 +636,23 @@ export interface B2BAccountApiService {
     * Update B2B Account Attribute
     */
     updateB2BAccountAttribute(requestParameters: b2BAccountApiParams.UpdateB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttribute>;
+
+    /**
+    * The Priority for blacklisted accounts will be set as -1.
+    * @summary Updates the priorities of B2B accounts
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {AccountPriorityModel} [accountPriorityModel] The account priorities to update.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof B2BAccountApiInterface
+    */
+    updateB2BAccountPrioritiesRaw(requestParameters: b2BAccountApiParams.UpdateB2BAccountPrioritiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AccountPriorityModel>>;
+
+    /**
+    * The Priority for blacklisted accounts will be set as -1.
+    * Updates the priorities of B2B accounts
+    */
+    updateB2BAccountPriorities(requestParameters: b2BAccountApiParams.UpdateB2BAccountPrioritiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AccountPriorityModel>;
 
     /**
     * Updates the status on B2B account.
@@ -1050,6 +1112,48 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiServi
     }
 
     /**
+     * 
+     * Deletes the priorities of specified B2B accounts
+     */
+
+
+    async deleteB2BAccountPrioritiesRaw(requestParameters: b2BAccountApiParams.DeleteB2BAccountPrioritiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/customer/b2baccounts/priority/delete`,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.requestBody,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * 
+     * Deletes the priorities of specified B2B accounts
+     */
+    async deleteB2BAccountPriorities(requestParameters: b2BAccountApiParams.DeleteB2BAccountPrioritiesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteB2BAccountPrioritiesRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * If emailAddress and userName are both provided, the email address will be used. When getAllAccounts is set to true, all accounts will be returned regardless of the AccountStatus.
      * Get Account Ids of Active AccountStatus by UserName or Email Address
      */
@@ -1346,6 +1450,46 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiServi
      */
     async getB2BAccountHierarchy(requestParameters: b2BAccountApiParams.GetB2BAccountHierarchyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<B2BAccountHierarchyResult> {
         const response = await this.getB2BAccountHierarchyRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * 
+     * Retrieves the priorities of B2B accounts
+     */
+
+
+    async getB2BAccountPrioritiesRaw(requestParameters: b2BAccountApiParams.GetB2BAccountPrioritiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AccountPriorityModel>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/customer/b2baccounts/priority/read`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * 
+     * Retrieves the priorities of B2B accounts
+     */
+    async getB2BAccountPriorities(requestParameters: b2BAccountApiParams.GetB2BAccountPrioritiesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AccountPriorityModel> {
+        const response = await this.getB2BAccountPrioritiesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1774,6 +1918,49 @@ export class B2BAccountApi extends runtime.BaseAPI implements B2BAccountApiServi
      */
     async updateB2BAccountAttribute(requestParameters: b2BAccountApiParams.UpdateB2BAccountAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAttribute> {
         const response = await this.updateB2BAccountAttributeRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The Priority for blacklisted accounts will be set as -1.
+     * Updates the priorities of B2B accounts
+     */
+
+
+    async updateB2BAccountPrioritiesRaw(requestParameters: b2BAccountApiParams.UpdateB2BAccountPrioritiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AccountPriorityModel>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/customer/b2baccounts/priority/update`,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.accountPriorityModel,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * The Priority for blacklisted accounts will be set as -1.
+     * Updates the priorities of B2B accounts
+     */
+    async updateB2BAccountPriorities(requestParameters: b2BAccountApiParams.UpdateB2BAccountPrioritiesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AccountPriorityModel> {
+        const response = await this.updateB2BAccountPrioritiesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -3,6 +3,55 @@
 /**
  * 
  * @export
+ * @interface AdminUserMasterCatalog
+ */
+export interface AdminUserMasterCatalog {
+    /**
+     * 
+     * @type {number}
+     * @memberof AdminUserMasterCatalog
+     */
+    tenantId?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserMasterCatalog
+     */
+    defaultLocaleCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserMasterCatalog
+     */
+    defaultCurrencyCode?: string | null;
+    /**
+     * 
+     * @type {Array<Catalog>}
+     * @memberof AdminUserMasterCatalog
+     */
+    catalogs?: Array<Catalog> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof AdminUserMasterCatalog
+     */
+    supportedLocaleCodes?: Array<string> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof AdminUserMasterCatalog
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminUserMasterCatalog
+     */
+    name?: string | null;
+}
+/**
+ * 
+ * @export
  * @interface BaseTenantEntity
  */
 export interface BaseTenantEntity {
@@ -132,6 +181,73 @@ export interface Site {
 /**
  * 
  * @export
+ * @interface Tenant
+ */
+export interface Tenant {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Tenant
+     */
+    isDevTenant?: boolean;
+    /**
+     * 
+     * @type {Array<Site>}
+     * @memberof Tenant
+     */
+    sites?: Array<Site> | null;
+    /**
+     * 
+     * @type {Array<AdminUserMasterCatalog>}
+     * @memberof Tenant
+     */
+    masterCatalogs?: Array<AdminUserMasterCatalog> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Tenant
+     */
+    domain?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Tenant
+     */
+    lastLoginDate?: string | null;
+    /**
+     * 
+     * @type {Array<TenantAttribute>}
+     * @memberof Tenant
+     */
+    attributes?: Array<TenantAttribute> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Tenant
+     */
+    expiry?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Tenant
+     */
+    isUnified?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof Tenant
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Tenant
+     */
+    name?: string | null;
+}
+/**
+ * 
+ * @export
  * @interface TenantAttribute
  */
 export interface TenantAttribute {
@@ -171,120 +287,4 @@ export interface TenantAttribute {
      * @memberof TenantAttribute
      */
     updateDate?: string;
-}
-/**
- * 
- * @export
- * @interface TenantMasterCatalog
- */
-export interface TenantMasterCatalog {
-    /**
-     * 
-     * @type {number}
-     * @memberof TenantMasterCatalog
-     */
-    tenantId?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof TenantMasterCatalog
-     */
-    defaultLocaleCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof TenantMasterCatalog
-     */
-    defaultCurrencyCode?: string | null;
-    /**
-     * 
-     * @type {Array<Catalog>}
-     * @memberof TenantMasterCatalog
-     */
-    catalogs?: Array<Catalog> | null;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof TenantMasterCatalog
-     */
-    supportedLocaleCodes?: Array<string> | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof TenantMasterCatalog
-     */
-    id?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof TenantMasterCatalog
-     */
-    name?: string | null;
-}
-/**
- * 
- * @export
- * @interface TenantTenant
- */
-export interface TenantTenant {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof TenantTenant
-     */
-    isDevTenant?: boolean;
-    /**
-     * 
-     * @type {Array<Site>}
-     * @memberof TenantTenant
-     */
-    sites?: Array<Site> | null;
-    /**
-     * 
-     * @type {Array<TenantMasterCatalog>}
-     * @memberof TenantTenant
-     */
-    masterCatalogs?: Array<TenantMasterCatalog> | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof TenantTenant
-     */
-    domain?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof TenantTenant
-     */
-    lastLoginDate?: string | null;
-    /**
-     * 
-     * @type {Array<TenantAttribute>}
-     * @memberof TenantTenant
-     */
-    attributes?: Array<TenantAttribute> | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof TenantTenant
-     */
-    expiry?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof TenantTenant
-     */
-    isUnified?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof TenantTenant
-     */
-    id?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof TenantTenant
-     */
-    name?: string | null;
 }

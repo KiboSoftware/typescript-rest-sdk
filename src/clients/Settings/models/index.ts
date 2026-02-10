@@ -65,6 +65,50 @@ export interface AutoCaptureJob {
 /**
  * 
  * @export
+ * @interface AutoRelease
+ */
+export interface AutoRelease {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AutoRelease
+     */
+    enabled?: boolean | null;
+    /**
+     * 
+     * @type {JobInterval}
+     * @memberof AutoRelease
+     */
+    jobInterval?: JobInterval;
+}
+/**
+ * 
+ * @export
+ * @interface B2BOrderRelease
+ */
+export interface B2BOrderRelease {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof B2BOrderRelease
+     */
+    isEnabled?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof B2BOrderRelease
+     */
+    automaticReleaseOffset?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof B2BOrderRelease
+     */
+    releaseType?: string | null;
+}
+/**
+ * 
+ * @export
  * @interface BPMConfiguration
  */
 export interface BPMConfiguration {
@@ -189,6 +233,18 @@ export interface ConfigurableShipmentRelease {
      * @memberof ConfigurableShipmentRelease
      */
     reserveInventoryOnOrderPendingShipment?: boolean;
+    /**
+     * Indicates whether pricing should be refreshed when orders are edited.
+     * @type {boolean}
+     * @memberof ConfigurableShipmentRelease
+     */
+    refreshPricingOnOrderEdit?: boolean | null;
+    /**
+     * 
+     * @type {B2BOrderRelease}
+     * @memberof ConfigurableShipmentRelease
+     */
+    b2BOrderRelease?: B2BOrderRelease;
 }
 /**
  * 
@@ -248,6 +304,55 @@ export interface CustomerCheckoutSettings {
      * @memberof CustomerCheckoutSettings
      */
     auditInfo?: AdminUserAuditInfo;
+}
+/**
+ * 
+ * @export
+ * @interface DeliveryConsolidation
+ */
+export interface DeliveryConsolidation {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DeliveryConsolidation
+     */
+    isEnabled?: boolean;
+    /**
+     * 
+     * @type {ShippingMethod}
+     * @memberof DeliveryConsolidation
+     */
+    shippingMethodDeliveryConsolidation?: ShippingMethod;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof DeliveryConsolidation
+     */
+    restrictedCancellationSteps?: Array<string> | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DeliveryConsolidation
+     */
+    cancellationOnParentShipment?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DeliveryConsolidation
+     */
+    forceDeliveryConsolidation?: boolean;
+    /**
+     * AllowPartialFulfillment
+     * @type {boolean}
+     * @memberof DeliveryConsolidation
+     */
+    allowPartialFulfillment?: boolean;
+    /**
+     * MultipleConsolidation
+     * @type {boolean}
+     * @memberof DeliveryConsolidation
+     */
+    multipleConsolidation?: boolean;
 }
 /**
  * 
@@ -627,6 +732,18 @@ export interface EmailTransactionSettings {
      * @memberof EmailTransactionSettings
      */
     digitalItemFulfilled?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    orderItemsCanceled?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    otpForLogin?: boolean | null;
 }
 /**
  * 
@@ -900,6 +1017,12 @@ export interface FulfillmentSettings {
     shipToHomeConsolidation?: ShipToHomeConsolidation;
     /**
      * 
+     * @type {DeliveryConsolidation}
+     * @memberof FulfillmentSettings
+     */
+    deliveryConsolidation?: DeliveryConsolidation;
+    /**
+     * 
      * @type {CreateShipmentsOnPendingReview}
      * @memberof FulfillmentSettings
      */
@@ -940,6 +1063,12 @@ export interface FulfillmentSettings {
      * @memberof FulfillmentSettings
      */
     retainFlatRatePerOrder?: boolean | null;
+    /**
+     * 
+     * @type {ShipmentsOnHold}
+     * @memberof FulfillmentSettings
+     */
+    shipmentsOnHold?: ShipmentsOnHold;
 }
 /**
  * 
@@ -1339,6 +1468,30 @@ export interface GeneralSettings {
     allowInvalidAddresses?: boolean | null;
     /**
      * 
+     * @type {boolean}
+     * @memberof GeneralSettings
+     */
+    is2FAAlwaysRequired?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GeneralSettings
+     */
+    is2FARequiredOnFingerprintChange?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GeneralSettings
+     */
+    is2FARequiredOnRegionChange?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GeneralSettings
+     */
+    isEmailOtpLoginAllowed?: boolean | null;
+    /**
+     * 
      * @type {Array<TaxableTerritory>}
      * @memberof GeneralSettings
      */
@@ -1464,6 +1617,25 @@ export interface Job {
 /**
  * 
  * @export
+ * @interface JobInterval
+ */
+export interface JobInterval {
+    /**
+     * 
+     * @type {string}
+     * @memberof JobInterval
+     */
+    unit?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof JobInterval
+     */
+    value?: number | null;
+}
+/**
+ * 
+ * @export
  * @interface LocalizedContent
  */
 export interface LocalizedContent {
@@ -1553,6 +1725,19 @@ export interface Mapping {
      * @memberof Mapping
      */
     mappings?: { [key: string]: any; } | null;
+}
+/**
+ * 
+ * @export
+ * @interface MultipleConsolidation
+ */
+export interface MultipleConsolidation {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof MultipleConsolidation
+     */
+    isEnabled?: boolean;
 }
 /**
  * Contains settings for a job that can run on a regular basis.
@@ -1854,6 +2039,18 @@ export interface ReleaseBackorderJob {
      * @type {boolean}
      * @memberof ReleaseBackorderJob
      */
+    partialReleaseEnabled?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReleaseBackorderJob
+     */
+    partialReleaseType?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ReleaseBackorderJob
+     */
     isEnabled?: boolean;
     /**
      * 
@@ -1910,6 +2107,12 @@ export interface ReturnSettings {
      * @memberof ReturnSettings
      */
     refundShippingAndHandling?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ReturnSettings
+     */
+    updateInventoryOnRestock?: boolean;
 }
 /**
  * 
@@ -2094,6 +2297,18 @@ export interface ShipToHomeConsolidation {
      * @memberof ShipToHomeConsolidation
      */
     forceSTHConsolidationOnSplitShipments?: ForceSTHConsolidationOnSplitShipments;
+    /**
+     * AllowPartialFulfillment
+     * @type {boolean}
+     * @memberof ShipToHomeConsolidation
+     */
+    allowPartialFulfillment?: boolean;
+    /**
+     * 
+     * @type {MultipleConsolidation}
+     * @memberof ShipToHomeConsolidation
+     */
+    multipleConsolidation?: MultipleConsolidation;
 }
 /**
  * 
@@ -2125,6 +2340,31 @@ export interface ShipToStore {
      * @memberof ShipToStore
      */
     cancellation?: Cancellation;
+}
+/**
+ * 
+ * @export
+ * @interface ShipmentsOnHold
+ */
+export interface ShipmentsOnHold {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ShipmentsOnHold
+     */
+    enabled?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ShipmentsOnHold
+     */
+    manualRelease?: boolean | null;
+    /**
+     * 
+     * @type {AutoRelease}
+     * @memberof ShipmentsOnHold
+     */
+    autoRelease?: AutoRelease;
 }
 /**
  * 
@@ -2332,6 +2572,18 @@ export interface SubscriptionSettings {
      * @memberof SubscriptionSettings
      */
     subscriptionOrderReminderOffset?: number | null;
+    /**
+     * If this setting is enabled, the item price on the continuity order will be updated to the current price upon creation.
+     * @type {boolean}
+     * @memberof SubscriptionSettings
+     */
+    applyLatestItemPriceOnContinuityOrder?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SubscriptionSettings
+     */
+    applyBestPriceOnContinuityOrder?: boolean | null;
     /**
      * Specifies if order now action resets next order date
      * @type {boolean}

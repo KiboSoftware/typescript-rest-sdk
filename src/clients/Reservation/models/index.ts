@@ -138,6 +138,128 @@ export interface BundledProdu {
 /**
  * 
  * @export
+ * @interface CommerceRuntimeAddress
+ */
+export interface CommerceRuntimeAddress {
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAddress
+     */
+    address1?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAddress
+     */
+    address2?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAddress
+     */
+    address3?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAddress
+     */
+    address4?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAddress
+     */
+    cityOrTown?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAddress
+     */
+    stateOrProvince?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAddress
+     */
+    postalOrZipCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAddress
+     */
+    countryCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAddress
+     */
+    addressType?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommerceRuntimeAddress
+     */
+    isValidated?: boolean | null;
+}
+/**
+ * 
+ * @export
+ * @interface CommerceRuntimeContact
+ */
+export interface CommerceRuntimeContact {
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeContact
+     */
+    id?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeContact
+     */
+    email?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeContact
+     */
+    firstName?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeContact
+     */
+    middleNameOrInitial?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeContact
+     */
+    lastNameOrSurname?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeContact
+     */
+    companyOrOrganization?: string | null;
+    /**
+     * 
+     * @type {CommerceRuntimePhone}
+     * @memberof CommerceRuntimeContact
+     */
+    phoneNumbers?: CommerceRuntimePhone;
+    /**
+     * 
+     * @type {CommerceRuntimeAddress}
+     * @memberof CommerceRuntimeContact
+     */
+    address?: CommerceRuntimeAddress;
+}
+/**
+ * 
+ * @export
  * @interface CommerceRuntimeMeasurement
  */
 export interface CommerceRuntimeMeasurement {
@@ -157,6 +279,31 @@ export interface CommerceRuntimeMeasurement {
 /**
  * 
  * @export
+ * @interface CommerceRuntimePhone
+ */
+export interface CommerceRuntimePhone {
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimePhone
+     */
+    home?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimePhone
+     */
+    mobile?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimePhone
+     */
+    work?: string | null;
+}
+/**
+ * 
+ * @export
  * @interface CommerceRuntimeProductPropertyValue
  */
 export interface CommerceRuntimeProductPropertyValue {
@@ -172,6 +319,43 @@ export interface CommerceRuntimeProductPropertyValue {
      * @memberof CommerceRuntimeProductPropertyValue
      */
     value?: any | null;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentInf
+ */
+export interface FulfillmentInf {
+    /**
+     * 
+     * @type {CommerceRuntimeContact}
+     * @memberof FulfillmentInf
+     */
+    fulfillmentContact?: CommerceRuntimeContact;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentInf
+     */
+    shippingMethodCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentInf
+     */
+    shippingMethodName?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentInf
+     */
+    isDestinationCommercial?: boolean | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentInf
+     */
+    itemLevelShippingMethod?: string | null;
 }
 /**
  * 
@@ -222,6 +406,12 @@ export interface OrderReservati {
      * @memberof OrderReservati
      */
     reservationItems?: Array<ReservationItem> | null;
+    /**
+     * 
+     * @type {FulfillmentInf}
+     * @memberof OrderReservati
+     */
+    fulfillmentInfo?: FulfillmentInf;
 }
 /**
  * 
@@ -416,6 +606,12 @@ export interface Reservati {
      * @memberof Reservati
      */
     reservationType?: string | null;
+    /**
+     * 
+     * @type {FulfillmentInf}
+     * @memberof Reservati
+     */
+    fulfillmentInfo?: FulfillmentInf;
 }
 /**
  * 
@@ -526,6 +722,24 @@ export interface ReservationItem {
      * @memberof ReservationItem
      */
     inventoryTags?: Array<InventoryTags> | null;
+    /**
+     * 
+     * @type {Array<Suggesti>}
+     * @memberof ReservationItem
+     */
+    suggestions?: Array<Suggesti> | null;
+    /**
+     * 
+     * @type {FulfillmentInf}
+     * @memberof ReservationItem
+     */
+    fulfillmentInfo?: FulfillmentInf;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReservationItem
+     */
+    shippingMethodCode?: string | null;
 }
 /**
  * 
@@ -674,4 +888,41 @@ export interface ReservationWebAPIProductProperty {
      * @memberof ReservationWebAPIProductProperty
      */
     values?: Array<CommerceRuntimeProductPropertyValue> | null;
+}
+/**
+ * 
+ * @export
+ * @interface Suggesti
+ */
+export interface Suggesti {
+    /**
+     * 
+     * @type {string}
+     * @memberof Suggesti
+     */
+    locationCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Suggesti
+     */
+    suggestionType?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof Suggesti
+     */
+    quantity?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Suggesti
+     */
+    productCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Suggesti
+     */
+    futureDate?: string | null;
 }

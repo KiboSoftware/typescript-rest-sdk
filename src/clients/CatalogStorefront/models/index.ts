@@ -887,6 +887,19 @@ export interface CatalogRuntimesDiscount {
     impact?: number;
 }
 /**
+ * Category
+ * @export
+ * @interface CatalogRuntimesDynamicExpression
+ */
+export interface CatalogRuntimesDynamicExpression {
+    /**
+     * 
+     * @type {string}
+     * @memberof CatalogRuntimesDynamicExpression
+     */
+    text?: string | null;
+}
+/**
  * For faceted searches, name of the facet and list of facet values. For example, a facet called "Brands" may have the facet values "Apple," "Motorola," and "Samsung."
  * @export
  * @interface CatalogRuntimesFacet
@@ -1342,6 +1355,12 @@ export interface CatalogRuntimesProduct {
      * @memberof CatalogRuntimesProduct
      */
     categories?: Array<CatalogRuntimesCategory> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof CatalogRuntimesProduct
+     */
+    productRules?: Array<string> | null;
     /**
      * 
      * @type {CatalogRuntimesPackageMeasurements}
@@ -1919,6 +1938,43 @@ export interface CatalogRuntimesProductPropertyValue {
      * @memberof CatalogRuntimesProductPropertyValue
      */
     displayInfo?: CatalogRuntimesAttributeVocabularyValueDisplayInfo;
+}
+/**
+ * 
+ * @export
+ * @interface CatalogRuntimesProductRule
+ */
+export interface CatalogRuntimesProductRule {
+    /**
+     * Unique identifier of the ProductRule. System-supplied and read-only.
+     * @type {string}
+     * @memberof CatalogRuntimesProductRule
+     */
+    code?: string | null;
+    /**
+     * ProductRule name
+     * @type {string}
+     * @memberof CatalogRuntimesProductRule
+     */
+    name?: string | null;
+    /**
+     * ProductRule description
+     * @type {string}
+     * @memberof CatalogRuntimesProductRule
+     */
+    description?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CatalogRuntimesProductRule
+     */
+    scope?: string | null;
+    /**
+     * 
+     * @type {CatalogRuntimesDynamicExpression}
+     * @memberof CatalogRuntimesProductRule
+     */
+    expression?: CatalogRuntimesDynamicExpression;
 }
 /**
  * Search Merchandizing Rule
@@ -2902,6 +2958,12 @@ export interface ProductForIndexing {
      */
     slices?: Array<CatalogRuntimesProduct> | null;
     /**
+     * 
+     * @type {Array<CatalogRuntimesProduct>}
+     * @memberof ProductForIndexing
+     */
+    variationProducts?: Array<CatalogRuntimesProduct> | null;
+    /**
      * Merchant-created code associated with the product, for example, a SKU.
      * @type {string}
      * @memberof ProductForIndexing
@@ -3106,6 +3168,12 @@ export interface ProductForIndexing {
      * @memberof ProductForIndexing
      */
     categories?: Array<CatalogRuntimesCategory> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ProductForIndexing
+     */
+    productRules?: Array<string> | null;
     /**
      * 
      * @type {CatalogRuntimesPackageMeasurements}
@@ -3511,6 +3579,61 @@ export interface ProductSearchResult {
     items?: Array<CatalogRuntimesProduct> | null;
 }
 /**
+ * 
+ * @export
+ * @interface ProductSearchSimplifiedResult
+ */
+export interface ProductSearchSimplifiedResult {
+    /**
+     * 
+     * @type {Array<CatalogRuntimesFacet>}
+     * @memberof ProductSearchSimplifiedResult
+     */
+    facets?: Array<CatalogRuntimesFacet> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductSearchSimplifiedResult
+     */
+    searchRedirect?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductSearchSimplifiedResult
+     */
+    nextCursorMark?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductSearchSimplifiedResult
+     */
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductSearchSimplifiedResult
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductSearchSimplifiedResult
+     */
+    pageCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductSearchSimplifiedResult
+     */
+    totalCount?: number;
+    /**
+     * 
+     * @type {Array<{ [key: string]: any; }>}
+     * @memberof ProductSearchSimplifiedResult
+     */
+    items?: Array<{ [key: string]: any; }> | null;
+}
+/**
  * Collection used for product substitutions
  * @export
  * @interface ProductSubstituteCollection
@@ -3774,6 +3897,94 @@ export interface ProductVolumePrice {
     price?: CatalogRuntimesProductPrice;
 }
 /**
+ * Request parameters for evaluating purchase limit
+ * @export
+ * @interface PurchaseLimitEvalRequest
+ */
+export interface PurchaseLimitEvalRequest {
+    /**
+     * Customer ID
+     * @type {number}
+     * @memberof PurchaseLimitEvalRequest
+     */
+    customerId?: number;
+    /**
+     * List of items to evaluate
+     * @type {Array<PurchaseLimitEvalRequestItems>}
+     * @memberof PurchaseLimitEvalRequest
+     */
+    items?: Array<PurchaseLimitEvalRequestItems> | null;
+}
+/**
+ * Items for purchase limit rule evaluation request
+ * @export
+ * @interface PurchaseLimitEvalRequestItems
+ */
+export interface PurchaseLimitEvalRequestItems {
+    /**
+     * Product code for evaluation
+     * @type {string}
+     * @memberof PurchaseLimitEvalRequestItems
+     */
+    productCode?: string | null;
+    /**
+     * Variation product code for evaluation
+     * @type {string}
+     * @memberof PurchaseLimitEvalRequestItems
+     */
+    variationProductCode?: string | null;
+}
+/**
+ * Collection of purchase limit evaluation response items
+ * @export
+ * @interface PurchaseLimitEvalResponseCollection
+ */
+export interface PurchaseLimitEvalResponseCollection {
+    /**
+     * 
+     * @type {number}
+     * @memberof PurchaseLimitEvalResponseCollection
+     */
+    totalCount?: number;
+    /**
+     * 
+     * @type {Array<PurchaseLimitEvalResponseItem>}
+     * @memberof PurchaseLimitEvalResponseCollection
+     */
+    items?: Array<PurchaseLimitEvalResponseItem> | null;
+}
+/**
+ * Purchase limit evaluation response item
+ * @export
+ * @interface PurchaseLimitEvalResponseItem
+ */
+export interface PurchaseLimitEvalResponseItem {
+    /**
+     * Product code evaluated for purchase limit
+     * @type {string}
+     * @memberof PurchaseLimitEvalResponseItem
+     */
+    productCode?: string | null;
+    /**
+     * Variation product code evaluated for purchase limit
+     * @type {string}
+     * @memberof PurchaseLimitEvalResponseItem
+     */
+    variationProductCode?: string | null;
+    /**
+     * Rule code that affected the purchase limit for the product
+     * @type {string}
+     * @memberof PurchaseLimitEvalResponseItem
+     */
+    ruleCode?: string | null;
+    /**
+     * Maximum quantity of the product that can be purchased
+     * @type {number}
+     * @memberof PurchaseLimitEvalResponseItem
+     */
+    maxQty?: number | null;
+}
+/**
  * 
  * @export
  * @interface RequestFilter
@@ -3822,6 +4033,162 @@ export interface ResolvedPriceList {
      * @memberof ResolvedPriceList
      */
     description?: string | null;
+}
+/**
+ * Request parameters for evaluating returns
+ * @export
+ * @interface ReturnEvalRequest
+ */
+export interface ReturnEvalRequest {
+    /**
+     * Customer ID
+     * @type {number}
+     * @memberof ReturnEvalRequest
+     */
+    customerId?: number;
+    /**
+     * List of items to evaluate
+     * @type {Array<ReturnEvalRequestItems>}
+     * @memberof ReturnEvalRequest
+     */
+    items?: Array<ReturnEvalRequestItems> | null;
+}
+/**
+ * Items for return rule evaluation request
+ * @export
+ * @interface ReturnEvalRequestItems
+ */
+export interface ReturnEvalRequestItems {
+    /**
+     * Product code for evaluation
+     * @type {string}
+     * @memberof ReturnEvalRequestItems
+     */
+    productCode?: string | null;
+    /**
+     * Variation product code for evaluation
+     * @type {string}
+     * @memberof ReturnEvalRequestItems
+     */
+    variationProductCode?: string | null;
+}
+/**
+ * Collection of return evaluation response items
+ * @export
+ * @interface ReturnEvalResponseCollection
+ */
+export interface ReturnEvalResponseCollection {
+    /**
+     * 
+     * @type {number}
+     * @memberof ReturnEvalResponseCollection
+     */
+    totalCount?: number;
+    /**
+     * 
+     * @type {Array<ReturnEvalResponseItem>}
+     * @memberof ReturnEvalResponseCollection
+     */
+    items?: Array<ReturnEvalResponseItem> | null;
+}
+/**
+ * Return evaluation response item
+ * @export
+ * @interface ReturnEvalResponseItem
+ */
+export interface ReturnEvalResponseItem {
+    /**
+     * Product code evaluated for return
+     * @type {string}
+     * @memberof ReturnEvalResponseItem
+     */
+    productCode?: string | null;
+    /**
+     * Variation product code for evaluation
+     * @type {string}
+     * @memberof ReturnEvalResponseItem
+     */
+    variationProductCode?: string | null;
+    /**
+     * Return rule code that affected the return for the product
+     * @type {string}
+     * @memberof ReturnEvalResponseItem
+     */
+    ruleCode?: string | null;
+    /**
+     * Maximum quantity of the product that can be returned
+     * @type {number}
+     * @memberof ReturnEvalResponseItem
+     */
+    maxQty?: number | null;
+    /**
+     * Maximum number of days that the product can be returned
+     * @type {number}
+     * @memberof ReturnEvalResponseItem
+     */
+    maxDays?: number | null;
+    /**
+     * Flag indicating whether the product can be returned
+     * @type {boolean}
+     * @memberof ReturnEvalResponseItem
+     */
+    isReturnable?: boolean | null;
+}
+/**
+ * Request parameters for evaluating purchase limit
+ * @export
+ * @interface SafetyStockEvalRequest
+ */
+export interface SafetyStockEvalRequest {
+    /**
+     * Customer ID
+     * @type {string}
+     * @memberof SafetyStockEvalRequest
+     */
+    productCode?: string | null;
+    /**
+     * List of items to evaluate
+     * @type {string}
+     * @memberof SafetyStockEvalRequest
+     */
+    locationCode?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface SafetyStockEvalResponse
+ */
+export interface SafetyStockEvalResponse {
+    /**
+     * Customer ID
+     * @type {string}
+     * @memberof SafetyStockEvalResponse
+     */
+    productCode?: string | null;
+    /**
+     * List of items to evaluate
+     * @type {string}
+     * @memberof SafetyStockEvalResponse
+     */
+    locationCode?: string | null;
+    /**
+     * List of items to evaluate
+     * @type {string}
+     * @memberof SafetyStockEvalResponse
+     */
+    ruleCode?: string | null;
+    /**
+     * List of items to evaluate
+     * @type {number}
+     * @memberof SafetyStockEvalResponse
+     */
+    quantity?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SafetyStockEvalResponse
+     */
+    rank?: number | null;
 }
 /**
  * 

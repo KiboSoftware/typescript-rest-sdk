@@ -880,10 +880,10 @@ export interface CatalogAdminsCategory {
     localizedContent?: Array<CategoryLocalizedContent> | null;
     /**
      * 
-     * @type {DynamicExpression}
+     * @type {CatalogAdminsCustomerDynamicExpression}
      * @memberof CatalogAdminsCategory
      */
-    dynamicExpression?: DynamicExpression;
+    dynamicExpression?: CatalogAdminsCustomerDynamicExpression;
     /**
      * Number of products contained in this category. This count includes all products contained in any subcategories of this category.
      * @type {number}
@@ -1052,18 +1052,23 @@ export interface CatalogAdminsCurrencyExchangeRate {
     auditInfo?: AdminUserAuditInfo;
 }
 /**
- * Represents a customer segment
+ * Category
  * @export
- * @interface CatalogAdminsCustomerSegment
+ * @interface CatalogAdminsCustomerDynamicExpression
  */
-export interface CatalogAdminsCustomerSegment {
+export interface CatalogAdminsCustomerDynamicExpression {
     /**
-     * The Customer segment Id.
-     * This is the  system Id not the code.
-     * @type {number}
-     * @memberof CatalogAdminsCustomerSegment
+     * 
+     * @type {string}
+     * @memberof CatalogAdminsCustomerDynamicExpression
      */
-    id?: number;
+    text?: string | null;
+    /**
+     * 
+     * @type {CatalogAdminsExpression}
+     * @memberof CatalogAdminsCustomerDynamicExpression
+     */
+    tree?: CatalogAdminsExpression;
 }
 /**
  * Allows you to define and manage discounts to apply to your products, product categories, or orders. The discounts can be a specified monetary amount off the price, percentage off the price, or for free shipping.
@@ -1409,10 +1414,10 @@ export interface CatalogAdminsDiscountCondition {
     excludedProducts?: Array<ProductDiscountCondition> | null;
     /**
      * List of customer groups for which the discount applies
-     * @type {Array<CatalogAdminsCustomerSegment>}
+     * @type {Array<PricingRuntimeCustomerSegment>}
      * @memberof CatalogAdminsDiscountCondition
      */
-    customerSegments?: Array<CatalogAdminsCustomerSegment> | null;
+    customerSegments?: Array<PricingRuntimeCustomerSegment> | null;
     /**
      * Minimum quantity of products in the specified IncludedProducts that must be purchased to
      * qualify for the associated discount.
@@ -1542,10 +1547,10 @@ export interface CatalogAdminsDiscountCondition {
     exclusiveSiteIds?: Array<number> | null;
     /**
      * 
-     * @type {DynamicExpression}
+     * @type {CatalogAdminsCustomerDynamicExpression}
      * @memberof CatalogAdminsDiscountCondition
      */
-    expression?: DynamicExpression;
+    expression?: CatalogAdminsCustomerDynamicExpression;
     /**
      * List of locations where the item/order should be fulfilled for the discount to be valid.
      * @type {Array<string>}
@@ -1585,10 +1590,10 @@ export interface CatalogAdminsDiscountTarget {
     includedCategoriesOperator?: string | null;
     /**
      * List of categories to discount. When a discount applies to a category, all products in the category are discounted.
-     * @type {Array<TargetedCategory>}
+     * @type {Array<CatalogAdminsTargetedCategory>}
      * @memberof CatalogAdminsDiscountTarget
      */
-    categories?: Array<TargetedCategory> | null;
+    categories?: Array<CatalogAdminsTargetedCategory> | null;
     /**
      * Applies to Included categories
      * Defaults to Any
@@ -1598,10 +1603,10 @@ export interface CatalogAdminsDiscountTarget {
     excludedCategoriesOperator?: string | null;
     /**
      * List of categories to exclude from the discount. Useful to exclude specific child categories.
-     * @type {Array<TargetedCategory>}
+     * @type {Array<CatalogAdminsTargetedCategory>}
      * @memberof CatalogAdminsDiscountTarget
      */
-    excludedCategories?: Array<TargetedCategory> | null;
+    excludedCategories?: Array<CatalogAdminsTargetedCategory> | null;
     /**
      * List of products that are eligible for the discount.
      * @type {Array<TargetedProduct>}
@@ -1630,16 +1635,16 @@ export interface CatalogAdminsDiscountTarget {
     excludeItemsWithExistingProductDiscounts?: boolean | null;
     /**
      * Shipping method that is eligible for shipping discounts. This is a shipping method defined in Shipping Settings.
-     * @type {Array<TargetedShippingMethod>}
+     * @type {Array<CatalogAdminsTargetedShippingMethod>}
      * @memberof CatalogAdminsDiscountTarget
      */
-    shippingMethods?: Array<TargetedShippingMethod> | null;
+    shippingMethods?: Array<CatalogAdminsTargetedShippingMethod> | null;
     /**
      * Shipping Zones that are applicable for this discount
-     * @type {Array<TargetedShippingZone>}
+     * @type {Array<CatalogAdminsTargetedShippingZone>}
      * @memberof CatalogAdminsDiscountTarget
      */
-    shippingZones?: Array<TargetedShippingZone> | null;
+    shippingZones?: Array<CatalogAdminsTargetedShippingZone> | null;
     /**
      * Prevents the discount from being applied to handling fees
      * @type {boolean}
@@ -1664,6 +1669,49 @@ export interface CatalogAdminsDiscountTarget {
      * @memberof CatalogAdminsDiscountTarget
      */
     appliesToLeastExpensiveProductsFirst?: boolean | null;
+}
+/**
+ * 
+ * @export
+ * @interface CatalogAdminsExpression
+ */
+export interface CatalogAdminsExpression {
+    /**
+     * Container or Predicate
+     * @type {string}
+     * @memberof CatalogAdminsExpression
+     */
+    type?: string | null;
+    /**
+     * And or Or (if Container with More than one Node)
+     * @type {string}
+     * @memberof CatalogAdminsExpression
+     */
+    logicalOperator?: string | null;
+    /**
+     * 
+     * @type {Array<CatalogAdminsExpression>}
+     * @memberof CatalogAdminsExpression
+     */
+    nodes?: Array<CatalogAdminsExpression> | null;
+    /**
+     * The field target of a predicate
+     * @type {string}
+     * @memberof CatalogAdminsExpression
+     */
+    left?: string | null;
+    /**
+     * The operator of a predicate
+     * @type {string}
+     * @memberof CatalogAdminsExpression
+     */
+    operator?: string | null;
+    /**
+     * The literal values of a predicate
+     * @type {any}
+     * @memberof CatalogAdminsExpression
+     */
+    right?: any | null;
 }
 /**
  * The definition of a Facet
@@ -1987,7 +2035,7 @@ export interface CatalogAdminsProduct {
      */
     seoContent?: ProductLocalizedSEOContent;
     /**
-     * 
+     * The default content SEO content of a product. This content is always in the default language of the MasterCatalog
      * @type {Array<ProductLocalizedSEOContent>}
      * @memberof CatalogAdminsProduct
      */
@@ -2513,6 +2561,61 @@ export interface CatalogAdminsProductPropertyValue {
     attributeVocabularyValueDetail?: CatalogAdminsAttributeVocabularyValue;
 }
 /**
+ * 
+ * @export
+ * @interface CatalogAdminsProductRule
+ */
+export interface CatalogAdminsProductRule {
+    /**
+     * Unique identifier of the ProductRule. System-supplied and read-only.
+     * @type {string}
+     * @memberof CatalogAdminsProductRule
+     */
+    code?: string | null;
+    /**
+     * ProductRule name
+     * @type {string}
+     * @memberof CatalogAdminsProductRule
+     */
+    name?: string | null;
+    /**
+     * ProductRule description
+     * @type {string}
+     * @memberof CatalogAdminsProductRule
+     */
+    description?: string | null;
+    /**
+     * Scope to which the ProductRule applies, valid values are: Product, Variant
+     * @type {string}
+     * @memberof CatalogAdminsProductRule
+     */
+    scope?: string | null;
+    /**
+     * 
+     * @type {CatalogAdminsCustomerDynamicExpression}
+     * @memberof CatalogAdminsProductRule
+     */
+    expression?: CatalogAdminsCustomerDynamicExpression;
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsProductRule
+     */
+    metaData?: any | null;
+    /**
+     * The type of rule this ProductRule belongs to.
+     * @type {string}
+     * @memberof CatalogAdminsProductRule
+     */
+    ruleType: string;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof CatalogAdminsProductRule
+     */
+    auditInfo?: AdminUserAuditInfo;
+}
+/**
  * Search Merchandizing Rule
  * @export
  * @interface CatalogAdminsSearchMerchandizingRule
@@ -2667,6 +2770,56 @@ export interface CatalogAdminsTag {
      * @memberof CatalogAdminsTag
      */
     readonly tagPath?: string | null;
+}
+/**
+ * Category to discount. When a discount applies to a category, all products in the category are discounted.
+ * @export
+ * @interface CatalogAdminsTargetedCategory
+ */
+export interface CatalogAdminsTargetedCategory {
+    /**
+     * Unique identifier of the category to which the discount applies.
+     * @type {number}
+     * @memberof CatalogAdminsTargetedCategory
+     */
+    id?: number | null;
+}
+/**
+ * Shipping method that is eligible for free shipping. This is the shipping method that is defined with the Shipping
+ * Settings resource.
+ * @export
+ * @interface CatalogAdminsTargetedShippingMethod
+ */
+export interface CatalogAdminsTargetedShippingMethod {
+    /**
+     * Unique identifier of the shipping method as it appears in the SiteShippingMethod property of the Shipping Settings
+     * resource.
+     * @type {string}
+     * @memberof CatalogAdminsTargetedShippingMethod
+     */
+    code: string;
+    /**
+     * Name of the shipping method as it appears in SiteShippingMethodLocalizedContent of the Shipping Settings resource.
+     * @type {string}
+     * @memberof CatalogAdminsTargetedShippingMethod
+     */
+    name?: string | null;
+}
+/**
+ * Shipping method that is eligible for free shipping. This is the shipping method that is defined with the Shipping
+ * Settings resource.
+ * @export
+ * @interface CatalogAdminsTargetedShippingZone
+ */
+export interface CatalogAdminsTargetedShippingZone {
+    /**
+     * Indicates the shipping zone that this discount is valid for.  If zone is provided the
+     * method selected must be valid for the zone and both populated in the order for the discount
+     * to be valid.
+     * @type {string}
+     * @memberof CatalogAdminsTargetedShippingZone
+     */
+    zone: string;
 }
 /**
  * 
@@ -3337,6 +3490,104 @@ export interface CurrencyLocalizationCollection {
     items?: Array<CurrencyLocalization> | null;
 }
 /**
+ * 
+ * @export
+ * @interface CustomProperty
+ */
+export interface CustomProperty {
+    /**
+     * 
+     * @type {number}
+     * @memberof CustomProperty
+     */
+    position?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomProperty
+     */
+    code?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomProperty
+     */
+    name?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CustomProperty
+     */
+    enabled?: boolean | null;
+}
+/**
+ * 
+ * @export
+ * @interface CustomPropertyValues
+ */
+export interface CustomPropertyValues {
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomPropertyValues
+     */
+    value1?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomPropertyValues
+     */
+    value2?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomPropertyValues
+     */
+    value3?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomPropertyValues
+     */
+    value4?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomPropertyValues
+     */
+    value5?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomPropertyValues
+     */
+    value6?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomPropertyValues
+     */
+    value7?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomPropertyValues
+     */
+    value8?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomPropertyValues
+     */
+    value9?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomPropertyValues
+     */
+    value10?: string | null;
+}
+/**
  * Container for the language-specific name of the discount. You will have a container for each supported language
  * (LocaleCode).
  * This enables you to display the discount name in multiple languages yet manage it as a single discount internally.
@@ -3362,6 +3613,12 @@ export interface DiscountLocalizedContent {
      * @memberof DiscountLocalizedContent
      */
     friendlyDescription?: string | null;
+    /**
+     * 
+     * @type {CustomPropertyValues}
+     * @memberof DiscountLocalizedContent
+     */
+    customPropertyValues?: CustomPropertyValues;
     /**
      * 
      * @type {AdminUserAuditInfo}
@@ -3393,6 +3650,12 @@ export interface DiscountSettings {
      * @memberof DiscountSettings
      */
     doNotApplyToHandlingFees?: boolean | null;
+    /**
+     * Discount settings additional custom properties for storing property codes and names.
+     * @type {Array<CustomProperty>}
+     * @memberof DiscountSettings
+     */
+    customProperties?: Array<CustomProperty> | null;
 }
 /**
  * 
@@ -3449,68 +3712,6 @@ export interface DiscountTagCollection {
      * @memberof DiscountTagCollection
      */
     items?: Array<DiscountTag> | null;
-}
-/**
- * Category
- * @export
- * @interface DynamicExpression
- */
-export interface DynamicExpression {
-    /**
-     * 
-     * @type {string}
-     * @memberof DynamicExpression
-     */
-    text?: string | null;
-    /**
-     * 
-     * @type {Expression}
-     * @memberof DynamicExpression
-     */
-    tree?: Expression;
-}
-/**
- * 
- * @export
- * @interface Expression
- */
-export interface Expression {
-    /**
-     * Container or Predicate
-     * @type {string}
-     * @memberof Expression
-     */
-    type?: string | null;
-    /**
-     * And or Or (if Container with More than one Node)
-     * @type {string}
-     * @memberof Expression
-     */
-    logicalOperator?: string | null;
-    /**
-     * 
-     * @type {Array<Expression>}
-     * @memberof Expression
-     */
-    nodes?: Array<Expression> | null;
-    /**
-     * The field target of a predicate
-     * @type {string}
-     * @memberof Expression
-     */
-    left?: string | null;
-    /**
-     * The operator of a predicate
-     * @type {string}
-     * @memberof Expression
-     */
-    operator?: string | null;
-    /**
-     * The literal values of a predicate
-     * @type {any}
-     * @memberof Expression
-     */
-    right?: any | null;
 }
 /**
  * 
@@ -4084,6 +4285,150 @@ export interface MasterCatalogCollection {
     items?: Array<CatalogAdminsMasterCatalog> | null;
 }
 /**
+ * Request parameters for evaluating pick wave rules
+ * @export
+ * @interface PickWaveEvalRequest
+ */
+export interface PickWaveEvalRequest {
+    /**
+     * Fulfillment location code for which the pick wave rules are evaluated
+     * @type {string}
+     * @memberof PickWaveEvalRequest
+     */
+    fulfillmentLocationCode?: string | null;
+    /**
+     * Pick wave rule code to evaluate
+     * @type {string}
+     * @memberof PickWaveEvalRequest
+     */
+    pickWaveRuleCode?: string | null;
+}
+/**
+ * Collection of pick wave evaluation response items
+ * @export
+ * @interface PickWaveEvalResponseCollection
+ */
+export interface PickWaveEvalResponseCollection {
+    /**
+     * 
+     * @type {number}
+     * @memberof PickWaveEvalResponseCollection
+     */
+    totalCount?: number;
+    /**
+     * 
+     * @type {Array<PickWaveEvalResponseItem>}
+     * @memberof PickWaveEvalResponseCollection
+     */
+    items?: Array<PickWaveEvalResponseItem> | null;
+}
+/**
+ * Pick wave evaluation response item
+ * @export
+ * @interface PickWaveEvalResponseItem
+ */
+export interface PickWaveEvalResponseItem {
+    /**
+     * Shipment number for which the pick wave rule was evaluated
+     * @type {number}
+     * @memberof PickWaveEvalResponseItem
+     */
+    shipmentNumber?: number;
+}
+/**
+ * Represents a rule for pick wave in the product administration system.
+ * @export
+ * @interface PickWaveRule
+ */
+export interface PickWaveRule {
+    /**
+     * Gets or sets the unique identifier of the PickWaveRule.
+     * If not given provided on create one will be assigned. Read-only after creation.
+     * @type {string}
+     * @memberof PickWaveRule
+     */
+    code?: string | null;
+    /**
+     * Gets or sets the name of the PickWaveRule.
+     * @type {string}
+     * @memberof PickWaveRule
+     */
+    name?: string | null;
+    /**
+     * Gets or sets the description of the PickWaveRule.
+     * @type {string}
+     * @memberof PickWaveRule
+     */
+    description?: string | null;
+    /**
+     * Gets or sets whether the PickWaveRule is enabled.
+     * @type {boolean}
+     * @memberof PickWaveRule
+     */
+    enabled?: boolean | null;
+    /**
+     * Gets or sets the list of product rules associated with the PickWaveRule.
+     * @type {Array<ProductRuleCode>}
+     * @memberof PickWaveRule
+     */
+    productRules?: Array<ProductRuleCode> | null;
+    /**
+     * Gets or sets the list of Shipment Rule where the PickWaveRule applies.
+     * @type {Array<ShipmentRuleCode>}
+     * @memberof PickWaveRule
+     */
+    shipmentRules?: Array<ShipmentRuleCode> | null;
+    /**
+     * Gets or sets the list of Customer Rule where the PickWaveRule applies.
+     * @type {Array<string>}
+     * @memberof PickWaveRule
+     */
+    customerRules?: Array<string> | null;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof PickWaveRule
+     */
+    auditInfo?: AdminUserAuditInfo;
+}
+/**
+ * Represents a collection of Pick Wave Rules.
+ * @export
+ * @interface PickWaveRuleCollection
+ */
+export interface PickWaveRuleCollection {
+    /**
+     * 
+     * @type {number}
+     * @memberof PickWaveRuleCollection
+     */
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PickWaveRuleCollection
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PickWaveRuleCollection
+     */
+    pageCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PickWaveRuleCollection
+     */
+    totalCount?: number;
+    /**
+     * 
+     * @type {Array<PickWaveRule>}
+     * @memberof PickWaveRuleCollection
+     */
+    items?: Array<PickWaveRule> | null;
+}
+/**
  * Category
  * @export
  * @interface PriceListBulkResult
@@ -4484,6 +4829,20 @@ export interface PriceListEntryPrice {
      * @memberof PriceListEntryPrice
      */
     subscriptionSalePrice?: number | null;
+}
+/**
+ * Represents a customer segment
+ * @export
+ * @interface PricingRuntimeCustomerSegment
+ */
+export interface PricingRuntimeCustomerSegment {
+    /**
+     * The Customer segment Id.
+     * This is the  system Id not the code.
+     * @type {number}
+     * @memberof PricingRuntimeCustomerSegment
+     */
+    id?: number;
 }
 /**
  * Categories to which the product belongs.
@@ -5225,6 +5584,118 @@ export interface ProductPublishingInfo {
      * @memberof ProductPublishingInfo
      */
     publishSetCode?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface ProductRuleCode
+ */
+export interface ProductRuleCode {
+    /**
+     * Unique identifier of the ProductRule. System-supplied and read-only.
+     * @type {string}
+     * @memberof ProductRuleCode
+     */
+    code?: string | null;
+    /**
+     * Master Catalog Id of the ProductRule.
+     * @type {number}
+     * @memberof ProductRuleCode
+     */
+    masterCatalogId?: number;
+}
+/**
+ * 
+ * @export
+ * @interface ProductRuleCollection
+ */
+export interface ProductRuleCollection {
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductRuleCollection
+     */
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductRuleCollection
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductRuleCollection
+     */
+    pageCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductRuleCollection
+     */
+    totalCount?: number;
+    /**
+     * 
+     * @type {Array<CatalogAdminsProductRule>}
+     * @memberof ProductRuleCollection
+     */
+    items?: Array<CatalogAdminsProductRule> | null;
+}
+/**
+ * 
+ * @export
+ * @interface ProductRuleUsage
+ */
+export interface ProductRuleUsage {
+    /**
+     * The type of rule this ProductRule belongs to.
+     * @type {string}
+     * @memberof ProductRuleUsage
+     */
+    ruleType?: string | null;
+    /**
+     * Unique identifier of the ProductRule. System-supplied and read-only.
+     * @type {string}
+     * @memberof ProductRuleUsage
+     */
+    code?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface ProductRuleUsageCollection
+ */
+export interface ProductRuleUsageCollection {
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductRuleUsageCollection
+     */
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductRuleUsageCollection
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductRuleUsageCollection
+     */
+    pageCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductRuleUsageCollection
+     */
+    totalCount?: number;
+    /**
+     * 
+     * @type {Array<ProductRuleUsage>}
+     * @memberof ProductRuleUsageCollection
+     */
+    items?: Array<ProductRuleUsage> | null;
 }
 /**
  * Defines a default sort for a list of products and allows some products to be
@@ -6333,6 +6804,122 @@ export interface PublishingScope {
     publishSetCode?: string | null;
 }
 /**
+ * Purchase Limit Rule contract
+ * @export
+ * @interface PurchaseLimitRule
+ */
+export interface PurchaseLimitRule {
+    /**
+     * Unique identifier of the PurchaseLimit.
+     * @type {string}
+     * @memberof PurchaseLimitRule
+     */
+    code?: string | null;
+    /**
+     * PurchaseLimit name
+     * @type {string}
+     * @memberof PurchaseLimitRule
+     */
+    name?: string | null;
+    /**
+     * PurchaseLimit description
+     * @type {string}
+     * @memberof PurchaseLimitRule
+     */
+    description?: string | null;
+    /**
+     * Maximum quantity of the PurchaseLimit
+     * @type {number}
+     * @memberof PurchaseLimitRule
+     */
+    maxQty?: number;
+    /**
+     * List of product rule codes that apply to the PurchaseLimit
+     * @type {Array<string>}
+     * @memberof PurchaseLimitRule
+     */
+    productRules?: Array<string> | null;
+    /**
+     * List of customer rule codes that apply to the PurchaseLimit
+     * @type {Array<string>}
+     * @memberof PurchaseLimitRule
+     */
+    customerRules?: Array<string> | null;
+    /**
+     * Rank of the PurchaseLimit
+     * @type {number}
+     * @memberof PurchaseLimitRule
+     */
+    rank?: number;
+    /**
+     * Indicates if the PurchaseLimit is enabled
+     * @type {boolean}
+     * @memberof PurchaseLimitRule
+     */
+    enabled?: boolean | null;
+    /**
+     * Indicates if the PurchaseLimit is valid for all sites
+     * @type {boolean}
+     * @memberof PurchaseLimitRule
+     */
+    validForAllSites?: boolean | null;
+    /**
+     * List of site IDs that the PurchaseLimit is valid for
+     * @type {Array<number>}
+     * @memberof PurchaseLimitRule
+     */
+    validSites?: Array<number> | null;
+    /**
+     * Metadata for the PurchaseLimit which is a json format, used to store additional information
+     * @type {any}
+     * @memberof PurchaseLimitRule
+     */
+    metaData?: any | null;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof PurchaseLimitRule
+     */
+    auditInfo?: AdminUserAuditInfo;
+}
+/**
+ * Purchase Limit collection contract
+ * @export
+ * @interface PurchaseLimitRuleCollection
+ */
+export interface PurchaseLimitRuleCollection {
+    /**
+     * 
+     * @type {number}
+     * @memberof PurchaseLimitRuleCollection
+     */
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PurchaseLimitRuleCollection
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PurchaseLimitRuleCollection
+     */
+    pageCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PurchaseLimitRuleCollection
+     */
+    totalCount?: number;
+    /**
+     * 
+     * @type {Array<PurchaseLimitRule>}
+     * @memberof PurchaseLimitRuleCollection
+     */
+    items?: Array<PurchaseLimitRule> | null;
+}
+/**
  * List of Mozu.ProductAdmin.Contracts.ChangeProductTypeActions to be applied to a list of Mozu.ProductAdmin.Contracts.Products.
  * @export
  * @interface QuickEditChangeProductTypeActions
@@ -6478,6 +7065,246 @@ export interface QuickEditResult {
      * @memberof QuickEditResult
      */
     message?: string | null;
+}
+/**
+ * Return Rule contract
+ * @export
+ * @interface ReturnRule
+ */
+export interface ReturnRule {
+    /**
+     * Unique identifier of the Return.
+     * @type {string}
+     * @memberof ReturnRule
+     */
+    code?: string | null;
+    /**
+     * Return name
+     * @type {string}
+     * @memberof ReturnRule
+     */
+    name?: string | null;
+    /**
+     * Return description
+     * @type {string}
+     * @memberof ReturnRule
+     */
+    description?: string | null;
+    /**
+     * Maximum quantity of the Return
+     * @type {number}
+     * @memberof ReturnRule
+     */
+    maxQty?: number | null;
+    /**
+     * Maximum Days of the Return
+     * @type {number}
+     * @memberof ReturnRule
+     */
+    maxDays?: number | null;
+    /**
+     * List of product rule codes that apply to the Return
+     * @type {Array<string>}
+     * @memberof ReturnRule
+     */
+    productRules?: Array<string> | null;
+    /**
+     * List of customer rule codes that apply to the Return
+     * @type {Array<string>}
+     * @memberof ReturnRule
+     */
+    customerRules?: Array<string> | null;
+    /**
+     * Rank of the Return
+     * @type {number}
+     * @memberof ReturnRule
+     */
+    rank?: number;
+    /**
+     * Indicates if the Return is enabled
+     * @type {boolean}
+     * @memberof ReturnRule
+     */
+    enabled?: boolean | null;
+    /**
+     * Indicates if the Return is IsReturnable
+     * @type {boolean}
+     * @memberof ReturnRule
+     */
+    isReturnable?: boolean | null;
+    /**
+     * Indicates if the ReturnRule is valid for all sites
+     * @type {boolean}
+     * @memberof ReturnRule
+     */
+    validForAllSites?: boolean | null;
+    /**
+     * List of site IDs that the ReturnRule is valid for
+     * @type {Array<number>}
+     * @memberof ReturnRule
+     */
+    validSites?: Array<number> | null;
+    /**
+     * Metadata for the ReturnRule which is a json format, used to store additional information
+     * @type {any}
+     * @memberof ReturnRule
+     */
+    metaData?: any | null;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof ReturnRule
+     */
+    auditInfo?: AdminUserAuditInfo;
+}
+/**
+ * Return Rule collection contract
+ * @export
+ * @interface ReturnRuleCollection
+ */
+export interface ReturnRuleCollection {
+    /**
+     * 
+     * @type {number}
+     * @memberof ReturnRuleCollection
+     */
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReturnRuleCollection
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReturnRuleCollection
+     */
+    pageCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReturnRuleCollection
+     */
+    totalCount?: number;
+    /**
+     * 
+     * @type {Array<ReturnRule>}
+     * @memberof ReturnRuleCollection
+     */
+    items?: Array<ReturnRule> | null;
+}
+/**
+ * Represents a rule for safety stock in the product administration system.
+ * @export
+ * @interface SafetyStockRule
+ */
+export interface SafetyStockRule {
+    /**
+     * Gets or sets the unique identifier of the SafetyStockRule.
+     * If not given provided on create one will be assigned. Read-only after creation.
+     * @type {string}
+     * @memberof SafetyStockRule
+     */
+    code?: string | null;
+    /**
+     * Gets or sets the name of the SafetyStockRule.
+     * @type {string}
+     * @memberof SafetyStockRule
+     */
+    name?: string | null;
+    /**
+     * Gets or sets the description of the SafetyStockRule.
+     * @type {string}
+     * @memberof SafetyStockRule
+     */
+    description?: string | null;
+    /**
+     * Gets or sets whether the SafetyStockRule is enabled.
+     * @type {boolean}
+     * @memberof SafetyStockRule
+     */
+    enabled?: boolean | null;
+    /**
+     * Gets or sets the list of product rules associated with the SafetyStockRule.
+     * @type {Array<ProductRuleCode>}
+     * @memberof SafetyStockRule
+     */
+    productRules?: Array<ProductRuleCode> | null;
+    /**
+     * Gets or sets the list of location codes where the SafetyStockRule applies.
+     * @type {Array<string>}
+     * @memberof SafetyStockRule
+     */
+    locationCodes?: Array<string> | null;
+    /**
+     * Gets or sets the list of location groups where the SafetyStockRule applies.
+     * @type {Array<string>}
+     * @memberof SafetyStockRule
+     */
+    locationGroups?: Array<string> | null;
+    /**
+     * Gets or sets the quantity defined by the SafetyStockRule.
+     * @type {number}
+     * @memberof SafetyStockRule
+     */
+    quantity?: number | null;
+    /**
+     * Gets or sets the rank of the SafetyStockRule.
+     * When not given or zero, a value will be assigned.
+     * @type {number}
+     * @memberof SafetyStockRule
+     */
+    rank?: number;
+    /**
+     * Metadata for the Safety stock rule which is a json format, used to store additional information
+     * @type {any}
+     * @memberof SafetyStockRule
+     */
+    metaData?: any | null;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof SafetyStockRule
+     */
+    auditInfo?: AdminUserAuditInfo;
+}
+/**
+ * Represents a collection of SafetyStockRule objects with pagination information.
+ * @export
+ * @interface SafetyStockRuleCollection
+ */
+export interface SafetyStockRuleCollection {
+    /**
+     * 
+     * @type {number}
+     * @memberof SafetyStockRuleCollection
+     */
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SafetyStockRuleCollection
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SafetyStockRuleCollection
+     */
+    pageCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SafetyStockRuleCollection
+     */
+    totalCount?: number;
+    /**
+     * 
+     * @type {Array<SafetyStockRule>}
+     * @memberof SafetyStockRuleCollection
+     */
+    items?: Array<SafetyStockRule> | null;
 }
 /**
  * 
@@ -7040,6 +7867,99 @@ export const SearchType = {
 export type SearchType = typeof SearchType[keyof typeof SearchType];
 
 /**
+ * 
+ * @export
+ * @interface ShipmentRule
+ */
+export interface ShipmentRule {
+    /**
+     * Unique identifier of the ShipmentRule. System-supplied and read-only.
+     * @type {string}
+     * @memberof ShipmentRule
+     */
+    code?: string | null;
+    /**
+     * ShipmentRule name
+     * @type {string}
+     * @memberof ShipmentRule
+     */
+    name?: string | null;
+    /**
+     * ShipmentRule description
+     * @type {string}
+     * @memberof ShipmentRule
+     */
+    description?: string | null;
+    /**
+     * 
+     * @type {CatalogAdminsCustomerDynamicExpression}
+     * @memberof ShipmentRule
+     */
+    expression?: CatalogAdminsCustomerDynamicExpression;
+    /**
+     * Additional metadata.
+     * @type {any}
+     * @memberof ShipmentRule
+     */
+    metaData?: any | null;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof ShipmentRule
+     */
+    auditInfo?: AdminUserAuditInfo;
+}
+/**
+ * 
+ * @export
+ * @interface ShipmentRuleCode
+ */
+export interface ShipmentRuleCode {
+    /**
+     * Unique identifier of the ProductRule. System-supplied and read-only.
+     * @type {string}
+     * @memberof ShipmentRuleCode
+     */
+    code?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface ShipmentRuleCollection
+ */
+export interface ShipmentRuleCollection {
+    /**
+     * 
+     * @type {number}
+     * @memberof ShipmentRuleCollection
+     */
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShipmentRuleCollection
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShipmentRuleCollection
+     */
+    pageCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShipmentRuleCollection
+     */
+    totalCount?: number;
+    /**
+     * 
+     * @type {Array<ShipmentRule>}
+     * @memberof ShipmentRuleCollection
+     */
+    items?: Array<ShipmentRule> | null;
+}
+/**
  * A custom field and weight value for search relevancy
  * @export
  * @interface SiteSearchFieldWeight
@@ -7469,19 +8389,6 @@ export interface TagNodeTree {
     items?: TagNode;
 }
 /**
- * Category to discount. When a discount applies to a category, all products in the category are discounted.
- * @export
- * @interface TargetedCategory
- */
-export interface TargetedCategory {
-    /**
-     * Unique identifier of the category to which the discount applies.
-     * @type {number}
-     * @memberof TargetedCategory
-     */
-    id?: number | null;
-}
-/**
  * Product to discount.
  * @export
  * @interface TargetedProduct
@@ -7493,43 +8400,6 @@ export interface TargetedProduct {
      * @memberof TargetedProduct
      */
     productCode?: string | null;
-}
-/**
- * Shipping method that is eligible for free shipping. This is the shipping method that is defined with the Shipping
- * Settings resource.
- * @export
- * @interface TargetedShippingMethod
- */
-export interface TargetedShippingMethod {
-    /**
-     * Unique identifier of the shipping method as it appears in the SiteShippingMethod property of the Shipping Settings
-     * resource.
-     * @type {string}
-     * @memberof TargetedShippingMethod
-     */
-    code: string;
-    /**
-     * Name of the shipping method as it appears in SiteShippingMethodLocalizedContent of the Shipping Settings resource.
-     * @type {string}
-     * @memberof TargetedShippingMethod
-     */
-    name?: string | null;
-}
-/**
- * Shipping method that is eligible for free shipping. This is the shipping method that is defined with the Shipping
- * Settings resource.
- * @export
- * @interface TargetedShippingZone
- */
-export interface TargetedShippingZone {
-    /**
-     * Indicates the shipping zone that this discount is valid for.  If zone is provided the
-     * method selected must be valid for the zone and both populated in the order for the discount
-     * to be valid.
-     * @type {string}
-     * @memberof TargetedShippingZone
-     */
-    zone: string;
 }
 /**
  * 
@@ -7581,6 +8451,32 @@ export interface TypoTolerance {
      * @memberof TypoTolerance
      */
     readonly enabled?: boolean;
+}
+/**
+ * Represents a request to update the rank of a SafetyStock, PurchaseLimit and Return Rule.
+ * @export
+ * @interface UpdateRankRequest
+ */
+export interface UpdateRankRequest {
+    /**
+     * Gets or sets the code of the rule to be updated.
+     * It can be SafetyStock Code , PurchaseLimit Code or Return Rule Code
+     * @type {string}
+     * @memberof UpdateRankRequest
+     */
+    code?: string | null;
+    /**
+     * Gets or sets the old rank of the rule.
+     * @type {number}
+     * @memberof UpdateRankRequest
+     */
+    oldRank?: number;
+    /**
+     * Gets or sets the new rank of the rule.
+     * @type {number}
+     * @memberof UpdateRankRequest
+     */
+    newRank?: number;
 }
 /**
  * 

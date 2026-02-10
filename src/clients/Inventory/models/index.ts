@@ -20,62 +20,6 @@ export interface AdjustFutureDate404Response {
     message?: string;
 }
 /**
- * Request for adjusting the future date
- * @export
- * @interface AdjustFutureDateRequest
- */
-export interface AdjustFutureDateRequest {
-    /**
-     * Future Date at which the inventory should be allocated against. Expected format '2020-09-28T12:00:00-0500'
-     * @type {string}
-     * @memberof AdjustFutureDateRequest
-     */
-    futureDate?: string;
-    /**
-     * Location Code
-     * @type {string}
-     * @memberof AdjustFutureDateRequest
-     */
-    locationCode?: string;
-    /**
-     * user id
-     * @type {number}
-     * @memberof AdjustFutureDateRequest
-     */
-    userID?: number;
-    /**
-     * how many results to show per page
-     * @type {number}
-     * @memberof AdjustFutureDateRequest
-     */
-    pageSize?: number;
-    /**
-     * which page to show
-     * @type {number}
-     * @memberof AdjustFutureDateRequest
-     */
-    pageNum?: number;
-    /**
-     * index to sort results by
-     * @type {string}
-     * @memberof AdjustFutureDateRequest
-     */
-    sortBy?: string;
-}
-/**
- * 
- * @export
- * @interface AdjustFutureDateRequestAllOf
- */
-export interface AdjustFutureDateRequestAllOf {
-    /**
-     * Future Date at which the inventory should be allocated against. Expected format '2020-09-28T12:00:00-0500'
-     * @type {string}
-     * @memberof AdjustFutureDateRequestAllOf
-     */
-    futureDate?: string;
-}
-/**
  * Adjust Item
  * @export
  * @interface AdjustItem
@@ -112,36 +56,6 @@ export interface AdjustItem {
      */
     quantity?: number;
     /**
-     * Track which lot a product is manufactured in
-     * @type {string}
-     * @memberof AdjustItem
-     */
-    lotCode?: string;
-    /**
-     * Describes the state of the product
-     * @type {string}
-     * @memberof AdjustItem
-     */
-    condition?: string;
-    /**
-     * A serial number unique to a specific, physical unit of inventory
-     * @type {string}
-     * @memberof AdjustItem
-     */
-    serialNumber?: string;
-    /**
-     * Date related to manufacturing, expiry, or use-by
-     * @type {string}
-     * @memberof AdjustItem
-     */
-    date?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof AdjustItem
-     */
-    readonly granularInventoryTrackingEnabled?: boolean;
-    /**
      * Associative Map of <String, String> for tagCategoryName => tagName
      * @type {{ [key: string]: string; }}
      * @memberof AdjustItem
@@ -154,11 +68,35 @@ export interface AdjustItem {
      */
     deliveryDate?: string;
     /**
-     * External ID of the item
+     * External Identifier for the given future inventory record. Will not create a new future inventory record unless deliveryDate is specified
      * @type {string}
      * @memberof AdjustItem
      */
     externalID?: string;
+    /**
+     * Track which lot a product is manufactured in
+     * @type {string}
+     * @memberof AdjustItem
+     */
+    lotCode?: string;
+    /**
+     * Describes the state of the product
+     * @type {string}
+     * @memberof AdjustItem
+     */
+    condition?: string;
+    /**
+     * A serial number is unique to a specific, physical unit of inventory
+     * @type {string}
+     * @memberof AdjustItem
+     */
+    serialNumber?: string;
+    /**
+     * Used by the retailer for storing information related to manufacturing date or expiry date and use date to allocate for better stock management
+     * @type {string}
+     * @memberof AdjustItem
+     */
+    date?: string;
 }
 /**
  * Request needed for adjusting inventory
@@ -224,10 +162,10 @@ export interface AdjustRequestAllOf {
 export interface AggregateRequest {
     /**
      * List of Items to search on
-     * @type {Array<Item>}
+     * @type {Array<InventoryItem>}
      * @memberof AggregateRequest
      */
-    items: Array<Item>;
+    items: Array<InventoryItem>;
     /**
      * Whether to ignore the safety stock buffer put in place
      * @type {boolean}
@@ -265,7 +203,7 @@ export interface AggregateRequest {
      */
     tags?: { [key: string]: string; };
     /**
-     * Include future inventory or not
+     * Enum for including future inventory: [futureOnly, futureAndCurrent]
      * @type {string}
      * @memberof AggregateRequest
      */
@@ -331,8 +269,8 @@ export interface AggregateRequest {
  * @export
  */
 export const AggregateRequestIncludeFutureInventoryEnum = {
-    Only: 'FUTURE_ONLY',
-    AndCurrent: 'FUTURE_AND_CURRENT'
+    FutureOnly: 'futureOnly',
+    FutureAndCurrent: 'futureAndCurrent'
 } as const;
 export type AggregateRequestIncludeFutureInventoryEnum = typeof AggregateRequestIncludeFutureInventoryEnum[keyof typeof AggregateRequestIncludeFutureInventoryEnum];
 
@@ -344,10 +282,10 @@ export type AggregateRequestIncludeFutureInventoryEnum = typeof AggregateRequest
 export interface AggregateRequestAllOf {
     /**
      * List of Items to search on
-     * @type {Array<Item>}
+     * @type {Array<InventoryItem>}
      * @memberof AggregateRequestAllOf
      */
-    items?: Array<Item>;
+    items?: Array<InventoryItem>;
     /**
      * Whether to ignore the safety stock buffer put in place
      * @type {boolean}
@@ -385,7 +323,7 @@ export interface AggregateRequestAllOf {
      */
     tags?: { [key: string]: string; };
     /**
-     * Include future inventory or not
+     * Enum for including future inventory: [futureOnly, futureAndCurrent]
      * @type {string}
      * @memberof AggregateRequestAllOf
      */
@@ -421,8 +359,8 @@ export interface AggregateRequestAllOf {
  * @export
  */
 export const AggregateRequestAllOfIncludeFutureInventoryEnum = {
-    Only: 'FUTURE_ONLY',
-    AndCurrent: 'FUTURE_AND_CURRENT'
+    FutureOnly: 'futureOnly',
+    FutureAndCurrent: 'futureAndCurrent'
 } as const;
 export type AggregateRequestAllOfIncludeFutureInventoryEnum = typeof AggregateRequestAllOfIncludeFutureInventoryEnum[keyof typeof AggregateRequestAllOfIncludeFutureInventoryEnum];
 
@@ -610,7 +548,7 @@ export interface AllocateInventoryRequest {
      */
     autoAssign?: boolean;
     /**
-     * flag to determine whether the allocation should run synchronously, defaults to false
+     * flag to determine whether the runSyncronous flag is set and the allocation should be run synchronously
      * @type {boolean}
      * @memberof AllocateInventoryRequest
      */
@@ -683,7 +621,7 @@ export interface AllocateInventoryRequestAllOf {
      */
     autoAssign?: boolean;
     /**
-     * flag to determine whether the allocation should run synchronously, defaults to false
+     * flag to determine whether the runSyncronous flag is set and the allocation should be run synchronously
      * @type {boolean}
      * @memberof AllocateInventoryRequestAllOf
      */
@@ -720,7 +658,7 @@ export interface AllocateItem {
      */
     quantity: number;
     /**
-     * order ID
+     * The Order Number in UCP
      * @type {number}
      * @memberof AllocateItem
      */
@@ -731,6 +669,12 @@ export interface AllocateItem {
      * @memberof AllocateItem
      */
     orderItemID: number;
+    /**
+     * The Order ID in UCP (GUID)
+     * @type {string}
+     * @memberof AllocateItem
+     */
+    ucpOrderID?: string;
     /**
      * Cart ID (GUID)
      * @type {string}
@@ -780,6 +724,12 @@ export interface AllocateItem {
      */
     blockAssignment?: boolean;
     /**
+     * Hold Block assignment flag of item at product/location level. ONLY allowed on deallocate.
+     * @type {boolean}
+     * @memberof AllocateItem
+     */
+    holdBlockAssignment?: boolean;
+    /**
      * Associative Map of <String, String> for tagCategoryName => tagName
      * @type {{ [key: string]: string; }}
      * @memberof AllocateItem
@@ -815,6 +765,12 @@ export interface AllocateItem {
      * @memberof AllocateItem
      */
     date?: string;
+    /**
+     * Specific inventory record to perform deallocates/fulfills against. Only used for Deallocate/Fulfill calls
+     * @type {number}
+     * @memberof AllocateItem
+     */
+    inventoryID?: number;
 }
 /**
  * Base Request Model
@@ -1299,6 +1255,12 @@ export interface BlockAssignmentItem {
      * @memberof BlockAssignmentItem
      */
     blockAssignment: boolean;
+    /**
+     * Hold Block assignment of item at product/location level. ONLY allowed on deallocate.
+     * @type {boolean}
+     * @memberof BlockAssignmentItem
+     */
+    holdBlockAssignment?: boolean;
 }
 /**
  * Request to block assignment on the product
@@ -1505,6 +1467,74 @@ export interface CreateExportSettingsFTPRequestAllOf {
     exportSettingsFTP?: ExportSettingsFTP;
 }
 /**
+ * Request needed for creating Export Settings GCS
+ * @export
+ * @interface CreateExportSettingsGcsRequest
+ */
+export interface CreateExportSettingsGcsRequest {
+    /**
+     * Export Settings Name to associate the GCS settings with
+     * @type {string}
+     * @memberof CreateExportSettingsGcsRequest
+     */
+    exportSettingsName: string;
+    /**
+     * 
+     * @type {ExportSettingsGcs}
+     * @memberof CreateExportSettingsGcsRequest
+     */
+    exportSettingsGcs: ExportSettingsGcs;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof CreateExportSettingsGcsRequest
+     */
+    locationCode?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof CreateExportSettingsGcsRequest
+     */
+    userID?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof CreateExportSettingsGcsRequest
+     */
+    pageSize?: number;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof CreateExportSettingsGcsRequest
+     */
+    pageNum?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof CreateExportSettingsGcsRequest
+     */
+    sortBy?: string;
+}
+/**
+ * 
+ * @export
+ * @interface CreateExportSettingsGcsRequestAllOf
+ */
+export interface CreateExportSettingsGcsRequestAllOf {
+    /**
+     * Export Settings Name to associate the GCS settings with
+     * @type {string}
+     * @memberof CreateExportSettingsGcsRequestAllOf
+     */
+    exportSettingsName?: string;
+    /**
+     * 
+     * @type {ExportSettingsGcs}
+     * @memberof CreateExportSettingsGcsRequestAllOf
+     */
+    exportSettingsGcs?: ExportSettingsGcs;
+}
+/**
  * Request needed for creating Export Settings
  * @export
  * @interface CreateExportSettingsRequest
@@ -1689,6 +1719,42 @@ export interface DeleteFutureItemRequest {
      * @memberof DeleteFutureItemRequest
      */
     futureEndDate?: string;
+    /**
+     * An array of externalIDs to be considered for item-deletion purposes. Optional.
+     * @type {Array<string>}
+     * @memberof DeleteFutureItemRequest
+     */
+    externalIDs?: Array<string>;
+    /**
+     * Track which lot a product is manufactured in
+     * @type {string}
+     * @memberof DeleteFutureItemRequest
+     */
+    lotCode?: string;
+    /**
+     * Describes the state of the product
+     * @type {string}
+     * @memberof DeleteFutureItemRequest
+     */
+    condition?: string;
+    /**
+     * A serial number is unique to a specific, physical unit of inventory
+     * @type {string}
+     * @memberof DeleteFutureItemRequest
+     */
+    serialNumber?: string;
+    /**
+     * Used by the retailer for storing information related to manufacturing date or expiry date and use date to allocate for better stock management
+     * @type {string}
+     * @memberof DeleteFutureItemRequest
+     */
+    date?: string;
+    /**
+     * Flag to determine whether to delete a granular record without granular fields or delete all associated granular records. Only considered when no granular fields are specified.
+     * @type {boolean}
+     * @memberof DeleteFutureItemRequest
+     */
+    deleteGranularRecord?: boolean;
 }
 /**
  * Delete Future Item Response
@@ -1720,6 +1786,12 @@ export interface DeleteFutureItemResponse {
      * @memberof DeleteFutureItemResponse
      */
     totalLocationsAffected?: boolean;
+    /**
+     * Flag used to differentiate between a test and a non-test run.
+     * @type {boolean}
+     * @memberof DeleteFutureItemResponse
+     */
+    totalexternalIDsAffected?: boolean;
     /**
      * Flag used to differentiate between a test and a non-test run.
      * @type {boolean}
@@ -1782,6 +1854,36 @@ export interface DeleteItemRequest {
      * @memberof DeleteItemRequest
      */
     tags?: { [key: string]: string; };
+    /**
+     * Track which lot a product is manufactured in
+     * @type {string}
+     * @memberof DeleteItemRequest
+     */
+    lotCode?: string;
+    /**
+     * Describes the state of the product
+     * @type {string}
+     * @memberof DeleteItemRequest
+     */
+    condition?: string;
+    /**
+     * A serial number is unique to a specific, physical unit of inventory
+     * @type {string}
+     * @memberof DeleteItemRequest
+     */
+    serialNumber?: string;
+    /**
+     * Used by the retailer for storing information related to manufacturing date or expiry date and use date to allocate for better stock management
+     * @type {string}
+     * @memberof DeleteItemRequest
+     */
+    date?: string;
+    /**
+     * Flag to determine whether to delete a granular record without granular fields or delete all associated granular records. Only considered when no granular fields are specified.
+     * @type {boolean}
+     * @memberof DeleteItemRequest
+     */
+    deleteGranularRecord?: boolean;
 }
 /**
  * Delete Item Response
@@ -1871,10 +1973,10 @@ export interface DeleteItemsRequest {
     allLocations?: boolean;
     /**
      * List of items to delete. Supports basic regex operators: .*+?^$[]
-     * @type {Array<Item>}
+     * @type {Array<InventoryItem>}
      * @memberof DeleteItemsRequest
      */
-    items?: Array<Item>;
+    items?: Array<InventoryItem>;
     /**
      * Associative Map of <String, String> for tagCategoryName => tagName
      * @type {{ [key: string]: string; }}
@@ -1952,11 +2054,29 @@ export interface ExportInventoryRequest {
      */
     exportSettingsS3Name?: string;
     /**
+     * Name of the Gcs Settings to use. Will only check for this if exportID is already set
+     * @type {string}
+     * @memberof ExportInventoryRequest
+     */
+    exportSettingsGcsName?: string;
+    /**
      * Flag for sending the exports to the development droppoint
      * @type {boolean}
      * @memberof ExportInventoryRequest
      */
     development?: boolean;
+    /**
+     * Export id post import
+     * @type {number}
+     * @memberof ExportInventoryRequest
+     */
+    exportSettingsId?: number;
+    /**
+     * FTP id post import
+     * @type {number}
+     * @memberof ExportInventoryRequest
+     */
+    exportSettingsFtpId?: number;
     /**
      * Location Code
      * @type {string}
@@ -2013,11 +2133,29 @@ export interface ExportInventoryRequestAllOf {
      */
     exportSettingsS3Name?: string;
     /**
+     * Name of the Gcs Settings to use. Will only check for this if exportID is already set
+     * @type {string}
+     * @memberof ExportInventoryRequestAllOf
+     */
+    exportSettingsGcsName?: string;
+    /**
      * Flag for sending the exports to the development droppoint
      * @type {boolean}
      * @memberof ExportInventoryRequestAllOf
      */
     development?: boolean;
+    /**
+     * Export id post import
+     * @type {number}
+     * @memberof ExportInventoryRequestAllOf
+     */
+    exportSettingsId?: number;
+    /**
+     * FTP id post import
+     * @type {number}
+     * @memberof ExportInventoryRequestAllOf
+     */
+    exportSettingsFtpId?: number;
 }
 /**
  * Response for Export Inventory api
@@ -2080,6 +2218,12 @@ export interface ExportSettings {
      * @memberof ExportSettings
      */
     s3Information?: Array<ExportSettingsS3>;
+    /**
+     * List of export S3 settings
+     * @type {Array<ExportSettingsGcs>}
+     * @memberof ExportSettings
+     */
+    gcsInformation?: Array<ExportSettingsGcs>;
     /**
      * Flag for exporting as a single file
      * @type {boolean}
@@ -2373,6 +2517,43 @@ export interface ExportSettingsFTP {
     environment?: string;
 }
 /**
+ * Export Settings GCS
+ * @export
+ * @interface ExportSettingsGcs
+ */
+export interface ExportSettingsGcs {
+    /**
+     * Export Settings ID
+     * @type {number}
+     * @memberof ExportSettingsGcs
+     */
+    exportSettingsID?: number;
+    /**
+     * Export Settings GCS ID
+     * @type {number}
+     * @memberof ExportSettingsGcs
+     */
+    exportSettingsGcsID?: number;
+    /**
+     * Export Settings GCS Name
+     * @type {string}
+     * @memberof ExportSettingsGcs
+     */
+    name: string;
+    /**
+     * Flag for Active State
+     * @type {boolean}
+     * @memberof ExportSettingsGcs
+     */
+    active?: boolean;
+    /**
+     * GCS Bucket (directory)
+     * @type {string}
+     * @memberof ExportSettingsGcs
+     */
+    gcsBucket?: string;
+}
+/**
  * Job ID Response
  * @export
  * @interface ExportSettingsResponse
@@ -2396,6 +2577,12 @@ export interface ExportSettingsResponse {
      * @memberof ExportSettingsResponse
      */
     exportSettingsS3Name?: string;
+    /**
+     * Created Export Settings GCS Name
+     * @type {string}
+     * @memberof ExportSettingsResponse
+     */
+    exportSettingsGcsName?: string;
 }
 /**
  * Export Settings S3
@@ -2524,6 +2711,24 @@ export interface FetchFileConfigRequest {
      * @memberof FetchFileConfigRequest
      */
     ftpRemotePathArchive?: string;
+    /**
+     * GCS Bucket
+     * @type {string}
+     * @memberof FetchFileConfigRequest
+     */
+    gcsBucket?: string;
+    /**
+     * GCS Path
+     * @type {string}
+     * @memberof FetchFileConfigRequest
+     */
+    gcsPath?: string;
+    /**
+     * GCS Archive Path
+     * @type {string}
+     * @memberof FetchFileConfigRequest
+     */
+    gcsArchivePath?: string;
     /**
      * S3 Region
      * @type {string}
@@ -2747,6 +2952,24 @@ export interface FetchFileConfigRequestAllOf {
      */
     ftpRemotePathArchive?: string;
     /**
+     * GCS Bucket
+     * @type {string}
+     * @memberof FetchFileConfigRequestAllOf
+     */
+    gcsBucket?: string;
+    /**
+     * GCS Path
+     * @type {string}
+     * @memberof FetchFileConfigRequestAllOf
+     */
+    gcsPath?: string;
+    /**
+     * GCS Archive Path
+     * @type {string}
+     * @memberof FetchFileConfigRequestAllOf
+     */
+    gcsArchivePath?: string;
+    /**
      * S3 Region
      * @type {string}
      * @memberof FetchFileConfigRequestAllOf
@@ -2873,6 +3096,18 @@ export interface FetchFileConnectionResponse {
      */
     ftpArchiveFiles?: Array<string>;
     /**
+     * List of files found on the specified gcs bucket/path
+     * @type {Array<string>}
+     * @memberof FetchFileConnectionResponse
+     */
+    gcsFiles?: Array<string>;
+    /**
+     * List of files found on the specified gcs archive bucket/path
+     * @type {Array<string>}
+     * @memberof FetchFileConnectionResponse
+     */
+    gcsArchiveFiles?: Array<string>;
+    /**
      * List of files found on the specified s3 bucket/path
      * @type {Array<string>}
      * @memberof FetchFileConnectionResponse
@@ -2886,17 +3121,251 @@ export interface FetchFileConnectionResponse {
     s3ArchiveFiles?: Array<string>;
 }
 /**
- * Response for get Export Settings
+ * Fetch File Config Model
  * @export
- * @interface GetExportSettingsResponse
+ * @interface GetFetchFileConfigItem
  */
-export interface GetExportSettingsResponse {
+export interface GetFetchFileConfigItem {
     /**
-     * 
-     * @type {ExportSettings}
-     * @memberof GetExportSettingsResponse
+     * Fetch File Config ID
+     * @type {number}
+     * @memberof GetFetchFileConfigItem
      */
-    exportSettings?: ExportSettings;
+    fetchFileConfigID?: number;
+    /**
+     * Tenant ID
+     * @type {number}
+     * @memberof GetFetchFileConfigItem
+     */
+    tenantID?: number;
+    /**
+     * Active
+     * @type {boolean}
+     * @memberof GetFetchFileConfigItem
+     */
+    active?: boolean;
+    /**
+     * Time config was last modified
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    lastModified?: string;
+    /**
+     * Email List
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    emailList?: string;
+    /**
+     * Flag for Refresh Enabled
+     * @type {boolean}
+     * @memberof GetFetchFileConfigItem
+     */
+    refreshEnabled?: boolean;
+    /**
+     * Description for the refresh file
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    refreshFileDescription?: string;
+    /**
+     * Flag for Update Enabled
+     * @type {boolean}
+     * @memberof GetFetchFileConfigItem
+     */
+    updateEnabled?: boolean;
+    /**
+     * Description for the update file
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    updateFileDescription?: string;
+    /**
+     * FTP server address
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    ftpServer?: string;
+    /**
+     * FTP server username
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    ftpUsername?: string;
+    /**
+     * FTP server password
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    ftpPassword?: string;
+    /**
+     * FTP server port
+     * @type {number}
+     * @memberof GetFetchFileConfigItem
+     */
+    ftpPort?: number;
+    /**
+     * FTP server remote path
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    ftpRemotePath?: string;
+    /**
+     * FTP server remote path archive
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    ftpRemotePathArchive?: string;
+    /**
+     * S3 Region
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    region?: string;
+    /**
+     * S3 Bucket
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    bucket?: string;
+    /**
+     * S3 Bucket Path (directory)
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    s3Path?: string;
+    /**
+     * S3 Archive Bucket
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    archiveBucket?: string;
+    /**
+     * S3 Archive Bucket Path (directory)
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    s3ArchivePath?: string;
+    /**
+     * Lock name
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    lockName?: string;
+    /**
+     * Enum denoting action post processing
+     * @type {number}
+     * @memberof GetFetchFileConfigItem
+     */
+    postProcessAction?: number;
+    /**
+     * Flag for using control file
+     * @type {boolean}
+     * @memberof GetFetchFileConfigItem
+     */
+    useControlFile?: boolean;
+    /**
+     * Flag for using multiple files
+     * @type {boolean}
+     * @memberof GetFetchFileConfigItem
+     */
+    multipleFiles?: boolean;
+    /**
+     * Flag for converting negatives to zero
+     * @type {boolean}
+     * @memberof GetFetchFileConfigItem
+     */
+    zeroOutNegatives?: boolean;
+    /**
+     * List of field names
+     * @type {Array<string>}
+     * @memberof GetFetchFileConfigItem
+     */
+    fieldNameMap?: Array<string>;
+    /**
+     * Flag for ignoring extra fields
+     * @type {boolean}
+     * @memberof GetFetchFileConfigItem
+     */
+    ignoreExtraFields?: boolean;
+    /**
+     * Flag to convert null quantities to zero
+     * @type {boolean}
+     * @memberof GetFetchFileConfigItem
+     */
+    blankQuantityIsZero?: boolean;
+    /**
+     * CSV Delimiter
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    csvDelimiter?: string;
+    /**
+     * Flag for exporting after refresh
+     * @type {boolean}
+     * @memberof GetFetchFileConfigItem
+     */
+    exportAfterRefresh?: boolean;
+    /**
+     * Export id post import
+     * @type {number}
+     * @memberof GetFetchFileConfigItem
+     */
+    postImportExportId?: number;
+    /**
+     * FTP id post import
+     * @type {number}
+     * @memberof GetFetchFileConfigItem
+     */
+    postImportFtpId?: number;
+    /**
+     * Enum for fetch file mapping
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    productMapping?: GetFetchFileConfigItemProductMappingEnum;
+    /**
+     * GCS Bucket
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    gcsBucket?: string;
+    /**
+     * GCS Path (directory)
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    gcsPath?: string;
+    /**
+     * GCS Archive Bucket
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    gcsArchivePath?: string;
+}
+
+
+/**
+ * @export
+ */
+export const GetFetchFileConfigItemProductMappingEnum = {
+    PartNumberWithUpc: 'SWAP_PART_NUMBER_WITH_UPC',
+    SkuWithUpc: 'SWAP_SKU_WITH_UPC'
+} as const;
+export type GetFetchFileConfigItemProductMappingEnum = typeof GetFetchFileConfigItemProductMappingEnum[keyof typeof GetFetchFileConfigItemProductMappingEnum];
+
+/**
+ * Get Fetch File Config Response
+ * @export
+ * @interface GetFetchFileConfigResponse
+ */
+export interface GetFetchFileConfigResponse {
+    /**
+     * List of Fetch File Configurations
+     * @type {Array<GetFetchFileConfigItem>}
+     * @memberof GetFetchFileConfigResponse
+     */
+    items?: Array<GetFetchFileConfigItem>;
 }
 /**
  * 
@@ -2916,6 +3385,101 @@ export interface GetShipmentInventoryAllocations500Response {
      * @memberof GetShipmentInventoryAllocations500Response
      */
     message?: ShipmentInventoryAllocationResponse;
+}
+/**
+ * 
+ * @export
+ * @interface InvalidateCache200Response
+ */
+export interface InvalidateCache200Response {
+    /**
+     * 
+     * @type {string}
+     * @memberof InvalidateCache200Response
+     */
+    message?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InvalidateCache400Response
+ */
+export interface InvalidateCache400Response {
+    /**
+     * 
+     * @type {string}
+     * @memberof InvalidateCache400Response
+     */
+    error?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InvalidateCache500Response
+ */
+export interface InvalidateCache500Response {
+    /**
+     * 
+     * @type {string}
+     * @memberof InvalidateCache500Response
+     */
+    error?: string;
+}
+/**
+ * Request to invalidate a specific cache entry by its key
+ * @export
+ * @interface InvalidateCacheRequest
+ */
+export interface InvalidateCacheRequest {
+    /**
+     * Cache key to invalidate
+     * @type {string}
+     * @memberof InvalidateCacheRequest
+     */
+    cacheKey: string;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof InvalidateCacheRequest
+     */
+    locationCode?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof InvalidateCacheRequest
+     */
+    userID?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof InvalidateCacheRequest
+     */
+    pageSize?: number;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof InvalidateCacheRequest
+     */
+    pageNum?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof InvalidateCacheRequest
+     */
+    sortBy?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InvalidateCacheRequestAllOf
+ */
+export interface InvalidateCacheRequestAllOf {
+    /**
+     * Cache key to invalidate
+     * @type {string}
+     * @memberof InvalidateCacheRequestAllOf
+     */
+    cacheKey?: string;
 }
 /**
  * InventoryAllocationResponse Object
@@ -2954,29 +3518,11 @@ export interface InventoryAllocationResponse {
      */
     futureDate?: string;
     /**
-     * 
+     * External ID
      * @type {string}
      * @memberof InventoryAllocationResponse
      */
-    lotCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InventoryAllocationResponse
-     */
-    condition?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InventoryAllocationResponse
-     */
-    serialNumber?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InventoryAllocationResponse
-     */
-    date?: string;
+    externalId?: string;
     /**
      * Associative Map of <String, String> for tagCategoryName => tagName
      * @type {{ [key: string]: string; }}
@@ -3040,47 +3586,35 @@ export interface InventoryFutureInventory {
     createDate?: string;
 }
 /**
- * Request/Response object for a tag
+ * Item
  * @export
- * @interface InventoryInventoryTag
+ * @interface InventoryItem
  */
-export interface InventoryInventoryTag {
+export interface InventoryItem {
     /**
-     * Tag ID
-     * @type {number}
-     * @memberof InventoryInventoryTag
-     */
-    tagID?: number;
-    /**
-     * Tag Value
+     * Part/Product Number
      * @type {string}
-     * @memberof InventoryInventoryTag
+     * @memberof InventoryItem
      */
-    tagValue?: string;
+    partNumber?: string;
     /**
-     * Whether or not this tag is the default tag for its category.
-     * @type {boolean}
-     * @memberof InventoryInventoryTag
-     */
-    isDefault?: boolean;
-    /**
-     * Percentage of available inventory this tag will get when the percentage update is performed. Must be between 0 and 100 (inclusive).
-     * @type {number}
-     * @memberof InventoryInventoryTag
-     */
-    percent?: number;
-    /**
-     * Date this tag was created
+     * Universal Product Code
      * @type {string}
-     * @memberof InventoryInventoryTag
+     * @memberof InventoryItem
      */
-    created?: string;
+    upc?: string;
     /**
-     * Date this tag was last updated
+     * Stock Keeping Unit
      * @type {string}
-     * @memberof InventoryInventoryTag
+     * @memberof InventoryItem
      */
-    updated?: string;
+    sku?: string;
+    /**
+     * Associative Map of <String, String> for tagCategoryName => tagName
+     * @type {{ [key: string]: string; }}
+     * @memberof InventoryItem
+     */
+    tags?: { [key: string]: string; };
 }
 /**
  * Product within a bin
@@ -3610,6 +4144,18 @@ export interface InventoryResponse {
      */
     countryCode?: string;
     /**
+     * The currency identifier for the retailPrice
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    currencyID?: number;
+    /**
+     * The price of the product at this location
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    retailPrice?: number;
+    /**
      * The inventory locator name of the individual item
      * @type {string}
      * @memberof InventoryResponse
@@ -3633,12 +4179,6 @@ export interface InventoryResponse {
      * @memberof InventoryResponse
      */
     futureInventory?: Array<InventoryFutureInventory>;
-    /**
-     * External ID of the item
-     * @type {string}
-     * @memberof InventoryResponse
-     */
-    externalID?: string;
     /**
      * Flag for success
      * @type {boolean}
@@ -3779,6 +4319,18 @@ export interface InventoryResponseAllOf {
      */
     countryCode?: string;
     /**
+     * The currency identifier for the retailPrice
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    currencyID?: number;
+    /**
+     * The price of the product at this location
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    retailPrice?: number;
+    /**
      * The inventory locator name of the individual item
      * @type {string}
      * @memberof InventoryResponseAllOf
@@ -3802,12 +4354,49 @@ export interface InventoryResponseAllOf {
      * @memberof InventoryResponseAllOf
      */
     futureInventory?: Array<InventoryFutureInventory>;
+}
+/**
+ * Request/Response object for a tag
+ * @export
+ * @interface InventoryTag
+ */
+export interface InventoryTag {
     /**
-     * External ID of the item
-     * @type {string}
-     * @memberof InventoryResponseAllOf
+     * Tag ID
+     * @type {number}
+     * @memberof InventoryTag
      */
-    externalID?: string;
+    tagID?: number;
+    /**
+     * Tag Value
+     * @type {string}
+     * @memberof InventoryTag
+     */
+    tagValue?: string;
+    /**
+     * Whether or not this tag is the default tag for its category.
+     * @type {boolean}
+     * @memberof InventoryTag
+     */
+    isDefault?: boolean;
+    /**
+     * Percentage of available inventory this tag will get when the percentage update is performed. Must be between 0 and 100 (inclusive).
+     * @type {number}
+     * @memberof InventoryTag
+     */
+    percent?: number;
+    /**
+     * Date this tag was created
+     * @type {string}
+     * @memberof InventoryTag
+     */
+    created?: string;
+    /**
+     * Date this tag was last updated
+     * @type {string}
+     * @memberof InventoryTag
+     */
+    updated?: string;
 }
 /**
  * Response object for a tag quantity
@@ -3853,61 +4442,6 @@ export interface InventoryTagQuantity {
     futureInventory?: Array<InventoryFutureInventory>;
 }
 /**
- * Item
- * @export
- * @interface Item
- */
-export interface Item {
-    /**
-     * Part/Product Number
-     * @type {string}
-     * @memberof Item
-     */
-    partNumber?: string;
-    /**
-     * Universal Product Code
-     * @type {string}
-     * @memberof Item
-     */
-    upc?: string;
-    /**
-     * Stock Keeping Unit
-     * @type {string}
-     * @memberof Item
-     */
-    sku?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Item
-     */
-    condition?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Item
-     */
-    lotCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Item
-     */
-    date?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Item
-     */
-    serialNumber?: string;
-    /**
-     * Associative Map of <String, String> for tagCategoryName => tagName
-     * @type {{ [key: string]: string; }}
-     * @memberof Item
-     */
-    tags?: { [key: string]: string; };
-}
-/**
  * Item Quantity Model
  * @export
  * @interface ItemQuantity
@@ -3931,30 +4465,6 @@ export interface ItemQuantity {
      * @memberof ItemQuantity
      */
     sku?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemQuantity
-     */
-    condition?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemQuantity
-     */
-    lotCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemQuantity
-     */
-    date?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemQuantity
-     */
-    serialNumber?: string;
     /**
      * Quantity
      * @type {number}
@@ -4691,6 +5201,12 @@ export interface LocationResponse {
      */
     wmsEnabled?: boolean;
     /**
+     * Flag for whether the location is deliveryEnabled
+     * @type {boolean}
+     * @memberof LocationResponse
+     */
+    deliveryEnabled?: boolean;
+    /**
      * Flag for success
      * @type {boolean}
      * @memberof LocationResponse
@@ -4811,6 +5327,12 @@ export interface LocationResponseAllOf {
      * @memberof LocationResponseAllOf
      */
     wmsEnabled?: boolean;
+    /**
+     * Flag for whether the location is deliveryEnabled
+     * @type {boolean}
+     * @memberof LocationResponseAllOf
+     */
+    deliveryEnabled?: boolean;
 }
 /**
  * Delete Item Model
@@ -4855,240 +5377,6 @@ export interface MDeleteItem {
      */
     itemIdentifier?: ProductIdentifier;
 }
-/**
- * Fetch File Config Model
- * @export
- * @interface MFetchFileConfig
- */
-export interface MFetchFileConfig {
-    /**
-     * Fetch File Config ID
-     * @type {number}
-     * @memberof MFetchFileConfig
-     */
-    fetchFileConfigID?: number;
-    /**
-     * Tenant ID
-     * @type {number}
-     * @memberof MFetchFileConfig
-     */
-    tenantID?: number;
-    /**
-     * Active
-     * @type {boolean}
-     * @memberof MFetchFileConfig
-     */
-    active?: boolean;
-    /**
-     * Failed Attempts
-     * @type {number}
-     * @memberof MFetchFileConfig
-     */
-    failedAttempts?: number;
-    /**
-     * Time config was last modified
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    lastModified?: string;
-    /**
-     * Email List
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    emailList?: string;
-    /**
-     * Flag for Refresh Enabled
-     * @type {boolean}
-     * @memberof MFetchFileConfig
-     */
-    refreshEnabled?: boolean;
-    /**
-     * Description for the refresh file
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    refreshFileDescription?: string;
-    /**
-     * Flag for Update Enabled
-     * @type {boolean}
-     * @memberof MFetchFileConfig
-     */
-    updateEnabled?: boolean;
-    /**
-     * Description for the update file
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    updateFileDescription?: string;
-    /**
-     * FTP server address
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    ftpServer?: string;
-    /**
-     * FTP server username
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    ftpUsername?: string;
-    /**
-     * FTP server password
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    ftpPassword?: string;
-    /**
-     * FTP server port
-     * @type {number}
-     * @memberof MFetchFileConfig
-     */
-    ftpPort?: number;
-    /**
-     * FTP server remote path
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    ftpRemotePath?: string;
-    /**
-     * FTP server remote path archive
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    ftpRemotePathArchive?: string;
-    /**
-     * S3 Region
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    region?: string;
-    /**
-     * S3 Key
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    s3Key?: string;
-    /**
-     * S3 Secret
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    secret?: string;
-    /**
-     * S3 Bucket
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    bucket?: string;
-    /**
-     * S3 Bucket Path (directory)
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    s3Path?: string;
-    /**
-     * S3 Archive Bucket
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    archiveBucket?: string;
-    /**
-     * S3 Archive Bucket Path (directory)
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    s3ArchivePath?: string;
-    /**
-     * Lock name
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    lockName?: string;
-    /**
-     * Enum denoting action post processing
-     * @type {number}
-     * @memberof MFetchFileConfig
-     */
-    postProcessAction?: number;
-    /**
-     * Flag for using control file
-     * @type {boolean}
-     * @memberof MFetchFileConfig
-     */
-    useControlFile?: boolean;
-    /**
-     * Flag for using multiple files
-     * @type {boolean}
-     * @memberof MFetchFileConfig
-     */
-    multipleFiles?: boolean;
-    /**
-     * Flag for converting negatives to zero
-     * @type {boolean}
-     * @memberof MFetchFileConfig
-     */
-    zeroOutNegatives?: boolean;
-    /**
-     * List of field names
-     * @type {Array<string>}
-     * @memberof MFetchFileConfig
-     */
-    fieldNameMap?: Array<string>;
-    /**
-     * Flag for ignoring extra fields
-     * @type {boolean}
-     * @memberof MFetchFileConfig
-     */
-    ignoreExtraFields?: boolean;
-    /**
-     * Flag to convert null quantities to zero
-     * @type {boolean}
-     * @memberof MFetchFileConfig
-     */
-    blankQuantityIsZero?: boolean;
-    /**
-     * CSV Delimiter
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    csvDelimiter?: string;
-    /**
-     * Flag for exporting after refresh
-     * @type {boolean}
-     * @memberof MFetchFileConfig
-     */
-    exportAfterRefresh?: boolean;
-    /**
-     * Export id post import
-     * @type {number}
-     * @memberof MFetchFileConfig
-     */
-    postImportExportId?: number;
-    /**
-     * FTP id post import
-     * @type {number}
-     * @memberof MFetchFileConfig
-     */
-    postImportFtpId?: number;
-    /**
-     * Enum for fetch file mapping
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    productMapping?: MFetchFileConfigProductMappingEnum;
-}
-
-
-/**
- * @export
- */
-export const MFetchFileConfigProductMappingEnum = {
-    PartNumberWithUpc: 'SWAP_PART_NUMBER_WITH_UPC',
-    SkuWithUpc: 'SWAP_SKU_WITH_UPC'
-} as const;
-export type MFetchFileConfigProductMappingEnum = typeof MFetchFileConfigProductMappingEnum[keyof typeof MFetchFileConfigProductMappingEnum];
-
 /**
  * Order Item Information
  * @export
@@ -5495,10 +5783,10 @@ export interface OrderItemInformationRequest {
     orderID?: number;
     /**
      * List of Items to search on
-     * @type {Array<Item>}
+     * @type {Array<InventoryItem>}
      * @memberof OrderItemInformationRequest
      */
-    items?: Array<Item>;
+    items?: Array<InventoryItem>;
     /**
      * Location Code
      * @type {string}
@@ -5544,10 +5832,10 @@ export interface OrderItemInformationRequestAllOf {
     orderID?: number;
     /**
      * List of Items to search on
-     * @type {Array<Item>}
+     * @type {Array<InventoryItem>}
      * @memberof OrderItemInformationRequestAllOf
      */
-    items?: Array<Item>;
+    items?: Array<InventoryItem>;
 }
 /**
  * Product Identifier Model
@@ -5871,36 +6159,6 @@ export interface RefreshItem {
      */
     binID?: number;
     /**
-     * Track which lot a product is manufactured in
-     * @type {string}
-     * @memberof RefreshItem
-     */
-    lotCode?: string;
-    /**
-     * Describes the state of the product
-     * @type {string}
-     * @memberof RefreshItem
-     */
-    condition?: string;
-    /**
-     * A serial number unique to a specific, physical unit of inventory
-     * @type {string}
-     * @memberof RefreshItem
-     */
-    serialNumber?: string;
-    /**
-     * Date related to manufacturing, expiry, or use-by
-     * @type {string}
-     * @memberof RefreshItem
-     */
-    date?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof RefreshItem
-     */
-    readonly granularInventoryTrackingEnabled?: boolean;
-    /**
      * Custom field used for store prioritization
      * @type {number}
      * @memberof RefreshItem
@@ -5924,6 +6182,18 @@ export interface RefreshItem {
      * @memberof RefreshItem
      */
     quantity?: number;
+    /**
+     * Stock Keeping Unit
+     * @type {number}
+     * @memberof RefreshItem
+     */
+    retailPrice?: number;
+    /**
+     * The price of the item
+     * @type {number}
+     * @memberof RefreshItem
+     */
+    currencyID?: number;
     /**
      * The inventory locator name of the item
      * @type {string}
@@ -5949,11 +6219,35 @@ export interface RefreshItem {
      */
     deliveryDate?: string;
     /**
-     * External ID of the item
+     * External Identifier for the given future inventory record. Will not create a new future inventory record unless deliveryDate is specified
      * @type {string}
      * @memberof RefreshItem
      */
     externalID?: string;
+    /**
+     * Track which lot a product is manufactured in
+     * @type {string}
+     * @memberof RefreshItem
+     */
+    lotCode?: string;
+    /**
+     * Describes the state of the product
+     * @type {string}
+     * @memberof RefreshItem
+     */
+    condition?: string;
+    /**
+     * A serial number is unique to a specific, physical unit of inventory
+     * @type {string}
+     * @memberof RefreshItem
+     */
+    serialNumber?: string;
+    /**
+     * Used by the retailer for storing information related to manufacturing date or expiry date and use date to allocate for better stock management
+     * @type {string}
+     * @memberof RefreshItem
+     */
+    date?: string;
 }
 /**
  * Request needed for refreshing inventory
@@ -6184,10 +6478,10 @@ export interface TagCategory {
     deletionJobIds?: Array<number>;
     /**
      * Tags within this category
-     * @type {Array<InventoryInventoryTag>}
+     * @type {Array<InventoryTag>}
      * @memberof TagCategory
      */
-    tags?: Array<InventoryInventoryTag>;
+    tags?: Array<InventoryTag>;
 }
 /**
  * Model of a tenant silo config.
@@ -6238,6 +6532,18 @@ export interface TenantSiloConfigModel {
      */
     eventSenderWorkers?: number;
     /**
+     * Number of Non-Batch Workers to run for this tenant.
+     * @type {number}
+     * @memberof TenantSiloConfigModel
+     */
+    nonBatchWorkers?: number;
+    /**
+     * Whether to isolate non-batch jobs or not
+     * @type {boolean}
+     * @memberof TenantSiloConfigModel
+     */
+    isolateNonBatchJobs?: boolean;
+    /**
      * A Tenant ID
      * @type {number}
      * @memberof TenantSiloConfigModel
@@ -6268,6 +6574,18 @@ export interface TransitionCartItem {
      * @memberof TransitionCartItem
      */
     shipmentID: number;
+    /**
+     * Expected format '2020-09-28T12:00:00-0500'
+     * @type {string}
+     * @memberof TransitionCartItem
+     */
+    futureDate?: string;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof TransitionCartItem
+     */
+    locationCode?: string;
     /**
      * If provided, overrides the order item ID (orderItemID) in the db records
      * @type {number}
@@ -6653,6 +6971,142 @@ export interface UpdateExportSettingsFTPResponseAllOf {
     exportSettingsName?: string;
 }
 /**
+ * Update Export Settings Gcs Response
+ * @export
+ * @interface UpdateExportSettingsGCSResponse
+ */
+export interface UpdateExportSettingsGCSResponse {
+    /**
+     * Tenant ID
+     * @type {number}
+     * @memberof UpdateExportSettingsGCSResponse
+     */
+    tenantID?: number;
+    /**
+     * Export Settings Gcs ID
+     * @type {number}
+     * @memberof UpdateExportSettingsGCSResponse
+     */
+    exportSettingsGcsID?: number;
+    /**
+     * Export Settings ID to associate the Gcs settings with
+     * @type {number}
+     * @memberof UpdateExportSettingsGCSResponse
+     */
+    exportSettingsID?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof UpdateExportSettingsGCSResponse
+     */
+    success?: boolean;
+    /**
+     * List of messages
+     * @type {Array<string>}
+     * @memberof UpdateExportSettingsGCSResponse
+     */
+    messages?: Array<string>;
+    /**
+     * Number of results
+     * @type {number}
+     * @memberof UpdateExportSettingsGCSResponse
+     */
+    numResults?: number;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateExportSettingsGCSResponseAllOf
+ */
+export interface UpdateExportSettingsGCSResponseAllOf {
+    /**
+     * Tenant ID
+     * @type {number}
+     * @memberof UpdateExportSettingsGCSResponseAllOf
+     */
+    tenantID?: number;
+    /**
+     * Export Settings Gcs ID
+     * @type {number}
+     * @memberof UpdateExportSettingsGCSResponseAllOf
+     */
+    exportSettingsGcsID?: number;
+    /**
+     * Export Settings ID to associate the Gcs settings with
+     * @type {number}
+     * @memberof UpdateExportSettingsGCSResponseAllOf
+     */
+    exportSettingsID?: number;
+}
+/**
+ * Request needed for updating existing Export Settings GCS
+ * @export
+ * @interface UpdateExportSettingsGcsRequest
+ */
+export interface UpdateExportSettingsGcsRequest {
+    /**
+     * Export Settings Name to associate the ftp settings with
+     * @type {string}
+     * @memberof UpdateExportSettingsGcsRequest
+     */
+    exportSettingsName: string;
+    /**
+     * 
+     * @type {ExportSettingsGcs}
+     * @memberof UpdateExportSettingsGcsRequest
+     */
+    exportSettingsGcs: ExportSettingsGcs;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof UpdateExportSettingsGcsRequest
+     */
+    locationCode?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof UpdateExportSettingsGcsRequest
+     */
+    userID?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof UpdateExportSettingsGcsRequest
+     */
+    pageSize?: number;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof UpdateExportSettingsGcsRequest
+     */
+    pageNum?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof UpdateExportSettingsGcsRequest
+     */
+    sortBy?: string;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateExportSettingsGcsRequestAllOf
+ */
+export interface UpdateExportSettingsGcsRequestAllOf {
+    /**
+     * Export Settings Name to associate the ftp settings with
+     * @type {string}
+     * @memberof UpdateExportSettingsGcsRequestAllOf
+     */
+    exportSettingsName?: string;
+    /**
+     * 
+     * @type {ExportSettingsGcs}
+     * @memberof UpdateExportSettingsGcsRequestAllOf
+     */
+    exportSettingsGcs?: ExportSettingsGcs;
+}
+/**
  * Request needed updating existing Export Settings
  * @export
  * @interface UpdateExportSettingsRequest
@@ -6892,4 +7346,10 @@ export interface UpdateTenantSiloConfigRequest {
      * @memberof UpdateTenantSiloConfigRequest
      */
     eventSenderWorkers?: number;
+    /**
+     * Number of event dedicated non-batch workers to run for this silo.
+     * @type {number}
+     * @memberof UpdateTenantSiloConfigRequest
+     */
+    nonBatchWorkers?: number;
 }

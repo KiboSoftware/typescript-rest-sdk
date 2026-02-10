@@ -20,6 +20,7 @@ import type {
   CommerceRuntimePackage,
   CommerceRuntimeShipment,
   CommerceRuntimeShipmentResponse,
+  DisposeReturnItem,
   Order,
   OrderNote,
   Payment,
@@ -29,6 +30,7 @@ import type {
   RestockableReturnItem,
   Return,
   ReturnAction,
+  ReturnAttribute,
   ReturnCollection,
   ReturnItem,
   ReturnItemCollection,
@@ -62,10 +64,21 @@ export namespace returnApiParams {
         responseFields?: string;
         _return?: Return;
     }
+    export interface CreateReturnAttributesRequest {
+        returnId: string;
+        responseFields?: string;
+        returnAttribute?: Array<ReturnAttribute>;
+    }
     export interface CreateReturnItemRequest {
         returnId: string;
         responseFields?: string;
         returnItem?: ReturnItem;
+    }
+    export interface CreateReturnItemAttributesRequest {
+        returnId: string;
+        returnItemId: string;
+        responseFields?: string;
+        returnAttribute?: Array<ReturnAttribute>;
     }
     export interface CreateReturnNoteRequest {
         returnId: string;
@@ -97,6 +110,11 @@ export namespace returnApiParams {
     export interface DeleteShipmentRequest {
         returnId: string;
         shipmentId: string;
+    }
+    export interface DisposeReturnItemsRequest {
+        returnId: string;
+        responseFields?: string;
+        disposeReturnItem?: Array<DisposeReturnItem>;
     }
     export interface GetAvailableReturnActionsRequest {
         returnId: string;
@@ -133,7 +151,16 @@ export namespace returnApiParams {
         returnId: string;
         responseFields?: string;
     }
+    export interface GetReturnAttributesRequest {
+        returnId: string;
+        responseFields?: string;
+    }
     export interface GetReturnItemRequest {
+        returnId: string;
+        returnItemId: string;
+        responseFields?: string;
+    }
+    export interface GetReturnItemAttributesRequest {
         returnId: string;
         returnItemId: string;
         responseFields?: string;
@@ -153,6 +180,9 @@ export namespace returnApiParams {
     }
     export interface GetReturnNotesRequest {
         returnId: string;
+        responseFields?: string;
+    }
+    export interface GetReturnedItemConditionsRequest {
         responseFields?: string;
     }
     export interface GetReturnsRequest {
@@ -197,6 +227,19 @@ export namespace returnApiParams {
         returnId: string;
         responseFields?: string;
         _return?: Return;
+    }
+    export interface UpdateReturnAttributesRequest {
+        returnId: string;
+        removeMissing?: boolean;
+        responseFields?: string;
+        returnAttribute?: Array<ReturnAttribute>;
+    }
+    export interface UpdateReturnItemAttributesRequest {
+        returnId: string;
+        returnItemId: string;
+        removeMissing?: boolean;
+        responseFields?: string;
+        returnAttribute?: Array<ReturnAttribute>;
     }
     export interface UpdateReturnNoteRequest {
         returnId: string;
@@ -302,6 +345,24 @@ export interface ReturnApiService {
     createReturn(requestParameters: returnApiParams.CreateReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return>;
 
     /**
+    * Adds an attributeSet to the return. This is an internal attributeSet that the merchant might want to add to a return.
+    * @summary Create Return Attributes
+    * @param {string} returnId Unique identifier of the return to which you want to add an attributeSet.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<ReturnAttribute>} [returnAttribute] Attributes to upsert.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReturnApiInterface
+    */
+    createReturnAttributesRaw(requestParameters: returnApiParams.CreateReturnAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ReturnAttribute>>>;
+
+    /**
+    * Adds an attributeSet to the return. This is an internal attributeSet that the merchant might want to add to a return.
+    * Create Return Attributes
+    */
+    createReturnAttributes(requestParameters: returnApiParams.CreateReturnAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ReturnAttribute>>;
+
+    /**
     * Adds a return item to the return.
     * @summary Create Return Item
     * @param {string} returnId ID of the order to add an item to.
@@ -318,6 +379,25 @@ export interface ReturnApiService {
     * Create Return Item
     */
     createReturnItem(requestParameters: returnApiParams.CreateReturnItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return>;
+
+    /**
+    * Adds attributes to the return item. This is an internal attribute that the merchant might want to add to a return item.
+    * @summary Create Return Item Attributes
+    * @param {string} returnId Unique identifier of the return.
+    * @param {string} returnItemId Unique identifier of the return item to which you want to add attributes.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<ReturnAttribute>} [returnAttribute] Attributes to upsert.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReturnApiInterface
+    */
+    createReturnItemAttributesRaw(requestParameters: returnApiParams.CreateReturnItemAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ReturnAttribute>>>;
+
+    /**
+    * Adds attributes to the return item. This is an internal attribute that the merchant might want to add to a return item.
+    * Create Return Item Attributes
+    */
+    createReturnItemAttributes(requestParameters: returnApiParams.CreateReturnItemAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ReturnAttribute>>;
 
     /**
     * Adds a note to the return. This is an internal note that the merchant might want to add to a return. This note is visible in Admin for customer service representatives to see.
@@ -440,6 +520,24 @@ export interface ReturnApiService {
     * Deletes an existing return shipment
     */
     deleteShipment(requestParameters: returnApiParams.DeleteShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+    * API to restock return item.
+    * @summary Dispose Return Items
+    * @param {string} returnId Return ID
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<DisposeReturnItem>} [disposeReturnItem] List of return items with quantity to be disposed
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReturnApiInterface
+    */
+    disposeReturnItemsRaw(requestParameters: returnApiParams.DisposeReturnItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>>;
+
+    /**
+    * API to restock return item.
+    * Dispose Return Items
+    */
+    disposeReturnItems(requestParameters: returnApiParams.DisposeReturnItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return>;
 
     /**
     * Gets all the available actions on the return specified by return Id.
@@ -581,6 +679,23 @@ export interface ReturnApiService {
     getReturn(requestParameters: returnApiParams.GetReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return>;
 
     /**
+    * Retrieves a list of all attribute sets for a return.
+    * @summary Get Return Attributes
+    * @param {string} returnId Unique identifier of the return whose attributeSets you want to get.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReturnApiInterface
+    */
+    getReturnAttributesRaw(requestParameters: returnApiParams.GetReturnAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ReturnAttribute>>>;
+
+    /**
+    * Retrieves a list of all attribute sets for a return.
+    * Get Return Attributes
+    */
+    getReturnAttributes(requestParameters: returnApiParams.GetReturnAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ReturnAttribute>>;
+
+    /**
     * Retrieves the details of a single return item.
     * @summary Get Return Item
     * @param {string} returnId Unique identifier of the return whose item you want to get.
@@ -597,6 +712,24 @@ export interface ReturnApiService {
     * Get Return Item
     */
     getReturnItem(requestParameters: returnApiParams.GetReturnItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnItem>;
+
+    /**
+    * Retrieves a list of all attributes for a return item.
+    * @summary Get Return Item Attributes
+    * @param {string} returnId Unique identifier of the return.
+    * @param {string} returnItemId Unique identifier of the return item whose attributes you want to get.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReturnApiInterface
+    */
+    getReturnItemAttributesRaw(requestParameters: returnApiParams.GetReturnItemAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ReturnAttribute>>>;
+
+    /**
+    * Retrieves a list of all attributes for a return item.
+    * Get Return Item Attributes
+    */
+    getReturnItemAttributes(requestParameters: returnApiParams.GetReturnItemAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ReturnAttribute>>;
 
     /**
     * Retrieves the details of all return items in an order.
@@ -666,6 +799,22 @@ export interface ReturnApiService {
     * Get Return Notes
     */
     getReturnNotes(requestParameters: returnApiParams.GetReturnNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<OrderNote>>;
+
+    /**
+    * Gets all the return reasons.
+    * @summary Gets the item conditions for the returns
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReturnApiInterface
+    */
+    getReturnedItemConditionsRaw(requestParameters: returnApiParams.GetReturnedItemConditionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReasonCollection>>;
+
+    /**
+    * Gets all the return reasons.
+    * Gets the item conditions for the returns
+    */
+    getReturnedItemConditions(requestParameters: returnApiParams.GetReturnedItemConditionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReasonCollection>;
 
     /**
     * Provides a paged, collection of returns for a Site.
@@ -813,6 +962,45 @@ export interface ReturnApiService {
     * Get Reasons
     */
     updateReturn(requestParameters: returnApiParams.UpdateReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return>;
+
+    /**
+    * Updates a specific return attribute set of a return.
+    * @summary Update Return Attributes
+    * @param {string} returnId Unique identifier of the return whose attributeSet you want to update.
+    * @param {boolean} [removeMissing] Indicates that items missing from the collection should be removed.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<ReturnAttribute>} [returnAttribute] Attributes to upsert.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReturnApiInterface
+    */
+    updateReturnAttributesRaw(requestParameters: returnApiParams.UpdateReturnAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ReturnAttribute>>>;
+
+    /**
+    * Updates a specific return attribute set of a return.
+    * Update Return Attributes
+    */
+    updateReturnAttributes(requestParameters: returnApiParams.UpdateReturnAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ReturnAttribute>>;
+
+    /**
+    * Updates a specific return item attribute set of a return item.
+    * @summary Update Return Item Attributes
+    * @param {string} returnId Unique identifier of the return.
+    * @param {string} returnItemId Unique identifier of the return item whose attributes you want to update.
+    * @param {boolean} [removeMissing] Indicates that items missing from the collection should be removed.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<ReturnAttribute>} [returnAttribute] Attributes to upsert.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ReturnApiInterface
+    */
+    updateReturnItemAttributesRaw(requestParameters: returnApiParams.UpdateReturnItemAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ReturnAttribute>>>;
+
+    /**
+    * Updates a specific return item attribute set of a return item.
+    * Update Return Item Attributes
+    */
+    updateReturnItemAttributes(requestParameters: returnApiParams.UpdateReturnItemAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ReturnAttribute>>;
 
     /**
     * Updates a specific note for a return.
@@ -1076,6 +1264,53 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiService {
     }
 
     /**
+     * Adds an attributeSet to the return. This is an internal attributeSet that the merchant might want to add to a return.
+     * Create Return Attributes
+     */
+
+
+    async createReturnAttributesRaw(requestParameters: returnApiParams.CreateReturnAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ReturnAttribute>>> {
+        if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
+            throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling createReturnAttributes.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/returns/{returnId}/attributes`.replace(`{${"returnId"}}`, encodeURIComponent(String(requestParameters.returnId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.returnAttribute,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Adds an attributeSet to the return. This is an internal attributeSet that the merchant might want to add to a return.
+     * Create Return Attributes
+     */
+    async createReturnAttributes(requestParameters: returnApiParams.CreateReturnAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ReturnAttribute>> {
+        const response = await this.createReturnAttributesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Adds a return item to the return.
      * Create Return Item
      */
@@ -1119,6 +1354,57 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiService {
      */
     async createReturnItem(requestParameters: returnApiParams.CreateReturnItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return> {
         const response = await this.createReturnItemRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Adds attributes to the return item. This is an internal attribute that the merchant might want to add to a return item.
+     * Create Return Item Attributes
+     */
+
+
+    async createReturnItemAttributesRaw(requestParameters: returnApiParams.CreateReturnItemAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ReturnAttribute>>> {
+        if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
+            throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling createReturnItemAttributes.');
+        }
+
+        if (requestParameters.returnItemId === null || requestParameters.returnItemId === undefined) {
+            throw new runtime.RequiredError('returnItemId','Required parameter requestParameters.returnItemId was null or undefined when calling createReturnItemAttributes.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/returns/{returnId}/items/{returnItemId}/attributes`.replace(`{${"returnId"}}`, encodeURIComponent(String(requestParameters.returnId))).replace(`{${"returnItemId"}}`, encodeURIComponent(String(requestParameters.returnItemId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.returnAttribute,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Adds attributes to the return item. This is an internal attribute that the merchant might want to add to a return item.
+     * Create Return Item Attributes
+     */
+    async createReturnItemAttributes(requestParameters: returnApiParams.CreateReturnItemAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ReturnAttribute>> {
+        const response = await this.createReturnItemAttributesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1434,6 +1720,53 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiService {
      */
     async deleteShipment(requestParameters: returnApiParams.DeleteShipmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteShipmentRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * API to restock return item.
+     * Dispose Return Items
+     */
+
+
+    async disposeReturnItemsRaw(requestParameters: returnApiParams.DisposeReturnItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Return>> {
+        if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
+            throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling disposeReturnItems.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/returns/{returnId}/disposition`.replace(`{${"returnId"}}`, encodeURIComponent(String(requestParameters.returnId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.disposeReturnItem,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * API to restock return item.
+     * Dispose Return Items
+     */
+    async disposeReturnItems(requestParameters: returnApiParams.DisposeReturnItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return> {
+        const response = await this.disposeReturnItemsRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
@@ -1800,6 +2133,50 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiService {
     }
 
     /**
+     * Retrieves a list of all attribute sets for a return.
+     * Get Return Attributes
+     */
+
+
+    async getReturnAttributesRaw(requestParameters: returnApiParams.GetReturnAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ReturnAttribute>>> {
+        if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
+            throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling getReturnAttributes.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/returns/{returnId}/attributes`.replace(`{${"returnId"}}`, encodeURIComponent(String(requestParameters.returnId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Retrieves a list of all attribute sets for a return.
+     * Get Return Attributes
+     */
+    async getReturnAttributes(requestParameters: returnApiParams.GetReturnAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ReturnAttribute>> {
+        const response = await this.getReturnAttributesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Retrieves the details of a single return item.
      * Get Return Item
      */
@@ -1844,6 +2221,54 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiService {
      */
     async getReturnItem(requestParameters: returnApiParams.GetReturnItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReturnItem> {
         const response = await this.getReturnItemRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves a list of all attributes for a return item.
+     * Get Return Item Attributes
+     */
+
+
+    async getReturnItemAttributesRaw(requestParameters: returnApiParams.GetReturnItemAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ReturnAttribute>>> {
+        if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
+            throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling getReturnItemAttributes.');
+        }
+
+        if (requestParameters.returnItemId === null || requestParameters.returnItemId === undefined) {
+            throw new runtime.RequiredError('returnItemId','Required parameter requestParameters.returnItemId was null or undefined when calling getReturnItemAttributes.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/returns/{returnId}/items/{returnItemId}/attributes`.replace(`{${"returnId"}}`, encodeURIComponent(String(requestParameters.returnId))).replace(`{${"returnItemId"}}`, encodeURIComponent(String(requestParameters.returnItemId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Retrieves a list of all attributes for a return item.
+     * Get Return Item Attributes
+     */
+    async getReturnItemAttributes(requestParameters: returnApiParams.GetReturnItemAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ReturnAttribute>> {
+        const response = await this.getReturnItemAttributesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2024,6 +2449,46 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiService {
      */
     async getReturnNotes(requestParameters: returnApiParams.GetReturnNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<OrderNote>> {
         const response = await this.getReturnNotesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Gets all the return reasons.
+     * Gets the item conditions for the returns
+     */
+
+
+    async getReturnedItemConditionsRaw(requestParameters: returnApiParams.GetReturnedItemConditionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReasonCollection>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/returns/restock/conditions`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Gets all the return reasons.
+     * Gets the item conditions for the returns
+     */
+    async getReturnedItemConditions(requestParameters: returnApiParams.GetReturnedItemConditionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReasonCollection> {
+        const response = await this.getReturnedItemConditionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2413,6 +2878,112 @@ export class ReturnApi extends runtime.BaseAPI implements ReturnApiService {
      */
     async updateReturn(requestParameters: returnApiParams.UpdateReturnRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Return> {
         const response = await this.updateReturnRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Updates a specific return attribute set of a return.
+     * Update Return Attributes
+     */
+
+
+    async updateReturnAttributesRaw(requestParameters: returnApiParams.UpdateReturnAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ReturnAttribute>>> {
+        if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
+            throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling updateReturnAttributes.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.removeMissing !== undefined) {
+            queryParameters['removeMissing'] = requestParameters.removeMissing;
+        }
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/returns/{returnId}/attributes`.replace(`{${"returnId"}}`, encodeURIComponent(String(requestParameters.returnId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.returnAttribute,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Updates a specific return attribute set of a return.
+     * Update Return Attributes
+     */
+    async updateReturnAttributes(requestParameters: returnApiParams.UpdateReturnAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ReturnAttribute>> {
+        const response = await this.updateReturnAttributesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Updates a specific return item attribute set of a return item.
+     * Update Return Item Attributes
+     */
+
+
+    async updateReturnItemAttributesRaw(requestParameters: returnApiParams.UpdateReturnItemAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ReturnAttribute>>> {
+        if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
+            throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling updateReturnItemAttributes.');
+        }
+
+        if (requestParameters.returnItemId === null || requestParameters.returnItemId === undefined) {
+            throw new runtime.RequiredError('returnItemId','Required parameter requestParameters.returnItemId was null or undefined when calling updateReturnItemAttributes.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.removeMissing !== undefined) {
+            queryParameters['removeMissing'] = requestParameters.removeMissing;
+        }
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/returns/{returnId}/items/{returnItemId}/attributes`.replace(`{${"returnId"}}`, encodeURIComponent(String(requestParameters.returnId))).replace(`{${"returnItemId"}}`, encodeURIComponent(String(requestParameters.returnItemId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.returnAttribute,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Updates a specific return item attribute set of a return item.
+     * Update Return Item Attributes
+     */
+    async updateReturnItemAttributes(requestParameters: returnApiParams.UpdateReturnItemAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ReturnAttribute>> {
+        const response = await this.updateReturnItemAttributesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
