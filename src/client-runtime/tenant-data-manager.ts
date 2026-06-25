@@ -1,4 +1,3 @@
-import fetch from 'isomorphic-fetch'
 import { tenantDataMemCache } from '../utilities/tenant-data-mem-cache'
 
 export class TenantManager {
@@ -6,7 +5,7 @@ export class TenantManager {
   private _homeApiUrl: string
   private _fetchApi: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>
 
-  constructor(sdkAuth: any, homeHost?: string, fetchApi = fetch) {
+  constructor(sdkAuth: any, homeHost?: string, fetchApi = fetch.bind(globalThis)) {
     if (!sdkAuth) {
       throw new Error('Tenant manager requires sdk auth client instance')
     }
