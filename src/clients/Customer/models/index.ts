@@ -170,6 +170,130 @@ export interface AccountPasswordInfoCollection {
     items?: Array<AccountPasswordInfo> | null;
 }
 /**
+ * Represents an account priority.
+ * @export
+ * @interface AccountPriority
+ */
+export interface AccountPriority {
+    /**
+     * The Priority or rank of accounts. Lowest value has highest priority.
+     * @type {number}
+     * @memberof AccountPriority
+     */
+    priority?: number;
+    /**
+     * List of accounts against the priority. One account will have only 1 priority assigned to it.
+     * @type {Array<number>}
+     * @memberof AccountPriority
+     */
+    accounts?: Array<number> | null;
+}
+/**
+ * Model used for B2b account priority
+ * @export
+ * @interface AccountPriorityModel
+ */
+export interface AccountPriorityModel {
+    /**
+     * List of account priorities.
+     * @type {Array<AccountPriority>}
+     * @memberof AccountPriorityModel
+     */
+    accountPriorities?: Array<AccountPriority> | null;
+    /**
+     * List of blacklisted accounts which should not be considered for priority order release.
+     * @type {Array<number>}
+     * @memberof AccountPriorityModel
+     */
+    blackListedAccounts?: Array<number> | null;
+}
+/**
+ * 
+ * @export
+ * @interface AccountRankingRule
+ */
+export interface AccountRankingRule {
+    /**
+     * Unique id
+     * @type {number}
+     * @memberof AccountRankingRule
+     */
+    id?: number;
+    /**
+     * unique code.
+     * @type {string}
+     * @memberof AccountRankingRule
+     */
+    code?: string | null;
+    /**
+     * Rule name
+     * @type {string}
+     * @memberof AccountRankingRule
+     */
+    name?: string | null;
+    /**
+     * Description for rule
+     * @type {string}
+     * @memberof AccountRankingRule
+     */
+    description?: string | null;
+    /**
+     * 
+     * @type {CustomerCustomerDynamicExpression}
+     * @memberof AccountRankingRule
+     */
+    expression?: CustomerCustomerDynamicExpression;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof AccountRankingRule
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * Scope id
+     * @type {string}
+     * @memberof AccountRankingRule
+     */
+    ruleType?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface AccountRankingRuleCollection
+ */
+export interface AccountRankingRuleCollection {
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountRankingRuleCollection
+     */
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountRankingRuleCollection
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountRankingRuleCollection
+     */
+    pageCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountRankingRuleCollection
+     */
+    totalCount?: number;
+    /**
+     * 
+     * @type {Array<AccountRankingRule>}
+     * @memberof AccountRankingRuleCollection
+     */
+    items?: Array<AccountRankingRule> | null;
+}
+/**
  * 
  * @export
  * @interface AccountSalesRep
@@ -265,6 +389,56 @@ export interface AttributeValueLocalizedContent {
     value: string;
 }
 /**
+ * 
+ * @export
+ * @interface AuthTicket2FAInfo
+ */
+export interface AuthTicket2FAInfo {
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthTicket2FAInfo
+     */
+    userId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthTicket2FAInfo
+     */
+    otpCode?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface AuthTicketOtpInfo
+ */
+export interface AuthTicketOtpInfo {
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthTicketOtpInfo
+     */
+    email?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthTicketOtpInfo
+     */
+    otpCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthTicketOtpInfo
+     */
+    region?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthTicketOtpInfo
+     */
+    fingerprint?: string | null;
+}
+/**
  * Customer account. Customers provide contact information, view order history, and set email preferences on their account. 
  * Merchants can edit accounts to add internal notes or assign them to segments.
  * @export
@@ -313,6 +487,12 @@ export interface B2BAccount {
      * @memberof B2BAccount
      */
     approvalStatus?: string | null;
+    /**
+     * Priority of the b2b account for order release
+     * @type {number}
+     * @memberof B2BAccount
+     */
+    priority?: number | null;
     /**
      * Unique identifier of the account, also known as a customer number.
      * @type {number}
@@ -541,6 +721,12 @@ export interface B2BUser {
      * @memberof B2BUser
      */
     hasExternalPassword?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof B2BUser
+     */
+    last2FaDate?: string | null;
 }
 /**
  * 
@@ -677,6 +863,31 @@ export interface CardCollection {
      * @memberof CardCollection
      */
     items?: Array<Card> | null;
+}
+/**
+ * 
+ * @export
+ * @interface CartAuthTicketRequest
+ */
+export interface CartAuthTicketRequest {
+    /**
+     * Cart Id of the user
+     * @type {string}
+     * @memberof CartAuthTicketRequest
+     */
+    cartId?: string | null;
+    /**
+     * Account Id of the user.
+     * @type {number}
+     * @memberof CartAuthTicketRequest
+     */
+    accountId?: number;
+    /**
+     * User Id of the user.
+     * @type {string}
+     * @memberof CartAuthTicketRequest
+     */
+    userId?: string | null;
 }
 /**
  * 
@@ -921,6 +1132,12 @@ export interface CommerceRuntimeAttribute {
      * @memberof CommerceRuntimeAttribute
      */
     availableForOrderRouting?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommerceRuntimeAttribute
+     */
+    availableForDiscounts?: boolean;
 }
 /**
  * 
@@ -1474,6 +1691,12 @@ export interface CustomerAccount {
      */
     hasExternalPassword?: boolean;
     /**
+     * 
+     * @type {string}
+     * @memberof CustomerAccount
+     */
+    last2FaDate?: string | null;
+    /**
      * Unique identifier of the account, also known as a customer number.
      * @type {number}
      * @memberof CustomerAccount
@@ -1596,6 +1819,18 @@ export interface CustomerAccountAndAuthInfo {
      * @memberof CustomerAccountAndAuthInfo
      */
     isImport?: boolean;
+    /**
+     * Specifies the fingerprint of the user for two-factor authentication.
+     * @type {string}
+     * @memberof CustomerAccountAndAuthInfo
+     */
+    fingerprint?: string | null;
+    /**
+     * Specifies the region of the user for two-factor authentication.
+     * @type {string}
+     * @memberof CustomerAccountAndAuthInfo
+     */
+    region?: string | null;
 }
 /**
  * Collection of all the merchant's customers returned as a whole. A collection is not paged.
@@ -2068,6 +2303,25 @@ export interface CustomerCredit {
     creditTypeId?: number;
 }
 /**
+ * Category
+ * @export
+ * @interface CustomerCustomerDynamicExpression
+ */
+export interface CustomerCustomerDynamicExpression {
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerCustomerDynamicExpression
+     */
+    text?: string | null;
+    /**
+     * 
+     * @type {CustomerExpression}
+     * @memberof CustomerCustomerDynamicExpression
+     */
+    tree?: CustomerExpression;
+}
+/**
  * A customer segment.
  * @export
  * @interface CustomerCustomerSegment
@@ -2107,6 +2361,49 @@ export interface CustomerCustomerSegment {
 /**
  * 
  * @export
+ * @interface CustomerExpression
+ */
+export interface CustomerExpression {
+    /**
+     * Container or Predicate
+     * @type {string}
+     * @memberof CustomerExpression
+     */
+    type?: string | null;
+    /**
+     * And or Or (if Container with More than one Node)
+     * @type {string}
+     * @memberof CustomerExpression
+     */
+    logicalOperator?: string | null;
+    /**
+     * The field target of a predicate
+     * @type {string}
+     * @memberof CustomerExpression
+     */
+    left?: string | null;
+    /**
+     * The literal values of a predicate
+     * @type {any}
+     * @memberof CustomerExpression
+     */
+    right?: any | null;
+    /**
+     * 
+     * @type {Array<CustomerExpression>}
+     * @memberof CustomerExpression
+     */
+    nodes?: Array<CustomerExpression> | null;
+    /**
+     * The operator of a predicate
+     * @type {string}
+     * @memberof CustomerExpression
+     */
+    operator?: string | null;
+}
+/**
+ * 
+ * @export
  * @interface CustomerLoginInfo
  */
 export interface CustomerLoginInfo {
@@ -2140,6 +2437,18 @@ export interface CustomerLoginInfo {
      * @memberof CustomerLoginInfo
      */
     isImport?: boolean | null;
+    /**
+     * Specifies the fingerprint of the user for two-factor authentication.
+     * @type {string}
+     * @memberof CustomerLoginInfo
+     */
+    fingerprint?: string | null;
+    /**
+     * Specifies the region of the user for two-factor authentication.
+     * @type {string}
+     * @memberof CustomerLoginInfo
+     */
+    region?: string | null;
 }
 /**
  * Note added to the customer account. Merchants can add internal notes, for example, to keep track of a customer's interests or complaints.
@@ -2389,6 +2698,25 @@ export interface CustomerResetPasswordInfo {
     customerSetCode?: string | null;
 }
 /**
+ * Represents a customer rule usage
+ * @export
+ * @interface CustomerRuleUsage
+ */
+export interface CustomerRuleUsage {
+    /**
+     * The type of rule (Return, PurchaseLimit, etc.)
+     * @type {string}
+     * @memberof CustomerRuleUsage
+     */
+    ruleType?: string | null;
+    /**
+     * The code/name of the rule
+     * @type {string}
+     * @memberof CustomerRuleUsage
+     */
+    code?: string | null;
+}
+/**
  * Collection of customer segements returned as a whole. A collection is not paged.
  * @export
  * @interface CustomerSegmentCollection
@@ -2567,6 +2895,24 @@ export interface CustomerUserAuthInfo {
      * @memberof CustomerUserAuthInfo
      */
     password?: string | null;
+    /**
+     * Account Id specifies the account for which the user requests an authentication token.
+     * @type {number}
+     * @memberof CustomerUserAuthInfo
+     */
+    accountId?: number | null;
+    /**
+     * Specifies the fingerprint of the user for two-factor authentication.
+     * @type {string}
+     * @memberof CustomerUserAuthInfo
+     */
+    fingerprint?: string | null;
+    /**
+     * Specifies the region of the user for two-factor authentication.
+     * @type {string}
+     * @memberof CustomerUserAuthInfo
+     */
+    region?: string | null;
 }
 /**
  * 
@@ -2586,6 +2932,25 @@ export interface CustomerUserRoleCollection {
      * @memberof CustomerUserRoleCollection
      */
     items?: Array<UserRole> | null;
+}
+/**
+ * 
+ * @export
+ * @interface EvaluateAccountRankingRuleRequest
+ */
+export interface EvaluateAccountRankingRuleRequest {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EvaluateAccountRankingRuleRequest
+     */
+    codes?: Array<string> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof EvaluateAccountRankingRuleRequest
+     */
+    ruleType?: string | null;
 }
 /**
  * 
@@ -2869,6 +3234,19 @@ export interface LoginState {
      * @memberof LoginState
      */
     updatedOn?: string | null;
+}
+/**
+ * Request for generating a one-time password (OTP)
+ * @export
+ * @interface OtpRequest
+ */
+export interface OtpRequest {
+    /**
+     * Email address for which to generate the OTP code
+     * @type {string}
+     * @memberof OtpRequest
+     */
+    email?: string | null;
 }
 /**
  * Customer purchase order transaction log

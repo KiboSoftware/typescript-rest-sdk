@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Kibo Fulfillment API - Production Profile
- * REST API backing the Kibo Fulfiller User Interface
+ * Kibo Fulfillment Service
+ * OpenAPI Spec for Kibo Fulfillment Service
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -16,21 +16,23 @@
 import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
 import type {
-  CollectionModelOfShipment,
-  EntityModelOfShipment,
-  ItemGiftReceiptRequest,
-  ShipmentGiftReceiptRequest,
+  CollectionModelShipmentDto,
+  EntityModelShipmentDto,
+  ErrorItem,
+  ItemGiftReceiptRequestDto,
+  RemoveSpecificShipmentFromConsolidationGroup400Response,
+  ShipmentGiftReceiptRequestDto,
 } from '../models';
 
 
 export namespace giftReceiptApiParams { 
     export interface ItemGiftReceiptUpdateRequest {
         shipmentNumber: number;
-        itemGiftReceiptRequestDto: ItemGiftReceiptRequest;
+        itemGiftReceiptRequestDto: ItemGiftReceiptRequestDto;
     }
     export interface ShipmentGiftReceiptUpdateRequest {
         orderId: string;
-        shipmentGiftReceiptRequestDto: ShipmentGiftReceiptRequest;
+        shipmentGiftReceiptRequestDto: ShipmentGiftReceiptRequestDto;
     }
 }
 /**
@@ -41,38 +43,38 @@ export namespace giftReceiptApiParams {
 */
 export interface GiftReceiptApiService {
     /**
-    * itemGiftReceiptUpdate
-    * @summary itemGiftReceiptUpdate
-    * @param {number} shipmentNumber shipmentNumber
-    * @param {ItemGiftReceiptRequest} itemGiftReceiptRequestDto itemGiftReceiptRequestDto
+    * Update Shipment Item Gift Receipt
+    * @summary Update Shipment Item Gift Receipt
+    * @param {number} shipmentNumber 
+    * @param {ItemGiftReceiptRequestDto} itemGiftReceiptRequestDto 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof GiftReceiptApiInterface
     */
-    itemGiftReceiptUpdateRaw(requestParameters: giftReceiptApiParams.ItemGiftReceiptUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+    itemGiftReceiptUpdateRaw(requestParameters: giftReceiptApiParams.ItemGiftReceiptUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelShipmentDto>>;
 
     /**
-    * itemGiftReceiptUpdate
-    * itemGiftReceiptUpdate
+    * Update Shipment Item Gift Receipt
+    * Update Shipment Item Gift Receipt
     */
-    itemGiftReceiptUpdate(requestParameters: giftReceiptApiParams.ItemGiftReceiptUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+    itemGiftReceiptUpdate(requestParameters: giftReceiptApiParams.ItemGiftReceiptUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelShipmentDto>;
 
     /**
-    * shipmentGiftReceiptUpdate
-    * @summary shipmentGiftReceiptUpdate
-    * @param {string} orderId orderId
-    * @param {ShipmentGiftReceiptRequest} shipmentGiftReceiptRequestDto shipmentGiftReceiptRequestDto
+    * Update Shipment Gift Receipt
+    * @summary Update Shipment Gift Receipt
+    * @param {string} orderId 
+    * @param {ShipmentGiftReceiptRequestDto} shipmentGiftReceiptRequestDto 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof GiftReceiptApiInterface
     */
-    shipmentGiftReceiptUpdateRaw(requestParameters: giftReceiptApiParams.ShipmentGiftReceiptUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfShipment>>;
+    shipmentGiftReceiptUpdateRaw(requestParameters: giftReceiptApiParams.ShipmentGiftReceiptUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelShipmentDto>>;
 
     /**
-    * shipmentGiftReceiptUpdate
-    * shipmentGiftReceiptUpdate
+    * Update Shipment Gift Receipt
+    * Update Shipment Gift Receipt
     */
-    shipmentGiftReceiptUpdate(requestParameters: giftReceiptApiParams.ShipmentGiftReceiptUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfShipment>;
+    shipmentGiftReceiptUpdate(requestParameters: giftReceiptApiParams.ShipmentGiftReceiptUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelShipmentDto>;
 
 }
 
@@ -86,12 +88,12 @@ export class GiftReceiptApi extends runtime.BaseAPI implements GiftReceiptApiSer
         this.basePathTemplate = basePathTemplate
     }
     /**
-     * itemGiftReceiptUpdate
-     * itemGiftReceiptUpdate
+     * Update Shipment Item Gift Receipt
+     * Update Shipment Item Gift Receipt
      */
 
 
-    async itemGiftReceiptUpdateRaw(requestParameters: giftReceiptApiParams.ItemGiftReceiptUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async itemGiftReceiptUpdateRaw(requestParameters: giftReceiptApiParams.ItemGiftReceiptUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelShipmentDto>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling itemGiftReceiptUpdate.');
         }
@@ -124,21 +126,21 @@ export class GiftReceiptApi extends runtime.BaseAPI implements GiftReceiptApiSer
     }
 
     /**
-     * itemGiftReceiptUpdate
-     * itemGiftReceiptUpdate
+     * Update Shipment Item Gift Receipt
+     * Update Shipment Item Gift Receipt
      */
-    async itemGiftReceiptUpdate(requestParameters: giftReceiptApiParams.ItemGiftReceiptUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+    async itemGiftReceiptUpdate(requestParameters: giftReceiptApiParams.ItemGiftReceiptUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelShipmentDto> {
         const response = await this.itemGiftReceiptUpdateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * shipmentGiftReceiptUpdate
-     * shipmentGiftReceiptUpdate
+     * Update Shipment Gift Receipt
+     * Update Shipment Gift Receipt
      */
 
 
-    async shipmentGiftReceiptUpdateRaw(requestParameters: giftReceiptApiParams.ShipmentGiftReceiptUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelOfShipment>> {
+    async shipmentGiftReceiptUpdateRaw(requestParameters: giftReceiptApiParams.ShipmentGiftReceiptUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CollectionModelShipmentDto>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling shipmentGiftReceiptUpdate.');
         }
@@ -171,10 +173,10 @@ export class GiftReceiptApi extends runtime.BaseAPI implements GiftReceiptApiSer
     }
 
     /**
-     * shipmentGiftReceiptUpdate
-     * shipmentGiftReceiptUpdate
+     * Update Shipment Gift Receipt
+     * Update Shipment Gift Receipt
      */
-    async shipmentGiftReceiptUpdate(requestParameters: giftReceiptApiParams.ShipmentGiftReceiptUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelOfShipment> {
+    async shipmentGiftReceiptUpdate(requestParameters: giftReceiptApiParams.ShipmentGiftReceiptUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CollectionModelShipmentDto> {
         const response = await this.shipmentGiftReceiptUpdateRaw(requestParameters, initOverrides);
         return await response.value();
     }

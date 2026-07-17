@@ -430,27 +430,33 @@ export interface ReferenceState {
 /**
  * 
  * @export
- * @interface TimeZone
+ * @interface ReferenceTimeZone
  */
-export interface TimeZone {
+export interface ReferenceTimeZone {
     /**
      * The Id of the TimeZone (examples include: "Central Standard Time", ...)
      * @type {string}
-     * @memberof TimeZone
+     * @memberof ReferenceTimeZone
      */
     id?: string | null;
     /**
      * The current offset for this TimeZone in hours
      * @type {number}
-     * @memberof TimeZone
+     * @memberof ReferenceTimeZone
      */
     offset?: number;
     /**
      * 
      * @type {boolean}
-     * @memberof TimeZone
+     * @memberof ReferenceTimeZone
      */
     isDaylightSavingsTime?: boolean;
+    /**
+     * IANA Code valid for the Windows Code used as Id
+     * @type {string}
+     * @memberof ReferenceTimeZone
+     */
+    ianaCode?: string | null;
 }
 /**
  * 
@@ -466,10 +472,10 @@ export interface TimeZoneCollection {
     totalCount?: number;
     /**
      * 
-     * @type {Array<TimeZone>}
+     * @type {Array<ReferenceTimeZone>}
      * @memberof TimeZoneCollection
      */
-    items?: Array<TimeZone> | null;
+    items?: Array<ReferenceTimeZone> | null;
 }
 /**
  * 

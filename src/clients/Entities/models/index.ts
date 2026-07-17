@@ -3,62 +3,6 @@
 /**
  * 
  * @export
- * @interface AppDevHttpContent
- */
-export interface AppDevHttpContent {
-    /**
-     * 
-     * @type {Array<StringStringIEnumerableKeyValuePair>}
-     * @memberof AppDevHttpContent
-     */
-    readonly headers?: Array<StringStringIEnumerableKeyValuePair> | null;
-}
-/**
- * 
- * @export
- * @interface AppDevHttpRequestMessage
- */
-export interface AppDevHttpRequestMessage {
-    /**
-     * 
-     * @type {string}
-     * @memberof AppDevHttpRequestMessage
-     */
-    version?: string | null;
-    /**
-     * 
-     * @type {AppDevHttpContent}
-     * @memberof AppDevHttpRequestMessage
-     */
-    content?: AppDevHttpContent;
-    /**
-     * 
-     * @type {HttpMethod}
-     * @memberof AppDevHttpRequestMessage
-     */
-    method?: HttpMethod;
-    /**
-     * 
-     * @type {string}
-     * @memberof AppDevHttpRequestMessage
-     */
-    requestUri?: string | null;
-    /**
-     * 
-     * @type {Array<StringStringIEnumerableKeyValuePair>}
-     * @memberof AppDevHttpRequestMessage
-     */
-    readonly headers?: Array<StringStringIEnumerableKeyValuePair> | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof AppDevHttpRequestMessage
-     */
-    readonly properties?: { [key: string]: any; } | null;
-}
-/**
- * 
- * @export
  * @interface EntityCollection
  */
 export interface EntityCollection {
@@ -88,10 +32,10 @@ export interface EntityCollection {
     totalCount?: number;
     /**
      * 
-     * @type {Array<any>}
+     * @type {Array<object>}
      * @memberof EntityCollection
      */
-    items?: Array<any> | null;
+    items?: Array<object> | null;
 }
 /**
  * The metadata and Entity contents for an entity persisted in an EntityList in MZDB. The Item property contains the json representation of the Entity
@@ -149,10 +93,10 @@ export interface EntityContainer {
     id?: string | null;
     /**
      * The entity in json format.
-     * @type {any}
+     * @type {object}
      * @memberof EntityContainer
      */
-    item?: any | null;
+    item?: object | null;
     /**
      * 
      * @type {string}
@@ -319,10 +263,10 @@ export interface EntityList {
     usages?: Array<string> | null;
     /**
      * An arbitrary json property to be used by external applications for any purpose. MZDB will persist and retrieve the metadata without any restrictions.
-     * @type {any}
+     * @type {object}
      * @memberof EntityList
      */
-    metadata?: any | null;
+    metadata?: object | null;
     /**
      * 
      * @type {string}
@@ -376,19 +320,6 @@ export interface EntityListCollection {
 /**
  * 
  * @export
- * @interface HttpMethod
- */
-export interface HttpMethod {
-    /**
-     * 
-     * @type {string}
-     * @memberof HttpMethod
-     */
-    method?: string | null;
-}
-/**
- * 
- * @export
  * @interface IndexedProperty
  */
 export interface IndexedProperty {
@@ -425,10 +356,10 @@ export interface ListView {
     usages?: Array<string> | null;
     /**
      * An arbitrary json property to be used by external applications for any purpose. MZDB will persist and retrieve the metadata without any restrictions.
-     * @type {any}
+     * @type {object}
      * @memberof ListView
      */
-    metaData?: any | null;
+    metaData?: object | null;
     /**
      * less restrictive than collection/list security. public | admin | owner
      * @type {string}
@@ -515,23 +446,4 @@ export interface ListViewField {
      * @memberof ListViewField
      */
     target?: string | null;
-}
-/**
- * 
- * @export
- * @interface StringStringIEnumerableKeyValuePair
- */
-export interface StringStringIEnumerableKeyValuePair {
-    /**
-     * 
-     * @type {string}
-     * @memberof StringStringIEnumerableKeyValuePair
-     */
-    key?: string | null;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof StringStringIEnumerableKeyValuePair
-     */
-    value?: Array<string> | null;
 }

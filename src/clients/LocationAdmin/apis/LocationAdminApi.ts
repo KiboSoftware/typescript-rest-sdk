@@ -16,8 +16,16 @@
 import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
 import type {
+  CutOffTimeRequest,
+  CutoffTimeOverride,
+  CutoffTimeOverrideCollection,
+  CutoffTimeResponse,
   Location,
+  LocationAttribute,
+  LocationAttributeAddRequest,
+  LocationAttributeUpdateRequest,
   LocationCollection,
+  Operation,
 } from '../models';
 
 
@@ -25,6 +33,36 @@ export namespace locationAdminApiParams {
     export interface AddLocationRequest {
         responseFields?: string;
         location?: Location;
+    }
+    export interface AddLocationAttributeRequest {
+        locationCode: string;
+        responseFields?: string;
+        locationAttributeAddRequest?: LocationAttributeAddRequest;
+    }
+    export interface CreateCutoffTimeOverrideRequest {
+        responseFields?: string;
+        cutoffTimeOverride?: CutoffTimeOverride;
+    }
+    export interface DeleteCutoffTimeOverrideRequest {
+        overrideId: string;
+    }
+    export interface GetCutoffTimeByDetailsRequest {
+        locationCode: string;
+        responseFields?: string;
+        cutOffTimeRequest?: CutOffTimeRequest;
+    }
+    export interface GetCutoffTimeOverrideByIdRequest {
+        overrideId: string;
+        responseFields?: string;
+    }
+    export interface GetCutoffTimeOverridesRequest {
+        locationCode?: string;
+        fromDate?: string;
+        toDate?: string;
+        fulfillmentType?: string;
+        startIndex?: number;
+        pageSize?: number;
+        responseFields?: string;
     }
     export interface GetLocationRequest {
         locationCode: string;
@@ -37,10 +75,25 @@ export namespace locationAdminApiParams {
         filter?: string;
         responseFields?: string;
     }
+    export interface PatchLocationRequest {
+        locationCode: string;
+        responseFields?: string;
+        operation?: Array<Operation>;
+    }
+    export interface RemoveLocationAttributeRequest {
+        locationCode: string;
+        fullyQualifiedName: string;
+    }
     export interface UpdateLocationRequest {
         locationCode: string;
         responseFields?: string;
         location?: Location;
+    }
+    export interface UpdateLocationAttributeRequest {
+        locationCode: string;
+        fullyQualifiedName: string;
+        responseFields?: string;
+        locationAttributeUpdateRequest?: LocationAttributeUpdateRequest;
     }
 }
 /**
@@ -66,6 +119,114 @@ export interface LocationAdminApiService {
     * Add Location
     */
     addLocation(requestParameters: locationAdminApiParams.AddLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location>;
+
+    /**
+    * Add a new attribute to a location.
+    * @summary Add Location Attribute
+    * @param {string} locationCode The unique code for a location
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {LocationAttributeAddRequest} [locationAttributeAddRequest] The location attribute to add
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof LocationAdminApiInterface
+    */
+    addLocationAttributeRaw(requestParameters: locationAdminApiParams.AddLocationAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationAttribute>>;
+
+    /**
+    * Add a new attribute to a location.
+    * Add Location Attribute
+    */
+    addLocationAttribute(requestParameters: locationAdminApiParams.AddLocationAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationAttribute>;
+
+    /**
+    * Create a new Cutoff Time Override
+    * @summary Create a new Cutoff Time Override
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CutoffTimeOverride} [cutoffTimeOverride] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof LocationAdminApiInterface
+    */
+    createCutoffTimeOverrideRaw(requestParameters: locationAdminApiParams.CreateCutoffTimeOverrideRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CutoffTimeOverride>>;
+
+    /**
+    * Create a new Cutoff Time Override
+    * Create a new Cutoff Time Override
+    */
+    createCutoffTimeOverride(requestParameters: locationAdminApiParams.CreateCutoffTimeOverrideRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CutoffTimeOverride>;
+
+    /**
+    * Delete a Cutoff Time Override
+    * @summary Delete a Cutoff Time Override
+    * @param {string} overrideId 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof LocationAdminApiInterface
+    */
+    deleteCutoffTimeOverrideRaw(requestParameters: locationAdminApiParams.DeleteCutoffTimeOverrideRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+    * Delete a Cutoff Time Override
+    * Delete a Cutoff Time Override
+    */
+    deleteCutoffTimeOverride(requestParameters: locationAdminApiParams.DeleteCutoffTimeOverrideRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+    * 
+    * @summary Get an Override if available else return CutoffTime from Location
+    * @param {string} locationCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CutOffTimeRequest} [cutOffTimeRequest] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof LocationAdminApiInterface
+    */
+    getCutoffTimeByDetailsRaw(requestParameters: locationAdminApiParams.GetCutoffTimeByDetailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CutoffTimeResponse>>>;
+
+    /**
+    * 
+    * Get an Override if available else return CutoffTime from Location
+    */
+    getCutoffTimeByDetails(requestParameters: locationAdminApiParams.GetCutoffTimeByDetailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CutoffTimeResponse>>;
+
+    /**
+    * Get Cutoff Time Override by Id
+    * @summary Get Cutoff Time Override by Id
+    * @param {string} overrideId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof LocationAdminApiInterface
+    */
+    getCutoffTimeOverrideByIdRaw(requestParameters: locationAdminApiParams.GetCutoffTimeOverrideByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CutoffTimeOverride>>;
+
+    /**
+    * Get Cutoff Time Override by Id
+    * Get Cutoff Time Override by Id
+    */
+    getCutoffTimeOverrideById(requestParameters: locationAdminApiParams.GetCutoffTimeOverrideByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CutoffTimeOverride>;
+
+    /**
+    * Location and/or Date Range and/or FulfillmentType can be used to filter the results. For a single date, pass only the fromDate parameter.
+    * @summary Get all Cutoff Time Overrides
+    * @param {string} [locationCode] 
+    * @param {string} [fromDate] 
+    * @param {string} [toDate] 
+    * @param {string} [fulfillmentType] 
+    * @param {number} [startIndex] 
+    * @param {number} [pageSize] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof LocationAdminApiInterface
+    */
+    getCutoffTimeOverridesRaw(requestParameters: locationAdminApiParams.GetCutoffTimeOverridesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CutoffTimeOverrideCollection>>;
+
+    /**
+    * Location and/or Date Range and/or FulfillmentType can be used to filter the results. For a single date, pass only the fromDate parameter.
+    * Get all Cutoff Time Overrides
+    */
+    getCutoffTimeOverrides(requestParameters: locationAdminApiParams.GetCutoffTimeOverridesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CutoffTimeOverrideCollection>;
 
     /**
     * Get a location by its unique locationCode.
@@ -105,6 +266,41 @@ export interface LocationAdminApiService {
     getLocations(requestParameters: locationAdminApiParams.GetLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationCollection>;
 
     /**
+    * Update specific fields of a location using RFC 6902 JSON Patch format.
+    * @summary Partially Update Location
+    * @param {string} locationCode the unique code for a location
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<Operation>} [operation] JSON Patch document with operations to apply
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof LocationAdminApiInterface
+    */
+    patchLocationRaw(requestParameters: locationAdminApiParams.PatchLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>>;
+
+    /**
+    * Update specific fields of a location using RFC 6902 JSON Patch format.
+    * Partially Update Location
+    */
+    patchLocation(requestParameters: locationAdminApiParams.PatchLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location>;
+
+    /**
+    * Remove an attribute from a location.
+    * @summary Remove Location Attribute
+    * @param {string} locationCode The unique code for a location
+    * @param {string} fullyQualifiedName The fully qualified name of the attribute to remove
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof LocationAdminApiInterface
+    */
+    removeLocationAttributeRaw(requestParameters: locationAdminApiParams.RemoveLocationAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+    * Remove an attribute from a location.
+    * Remove Location Attribute
+    */
+    removeLocationAttribute(requestParameters: locationAdminApiParams.RemoveLocationAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
     * Update a location by providing its locationCode.
     * @summary Update Location
     * @param {string} locationCode the unique code for a location
@@ -121,6 +317,25 @@ export interface LocationAdminApiService {
     * Update Location
     */
     updateLocation(requestParameters: locationAdminApiParams.UpdateLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location>;
+
+    /**
+    * Update an existing attribute for a location.
+    * @summary Update Location Attribute
+    * @param {string} locationCode The unique code for a location
+    * @param {string} fullyQualifiedName The fully qualified name of the attribute to update
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {LocationAttributeUpdateRequest} [locationAttributeUpdateRequest] The location attribute update
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof LocationAdminApiInterface
+    */
+    updateLocationAttributeRaw(requestParameters: locationAdminApiParams.UpdateLocationAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationAttribute>>;
+
+    /**
+    * Update an existing attribute for a location.
+    * Update Location Attribute
+    */
+    updateLocationAttribute(requestParameters: locationAdminApiParams.UpdateLocationAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationAttribute>;
 
 }
 
@@ -173,6 +388,290 @@ export class LocationAdminApi extends runtime.BaseAPI implements LocationAdminAp
      */
     async addLocation(requestParameters: locationAdminApiParams.AddLocationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location> {
         const response = await this.addLocationRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Add a new attribute to a location.
+     * Add Location Attribute
+     */
+
+
+    async addLocationAttributeRaw(requestParameters: locationAdminApiParams.AddLocationAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationAttribute>> {
+        if (requestParameters.locationCode === null || requestParameters.locationCode === undefined) {
+            throw new runtime.RequiredError('locationCode','Required parameter requestParameters.locationCode was null or undefined when calling addLocationAttribute.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/admin/locations/{locationCode}/attributes`.replace(`{${"locationCode"}}`, encodeURIComponent(String(requestParameters.locationCode))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.locationAttributeAddRequest,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Add a new attribute to a location.
+     * Add Location Attribute
+     */
+    async addLocationAttribute(requestParameters: locationAdminApiParams.AddLocationAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationAttribute> {
+        const response = await this.addLocationAttributeRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Create a new Cutoff Time Override
+     * Create a new Cutoff Time Override
+     */
+
+
+    async createCutoffTimeOverrideRaw(requestParameters: locationAdminApiParams.CreateCutoffTimeOverrideRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CutoffTimeOverride>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/admin/locations/cutoffoverrides`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.cutoffTimeOverride,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Create a new Cutoff Time Override
+     * Create a new Cutoff Time Override
+     */
+    async createCutoffTimeOverride(requestParameters: locationAdminApiParams.CreateCutoffTimeOverrideRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CutoffTimeOverride> {
+        const response = await this.createCutoffTimeOverrideRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Delete a Cutoff Time Override
+     * Delete a Cutoff Time Override
+     */
+
+
+    async deleteCutoffTimeOverrideRaw(requestParameters: locationAdminApiParams.DeleteCutoffTimeOverrideRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.overrideId === null || requestParameters.overrideId === undefined) {
+            throw new runtime.RequiredError('overrideId','Required parameter requestParameters.overrideId was null or undefined when calling deleteCutoffTimeOverride.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/admin/locations/cutoffoverrides/{overrideId}`.replace(`{${"overrideId"}}`, encodeURIComponent(String(requestParameters.overrideId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Delete a Cutoff Time Override
+     * Delete a Cutoff Time Override
+     */
+    async deleteCutoffTimeOverride(requestParameters: locationAdminApiParams.DeleteCutoffTimeOverrideRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteCutoffTimeOverrideRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * 
+     * Get an Override if available else return CutoffTime from Location
+     */
+
+
+    async getCutoffTimeByDetailsRaw(requestParameters: locationAdminApiParams.GetCutoffTimeByDetailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CutoffTimeResponse>>> {
+        if (requestParameters.locationCode === null || requestParameters.locationCode === undefined) {
+            throw new runtime.RequiredError('locationCode','Required parameter requestParameters.locationCode was null or undefined when calling getCutoffTimeByDetails.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/admin/locations/{locationCode}/cutofftime`.replace(`{${"locationCode"}}`, encodeURIComponent(String(requestParameters.locationCode))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.cutOffTimeRequest,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * 
+     * Get an Override if available else return CutoffTime from Location
+     */
+    async getCutoffTimeByDetails(requestParameters: locationAdminApiParams.GetCutoffTimeByDetailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CutoffTimeResponse>> {
+        const response = await this.getCutoffTimeByDetailsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get Cutoff Time Override by Id
+     * Get Cutoff Time Override by Id
+     */
+
+
+    async getCutoffTimeOverrideByIdRaw(requestParameters: locationAdminApiParams.GetCutoffTimeOverrideByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CutoffTimeOverride>> {
+        if (requestParameters.overrideId === null || requestParameters.overrideId === undefined) {
+            throw new runtime.RequiredError('overrideId','Required parameter requestParameters.overrideId was null or undefined when calling getCutoffTimeOverrideById.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/admin/locations/cutoffoverrides/{overrideId}`.replace(`{${"overrideId"}}`, encodeURIComponent(String(requestParameters.overrideId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Get Cutoff Time Override by Id
+     * Get Cutoff Time Override by Id
+     */
+    async getCutoffTimeOverrideById(requestParameters: locationAdminApiParams.GetCutoffTimeOverrideByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CutoffTimeOverride> {
+        const response = await this.getCutoffTimeOverrideByIdRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Location and/or Date Range and/or FulfillmentType can be used to filter the results. For a single date, pass only the fromDate parameter.
+     * Get all Cutoff Time Overrides
+     */
+
+
+    async getCutoffTimeOverridesRaw(requestParameters: locationAdminApiParams.GetCutoffTimeOverridesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CutoffTimeOverrideCollection>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.locationCode !== undefined) {
+            queryParameters['locationCode'] = requestParameters.locationCode;
+        }
+
+        if (requestParameters.fromDate !== undefined) {
+            queryParameters['fromDate'] = requestParameters.fromDate;
+        }
+
+        if (requestParameters.toDate !== undefined) {
+            queryParameters['toDate'] = requestParameters.toDate;
+        }
+
+        if (requestParameters.fulfillmentType !== undefined) {
+            queryParameters['fulfillmentType'] = requestParameters.fulfillmentType;
+        }
+
+        if (requestParameters.startIndex !== undefined) {
+            queryParameters['startIndex'] = requestParameters.startIndex;
+        }
+
+        if (requestParameters.pageSize !== undefined) {
+            queryParameters['pageSize'] = requestParameters.pageSize;
+        }
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/admin/locations/cutoffoverrides`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Location and/or Date Range and/or FulfillmentType can be used to filter the results. For a single date, pass only the fromDate parameter.
+     * Get all Cutoff Time Overrides
+     */
+    async getCutoffTimeOverrides(requestParameters: locationAdminApiParams.GetCutoffTimeOverridesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CutoffTimeOverrideCollection> {
+        const response = await this.getCutoffTimeOverridesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -277,6 +776,96 @@ export class LocationAdminApi extends runtime.BaseAPI implements LocationAdminAp
     }
 
     /**
+     * Update specific fields of a location using RFC 6902 JSON Patch format.
+     * Partially Update Location
+     */
+
+
+    async patchLocationRaw(requestParameters: locationAdminApiParams.PatchLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Location>> {
+        if (requestParameters.locationCode === null || requestParameters.locationCode === undefined) {
+            throw new runtime.RequiredError('locationCode','Required parameter requestParameters.locationCode was null or undefined when calling patchLocation.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/admin/locations/{locationCode}`.replace(`{${"locationCode"}}`, encodeURIComponent(String(requestParameters.locationCode))),
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.operation,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Update specific fields of a location using RFC 6902 JSON Patch format.
+     * Partially Update Location
+     */
+    async patchLocation(requestParameters: locationAdminApiParams.PatchLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location> {
+        const response = await this.patchLocationRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Remove an attribute from a location.
+     * Remove Location Attribute
+     */
+
+
+    async removeLocationAttributeRaw(requestParameters: locationAdminApiParams.RemoveLocationAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.locationCode === null || requestParameters.locationCode === undefined) {
+            throw new runtime.RequiredError('locationCode','Required parameter requestParameters.locationCode was null or undefined when calling removeLocationAttribute.');
+        }
+
+        if (requestParameters.fullyQualifiedName === null || requestParameters.fullyQualifiedName === undefined) {
+            throw new runtime.RequiredError('fullyQualifiedName','Required parameter requestParameters.fullyQualifiedName was null or undefined when calling removeLocationAttribute.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/admin/locations/{locationCode}/attributes/{fullyQualifiedName}`.replace(`{${"locationCode"}}`, encodeURIComponent(String(requestParameters.locationCode))).replace(`{${"fullyQualifiedName"}}`, encodeURIComponent(String(requestParameters.fullyQualifiedName))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Remove an attribute from a location.
+     * Remove Location Attribute
+     */
+    async removeLocationAttribute(requestParameters: locationAdminApiParams.RemoveLocationAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.removeLocationAttributeRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Update a location by providing its locationCode.
      * Update Location
      */
@@ -320,6 +909,57 @@ export class LocationAdminApi extends runtime.BaseAPI implements LocationAdminAp
      */
     async updateLocation(requestParameters: locationAdminApiParams.UpdateLocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Location> {
         const response = await this.updateLocationRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update an existing attribute for a location.
+     * Update Location Attribute
+     */
+
+
+    async updateLocationAttributeRaw(requestParameters: locationAdminApiParams.UpdateLocationAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationAttribute>> {
+        if (requestParameters.locationCode === null || requestParameters.locationCode === undefined) {
+            throw new runtime.RequiredError('locationCode','Required parameter requestParameters.locationCode was null or undefined when calling updateLocationAttribute.');
+        }
+
+        if (requestParameters.fullyQualifiedName === null || requestParameters.fullyQualifiedName === undefined) {
+            throw new runtime.RequiredError('fullyQualifiedName','Required parameter requestParameters.fullyQualifiedName was null or undefined when calling updateLocationAttribute.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/admin/locations/{locationCode}/attributes/{fullyQualifiedName}`.replace(`{${"locationCode"}}`, encodeURIComponent(String(requestParameters.locationCode))).replace(`{${"fullyQualifiedName"}}`, encodeURIComponent(String(requestParameters.fullyQualifiedName))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.locationAttributeUpdateRequest,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Update an existing attribute for a location.
+     * Update Location Attribute
+     */
+    async updateLocationAttribute(requestParameters: locationAdminApiParams.UpdateLocationAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationAttribute> {
+        const response = await this.updateLocationAttributeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

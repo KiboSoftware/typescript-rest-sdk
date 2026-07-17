@@ -1,4 +1,5 @@
 apis/OrderRoutingDataListApi.ts
+apis/OrderRoutingEstimatedDeliveryDateApi.ts
 apis/OrderRoutingFilterApi.ts
 apis/OrderRoutingGroupApi.ts
 apis/OrderRoutingLocationApi.ts

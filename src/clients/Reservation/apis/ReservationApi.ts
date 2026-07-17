@@ -16,6 +16,7 @@
 import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
 import type {
+  FulfillmentInf,
   OrderReservati,
   Reservati,
   ReservationCollecti,
@@ -32,6 +33,7 @@ export namespace reservationApiParams {
     export interface AddItemRequest {
         reservationId: string;
         zipCode?: string;
+        runSynchronous?: boolean;
         responseFields?: string;
         reservationItem?: ReservationItem;
     }
@@ -45,11 +47,13 @@ export namespace reservationApiParams {
         orderReservati?: OrderReservati;
     }
     export interface CreateReservationRequest {
+        runSynchronous?: boolean;
         responseFields?: string;
         reservati?: Reservati;
     }
     export interface DeleteReservationRequest {
         reservationId: string;
+        runSynchronous?: boolean;
     }
     export interface GetAllocationStatusRequest {
         reservationId: string;
@@ -80,7 +84,9 @@ export namespace reservationApiParams {
         reservationId: string;
         reservationItemId: string;
         quantity: number;
+        runSynchronous?: boolean;
         responseFields?: string;
+        fulfillmentInf?: FulfillmentInf;
     }
     export interface UpdateReservationRequest {
         reservationId: string;
@@ -91,6 +97,7 @@ export namespace reservationApiParams {
         reservationId: string;
         reservationItemId: string;
         zipCode?: string;
+        runSynchronous?: boolean;
         responseFields?: string;
         reservationItem?: ReservationItem;
     }
@@ -101,6 +108,7 @@ export namespace reservationApiParams {
     export interface UpdateZipCodeRequest {
         reservationId: string;
         zipCode: string;
+        runSynchronous?: boolean;
         responseFields?: string;
         reservationWebAPIOrderAttribute?: Array<ReservationWebAPIOrderAttribute>;
     }
@@ -134,6 +142,7 @@ export interface ReservationApiService {
     * @summary Add Item
     * @param {string} reservationId 
     * @param {string} [zipCode] 
+    * @param {boolean} [runSynchronous] 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {ReservationItem} [reservationItem] 
     * @param {*} [options] Override http request option.
@@ -186,6 +195,7 @@ export interface ReservationApiService {
     /**
     * Create Reservation
     * @summary Create Reservation
+    * @param {boolean} [runSynchronous] 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {Reservati} [reservati] 
     * @param {*} [options] Override http request option.
@@ -204,6 +214,7 @@ export interface ReservationApiService {
     * Delete Reservation
     * @summary Delete Reservation
     * @param {string} reservationId 
+    * @param {boolean} [runSynchronous] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ReservationApiInterface
@@ -312,7 +323,9 @@ export interface ReservationApiService {
     * @param {string} reservationId 
     * @param {string} reservationItemId 
     * @param {number} quantity 
+    * @param {boolean} [runSynchronous] 
     * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {FulfillmentInf} [fulfillmentInf] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ReservationApiInterface
@@ -349,6 +362,7 @@ export interface ReservationApiService {
     * @param {string} reservationId 
     * @param {string} reservationItemId 
     * @param {string} [zipCode] 
+    * @param {boolean} [runSynchronous] 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {ReservationItem} [reservationItem] 
     * @param {*} [options] Override http request option.
@@ -385,6 +399,7 @@ export interface ReservationApiService {
     * @summary Update Zip Code
     * @param {string} reservationId 
     * @param {string} zipCode 
+    * @param {boolean} [runSynchronous] 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {Array<ReservationWebAPIOrderAttribute>} [reservationWebAPIOrderAttribute] 
     * @param {*} [options] Override http request option.
@@ -469,6 +484,10 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiSer
 
         if (requestParameters.zipCode !== undefined) {
             queryParameters['zipCode'] = requestParameters.zipCode;
+        }
+
+        if (requestParameters.runSynchronous !== undefined) {
+            queryParameters['runSynchronous'] = requestParameters.runSynchronous;
         }
 
         if (requestParameters.responseFields !== undefined) {
@@ -605,6 +624,10 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiSer
     async createReservationRaw(requestParameters: reservationApiParams.CreateReservationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Reservati>> {
         const queryParameters: any = {};
 
+        if (requestParameters.runSynchronous !== undefined) {
+            queryParameters['runSynchronous'] = requestParameters.runSynchronous;
+        }
+
         if (requestParameters.responseFields !== undefined) {
             queryParameters['responseFields'] = requestParameters.responseFields;
         }
@@ -651,6 +674,10 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiSer
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters.runSynchronous !== undefined) {
+            queryParameters['runSynchronous'] = requestParameters.runSynchronous;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -939,11 +966,17 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiSer
 
         const queryParameters: any = {};
 
+        if (requestParameters.runSynchronous !== undefined) {
+            queryParameters['runSynchronous'] = requestParameters.runSynchronous;
+        }
+
         if (requestParameters.responseFields !== undefined) {
             queryParameters['responseFields'] = requestParameters.responseFields;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
 
 
 
@@ -956,6 +989,7 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiSer
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
+            body: requestParameters.fulfillmentInf,
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response);
@@ -1036,6 +1070,10 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiSer
 
         if (requestParameters.zipCode !== undefined) {
             queryParameters['zipCode'] = requestParameters.zipCode;
+        }
+
+        if (requestParameters.runSynchronous !== undefined) {
+            queryParameters['runSynchronous'] = requestParameters.runSynchronous;
         }
 
         if (requestParameters.responseFields !== undefined) {
@@ -1132,6 +1170,10 @@ export class ReservationApi extends runtime.BaseAPI implements ReservationApiSer
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters.runSynchronous !== undefined) {
+            queryParameters['runSynchronous'] = requestParameters.runSynchronous;
+        }
 
         if (requestParameters.responseFields !== undefined) {
             queryParameters['responseFields'] = requestParameters.responseFields;

@@ -2,8 +2,10 @@ apis/CampaignsApi.ts
 apis/CategoriesApi.ts
 apis/CurrenciesApi.ts
 apis/PriceListsApi.ts
+apis/ProductRuleApi.ts
 apis/ProductSearchApi.ts
 apis/ProductsApi.ts
+apis/RulesApi.ts
 apis/SearchMerchandizingRulesApi.ts
 apis/SearchPreviewApi.ts
 apis/SearchRedirectApi.ts

@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Kibo Fulfillment API - Production Profile
- * REST API backing the Kibo Fulfiller User Interface
+ * Kibo Fulfillment Service
+ * OpenAPI Spec for Kibo Fulfillment Service
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -16,7 +16,9 @@
 import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
 import type {
-  EntityModelOfContact,
+  EntityModelContactDto,
+  ErrorItem,
+  RemoveSpecificShipmentFromConsolidationGroup400Response,
   UpdateContactRequest,
 } from '../models';
 
@@ -59,10 +61,10 @@ export namespace shipmentContactApiParams {
 */
 export interface ShipmentContactApiService {
     /**
-    * deleteAlternateContact
-    * @summary deleteAlternateContact
-    * @param {number} shipmentNumber shipmentNumber
-    * @param {string} [ifMatch] If-Match
+    * Delete Alternate Contact
+    * @summary Delete Alternate Contact
+    * @param {number} shipmentNumber 
+    * @param {string} [ifMatch] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentContactApiInterface
@@ -70,112 +72,112 @@ export interface ShipmentContactApiService {
     deleteAlternateContactRaw(requestParameters: shipmentContactApiParams.DeleteAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * deleteAlternateContact
-    * deleteAlternateContact
+    * Delete Alternate Contact
+    * Delete Alternate Contact
     */
     deleteAlternateContact(requestParameters: shipmentContactApiParams.DeleteAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * getAlternateContact
-    * @summary getAlternateContact
-    * @param {number} shipmentNumber shipmentNumber
+    * Get Alternate Contact
+    * @summary Get Alternate Contact
+    * @param {number} shipmentNumber 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentContactApiInterface
     */
-    getAlternateContactRaw(requestParameters: shipmentContactApiParams.GetAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>>;
+    getAlternateContactRaw(requestParameters: shipmentContactApiParams.GetAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelContactDto>>;
 
     /**
-    * getAlternateContact
-    * getAlternateContact
+    * Get Alternate Contact
+    * Get Alternate Contact
     */
-    getAlternateContact(requestParameters: shipmentContactApiParams.GetAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact>;
+    getAlternateContact(requestParameters: shipmentContactApiParams.GetAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelContactDto>;
 
     /**
-    * getCustomerContact
-    * @summary getCustomerContact
-    * @param {number} shipmentNumber shipmentNumber
+    * Get Customer Contact
+    * @summary Get Customer Contact
+    * @param {number} shipmentNumber 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentContactApiInterface
     */
-    getCustomerContactRaw(requestParameters: shipmentContactApiParams.GetCustomerContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>>;
+    getCustomerContactRaw(requestParameters: shipmentContactApiParams.GetCustomerContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelContactDto>>;
 
     /**
-    * getCustomerContact
-    * getCustomerContact
+    * Get Customer Contact
+    * Get Customer Contact
     */
-    getCustomerContact(requestParameters: shipmentContactApiParams.GetCustomerContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact>;
+    getCustomerContact(requestParameters: shipmentContactApiParams.GetCustomerContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelContactDto>;
 
     /**
-    * getDestinationContact
-    * @summary getDestinationContact
-    * @param {number} shipmentNumber shipmentNumber
+    * Get Destination Contact
+    * @summary Get Destination Contact
+    * @param {number} shipmentNumber 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentContactApiInterface
     */
-    getDestinationContactRaw(requestParameters: shipmentContactApiParams.GetDestinationContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>>;
+    getDestinationContactRaw(requestParameters: shipmentContactApiParams.GetDestinationContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelContactDto>>;
 
     /**
-    * getDestinationContact
-    * getDestinationContact
+    * Get Destination Contact
+    * Get Destination Contact
     */
-    getDestinationContact(requestParameters: shipmentContactApiParams.GetDestinationContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact>;
+    getDestinationContact(requestParameters: shipmentContactApiParams.GetDestinationContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelContactDto>;
 
     /**
-    * updateAlternateContact
-    * @summary updateAlternateContact
-    * @param {number} shipmentNumber shipmentNumber
-    * @param {UpdateContactRequest} updateContactRequest updateContactRequest
-    * @param {string} [ifMatch] If-Match
+    * Update Alternate Contact
+    * @summary Update Alternate Contact
+    * @param {number} shipmentNumber 
+    * @param {UpdateContactRequest} updateContactRequest 
+    * @param {string} [ifMatch] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentContactApiInterface
     */
-    updateAlternateContactRaw(requestParameters: shipmentContactApiParams.UpdateAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>>;
+    updateAlternateContactRaw(requestParameters: shipmentContactApiParams.UpdateAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelContactDto>>;
 
     /**
-    * updateAlternateContact
-    * updateAlternateContact
+    * Update Alternate Contact
+    * Update Alternate Contact
     */
-    updateAlternateContact(requestParameters: shipmentContactApiParams.UpdateAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact>;
+    updateAlternateContact(requestParameters: shipmentContactApiParams.UpdateAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelContactDto>;
 
     /**
-    * updateCustomerContact
-    * @summary updateCustomerContact
-    * @param {number} shipmentNumber shipmentNumber
-    * @param {UpdateContactRequest} updateContactRequest updateContactRequest
-    * @param {string} [ifMatch] If-Match
+    * Update Customer Contact
+    * @summary Update Customer Contact
+    * @param {number} shipmentNumber 
+    * @param {UpdateContactRequest} updateContactRequest 
+    * @param {string} [ifMatch] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentContactApiInterface
     */
-    updateCustomerContactRaw(requestParameters: shipmentContactApiParams.UpdateCustomerContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>>;
+    updateCustomerContactRaw(requestParameters: shipmentContactApiParams.UpdateCustomerContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelContactDto>>;
 
     /**
-    * updateCustomerContact
-    * updateCustomerContact
+    * Update Customer Contact
+    * Update Customer Contact
     */
-    updateCustomerContact(requestParameters: shipmentContactApiParams.UpdateCustomerContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact>;
+    updateCustomerContact(requestParameters: shipmentContactApiParams.UpdateCustomerContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelContactDto>;
 
     /**
-    * updateDestinationContact
-    * @summary updateDestinationContact
-    * @param {number} shipmentNumber shipmentNumber
-    * @param {UpdateContactRequest} updateContactRequest updateContactRequest
-    * @param {string} [ifMatch] If-Match
+    * Update Destination Contact
+    * @summary Update Destination Contact
+    * @param {number} shipmentNumber 
+    * @param {UpdateContactRequest} updateContactRequest 
+    * @param {string} [ifMatch] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentContactApiInterface
     */
-    updateDestinationContactRaw(requestParameters: shipmentContactApiParams.UpdateDestinationContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>>;
+    updateDestinationContactRaw(requestParameters: shipmentContactApiParams.UpdateDestinationContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelContactDto>>;
 
     /**
-    * updateDestinationContact
-    * updateDestinationContact
+    * Update Destination Contact
+    * Update Destination Contact
     */
-    updateDestinationContact(requestParameters: shipmentContactApiParams.UpdateDestinationContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact>;
+    updateDestinationContact(requestParameters: shipmentContactApiParams.UpdateDestinationContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelContactDto>;
 
 }
 
@@ -189,8 +191,8 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
         this.basePathTemplate = basePathTemplate
     }
     /**
-     * deleteAlternateContact
-     * deleteAlternateContact
+     * Delete Alternate Contact
+     * Delete Alternate Contact
      */
 
 
@@ -224,20 +226,20 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
     }
 
     /**
-     * deleteAlternateContact
-     * deleteAlternateContact
+     * Delete Alternate Contact
+     * Delete Alternate Contact
      */
     async deleteAlternateContact(requestParameters: shipmentContactApiParams.DeleteAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteAlternateContactRaw(requestParameters, initOverrides);
     }
 
     /**
-     * getAlternateContact
-     * getAlternateContact
+     * Get Alternate Contact
+     * Get Alternate Contact
      */
 
 
-    async getAlternateContactRaw(requestParameters: shipmentContactApiParams.GetAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>> {
+    async getAlternateContactRaw(requestParameters: shipmentContactApiParams.GetAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelContactDto>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getAlternateContact.');
         }
@@ -263,21 +265,21 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
     }
 
     /**
-     * getAlternateContact
-     * getAlternateContact
+     * Get Alternate Contact
+     * Get Alternate Contact
      */
-    async getAlternateContact(requestParameters: shipmentContactApiParams.GetAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact> {
+    async getAlternateContact(requestParameters: shipmentContactApiParams.GetAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelContactDto> {
         const response = await this.getAlternateContactRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * getCustomerContact
-     * getCustomerContact
+     * Get Customer Contact
+     * Get Customer Contact
      */
 
 
-    async getCustomerContactRaw(requestParameters: shipmentContactApiParams.GetCustomerContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>> {
+    async getCustomerContactRaw(requestParameters: shipmentContactApiParams.GetCustomerContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelContactDto>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getCustomerContact.');
         }
@@ -303,21 +305,21 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
     }
 
     /**
-     * getCustomerContact
-     * getCustomerContact
+     * Get Customer Contact
+     * Get Customer Contact
      */
-    async getCustomerContact(requestParameters: shipmentContactApiParams.GetCustomerContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact> {
+    async getCustomerContact(requestParameters: shipmentContactApiParams.GetCustomerContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelContactDto> {
         const response = await this.getCustomerContactRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * getDestinationContact
-     * getDestinationContact
+     * Get Destination Contact
+     * Get Destination Contact
      */
 
 
-    async getDestinationContactRaw(requestParameters: shipmentContactApiParams.GetDestinationContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>> {
+    async getDestinationContactRaw(requestParameters: shipmentContactApiParams.GetDestinationContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelContactDto>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling getDestinationContact.');
         }
@@ -343,21 +345,21 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
     }
 
     /**
-     * getDestinationContact
-     * getDestinationContact
+     * Get Destination Contact
+     * Get Destination Contact
      */
-    async getDestinationContact(requestParameters: shipmentContactApiParams.GetDestinationContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact> {
+    async getDestinationContact(requestParameters: shipmentContactApiParams.GetDestinationContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelContactDto> {
         const response = await this.getDestinationContactRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * updateAlternateContact
-     * updateAlternateContact
+     * Update Alternate Contact
+     * Update Alternate Contact
      */
 
 
-    async updateAlternateContactRaw(requestParameters: shipmentContactApiParams.UpdateAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>> {
+    async updateAlternateContactRaw(requestParameters: shipmentContactApiParams.UpdateAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelContactDto>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateAlternateContact.');
         }
@@ -394,21 +396,21 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
     }
 
     /**
-     * updateAlternateContact
-     * updateAlternateContact
+     * Update Alternate Contact
+     * Update Alternate Contact
      */
-    async updateAlternateContact(requestParameters: shipmentContactApiParams.UpdateAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact> {
+    async updateAlternateContact(requestParameters: shipmentContactApiParams.UpdateAlternateContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelContactDto> {
         const response = await this.updateAlternateContactRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * updateCustomerContact
-     * updateCustomerContact
+     * Update Customer Contact
+     * Update Customer Contact
      */
 
 
-    async updateCustomerContactRaw(requestParameters: shipmentContactApiParams.UpdateCustomerContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>> {
+    async updateCustomerContactRaw(requestParameters: shipmentContactApiParams.UpdateCustomerContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelContactDto>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateCustomerContact.');
         }
@@ -445,21 +447,21 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
     }
 
     /**
-     * updateCustomerContact
-     * updateCustomerContact
+     * Update Customer Contact
+     * Update Customer Contact
      */
-    async updateCustomerContact(requestParameters: shipmentContactApiParams.UpdateCustomerContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact> {
+    async updateCustomerContact(requestParameters: shipmentContactApiParams.UpdateCustomerContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelContactDto> {
         const response = await this.updateCustomerContactRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * updateDestinationContact
-     * updateDestinationContact
+     * Update Destination Contact
+     * Update Destination Contact
      */
 
 
-    async updateDestinationContactRaw(requestParameters: shipmentContactApiParams.UpdateDestinationContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfContact>> {
+    async updateDestinationContactRaw(requestParameters: shipmentContactApiParams.UpdateDestinationContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelContactDto>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateDestinationContact.');
         }
@@ -496,10 +498,10 @@ export class ShipmentContactApi extends runtime.BaseAPI implements ShipmentConta
     }
 
     /**
-     * updateDestinationContact
-     * updateDestinationContact
+     * Update Destination Contact
+     * Update Destination Contact
      */
-    async updateDestinationContact(requestParameters: shipmentContactApiParams.UpdateDestinationContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfContact> {
+    async updateDestinationContact(requestParameters: shipmentContactApiParams.UpdateDestinationContactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelContactDto> {
         const response = await this.updateDestinationContactRaw(requestParameters, initOverrides);
         return await response.value();
     }

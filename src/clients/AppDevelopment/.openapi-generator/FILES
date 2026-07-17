@@ -1,5 +1,8 @@
 apis/AppAuthTicketsApi.ts
+apis/AppEventApi.ts
+apis/AppInstallApi.ts
 apis/FilebasedPackageApi.ts
+apis/HeadlessAppApi.ts
 apis/PackageApi.ts
 apis/PublicApplicationApi.ts
 apis/index.ts

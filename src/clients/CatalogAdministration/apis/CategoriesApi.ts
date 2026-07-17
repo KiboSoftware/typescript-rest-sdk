@@ -20,8 +20,8 @@ import type {
   CatalogAdminsCategoryAttribute,
   CatalogAdminsCategoryCollection,
   CatalogAdminsCategoryPagedCollection,
+  CatalogAdminsCustomerDynamicExpression,
   CategoryAttributeCollection,
-  DynamicExpression,
 } from '../models';
 
 
@@ -88,6 +88,15 @@ export namespace categoriesApiParams {
         responseFields?: string;
         requestBody?: Array<string>;
     }
+    export interface SearchCategoryAttributesRequest {
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        filter?: string;
+        includeAttributes?: boolean;
+        responseGroups?: string;
+        responseFields?: string;
+    }
     export interface UpdateCategoryRequest {
         categoryId: number;
         cascadeVisibility?: boolean;
@@ -102,11 +111,11 @@ export namespace categoriesApiParams {
     }
     export interface ValidateDynamicExpressionRequest {
         responseFields?: string;
-        dynamicExpression?: DynamicExpression;
+        catalogAdminsCustomerDynamicExpression?: CatalogAdminsCustomerDynamicExpression;
     }
     export interface ValidateRealTimeDynamicExpressionRequest {
         responseFields?: string;
-        dynamicExpression?: DynamicExpression;
+        catalogAdminsCustomerDynamicExpression?: CatalogAdminsCustomerDynamicExpression;
     }
 }
 /**
@@ -322,6 +331,28 @@ export interface CategoriesApiService {
     removeProductsFromCategory(requestParameters: categoriesApiParams.RemoveProductsFromCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+    * Retrieves a list of categories according to any specified filter criteria and sort options for attributes.
+    * @summary Search Category Attributes
+    * @param {number} [startIndex] 
+    * @param {number} [pageSize] 
+    * @param {string} [sortBy] 
+    * @param {string} [filter] 
+    * @param {boolean} [includeAttributes] 
+    * @param {string} [responseGroups] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof CategoriesApiInterface
+    */
+    searchCategoryAttributesRaw(requestParameters: categoriesApiParams.SearchCategoryAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryPagedCollection>>;
+
+    /**
+    * Retrieves a list of categories according to any specified filter criteria and sort options for attributes.
+    * Search Category Attributes
+    */
+    searchCategoryAttributes(requestParameters: categoriesApiParams.SearchCategoryAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryPagedCollection>;
+
+    /**
     * Modifies a category such as moving it to another location in the category tree, or changing          whether it is visible on the storefront. This PUT replaces the existing resource, so be sure          to include all the information that you want to maintain for the category. Any unspecified          properties are set to null.
     * @summary Update category
     * @param {number} categoryId Unique identifier of the category that you want to modify. Required.
@@ -363,35 +394,35 @@ export interface CategoriesApiService {
     * 
     * @summary Validate dynamic category expression
     * @param {string} [responseFields] limits which fields are returned in the response body
-    * @param {DynamicExpression} [dynamicExpression] 
+    * @param {CatalogAdminsCustomerDynamicExpression} [catalogAdminsCustomerDynamicExpression] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof CategoriesApiInterface
     */
-    validateDynamicExpressionRaw(requestParameters: categoriesApiParams.ValidateDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DynamicExpression>>;
+    validateDynamicExpressionRaw(requestParameters: categoriesApiParams.ValidateDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCustomerDynamicExpression>>;
 
     /**
     * 
     * Validate dynamic category expression
     */
-    validateDynamicExpression(requestParameters: categoriesApiParams.ValidateDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DynamicExpression>;
+    validateDynamicExpression(requestParameters: categoriesApiParams.ValidateDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCustomerDynamicExpression>;
 
     /**
     * 
     * @summary Validate realtime dynamic category expression
     * @param {string} [responseFields] limits which fields are returned in the response body
-    * @param {DynamicExpression} [dynamicExpression] 
+    * @param {CatalogAdminsCustomerDynamicExpression} [catalogAdminsCustomerDynamicExpression] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof CategoriesApiInterface
     */
-    validateRealTimeDynamicExpressionRaw(requestParameters: categoriesApiParams.ValidateRealTimeDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DynamicExpression>>;
+    validateRealTimeDynamicExpressionRaw(requestParameters: categoriesApiParams.ValidateRealTimeDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCustomerDynamicExpression>>;
 
     /**
     * 
     * Validate realtime dynamic category expression
     */
-    validateRealTimeDynamicExpression(requestParameters: categoriesApiParams.ValidateRealTimeDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DynamicExpression>;
+    validateRealTimeDynamicExpression(requestParameters: categoriesApiParams.ValidateRealTimeDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCustomerDynamicExpression>;
 
 }
 
@@ -953,6 +984,70 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
     }
 
     /**
+     * Retrieves a list of categories according to any specified filter criteria and sort options for attributes.
+     * Search Category Attributes
+     */
+
+
+    async searchCategoryAttributesRaw(requestParameters: categoriesApiParams.SearchCategoryAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryPagedCollection>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.startIndex !== undefined) {
+            queryParameters['startIndex'] = requestParameters.startIndex;
+        }
+
+        if (requestParameters.pageSize !== undefined) {
+            queryParameters['pageSize'] = requestParameters.pageSize;
+        }
+
+        if (requestParameters.sortBy !== undefined) {
+            queryParameters['sortBy'] = requestParameters.sortBy;
+        }
+
+        if (requestParameters.filter !== undefined) {
+            queryParameters['filter'] = requestParameters.filter;
+        }
+
+        if (requestParameters.includeAttributes !== undefined) {
+            queryParameters['includeAttributes'] = requestParameters.includeAttributes;
+        }
+
+        if (requestParameters.responseGroups !== undefined) {
+            queryParameters['responseGroups'] = requestParameters.responseGroups;
+        }
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/catalog/admin/categories/searchCategoryAttributes`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Retrieves a list of categories according to any specified filter criteria and sort options for attributes.
+     * Search Category Attributes
+     */
+    async searchCategoryAttributes(requestParameters: categoriesApiParams.SearchCategoryAttributesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryPagedCollection> {
+        const response = await this.searchCategoryAttributesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Modifies a category such as moving it to another location in the category tree, or changing          whether it is visible on the storefront. This PUT replaces the existing resource, so be sure          to include all the information that you want to maintain for the category. Any unspecified          properties are set to null.
      * Update category
      */
@@ -1060,7 +1155,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
      */
 
 
-    async validateDynamicExpressionRaw(requestParameters: categoriesApiParams.ValidateDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DynamicExpression>> {
+    async validateDynamicExpressionRaw(requestParameters: categoriesApiParams.ValidateDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCustomerDynamicExpression>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -1082,7 +1177,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters.dynamicExpression,
+            body: requestParameters.catalogAdminsCustomerDynamicExpression,
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response);
@@ -1092,7 +1187,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
      * 
      * Validate dynamic category expression
      */
-    async validateDynamicExpression(requestParameters: categoriesApiParams.ValidateDynamicExpressionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DynamicExpression> {
+    async validateDynamicExpression(requestParameters: categoriesApiParams.ValidateDynamicExpressionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCustomerDynamicExpression> {
         const response = await this.validateDynamicExpressionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1103,7 +1198,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
      */
 
 
-    async validateRealTimeDynamicExpressionRaw(requestParameters: categoriesApiParams.ValidateRealTimeDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DynamicExpression>> {
+    async validateRealTimeDynamicExpressionRaw(requestParameters: categoriesApiParams.ValidateRealTimeDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCustomerDynamicExpression>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -1125,7 +1220,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters.dynamicExpression,
+            body: requestParameters.catalogAdminsCustomerDynamicExpression,
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response);
@@ -1135,7 +1230,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
      * 
      * Validate realtime dynamic category expression
      */
-    async validateRealTimeDynamicExpression(requestParameters: categoriesApiParams.ValidateRealTimeDynamicExpressionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DynamicExpression> {
+    async validateRealTimeDynamicExpression(requestParameters: categoriesApiParams.ValidateRealTimeDynamicExpressionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCustomerDynamicExpression> {
         const response = await this.validateRealTimeDynamicExpressionRaw(requestParameters, initOverrides);
         return await response.value();
     }

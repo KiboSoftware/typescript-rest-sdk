@@ -120,6 +120,19 @@ export interface AutoAddDiscountTarget {
     includedProductCodes?: Array<string> | null;
 }
 /**
+ * Represents a product category and quantity constraint
+ * @export
+ * @interface CategoryDiscountCondition
+ */
+export interface CategoryDiscountCondition {
+    /**
+     * Unique identifier of the category to which the discount condition applies.
+     * @type {number}
+     * @memberof CategoryDiscountCondition
+     */
+    categoryId?: number;
+}
+/**
  * 
  * @export
  * @interface CommerceRuntimeAddress
@@ -187,6 +200,302 @@ export interface CommerceRuntimeAddress {
     isValidated?: boolean | null;
 }
 /**
+ * 
+ * @export
+ * @interface CommerceRuntimeThresholdMessage
+ */
+export interface CommerceRuntimeThresholdMessage {
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeThresholdMessage
+     */
+    discountId?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeThresholdMessage
+     */
+    message?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeThresholdMessage
+     */
+    thresholdValue?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommerceRuntimeThresholdMessage
+     */
+    showOnCheckout?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommerceRuntimeThresholdMessage
+     */
+    showInCart?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommerceRuntimeThresholdMessage
+     */
+    requiresCouponCode?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface ContinuityRecurrenceSettings
+ */
+export interface ContinuityRecurrenceSettings {
+    /**
+     * Continuity ordinal to start discounting
+     * @type {number}
+     * @memberof ContinuityRecurrenceSettings
+     */
+    startOrdinal?: number | null;
+    /**
+     * Interval until next discount applies
+     * @type {number}
+     * @memberof ContinuityRecurrenceSettings
+     */
+    interval?: number | null;
+    /**
+     * Continuity ordinal to stop discounting
+     * @type {number}
+     * @memberof ContinuityRecurrenceSettings
+     */
+    stopOrdinal?: number | null;
+}
+/**
+ * Represents a custom property for a discount.
+ * @export
+ * @interface DiscountCustomProperty
+ */
+export interface DiscountCustomProperty {
+    /**
+     * Gets or sets the code of the discount custom property.
+     * @type {string}
+     * @memberof DiscountCustomProperty
+     */
+    code?: string | null;
+    /**
+     * Gets or sets the name of the discount custom property.
+     * @type {string}
+     * @memberof DiscountCustomProperty
+     */
+    name?: string | null;
+    /**
+     * Gets or sets the value of the discount custom property.
+     * @type {string}
+     * @memberof DiscountCustomProperty
+     */
+    value?: string | null;
+}
+/**
+ * Request parameters to search for discounts
+ * @export
+ * @interface FindDiscountsRequestBase
+ */
+export interface FindDiscountsRequestBase {
+    /**
+     * List of product codes to query for discounts
+     * Limit: 20 product codes
+     * @type {Array<string>}
+     * @memberof FindDiscountsRequestBase
+     */
+    productCodes?: Array<string> | null;
+    /**
+     * Set false to exclude discounts that require one of the specified products to be purchased
+     * default is true
+     * @type {boolean}
+     * @memberof FindDiscountsRequestBase
+     */
+    isPurchaseRequirement?: boolean;
+    /**
+     * When true, include discounts that are applied when there is no condition on the discount.
+     * By default, these are not included.
+     * @type {boolean}
+     * @memberof FindDiscountsRequestBase
+     */
+    includeUnconditional?: boolean;
+    /**
+     * List of customer segments that the discounts are applicable to.
+     * If not specified, only discounts that are not restricted to any customer segment are returned.
+     * When specified, only discounts that are applicable to one of the specified customer segments are returned.
+     * @type {Array<number>}
+     * @memberof FindDiscountsRequestBase
+     */
+    customerSegmentIds?: Array<number> | null;
+    /**
+     * List of discount labels to filter discounts by.
+     * Limit: 10 labels
+     * @type {Array<string>}
+     * @memberof FindDiscountsRequestBase
+     */
+    labels?: Array<string> | null;
+    /**
+     * Types of discounts to search for Product, Shipping, or All
+     * when not specified, all types are returned.
+     * @type {string}
+     * @memberof FindDiscountsRequestBase
+     */
+    targetType?: string | null;
+    /**
+     * List of location codes to filter discounts by.
+     * when not specified all discounts are returned.
+     * @type {Array<string>}
+     * @memberof FindDiscountsRequestBase
+     */
+    locationCodes?: Array<string> | null;
+}
+/**
+ * 
+ * @export
+ * @interface FindDiscountsResponse
+ */
+export interface FindDiscountsResponse {
+    /**
+     * 
+     * @type {Array<PricingRuntimeDiscount>}
+     * @memberof FindDiscountsResponse
+     */
+    discounts?: Array<PricingRuntimeDiscount> | null;
+    /**
+     * 
+     * @type {Array<ProductDiscountMap>}
+     * @memberof FindDiscountsResponse
+     */
+    targets?: Array<ProductDiscountMap> | null;
+    /**
+     * 
+     * @type {Array<ProductDiscountMap>}
+     * @memberof FindDiscountsResponse
+     */
+    purchaseRequirements?: Array<ProductDiscountMap> | null;
+}
+/**
+ * Request parameters to search for discounts
+ * @export
+ * @interface FindItemDiscountsRequest
+ */
+export interface FindItemDiscountsRequest {
+    /**
+     * Set false to exclude discounts that require one of the specified products to be a target
+     * Default is true
+     * @type {boolean}
+     * @memberof FindItemDiscountsRequest
+     */
+    isTarget?: boolean;
+    /**
+     * List of product codes to query for discounts
+     * Limit: 20 product codes
+     * @type {Array<string>}
+     * @memberof FindItemDiscountsRequest
+     */
+    productCodes?: Array<string> | null;
+    /**
+     * Set false to exclude discounts that require one of the specified products to be purchased
+     * default is true
+     * @type {boolean}
+     * @memberof FindItemDiscountsRequest
+     */
+    isPurchaseRequirement?: boolean;
+    /**
+     * When true, include discounts that are applied when there is no condition on the discount.
+     * By default, these are not included.
+     * @type {boolean}
+     * @memberof FindItemDiscountsRequest
+     */
+    includeUnconditional?: boolean;
+    /**
+     * List of customer segments that the discounts are applicable to.
+     * If not specified, only discounts that are not restricted to any customer segment are returned.
+     * When specified, only discounts that are applicable to one of the specified customer segments are returned.
+     * @type {Array<number>}
+     * @memberof FindItemDiscountsRequest
+     */
+    customerSegmentIds?: Array<number> | null;
+    /**
+     * List of discount labels to filter discounts by.
+     * Limit: 10 labels
+     * @type {Array<string>}
+     * @memberof FindItemDiscountsRequest
+     */
+    labels?: Array<string> | null;
+    /**
+     * Types of discounts to search for Product, Shipping, or All
+     * when not specified, all types are returned.
+     * @type {string}
+     * @memberof FindItemDiscountsRequest
+     */
+    targetType?: string | null;
+    /**
+     * List of location codes to filter discounts by.
+     * when not specified all discounts are returned.
+     * @type {Array<string>}
+     * @memberof FindItemDiscountsRequest
+     */
+    locationCodes?: Array<string> | null;
+}
+/**
+ * Request parameters to search for order level discounts
+ * @export
+ * @interface FindOrderDiscountsRequest
+ */
+export interface FindOrderDiscountsRequest {
+    /**
+     * List of product codes to query for discounts
+     * Limit: 20 product codes
+     * @type {Array<string>}
+     * @memberof FindOrderDiscountsRequest
+     */
+    productCodes?: Array<string> | null;
+    /**
+     * Set false to exclude discounts that require one of the specified products to be purchased
+     * default is true
+     * @type {boolean}
+     * @memberof FindOrderDiscountsRequest
+     */
+    isPurchaseRequirement?: boolean;
+    /**
+     * When true, include discounts that are applied when there is no condition on the discount.
+     * By default, these are not included.
+     * @type {boolean}
+     * @memberof FindOrderDiscountsRequest
+     */
+    includeUnconditional?: boolean;
+    /**
+     * List of customer segments that the discounts are applicable to.
+     * If not specified, only discounts that are not restricted to any customer segment are returned.
+     * When specified, only discounts that are applicable to one of the specified customer segments are returned.
+     * @type {Array<number>}
+     * @memberof FindOrderDiscountsRequest
+     */
+    customerSegmentIds?: Array<number> | null;
+    /**
+     * List of discount labels to filter discounts by.
+     * Limit: 10 labels
+     * @type {Array<string>}
+     * @memberof FindOrderDiscountsRequest
+     */
+    labels?: Array<string> | null;
+    /**
+     * Types of discounts to search for Product, Shipping, or All
+     * when not specified, all types are returned.
+     * @type {string}
+     * @memberof FindOrderDiscountsRequest
+     */
+    targetType?: string | null;
+    /**
+     * List of location codes to filter discounts by.
+     * when not specified all discounts are returned.
+     * @type {Array<string>}
+     * @memberof FindOrderDiscountsRequest
+     */
+    locationCodes?: Array<string> | null;
+}
+/**
  * The tax applied to an individual order item.
  * @export
  * @interface ItemTaxContext
@@ -230,10 +539,10 @@ export interface ItemTaxContext {
     duty?: number | null;
     /**
      * Storage for any additional/custom tax data.
-     * @type {any}
+     * @type {object}
      * @memberof ItemTaxContext
      */
-    taxData?: any | null;
+    taxData?: object | null;
 }
 /**
  * 
@@ -267,10 +576,10 @@ export interface OrderTaxContext {
     orderTax?: number;
     /**
      * Storage for any additional/custom tax data.
-     * @type {any}
+     * @type {object}
      * @memberof OrderTaxContext
      */
-    taxData?: any | null;
+    taxData?: object | null;
 }
 /**
  * Details of the applied discount, including how much the shopper saves if the discount is applied and the coupon
@@ -381,6 +690,20 @@ export interface PricingRuntimeAppliedLineItemShippingDiscount {
     couponSetId?: number | null;
 }
 /**
+ * Represents a customer segment
+ * @export
+ * @interface PricingRuntimeCustomerSegment
+ */
+export interface PricingRuntimeCustomerSegment {
+    /**
+     * The Customer segment Id.
+     * This is the  system Id not the code.
+     * @type {number}
+     * @memberof PricingRuntimeCustomerSegment
+     */
+    id?: number;
+}
+/**
  * Name of the discount that can be applied and its expiration date. The discount can be on a single product or the
  * entire order.
  * @export
@@ -393,6 +716,12 @@ export interface PricingRuntimeDiscount {
      * @memberof PricingRuntimeDiscount
      */
     discountId?: number;
+    /**
+     * Unique identifier of the discount.
+     * @type {string}
+     * @memberof PricingRuntimeDiscount
+     */
+    code?: string | null;
     /**
      * Name of the discount.
      * @type {string}
@@ -479,6 +808,18 @@ export interface PricingRuntimeDiscount {
     redemptions?: number;
     /**
      * 
+     * @type {boolean}
+     * @memberof PricingRuntimeDiscount
+     */
+    isPublic?: boolean | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof PricingRuntimeDiscount
+     */
+    labels?: Array<string> | null;
+    /**
+     * 
      * @type {string}
      * @memberof PricingRuntimeDiscount
      */
@@ -514,6 +855,19 @@ export interface PricingRuntimeDiscount {
      * @memberof PricingRuntimeDiscount
      */
     stackingLayer?: number;
+}
+/**
+ * 
+ * @export
+ * @interface PricingRuntimeDiscountCollection
+ */
+export interface PricingRuntimeDiscountCollection {
+    /**
+     * 
+     * @type {Array<PricingRuntimeDiscount>}
+     * @memberof PricingRuntimeDiscountCollection
+     */
+    discounts?: Array<PricingRuntimeDiscount> | null;
 }
 /**
  * 
@@ -757,6 +1111,56 @@ export interface PricingRuntimeProductPropertyValue {
     stringValue?: string | null;
 }
 /**
+ * 
+ * @export
+ * @interface PricingRuntimeTargetedCategory
+ */
+export interface PricingRuntimeTargetedCategory {
+    /**
+     * Unique identifier of the category to which the discount applies.
+     * @type {number}
+     * @memberof PricingRuntimeTargetedCategory
+     */
+    id?: number | null;
+}
+/**
+ * Shipping method that is eligible for free shipping. This is the shipping method that is defined with the Shipping
+ * Settings resource.
+ * @export
+ * @interface PricingRuntimeTargetedShippingMethod
+ */
+export interface PricingRuntimeTargetedShippingMethod {
+    /**
+     * Unique identifier of the shipping method as it appears in the SiteShippingMethod property of the Shipping Settings
+     * resource.
+     * @type {string}
+     * @memberof PricingRuntimeTargetedShippingMethod
+     */
+    code?: string | null;
+    /**
+     * Name of the shipping method as it appears in SiteShippingMethodLocalizedContent of the Shipping Settings resource.
+     * @type {string}
+     * @memberof PricingRuntimeTargetedShippingMethod
+     */
+    name?: string | null;
+}
+/**
+ * Shipping method that is eligible for free shipping. This is the shipping method that is defined with the Shipping
+ * Settings resource.
+ * @export
+ * @interface PricingRuntimeTargetedShippingZone
+ */
+export interface PricingRuntimeTargetedShippingZone {
+    /**
+     * Indicates the shipping zone that this discount is valid for.  If zone is provided the
+     * method selected must be valid for the zone and both populated in the order for the discount
+     * to be valid.
+     * @type {string}
+     * @memberof PricingRuntimeTargetedShippingZone
+     */
+    zone?: string | null;
+}
+/**
  * Duplicate definition from ProductRuntime
  * @export
  * @interface ProductAttribute
@@ -792,6 +1196,336 @@ export interface ProductAttribute {
      * @memberof ProductAttribute
      */
     description?: string | null;
+}
+/**
+ * Represents a product and quantity constraint
+ * @export
+ * @interface ProductDiscountCondition
+ */
+export interface ProductDiscountCondition {
+    /**
+     * Product code of the product to discount.
+     * @type {string}
+     * @memberof ProductDiscountCondition
+     */
+    productCode?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface ProductDiscountMap
+ */
+export interface ProductDiscountMap {
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductDiscountMap
+     */
+    productCode?: string | null;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof ProductDiscountMap
+     */
+    discountIds?: Array<number> | null;
+}
+/**
+ * 
+ * @export
+ * @interface RuntimeDiscountCondition
+ */
+export interface RuntimeDiscountCondition {
+    /**
+     * Maximum number of times that the discount can be redeemed. Default is null (no limit to discount redemptions).
+     * @type {number}
+     * @memberof RuntimeDiscountCondition
+     */
+    maxRedemptionCount?: number | null;
+    /**
+     * If true, the shopper needs to enter a coupon code to redeem the discount.
+     * @type {boolean}
+     * @memberof RuntimeDiscountCondition
+     */
+    requiresCoupon?: boolean;
+    /**
+     * Code of the coupon associated with the discount (if a coupon code is required). The merchant can supply the code or the system can generate it.
+     * @type {string}
+     * @memberof RuntimeDiscountCondition
+     */
+    couponCode?: string | null;
+    /**
+     * Determines is this discount can be used by an anonymous user 
+     * Defaults to false to allow discounts for anonymous users.
+     * @type {boolean}
+     * @memberof RuntimeDiscountCondition
+     */
+    requiresAuthenticatedUser?: boolean;
+    /**
+     * List of payment types that trigger this discount to be valid.
+     * @type {Array<string>}
+     * @memberof RuntimeDiscountCondition
+     */
+    includedPaymentWorkflows?: Array<string> | null;
+    /**
+     * List of categories that must be purchased in order for the discount to be valid.
+     * @type {Array<CategoryDiscountCondition>}
+     * @memberof RuntimeDiscountCondition
+     */
+    includedCategories?: Array<CategoryDiscountCondition> | null;
+    /**
+     * List of categories to discount. When a discount applies to a category, all products in the category are discounted.
+     * @type {Array<CategoryDiscountCondition>}
+     * @memberof RuntimeDiscountCondition
+     */
+    excludedCategories?: Array<CategoryDiscountCondition> | null;
+    /**
+     * List of products that are eligible for the discount.
+     * @type {Array<ProductDiscountCondition>}
+     * @memberof RuntimeDiscountCondition
+     */
+    includedProducts?: Array<ProductDiscountCondition> | null;
+    /**
+     * List of products that are eligible for the discount.
+     * @type {Array<ProductDiscountCondition>}
+     * @memberof RuntimeDiscountCondition
+     */
+    excludedProducts?: Array<ProductDiscountCondition> | null;
+    /**
+     * List of customer groups for which the discount applies
+     * @type {Array<PricingRuntimeCustomerSegment>}
+     * @memberof RuntimeDiscountCondition
+     */
+    customerSegments?: Array<PricingRuntimeCustomerSegment> | null;
+    /**
+     * Minimum quantity of products in the specified IncludedProducts that must be purchased to
+     * qualify for the associated discount.
+     * Defaults to 1 if  null and IncludedProducts has values.
+     * @type {number}
+     * @memberof RuntimeDiscountCondition
+     */
+    minimumQuantityRequiredProducts?: number | null;
+    /**
+     * Minimum quantity of products in the categories specified in IncludedCategories that must be purchased to
+     * qualify for the associated discount.
+     * Defaults to 1 if  null and IncludedCategories has values
+     * @type {number}
+     * @memberof RuntimeDiscountCondition
+     */
+    minimumQuantityProductsRequiredInCategories?: number | null;
+    /**
+     * Only applies to order.
+     * Minimum order subtotal after discounts in order for the associated discount to be applied
+     * @type {number}
+     * @memberof RuntimeDiscountCondition
+     */
+    minimumOrderAmount?: number | null;
+    /**
+     * Only applies to order.
+     * Maximum order subtotal after discounts in order for the associated discount to be applied
+     * @type {number}
+     * @memberof RuntimeDiscountCondition
+     */
+    maximumOrderAmount?: number | null;
+    /**
+     * List of categories to discount. When a discount applies to a category, all products in the category are discounted.
+     * @type {Array<CategoryDiscountCondition>}
+     * @memberof RuntimeDiscountCondition
+     */
+    categoriesToExcludeFromMinOrderTotal?: Array<CategoryDiscountCondition> | null;
+    /**
+     * List of products that are eligible for the discount.
+     * @type {Array<ProductDiscountCondition>}
+     * @memberof RuntimeDiscountCondition
+     */
+    productsToExcludeFromMinOrderTotal?: Array<ProductDiscountCondition> | null;
+    /**
+     * Minimum lifetime value amount required for this discount to apply
+     * @type {number}
+     * @memberof RuntimeDiscountCondition
+     */
+    minimumLifetimeValueAmount?: number | null;
+    /**
+     * Minimum amount that must be purchased in the combined categories defined in 
+     * IncludedCategories.  Amount is calculated before discounting.
+     * Not used if IncludedCategories is empty.
+     * @type {number}
+     * @memberof RuntimeDiscountCondition
+     */
+    minimumCategorySubtotalBeforeDiscounts?: number | null;
+    /**
+     * Defines a minimum quantity that is required for a target only discount
+     * @type {number}
+     * @memberof RuntimeDiscountCondition
+     */
+    minimumRequiredQuantityPerRedemption?: number | null;
+    /**
+     * List of subscription frequencies to which the discount will apply.
+     * @type {Array<string>}
+     * @memberof RuntimeDiscountCondition
+     */
+    validSubscriptionFrequencies?: Array<string> | null;
+    /**
+     * Ordinals at which a continuity order should receive the discount.
+     * @type {Array<number>}
+     * @memberof RuntimeDiscountCondition
+     */
+    validSubscriptionContinuityOrdinals?: Array<number> | null;
+    /**
+     * The minimum number of distinct products on the order
+     * Not a quantity calculation.
+     * @type {number}
+     * @memberof RuntimeDiscountCondition
+     */
+    minDistinctProductsRequired?: number | null;
+    /**
+     * The order must contain at least this total quantity of items for the discount to apply.
+     * You must buy a combined quantity of at least x amount.
+     * @type {number}
+     * @memberof RuntimeDiscountCondition
+     */
+    minTotalOrderQuantity?: number | null;
+    /**
+     * 
+     * @type {ContinuityRecurrenceSettings}
+     * @memberof RuntimeDiscountCondition
+     */
+    continuityRecurrenceSettings?: ContinuityRecurrenceSettings;
+    /**
+     * The discount condition for fulfillment methods, if present the discount will be applied only to these fulfillment methods.
+     * This must be a value defined in FulfillmentMethodConst below.
+     * @type {Array<string>}
+     * @memberof RuntimeDiscountCondition
+     */
+    validFulfillmentMethods?: Array<string> | null;
+    /**
+     * The discount condition for site Ids, if present the discount will be applied only to these sites.
+     * If not present discount will work for all sites in a catalog.
+     * @type {Array<number>}
+     * @memberof RuntimeDiscountCondition
+     */
+    exclusiveSiteIds?: Array<number> | null;
+    /**
+     * List of locations where the item/order should be fulfilled for the discount to be valid.
+     * @type {Array<string>}
+     * @memberof RuntimeDiscountCondition
+     */
+    exclusiveLocationCodes?: Array<string> | null;
+}
+/**
+ * 
+ * @export
+ * @interface RuntimeDiscountTarget
+ */
+export interface RuntimeDiscountTarget {
+    /**
+     *     Type of target to which the discount applies. Possible values: <pre>Product</pre> or <pre>Shipping</pre>. 
+     * If this is a <pre>Product</pre> type, you can specify which products or categories that the discount applies to.
+     *     If this is a <pre>Shipping</pre> type then you must specify which shipping methods apply.
+     * @type {string}
+     * @memberof RuntimeDiscountTarget
+     */
+    type?: string | null;
+    /**
+     * If yes, the discount applies to all products sold on the storefront.
+     * @type {boolean}
+     * @memberof RuntimeDiscountTarget
+     */
+    includeAllProducts?: boolean | null;
+    /**
+     * Applies to Included categories
+     * When Any, the target product can belong to any specified category.
+     * When All, the target product must belong to all specified categories.
+     * Defaults to Any
+     * @type {string}
+     * @memberof RuntimeDiscountTarget
+     */
+    includedCategoriesOperator?: string | null;
+    /**
+     * List of categories to discount. When a discount applies to a category, all products in the category are discounted.
+     * @type {Array<PricingRuntimeTargetedCategory>}
+     * @memberof RuntimeDiscountTarget
+     */
+    categories?: Array<PricingRuntimeTargetedCategory> | null;
+    /**
+     * Applies to Included categories
+     * Defaults to Any
+     * @type {string}
+     * @memberof RuntimeDiscountTarget
+     */
+    excludedCategoriesOperator?: string | null;
+    /**
+     * List of categories to exclude from the discount. Useful to exclude specific child categories.
+     * @type {Array<PricingRuntimeTargetedCategory>}
+     * @memberof RuntimeDiscountTarget
+     */
+    excludedCategories?: Array<PricingRuntimeTargetedCategory> | null;
+    /**
+     * List of products that are eligible for the discount.
+     * @type {Array<TargetedProduct>}
+     * @memberof RuntimeDiscountTarget
+     */
+    products?: Array<TargetedProduct> | null;
+    /**
+     * List of products that are excluded from the discount.
+     * @type {Array<TargetedProduct>}
+     * @memberof RuntimeDiscountTarget
+     */
+    excludedProducts?: Array<TargetedProduct> | null;
+    /**
+     * Prevents order scoped discounts from layering over items that already have a shipping discount with the 
+     * same type.
+     * @type {boolean}
+     * @memberof RuntimeDiscountTarget
+     */
+    excludeItemsWithExistingShippingDiscounts?: boolean | null;
+    /**
+     * Prevents order scoped discounts from layering over items that already have a product discount with the 
+     * same type.
+     * @type {boolean}
+     * @memberof RuntimeDiscountTarget
+     */
+    excludeItemsWithExistingProductDiscounts?: boolean | null;
+    /**
+     * Shipping method that is eligible for shipping discounts. This is a shipping method defined in Shipping Settings.
+     * @type {Array<PricingRuntimeTargetedShippingMethod>}
+     * @memberof RuntimeDiscountTarget
+     */
+    shippingMethods?: Array<PricingRuntimeTargetedShippingMethod> | null;
+    /**
+     * Shipping Zones that are applicable for this discount
+     * @type {Array<PricingRuntimeTargetedShippingZone>}
+     * @memberof RuntimeDiscountTarget
+     */
+    shippingZones?: Array<PricingRuntimeTargetedShippingZone> | null;
+    /**
+     * Prevents the discount from being applied to handling fees
+     * @type {boolean}
+     * @memberof RuntimeDiscountTarget
+     */
+    doNotApplyToHandlingFees?: boolean | null;
+    /**
+     * When a condition is specified, this property limits the number of items that can be targeted per discount redemption with an order.
+     * if multiple redemptions are allowed per order then multiples of this value would be allowed in multiples of the associated 
+     * condition.
+     * If no condition is specified then this value is not used.  
+     * If null and condition exists, then defaults to 1.
+     * @type {number}
+     * @memberof RuntimeDiscountTarget
+     */
+    maximumQuantityPerRedemption?: number | null;
+}
+/**
+ * Product to discount.
+ * @export
+ * @interface TargetedProduct
+ */
+export interface TargetedProduct {
+    /**
+     * Product code of the product to discount.
+     * @type {string}
+     * @memberof TargetedProduct
+     */
+    productCode?: string | null;
 }
 /**
  * 
@@ -947,10 +1681,10 @@ export interface TaxableLineItem {
     reason?: string | null;
     /**
      * 
-     * @type {any}
+     * @type {object}
      * @memberof TaxableLineItem
      */
-    data?: any | null;
+    data?: object | null;
     /**
      * 
      * @type {PricingRuntimeAppliedLineItemProductDiscount}
@@ -1057,10 +1791,10 @@ export interface TaxableOrder {
     originalOrderDate?: string;
     /**
      * 
-     * @type {any}
+     * @type {object}
      * @memberof TaxableOrder
      */
-    data?: any | null;
+    data?: object | null;
     /**
      * 
      * @type {Array<TaxAttribute>}
@@ -1122,244 +1856,4 @@ export interface TaxableOrder {
      * @memberof TaxableOrder
      */
     taxRequestType?: string | null;
-}
-/**
- * The tax applied to an individual order item.
- * @export
- * @interface ThrirdPartyItemTaxContext
- */
-export interface ThrirdPartyItemTaxContext {
-    /**
-     * Unique identifier of the line item.
-     * @type {string}
-     * @memberof ThrirdPartyItemTaxContext
-     */
-    id?: string | null;
-    /**
-     * Merchant-created code that uniquely identifies the product.
-     * @type {string}
-     * @memberof ThrirdPartyItemTaxContext
-     */
-    productCode?: string | null;
-    /**
-     * The number of products in this lineitem
-     * @type {number}
-     * @memberof ThrirdPartyItemTaxContext
-     */
-    quantity?: number;
-    /**
-     * Line item tax amount not including shipping
-     * @type {number}
-     * @memberof ThrirdPartyItemTaxContext
-     */
-    tax?: number;
-    /**
-     * The shipping tax amount for this line item
-     * @type {number}
-     * @memberof ThrirdPartyItemTaxContext
-     */
-    shippingTax?: number;
-}
-/**
- * 
- * @export
- * @interface ThrirdPartyOrderTaxContext
- */
-export interface ThrirdPartyOrderTaxContext {
-    /**
-     * Taxes applied to each item in the order.
-     * @type {Array<ThrirdPartyItemTaxContext>}
-     * @memberof ThrirdPartyOrderTaxContext
-     */
-    itemTaxContexts?: Array<ThrirdPartyItemTaxContext> | null;
-    /**
-     * Rollup shipping tax for this order
-     * @type {number}
-     * @memberof ThrirdPartyOrderTaxContext
-     */
-    shippingTax?: number;
-    /**
-     * The handling fee tax amount for this line item
-     * @type {number}
-     * @memberof ThrirdPartyOrderTaxContext
-     */
-    handlingFeeTax?: number;
-    /**
-     * Rollup tax on the order not including shipping
-     * @type {number}
-     * @memberof ThrirdPartyOrderTaxContext
-     */
-    orderTax?: number;
-}
-/**
- * The context for the tax calculation.
- * @export
- * @interface ThrirdPartyTaxContext
- */
-export interface ThrirdPartyTaxContext {
-    /**
-     * The unique id of this context. Will typically be the OrderId or CartId, depending when the tax is being calculated.
-     * @type {string}
-     * @memberof ThrirdPartyTaxContext
-     */
-    taxContextId?: string | null;
-    /**
-     * A unique id for a customer.  This may be the userid, checking with Avalara to determine the meaning of this
-     * @type {string}
-     * @memberof ThrirdPartyTaxContext
-     */
-    customerId?: string | null;
-    /**
-     * Tax exemption id.  Indicates that this customer or user is tax exempt
-     * @type {string}
-     * @memberof ThrirdPartyTaxContext
-     */
-    taxExemptId?: string | null;
-    /**
-     * Indicates whether shipping amounts should be taxed
-     * @type {boolean}
-     * @memberof ThrirdPartyTaxContext
-     */
-    taxShipping?: boolean | null;
-    /**
-     * 
-     * @type {CommerceRuntimeAddress}
-     * @memberof ThrirdPartyTaxContext
-     */
-    originAddress?: CommerceRuntimeAddress;
-    /**
-     * 
-     * @type {CommerceRuntimeAddress}
-     * @memberof ThrirdPartyTaxContext
-     */
-    destinationAddress?: CommerceRuntimeAddress;
-}
-/**
- * An order sent to a thirdparty implementation for calculating taxes
- * @export
- * @interface ThrirdPartyTaxableOrder
- */
-export interface ThrirdPartyTaxableOrder {
-    /**
-     * Date on which the order is/was submitted.
-     * Cannot be a future date.
-     * @type {string}
-     * @memberof ThrirdPartyTaxableOrder
-     */
-    orderDate?: string;
-    /**
-     * 
-     * @type {ThrirdPartyTaxContext}
-     * @memberof ThrirdPartyTaxableOrder
-     */
-    taxContext?: ThrirdPartyTaxContext;
-    /**
-     * List of taxable items.
-     * @type {Array<TaxableLineItem>}
-     * @memberof ThrirdPartyTaxableOrder
-     */
-    lineItems?: Array<TaxableLineItem> | null;
-    /**
-     * Shipping Amount rolled up for the order
-     * @type {number}
-     * @memberof ThrirdPartyTaxableOrder
-     */
-    shippingAmount?: number;
-    /**
-     * The currency code for this order
-     * @type {string}
-     * @memberof ThrirdPartyTaxableOrder
-     */
-    currencyCode?: string | null;
-    /**
-     * Handling Fee
-     * @type {number}
-     * @memberof ThrirdPartyTaxableOrder
-     */
-    handlingFee?: number;
-    /**
-     * The order id of the original order.  This can be used to track changes to the order for taxing purposes.
-     * @type {string}
-     * @memberof ThrirdPartyTaxableOrder
-     */
-    originalDocumentCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ThrirdPartyTaxableOrder
-     */
-    orderId?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof ThrirdPartyTaxableOrder
-     */
-    orderNumber?: number | null;
-    /**
-     * The date of the original order.  This is used when calculating changes to the Taxable Order, evaluating them at this time rather than the present.
-     * @type {string}
-     * @memberof ThrirdPartyTaxableOrder
-     */
-    originalOrderDate?: string;
-    /**
-     * Used to differentiate between an Order and a Return being used as the source of this Taxable Order
-     * @type {string}
-     * @memberof ThrirdPartyTaxableOrder
-     */
-    taxRequestType?: string | null;
-    /**
-     * 
-     * @type {Array<TaxAttribute>}
-     * @memberof ThrirdPartyTaxableOrder
-     */
-    attributes?: Array<TaxAttribute> | null;
-    /**
-     * 
-     * @type {Array<AppliedOrderShippingDiscount>}
-     * @memberof ThrirdPartyTaxableOrder
-     */
-    shippingDiscounts?: Array<AppliedOrderShippingDiscount> | null;
-    /**
-     * 
-     * @type {AppliedOrderShippingDiscount}
-     * @memberof ThrirdPartyTaxableOrder
-     */
-    shippingDiscount?: AppliedOrderShippingDiscount;
-    /**
-     * The discount that has been applied to the cart itself. If multiple discounts exist, this is the discount that the system applies because it offers the best savings for the shopper. This is a negative number.
-     * @type {Array<PricingRuntimeAppliedDiscount>}
-     * @memberof ThrirdPartyTaxableOrder
-     */
-    orderDiscounts?: Array<PricingRuntimeAppliedDiscount> | null;
-    /**
-     * 
-     * @type {PricingRuntimeAppliedDiscount}
-     * @memberof ThrirdPartyTaxableOrder
-     */
-    orderDiscount?: PricingRuntimeAppliedDiscount;
-    /**
-     * The list of historically-applied handling discounts.  The active one will have IsExcluded == false
-     * @type {Array<PricingRuntimeAppliedDiscount>}
-     * @memberof ThrirdPartyTaxableOrder
-     */
-    handlingDiscounts?: Array<PricingRuntimeAppliedDiscount> | null;
-    /**
-     * 
-     * @type {PricingRuntimeAppliedDiscount}
-     * @memberof ThrirdPartyTaxableOrder
-     */
-    handlingDiscount?: PricingRuntimeAppliedDiscount;
-    /**
-     * Code that uniquely identifies the shipping method such as "Ground," "Overnight," or "Digital."
-     * The site's shipping settings lists the valid shipping methods specified for this site.
-     * @type {string}
-     * @memberof ThrirdPartyTaxableOrder
-     */
-    shippingMethodCode?: string | null;
-    /**
-     * Readable name of the shipping method
-     * @type {string}
-     * @memberof ThrirdPartyTaxableOrder
-     */
-    shippingMethodName?: string | null;
 }

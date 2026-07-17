@@ -1,5 +1,6 @@
 apis/FieldTypeDefinitionApi.ts
 apis/SchemaDefinitionApi.ts
+apis/StopWordsApi.ts
 apis/SuggestDefinitionApi.ts
 apis/SynonymApi.ts
 apis/index.ts

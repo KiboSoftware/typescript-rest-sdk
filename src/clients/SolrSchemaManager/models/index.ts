@@ -63,7 +63,7 @@ export interface FieldTypeDefinitionRepositoryEntry {
     description?: string | null;
     /**
      * Restricts the fields used by specific SOLR analyzer.
-     * Originally developed for entity entraction/ aka noun_extraction
+     * Originally developed for entity extraction/ aka noun_extraction
      * (e.g. searching for sofa tables should return tables, not sofas)
      * @type {any}
      * @memberof FieldTypeDefinitionRepositoryEntry

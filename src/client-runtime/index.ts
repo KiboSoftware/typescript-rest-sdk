@@ -131,7 +131,8 @@ export class BaseAPI {
       body:
         isFormData(overridedInit.body) ||
         isURLSearchParams(overridedInit.body) ||
-        isBlob(overridedInit.body)
+        isBlob(overridedInit.body) ||
+        isBuffer(overridedInit.body)
           ? overridedInit.body
           : JSON.stringify(overridedInit.body),
     }
@@ -206,6 +207,10 @@ export class BaseAPI {
     next.middleware = this.middleware.slice()
     return next
   }
+}
+
+function isBuffer(value:any): value is Buffer {
+  return typeof Buffer != 'undefined' && value instanceof Buffer
 }
 
 function isBlob(value: any): value is Blob {

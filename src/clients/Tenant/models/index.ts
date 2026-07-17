@@ -32,6 +32,12 @@ export interface AdminUserMasterCatalog {
     catalogs?: Array<Catalog> | null;
     /**
      * 
+     * @type {Array<string>}
+     * @memberof AdminUserMasterCatalog
+     */
+    supportedLocaleCodes?: Array<string> | null;
+    /**
+     * 
      * @type {number}
      * @memberof AdminUserMasterCatalog
      */
@@ -175,6 +181,73 @@ export interface Site {
 /**
  * 
  * @export
+ * @interface Tenant
+ */
+export interface Tenant {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Tenant
+     */
+    isDevTenant?: boolean;
+    /**
+     * 
+     * @type {Array<Site>}
+     * @memberof Tenant
+     */
+    sites?: Array<Site> | null;
+    /**
+     * 
+     * @type {Array<AdminUserMasterCatalog>}
+     * @memberof Tenant
+     */
+    masterCatalogs?: Array<AdminUserMasterCatalog> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Tenant
+     */
+    domain?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Tenant
+     */
+    lastLoginDate?: string | null;
+    /**
+     * 
+     * @type {Array<TenantAttribute>}
+     * @memberof Tenant
+     */
+    attributes?: Array<TenantAttribute> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Tenant
+     */
+    expiry?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Tenant
+     */
+    isUnified?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof Tenant
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Tenant
+     */
+    name?: string | null;
+}
+/**
+ * 
+ * @export
  * @interface TenantAttribute
  */
 export interface TenantAttribute {
@@ -214,71 +287,4 @@ export interface TenantAttribute {
      * @memberof TenantAttribute
      */
     updateDate?: string;
-}
-/**
- * 
- * @export
- * @interface TenantTenant
- */
-export interface TenantTenant {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof TenantTenant
-     */
-    isDevTenant?: boolean;
-    /**
-     * 
-     * @type {Array<Site>}
-     * @memberof TenantTenant
-     */
-    sites?: Array<Site> | null;
-    /**
-     * 
-     * @type {Array<AdminUserMasterCatalog>}
-     * @memberof TenantTenant
-     */
-    masterCatalogs?: Array<AdminUserMasterCatalog> | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof TenantTenant
-     */
-    domain?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof TenantTenant
-     */
-    lastLoginDate?: string | null;
-    /**
-     * 
-     * @type {Array<TenantAttribute>}
-     * @memberof TenantTenant
-     */
-    attributes?: Array<TenantAttribute> | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof TenantTenant
-     */
-    expiry?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof TenantTenant
-     */
-    isUnified?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof TenantTenant
-     */
-    id?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof TenantTenant
-     */
-    name?: string | null;
 }
