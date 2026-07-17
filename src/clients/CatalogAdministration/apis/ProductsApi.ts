@@ -19,9 +19,12 @@ import type {
   CatalogAdminsProduct,
   CatalogAdminsProductCollection,
   ProductCodeRename,
+  ProductCollectionV1,
   ProductInCatalogInfo,
+  ProductInCatalogInfoV1,
   ProductTypeChangeRequest,
   ProductTypeChangeResponse,
+  ProductV1,
 } from '../models';
 
 
@@ -35,6 +38,16 @@ export namespace productsApiParams {
         productCode: string;
         responseFields?: string;
         productInCatalogInfo?: ProductInCatalogInfo;
+    }
+    export interface AddProductInCatalog0Request {
+        productCode: string;
+        responseFields?: string;
+        productInCatalogInfoV1?: ProductInCatalogInfoV1;
+    }
+    export interface AddProduct0Request {
+        batchJobCode?: string;
+        responseFields?: string;
+        productV1?: ProductV1;
     }
     export interface ChangeProductTypeRequest {
         productCode: string;
@@ -59,11 +72,36 @@ export namespace productsApiParams {
         catalogId: number;
         responseFields?: string;
     }
+    export interface GetProductInCatalog0Request {
+        productCode: string;
+        catalogId: number;
+        responseFields?: string;
+    }
     export interface GetProductInCatalogsRequest {
         productCode: string;
         responseFields?: string;
     }
+    export interface GetProductInCatalogs0Request {
+        productCode: string;
+        responseFields?: string;
+    }
+    export interface GetProduct0Request {
+        productCode: string;
+        responseGroups?: string;
+        responseFields?: string;
+    }
     export interface GetProductsRequest {
+        startIndex?: number;
+        pageSize?: number;
+        sortBy?: string;
+        responseGroups?: string;
+        filter?: string;
+        q?: string;
+        qLimit?: number;
+        noCount?: boolean;
+        responseFields?: string;
+    }
+    export interface GetProducts0Request {
         startIndex?: number;
         pageSize?: number;
         sortBy?: string;
@@ -90,10 +128,27 @@ export namespace productsApiParams {
         responseFields?: string;
         productInCatalogInfo?: ProductInCatalogInfo;
     }
+    export interface UpdateProductInCatalog0Request {
+        productCode: string;
+        catalogId: number;
+        responseFields?: string;
+        productInCatalogInfoV1?: ProductInCatalogInfoV1;
+    }
     export interface UpdateProductInCatalogsRequest {
         productCode: string;
         responseFields?: string;
         productInCatalogInfo?: Array<ProductInCatalogInfo>;
+    }
+    export interface UpdateProductInCatalogs0Request {
+        productCode: string;
+        responseFields?: string;
+        productInCatalogInfoV1?: Array<ProductInCatalogInfoV1>;
+    }
+    export interface UpdateProduct0Request {
+        productCode: string;
+        batchJobCode?: string;
+        responseFields?: string;
+        productV1?: ProductV1;
     }
 }
 /**
@@ -138,6 +193,42 @@ export interface ProductsApiService {
     * Add product in catalog
     */
     addProductInCatalog(requestParameters: productsApiParams.AddProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductInCatalogInfo>;
+
+    /**
+    * 
+    * @summary Add product in catalog
+    * @param {string} productCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ProductInCatalogInfoV1} [productInCatalogInfoV1] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    addProductInCatalog_1Raw(requestParameters: productsApiParams.AddProductInCatalog0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductInCatalogInfoV1>>;
+
+    /**
+    * 
+    * Add product in catalog
+    */
+    addProductInCatalog_1(requestParameters: productsApiParams.AddProductInCatalog0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductInCatalogInfoV1>;
+
+    /**
+    * Creates a new product. You supply a product name, product code, price and other product characteristics such as its attributes, categories where the product belongs, whether the product has configurable options, stand-alone options, and so on.
+    * @summary Add product
+    * @param {string} [batchJobCode] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ProductV1} [productV1] Properties of the new product. Required properties: ProductCode, Content.ProductName, and Price.ListPrice. Mozu.ProductAdmin.Contracts.Product
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    addProduct_2Raw(requestParameters: productsApiParams.AddProduct0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductV1>>;
+
+    /**
+    * Creates a new product. You supply a product name, product code, price and other product characteristics such as its attributes, categories where the product belongs, whether the product has configurable options, stand-alone options, and so on.
+    * Add product
+    */
+    addProduct_2(requestParameters: productsApiParams.AddProduct0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductV1>;
 
     /**
     * Change a product\'s product type.
@@ -229,6 +320,24 @@ export interface ProductsApiService {
 
     /**
     * 
+    * @summary Get product in catalog
+    * @param {string} productCode 
+    * @param {number} catalogId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    getProductInCatalog_3Raw(requestParameters: productsApiParams.GetProductInCatalog0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductInCatalogInfoV1>>;
+
+    /**
+    * 
+    * Get product in catalog
+    */
+    getProductInCatalog_3(requestParameters: productsApiParams.GetProductInCatalog0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductInCatalogInfoV1>;
+
+    /**
+    * 
     * @summary Update products in catalog
     * @param {string} productCode 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -243,6 +352,41 @@ export interface ProductsApiService {
     * Update products in catalog
     */
     getProductInCatalogs(requestParameters: productsApiParams.GetProductInCatalogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductInCatalogInfo>>;
+
+    /**
+    * 
+    * @summary Update products in catalog
+    * @param {string} productCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    getProductInCatalogs_4Raw(requestParameters: productsApiParams.GetProductInCatalogs0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductInCatalogInfoV1>>>;
+
+    /**
+    * 
+    * Update products in catalog
+    */
+    getProductInCatalogs_4(requestParameters: productsApiParams.GetProductInCatalogs0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductInCatalogInfoV1>>;
+
+    /**
+    * Retrieves details about a product based on the specified response group. For example, to get the BaseProductCode of a product.
+    * @summary Get product
+    * @param {string} productCode Merchant-created code associated with the product, for example, a SKU. Required.
+    * @param {string} [responseGroups] Used to get more specific information from the request. For example to get discounts applied to a product use the AppliedProducts response group. Available response groups: ApplicableDiscounts, VariationOptions, and BaseProductCode.
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    getProduct_5Raw(requestParameters: productsApiParams.GetProduct0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductV1>>;
+
+    /**
+    * Retrieves details about a product based on the specified response group. For example, to get the BaseProductCode of a product.
+    * Get product
+    */
+    getProduct_5(requestParameters: productsApiParams.GetProduct0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductV1>;
 
     /**
     * Retrieves a list of products according to any specified filter criteria and sort options.
@@ -267,6 +411,30 @@ export interface ProductsApiService {
     * Get products
     */
     getProducts(requestParameters: productsApiParams.GetProductsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductCollection>;
+
+    /**
+    * Retrieves a list of products according to any specified filter criteria and sort options.
+    * @summary Get products
+    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0.
+    * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a single query. The default value is 20 and the maximum value is 200.
+    * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending or descending order. For example, to sort the results by “ID” ascending then by “CreateDate” descending, use: id asc,createdate desc.
+    * @param {string} [responseGroups] Used to get more specific information from the request. For example to get discounts applied to a product use the AppliedProducts response group. Available response groups: ApplicableDiscounts, VariationOptions, and BaseProductCode.
+    * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
+    * @param {string} [q] 
+    * @param {number} [qLimit] 
+    * @param {boolean} [noCount] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    getProducts_6Raw(requestParameters: productsApiParams.GetProducts0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductCollectionV1>>;
+
+    /**
+    * Retrieves a list of products according to any specified filter criteria and sort options.
+    * Get products
+    */
+    getProducts_6(requestParameters: productsApiParams.GetProducts0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductCollectionV1>;
 
     /**
     * Action that allows productCodes to be Renamed. Changing the resource identifier of a product could cause problems for established products.
@@ -324,6 +492,25 @@ export interface ProductsApiService {
     updateProductInCatalog(requestParameters: productsApiParams.UpdateProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductInCatalogInfo>;
 
     /**
+    * 
+    * @summary Update product in catalog
+    * @param {string} productCode 
+    * @param {number} catalogId 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ProductInCatalogInfoV1} [productInCatalogInfoV1] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    updateProductInCatalog_7Raw(requestParameters: productsApiParams.UpdateProductInCatalog0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductInCatalogInfoV1>>;
+
+    /**
+    * 
+    * Update product in catalog
+    */
+    updateProductInCatalog_7(requestParameters: productsApiParams.UpdateProductInCatalog0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductInCatalogInfoV1>;
+
+    /**
     * Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs.
     * @summary Update products in catalog
     * @param {string} productCode 
@@ -340,6 +527,43 @@ export interface ProductsApiService {
     * Update products in catalog
     */
     updateProductInCatalogs(requestParameters: productsApiParams.UpdateProductInCatalogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductInCatalogInfo>>;
+
+    /**
+    * Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs.
+    * @summary Update products in catalog
+    * @param {string} productCode 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<ProductInCatalogInfoV1>} [productInCatalogInfoV1] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    updateProductInCatalogs_8Raw(requestParameters: productsApiParams.UpdateProductInCatalogs0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductInCatalogInfoV1>>>;
+
+    /**
+    * Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs.
+    * Update products in catalog
+    */
+    updateProductInCatalogs_8(requestParameters: productsApiParams.UpdateProductInCatalogs0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductInCatalogInfoV1>>;
+
+    /**
+    * Modifies an existing product.
+    * @summary Update product
+    * @param {string} productCode Merchant-created code associated with the product, for example, a SKU. Required.
+    * @param {string} [batchJobCode] 
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ProductV1} [productV1] Properties of the product that you want to update. Required properties: ProductCode, Content.ProductName, and Price.ListPrice.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof ProductsApiInterface
+    */
+    updateProduct_9Raw(requestParameters: productsApiParams.UpdateProduct0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductV1>>;
+
+    /**
+    * Modifies an existing product.
+    * Update product
+    */
+    updateProduct_9(requestParameters: productsApiParams.UpdateProduct0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductV1>;
 
 }
 
@@ -443,6 +667,100 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiService {
      */
     async addProductInCatalog(requestParameters: productsApiParams.AddProductInCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductInCatalogInfo> {
         const response = await this.addProductInCatalogRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * 
+     * Add product in catalog
+     */
+
+
+    async addProductInCatalog_1Raw(requestParameters: productsApiParams.AddProductInCatalog0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductInCatalogInfoV1>> {
+        if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
+            throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling addProductInCatalog_1.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/catalog/admin/productsV1/{productCode}/ProductInCatalogs`.replace(`{${"productCode"}}`, encodeURIComponent(String(requestParameters.productCode))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.productInCatalogInfoV1,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * 
+     * Add product in catalog
+     */
+    async addProductInCatalog_1(requestParameters: productsApiParams.AddProductInCatalog0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductInCatalogInfoV1> {
+        const response = await this.addProductInCatalog_1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates a new product. You supply a product name, product code, price and other product characteristics such as its attributes, categories where the product belongs, whether the product has configurable options, stand-alone options, and so on.
+     * Add product
+     */
+
+
+    async addProduct_2Raw(requestParameters: productsApiParams.AddProduct0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductV1>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.batchJobCode !== undefined) {
+            queryParameters['batchJobCode'] = requestParameters.batchJobCode;
+        }
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/catalog/admin/productsV1`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.productV1,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Creates a new product. You supply a product name, product code, price and other product characteristics such as its attributes, categories where the product belongs, whether the product has configurable options, stand-alone options, and so on.
+     * Add product
+     */
+    async addProduct_2(requestParameters: productsApiParams.AddProduct0Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductV1> {
+        const response = await this.addProduct_2Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -677,6 +995,54 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiService {
 
     /**
      * 
+     * Get product in catalog
+     */
+
+
+    async getProductInCatalog_3Raw(requestParameters: productsApiParams.GetProductInCatalog0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductInCatalogInfoV1>> {
+        if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
+            throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling getProductInCatalog_3.');
+        }
+
+        if (requestParameters.catalogId === null || requestParameters.catalogId === undefined) {
+            throw new runtime.RequiredError('catalogId','Required parameter requestParameters.catalogId was null or undefined when calling getProductInCatalog_3.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/catalog/admin/productsV1/{productCode}/ProductInCatalogs/{catalogId}`.replace(`{${"productCode"}}`, encodeURIComponent(String(requestParameters.productCode))).replace(`{${"catalogId"}}`, encodeURIComponent(String(requestParameters.catalogId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * 
+     * Get product in catalog
+     */
+    async getProductInCatalog_3(requestParameters: productsApiParams.GetProductInCatalog0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductInCatalogInfoV1> {
+        const response = await this.getProductInCatalog_3Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * 
      * Update products in catalog
      */
 
@@ -716,6 +1082,98 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiService {
      */
     async getProductInCatalogs(requestParameters: productsApiParams.GetProductInCatalogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductInCatalogInfo>> {
         const response = await this.getProductInCatalogsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * 
+     * Update products in catalog
+     */
+
+
+    async getProductInCatalogs_4Raw(requestParameters: productsApiParams.GetProductInCatalogs0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductInCatalogInfoV1>>> {
+        if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
+            throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling getProductInCatalogs_4.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/catalog/admin/productsV1/{productCode}/ProductInCatalogs`.replace(`{${"productCode"}}`, encodeURIComponent(String(requestParameters.productCode))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * 
+     * Update products in catalog
+     */
+    async getProductInCatalogs_4(requestParameters: productsApiParams.GetProductInCatalogs0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductInCatalogInfoV1>> {
+        const response = await this.getProductInCatalogs_4Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves details about a product based on the specified response group. For example, to get the BaseProductCode of a product.
+     * Get product
+     */
+
+
+    async getProduct_5Raw(requestParameters: productsApiParams.GetProduct0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductV1>> {
+        if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
+            throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling getProduct_5.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseGroups !== undefined) {
+            queryParameters['responseGroups'] = requestParameters.responseGroups;
+        }
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/catalog/admin/productsV1/{productCode}`.replace(`{${"productCode"}}`, encodeURIComponent(String(requestParameters.productCode))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Retrieves details about a product based on the specified response group. For example, to get the BaseProductCode of a product.
+     * Get product
+     */
+    async getProduct_5(requestParameters: productsApiParams.GetProduct0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductV1> {
+        const response = await this.getProduct_5Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -788,6 +1246,78 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiService {
      */
     async getProducts(requestParameters: productsApiParams.GetProductsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductCollection> {
         const response = await this.getProductsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves a list of products according to any specified filter criteria and sort options.
+     * Get products
+     */
+
+
+    async getProducts_6Raw(requestParameters: productsApiParams.GetProducts0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductCollectionV1>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.startIndex !== undefined) {
+            queryParameters['startIndex'] = requestParameters.startIndex;
+        }
+
+        if (requestParameters.pageSize !== undefined) {
+            queryParameters['pageSize'] = requestParameters.pageSize;
+        }
+
+        if (requestParameters.sortBy !== undefined) {
+            queryParameters['sortBy'] = requestParameters.sortBy;
+        }
+
+        if (requestParameters.responseGroups !== undefined) {
+            queryParameters['responseGroups'] = requestParameters.responseGroups;
+        }
+
+        if (requestParameters.filter !== undefined) {
+            queryParameters['filter'] = requestParameters.filter;
+        }
+
+        if (requestParameters.q !== undefined) {
+            queryParameters['q'] = requestParameters.q;
+        }
+
+        if (requestParameters.qLimit !== undefined) {
+            queryParameters['qLimit'] = requestParameters.qLimit;
+        }
+
+        if (requestParameters.noCount !== undefined) {
+            queryParameters['noCount'] = requestParameters.noCount;
+        }
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/catalog/admin/productsV1`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Retrieves a list of products according to any specified filter criteria and sort options.
+     * Get products
+     */
+    async getProducts_6(requestParameters: productsApiParams.GetProducts0Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductCollectionV1> {
+        const response = await this.getProducts_6Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -936,6 +1466,57 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiService {
     }
 
     /**
+     * 
+     * Update product in catalog
+     */
+
+
+    async updateProductInCatalog_7Raw(requestParameters: productsApiParams.UpdateProductInCatalog0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductInCatalogInfoV1>> {
+        if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
+            throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling updateProductInCatalog_7.');
+        }
+
+        if (requestParameters.catalogId === null || requestParameters.catalogId === undefined) {
+            throw new runtime.RequiredError('catalogId','Required parameter requestParameters.catalogId was null or undefined when calling updateProductInCatalog_7.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/catalog/admin/productsV1/{productCode}/ProductInCatalogs/{catalogId}`.replace(`{${"productCode"}}`, encodeURIComponent(String(requestParameters.productCode))).replace(`{${"catalogId"}}`, encodeURIComponent(String(requestParameters.catalogId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.productInCatalogInfoV1,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * 
+     * Update product in catalog
+     */
+    async updateProductInCatalog_7(requestParameters: productsApiParams.UpdateProductInCatalog0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductInCatalogInfoV1> {
+        const response = await this.updateProductInCatalog_7Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs.
      * Update products in catalog
      */
@@ -979,6 +1560,104 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiService {
      */
     async updateProductInCatalogs(requestParameters: productsApiParams.UpdateProductInCatalogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductInCatalogInfo>> {
         const response = await this.updateProductInCatalogsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs.
+     * Update products in catalog
+     */
+
+
+    async updateProductInCatalogs_8Raw(requestParameters: productsApiParams.UpdateProductInCatalogs0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductInCatalogInfoV1>>> {
+        if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
+            throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling updateProductInCatalogs_8.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/catalog/admin/productsV1/{productCode}/ProductInCatalogs`.replace(`{${"productCode"}}`, encodeURIComponent(String(requestParameters.productCode))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.productInCatalogInfoV1,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs.
+     * Update products in catalog
+     */
+    async updateProductInCatalogs_8(requestParameters: productsApiParams.UpdateProductInCatalogs0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductInCatalogInfoV1>> {
+        const response = await this.updateProductInCatalogs_8Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Modifies an existing product.
+     * Update product
+     */
+
+
+    async updateProduct_9Raw(requestParameters: productsApiParams.UpdateProduct0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductV1>> {
+        if (requestParameters.productCode === null || requestParameters.productCode === undefined) {
+            throw new runtime.RequiredError('productCode','Required parameter requestParameters.productCode was null or undefined when calling updateProduct_9.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.batchJobCode !== undefined) {
+            queryParameters['batchJobCode'] = requestParameters.batchJobCode;
+        }
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/catalog/admin/productsV1/{productCode}`.replace(`{${"productCode"}}`, encodeURIComponent(String(requestParameters.productCode))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.productV1,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Modifies an existing product.
+     * Update product
+     */
+    async updateProduct_9(requestParameters: productsApiParams.UpdateProduct0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductV1> {
+        const response = await this.updateProduct_9Raw(requestParameters, initOverrides);
         return await response.value();
     }
 

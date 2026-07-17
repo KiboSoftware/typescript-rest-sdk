@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Api Documentation
- * Api Documentation
+ * Order Routing
+ * Order Routing API
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -16,6 +16,7 @@
 import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
 import type {
+  APIErrorResponse,
   LocationListResponseModel,
   LocationResponseModel,
 } from '../models';
@@ -23,9 +24,15 @@ import type {
 
 export namespace orderRoutingLocationApiParams { 
     export interface GetLocationByLocationCodeRequest {
+        xVolTenant: number;
         locationCode: string;
+        xVolTenant2: number;
+        xVolSite: number;
     }
     export interface GetLocationsRequest {
+        xVolTenant: number;
+        xVolTenant2: number;
+        xVolSite: number;
         pageNum?: number;
         pageSize?: number;
     }
@@ -38,9 +45,12 @@ export namespace orderRoutingLocationApiParams {
 */
 export interface OrderRoutingLocationApiService {
     /**
-    * getLocationByLocationCode
-    * @summary getLocationByLocationCode
-    * @param {string} locationCode locationCode
+    * Get Location By Location Code
+    * @summary Get Location By Location Code
+    * @param {number} xVolTenant 
+    * @param {string} locationCode 
+    * @param {number} xVolTenant2 Tenant
+    * @param {number} xVolSite Site
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof OrderRoutingLocationApiInterface
@@ -48,16 +58,19 @@ export interface OrderRoutingLocationApiService {
     getLocationByLocationCodeRaw(requestParameters: orderRoutingLocationApiParams.GetLocationByLocationCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationResponseModel>>;
 
     /**
-    * getLocationByLocationCode
-    * getLocationByLocationCode
+    * Get Location By Location Code
+    * Get Location By Location Code
     */
     getLocationByLocationCode(requestParameters: orderRoutingLocationApiParams.GetLocationByLocationCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationResponseModel>;
 
     /**
-    * getLocations
-    * @summary getLocations
-    * @param {number} [pageNum] pageNum
-    * @param {number} [pageSize] pageSize
+    * Get Locations
+    * @summary Get Locations
+    * @param {number} xVolTenant 
+    * @param {number} xVolTenant2 Tenant
+    * @param {number} xVolSite Site
+    * @param {number} [pageNum] 
+    * @param {number} [pageSize] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof OrderRoutingLocationApiInterface
@@ -65,8 +78,8 @@ export interface OrderRoutingLocationApiService {
     getLocationsRaw(requestParameters: orderRoutingLocationApiParams.GetLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationListResponseModel>>;
 
     /**
-    * getLocations
-    * getLocations
+    * Get Locations
+    * Get Locations
     */
     getLocations(requestParameters: orderRoutingLocationApiParams.GetLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationListResponseModel>;
 
@@ -82,19 +95,43 @@ export class OrderRoutingLocationApi extends runtime.BaseAPI implements OrderRou
         this.basePathTemplate = basePathTemplate
     }
     /**
-     * getLocationByLocationCode
-     * getLocationByLocationCode
+     * Get Location By Location Code
+     * Get Location By Location Code
      */
 
 
     async getLocationByLocationCodeRaw(requestParameters: orderRoutingLocationApiParams.GetLocationByLocationCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationResponseModel>> {
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getLocationByLocationCode.');
+        }
+
         if (requestParameters.locationCode === null || requestParameters.locationCode === undefined) {
             throw new runtime.RequiredError('locationCode','Required parameter requestParameters.locationCode was null or undefined when calling getLocationByLocationCode.');
+        }
+
+        if (requestParameters.xVolTenant2 === null || requestParameters.xVolTenant2 === undefined) {
+            throw new runtime.RequiredError('xVolTenant2','Required parameter requestParameters.xVolTenant2 was null or undefined when calling getLocationByLocationCode.');
+        }
+
+        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
+            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling getLocationByLocationCode.');
         }
 
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
+
+        if (requestParameters.xVolTenant2 !== undefined && requestParameters.xVolTenant2 !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant2);
+        }
+
+        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
+            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
+        }
 
 
 
@@ -113,8 +150,8 @@ export class OrderRoutingLocationApi extends runtime.BaseAPI implements OrderRou
     }
 
     /**
-     * getLocationByLocationCode
-     * getLocationByLocationCode
+     * Get Location By Location Code
+     * Get Location By Location Code
      */
     async getLocationByLocationCode(requestParameters: orderRoutingLocationApiParams.GetLocationByLocationCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationResponseModel> {
         const response = await this.getLocationByLocationCodeRaw(requestParameters, initOverrides);
@@ -122,12 +159,24 @@ export class OrderRoutingLocationApi extends runtime.BaseAPI implements OrderRou
     }
 
     /**
-     * getLocations
-     * getLocations
+     * Get Locations
+     * Get Locations
      */
 
 
     async getLocationsRaw(requestParameters: orderRoutingLocationApiParams.GetLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationListResponseModel>> {
+        if (requestParameters.xVolTenant === null || requestParameters.xVolTenant === undefined) {
+            throw new runtime.RequiredError('xVolTenant','Required parameter requestParameters.xVolTenant was null or undefined when calling getLocations.');
+        }
+
+        if (requestParameters.xVolTenant2 === null || requestParameters.xVolTenant2 === undefined) {
+            throw new runtime.RequiredError('xVolTenant2','Required parameter requestParameters.xVolTenant2 was null or undefined when calling getLocations.');
+        }
+
+        if (requestParameters.xVolSite === null || requestParameters.xVolSite === undefined) {
+            throw new runtime.RequiredError('xVolSite','Required parameter requestParameters.xVolSite was null or undefined when calling getLocations.');
+        }
+
         const queryParameters: any = {};
 
         if (requestParameters.pageNum !== undefined) {
@@ -139,6 +188,18 @@ export class OrderRoutingLocationApi extends runtime.BaseAPI implements OrderRou
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xVolTenant !== undefined && requestParameters.xVolTenant !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant);
+        }
+
+        if (requestParameters.xVolTenant2 !== undefined && requestParameters.xVolTenant2 !== null) {
+            headerParameters['x-vol-tenant'] = String(requestParameters.xVolTenant2);
+        }
+
+        if (requestParameters.xVolSite !== undefined && requestParameters.xVolSite !== null) {
+            headerParameters['x-vol-site'] = String(requestParameters.xVolSite);
+        }
 
 
 
@@ -157,10 +218,10 @@ export class OrderRoutingLocationApi extends runtime.BaseAPI implements OrderRou
     }
 
     /**
-     * getLocations
-     * getLocations
+     * Get Locations
+     * Get Locations
      */
-    async getLocations(requestParameters: orderRoutingLocationApiParams.GetLocationsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationListResponseModel> {
+    async getLocations(requestParameters: orderRoutingLocationApiParams.GetLocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationListResponseModel> {
         const response = await this.getLocationsRaw(requestParameters, initOverrides);
         return await response.value();
     }

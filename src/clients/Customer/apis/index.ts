@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+export * from './AccountRankingRuleApi';
 export * from './AddressValidationApi';
 export * from './B2BAccountApi';
 export * from './B2BContactApi';

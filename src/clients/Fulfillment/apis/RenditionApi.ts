@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Kibo Fulfillment API - Production Profile
- * REST API backing the Kibo Fulfiller User Interface
+ * Kibo Fulfillment Service
+ * OpenAPI Spec for Kibo Fulfillment Service
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -16,12 +16,14 @@
 import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
 import type {
-  EntityModelOfRenderedContent,
+  EntityModelRenderedContentDto,
+  ErrorItem,
+  RemoveSpecificShipmentFromConsolidationGroup400Response,
 } from '../models';
 
 
 export namespace renditionApiParams { 
-    export interface RenderOrderSummaryRequest {
+    export interface RenderOrderSummary1Request {
         orderId: string;
     }
     export interface RenderReturnReceiptRequest {
@@ -36,36 +38,36 @@ export namespace renditionApiParams {
 */
 export interface RenditionApiService {
     /**
-    * renderOrderSummary
-    * @summary renderOrderSummary
-    * @param {string} orderId orderId
+    * Render order summary in HTML format for printing
+    * @summary Render Order Summary
+    * @param {string} orderId 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof RenditionApiInterface
     */
-    renderOrderSummaryRaw(requestParameters: renditionApiParams.RenderOrderSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>>;
+    renderOrderSummary1Raw(requestParameters: renditionApiParams.RenderOrderSummary1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelRenderedContentDto>>;
 
     /**
-    * renderOrderSummary
-    * renderOrderSummary
+    * Render order summary in HTML format for printing
+    * Render Order Summary
     */
-    renderOrderSummary(requestParameters: renditionApiParams.RenderOrderSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent>;
+    renderOrderSummary1(requestParameters: renditionApiParams.RenderOrderSummary1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelRenderedContentDto>;
 
     /**
-    * renderReturnReceipt
-    * @summary renderReturnReceipt
-    * @param {string} returnId returnId
+    * Render return receipt in HTML format for printing
+    * @summary Render Return Receipt
+    * @param {string} returnId 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof RenditionApiInterface
     */
-    renderReturnReceiptRaw(requestParameters: renditionApiParams.RenderReturnReceiptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>>;
+    renderReturnReceiptRaw(requestParameters: renditionApiParams.RenderReturnReceiptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelRenderedContentDto>>;
 
     /**
-    * renderReturnReceipt
-    * renderReturnReceipt
+    * Render return receipt in HTML format for printing
+    * Render Return Receipt
     */
-    renderReturnReceipt(requestParameters: renditionApiParams.RenderReturnReceiptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent>;
+    renderReturnReceipt(requestParameters: renditionApiParams.RenderReturnReceiptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelRenderedContentDto>;
 
 }
 
@@ -79,14 +81,14 @@ export class RenditionApi extends runtime.BaseAPI implements RenditionApiService
         this.basePathTemplate = basePathTemplate
     }
     /**
-     * renderOrderSummary
-     * renderOrderSummary
+     * Render order summary in HTML format for printing
+     * Render Order Summary
      */
 
 
-    async renderOrderSummaryRaw(requestParameters: renditionApiParams.RenderOrderSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>> {
+    async renderOrderSummary1Raw(requestParameters: renditionApiParams.RenderOrderSummary1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelRenderedContentDto>> {
         if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
-            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling renderOrderSummary.');
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling renderOrderSummary1.');
         }
 
         const queryParameters: any = {};
@@ -110,21 +112,21 @@ export class RenditionApi extends runtime.BaseAPI implements RenditionApiService
     }
 
     /**
-     * renderOrderSummary
-     * renderOrderSummary
+     * Render order summary in HTML format for printing
+     * Render Order Summary
      */
-    async renderOrderSummary(requestParameters: renditionApiParams.RenderOrderSummaryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent> {
-        const response = await this.renderOrderSummaryRaw(requestParameters, initOverrides);
+    async renderOrderSummary1(requestParameters: renditionApiParams.RenderOrderSummary1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelRenderedContentDto> {
+        const response = await this.renderOrderSummary1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * renderReturnReceipt
-     * renderReturnReceipt
+     * Render return receipt in HTML format for printing
+     * Render Return Receipt
      */
 
 
-    async renderReturnReceiptRaw(requestParameters: renditionApiParams.RenderReturnReceiptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfRenderedContent>> {
+    async renderReturnReceiptRaw(requestParameters: renditionApiParams.RenderReturnReceiptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelRenderedContentDto>> {
         if (requestParameters.returnId === null || requestParameters.returnId === undefined) {
             throw new runtime.RequiredError('returnId','Required parameter requestParameters.returnId was null or undefined when calling renderReturnReceipt.');
         }
@@ -150,10 +152,10 @@ export class RenditionApi extends runtime.BaseAPI implements RenditionApiService
     }
 
     /**
-     * renderReturnReceipt
-     * renderReturnReceipt
+     * Render return receipt in HTML format for printing
+     * Render Return Receipt
      */
-    async renderReturnReceipt(requestParameters: renditionApiParams.RenderReturnReceiptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfRenderedContent> {
+    async renderReturnReceipt(requestParameters: renditionApiParams.RenderReturnReceiptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelRenderedContentDto> {
         const response = await this.renderReturnReceiptRaw(requestParameters, initOverrides);
         return await response.value();
     }

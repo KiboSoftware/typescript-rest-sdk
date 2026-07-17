@@ -46,6 +46,8 @@ export namespace adminAuthTicketApiParams {
     export interface GetWsFedSignOutUrlRequest {
         id: string;
         redirect?: string;
+        ssoNameId?: string;
+        session?: string;
         responseFields?: string;
     }
     export interface RefreshAuthTicketRequest {
@@ -139,6 +141,8 @@ export interface AdminAuthTicketApiService {
     * @summary Get Ws Fed Sign Out Url
     * @param {string} id 
     * @param {string} [redirect] 
+    * @param {string} [ssoNameId] 
+    * @param {string} [session] 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -390,6 +394,14 @@ export class AdminAuthTicketApi extends runtime.BaseAPI implements AdminAuthTick
 
         if (requestParameters.redirect !== undefined) {
             queryParameters['redirect'] = requestParameters.redirect;
+        }
+
+        if (requestParameters.ssoNameId !== undefined) {
+            queryParameters['ssoNameId'] = requestParameters.ssoNameId;
+        }
+
+        if (requestParameters.session !== undefined) {
+            queryParameters['session'] = requestParameters.session;
         }
 
         if (requestParameters.responseFields !== undefined) {

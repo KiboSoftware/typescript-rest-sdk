@@ -16,12 +16,19 @@
 import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
 import type {
+  LocationGroupCodesRequest,
   LocationGroupCollection,
   LocationLocationGroup,
+  Operation,
 } from '../models';
 
 
 export namespace locationGroupApiParams { 
+    export interface AddLocationCodesToGroupRequest {
+        locationGroupCode: string;
+        responseFields?: string;
+        locationGroupCodesRequest?: LocationGroupCodesRequest;
+    }
     export interface AddLocationGroupRequest {
         responseFields?: string;
         locationLocationGroup?: LocationLocationGroup;
@@ -40,6 +47,15 @@ export namespace locationGroupApiParams {
         filter?: string;
         responseFields?: string;
     }
+    export interface PatchLocationGroupRequest {
+        locationGroupCode: string;
+        responseFields?: string;
+        operation?: Array<Operation>;
+    }
+    export interface RemoveLocationCodesFromGroupRequest {
+        locationGroupCode: string;
+        locationCodes?: string;
+    }
     export interface UpdateLocationGroupRequest {
         locationGroupCode: string;
         responseFields?: string;
@@ -53,6 +69,24 @@ export namespace locationGroupApiParams {
 * @interface LocationGroupApi
 */
 export interface LocationGroupApiService {
+    /**
+    * Add location codes to a location group
+    * @summary Add location codes to a location group
+    * @param {string} locationGroupCode The unique code of the location group
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {LocationGroupCodesRequest} [locationGroupCodesRequest] Request containing location codes to add
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof LocationGroupApiInterface
+    */
+    addLocationCodesToGroupRaw(requestParameters: locationGroupApiParams.AddLocationCodesToGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+    * Add location codes to a location group
+    * Add location codes to a location group
+    */
+    addLocationCodesToGroup(requestParameters: locationGroupApiParams.AddLocationCodesToGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
     /**
     * Add a location group.
     * @summary Add Location Group
@@ -124,6 +158,41 @@ export interface LocationGroupApiService {
     getLocationGroups(requestParameters: locationGroupApiParams.GetLocationGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationGroupCollection>;
 
     /**
+    * Update specific fields of a location group using RFC 6902 JSON Patch format.
+    * @summary Partially Update Location Group
+    * @param {string} locationGroupCode the unique code for a location group
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {Array<Operation>} [operation] JSON Patch document with operations to apply
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof LocationGroupApiInterface
+    */
+    patchLocationGroupRaw(requestParameters: locationGroupApiParams.PatchLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationLocationGroup>>;
+
+    /**
+    * Update specific fields of a location group using RFC 6902 JSON Patch format.
+    * Partially Update Location Group
+    */
+    patchLocationGroup(requestParameters: locationGroupApiParams.PatchLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationLocationGroup>;
+
+    /**
+    * Remove location codes from a location group
+    * @summary Remove location codes from a location group
+    * @param {string} locationGroupCode The unique code of the location group
+    * @param {string} [locationCodes] Location codes to remove
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof LocationGroupApiInterface
+    */
+    removeLocationCodesFromGroupRaw(requestParameters: locationGroupApiParams.RemoveLocationCodesFromGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+    * Remove location codes from a location group
+    * Remove location codes from a location group
+    */
+    removeLocationCodesFromGroup(requestParameters: locationGroupApiParams.RemoveLocationCodesFromGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
     * Update an existing location group.
     * @summary Update Location Group
     * @param {string} locationGroupCode 
@@ -152,6 +221,52 @@ export class LocationGroupApi extends runtime.BaseAPI implements LocationGroupAp
         super(configuration)
         this.basePathTemplate = basePathTemplate
     }
+    /**
+     * Add location codes to a location group
+     * Add location codes to a location group
+     */
+
+
+    async addLocationCodesToGroupRaw(requestParameters: locationGroupApiParams.AddLocationCodesToGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.locationGroupCode === null || requestParameters.locationGroupCode === undefined) {
+            throw new runtime.RequiredError('locationGroupCode','Required parameter requestParameters.locationGroupCode was null or undefined when calling addLocationCodesToGroup.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/admin/locationGroups/{locationGroupCode}/locationCodes`.replace(`{${"locationGroupCode"}}`, encodeURIComponent(String(requestParameters.locationGroupCode))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.locationGroupCodesRequest,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add location codes to a location group
+     * Add location codes to a location group
+     */
+    async addLocationCodesToGroup(requestParameters: locationGroupApiParams.AddLocationCodesToGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addLocationCodesToGroupRaw(requestParameters, initOverrides);
+    }
+
     /**
      * Add a location group.
      * Add Location Group
@@ -332,6 +447,96 @@ export class LocationGroupApi extends runtime.BaseAPI implements LocationGroupAp
     async getLocationGroups(requestParameters: locationGroupApiParams.GetLocationGroupsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationGroupCollection> {
         const response = await this.getLocationGroupsRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Update specific fields of a location group using RFC 6902 JSON Patch format.
+     * Partially Update Location Group
+     */
+
+
+    async patchLocationGroupRaw(requestParameters: locationGroupApiParams.PatchLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationLocationGroup>> {
+        if (requestParameters.locationGroupCode === null || requestParameters.locationGroupCode === undefined) {
+            throw new runtime.RequiredError('locationGroupCode','Required parameter requestParameters.locationGroupCode was null or undefined when calling patchLocationGroup.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/admin/locationGroups/{locationGroupCode}`.replace(`{${"locationGroupCode"}}`, encodeURIComponent(String(requestParameters.locationGroupCode))),
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.operation,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Update specific fields of a location group using RFC 6902 JSON Patch format.
+     * Partially Update Location Group
+     */
+    async patchLocationGroup(requestParameters: locationGroupApiParams.PatchLocationGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LocationLocationGroup> {
+        const response = await this.patchLocationGroupRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Remove location codes from a location group
+     * Remove location codes from a location group
+     */
+
+
+    async removeLocationCodesFromGroupRaw(requestParameters: locationGroupApiParams.RemoveLocationCodesFromGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.locationGroupCode === null || requestParameters.locationGroupCode === undefined) {
+            throw new runtime.RequiredError('locationGroupCode','Required parameter requestParameters.locationGroupCode was null or undefined when calling removeLocationCodesFromGroup.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.locationCodes !== undefined) {
+            queryParameters['locationCodes'] = requestParameters.locationCodes;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/admin/locationGroups/{locationGroupCode}/locationCodes`.replace(`{${"locationGroupCode"}}`, encodeURIComponent(String(requestParameters.locationGroupCode))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Remove location codes from a location group
+     * Remove location codes from a location group
+     */
+    async removeLocationCodesFromGroup(requestParameters: locationGroupApiParams.RemoveLocationCodesFromGroupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.removeLocationCodesFromGroupRaw(requestParameters, initOverrides);
     }
 
     /**

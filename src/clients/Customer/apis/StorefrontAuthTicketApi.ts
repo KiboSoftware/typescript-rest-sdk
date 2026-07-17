@@ -16,8 +16,12 @@
 import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
 import type {
+  AuthTicket2FAInfo,
+  AuthTicketOtpInfo,
+  CartAuthTicketRequest,
   CustomerAuthTicket,
   CustomerUserAuthInfo,
+  OtpRequest,
 } from '../models';
 
 
@@ -29,9 +33,29 @@ export namespace storefrontAuthTicketApiParams {
         responseFields?: string;
         customerUserAuthInfo?: CustomerUserAuthInfo;
     }
+    export interface GenerateAndSend2faOtpRequest {
+        responseFields?: string;
+    }
+    export interface GenerateAndSendOtpRequest {
+        responseFields?: string;
+        otpRequest?: OtpRequest;
+    }
+    export interface ImpersonateCartRequest {
+        responseFields?: string;
+        cartAuthTicketRequest?: CartAuthTicketRequest;
+    }
     export interface RefreshUserAuthTicketRequest {
         refreshToken?: string;
+        accountId?: number;
         responseFields?: string;
+    }
+    export interface Validate2FAAndCreateAuthTicketRequest {
+        responseFields?: string;
+        authTicket2FAInfo?: AuthTicket2FAInfo;
+    }
+    export interface ValidateOtpAndCreateAuthTicketRequest {
+        responseFields?: string;
+        authTicketOtpInfo?: AuthTicketOtpInfo;
     }
 }
 /**
@@ -75,9 +99,60 @@ export interface StorefrontAuthTicketApiService {
     createUserAuthTicket(requestParameters: storefrontAuthTicketApiParams.CreateUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket>;
 
     /**
+    * 
+    * @summary Generates a 6-digit 2FA code and sends it to the user\'s email
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof StorefrontAuthTicketApiInterface
+    */
+    generateAndSend2faOtpRaw(requestParameters: storefrontAuthTicketApiParams.GenerateAndSend2faOtpRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+    * 
+    * Generates a 6-digit 2FA code and sends it to the user\'s email
+    */
+    generateAndSend2faOtp(requestParameters: storefrontAuthTicketApiParams.GenerateAndSend2faOtpRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+    * 
+    * @summary Generates a 6-digit OTP code and sends it to the user\'s email
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {OtpRequest} [otpRequest] Request containing email address.
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof StorefrontAuthTicketApiInterface
+    */
+    generateAndSendOtpRaw(requestParameters: storefrontAuthTicketApiParams.GenerateAndSendOtpRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+    * 
+    * Generates a 6-digit OTP code and sends it to the user\'s email
+    */
+    generateAndSendOtp(requestParameters: storefrontAuthTicketApiParams.GenerateAndSendOtpRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+    * 
+    * @summary Impersonate Cart
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {CartAuthTicketRequest} [cartAuthTicketRequest] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof StorefrontAuthTicketApiInterface
+    */
+    impersonateCartRaw(requestParameters: storefrontAuthTicketApiParams.ImpersonateCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>>;
+
+    /**
+    * 
+    * Impersonate Cart
+    */
+    impersonateCart(requestParameters: storefrontAuthTicketApiParams.ImpersonateCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket>;
+
+    /**
     * Refreshes a user\'s authentication.
     * @summary Refresh User Auth Ticket
     * @param {string} [refreshToken] The user\&#39;s refresh token.
+    * @param {number} [accountId] Account Id specifies the account for which the user requests an authentication token.
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -90,6 +165,40 @@ export interface StorefrontAuthTicketApiService {
     * Refresh User Auth Ticket
     */
     refreshUserAuthTicket(requestParameters: storefrontAuthTicketApiParams.RefreshUserAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket>;
+
+    /**
+    * 
+    * @summary Validates the 2FA details provided by the user and creates an authentication ticket
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {AuthTicket2FAInfo} [authTicket2FAInfo] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof StorefrontAuthTicketApiInterface
+    */
+    validate2FAAndCreateAuthTicketRaw(requestParameters: storefrontAuthTicketApiParams.Validate2FAAndCreateAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>>;
+
+    /**
+    * 
+    * Validates the 2FA details provided by the user and creates an authentication ticket
+    */
+    validate2FAAndCreateAuthTicket(requestParameters: storefrontAuthTicketApiParams.Validate2FAAndCreateAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket>;
+
+    /**
+    * 
+    * @summary Validates the OTP details provided by the Admin and creates an authentication ticket
+    * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {AuthTicketOtpInfo} [authTicketOtpInfo] 
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    * @memberof StorefrontAuthTicketApiInterface
+    */
+    validateOtpAndCreateAuthTicketRaw(requestParameters: storefrontAuthTicketApiParams.ValidateOtpAndCreateAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>>;
+
+    /**
+    * 
+    * Validates the OTP details provided by the Admin and creates an authentication ticket
+    */
+    validateOtpAndCreateAuthTicket(requestParameters: storefrontAuthTicketApiParams.ValidateOtpAndCreateAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket>;
 
 }
 
@@ -186,6 +295,130 @@ export class StorefrontAuthTicketApi extends runtime.BaseAPI implements Storefro
     }
 
     /**
+     * 
+     * Generates a 6-digit 2FA code and sends it to the user\'s email
+     */
+
+
+    async generateAndSend2faOtpRaw(requestParameters: storefrontAuthTicketApiParams.GenerateAndSend2faOtpRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/customer/authtickets/2fa/request`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * 
+     * Generates a 6-digit 2FA code and sends it to the user\'s email
+     */
+    async generateAndSend2faOtp(requestParameters: storefrontAuthTicketApiParams.GenerateAndSend2faOtpRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.generateAndSend2faOtpRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * 
+     * Generates a 6-digit OTP code and sends it to the user\'s email
+     */
+
+
+    async generateAndSendOtpRaw(requestParameters: storefrontAuthTicketApiParams.GenerateAndSendOtpRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/customer/authtickets/otp/request`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.otpRequest,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * 
+     * Generates a 6-digit OTP code and sends it to the user\'s email
+     */
+    async generateAndSendOtp(requestParameters: storefrontAuthTicketApiParams.GenerateAndSendOtpRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.generateAndSendOtpRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * 
+     * Impersonate Cart
+     */
+
+
+    async impersonateCartRaw(requestParameters: storefrontAuthTicketApiParams.ImpersonateCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/customer/authtickets/impersonatecart`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.cartAuthTicketRequest,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * 
+     * Impersonate Cart
+     */
+    async impersonateCart(requestParameters: storefrontAuthTicketApiParams.ImpersonateCartRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket> {
+        const response = await this.impersonateCartRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Refreshes a user\'s authentication.
      * Refresh User Auth Ticket
      */
@@ -196,6 +429,10 @@ export class StorefrontAuthTicketApi extends runtime.BaseAPI implements Storefro
 
         if (requestParameters.refreshToken !== undefined) {
             queryParameters['refreshToken'] = requestParameters.refreshToken;
+        }
+
+        if (requestParameters.accountId !== undefined) {
+            queryParameters['accountId'] = requestParameters.accountId;
         }
 
         if (requestParameters.responseFields !== undefined) {
@@ -226,6 +463,92 @@ export class StorefrontAuthTicketApi extends runtime.BaseAPI implements Storefro
      */
     async refreshUserAuthTicket(requestParameters: storefrontAuthTicketApiParams.RefreshUserAuthTicketRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket> {
         const response = await this.refreshUserAuthTicketRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * 
+     * Validates the 2FA details provided by the user and creates an authentication ticket
+     */
+
+
+    async validate2FAAndCreateAuthTicketRaw(requestParameters: storefrontAuthTicketApiParams.Validate2FAAndCreateAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/customer/authtickets/2fa/auth`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.authTicket2FAInfo,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * 
+     * Validates the 2FA details provided by the user and creates an authentication ticket
+     */
+    async validate2FAAndCreateAuthTicket(requestParameters: storefrontAuthTicketApiParams.Validate2FAAndCreateAuthTicketRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket> {
+        const response = await this.validate2FAAndCreateAuthTicketRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * 
+     * Validates the OTP details provided by the Admin and creates an authentication ticket
+     */
+
+
+    async validateOtpAndCreateAuthTicketRaw(requestParameters: storefrontAuthTicketApiParams.ValidateOtpAndCreateAuthTicketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerAuthTicket>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.responseFields !== undefined) {
+            queryParameters['responseFields'] = requestParameters.responseFields;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+
+
+
+        await this.addAuthorizationHeaders(headerParameters)
+        
+        const response = await this.request({
+            path: `/commerce/customer/authtickets/otp/auth`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.authTicketOtpInfo,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * 
+     * Validates the OTP details provided by the Admin and creates an authentication ticket
+     */
+    async validateOtpAndCreateAuthTicket(requestParameters: storefrontAuthTicketApiParams.ValidateOtpAndCreateAuthTicketRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerAuthTicket> {
+        const response = await this.validateOtpAndCreateAuthTicketRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

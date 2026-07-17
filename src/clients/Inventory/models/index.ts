@@ -20,62 +20,6 @@ export interface AdjustFutureDate404Response {
     message?: string;
 }
 /**
- * Request for adjusting the future date
- * @export
- * @interface AdjustFutureDateRequest
- */
-export interface AdjustFutureDateRequest {
-    /**
-     * Future Date at which the inventory should be allocated against. Expected format '2020-09-28T12:00:00-0500'
-     * @type {string}
-     * @memberof AdjustFutureDateRequest
-     */
-    futureDate?: string;
-    /**
-     * Location Code
-     * @type {string}
-     * @memberof AdjustFutureDateRequest
-     */
-    locationCode?: string;
-    /**
-     * user id
-     * @type {number}
-     * @memberof AdjustFutureDateRequest
-     */
-    userID?: number;
-    /**
-     * how many results to show per page
-     * @type {number}
-     * @memberof AdjustFutureDateRequest
-     */
-    pageSize?: number;
-    /**
-     * which page to show
-     * @type {number}
-     * @memberof AdjustFutureDateRequest
-     */
-    pageNum?: number;
-    /**
-     * index to sort results by
-     * @type {string}
-     * @memberof AdjustFutureDateRequest
-     */
-    sortBy?: string;
-}
-/**
- * 
- * @export
- * @interface AdjustFutureDateRequestAllOf
- */
-export interface AdjustFutureDateRequestAllOf {
-    /**
-     * Future Date at which the inventory should be allocated against. Expected format '2020-09-28T12:00:00-0500'
-     * @type {string}
-     * @memberof AdjustFutureDateRequestAllOf
-     */
-    futureDate?: string;
-}
-/**
  * Adjust Item
  * @export
  * @interface AdjustItem
@@ -124,11 +68,35 @@ export interface AdjustItem {
      */
     deliveryDate?: string;
     /**
-     * External ID of the item
+     * External Identifier for the given future inventory record. Will not create a new future inventory record unless deliveryDate is specified
      * @type {string}
      * @memberof AdjustItem
      */
     externalID?: string;
+    /**
+     * Track which lot a product is manufactured in
+     * @type {string}
+     * @memberof AdjustItem
+     */
+    lotCode?: string;
+    /**
+     * Describes the state of the product
+     * @type {string}
+     * @memberof AdjustItem
+     */
+    condition?: string;
+    /**
+     * A serial number is unique to a specific, physical unit of inventory
+     * @type {string}
+     * @memberof AdjustItem
+     */
+    serialNumber?: string;
+    /**
+     * Used by the retailer for storing information related to manufacturing date or expiry date and use date to allocate for better stock management
+     * @type {string}
+     * @memberof AdjustItem
+     */
+    date?: string;
 }
 /**
  * Request needed for adjusting inventory
@@ -235,7 +203,7 @@ export interface AggregateRequest {
      */
     tags?: { [key: string]: string; };
     /**
-     * Include future inventory or not
+     * Enum for including future inventory: [futureOnly, futureAndCurrent]
      * @type {string}
      * @memberof AggregateRequest
      */
@@ -301,8 +269,8 @@ export interface AggregateRequest {
  * @export
  */
 export const AggregateRequestIncludeFutureInventoryEnum = {
-    Only: 'FUTURE_ONLY',
-    AndCurrent: 'FUTURE_AND_CURRENT'
+    FutureOnly: 'futureOnly',
+    FutureAndCurrent: 'futureAndCurrent'
 } as const;
 export type AggregateRequestIncludeFutureInventoryEnum = typeof AggregateRequestIncludeFutureInventoryEnum[keyof typeof AggregateRequestIncludeFutureInventoryEnum];
 
@@ -355,7 +323,7 @@ export interface AggregateRequestAllOf {
      */
     tags?: { [key: string]: string; };
     /**
-     * Include future inventory or not
+     * Enum for including future inventory: [futureOnly, futureAndCurrent]
      * @type {string}
      * @memberof AggregateRequestAllOf
      */
@@ -391,8 +359,8 @@ export interface AggregateRequestAllOf {
  * @export
  */
 export const AggregateRequestAllOfIncludeFutureInventoryEnum = {
-    Only: 'FUTURE_ONLY',
-    AndCurrent: 'FUTURE_AND_CURRENT'
+    FutureOnly: 'futureOnly',
+    FutureAndCurrent: 'futureAndCurrent'
 } as const;
 export type AggregateRequestAllOfIncludeFutureInventoryEnum = typeof AggregateRequestAllOfIncludeFutureInventoryEnum[keyof typeof AggregateRequestAllOfIncludeFutureInventoryEnum];
 
@@ -580,6 +548,12 @@ export interface AllocateInventoryRequest {
      */
     autoAssign?: boolean;
     /**
+     * flag to determine whether the runSyncronous flag is set and the allocation should be run synchronously
+     * @type {boolean}
+     * @memberof AllocateInventoryRequest
+     */
+    runSynchronous?: boolean;
+    /**
      * Location Code
      * @type {string}
      * @memberof AllocateInventoryRequest
@@ -646,6 +620,12 @@ export interface AllocateInventoryRequestAllOf {
      * @memberof AllocateInventoryRequestAllOf
      */
     autoAssign?: boolean;
+    /**
+     * flag to determine whether the runSyncronous flag is set and the allocation should be run synchronously
+     * @type {boolean}
+     * @memberof AllocateInventoryRequestAllOf
+     */
+    runSynchronous?: boolean;
 }
 /**
  * Item for Allocation
@@ -678,7 +658,7 @@ export interface AllocateItem {
      */
     quantity: number;
     /**
-     * order ID
+     * The Order Number in UCP
      * @type {number}
      * @memberof AllocateItem
      */
@@ -689,6 +669,12 @@ export interface AllocateItem {
      * @memberof AllocateItem
      */
     orderItemID: number;
+    /**
+     * The Order ID in UCP (GUID)
+     * @type {string}
+     * @memberof AllocateItem
+     */
+    ucpOrderID?: string;
     /**
      * Cart ID (GUID)
      * @type {string}
@@ -738,6 +724,12 @@ export interface AllocateItem {
      */
     blockAssignment?: boolean;
     /**
+     * Hold Block assignment flag of item at product/location level. ONLY allowed on deallocate.
+     * @type {boolean}
+     * @memberof AllocateItem
+     */
+    holdBlockAssignment?: boolean;
+    /**
      * Associative Map of <String, String> for tagCategoryName => tagName
      * @type {{ [key: string]: string; }}
      * @memberof AllocateItem
@@ -749,6 +741,36 @@ export interface AllocateItem {
      * @memberof AllocateItem
      */
     futureDate?: string;
+    /**
+     * Extra Uniqueness Identifier used track which lot a product is manufactured in. Only used in Allocate calls.
+     * @type {string}
+     * @memberof AllocateItem
+     */
+    lotCode?: string;
+    /**
+     * Descriptor for the state of the product. Only used in Allocate calls.
+     * @type {string}
+     * @memberof AllocateItem
+     */
+    condition?: string;
+    /**
+     * A serial number unique to a specific, physical unit of inventory. Limit of 30 characters. Only used in Allocate calls.
+     * @type {string}
+     * @memberof AllocateItem
+     */
+    serialNumber?: string;
+    /**
+     * Used by the retailer for storing information related to manufacturing date or expiry date and use date to allocate for better stock management. Only used in Allocate calls.
+     * @type {string}
+     * @memberof AllocateItem
+     */
+    date?: string;
+    /**
+     * Specific inventory record to perform deallocates/fulfills against. Only used for Deallocate/Fulfill calls
+     * @type {number}
+     * @memberof AllocateItem
+     */
+    inventoryID?: number;
 }
 /**
  * Base Request Model
@@ -1233,6 +1255,12 @@ export interface BlockAssignmentItem {
      * @memberof BlockAssignmentItem
      */
     blockAssignment: boolean;
+    /**
+     * Hold Block assignment of item at product/location level. ONLY allowed on deallocate.
+     * @type {boolean}
+     * @memberof BlockAssignmentItem
+     */
+    holdBlockAssignment?: boolean;
 }
 /**
  * Request to block assignment on the product
@@ -1439,6 +1467,74 @@ export interface CreateExportSettingsFTPRequestAllOf {
     exportSettingsFTP?: ExportSettingsFTP;
 }
 /**
+ * Request needed for creating Export Settings GCS
+ * @export
+ * @interface CreateExportSettingsGcsRequest
+ */
+export interface CreateExportSettingsGcsRequest {
+    /**
+     * Export Settings Name to associate the GCS settings with
+     * @type {string}
+     * @memberof CreateExportSettingsGcsRequest
+     */
+    exportSettingsName: string;
+    /**
+     * 
+     * @type {ExportSettingsGcs}
+     * @memberof CreateExportSettingsGcsRequest
+     */
+    exportSettingsGcs: ExportSettingsGcs;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof CreateExportSettingsGcsRequest
+     */
+    locationCode?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof CreateExportSettingsGcsRequest
+     */
+    userID?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof CreateExportSettingsGcsRequest
+     */
+    pageSize?: number;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof CreateExportSettingsGcsRequest
+     */
+    pageNum?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof CreateExportSettingsGcsRequest
+     */
+    sortBy?: string;
+}
+/**
+ * 
+ * @export
+ * @interface CreateExportSettingsGcsRequestAllOf
+ */
+export interface CreateExportSettingsGcsRequestAllOf {
+    /**
+     * Export Settings Name to associate the GCS settings with
+     * @type {string}
+     * @memberof CreateExportSettingsGcsRequestAllOf
+     */
+    exportSettingsName?: string;
+    /**
+     * 
+     * @type {ExportSettingsGcs}
+     * @memberof CreateExportSettingsGcsRequestAllOf
+     */
+    exportSettingsGcs?: ExportSettingsGcs;
+}
+/**
  * Request needed for creating Export Settings
  * @export
  * @interface CreateExportSettingsRequest
@@ -1623,6 +1719,42 @@ export interface DeleteFutureItemRequest {
      * @memberof DeleteFutureItemRequest
      */
     futureEndDate?: string;
+    /**
+     * An array of externalIDs to be considered for item-deletion purposes. Optional.
+     * @type {Array<string>}
+     * @memberof DeleteFutureItemRequest
+     */
+    externalIDs?: Array<string>;
+    /**
+     * Track which lot a product is manufactured in
+     * @type {string}
+     * @memberof DeleteFutureItemRequest
+     */
+    lotCode?: string;
+    /**
+     * Describes the state of the product
+     * @type {string}
+     * @memberof DeleteFutureItemRequest
+     */
+    condition?: string;
+    /**
+     * A serial number is unique to a specific, physical unit of inventory
+     * @type {string}
+     * @memberof DeleteFutureItemRequest
+     */
+    serialNumber?: string;
+    /**
+     * Used by the retailer for storing information related to manufacturing date or expiry date and use date to allocate for better stock management
+     * @type {string}
+     * @memberof DeleteFutureItemRequest
+     */
+    date?: string;
+    /**
+     * Flag to determine whether to delete a granular record without granular fields or delete all associated granular records. Only considered when no granular fields are specified.
+     * @type {boolean}
+     * @memberof DeleteFutureItemRequest
+     */
+    deleteGranularRecord?: boolean;
 }
 /**
  * Delete Future Item Response
@@ -1654,6 +1786,12 @@ export interface DeleteFutureItemResponse {
      * @memberof DeleteFutureItemResponse
      */
     totalLocationsAffected?: boolean;
+    /**
+     * Flag used to differentiate between a test and a non-test run.
+     * @type {boolean}
+     * @memberof DeleteFutureItemResponse
+     */
+    totalexternalIDsAffected?: boolean;
     /**
      * Flag used to differentiate between a test and a non-test run.
      * @type {boolean}
@@ -1716,6 +1854,36 @@ export interface DeleteItemRequest {
      * @memberof DeleteItemRequest
      */
     tags?: { [key: string]: string; };
+    /**
+     * Track which lot a product is manufactured in
+     * @type {string}
+     * @memberof DeleteItemRequest
+     */
+    lotCode?: string;
+    /**
+     * Describes the state of the product
+     * @type {string}
+     * @memberof DeleteItemRequest
+     */
+    condition?: string;
+    /**
+     * A serial number is unique to a specific, physical unit of inventory
+     * @type {string}
+     * @memberof DeleteItemRequest
+     */
+    serialNumber?: string;
+    /**
+     * Used by the retailer for storing information related to manufacturing date or expiry date and use date to allocate for better stock management
+     * @type {string}
+     * @memberof DeleteItemRequest
+     */
+    date?: string;
+    /**
+     * Flag to determine whether to delete a granular record without granular fields or delete all associated granular records. Only considered when no granular fields are specified.
+     * @type {boolean}
+     * @memberof DeleteItemRequest
+     */
+    deleteGranularRecord?: boolean;
 }
 /**
  * Delete Item Response
@@ -1886,11 +2054,29 @@ export interface ExportInventoryRequest {
      */
     exportSettingsS3Name?: string;
     /**
+     * Name of the Gcs Settings to use. Will only check for this if exportID is already set
+     * @type {string}
+     * @memberof ExportInventoryRequest
+     */
+    exportSettingsGcsName?: string;
+    /**
      * Flag for sending the exports to the development droppoint
      * @type {boolean}
      * @memberof ExportInventoryRequest
      */
     development?: boolean;
+    /**
+     * Export id post import
+     * @type {number}
+     * @memberof ExportInventoryRequest
+     */
+    exportSettingsId?: number;
+    /**
+     * FTP id post import
+     * @type {number}
+     * @memberof ExportInventoryRequest
+     */
+    exportSettingsFtpId?: number;
     /**
      * Location Code
      * @type {string}
@@ -1947,11 +2133,29 @@ export interface ExportInventoryRequestAllOf {
      */
     exportSettingsS3Name?: string;
     /**
+     * Name of the Gcs Settings to use. Will only check for this if exportID is already set
+     * @type {string}
+     * @memberof ExportInventoryRequestAllOf
+     */
+    exportSettingsGcsName?: string;
+    /**
      * Flag for sending the exports to the development droppoint
      * @type {boolean}
      * @memberof ExportInventoryRequestAllOf
      */
     development?: boolean;
+    /**
+     * Export id post import
+     * @type {number}
+     * @memberof ExportInventoryRequestAllOf
+     */
+    exportSettingsId?: number;
+    /**
+     * FTP id post import
+     * @type {number}
+     * @memberof ExportInventoryRequestAllOf
+     */
+    exportSettingsFtpId?: number;
 }
 /**
  * Response for Export Inventory api
@@ -2014,6 +2218,12 @@ export interface ExportSettings {
      * @memberof ExportSettings
      */
     s3Information?: Array<ExportSettingsS3>;
+    /**
+     * List of export S3 settings
+     * @type {Array<ExportSettingsGcs>}
+     * @memberof ExportSettings
+     */
+    gcsInformation?: Array<ExportSettingsGcs>;
     /**
      * Flag for exporting as a single file
      * @type {boolean}
@@ -2307,6 +2517,43 @@ export interface ExportSettingsFTP {
     environment?: string;
 }
 /**
+ * Export Settings GCS
+ * @export
+ * @interface ExportSettingsGcs
+ */
+export interface ExportSettingsGcs {
+    /**
+     * Export Settings ID
+     * @type {number}
+     * @memberof ExportSettingsGcs
+     */
+    exportSettingsID?: number;
+    /**
+     * Export Settings GCS ID
+     * @type {number}
+     * @memberof ExportSettingsGcs
+     */
+    exportSettingsGcsID?: number;
+    /**
+     * Export Settings GCS Name
+     * @type {string}
+     * @memberof ExportSettingsGcs
+     */
+    name: string;
+    /**
+     * Flag for Active State
+     * @type {boolean}
+     * @memberof ExportSettingsGcs
+     */
+    active?: boolean;
+    /**
+     * GCS Bucket (directory)
+     * @type {string}
+     * @memberof ExportSettingsGcs
+     */
+    gcsBucket?: string;
+}
+/**
  * Job ID Response
  * @export
  * @interface ExportSettingsResponse
@@ -2330,6 +2577,12 @@ export interface ExportSettingsResponse {
      * @memberof ExportSettingsResponse
      */
     exportSettingsS3Name?: string;
+    /**
+     * Created Export Settings GCS Name
+     * @type {string}
+     * @memberof ExportSettingsResponse
+     */
+    exportSettingsGcsName?: string;
 }
 /**
  * Export Settings S3
@@ -2458,6 +2711,24 @@ export interface FetchFileConfigRequest {
      * @memberof FetchFileConfigRequest
      */
     ftpRemotePathArchive?: string;
+    /**
+     * GCS Bucket
+     * @type {string}
+     * @memberof FetchFileConfigRequest
+     */
+    gcsBucket?: string;
+    /**
+     * GCS Path
+     * @type {string}
+     * @memberof FetchFileConfigRequest
+     */
+    gcsPath?: string;
+    /**
+     * GCS Archive Path
+     * @type {string}
+     * @memberof FetchFileConfigRequest
+     */
+    gcsArchivePath?: string;
     /**
      * S3 Region
      * @type {string}
@@ -2681,6 +2952,24 @@ export interface FetchFileConfigRequestAllOf {
      */
     ftpRemotePathArchive?: string;
     /**
+     * GCS Bucket
+     * @type {string}
+     * @memberof FetchFileConfigRequestAllOf
+     */
+    gcsBucket?: string;
+    /**
+     * GCS Path
+     * @type {string}
+     * @memberof FetchFileConfigRequestAllOf
+     */
+    gcsPath?: string;
+    /**
+     * GCS Archive Path
+     * @type {string}
+     * @memberof FetchFileConfigRequestAllOf
+     */
+    gcsArchivePath?: string;
+    /**
      * S3 Region
      * @type {string}
      * @memberof FetchFileConfigRequestAllOf
@@ -2807,6 +3096,18 @@ export interface FetchFileConnectionResponse {
      */
     ftpArchiveFiles?: Array<string>;
     /**
+     * List of files found on the specified gcs bucket/path
+     * @type {Array<string>}
+     * @memberof FetchFileConnectionResponse
+     */
+    gcsFiles?: Array<string>;
+    /**
+     * List of files found on the specified gcs archive bucket/path
+     * @type {Array<string>}
+     * @memberof FetchFileConnectionResponse
+     */
+    gcsArchiveFiles?: Array<string>;
+    /**
      * List of files found on the specified s3 bucket/path
      * @type {Array<string>}
      * @memberof FetchFileConnectionResponse
@@ -2820,17 +3121,251 @@ export interface FetchFileConnectionResponse {
     s3ArchiveFiles?: Array<string>;
 }
 /**
- * Response for get Export Settings
+ * Fetch File Config Model
  * @export
- * @interface GetExportSettingsResponse
+ * @interface GetFetchFileConfigItem
  */
-export interface GetExportSettingsResponse {
+export interface GetFetchFileConfigItem {
     /**
-     * 
-     * @type {ExportSettings}
-     * @memberof GetExportSettingsResponse
+     * Fetch File Config ID
+     * @type {number}
+     * @memberof GetFetchFileConfigItem
      */
-    exportSettings?: ExportSettings;
+    fetchFileConfigID?: number;
+    /**
+     * Tenant ID
+     * @type {number}
+     * @memberof GetFetchFileConfigItem
+     */
+    tenantID?: number;
+    /**
+     * Active
+     * @type {boolean}
+     * @memberof GetFetchFileConfigItem
+     */
+    active?: boolean;
+    /**
+     * Time config was last modified
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    lastModified?: string;
+    /**
+     * Email List
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    emailList?: string;
+    /**
+     * Flag for Refresh Enabled
+     * @type {boolean}
+     * @memberof GetFetchFileConfigItem
+     */
+    refreshEnabled?: boolean;
+    /**
+     * Description for the refresh file
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    refreshFileDescription?: string;
+    /**
+     * Flag for Update Enabled
+     * @type {boolean}
+     * @memberof GetFetchFileConfigItem
+     */
+    updateEnabled?: boolean;
+    /**
+     * Description for the update file
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    updateFileDescription?: string;
+    /**
+     * FTP server address
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    ftpServer?: string;
+    /**
+     * FTP server username
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    ftpUsername?: string;
+    /**
+     * FTP server password
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    ftpPassword?: string;
+    /**
+     * FTP server port
+     * @type {number}
+     * @memberof GetFetchFileConfigItem
+     */
+    ftpPort?: number;
+    /**
+     * FTP server remote path
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    ftpRemotePath?: string;
+    /**
+     * FTP server remote path archive
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    ftpRemotePathArchive?: string;
+    /**
+     * S3 Region
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    region?: string;
+    /**
+     * S3 Bucket
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    bucket?: string;
+    /**
+     * S3 Bucket Path (directory)
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    s3Path?: string;
+    /**
+     * S3 Archive Bucket
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    archiveBucket?: string;
+    /**
+     * S3 Archive Bucket Path (directory)
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    s3ArchivePath?: string;
+    /**
+     * Lock name
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    lockName?: string;
+    /**
+     * Enum denoting action post processing
+     * @type {number}
+     * @memberof GetFetchFileConfigItem
+     */
+    postProcessAction?: number;
+    /**
+     * Flag for using control file
+     * @type {boolean}
+     * @memberof GetFetchFileConfigItem
+     */
+    useControlFile?: boolean;
+    /**
+     * Flag for using multiple files
+     * @type {boolean}
+     * @memberof GetFetchFileConfigItem
+     */
+    multipleFiles?: boolean;
+    /**
+     * Flag for converting negatives to zero
+     * @type {boolean}
+     * @memberof GetFetchFileConfigItem
+     */
+    zeroOutNegatives?: boolean;
+    /**
+     * List of field names
+     * @type {Array<string>}
+     * @memberof GetFetchFileConfigItem
+     */
+    fieldNameMap?: Array<string>;
+    /**
+     * Flag for ignoring extra fields
+     * @type {boolean}
+     * @memberof GetFetchFileConfigItem
+     */
+    ignoreExtraFields?: boolean;
+    /**
+     * Flag to convert null quantities to zero
+     * @type {boolean}
+     * @memberof GetFetchFileConfigItem
+     */
+    blankQuantityIsZero?: boolean;
+    /**
+     * CSV Delimiter
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    csvDelimiter?: string;
+    /**
+     * Flag for exporting after refresh
+     * @type {boolean}
+     * @memberof GetFetchFileConfigItem
+     */
+    exportAfterRefresh?: boolean;
+    /**
+     * Export id post import
+     * @type {number}
+     * @memberof GetFetchFileConfigItem
+     */
+    postImportExportId?: number;
+    /**
+     * FTP id post import
+     * @type {number}
+     * @memberof GetFetchFileConfigItem
+     */
+    postImportFtpId?: number;
+    /**
+     * Enum for fetch file mapping
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    productMapping?: GetFetchFileConfigItemProductMappingEnum;
+    /**
+     * GCS Bucket
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    gcsBucket?: string;
+    /**
+     * GCS Path (directory)
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    gcsPath?: string;
+    /**
+     * GCS Archive Bucket
+     * @type {string}
+     * @memberof GetFetchFileConfigItem
+     */
+    gcsArchivePath?: string;
+}
+
+
+/**
+ * @export
+ */
+export const GetFetchFileConfigItemProductMappingEnum = {
+    PartNumberWithUpc: 'SWAP_PART_NUMBER_WITH_UPC',
+    SkuWithUpc: 'SWAP_SKU_WITH_UPC'
+} as const;
+export type GetFetchFileConfigItemProductMappingEnum = typeof GetFetchFileConfigItemProductMappingEnum[keyof typeof GetFetchFileConfigItemProductMappingEnum];
+
+/**
+ * Get Fetch File Config Response
+ * @export
+ * @interface GetFetchFileConfigResponse
+ */
+export interface GetFetchFileConfigResponse {
+    /**
+     * List of Fetch File Configurations
+     * @type {Array<GetFetchFileConfigItem>}
+     * @memberof GetFetchFileConfigResponse
+     */
+    items?: Array<GetFetchFileConfigItem>;
 }
 /**
  * 
@@ -2850,6 +3385,101 @@ export interface GetShipmentInventoryAllocations500Response {
      * @memberof GetShipmentInventoryAllocations500Response
      */
     message?: ShipmentInventoryAllocationResponse;
+}
+/**
+ * 
+ * @export
+ * @interface InvalidateCache200Response
+ */
+export interface InvalidateCache200Response {
+    /**
+     * 
+     * @type {string}
+     * @memberof InvalidateCache200Response
+     */
+    message?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InvalidateCache400Response
+ */
+export interface InvalidateCache400Response {
+    /**
+     * 
+     * @type {string}
+     * @memberof InvalidateCache400Response
+     */
+    error?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InvalidateCache500Response
+ */
+export interface InvalidateCache500Response {
+    /**
+     * 
+     * @type {string}
+     * @memberof InvalidateCache500Response
+     */
+    error?: string;
+}
+/**
+ * Request to invalidate a specific cache entry by its key
+ * @export
+ * @interface InvalidateCacheRequest
+ */
+export interface InvalidateCacheRequest {
+    /**
+     * Cache key to invalidate
+     * @type {string}
+     * @memberof InvalidateCacheRequest
+     */
+    cacheKey: string;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof InvalidateCacheRequest
+     */
+    locationCode?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof InvalidateCacheRequest
+     */
+    userID?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof InvalidateCacheRequest
+     */
+    pageSize?: number;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof InvalidateCacheRequest
+     */
+    pageNum?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof InvalidateCacheRequest
+     */
+    sortBy?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InvalidateCacheRequestAllOf
+ */
+export interface InvalidateCacheRequestAllOf {
+    /**
+     * Cache key to invalidate
+     * @type {string}
+     * @memberof InvalidateCacheRequestAllOf
+     */
+    cacheKey?: string;
 }
 /**
  * InventoryAllocationResponse Object
@@ -2887,6 +3517,12 @@ export interface InventoryAllocationResponse {
      * @memberof InventoryAllocationResponse
      */
     futureDate?: string;
+    /**
+     * External ID
+     * @type {string}
+     * @memberof InventoryAllocationResponse
+     */
+    externalId?: string;
     /**
      * Associative Map of <String, String> for tagCategoryName => tagName
      * @type {{ [key: string]: string; }}
@@ -2948,350 +3584,6 @@ export interface InventoryFutureInventory {
      * @memberof InventoryFutureInventory
      */
     createDate?: string;
-}
-/**
- * Inventory Response
- * @export
- * @interface InventoryInventoryResponse
- */
-export interface InventoryInventoryResponse {
-    /**
-     * Location Name
-     * @type {string}
-     * @memberof InventoryInventoryResponse
-     */
-    locationName?: string;
-    /**
-     * Location Code
-     * @type {string}
-     * @memberof InventoryInventoryResponse
-     */
-    locationCode?: string;
-    /**
-     * Tenant Identifier
-     * @type {number}
-     * @memberof InventoryInventoryResponse
-     */
-    tenantID?: number;
-    /**
-     * The quantity the location has in its possession
-     * @type {number}
-     * @memberof InventoryInventoryResponse
-     */
-    onHand?: number;
-    /**
-     * The quantity the location has that are available for purchase
-     * @type {number}
-     * @memberof InventoryInventoryResponse
-     */
-    available?: number;
-    /**
-     * The quantity the location has that are already allocated.
-     * @type {number}
-     * @memberof InventoryInventoryResponse
-     */
-    allocated?: number;
-    /**
-     * The quantity the location has that are pending.
-     * @type {number}
-     * @memberof InventoryInventoryResponse
-     */
-    pending?: number;
-    /**
-     * Part/Product Number
-     * @type {string}
-     * @memberof InventoryInventoryResponse
-     */
-    partNumber?: string;
-    /**
-     * Universal Product Code
-     * @type {string}
-     * @memberof InventoryInventoryResponse
-     */
-    upc?: string;
-    /**
-     * Stock Keeping Unit
-     * @type {string}
-     * @memberof InventoryInventoryResponse
-     */
-    sku?: string;
-    /**
-     * Whether or not the product is blocked for assignment
-     * @type {boolean}
-     * @memberof InventoryInventoryResponse
-     */
-    blockAssignment?: boolean;
-    /**
-     * Custom field used for store prioritization
-     * @type {number}
-     * @memberof InventoryInventoryResponse
-     */
-    ltd?: number;
-    /**
-     * Absolute minimum quantity of this item that should be in stock at any time
-     * @type {number}
-     * @memberof InventoryInventoryResponse
-     */
-    floor?: number;
-    /**
-     * Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
-     * @type {number}
-     * @memberof InventoryInventoryResponse
-     */
-    safetyStock?: number;
-    /**
-     * The distance in miles from this location to the item's destination
-     * @type {number}
-     * @memberof InventoryInventoryResponse
-     */
-    distance?: number;
-    /**
-     * Whether this location can ship to a consumer
-     * @type {boolean}
-     * @memberof InventoryInventoryResponse
-     */
-    directShip?: boolean;
-    /**
-     * Whether the location can ship to another location (store), thus restocking that location.
-     * @type {boolean}
-     * @memberof InventoryInventoryResponse
-     */
-    transferEnabled?: boolean;
-    /**
-     * Whether a consumer can pick up product at this location (store)
-     * @type {boolean}
-     * @memberof InventoryInventoryResponse
-     */
-    pickup?: boolean;
-    /**
-     * The country code of this location
-     * @type {string}
-     * @memberof InventoryInventoryResponse
-     */
-    countryCode?: string;
-    /**
-     * The currency identifier for the retailPrice
-     * @type {number}
-     * @memberof InventoryInventoryResponse
-     */
-    currencyID?: number;
-    /**
-     * The price of the product at this location
-     * @type {number}
-     * @memberof InventoryInventoryResponse
-     */
-    retailPrice?: number;
-    /**
-     * The inventory locator name of the individual item
-     * @type {string}
-     * @memberof InventoryInventoryResponse
-     */
-    inventoryLocatorName?: string;
-    /**
-     * List of Inventory Attributes
-     * @type {Array<string>}
-     * @memberof InventoryInventoryResponse
-     */
-    attributes?: Array<string>;
-    /**
-     * 
-     * @type {Array<InventoryTagQuantity>}
-     * @memberof InventoryInventoryResponse
-     */
-    taggedInventory?: Array<InventoryTagQuantity>;
-    /**
-     * 
-     * @type {Array<InventoryFutureInventory>}
-     * @memberof InventoryInventoryResponse
-     */
-    futureInventory?: Array<InventoryFutureInventory>;
-    /**
-     * External ID of the item
-     * @type {string}
-     * @memberof InventoryInventoryResponse
-     */
-    externalID?: string;
-    /**
-     * Flag for success
-     * @type {boolean}
-     * @memberof InventoryInventoryResponse
-     */
-    success?: boolean;
-    /**
-     * List of messages
-     * @type {Array<string>}
-     * @memberof InventoryInventoryResponse
-     */
-    messages?: Array<string>;
-    /**
-     * Number of results
-     * @type {number}
-     * @memberof InventoryInventoryResponse
-     */
-    numResults?: number;
-}
-/**
- * 
- * @export
- * @interface InventoryInventoryResponseAllOf
- */
-export interface InventoryInventoryResponseAllOf {
-    /**
-     * Location Name
-     * @type {string}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    locationName?: string;
-    /**
-     * Location Code
-     * @type {string}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    locationCode?: string;
-    /**
-     * Tenant Identifier
-     * @type {number}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    tenantID?: number;
-    /**
-     * The quantity the location has in its possession
-     * @type {number}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    onHand?: number;
-    /**
-     * The quantity the location has that are available for purchase
-     * @type {number}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    available?: number;
-    /**
-     * The quantity the location has that are already allocated.
-     * @type {number}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    allocated?: number;
-    /**
-     * The quantity the location has that are pending.
-     * @type {number}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    pending?: number;
-    /**
-     * Part/Product Number
-     * @type {string}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    partNumber?: string;
-    /**
-     * Universal Product Code
-     * @type {string}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    upc?: string;
-    /**
-     * Stock Keeping Unit
-     * @type {string}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    sku?: string;
-    /**
-     * Whether or not the product is blocked for assignment
-     * @type {boolean}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    blockAssignment?: boolean;
-    /**
-     * Custom field used for store prioritization
-     * @type {number}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    ltd?: number;
-    /**
-     * Absolute minimum quantity of this item that should be in stock at any time
-     * @type {number}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    floor?: number;
-    /**
-     * Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
-     * @type {number}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    safetyStock?: number;
-    /**
-     * The distance in miles from this location to the item's destination
-     * @type {number}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    distance?: number;
-    /**
-     * Whether this location can ship to a consumer
-     * @type {boolean}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    directShip?: boolean;
-    /**
-     * Whether the location can ship to another location (store), thus restocking that location.
-     * @type {boolean}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    transferEnabled?: boolean;
-    /**
-     * Whether a consumer can pick up product at this location (store)
-     * @type {boolean}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    pickup?: boolean;
-    /**
-     * The country code of this location
-     * @type {string}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    countryCode?: string;
-    /**
-     * The currency identifier for the retailPrice
-     * @type {number}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    currencyID?: number;
-    /**
-     * The price of the product at this location
-     * @type {number}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    retailPrice?: number;
-    /**
-     * The inventory locator name of the individual item
-     * @type {string}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    inventoryLocatorName?: string;
-    /**
-     * List of Inventory Attributes
-     * @type {Array<string>}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    attributes?: Array<string>;
-    /**
-     * 
-     * @type {Array<InventoryTagQuantity>}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    taggedInventory?: Array<InventoryTagQuantity>;
-    /**
-     * 
-     * @type {Array<InventoryFutureInventory>}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    futureInventory?: Array<InventoryFutureInventory>;
-    /**
-     * External ID of the item
-     * @type {string}
-     * @memberof InventoryInventoryResponseAllOf
-     */
-    externalID?: string;
 }
 /**
  * Item
@@ -3731,6 +4023,338 @@ export const InventoryRequestAllOfSortByEnumEnum = {
 } as const;
 export type InventoryRequestAllOfSortByEnumEnum = typeof InventoryRequestAllOfSortByEnumEnum[keyof typeof InventoryRequestAllOfSortByEnumEnum];
 
+/**
+ * Inventory Response
+ * @export
+ * @interface InventoryResponse
+ */
+export interface InventoryResponse {
+    /**
+     * Location Name
+     * @type {string}
+     * @memberof InventoryResponse
+     */
+    locationName?: string;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof InventoryResponse
+     */
+    locationCode?: string;
+    /**
+     * Tenant Identifier
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    tenantID?: number;
+    /**
+     * The quantity the location has in its possession
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    onHand?: number;
+    /**
+     * The quantity the location has that are available for purchase
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    available?: number;
+    /**
+     * The quantity the location has that are already allocated.
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    allocated?: number;
+    /**
+     * The quantity the location has that are pending.
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    pending?: number;
+    /**
+     * Part/Product Number
+     * @type {string}
+     * @memberof InventoryResponse
+     */
+    partNumber?: string;
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof InventoryResponse
+     */
+    upc?: string;
+    /**
+     * Stock Keeping Unit
+     * @type {string}
+     * @memberof InventoryResponse
+     */
+    sku?: string;
+    /**
+     * Whether or not the product is blocked for assignment
+     * @type {boolean}
+     * @memberof InventoryResponse
+     */
+    blockAssignment?: boolean;
+    /**
+     * Custom field used for store prioritization
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    ltd?: number;
+    /**
+     * Absolute minimum quantity of this item that should be in stock at any time
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    floor?: number;
+    /**
+     * Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    safetyStock?: number;
+    /**
+     * The distance in miles from this location to the item's destination
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    distance?: number;
+    /**
+     * Whether this location can ship to a consumer
+     * @type {boolean}
+     * @memberof InventoryResponse
+     */
+    directShip?: boolean;
+    /**
+     * Whether the location can ship to another location (store), thus restocking that location.
+     * @type {boolean}
+     * @memberof InventoryResponse
+     */
+    transferEnabled?: boolean;
+    /**
+     * Whether a consumer can pick up product at this location (store)
+     * @type {boolean}
+     * @memberof InventoryResponse
+     */
+    pickup?: boolean;
+    /**
+     * The country code of this location
+     * @type {string}
+     * @memberof InventoryResponse
+     */
+    countryCode?: string;
+    /**
+     * The currency identifier for the retailPrice
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    currencyID?: number;
+    /**
+     * The price of the product at this location
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    retailPrice?: number;
+    /**
+     * The inventory locator name of the individual item
+     * @type {string}
+     * @memberof InventoryResponse
+     */
+    inventoryLocatorName?: string;
+    /**
+     * List of Inventory Attributes
+     * @type {Array<string>}
+     * @memberof InventoryResponse
+     */
+    attributes?: Array<string>;
+    /**
+     * 
+     * @type {Array<InventoryTagQuantity>}
+     * @memberof InventoryResponse
+     */
+    taggedInventory?: Array<InventoryTagQuantity>;
+    /**
+     * 
+     * @type {Array<InventoryFutureInventory>}
+     * @memberof InventoryResponse
+     */
+    futureInventory?: Array<InventoryFutureInventory>;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof InventoryResponse
+     */
+    success?: boolean;
+    /**
+     * List of messages
+     * @type {Array<string>}
+     * @memberof InventoryResponse
+     */
+    messages?: Array<string>;
+    /**
+     * Number of results
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    numResults?: number;
+}
+/**
+ * 
+ * @export
+ * @interface InventoryResponseAllOf
+ */
+export interface InventoryResponseAllOf {
+    /**
+     * Location Name
+     * @type {string}
+     * @memberof InventoryResponseAllOf
+     */
+    locationName?: string;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof InventoryResponseAllOf
+     */
+    locationCode?: string;
+    /**
+     * Tenant Identifier
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    tenantID?: number;
+    /**
+     * The quantity the location has in its possession
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    onHand?: number;
+    /**
+     * The quantity the location has that are available for purchase
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    available?: number;
+    /**
+     * The quantity the location has that are already allocated.
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    allocated?: number;
+    /**
+     * The quantity the location has that are pending.
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    pending?: number;
+    /**
+     * Part/Product Number
+     * @type {string}
+     * @memberof InventoryResponseAllOf
+     */
+    partNumber?: string;
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof InventoryResponseAllOf
+     */
+    upc?: string;
+    /**
+     * Stock Keeping Unit
+     * @type {string}
+     * @memberof InventoryResponseAllOf
+     */
+    sku?: string;
+    /**
+     * Whether or not the product is blocked for assignment
+     * @type {boolean}
+     * @memberof InventoryResponseAllOf
+     */
+    blockAssignment?: boolean;
+    /**
+     * Custom field used for store prioritization
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    ltd?: number;
+    /**
+     * Absolute minimum quantity of this item that should be in stock at any time
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    floor?: number;
+    /**
+     * Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    safetyStock?: number;
+    /**
+     * The distance in miles from this location to the item's destination
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    distance?: number;
+    /**
+     * Whether this location can ship to a consumer
+     * @type {boolean}
+     * @memberof InventoryResponseAllOf
+     */
+    directShip?: boolean;
+    /**
+     * Whether the location can ship to another location (store), thus restocking that location.
+     * @type {boolean}
+     * @memberof InventoryResponseAllOf
+     */
+    transferEnabled?: boolean;
+    /**
+     * Whether a consumer can pick up product at this location (store)
+     * @type {boolean}
+     * @memberof InventoryResponseAllOf
+     */
+    pickup?: boolean;
+    /**
+     * The country code of this location
+     * @type {string}
+     * @memberof InventoryResponseAllOf
+     */
+    countryCode?: string;
+    /**
+     * The currency identifier for the retailPrice
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    currencyID?: number;
+    /**
+     * The price of the product at this location
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    retailPrice?: number;
+    /**
+     * The inventory locator name of the individual item
+     * @type {string}
+     * @memberof InventoryResponseAllOf
+     */
+    inventoryLocatorName?: string;
+    /**
+     * List of Inventory Attributes
+     * @type {Array<string>}
+     * @memberof InventoryResponseAllOf
+     */
+    attributes?: Array<string>;
+    /**
+     * 
+     * @type {Array<InventoryTagQuantity>}
+     * @memberof InventoryResponseAllOf
+     */
+    taggedInventory?: Array<InventoryTagQuantity>;
+    /**
+     * 
+     * @type {Array<InventoryFutureInventory>}
+     * @memberof InventoryResponseAllOf
+     */
+    futureInventory?: Array<InventoryFutureInventory>;
+}
 /**
  * Request/Response object for a tag
  * @export
@@ -4577,6 +5201,12 @@ export interface LocationResponse {
      */
     wmsEnabled?: boolean;
     /**
+     * Flag for whether the location is deliveryEnabled
+     * @type {boolean}
+     * @memberof LocationResponse
+     */
+    deliveryEnabled?: boolean;
+    /**
      * Flag for success
      * @type {boolean}
      * @memberof LocationResponse
@@ -4697,6 +5327,12 @@ export interface LocationResponseAllOf {
      * @memberof LocationResponseAllOf
      */
     wmsEnabled?: boolean;
+    /**
+     * Flag for whether the location is deliveryEnabled
+     * @type {boolean}
+     * @memberof LocationResponseAllOf
+     */
+    deliveryEnabled?: boolean;
 }
 /**
  * Delete Item Model
@@ -4742,239 +5378,465 @@ export interface MDeleteItem {
     itemIdentifier?: ProductIdentifier;
 }
 /**
- * Fetch File Config Model
+ * Order Item Information
  * @export
- * @interface MFetchFileConfig
+ * @interface OrderItemInformation
  */
-export interface MFetchFileConfig {
+export interface OrderItemInformation {
     /**
-     * Fetch File Config ID
+     * Order Identifier
      * @type {number}
-     * @memberof MFetchFileConfig
+     * @memberof OrderItemInformation
      */
-    fetchFileConfigID?: number;
+    orderID?: number;
     /**
-     * Tenant ID
+     * Order Item Identifier
      * @type {number}
-     * @memberof MFetchFileConfig
+     * @memberof OrderItemInformation
      */
-    tenantID?: number;
+    orderItemID?: number;
     /**
-     * Active
-     * @type {boolean}
-     * @memberof MFetchFileConfig
-     */
-    active?: boolean;
-    /**
-     * Failed Attempts
+     * Location Identifier
      * @type {number}
-     * @memberof MFetchFileConfig
+     * @memberof OrderItemInformation
      */
-    failedAttempts?: number;
+    locationID?: number;
     /**
-     * Time config was last modified
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    lastModified?: string;
-    /**
-     * Email List
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    emailList?: string;
-    /**
-     * Flag for Refresh Enabled
+     * Flag for whether the location is active
      * @type {boolean}
-     * @memberof MFetchFileConfig
+     * @memberof OrderItemInformation
      */
-    refreshEnabled?: boolean;
+    locationActive?: boolean;
     /**
-     * Description for the refresh file
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    refreshFileDescription?: string;
-    /**
-     * Flag for Update Enabled
-     * @type {boolean}
-     * @memberof MFetchFileConfig
-     */
-    updateEnabled?: boolean;
-    /**
-     * Description for the update file
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    updateFileDescription?: string;
-    /**
-     * FTP server address
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    ftpServer?: string;
-    /**
-     * FTP server username
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    ftpUsername?: string;
-    /**
-     * FTP server password
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    ftpPassword?: string;
-    /**
-     * FTP server port
+     * External Store Identifier
      * @type {number}
-     * @memberof MFetchFileConfig
+     * @memberof OrderItemInformation
      */
-    ftpPort?: number;
+    locationCode?: number;
     /**
-     * FTP server remote path
+     * Location Name
      * @type {string}
-     * @memberof MFetchFileConfig
+     * @memberof OrderItemInformation
      */
-    ftpRemotePath?: string;
+    locationName?: string;
     /**
-     * FTP server remote path archive
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    ftpRemotePathArchive?: string;
-    /**
-     * S3 Region
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    region?: string;
-    /**
-     * S3 Key
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    s3Key?: string;
-    /**
-     * S3 Secret
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    secret?: string;
-    /**
-     * S3 Bucket
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    bucket?: string;
-    /**
-     * S3 Bucket Path (directory)
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    s3Path?: string;
-    /**
-     * S3 Archive Bucket
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    archiveBucket?: string;
-    /**
-     * S3 Archive Bucket Path (directory)
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    s3ArchivePath?: string;
-    /**
-     * Lock name
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    lockName?: string;
-    /**
-     * Enum denoting action post processing
+     * Bin Identifier
      * @type {number}
-     * @memberof MFetchFileConfig
+     * @memberof OrderItemInformation
      */
-    postProcessAction?: number;
+    binID?: number;
     /**
-     * Flag for using control file
+     * Part/Product Number
+     * @type {string}
+     * @memberof OrderItemInformation
+     */
+    partNumber?: string;
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof OrderItemInformation
+     */
+    upc?: string;
+    /**
+     * Stock Keeping Unit
+     * @type {string}
+     * @memberof OrderItemInformation
+     */
+    sku?: string;
+    /**
+     * Custom field used for store prioritization
+     * @type {string}
+     * @memberof OrderItemInformation
+     */
+    ltd?: string;
+    /**
+     * Absolute minimum quantity of this item that should be in stock at any time
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    floor?: number;
+    /**
+     * Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    safetyStock?: number;
+    /**
+     * The quantity the location has in its possession
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    onHand?: number;
+    /**
+     * The quantity the location has that are available for purchase
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    available?: number;
+    /**
+     * The quantity the location has that are allocated
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    allocated?: number;
+    /**
+     * Total number of allocations
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    allocates?: number;
+    /**
+     * Total number of deallocations
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    deallocates?: number;
+    /**
+     * Total number of fulfillments. Should never be greater than 1.
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    fulfills?: number;
+    /**
+     * Total number of picks (WMS only)
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    picks?: number;
+    /**
+     * Pending quantity (WMS only)
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    pendingQuantity?: number;
+    /**
+     * Order Identifier
+     * @type {Array<OrderItemInformationEvent>}
+     * @memberof OrderItemInformation
+     */
+    events?: Array<OrderItemInformationEvent>;
+    /**
+     * Flag for success
      * @type {boolean}
-     * @memberof MFetchFileConfig
+     * @memberof OrderItemInformation
      */
-    useControlFile?: boolean;
+    success?: boolean;
     /**
-     * Flag for using multiple files
-     * @type {boolean}
-     * @memberof MFetchFileConfig
-     */
-    multipleFiles?: boolean;
-    /**
-     * Flag for converting negatives to zero
-     * @type {boolean}
-     * @memberof MFetchFileConfig
-     */
-    zeroOutNegatives?: boolean;
-    /**
-     * List of field names
+     * List of messages
      * @type {Array<string>}
-     * @memberof MFetchFileConfig
+     * @memberof OrderItemInformation
      */
-    fieldNameMap?: Array<string>;
+    messages?: Array<string>;
     /**
-     * Flag for ignoring extra fields
-     * @type {boolean}
-     * @memberof MFetchFileConfig
-     */
-    ignoreExtraFields?: boolean;
-    /**
-     * Flag to convert null quantities to zero
-     * @type {boolean}
-     * @memberof MFetchFileConfig
-     */
-    blankQuantityIsZero?: boolean;
-    /**
-     * CSV Delimiter
-     * @type {string}
-     * @memberof MFetchFileConfig
-     */
-    csvDelimiter?: string;
-    /**
-     * Flag for exporting after refresh
-     * @type {boolean}
-     * @memberof MFetchFileConfig
-     */
-    exportAfterRefresh?: boolean;
-    /**
-     * Export id post import
+     * Number of results
      * @type {number}
-     * @memberof MFetchFileConfig
+     * @memberof OrderItemInformation
      */
-    postImportExportId?: number;
+    numResults?: number;
+}
+/**
+ * 
+ * @export
+ * @interface OrderItemInformationAllOf
+ */
+export interface OrderItemInformationAllOf {
     /**
-     * FTP id post import
+     * Order Identifier
      * @type {number}
-     * @memberof MFetchFileConfig
+     * @memberof OrderItemInformationAllOf
      */
-    postImportFtpId?: number;
+    orderID?: number;
     /**
-     * Enum for fetch file mapping
-     * @type {string}
-     * @memberof MFetchFileConfig
+     * Order Item Identifier
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
      */
-    productMapping?: MFetchFileConfigProductMappingEnum;
+    orderItemID?: number;
+    /**
+     * Location Identifier
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    locationID?: number;
+    /**
+     * Flag for whether the location is active
+     * @type {boolean}
+     * @memberof OrderItemInformationAllOf
+     */
+    locationActive?: boolean;
+    /**
+     * External Store Identifier
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    locationCode?: number;
+    /**
+     * Location Name
+     * @type {string}
+     * @memberof OrderItemInformationAllOf
+     */
+    locationName?: string;
+    /**
+     * Bin Identifier
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    binID?: number;
+    /**
+     * Part/Product Number
+     * @type {string}
+     * @memberof OrderItemInformationAllOf
+     */
+    partNumber?: string;
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof OrderItemInformationAllOf
+     */
+    upc?: string;
+    /**
+     * Stock Keeping Unit
+     * @type {string}
+     * @memberof OrderItemInformationAllOf
+     */
+    sku?: string;
+    /**
+     * Custom field used for store prioritization
+     * @type {string}
+     * @memberof OrderItemInformationAllOf
+     */
+    ltd?: string;
+    /**
+     * Absolute minimum quantity of this item that should be in stock at any time
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    floor?: number;
+    /**
+     * Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    safetyStock?: number;
+    /**
+     * The quantity the location has in its possession
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    onHand?: number;
+    /**
+     * The quantity the location has that are available for purchase
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    available?: number;
+    /**
+     * The quantity the location has that are allocated
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    allocated?: number;
+    /**
+     * Total number of allocations
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    allocates?: number;
+    /**
+     * Total number of deallocations
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    deallocates?: number;
+    /**
+     * Total number of fulfillments. Should never be greater than 1.
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    fulfills?: number;
+    /**
+     * Total number of picks (WMS only)
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    picks?: number;
+    /**
+     * Pending quantity (WMS only)
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    pendingQuantity?: number;
+    /**
+     * Order Identifier
+     * @type {Array<OrderItemInformationEvent>}
+     * @memberof OrderItemInformationAllOf
+     */
+    events?: Array<OrderItemInformationEvent>;
+}
+/**
+ * Order Item Information Event
+ * @export
+ * @interface OrderItemInformationEvent
+ */
+export interface OrderItemInformationEvent {
+    /**
+     * Date of the event
+     * @type {string}
+     * @memberof OrderItemInformationEvent
+     */
+    date?: string;
+    /**
+     * Type of event
+     * @type {string}
+     * @memberof OrderItemInformationEvent
+     */
+    eventType?: OrderItemInformationEventEventTypeEnum;
+    /**
+     * Quantity
+     * @type {number}
+     * @memberof OrderItemInformationEvent
+     */
+    quantity?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof OrderItemInformationEvent
+     */
+    success?: boolean;
+    /**
+     * List of messages
+     * @type {Array<string>}
+     * @memberof OrderItemInformationEvent
+     */
+    messages?: Array<string>;
+    /**
+     * Number of results
+     * @type {number}
+     * @memberof OrderItemInformationEvent
+     */
+    numResults?: number;
 }
 
 
 /**
  * @export
  */
-export const MFetchFileConfigProductMappingEnum = {
-    PartNumberWithUpc: 'SWAP_PART_NUMBER_WITH_UPC',
-    SkuWithUpc: 'SWAP_SKU_WITH_UPC'
+export const OrderItemInformationEventEventTypeEnum = {
+    Allocated: 'ALLOCATED',
+    Deallocated: 'DEALLOCATED',
+    Fulfilled: 'FULFILLED',
+    Picked: 'PICKED',
+    DeallocateFulfill: 'DEALLOCATE_FULFILL'
 } as const;
-export type MFetchFileConfigProductMappingEnum = typeof MFetchFileConfigProductMappingEnum[keyof typeof MFetchFileConfigProductMappingEnum];
+export type OrderItemInformationEventEventTypeEnum = typeof OrderItemInformationEventEventTypeEnum[keyof typeof OrderItemInformationEventEventTypeEnum];
 
+/**
+ * 
+ * @export
+ * @interface OrderItemInformationEventAllOf
+ */
+export interface OrderItemInformationEventAllOf {
+    /**
+     * Date of the event
+     * @type {string}
+     * @memberof OrderItemInformationEventAllOf
+     */
+    date?: string;
+    /**
+     * Type of event
+     * @type {string}
+     * @memberof OrderItemInformationEventAllOf
+     */
+    eventType?: OrderItemInformationEventAllOfEventTypeEnum;
+    /**
+     * Quantity
+     * @type {number}
+     * @memberof OrderItemInformationEventAllOf
+     */
+    quantity?: number;
+}
+
+
+/**
+ * @export
+ */
+export const OrderItemInformationEventAllOfEventTypeEnum = {
+    Allocated: 'ALLOCATED',
+    Deallocated: 'DEALLOCATED',
+    Fulfilled: 'FULFILLED',
+    Picked: 'PICKED',
+    DeallocateFulfill: 'DEALLOCATE_FULFILL'
+} as const;
+export type OrderItemInformationEventAllOfEventTypeEnum = typeof OrderItemInformationEventAllOfEventTypeEnum[keyof typeof OrderItemInformationEventAllOfEventTypeEnum];
+
+/**
+ * Request for getting order item information
+ * @export
+ * @interface OrderItemInformationRequest
+ */
+export interface OrderItemInformationRequest {
+    /**
+     * Order Identifier
+     * @type {number}
+     * @memberof OrderItemInformationRequest
+     */
+    orderID?: number;
+    /**
+     * List of Items to search on
+     * @type {Array<InventoryItem>}
+     * @memberof OrderItemInformationRequest
+     */
+    items?: Array<InventoryItem>;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof OrderItemInformationRequest
+     */
+    locationCode?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof OrderItemInformationRequest
+     */
+    userID?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof OrderItemInformationRequest
+     */
+    pageSize?: number;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof OrderItemInformationRequest
+     */
+    pageNum?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof OrderItemInformationRequest
+     */
+    sortBy?: string;
+}
+/**
+ * 
+ * @export
+ * @interface OrderItemInformationRequestAllOf
+ */
+export interface OrderItemInformationRequestAllOf {
+    /**
+     * Order Identifier
+     * @type {number}
+     * @memberof OrderItemInformationRequestAllOf
+     */
+    orderID?: number;
+    /**
+     * List of Items to search on
+     * @type {Array<InventoryItem>}
+     * @memberof OrderItemInformationRequestAllOf
+     */
+    items?: Array<InventoryItem>;
+}
 /**
  * Product Identifier Model
  * @export
@@ -5357,11 +6219,35 @@ export interface RefreshItem {
      */
     deliveryDate?: string;
     /**
-     * External ID of the item
+     * External Identifier for the given future inventory record. Will not create a new future inventory record unless deliveryDate is specified
      * @type {string}
      * @memberof RefreshItem
      */
     externalID?: string;
+    /**
+     * Track which lot a product is manufactured in
+     * @type {string}
+     * @memberof RefreshItem
+     */
+    lotCode?: string;
+    /**
+     * Describes the state of the product
+     * @type {string}
+     * @memberof RefreshItem
+     */
+    condition?: string;
+    /**
+     * A serial number is unique to a specific, physical unit of inventory
+     * @type {string}
+     * @memberof RefreshItem
+     */
+    serialNumber?: string;
+    /**
+     * Used by the retailer for storing information related to manufacturing date or expiry date and use date to allocate for better stock management
+     * @type {string}
+     * @memberof RefreshItem
+     */
+    date?: string;
 }
 /**
  * Request needed for refreshing inventory
@@ -5646,6 +6532,18 @@ export interface TenantSiloConfigModel {
      */
     eventSenderWorkers?: number;
     /**
+     * Number of Non-Batch Workers to run for this tenant.
+     * @type {number}
+     * @memberof TenantSiloConfigModel
+     */
+    nonBatchWorkers?: number;
+    /**
+     * Whether to isolate non-batch jobs or not
+     * @type {boolean}
+     * @memberof TenantSiloConfigModel
+     */
+    isolateNonBatchJobs?: boolean;
+    /**
      * A Tenant ID
      * @type {number}
      * @memberof TenantSiloConfigModel
@@ -5676,6 +6574,24 @@ export interface TransitionCartItem {
      * @memberof TransitionCartItem
      */
     shipmentID: number;
+    /**
+     * Expected format '2020-09-28T12:00:00-0500'
+     * @type {string}
+     * @memberof TransitionCartItem
+     */
+    futureDate?: string;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof TransitionCartItem
+     */
+    locationCode?: string;
+    /**
+     * If provided, overrides the order item ID (orderItemID) in the db records
+     * @type {number}
+     * @memberof TransitionCartItem
+     */
+    transitionItemID?: number;
 }
 /**
  * Request needed for transitioning cart allocations to order/shipment allocations
@@ -6055,6 +6971,142 @@ export interface UpdateExportSettingsFTPResponseAllOf {
     exportSettingsName?: string;
 }
 /**
+ * Update Export Settings Gcs Response
+ * @export
+ * @interface UpdateExportSettingsGCSResponse
+ */
+export interface UpdateExportSettingsGCSResponse {
+    /**
+     * Tenant ID
+     * @type {number}
+     * @memberof UpdateExportSettingsGCSResponse
+     */
+    tenantID?: number;
+    /**
+     * Export Settings Gcs ID
+     * @type {number}
+     * @memberof UpdateExportSettingsGCSResponse
+     */
+    exportSettingsGcsID?: number;
+    /**
+     * Export Settings ID to associate the Gcs settings with
+     * @type {number}
+     * @memberof UpdateExportSettingsGCSResponse
+     */
+    exportSettingsID?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof UpdateExportSettingsGCSResponse
+     */
+    success?: boolean;
+    /**
+     * List of messages
+     * @type {Array<string>}
+     * @memberof UpdateExportSettingsGCSResponse
+     */
+    messages?: Array<string>;
+    /**
+     * Number of results
+     * @type {number}
+     * @memberof UpdateExportSettingsGCSResponse
+     */
+    numResults?: number;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateExportSettingsGCSResponseAllOf
+ */
+export interface UpdateExportSettingsGCSResponseAllOf {
+    /**
+     * Tenant ID
+     * @type {number}
+     * @memberof UpdateExportSettingsGCSResponseAllOf
+     */
+    tenantID?: number;
+    /**
+     * Export Settings Gcs ID
+     * @type {number}
+     * @memberof UpdateExportSettingsGCSResponseAllOf
+     */
+    exportSettingsGcsID?: number;
+    /**
+     * Export Settings ID to associate the Gcs settings with
+     * @type {number}
+     * @memberof UpdateExportSettingsGCSResponseAllOf
+     */
+    exportSettingsID?: number;
+}
+/**
+ * Request needed for updating existing Export Settings GCS
+ * @export
+ * @interface UpdateExportSettingsGcsRequest
+ */
+export interface UpdateExportSettingsGcsRequest {
+    /**
+     * Export Settings Name to associate the ftp settings with
+     * @type {string}
+     * @memberof UpdateExportSettingsGcsRequest
+     */
+    exportSettingsName: string;
+    /**
+     * 
+     * @type {ExportSettingsGcs}
+     * @memberof UpdateExportSettingsGcsRequest
+     */
+    exportSettingsGcs: ExportSettingsGcs;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof UpdateExportSettingsGcsRequest
+     */
+    locationCode?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof UpdateExportSettingsGcsRequest
+     */
+    userID?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof UpdateExportSettingsGcsRequest
+     */
+    pageSize?: number;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof UpdateExportSettingsGcsRequest
+     */
+    pageNum?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof UpdateExportSettingsGcsRequest
+     */
+    sortBy?: string;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateExportSettingsGcsRequestAllOf
+ */
+export interface UpdateExportSettingsGcsRequestAllOf {
+    /**
+     * Export Settings Name to associate the ftp settings with
+     * @type {string}
+     * @memberof UpdateExportSettingsGcsRequestAllOf
+     */
+    exportSettingsName?: string;
+    /**
+     * 
+     * @type {ExportSettingsGcs}
+     * @memberof UpdateExportSettingsGcsRequestAllOf
+     */
+    exportSettingsGcs?: ExportSettingsGcs;
+}
+/**
  * Request needed updating existing Export Settings
  * @export
  * @interface UpdateExportSettingsRequest
@@ -6294,4 +7346,10 @@ export interface UpdateTenantSiloConfigRequest {
      * @memberof UpdateTenantSiloConfigRequest
      */
     eventSenderWorkers?: number;
+    /**
+     * Number of event dedicated non-batch workers to run for this silo.
+     * @type {number}
+     * @memberof UpdateTenantSiloConfigRequest
+     */
+    nonBatchWorkers?: number;
 }

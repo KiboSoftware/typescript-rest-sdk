@@ -1,6 +1,6 @@
-apis/DiscountRuntimeApi.ts
-apis/TaxCapabilityApi.ts
-apis/TaxRuntimeApi.ts
+apis/DiscountsApi.ts
+apis/ProductsApi.ts
+apis/TaxesApi.ts
 apis/index.ts
 index.ts
 models/index.ts

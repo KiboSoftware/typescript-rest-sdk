@@ -42,6 +42,7 @@ export namespace productsApiParams {
         variationProductCodeFilter?: string;
         useSubscriptionPricing?: boolean;
         subscriptionFrequency?: string;
+        customerSegments?: string;
         responseFields?: string;
         productOptionSelections?: ProductOptionSelections;
     }
@@ -59,6 +60,7 @@ export namespace productsApiParams {
         sliceValue?: string;
         includeAllImages?: boolean;
         useSubscriptionPricing?: boolean;
+        customerSegments?: string;
         responseFields?: string;
     }
     export interface StorefrontGetProductCostsRequest {
@@ -81,6 +83,8 @@ export namespace productsApiParams {
         locationCodes?: string;
         includeFutureInventory?: boolean;
         includeSegmentedInventory?: boolean;
+        serialNumber?: string;
+        condition?: string;
         responseFields?: string;
     }
     export interface StorefrontGetProductsRequest {
@@ -96,10 +100,13 @@ export namespace productsApiParams {
         includeAllImages?: boolean;
         useSubscriptionPricing?: boolean;
         includeProductDetailsOnlyProperty?: boolean;
+        collapse?: boolean;
+        customerSegments?: string;
         responseFields?: string;
     }
     export interface StorefrontProductSubstitutionsRequest {
         productCode: string;
+        preferredProductCode?: string;
         responseFields?: string;
     }
     export interface StorefrontValidateDiscountsRequest {
@@ -142,6 +149,7 @@ export interface ProductsApiService {
     * @param {string} [variationProductCodeFilter] 
     * @param {boolean} [useSubscriptionPricing] 
     * @param {string} [subscriptionFrequency] 
+    * @param {string} [customerSegments] 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {ProductOptionSelections} [productOptionSelections] Shopper-selected options.
     * @param {*} [options] Override http request option.
@@ -172,6 +180,7 @@ export interface ProductsApiService {
     * @param {string} [sliceValue] 
     * @param {boolean} [includeAllImages] 
     * @param {boolean} [useSubscriptionPricing] 
+    * @param {string} [customerSegments] 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -246,6 +255,8 @@ export interface ProductsApiService {
     * @param {string} [locationCodes] 
     * @param {boolean} [includeFutureInventory] 
     * @param {boolean} [includeSegmentedInventory] 
+    * @param {string} [serialNumber] 
+    * @param {string} [condition] 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -274,6 +285,8 @@ export interface ProductsApiService {
     * @param {boolean} [includeAllImages] Optional. If true return all images instead of default images.
     * @param {boolean} [useSubscriptionPricing] 
     * @param {boolean} [includeProductDetailsOnlyProperty] 
+    * @param {boolean} [collapse] 
+    * @param {string} [customerSegments] 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -291,6 +304,7 @@ export interface ProductsApiService {
     * Returns a list of up to 10 products that can be substituted for the provided product code.
     * @summary Get product substitutions
     * @param {string} productCode 
+    * @param {string} [preferredProductCode] 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -403,6 +417,10 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiService {
             queryParameters['subscriptionFrequency'] = requestParameters.subscriptionFrequency;
         }
 
+        if (requestParameters.customerSegments !== undefined) {
+            queryParameters['customerSegments'] = requestParameters.customerSegments;
+        }
+
         if (requestParameters.responseFields !== undefined) {
             queryParameters['responseFields'] = requestParameters.responseFields;
         }
@@ -496,6 +514,10 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiService {
 
         if (requestParameters.useSubscriptionPricing !== undefined) {
             queryParameters['useSubscriptionPricing'] = requestParameters.useSubscriptionPricing;
+        }
+
+        if (requestParameters.customerSegments !== undefined) {
+            queryParameters['customerSegments'] = requestParameters.customerSegments;
         }
 
         if (requestParameters.responseFields !== undefined) {
@@ -696,6 +718,14 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiService {
             queryParameters['includeSegmentedInventory'] = requestParameters.includeSegmentedInventory;
         }
 
+        if (requestParameters.serialNumber !== undefined) {
+            queryParameters['serialNumber'] = requestParameters.serialNumber;
+        }
+
+        if (requestParameters.condition !== undefined) {
+            queryParameters['condition'] = requestParameters.condition;
+        }
+
         if (requestParameters.responseFields !== undefined) {
             queryParameters['responseFields'] = requestParameters.responseFields;
         }
@@ -784,6 +814,14 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiService {
             queryParameters['includeProductDetailsOnlyProperty'] = requestParameters.includeProductDetailsOnlyProperty;
         }
 
+        if (requestParameters.collapse !== undefined) {
+            queryParameters['collapse'] = requestParameters.collapse;
+        }
+
+        if (requestParameters.customerSegments !== undefined) {
+            queryParameters['customerSegments'] = requestParameters.customerSegments;
+        }
+
         if (requestParameters.responseFields !== undefined) {
             queryParameters['responseFields'] = requestParameters.responseFields;
         }
@@ -827,6 +865,10 @@ export class ProductsApi extends runtime.BaseAPI implements ProductsApiService {
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters.preferredProductCode !== undefined) {
+            queryParameters['preferredProductCode'] = requestParameters.preferredProductCode;
+        }
 
         if (requestParameters.responseFields !== undefined) {
             queryParameters['responseFields'] = requestParameters.responseFields;

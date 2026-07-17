@@ -19,6 +19,7 @@ import type {
   CommerceRuntimeOrderItem,
   CommerceRuntimeShippingRate,
   FulfillmentInfo,
+  ItemQuantityUpdate,
   Quote,
   QuoteAdjustment,
   QuoteCollection,
@@ -156,6 +157,7 @@ export namespace quoteApiParams {
         quoteId: string;
         quoteItemId: string;
         price: number;
+        isOverRidePriceSalePrice?: boolean;
         updateMode?: string;
         responseFields?: string;
     }
@@ -165,6 +167,7 @@ export namespace quoteApiParams {
         quantity: number;
         updateMode?: string;
         responseFields?: string;
+        itemQuantityUpdate?: ItemQuantityUpdate;
     }
     export interface UpdateQuoteRequest {
         quoteId: string;
@@ -486,7 +489,7 @@ export interface QuoteApiService {
     /**
     * Retrieves a list of B2B Quotes according to any specified filter criteria and sort options.
     * @summary Get Quotes
-    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.               For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
+    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin.               For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;50. The default value is 0. Optional.
     * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
     * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
     * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals,               gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
@@ -603,6 +606,7 @@ export interface QuoteApiService {
     * @param {string} quoteId Unique identifier of the quote.
     * @param {string} quoteItemId Unique identifier of the quote item.
     * @param {number} price New Price for the specified quote item.
+    * @param {boolean} [isOverRidePriceSalePrice] Indicate override price is sale price or list price.
     * @param {string} [updateMode] 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
@@ -625,6 +629,7 @@ export interface QuoteApiService {
     * @param {number} quantity New quantity for the specified quote item.
     * @param {string} [updateMode] 
     * @param {string} [responseFields] limits which fields are returned in the response body
+    * @param {ItemQuantityUpdate} [itemQuantityUpdate] Update fields on the item.
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof QuoteApiInterface
@@ -1814,6 +1819,10 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiService {
 
         const queryParameters: any = {};
 
+        if (requestParameters.isOverRidePriceSalePrice !== undefined) {
+            queryParameters['isOverRidePriceSalePrice'] = requestParameters.isOverRidePriceSalePrice;
+        }
+
         if (requestParameters.updateMode !== undefined) {
             queryParameters['updateMode'] = requestParameters.updateMode;
         }
@@ -1880,6 +1889,8 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiService {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        headerParameters['Content-Type'] = 'application/json';
+
 
 
 
@@ -1891,6 +1902,7 @@ export class QuoteApi extends runtime.BaseAPI implements QuoteApiService {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
+            body: requestParameters.itemQuantityUpdate,
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response);

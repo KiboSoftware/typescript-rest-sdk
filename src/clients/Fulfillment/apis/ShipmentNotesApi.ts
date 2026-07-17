@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Kibo Fulfillment API - Production Profile
- * REST API backing the Kibo Fulfiller User Interface
+ * Kibo Fulfillment Service
+ * OpenAPI Spec for Kibo Fulfillment Service
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -16,26 +16,28 @@
 import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
 import type {
-  EntityModelOfShipment,
-  FulfillmentAPIProductionProfileShipmentNote,
+  EntityModelShipmentDto,
+  ErrorItem,
+  RemoveSpecificShipmentFromConsolidationGroup400Response,
+  ShipmentNoteDto,
 } from '../models';
 
 
 export namespace shipmentNotesApiParams { 
     export interface DeleteShipmentNoteRequest {
-        noteId: string;
         shipmentNumber: number;
+        noteId: string;
         ifMatch?: string;
     }
     export interface NewShipmentNoteRequest {
         shipmentNumber: number;
-        shipmentNoteDto: FulfillmentAPIProductionProfileShipmentNote;
+        shipmentNoteDto: ShipmentNoteDto;
         ifMatch?: string;
     }
     export interface UpdateShipmentNoteRequest {
-        noteId: string;
         shipmentNumber: number;
-        shipmentNoteDto: FulfillmentAPIProductionProfileShipmentNote;
+        noteId: string;
+        shipmentNoteDto: ShipmentNoteDto;
         ifMatch?: string;
     }
 }
@@ -47,11 +49,11 @@ export namespace shipmentNotesApiParams {
 */
 export interface ShipmentNotesApiService {
     /**
-    * deleteShipmentNote
-    * @summary deleteShipmentNote
-    * @param {string} noteId noteId
-    * @param {number} shipmentNumber shipmentNumber
-    * @param {string} [ifMatch] If-Match
+    * Delete Shipment Note
+    * @summary Delete Shipment Note
+    * @param {number} shipmentNumber 
+    * @param {string} noteId 
+    * @param {string} [ifMatch] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentNotesApiInterface
@@ -59,47 +61,47 @@ export interface ShipmentNotesApiService {
     deleteShipmentNoteRaw(requestParameters: shipmentNotesApiParams.DeleteShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * deleteShipmentNote
-    * deleteShipmentNote
+    * Delete Shipment Note
+    * Delete Shipment Note
     */
     deleteShipmentNote(requestParameters: shipmentNotesApiParams.DeleteShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * newShipmentNote
-    * @summary newShipmentNote
-    * @param {number} shipmentNumber shipmentNumber
-    * @param {FulfillmentAPIProductionProfileShipmentNote} shipmentNoteDto shipmentNoteDto
-    * @param {string} [ifMatch] If-Match
+    * Create Shipment Note
+    * @summary Create Shipment Note
+    * @param {number} shipmentNumber 
+    * @param {ShipmentNoteDto} shipmentNoteDto 
+    * @param {string} [ifMatch] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentNotesApiInterface
     */
-    newShipmentNoteRaw(requestParameters: shipmentNotesApiParams.NewShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+    newShipmentNoteRaw(requestParameters: shipmentNotesApiParams.NewShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShipmentNoteDto>>;
 
     /**
-    * newShipmentNote
-    * newShipmentNote
+    * Create Shipment Note
+    * Create Shipment Note
     */
-    newShipmentNote(requestParameters: shipmentNotesApiParams.NewShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+    newShipmentNote(requestParameters: shipmentNotesApiParams.NewShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShipmentNoteDto>;
 
     /**
-    * updateShipmentNote
-    * @summary updateShipmentNote
-    * @param {string} noteId noteId
-    * @param {number} shipmentNumber shipmentNumber
-    * @param {FulfillmentAPIProductionProfileShipmentNote} shipmentNoteDto shipmentNoteDto
-    * @param {string} [ifMatch] If-Match
+    * Update Shipment Note
+    * @summary Update Shipment Note
+    * @param {number} shipmentNumber 
+    * @param {string} noteId 
+    * @param {ShipmentNoteDto} shipmentNoteDto 
+    * @param {string} [ifMatch] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentNotesApiInterface
     */
-    updateShipmentNoteRaw(requestParameters: shipmentNotesApiParams.UpdateShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>>;
+    updateShipmentNoteRaw(requestParameters: shipmentNotesApiParams.UpdateShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelShipmentDto>>;
 
     /**
-    * updateShipmentNote
-    * updateShipmentNote
+    * Update Shipment Note
+    * Update Shipment Note
     */
-    updateShipmentNote(requestParameters: shipmentNotesApiParams.UpdateShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment>;
+    updateShipmentNote(requestParameters: shipmentNotesApiParams.UpdateShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelShipmentDto>;
 
 }
 
@@ -113,18 +115,18 @@ export class ShipmentNotesApi extends runtime.BaseAPI implements ShipmentNotesAp
         this.basePathTemplate = basePathTemplate
     }
     /**
-     * deleteShipmentNote
-     * deleteShipmentNote
+     * Delete Shipment Note
+     * Delete Shipment Note
      */
 
 
     async deleteShipmentNoteRaw(requestParameters: shipmentNotesApiParams.DeleteShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.noteId === null || requestParameters.noteId === undefined) {
-            throw new runtime.RequiredError('noteId','Required parameter requestParameters.noteId was null or undefined when calling deleteShipmentNote.');
-        }
-
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling deleteShipmentNote.');
+        }
+
+        if (requestParameters.noteId === null || requestParameters.noteId === undefined) {
+            throw new runtime.RequiredError('noteId','Required parameter requestParameters.noteId was null or undefined when calling deleteShipmentNote.');
         }
 
         const queryParameters: any = {};
@@ -142,7 +144,7 @@ export class ShipmentNotesApi extends runtime.BaseAPI implements ShipmentNotesAp
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
-            path: `/commerce/shipments/{shipmentNumber}/notes/{noteId}`.replace(`{${"noteId"}}`, encodeURIComponent(String(requestParameters.noteId))).replace(`{${"shipmentNumber"}}`, encodeURIComponent(String(requestParameters.shipmentNumber))),
+            path: `/commerce/shipments/{shipmentNumber}/notes/{noteId}`.replace(`{${"shipmentNumber"}}`, encodeURIComponent(String(requestParameters.shipmentNumber))).replace(`{${"noteId"}}`, encodeURIComponent(String(requestParameters.noteId))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -152,20 +154,20 @@ export class ShipmentNotesApi extends runtime.BaseAPI implements ShipmentNotesAp
     }
 
     /**
-     * deleteShipmentNote
-     * deleteShipmentNote
+     * Delete Shipment Note
+     * Delete Shipment Note
      */
     async deleteShipmentNote(requestParameters: shipmentNotesApiParams.DeleteShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteShipmentNoteRaw(requestParameters, initOverrides);
     }
 
     /**
-     * newShipmentNote
-     * newShipmentNote
+     * Create Shipment Note
+     * Create Shipment Note
      */
 
 
-    async newShipmentNoteRaw(requestParameters: shipmentNotesApiParams.NewShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
+    async newShipmentNoteRaw(requestParameters: shipmentNotesApiParams.NewShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ShipmentNoteDto>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling newShipmentNote.');
         }
@@ -202,27 +204,27 @@ export class ShipmentNotesApi extends runtime.BaseAPI implements ShipmentNotesAp
     }
 
     /**
-     * newShipmentNote
-     * newShipmentNote
+     * Create Shipment Note
+     * Create Shipment Note
      */
-    async newShipmentNote(requestParameters: shipmentNotesApiParams.NewShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+    async newShipmentNote(requestParameters: shipmentNotesApiParams.NewShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShipmentNoteDto> {
         const response = await this.newShipmentNoteRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * updateShipmentNote
-     * updateShipmentNote
+     * Update Shipment Note
+     * Update Shipment Note
      */
 
 
-    async updateShipmentNoteRaw(requestParameters: shipmentNotesApiParams.UpdateShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelOfShipment>> {
-        if (requestParameters.noteId === null || requestParameters.noteId === undefined) {
-            throw new runtime.RequiredError('noteId','Required parameter requestParameters.noteId was null or undefined when calling updateShipmentNote.');
-        }
-
+    async updateShipmentNoteRaw(requestParameters: shipmentNotesApiParams.UpdateShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EntityModelShipmentDto>> {
         if (requestParameters.shipmentNumber === null || requestParameters.shipmentNumber === undefined) {
             throw new runtime.RequiredError('shipmentNumber','Required parameter requestParameters.shipmentNumber was null or undefined when calling updateShipmentNote.');
+        }
+
+        if (requestParameters.noteId === null || requestParameters.noteId === undefined) {
+            throw new runtime.RequiredError('noteId','Required parameter requestParameters.noteId was null or undefined when calling updateShipmentNote.');
         }
 
         if (requestParameters.shipmentNoteDto === null || requestParameters.shipmentNoteDto === undefined) {
@@ -246,7 +248,7 @@ export class ShipmentNotesApi extends runtime.BaseAPI implements ShipmentNotesAp
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
-            path: `/commerce/shipments/{shipmentNumber}/notes/{noteId}`.replace(`{${"noteId"}}`, encodeURIComponent(String(requestParameters.noteId))).replace(`{${"shipmentNumber"}}`, encodeURIComponent(String(requestParameters.shipmentNumber))),
+            path: `/commerce/shipments/{shipmentNumber}/notes/{noteId}`.replace(`{${"shipmentNumber"}}`, encodeURIComponent(String(requestParameters.shipmentNumber))).replace(`{${"noteId"}}`, encodeURIComponent(String(requestParameters.noteId))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
@@ -257,10 +259,10 @@ export class ShipmentNotesApi extends runtime.BaseAPI implements ShipmentNotesAp
     }
 
     /**
-     * updateShipmentNote
-     * updateShipmentNote
+     * Update Shipment Note
+     * Update Shipment Note
      */
-    async updateShipmentNote(requestParameters: shipmentNotesApiParams.UpdateShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelOfShipment> {
+    async updateShipmentNote(requestParameters: shipmentNotesApiParams.UpdateShipmentNoteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EntityModelShipmentDto> {
         const response = await this.updateShipmentNoteRaw(requestParameters, initOverrides);
         return await response.value();
     }

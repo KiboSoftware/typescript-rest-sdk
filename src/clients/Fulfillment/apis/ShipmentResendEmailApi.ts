@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Kibo Fulfillment API - Production Profile
- * REST API backing the Kibo Fulfiller User Interface
+ * Kibo Fulfillment Service
+ * OpenAPI Spec for Kibo Fulfillment Service
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -15,6 +15,10 @@
 
 import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
+import type {
+  ErrorItem,
+  RemoveSpecificShipmentFromConsolidationGroup400Response,
+} from '../models';
 
 
 export namespace shipmentResendEmailApiParams { 
@@ -33,9 +37,9 @@ export namespace shipmentResendEmailApiParams {
 */
 export interface ShipmentResendEmailApiService {
     /**
-    * resendShipmentCancelEmail
-    * @summary resendShipmentCancelEmail
-    * @param {number} shipmentNumber shipmentNumber
+    * Re-send Cancelled Shipment Email
+    * @summary Re-send Cancelled Shipment Email
+    * @param {number} shipmentNumber 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentResendEmailApiInterface
@@ -43,15 +47,15 @@ export interface ShipmentResendEmailApiService {
     resendShipmentCancelEmailRaw(requestParameters: shipmentResendEmailApiParams.ResendShipmentCancelEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * resendShipmentCancelEmail
-    * resendShipmentCancelEmail
+    * Re-send Cancelled Shipment Email
+    * Re-send Cancelled Shipment Email
     */
     resendShipmentCancelEmail(requestParameters: shipmentResendEmailApiParams.ResendShipmentCancelEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * resendShipmentFulfillEmail
-    * @summary resendShipmentFulfillEmail
-    * @param {number} shipmentNumber shipmentNumber
+    * Re-send Fulfilled Shipment Email
+    * @summary Re-send Fulfilled Shipment Email
+    * @param {number} shipmentNumber 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ShipmentResendEmailApiInterface
@@ -59,8 +63,8 @@ export interface ShipmentResendEmailApiService {
     resendShipmentFulfillEmailRaw(requestParameters: shipmentResendEmailApiParams.ResendShipmentFulfillEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * resendShipmentFulfillEmail
-    * resendShipmentFulfillEmail
+    * Re-send Fulfilled Shipment Email
+    * Re-send Fulfilled Shipment Email
     */
     resendShipmentFulfillEmail(requestParameters: shipmentResendEmailApiParams.ResendShipmentFulfillEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
@@ -76,8 +80,8 @@ export class ShipmentResendEmailApi extends runtime.BaseAPI implements ShipmentR
         this.basePathTemplate = basePathTemplate
     }
     /**
-     * resendShipmentCancelEmail
-     * resendShipmentCancelEmail
+     * Re-send Cancelled Shipment Email
+     * Re-send Cancelled Shipment Email
      */
 
 
@@ -107,16 +111,16 @@ export class ShipmentResendEmailApi extends runtime.BaseAPI implements ShipmentR
     }
 
     /**
-     * resendShipmentCancelEmail
-     * resendShipmentCancelEmail
+     * Re-send Cancelled Shipment Email
+     * Re-send Cancelled Shipment Email
      */
     async resendShipmentCancelEmail(requestParameters: shipmentResendEmailApiParams.ResendShipmentCancelEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.resendShipmentCancelEmailRaw(requestParameters, initOverrides);
     }
 
     /**
-     * resendShipmentFulfillEmail
-     * resendShipmentFulfillEmail
+     * Re-send Fulfilled Shipment Email
+     * Re-send Fulfilled Shipment Email
      */
 
 
@@ -146,8 +150,8 @@ export class ShipmentResendEmailApi extends runtime.BaseAPI implements ShipmentR
     }
 
     /**
-     * resendShipmentFulfillEmail
-     * resendShipmentFulfillEmail
+     * Re-send Fulfilled Shipment Email
+     * Re-send Fulfilled Shipment Email
      */
     async resendShipmentFulfillEmail(requestParameters: shipmentResendEmailApiParams.ResendShipmentFulfillEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.resendShipmentFulfillEmailRaw(requestParameters, initOverrides);
