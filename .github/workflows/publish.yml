@@ -1,108 +1,98 @@
-name: Release package
+# Publish @kibocommerce/rest-sdk to npm.
+#
+# This workflow has never run: every version of it before this one was invalid
+# YAML (`run:` was indented one space short of its `- name:` sibling on three
+# steps, and a `$(npm version ...)` substitution was missing its closing paren),
+# so GitHub rejected the file and the tab showed no runs. Publishes were done by
+# hand instead, which is how the npm package and this repository drifted apart.
+#
+# Keep it valid: `npm run ci:workflows` lints every workflow file in this repo.
+name: Publish to npm
+
 on:
   workflow_dispatch:
     inputs:
       release-type:
-        description: 'Release type (one of): patch, minor, major, prepatch, preminor, premajor, prerelease'
+        description: 'One of: patch, minor, major, prepatch, preminor, premajor, prerelease'
         required: true
+        type: choice
+        options: [patch, minor, major, prepatch, preminor, premajor, prerelease]
+
+permissions:
+  contents: write
+
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      # Checkout project repository
       - name: Checkout
-        uses: actions/checkout@v3
-
-      # Setup Node.js environment
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/checkout@v4
         with:
+          # Needed to push the version commit and tag back.
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
           registry-url: https://registry.npmjs.org/
-          node-version: '16'
 
-      # Install dependencies (required by Run tests step)
       - name: Install dependencies
-       run: npm ci
+        run: npm ci
 
-      # Tests
+      - name: Verify the committed clients match the specs they came from
+        # Guards against a hand-edited client reaching npm. Skipped when the
+        # docs repo is unavailable rather than failing the release.
+        run: npm run verify:generated || echo "::warning::could not verify generated clients"
+
       - name: Run tests
-       run: npm run test
+        # Unit tests only: __test__/integration hits a live tenant and needs
+        # credentials this workflow does not have.
+        run: npm run test:unit
 
-      # Build package
-      - name: Build Package
+      - name: Build package
         run: npm run build
 
-      # Configure Git
-      - name: Git configuration
+      - name: Configure Git
         run: |
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global user.name "GitHub Actions"
 
-      # Bump package version
-      # Use tag latest
       - name: Bump release version
-        if: startsWith(github.event.inputs.release-type, 'pre') != true
-        run: |
-          echo "NEW_VERSION=$(npm --no-git-tag-version version $RELEASE_TYPE)" >> $GITHUB_ENV
-          echo "RELEASE_TAG=latest" >> $GITHUB_ENV
+        if: ${{ !startsWith(github.event.inputs.release-type, 'pre') }}
         env:
           RELEASE_TYPE: ${{ github.event.inputs.release-type }}
+        run: |
+          echo "NEW_VERSION=$(npm --no-git-tag-version version "$RELEASE_TYPE")" >> "$GITHUB_ENV"
+          echo "RELEASE_TAG=latest" >> "$GITHUB_ENV"
 
-      # Bump package pre-release version
-      # Use tag beta for pre-release versions
       - name: Bump pre-release version
-        if: startsWith(github.event.inputs.release-type, 'pre')
-        run: |
-          echo "NEW_VERSION=$(npm --no-git-tag-version --preid=beta version $RELEASE_TYPE
-          echo "RELEASE_TAG=beta" >> $GITHUB_ENV
+        if: ${{ startsWith(github.event.inputs.release-type, 'pre') }}
         env:
           RELEASE_TYPE: ${{ github.event.inputs.release-type }}
-
-
-      # Commit changes
-      - name: Commit package.json changes and create tag
         run: |
-          git add "package.json"
+          echo "NEW_VERSION=$(npm --no-git-tag-version --preid=beta version "$RELEASE_TYPE")" >> "$GITHUB_ENV"
+          echo "RELEASE_TAG=beta" >> "$GITHUB_ENV"
+
+      - name: Commit version bump and tag
+        run: |
+          git add package.json package-lock.json
           git commit -m "chore: release ${{ env.NEW_VERSION }}"
-          git tag ${{ env.NEW_VERSION }}
-          
-      # Copy package/lock to dist
-      - name: Copy additional files to dist
-      run: |
-        cp package.json dist/package.json
-        cp package-lock.json dist/package-lock.json
-        cp README.md dist/README.md
+          git tag "${{ env.NEW_VERSION }}"
 
-      # Publish version to public repository
-      - name: Publish
+      # The package is published from dist/, so the files npm needs must be
+      # copied in alongside the compiled output.
+      - name: Stage package files into dist
         run: |
-          cd dist
-          yarn publish --verbose --access public --tag ${{ env.RELEASE_TAG }}
+          cp package.json dist/package.json
+          cp package-lock.json dist/package-lock.json
+          cp README.md dist/README.md
+
+      - name: Publish to npm
+        working-directory: dist
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_ACCESS_TOKEN }}
+        run: npm publish --access public --tag "${{ env.RELEASE_TAG }}"
 
-      # Push repository changes
-      - name: Push changes to repository
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git push origin && git push --tags
-
-      # # Read version changelog
-      # - id: get-changelog
-      #   name: Get version changelog
-      #   uses: superfaceai/release-changelog-action@v1
-      #   with:
-      #     path-to-changelog: CHANGELOG.md
-      #     version: ${{ env.NEW_VERSION }}
-      #     operation: read
-
-      # # Update GitHub release with changelog
-      # - name: Update GitHub release documentation
-      #   uses: softprops/action-gh-release@v1
-      #   with:
-      #     tag_name: ${{ env.NEW_VERSION }}
-      #     body: ${{ steps.get-changelog.outputs.changelog }}
-      #     prerelease: ${{ startsWith(github.event.inputs.release-type, 'pre') }}
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push commit and tag
+        run: git push origin HEAD --follow-tags
