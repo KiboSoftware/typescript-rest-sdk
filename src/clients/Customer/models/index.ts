@@ -8,17 +8,23 @@
  */
 export interface AccountBase {
     /**
-     * Unique identifier of the account, also known as a customer number.
-     * @type {number}
-     * @memberof AccountBase
-     */
-    id?: number;
-    /**
-     * 
+     * Type of account.
      * @type {string}
      * @memberof AccountBase
      */
-    customerSet?: string | null;
+    accountType?: string | null;
+    /**
+     * List of attributes for the account.
+     * @type {Array<CustomerAttribute>}
+     * @memberof AccountBase
+     */
+    attributes?: Array<CustomerAttribute> | null;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof AccountBase
+     */
+    auditInfo?: AdminUserAuditInfo;
     /**
      * 
      * @type {CommerceSummary}
@@ -26,17 +32,47 @@ export interface AccountBase {
      */
     commerceSummary?: CommerceSummary;
     /**
+     * The company or organization name for an account.
+     * @type {string}
+     * @memberof AccountBase
+     */
+    companyOrOrganization?: string | null;
+    /**
      * List of contacts for this account. A customer account can have multiple contacts for billing and shipping addresses.
      * @type {Array<CustomerContact>}
      * @memberof AccountBase
      */
     contacts?: Array<CustomerContact> | null;
     /**
-     * The company or organization name for an account.
+     * 
      * @type {string}
      * @memberof AccountBase
      */
-    companyOrOrganization?: string | null;
+    customerSet?: string | null;
+    /**
+     * Date when the customer account is created.
+     * @type {string}
+     * @memberof AccountBase
+     */
+    customerSinceDate?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountBase
+     */
+    externalId?: string | null;
+    /**
+     * Unique identifier of the account, also known as a customer number.
+     * @type {number}
+     * @memberof AccountBase
+     */
+    id?: number;
+    /**
+     * Indicates Subscription migration is required or not.
+     * @type {boolean}
+     * @memberof AccountBase
+     */
+    migrationRequired?: boolean;
     /**
      * List of notes for the account. Merchants use these internal notes, for example, to make a note of a customer's interests or complaints. 
      * Notes are available only from the merchant's view, customers cannot view these notes.
@@ -44,12 +80,6 @@ export interface AccountBase {
      * @memberof AccountBase
      */
     notes?: Array<CustomerNote> | null;
-    /**
-     * List of attributes for the account.
-     * @type {Array<CustomerAttribute>}
-     * @memberof AccountBase
-     */
-    attributes?: Array<CustomerAttribute> | null;
     /**
      * List of segments assigned to account. Merchants create segments, for example, to manage discounts or assign VIP status. 
      * Then they assign the account to the segment. An account can belong to several segments or none at all.
@@ -69,36 +99,6 @@ export interface AccountBase {
      * @memberof AccountBase
      */
     taxId?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountBase
-     */
-    externalId?: string | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof AccountBase
-     */
-    auditInfo?: AdminUserAuditInfo;
-    /**
-     * Date when the customer account is created.
-     * @type {string}
-     * @memberof AccountBase
-     */
-    customerSinceDate?: string | null;
-    /**
-     * Type of account.
-     * @type {string}
-     * @memberof AccountBase
-     */
-    accountType?: string | null;
-    /**
-     * Indicates Subscription migration is required or not.
-     * @type {boolean}
-     * @memberof AccountBase
-     */
-    migrationRequired?: boolean;
 }
 /**
  * 
@@ -108,16 +108,16 @@ export interface AccountBase {
 export interface AccountHierarchyNode {
     /**
      * 
-     * @type {number}
-     * @memberof AccountHierarchyNode
-     */
-    id?: number;
-    /**
-     * 
      * @type {Array<AccountHierarchyNode>}
      * @memberof AccountHierarchyNode
      */
     children?: Array<AccountHierarchyNode> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountHierarchyNode
+     */
+    id?: number;
 }
 /**
  * Password information for an Account
@@ -132,11 +132,11 @@ export interface AccountPasswordInfo {
      */
     accountId?: number;
     /**
-     * If the account has multiple users, provide the Id of a specific user
-     * @type {string}
+     * 
+     * @type {CustomerPasswordInfo}
      * @memberof AccountPasswordInfo
      */
-    userId?: string | null;
+    passwordInfo?: CustomerPasswordInfo;
     /**
      * Indicates to unlock the Account
      * @type {boolean}
@@ -144,11 +144,11 @@ export interface AccountPasswordInfo {
      */
     unlockAccount?: boolean | null;
     /**
-     * 
-     * @type {CustomerPasswordInfo}
+     * If the account has multiple users, provide the Id of a specific user
+     * @type {string}
      * @memberof AccountPasswordInfo
      */
-    passwordInfo?: CustomerPasswordInfo;
+    userId?: string | null;
 }
 /**
  * 
@@ -158,16 +158,16 @@ export interface AccountPasswordInfo {
 export interface AccountPasswordInfoCollection {
     /**
      * 
-     * @type {number}
-     * @memberof AccountPasswordInfoCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<AccountPasswordInfo>}
      * @memberof AccountPasswordInfoCollection
      */
     items?: Array<AccountPasswordInfo> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountPasswordInfoCollection
+     */
+    totalCount?: number;
 }
 /**
  * Represents an account priority.
@@ -176,17 +176,17 @@ export interface AccountPasswordInfoCollection {
  */
 export interface AccountPriority {
     /**
-     * The Priority or rank of accounts. Lowest value has highest priority.
-     * @type {number}
-     * @memberof AccountPriority
-     */
-    priority?: number;
-    /**
      * List of accounts against the priority. One account will have only 1 priority assigned to it.
      * @type {Array<number>}
      * @memberof AccountPriority
      */
     accounts?: Array<number> | null;
+    /**
+     * The Priority or rank of accounts. Lowest value has highest priority.
+     * @type {number}
+     * @memberof AccountPriority
+     */
+    priority?: number;
 }
 /**
  * Model used for B2b account priority
@@ -208,29 +208,23 @@ export interface AccountPriorityModel {
     blackListedAccounts?: Array<number> | null;
 }
 /**
- * 
+ * Account ranking rule contract used for rules engine
  * @export
  * @interface AccountRankingRule
  */
 export interface AccountRankingRule {
     /**
-     * Unique id
-     * @type {number}
+     * 
+     * @type {AdminUserAuditInfo}
      * @memberof AccountRankingRule
      */
-    id?: number;
+    auditInfo?: AdminUserAuditInfo;
     /**
      * unique code.
      * @type {string}
      * @memberof AccountRankingRule
      */
     code?: string | null;
-    /**
-     * Rule name
-     * @type {string}
-     * @memberof AccountRankingRule
-     */
-    name?: string | null;
     /**
      * Description for rule
      * @type {string}
@@ -244,11 +238,17 @@ export interface AccountRankingRule {
      */
     expression?: CustomerCustomerDynamicExpression;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
+     * Unique id
+     * @type {number}
      * @memberof AccountRankingRule
      */
-    auditInfo?: AdminUserAuditInfo;
+    id?: number;
+    /**
+     * Rule name
+     * @type {string}
+     * @memberof AccountRankingRule
+     */
+    name?: string | null;
     /**
      * Scope id
      * @type {string}
@@ -264,16 +264,10 @@ export interface AccountRankingRule {
 export interface AccountRankingRuleCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<AccountRankingRule>}
      * @memberof AccountRankingRuleCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof AccountRankingRuleCollection
-     */
-    pageSize?: number;
+    items?: Array<AccountRankingRule> | null;
     /**
      * 
      * @type {number}
@@ -285,13 +279,19 @@ export interface AccountRankingRuleCollection {
      * @type {number}
      * @memberof AccountRankingRuleCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<AccountRankingRule>}
+     * @type {number}
      * @memberof AccountRankingRuleCollection
      */
-    items?: Array<AccountRankingRule> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountRankingRuleCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -349,7 +349,7 @@ export interface AdminUserAuditInfo {
      * @type {string}
      * @memberof AdminUserAuditInfo
      */
-    updateDate?: string | null;
+    createBy?: string | null;
     /**
      * 
      * @type {string}
@@ -367,7 +367,7 @@ export interface AdminUserAuditInfo {
      * @type {string}
      * @memberof AdminUserAuditInfo
      */
-    createBy?: string | null;
+    updateDate?: string | null;
 }
 /**
  * 
@@ -399,13 +399,13 @@ export interface AuthTicket2FAInfo {
      * @type {string}
      * @memberof AuthTicket2FAInfo
      */
-    userId?: string | null;
+    otpCode?: string | null;
     /**
      * 
      * @type {string}
      * @memberof AuthTicket2FAInfo
      */
-    otpCode?: string | null;
+    userId?: string | null;
 }
 /**
  * 
@@ -424,6 +424,12 @@ export interface AuthTicketOtpInfo {
      * @type {string}
      * @memberof AuthTicketOtpInfo
      */
+    fingerprint?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthTicketOtpInfo
+     */
     otpCode?: string | null;
     /**
      * 
@@ -431,12 +437,6 @@ export interface AuthTicketOtpInfo {
      * @memberof AuthTicketOtpInfo
      */
     region?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof AuthTicketOtpInfo
-     */
-    fingerprint?: string | null;
 }
 /**
  * Customer account. Customers provide contact information, view order history, and set email preferences on their account. 
@@ -446,65 +446,23 @@ export interface AuthTicketOtpInfo {
  */
 export interface B2BAccount {
     /**
-     * List of B2B users on the account.
-     * @type {Array<B2BUser>}
-     * @memberof B2BAccount
-     */
-    users?: Array<B2BUser> | null;
-    /**
-     * Is the B2B account active?
-     * @type {boolean}
-     * @memberof B2BAccount
-     */
-    isActive?: boolean | null;
-    /**
-     * Price list on B2B account.
+     * Type of account.
      * @type {string}
      * @memberof B2BAccount
      */
-    priceList?: string | null;
+    accountType?: string | null;
     /**
-     * List of sales rep on B2B account.
-     * @type {Array<AccountSalesRep>}
+     * List of attributes for the account.
+     * @type {Array<CustomerAttribute>}
      * @memberof B2BAccount
      */
-    salesReps?: Array<AccountSalesRep> | null;
-    /**
-     * Root account Id in B2B hierarchy
-     * @type {number}
-     * @memberof B2BAccount
-     */
-    rootAccountId?: number | null;
-    /**
-     * Parent account Id in B2B hierarchy
-     * @type {number}
-     * @memberof B2BAccount
-     */
-    parentAccountId?: number | null;
-    /**
-     * Status on B2B account.
-     * @type {string}
-     * @memberof B2BAccount
-     */
-    approvalStatus?: string | null;
-    /**
-     * Priority of the b2b account for order release
-     * @type {number}
-     * @memberof B2BAccount
-     */
-    priority?: number | null;
-    /**
-     * Unique identifier of the account, also known as a customer number.
-     * @type {number}
-     * @memberof B2BAccount
-     */
-    id?: number;
+    attributes?: Array<CustomerAttribute> | null;
     /**
      * 
-     * @type {string}
+     * @type {AdminUserAuditInfo}
      * @memberof B2BAccount
      */
-    customerSet?: string | null;
+    auditInfo?: AdminUserAuditInfo;
     /**
      * 
      * @type {CommerceSummary}
@@ -512,17 +470,47 @@ export interface B2BAccount {
      */
     commerceSummary?: CommerceSummary;
     /**
+     * The company or organization name for an account.
+     * @type {string}
+     * @memberof B2BAccount
+     */
+    companyOrOrganization?: string | null;
+    /**
      * List of contacts for this account. A customer account can have multiple contacts for billing and shipping addresses.
      * @type {Array<CustomerContact>}
      * @memberof B2BAccount
      */
     contacts?: Array<CustomerContact> | null;
     /**
-     * The company or organization name for an account.
+     * 
      * @type {string}
      * @memberof B2BAccount
      */
-    companyOrOrganization?: string | null;
+    customerSet?: string | null;
+    /**
+     * Date when the customer account is created.
+     * @type {string}
+     * @memberof B2BAccount
+     */
+    customerSinceDate?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof B2BAccount
+     */
+    externalId?: string | null;
+    /**
+     * Unique identifier of the account, also known as a customer number.
+     * @type {number}
+     * @memberof B2BAccount
+     */
+    id?: number;
+    /**
+     * Indicates Subscription migration is required or not.
+     * @type {boolean}
+     * @memberof B2BAccount
+     */
+    migrationRequired?: boolean;
     /**
      * List of notes for the account. Merchants use these internal notes, for example, to make a note of a customer's interests or complaints. 
      * Notes are available only from the merchant's view, customers cannot view these notes.
@@ -530,12 +518,6 @@ export interface B2BAccount {
      * @memberof B2BAccount
      */
     notes?: Array<CustomerNote> | null;
-    /**
-     * List of attributes for the account.
-     * @type {Array<CustomerAttribute>}
-     * @memberof B2BAccount
-     */
-    attributes?: Array<CustomerAttribute> | null;
     /**
      * List of segments assigned to account. Merchants create segments, for example, to manage discounts or assign VIP status. 
      * Then they assign the account to the segment. An account can belong to several segments or none at all.
@@ -556,35 +538,108 @@ export interface B2BAccount {
      */
     taxId?: string | null;
     /**
-     * 
+     * Status on B2B account.
      * @type {string}
      * @memberof B2BAccount
      */
-    externalId?: string | null;
+    approvalStatus?: string | null;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof B2BAccount
-     */
-    auditInfo?: AdminUserAuditInfo;
-    /**
-     * Date when the customer account is created.
-     * @type {string}
-     * @memberof B2BAccount
-     */
-    customerSinceDate?: string | null;
-    /**
-     * Type of account.
-     * @type {string}
-     * @memberof B2BAccount
-     */
-    accountType?: string | null;
-    /**
-     * Indicates Subscription migration is required or not.
+     * Is the B2B account active?
      * @type {boolean}
      * @memberof B2BAccount
      */
-    migrationRequired?: boolean;
+    isActive?: boolean | null;
+    /**
+     * Parent account Id in B2B hierarchy
+     * @type {number}
+     * @memberof B2BAccount
+     */
+    parentAccountId?: number | null;
+    /**
+     * Price list on B2B account.
+     * @type {string}
+     * @memberof B2BAccount
+     */
+    priceList?: string | null;
+    /**
+     * Priority of the b2b account for order release
+     * @type {number}
+     * @memberof B2BAccount
+     */
+    priority?: number | null;
+    /**
+     * Root account Id in B2B hierarchy
+     * @type {number}
+     * @memberof B2BAccount
+     */
+    rootAccountId?: number | null;
+    /**
+     * List of sales rep on B2B account.
+     * @type {Array<AccountSalesRep>}
+     * @memberof B2BAccount
+     */
+    salesReps?: Array<AccountSalesRep> | null;
+    /**
+     * List of B2B users on the account.
+     * @type {Array<B2BUser>}
+     * @memberof B2BAccount
+     */
+    users?: Array<B2BUser> | null;
+}
+/**
+ * 
+ * @export
+ * @interface B2BAccountAllOf
+ */
+export interface B2BAccountAllOf {
+    /**
+     * Status on B2B account.
+     * @type {string}
+     * @memberof B2BAccountAllOf
+     */
+    approvalStatus?: string | null;
+    /**
+     * Is the B2B account active?
+     * @type {boolean}
+     * @memberof B2BAccountAllOf
+     */
+    isActive?: boolean | null;
+    /**
+     * Parent account Id in B2B hierarchy
+     * @type {number}
+     * @memberof B2BAccountAllOf
+     */
+    parentAccountId?: number | null;
+    /**
+     * Price list on B2B account.
+     * @type {string}
+     * @memberof B2BAccountAllOf
+     */
+    priceList?: string | null;
+    /**
+     * Priority of the b2b account for order release
+     * @type {number}
+     * @memberof B2BAccountAllOf
+     */
+    priority?: number | null;
+    /**
+     * Root account Id in B2B hierarchy
+     * @type {number}
+     * @memberof B2BAccountAllOf
+     */
+    rootAccountId?: number | null;
+    /**
+     * List of sales rep on B2B account.
+     * @type {Array<AccountSalesRep>}
+     * @memberof B2BAccountAllOf
+     */
+    salesReps?: Array<AccountSalesRep> | null;
+    /**
+     * List of B2B users on the account.
+     * @type {Array<B2BUser>}
+     * @memberof B2BAccountAllOf
+     */
+    users?: Array<B2BUser> | null;
 }
 /**
  * Collection of all the B2B Accounts returned as a whole. A collection is not paged.
@@ -594,16 +649,10 @@ export interface B2BAccount {
 export interface B2BAccountCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<B2BAccount>}
      * @memberof B2BAccountCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof B2BAccountCollection
-     */
-    pageSize?: number;
+    items?: Array<B2BAccount> | null;
     /**
      * 
      * @type {number}
@@ -615,13 +664,19 @@ export interface B2BAccountCollection {
      * @type {number}
      * @memberof B2BAccountCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<B2BAccount>}
+     * @type {number}
      * @memberof B2BAccountCollection
      */
-    items?: Array<B2BAccount> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof B2BAccountCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -643,12 +698,99 @@ export interface B2BAccountHierarchyResult {
     hierarchy?: AccountHierarchyNode;
 }
 /**
+ * 
+ * @export
+ * @interface B2BRole
+ */
+export interface B2BRole {
+    /**
+     * List of Account IDs associated with this role.
+     * Required for CreateRole and UpdateRole operations.
+     * @type {Array<number>}
+     * @memberof B2BRole
+     */
+    accountIds?: Array<number> | null;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof B2BRole
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * List of Role Behaviors
+     * @type {Array<number>}
+     * @memberof B2BRole
+     */
+    behaviors?: Array<number> | null;
+    /**
+     * Unique Identifier for the Role
+     * @type {number}
+     * @memberof B2BRole
+     */
+    id?: number;
+    /**
+     * Indicate if the Role is a System Role or Custom Role
+     * @type {boolean}
+     * @memberof B2BRole
+     */
+    isSystemRole?: boolean;
+    /**
+     * Name for the Role
+     * @type {string}
+     * @memberof B2BRole
+     */
+    name?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface B2BRoleCollection
+ */
+export interface B2BRoleCollection {
+    /**
+     * 
+     * @type {Array<B2BRole>}
+     * @memberof B2BRoleCollection
+     */
+    items?: Array<B2BRole> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof B2BRoleCollection
+     */
+    pageCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof B2BRoleCollection
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof B2BRoleCollection
+     */
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof B2BRoleCollection
+     */
+    totalCount?: number;
+}
+/**
  * Customer account. Customers provide contact information, view order history, and set email preferences on their account. 
  * Merchants can edit accounts to add internal notes or assign them to segments.
  * @export
  * @interface B2BUser
  */
 export interface B2BUser {
+    /**
+     * If true, the customer prefers to receive marketing material such as newsletters or email offers.
+     * @type {boolean}
+     * @memberof B2BUser
+     */
+    acceptsMarketing?: boolean;
     /**
      * 
      * @type {string}
@@ -660,13 +802,37 @@ export interface B2BUser {
      * @type {string}
      * @memberof B2BUser
      */
-    userName?: string | null;
+    firstName?: string | null;
+    /**
+     * Indicates if an external password is set on this account
+     * @type {boolean}
+     * @memberof B2BUser
+     */
+    hasExternalPassword?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof B2BUser
+     */
+    isActive?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof B2BUser
+     */
+    isLocked?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof B2BUser
+     */
+    isRemoved?: boolean;
     /**
      * 
      * @type {string}
      * @memberof B2BUser
      */
-    firstName?: string | null;
+    last2FaDate?: string | null;
     /**
      * 
      * @type {string}
@@ -680,6 +846,12 @@ export interface B2BUser {
      */
     localeCode?: string | null;
     /**
+     * 
+     * @type {Array<UserRole>}
+     * @memberof B2BUser
+     */
+    roles?: Array<UserRole> | null;
+    /**
      * Unique identifier of the user who is currently logged in. This is null if the user is anonymous (not logged in).  Unicode data with a maximum length of 55 characters.
      * @type {string}
      * @memberof B2BUser
@@ -687,46 +859,10 @@ export interface B2BUser {
     userId?: string | null;
     /**
      * 
-     * @type {Array<UserRole>}
-     * @memberof B2BUser
-     */
-    roles?: Array<UserRole> | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof B2BUser
-     */
-    isLocked?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof B2BUser
-     */
-    isActive?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof B2BUser
-     */
-    isRemoved?: boolean;
-    /**
-     * If true, the customer prefers to receive marketing material such as newsletters or email offers.
-     * @type {boolean}
-     * @memberof B2BUser
-     */
-    acceptsMarketing?: boolean;
-    /**
-     * Indicates if an external password is set on this account
-     * @type {boolean}
-     * @memberof B2BUser
-     */
-    hasExternalPassword?: boolean;
-    /**
-     * 
      * @type {string}
      * @memberof B2BUser
      */
-    last2FaDate?: string | null;
+    userName?: string | null;
 }
 /**
  * 
@@ -761,16 +897,10 @@ export interface B2BUserAndAuthInfo {
 export interface B2BUserCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<B2BUser>}
      * @memberof B2BUserCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof B2BUserCollection
-     */
-    pageSize?: number;
+    items?: Array<B2BUser> | null;
     /**
      * 
      * @type {number}
@@ -782,13 +912,169 @@ export interface B2BUserCollection {
      * @type {number}
      * @memberof B2BUserCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<B2BUser>}
+     * @type {number}
      * @memberof B2BUserCollection
      */
-    items?: Array<B2BUser> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof B2BUserCollection
+     */
+    totalCount?: number;
+}
+/**
+ * 
+ * @export
+ * @interface Behavior
+ */
+export interface Behavior {
+    /**
+     * 
+     * @type {number}
+     * @memberof Behavior
+     */
+    categoryId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Behavior
+     */
+    id?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Behavior
+     */
+    isPrivate?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof Behavior
+     */
+    name?: string | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof Behavior
+     */
+    oAuthScopes?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof Behavior
+     */
+    requiresBehaviorIds?: Array<number> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof Behavior
+     */
+    systemRoles?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof Behavior
+     */
+    validUserTypes?: Array<string> | null;
+}
+/**
+ * 
+ * @export
+ * @interface BehaviorCategory
+ */
+export interface BehaviorCategory {
+    /**
+     * 
+     * @type {number}
+     * @memberof BehaviorCategory
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof BehaviorCategory
+     */
+    name?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface BehaviorCategoryCollection
+ */
+export interface BehaviorCategoryCollection {
+    /**
+     * 
+     * @type {Array<BehaviorCategory>}
+     * @memberof BehaviorCategoryCollection
+     */
+    items?: Array<BehaviorCategory> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof BehaviorCategoryCollection
+     */
+    totalCount?: number;
+}
+/**
+ * 
+ * @export
+ * @interface BehaviorCategoryCollectionBase
+ */
+export interface BehaviorCategoryCollectionBase {
+    /**
+     * 
+     * @type {Array<BehaviorCategory>}
+     * @memberof BehaviorCategoryCollectionBase
+     */
+    items?: Array<BehaviorCategory> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof BehaviorCategoryCollectionBase
+     */
+    totalCount?: number;
+}
+/**
+ * 
+ * @export
+ * @interface BehaviorCollection
+ */
+export interface BehaviorCollection {
+    /**
+     * 
+     * @type {Array<Behavior>}
+     * @memberof BehaviorCollection
+     */
+    items?: Array<Behavior> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof BehaviorCollection
+     */
+    totalCount?: number;
+}
+/**
+ * 
+ * @export
+ * @interface BehaviorCollectionBase
+ */
+export interface BehaviorCollectionBase {
+    /**
+     * 
+     * @type {Array<Behavior>}
+     * @memberof BehaviorCollectionBase
+     */
+    items?: Array<Behavior> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof BehaviorCollectionBase
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -797,23 +1083,23 @@ export interface B2BUserCollection {
  */
 export interface Card {
     /**
-     * Card ID from Payment Service
-     * @type {string}
-     * @memberof Card
-     */
-    id?: string | null;
-    /**
      * 
      * @type {string}
      * @memberof Card
      */
-    nameOnCard?: string | null;
+    cardNumberPart?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Card
      */
     cardType?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof Card
+     */
+    contactId?: number;
     /**
      * 
      * @type {number}
@@ -827,23 +1113,23 @@ export interface Card {
      */
     expireYear?: number | null;
     /**
-     * 
+     * Card ID from Payment Service
      * @type {string}
      * @memberof Card
      */
-    cardNumberPart?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof Card
-     */
-    contactId?: number;
+    id?: string | null;
     /**
      * 
      * @type {boolean}
      * @memberof Card
      */
     isDefaultPayMethod?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof Card
+     */
+    nameOnCard?: string | null;
 }
 /**
  * 
@@ -853,16 +1139,16 @@ export interface Card {
 export interface CardCollection {
     /**
      * 
-     * @type {number}
-     * @memberof CardCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<Card>}
      * @memberof CardCollection
      */
     items?: Array<Card> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CardCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -871,17 +1157,17 @@ export interface CardCollection {
  */
 export interface CartAuthTicketRequest {
     /**
-     * Cart Id of the user
-     * @type {string}
-     * @memberof CartAuthTicketRequest
-     */
-    cartId?: string | null;
-    /**
      * Account Id of the user.
      * @type {number}
      * @memberof CartAuthTicketRequest
      */
     accountId?: number;
+    /**
+     * Cart Id of the user
+     * @type {string}
+     * @memberof CartAuthTicketRequest
+     */
+    cartId?: string | null;
     /**
      * User Id of the user.
      * @type {string}
@@ -903,16 +1189,16 @@ export interface ChangePasswordResult {
     accountId?: number;
     /**
      * 
-     * @type {boolean}
-     * @memberof ChangePasswordResult
-     */
-    succeeded?: boolean;
-    /**
-     * 
      * @type {string}
      * @memberof ChangePasswordResult
      */
     errorMessage?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ChangePasswordResult
+     */
+    succeeded?: boolean;
 }
 /**
  * 
@@ -922,16 +1208,16 @@ export interface ChangePasswordResult {
 export interface ChangePasswordResultCollection {
     /**
      * 
-     * @type {number}
-     * @memberof ChangePasswordResultCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<ChangePasswordResult>}
      * @memberof ChangePasswordResultCollection
      */
     items?: Array<ChangePasswordResult> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ChangePasswordResultCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -968,13 +1254,25 @@ export interface CommerceRuntimeAddress {
      * @type {string}
      * @memberof CommerceRuntimeAddress
      */
+    addressType?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAddress
+     */
     cityOrTown?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CommerceRuntimeAddress
      */
-    stateOrProvince?: string | null;
+    countryCode?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommerceRuntimeAddress
+     */
+    isValidated?: boolean | null;
     /**
      * 
      * @type {string}
@@ -986,158 +1284,7 @@ export interface CommerceRuntimeAddress {
      * @type {string}
      * @memberof CommerceRuntimeAddress
      */
-    countryCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    addressType?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAddress
-     */
-    isValidated?: boolean | null;
-}
-/**
- * 
- * @export
- * @interface CommerceRuntimeAttribute
- */
-export interface CommerceRuntimeAttribute {
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeAttribute
-     */
-    id?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttribute
-     */
-    adminName?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttribute
-     */
-    namespace?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttribute
-     */
-    attributeCode: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttribute
-     */
-    inputType?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttribute
-     */
-    valueType: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttribute
-     */
-    dataType?: string | null;
-    /**
-     * 
-     * @type {Array<CommerceRuntimeAttributeMetadataItem>}
-     * @memberof CommerceRuntimeAttribute
-     */
-    attributeMetadata?: Array<CommerceRuntimeAttributeMetadataItem> | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttribute
-     */
-    attributeFQN?: string | null;
-    /**
-     * 
-     * @type {CommerceRuntimeAttributeLocalizedContent}
-     * @memberof CommerceRuntimeAttribute
-     */
-    content?: CommerceRuntimeAttributeLocalizedContent;
-    /**
-     * 
-     * @type {CommerceRuntimeAttributeValidation}
-     * @memberof CommerceRuntimeAttribute
-     */
-    validation?: CommerceRuntimeAttributeValidation;
-    /**
-     * 
-     * @type {Array<CommerceRuntimeAttributeVocabularyValue>}
-     * @memberof CommerceRuntimeAttribute
-     */
-    vocabularyValues?: Array<CommerceRuntimeAttributeVocabularyValue> | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof CommerceRuntimeAttribute
-     */
-    auditInfo?: AdminUserAuditInfo;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAttribute
-     */
-    isActive?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAttribute
-     */
-    isRequired?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAttribute
-     */
-    isReadOnly?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAttribute
-     */
-    isMultiValued?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAttribute
-     */
-    isVisible?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeAttribute
-     */
-    order?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttribute
-     */
-    displayGroup: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAttribute
-     */
-    availableForOrderRouting?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAttribute
-     */
-    availableForDiscounts?: boolean;
+    stateOrProvince?: string | null;
 }
 /**
  * 
@@ -1147,16 +1294,10 @@ export interface CommerceRuntimeAttribute {
 export interface CommerceRuntimeAttributeCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<CustomerAttribute2>}
      * @memberof CommerceRuntimeAttributeCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeAttributeCollection
-     */
-    pageSize?: number;
+    items?: Array<CustomerAttribute2> | null;
     /**
      * 
      * @type {number}
@@ -1168,13 +1309,19 @@ export interface CommerceRuntimeAttributeCollection {
      * @type {number}
      * @memberof CommerceRuntimeAttributeCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<CommerceRuntimeAttribute>}
+     * @type {number}
      * @memberof CommerceRuntimeAttributeCollection
      */
-    items?: Array<CommerceRuntimeAttribute> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeAttributeCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -1225,19 +1372,25 @@ export interface CommerceRuntimeAttributeValidation {
      * @type {string}
      * @memberof CommerceRuntimeAttributeValidation
      */
-    regularExpression?: string | null;
+    maxDateTime?: string | null;
     /**
      * 
      * @type {number}
      * @memberof CommerceRuntimeAttributeValidation
      */
-    minStringLength?: number | null;
+    maxNumericValue?: number | null;
     /**
      * 
      * @type {number}
      * @memberof CommerceRuntimeAttributeValidation
      */
     maxStringLength?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAttributeValidation
+     */
+    minDateTime?: string | null;
     /**
      * 
      * @type {number}
@@ -1249,19 +1402,13 @@ export interface CommerceRuntimeAttributeValidation {
      * @type {number}
      * @memberof CommerceRuntimeAttributeValidation
      */
-    maxNumericValue?: number | null;
+    minStringLength?: number | null;
     /**
      * 
      * @type {string}
      * @memberof CommerceRuntimeAttributeValidation
      */
-    minDateTime?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttributeValidation
-     */
-    maxDateTime?: string | null;
+    regularExpression?: string | null;
 }
 /**
  * 
@@ -1271,16 +1418,10 @@ export interface CommerceRuntimeAttributeValidation {
 export interface CommerceRuntimeAttributeVocabularyValue {
     /**
      * 
-     * @type {string}
+     * @type {AttributeValueLocalizedContent}
      * @memberof CommerceRuntimeAttributeVocabularyValue
      */
-    value: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeAttributeVocabularyValue
-     */
-    sequence?: number | null;
+    content?: AttributeValueLocalizedContent;
     /**
      * 
      * @type {boolean}
@@ -1289,10 +1430,16 @@ export interface CommerceRuntimeAttributeVocabularyValue {
     isHidden?: boolean | null;
     /**
      * 
-     * @type {AttributeValueLocalizedContent}
+     * @type {number}
      * @memberof CommerceRuntimeAttributeVocabularyValue
      */
-    content?: AttributeValueLocalizedContent;
+    sequence?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAttributeVocabularyValue
+     */
+    value: string;
 }
 /**
  * 
@@ -1326,11 +1473,11 @@ export interface CommerceRuntimePhone {
  */
 export interface CommerceSummary {
     /**
-     * 
-     * @type {CurrencyAmount}
+     * When the last order was placed.
+     * @type {string}
      * @memberof CommerceSummary
      */
-    totalOrderAmount?: CurrencyAmount;
+    lastOrderDate?: string | null;
     /**
      * Number of orders listed in the order history of a customer account.
      * @type {number}
@@ -1338,23 +1485,23 @@ export interface CommerceSummary {
      */
     orderCount?: number;
     /**
-     * When the last order was placed.
-     * @type {string}
+     * 
+     * @type {CurrencyAmount}
      * @memberof CommerceSummary
      */
-    lastOrderDate?: string | null;
-    /**
-     * Number of wishlists listed in the wishlist count of a customer account
-     * @type {number}
-     * @memberof CommerceSummary
-     */
-    wishlistCount?: number;
+    totalOrderAmount?: CurrencyAmount;
     /**
      * Number of visits for this customer across the entire tenant.
      * @type {number}
      * @memberof CommerceSummary
      */
     visitsCount?: number;
+    /**
+     * Number of wishlists listed in the wishlist count of a customer account
+     * @type {number}
+     * @memberof CommerceSummary
+     */
+    wishlistCount?: number;
 }
 /**
  * Used to update a user's forgotten password. Contains the user's email address, new password, and the confirmation code 
@@ -1364,23 +1511,23 @@ export interface CommerceSummary {
  */
 export interface ConfirmationInfo {
     /**
-     * UserName of the user who has requested a new password.
-     * @type {string}
-     * @memberof ConfirmationInfo
-     */
-    userName?: string | null;
-    /**
      * Confirmation code that a user supplies when requesting a new password.
      * @type {string}
      * @memberof ConfirmationInfo
      */
-    confirmationCode?: string | null;
+    confirmationCode: string | null;
     /**
      * The user's new password.
      * @type {string}
      * @memberof ConfirmationInfo
      */
-    newPassword?: string | null;
+    newPassword: string | null;
+    /**
+     * UserName of the user who has requested a new password.
+     * @type {string}
+     * @memberof ConfirmationInfo
+     */
+    userName: string | null;
 }
 /**
  * 
@@ -1390,16 +1537,16 @@ export interface ConfirmationInfo {
 export interface ContactType {
     /**
      * 
-     * @type {string}
-     * @memberof ContactType
-     */
-    name?: string | null;
-    /**
-     * 
      * @type {boolean}
      * @memberof ContactType
      */
     isPrimary?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ContactType
+     */
+    name?: string | null;
 }
 /**
  * Log entry for any change made to a Credit.
@@ -1417,11 +1564,11 @@ export interface CreditAuditEntry {
      */
     activityType?: string | null;
     /**
-     * Detials of what was done
-     * @type {string}
+     * 
+     * @type {number}
      * @memberof CreditAuditEntry
      */
-    details?: string | null;
+    activityTypeId?: number;
     /**
      * 
      * @type {AdminUserAuditInfo}
@@ -1429,11 +1576,11 @@ export interface CreditAuditEntry {
      */
     auditInfo?: AdminUserAuditInfo;
     /**
-     * 
-     * @type {number}
+     * Detials of what was done
+     * @type {string}
      * @memberof CreditAuditEntry
      */
-    activityTypeId?: number;
+    details?: string | null;
 }
 /**
  * 
@@ -1443,16 +1590,10 @@ export interface CreditAuditEntry {
 export interface CreditAuditEntryCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<CreditAuditEntry>}
      * @memberof CreditAuditEntryCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreditAuditEntryCollection
-     */
-    pageSize?: number;
+    items?: Array<CreditAuditEntry> | null;
     /**
      * 
      * @type {number}
@@ -1464,13 +1605,19 @@ export interface CreditAuditEntryCollection {
      * @type {number}
      * @memberof CreditAuditEntryCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<CreditAuditEntry>}
+     * @type {number}
      * @memberof CreditAuditEntryCollection
      */
-    items?: Array<CreditAuditEntry> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreditAuditEntryCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -1480,16 +1627,10 @@ export interface CreditAuditEntryCollection {
 export interface CreditCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<CustomerCredit>}
      * @memberof CreditCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreditCollection
-     */
-    pageSize?: number;
+    items?: Array<CustomerCredit> | null;
     /**
      * 
      * @type {number}
@@ -1501,13 +1642,19 @@ export interface CreditCollection {
      * @type {number}
      * @memberof CreditCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<CustomerCredit>}
+     * @type {number}
      * @memberof CreditCollection
      */
-    items?: Array<CustomerCredit> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreditCollection
+     */
+    totalCount?: number;
 }
 /**
  * Credit Transactions are used to make adjustments to a Credit Balance
@@ -1516,25 +1663,30 @@ export interface CreditCollection {
  */
 export interface CreditTransaction {
     /**
-     * Id unique within the tenant
-     * ReadOnly
-     * @type {number}
+     * 
+     * @type {AdminUserAuditInfo}
      * @memberof CreditTransaction
      */
-    id?: number | null;
-    /**
-     * Mozu.Customer.Contracts.Credit.CreditTransaction.CreditTransactionType
-     *             Requried
-     * @type {string}
-     * @memberof CreditTransaction
-     */
-    transactionType?: string | null;
+    auditInfo?: AdminUserAuditInfo;
     /**
      * Comments about the transaction.  Depending on the user interface, these comments may be readable by authorized users or customers.
      * @type {string}
      * @memberof CreditTransaction
      */
     comments?: string | null;
+    /**
+     * Custom data for credit transactions
+     * @type {any}
+     * @memberof CreditTransaction
+     */
+    data?: any | null;
+    /**
+     * Id unique within the tenant
+     * ReadOnly
+     * @type {number}
+     * @memberof CreditTransaction
+     */
+    id?: number | null;
     /**
      * Amount to apply to Credit Balance
      * Required
@@ -1544,22 +1696,17 @@ export interface CreditTransaction {
     impactAmount?: number | null;
     /**
      * 
-     * @type {AdminUserAuditInfo}
-     * @memberof CreditTransaction
-     */
-    auditInfo?: AdminUserAuditInfo;
-    /**
-     * 
      * @type {string}
      * @memberof CreditTransaction
      */
     orderId?: string | null;
     /**
-     * Custom data for credit transactions
-     * @type {any}
+     * Mozu.Customer.Contracts.Credit.CreditTransaction.CreditTransactionType
+     *             Requried
+     * @type {string}
      * @memberof CreditTransaction
      */
-    data?: any | null;
+    transactionType?: string | null;
 }
 /**
  * 
@@ -1569,16 +1716,10 @@ export interface CreditTransaction {
 export interface CreditTransactionCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<CreditTransaction>}
      * @memberof CreditTransactionCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreditTransactionCollection
-     */
-    pageSize?: number;
+    items?: Array<CreditTransaction> | null;
     /**
      * 
      * @type {number}
@@ -1590,13 +1731,19 @@ export interface CreditTransactionCollection {
      * @type {number}
      * @memberof CreditTransactionCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<CreditTransaction>}
+     * @type {number}
      * @memberof CreditTransactionCollection
      */
-    items?: Array<CreditTransaction> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreditTransactionCollection
+     */
+    totalCount?: number;
 }
 /**
  * The currency code and amount of an order listed in the order history of a customer account. Currently, only USD is supported.
@@ -1605,17 +1752,17 @@ export interface CreditTransactionCollection {
  */
 export interface CurrencyAmount {
     /**
-     * Currency code for the amount of the order. Currently, only "USD" is supported.
-     * @type {string}
-     * @memberof CurrencyAmount
-     */
-    currencyCode?: string | null;
-    /**
      * Total amount of the order. Currently, only US dollar amounts are supported.
      * @type {number}
      * @memberof CurrencyAmount
      */
     amount?: number;
+    /**
+     * Currency code for the amount of the order. Currently, only "USD" is supported.
+     * @type {string}
+     * @memberof CurrencyAmount
+     */
+    currencyCode?: string | null;
 }
 /**
  * Customer account. Customers provide contact information, view order history, and set email preferences on their account. 
@@ -1625,89 +1772,23 @@ export interface CurrencyAmount {
  */
 export interface CustomerAccount {
     /**
-     * "Email addresss of the customer.
+     * Type of account.
      * @type {string}
      * @memberof CustomerAccount
      */
-    emailAddress?: string | null;
+    accountType?: string | null;
     /**
-     * User name for the customer account.
-     * @type {string}
+     * List of attributes for the account.
+     * @type {Array<CustomerAttribute>}
      * @memberof CustomerAccount
      */
-    userName?: string | null;
-    /**
-     * First name of the customer.
-     * @type {string}
-     * @memberof CustomerAccount
-     */
-    firstName?: string | null;
-    /**
-     * Last name of the customer.
-     * @type {string}
-     * @memberof CustomerAccount
-     */
-    lastName?: string | null;
-    /**
-     * Locale Code.
-     * @type {string}
-     * @memberof CustomerAccount
-     */
-    localeCode?: string | null;
-    /**
-     * Unique identifier of the user who is currently logged in. This is null if the user is anonymous (not logged in).  Unicode data with a maximum length of 55 characters.
-     * @type {string}
-     * @memberof CustomerAccount
-     */
-    userId?: string | null;
-    /**
-     * Is the account Anonymous?
-     * @type {boolean}
-     * @memberof CustomerAccount
-     */
-    isAnonymous?: boolean;
-    /**
-     * Is the account locked?
-     * @type {boolean}
-     * @memberof CustomerAccount
-     */
-    isLocked?: boolean;
-    /**
-     * Is the account active?
-     * @type {boolean}
-     * @memberof CustomerAccount
-     */
-    isActive?: boolean;
-    /**
-     * If true, the customer prefers to receive marketing material such as newsletters or email offers.
-     * @type {boolean}
-     * @memberof CustomerAccount
-     */
-    acceptsMarketing?: boolean;
-    /**
-     * Indicates if an external password is set on this account
-     * @type {boolean}
-     * @memberof CustomerAccount
-     */
-    hasExternalPassword?: boolean;
+    attributes?: Array<CustomerAttribute> | null;
     /**
      * 
-     * @type {string}
+     * @type {AdminUserAuditInfo}
      * @memberof CustomerAccount
      */
-    last2FaDate?: string | null;
-    /**
-     * Unique identifier of the account, also known as a customer number.
-     * @type {number}
-     * @memberof CustomerAccount
-     */
-    id?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerAccount
-     */
-    customerSet?: string | null;
+    auditInfo?: AdminUserAuditInfo;
     /**
      * 
      * @type {CommerceSummary}
@@ -1715,17 +1796,47 @@ export interface CustomerAccount {
      */
     commerceSummary?: CommerceSummary;
     /**
+     * The company or organization name for an account.
+     * @type {string}
+     * @memberof CustomerAccount
+     */
+    companyOrOrganization?: string | null;
+    /**
      * List of contacts for this account. A customer account can have multiple contacts for billing and shipping addresses.
      * @type {Array<CustomerContact>}
      * @memberof CustomerAccount
      */
     contacts?: Array<CustomerContact> | null;
     /**
-     * The company or organization name for an account.
+     * 
      * @type {string}
      * @memberof CustomerAccount
      */
-    companyOrOrganization?: string | null;
+    customerSet?: string | null;
+    /**
+     * Date when the customer account is created.
+     * @type {string}
+     * @memberof CustomerAccount
+     */
+    customerSinceDate?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerAccount
+     */
+    externalId?: string | null;
+    /**
+     * Unique identifier of the account, also known as a customer number.
+     * @type {number}
+     * @memberof CustomerAccount
+     */
+    id?: number;
+    /**
+     * Indicates Subscription migration is required or not.
+     * @type {boolean}
+     * @memberof CustomerAccount
+     */
+    migrationRequired?: boolean;
     /**
      * List of notes for the account. Merchants use these internal notes, for example, to make a note of a customer's interests or complaints. 
      * Notes are available only from the merchant's view, customers cannot view these notes.
@@ -1733,12 +1844,6 @@ export interface CustomerAccount {
      * @memberof CustomerAccount
      */
     notes?: Array<CustomerNote> | null;
-    /**
-     * List of attributes for the account.
-     * @type {Array<CustomerAttribute>}
-     * @memberof CustomerAccount
-     */
-    attributes?: Array<CustomerAttribute> | null;
     /**
      * List of segments assigned to account. Merchants create segments, for example, to manage discounts or assign VIP status. 
      * Then they assign the account to the segment. An account can belong to several segments or none at all.
@@ -1759,35 +1864,156 @@ export interface CustomerAccount {
      */
     taxId?: string | null;
     /**
-     * 
-     * @type {string}
-     * @memberof CustomerAccount
-     */
-    externalId?: string | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof CustomerAccount
-     */
-    auditInfo?: AdminUserAuditInfo;
-    /**
-     * Date when the customer account is created.
-     * @type {string}
-     * @memberof CustomerAccount
-     */
-    customerSinceDate?: string | null;
-    /**
-     * Type of account.
-     * @type {string}
-     * @memberof CustomerAccount
-     */
-    accountType?: string | null;
-    /**
-     * Indicates Subscription migration is required or not.
+     * If true, the customer prefers to receive marketing material such as newsletters or email offers.
      * @type {boolean}
      * @memberof CustomerAccount
      */
-    migrationRequired?: boolean;
+    acceptsMarketing?: boolean;
+    /**
+     * "Email addresss of the customer.
+     * @type {string}
+     * @memberof CustomerAccount
+     */
+    emailAddress?: string | null;
+    /**
+     * First name of the customer.
+     * @type {string}
+     * @memberof CustomerAccount
+     */
+    firstName?: string | null;
+    /**
+     * Indicates if an external password is set on this account
+     * @type {boolean}
+     * @memberof CustomerAccount
+     */
+    hasExternalPassword?: boolean;
+    /**
+     * Is the account active?
+     * @type {boolean}
+     * @memberof CustomerAccount
+     */
+    isActive?: boolean;
+    /**
+     * Is the account Anonymous?
+     * @type {boolean}
+     * @memberof CustomerAccount
+     */
+    isAnonymous?: boolean;
+    /**
+     * Is the account locked?
+     * @type {boolean}
+     * @memberof CustomerAccount
+     */
+    isLocked?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerAccount
+     */
+    last2FaDate?: string | null;
+    /**
+     * Last name of the customer.
+     * @type {string}
+     * @memberof CustomerAccount
+     */
+    lastName?: string | null;
+    /**
+     * Locale Code.
+     * @type {string}
+     * @memberof CustomerAccount
+     */
+    localeCode?: string | null;
+    /**
+     * Unique identifier of the user who is currently logged in. This is null if the user is anonymous (not logged in).  Unicode data with a maximum length of 55 characters.
+     * @type {string}
+     * @memberof CustomerAccount
+     */
+    userId?: string | null;
+    /**
+     * User name for the customer account.
+     * @type {string}
+     * @memberof CustomerAccount
+     */
+    userName?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface CustomerAccountAllOf
+ */
+export interface CustomerAccountAllOf {
+    /**
+     * If true, the customer prefers to receive marketing material such as newsletters or email offers.
+     * @type {boolean}
+     * @memberof CustomerAccountAllOf
+     */
+    acceptsMarketing?: boolean;
+    /**
+     * "Email addresss of the customer.
+     * @type {string}
+     * @memberof CustomerAccountAllOf
+     */
+    emailAddress?: string | null;
+    /**
+     * First name of the customer.
+     * @type {string}
+     * @memberof CustomerAccountAllOf
+     */
+    firstName?: string | null;
+    /**
+     * Indicates if an external password is set on this account
+     * @type {boolean}
+     * @memberof CustomerAccountAllOf
+     */
+    hasExternalPassword?: boolean;
+    /**
+     * Is the account active?
+     * @type {boolean}
+     * @memberof CustomerAccountAllOf
+     */
+    isActive?: boolean;
+    /**
+     * Is the account Anonymous?
+     * @type {boolean}
+     * @memberof CustomerAccountAllOf
+     */
+    isAnonymous?: boolean;
+    /**
+     * Is the account locked?
+     * @type {boolean}
+     * @memberof CustomerAccountAllOf
+     */
+    isLocked?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerAccountAllOf
+     */
+    last2FaDate?: string | null;
+    /**
+     * Last name of the customer.
+     * @type {string}
+     * @memberof CustomerAccountAllOf
+     */
+    lastName?: string | null;
+    /**
+     * Locale Code.
+     * @type {string}
+     * @memberof CustomerAccountAllOf
+     */
+    localeCode?: string | null;
+    /**
+     * Unique identifier of the user who is currently logged in. This is null if the user is anonymous (not logged in).  Unicode data with a maximum length of 55 characters.
+     * @type {string}
+     * @memberof CustomerAccountAllOf
+     */
+    userId?: string | null;
+    /**
+     * User name for the customer account.
+     * @type {string}
+     * @memberof CustomerAccountAllOf
+     */
+    userName?: string | null;
 }
 /**
  * 
@@ -1802,11 +2028,13 @@ export interface CustomerAccountAndAuthInfo {
      */
     account?: CustomerAccount;
     /**
-     * 
-     * @type {string}
+     * Optional requested duration for the authentication ticket in minutes.
+     * Must not exceed tenant configuration or platform hard caps.
+     * Requires 'customer-auth:configure-token-durations' behavior.
+     * @type {number}
      * @memberof CustomerAccountAndAuthInfo
      */
-    password?: string | null;
+    authTicketTtlMinutes?: number | null;
     /**
      * 
      * @type {string}
@@ -1814,17 +2042,31 @@ export interface CustomerAccountAndAuthInfo {
      */
     externalPassword?: string | null;
     /**
+     * Specifies the fingerprint of the user for two-factor authentication.
+     * @type {string}
+     * @memberof CustomerAccountAndAuthInfo
+     */
+    fingerprint?: string | null;
+    /**
      * 
      * @type {boolean}
      * @memberof CustomerAccountAndAuthInfo
      */
     isImport?: boolean;
     /**
-     * Specifies the fingerprint of the user for two-factor authentication.
+     * 
      * @type {string}
      * @memberof CustomerAccountAndAuthInfo
      */
-    fingerprint?: string | null;
+    password?: string | null;
+    /**
+     * Optional requested duration for the refresh token in minutes.
+     * Must not exceed tenant configuration or platform hard caps.
+     * Requires 'customer-auth:configure-token-durations' behavior.
+     * @type {number}
+     * @memberof CustomerAccountAndAuthInfo
+     */
+    refreshTokenTtlMinutes?: number | null;
     /**
      * Specifies the region of the user for two-factor authentication.
      * @type {string}
@@ -1840,16 +2082,10 @@ export interface CustomerAccountAndAuthInfo {
 export interface CustomerAccountCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<CustomerAccount>}
      * @memberof CustomerAccountCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CustomerAccountCollection
-     */
-    pageSize?: number;
+    items?: Array<CustomerAccount> | null;
     /**
      * 
      * @type {number}
@@ -1861,13 +2097,19 @@ export interface CustomerAccountCollection {
      * @type {number}
      * @memberof CustomerAccountCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<CustomerAccount>}
+     * @type {number}
      * @memberof CustomerAccountCollection
      */
-    items?: Array<CustomerAccount> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CustomerAccountCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -1875,6 +2117,12 @@ export interface CustomerAccountCollection {
  * @interface CustomerAttribute
  */
 export interface CustomerAttribute {
+    /**
+     * 
+     * @type {number}
+     * @memberof CustomerAttribute
+     */
+    attributeDefinitionId?: number | null;
     /**
      * 
      * @type {AdminUserAuditInfo}
@@ -1889,16 +2137,149 @@ export interface CustomerAttribute {
     fullyQualifiedName?: string | null;
     /**
      * 
-     * @type {number}
-     * @memberof CustomerAttribute
-     */
-    attributeDefinitionId?: number | null;
-    /**
-     * 
      * @type {Array<any>}
      * @memberof CustomerAttribute
      */
     values?: Array<any> | null;
+}
+/**
+ * 
+ * @export
+ * @interface CustomerAttribute2
+ */
+export interface CustomerAttribute2 {
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerAttribute2
+     */
+    adminName?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerAttribute2
+     */
+    attributeCode: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerAttribute2
+     */
+    attributeFQN?: string | null;
+    /**
+     * 
+     * @type {Array<CommerceRuntimeAttributeMetadataItem>}
+     * @memberof CustomerAttribute2
+     */
+    attributeMetadata?: Array<CommerceRuntimeAttributeMetadataItem> | null;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof CustomerAttribute2
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CustomerAttribute2
+     */
+    availableForDiscounts?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CustomerAttribute2
+     */
+    availableForOrderRouting?: boolean;
+    /**
+     * 
+     * @type {CommerceRuntimeAttributeLocalizedContent}
+     * @memberof CustomerAttribute2
+     */
+    content?: CommerceRuntimeAttributeLocalizedContent;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerAttribute2
+     */
+    dataType?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerAttribute2
+     */
+    displayGroup: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CustomerAttribute2
+     */
+    id?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerAttribute2
+     */
+    inputType?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CustomerAttribute2
+     */
+    isActive?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CustomerAttribute2
+     */
+    isMultiValued?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CustomerAttribute2
+     */
+    isReadOnly?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CustomerAttribute2
+     */
+    isRequired?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CustomerAttribute2
+     */
+    isVisible?: boolean | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerAttribute2
+     */
+    namespace?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CustomerAttribute2
+     */
+    order?: number | null;
+    /**
+     * 
+     * @type {CommerceRuntimeAttributeValidation}
+     * @memberof CustomerAttribute2
+     */
+    validation?: CommerceRuntimeAttributeValidation;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerAttribute2
+     */
+    valueType: string;
+    /**
+     * 
+     * @type {Array<CommerceRuntimeAttributeVocabularyValue>}
+     * @memberof CustomerAttribute2
+     */
+    vocabularyValues?: Array<CommerceRuntimeAttributeVocabularyValue> | null;
 }
 /**
  * Collection of notes added to a customer account returned as a whole. A collection is not paged.
@@ -1908,16 +2289,10 @@ export interface CustomerAttribute {
 export interface CustomerAttributeCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<CustomerAttribute>}
      * @memberof CustomerAttributeCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CustomerAttributeCollection
-     */
-    pageSize?: number;
+    items?: Array<CustomerAttribute> | null;
     /**
      * 
      * @type {number}
@@ -1929,13 +2304,19 @@ export interface CustomerAttributeCollection {
      * @type {number}
      * @memberof CustomerAttributeCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<CustomerAttribute>}
+     * @type {number}
      * @memberof CustomerAttributeCollection
      */
-    items?: Array<CustomerAttribute> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CustomerAttributeCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -1943,6 +2324,12 @@ export interface CustomerAttributeCollection {
  * @interface CustomerAuditEntry
  */
 export interface CustomerAuditEntry {
+    /**
+     * Applicattion associated with this entry
+     * @type {string}
+     * @memberof CustomerAuditEntry
+     */
+    application?: string | null;
     /**
      * Customer associated with this entry
      * @type {number}
@@ -1956,6 +2343,12 @@ export interface CustomerAuditEntry {
      */
     customerAuditEntryId?: number;
     /**
+     * Description of the change (UI Displayable)
+     * @type {string}
+     * @memberof CustomerAuditEntry
+     */
+    description?: string | null;
+    /**
      * Date of the Entry
      * @type {string}
      * @memberof CustomerAuditEntry
@@ -1968,29 +2361,17 @@ export interface CustomerAuditEntry {
      */
     entryUser?: string | null;
     /**
-     * Applicattion associated with this entry
-     * @type {string}
-     * @memberof CustomerAuditEntry
-     */
-    application?: string | null;
-    /**
-     * Site associated wit this entry
-     * @type {string}
-     * @memberof CustomerAuditEntry
-     */
-    site?: string | null;
-    /**
-     * Description of the change (UI Displayable)
-     * @type {string}
-     * @memberof CustomerAuditEntry
-     */
-    description?: string | null;
-    /**
      * Path of the field value being changed (e.g. /Customer/Contacts/1/FirstName)
      * @type {string}
      * @memberof CustomerAuditEntry
      */
     fieldPath?: string | null;
+    /**
+     * New Value after this event
+     * @type {string}
+     * @memberof CustomerAuditEntry
+     */
+    newValue?: string | null;
     /**
      * Original value before this event
      * @type {string}
@@ -1998,11 +2379,11 @@ export interface CustomerAuditEntry {
      */
     oldValue?: string | null;
     /**
-     * New Value after this event
+     * Site associated wit this entry
      * @type {string}
      * @memberof CustomerAuditEntry
      */
-    newValue?: string | null;
+    site?: string | null;
 }
 /**
  * 
@@ -2012,16 +2393,10 @@ export interface CustomerAuditEntry {
 export interface CustomerAuditEntryCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<CustomerAuditEntry>}
      * @memberof CustomerAuditEntryCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CustomerAuditEntryCollection
-     */
-    pageSize?: number;
+    items?: Array<CustomerAuditEntry> | null;
     /**
      * 
      * @type {number}
@@ -2033,13 +2408,19 @@ export interface CustomerAuditEntryCollection {
      * @type {number}
      * @memberof CustomerAuditEntryCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<CustomerAuditEntry>}
+     * @type {number}
      * @memberof CustomerAuditEntryCollection
      */
-    items?: Array<CustomerAuditEntry> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CustomerAuditEntryCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -2047,12 +2428,6 @@ export interface CustomerAuditEntryCollection {
  * @interface CustomerAuthTicket
  */
 export interface CustomerAuthTicket {
-    /**
-     * 
-     * @type {CustomerAccount}
-     * @memberof CustomerAuthTicket
-     */
-    customerAccount?: CustomerAccount;
     /**
      * 
      * @type {string}
@@ -2067,6 +2442,18 @@ export interface CustomerAuthTicket {
     accessTokenExpiration?: string;
     /**
      * 
+     * @type {CustomerAccount}
+     * @memberof CustomerAuthTicket
+     */
+    customerAccount?: CustomerAccount;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerAuthTicket
+     */
+    jwtAccessToken?: string | null;
+    /**
+     * 
      * @type {string}
      * @memberof CustomerAuthTicket
      */
@@ -2079,16 +2466,16 @@ export interface CustomerAuthTicket {
     refreshTokenExpiration?: string;
     /**
      * 
-     * @type {string}
+     * @type {boolean}
      * @memberof CustomerAuthTicket
      */
-    userId?: string | null;
+    requires2FA?: boolean;
     /**
      * 
      * @type {string}
      * @memberof CustomerAuthTicket
      */
-    jwtAccessToken?: string | null;
+    userId?: string | null;
 }
 /**
  * CustomerContact information for a customer account including the name, company, phone numbers, email addresses, and billing and shipping addresses (if supplied).
@@ -2104,10 +2491,10 @@ export interface CustomerContact {
     accountId?: number;
     /**
      * 
-     * @type {Array<ContactType>}
+     * @type {CommerceRuntimeAddress}
      * @memberof CustomerContact
      */
-    types?: Array<ContactType> | null;
+    address?: CommerceRuntimeAddress;
     /**
      * 
      * @type {AdminUserAuditInfo}
@@ -2119,19 +2506,7 @@ export interface CustomerContact {
      * @type {string}
      * @memberof CustomerContact
      */
-    faxNumber?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerContact
-     */
-    label?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CustomerContact
-     */
-    id?: number | null;
+    companyOrOrganization?: string | null;
     /**
      * 
      * @type {string}
@@ -2143,13 +2518,25 @@ export interface CustomerContact {
      * @type {string}
      * @memberof CustomerContact
      */
-    firstName?: string | null;
+    faxNumber?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CustomerContact
      */
-    middleNameOrInitial?: string | null;
+    firstName?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CustomerContact
+     */
+    id?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerContact
+     */
+    label?: string | null;
     /**
      * 
      * @type {string}
@@ -2161,7 +2548,7 @@ export interface CustomerContact {
      * @type {string}
      * @memberof CustomerContact
      */
-    companyOrOrganization?: string | null;
+    middleNameOrInitial?: string | null;
     /**
      * 
      * @type {CommerceRuntimePhone}
@@ -2170,10 +2557,10 @@ export interface CustomerContact {
     phoneNumbers?: CommerceRuntimePhone;
     /**
      * 
-     * @type {CommerceRuntimeAddress}
+     * @type {Array<ContactType>}
      * @memberof CustomerContact
      */
-    address?: CommerceRuntimeAddress;
+    types?: Array<ContactType> | null;
 }
 /**
  * Collection of contacts returned as a whole.
@@ -2183,16 +2570,10 @@ export interface CustomerContact {
 export interface CustomerContactCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<CustomerContact>}
      * @memberof CustomerContactCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CustomerContactCollection
-     */
-    pageSize?: number;
+    items?: Array<CustomerContact> | null;
     /**
      * 
      * @type {number}
@@ -2204,13 +2585,19 @@ export interface CustomerContactCollection {
      * @type {number}
      * @memberof CustomerContactCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<CustomerContact>}
+     * @type {number}
      * @memberof CustomerContactCollection
      */
-    items?: Array<CustomerContact> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CustomerContactCollection
+     */
+    totalCount?: number;
 }
 /**
  * Represetation of a store credit or gift card.
@@ -2218,6 +2605,20 @@ export interface CustomerContactCollection {
  * @interface CustomerCredit
  */
 export interface CustomerCredit {
+    /**
+     * Date the credit was activated.  Null if card is not active.
+     * Credits must be activated before they can be used.
+     * ReadOnly after activation
+     * @type {string}
+     * @memberof CustomerCredit
+     */
+    activationDate?: string | null;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof CustomerCredit
+     */
+    auditInfo?: AdminUserAuditInfo;
     /**
      * Unique number identifier representing this credit.
      * Number may be generated or set by the Tenant
@@ -2228,14 +2629,6 @@ export interface CustomerCredit {
      */
     code?: string | null;
     /**
-     * Date the credit was activated.  Null if card is not active.
-     * Credits must be activated before they can be used.
-     * ReadOnly after activation
-     * @type {string}
-     * @memberof CustomerCredit
-     */
-    activationDate?: string | null;
-    /**
      * Type of Credit.
      * Mozu.Customer.Contracts.Credit.Credit.CreditTypeConst
      * Required.
@@ -2245,26 +2638,17 @@ export interface CustomerCredit {
      */
     creditType?: string | null;
     /**
-     * Name of custom credit type
-     * Optional.
-     * @type {string}
+     * 
+     * @type {number}
      * @memberof CustomerCredit
      */
-    customCreditType?: string | null;
+    creditTypeId?: number;
     /**
      * Currency Code
      * @type {string}
      * @memberof CustomerCredit
      */
     currencyCode?: string | null;
-    /**
-     * Balance assigned when credit was initially created.
-     * May be zero and updated later.
-     * ReadOnly after intial credit creation
-     * @type {number}
-     * @memberof CustomerCredit
-     */
-    initialBalance?: number | null;
     /**
      * Do we want to track this here?
      * Current Balance
@@ -2274,13 +2658,12 @@ export interface CustomerCredit {
      */
     currentBalance?: number | null;
     /**
-     * Date after which this credit is no longer valid
-     * Optional
-     * Defaults to 365 days
+     * Name of custom credit type
+     * Optional.
      * @type {string}
      * @memberof CustomerCredit
      */
-    expirationDate?: string | null;
+    customCreditType?: string | null;
     /**
      * Id of the N:Mozu.Customer
      * that this credit is assigned to.
@@ -2290,17 +2673,21 @@ export interface CustomerCredit {
      */
     customerId?: number | null;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
+     * Date after which this credit is no longer valid
+     * Optional
+     * Defaults to 365 days
+     * @type {string}
      * @memberof CustomerCredit
      */
-    auditInfo?: AdminUserAuditInfo;
+    expirationDate?: string | null;
     /**
-     * 
+     * Balance assigned when credit was initially created.
+     * May be zero and updated later.
+     * ReadOnly after intial credit creation
      * @type {number}
      * @memberof CustomerCredit
      */
-    creditTypeId?: number;
+    initialBalance?: number | null;
 }
 /**
  * Category
@@ -2328,11 +2715,11 @@ export interface CustomerCustomerDynamicExpression {
  */
 export interface CustomerCustomerSegment {
     /**
-     * Unique identifier of the customer segment.
-     * @type {number}
+     * 
+     * @type {AdminUserAuditInfo}
      * @memberof CustomerCustomerSegment
      */
-    id?: number;
+    auditInfo?: AdminUserAuditInfo;
     /**
      * Unique identifier of the customer segment.
      * @type {string}
@@ -2340,23 +2727,23 @@ export interface CustomerCustomerSegment {
      */
     code?: string | null;
     /**
-     * Name of the customer segment.
-     * @type {string}
-     * @memberof CustomerCustomerSegment
-     */
-    name?: string | null;
-    /**
      * Description of the customer segment.
      * @type {string}
      * @memberof CustomerCustomerSegment
      */
     description?: string | null;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
+     * Unique identifier of the customer segment.
+     * @type {number}
      * @memberof CustomerCustomerSegment
      */
-    auditInfo?: AdminUserAuditInfo;
+    id?: number;
+    /**
+     * Name of the customer segment.
+     * @type {string}
+     * @memberof CustomerCustomerSegment
+     */
+    name?: string | null;
 }
 /**
  * 
@@ -2365,29 +2752,17 @@ export interface CustomerCustomerSegment {
  */
 export interface CustomerExpression {
     /**
-     * Container or Predicate
-     * @type {string}
-     * @memberof CustomerExpression
-     */
-    type?: string | null;
-    /**
-     * And or Or (if Container with More than one Node)
-     * @type {string}
-     * @memberof CustomerExpression
-     */
-    logicalOperator?: string | null;
-    /**
      * The field target of a predicate
      * @type {string}
      * @memberof CustomerExpression
      */
     left?: string | null;
     /**
-     * The literal values of a predicate
-     * @type {any}
+     * And or Or (if Container with More than one Node)
+     * @type {string}
      * @memberof CustomerExpression
      */
-    right?: any | null;
+    logicalOperator?: string | null;
     /**
      * 
      * @type {Array<CustomerExpression>}
@@ -2400,6 +2775,18 @@ export interface CustomerExpression {
      * @memberof CustomerExpression
      */
     operator?: string | null;
+    /**
+     * The literal values of a predicate
+     * @type {any}
+     * @memberof CustomerExpression
+     */
+    right?: any | null;
+    /**
+     * Container or Predicate
+     * @type {string}
+     * @memberof CustomerExpression
+     */
+    type?: string | null;
 }
 /**
  * 
@@ -2407,6 +2794,14 @@ export interface CustomerExpression {
  * @interface CustomerLoginInfo
  */
 export interface CustomerLoginInfo {
+    /**
+     * Optional requested duration for the authentication ticket in minutes.
+     * Must not exceed tenant configuration or platform hard caps.
+     * Requires 'customer-auth:configure-token-durations' behavior.
+     * @type {number}
+     * @memberof CustomerLoginInfo
+     */
+    authTicketTtlMinutes?: number | null;
     /**
      * 
      * @type {string}
@@ -2418,25 +2813,7 @@ export interface CustomerLoginInfo {
      * @type {string}
      * @memberof CustomerLoginInfo
      */
-    username?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerLoginInfo
-     */
-    password?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerLoginInfo
-     */
     externalPassword?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CustomerLoginInfo
-     */
-    isImport?: boolean | null;
     /**
      * Specifies the fingerprint of the user for two-factor authentication.
      * @type {string}
@@ -2444,11 +2821,37 @@ export interface CustomerLoginInfo {
      */
     fingerprint?: string | null;
     /**
+     * 
+     * @type {boolean}
+     * @memberof CustomerLoginInfo
+     */
+    isImport?: boolean | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerLoginInfo
+     */
+    password?: string | null;
+    /**
+     * Optional requested duration for the refresh token in minutes.
+     * Must not exceed tenant configuration or platform hard caps.
+     * Requires 'customer-auth:configure-token-durations' behavior.
+     * @type {number}
+     * @memberof CustomerLoginInfo
+     */
+    refreshTokenTtlMinutes?: number | null;
+    /**
      * Specifies the region of the user for two-factor authentication.
      * @type {string}
      * @memberof CustomerLoginInfo
      */
     region?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerLoginInfo
+     */
+    username?: string | null;
 }
 /**
  * Note added to the customer account. Merchants can add internal notes, for example, to keep track of a customer's interests or complaints.
@@ -2457,11 +2860,11 @@ export interface CustomerLoginInfo {
  */
 export interface CustomerNote {
     /**
-     * Unique identifier of the note.
-     * @type {number}
+     * 
+     * @type {AdminUserAuditInfo}
      * @memberof CustomerNote
      */
-    id?: number;
+    auditInfo?: AdminUserAuditInfo;
     /**
      * Content of the note that the merchant added.
      * @type {string}
@@ -2469,11 +2872,11 @@ export interface CustomerNote {
      */
     content?: string | null;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
+     * Unique identifier of the note.
+     * @type {number}
      * @memberof CustomerNote
      */
-    auditInfo?: AdminUserAuditInfo;
+    id?: number;
 }
 /**
  * Collection of notes added to a customer account returned as a whole. A collection is not paged.
@@ -2483,16 +2886,10 @@ export interface CustomerNote {
 export interface CustomerNoteCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<CustomerNote>}
      * @memberof CustomerNoteCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CustomerNoteCollection
-     */
-    pageSize?: number;
+    items?: Array<CustomerNote> | null;
     /**
      * 
      * @type {number}
@@ -2504,13 +2901,19 @@ export interface CustomerNoteCollection {
      * @type {number}
      * @memberof CustomerNoteCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<CustomerNote>}
+     * @type {number}
      * @memberof CustomerNoteCollection
      */
-    items?: Array<CustomerNote> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CustomerNoteCollection
+     */
+    totalCount?: number;
 }
 /**
  * Old password and new password.
@@ -2519,11 +2922,11 @@ export interface CustomerNoteCollection {
  */
 export interface CustomerPasswordInfo {
     /**
-     * Old password.
+     * The External Password, typically used for imports in conjunction with a custom action
      * @type {string}
      * @memberof CustomerPasswordInfo
      */
-    oldPassword?: string | null;
+    externalPassword?: string | null;
     /**
      * New password.
      * @type {string}
@@ -2531,11 +2934,11 @@ export interface CustomerPasswordInfo {
      */
     newPassword?: string | null;
     /**
-     * The External Password, typically used for imports in conjunction with a custom action
+     * Old password.
      * @type {string}
      * @memberof CustomerPasswordInfo
      */
-    externalPassword?: string | null;
+    oldPassword?: string | null;
 }
 /**
  * 
@@ -2548,25 +2951,13 @@ export interface CustomerPurchaseOrderAccount {
      * @type {number}
      * @memberof CustomerPurchaseOrderAccount
      */
-    id?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CustomerPurchaseOrderAccount
-     */
     accountId?: number;
     /**
      * 
-     * @type {boolean}
+     * @type {AdminUserAuditInfo}
      * @memberof CustomerPurchaseOrderAccount
      */
-    isEnabled?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof CustomerPurchaseOrderAccount
-     */
-    creditLimit?: number;
+    auditInfo?: AdminUserAuditInfo;
     /**
      * 
      * @type {number}
@@ -2578,7 +2969,25 @@ export interface CustomerPurchaseOrderAccount {
      * @type {number}
      * @memberof CustomerPurchaseOrderAccount
      */
-    totalAvailableBalance?: number;
+    creditLimit?: number;
+    /**
+     * 
+     * @type {Array<CustomerPurchaseOrderPaymentTerm>}
+     * @memberof CustomerPurchaseOrderAccount
+     */
+    customerPurchaseOrderPaymentTerms?: Array<CustomerPurchaseOrderPaymentTerm> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CustomerPurchaseOrderAccount
+     */
+    id?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CustomerPurchaseOrderAccount
+     */
+    isEnabled?: boolean;
     /**
      * 
      * @type {number}
@@ -2593,16 +3002,10 @@ export interface CustomerPurchaseOrderAccount {
     overdraftAllowanceType?: string | null;
     /**
      * 
-     * @type {Array<CustomerPurchaseOrderPaymentTerm>}
+     * @type {number}
      * @memberof CustomerPurchaseOrderAccount
      */
-    customerPurchaseOrderPaymentTerms?: Array<CustomerPurchaseOrderPaymentTerm> | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof CustomerPurchaseOrderAccount
-     */
-    auditInfo?: AdminUserAuditInfo;
+    totalAvailableBalance?: number;
 }
 /**
  * 
@@ -2612,16 +3015,10 @@ export interface CustomerPurchaseOrderAccount {
 export interface CustomerPurchaseOrderAccountCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<CustomerPurchaseOrderAccount>}
      * @memberof CustomerPurchaseOrderAccountCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CustomerPurchaseOrderAccountCollection
-     */
-    pageSize?: number;
+    items?: Array<CustomerPurchaseOrderAccount> | null;
     /**
      * 
      * @type {number}
@@ -2633,13 +3030,19 @@ export interface CustomerPurchaseOrderAccountCollection {
      * @type {number}
      * @memberof CustomerPurchaseOrderAccountCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<CustomerPurchaseOrderAccount>}
+     * @type {number}
      * @memberof CustomerPurchaseOrderAccountCollection
      */
-    items?: Array<CustomerPurchaseOrderAccount> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CustomerPurchaseOrderAccountCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -2649,10 +3052,10 @@ export interface CustomerPurchaseOrderAccountCollection {
 export interface CustomerPurchaseOrderPaymentTerm {
     /**
      * 
-     * @type {number}
+     * @type {AdminUserAuditInfo}
      * @memberof CustomerPurchaseOrderPaymentTerm
      */
-    siteId?: number;
+    auditInfo?: AdminUserAuditInfo;
     /**
      * 
      * @type {string}
@@ -2667,10 +3070,10 @@ export interface CustomerPurchaseOrderPaymentTerm {
     description?: string | null;
     /**
      * 
-     * @type {AdminUserAuditInfo}
+     * @type {number}
      * @memberof CustomerPurchaseOrderPaymentTerm
      */
-    auditInfo?: AdminUserAuditInfo;
+    siteId?: number;
 }
 /**
  * 
@@ -2683,6 +3086,12 @@ export interface CustomerResetPasswordInfo {
      * @type {string}
      * @memberof CustomerResetPasswordInfo
      */
+    customerSetCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerResetPasswordInfo
+     */
     emailAddress?: string | null;
     /**
      * 
@@ -2690,12 +3099,6 @@ export interface CustomerResetPasswordInfo {
      * @memberof CustomerResetPasswordInfo
      */
     userName?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerResetPasswordInfo
-     */
-    customerSetCode?: string | null;
 }
 /**
  * Represents a customer rule usage
@@ -2704,17 +3107,17 @@ export interface CustomerResetPasswordInfo {
  */
 export interface CustomerRuleUsage {
     /**
-     * The type of rule (Return, PurchaseLimit, etc.)
-     * @type {string}
-     * @memberof CustomerRuleUsage
-     */
-    ruleType?: string | null;
-    /**
      * The code/name of the rule
      * @type {string}
      * @memberof CustomerRuleUsage
      */
     code?: string | null;
+    /**
+     * The type of rule (Return, PurchaseLimit, etc.)
+     * @type {string}
+     * @memberof CustomerRuleUsage
+     */
+    ruleType?: string | null;
 }
 /**
  * Collection of customer segements returned as a whole. A collection is not paged.
@@ -2724,16 +3127,10 @@ export interface CustomerRuleUsage {
 export interface CustomerSegmentCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<CustomerCustomerSegment>}
      * @memberof CustomerSegmentCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CustomerSegmentCollection
-     */
-    pageSize?: number;
+    items?: Array<CustomerCustomerSegment> | null;
     /**
      * 
      * @type {number}
@@ -2745,13 +3142,19 @@ export interface CustomerSegmentCollection {
      * @type {number}
      * @memberof CustomerSegmentCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<CustomerCustomerSegment>}
+     * @type {number}
      * @memberof CustomerSegmentCollection
      */
-    items?: Array<CustomerCustomerSegment> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CustomerSegmentCollection
+     */
+    totalCount?: number;
 }
 /**
  * A customer segment.
@@ -2760,17 +3163,23 @@ export interface CustomerSegmentCollection {
  */
 export interface CustomerSet {
     /**
+     * 
+     * @type {CustomerSetAggregateInfo}
+     * @memberof CustomerSet
+     */
+    aggregateInfo?: CustomerSetAggregateInfo;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof CustomerSet
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
      * Unique identifier of the customer segment.
      * @type {string}
      * @memberof CustomerSet
      */
     code?: string | null;
-    /**
-     * Name of the customer segment.
-     * @type {string}
-     * @memberof CustomerSet
-     */
-    name?: string | null;
     /**
      * Description of the customer segment.
      * @type {string}
@@ -2779,28 +3188,22 @@ export interface CustomerSet {
     description?: string | null;
     /**
      * 
-     * @type {AdminUserAuditInfo}
+     * @type {boolean}
      * @memberof CustomerSet
      */
-    auditInfo?: AdminUserAuditInfo;
+    isDefault?: boolean;
+    /**
+     * Name of the customer segment.
+     * @type {string}
+     * @memberof CustomerSet
+     */
+    name?: string | null;
     /**
      * 
      * @type {Array<CustomerSetSite>}
      * @memberof CustomerSet
      */
     sites?: Array<CustomerSetSite> | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CustomerSet
-     */
-    isDefault?: boolean;
-    /**
-     * 
-     * @type {CustomerSetAggregateInfo}
-     * @memberof CustomerSet
-     */
-    aggregateInfo?: CustomerSetAggregateInfo;
 }
 /**
  * 
@@ -2823,16 +3226,10 @@ export interface CustomerSetAggregateInfo {
 export interface CustomerSetCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<CustomerSet>}
      * @memberof CustomerSetCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CustomerSetCollection
-     */
-    pageSize?: number;
+    items?: Array<CustomerSet> | null;
     /**
      * 
      * @type {number}
@@ -2844,13 +3241,19 @@ export interface CustomerSetCollection {
      * @type {number}
      * @memberof CustomerSetCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<CustomerSet>}
+     * @type {number}
      * @memberof CustomerSetCollection
      */
-    items?: Array<CustomerSet> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CustomerSetCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -2858,12 +3261,6 @@ export interface CustomerSetCollection {
  * @interface CustomerSetSite
  */
 export interface CustomerSetSite {
-    /**
-     * 
-     * @type {number}
-     * @memberof CustomerSetSite
-     */
-    siteId?: number;
     /**
      * 
      * @type {string}
@@ -2876,6 +3273,12 @@ export interface CustomerSetSite {
      * @memberof CustomerSetSite
      */
     name?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CustomerSetSite
+     */
+    siteId?: number;
 }
 /**
  * 
@@ -2884,23 +3287,19 @@ export interface CustomerSetSite {
  */
 export interface CustomerUserAuthInfo {
     /**
-     * 
-     * @type {string}
-     * @memberof CustomerUserAuthInfo
-     */
-    username?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerUserAuthInfo
-     */
-    password?: string | null;
-    /**
      * Account Id specifies the account for which the user requests an authentication token.
      * @type {number}
      * @memberof CustomerUserAuthInfo
      */
     accountId?: number | null;
+    /**
+     * Optional requested duration for the authentication ticket in minutes.
+     * Must not exceed tenant configuration or platform hard caps.
+     * Requires 'customer-auth:configure-token-durations' behavior.
+     * @type {number}
+     * @memberof CustomerUserAuthInfo
+     */
+    authTicketTtlMinutes?: number | null;
     /**
      * Specifies the fingerprint of the user for two-factor authentication.
      * @type {string}
@@ -2908,11 +3307,31 @@ export interface CustomerUserAuthInfo {
      */
     fingerprint?: string | null;
     /**
+     * 
+     * @type {string}
+     * @memberof CustomerUserAuthInfo
+     */
+    password?: string | null;
+    /**
+     * Optional requested duration for the refresh token in minutes.
+     * Must not exceed tenant configuration or platform hard caps.
+     * Requires 'customer-auth:configure-token-durations' behavior.
+     * @type {number}
+     * @memberof CustomerUserAuthInfo
+     */
+    refreshTokenTtlMinutes?: number | null;
+    /**
      * Specifies the region of the user for two-factor authentication.
      * @type {string}
      * @memberof CustomerUserAuthInfo
      */
     region?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerUserAuthInfo
+     */
+    username?: string | null;
 }
 /**
  * 
@@ -2922,16 +3341,16 @@ export interface CustomerUserAuthInfo {
 export interface CustomerUserRoleCollection {
     /**
      * 
-     * @type {number}
-     * @memberof CustomerUserRoleCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<UserRole>}
      * @memberof CustomerUserRoleCollection
      */
     items?: Array<UserRole> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CustomerUserRoleCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -2960,28 +3379,40 @@ export interface EvaluateAccountRankingRuleRequest {
 export interface ExtendedCustomerContact {
     /**
      * 
-     * @type {string}
-     * @memberof ExtendedCustomerContact
-     */
-    accountName?: string | null;
-    /**
-     * 
      * @type {number}
      * @memberof ExtendedCustomerContact
      */
     accountId?: number;
     /**
      * 
-     * @type {Array<ContactType>}
+     * @type {string}
      * @memberof ExtendedCustomerContact
      */
-    types?: Array<ContactType> | null;
+    accountName?: string | null;
+    /**
+     * 
+     * @type {CommerceRuntimeAddress}
+     * @memberof ExtendedCustomerContact
+     */
+    address?: CommerceRuntimeAddress;
     /**
      * 
      * @type {AdminUserAuditInfo}
      * @memberof ExtendedCustomerContact
      */
     auditInfo?: AdminUserAuditInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExtendedCustomerContact
+     */
+    companyOrOrganization?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExtendedCustomerContact
+     */
+    email?: string | null;
     /**
      * 
      * @type {string}
@@ -2993,7 +3424,7 @@ export interface ExtendedCustomerContact {
      * @type {string}
      * @memberof ExtendedCustomerContact
      */
-    label?: string | null;
+    firstName?: string | null;
     /**
      * 
      * @type {number}
@@ -3005,19 +3436,7 @@ export interface ExtendedCustomerContact {
      * @type {string}
      * @memberof ExtendedCustomerContact
      */
-    email?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExtendedCustomerContact
-     */
-    firstName?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExtendedCustomerContact
-     */
-    middleNameOrInitial?: string | null;
+    label?: string | null;
     /**
      * 
      * @type {string}
@@ -3029,7 +3448,7 @@ export interface ExtendedCustomerContact {
      * @type {string}
      * @memberof ExtendedCustomerContact
      */
-    companyOrOrganization?: string | null;
+    middleNameOrInitial?: string | null;
     /**
      * 
      * @type {CommerceRuntimePhone}
@@ -3038,10 +3457,10 @@ export interface ExtendedCustomerContact {
     phoneNumbers?: CommerceRuntimePhone;
     /**
      * 
-     * @type {CommerceRuntimeAddress}
+     * @type {Array<ContactType>}
      * @memberof ExtendedCustomerContact
      */
-    address?: CommerceRuntimeAddress;
+    types?: Array<ContactType> | null;
 }
 /**
  * Collection of contacts returned as a whole.
@@ -3051,16 +3470,10 @@ export interface ExtendedCustomerContact {
 export interface ExtendedCustomerContactCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<ExtendedCustomerContact>}
      * @memberof ExtendedCustomerContactCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ExtendedCustomerContactCollection
-     */
-    pageSize?: number;
+    items?: Array<ExtendedCustomerContact> | null;
     /**
      * 
      * @type {number}
@@ -3072,13 +3485,19 @@ export interface ExtendedCustomerContactCollection {
      * @type {number}
      * @memberof ExtendedCustomerContactCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<ExtendedCustomerContact>}
+     * @type {number}
      * @memberof ExtendedCustomerContactCollection
      */
-    items?: Array<ExtendedCustomerContact> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ExtendedCustomerContactCollection
+     */
+    totalCount?: number;
 }
 /**
  * Inventory in-stock notification subscription.  Notification sender/processor view.  Generally for internal consumption only.
@@ -3087,17 +3506,11 @@ export interface ExtendedCustomerContactCollection {
  */
 export interface InStockNotificationSubscription {
     /**
-     * Unique identifier
-     * @type {number}
+     * 
+     * @type {AdminUserAuditInfo}
      * @memberof InStockNotificationSubscription
      */
-    id?: number | null;
-    /**
-     * Email.  E-mail or CustomerId are required.
-     * @type {string}
-     * @memberof InStockNotificationSubscription
-     */
-    email?: string | null;
+    auditInfo?: AdminUserAuditInfo;
     /**
      * Id of the N:Mozu.Customer
      * that this subscription is assigned to.
@@ -3107,11 +3520,17 @@ export interface InStockNotificationSubscription {
      */
     customerId?: number | null;
     /**
-     * Product Code
+     * Email.  E-mail or CustomerId are required.
      * @type {string}
      * @memberof InStockNotificationSubscription
      */
-    productCode?: string | null;
+    email?: string | null;
+    /**
+     * Unique identifier
+     * @type {number}
+     * @memberof InStockNotificationSubscription
+     */
+    id?: number | null;
     /**
      * Location Code
      * @type {string}
@@ -3119,17 +3538,17 @@ export interface InStockNotificationSubscription {
      */
     locationCode?: string | null;
     /**
+     * Product Code
+     * @type {string}
+     * @memberof InStockNotificationSubscription
+     */
+    productCode?: string | null;
+    /**
      * User Id for multi-user b2b accounts
      * @type {string}
      * @memberof InStockNotificationSubscription
      */
     userId?: string | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof InStockNotificationSubscription
-     */
-    auditInfo?: AdminUserAuditInfo;
 }
 /**
  * Collection of InStockNotificationSubscriptions
@@ -3139,16 +3558,10 @@ export interface InStockNotificationSubscription {
 export interface InStockNotificationSubscriptionCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<InStockNotificationSubscription>}
      * @memberof InStockNotificationSubscriptionCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof InStockNotificationSubscriptionCollection
-     */
-    pageSize?: number;
+    items?: Array<InStockNotificationSubscription> | null;
     /**
      * 
      * @type {number}
@@ -3160,13 +3573,19 @@ export interface InStockNotificationSubscriptionCollection {
      * @type {number}
      * @memberof InStockNotificationSubscriptionCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<InStockNotificationSubscription>}
+     * @type {number}
      * @memberof InStockNotificationSubscriptionCollection
      */
-    items?: Array<InStockNotificationSubscription> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InStockNotificationSubscriptionCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -3174,6 +3593,30 @@ export interface InStockNotificationSubscriptionCollection {
  * @interface LoginState
  */
 export interface LoginState {
+    /**
+     * 
+     * @type {string}
+     * @memberof LoginState
+     */
+    createdOn?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof LoginState
+     */
+    failedLoginAttemptCount?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof LoginState
+     */
+    firstFailedLoginAttemptOn?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LoginState
+     */
+    isLocked?: boolean;
     /**
      * 
      * @type {boolean}
@@ -3185,37 +3628,7 @@ export interface LoginState {
      * @type {string}
      * @memberof LoginState
      */
-    lastPasswordChangeOn?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof LoginState
-     */
-    isLocked?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof LoginState
-     */
     lastLockedOn?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof LoginState
-     */
-    failedLoginAttemptCount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof LoginState
-     */
-    remainingLoginAttempts?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof LoginState
-     */
-    firstFailedLoginAttemptOn?: string | null;
     /**
      * 
      * @type {string}
@@ -3227,7 +3640,13 @@ export interface LoginState {
      * @type {string}
      * @memberof LoginState
      */
-    createdOn?: string | null;
+    lastPasswordChangeOn?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof LoginState
+     */
+    remainingLoginAttempts?: number;
     /**
      * 
      * @type {string}
@@ -3255,6 +3674,36 @@ export interface OtpRequest {
  */
 export interface PurchaseOrderTransaction {
     /**
+     * Any additional transaction detail other than transaction description
+     * @type {string}
+     * @memberof PurchaseOrderTransaction
+     */
+    additionalTransactionDetail?: string | null;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof PurchaseOrderTransaction
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof PurchaseOrderTransaction
+     */
+    author?: string | null;
+    /**
+     * Current available balance on Purchase Order account
+     * @type {number}
+     * @memberof PurchaseOrderTransaction
+     */
+    availableBalance?: number;
+    /**
+     * Maximum credit available on a purchase order account
+     * @type {number}
+     * @memberof PurchaseOrderTransaction
+     */
+    creditLimit?: number;
+    /**
      * Unique identifier for Customer purchase order account
      * @type {number}
      * @memberof PurchaseOrderTransaction
@@ -3266,24 +3715,6 @@ export interface PurchaseOrderTransaction {
      * @memberof PurchaseOrderTransaction
      */
     externalId?: string | null;
-    /**
-     * Site Id associated with transaction log
-     * @type {number}
-     * @memberof PurchaseOrderTransaction
-     */
-    siteId?: number;
-    /**
-     * Tenant Id associated with transaction log
-     * @type {number}
-     * @memberof PurchaseOrderTransaction
-     */
-    tenantId?: number;
-    /**
-     * Date when the transaction was made on a purchase order account
-     * @type {string}
-     * @memberof PurchaseOrderTransaction
-     */
-    transactionDate?: string;
     /**
      * Unique identifier for an order
      * @type {string}
@@ -3297,41 +3728,29 @@ export interface PurchaseOrderTransaction {
      */
     purchaseOrderNumber?: string | null;
     /**
+     * Site Id associated with transaction log
+     * @type {number}
+     * @memberof PurchaseOrderTransaction
+     */
+    siteId?: number;
+    /**
+     * Tenant Id associated with transaction log
+     * @type {number}
+     * @memberof PurchaseOrderTransaction
+     */
+    tenantId?: number;
+    /**
      * Transaction amount in transaction log for a purchase order account
      * @type {number}
      * @memberof PurchaseOrderTransaction
      */
     transactionAmount?: number;
     /**
-     * Maximum credit available on a purchase order account
-     * @type {number}
-     * @memberof PurchaseOrderTransaction
-     */
-    creditLimit?: number;
-    /**
-     * Any additional transaction detail other than transaction description
+     * Date when the transaction was made on a purchase order account
      * @type {string}
      * @memberof PurchaseOrderTransaction
      */
-    additionalTransactionDetail?: string | null;
-    /**
-     * Current available balance on Purchase Order account
-     * @type {number}
-     * @memberof PurchaseOrderTransaction
-     */
-    availableBalance?: number;
-    /**
-     *  Purchase Order transaction type
-     * 1 - Line of Credit Change
-     * 2 - Order Submitted
-     * 3 - Payment Collected
-     * 4 - Payment Voided
-     * 5 - Payment Refund
-     * 6 - Manual Adjustment
-     * @type {number}
-     * @memberof PurchaseOrderTransaction
-     */
-    transactionTypeId?: number;
+    transactionDate?: string;
     /**
      * Purchase Order transaction description
      * Line of Credit Change
@@ -3345,17 +3764,17 @@ export interface PurchaseOrderTransaction {
      */
     transactionDescription?: string | null;
     /**
-     * 
-     * @type {string}
+     *  Purchase Order transaction type
+     * 1 - Line of Credit Change
+     * 2 - Order Submitted
+     * 3 - Payment Collected
+     * 4 - Payment Voided
+     * 5 - Payment Refund
+     * 6 - Manual Adjustment
+     * @type {number}
      * @memberof PurchaseOrderTransaction
      */
-    author?: string | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof PurchaseOrderTransaction
-     */
-    auditInfo?: AdminUserAuditInfo;
+    transactionTypeId?: number;
 }
 /**
  * Collection of purchase order transactions returned as a whole. 
@@ -3366,16 +3785,10 @@ export interface PurchaseOrderTransaction {
 export interface PurchaseOrderTransactionCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<PurchaseOrderTransaction>}
      * @memberof PurchaseOrderTransactionCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PurchaseOrderTransactionCollection
-     */
-    pageSize?: number;
+    items?: Array<PurchaseOrderTransaction> | null;
     /**
      * 
      * @type {number}
@@ -3387,13 +3800,19 @@ export interface PurchaseOrderTransactionCollection {
      * @type {number}
      * @memberof PurchaseOrderTransactionCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<PurchaseOrderTransaction>}
+     * @type {number}
      * @memberof PurchaseOrderTransactionCollection
      */
-    items?: Array<PurchaseOrderTransaction> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PurchaseOrderTransactionCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -3406,13 +3825,13 @@ export interface Resource {
      * @type {string}
      * @memberof Resource
      */
-    type?: string | null;
+    id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Resource
      */
-    id?: string | null;
+    type?: string | null;
 }
 /**
  * 
@@ -3420,30 +3839,6 @@ export interface Resource {
  * @interface Transaction
  */
 export interface Transaction {
-    /**
-     * 
-     * @type {string}
-     * @memberof Transaction
-     */
-    transactionId?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Transaction
-     */
-    visitId?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Transaction
-     */
-    transactionType?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Transaction
-     */
-    interactionType?: string | null;
     /**
      * 
      * @type {number}
@@ -3455,13 +3850,37 @@ export interface Transaction {
      * @type {string}
      * @memberof Transaction
      */
+    currencyCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Transaction
+     */
     date?: string;
     /**
      * 
      * @type {string}
      * @memberof Transaction
      */
-    currencyCode?: string | null;
+    interactionType?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Transaction
+     */
+    transactionId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Transaction
+     */
+    transactionType?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Transaction
+     */
+    visitId?: string | null;
 }
 /**
  * This class is used for reporting errors while upgrading the B2C account to B2B.
@@ -3491,10 +3910,10 @@ export interface UpgradeToB2BAccountError {
 export interface UpgradeToB2BAccountResponse {
     /**
      * 
-     * @type {Array<number>}
+     * @type {Array<UpgradeToB2BAccountError>}
      * @memberof UpgradeToB2BAccountResponse
      */
-    successAccountIds?: Array<number> | null;
+    errorAccountIds?: Array<UpgradeToB2BAccountError> | null;
     /**
      * 
      * @type {Array<number>}
@@ -3503,10 +3922,10 @@ export interface UpgradeToB2BAccountResponse {
     skippedAccountIds?: Array<number> | null;
     /**
      * 
-     * @type {Array<UpgradeToB2BAccountError>}
+     * @type {Array<number>}
      * @memberof UpgradeToB2BAccountResponse
      */
-    errorAccountIds?: Array<UpgradeToB2BAccountError> | null;
+    successAccountIds?: Array<number> | null;
 }
 /**
  * 
@@ -3516,16 +3935,16 @@ export interface UpgradeToB2BAccountResponse {
 export interface UserRole {
     /**
      * 
-     * @type {string}
-     * @memberof UserRole
-     */
-    userId?: string | null;
-    /**
-     * 
      * @type {UserScope}
      * @memberof UserRole
      */
     assignedInScope?: UserScope;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof UserRole
+     */
+    auditInfo?: AdminUserAuditInfo;
     /**
      * 
      * @type {number}
@@ -3552,10 +3971,10 @@ export interface UserRole {
     roleTags?: Array<string> | null;
     /**
      * 
-     * @type {AdminUserAuditInfo}
+     * @type {string}
      * @memberof UserRole
      */
-    auditInfo?: AdminUserAuditInfo;
+    userId?: string | null;
 }
 /**
  * 
@@ -3563,12 +3982,6 @@ export interface UserRole {
  * @interface UserScope
  */
 export interface UserScope {
-    /**
-     * 
-     * @type {string}
-     * @memberof UserScope
-     */
-    type?: string | null;
     /**
      * 
      * @type {number}
@@ -3581,6 +3994,12 @@ export interface UserScope {
      * @memberof UserScope
      */
     name?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserScope
+     */
+    type?: string | null;
 }
 /**
  * 
@@ -3588,12 +4007,6 @@ export interface UserScope {
  * @interface Visit
  */
 export interface Visit {
-    /**
-     * 
-     * @type {string}
-     * @memberof Visit
-     */
-    id?: string | null;
     /**
      * 
      * @type {number}
@@ -3605,13 +4018,25 @@ export interface Visit {
      * @type {string}
      * @memberof Visit
      */
-    type?: string | null;
+    browserLocationCode?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Visit
      */
     date?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Visit
+     */
+    id?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Visit
+     */
+    locationCode?: string | null;
     /**
      * 
      * @type {Array<Transaction>}
@@ -3623,13 +4048,13 @@ export interface Visit {
      * @type {string}
      * @memberof Visit
      */
-    userId?: string | null;
+    type?: string | null;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof Visit
      */
-    webSiteId?: number | null;
+    userId?: string | null;
     /**
      * 
      * @type {string}
@@ -3644,22 +4069,16 @@ export interface Visit {
     webSessionId?: string | null;
     /**
      * 
+     * @type {number}
+     * @memberof Visit
+     */
+    webSiteId?: number | null;
+    /**
+     * 
      * @type {string}
      * @memberof Visit
      */
     webUserAgent?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Visit
-     */
-    browserLocationCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Visit
-     */
-    locationCode?: string | null;
 }
 /**
  * 
@@ -3669,16 +4088,10 @@ export interface Visit {
 export interface VisitCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<Visit>}
      * @memberof VisitCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof VisitCollection
-     */
-    pageSize?: number;
+    items?: Array<Visit> | null;
     /**
      * 
      * @type {number}
@@ -3690,11 +4103,17 @@ export interface VisitCollection {
      * @type {number}
      * @memberof VisitCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<Visit>}
+     * @type {number}
      * @memberof VisitCollection
      */
-    items?: Array<Visit> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof VisitCollection
+     */
+    totalCount?: number;
 }

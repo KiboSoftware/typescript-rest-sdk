@@ -11,7 +11,7 @@ export interface AdminUserAuditInfo {
      * @type {string}
      * @memberof AdminUserAuditInfo
      */
-    updateDate?: string | null;
+    createBy?: string | null;
     /**
      * 
      * @type {string}
@@ -29,7 +29,26 @@ export interface AdminUserAuditInfo {
      * @type {string}
      * @memberof AdminUserAuditInfo
      */
-    createBy?: string | null;
+    updateDate?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface AllocationRebalancerSettings
+ */
+export interface AllocationRebalancerSettings {
+    /**
+     * 
+     * @type {RebalancerAllocationSettings}
+     * @memberof AllocationRebalancerSettings
+     */
+    backorderAllocations?: RebalancerAllocationSettings;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AllocationRebalancerSettings
+     */
+    isEnabled?: boolean;
 }
 /**
  * Contains settings for the auto-capture payment feature.
@@ -37,6 +56,18 @@ export interface AdminUserAuditInfo {
  * @interface AutoCaptureJob
  */
 export interface AutoCaptureJob {
+    /**
+     * How often this job should run in minutes.
+     * @type {number}
+     * @memberof AutoCaptureJob
+     */
+    interval?: number;
+    /**
+     * Specifies whether this job should run.
+     * @type {boolean}
+     * @memberof AutoCaptureJob
+     */
+    isEnabled?: boolean;
     /**
      * 
      * @type {FlexibleCapture}
@@ -49,18 +80,25 @@ export interface AutoCaptureJob {
      * @memberof AutoCaptureJob
      */
     forceCaptureOnFirstCapture?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface AutoCaptureJobAllOf
+ */
+export interface AutoCaptureJobAllOf {
     /**
-     * Specifies whether this job should run.
+     * 
+     * @type {FlexibleCapture}
+     * @memberof AutoCaptureJobAllOf
+     */
+    flexibleCapture?: FlexibleCapture;
+    /**
+     * Specifies whether all available funds should be collected once any shipment is ready for capture.
      * @type {boolean}
-     * @memberof AutoCaptureJob
+     * @memberof AutoCaptureJobAllOf
      */
-    isEnabled?: boolean;
-    /**
-     * How often this job should run in minutes.
-     * @type {number}
-     * @memberof AutoCaptureJob
-     */
-    interval?: number;
+    forceCaptureOnFirstCapture?: boolean;
 }
 /**
  * 
@@ -89,22 +127,53 @@ export interface AutoRelease {
 export interface B2BOrderRelease {
     /**
      * 
-     * @type {boolean}
-     * @memberof B2BOrderRelease
-     */
-    isEnabled?: boolean;
-    /**
-     * 
      * @type {number}
      * @memberof B2BOrderRelease
      */
     automaticReleaseOffset?: number | null;
     /**
      * 
+     * @type {boolean}
+     * @memberof B2BOrderRelease
+     */
+    isEnabled?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof B2BOrderRelease
      */
     releaseType?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface B2BSettings
+ */
+export interface B2BSettings {
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof B2BSettings
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * 
+     * @type {BlanketOrderSettings}
+     * @memberof B2BSettings
+     */
+    blanketOrderSettings?: BlanketOrderSettings;
+    /**
+     * 
+     * @type {CallOffOrderSettings}
+     * @memberof B2BSettings
+     */
+    callOffOrderSettings?: CallOffOrderSettings;
+    /**
+     * 
+     * @type {OrchestratorSettings}
+     * @memberof B2BSettings
+     */
+    orchestratorSettings?: OrchestratorSettings;
 }
 /**
  * 
@@ -128,6 +197,19 @@ export interface BPMConfiguration {
 /**
  * 
  * @export
+ * @interface BlanketOrderSettings
+ */
+export interface BlanketOrderSettings {
+    /**
+     * 
+     * @type {RingFenceScopeSettings}
+     * @memberof BlanketOrderSettings
+     */
+    ringFenceScope?: RingFenceScopeSettings;
+}
+/**
+ * 
+ * @export
  * @interface CacheSettings
  */
 export interface CacheSettings {
@@ -137,6 +219,19 @@ export interface CacheSettings {
      * @memberof CacheSettings
      */
     cdnCacheBustKey?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface CallOffOrderSettings
+ */
+export interface CallOffOrderSettings {
+    /**
+     * 
+     * @type {RulesEngineJobSettings}
+     * @memberof CallOffOrderSettings
+     */
+    releaseJob?: RulesEngineJobSettings;
 }
 /**
  * 
@@ -165,6 +260,12 @@ export interface Cancellation {
 export interface CartSettings {
     /**
      * 
+     * @type {AdminUserAuditInfo}
+     * @memberof CartSettings
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * 
      * @type {boolean}
      * @memberof CartSettings
      */
@@ -175,12 +276,6 @@ export interface CartSettings {
      * @memberof CartSettings
      */
     reserveCartInventoryInterval?: number | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof CartSettings
-     */
-    auditInfo?: AdminUserAuditInfo;
 }
 /**
  * Checkout and payment settings defined for this site. Can set which payment gateway to use, whether a shopper is required to login to place an order,
@@ -190,12 +285,6 @@ export interface CartSettings {
  * @interface CheckoutSettings
  */
 export interface CheckoutSettings {
-    /**
-     * 
-     * @type {PaymentSettings}
-     * @memberof CheckoutSettings
-     */
-    paymentSettings?: PaymentSettings;
     /**
      * 
      * @type {CustomerCheckoutSettings}
@@ -208,6 +297,12 @@ export interface CheckoutSettings {
      * @memberof CheckoutSettings
      */
     orderProcessingSettings?: OrderProcessingSettings;
+    /**
+     * 
+     * @type {PaymentSettings}
+     * @memberof CheckoutSettings
+     */
+    paymentSettings?: PaymentSettings;
 }
 /**
  * 
@@ -217,22 +312,16 @@ export interface CheckoutSettings {
 export interface ConfigurableShipmentRelease {
     /**
      * 
+     * @type {B2BOrderRelease}
+     * @memberof ConfigurableShipmentRelease
+     */
+    b2BOrderRelease?: B2BOrderRelease;
+    /**
+     * 
      * @type {boolean}
      * @memberof ConfigurableShipmentRelease
      */
     isEnabled?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof ConfigurableShipmentRelease
-     */
-    shipmentCreationOffset?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ConfigurableShipmentRelease
-     */
-    reserveInventoryOnOrderPendingShipment?: boolean;
     /**
      * Indicates whether pricing should be refreshed when orders are edited.
      * @type {boolean}
@@ -241,10 +330,16 @@ export interface ConfigurableShipmentRelease {
     refreshPricingOnOrderEdit?: boolean | null;
     /**
      * 
-     * @type {B2BOrderRelease}
+     * @type {boolean}
      * @memberof ConfigurableShipmentRelease
      */
-    b2BOrderRelease?: B2BOrderRelease;
+    reserveInventoryOnOrderPendingShipment?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof ConfigurableShipmentRelease
+     */
+    shipmentCreationOffset?: number | null;
 }
 /**
  * 
@@ -273,16 +368,16 @@ export interface CustomRouteSettings {
     mappings?: { [key: string]: Mapping; } | null;
     /**
      * 
-     * @type {{ [key: string]: Validator; }}
-     * @memberof CustomRouteSettings
-     */
-    validators?: { [key: string]: Validator; } | null;
-    /**
-     * 
      * @type {Array<Route>}
      * @memberof CustomRouteSettings
      */
     routes?: Array<Route> | null;
+    /**
+     * 
+     * @type {{ [key: string]: Validator; }}
+     * @memberof CustomRouteSettings
+     */
+    validators?: { [key: string]: Validator; } | null;
 }
 /**
  * Checkout requirements for customers, for example, whether they must login before purchasing from your store. 
@@ -292,18 +387,18 @@ export interface CustomRouteSettings {
  */
 export interface CustomerCheckoutSettings {
     /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof CustomerCheckoutSettings
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
      * Checkout login setting. Value can be either "LoginOptional," where shoppers are prompted to sign in
      * but are not required to do so, or "LoginRequired," where shopppers must login before purchasing.
      * @type {string}
      * @memberof CustomerCheckoutSettings
      */
     customerCheckoutType?: string | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof CustomerCheckoutSettings
-     */
-    auditInfo?: AdminUserAuditInfo;
 }
 /**
  * 
@@ -312,23 +407,11 @@ export interface CustomerCheckoutSettings {
  */
 export interface DeliveryConsolidation {
     /**
-     * 
+     * AllowPartialFulfillment
      * @type {boolean}
      * @memberof DeliveryConsolidation
      */
-    isEnabled?: boolean;
-    /**
-     * 
-     * @type {ShippingMethod}
-     * @memberof DeliveryConsolidation
-     */
-    shippingMethodDeliveryConsolidation?: ShippingMethod;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof DeliveryConsolidation
-     */
-    restrictedCancellationSteps?: Array<string> | null;
+    allowPartialFulfillment?: boolean;
     /**
      * 
      * @type {boolean}
@@ -342,17 +425,29 @@ export interface DeliveryConsolidation {
      */
     forceDeliveryConsolidation?: boolean;
     /**
-     * AllowPartialFulfillment
+     * 
      * @type {boolean}
      * @memberof DeliveryConsolidation
      */
-    allowPartialFulfillment?: boolean;
+    isEnabled?: boolean;
     /**
      * MultipleConsolidation
      * @type {boolean}
      * @memberof DeliveryConsolidation
      */
     multipleConsolidation?: boolean;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof DeliveryConsolidation
+     */
+    restrictedCancellationSteps?: Array<string> | null;
+    /**
+     * 
+     * @type {ShippingMethod}
+     * @memberof DeliveryConsolidation
+     */
+    shippingMethodDeliveryConsolidation?: ShippingMethod;
 }
 /**
  * 
@@ -365,217 +460,7 @@ export interface EmailTransactionSettings {
      * @type {boolean}
      * @memberof EmailTransactionSettings
      */
-    backInStock?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    orderChanged?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    orderShipped?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    itemSubstituted?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    orderFulfillmentDetailsChanged?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    shopperLoginCreated?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    shopperPasswordReset?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    returnCreated?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    returnAuthorized?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    returnUpdated?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    returnRejected?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    returnCancelled?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    returnClosed?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    refundCreated?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    storeCreditCreated?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    storeCreditUpdated?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    giftCardCreated?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    orderCancellation?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    orderCancellationFailed?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    backorder?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    shipmentConfirmation?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    orderPickupReady?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    orderPickupReminder?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    shipmentBackorderDateChanged?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    shipmentItemCanceled?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    shipmentAssigned?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    transferShipmentCreated?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    transferShipmentShipped?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    partialPickupReady?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    transferShipmentCreatedByFulfiller?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    intransitConfirmation?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    curbsideReady?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    partialCurbsideReady?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    gatewayGiftCardCreated?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    customerIntransit?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    customerAtCurbside?: boolean | null;
+    accountCreated?: boolean | null;
     /**
      * 
      * @type {boolean}
@@ -593,7 +478,139 @@ export interface EmailTransactionSettings {
      * @type {boolean}
      * @memberof EmailTransactionSettings
      */
-    accountCreated?: boolean | null;
+    backInStock?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    backorder?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    curbsideReady?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    customerAtCurbside?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    customerIntransit?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    deliveryDateUpdated?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    digitalItemFulfilled?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    gatewayGiftCardCreated?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    giftCardCreated?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    intransitConfirmation?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    itemSubstituted?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    orderCancellation?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    orderCancellationFailed?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    orderChanged?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    orderFulfillmentDetailsChanged?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    orderItemsCanceled?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    orderPickupReady?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    orderPickupReminder?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    orderShipped?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    otpForLogin?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    partialCurbsideReady?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    partialPickupReady?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    quoteExpired?: boolean | null;
     /**
      * 
      * @type {boolean}
@@ -611,19 +628,115 @@ export interface EmailTransactionSettings {
      * @type {boolean}
      * @memberof EmailTransactionSettings
      */
-    quoteExpired?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    deliveryDateUpdated?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
     readyForDelivery?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    refundCreated?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    returnAuthorized?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    returnCancelled?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    returnClosed?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    returnCreated?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    returnLabelAdded?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    returnRejected?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    returnUpdated?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    shipmentAssigned?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    shipmentBackorderDateChanged?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    shipmentConfirmation?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    shipmentItemCanceled?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    shopperEmailUpdated?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    shopperLoginCreated?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    shopperPasswordReset?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    shopperPasswordUpdated?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    storeCreditCreated?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    storeCreditUpdated?: boolean | null;
     /**
      * 
      * @type {boolean}
@@ -635,7 +748,7 @@ export interface EmailTransactionSettings {
      * @type {boolean}
      * @memberof EmailTransactionSettings
      */
-    subscriptionPaused?: boolean | null;
+    subscriptionCancelled?: boolean | null;
     /**
      * 
      * @type {boolean}
@@ -647,13 +760,37 @@ export interface EmailTransactionSettings {
      * @type {boolean}
      * @memberof EmailTransactionSettings
      */
-    subscriptionCancelled?: boolean | null;
+    subscriptionFrequencyUpdated?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof EmailTransactionSettings
      */
-    subscriptionFrequencyUpdated?: boolean | null;
+    subscriptionItemAdded?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    subscriptionItemQuantityUpdated?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    subscriptionItemsCancelled?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    subscriptionNextOrderDateUpdated?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    subscriptionOrderReminder?: boolean | null;
     /**
      * 
      * @type {boolean}
@@ -665,7 +802,19 @@ export interface EmailTransactionSettings {
      * @type {boolean}
      * @memberof EmailTransactionSettings
      */
-    subscriptionNextOrderDateUpdated?: boolean | null;
+    subscriptionPauseLimitReminder?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    subscriptionPaused?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailTransactionSettings
+     */
+    subscriptionPausedReminder?: boolean | null;
     /**
      * 
      * @type {boolean}
@@ -683,43 +832,7 @@ export interface EmailTransactionSettings {
      * @type {boolean}
      * @memberof EmailTransactionSettings
      */
-    subscriptionItemAdded?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    subscriptionItemsCancelled?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
     subscriptionSkipped?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    subscriptionItemQuantityUpdated?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    subscriptionOrderReminder?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    subscriptionPauseLimitReminder?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EmailTransactionSettings
-     */
-    subscriptionPausedReminder?: boolean | null;
     /**
      * 
      * @type {boolean}
@@ -731,19 +844,19 @@ export interface EmailTransactionSettings {
      * @type {boolean}
      * @memberof EmailTransactionSettings
      */
-    digitalItemFulfilled?: boolean | null;
+    transferShipmentCreated?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof EmailTransactionSettings
      */
-    orderItemsCanceled?: boolean | null;
+    transferShipmentCreatedByFulfiller?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof EmailTransactionSettings
      */
-    otpForLogin?: boolean | null;
+    transferShipmentShipped?: boolean | null;
 }
 /**
  * 
@@ -756,7 +869,19 @@ export interface EmailTypeSetting {
      * @type {string}
      * @memberof EmailTypeSetting
      */
+    bccEmailAddressOverride?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailTypeSetting
+     */
     id?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailTypeSetting
+     */
+    replyToEmailAddressOverride?: string | null;
     /**
      * 
      * @type {string}
@@ -769,18 +894,6 @@ export interface EmailTypeSetting {
      * @memberof EmailTypeSetting
      */
     senderEmailAliasOverride?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof EmailTypeSetting
-     */
-    replyToEmailAddressOverride?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof EmailTypeSetting
-     */
-    bccEmailAddressOverride?: string | null;
 }
 /**
  * This class describes credentials and enablement for the various third-party payment workflows that we will integrate with.
@@ -790,23 +903,11 @@ export interface EmailTypeSetting {
  */
 export interface ExternalPaymentWorkflowDefinition {
     /**
-     * Should be one of Contracts.Constants.ThirdPartyWorkflowNames.
-     * @type {string}
-     * @memberof ExternalPaymentWorkflowDefinition
-     */
-    name?: string | null;
-    /**
      * 
-     * @type {string}
+     * @type {Array<ThirdPartyCredentialField>}
      * @memberof ExternalPaymentWorkflowDefinition
      */
-    namespace?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalPaymentWorkflowDefinition
-     */
-    fullyQualifiedName?: string | null;
+    credentials?: Array<ThirdPartyCredentialField> | null;
     /**
      * Information about this definition for display purposes in the 'Payment and Checkout Settings'
      * admin ui.  This field may contain valid html tags
@@ -814,6 +915,12 @@ export interface ExternalPaymentWorkflowDefinition {
      * @memberof ExternalPaymentWorkflowDefinition
      */
     description?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExternalPaymentWorkflowDefinition
+     */
+    fullyQualifiedName?: string | null;
     /**
      * 
      * @type {boolean}
@@ -828,11 +935,17 @@ export interface ExternalPaymentWorkflowDefinition {
      */
     isLegacy?: boolean | null;
     /**
-     * 
-     * @type {Array<ThirdPartyCredentialField>}
+     * Should be one of Contracts.Constants.ThirdPartyWorkflowNames.
+     * @type {string}
      * @memberof ExternalPaymentWorkflowDefinition
      */
-    credentials?: Array<ThirdPartyCredentialField> | null;
+    name?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExternalPaymentWorkflowDefinition
+     */
+    namespace?: string | null;
 }
 /**
  * Contains settings specifying whether the auto-capture payment feature should consider pre-fulfilled shipments.
@@ -845,13 +958,19 @@ export interface FlexibleCapture {
      * @type {FlexibleCaptureFlow}
      * @memberof FlexibleCapture
      */
-    sthFlow?: FlexibleCaptureFlow;
+    bopisFlow?: FlexibleCaptureFlow;
     /**
      * 
      * @type {FlexibleCaptureFlow}
      * @memberof FlexibleCapture
      */
-    bopisFlow?: FlexibleCaptureFlow;
+    deliveryFlow?: FlexibleCaptureFlow;
+    /**
+     * 
+     * @type {FlexibleCaptureFlow}
+     * @memberof FlexibleCapture
+     */
+    sthFlow?: FlexibleCaptureFlow;
 }
 /**
  * Specifies a pre-fulfilled shipment state that is eligible for capture.
@@ -879,11 +998,11 @@ export interface FlexibleCaptureFlow {
  */
 export interface ForceCaptureJob {
     /**
-     * 
+     * How often this job should run in minutes.
      * @type {number}
      * @memberof ForceCaptureJob
      */
-    captureAfterDays?: number;
+    interval?: number;
     /**
      * Specifies whether this job should run.
      * @type {boolean}
@@ -891,11 +1010,24 @@ export interface ForceCaptureJob {
      */
     isEnabled?: boolean;
     /**
-     * How often this job should run in minutes.
+     * 
      * @type {number}
      * @memberof ForceCaptureJob
      */
-    interval?: number;
+    captureAfterDays?: number;
+}
+/**
+ * 
+ * @export
+ * @interface ForceCaptureJobAllOf
+ */
+export interface ForceCaptureJobAllOf {
+    /**
+     * 
+     * @type {number}
+     * @memberof ForceCaptureJobAllOf
+     */
+    captureAfterDays?: number;
 }
 /**
  * 
@@ -931,16 +1063,16 @@ export interface FulfillerSettings {
 export interface FulfillmentJob {
     /**
      * 
-     * @type {boolean}
-     * @memberof FulfillmentJob
-     */
-    isEnabled?: boolean;
-    /**
-     * 
      * @type {number}
      * @memberof FulfillmentJob
      */
     interval?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentJob
+     */
+    isEnabled?: boolean;
 }
 /**
  * 
@@ -969,10 +1101,70 @@ export interface FulfillmentJobSettings {
 export interface FulfillmentSettings {
     /**
      * 
+     * @type {string}
+     * @memberof FulfillmentSettings
+     */
+    actionOnBOPISReject?: string | null;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof FulfillmentSettings
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * 
+     * @type {BPMConfiguration}
+     * @memberof FulfillmentSettings
+     */
+    bpmConfiguration?: BPMConfiguration;
+    /**
+     * 
+     * @type {ConfigurableShipmentRelease}
+     * @memberof FulfillmentSettings
+     */
+    configurableShipmentRelease?: ConfigurableShipmentRelease;
+    /**
+     * 
+     * @type {CreateShipmentsOnPendingReview}
+     * @memberof FulfillmentSettings
+     */
+    createShipmentsOnPendingReview?: CreateShipmentsOnPendingReview;
+    /**
+     * 
      * @type {number}
      * @memberof FulfillmentSettings
      */
     defaultBackOrderDays?: number | null;
+    /**
+     * 
+     * @type {DeliveryConsolidation}
+     * @memberof FulfillmentSettings
+     */
+    deliveryConsolidation?: DeliveryConsolidation;
+    /**
+     * 
+     * @type {FulfillerSettings}
+     * @memberof FulfillmentSettings
+     */
+    fulfillerSettings?: FulfillerSettings;
+    /**
+     * 
+     * @type {FulfillmentJobSettings}
+     * @memberof FulfillmentSettings
+     */
+    fulfillmentJobSettings?: FulfillmentJobSettings;
+    /**
+     * 
+     * @type {FutureDateLimit}
+     * @memberof FulfillmentSettings
+     */
+    futureDateLimit?: FutureDateLimit;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentSettings
+     */
+    futureInventoryEnabled?: boolean | null;
     /**
      * 
      * @type {boolean}
@@ -984,31 +1176,7 @@ export interface FulfillmentSettings {
      * @type {boolean}
      * @memberof FulfillmentSettings
      */
-    futureInventoryEnabled?: boolean | null;
-    /**
-     * 
-     * @type {BPMConfiguration}
-     * @memberof FulfillmentSettings
-     */
-    bpmConfiguration?: BPMConfiguration;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof FulfillmentSettings
-     */
-    auditInfo?: AdminUserAuditInfo;
-    /**
-     * 
-     * @type {FulfillmentJobSettings}
-     * @memberof FulfillmentSettings
-     */
-    fulfillmentJobSettings?: FulfillmentJobSettings;
-    /**
-     * 
-     * @type {ShipToStore}
-     * @memberof FulfillmentSettings
-     */
-    shipToStore?: ShipToStore;
+    retainFlatRatePerOrder?: boolean | null;
     /**
      * 
      * @type {ShipToHomeConsolidation}
@@ -1017,58 +1185,22 @@ export interface FulfillmentSettings {
     shipToHomeConsolidation?: ShipToHomeConsolidation;
     /**
      * 
-     * @type {DeliveryConsolidation}
+     * @type {ShipToStore}
      * @memberof FulfillmentSettings
      */
-    deliveryConsolidation?: DeliveryConsolidation;
-    /**
-     * 
-     * @type {CreateShipmentsOnPendingReview}
-     * @memberof FulfillmentSettings
-     */
-    createShipmentsOnPendingReview?: CreateShipmentsOnPendingReview;
-    /**
-     * 
-     * @type {FutureDateLimit}
-     * @memberof FulfillmentSettings
-     */
-    futureDateLimit?: FutureDateLimit;
-    /**
-     * 
-     * @type {FulfillerSettings}
-     * @memberof FulfillmentSettings
-     */
-    fulfillerSettings?: FulfillerSettings;
-    /**
-     * 
-     * @type {string}
-     * @memberof FulfillmentSettings
-     */
-    actionOnBOPISReject?: string | null;
-    /**
-     * 
-     * @type {ConfigurableShipmentRelease}
-     * @memberof FulfillmentSettings
-     */
-    configurableShipmentRelease?: ConfigurableShipmentRelease;
-    /**
-     * 
-     * @type {Substitution}
-     * @memberof FulfillmentSettings
-     */
-    substitution?: Substitution;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof FulfillmentSettings
-     */
-    retainFlatRatePerOrder?: boolean | null;
+    shipToStore?: ShipToStore;
     /**
      * 
      * @type {ShipmentsOnHold}
      * @memberof FulfillmentSettings
      */
     shipmentsOnHold?: ShipmentsOnHold;
+    /**
+     * 
+     * @type {Substitution}
+     * @memberof FulfillmentSettings
+     */
+    substitution?: Substitution;
 }
 /**
  * 
@@ -1078,16 +1210,16 @@ export interface FulfillmentSettings {
 export interface FutureDateLimit {
     /**
      * 
-     * @type {string}
-     * @memberof FutureDateLimit
-     */
-    futureDateLimitUnit?: string | null;
-    /**
-     * 
      * @type {number}
      * @memberof FutureDateLimit
      */
     futureDateLimitQuantity?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FutureDateLimit
+     */
+    futureDateLimitUnit?: string | null;
 }
 /**
  * 
@@ -1095,12 +1227,6 @@ export interface FutureDateLimit {
  * @interface Gateway
  */
 export interface Gateway {
-    /**
-     * 
-     * @type {GatewayDefinition}
-     * @memberof Gateway
-     */
-    gatewayDefinition?: GatewayDefinition;
     /**
      * Returns true if Gateway CredentialsField is set. For security purposes, Gateway subresource CredentialFields will not be returned.
      * @type {boolean}
@@ -1114,17 +1240,23 @@ export interface Gateway {
      */
     gatewayAccount?: GatewayAccount;
     /**
-     * Which credit cards the Merchant supports
-     * @type {Array<string>}
+     * 
+     * @type {GatewayDefinition}
      * @memberof Gateway
      */
-    supportedCards?: Array<string> | null;
+    gatewayDefinition?: GatewayDefinition;
     /**
      * Which credit cards the Merchant supports
      * @type {Array<SiteGatewaySupportedCard>}
      * @memberof Gateway
      */
     siteGatewaySupportedCards?: Array<SiteGatewaySupportedCard> | null;
+    /**
+     * Which credit cards the Merchant supports
+     * @type {Array<string>}
+     * @memberof Gateway
+     */
+    supportedCards?: Array<string> | null;
 }
 /**
  * 
@@ -1134,16 +1266,22 @@ export interface Gateway {
 export interface GatewayAccount {
     /**
      * 
-     * @type {string}
+     * @type {Array<string>}
      * @memberof GatewayAccount
      */
-    id?: string | null;
+    binPatterns?: Array<string> | null;
     /**
      * 
      * @type {string}
      * @memberof GatewayAccount
      */
-    name?: string | null;
+    countryCode?: string | null;
+    /**
+     * 
+     * @type {Array<GatewayCredentialFieldValue>}
+     * @memberof GatewayAccount
+     */
+    credentialFields?: Array<GatewayCredentialFieldValue> | null;
     /**
      * 
      * @type {string}
@@ -1155,7 +1293,7 @@ export interface GatewayAccount {
      * @type {string}
      * @memberof GatewayAccount
      */
-    countryCode?: string | null;
+    id?: string | null;
     /**
      * 
      * @type {boolean}
@@ -1164,16 +1302,10 @@ export interface GatewayAccount {
     isActive?: boolean;
     /**
      * 
-     * @type {Array<GatewayCredentialFieldValue>}
+     * @type {string}
      * @memberof GatewayAccount
      */
-    credentialFields?: Array<GatewayCredentialFieldValue> | null;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof GatewayAccount
-     */
-    binPatterns?: Array<string> | null;
+    name?: string | null;
 }
 /**
  * 
@@ -1183,10 +1315,10 @@ export interface GatewayAccount {
 export interface GatewayCredentialFieldDefinition {
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof GatewayCredentialFieldDefinition
      */
-    name?: string | null;
+    adminDisplayOrder?: number;
     /**
      * 
      * @type {string}
@@ -1195,16 +1327,16 @@ export interface GatewayCredentialFieldDefinition {
     displayName?: string | null;
     /**
      * 
-     * @type {number}
-     * @memberof GatewayCredentialFieldDefinition
-     */
-    adminDisplayOrder?: number;
-    /**
-     * 
      * @type {boolean}
      * @memberof GatewayCredentialFieldDefinition
      */
     isPublic?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof GatewayCredentialFieldDefinition
+     */
+    name?: string | null;
 }
 /**
  * 
@@ -1212,6 +1344,12 @@ export interface GatewayCredentialFieldDefinition {
  * @interface GatewayCredentialFieldValue
  */
 export interface GatewayCredentialFieldValue {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GatewayCredentialFieldValue
+     */
+    isValueSet?: boolean;
     /**
      * 
      * @type {string}
@@ -1224,12 +1362,6 @@ export interface GatewayCredentialFieldValue {
      * @memberof GatewayCredentialFieldValue
      */
     value?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof GatewayCredentialFieldValue
-     */
-    isValueSet?: boolean;
 }
 /**
  * 
@@ -1237,6 +1369,30 @@ export interface GatewayCredentialFieldValue {
  * @interface GatewayDefinition
  */
 export interface GatewayDefinition {
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof GatewayDefinition
+     */
+    administationUi?: Array<object> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof GatewayDefinition
+     */
+    countryCode?: string | null;
+    /**
+     * 
+     * @type {Array<GatewayCredentialFieldDefinition>}
+     * @memberof GatewayDefinition
+     */
+    credentialDefinitions?: Array<GatewayCredentialFieldDefinition> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof GatewayDefinition
+     */
+    features?: Array<string> | null;
     /**
      * 
      * @type {string}
@@ -1248,7 +1404,7 @@ export interface GatewayDefinition {
      * @type {string}
      * @memberof GatewayDefinition
      */
-    countryCode?: string | null;
+    integrationImplTypeName?: string | null;
     /**
      * 
      * @type {string}
@@ -1257,22 +1413,16 @@ export interface GatewayDefinition {
     name?: string | null;
     /**
      * 
+     * @type {PreAuthorizeDefinition}
+     * @memberof GatewayDefinition
+     */
+    preAuthorizeDefinition?: PreAuthorizeDefinition;
+    /**
+     * 
      * @type {string}
      * @memberof GatewayDefinition
      */
     prodServiceURL?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof GatewayDefinition
-     */
-    testServiceURL?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof GatewayDefinition
-     */
-    integrationImplTypeName?: string | null;
     /**
      * 
      * @type {Array<SupportedCard>}
@@ -1281,28 +1431,10 @@ export interface GatewayDefinition {
     supportedCards?: Array<SupportedCard> | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {string}
      * @memberof GatewayDefinition
      */
-    features?: Array<string> | null;
-    /**
-     * 
-     * @type {Array<GatewayCredentialFieldDefinition>}
-     * @memberof GatewayDefinition
-     */
-    credentialDefinitions?: Array<GatewayCredentialFieldDefinition> | null;
-    /**
-     * 
-     * @type {PreAuthorizeDefinition}
-     * @memberof GatewayDefinition
-     */
-    preAuthorizeDefinition?: PreAuthorizeDefinition;
-    /**
-     * 
-     * @type {Array<object>}
-     * @memberof GatewayDefinition
-     */
-    administationUi?: Array<object> | null;
+    testServiceURL?: string | null;
 }
 /**
  * 
@@ -1315,67 +1447,13 @@ export interface GeneralSettings {
      * @type {boolean}
      * @memberof GeneralSettings
      */
-    isMozuWebSite?: boolean;
+    allowInvalidAddresses?: boolean | null;
     /**
      * 
-     * @type {string}
+     * @type {AdminUserAuditInfo}
      * @memberof GeneralSettings
      */
-    websiteName?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof GeneralSettings
-     */
-    customCdnHostName?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof GeneralSettings
-     */
-    missingImageSubstitute?: string | null;
-    /**
-     * 
-     * @type {CacheSettings}
-     * @memberof GeneralSettings
-     */
-    cacheSettings?: CacheSettings;
-    /**
-     * 
-     * @type {number}
-     * @memberof GeneralSettings
-     */
-    templateSiteId?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof GeneralSettings
-     */
-    siteTimeZone?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof GeneralSettings
-     */
-    siteTimeFormat?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof GeneralSettings
-     */
-    senderEmailAddress?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof GeneralSettings
-     */
-    senderEmailAlias?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof GeneralSettings
-     */
-    replyToEmailAddress?: string | null;
+    auditInfo?: AdminUserAuditInfo;
     /**
      * 
      * @type {string}
@@ -1384,10 +1462,34 @@ export interface GeneralSettings {
     bccEmailAddress?: string | null;
     /**
      * 
+     * @type {CacheSettings}
+     * @memberof GeneralSettings
+     */
+    cacheSettings?: CacheSettings;
+    /**
+     * 
      * @type {string}
      * @memberof GeneralSettings
      */
-    favIconPath?: string | null;
+    customCdnHostName?: string | null;
+    /**
+     * 
+     * @type {CustomRouteSettings}
+     * @memberof GeneralSettings
+     */
+    customRoutes?: CustomRouteSettings;
+    /**
+     * 
+     * @type {EmailTransactionSettings}
+     * @memberof GeneralSettings
+     */
+    emailTransactionsOnlyOnRequest?: EmailTransactionSettings;
+    /**
+     * 
+     * @type {Array<EmailTypeSetting>}
+     * @memberof GeneralSettings
+     */
+    emailTypes?: Array<EmailTypeSetting> | null;
     /**
      * 
      * @type {string}
@@ -1399,73 +1501,13 @@ export interface GeneralSettings {
      * @type {string}
      * @memberof GeneralSettings
      */
-    logoText?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof GeneralSettings
-     */
-    logoPath?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof GeneralSettings
-     */
-    theme?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof GeneralSettings
-     */
-    mobileTheme?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof GeneralSettings
-     */
-    tabletTheme?: string | null;
+    favIconPath?: string | null;
     /**
      * 
      * @type {string}
      * @memberof GeneralSettings
      */
     googleAnalyticsCode?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof GeneralSettings
-     */
-    isGoogleAnalyticsEnabled?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof GeneralSettings
-     */
-    isGoogleAnalyticsEcommerceEnabled?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof GeneralSettings
-     */
-    isWishlistCreationEnabled?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof GeneralSettings
-     */
-    isMultishipEnabled?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof GeneralSettings
-     */
-    isAddressValidationEnabled?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof GeneralSettings
-     */
-    allowInvalidAddresses?: boolean | null;
     /**
      * 
      * @type {boolean}
@@ -1489,55 +1531,103 @@ export interface GeneralSettings {
      * @type {boolean}
      * @memberof GeneralSettings
      */
+    isAddressValidationEnabled?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GeneralSettings
+     */
     isEmailOtpLoginAllowed?: boolean | null;
     /**
      * 
-     * @type {Array<TaxableTerritory>}
+     * @type {boolean}
      * @memberof GeneralSettings
      */
-    taxableTerritories?: Array<TaxableTerritory> | null;
+    isGoogleAnalyticsEcommerceEnabled?: boolean | null;
     /**
      * 
-     * @type {EmailTransactionSettings}
+     * @type {boolean}
      * @memberof GeneralSettings
      */
-    supressedEmailTransactions?: EmailTransactionSettings;
+    isGoogleAnalyticsEnabled?: boolean | null;
     /**
      * 
-     * @type {EmailTransactionSettings}
+     * @type {boolean}
      * @memberof GeneralSettings
      */
-    emailTransactionsOnlyOnRequest?: EmailTransactionSettings;
+    isMozuWebSite?: boolean;
     /**
      * 
-     * @type {AdminUserAuditInfo}
+     * @type {boolean}
      * @memberof GeneralSettings
      */
-    auditInfo?: AdminUserAuditInfo;
+    isMultishipEnabled?: boolean | null;
     /**
      * 
-     * @type {ViewAuthorizations}
+     * @type {boolean}
      * @memberof GeneralSettings
      */
-    viewAuthorizations?: ViewAuthorizations;
+    isWishlistCreationEnabled?: boolean | null;
     /**
      * 
-     * @type {CustomRouteSettings}
+     * @type {string}
      * @memberof GeneralSettings
      */
-    customRoutes?: CustomRouteSettings;
+    logoPath?: string | null;
     /**
      * 
-     * @type {Array<EmailTypeSetting>}
+     * @type {string}
      * @memberof GeneralSettings
      */
-    emailTypes?: Array<EmailTypeSetting> | null;
+    logoText?: string | null;
     /**
      * 
-     * @type {SMSTransactionSettings}
+     * @type {string}
      * @memberof GeneralSettings
      */
-    supressedSmsTransactions?: SMSTransactionSettings;
+    missingImageSubstitute?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof GeneralSettings
+     */
+    mobileTheme?: string | null;
+    /**
+     * 
+     * @type {ReCaptchaSettings}
+     * @memberof GeneralSettings
+     */
+    reCaptchaSettings?: ReCaptchaSettings;
+    /**
+     * 
+     * @type {string}
+     * @memberof GeneralSettings
+     */
+    replyToEmailAddress?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof GeneralSettings
+     */
+    senderEmailAddress?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof GeneralSettings
+     */
+    senderEmailAlias?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof GeneralSettings
+     */
+    siteTimeFormat?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof GeneralSettings
+     */
+    siteTimeZone?: string | null;
     /**
      * 
      * @type {Array<SMSTypeSetting>}
@@ -1546,10 +1636,52 @@ export interface GeneralSettings {
     smsTypes?: Array<SMSTypeSetting> | null;
     /**
      * 
-     * @type {ReCaptchaSettings}
+     * @type {EmailTransactionSettings}
      * @memberof GeneralSettings
      */
-    reCaptchaSettings?: ReCaptchaSettings;
+    supressedEmailTransactions?: EmailTransactionSettings;
+    /**
+     * 
+     * @type {SMSTransactionSettings}
+     * @memberof GeneralSettings
+     */
+    supressedSmsTransactions?: SMSTransactionSettings;
+    /**
+     * 
+     * @type {string}
+     * @memberof GeneralSettings
+     */
+    tabletTheme?: string | null;
+    /**
+     * 
+     * @type {Array<TaxableTerritory>}
+     * @memberof GeneralSettings
+     */
+    taxableTerritories?: Array<TaxableTerritory> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof GeneralSettings
+     */
+    templateSiteId?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof GeneralSettings
+     */
+    theme?: string | null;
+    /**
+     * 
+     * @type {ViewAuthorizations}
+     * @memberof GeneralSettings
+     */
+    viewAuthorizations?: ViewAuthorizations;
+    /**
+     * 
+     * @type {string}
+     * @memberof GeneralSettings
+     */
+    websiteName?: string | null;
 }
 /**
  * 
@@ -1578,6 +1710,12 @@ export interface InventoryExportJob {
 export interface InventorySettings {
     /**
      * 
+     * @type {AdminUserAuditInfo}
+     * @memberof InventorySettings
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * 
      * @type {InventoryExportJob}
      * @memberof InventorySettings
      */
@@ -1588,12 +1726,6 @@ export interface InventorySettings {
      * @memberof InventorySettings
      */
     locationFulfillmentTypeSettings?: Array<LocationFulfillmentTypeSetting> | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof InventorySettings
-     */
-    auditInfo?: AdminUserAuditInfo;
 }
 /**
  * 
@@ -1673,22 +1805,10 @@ export interface LocationFulfillmentTypeSetting {
 export interface Mapping {
     /**
      * 
-     * @type {string}
-     * @memberof Mapping
-     */
-    type?: string | null;
-    /**
-     * 
      * @type {boolean}
      * @memberof Mapping
      */
     beforeRouting?: boolean | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Mapping
-     */
-    listFqn?: string | null;
     /**
      * 
      * @type {string}
@@ -1700,13 +1820,25 @@ export interface Mapping {
      * @type {string}
      * @memberof Mapping
      */
-    mapTo?: string | null;
+    facetId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Mapping
      */
-    facetId?: string | null;
+    listFqn?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Mapping
+     */
+    mapTo?: string | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof Mapping
+     */
+    mappings?: { [key: string]: any; } | null;
     /**
      * 
      * @type {string}
@@ -1721,10 +1853,10 @@ export interface Mapping {
     replacement?: string | null;
     /**
      * 
-     * @type {{ [key: string]: any; }}
+     * @type {string}
      * @memberof Mapping
      */
-    mappings?: { [key: string]: any; } | null;
+    type?: string | null;
 }
 /**
  * 
@@ -1740,23 +1872,66 @@ export interface MultipleConsolidation {
     isEnabled?: boolean;
 }
 /**
+ * 
+ * @export
+ * @interface OrchestratorSettings
+ */
+export interface OrchestratorSettings {
+    /**
+     * 
+     * @type {AllocationRebalancerSettings}
+     * @memberof OrchestratorSettings
+     */
+    allocationRebalancer?: AllocationRebalancerSettings;
+    /**
+     * 
+     * @type {number}
+     * @memberof OrchestratorSettings
+     */
+    interval?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrchestratorSettings
+     */
+    intervalUnit?: string | null;
+    /**
+     * 
+     * @type {ReservationRebalancerSettings}
+     * @memberof OrchestratorSettings
+     */
+    reservationRebalancer?: ReservationRebalancerSettings;
+    /**
+     * 
+     * @type {ReservationsJobSettings}
+     * @memberof OrchestratorSettings
+     */
+    reservationsJob?: ReservationsJobSettings;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrchestratorSettings
+     */
+    runMode?: string | null;
+}
+/**
  * Contains settings for a job that can run on a regular basis.
  * @export
  * @interface OrderJob
  */
 export interface OrderJob {
     /**
-     * Specifies whether this job should run.
-     * @type {boolean}
-     * @memberof OrderJob
-     */
-    isEnabled?: boolean;
-    /**
      * How often this job should run in minutes.
      * @type {number}
      * @memberof OrderJob
      */
     interval?: number;
+    /**
+     * Specifies whether this job should run.
+     * @type {boolean}
+     * @memberof OrderJob
+     */
+    isEnabled?: boolean;
 }
 /**
  * Contains settings for the auto-capture payment feature.
@@ -1787,31 +1962,17 @@ export interface OrderJobSettings {
  */
 export interface OrderProcessingSettings {
     /**
-     * Credit card payment authorization setting. Options can be authorize and charge the shopper's credit card when the order is placed, "AuthorizeAndCaptureOnOrderPlacement," 
-     * authorize the shopper's credit card when the order is placed and charge the credit card when the shipped, "AuthorizeOnOrderPlacementAndCaptureOnOrderShipment," 
-     * or authorize and charge the shopper's credit card for the full amount when the order is shipped, "AuthorizeAndCaptureOnOrderShipment."
-     * @type {string}
+     * Abandoned Order Threshold in minutes indicates the number of minutes until a pending order is considered abandoned.
+     * @type {number}
      * @memberof OrderProcessingSettings
      */
-    paymentProcessingFlowType?: string | null;
+    abandonedOrderThresholdInMinutes?: number | null;
     /**
      * 
      * @type {AdminUserAuditInfo}
      * @memberof OrderProcessingSettings
      */
     auditInfo?: AdminUserAuditInfo;
-    /**
-     * Use the override price on products to calculate discounts
-     * @type {boolean}
-     * @memberof OrderProcessingSettings
-     */
-    useOverridePriceToCalculateDiscounts?: boolean;
-    /**
-     * Abandoned Order Threshold in minutes indicates the number of minutes until a pending order is considered abandoned.
-     * @type {number}
-     * @memberof OrderProcessingSettings
-     */
-    abandonedOrderThresholdInMinutes?: number | null;
     /**
      * Gift card payment authorization setting. Options can be authorize and charge the shopper's credit card when the order is placed, "AuthorizeAndCaptureOnOrderPlacement," 
      * authorize the shopper's gift card when the order is placed and charge the gift card when it is shipped, "AuthorizeOnOrderPlacementAndCaptureOnOrderShipment," 
@@ -1827,12 +1988,26 @@ export interface OrderProcessingSettings {
      */
     giftCardRefundCreditProcessingType?: string | null;
     /**
+     * Credit card payment authorization setting. Options can be authorize and charge the shopper's credit card when the order is placed, "AuthorizeAndCaptureOnOrderPlacement," 
+     * authorize the shopper's credit card when the order is placed and charge the credit card when the shipped, "AuthorizeOnOrderPlacementAndCaptureOnOrderShipment," 
+     * or authorize and charge the shopper's credit card for the full amount when the order is shipped, "AuthorizeAndCaptureOnOrderShipment."
+     * @type {string}
+     * @memberof OrderProcessingSettings
+     */
+    paymentProcessingFlowType?: string | null;
+    /**
      * Order processing settings for Third party payments
      * Ex- ApplePay using AuthorizeOnOrderPlacementAndCaptureOnOrderShipment for processing orders
      * @type {Array<ThirdPartyPaymentSetting>}
      * @memberof OrderProcessingSettings
      */
     thirdPartyPaymentSettings?: Array<ThirdPartyPaymentSetting> | null;
+    /**
+     * Use the override price on products to calculate discounts
+     * @type {boolean}
+     * @memberof OrderProcessingSettings
+     */
+    useOverridePriceToCalculateDiscounts?: boolean;
 }
 /**
  * Payment gateway settings defined for this site. A payment gateway is an e-commerce application service provider that authorizes 
@@ -1844,10 +2019,10 @@ export interface OrderProcessingSettings {
 export interface PaymentSettings {
     /**
      * 
-     * @type {Array<Gateway>}
+     * @type {AdminUserAuditInfo}
      * @memberof PaymentSettings
      */
-    gateways?: Array<Gateway> | null;
+    auditInfo?: AdminUserAuditInfo;
     /**
      * 
      * @type {Array<ExternalPaymentWorkflowDefinition>}
@@ -1856,16 +2031,10 @@ export interface PaymentSettings {
     externalPaymentWorkflowDefinitions?: Array<ExternalPaymentWorkflowDefinition> | null;
     /**
      * 
-     * @type {boolean}
+     * @type {Array<Gateway>}
      * @memberof PaymentSettings
      */
-    payByMail?: boolean;
-    /**
-     * 
-     * @type {PurchaseOrderPaymentDefinition}
-     * @memberof PaymentSettings
-     */
-    purchaseOrder?: PurchaseOrderPaymentDefinition;
+    gateways?: Array<Gateway> | null;
     /**
      * 
      * @type {OrderJobSettings}
@@ -1874,22 +2043,28 @@ export interface PaymentSettings {
     jobSettings?: OrderJobSettings;
     /**
      * 
+     * @type {boolean}
+     * @memberof PaymentSettings
+     */
+    payByMail?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof PaymentSettings
      */
     paymentRanking?: string | null;
     /**
      * 
+     * @type {PurchaseOrderPaymentDefinition}
+     * @memberof PaymentSettings
+     */
+    purchaseOrder?: PurchaseOrderPaymentDefinition;
+    /**
+     * 
      * @type {string}
      * @memberof PaymentSettings
      */
     refundRanking?: string | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof PaymentSettings
-     */
-    auditInfo?: AdminUserAuditInfo;
 }
 /**
  * 
@@ -1899,16 +2074,16 @@ export interface PaymentSettings {
 export interface PickupReminderJob {
     /**
      * 
-     * @type {boolean}
-     * @memberof PickupReminderJob
-     */
-    isEnabled?: boolean;
-    /**
-     * 
      * @type {number}
      * @memberof PickupReminderJob
      */
     interval?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PickupReminderJob
+     */
+    isEnabled?: boolean;
 }
 /**
  * 
@@ -1927,13 +2102,13 @@ export interface PreAuthorizeDefinition {
      * @type {string}
      * @memberof PreAuthorizeDefinition
      */
-    preAuthorizeTestUrl?: string | null;
+    preAuthorizeProdUrl?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PreAuthorizeDefinition
      */
-    preAuthorizeProdUrl?: string | null;
+    preAuthorizeTestUrl?: string | null;
     /**
      * 
      * @type {PreAuthorizeTransactionTypeDataContract}
@@ -1949,6 +2124,12 @@ export interface PreAuthorizeDefinition {
 export interface PreAuthorizeTransactionTypeDataContract {
     /**
      * 
+     * @type {string}
+     * @memberof PreAuthorizeTransactionTypeDataContract
+     */
+    description?: string | null;
+    /**
+     * 
      * @type {number}
      * @memberof PreAuthorizeTransactionTypeDataContract
      */
@@ -1959,12 +2140,6 @@ export interface PreAuthorizeTransactionTypeDataContract {
      * @memberof PreAuthorizeTransactionTypeDataContract
      */
     type?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PreAuthorizeTransactionTypeDataContract
-     */
-    description?: string | null;
 }
 /**
  * 
@@ -1972,18 +2147,6 @@ export interface PreAuthorizeTransactionTypeDataContract {
  * @interface PurchaseOrderPaymentDefinition
  */
 export interface PurchaseOrderPaymentDefinition {
-    /**
-     * Is purchase order payment enabled
-     * @type {boolean}
-     * @memberof PurchaseOrderPaymentDefinition
-     */
-    isEnabled?: boolean;
-    /**
-     * Allowed net terms
-     * @type {Array<SiteSettingsPurchaseOrderPaymentTerm>}
-     * @memberof PurchaseOrderPaymentDefinition
-     */
-    paymentTerms?: Array<SiteSettingsPurchaseOrderPaymentTerm> | null;
     /**
      * Indicates whether another payment can be used with the purchase order
      * @type {boolean}
@@ -1996,6 +2159,18 @@ export interface PurchaseOrderPaymentDefinition {
      * @memberof PurchaseOrderPaymentDefinition
      */
     customFields?: Array<SiteSettingsPurchaseOrderCustomField> | null;
+    /**
+     * Is purchase order payment enabled
+     * @type {boolean}
+     * @memberof PurchaseOrderPaymentDefinition
+     */
+    isEnabled?: boolean;
+    /**
+     * Allowed net terms
+     * @type {Array<SiteSettingsPurchaseOrderPaymentTerm>}
+     * @memberof PurchaseOrderPaymentDefinition
+     */
+    paymentTerms?: Array<SiteSettingsPurchaseOrderPaymentTerm> | null;
 }
 /**
  * 
@@ -2003,6 +2178,18 @@ export interface PurchaseOrderPaymentDefinition {
  * @interface ReCaptchaSettings
  */
 export interface ReCaptchaSettings {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ReCaptchaSettings
+     */
+    actions?: Array<string> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReCaptchaSettings
+     */
+    secret?: string | null;
     /**
      * 
      * @type {string}
@@ -2015,18 +2202,37 @@ export interface ReCaptchaSettings {
      * @memberof ReCaptchaSettings
      */
     validScore?: number;
+}
+/**
+ * 
+ * @export
+ * @interface RebalancerAllocationSettings
+ */
+export interface RebalancerAllocationSettings {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RebalancerAllocationSettings
+     */
+    allowPartialRelease?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof ReCaptchaSettings
+     * @memberof RebalancerAllocationSettings
      */
-    secret?: string | null;
+    partialReleaseType?: string | null;
     /**
      * 
-     * @type {Array<string>}
-     * @memberof ReCaptchaSettings
+     * @type {boolean}
+     * @memberof RebalancerAllocationSettings
      */
-    actions?: Array<string> | null;
+    useCurrentInventory?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RebalancerAllocationSettings
+     */
+    useFutureBeforeCurrent?: boolean;
 }
 /**
  * 
@@ -2034,6 +2240,18 @@ export interface ReCaptchaSettings {
  * @interface ReleaseBackorderJob
  */
 export interface ReleaseBackorderJob {
+    /**
+     * 
+     * @type {number}
+     * @memberof ReleaseBackorderJob
+     */
+    interval?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ReleaseBackorderJob
+     */
+    isEnabled?: boolean;
     /**
      * 
      * @type {boolean}
@@ -2046,18 +2264,69 @@ export interface ReleaseBackorderJob {
      * @memberof ReleaseBackorderJob
      */
     partialReleaseType?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface ReleaseBackorderJobAllOf
+ */
+export interface ReleaseBackorderJobAllOf {
     /**
      * 
      * @type {boolean}
-     * @memberof ReleaseBackorderJob
+     * @memberof ReleaseBackorderJobAllOf
+     */
+    partialReleaseEnabled?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReleaseBackorderJobAllOf
+     */
+    partialReleaseType?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface ReservationRebalancerSettings
+ */
+export interface ReservationRebalancerSettings {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ReservationRebalancerSettings
      */
     isEnabled?: boolean;
     /**
      * 
      * @type {number}
-     * @memberof ReleaseBackorderJob
+     * @memberof ReservationRebalancerSettings
      */
-    interval?: number;
+    shipDateBufferDays?: number | null;
+}
+/**
+ * 
+ * @export
+ * @interface ReservationsJobSettings
+ */
+export interface ReservationsJobSettings {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ReservationsJobSettings
+     */
+    isEnabled?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ReservationsJobSettings
+     */
+    useCurrentInventory?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ReservationsJobSettings
+     */
+    useFutureBeforeCurrent?: boolean;
 }
 /**
  * 
@@ -2065,6 +2334,18 @@ export interface ReleaseBackorderJob {
  * @interface ReturnSettings
  */
 export interface ReturnSettings {
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof ReturnSettings
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ReturnSettings
+     */
+    createLabelOnFulfillment?: boolean;
     /**
      * 
      * @type {number}
@@ -2082,25 +2363,7 @@ export interface ReturnSettings {
      * @type {boolean}
      * @memberof ReturnSettings
      */
-    createLabelOnFulfillment?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ReturnSettings
-     */
     displayRefundToNewGiftCard?: boolean;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof ReturnSettings
-     */
-    auditInfo?: AdminUserAuditInfo;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ReturnSettings
-     */
-    returnOrCreditOnImportedOrders?: boolean;
     /**
      * 
      * @type {boolean}
@@ -2112,7 +2375,38 @@ export interface ReturnSettings {
      * @type {boolean}
      * @memberof ReturnSettings
      */
+    returnOrCreditOnImportedOrders?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ReturnSettings
+     */
     updateInventoryOnRestock?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ReturnSettings
+     */
+    useFulfillmentLocationAsReturnLocation?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface RingFenceScopeSettings
+ */
+export interface RingFenceScopeSettings {
+    /**
+     * 
+     * @type {string}
+     * @memberof RingFenceScopeSettings
+     */
+    locationGroupCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof RingFenceScopeSettings
+     */
+    scope?: string | null;
 }
 /**
  * 
@@ -2122,10 +2416,10 @@ export interface ReturnSettings {
 export interface Route {
     /**
      * 
-     * @type {string}
+     * @type {boolean}
      * @memberof Route
      */
-    template?: string | null;
+    canonical?: boolean | null;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -2137,13 +2431,13 @@ export interface Route {
      * @type {string}
      * @memberof Route
      */
-    internalRoute?: string | null;
+    functionId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Route
      */
-    functionId?: string | null;
+    internalRoute?: string | null;
     /**
      * 
      * @type {{ [key: string]: Array<string>; }}
@@ -2152,22 +2446,47 @@ export interface Route {
     mappings?: { [key: string]: Array<string>; } | null;
     /**
      * 
-     * @type {boolean}
+     * @type {string}
      * @memberof Route
      */
-    canonical?: boolean | null;
-    /**
-     * 
-     * @type {{ [key: string]: Array<string>; }}
-     * @memberof Route
-     */
-    validators?: { [key: string]: Array<string>; } | null;
+    template?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Route
      */
     urlScheme?: string | null;
+    /**
+     * 
+     * @type {{ [key: string]: Array<string>; }}
+     * @memberof Route
+     */
+    validators?: { [key: string]: Array<string>; } | null;
+}
+/**
+ * 
+ * @export
+ * @interface RulesEngineJobSettings
+ */
+export interface RulesEngineJobSettings {
+    /**
+     * 
+     * @type {number}
+     * @memberof RulesEngineJobSettings
+     */
+    interval?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RulesEngineJobSettings
+     */
+    intervalUnit?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RulesEngineJobSettings
+     */
+    isEnabled?: boolean;
 }
 /**
  * 
@@ -2180,19 +2499,7 @@ export interface SMSTransactionSettings {
      * @type {boolean}
      * @memberof SMSTransactionSettings
      */
-    shipmentItemCanceled?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SMSTransactionSettings
-     */
-    shipmentAssigned?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SMSTransactionSettings
-     */
-    customerIntransit?: boolean | null;
+    curbsideReady?: boolean | null;
     /**
      * 
      * @type {boolean}
@@ -2204,37 +2511,31 @@ export interface SMSTransactionSettings {
      * @type {boolean}
      * @memberof SMSTransactionSettings
      */
+    customerAtStore?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SMSTransactionSettings
+     */
+    customerIntransit?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SMSTransactionSettings
+     */
     intransitConfirmation?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof SMSTransactionSettings
      */
-    shipmentFulfilled?: boolean | null;
+    optOutAcknowledgement?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof SMSTransactionSettings
      */
     orderConfirmation?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SMSTransactionSettings
-     */
-    curbsideReady?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SMSTransactionSettings
-     */
-    storeItemsCanceled?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SMSTransactionSettings
-     */
-    optOutAcknowledgement?: boolean | null;
     /**
      * 
      * @type {boolean}
@@ -2252,7 +2553,25 @@ export interface SMSTransactionSettings {
      * @type {boolean}
      * @memberof SMSTransactionSettings
      */
-    customerAtStore?: boolean | null;
+    shipmentAssigned?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SMSTransactionSettings
+     */
+    shipmentFulfilled?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SMSTransactionSettings
+     */
+    shipmentItemCanceled?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SMSTransactionSettings
+     */
+    storeItemsCanceled?: boolean | null;
 }
 /**
  * 
@@ -2274,17 +2593,11 @@ export interface SMSTypeSetting {
  */
 export interface ShipToHomeConsolidation {
     /**
-     * 
+     * AllowPartialFulfillment
      * @type {boolean}
      * @memberof ShipToHomeConsolidation
      */
-    isEnabled?: boolean;
-    /**
-     * 
-     * @type {ShippingMethod}
-     * @memberof ShipToHomeConsolidation
-     */
-    shippingMethodSTHC?: ShippingMethod;
+    allowPartialFulfillment?: boolean;
     /**
      * 
      * @type {Cancellation}
@@ -2298,17 +2611,23 @@ export interface ShipToHomeConsolidation {
      */
     forceSTHConsolidationOnSplitShipments?: ForceSTHConsolidationOnSplitShipments;
     /**
-     * AllowPartialFulfillment
+     * 
      * @type {boolean}
      * @memberof ShipToHomeConsolidation
      */
-    allowPartialFulfillment?: boolean;
+    isEnabled?: boolean;
     /**
      * 
      * @type {MultipleConsolidation}
      * @memberof ShipToHomeConsolidation
      */
     multipleConsolidation?: MultipleConsolidation;
+    /**
+     * 
+     * @type {ShippingMethod}
+     * @memberof ShipToHomeConsolidation
+     */
+    shippingMethodSTHC?: ShippingMethod;
 }
 /**
  * 
@@ -2321,25 +2640,25 @@ export interface ShipToStore {
      * @type {boolean}
      * @memberof ShipToStore
      */
-    isEnabled?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ShipToStore
-     */
     alwaysCreateTransferShipments?: boolean;
-    /**
-     * 
-     * @type {ShippingMethod}
-     * @memberof ShipToStore
-     */
-    shippingMethod?: ShippingMethod;
     /**
      * 
      * @type {Cancellation}
      * @memberof ShipToStore
      */
     cancellation?: Cancellation;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ShipToStore
+     */
+    isEnabled?: boolean;
+    /**
+     * 
+     * @type {ShippingMethod}
+     * @memberof ShipToStore
+     */
+    shippingMethod?: ShippingMethod;
 }
 /**
  * 
@@ -2347,6 +2666,12 @@ export interface ShipToStore {
  * @interface ShipmentsOnHold
  */
 export interface ShipmentsOnHold {
+    /**
+     * 
+     * @type {AutoRelease}
+     * @memberof ShipmentsOnHold
+     */
+    autoRelease?: AutoRelease;
     /**
      * 
      * @type {boolean}
@@ -2359,12 +2684,6 @@ export interface ShipmentsOnHold {
      * @memberof ShipmentsOnHold
      */
     manualRelease?: boolean | null;
-    /**
-     * 
-     * @type {AutoRelease}
-     * @memberof ShipmentsOnHold
-     */
-    autoRelease?: AutoRelease;
 }
 /**
  * 
@@ -2396,25 +2715,25 @@ export interface SiteGatewaySupportedCard {
      * @type {string}
      * @memberof SiteGatewaySupportedCard
      */
-    gatewayAccountId?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof SiteGatewaySupportedCard
-     */
-    processingGatewayAccountId?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof SiteGatewaySupportedCard
-     */
     cardTypeId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SiteGatewaySupportedCard
      */
+    gatewayAccountId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SiteGatewaySupportedCard
+     */
     paymentType?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SiteGatewaySupportedCard
+     */
+    processingGatewayAccountId?: string | null;
 }
 /**
  * 
@@ -2429,18 +2748,6 @@ export interface SiteSettingsPurchaseOrderCustomField {
      */
     code?: string | null;
     /**
-     * Memo field label that appers on the store front
-     * @type {string}
-     * @memberof SiteSettingsPurchaseOrderCustomField
-     */
-    label?: string | null;
-    /**
-     * Sequence Number
-     * @type {number}
-     * @memberof SiteSettingsPurchaseOrderCustomField
-     */
-    sequenceNumber?: number;
-    /**
      * Whether this memo field is enabled
      * @type {boolean}
      * @memberof SiteSettingsPurchaseOrderCustomField
@@ -2452,6 +2759,18 @@ export interface SiteSettingsPurchaseOrderCustomField {
      * @memberof SiteSettingsPurchaseOrderCustomField
      */
     isRequired?: boolean;
+    /**
+     * Memo field label that appers on the store front
+     * @type {string}
+     * @memberof SiteSettingsPurchaseOrderCustomField
+     */
+    label?: string | null;
+    /**
+     * Sequence Number
+     * @type {number}
+     * @memberof SiteSettingsPurchaseOrderCustomField
+     */
+    sequenceNumber?: number;
 }
 /**
  * 
@@ -2466,17 +2785,17 @@ export interface SiteSettingsPurchaseOrderPaymentTerm {
      */
     code?: string | null;
     /**
-     * Sequence Number
-     * @type {number}
-     * @memberof SiteSettingsPurchaseOrderPaymentTerm
-     */
-    sequenceNumber?: number;
-    /**
      * Value of the net term
      * @type {string}
      * @memberof SiteSettingsPurchaseOrderPaymentTerm
      */
     description?: string | null;
+    /**
+     * Sequence Number
+     * @type {number}
+     * @memberof SiteSettingsPurchaseOrderPaymentTerm
+     */
+    sequenceNumber?: number;
 }
 /**
  * The site setting that specifies the store's handling fees
@@ -2500,6 +2819,12 @@ export interface SiteShippingHandlingFee {
 export interface SiteShippingSettings {
     /**
      * 
+     * @type {AdminUserAuditInfo}
+     * @memberof SiteShippingSettings
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * 
      * @type {SiteShippingHandlingFee}
      * @memberof SiteShippingSettings
      */
@@ -2510,12 +2835,6 @@ export interface SiteShippingSettings {
      * @memberof SiteShippingSettings
      */
     signatureRequirement?: SiteShippingSignatureRequirement;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof SiteShippingSettings
-     */
-    auditInfo?: AdminUserAuditInfo;
 }
 /**
  * The site setting that specifies the store's handling fees
@@ -2524,17 +2843,17 @@ export interface SiteShippingSettings {
  */
 export interface SiteShippingSignatureRequirement {
     /**
-     * If set, this is exact amount a shipment must be greater than to trigger usage of the IsSignatureRequired property
-     * @type {number}
-     * @memberof SiteShippingSignatureRequirement
-     */
-    minimumValueThreshold?: number | null;
-    /**
      * Is Signature Required?
      * @type {boolean}
      * @memberof SiteShippingSignatureRequirement
      */
     isSignatureRequired?: boolean | null;
+    /**
+     * If set, this is exact amount a shipment must be greater than to trigger usage of the IsSignatureRequired property
+     * @type {number}
+     * @memberof SiteShippingSignatureRequirement
+     */
+    minimumValueThreshold?: number | null;
 }
 /**
  * Subscription settings defined or this site
@@ -2543,11 +2862,41 @@ export interface SiteShippingSignatureRequirement {
  */
 export interface SubscriptionSettings {
     /**
+     * 
+     * @type {boolean}
+     * @memberof SubscriptionSettings
+     */
+    applyBestPriceOnContinuityOrder?: boolean | null;
+    /**
+     * If this setting is enabled, the item price on the continuity order will be updated to the current price upon creation.
+     * @type {boolean}
+     * @memberof SubscriptionSettings
+     */
+    applyLatestItemPriceOnContinuityOrder?: boolean | null;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof SubscriptionSettings
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
      * Specifies the number of days before the next order date to create the continuity order.
      * @type {number}
      * @memberof SubscriptionSettings
      */
     continuityOrderDateOffset?: number;
+    /**
+     * Specifies the number of days to update the next order date from existing next order date.
+     * @type {number}
+     * @memberof SubscriptionSettings
+     */
+    nextOrderDateOffset?: number | null;
+    /**
+     * Specifies if order now action resets next order date
+     * @type {boolean}
+     * @memberof SubscriptionSettings
+     */
+    orderNowResetNextOrderDate?: boolean | null;
     /**
      * Specifies the number of continuity orders should be placed before activating the subscription.
      * @type {number}
@@ -2555,11 +2904,11 @@ export interface SubscriptionSettings {
      */
     pauseSubscriptionOffset?: number | null;
     /**
-     * Specifies the number of days to update the next order date from existing next order date.
+     * Specifies the number of days, `order all items now` or `order partial items now` actions cannot be repeated from the last action.
      * @type {number}
      * @memberof SubscriptionSettings
      */
-    nextOrderDateOffset?: number | null;
+    restrictOrderNowOffset?: number | null;
     /**
      * Specifies the number of times the subscription can be skipped
      * @type {number}
@@ -2573,24 +2922,6 @@ export interface SubscriptionSettings {
      */
     subscriptionOrderReminderOffset?: number | null;
     /**
-     * If this setting is enabled, the item price on the continuity order will be updated to the current price upon creation.
-     * @type {boolean}
-     * @memberof SubscriptionSettings
-     */
-    applyLatestItemPriceOnContinuityOrder?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SubscriptionSettings
-     */
-    applyBestPriceOnContinuityOrder?: boolean | null;
-    /**
-     * Specifies if order now action resets next order date
-     * @type {boolean}
-     * @memberof SubscriptionSettings
-     */
-    orderNowResetNextOrderDate?: boolean | null;
-    /**
      * Specifies the number of days prior to when we need to send a 
      * "subscription pause limit reached reminder" email before the pause limit is reached.
      * @type {number}
@@ -2603,18 +2934,6 @@ export interface SubscriptionSettings {
      * @memberof SubscriptionSettings
      */
     subscriptionPausedReminderOffset?: number | null;
-    /**
-     * Specifies the number of days, `order all items now` or `order partial items now` actions cannot be repeated from the last action.
-     * @type {number}
-     * @memberof SubscriptionSettings
-     */
-    restrictOrderNowOffset?: number | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof SubscriptionSettings
-     */
-    auditInfo?: AdminUserAuditInfo;
 }
 /**
  * 
@@ -2640,12 +2959,6 @@ export interface SupportedCard {
      * @type {string}
      * @memberof SupportedCard
      */
-    type?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof SupportedCard
-     */
     friendlyName?: string | null;
     /**
      * 
@@ -2653,6 +2966,12 @@ export interface SupportedCard {
      * @memberof SupportedCard
      */
     paymentType?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SupportedCard
+     */
+    type?: string | null;
 }
 /**
  * 
@@ -2668,16 +2987,16 @@ export interface TaxableTerritory {
     countryCode?: string | null;
     /**
      * 
-     * @type {string}
-     * @memberof TaxableTerritory
-     */
-    stateOrProvinceCode?: string | null;
-    /**
-     * 
      * @type {boolean}
      * @memberof TaxableTerritory
      */
     isShippingTaxable?: boolean | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof TaxableTerritory
+     */
+    stateOrProvinceCode?: string | null;
 }
 /**
  * Describes the name and value of a third party credential field.
@@ -2686,29 +3005,17 @@ export interface TaxableTerritory {
  */
 export interface ThirdPartyCredentialField {
     /**
-     * The displayable name of this credential field
-     * @type {string}
-     * @memberof ThirdPartyCredentialField
-     */
-    displayName?: string | null;
-    /**
      * The name of this credential that should be used for web requests.
      * @type {string}
      * @memberof ThirdPartyCredentialField
      */
     apiName?: string | null;
     /**
-     * The value for this credential that should be used for web requests.
+     * The displayable name of this credential field
      * @type {string}
      * @memberof ThirdPartyCredentialField
      */
-    value?: string | null;
-    /**
-     * 
-     * @type {Array<VocabularyValue>}
-     * @memberof ThirdPartyCredentialField
-     */
-    vocabularyValues?: Array<VocabularyValue> | null;
+    displayName?: string | null;
     /**
      * The input field type for the value.
      * @type {string}
@@ -2721,6 +3028,18 @@ export interface ThirdPartyCredentialField {
      * @memberof ThirdPartyCredentialField
      */
     isSensitive?: boolean | null;
+    /**
+     * The value for this credential that should be used for web requests.
+     * @type {string}
+     * @memberof ThirdPartyCredentialField
+     */
+    value?: string | null;
+    /**
+     * 
+     * @type {Array<VocabularyValue>}
+     * @memberof ThirdPartyCredentialField
+     */
+    vocabularyValues?: Array<VocabularyValue> | null;
 }
 /**
  * 
@@ -2733,13 +3052,13 @@ export interface ThirdPartyPaymentSetting {
      * @type {string}
      * @memberof ThirdPartyPaymentSetting
      */
-    type?: string | null;
+    paymentProcessingFlowType?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ThirdPartyPaymentSetting
      */
-    paymentProcessingFlowType?: string | null;
+    type?: string | null;
 }
 /**
  * 
@@ -2752,19 +3071,13 @@ export interface Validator {
      * @type {string}
      * @memberof Validator
      */
-    type?: string | null;
+    attributeFQN?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Validator
      */
-    pattern?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Validator
-     */
-    listFqn?: string | null;
+    docId?: string | null;
     /**
      * 
      * @type {string}
@@ -2776,19 +3089,25 @@ export interface Validator {
      * @type {string}
      * @memberof Validator
      */
-    docId?: string | null;
+    listFqn?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Validator
+     */
+    pattern?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Validator
+     */
+    type?: string | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof Validator
      */
     values?: Array<string> | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Validator
-     */
-    attributeFQN?: string | null;
 }
 /**
  * 
@@ -2801,6 +3120,12 @@ export interface ViewAuthorizations {
      * @type {boolean}
      * @memberof ViewAuthorizations
      */
+    enforceSitewideSSL?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ViewAuthorizations
+     */
     requireAuthForLive?: boolean;
     /**
      * 
@@ -2808,12 +3133,6 @@ export interface ViewAuthorizations {
      * @memberof ViewAuthorizations
      */
     requireAuthForPending?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ViewAuthorizations
-     */
-    enforceSitewideSSL?: boolean | null;
 }
 /**
  * 
@@ -2823,14 +3142,14 @@ export interface ViewAuthorizations {
 export interface VocabularyValue {
     /**
      * 
-     * @type {string}
-     * @memberof VocabularyValue
-     */
-    key?: string | null;
-    /**
-     * 
      * @type {Array<LocalizedContent>}
      * @memberof VocabularyValue
      */
     contents?: Array<LocalizedContent> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof VocabularyValue
+     */
+    key?: string | null;
 }

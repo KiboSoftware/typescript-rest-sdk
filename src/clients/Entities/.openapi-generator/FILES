@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 apis/EntitiesApi.ts
 apis/EntityContainersApi.ts
 apis/EntityListsApi.ts

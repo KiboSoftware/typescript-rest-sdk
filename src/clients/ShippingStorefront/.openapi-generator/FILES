@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 apis/ShippingApi.ts
 apis/index.ts
 index.ts

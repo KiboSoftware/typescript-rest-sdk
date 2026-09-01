@@ -8,34 +8,28 @@
 export interface Allocati {
     /**
      * 
-     * @type {string}
+     * @type {Array<AllocationEve>}
      * @memberof Allocati
      */
-    itemId?: string | null;
+    allocationHistory?: Array<AllocationEve> | null;
     /**
      * 
      * @type {number}
      * @memberof Allocati
      */
-    quantity?: number;
+    allocationId?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Allocati
+     */
+    estimatedDeliveryDate?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Allocati
      */
     fulfillmentLocationCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Allocati
-     */
-    transferLocationCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Allocati
-     */
-    productCode?: string | null;
     /**
      * 
      * @type {string}
@@ -50,10 +44,78 @@ export interface Allocati {
     isStateChange?: boolean;
     /**
      * 
+     * @type {string}
+     * @memberof Allocati
+     */
+    itemId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Allocati
+     */
+    productCode?: string | null;
+    /**
+     * 
      * @type {number}
      * @memberof Allocati
      */
-    allocationId?: number | null;
+    quantity?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Allocati
+     */
+    transferLocationCode?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface AllocationEve
+ */
+export interface AllocationEve {
+    /**
+     * 
+     * @type {string}
+     * @memberof AllocationEve
+     */
+    allocatedAt?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof AllocationEve
+     */
+    deltaQuantity?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof AllocationEve
+     */
+    runId?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface AllocationStatusDemandEntry
+ */
+export interface AllocationStatusDemandEntry {
+    /**
+     * 
+     * @type {string}
+     * @memberof AllocationStatusDemandEntry
+     */
+    allocationStatus?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof AllocationStatusDemandEntry
+     */
+    itemCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AllocationStatusDemandEntry
+     */
+    totalDemand?: number;
 }
 /**
  * 
@@ -66,25 +128,25 @@ export interface AuditInf {
      * @type {string}
      * @memberof AuditInf
      */
-    createdBy?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof AuditInf
-     */
     createdAt?: string;
     /**
      * 
      * @type {string}
      * @memberof AuditInf
      */
-    updatedBy?: string | null;
+    createdBy?: string | null;
     /**
      * 
      * @type {string}
      * @memberof AuditInf
      */
     updatedAt?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuditInf
+     */
+    updatedBy?: string | null;
 }
 /**
  * 
@@ -97,25 +159,19 @@ export interface BundledProdu {
      * @type {string}
      * @memberof BundledProdu
      */
-    productCode?: string | null;
+    goodsType?: string | null;
+    /**
+     * 
+     * @type {ReservationWebAPIPackageMeasurements}
+     * @memberof BundledProdu
+     */
+    measurements?: ReservationWebAPIPackageMeasurements;
     /**
      * 
      * @type {string}
      * @memberof BundledProdu
      */
     name?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof BundledProdu
-     */
-    goodsType?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof BundledProdu
-     */
-    quantity?: number;
     /**
      * 
      * @type {string}
@@ -130,10 +186,53 @@ export interface BundledProdu {
     optionValue?: any | null;
     /**
      * 
-     * @type {ReservationWebAPIPackageMeasurements}
+     * @type {string}
      * @memberof BundledProdu
      */
-    measurements?: ReservationWebAPIPackageMeasurements;
+    productCode?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof BundledProdu
+     */
+    quantity?: number;
+}
+/**
+ * 
+ * @export
+ * @interface CallOffLineConsumpti
+ */
+export interface CallOffLineConsumpti {
+    /**
+     * 
+     * @type {string}
+     * @memberof CallOffLineConsumpti
+     */
+    consumedAt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CallOffLineConsumpti
+     */
+    consumedBy?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CallOffLineConsumpti
+     */
+    lineId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CallOffLineConsumpti
+     */
+    salesOrderId?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CallOffLineConsumpti
+     */
+    salesOrderNumber?: number;
 }
 /**
  * 
@@ -170,13 +269,25 @@ export interface CommerceRuntimeAddress {
      * @type {string}
      * @memberof CommerceRuntimeAddress
      */
+    addressType?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAddress
+     */
     cityOrTown?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CommerceRuntimeAddress
      */
-    stateOrProvince?: string | null;
+    countryCode?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommerceRuntimeAddress
+     */
+    isValidated?: boolean | null;
     /**
      * 
      * @type {string}
@@ -188,19 +299,7 @@ export interface CommerceRuntimeAddress {
      * @type {string}
      * @memberof CommerceRuntimeAddress
      */
-    countryCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    addressType?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAddress
-     */
-    isValidated?: boolean | null;
+    stateOrProvince?: string | null;
 }
 /**
  * 
@@ -210,10 +309,16 @@ export interface CommerceRuntimeAddress {
 export interface CommerceRuntimeContact {
     /**
      * 
-     * @type {number}
+     * @type {CommerceRuntimeAddress}
      * @memberof CommerceRuntimeContact
      */
-    id?: number | null;
+    address?: CommerceRuntimeAddress;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeContact
+     */
+    companyOrOrganization?: string | null;
     /**
      * 
      * @type {string}
@@ -228,10 +333,10 @@ export interface CommerceRuntimeContact {
     firstName?: string | null;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof CommerceRuntimeContact
      */
-    middleNameOrInitial?: string | null;
+    id?: number | null;
     /**
      * 
      * @type {string}
@@ -243,19 +348,13 @@ export interface CommerceRuntimeContact {
      * @type {string}
      * @memberof CommerceRuntimeContact
      */
-    companyOrOrganization?: string | null;
+    middleNameOrInitial?: string | null;
     /**
      * 
      * @type {CommerceRuntimePhone}
      * @memberof CommerceRuntimeContact
      */
     phoneNumbers?: CommerceRuntimePhone;
-    /**
-     * 
-     * @type {CommerceRuntimeAddress}
-     * @memberof CommerceRuntimeContact
-     */
-    address?: CommerceRuntimeAddress;
 }
 /**
  * 
@@ -323,6 +422,31 @@ export interface CommerceRuntimeProductPropertyValue {
 /**
  * 
  * @export
+ * @interface CustomerDemandEntry
+ */
+export interface CustomerDemandEntry {
+    /**
+     * 
+     * @type {number}
+     * @memberof CustomerDemandEntry
+     */
+    customerAccountId?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CustomerDemandEntry
+     */
+    reservationCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CustomerDemandEntry
+     */
+    totalDemand?: number;
+}
+/**
+ * 
+ * @export
  * @interface FulfillmentInf
  */
 export interface FulfillmentInf {
@@ -332,18 +456,6 @@ export interface FulfillmentInf {
      * @memberof FulfillmentInf
      */
     fulfillmentContact?: CommerceRuntimeContact;
-    /**
-     * 
-     * @type {string}
-     * @memberof FulfillmentInf
-     */
-    shippingMethodCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof FulfillmentInf
-     */
-    shippingMethodName?: string | null;
     /**
      * 
      * @type {boolean}
@@ -356,6 +468,74 @@ export interface FulfillmentInf {
      * @memberof FulfillmentInf
      */
     itemLevelShippingMethod?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentInf
+     */
+    shippingMethodCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentInf
+     */
+    shippingMethodName?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface HttpValidationProblemDetails
+ */
+export interface HttpValidationProblemDetails {
+    /**
+     * 
+     * @type {string}
+     * @memberof HttpValidationProblemDetails
+     */
+    detail?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof HttpValidationProblemDetails
+     */
+    instance?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof HttpValidationProblemDetails
+     */
+    status?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof HttpValidationProblemDetails
+     */
+    title?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof HttpValidationProblemDetails
+     */
+    type?: string | null;
+    /**
+     * 
+     * @type {{ [key: string]: Array<string>; }}
+     * @memberof HttpValidationProblemDetails
+     */
+    errors?: { [key: string]: Array<string>; } | null;
+}
+/**
+ * 
+ * @export
+ * @interface HttpValidationProblemDetailsAllOf
+ */
+export interface HttpValidationProblemDetailsAllOf {
+    /**
+     * 
+     * @type {{ [key: string]: Array<string>; }}
+     * @memberof HttpValidationProblemDetailsAllOf
+     */
+    errors?: { [key: string]: Array<string>; } | null;
 }
 /**
  * 
@@ -384,6 +564,12 @@ export interface InventoryTags {
 export interface OrderReservati {
     /**
      * 
+     * @type {FulfillmentInf}
+     * @memberof OrderReservati
+     */
+    fulfillmentInfo?: FulfillmentInf;
+    /**
+     * 
      * @type {string}
      * @memberof OrderReservati
      */
@@ -396,22 +582,54 @@ export interface OrderReservati {
     orderNumber?: number;
     /**
      * 
-     * @type {string}
-     * @memberof OrderReservati
-     */
-    zipCode?: string | null;
-    /**
-     * 
      * @type {Array<ReservationItem>}
      * @memberof OrderReservati
      */
     reservationItems?: Array<ReservationItem> | null;
     /**
      * 
-     * @type {FulfillmentInf}
+     * @type {string}
      * @memberof OrderReservati
      */
-    fulfillmentInfo?: FulfillmentInf;
+    zipCode?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface ProblemDetails
+ */
+export interface ProblemDetails {
+    [key: string]: any | any;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProblemDetails
+     */
+    detail?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProblemDetails
+     */
+    instance?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProblemDetails
+     */
+    status?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProblemDetails
+     */
+    title?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProblemDetails
+     */
+    type?: string | null;
 }
 /**
  * 
@@ -421,22 +639,40 @@ export interface OrderReservati {
 export interface Produ {
     /**
      * 
-     * @type {string}
+     * @type {Array<BundledProdu>}
      * @memberof Produ
      */
-    productCode?: string | null;
+    bundledProducts?: Array<BundledProdu> | null;
     /**
      * 
      * @type {string}
      * @memberof Produ
      */
-    name?: string | null;
+    condition?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Produ
      */
-    productType?: string | null;
+    goodsType?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Produ
+     */
+    isSplitExtrasInShipment?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Produ
+     */
+    isTaxable?: boolean | null;
+    /**
+     * 
+     * @type {ReservationWebAPIPackageMeasurements}
+     * @memberof Produ
+     */
+    measurements?: ReservationWebAPIPackageMeasurements;
     /**
      * 
      * @type {string}
@@ -448,19 +684,19 @@ export interface Produ {
      * @type {string}
      * @memberof Produ
      */
-    variationProductCode?: string | null;
+    name?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Produ
      */
-    sku?: string | null;
+    productCode?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Produ
      */
-    goodsType?: string | null;
+    productType?: string | null;
     /**
      * 
      * @type {string}
@@ -469,34 +705,10 @@ export interface Produ {
     productUsage?: string | null;
     /**
      * 
-     * @type {Array<BundledProdu>}
-     * @memberof Produ
-     */
-    bundledProducts?: Array<BundledProdu> | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Produ
-     */
-    isSplitExtrasInShipment?: boolean;
-    /**
-     * 
      * @type {Array<ReservationWebAPIProductProperty>}
      * @memberof Produ
      */
     properties?: Array<ReservationWebAPIProductProperty> | null;
-    /**
-     * 
-     * @type {ReservationWebAPIPackageMeasurements}
-     * @memberof Produ
-     */
-    measurements?: ReservationWebAPIPackageMeasurements;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Produ
-     */
-    isTaxable?: boolean | null;
     /**
      * 
      * @type {string}
@@ -508,7 +720,13 @@ export interface Produ {
      * @type {string}
      * @memberof Produ
      */
-    condition?: string | null;
+    sku?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Produ
+     */
+    variationProductCode?: string | null;
 }
 /**
  * 
@@ -518,28 +736,34 @@ export interface Produ {
 export interface Reservati {
     /**
      * 
-     * @type {string}
+     * @type {AuditInf}
      * @memberof Reservati
      */
-    id?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof Reservati
-     */
-    siteId?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof Reservati
-     */
-    tenantId?: number | null;
+    auditInfo?: AuditInf;
     /**
      * 
      * @type {string}
      * @memberof Reservati
      */
-    userId?: string | null;
+    callOffOrderId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Reservati
+     */
+    cartId?: string | null;
+    /**
+     * 
+     * @type {Array<ReservationWebAPIChangeMessage>}
+     * @memberof Reservati
+     */
+    changeMessages?: Array<ReservationWebAPIChangeMessage> | null;
+    /**
+     * 
+     * @type {Array<CallOffLineConsumpti>}
+     * @memberof Reservati
+     */
+    consumptionHistory?: Array<CallOffLineConsumpti> | null;
     /**
      * 
      * @type {number}
@@ -548,16 +772,28 @@ export interface Reservati {
     customerAccountId?: number | null;
     /**
      * 
-     * @type {Array<ReservationItem>}
+     * @type {string}
      * @memberof Reservati
      */
-    items?: Array<ReservationItem> | null;
+    expirationDateTime?: string | null;
+    /**
+     * 
+     * @type {FulfillmentInf}
+     * @memberof Reservati
+     */
+    fulfillmentInfo?: FulfillmentInf;
     /**
      * 
      * @type {string}
      * @memberof Reservati
      */
-    cartId?: string | null;
+    id?: string | null;
+    /**
+     * 
+     * @type {Array<ReservationItem>}
+     * @memberof Reservati
+     */
+    items?: Array<ReservationItem> | null;
     /**
      * 
      * @type {string}
@@ -575,13 +811,13 @@ export interface Reservati {
      * @type {string}
      * @memberof Reservati
      */
-    expirationDateTime?: string | null;
+    reservationType?: string | null;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof Reservati
      */
-    zipCode?: string | null;
+    siteId?: number | null;
     /**
      * 
      * @type {string}
@@ -590,28 +826,65 @@ export interface Reservati {
     status?: string | null;
     /**
      * 
-     * @type {AuditInf}
+     * @type {number}
      * @memberof Reservati
      */
-    auditInfo?: AuditInf;
-    /**
-     * 
-     * @type {Array<ReservationWebAPIChangeMessage>}
-     * @memberof Reservati
-     */
-    changeMessages?: Array<ReservationWebAPIChangeMessage> | null;
+    tenantId?: number | null;
     /**
      * 
      * @type {string}
      * @memberof Reservati
      */
-    reservationType?: string | null;
+    userId?: string | null;
     /**
      * 
-     * @type {FulfillmentInf}
+     * @type {string}
      * @memberof Reservati
      */
-    fulfillmentInfo?: FulfillmentInf;
+    zipCode?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface ReservationAggregateSummary
+ */
+export interface ReservationAggregateSummary {
+    /**
+     * 
+     * @type {number}
+     * @memberof ReservationAggregateSummary
+     */
+    allocatedDemand?: number;
+    /**
+     * 
+     * @type {Array<AllocationStatusDemandEntry>}
+     * @memberof ReservationAggregateSummary
+     */
+    byAllocationStatus?: Array<AllocationStatusDemandEntry> | null;
+    /**
+     * 
+     * @type {Array<CustomerDemandEntry>}
+     * @memberof ReservationAggregateSummary
+     */
+    byCustomer?: Array<CustomerDemandEntry> | null;
+    /**
+     * 
+     * @type {Array<ReservationStatusDemandEntry>}
+     * @memberof ReservationAggregateSummary
+     */
+    byReservationStatus?: Array<ReservationStatusDemandEntry> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReservationAggregateSummary
+     */
+    totalDemand?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReservationAggregateSummary
+     */
+    unallocatedDemand?: number;
 }
 /**
  * 
@@ -621,16 +894,10 @@ export interface Reservati {
 export interface ReservationCollecti {
     /**
      * 
-     * @type {number}
+     * @type {Array<Reservati>}
      * @memberof ReservationCollecti
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReservationCollecti
-     */
-    pageSize?: number;
+    items?: Array<Reservati> | null;
     /**
      * 
      * @type {number}
@@ -642,13 +909,19 @@ export interface ReservationCollecti {
      * @type {number}
      * @memberof ReservationCollecti
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<Reservati>}
+     * @type {number}
      * @memberof ReservationCollecti
      */
-    items?: Array<Reservati> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReservationCollecti
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -658,16 +931,64 @@ export interface ReservationCollecti {
 export interface ReservationItem {
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof ReservationItem
      */
-    lineId?: number;
+    allocationStatus?: string | null;
+    /**
+     * 
+     * @type {Array<Allocati>}
+     * @memberof ReservationItem
+     */
+    allocations?: Array<Allocati> | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ReservationItem
+     */
+    allowsBackOrder?: boolean;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof ReservationItem
+     */
+    data?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {FulfillmentInf}
+     * @memberof ReservationItem
+     */
+    fulfillmentInfo?: FulfillmentInf;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReservationItem
+     */
+    fulfillmentLocationCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReservationItem
+     */
+    fulfillmentMethod?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ReservationItem
      */
     id?: string | null;
+    /**
+     * 
+     * @type {Array<InventoryTags>}
+     * @memberof ReservationItem
+     */
+    inventoryTags?: Array<InventoryTags> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReservationItem
+     */
+    lineId?: number;
     /**
      * 
      * @type {string}
@@ -691,37 +1012,13 @@ export interface ReservationItem {
      * @type {string}
      * @memberof ReservationItem
      */
-    fulfillmentLocationCode?: string | null;
+    requestedShipDate?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ReservationItem
      */
-    fulfillmentMethod?: string | null;
-    /**
-     * 
-     * @type {Array<Allocati>}
-     * @memberof ReservationItem
-     */
-    allocations?: Array<Allocati> | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ReservationItem
-     */
-    allowsBackOrder?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReservationItem
-     */
-    allocationStatus?: string | null;
-    /**
-     * 
-     * @type {Array<InventoryTags>}
-     * @memberof ReservationItem
-     */
-    inventoryTags?: Array<InventoryTags> | null;
+    shippingMethodCode?: string | null;
     /**
      * 
      * @type {Array<Suggesti>}
@@ -730,16 +1027,35 @@ export interface ReservationItem {
     suggestions?: Array<Suggesti> | null;
     /**
      * 
-     * @type {FulfillmentInf}
+     * @type {number}
      * @memberof ReservationItem
      */
-    fulfillmentInfo?: FulfillmentInf;
+    timeFenceDays?: number | null;
+}
+/**
+ * 
+ * @export
+ * @interface ReservationStatusDemandEntry
+ */
+export interface ReservationStatusDemandEntry {
+    /**
+     * 
+     * @type {number}
+     * @memberof ReservationStatusDemandEntry
+     */
+    reservationCount?: number;
     /**
      * 
      * @type {string}
-     * @memberof ReservationItem
+     * @memberof ReservationStatusDemandEntry
      */
-    shippingMethodCode?: string | null;
+    reservationStatus?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReservationStatusDemandEntry
+     */
+    totalDemand?: number;
 }
 /**
  * 
@@ -747,30 +1063,6 @@ export interface ReservationItem {
  * @interface ReservationWebAPIChangeMessage
  */
 export interface ReservationWebAPIChangeMessage {
-    /**
-     * 
-     * @type {string}
-     * @memberof ReservationWebAPIChangeMessage
-     */
-    id?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReservationWebAPIChangeMessage
-     */
-    identifier?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReservationWebAPIChangeMessage
-     */
-    correlationId?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReservationWebAPIChangeMessage
-     */
-    userId?: string | null;
     /**
      * 
      * @type {string}
@@ -788,19 +1080,25 @@ export interface ReservationWebAPIChangeMessage {
      * @type {string}
      * @memberof ReservationWebAPIChangeMessage
      */
-    subjectType?: string | null;
+    correlationId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ReservationWebAPIChangeMessage
      */
-    subject?: string | null;
+    createDate?: string;
     /**
      * 
      * @type {string}
      * @memberof ReservationWebAPIChangeMessage
      */
-    verb?: string | null;
+    id?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReservationWebAPIChangeMessage
+     */
+    identifier?: string | null;
     /**
      * 
      * @type {string}
@@ -812,7 +1110,25 @@ export interface ReservationWebAPIChangeMessage {
      * @type {string}
      * @memberof ReservationWebAPIChangeMessage
      */
-    createDate?: string;
+    subject?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReservationWebAPIChangeMessage
+     */
+    subjectType?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReservationWebAPIChangeMessage
+     */
+    userId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReservationWebAPIChangeMessage
+     */
+    verb?: string | null;
 }
 /**
  * 
@@ -822,16 +1138,16 @@ export interface ReservationWebAPIChangeMessage {
 export interface ReservationWebAPIOrderAttribute {
     /**
      * 
-     * @type {string}
-     * @memberof ReservationWebAPIOrderAttribute
-     */
-    fullyQualifiedName?: string | null;
-    /**
-     * 
      * @type {number}
      * @memberof ReservationWebAPIOrderAttribute
      */
     attributeDefinitionId?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReservationWebAPIOrderAttribute
+     */
+    fullyQualifiedName?: string | null;
     /**
      * 
      * @type {Array<any>}
@@ -856,12 +1172,6 @@ export interface ReservationWebAPIPackageMeasurements {
      * @type {CommerceRuntimeMeasurement}
      * @memberof ReservationWebAPIPackageMeasurements
      */
-    width?: CommerceRuntimeMeasurement;
-    /**
-     * 
-     * @type {CommerceRuntimeMeasurement}
-     * @memberof ReservationWebAPIPackageMeasurements
-     */
     length?: CommerceRuntimeMeasurement;
     /**
      * 
@@ -869,6 +1179,12 @@ export interface ReservationWebAPIPackageMeasurements {
      * @memberof ReservationWebAPIPackageMeasurements
      */
     weight?: CommerceRuntimeMeasurement;
+    /**
+     * 
+     * @type {CommerceRuntimeMeasurement}
+     * @memberof ReservationWebAPIPackageMeasurements
+     */
+    width?: CommerceRuntimeMeasurement;
 }
 /**
  * 
@@ -900,13 +1216,19 @@ export interface Suggesti {
      * @type {string}
      * @memberof Suggesti
      */
+    futureDate?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Suggesti
+     */
     locationCode?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Suggesti
      */
-    suggestionType?: string | null;
+    productCode?: string | null;
     /**
      * 
      * @type {number}
@@ -918,11 +1240,5 @@ export interface Suggesti {
      * @type {string}
      * @memberof Suggesti
      */
-    productCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Suggesti
-     */
-    futureDate?: string | null;
+    suggestionType?: string | null;
 }

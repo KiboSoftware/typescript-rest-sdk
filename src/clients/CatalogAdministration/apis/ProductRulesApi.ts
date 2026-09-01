@@ -2,9 +2,9 @@
 /* eslint-disable */
 /**
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -16,7 +16,7 @@
 import * as runtime from '../../../client-runtime';
 import { basePathTemplate } from '../api-path';
 import type {
-  CatalogAdminsCustomerDynamicExpression,
+  CatalogAdminsDynamicExpression,
   CatalogAdminsProductRule,
   ProductRuleCollection,
 } from '../models';
@@ -52,7 +52,7 @@ export namespace productRulesApiParams {
     }
     export interface ValidateExpressionRequest {
         responseFields?: string;
-        catalogAdminsCustomerDynamicExpression?: CatalogAdminsCustomerDynamicExpression;
+        catalogAdminsDynamicExpression?: CatalogAdminsDynamicExpression;
     }
 }
 /**
@@ -64,7 +64,7 @@ export namespace productRulesApiParams {
 export interface ProductRulesApiService {
     /**
     * Creates a new product rule.
-    * @summary Create product rule
+    * @summary Create Product Rule
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {CatalogAdminsProductRule} [catalogAdminsProductRule] The product rule to create.
     * @param {*} [options] Override http request option.
@@ -75,13 +75,13 @@ export interface ProductRulesApiService {
 
     /**
     * Creates a new product rule.
-    * Create product rule
+    * Create Product Rule
     */
     createProductRule(requestParameters: productRulesApiParams.CreateProductRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductRule>;
 
     /**
     * Delete a product rules.
-    * @summary Delete product rules
+    * @summary Delete Product Rules
     * @param {string} code The code of the rule to delete.
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -91,13 +91,13 @@ export interface ProductRulesApiService {
 
     /**
     * Delete a product rules.
-    * Delete product rules
+    * Delete Product Rules
     */
     deleteProductRule(requestParameters: productRulesApiParams.DeleteProductRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
     * Get expression field definition
-    * @summary Get expression field definition
+    * @summary Get Expression Field Definition
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -107,13 +107,13 @@ export interface ProductRulesApiService {
 
     /**
     * Get expression field definition
-    * Get expression field definition
+    * Get Expression Field Definition
     */
     getExpressionFieldDefinitions(requestParameters: productRulesApiParams.GetExpressionFieldDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
 
     /**
     * Retrieves the details of a single product rule.
-    * @summary Get product rule by code
+    * @summary Get Product Rule by Code
     * @param {string} code The code of the rule.
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
@@ -124,13 +124,13 @@ export interface ProductRulesApiService {
 
     /**
     * Retrieves the details of a single product rule.
-    * Get product rule by code
+    * Get Product Rule by Code
     */
     getProductRule(requestParameters: productRulesApiParams.GetProductRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductRule>;
 
     /**
     * Retrieves a list of product rules according to any specified filter criteria and sort options.
-    * @summary Get product rules
+    * @summary Get Product Rules
     * @param {number} [startIndex] The start index.
     * @param {number} [pageSize] The page size.
     * @param {string} [sortBy] The sort by.
@@ -145,13 +145,13 @@ export interface ProductRulesApiService {
 
     /**
     * Retrieves a list of product rules according to any specified filter criteria and sort options.
-    * Get product rules
+    * Get Product Rules
     */
     getProductRules(requestParameters: productRulesApiParams.GetProductRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductRuleCollection>;
 
     /**
     * Update an existing product rules.
-    * @summary Update product rule
+    * @summary Update Product Rule
     * @param {string} code The code of the rule to update.
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {CatalogAdminsProductRule} [catalogAdminsProductRule] The updated product rule.
@@ -163,26 +163,26 @@ export interface ProductRulesApiService {
 
     /**
     * Update an existing product rules.
-    * Update product rule
+    * Update Product Rule
     */
     updateProductRule(requestParameters: productRulesApiParams.UpdateProductRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductRule>;
 
     /**
     * Validate the expression for a product rules
-    * @summary Validate expression
+    * @summary Validate Expression
     * @param {string} [responseFields] limits which fields are returned in the response body
-    * @param {CatalogAdminsCustomerDynamicExpression} [catalogAdminsCustomerDynamicExpression] The expression to validate.
+    * @param {CatalogAdminsDynamicExpression} [catalogAdminsDynamicExpression] The expression to validate.
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof ProductRulesApiInterface
     */
-    validateExpressionRaw(requestParameters: productRulesApiParams.ValidateExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCustomerDynamicExpression>>;
+    validateExpressionRaw(requestParameters: productRulesApiParams.ValidateExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDynamicExpression>>;
 
     /**
     * Validate the expression for a product rules
-    * Validate expression
+    * Validate Expression
     */
-    validateExpression(requestParameters: productRulesApiParams.ValidateExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCustomerDynamicExpression>;
+    validateExpression(requestParameters: productRulesApiParams.ValidateExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDynamicExpression>;
 
 }
 
@@ -197,7 +197,7 @@ export class ProductRulesApi extends runtime.BaseAPI implements ProductRulesApiS
     }
     /**
      * Creates a new product rule.
-     * Create product rule
+     * Create Product Rule
      */
 
 
@@ -211,8 +211,6 @@ export class ProductRulesApi extends runtime.BaseAPI implements ProductRulesApiS
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-
 
 
 
@@ -231,7 +229,7 @@ export class ProductRulesApi extends runtime.BaseAPI implements ProductRulesApiS
 
     /**
      * Creates a new product rule.
-     * Create product rule
+     * Create Product Rule
      */
     async createProductRule(requestParameters: productRulesApiParams.CreateProductRuleRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductRule> {
         const response = await this.createProductRuleRaw(requestParameters, initOverrides);
@@ -240,7 +238,7 @@ export class ProductRulesApi extends runtime.BaseAPI implements ProductRulesApiS
 
     /**
      * Delete a product rules.
-     * Delete product rules
+     * Delete Product Rules
      */
 
 
@@ -252,8 +250,6 @@ export class ProductRulesApi extends runtime.BaseAPI implements ProductRulesApiS
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-
 
 
 
@@ -271,7 +267,7 @@ export class ProductRulesApi extends runtime.BaseAPI implements ProductRulesApiS
 
     /**
      * Delete a product rules.
-     * Delete product rules
+     * Delete Product Rules
      */
     async deleteProductRule(requestParameters: productRulesApiParams.DeleteProductRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteProductRuleRaw(requestParameters, initOverrides);
@@ -279,7 +275,7 @@ export class ProductRulesApi extends runtime.BaseAPI implements ProductRulesApiS
 
     /**
      * Get expression field definition
-     * Get expression field definition
+     * Get Expression Field Definition
      */
 
 
@@ -291,8 +287,6 @@ export class ProductRulesApi extends runtime.BaseAPI implements ProductRulesApiS
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-
 
 
 
@@ -310,7 +304,7 @@ export class ProductRulesApi extends runtime.BaseAPI implements ProductRulesApiS
 
     /**
      * Get expression field definition
-     * Get expression field definition
+     * Get Expression Field Definition
      */
     async getExpressionFieldDefinitions(requestParameters: productRulesApiParams.GetExpressionFieldDefinitionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
         const response = await this.getExpressionFieldDefinitionsRaw(requestParameters, initOverrides);
@@ -319,7 +313,7 @@ export class ProductRulesApi extends runtime.BaseAPI implements ProductRulesApiS
 
     /**
      * Retrieves the details of a single product rule.
-     * Get product rule by code
+     * Get Product Rule by Code
      */
 
 
@@ -338,8 +332,6 @@ export class ProductRulesApi extends runtime.BaseAPI implements ProductRulesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -354,7 +346,7 @@ export class ProductRulesApi extends runtime.BaseAPI implements ProductRulesApiS
 
     /**
      * Retrieves the details of a single product rule.
-     * Get product rule by code
+     * Get Product Rule by Code
      */
     async getProductRule(requestParameters: productRulesApiParams.GetProductRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductRule> {
         const response = await this.getProductRuleRaw(requestParameters, initOverrides);
@@ -363,7 +355,7 @@ export class ProductRulesApi extends runtime.BaseAPI implements ProductRulesApiS
 
     /**
      * Retrieves a list of product rules according to any specified filter criteria and sort options.
-     * Get product rules
+     * Get Product Rules
      */
 
 
@@ -398,8 +390,6 @@ export class ProductRulesApi extends runtime.BaseAPI implements ProductRulesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -414,7 +404,7 @@ export class ProductRulesApi extends runtime.BaseAPI implements ProductRulesApiS
 
     /**
      * Retrieves a list of product rules according to any specified filter criteria and sort options.
-     * Get product rules
+     * Get Product Rules
      */
     async getProductRules(requestParameters: productRulesApiParams.GetProductRulesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductRuleCollection> {
         const response = await this.getProductRulesRaw(requestParameters, initOverrides);
@@ -423,7 +413,7 @@ export class ProductRulesApi extends runtime.BaseAPI implements ProductRulesApiS
 
     /**
      * Update an existing product rules.
-     * Update product rule
+     * Update Product Rule
      */
 
 
@@ -444,8 +434,6 @@ export class ProductRulesApi extends runtime.BaseAPI implements ProductRulesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -461,7 +449,7 @@ export class ProductRulesApi extends runtime.BaseAPI implements ProductRulesApiS
 
     /**
      * Update an existing product rules.
-     * Update product rule
+     * Update Product Rule
      */
     async updateProductRule(requestParameters: productRulesApiParams.UpdateProductRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductRule> {
         const response = await this.updateProductRuleRaw(requestParameters, initOverrides);
@@ -470,11 +458,11 @@ export class ProductRulesApi extends runtime.BaseAPI implements ProductRulesApiS
 
     /**
      * Validate the expression for a product rules
-     * Validate expression
+     * Validate Expression
      */
 
 
-    async validateExpressionRaw(requestParameters: productRulesApiParams.ValidateExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCustomerDynamicExpression>> {
+    async validateExpressionRaw(requestParameters: productRulesApiParams.ValidateExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDynamicExpression>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -487,8 +475,6 @@ export class ProductRulesApi extends runtime.BaseAPI implements ProductRulesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -496,7 +482,7 @@ export class ProductRulesApi extends runtime.BaseAPI implements ProductRulesApiS
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters.catalogAdminsCustomerDynamicExpression,
+            body: requestParameters.catalogAdminsDynamicExpression,
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response);
@@ -504,9 +490,9 @@ export class ProductRulesApi extends runtime.BaseAPI implements ProductRulesApiS
 
     /**
      * Validate the expression for a product rules
-     * Validate expression
+     * Validate Expression
      */
-    async validateExpression(requestParameters: productRulesApiParams.ValidateExpressionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCustomerDynamicExpression> {
+    async validateExpression(requestParameters: productRulesApiParams.ValidateExpressionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDynamicExpression> {
         const response = await this.validateExpressionRaw(requestParameters, initOverrides);
         return await response.value();
     }

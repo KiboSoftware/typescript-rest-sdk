@@ -11,7 +11,7 @@ export interface AdminUserAuditInfo {
      * @type {string}
      * @memberof AdminUserAuditInfo
      */
-    updateDate?: string | null;
+    createBy?: string | null;
     /**
      * 
      * @type {string}
@@ -29,7 +29,7 @@ export interface AdminUserAuditInfo {
      * @type {string}
      * @memberof AdminUserAuditInfo
      */
-    createBy?: string | null;
+    updateDate?: string | null;
 }
 /**
  * Collection of events returned as a whole.
@@ -39,16 +39,10 @@ export interface AdminUserAuditInfo {
 export interface EventCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<EventEvent>}
      * @memberof EventCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EventCollection
-     */
-    pageSize?: number;
+    items?: Array<EventEvent> | null;
     /**
      * 
      * @type {number}
@@ -60,13 +54,19 @@ export interface EventCollection {
      * @type {number}
      * @memberof EventCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<EventEvent>}
+     * @type {number}
      * @memberof EventCollection
      */
-    items?: Array<EventEvent> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EventCollection
+     */
+    totalCount?: number;
 }
 /**
  * The external/public Event entity used specifically in PULL/POLL event scenarios
@@ -87,6 +87,12 @@ export interface EventDeliveryAttempt {
      */
     errorType?: string | null;
     /**
+     * The date that the delivery was attempted
+     * @type {string}
+     * @memberof EventDeliveryAttempt
+     */
+    executionDate?: string | null;
+    /**
      * 
      * @type {HttpStatus}
      * @memberof EventDeliveryAttempt
@@ -98,12 +104,6 @@ export interface EventDeliveryAttempt {
      * @memberof EventDeliveryAttempt
      */
     message?: string | null;
-    /**
-     * The date that the delivery was attempted
-     * @type {string}
-     * @memberof EventDeliveryAttempt
-     */
-    executionDate?: string | null;
 }
 /**
  * The external/public Event entity used specifically in PULL/POLL event scenarios
@@ -112,11 +112,17 @@ export interface EventDeliveryAttempt {
  */
 export interface EventDeliverySummary {
     /**
-     * The unique identifier for an event delivery summary
-     * @type {number}
+     * Create Date
+     * @type {string}
      * @memberof EventDeliverySummary
      */
-    id?: number | null;
+    createDate?: string | null;
+    /**
+     * Details about each attempted delivery of the event to the endpoint
+     * @type {Array<EventDeliveryAttempt>}
+     * @memberof EventDeliverySummary
+     */
+    deliveryAttempts?: Array<EventDeliveryAttempt> | null;
     /**
      * Status of the delivery process (EventDeliveryStatusType)
      * @type {string}
@@ -129,6 +135,12 @@ export interface EventDeliverySummary {
      * @memberof EventDeliverySummary
      */
     eventSummary?: EventSummary;
+    /**
+     * The unique identifier for an event delivery summary
+     * @type {number}
+     * @memberof EventDeliverySummary
+     */
+    id?: number | null;
     /**
      * Indicates whether delivery of the event is currently being attempted at this moment in time
      * @type {boolean}
@@ -154,23 +166,11 @@ export interface EventDeliverySummary {
      */
     retriesRemaining?: number | null;
     /**
-     * Create Date
-     * @type {string}
-     * @memberof EventDeliverySummary
-     */
-    createDate?: string | null;
-    /**
      * Update Date
      * @type {string}
      * @memberof EventDeliverySummary
      */
     updateDate?: string | null;
-    /**
-     * Details about each attempted delivery of the event to the endpoint
-     * @type {Array<EventDeliveryAttempt>}
-     * @memberof EventDeliverySummary
-     */
-    deliveryAttempts?: Array<EventDeliveryAttempt> | null;
 }
 /**
  * Collection of event deliver summaries
@@ -180,16 +180,10 @@ export interface EventDeliverySummary {
 export interface EventDeliverySummaryCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<EventDeliverySummary>}
      * @memberof EventDeliverySummaryCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EventDeliverySummaryCollection
-     */
-    pageSize?: number;
+    items?: Array<EventDeliverySummary> | null;
     /**
      * 
      * @type {number}
@@ -201,13 +195,19 @@ export interface EventDeliverySummaryCollection {
      * @type {number}
      * @memberof EventDeliverySummaryCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<EventDeliverySummary>}
+     * @type {number}
      * @memberof EventDeliverySummaryCollection
      */
-    items?: Array<EventDeliverySummary> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EventDeliverySummaryCollection
+     */
+    totalCount?: number;
 }
 /**
  * The external/public Event entity used specifically in PULL/POLL event scenarios
@@ -216,23 +216,11 @@ export interface EventDeliverySummaryCollection {
  */
 export interface EventEvent {
     /**
-     * The unique identifier for an event
-     * @type {string}
+     * 
+     * @type {AdminUserAuditInfo}
      * @memberof EventEvent
      */
-    id?: string | null;
-    /**
-     * TenantId
-     * @type {number}
-     * @memberof EventEvent
-     */
-    tenantId?: number | null;
-    /**
-     * MasterCatalogId
-     * @type {number}
-     * @memberof EventEvent
-     */
-    masterCatalogId?: number | null;
+    auditInfo?: AdminUserAuditInfo;
     /**
      * CatalogId
      * @type {number}
@@ -240,17 +228,11 @@ export interface EventEvent {
      */
     catalogId?: number | null;
     /**
-     * SiteId
-     * @type {number}
-     * @memberof EventEvent
-     */
-    siteId?: number | null;
-    /**
-     * The topic of the event (i.e. product.created)
+     * The Correlation Id of the original API request that caused this event to occur
      * @type {string}
      * @memberof EventEvent
      */
-    topic?: string | null;
+    correlationId?: string | null;
     /**
      * The identifier / ID of the entity that changed (i.e. product code)
      * @type {string}
@@ -258,29 +240,47 @@ export interface EventEvent {
      */
     entityId?: string | null;
     /**
-     * Is this a test?
-     * @type {boolean}
-     * @memberof EventEvent
-     */
-    isTest?: boolean | null;
-    /**
-     * The Correlation Id of the original API request that caused this event to occur
-     * @type {string}
-     * @memberof EventEvent
-     */
-    correlationId?: string | null;
-    /**
      * Extended properties. Note: This is purposefully not a CollectionBase type wrapper so consumers start to get used to not having counts returned.
      * @type {Array<EventExtendedProperty>}
      * @memberof EventEvent
      */
     extendedProperties?: Array<EventExtendedProperty> | null;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
+     * The unique identifier for an event
+     * @type {string}
      * @memberof EventEvent
      */
-    auditInfo?: AdminUserAuditInfo;
+    id?: string | null;
+    /**
+     * Is this a test?
+     * @type {boolean}
+     * @memberof EventEvent
+     */
+    isTest?: boolean | null;
+    /**
+     * MasterCatalogId
+     * @type {number}
+     * @memberof EventEvent
+     */
+    masterCatalogId?: number | null;
+    /**
+     * SiteId
+     * @type {number}
+     * @memberof EventEvent
+     */
+    siteId?: number | null;
+    /**
+     * TenantId
+     * @type {number}
+     * @memberof EventEvent
+     */
+    tenantId?: number | null;
+    /**
+     * The topic of the event (i.e. product.created)
+     * @type {string}
+     * @memberof EventEvent
+     */
+    topic?: string | null;
 }
 /**
  * Event Extended Property
@@ -308,11 +308,11 @@ export interface EventExtendedProperty {
  */
 export interface EventSubscription {
     /**
-     * The unique identifier for a subscription
+     * ApiVersion
      * @type {string}
      * @memberof EventSubscription
      */
-    id?: string | null;
+    apiVersion?: string | null;
     /**
      * Application identifier for subscription
      * @type {string}
@@ -320,29 +320,11 @@ export interface EventSubscription {
      */
     appId?: string | null;
     /**
-     * ApiVersion
-     * @type {string}
+     * A boolean value that indicates if the subscription endpoint has been confirmed
+     * @type {boolean}
      * @memberof EventSubscription
      */
-    apiVersion?: string | null;
-    /**
-     * A list of topics that the subscription relates to
-     * @type {Array<string>}
-     * @memberof EventSubscription
-     */
-    topics?: Array<string> | null;
-    /**
-     * A list of subscribers or subscribing tenants that the subscription relates to
-     * @type {Array<SubscribingTenant>}
-     * @memberof EventSubscription
-     */
-    subscribingTenants?: Array<SubscribingTenant> | null;
-    /**
-     * Notification delivery type which is a string representation of an enumeration of values.  Example: Http (this is case insensitive, so http may also be passed in)
-     * @type {string}
-     * @memberof EventSubscription
-     */
-    notificationDeliveryType?: string | null;
+    confirmed?: boolean | null;
     /**
      * Content type of the payload that will be delivered.  This is utilized in combination with the notification delivery type.  Example:  A HTTP Post (notification delivery type) is performed with a JSON representation of the event data (content type).
      * @type {string}
@@ -350,17 +332,29 @@ export interface EventSubscription {
      */
     contentType?: string | null;
     /**
+     * Identifier of the user who created the entity. System-supplied and read-only.
+     * @type {string}
+     * @memberof EventSubscription
+     */
+    createBy?: string | null;
+    /**
+     * When the entity was created. System-supplied and read-only.
+     * @type {string}
+     * @memberof EventSubscription
+     */
+    createDate?: string | null;
+    /**
      * The delivery endpoint that will receive notifications when events concerning the specified topics on the subscription occur.  The format of the endpoint may differ depending on the notification type.  For example, the endpoint may be a URL in some cases and an email address in others if multiple notification types are available.
      * @type {string}
      * @memberof EventSubscription
      */
     endpoint?: string | null;
     /**
-     * A boolean value that indicates if the subscription endpoint has been confirmed
-     * @type {boolean}
+     * The unique identifier for a subscription
+     * @type {string}
      * @memberof EventSubscription
      */
-    confirmed?: boolean | null;
+    id?: string | null;
     /**
      * A boolean value that indicates if the subscription is active.  The subscription may be inactive due to repeated downtimes at the endpoint.  If they subscription is deactivated the subscription owner or application will need to reactivate it for notifications to be delivered.
      * @type {boolean}
@@ -374,29 +368,35 @@ export interface EventSubscription {
      */
     noCallback?: boolean | null;
     /**
-     * When the entity was created. System-supplied and read-only.
+     * Notification delivery type which is a string representation of an enumeration of values.  Example: Http (this is case insensitive, so http may also be passed in)
      * @type {string}
      * @memberof EventSubscription
      */
-    createDate?: string | null;
+    notificationDeliveryType?: string | null;
     /**
-     * When the entity was updated. System-supplied and read-only.
-     * @type {string}
+     * A list of subscribers or subscribing tenants that the subscription relates to
+     * @type {Array<SubscribingTenant>}
      * @memberof EventSubscription
      */
-    updateDate?: string | null;
+    subscribingTenants?: Array<SubscribingTenant> | null;
     /**
-     * Identifier of the user who created the entity. System-supplied and read-only.
-     * @type {string}
+     * A list of topics that the subscription relates to
+     * @type {Array<string>}
      * @memberof EventSubscription
      */
-    createBy?: string | null;
+    topics?: Array<string> | null;
     /**
      * Identifier of the user who updated the entity. System-supplied and read-only.
      * @type {string}
      * @memberof EventSubscription
      */
     updateBy?: string | null;
+    /**
+     * When the entity was updated. System-supplied and read-only.
+     * @type {string}
+     * @memberof EventSubscription
+     */
+    updateDate?: string | null;
 }
 /**
  * Collection of subscriptions returned as a whole.
@@ -406,16 +406,10 @@ export interface EventSubscription {
 export interface EventSubscriptionCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<EventSubscription>}
      * @memberof EventSubscriptionCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EventSubscriptionCollection
-     */
-    pageSize?: number;
+    items?: Array<EventSubscription> | null;
     /**
      * 
      * @type {number}
@@ -427,13 +421,19 @@ export interface EventSubscriptionCollection {
      * @type {number}
      * @memberof EventSubscriptionCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<EventSubscription>}
+     * @type {number}
      * @memberof EventSubscriptionCollection
      */
-    items?: Array<EventSubscription> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EventSubscriptionCollection
+     */
+    totalCount?: number;
 }
 /**
  * Event Summary is a trimmed version of an event that is utilized when displaying the event delivery (aka webhook, HTTP callback, HTTP POST) process history/details
@@ -442,53 +442,11 @@ export interface EventSubscriptionCollection {
  */
 export interface EventSummary {
     /**
-     * Note: Remember in the contract version to convert this Guid to ToString("N") so the dashes are not present
-     * @type {string}
-     * @memberof EventSummary
-     */
-    eventId?: string | null;
-    /**
-     * Tenant Id
-     * @type {number}
-     * @memberof EventSummary
-     */
-    tenantId?: number | null;
-    /**
-     * Master Catalog Id
-     * @type {number}
-     * @memberof EventSummary
-     */
-    masterCatalogId?: number | null;
-    /**
      * Catalog Id
      * @type {number}
      * @memberof EventSummary
      */
     catalogId?: number | null;
-    /**
-     * Site Id
-     * @type {number}
-     * @memberof EventSummary
-     */
-    siteId?: number | null;
-    /**
-     * Entity Id
-     * @type {string}
-     * @memberof EventSummary
-     */
-    entityId?: string | null;
-    /**
-     * Topic
-     * @type {string}
-     * @memberof EventSummary
-     */
-    topic?: string | null;
-    /**
-     * Extended properties. Note: This is purposefully not a CollectionBase type wrapper so consumers start to get used to not having counts returned.
-     * @type {Array<EventExtendedProperty>}
-     * @memberof EventSummary
-     */
-    extendedProperties?: Array<EventExtendedProperty> | null;
     /**
      * Correlation Id
      * @type {string}
@@ -501,6 +459,48 @@ export interface EventSummary {
      * @memberof EventSummary
      */
     createDate?: string | null;
+    /**
+     * Entity Id
+     * @type {string}
+     * @memberof EventSummary
+     */
+    entityId?: string | null;
+    /**
+     * Note: Remember in the contract version to convert this Guid to ToString("N") so the dashes are not present
+     * @type {string}
+     * @memberof EventSummary
+     */
+    eventId?: string | null;
+    /**
+     * Extended properties. Note: This is purposefully not a CollectionBase type wrapper so consumers start to get used to not having counts returned.
+     * @type {Array<EventExtendedProperty>}
+     * @memberof EventSummary
+     */
+    extendedProperties?: Array<EventExtendedProperty> | null;
+    /**
+     * Master Catalog Id
+     * @type {number}
+     * @memberof EventSummary
+     */
+    masterCatalogId?: number | null;
+    /**
+     * Site Id
+     * @type {number}
+     * @memberof EventSummary
+     */
+    siteId?: number | null;
+    /**
+     * Tenant Id
+     * @type {number}
+     * @memberof EventSummary
+     */
+    tenantId?: number | null;
+    /**
+     * Topic
+     * @type {string}
+     * @memberof EventSummary
+     */
+    topic?: string | null;
 }
 /**
  * Http Status
@@ -522,17 +522,109 @@ export interface HttpStatus {
     name?: string | null;
 }
 /**
+ * Only utilized for testing
+ * @export
+ * @interface PingEvent
+ */
+export interface PingEvent {
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof PingEvent
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * CatalogId
+     * @type {number}
+     * @memberof PingEvent
+     */
+    catalogId?: number | null;
+    /**
+     * The Correlation Id of the original API request that caused this event to occur
+     * @type {string}
+     * @memberof PingEvent
+     */
+    correlationId?: string | null;
+    /**
+     * The identifier / ID of the entity that changed (i.e. product code)
+     * @type {string}
+     * @memberof PingEvent
+     */
+    entityId?: string | null;
+    /**
+     * Extended properties. Note: This is purposefully not a CollectionBase type wrapper so consumers start to get used to not having counts returned.
+     * @type {Array<EventExtendedProperty>}
+     * @memberof PingEvent
+     */
+    extendedProperties?: Array<EventExtendedProperty> | null;
+    /**
+     * The unique identifier for an event
+     * @type {string}
+     * @memberof PingEvent
+     */
+    id?: string | null;
+    /**
+     * Is this a test?
+     * @type {boolean}
+     * @memberof PingEvent
+     */
+    isTest?: boolean | null;
+    /**
+     * MasterCatalogId
+     * @type {number}
+     * @memberof PingEvent
+     */
+    masterCatalogId?: number | null;
+    /**
+     * SiteId
+     * @type {number}
+     * @memberof PingEvent
+     */
+    siteId?: number | null;
+    /**
+     * TenantId
+     * @type {number}
+     * @memberof PingEvent
+     */
+    tenantId?: number | null;
+    /**
+     * The topic of the event (i.e. product.created)
+     * @type {string}
+     * @memberof PingEvent
+     */
+    topic?: string | null;
+    /**
+     * The Endpoint to ping
+     * @type {string}
+     * @memberof PingEvent
+     */
+    endpoint?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface PingEventAllOf
+ */
+export interface PingEventAllOf {
+    /**
+     * The Endpoint to ping
+     * @type {string}
+     * @memberof PingEventAllOf
+     */
+    endpoint?: string | null;
+}
+/**
  * A site that is associated with a subscription
  * @export
  * @interface SubscribingSite
  */
 export interface SubscribingSite {
     /**
-     * The site identifier
-     * @type {number}
+     * 
+     * @type {AdminUserAuditInfo}
      * @memberof SubscribingSite
      */
-    siteId?: number | null;
+    auditInfo?: AdminUserAuditInfo;
     /**
      * Is the subscription active at the site level?
      * @type {boolean}
@@ -540,11 +632,11 @@ export interface SubscribingSite {
      */
     isActive?: boolean | null;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
+     * The site identifier
+     * @type {number}
      * @memberof SubscribingSite
      */
-    auditInfo?: AdminUserAuditInfo;
+    siteId?: number | null;
 }
 /**
  * A tenant that is associated with a subscription
@@ -552,6 +644,18 @@ export interface SubscribingSite {
  * @interface SubscribingTenant
  */
 export interface SubscribingTenant {
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof SubscribingTenant
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * Is the subscription active at the tenant level?  If the subscription context is at the Tenant Level this property will be utilized over the SiteLevel
+     * @type {boolean}
+     * @memberof SubscribingTenant
+     */
+    isActive?: boolean | null;
     /**
      * Type of Subscribing Context
      * !:SubscribingContextLevelTypeConst
@@ -561,27 +665,15 @@ export interface SubscribingTenant {
      */
     subscribingContextLevelType?: string | null;
     /**
-     * The tenant identifier
-     * @type {number}
-     * @memberof SubscribingTenant
-     */
-    tenantId?: number | null;
-    /**
-     * Is the subscription active at the tenant level?  If the subscription context is at the Tenant Level this property will be utilized over the SiteLevel
-     * @type {boolean}
-     * @memberof SubscribingTenant
-     */
-    isActive?: boolean | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof SubscribingTenant
-     */
-    auditInfo?: AdminUserAuditInfo;
-    /**
      * Subscribing Sites
      * @type {Array<SubscribingSite>}
      * @memberof SubscribingTenant
      */
     subscribingSites?: Array<SubscribingSite> | null;
+    /**
+     * The tenant identifier
+     * @type {number}
+     * @memberof SubscribingTenant
+     */
+    tenantId?: number | null;
 }

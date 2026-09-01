@@ -11,7 +11,7 @@ export interface AdminUserAuditInfo {
      * @type {string}
      * @memberof AdminUserAuditInfo
      */
-    updateDate?: string | null;
+    createBy?: string | null;
     /**
      * 
      * @type {string}
@@ -29,7 +29,26 @@ export interface AdminUserAuditInfo {
      * @type {string}
      * @memberof AdminUserAuditInfo
      */
-    createBy?: string | null;
+    updateDate?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface CarrierMethods
+ */
+export interface CarrierMethods {
+    /**
+     * 
+     * @type {string}
+     * @memberof CarrierMethods
+     */
+    carrierId?: string | null;
+    /**
+     * Selected Shipping Service Type.
+     * @type {Array<string>}
+     * @memberof CarrierMethods
+     */
+    shippingMethods?: Array<string> | null;
 }
 /**
  * 
@@ -45,10 +64,11 @@ export interface CarrierRatesResponse {
     carrierId?: string | null;
     /**
      * 
-     * @type {Array<ShippingRuntimeShippingRate>}
+     * @type {Array<CustomAttribute>}
      * @memberof CarrierRatesResponse
+     * @deprecated
      */
-    shippingRates?: Array<ShippingRuntimeShippingRate> | null;
+    customAttributes?: Array<CustomAttribute> | null;
     /**
      * The fulfillment method for which this carrier rate is applicable to. Possible values are Ship and Delivery.
      * @type {string}
@@ -57,11 +77,10 @@ export interface CarrierRatesResponse {
     fulfillmentMethod?: string | null;
     /**
      * 
-     * @type {Array<CustomAttribute>}
+     * @type {Array<ShippingRuntimeShippingRate>}
      * @memberof CarrierRatesResponse
-     * @deprecated
      */
-    customAttributes?: Array<CustomAttribute> | null;
+    shippingRates?: Array<ShippingRuntimeShippingRate> | null;
 }
 /**
  * Response containing a list of Carriers supported on a tenant / site.
@@ -136,13 +155,25 @@ export interface CommerceRuntimeAddress {
      * @type {string}
      * @memberof CommerceRuntimeAddress
      */
+    addressType?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAddress
+     */
     cityOrTown?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CommerceRuntimeAddress
      */
-    stateOrProvince?: string | null;
+    countryCode?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommerceRuntimeAddress
+     */
+    isValidated?: boolean | null;
     /**
      * 
      * @type {string}
@@ -154,19 +185,7 @@ export interface CommerceRuntimeAddress {
      * @type {string}
      * @memberof CommerceRuntimeAddress
      */
-    countryCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    addressType?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAddress
-     */
-    isValidated?: boolean | null;
+    stateOrProvince?: string | null;
 }
 /**
  * 
@@ -176,10 +195,16 @@ export interface CommerceRuntimeAddress {
 export interface CommerceRuntimeContact {
     /**
      * 
-     * @type {number}
+     * @type {CommerceRuntimeAddress}
      * @memberof CommerceRuntimeContact
      */
-    id?: number | null;
+    address?: CommerceRuntimeAddress;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeContact
+     */
+    companyOrOrganization?: string | null;
     /**
      * 
      * @type {string}
@@ -194,10 +219,10 @@ export interface CommerceRuntimeContact {
     firstName?: string | null;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof CommerceRuntimeContact
      */
-    middleNameOrInitial?: string | null;
+    id?: number | null;
     /**
      * 
      * @type {string}
@@ -209,19 +234,13 @@ export interface CommerceRuntimeContact {
      * @type {string}
      * @memberof CommerceRuntimeContact
      */
-    companyOrOrganization?: string | null;
+    middleNameOrInitial?: string | null;
     /**
      * 
      * @type {CommerceRuntimePhone}
      * @memberof CommerceRuntimeContact
      */
     phoneNumbers?: CommerceRuntimePhone;
-    /**
-     * 
-     * @type {CommerceRuntimeAddress}
-     * @memberof CommerceRuntimeContact
-     */
-    address?: CommerceRuntimeAddress;
 }
 /**
  * 
@@ -339,21 +358,158 @@ export interface CustomerReferences {
 /**
  * 
  * @export
+ * @interface ExternalRateRequest
+ */
+export interface ExternalRateRequest {
+    /**
+     * Order Attributes. Made available for Arc.js to use
+     * @type {Array<RateRequestAttribute>}
+     * @memberof ExternalRateRequest
+     */
+    attributes?: Array<RateRequestAttribute> | null;
+    /**
+     * Optional.  If one or more Carrier Ids are specified then only the rates for the specified carrier('s/s') configured service types or shipping methods will be calculated resulting in better performance.
+     * @type {Array<string>}
+     * @memberof ExternalRateRequest
+     */
+    carrierIds?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<CustomAttribute>}
+     * @memberof ExternalRateRequest
+     * @deprecated
+     */
+    customAttributes?: Array<CustomAttribute> | null;
+    /**
+     * 
+     * @type {object}
+     * @memberof ExternalRateRequest
+     */
+    data?: object | null;
+    /**
+     * 
+     * @type {CommerceRuntimeAddress}
+     * @memberof ExternalRateRequest
+     */
+    destinationAddress?: CommerceRuntimeAddress;
+    /**
+     * Estimate Date/Time when the shipment for this will be sent.  Primarily utilize to estimate delivery date.
+     * @type {string}
+     * @memberof ExternalRateRequest
+     */
+    estimatedShipmentDate?: string | null;
+    /**
+     * The order Handling total after discounts to be used in rate calculation
+     * @type {number}
+     * @memberof ExternalRateRequest
+     */
+    handlingTotal?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExternalRateRequest
+     */
+    id?: string | null;
+    /**
+     * Is the destination address a commercial address?
+     * @type {boolean}
+     * @memberof ExternalRateRequest
+     */
+    isDestinationAddressCommercial?: boolean | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExternalRateRequest
+     */
+    isoCurrencyCode?: string | null;
+    /**
+     * 
+     * @type {Array<RateRequestItem>}
+     * @memberof ExternalRateRequest
+     */
+    items?: Array<RateRequestItem> | null;
+    /**
+     * The Order SubTotal After Discounts to be used in rate calculation
+     * @type {number}
+     * @memberof ExternalRateRequest
+     */
+    orderDiscountedSubTotal?: number | null;
+    /**
+     * The OrderTotal to be used in rate calculation
+     * @type {number}
+     * @memberof ExternalRateRequest
+     */
+    orderTotal?: number | null;
+    /**
+     * 
+     * @type {CommerceRuntimeAddress}
+     * @memberof ExternalRateRequest
+     */
+    originAddress?: CommerceRuntimeAddress;
+    /**
+     * Optional for STH rates. The location code of the origin location. Used for calculation of Delivery rates.
+     * @type {string}
+     * @memberof ExternalRateRequest
+     */
+    originLocationCode?: string | null;
+    /**
+     * The Order ID to be used in rate calculation
+     * Informational only
+     * @type {string}
+     * @memberof ExternalRateRequest
+     */
+    relatedOrderId?: string | null;
+    /**
+     * The Order Number to be used in rate calculation
+     * Informational only
+     * @type {number}
+     * @memberof ExternalRateRequest
+     */
+    relatedOrderNumber?: number | null;
+    /**
+     * Optional.  If one or more Shipping Service Type Codes are specified then only the specified rates for the specified carrier('s/s') configured service types or shipping methods will be calculated resulting in better performance.
+     * @type {Array<string>}
+     * @memberof ExternalRateRequest
+     */
+    shippingServiceTypes?: Array<string> | null;
+    /**
+     * The list of carriers and their respected rates for which this request needs calculated
+     * @type {Array<CarrierMethods>}
+     * @memberof ExternalRateRequest
+     */
+    carrierRates?: Array<CarrierMethods> | null;
+}
+/**
+ * 
+ * @export
+ * @interface ExternalRateRequestAllOf
+ */
+export interface ExternalRateRequestAllOf {
+    /**
+     * The list of carriers and their respected rates for which this request needs calculated
+     * @type {Array<CarrierMethods>}
+     * @memberof ExternalRateRequestAllOf
+     */
+    carrierRates?: Array<CarrierMethods> | null;
+}
+/**
+ * 
+ * @export
  * @interface ItemMeasurements
  */
 export interface ItemMeasurements {
+    /**
+     * Not exposed publicly
+     * @type {number}
+     * @memberof ItemMeasurements
+     */
+    girth?: number | null;
     /**
      * 
      * @type {CommerceRuntimeMeasurement}
      * @memberof ItemMeasurements
      */
     height?: CommerceRuntimeMeasurement;
-    /**
-     * 
-     * @type {CommerceRuntimeMeasurement}
-     * @memberof ItemMeasurements
-     */
-    width?: CommerceRuntimeMeasurement;
     /**
      * 
      * @type {CommerceRuntimeMeasurement}
@@ -367,11 +523,11 @@ export interface ItemMeasurements {
      */
     weight?: CommerceRuntimeMeasurement;
     /**
-     * Not exposed publicly
-     * @type {number}
+     * 
+     * @type {CommerceRuntimeMeasurement}
      * @memberof ItemMeasurements
      */
-    girth?: number | null;
+    width?: CommerceRuntimeMeasurement;
 }
 /**
  * 
@@ -396,13 +552,13 @@ export interface LabelRequest {
      * @type {string}
      * @memberof LabelRequest
      */
-    trackingNumber?: string | null;
+    packageTrackingNumber?: string | null;
     /**
      * 
      * @type {string}
      * @memberof LabelRequest
      */
-    packageTrackingNumber?: string | null;
+    trackingNumber?: string | null;
 }
 /**
  * 
@@ -412,16 +568,16 @@ export interface LabelRequest {
 export interface LabelResponse {
     /**
      * 
-     * @type {string}
-     * @memberof LabelResponse
-     */
-    trackingNumber?: string | null;
-    /**
-     * 
      * @type {Array<PackageLabelResponse>}
      * @memberof LabelResponse
      */
     packageLabels?: Array<PackageLabelResponse> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof LabelResponse
+     */
+    trackingNumber?: string | null;
 }
 /**
  * 
@@ -453,7 +609,7 @@ export interface Notification {
      * @type {string}
      * @memberof Notification
      */
-    source?: string | null;
+    code?: string | null;
     /**
      * 
      * @type {string}
@@ -465,7 +621,7 @@ export interface Notification {
      * @type {string}
      * @memberof Notification
      */
-    code?: string | null;
+    source?: string | null;
 }
 /**
  * 
@@ -475,16 +631,16 @@ export interface Notification {
 export interface PackageLabelResponse {
     /**
      * 
-     * @type {string}
-     * @memberof PackageLabelResponse
-     */
-    trackingNumber?: string | null;
-    /**
-     * 
      * @type {ShippingLabel}
      * @memberof PackageLabelResponse
      */
     label?: ShippingLabel;
+    /**
+     * 
+     * @type {string}
+     * @memberof PackageLabelResponse
+     */
+    trackingNumber?: string | null;
 }
 /**
  * 
@@ -493,11 +649,35 @@ export interface PackageLabelResponse {
  */
 export interface ProductSummary {
     /**
+     * 
+     * @type {Array<ShippingRuntimeCategory>}
+     * @memberof ProductSummary
+     */
+    categories?: Array<ShippingRuntimeCategory> | null;
+    /**
+     * 
+     * @type {Array<ShippingRuntimeProductOption>}
+     * @memberof ProductSummary
+     */
+    options?: Array<ShippingRuntimeProductOption> | null;
+    /**
+     * Price (unit price * quantity)
+     * @type {number}
+     * @memberof ProductSummary
+     */
+    price?: number;
+    /**
      * Merchant-created code that uniquely identifies the product.
      * @type {string}
      * @memberof ProductSummary
      */
     productCode?: string | null;
+    /**
+     * Product name/description
+     * @type {string}
+     * @memberof ProductSummary
+     */
+    productDescription?: string | null;
     /**
      * 
      * @type {string}
@@ -506,34 +686,10 @@ export interface ProductSummary {
     productType?: string | null;
     /**
      * 
-     * @type {Array<ShippingRuntimeCategory>}
-     * @memberof ProductSummary
-     */
-    categories?: Array<ShippingRuntimeCategory> | null;
-    /**
-     * 
-     * @type {ItemMeasurements}
-     * @memberof ProductSummary
-     */
-    unitMeasurements?: ItemMeasurements;
-    /**
-     * 
      * @type {Array<ShippingRuntimeProductProperty>}
      * @memberof ProductSummary
      */
     properties?: Array<ShippingRuntimeProductProperty> | null;
-    /**
-     * 
-     * @type {Array<ShippingRuntimeProductOption>}
-     * @memberof ProductSummary
-     */
-    options?: Array<ShippingRuntimeProductOption> | null;
-    /**
-     * Product name/description
-     * @type {string}
-     * @memberof ProductSummary
-     */
-    productDescription?: string | null;
     /**
      * Product quantity
      * @type {number}
@@ -541,11 +697,11 @@ export interface ProductSummary {
      */
     quantity?: number;
     /**
-     * Price (unit price * quantity)
-     * @type {number}
+     * 
+     * @type {ItemMeasurements}
      * @memberof ProductSummary
      */
-    price?: number;
+    unitMeasurements?: ItemMeasurements;
 }
 /**
  * 
@@ -554,11 +710,60 @@ export interface ProductSummary {
  */
 export interface RateRequest {
     /**
+     * Order Attributes. Made available for Arc.js to use
+     * @type {Array<RateRequestAttribute>}
+     * @memberof RateRequest
+     */
+    attributes?: Array<RateRequestAttribute> | null;
+    /**
+     * Optional.  If one or more Carrier Ids are specified then only the rates for the specified carrier('s/s') configured service types or shipping methods will be calculated resulting in better performance.
+     * @type {Array<string>}
+     * @memberof RateRequest
+     */
+    carrierIds?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<CustomAttribute>}
+     * @memberof RateRequest
+     * @deprecated
+     */
+    customAttributes?: Array<CustomAttribute> | null;
+    /**
+     * 
+     * @type {object}
+     * @memberof RateRequest
+     */
+    data?: object | null;
+    /**
+     * 
+     * @type {CommerceRuntimeAddress}
+     * @memberof RateRequest
+     */
+    destinationAddress?: CommerceRuntimeAddress;
+    /**
+     * Estimate Date/Time when the shipment for this will be sent.  Primarily utilize to estimate delivery date.
+     * @type {string}
+     * @memberof RateRequest
+     */
+    estimatedShipmentDate?: string | null;
+    /**
+     * The order Handling total after discounts to be used in rate calculation
+     * @type {number}
+     * @memberof RateRequest
+     */
+    handlingTotal?: number | null;
+    /**
      * 
      * @type {string}
      * @memberof RateRequest
      */
     id?: string | null;
+    /**
+     * Is the destination address a commercial address?
+     * @type {boolean}
+     * @memberof RateRequest
+     */
+    isDestinationAddressCommercial?: boolean | null;
     /**
      * 
      * @type {string}
@@ -567,34 +772,10 @@ export interface RateRequest {
     isoCurrencyCode?: string | null;
     /**
      * 
-     * @type {CommerceRuntimeAddress}
+     * @type {Array<RateRequestItem>}
      * @memberof RateRequest
      */
-    originAddress?: CommerceRuntimeAddress;
-    /**
-     * 
-     * @type {CommerceRuntimeAddress}
-     * @memberof RateRequest
-     */
-    destinationAddress?: CommerceRuntimeAddress;
-    /**
-     * Optional.  If one or more Carrier Ids are specified then only the rates for the specified carrier('s/s') configured service types or shipping methods will be calculated resulting in better performance.
-     * @type {Array<string>}
-     * @memberof RateRequest
-     */
-    carrierIds?: Array<string> | null;
-    /**
-     * Optional.  If one or more Shipping Service Type Codes are specified then only the specified rates for the specified carrier('s/s') configured service types or shipping methods will be calculated resulting in better performance.
-     * @type {Array<string>}
-     * @memberof RateRequest
-     */
-    shippingServiceTypes?: Array<string> | null;
-    /**
-     * The OrderTotal to be used in rate calculation
-     * @type {number}
-     * @memberof RateRequest
-     */
-    orderTotal?: number | null;
+    items?: Array<RateRequestItem> | null;
     /**
      * The Order SubTotal After Discounts to be used in rate calculation
      * @type {number}
@@ -602,11 +783,23 @@ export interface RateRequest {
      */
     orderDiscountedSubTotal?: number | null;
     /**
-     * The order Handling total after discounts to be used in rate calculation
+     * The OrderTotal to be used in rate calculation
      * @type {number}
      * @memberof RateRequest
      */
-    handlingTotal?: number | null;
+    orderTotal?: number | null;
+    /**
+     * 
+     * @type {CommerceRuntimeAddress}
+     * @memberof RateRequest
+     */
+    originAddress?: CommerceRuntimeAddress;
+    /**
+     * Optional for STH rates. The location code of the origin location. Used for calculation of Delivery rates.
+     * @type {string}
+     * @memberof RateRequest
+     */
+    originLocationCode?: string | null;
     /**
      * The Order ID to be used in rate calculation
      * Informational only
@@ -622,48 +815,11 @@ export interface RateRequest {
      */
     relatedOrderNumber?: number | null;
     /**
-     * Is the destination address a commercial address?
-     * @type {boolean}
+     * Optional.  If one or more Shipping Service Type Codes are specified then only the specified rates for the specified carrier('s/s') configured service types or shipping methods will be calculated resulting in better performance.
+     * @type {Array<string>}
      * @memberof RateRequest
      */
-    isDestinationAddressCommercial?: boolean | null;
-    /**
-     * 
-     * @type {Array<RateRequestItem>}
-     * @memberof RateRequest
-     */
-    items?: Array<RateRequestItem> | null;
-    /**
-     * Estimate Date/Time when the shipment for this will be sent.  Primarily utilize to estimate delivery date.
-     * @type {string}
-     * @memberof RateRequest
-     */
-    estimatedShipmentDate?: string | null;
-    /**
-     * Order Attributes. Made available for Arc.js to use
-     * @type {Array<RateRequestAttribute>}
-     * @memberof RateRequest
-     */
-    attributes?: Array<RateRequestAttribute> | null;
-    /**
-     * 
-     * @type {Array<CustomAttribute>}
-     * @memberof RateRequest
-     * @deprecated
-     */
-    customAttributes?: Array<CustomAttribute> | null;
-    /**
-     * 
-     * @type {object}
-     * @memberof RateRequest
-     */
-    data?: object | null;
-    /**
-     * Optional for STH rates. The location code of the origin location. Used for calculation of Delivery rates.
-     * @type {string}
-     * @memberof RateRequest
-     */
-    originLocationCode?: string | null;
+    shippingServiceTypes?: Array<string> | null;
 }
 /**
  * 
@@ -673,16 +829,16 @@ export interface RateRequest {
 export interface RateRequestAttribute {
     /**
      * 
-     * @type {string}
-     * @memberof RateRequestAttribute
-     */
-    fullyQualifiedName?: string | null;
-    /**
-     * 
      * @type {number}
      * @memberof RateRequestAttribute
      */
     attributeDefinitionId?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof RateRequestAttribute
+     */
+    fullyQualifiedName?: string | null;
     /**
      * 
      * @type {Array<any>}
@@ -698,16 +854,16 @@ export interface RateRequestAttribute {
 export interface RateRequestGroup {
     /**
      * 
-     * @type {Array<RateRequest>}
-     * @memberof RateRequestGroup
-     */
-    rateRequests?: Array<RateRequest> | null;
-    /**
-     * 
      * @type {string}
      * @memberof RateRequestGroup
      */
     id?: string | null;
+    /**
+     * 
+     * @type {Array<RateRequest>}
+     * @memberof RateRequestGroup
+     */
+    rateRequests?: Array<RateRequest> | null;
 }
 /**
  * Represents an item in a rate request, inheriting from RequestItem.
@@ -716,11 +872,41 @@ export interface RateRequestGroup {
  */
 export interface RateRequestItem {
     /**
+     * 
+     * @type {object}
+     * @memberof RateRequestItem
+     */
+    data?: object | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof RateRequestItem
+     */
+    itemId?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof RateRequestItem
+     */
+    quantity?: number | null;
+    /**
+     * 
+     * @type {ItemMeasurements}
+     * @memberof RateRequestItem
+     */
+    unitMeasurements?: ItemMeasurements;
+    /**
      * The fulfillment method on item to fetch rates for. Supported values are Ship and Delivery. Will assume Ship if nothing is passed.
      * @type {string}
      * @memberof RateRequestItem
      */
     fulfillmentMethod?: string | null;
+    /**
+     * Item total.
+     * @type {number}
+     * @memberof RateRequestItem
+     */
+    itemTotal?: number | null;
     /**
      * If Product Summaries are populated, this information will be utilized in Product Rules (e.g. ProductCode eq "ABC" or (Weight.Unit eq "lbs" and Weight.Value ge 50)
      * @type {Array<ProductSummary>}
@@ -733,36 +919,37 @@ export interface RateRequestItem {
      * @memberof RateRequestItem
      */
     shipsByItself?: boolean | null;
+}
+/**
+ * 
+ * @export
+ * @interface RateRequestItemAllOf
+ */
+export interface RateRequestItemAllOf {
+    /**
+     * The fulfillment method on item to fetch rates for. Supported values are Ship and Delivery. Will assume Ship if nothing is passed.
+     * @type {string}
+     * @memberof RateRequestItemAllOf
+     */
+    fulfillmentMethod?: string | null;
     /**
      * Item total.
      * @type {number}
-     * @memberof RateRequestItem
+     * @memberof RateRequestItemAllOf
      */
     itemTotal?: number | null;
     /**
-     * 
-     * @type {string}
-     * @memberof RateRequestItem
+     * If Product Summaries are populated, this information will be utilized in Product Rules (e.g. ProductCode eq "ABC" or (Weight.Unit eq "lbs" and Weight.Value ge 50)
+     * @type {Array<ProductSummary>}
+     * @memberof RateRequestItemAllOf
      */
-    itemId?: string | null;
+    productSummaries?: Array<ProductSummary> | null;
     /**
      * 
-     * @type {ItemMeasurements}
-     * @memberof RateRequestItem
+     * @type {boolean}
+     * @memberof RateRequestItemAllOf
      */
-    unitMeasurements?: ItemMeasurements;
-    /**
-     * 
-     * @type {number}
-     * @memberof RateRequestItem
-     */
-    quantity?: number | null;
-    /**
-     * 
-     * @type {object}
-     * @memberof RateRequestItem
-     */
-    data?: object | null;
+    shipsByItself?: boolean | null;
 }
 /**
  * 
@@ -777,6 +964,12 @@ export interface RatesResponse {
      */
     id?: string | null;
     /**
+     * 
+     * @type {Array<CarrierRatesResponse>}
+     * @memberof RatesResponse
+     */
+    rates?: Array<CarrierRatesResponse> | null;
+    /**
      * Resolved Shipping Zone Code.  This value can be null if the tenant/site does not have shipping zones defined or there are no matching 
      * shipping zones for the request (e.g. the only zone defined is "UNITED-STATES" and the destination address of the rate request is in Canada)
      * @type {string}
@@ -789,12 +982,6 @@ export interface RatesResponse {
      * @memberof RatesResponse
      */
     shippingZoneCodes?: Array<string> | null;
-    /**
-     * 
-     * @type {Array<CarrierRatesResponse>}
-     * @memberof RatesResponse
-     */
-    rates?: Array<CarrierRatesResponse> | null;
 }
 /**
  * 
@@ -802,6 +989,12 @@ export interface RatesResponse {
  * @interface RatesResponseGroup
  */
 export interface RatesResponseGroup {
+    /**
+     * 
+     * @type {Array<RatesResponse>}
+     * @memberof RatesResponseGroup
+     */
+    componentRates?: Array<RatesResponse> | null;
     /**
      * 
      * @type {string}
@@ -814,12 +1007,6 @@ export interface RatesResponseGroup {
      * @memberof RatesResponseGroup
      */
     ratesResponse?: RatesResponse;
-    /**
-     * 
-     * @type {Array<RatesResponse>}
-     * @memberof RatesResponseGroup
-     */
-    componentRates?: Array<RatesResponse> | null;
 }
 /**
  * 
@@ -829,16 +1016,16 @@ export interface RatesResponseGroup {
 export interface RequestItem {
     /**
      * 
+     * @type {object}
+     * @memberof RequestItem
+     */
+    data?: object | null;
+    /**
+     * 
      * @type {string}
      * @memberof RequestItem
      */
     itemId?: string | null;
-    /**
-     * 
-     * @type {ItemMeasurements}
-     * @memberof RequestItem
-     */
-    unitMeasurements?: ItemMeasurements;
     /**
      * 
      * @type {number}
@@ -847,41 +1034,10 @@ export interface RequestItem {
     quantity?: number | null;
     /**
      * 
-     * @type {object}
+     * @type {ItemMeasurements}
      * @memberof RequestItem
      */
-    data?: object | null;
-}
-/**
- * 
- * @export
- * @interface ReservationWebAPIPackageMeasurements
- */
-export interface ReservationWebAPIPackageMeasurements {
-    /**
-     * 
-     * @type {CommerceRuntimeMeasurement}
-     * @memberof ReservationWebAPIPackageMeasurements
-     */
-    height?: CommerceRuntimeMeasurement;
-    /**
-     * 
-     * @type {CommerceRuntimeMeasurement}
-     * @memberof ReservationWebAPIPackageMeasurements
-     */
-    width?: CommerceRuntimeMeasurement;
-    /**
-     * 
-     * @type {CommerceRuntimeMeasurement}
-     * @memberof ReservationWebAPIPackageMeasurements
-     */
-    length?: CommerceRuntimeMeasurement;
-    /**
-     * 
-     * @type {CommerceRuntimeMeasurement}
-     * @memberof ReservationWebAPIPackageMeasurements
-     */
-    weight?: CommerceRuntimeMeasurement;
+    unitMeasurements?: ItemMeasurements;
 }
 /**
  * 
@@ -894,13 +1050,13 @@ export interface ShipmentRequest {
      * @type {string}
      * @memberof ShipmentRequest
      */
-    isoCurrencyCode?: string | null;
+    carrierId?: string | null;
     /**
-     * 
-     * @type {ShippingRuntimeShipment}
+     * Consolidation references for Order Number, Shipment Number and Order Id
+     * @type {Array<ConsolidationReference>}
      * @memberof ShipmentRequest
      */
-    shipment?: ShippingRuntimeShipment;
+    consolidationReferences?: Array<ConsolidationReference> | null;
     /**
      * Carrier specific options
      * 
@@ -911,30 +1067,22 @@ export interface ShipmentRequest {
     customAttributes?: Array<CustomAttribute> | null;
     /**
      * 
-     * @type {string}
+     * @type {Array<CustomerReferences>}
      * @memberof ShipmentRequest
      */
-    carrierId?: string | null;
+    customerReferences?: Array<CustomerReferences> | null;
     /**
-     * Selected Shipping Service Type.
+     * Fulfillment method for the shipment. STH / Delivery. Empty will be assumed as STH.
      * @type {string}
      * @memberof ShipmentRequest
      */
-    shippingServiceType?: string | null;
+    fulfillmentMethod?: string | null;
     /**
-     * Selected Shipment Request Type.
+     * 
      * @type {string}
      * @memberof ShipmentRequest
      */
-    shipmentRequestType?: string | null;
-    /**
-     * Specify an optional signature option for this shipment.
-     * All packages will inherit this option value automatically.
-     * Set this option on the package level to override this value.
-     * @type {string}
-     * @memberof ShipmentRequest
-     */
-    signatureOption?: string | null;
+    isoCurrencyCode?: string | null;
     /**
      * Returns the Label in the requested format.
      * Specify either "LASER" or "THERMAL" format.
@@ -943,12 +1091,6 @@ export interface ShipmentRequest {
      * @memberof ShipmentRequest
      */
     labelFormat?: string | null;
-    /**
-     * 
-     * @type {Array<CustomerReferences>}
-     * @memberof ShipmentRequest
-     */
-    customerReferences?: Array<CustomerReferences> | null;
     /**
      * The related Order ID for this shipment request.
      * Informational only.
@@ -971,17 +1113,31 @@ export interface ShipmentRequest {
      */
     relatedShipmentNumber?: number | null;
     /**
-     * Consolidation references for Order Number, Shipment Number and Order Id
-     * @type {Array<ConsolidationReference>}
+     * 
+     * @type {ShippingRuntimeShipment}
      * @memberof ShipmentRequest
      */
-    consolidationReferences?: Array<ConsolidationReference> | null;
+    shipment?: ShippingRuntimeShipment;
     /**
-     * Fulfillment method for the shipment. STH / Delivery. Empty will be assumed as STH.
+     * Selected Shipment Request Type.
      * @type {string}
      * @memberof ShipmentRequest
      */
-    fulfillmentMethod?: string | null;
+    shipmentRequestType?: string | null;
+    /**
+     * Selected Shipping Service Type.
+     * @type {string}
+     * @memberof ShipmentRequest
+     */
+    shippingServiceType?: string | null;
+    /**
+     * Specify an optional signature option for this shipment.
+     * All packages will inherit this option value automatically.
+     * Set this option on the package level to override this value.
+     * @type {string}
+     * @memberof ShipmentRequest
+     */
+    signatureOption?: string | null;
 }
 /**
  * 
@@ -994,13 +1150,13 @@ export interface ShippingLabel {
      * @type {string}
      * @memberof ShippingLabel
      */
-    imageFormat?: string | null;
+    imageData?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ShippingLabel
      */
-    imageData?: string | null;
+    imageFormat?: string | null;
     /**
      * 
      * @type {string}
@@ -1034,11 +1190,11 @@ export interface ShippingRateLocalizedContent {
  */
 export interface ShippingRateValidationMessage {
     /**
-     * Severity
+     * Help Link
      * @type {string}
      * @memberof ShippingRateValidationMessage
      */
-    severity?: string | null;
+    helpLink?: string | null;
     /**
      * Message
      * @type {string}
@@ -1046,11 +1202,11 @@ export interface ShippingRateValidationMessage {
      */
     message?: string | null;
     /**
-     * Help Link
+     * Severity
      * @type {string}
      * @memberof ShippingRateValidationMessage
      */
-    helpLink?: string | null;
+    severity?: string | null;
 }
 /**
  * A Carrier definition supported by Shipping Runtime.
@@ -1058,6 +1214,12 @@ export interface ShippingRateValidationMessage {
  * @interface ShippingRuntimeCarrier
  */
 export interface ShippingRuntimeCarrier {
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof ShippingRuntimeCarrier
+     */
+    auditInfo?: AdminUserAuditInfo;
     /**
      * 
      * @type {string}
@@ -1069,19 +1231,7 @@ export interface ShippingRuntimeCarrier {
      * @type {boolean}
      * @memberof ShippingRuntimeCarrier
      */
-    isBuiltIn?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ShippingRuntimeCarrier
-     */
     certified?: boolean | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShippingRuntimeCarrier
-     */
-    name?: string | null;
     /**
      * 
      * @type {string}
@@ -1090,22 +1240,28 @@ export interface ShippingRuntimeCarrier {
     description?: string | null;
     /**
      * 
-     * @type {string}
-     * @memberof ShippingRuntimeCarrier
-     */
-    logoUrl?: string | null;
-    /**
-     * 
      * @type {Array<string>}
      * @memberof ShippingRuntimeCarrier
      */
     features?: Array<string> | null;
     /**
      * 
-     * @type {AdminUserAuditInfo}
+     * @type {boolean}
      * @memberof ShippingRuntimeCarrier
      */
-    auditInfo?: AdminUserAuditInfo;
+    isBuiltIn?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShippingRuntimeCarrier
+     */
+    logoUrl?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShippingRuntimeCarrier
+     */
+    name?: string | null;
 }
 /**
  * Categories to which the product belongs.
@@ -1137,13 +1293,13 @@ export interface ShippingRuntimeDeliveryWindow {
      * @type {TimeWindow}
      * @memberof ShippingRuntimeDeliveryWindow
      */
-    pickupTime?: TimeWindow;
+    dropoffTime?: TimeWindow;
     /**
      * 
      * @type {TimeWindow}
      * @memberof ShippingRuntimeDeliveryWindow
      */
-    dropoffTime?: TimeWindow;
+    pickupTime?: TimeWindow;
 }
 /**
  * 
@@ -1153,16 +1309,10 @@ export interface ShippingRuntimeDeliveryWindow {
 export interface ShippingRuntimeEstimatedDeliveryDate {
     /**
      * 
-     * @type {string}
+     * @type {object}
      * @memberof ShippingRuntimeEstimatedDeliveryDate
      */
-    fulfillmentMethod?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShippingRuntimeEstimatedDeliveryDate
-     */
-    serviceType?: string | null;
+    data?: object | null;
     /**
      * 
      * @type {string}
@@ -1171,10 +1321,10 @@ export interface ShippingRuntimeEstimatedDeliveryDate {
     deliveryDate?: string | null;
     /**
      * 
-     * @type {Array<ShippingRuntimeDeliveryWindow>}
+     * @type {string}
      * @memberof ShippingRuntimeEstimatedDeliveryDate
      */
-    windows?: Array<ShippingRuntimeDeliveryWindow> | null;
+    fulfillmentMethod?: string | null;
     /**
      * 
      * @type {Array<ShippingRateValidationMessage>}
@@ -1183,10 +1333,16 @@ export interface ShippingRuntimeEstimatedDeliveryDate {
     messages?: Array<ShippingRateValidationMessage> | null;
     /**
      * 
-     * @type {object}
+     * @type {string}
      * @memberof ShippingRuntimeEstimatedDeliveryDate
      */
-    data?: object | null;
+    serviceType?: string | null;
+    /**
+     * 
+     * @type {Array<ShippingRuntimeDeliveryWindow>}
+     * @memberof ShippingRuntimeEstimatedDeliveryDate
+     */
+    windows?: Array<ShippingRuntimeDeliveryWindow> | null;
 }
 /**
  * 
@@ -1196,22 +1352,22 @@ export interface ShippingRuntimeEstimatedDeliveryDate {
 export interface ShippingRuntimePackage {
     /**
      * 
-     * @type {string}
-     * @memberof ShippingRuntimePackage
-     */
-    id?: string | null;
-    /**
-     * 
      * @type {number}
      * @memberof ShippingRuntimePackage
      */
     contentsValue?: number | null;
     /**
      * 
-     * @type {ReservationWebAPIPackageMeasurements}
+     * @type {Array<CustomAttribute>}
      * @memberof ShippingRuntimePackage
      */
-    measurements?: ReservationWebAPIPackageMeasurements;
+    customAttributes?: Array<CustomAttribute> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShippingRuntimePackage
+     */
+    id?: string | null;
     /**
      * 
      * @type {boolean}
@@ -1220,17 +1376,10 @@ export interface ShippingRuntimePackage {
     isGift?: boolean | null;
     /**
      * 
-     * @type {Array<CustomAttribute>}
+     * @type {ShippingRuntimePackageMeasurements}
      * @memberof ShippingRuntimePackage
      */
-    customAttributes?: Array<CustomAttribute> | null;
-    /**
-     * Specify an optional signature option for this package.
-     * If not specified, will inherit the option value from the shipment.
-     * @type {string}
-     * @memberof ShippingRuntimePackage
-     */
-    signatureOption?: string | null;
+    measurements?: ShippingRuntimePackageMeasurements;
     /**
      * Selected PackagingType.  Shipping provider dependent.
      * @type {string}
@@ -1243,6 +1392,44 @@ export interface ShippingRuntimePackage {
      * @memberof ShippingRuntimePackage
      */
     productSummaries?: Array<ProductSummary> | null;
+    /**
+     * Specify an optional signature option for this package.
+     * If not specified, will inherit the option value from the shipment.
+     * @type {string}
+     * @memberof ShippingRuntimePackage
+     */
+    signatureOption?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface ShippingRuntimePackageMeasurements
+ */
+export interface ShippingRuntimePackageMeasurements {
+    /**
+     * 
+     * @type {CommerceRuntimeMeasurement}
+     * @memberof ShippingRuntimePackageMeasurements
+     */
+    height?: CommerceRuntimeMeasurement;
+    /**
+     * 
+     * @type {CommerceRuntimeMeasurement}
+     * @memberof ShippingRuntimePackageMeasurements
+     */
+    length?: CommerceRuntimeMeasurement;
+    /**
+     * 
+     * @type {CommerceRuntimeMeasurement}
+     * @memberof ShippingRuntimePackageMeasurements
+     */
+    weight?: CommerceRuntimeMeasurement;
+    /**
+     * 
+     * @type {CommerceRuntimeMeasurement}
+     * @memberof ShippingRuntimePackageMeasurements
+     */
+    width?: CommerceRuntimeMeasurement;
 }
 /**
  * 
@@ -1252,16 +1439,22 @@ export interface ShippingRuntimePackage {
 export interface ShippingRuntimePackageResponse {
     /**
      * 
-     * @type {string}
+     * @type {Array<CustomAttribute>}
      * @memberof ShippingRuntimePackageResponse
      */
-    id?: string | null;
+    customAttributes?: Array<CustomAttribute> | null;
     /**
      * 
      * @type {string}
      * @memberof ShippingRuntimePackageResponse
      */
-    trackingNumber?: string | null;
+    id?: string | null;
+    /**
+     * Easypost ShipmentId required for manifests
+     * @type {string}
+     * @memberof ShippingRuntimePackageResponse
+     */
+    integratorId?: string | null;
     /**
      * 
      * @type {ShippingLabel}
@@ -1270,16 +1463,10 @@ export interface ShippingRuntimePackageResponse {
     label?: ShippingLabel;
     /**
      * 
-     * @type {Array<CustomAttribute>}
-     * @memberof ShippingRuntimePackageResponse
-     */
-    customAttributes?: Array<CustomAttribute> | null;
-    /**
-     * Easypost ShipmentId required for manifests
      * @type {string}
      * @memberof ShippingRuntimePackageResponse
      */
-    integratorId?: string | null;
+    trackingNumber?: string | null;
 }
 /**
  * 
@@ -1339,6 +1526,30 @@ export interface ShippingRuntimeProductProperty {
 export interface ShippingRuntimeShipment {
     /**
      * 
+     * @type {Array<CustomAttribute>}
+     * @memberof ShippingRuntimeShipment
+     */
+    customAttributes?: Array<CustomAttribute> | null;
+    /**
+     * 
+     * @type {CommerceRuntimeContact}
+     * @memberof ShippingRuntimeShipment
+     */
+    destination?: CommerceRuntimeContact;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShippingRuntimeShipment
+     */
+    estimatedShipmentDate?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShippingRuntimeShipment
+     */
+    fulfillmentLocationCode?: string | null;
+    /**
+     * 
      * @type {number}
      * @memberof ShippingRuntimeShipment
      */
@@ -1351,18 +1562,6 @@ export interface ShippingRuntimeShipment {
     origin?: CommerceRuntimeContact;
     /**
      * 
-     * @type {CommerceRuntimeContact}
-     * @memberof ShippingRuntimeShipment
-     */
-    destination?: CommerceRuntimeContact;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShippingRuntimeShipment
-     */
-    fulfillmentLocationCode?: string | null;
-    /**
-     * 
      * @type {Array<ShippingRuntimePackage>}
      * @memberof ShippingRuntimeShipment
      */
@@ -1373,18 +1572,6 @@ export interface ShippingRuntimeShipment {
      * @memberof ShippingRuntimeShipment
      */
     shippingMethodCodes?: Array<string> | null;
-    /**
-     * 
-     * @type {Array<CustomAttribute>}
-     * @memberof ShippingRuntimeShipment
-     */
-    customAttributes?: Array<CustomAttribute> | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShippingRuntimeShipment
-     */
-    estimatedShipmentDate?: string | null;
 }
 /**
  * 
@@ -1392,6 +1579,30 @@ export interface ShippingRuntimeShipment {
  * @interface ShippingRuntimeShipmentResponse
  */
 export interface ShippingRuntimeShipmentResponse {
+    /**
+     * 
+     * @type {Array<CustomAttribute>}
+     * @memberof ShippingRuntimeShipmentResponse
+     */
+    customAttributes?: Array<CustomAttribute> | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ShippingRuntimeShipmentResponse
+     */
+    isSuccessful?: boolean;
+    /**
+     * 
+     * @type {Array<Notification>}
+     * @memberof ShippingRuntimeShipmentResponse
+     */
+    messages?: Array<Notification> | null;
+    /**
+     * 
+     * @type {Array<ShippingRuntimePackageResponse>}
+     * @memberof ShippingRuntimeShipmentResponse
+     */
+    packageResponses?: Array<ShippingRuntimePackageResponse> | null;
     /**
      * 
      * @type {Money}
@@ -1404,30 +1615,6 @@ export interface ShippingRuntimeShipmentResponse {
      * @memberof ShippingRuntimeShipmentResponse
      */
     trackingNumber?: string | null;
-    /**
-     * 
-     * @type {Array<ShippingRuntimePackageResponse>}
-     * @memberof ShippingRuntimeShipmentResponse
-     */
-    packageResponses?: Array<ShippingRuntimePackageResponse> | null;
-    /**
-     * 
-     * @type {Array<CustomAttribute>}
-     * @memberof ShippingRuntimeShipmentResponse
-     */
-    customAttributes?: Array<CustomAttribute> | null;
-    /**
-     * 
-     * @type {Array<Notification>}
-     * @memberof ShippingRuntimeShipmentResponse
-     */
-    messages?: Array<Notification> | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ShippingRuntimeShipmentResponse
-     */
-    isSuccessful?: boolean;
 }
 /**
  * The shipping rate for a particular line item
@@ -1435,6 +1622,12 @@ export interface ShippingRuntimeShipmentResponse {
  * @interface ShippingRuntimeShippingItemRate
  */
 export interface ShippingRuntimeShippingItemRate {
+    /**
+     * 
+     * @type {number}
+     * @memberof ShippingRuntimeShippingItemRate
+     */
+    amount?: number | null;
     /**
      * 
      * @type {string}
@@ -1447,12 +1640,6 @@ export interface ShippingRuntimeShippingItemRate {
      * @memberof ShippingRuntimeShippingItemRate
      */
     quantity?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShippingRuntimeShippingItemRate
-     */
-    amount?: number | null;
 }
 /**
  * 
@@ -1460,6 +1647,12 @@ export interface ShippingRuntimeShippingItemRate {
  * @interface ShippingRuntimeShippingRate
  */
 export interface ShippingRuntimeShippingRate {
+    /**
+     * 
+     * @type {number}
+     * @memberof ShippingRuntimeShippingRate
+     */
+    amount?: number | null;
     /**
      * 
      * @type {string}
@@ -1474,10 +1667,16 @@ export interface ShippingRuntimeShippingRate {
     content?: ShippingRateLocalizedContent;
     /**
      * 
-     * @type {number}
+     * @type {Array<CustomAttribute>}
      * @memberof ShippingRuntimeShippingRate
      */
-    amount?: number | null;
+    customAttributes?: Array<CustomAttribute> | null;
+    /**
+     * 
+     * @type {object}
+     * @memberof ShippingRuntimeShippingRate
+     */
+    data?: object | null;
     /**
      * 
      * @type {number}
@@ -1486,28 +1685,16 @@ export interface ShippingRuntimeShippingRate {
     daysInTransit?: number | null;
     /**
      * 
-     * @type {Array<ShippingRuntimeShippingItemRate>}
-     * @memberof ShippingRuntimeShippingRate
-     */
-    shippingItemRates?: Array<ShippingRuntimeShippingItemRate> | null;
-    /**
-     * 
-     * @type {Array<CustomAttribute>}
-     * @memberof ShippingRuntimeShippingRate
-     */
-    customAttributes?: Array<CustomAttribute> | null;
-    /**
-     * 
      * @type {Array<ShippingRateValidationMessage>}
      * @memberof ShippingRuntimeShippingRate
      */
     messages?: Array<ShippingRateValidationMessage> | null;
     /**
      * 
-     * @type {object}
+     * @type {Array<ShippingRuntimeShippingItemRate>}
      * @memberof ShippingRuntimeShippingRate
      */
-    data?: object | null;
+    shippingItemRates?: Array<ShippingRuntimeShippingItemRate> | null;
     /**
      * 
      * @type {Array<ShippingRuntimeDeliveryWindow>}
@@ -1522,17 +1709,17 @@ export interface ShippingRuntimeShippingRate {
  */
 export interface TimeWindow {
     /**
-     * Gets or sets the start time of the time window.
-     * @type {string}
-     * @memberof TimeWindow
-     */
-    startsAt?: string;
-    /**
      * Gets or sets the end time of the time window.
      * @type {string}
      * @memberof TimeWindow
      */
     endsAt?: string | null;
+    /**
+     * Gets or sets the start time of the time window.
+     * @type {string}
+     * @memberof TimeWindow
+     */
+    startsAt?: string;
 }
 /**
  * 
@@ -1542,10 +1729,10 @@ export interface TimeWindow {
 export interface TransitTimesItem {
     /**
      * 
-     * @type {string}
+     * @type {object}
      * @memberof TransitTimesItem
      */
-    productCode?: string | null;
+    data?: object | null;
     /**
      * 
      * @type {string}
@@ -1554,22 +1741,35 @@ export interface TransitTimesItem {
     itemId?: string | null;
     /**
      * 
-     * @type {ItemMeasurements}
-     * @memberof TransitTimesItem
-     */
-    unitMeasurements?: ItemMeasurements;
-    /**
-     * 
      * @type {number}
      * @memberof TransitTimesItem
      */
     quantity?: number | null;
     /**
      * 
-     * @type {object}
+     * @type {ItemMeasurements}
      * @memberof TransitTimesItem
      */
-    data?: object | null;
+    unitMeasurements?: ItemMeasurements;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransitTimesItem
+     */
+    productCode?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface TransitTimesItemAllOf
+ */
+export interface TransitTimesItemAllOf {
+    /**
+     * 
+     * @type {string}
+     * @memberof TransitTimesItemAllOf
+     */
+    productCode?: string | null;
 }
 /**
  * 
@@ -1578,17 +1778,11 @@ export interface TransitTimesItem {
  */
 export interface TransitTimesRequest {
     /**
-     * 
-     * @type {string}
+     * Custom data for the request
+     * @type {object}
      * @memberof TransitTimesRequest
      */
-    originLocationCode?: string | null;
-    /**
-     * 
-     * @type {CommerceRuntimeAddress}
-     * @memberof TransitTimesRequest
-     */
-    originAddress?: CommerceRuntimeAddress;
+    data?: object | null;
     /**
      * 
      * @type {CommerceRuntimeAddress}
@@ -1603,10 +1797,22 @@ export interface TransitTimesRequest {
     fulfillmentMethod?: string | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<TransitTimesItem>}
      * @memberof TransitTimesRequest
      */
-    shippingServiceTypes?: Array<string> | null;
+    items?: Array<TransitTimesItem> | null;
+    /**
+     * 
+     * @type {CommerceRuntimeAddress}
+     * @memberof TransitTimesRequest
+     */
+    originAddress?: CommerceRuntimeAddress;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransitTimesRequest
+     */
+    originLocationCode?: string | null;
     /**
      * 
      * @type {string}
@@ -1615,16 +1821,10 @@ export interface TransitTimesRequest {
     shipDate?: string;
     /**
      * 
-     * @type {Array<TransitTimesItem>}
+     * @type {Array<string>}
      * @memberof TransitTimesRequest
      */
-    items?: Array<TransitTimesItem> | null;
-    /**
-     * Custom data for the request
-     * @type {object}
-     * @memberof TransitTimesRequest
-     */
-    data?: object | null;
+    shippingServiceTypes?: Array<string> | null;
 }
 /**
  * 
@@ -1634,10 +1834,10 @@ export interface TransitTimesRequest {
 export interface TransitTimesResponse {
     /**
      * 
-     * @type {string}
+     * @type {object}
      * @memberof TransitTimesResponse
      */
-    originLocationCode?: string | null;
+    data?: object | null;
     /**
      * 
      * @type {CommerceRuntimeAddress}
@@ -1646,26 +1846,26 @@ export interface TransitTimesResponse {
     destinationAddress?: CommerceRuntimeAddress;
     /**
      * 
-     * @type {string}
-     * @memberof TransitTimesResponse
-     */
-    shipDate?: string;
-    /**
-     * 
      * @type {Array<TransitTimesItem>}
      * @memberof TransitTimesResponse
      */
     items?: Array<TransitTimesItem> | null;
     /**
      * 
+     * @type {string}
+     * @memberof TransitTimesResponse
+     */
+    originLocationCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransitTimesResponse
+     */
+    shipDate?: string;
+    /**
+     * 
      * @type {Array<CarrierTransitTimes>}
      * @memberof TransitTimesResponse
      */
     transitTimes?: Array<CarrierTransitTimes> | null;
-    /**
-     * 
-     * @type {object}
-     * @memberof TransitTimesResponse
-     */
-    data?: object | null;
 }

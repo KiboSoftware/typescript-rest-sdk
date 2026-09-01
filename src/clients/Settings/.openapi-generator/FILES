@@ -1,3 +1,5 @@
+.openapi-generator-ignore
+apis/B2BSettingsApi.ts
 apis/CartSettingsApi.ts
 apis/CheckoutSettingsApi.ts
 apis/FulfillmentSettingsApi.ts

@@ -7,18 +7,6 @@
  */
 export interface AbstractFulfillmentItem {
     /**
-     * Code of the Product to be fulfilled.
-     * @type {string}
-     * @memberof AbstractFulfillmentItem
-     */
-    productCode?: string | null;
-    /**
-     * Quantity of the order item
-     * @type {number}
-     * @memberof AbstractFulfillmentItem
-     */
-    quantity?: number;
-    /**
      * The type of fulfillment item
      * @type {string}
      * @memberof AbstractFulfillmentItem
@@ -36,6 +24,18 @@ export interface AbstractFulfillmentItem {
      * @memberof AbstractFulfillmentItem
      */
     optionAttributeFQN?: string | null;
+    /**
+     * Code of the Product to be fulfilled.
+     * @type {string}
+     * @memberof AbstractFulfillmentItem
+     */
+    productCode?: string | null;
+    /**
+     * Quantity of the order item
+     * @type {number}
+     * @memberof AbstractFulfillmentItem
+     */
+    quantity?: number;
 }
 /**
  * 
@@ -65,40 +65,15 @@ export interface Adjustment {
 /**
  * 
  * @export
- * @interface AdminUserAuditInfo
- */
-export interface AdminUserAuditInfo {
-    /**
-     * 
-     * @type {string}
-     * @memberof AdminUserAuditInfo
-     */
-    updateDate?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof AdminUserAuditInfo
-     */
-    createDate?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof AdminUserAuditInfo
-     */
-    updateBy?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof AdminUserAuditInfo
-     */
-    createBy?: string | null;
-}
-/**
- * 
- * @export
  * @interface AlternateContact
  */
 export interface AlternateContact {
+    /**
+     * Email Address of alternate contact during order process
+     * @type {string}
+     * @memberof AlternateContact
+     */
+    emailAddress?: string | null;
     /**
      * First Name of alternate contact during order process
      * @type {string}
@@ -111,12 +86,6 @@ export interface AlternateContact {
      * @memberof AlternateContact
      */
     lastNameOrSurname?: string | null;
-    /**
-     * Email Address of alternate contact during order process
-     * @type {string}
-     * @memberof AlternateContact
-     */
-    emailAddress?: string | null;
     /**
      * Phone Number of alternate contact during order process
      * @type {string}
@@ -131,25 +100,29 @@ export interface AlternateContact {
  */
 export interface AppliedProductDiscount {
     /**
-     * Quantity of products priced. This is always one unless calculating pricing on the order or cart.
-     * @type {number}
+     * Code of the coupon associated with the discount if a coupon code is required to get the discount.
+     * @type {string}
      * @memberof AppliedProductDiscount
-     * @deprecated
      */
-    productQuantity?: number | null;
+    couponCode?: string | null;
     /**
-     * Impact for a quantity of one product; that is, the value of the discount for one product.
-     * @type {number}
+     * Stores any custom data sent from external discounts.
+     * @type {object}
      * @memberof AppliedProductDiscount
-     * @deprecated
      */
-    impactPerUnit?: number | null;
+    data?: object | null;
     /**
-     * Determines if the discount applies to the sale price of the order
+     * 
+     * @type {CommerceRuntimeDiscount}
+     * @memberof AppliedProductDiscount
+     */
+    discount?: CommerceRuntimeDiscount;
+    /**
+     * Determines whether or not this discount is set up to be ignored by the pricing runtime.
      * @type {boolean}
      * @memberof AppliedProductDiscount
      */
-    appliesToSalePrice?: boolean | null;
+    excluded?: boolean | null;
     /**
      * Group identifier for the discount.
      * @type {string}
@@ -163,29 +136,52 @@ export interface AppliedProductDiscount {
      */
     impact?: number | null;
     /**
-     * 
-     * @type {CommerceRuntimeDiscount}
-     * @memberof AppliedProductDiscount
-     */
-    discount?: CommerceRuntimeDiscount;
-    /**
-     * Code of the coupon associated with the discount if a coupon code is required to get the discount.
-     * @type {string}
-     * @memberof AppliedProductDiscount
-     */
-    couponCode?: string | null;
-    /**
-     * Determines whether or not this discount is set up to be ignored by the pricing runtime.
+     * Determines if the discount applies to the sale price of the order
      * @type {boolean}
      * @memberof AppliedProductDiscount
      */
-    excluded?: boolean | null;
+    appliesToSalePrice?: boolean | null;
     /**
-     * Stores any custom data sent from external discounts.
-     * @type {object}
+     * Impact for a quantity of one product; that is, the value of the discount for one product.
+     * @type {number}
      * @memberof AppliedProductDiscount
+     * @deprecated
      */
-    data?: object | null;
+    impactPerUnit?: number | null;
+    /**
+     * Quantity of products priced. This is always one unless calculating pricing on the order or cart.
+     * @type {number}
+     * @memberof AppliedProductDiscount
+     * @deprecated
+     */
+    productQuantity?: number | null;
+}
+/**
+ * 
+ * @export
+ * @interface AppliedProductDiscountAllOf
+ */
+export interface AppliedProductDiscountAllOf {
+    /**
+     * Determines if the discount applies to the sale price of the order
+     * @type {boolean}
+     * @memberof AppliedProductDiscountAllOf
+     */
+    appliesToSalePrice?: boolean | null;
+    /**
+     * Impact for a quantity of one product; that is, the value of the discount for one product.
+     * @type {number}
+     * @memberof AppliedProductDiscountAllOf
+     * @deprecated
+     */
+    impactPerUnit?: number | null;
+    /**
+     * Quantity of products priced. This is always one unless calculating pricing on the order or cart.
+     * @type {number}
+     * @memberof AppliedProductDiscountAllOf
+     * @deprecated
+     */
+    productQuantity?: number | null;
 }
 /**
  * Customer's payment details such as payment type (credit card, check by mail, or PayPal)
@@ -194,6 +190,66 @@ export interface AppliedProductDiscount {
  * @interface BillingInfo
  */
 export interface BillingInfo {
+    /**
+     * 
+     * @type {CoreApiContractsAuditInfo}
+     * @memberof BillingInfo
+     */
+    auditInfo?: CoreApiContractsAuditInfo;
+    /**
+     * 
+     * @type {CommerceRuntimeContact}
+     * @memberof BillingInfo
+     */
+    billingContact?: CommerceRuntimeContact;
+    /**
+     * 
+     * @type {PaymentCard}
+     * @memberof BillingInfo
+     */
+    card?: PaymentCard;
+    /**
+     * 
+     * @type {CheckPayment}
+     * @memberof BillingInfo
+     */
+    check?: CheckPayment;
+    /**
+     * Name of custom stored credit type
+     * @type {string}
+     * @memberof BillingInfo
+     */
+    customCreditType?: string | null;
+    /**
+     * Custom data from payment providers
+     * @type {object}
+     * @memberof BillingInfo
+     */
+    data?: object | null;
+    /**
+     * 
+     * @type {ExternalPaymentToken}
+     * @memberof BillingInfo
+     */
+    externalToken?: ExternalPaymentToken;
+    /**
+     * Transaction Id from third party payment source like Visa Checkout, Amazon
+     * @type {string}
+     * @memberof BillingInfo
+     */
+    externalTransactionId?: string | null;
+    /**
+     * Indicates whether the payment is used in recurring transactions. ex- subscription payments
+     * @type {boolean}
+     * @memberof BillingInfo
+     */
+    isRecurring?: boolean;
+    /**
+     * Indicates that billing and shipping address are the same
+     * @type {boolean}
+     * @memberof BillingInfo
+     */
+    isSameBillingShippingAddress?: boolean;
     /**
      * Type of payment, such as credit card, check by mail, or PayPal.
      * see Mozu.CommerceRuntime.Contracts.Payments.PaymentTypeConst for valid values
@@ -209,46 +265,18 @@ export interface BillingInfo {
     paymentWorkflow?: string | null;
     /**
      * 
-     * @type {CommerceRuntimeContact}
-     * @memberof BillingInfo
-     */
-    billingContact?: CommerceRuntimeContact;
-    /**
-     * Indicates that billing and shipping address are the same
-     * @type {boolean}
-     * @memberof BillingInfo
-     */
-    isSameBillingShippingAddress?: boolean;
-    /**
-     * 
-     * @type {PaymentCard}
-     * @memberof BillingInfo
-     */
-    card?: PaymentCard;
-    /**
-     * 
-     * @type {PaymentToken}
-     * @memberof BillingInfo
-     */
-    token?: PaymentToken;
-    /**
-     * 
      * @type {PurchaseOrderPayment}
      * @memberof BillingInfo
      */
     purchaseOrder?: PurchaseOrderPayment;
     /**
-     * 
-     * @type {CheckPayment}
+     * Recurring Payment Id returned by Payment Gateway
+     * networkTransactionId for vantiv
+     * previousTransactionId for cybersource etc
+     * @type {string}
      * @memberof BillingInfo
      */
-    check?: CheckPayment;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof BillingInfo
-     */
-    auditInfo?: AdminUserAuditInfo;
+    recurringTransactionId?: string | null;
     /**
      * The store credit to use for this purchase
      * @type {string}
@@ -262,37 +290,11 @@ export interface BillingInfo {
      */
     storeCreditType?: string | null;
     /**
-     * Name of custom stored credit type
-     * @type {string}
+     * 
+     * @type {PaymentToken}
      * @memberof BillingInfo
      */
-    customCreditType?: string | null;
-    /**
-     * Transaction Id from third party payment source like Visa Checkout, Amazon
-     * @type {string}
-     * @memberof BillingInfo
-     */
-    externalTransactionId?: string | null;
-    /**
-     * Indicates whether the payment is used in recurring transactions. ex- subscription payments
-     * @type {boolean}
-     * @memberof BillingInfo
-     */
-    isRecurring?: boolean;
-    /**
-     * Recurring Payment Id returned by Payment Gateway
-     * networkTransactionId for vantiv
-     * previousTransactionId for cybersource etc
-     * @type {string}
-     * @memberof BillingInfo
-     */
-    recurringTransactionId?: string | null;
-    /**
-     * Custom data from payment providers
-     * @type {object}
-     * @memberof BillingInfo
-     */
-    data?: object | null;
+    token?: PaymentToken;
 }
 /**
  * 
@@ -344,6 +346,12 @@ export interface BundleInfo {
  */
 export interface CapturableShipmentSummary {
     /**
+     * The amount applied by the payment action
+     * @type {number}
+     * @memberof CapturableShipmentSummary
+     */
+    amountApplied?: number;
+    /**
      * The identifying number of the shipment affected by the payment action
      * @type {number}
      * @memberof CapturableShipmentSummary
@@ -355,12 +363,785 @@ export interface CapturableShipmentSummary {
      * @memberof CapturableShipmentSummary
      */
     shipmentTotal?: number;
+}
+/**
+ * Details of the current cart, including shopper's user ID, items listed in the cart, and any system messages. 
+ * For each item, contains the list of available discounts and the actual discount applied to the cart item.
+ * @export
+ * @interface Cart
+ */
+export interface Cart {
     /**
-     * The amount applied by the payment action
-     * @type {number}
-     * @memberof CapturableShipmentSummary
+     * 
+     * @type {CoreApiContractsAuditInfo}
+     * @memberof Cart
      */
-    amountApplied?: number;
+    auditInfo?: CoreApiContractsAuditInfo;
+    /**
+     * List of messages displayed by the system based on the last cart action, for example, when a product price has changed or is out-of-stock. System-supplied and read-only.
+     * @type {Array<CommerceRuntimeChangeMessage>}
+     * @memberof Cart
+     */
+    changeMessages?: Array<CommerceRuntimeChangeMessage> | null;
+    /**
+     * Unique identifier of the channel for this item.
+     * @type {string}
+     * @memberof Cart
+     */
+    channelCode?: string | null;
+    /**
+     * ISO Currency Code. Currently, only USD is supported.
+     * @type {string}
+     * @memberof Cart
+     */
+    currencyCode?: string | null;
+    /**
+     * Determines the interaction type that a customer will use to create this object.
+     * Valid values are: Website, Store, Call, Unknown
+     * @type {string}
+     * @memberof Cart
+     */
+    customerInteractionType?: string | null;
+    /**
+     * Custom data for a given vendor set within the commerce process.
+     * @type {object}
+     * @memberof Cart
+     */
+    data?: object | null;
+    /**
+     * List of Mozu.CommerceRuntime.Contracts.Commerce.ThresholdMessage objects that are valid for the current value of the cart/order.
+     * @type {Array<CommerceRuntimeThresholdMessage>}
+     * @memberof Cart
+     */
+    discountThresholdMessages?: Array<CommerceRuntimeThresholdMessage> | null;
+    /**
+     * Amount of the discounts applied to all items in the cart. This is a negative number.  This also includes the order level discounts.
+     * @type {number}
+     * @memberof Cart
+     */
+    discountTotal?: number | null;
+    /**
+     * Combined price for all cart items, including all selected options as well as any discounts.
+     * @type {number}
+     * @memberof Cart
+     */
+    discountedSubtotal?: number | null;
+    /**
+     * Subtotal minus the discounted total
+     * @type {number}
+     * @memberof Cart
+     */
+    discountedTotal?: number | null;
+    /**
+     * When the order will no longer be active. That is, the order is considered abandoned. 
+     * Orders of anonymous shoppers expire after 14 days of inactivity. 
+     * An order never expires for shoppers who are logged into their account. 
+     * Date in UTC Date/Time.
+     * @type {string}
+     * @memberof Cart
+     */
+    expirationDate?: string | null;
+    /**
+     * Extra properties (key-value pairs) that extend the primary object. Think of this as a property bag of string keys and string values.
+     * @type {Array<ExtendedProperty>}
+     * @memberof Cart
+     */
+    extendedProperties?: Array<ExtendedProperty> | null;
+    /**
+     * Not implemented. Total cost of fees for all items in the cart.
+     * @type {number}
+     * @memberof Cart
+     */
+    feeTotal?: number | null;
+    /**
+     * 
+     * @type {FulfillmentInfo}
+     * @memberof Cart
+     */
+    fulfillmentInfo?: FulfillmentInfo;
+    /**
+     * Total tax on handling
+     * @type {number}
+     * @memberof Cart
+     */
+    handlingTaxTotal?: number | null;
+    /**
+     * Unique identifier of the CommerceAggregate object (e.g. order, cart, wishlist, etc.).
+     * @type {string}
+     * @memberof Cart
+     */
+    id?: string | null;
+    /**
+     * Not implemented. Tax does not appear on cart.
+     * @type {number}
+     * @memberof Cart
+     */
+    itemTaxTotal?: number | null;
+    /**
+     * Occasionally the commerce runtime may validate that item/product names, descriptions, and prices have not changed. 
+     * If changed, it updates LastValidationDate.
+     * @type {string}
+     * @memberof Cart
+     */
+    lastValidationDate?: string | null;
+    /**
+     * Line Item Subtotals with Order Adjustments
+     * @type {number}
+     * @memberof Cart
+     */
+    lineItemSubtotalWithOrderAdjustments?: number | null;
+    /**
+     * The discount that has been applied to the cart itself. If multiple discounts exist, this is the discount that the system applies because it offers the best savings for the shopper. This is a negative number.
+     * @type {Array<CommerceRuntimeAppliedDiscount>}
+     * @memberof Cart
+     */
+    orderDiscounts?: Array<CommerceRuntimeAppliedDiscount> | null;
+    /**
+     * 
+     * @type {Array<SuggestedDiscount>}
+     * @memberof Cart
+     */
+    rejectedDiscounts?: Array<SuggestedDiscount> | null;
+    /**
+     * Shipping Amount before discount and adjustments
+     * @type {number}
+     * @memberof Cart
+     */
+    shippingAmountBeforeDiscountsAndAdjustments?: number | null;
+    /**
+     * Shipping total without discounts applied.
+     * @type {number}
+     * @memberof Cart
+     */
+    shippingSubTotal?: number | null;
+    /**
+     * Not implemented. Tax does not appear on cart.
+     * @type {number}
+     * @memberof Cart
+     */
+    shippingTaxTotal?: number | null;
+    /**
+     * Shipping does not appear on cart.
+     * @type {number}
+     * @memberof Cart
+     */
+    shippingTotal?: number | null;
+    /**
+     * Unique identifier of the Site.
+     * @type {number}
+     * @memberof Cart
+     */
+    siteId?: number | null;
+    /**
+     * Combined price for all cart items, including all selected options but excluding any discounts.
+     * @type {number}
+     * @memberof Cart
+     */
+    subtotal?: number | null;
+    /**
+     * 
+     * @type {Array<SuggestedDiscount>}
+     * @memberof Cart
+     */
+    suggestedDiscounts?: Array<SuggestedDiscount> | null;
+    /**
+     * Storage for any additional/custom tax data.
+     * @type {object}
+     * @memberof Cart
+     */
+    taxData?: object | null;
+    /**
+     * Tax does not appear on cart.
+     * @type {number}
+     * @memberof Cart
+     */
+    taxTotal?: number | null;
+    /**
+     * Unique identifier of the Tenant.
+     * @type {number}
+     * @memberof Cart
+     */
+    tenantId?: number | null;
+    /**
+     * Final total amount of the order including all discounts, shipping, and tax.
+     * @type {number}
+     * @memberof Cart
+     */
+    total?: number | null;
+    /**
+     * Unique identifier of the shopper who created the cart.
+     * @type {string}
+     * @memberof Cart
+     */
+    userId?: string | null;
+    /**
+     * Identifies the Visit ID that was current when the order was placed or when the cart was last updated.
+     * @type {string}
+     * @memberof Cart
+     */
+    visitId?: string | null;
+    /**
+     * Identifies the web session used to place the order or last update the cart.
+     * @type {string}
+     * @memberof Cart
+     */
+    webSessionId?: string | null;
+    /**
+     * 
+     * @type {CartMessage}
+     * @memberof Cart
+     */
+    cartMessage?: CartMessage;
+    /**
+     * 
+     * @type {Array<CartMessage>}
+     * @memberof Cart
+     */
+    cartMessages?: Array<CartMessage> | null;
+    /**
+     * Coupon codes associated with this order.  Only set on order import.
+     * @type {Array<string>}
+     * @memberof Cart
+     */
+    couponCodes?: Array<string> | null;
+    /**
+     * Order level handling fees excluding any discounts.
+     * @type {number}
+     * @memberof Cart
+     */
+    handlingAmount?: number | null;
+    /**
+     * Handling fees for the Order as well as CartItems (e.g. if the Cart has a $5 handling fee and an CartItem has a $2 handling fee per item quantity and the quantity of items is 2 then the value in this property would be $9)
+     * @type {number}
+     * @memberof Cart
+     */
+    handlingSubTotal?: number | null;
+    /**
+     * Handling fees including any discounts.
+     * @type {number}
+     * @memberof Cart
+     */
+    handlingTotal?: number | null;
+    /**
+     * A list of invalid coupons that were attempted on the cart
+     * @type {Array<InvalidCoupon>}
+     * @memberof Cart
+     */
+    invalidCoupons?: Array<InvalidCoupon> | null;
+    /**
+     * List of items in the cart.
+     * @type {Array<CartItem>}
+     * @memberof Cart
+     */
+    items?: Array<CartItem> | null;
+    /**
+     * Pricelist code
+     * @type {string}
+     * @memberof Cart
+     */
+    priceListCode?: string | null;
+    /**
+     * Inventory Reservation id for a cart.
+     * @type {string}
+     * @memberof Cart
+     */
+    reservationId?: string | null;
+    /**
+     * List of groupings.
+     * The grouping is determined by the ShippingGrouper based on the items in the cart. 
+     * Each grouping represents a set of items that can be fulfilled together, typically because they share the same fulfillment method, shipping method and a location.
+     * @type {Array<ShippingGrouping>}
+     * @memberof Cart
+     */
+    shippingGroups?: Array<ShippingGrouping> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Cart
+     */
+    zipCode?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface CartAllOf
+ */
+export interface CartAllOf {
+    /**
+     * 
+     * @type {CartMessage}
+     * @memberof CartAllOf
+     */
+    cartMessage?: CartMessage;
+    /**
+     * 
+     * @type {Array<CartMessage>}
+     * @memberof CartAllOf
+     */
+    cartMessages?: Array<CartMessage> | null;
+    /**
+     * Coupon codes associated with this order.  Only set on order import.
+     * @type {Array<string>}
+     * @memberof CartAllOf
+     */
+    couponCodes?: Array<string> | null;
+    /**
+     * Order level handling fees excluding any discounts.
+     * @type {number}
+     * @memberof CartAllOf
+     */
+    handlingAmount?: number | null;
+    /**
+     * Handling fees for the Order as well as CartItems (e.g. if the Cart has a $5 handling fee and an CartItem has a $2 handling fee per item quantity and the quantity of items is 2 then the value in this property would be $9)
+     * @type {number}
+     * @memberof CartAllOf
+     */
+    handlingSubTotal?: number | null;
+    /**
+     * Handling fees including any discounts.
+     * @type {number}
+     * @memberof CartAllOf
+     */
+    handlingTotal?: number | null;
+    /**
+     * A list of invalid coupons that were attempted on the cart
+     * @type {Array<InvalidCoupon>}
+     * @memberof CartAllOf
+     */
+    invalidCoupons?: Array<InvalidCoupon> | null;
+    /**
+     * List of items in the cart.
+     * @type {Array<CartItem>}
+     * @memberof CartAllOf
+     */
+    items?: Array<CartItem> | null;
+    /**
+     * Pricelist code
+     * @type {string}
+     * @memberof CartAllOf
+     */
+    priceListCode?: string | null;
+    /**
+     * Inventory Reservation id for a cart.
+     * @type {string}
+     * @memberof CartAllOf
+     */
+    reservationId?: string | null;
+    /**
+     * List of groupings.
+     * The grouping is determined by the ShippingGrouper based on the items in the cart. 
+     * Each grouping represents a set of items that can be fulfilled together, typically because they share the same fulfillment method, shipping method and a location.
+     * @type {Array<ShippingGrouping>}
+     * @memberof CartAllOf
+     */
+    shippingGroups?: Array<ShippingGrouping> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CartAllOf
+     */
+    zipCode?: string | null;
+}
+/**
+ * Details of an item in the shopper's cart, such as the product name, stock count, unit price, discounts, quantity ordered, and total price.
+ * @export
+ * @interface CartItem
+ */
+export interface CartItem {
+    /**
+     * Order Level taxable sub total
+     * @type {number}
+     * @memberof CartItem
+     */
+    adjustedLineItemSubtotal?: number | null;
+    /**
+     * 
+     * @type {CoreApiContractsAuditInfo}
+     * @memberof CartItem
+     */
+    auditInfo?: CoreApiContractsAuditInfo;
+    /**
+     * Track the discoutid from which the item was auto added
+     * @type {number}
+     * @memberof CartItem
+     */
+    autoAddDiscountId?: number | null;
+    /**
+     * List of Child Item Ids for this order item
+     * @type {Array<string>}
+     * @memberof CartItem
+     */
+    childItemIds?: Array<string> | null;
+    /**
+     * Custom data for a given vendor set within the commerce process.
+     * @type {object}
+     * @memberof CartItem
+     */
+    data?: object | null;
+    /**
+     * How much the shopper saves with the applied discount or sale price. This is a negative number.
+     * @type {number}
+     * @memberof CartItem
+     */
+    discountTotal?: number | null;
+    /**
+     * Subtotal minus any discounts.
+     * @type {number}
+     * @memberof CartItem
+     */
+    discountedTotal?: number | null;
+    /**
+     * Indicate Duty Amount for this item.
+     * @type {number}
+     * @memberof CartItem
+     */
+    dutyAmount?: number | null;
+    /**
+     * Line item extended total (quantity multiplied by unit extended price) before discounts.
+     * @type {number}
+     * @memberof CartItem
+     */
+    extendedTotal?: number | null;
+    /**
+     * Not implemented. Total cost of fees that apply to this item.
+     * @type {number}
+     * @memberof CartItem
+     */
+    feeTotal?: number | null;
+    /**
+     * Product-level handling fee for this item (e.g. special packaging, hazmat fees).
+     * This does NOT include order-level handling fees — those are in Mozu.CommerceRuntime.Contracts.Commerce.CommerceItem.WeightedOrderHandlingFee.
+     * Total handling on the shipment = HandlingAmount + WeightedOrderHandlingFee.
+     * @type {number}
+     * @memberof CartItem
+     */
+    handlingAmount?: number | null;
+    /**
+     * 
+     * @type {Array<InventoryTags>}
+     * @memberof CartItem
+     */
+    inventoryTags?: Array<InventoryTags> | null;
+    /**
+     * Assembly Required for this order item
+     * @type {boolean}
+     * @memberof CartItem
+     */
+    isAssemblyRequired?: boolean;
+    /**
+     * If true, the cart item lists a product that can be purchased or fulfilled at regular intervals, for example, monthly billing or a subscription.
+     * @type {boolean}
+     * @memberof CartItem
+     */
+    isRecurring?: boolean | null;
+    /**
+     * Not implemented. If true, the cart item is eligible for tax.
+     * @type {boolean}
+     * @memberof CartItem
+     */
+    isTaxable?: boolean | null;
+    /**
+     * Total price of taxes that apply to products in this item.
+     * @type {number}
+     * @memberof CartItem
+     */
+    itemTaxTotal?: number | null;
+    /**
+     * The line id assigned to the order item. Visible only in the Admin, this is set from the Admin or
+     * in CommerceRuntime when a cart is converted to an order.
+     * @type {number}
+     * @memberof CartItem
+     */
+    lineId?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CartItem
+     */
+    lineItemAdjustment?: number | null;
+    /**
+     * Locale code for language that appears in text and descriptions on the site, for example, en_US. 
+     * This is not the currency code. Currently only en_US is supported.
+     * @type {string}
+     * @memberof CartItem
+     */
+    localeCode?: string | null;
+    /**
+     * Indicates Parent Item Id for this order item
+     * @type {string}
+     * @memberof CartItem
+     */
+    parentItemId?: string | null;
+    /**
+     * 
+     * @type {CommerceRuntimeProduct}
+     * @memberof CartItem
+     */
+    product?: CommerceRuntimeProduct;
+    /**
+     * 
+     * @type {CommerceRuntimeAppliedLineItemProductDiscount}
+     * @memberof CartItem
+     */
+    productDiscount?: CommerceRuntimeAppliedLineItemProductDiscount;
+    /**
+     * A list of discounts applied to the product
+     * @type {Array<CommerceRuntimeAppliedLineItemProductDiscount>}
+     * @memberof CartItem
+     */
+    productDiscounts?: Array<CommerceRuntimeAppliedLineItemProductDiscount> | null;
+    /**
+     * The location where the product is being purchased.. default is null. Products can have different prices
+     * by purchaseLocation via custom priceListResolution...
+     * @type {string}
+     * @memberof CartItem
+     */
+    purchaseLocation?: string | null;
+    /**
+     * Number of products ordered.
+     * @type {number}
+     * @memberof CartItem
+     */
+    quantity?: number;
+    /**
+     * Shipping amount before Discounts and adjustments
+     * @type {number}
+     * @memberof CartItem
+     */
+    shippingAmountBeforeDiscountsAndAdjustments?: number | null;
+    /**
+     * A discount applied to the shipping
+     * @type {Array<CommerceRuntimeAppliedLineItemShippingDiscount>}
+     * @memberof CartItem
+     */
+    shippingDiscounts?: Array<CommerceRuntimeAppliedLineItemShippingDiscount> | null;
+    /**
+     * Total price of taxes that apply to the shipping of this item.
+     * @type {number}
+     * @memberof CartItem
+     */
+    shippingTaxTotal?: number | null;
+    /**
+     * Total price of shipping that apply to this item.
+     * @type {number}
+     * @memberof CartItem
+     */
+    shippingTotal?: number | null;
+    /**
+     * 
+     * @type {SubstituteInfo}
+     * @memberof CartItem
+     */
+    substituteInfo?: SubstituteInfo;
+    /**
+     * Line item subtotal (quantity multiplied by price) before discounts.
+     * @type {number}
+     * @memberof CartItem
+     */
+    subtotal?: number | null;
+    /**
+     * Storage for any additional/custom tax data.
+     * @type {object}
+     * @memberof CartItem
+     */
+    taxData?: object | null;
+    /**
+     * Line item subtotal (quantity multiplied by price) before discounts.
+     * @type {number}
+     * @memberof CartItem
+     */
+    taxableTotal?: number | null;
+    /**
+     * Total price of this cart item taking into account any discounts.
+     * @type {number}
+     * @memberof CartItem
+     */
+    total?: number | null;
+    /**
+     * Line item total with line item, Tax, Weighted Tax with Weighted shipping and handling costs
+     * @type {number}
+     * @memberof CartItem
+     */
+    totalWithWeightedShippingAndHandling?: number | null;
+    /**
+     * Taxable Subtotal including Weighted Order amounts
+     * @type {number}
+     * @memberof CartItem
+     */
+    totalWithoutWeightedShippingAndHandling?: number | null;
+    /**
+     * 
+     * @type {CommerceUnitPrice}
+     * @memberof CartItem
+     */
+    unitPrice?: CommerceUnitPrice;
+    /**
+     * Order Level Manual Adjustment applied to this Item
+     * @type {number}
+     * @memberof CartItem
+     */
+    weightedOrderAdjustment?: number | null;
+    /**
+     * Order Level Discount applied to this Item
+     * @type {number}
+     * @memberof CartItem
+     */
+    weightedOrderDiscount?: number | null;
+    /**
+     * Order Level Duty applied to this Item
+     * @type {number}
+     * @memberof CartItem
+     */
+    weightedOrderDuty?: number | null;
+    /**
+     * Order-level handling manual adjustment allocated to this item.
+     * @type {number}
+     * @memberof CartItem
+     */
+    weightedOrderHandlingAdjustment?: number | null;
+    /**
+     * Order-level handling fee allocated to this item (e.g. flat handling fee spread across all items).
+     * This is separate from product-level handling in Mozu.CommerceRuntime.Contracts.Commerce.CommerceItem.HandlingAmount.
+     * Total handling on the shipment = HandlingAmount + WeightedOrderHandlingFee.
+     * @type {number}
+     * @memberof CartItem
+     */
+    weightedOrderHandlingFee?: number | null;
+    /**
+     * Order-level handling fee discount allocated to this item.
+     * @type {number}
+     * @memberof CartItem
+     */
+    weightedOrderHandlingFeeDiscount?: number | null;
+    /**
+     * Total handling tax for this item (covers both product-level and order-level handling tax combined).
+     * On the shipment item, this is split into: HandlingTax (total) and WeightedOrderHandlingFeeTax (order-level portion only).
+     * @type {number}
+     * @memberof CartItem
+     */
+    weightedOrderHandlingFeeTax?: number | null;
+    /**
+     * Order Level Shipping applied to this Item
+     * @type {number}
+     * @memberof CartItem
+     */
+    weightedOrderShipping?: number | null;
+    /**
+     * Order Level Shipping discount applied to this Item
+     * @type {number}
+     * @memberof CartItem
+     */
+    weightedOrderShippingDiscount?: number | null;
+    /**
+     * Order Level Shipping Manual Adjustment applied to this Item
+     * @type {number}
+     * @memberof CartItem
+     */
+    weightedOrderShippingManualAdjustment?: number | null;
+    /**
+     * Order Level Shipping Tax applied to this Item
+     * @type {number}
+     * @memberof CartItem
+     */
+    weightedOrderShippingTax?: number | null;
+    /**
+     * Order Level tax applied to this Item
+     * @type {number}
+     * @memberof CartItem
+     */
+    weightedOrderTax?: number | null;
+    /**
+     * Location code from which to obtain this item
+     * @type {string}
+     * @memberof CartItem
+     */
+    fulfillmentLocationCode?: string | null;
+    /**
+     * Fulfillment method used to fulfill this item
+     * @type {string}
+     * @memberof CartItem
+     */
+    fulfillmentMethod?: string | null;
+    /**
+     * Unique identifier of the item in the cart.
+     * @type {string}
+     * @memberof CartItem
+     */
+    id?: string | null;
+    /**
+     * Determines if the item is using external or internal(catalog) pricing
+     * @type {string}
+     * @memberof CartItem
+     */
+    priceMode?: string | null;
+    /**
+     * 
+     * @type {SubscriptionInfo}
+     * @memberof CartItem
+     */
+    subscription?: SubscriptionInfo;
+}
+/**
+ * 
+ * @export
+ * @interface CartItemAllOf
+ */
+export interface CartItemAllOf {
+    /**
+     * Location code from which to obtain this item
+     * @type {string}
+     * @memberof CartItemAllOf
+     */
+    fulfillmentLocationCode?: string | null;
+    /**
+     * Fulfillment method used to fulfill this item
+     * @type {string}
+     * @memberof CartItemAllOf
+     */
+    fulfillmentMethod?: string | null;
+    /**
+     * Unique identifier of the item in the cart.
+     * @type {string}
+     * @memberof CartItemAllOf
+     */
+    id?: string | null;
+    /**
+     * Determines if the item is using external or internal(catalog) pricing
+     * @type {string}
+     * @memberof CartItemAllOf
+     */
+    priceMode?: string | null;
+    /**
+     * 
+     * @type {SubscriptionInfo}
+     * @memberof CartItemAllOf
+     */
+    subscription?: SubscriptionInfo;
+}
+/**
+ * 
+ * @export
+ * @interface CartMessage
+ */
+export interface CartMessage {
+    /**
+     * 
+     * @type {string}
+     * @memberof CartMessage
+     */
+    message?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CartMessage
+     */
+    messageType?: string | null;
+    /**
+     * 
+     * @type {Array<CommerceRuntimeProduct>}
+     * @memberof CartMessage
+     */
+    productsRemoved?: Array<CommerceRuntimeProduct> | null;
 }
 /**
  * 
@@ -382,11 +1163,23 @@ export interface CheckPayment {
  */
 export interface CollectionOfDigitalPackageItem {
     /**
-     * ID of the fulfillment unit.
-     * @type {string}
+     * 
+     * @type {CoreApiContractsAuditInfo}
      * @memberof CollectionOfDigitalPackageItem
      */
-    id?: string | null;
+    auditInfo?: CoreApiContractsAuditInfo;
+    /**
+     * Actions that can be taken on this fulfillment unit
+     * @type {Array<string>}
+     * @memberof CollectionOfDigitalPackageItem
+     */
+    availableActions?: Array<string> | null;
+    /**
+     * Change messages related to the fulfillment unit.
+     * @type {Array<CommerceRuntimeChangeMessage>}
+     * @memberof CollectionOfDigitalPackageItem
+     */
+    changeMessages?: Array<CommerceRuntimeChangeMessage> | null;
     /**
      * A human-readable identifier for this fulfillment unit.  If not set on create, will be autogenerated as a string of the form
      *     {fulfillmentUnitType} #{next available int}
@@ -394,19 +1187,6 @@ export interface CollectionOfDigitalPackageItem {
      * @memberof CollectionOfDigitalPackageItem
      */
     code?: string | null;
-    /**
-     * Status of the fulfillment unit
-     * See FulfillmentStatusConst
-     * @type {string}
-     * @memberof CollectionOfDigitalPackageItem
-     */
-    status?: string | null;
-    /**
-     * List of items in the fulfillment unit
-     * @type {Array<DigitalPackageItem>}
-     * @memberof CollectionOfDigitalPackageItem
-     */
-    items?: Array<DigitalPackageItem> | null;
     /**
      * Date of the pickup
      * @type {string}
@@ -420,23 +1200,24 @@ export interface CollectionOfDigitalPackageItem {
      */
     fulfillmentLocationCode?: string | null;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
+     * ID of the fulfillment unit.
+     * @type {string}
      * @memberof CollectionOfDigitalPackageItem
      */
-    auditInfo?: AdminUserAuditInfo;
+    id?: string | null;
     /**
-     * Actions that can be taken on this fulfillment unit
-     * @type {Array<string>}
+     * List of items in the fulfillment unit
+     * @type {Array<DigitalPackageItem>}
      * @memberof CollectionOfDigitalPackageItem
      */
-    availableActions?: Array<string> | null;
+    items?: Array<DigitalPackageItem> | null;
     /**
-     * Change messages related to the fulfillment unit.
-     * @type {Array<CommerceRuntimeChangeMessage>}
+     * Status of the fulfillment unit
+     * See FulfillmentStatusConst
+     * @type {string}
      * @memberof CollectionOfDigitalPackageItem
      */
-    changeMessages?: Array<CommerceRuntimeChangeMessage> | null;
+    status?: string | null;
 }
 /**
  * 
@@ -445,11 +1226,23 @@ export interface CollectionOfDigitalPackageItem {
  */
 export interface CollectionOfPackageItem {
     /**
-     * ID of the fulfillment unit.
-     * @type {string}
+     * 
+     * @type {CoreApiContractsAuditInfo}
      * @memberof CollectionOfPackageItem
      */
-    id?: string | null;
+    auditInfo?: CoreApiContractsAuditInfo;
+    /**
+     * Actions that can be taken on this fulfillment unit
+     * @type {Array<string>}
+     * @memberof CollectionOfPackageItem
+     */
+    availableActions?: Array<string> | null;
+    /**
+     * Change messages related to the fulfillment unit.
+     * @type {Array<CommerceRuntimeChangeMessage>}
+     * @memberof CollectionOfPackageItem
+     */
+    changeMessages?: Array<CommerceRuntimeChangeMessage> | null;
     /**
      * A human-readable identifier for this fulfillment unit.  If not set on create, will be autogenerated as a string of the form
      *     {fulfillmentUnitType} #{next available int}
@@ -457,19 +1250,6 @@ export interface CollectionOfPackageItem {
      * @memberof CollectionOfPackageItem
      */
     code?: string | null;
-    /**
-     * Status of the fulfillment unit
-     * See FulfillmentStatusConst
-     * @type {string}
-     * @memberof CollectionOfPackageItem
-     */
-    status?: string | null;
-    /**
-     * List of items in the fulfillment unit
-     * @type {Array<PackageItem>}
-     * @memberof CollectionOfPackageItem
-     */
-    items?: Array<PackageItem> | null;
     /**
      * Date of the pickup
      * @type {string}
@@ -483,23 +1263,24 @@ export interface CollectionOfPackageItem {
      */
     fulfillmentLocationCode?: string | null;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
+     * ID of the fulfillment unit.
+     * @type {string}
      * @memberof CollectionOfPackageItem
      */
-    auditInfo?: AdminUserAuditInfo;
+    id?: string | null;
     /**
-     * Actions that can be taken on this fulfillment unit
-     * @type {Array<string>}
+     * List of items in the fulfillment unit
+     * @type {Array<PackageItem>}
      * @memberof CollectionOfPackageItem
      */
-    availableActions?: Array<string> | null;
+    items?: Array<PackageItem> | null;
     /**
-     * Change messages related to the fulfillment unit.
-     * @type {Array<CommerceRuntimeChangeMessage>}
+     * Status of the fulfillment unit
+     * See FulfillmentStatusConst
+     * @type {string}
      * @memberof CollectionOfPackageItem
      */
-    changeMessages?: Array<CommerceRuntimeChangeMessage> | null;
+    status?: string | null;
 }
 /**
  * 
@@ -508,11 +1289,23 @@ export interface CollectionOfPackageItem {
  */
 export interface CollectionOfPickupItem {
     /**
-     * ID of the fulfillment unit.
-     * @type {string}
+     * 
+     * @type {CoreApiContractsAuditInfo}
      * @memberof CollectionOfPickupItem
      */
-    id?: string | null;
+    auditInfo?: CoreApiContractsAuditInfo;
+    /**
+     * Actions that can be taken on this fulfillment unit
+     * @type {Array<string>}
+     * @memberof CollectionOfPickupItem
+     */
+    availableActions?: Array<string> | null;
+    /**
+     * Change messages related to the fulfillment unit.
+     * @type {Array<CommerceRuntimeChangeMessage>}
+     * @memberof CollectionOfPickupItem
+     */
+    changeMessages?: Array<CommerceRuntimeChangeMessage> | null;
     /**
      * A human-readable identifier for this fulfillment unit.  If not set on create, will be autogenerated as a string of the form
      *     {fulfillmentUnitType} #{next available int}
@@ -520,19 +1313,6 @@ export interface CollectionOfPickupItem {
      * @memberof CollectionOfPickupItem
      */
     code?: string | null;
-    /**
-     * Status of the fulfillment unit
-     * See FulfillmentStatusConst
-     * @type {string}
-     * @memberof CollectionOfPickupItem
-     */
-    status?: string | null;
-    /**
-     * List of items in the fulfillment unit
-     * @type {Array<CommerceRuntimePickupItem>}
-     * @memberof CollectionOfPickupItem
-     */
-    items?: Array<CommerceRuntimePickupItem> | null;
     /**
      * Date of the pickup
      * @type {string}
@@ -546,23 +1326,24 @@ export interface CollectionOfPickupItem {
      */
     fulfillmentLocationCode?: string | null;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
+     * ID of the fulfillment unit.
+     * @type {string}
      * @memberof CollectionOfPickupItem
      */
-    auditInfo?: AdminUserAuditInfo;
+    id?: string | null;
     /**
-     * Actions that can be taken on this fulfillment unit
-     * @type {Array<string>}
+     * List of items in the fulfillment unit
+     * @type {Array<CommerceRuntimePickupItem>}
      * @memberof CollectionOfPickupItem
      */
-    availableActions?: Array<string> | null;
+    items?: Array<CommerceRuntimePickupItem> | null;
     /**
-     * Change messages related to the fulfillment unit.
-     * @type {Array<CommerceRuntimeChangeMessage>}
+     * Status of the fulfillment unit
+     * See FulfillmentStatusConst
+     * @type {string}
      * @memberof CollectionOfPickupItem
      */
-    changeMessages?: Array<CommerceRuntimeChangeMessage> | null;
+    status?: string | null;
 }
 /**
  * Base class for cart and order
@@ -571,29 +1352,17 @@ export interface CollectionOfPickupItem {
  */
 export interface CommerceAggregate {
     /**
-     * Unique identifier of the shopper who created the cart.
-     * @type {string}
+     * 
+     * @type {CoreApiContractsAuditInfo}
      * @memberof CommerceAggregate
      */
-    userId?: string | null;
+    auditInfo?: CoreApiContractsAuditInfo;
     /**
-     * Unique identifier of the CommerceAggregate object (e.g. order, cart, wishlist, etc.).
-     * @type {string}
+     * List of messages displayed by the system based on the last cart action, for example, when a product price has changed or is out-of-stock. System-supplied and read-only.
+     * @type {Array<CommerceRuntimeChangeMessage>}
      * @memberof CommerceAggregate
      */
-    id?: string | null;
-    /**
-     * Unique identifier of the Tenant.
-     * @type {number}
-     * @memberof CommerceAggregate
-     */
-    tenantId?: number | null;
-    /**
-     * Unique identifier of the Site.
-     * @type {number}
-     * @memberof CommerceAggregate
-     */
-    siteId?: number | null;
+    changeMessages?: Array<CommerceRuntimeChangeMessage> | null;
     /**
      * Unique identifier of the channel for this item.
      * @type {string}
@@ -607,18 +1376,6 @@ export interface CommerceAggregate {
      */
     currencyCode?: string | null;
     /**
-     * Identifies the Visit ID that was current when the order was placed or when the cart was last updated.
-     * @type {string}
-     * @memberof CommerceAggregate
-     */
-    visitId?: string | null;
-    /**
-     * Identifies the web session used to place the order or last update the cart.
-     * @type {string}
-     * @memberof CommerceAggregate
-     */
-    webSessionId?: string | null;
-    /**
      * Determines the interaction type that a customer will use to create this object.
      * Valid values are: Website, Store, Call, Unknown
      * @type {string}
@@ -626,11 +1383,93 @@ export interface CommerceAggregate {
      */
     customerInteractionType?: string | null;
     /**
+     * Custom data for a given vendor set within the commerce process.
+     * @type {object}
+     * @memberof CommerceAggregate
+     */
+    data?: object | null;
+    /**
+     * List of Mozu.CommerceRuntime.Contracts.Commerce.ThresholdMessage objects that are valid for the current value of the cart/order.
+     * @type {Array<CommerceRuntimeThresholdMessage>}
+     * @memberof CommerceAggregate
+     */
+    discountThresholdMessages?: Array<CommerceRuntimeThresholdMessage> | null;
+    /**
+     * Amount of the discounts applied to all items in the cart. This is a negative number.  This also includes the order level discounts.
+     * @type {number}
+     * @memberof CommerceAggregate
+     */
+    discountTotal?: number | null;
+    /**
+     * Combined price for all cart items, including all selected options as well as any discounts.
+     * @type {number}
+     * @memberof CommerceAggregate
+     */
+    discountedSubtotal?: number | null;
+    /**
+     * Subtotal minus the discounted total
+     * @type {number}
+     * @memberof CommerceAggregate
+     */
+    discountedTotal?: number | null;
+    /**
+     * When the order will no longer be active. That is, the order is considered abandoned. 
+     * Orders of anonymous shoppers expire after 14 days of inactivity. 
+     * An order never expires for shoppers who are logged into their account. 
+     * Date in UTC Date/Time.
+     * @type {string}
+     * @memberof CommerceAggregate
+     */
+    expirationDate?: string | null;
+    /**
+     * Extra properties (key-value pairs) that extend the primary object. Think of this as a property bag of string keys and string values.
+     * @type {Array<ExtendedProperty>}
+     * @memberof CommerceAggregate
+     */
+    extendedProperties?: Array<ExtendedProperty> | null;
+    /**
+     * Not implemented. Total cost of fees for all items in the cart.
+     * @type {number}
+     * @memberof CommerceAggregate
+     */
+    feeTotal?: number | null;
+    /**
      * 
      * @type {FulfillmentInfo}
      * @memberof CommerceAggregate
      */
     fulfillmentInfo?: FulfillmentInfo;
+    /**
+     * Total tax on handling
+     * @type {number}
+     * @memberof CommerceAggregate
+     */
+    handlingTaxTotal?: number | null;
+    /**
+     * Unique identifier of the CommerceAggregate object (e.g. order, cart, wishlist, etc.).
+     * @type {string}
+     * @memberof CommerceAggregate
+     */
+    id?: string | null;
+    /**
+     * Not implemented. Tax does not appear on cart.
+     * @type {number}
+     * @memberof CommerceAggregate
+     */
+    itemTaxTotal?: number | null;
+    /**
+     * Occasionally the commerce runtime may validate that item/product names, descriptions, and prices have not changed. 
+     * If changed, it updates LastValidationDate.
+     * @type {string}
+     * @memberof CommerceAggregate
+     */
+    lastValidationDate?: string | null;
+    /**
+     * Line Item Subtotals with Order Adjustments
+     * @type {number}
+     * @memberof CommerceAggregate
+     */
+    lineItemSubtotalWithOrderAdjustments?: number | null;
     /**
      * The discount that has been applied to the cart itself. If multiple discounts exist, this is the discount that the system applies because it offers the best savings for the shopper. This is a negative number.
      * @type {Array<CommerceRuntimeAppliedDiscount>}
@@ -642,55 +1481,13 @@ export interface CommerceAggregate {
      * @type {Array<SuggestedDiscount>}
      * @memberof CommerceAggregate
      */
-    suggestedDiscounts?: Array<SuggestedDiscount> | null;
-    /**
-     * 
-     * @type {Array<SuggestedDiscount>}
-     * @memberof CommerceAggregate
-     */
     rejectedDiscounts?: Array<SuggestedDiscount> | null;
     /**
-     * Custom data for a given vendor set within the commerce process.
-     * @type {object}
-     * @memberof CommerceAggregate
-     */
-    data?: object | null;
-    /**
-     * Storage for any additional/custom tax data.
-     * @type {object}
-     * @memberof CommerceAggregate
-     */
-    taxData?: object | null;
-    /**
-     * Combined price for all cart items, including all selected options but excluding any discounts.
+     * Shipping Amount before discount and adjustments
      * @type {number}
      * @memberof CommerceAggregate
      */
-    subtotal?: number | null;
-    /**
-     * Combined price for all cart items, including all selected options as well as any discounts.
-     * @type {number}
-     * @memberof CommerceAggregate
-     */
-    discountedSubtotal?: number | null;
-    /**
-     * Amount of the discounts applied to all items in the cart. This is a negative number.  This also includes the order level discounts.
-     * @type {number}
-     * @memberof CommerceAggregate
-     */
-    discountTotal?: number | null;
-    /**
-     * Subtotal minus the discounted total
-     * @type {number}
-     * @memberof CommerceAggregate
-     */
-    discountedTotal?: number | null;
-    /**
-     * Shipping does not appear on cart.
-     * @type {number}
-     * @memberof CommerceAggregate
-     */
-    shippingTotal?: number | null;
+    shippingAmountBeforeDiscountsAndAdjustments?: number | null;
     /**
      * Shipping total without discounts applied.
      * @type {number}
@@ -704,17 +1501,35 @@ export interface CommerceAggregate {
      */
     shippingTaxTotal?: number | null;
     /**
-     * Total tax on handling
+     * Shipping does not appear on cart.
      * @type {number}
      * @memberof CommerceAggregate
      */
-    handlingTaxTotal?: number | null;
+    shippingTotal?: number | null;
     /**
-     * Not implemented. Tax does not appear on cart.
+     * Unique identifier of the Site.
      * @type {number}
      * @memberof CommerceAggregate
      */
-    itemTaxTotal?: number | null;
+    siteId?: number | null;
+    /**
+     * Combined price for all cart items, including all selected options but excluding any discounts.
+     * @type {number}
+     * @memberof CommerceAggregate
+     */
+    subtotal?: number | null;
+    /**
+     * 
+     * @type {Array<SuggestedDiscount>}
+     * @memberof CommerceAggregate
+     */
+    suggestedDiscounts?: Array<SuggestedDiscount> | null;
+    /**
+     * Storage for any additional/custom tax data.
+     * @type {object}
+     * @memberof CommerceAggregate
+     */
+    taxData?: object | null;
     /**
      * Tax does not appear on cart.
      * @type {number}
@@ -722,11 +1537,11 @@ export interface CommerceAggregate {
      */
     taxTotal?: number | null;
     /**
-     * Not implemented. Total cost of fees for all items in the cart.
+     * Unique identifier of the Tenant.
      * @type {number}
      * @memberof CommerceAggregate
      */
-    feeTotal?: number | null;
+    tenantId?: number | null;
     /**
      * Final total amount of the order including all discounts, shipping, and tax.
      * @type {number}
@@ -734,57 +1549,23 @@ export interface CommerceAggregate {
      */
     total?: number | null;
     /**
-     * Line Item Subtotals with Order Adjustments
-     * @type {number}
-     * @memberof CommerceAggregate
-     */
-    lineItemSubtotalWithOrderAdjustments?: number | null;
-    /**
-     * Shipping Amount before discount and adjustments
-     * @type {number}
-     * @memberof CommerceAggregate
-     */
-    shippingAmountBeforeDiscountsAndAdjustments?: number | null;
-    /**
-     * Occasionally the commerce runtime may validate that item/product names, descriptions, and prices have not changed. 
-     * If changed, it updates LastValidationDate.
+     * Unique identifier of the shopper who created the cart.
      * @type {string}
      * @memberof CommerceAggregate
      */
-    lastValidationDate?: string | null;
+    userId?: string | null;
     /**
-     * When the order will no longer be active. That is, the order is considered abandoned. 
-     * Orders of anonymous shoppers expire after 14 days of inactivity. 
-     * An order never expires for shoppers who are logged into their account. 
-     * Date in UTC Date/Time.
+     * Identifies the Visit ID that was current when the order was placed or when the cart was last updated.
      * @type {string}
      * @memberof CommerceAggregate
      */
-    expirationDate?: string | null;
+    visitId?: string | null;
     /**
-     * List of messages displayed by the system based on the last cart action, for example, when a product price has changed or is out-of-stock. System-supplied and read-only.
-     * @type {Array<CommerceRuntimeChangeMessage>}
+     * Identifies the web session used to place the order or last update the cart.
+     * @type {string}
      * @memberof CommerceAggregate
      */
-    changeMessages?: Array<CommerceRuntimeChangeMessage> | null;
-    /**
-     * Extra properties (key-value pairs) that extend the primary object. Think of this as a property bag of string keys and string values.
-     * @type {Array<ExtendedProperty>}
-     * @memberof CommerceAggregate
-     */
-    extendedProperties?: Array<ExtendedProperty> | null;
-    /**
-     * List of Mozu.CommerceRuntime.Contracts.Commerce.ThresholdMessage objects that are valid for the current value of the cart/order.
-     * @type {Array<CommerceRuntimeThresholdMessage>}
-     * @memberof CommerceAggregate
-     */
-    discountThresholdMessages?: Array<CommerceRuntimeThresholdMessage> | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof CommerceAggregate
-     */
-    auditInfo?: AdminUserAuditInfo;
+    webSessionId?: string | null;
 }
 /**
  * Base class for cart and order items
@@ -793,68 +1574,35 @@ export interface CommerceAggregate {
  */
 export interface CommerceItem {
     /**
-     * Locale code for language that appears in text and descriptions on the site, for example, en_US. 
-     * This is not the currency code. Currently only en_US is supported.
-     * @type {string}
-     * @memberof CommerceItem
-     */
-    localeCode?: string | null;
-    /**
-     * The location where the product is being purchased.. default is null. Products can have different prices
-     * by purchaseLocation via custom priceListResolution...
-     * @type {string}
-     * @memberof CommerceItem
-     */
-    purchaseLocation?: string | null;
-    /**
-     * The line id assigned to the order item. Visible only in the Admin, this is set from the Admin or
-     * in CommerceRuntime when a cart is converted to an order.
+     * Order Level taxable sub total
      * @type {number}
      * @memberof CommerceItem
      */
-    lineId?: number | null;
+    adjustedLineItemSubtotal?: number | null;
     /**
      * 
-     * @type {CommerceRuntimeProduct}
+     * @type {CoreApiContractsAuditInfo}
      * @memberof CommerceItem
      */
-    product?: CommerceRuntimeProduct;
+    auditInfo?: CoreApiContractsAuditInfo;
     /**
-     * Number of products ordered.
+     * Track the discoutid from which the item was auto added
      * @type {number}
      * @memberof CommerceItem
      */
-    quantity?: number;
+    autoAddDiscountId?: number | null;
     /**
-     * If true, the cart item lists a product that can be purchased or fulfilled at regular intervals, for example, monthly billing or a subscription.
-     * @type {boolean}
+     * List of Child Item Ids for this order item
+     * @type {Array<string>}
      * @memberof CommerceItem
      */
-    isRecurring?: boolean | null;
+    childItemIds?: Array<string> | null;
     /**
-     * Not implemented. If true, the cart item is eligible for tax.
-     * @type {boolean}
+     * Custom data for a given vendor set within the commerce process.
+     * @type {object}
      * @memberof CommerceItem
      */
-    isTaxable?: boolean | null;
-    /**
-     * Line item subtotal (quantity multiplied by price) before discounts.
-     * @type {number}
-     * @memberof CommerceItem
-     */
-    subtotal?: number | null;
-    /**
-     * Line item extended total (quantity multiplied by unit extended price) before discounts.
-     * @type {number}
-     * @memberof CommerceItem
-     */
-    extendedTotal?: number | null;
-    /**
-     * Line item subtotal (quantity multiplied by price) before discounts.
-     * @type {number}
-     * @memberof CommerceItem
-     */
-    taxableTotal?: number | null;
+    data?: object | null;
     /**
      * How much the shopper saves with the applied discount or sale price. This is a negative number.
      * @type {number}
@@ -868,29 +1616,17 @@ export interface CommerceItem {
      */
     discountedTotal?: number | null;
     /**
-     * Total price of taxes that apply to products in this item.
+     * Indicate Duty Amount for this item.
      * @type {number}
      * @memberof CommerceItem
      */
-    itemTaxTotal?: number | null;
+    dutyAmount?: number | null;
     /**
-     * Total price of taxes that apply to the shipping of this item.
+     * Line item extended total (quantity multiplied by unit extended price) before discounts.
      * @type {number}
      * @memberof CommerceItem
      */
-    shippingTaxTotal?: number | null;
-    /**
-     * Total price of shipping that apply to this item.
-     * @type {number}
-     * @memberof CommerceItem
-     */
-    shippingTotal?: number | null;
-    /**
-     * Handling Amount for this item
-     * @type {number}
-     * @memberof CommerceItem
-     */
-    handlingAmount?: number | null;
+    extendedTotal?: number | null;
     /**
      * Not implemented. Total cost of fees that apply to this item.
      * @type {number}
@@ -898,17 +1634,75 @@ export interface CommerceItem {
      */
     feeTotal?: number | null;
     /**
-     * Total price of this cart item taking into account any discounts.
+     * Product-level handling fee for this item (e.g. special packaging, hazmat fees).
+     * This does NOT include order-level handling fees — those are in Mozu.CommerceRuntime.Contracts.Commerce.CommerceItem.WeightedOrderHandlingFee.
+     * Total handling on the shipment = HandlingAmount + WeightedOrderHandlingFee.
      * @type {number}
      * @memberof CommerceItem
      */
-    total?: number | null;
+    handlingAmount?: number | null;
     /**
      * 
-     * @type {CommerceUnitPrice}
+     * @type {Array<InventoryTags>}
      * @memberof CommerceItem
      */
-    unitPrice?: CommerceUnitPrice;
+    inventoryTags?: Array<InventoryTags> | null;
+    /**
+     * Assembly Required for this order item
+     * @type {boolean}
+     * @memberof CommerceItem
+     */
+    isAssemblyRequired?: boolean;
+    /**
+     * If true, the cart item lists a product that can be purchased or fulfilled at regular intervals, for example, monthly billing or a subscription.
+     * @type {boolean}
+     * @memberof CommerceItem
+     */
+    isRecurring?: boolean | null;
+    /**
+     * Not implemented. If true, the cart item is eligible for tax.
+     * @type {boolean}
+     * @memberof CommerceItem
+     */
+    isTaxable?: boolean | null;
+    /**
+     * Total price of taxes that apply to products in this item.
+     * @type {number}
+     * @memberof CommerceItem
+     */
+    itemTaxTotal?: number | null;
+    /**
+     * The line id assigned to the order item. Visible only in the Admin, this is set from the Admin or
+     * in CommerceRuntime when a cart is converted to an order.
+     * @type {number}
+     * @memberof CommerceItem
+     */
+    lineId?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceItem
+     */
+    lineItemAdjustment?: number | null;
+    /**
+     * Locale code for language that appears in text and descriptions on the site, for example, en_US. 
+     * This is not the currency code. Currently only en_US is supported.
+     * @type {string}
+     * @memberof CommerceItem
+     */
+    localeCode?: string | null;
+    /**
+     * Indicates Parent Item Id for this order item
+     * @type {string}
+     * @memberof CommerceItem
+     */
+    parentItemId?: string | null;
+    /**
+     * 
+     * @type {CommerceRuntimeProduct}
+     * @memberof CommerceItem
+     */
+    product?: CommerceRuntimeProduct;
     /**
      * 
      * @type {CommerceRuntimeAppliedLineItemProductDiscount}
@@ -922,17 +1716,54 @@ export interface CommerceItem {
      */
     productDiscounts?: Array<CommerceRuntimeAppliedLineItemProductDiscount> | null;
     /**
+     * The location where the product is being purchased.. default is null. Products can have different prices
+     * by purchaseLocation via custom priceListResolution...
+     * @type {string}
+     * @memberof CommerceItem
+     */
+    purchaseLocation?: string | null;
+    /**
+     * Number of products ordered.
+     * @type {number}
+     * @memberof CommerceItem
+     */
+    quantity?: number;
+    /**
+     * Shipping amount before Discounts and adjustments
+     * @type {number}
+     * @memberof CommerceItem
+     */
+    shippingAmountBeforeDiscountsAndAdjustments?: number | null;
+    /**
      * A discount applied to the shipping
      * @type {Array<CommerceRuntimeAppliedLineItemShippingDiscount>}
      * @memberof CommerceItem
      */
     shippingDiscounts?: Array<CommerceRuntimeAppliedLineItemShippingDiscount> | null;
     /**
-     * Custom data for a given vendor set within the commerce process.
-     * @type {object}
+     * Total price of taxes that apply to the shipping of this item.
+     * @type {number}
      * @memberof CommerceItem
      */
-    data?: object | null;
+    shippingTaxTotal?: number | null;
+    /**
+     * Total price of shipping that apply to this item.
+     * @type {number}
+     * @memberof CommerceItem
+     */
+    shippingTotal?: number | null;
+    /**
+     * 
+     * @type {SubstituteInfo}
+     * @memberof CommerceItem
+     */
+    substituteInfo?: SubstituteInfo;
+    /**
+     * Line item subtotal (quantity multiplied by price) before discounts.
+     * @type {number}
+     * @memberof CommerceItem
+     */
+    subtotal?: number | null;
     /**
      * Storage for any additional/custom tax data.
      * @type {object}
@@ -940,17 +1771,35 @@ export interface CommerceItem {
      */
     taxData?: object | null;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof CommerceItem
-     */
-    auditInfo?: AdminUserAuditInfo;
-    /**
-     * Shipping amount before Discounts and adjustments
+     * Line item subtotal (quantity multiplied by price) before discounts.
      * @type {number}
      * @memberof CommerceItem
      */
-    shippingAmountBeforeDiscountsAndAdjustments?: number | null;
+    taxableTotal?: number | null;
+    /**
+     * Total price of this cart item taking into account any discounts.
+     * @type {number}
+     * @memberof CommerceItem
+     */
+    total?: number | null;
+    /**
+     * Line item total with line item, Tax, Weighted Tax with Weighted shipping and handling costs
+     * @type {number}
+     * @memberof CommerceItem
+     */
+    totalWithWeightedShippingAndHandling?: number | null;
+    /**
+     * Taxable Subtotal including Weighted Order amounts
+     * @type {number}
+     * @memberof CommerceItem
+     */
+    totalWithoutWeightedShippingAndHandling?: number | null;
+    /**
+     * 
+     * @type {CommerceUnitPrice}
+     * @memberof CommerceItem
+     */
+    unitPrice?: CommerceUnitPrice;
     /**
      * Order Level Manual Adjustment applied to this Item
      * @type {number}
@@ -964,23 +1813,38 @@ export interface CommerceItem {
      */
     weightedOrderDiscount?: number | null;
     /**
-     * Order Level taxable sub total
+     * Order Level Duty applied to this Item
      * @type {number}
      * @memberof CommerceItem
      */
-    adjustedLineItemSubtotal?: number | null;
+    weightedOrderDuty?: number | null;
     /**
-     * Taxable Subtotal including Weighted Order amounts
+     * Order-level handling manual adjustment allocated to this item.
      * @type {number}
      * @memberof CommerceItem
      */
-    totalWithoutWeightedShippingAndHandling?: number | null;
+    weightedOrderHandlingAdjustment?: number | null;
     /**
-     * Order Level tax applied to this Item
+     * Order-level handling fee allocated to this item (e.g. flat handling fee spread across all items).
+     * This is separate from product-level handling in Mozu.CommerceRuntime.Contracts.Commerce.CommerceItem.HandlingAmount.
+     * Total handling on the shipment = HandlingAmount + WeightedOrderHandlingFee.
      * @type {number}
      * @memberof CommerceItem
      */
-    weightedOrderTax?: number | null;
+    weightedOrderHandlingFee?: number | null;
+    /**
+     * Order-level handling fee discount allocated to this item.
+     * @type {number}
+     * @memberof CommerceItem
+     */
+    weightedOrderHandlingFeeDiscount?: number | null;
+    /**
+     * Total handling tax for this item (covers both product-level and order-level handling tax combined).
+     * On the shipment item, this is split into: HandlingTax (total) and WeightedOrderHandlingFeeTax (order-level portion only).
+     * @type {number}
+     * @memberof CommerceItem
+     */
+    weightedOrderHandlingFeeTax?: number | null;
     /**
      * Order Level Shipping applied to this Item
      * @type {number}
@@ -1006,89 +1870,11 @@ export interface CommerceItem {
      */
     weightedOrderShippingTax?: number | null;
     /**
-     * Order Level handling fee applied to this item
+     * Order Level tax applied to this Item
      * @type {number}
      * @memberof CommerceItem
      */
-    weightedOrderHandlingFee?: number | null;
-    /**
-     * Order Level handling fee tax applied to this item
-     * @type {number}
-     * @memberof CommerceItem
-     */
-    weightedOrderHandlingFeeTax?: number | null;
-    /**
-     * Order Level handling fee discount applied to this item
-     * @type {number}
-     * @memberof CommerceItem
-     */
-    weightedOrderHandlingFeeDiscount?: number | null;
-    /**
-     * Order Level Duty applied to this Item
-     * @type {number}
-     * @memberof CommerceItem
-     */
-    weightedOrderDuty?: number | null;
-    /**
-     * Line item total with line item, Tax, Weighted Tax with Weighted shipping and handling costs
-     * @type {number}
-     * @memberof CommerceItem
-     */
-    totalWithWeightedShippingAndHandling?: number | null;
-    /**
-     * Order level handling adjusment that applies to this item.
-     * @type {number}
-     * @memberof CommerceItem
-     */
-    weightedOrderHandlingAdjustment?: number | null;
-    /**
-     * Track the discoutid from which the item was auto added
-     * @type {number}
-     * @memberof CommerceItem
-     */
-    autoAddDiscountId?: number | null;
-    /**
-     * Assembly Required for this order item
-     * @type {boolean}
-     * @memberof CommerceItem
-     */
-    isAssemblyRequired?: boolean;
-    /**
-     * List of Child Item Ids for this order item
-     * @type {Array<string>}
-     * @memberof CommerceItem
-     */
-    childItemIds?: Array<string> | null;
-    /**
-     * Indicates Parent Item Id for this order item
-     * @type {string}
-     * @memberof CommerceItem
-     */
-    parentItemId?: string | null;
-    /**
-     * 
-     * @type {Array<InventoryTags>}
-     * @memberof CommerceItem
-     */
-    inventoryTags?: Array<InventoryTags> | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceItem
-     */
-    lineItemAdjustment?: number | null;
-    /**
-     * Indicate Duty Amount for this item.
-     * @type {number}
-     * @memberof CommerceItem
-     */
-    dutyAmount?: number | null;
-    /**
-     * 
-     * @type {SubstituteInfo}
-     * @memberof CommerceItem
-     */
-    substituteInfo?: SubstituteInfo;
+    weightedOrderTax?: number | null;
 }
 /**
  * 
@@ -1125,13 +1911,25 @@ export interface CommerceRuntimeAddress {
      * @type {string}
      * @memberof CommerceRuntimeAddress
      */
+    addressType?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAddress
+     */
     cityOrTown?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CommerceRuntimeAddress
      */
-    stateOrProvince?: string | null;
+    countryCode?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommerceRuntimeAddress
+     */
+    isValidated?: boolean | null;
     /**
      * 
      * @type {string}
@@ -1143,19 +1941,7 @@ export interface CommerceRuntimeAddress {
      * @type {string}
      * @memberof CommerceRuntimeAddress
      */
-    countryCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    addressType?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAddress
-     */
-    isValidated?: boolean | null;
+    stateOrProvince?: string | null;
 }
 /**
  * Discount applied to the order, which is a negative number to be subtracted from the original price to get the final price. 
@@ -1165,6 +1951,30 @@ export interface CommerceRuntimeAddress {
  */
 export interface CommerceRuntimeAppliedDiscount {
     /**
+     * Code of the coupon associated with the discount if a coupon code is required to get the discount.
+     * @type {string}
+     * @memberof CommerceRuntimeAppliedDiscount
+     */
+    couponCode?: string | null;
+    /**
+     * Stores any custom data sent from external discounts.
+     * @type {object}
+     * @memberof CommerceRuntimeAppliedDiscount
+     */
+    data?: object | null;
+    /**
+     * 
+     * @type {CommerceRuntimeDiscount}
+     * @memberof CommerceRuntimeAppliedDiscount
+     */
+    discount?: CommerceRuntimeDiscount;
+    /**
+     * Determines whether or not this discount is set up to be ignored by the pricing runtime.
+     * @type {boolean}
+     * @memberof CommerceRuntimeAppliedDiscount
+     */
+    excluded?: boolean | null;
+    /**
      * Group identifier for the discount.
      * @type {string}
      * @memberof CommerceRuntimeAppliedDiscount
@@ -1176,30 +1986,6 @@ export interface CommerceRuntimeAppliedDiscount {
      * @memberof CommerceRuntimeAppliedDiscount
      */
     impact?: number | null;
-    /**
-     * 
-     * @type {CommerceRuntimeDiscount}
-     * @memberof CommerceRuntimeAppliedDiscount
-     */
-    discount?: CommerceRuntimeDiscount;
-    /**
-     * Code of the coupon associated with the discount if a coupon code is required to get the discount.
-     * @type {string}
-     * @memberof CommerceRuntimeAppliedDiscount
-     */
-    couponCode?: string | null;
-    /**
-     * Determines whether or not this discount is set up to be ignored by the pricing runtime.
-     * @type {boolean}
-     * @memberof CommerceRuntimeAppliedDiscount
-     */
-    excluded?: boolean | null;
-    /**
-     * Stores any custom data sent from external discounts.
-     * @type {object}
-     * @memberof CommerceRuntimeAppliedDiscount
-     */
-    data?: object | null;
 }
 /**
  * 
@@ -1208,17 +1994,29 @@ export interface CommerceRuntimeAppliedDiscount {
  */
 export interface CommerceRuntimeAppliedLineItemProductDiscount {
     /**
-     * Determines if the discount applies to the sale price of the order
+     * Code of the coupon associated with the discount if a coupon code is required to get the discount.
+     * @type {string}
+     * @memberof CommerceRuntimeAppliedLineItemProductDiscount
+     */
+    couponCode?: string | null;
+    /**
+     * Stores any custom data sent from external discounts.
+     * @type {object}
+     * @memberof CommerceRuntimeAppliedLineItemProductDiscount
+     */
+    data?: object | null;
+    /**
+     * 
+     * @type {CommerceRuntimeDiscount}
+     * @memberof CommerceRuntimeAppliedLineItemProductDiscount
+     */
+    discount?: CommerceRuntimeDiscount;
+    /**
+     * Determines whether or not this discount is set up to be ignored by the pricing runtime.
      * @type {boolean}
      * @memberof CommerceRuntimeAppliedLineItemProductDiscount
      */
-    appliesToSalePrice?: boolean | null;
-    /**
-     * The number of the line item that can be used for this particular discount.
-     * @type {number}
-     * @memberof CommerceRuntimeAppliedLineItemProductDiscount
-     */
-    discountQuantity?: number;
+    excluded?: boolean | null;
     /**
      * Group identifier for the discount.
      * @type {string}
@@ -1232,29 +2030,50 @@ export interface CommerceRuntimeAppliedLineItemProductDiscount {
      */
     impact?: number | null;
     /**
-     * 
-     * @type {CommerceRuntimeDiscount}
-     * @memberof CommerceRuntimeAppliedLineItemProductDiscount
-     */
-    discount?: CommerceRuntimeDiscount;
-    /**
-     * Code of the coupon associated with the discount if a coupon code is required to get the discount.
-     * @type {string}
-     * @memberof CommerceRuntimeAppliedLineItemProductDiscount
-     */
-    couponCode?: string | null;
-    /**
-     * Determines whether or not this discount is set up to be ignored by the pricing runtime.
+     * Determines if the discount applies to the sale price of the order
      * @type {boolean}
      * @memberof CommerceRuntimeAppliedLineItemProductDiscount
      */
-    excluded?: boolean | null;
+    appliesToSalePrice?: boolean | null;
     /**
-     * Stores any custom data sent from external discounts.
-     * @type {object}
+     * Impact for a quantity of one product; that is, the value of the discount for one product.
+     * @type {number}
+     * @memberof CommerceRuntimeAppliedLineItemProductDiscount
+     * @deprecated
+     */
+    impactPerUnit?: number | null;
+    /**
+     * Quantity of products priced. This is always one unless calculating pricing on the order or cart.
+     * @type {number}
+     * @memberof CommerceRuntimeAppliedLineItemProductDiscount
+     * @deprecated
+     */
+    productQuantity?: number | null;
+    /**
+     * The number of the line item that can be used for this particular discount.
+     * @type {number}
      * @memberof CommerceRuntimeAppliedLineItemProductDiscount
      */
-    data?: object | null;
+    discountQuantity?: number;
+}
+/**
+ * 
+ * @export
+ * @interface CommerceRuntimeAppliedLineItemProductDiscountAllOf
+ */
+export interface CommerceRuntimeAppliedLineItemProductDiscountAllOf {
+    /**
+     * Determines if the discount applies to the sale price of the order
+     * @type {boolean}
+     * @memberof CommerceRuntimeAppliedLineItemProductDiscountAllOf
+     */
+    appliesToSalePrice?: boolean | null;
+    /**
+     * The number of the line item that can be used for this particular discount.
+     * @type {number}
+     * @memberof CommerceRuntimeAppliedLineItemProductDiscountAllOf
+     */
+    discountQuantity?: number;
 }
 /**
  * 
@@ -1263,17 +2082,17 @@ export interface CommerceRuntimeAppliedLineItemProductDiscount {
  */
 export interface CommerceRuntimeAppliedLineItemShippingDiscount {
     /**
-     * Unique identifier of the shipping method discount.
-     * @type {string}
-     * @memberof CommerceRuntimeAppliedLineItemShippingDiscount
-     */
-    methodCode?: string | null;
-    /**
      * 
      * @type {CommerceRuntimeAppliedDiscount}
      * @memberof CommerceRuntimeAppliedLineItemShippingDiscount
      */
     discount?: CommerceRuntimeAppliedDiscount;
+    /**
+     * Unique identifier of the shipping method discount.
+     * @type {string}
+     * @memberof CommerceRuntimeAppliedLineItemShippingDiscount
+     */
+    methodCode?: string | null;
     /**
      * The number of the line item that can be used for this particular discount.
      * @type {number}
@@ -1288,29 +2107,108 @@ export interface CommerceRuntimeAppliedLineItemShippingDiscount {
     impactPerUnit?: number;
 }
 /**
+ * 
+ * @export
+ * @interface CommerceRuntimeAppliedLineItemShippingDiscountAllOf
+ */
+export interface CommerceRuntimeAppliedLineItemShippingDiscountAllOf {
+    /**
+     * 
+     * @type {CommerceRuntimeAppliedDiscount}
+     * @memberof CommerceRuntimeAppliedLineItemShippingDiscountAllOf
+     */
+    discount?: CommerceRuntimeAppliedDiscount;
+    /**
+     * The number of the line item that can be used for this particular discount.
+     * @type {number}
+     * @memberof CommerceRuntimeAppliedLineItemShippingDiscountAllOf
+     */
+    discountQuantity?: number;
+    /**
+     * The impact of this discount pur discount quantity.
+     * @type {number}
+     * @memberof CommerceRuntimeAppliedLineItemShippingDiscountAllOf
+     */
+    impactPerUnit?: number;
+    /**
+     * Unique identifier of the shipping method discount.
+     * @type {string}
+     * @memberof CommerceRuntimeAppliedLineItemShippingDiscountAllOf
+     */
+    methodCode?: string | null;
+}
+/**
  * Describes products that are bundled inside of a main bundle product.
  * @export
  * @interface CommerceRuntimeBundledProduct
  */
 export interface CommerceRuntimeBundledProduct {
     /**
-     * Quantity of the product included in the bundle.
-     * @type {number}
-     * @memberof CommerceRuntimeBundledProduct
-     */
-    quantity?: number;
-    /**
-     * Fully Qualified Name of the selected option's attribute
+     * Allocation ID associated with this product on this order.
      * @type {string}
      * @memberof CommerceRuntimeBundledProduct
      */
-    optionAttributeFQN?: string | null;
+    allocationExpiration?: string | null;
     /**
-     * Value of the selected option
-     * @type {any}
+     * Allocation ID associated with this product on this order.
+     * @type {number}
      * @memberof CommerceRuntimeBundledProduct
      */
-    optionValue?: any | null;
+    allocationId?: number | null;
+    /**
+     * Short description of the product in the language specified by LocaleCode.
+     * @type {string}
+     * @memberof CommerceRuntimeBundledProduct
+     */
+    description?: string | null;
+    /**
+     * Fulfillment status of the product.
+     * @type {string}
+     * @memberof CommerceRuntimeBundledProduct
+     */
+    fulfillmentStatus?: string | null;
+    /**
+     * Goods Type
+     * @type {string}
+     * @memberof CommerceRuntimeBundledProduct
+     */
+    goodsType?: string | null;
+    /**
+     * Indicates that this product ships by itself.
+     * @type {boolean}
+     * @memberof CommerceRuntimeBundledProduct
+     */
+    isPackagedStandAlone?: boolean;
+    /**
+     * 
+     * @type {CommerceRuntimePackageMeasurements}
+     * @memberof CommerceRuntimeBundledProduct
+     */
+    measurements?: CommerceRuntimePackageMeasurements;
+    /**
+     * Name of the product, this is the current value of the product's name in the language specified by LocaleCode.
+     * @type {string}
+     * @memberof CommerceRuntimeBundledProduct
+     */
+    name?: string | null;
+    /**
+     * Merchant-created code that uniquely identifies the product.
+     * @type {string}
+     * @memberof CommerceRuntimeBundledProduct
+     */
+    productCode?: string | null;
+    /**
+     * Reservation ID associated with this product in the bundle.
+     * @type {number}
+     * @memberof CommerceRuntimeBundledProduct
+     */
+    productReservationId?: number | null;
+    /**
+     * 
+     * @type {ProductStock}
+     * @memberof CommerceRuntimeBundledProduct
+     */
+    stock?: ProductStock;
     /**
      * Credit value.  Only populated if the bundled product is a gift card or digital credit
      * @type {number}
@@ -1330,71 +2228,66 @@ export interface CommerceRuntimeBundledProduct {
      */
     imageUrl?: string | null;
     /**
-     * Merchant-created code that uniquely identifies the product.
+     * Fully Qualified Name of the selected option's attribute
      * @type {string}
      * @memberof CommerceRuntimeBundledProduct
      */
-    productCode?: string | null;
+    optionAttributeFQN?: string | null;
     /**
-     * Name of the product, this is the current value of the product's name in the language specified by LocaleCode.
-     * @type {string}
+     * Value of the selected option
+     * @type {any}
      * @memberof CommerceRuntimeBundledProduct
      */
-    name?: string | null;
+    optionValue?: any | null;
     /**
-     * Short description of the product in the language specified by LocaleCode.
-     * @type {string}
-     * @memberof CommerceRuntimeBundledProduct
-     */
-    description?: string | null;
-    /**
-     * Goods Type
-     * @type {string}
-     * @memberof CommerceRuntimeBundledProduct
-     */
-    goodsType?: string | null;
-    /**
-     * Indicates that this product ships by itself.
-     * @type {boolean}
-     * @memberof CommerceRuntimeBundledProduct
-     */
-    isPackagedStandAlone?: boolean;
-    /**
-     * 
-     * @type {ProductStock}
-     * @memberof CommerceRuntimeBundledProduct
-     */
-    stock?: ProductStock;
-    /**
-     * Reservation ID associated with this product in the bundle.
+     * Quantity of the product included in the bundle.
      * @type {number}
      * @memberof CommerceRuntimeBundledProduct
      */
-    productReservationId?: number | null;
+    quantity?: number;
+}
+/**
+ * 
+ * @export
+ * @interface CommerceRuntimeBundledProductAllOf
+ */
+export interface CommerceRuntimeBundledProductAllOf {
     /**
-     * Allocation ID associated with this product on this order.
+     * Credit value.  Only populated if the bundled product is a gift card or digital credit
      * @type {number}
-     * @memberof CommerceRuntimeBundledProduct
+     * @memberof CommerceRuntimeBundledProductAllOf
      */
-    allocationId?: number | null;
+    creditValue?: number | null;
     /**
-     * Allocation ID associated with this product on this order.
+     * Only populated for extras
+     * @type {number}
+     * @memberof CommerceRuntimeBundledProductAllOf
+     */
+    deltaPrice?: number | null;
+    /**
+     * ImageUrl of product
      * @type {string}
-     * @memberof CommerceRuntimeBundledProduct
+     * @memberof CommerceRuntimeBundledProductAllOf
      */
-    allocationExpiration?: string | null;
+    imageUrl?: string | null;
     /**
-     * 
-     * @type {CommerceRuntimePackageMeasurements}
-     * @memberof CommerceRuntimeBundledProduct
-     */
-    measurements?: CommerceRuntimePackageMeasurements;
-    /**
-     * Fulfillment status of the product.
+     * Fully Qualified Name of the selected option's attribute
      * @type {string}
-     * @memberof CommerceRuntimeBundledProduct
+     * @memberof CommerceRuntimeBundledProductAllOf
      */
-    fulfillmentStatus?: string | null;
+    optionAttributeFQN?: string | null;
+    /**
+     * Value of the selected option
+     * @type {any}
+     * @memberof CommerceRuntimeBundledProductAllOf
+     */
+    optionValue?: any | null;
+    /**
+     * Quantity of the product included in the bundle.
+     * @type {number}
+     * @memberof CommerceRuntimeBundledProductAllOf
+     */
+    quantity?: number;
 }
 /**
  * 
@@ -1407,12 +2300,6 @@ export interface CommerceRuntimeCanceledReason {
      * @type {string}
      * @memberof CommerceRuntimeCanceledReason
      */
-    reasonCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeCanceledReason
-     */
     description?: string | null;
     /**
      * 
@@ -1420,6 +2307,12 @@ export interface CommerceRuntimeCanceledReason {
      * @memberof CommerceRuntimeCanceledReason
      */
     moreInfo?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeCanceledReason
+     */
+    reasonCode?: string | null;
 }
 /**
  * Categories to which the product belongs. Discounts can apply to categories where any product in the category is discounted.
@@ -1447,41 +2340,12 @@ export interface CommerceRuntimeCategory {
  */
 export interface CommerceRuntimeChangeMessage {
     /**
-     * Unique identifier of the  message. System-supplied. Read-only.
-     * @type {string}
+     * Monetary amount that pertains to the change if applicable
+     * @type {number}
      * @memberof CommerceRuntimeChangeMessage
+     * @deprecated
      */
-    id?: string | null;
-    /**
-     * Correlation Id
-     * @type {string}
-     * @memberof CommerceRuntimeChangeMessage
-     */
-    correlationId?: string | null;
-    /**
-     * User Id that identifies the user that performed the related change
-     * @type {string}
-     * @memberof CommerceRuntimeChangeMessage
-     */
-    userId?: string | null;
-    /**
-     * User First Name
-     * @type {string}
-     * @memberof CommerceRuntimeChangeMessage
-     */
-    userFirstName?: string | null;
-    /**
-     * User Last Name
-     * @type {string}
-     * @memberof CommerceRuntimeChangeMessage
-     */
-    userLastName?: string | null;
-    /**
-     * User Type (e.g. Shopper, Admin, etc.)
-     * @type {string}
-     * @memberof CommerceRuntimeChangeMessage
-     */
-    userScopeType?: string | null;
+    amount?: number | null;
     /**
      * App Id that identifies the user that performed the related change
      * @type {string}
@@ -1501,36 +2365,35 @@ export interface CommerceRuntimeChangeMessage {
      */
     appName?: string | null;
     /**
-     * Subject of the message, for example, "Product." System-supplied. Read-only.
+     * Additional Data. This property will be a Dictionary of objects.
+     * @type {{ [key: string]: any; }}
+     * @memberof CommerceRuntimeChangeMessage
+     */
+    attributes?: { [key: string]: any; } | null;
+    /**
+     * Correlation Id
      * @type {string}
      * @memberof CommerceRuntimeChangeMessage
      */
-    subjectType?: string | null;
+    correlationId?: string | null;
     /**
-     * Indicates if the message is related to a success or failure.
-     * @type {boolean}
+     * When the message was created. System-supplied. Read-only.
+     * @type {string}
      * @memberof CommerceRuntimeChangeMessage
      */
-    success?: boolean | null;
+    createDate?: string | null;
+    /**
+     * Unique identifier of the  message. System-supplied. Read-only.
+     * @type {string}
+     * @memberof CommerceRuntimeChangeMessage
+     */
+    id?: string | null;
     /**
      * Unique identifier to what the message pertains, which can be a cart item, cart or another generic entity. System-supplied. Read-only.
      * @type {string}
      * @memberof CommerceRuntimeChangeMessage
      */
     identifier?: string | null;
-    /**
-     * Text on the subject line of the message, for example, the product name. System-supplied. Read-only.
-     * @type {string}
-     * @memberof CommerceRuntimeChangeMessage
-     */
-    subject?: string | null;
-    /**
-     * Action applicable to the message. This can be "Increased," when the product price has increased, "Decreased," when the 
-     * product price has decreased, and "Invalidated," when the product is no longer available. System-supplied. Read-only.
-     * @type {string}
-     * @memberof CommerceRuntimeChangeMessage
-     */
-    verb?: string | null;
     /**
      * Human readable message. System-supplied. Read-only.
      * @type {string}
@@ -1544,13 +2407,6 @@ export interface CommerceRuntimeChangeMessage {
      */
     metadata?: any | null;
     /**
-     * Original price of the item. System-supplied. Read-only.
-     * @type {string}
-     * @memberof CommerceRuntimeChangeMessage
-     * @deprecated
-     */
-    oldValue?: string | null;
-    /**
      * Current price of the item. System-supplied. Read-only.
      * @type {string}
      * @memberof CommerceRuntimeChangeMessage
@@ -1558,24 +2414,61 @@ export interface CommerceRuntimeChangeMessage {
      */
     newValue?: string | null;
     /**
-     * Monetary amount that pertains to the change if applicable
-     * @type {number}
+     * Original price of the item. System-supplied. Read-only.
+     * @type {string}
      * @memberof CommerceRuntimeChangeMessage
      * @deprecated
      */
-    amount?: number | null;
+    oldValue?: string | null;
     /**
-     * When the message was created. System-supplied. Read-only.
+     * Text on the subject line of the message, for example, the product name. System-supplied. Read-only.
      * @type {string}
      * @memberof CommerceRuntimeChangeMessage
      */
-    createDate?: string | null;
+    subject?: string | null;
     /**
-     * Additional Data. This property will be a Dictionary of objects.
-     * @type {{ [key: string]: any; }}
+     * Subject of the message, for example, "Product." System-supplied. Read-only.
+     * @type {string}
      * @memberof CommerceRuntimeChangeMessage
      */
-    attributes?: { [key: string]: any; } | null;
+    subjectType?: string | null;
+    /**
+     * Indicates if the message is related to a success or failure.
+     * @type {boolean}
+     * @memberof CommerceRuntimeChangeMessage
+     */
+    success?: boolean | null;
+    /**
+     * User First Name
+     * @type {string}
+     * @memberof CommerceRuntimeChangeMessage
+     */
+    userFirstName?: string | null;
+    /**
+     * User Id that identifies the user that performed the related change
+     * @type {string}
+     * @memberof CommerceRuntimeChangeMessage
+     */
+    userId?: string | null;
+    /**
+     * User Last Name
+     * @type {string}
+     * @memberof CommerceRuntimeChangeMessage
+     */
+    userLastName?: string | null;
+    /**
+     * User Type (e.g. Shopper, Admin, etc.)
+     * @type {string}
+     * @memberof CommerceRuntimeChangeMessage
+     */
+    userScopeType?: string | null;
+    /**
+     * Action applicable to the message. This can be "Increased," when the product price has increased, "Decreased," when the 
+     * product price has decreased, and "Invalidated," when the product is no longer available. System-supplied. Read-only.
+     * @type {string}
+     * @memberof CommerceRuntimeChangeMessage
+     */
+    verb?: string | null;
 }
 /**
  * 
@@ -1585,10 +2478,16 @@ export interface CommerceRuntimeChangeMessage {
 export interface CommerceRuntimeContact {
     /**
      * 
-     * @type {number}
+     * @type {CommerceRuntimeAddress}
      * @memberof CommerceRuntimeContact
      */
-    id?: number | null;
+    address?: CommerceRuntimeAddress;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeContact
+     */
+    companyOrOrganization?: string | null;
     /**
      * 
      * @type {string}
@@ -1603,10 +2502,10 @@ export interface CommerceRuntimeContact {
     firstName?: string | null;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof CommerceRuntimeContact
      */
-    middleNameOrInitial?: string | null;
+    id?: number | null;
     /**
      * 
      * @type {string}
@@ -1618,19 +2517,13 @@ export interface CommerceRuntimeContact {
      * @type {string}
      * @memberof CommerceRuntimeContact
      */
-    companyOrOrganization?: string | null;
+    middleNameOrInitial?: string | null;
     /**
      * 
      * @type {CommerceRuntimePhone}
      * @memberof CommerceRuntimeContact
      */
     phoneNumbers?: CommerceRuntimePhone;
-    /**
-     * 
-     * @type {CommerceRuntimeAddress}
-     * @memberof CommerceRuntimeContact
-     */
-    address?: CommerceRuntimeAddress;
 }
 /**
  * 
@@ -1638,6 +2531,24 @@ export interface CommerceRuntimeContact {
  * @interface CommerceRuntimeCredit
  */
 export interface CommerceRuntimeCredit {
+    /**
+     * Amount credited.
+     * @type {number}
+     * @memberof CommerceRuntimeCredit
+     */
+    amount?: number;
+    /**
+     * 
+     * @type {CoreApiContractsAuditInfo}
+     * @memberof CommerceRuntimeCredit
+     */
+    auditInfo?: CoreApiContractsAuditInfo;
+    /**
+     * 
+     * @type {GatewayGiftCard}
+     * @memberof CommerceRuntimeCredit
+     */
+    giftCard?: GatewayGiftCard;
     /**
      * Unique identifier of this order transaction.
      * @type {string}
@@ -1656,24 +2567,6 @@ export interface CommerceRuntimeCredit {
      * @memberof CommerceRuntimeCredit
      */
     parentPaymentInteractionId?: string | null;
-    /**
-     * Amount credited.
-     * @type {number}
-     * @memberof CommerceRuntimeCredit
-     */
-    amount?: number;
-    /**
-     * 
-     * @type {GatewayGiftCard}
-     * @memberof CommerceRuntimeCredit
-     */
-    giftCard?: GatewayGiftCard;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof CommerceRuntimeCredit
-     */
-    auditInfo?: AdminUserAuditInfo;
 }
 /**
  * 
@@ -1707,17 +2600,17 @@ export interface CommerceRuntimeCustomer {
  */
 export interface CommerceRuntimeDeliveryWindow {
     /**
-     * Start time for delivery window.
-     * @type {string}
-     * @memberof CommerceRuntimeDeliveryWindow
-     */
-    startTime?: string;
-    /**
      * End time for delivery window.
      * @type {string}
      * @memberof CommerceRuntimeDeliveryWindow
      */
     endTime?: string;
+    /**
+     * Start time for delivery window.
+     * @type {string}
+     * @memberof CommerceRuntimeDeliveryWindow
+     */
+    startTime?: string;
 }
 /**
  * 
@@ -1726,11 +2619,11 @@ export interface CommerceRuntimeDeliveryWindow {
  */
 export interface CommerceRuntimeDestination {
     /**
-     * An identifier for this entry.
-     * @type {string}
+     * Custom data
+     * @type {object}
      * @memberof CommerceRuntimeDestination
      */
-    id?: string | null;
+    data?: object | null;
     /**
      * 
      * @type {CommerceRuntimeContact}
@@ -1738,17 +2631,17 @@ export interface CommerceRuntimeDestination {
      */
     destinationContact?: CommerceRuntimeContact;
     /**
+     * An identifier for this entry.
+     * @type {string}
+     * @memberof CommerceRuntimeDestination
+     */
+    id?: string | null;
+    /**
      * Indicates that the destination is commercial
      * @type {boolean}
      * @memberof CommerceRuntimeDestination
      */
     isDestinationCommercial?: boolean | null;
-    /**
-     * Custom data
-     * @type {object}
-     * @memberof CommerceRuntimeDestination
-     */
-    data?: object | null;
 }
 /**
  * Discounts that apply to the order, if any. For example, when the 
@@ -1757,24 +2650,6 @@ export interface CommerceRuntimeDestination {
  * @interface CommerceRuntimeDiscount
  */
 export interface CommerceRuntimeDiscount {
-    /**
-     * Unique identifier of the discount.
-     * @type {number}
-     * @memberof CommerceRuntimeDiscount
-     */
-    id?: number;
-    /**
-     * Name of the discount in the language specified by LocaleCode.
-     * @type {string}
-     * @memberof CommerceRuntimeDiscount
-     */
-    name?: string | null;
-    /**
-     * List of discounts for each order item.
-     * @type {Array<string>}
-     * @memberof CommerceRuntimeDiscount
-     */
-    itemIds?: Array<string> | null;
     /**
      * Date when the discount expires. Default is null (no expiration date).
      * @type {string}
@@ -1788,6 +2663,24 @@ export interface CommerceRuntimeDiscount {
      * @memberof CommerceRuntimeDiscount
      */
     hasMultipleTargetProducts?: boolean;
+    /**
+     * Unique identifier of the discount.
+     * @type {number}
+     * @memberof CommerceRuntimeDiscount
+     */
+    id?: number;
+    /**
+     * List of discounts for each order item.
+     * @type {Array<string>}
+     * @memberof CommerceRuntimeDiscount
+     */
+    itemIds?: Array<string> | null;
+    /**
+     * Name of the discount in the language specified by LocaleCode.
+     * @type {string}
+     * @memberof CommerceRuntimeDiscount
+     */
+    name?: string | null;
 }
 /**
  * 
@@ -1803,16 +2696,16 @@ export interface CommerceRuntimeFulfillmentField {
     name?: string | null;
     /**
      * 
-     * @type {any}
-     * @memberof CommerceRuntimeFulfillmentField
-     */
-    userEnteredValue?: any | null;
-    /**
-     * 
      * @type {boolean}
      * @memberof CommerceRuntimeFulfillmentField
      */
     required?: boolean;
+    /**
+     * 
+     * @type {any}
+     * @memberof CommerceRuntimeFulfillmentField
+     */
+    userEnteredValue?: any | null;
 }
 /**
  * 
@@ -1820,6 +2713,30 @@ export interface CommerceRuntimeFulfillmentField {
  * @interface CommerceRuntimeFutureInventory
  */
 export interface CommerceRuntimeFutureInventory {
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeFutureInventory
+     */
+    allocated?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeFutureInventory
+     */
+    available?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeFutureInventory
+     */
+    createDate?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeFutureInventory
+     */
+    deliveryDate?: string | null;
     /**
      * 
      * @type {number}
@@ -1837,31 +2754,7 @@ export interface CommerceRuntimeFutureInventory {
      * @type {number}
      * @memberof CommerceRuntimeFutureInventory
      */
-    available?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeFutureInventory
-     */
-    allocated?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeFutureInventory
-     */
     pending?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeFutureInventory
-     */
-    deliveryDate?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeFutureInventory
-     */
-    createDate?: string | null;
 }
 /**
  * 
@@ -2012,22 +2905,22 @@ export interface CommerceRuntimeMeasurement {
 export interface CommerceRuntimeOrderAttribute {
     /**
      * 
-     * @type {AdminUserAuditInfo}
+     * @type {number}
      * @memberof CommerceRuntimeOrderAttribute
      */
-    auditInfo?: AdminUserAuditInfo;
+    attributeDefinitionId?: number | null;
+    /**
+     * 
+     * @type {CoreApiContractsAuditInfo}
+     * @memberof CommerceRuntimeOrderAttribute
+     */
+    auditInfo?: CoreApiContractsAuditInfo;
     /**
      * 
      * @type {string}
      * @memberof CommerceRuntimeOrderAttribute
      */
     fullyQualifiedName?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeOrderAttribute
-     */
-    attributeDefinitionId?: number | null;
     /**
      * 
      * @type {Array<any>}
@@ -2042,165 +2935,35 @@ export interface CommerceRuntimeOrderAttribute {
  */
 export interface CommerceRuntimeOrderItem {
     /**
-     * Unique identifier of the order line item. System-supplied and read-only.
-     * @type {string}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    id?: string | null;
-    /**
-     * The destination associated with this item when used with a multi-ship checkout.
-     * @type {string}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    destinationId?: string | null;
-    /**
-     * Unique identifier of the cart item that is associated with this line item. 
-     * (This is the original Cart Item ID expressed as a GUID.)
-     * @type {string}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    originalCartItemId?: string | null;
-    /**
-     * Location code from which to obtain this item
-     * @type {string}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    fulfillmentLocationCode?: string | null;
-    /**
-     * Fulfillment method used to fulfill this item
-     * @type {string}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    fulfillmentMethod?: string | null;
-    /**
-     * Duty or Tariff for this item
+     * Order Level taxable sub total
      * @type {number}
      * @memberof CommerceRuntimeOrderItem
      */
-    dutyAmount?: number | null;
-    /**
-     * Expected Delivery Date of shipment
-     * @type {string}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    expectedDeliveryDate?: string | null;
+    adjustedLineItemSubtotal?: number | null;
     /**
      * 
-     * @type {SubscriptionInfo}
+     * @type {CoreApiContractsAuditInfo}
      * @memberof CommerceRuntimeOrderItem
      */
-    subscription?: SubscriptionInfo;
+    auditInfo?: CoreApiContractsAuditInfo;
     /**
-     * Flag to indicate reserve inventory in cart
-     * @type {boolean}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    isReservationEnabled?: boolean;
-    /**
-     * 
-     * @type {GiftInfo}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    giftInfo?: GiftInfo;
-    /**
-     * Determines if the item is using external or internal(catalog) pricing
-     * @type {string}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    priceMode?: string | null;
-    /**
-     * 
-     * @type {ReturnRuleInfo}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    returnRuleInfo?: ReturnRuleInfo;
-    /**
-     * Code that uniquely identifies the shipping method.
-     * @type {string}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    shippingMethodCode?: string | null;
-    /**
-     * Readable name of the shipping method.
-     * @type {string}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    shippingMethodName?: string | null;
-    /**
-     * 
-     * @type {CommerceRuntimeDeliveryWindow}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    deliveryWindow?: CommerceRuntimeDeliveryWindow;
-    /**
-     * Routing suggestions
-     * @type {Array<Suggestion>}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    suggestions?: Array<Suggestion> | null;
-    /**
-     * Locale code for language that appears in text and descriptions on the site, for example, en_US. 
-     * This is not the currency code. Currently only en_US is supported.
-     * @type {string}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    localeCode?: string | null;
-    /**
-     * The location where the product is being purchased.. default is null. Products can have different prices
-     * by purchaseLocation via custom priceListResolution...
-     * @type {string}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    purchaseLocation?: string | null;
-    /**
-     * The line id assigned to the order item. Visible only in the Admin, this is set from the Admin or
-     * in CommerceRuntime when a cart is converted to an order.
+     * Track the discoutid from which the item was auto added
      * @type {number}
      * @memberof CommerceRuntimeOrderItem
      */
-    lineId?: number | null;
+    autoAddDiscountId?: number | null;
     /**
-     * 
-     * @type {CommerceRuntimeProduct}
+     * List of Child Item Ids for this order item
+     * @type {Array<string>}
      * @memberof CommerceRuntimeOrderItem
      */
-    product?: CommerceRuntimeProduct;
+    childItemIds?: Array<string> | null;
     /**
-     * Number of products ordered.
-     * @type {number}
+     * Custom data for a given vendor set within the commerce process.
+     * @type {object}
      * @memberof CommerceRuntimeOrderItem
      */
-    quantity?: number;
-    /**
-     * If true, the cart item lists a product that can be purchased or fulfilled at regular intervals, for example, monthly billing or a subscription.
-     * @type {boolean}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    isRecurring?: boolean | null;
-    /**
-     * Not implemented. If true, the cart item is eligible for tax.
-     * @type {boolean}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    isTaxable?: boolean | null;
-    /**
-     * Line item subtotal (quantity multiplied by price) before discounts.
-     * @type {number}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    subtotal?: number | null;
-    /**
-     * Line item extended total (quantity multiplied by unit extended price) before discounts.
-     * @type {number}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    extendedTotal?: number | null;
-    /**
-     * Line item subtotal (quantity multiplied by price) before discounts.
-     * @type {number}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    taxableTotal?: number | null;
+    data?: object | null;
     /**
      * How much the shopper saves with the applied discount or sale price. This is a negative number.
      * @type {number}
@@ -2214,29 +2977,17 @@ export interface CommerceRuntimeOrderItem {
      */
     discountedTotal?: number | null;
     /**
-     * Total price of taxes that apply to products in this item.
+     * Duty or Tariff for this item
      * @type {number}
      * @memberof CommerceRuntimeOrderItem
      */
-    itemTaxTotal?: number | null;
+    dutyAmount?: number | null;
     /**
-     * Total price of taxes that apply to the shipping of this item.
+     * Line item extended total (quantity multiplied by unit extended price) before discounts.
      * @type {number}
      * @memberof CommerceRuntimeOrderItem
      */
-    shippingTaxTotal?: number | null;
-    /**
-     * Total price of shipping that apply to this item.
-     * @type {number}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    shippingTotal?: number | null;
-    /**
-     * Handling Amount for this item
-     * @type {number}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    handlingAmount?: number | null;
+    extendedTotal?: number | null;
     /**
      * Not implemented. Total cost of fees that apply to this item.
      * @type {number}
@@ -2244,17 +2995,75 @@ export interface CommerceRuntimeOrderItem {
      */
     feeTotal?: number | null;
     /**
-     * Total price of this cart item taking into account any discounts.
+     * Product-level handling fee for this item (e.g. special packaging, hazmat fees).
+     * This does NOT include order-level handling fees — those are in Mozu.CommerceRuntime.Contracts.Commerce.CommerceItem.WeightedOrderHandlingFee.
+     * Total handling on the shipment = HandlingAmount + WeightedOrderHandlingFee.
      * @type {number}
      * @memberof CommerceRuntimeOrderItem
      */
-    total?: number | null;
+    handlingAmount?: number | null;
     /**
      * 
-     * @type {CommerceUnitPrice}
+     * @type {Array<InventoryTags>}
      * @memberof CommerceRuntimeOrderItem
      */
-    unitPrice?: CommerceUnitPrice;
+    inventoryTags?: Array<InventoryTags> | null;
+    /**
+     * Assembly Required for this order item
+     * @type {boolean}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    isAssemblyRequired?: boolean;
+    /**
+     * If true, the cart item lists a product that can be purchased or fulfilled at regular intervals, for example, monthly billing or a subscription.
+     * @type {boolean}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    isRecurring?: boolean | null;
+    /**
+     * Not implemented. If true, the cart item is eligible for tax.
+     * @type {boolean}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    isTaxable?: boolean | null;
+    /**
+     * Total price of taxes that apply to products in this item.
+     * @type {number}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    itemTaxTotal?: number | null;
+    /**
+     * The line id assigned to the order item. Visible only in the Admin, this is set from the Admin or
+     * in CommerceRuntime when a cart is converted to an order.
+     * @type {number}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    lineId?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    lineItemAdjustment?: number | null;
+    /**
+     * Locale code for language that appears in text and descriptions on the site, for example, en_US. 
+     * This is not the currency code. Currently only en_US is supported.
+     * @type {string}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    localeCode?: string | null;
+    /**
+     * Indicates Parent Item Id for this order item
+     * @type {string}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    parentItemId?: string | null;
+    /**
+     * 
+     * @type {CommerceRuntimeProduct}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    product?: CommerceRuntimeProduct;
     /**
      * 
      * @type {CommerceRuntimeAppliedLineItemProductDiscount}
@@ -2268,17 +3077,54 @@ export interface CommerceRuntimeOrderItem {
      */
     productDiscounts?: Array<CommerceRuntimeAppliedLineItemProductDiscount> | null;
     /**
+     * The location where the product is being purchased.. default is null. Products can have different prices
+     * by purchaseLocation via custom priceListResolution...
+     * @type {string}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    purchaseLocation?: string | null;
+    /**
+     * Number of products ordered.
+     * @type {number}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    quantity?: number;
+    /**
+     * Shipping amount before Discounts and adjustments
+     * @type {number}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    shippingAmountBeforeDiscountsAndAdjustments?: number | null;
+    /**
      * A discount applied to the shipping
      * @type {Array<CommerceRuntimeAppliedLineItemShippingDiscount>}
      * @memberof CommerceRuntimeOrderItem
      */
     shippingDiscounts?: Array<CommerceRuntimeAppliedLineItemShippingDiscount> | null;
     /**
-     * Custom data for a given vendor set within the commerce process.
-     * @type {object}
+     * Total price of taxes that apply to the shipping of this item.
+     * @type {number}
      * @memberof CommerceRuntimeOrderItem
      */
-    data?: object | null;
+    shippingTaxTotal?: number | null;
+    /**
+     * Total price of shipping that apply to this item.
+     * @type {number}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    shippingTotal?: number | null;
+    /**
+     * 
+     * @type {SubstituteInfo}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    substituteInfo?: SubstituteInfo;
+    /**
+     * Line item subtotal (quantity multiplied by price) before discounts.
+     * @type {number}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    subtotal?: number | null;
     /**
      * Storage for any additional/custom tax data.
      * @type {object}
@@ -2286,17 +3132,35 @@ export interface CommerceRuntimeOrderItem {
      */
     taxData?: object | null;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    auditInfo?: AdminUserAuditInfo;
-    /**
-     * Shipping amount before Discounts and adjustments
+     * Line item subtotal (quantity multiplied by price) before discounts.
      * @type {number}
      * @memberof CommerceRuntimeOrderItem
      */
-    shippingAmountBeforeDiscountsAndAdjustments?: number | null;
+    taxableTotal?: number | null;
+    /**
+     * Total price of this cart item taking into account any discounts.
+     * @type {number}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    total?: number | null;
+    /**
+     * Line item total with line item, Tax, Weighted Tax with Weighted shipping and handling costs
+     * @type {number}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    totalWithWeightedShippingAndHandling?: number | null;
+    /**
+     * Taxable Subtotal including Weighted Order amounts
+     * @type {number}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    totalWithoutWeightedShippingAndHandling?: number | null;
+    /**
+     * 
+     * @type {CommerceUnitPrice}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    unitPrice?: CommerceUnitPrice;
     /**
      * Order Level Manual Adjustment applied to this Item
      * @type {number}
@@ -2310,23 +3174,38 @@ export interface CommerceRuntimeOrderItem {
      */
     weightedOrderDiscount?: number | null;
     /**
-     * Order Level taxable sub total
+     * Order Level Duty applied to this Item
      * @type {number}
      * @memberof CommerceRuntimeOrderItem
      */
-    adjustedLineItemSubtotal?: number | null;
+    weightedOrderDuty?: number | null;
     /**
-     * Taxable Subtotal including Weighted Order amounts
+     * Order-level handling manual adjustment allocated to this item.
      * @type {number}
      * @memberof CommerceRuntimeOrderItem
      */
-    totalWithoutWeightedShippingAndHandling?: number | null;
+    weightedOrderHandlingAdjustment?: number | null;
     /**
-     * Order Level tax applied to this Item
+     * Order-level handling fee allocated to this item (e.g. flat handling fee spread across all items).
+     * This is separate from product-level handling in Mozu.CommerceRuntime.Contracts.Commerce.CommerceItem.HandlingAmount.
+     * Total handling on the shipment = HandlingAmount + WeightedOrderHandlingFee.
      * @type {number}
      * @memberof CommerceRuntimeOrderItem
      */
-    weightedOrderTax?: number | null;
+    weightedOrderHandlingFee?: number | null;
+    /**
+     * Order-level handling fee discount allocated to this item.
+     * @type {number}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    weightedOrderHandlingFeeDiscount?: number | null;
+    /**
+     * Total handling tax for this item (covers both product-level and order-level handling tax combined).
+     * On the shipment item, this is split into: HandlingTax (total) and WeightedOrderHandlingFeeTax (order-level portion only).
+     * @type {number}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    weightedOrderHandlingFeeTax?: number | null;
     /**
      * Order Level Shipping applied to this Item
      * @type {number}
@@ -2352,284 +3231,256 @@ export interface CommerceRuntimeOrderItem {
      */
     weightedOrderShippingTax?: number | null;
     /**
-     * Order Level handling fee applied to this item
+     * Order Level tax applied to this Item
      * @type {number}
      * @memberof CommerceRuntimeOrderItem
      */
-    weightedOrderHandlingFee?: number | null;
+    weightedOrderTax?: number | null;
     /**
-     * Order Level handling fee tax applied to this item
-     * @type {number}
+     * Extensible attributes for this order line.
+     * @type {Array<OrderLineAttribute>}
      * @memberof CommerceRuntimeOrderItem
      */
-    weightedOrderHandlingFeeTax?: number | null;
+    attributes?: Array<OrderLineAttribute> | null;
     /**
-     * Order Level handling fee discount applied to this item
-     * @type {number}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    weightedOrderHandlingFeeDiscount?: number | null;
-    /**
-     * Order Level Duty applied to this Item
-     * @type {number}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    weightedOrderDuty?: number | null;
-    /**
-     * Line item total with line item, Tax, Weighted Tax with Weighted shipping and handling costs
-     * @type {number}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    totalWithWeightedShippingAndHandling?: number | null;
-    /**
-     * Order level handling adjusment that applies to this item.
-     * @type {number}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    weightedOrderHandlingAdjustment?: number | null;
-    /**
-     * Track the discoutid from which the item was auto added
-     * @type {number}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    autoAddDiscountId?: number | null;
-    /**
-     * Assembly Required for this order item
-     * @type {boolean}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    isAssemblyRequired?: boolean;
-    /**
-     * List of Child Item Ids for this order item
-     * @type {Array<string>}
-     * @memberof CommerceRuntimeOrderItem
-     */
-    childItemIds?: Array<string> | null;
-    /**
-     * Indicates Parent Item Id for this order item
+     * Identifier of the originating Call-Off Order line item, if this item was released
+     * from a Call-Off Order line. Null for standard order items.
      * @type {string}
      * @memberof CommerceRuntimeOrderItem
      */
-    parentItemId?: string | null;
+    callOffOrderItemId?: string | null;
     /**
      * 
-     * @type {Array<InventoryTags>}
+     * @type {CommerceRuntimeDeliveryWindow}
      * @memberof CommerceRuntimeOrderItem
      */
-    inventoryTags?: Array<InventoryTags> | null;
+    deliveryWindow?: CommerceRuntimeDeliveryWindow;
     /**
-     * 
-     * @type {number}
+     * The destination associated with this item when used with a multi-ship checkout.
+     * @type {string}
      * @memberof CommerceRuntimeOrderItem
      */
-    lineItemAdjustment?: number | null;
+    destinationId?: string | null;
     /**
-     * 
-     * @type {SubstituteInfo}
+     * Expected Delivery Date of shipment
+     * @type {string}
      * @memberof CommerceRuntimeOrderItem
      */
-    substituteInfo?: SubstituteInfo;
-}
-/**
- * Describes a package that will be shipped to somebody
- * @export
- * @interface CommerceRuntimePackage
- */
-export interface CommerceRuntimePackage {
-    /**
-     * Code describing the shipping method.
-     * @type {string}
-     * @memberof CommerceRuntimePackage
-     */
-    shippingMethodCode?: string | null;
-    /**
-     * Name of the shipping method
-     * @type {string}
-     * @memberof CommerceRuntimePackage
-     */
-    shippingMethodName?: string | null;
-    /**
-     * ID of the related shipment
-     * @type {string}
-     * @memberof CommerceRuntimePackage
-     */
-    shipmentId?: string | null;
-    /**
-     * Tracking number of this package (to support classic use cases)
-     * @type {string}
-     * @memberof CommerceRuntimePackage
-     */
-    trackingNumber?: string | null;
-    /**
-     * Tracking number of this package
-     * @type {Array<string>}
-     * @memberof CommerceRuntimePackage
-     */
-    trackingNumbers?: Array<string> | null;
-    /**
-     * Packaging type of this package
-     * @type {string}
-     * @memberof CommerceRuntimePackage
-     */
-    packagingType?: string | null;
-    /**
-     * If there is a shipping label present for this Package, this will be set to true
-     * @type {boolean}
-     * @memberof CommerceRuntimePackage
-     */
-    hasLabel?: boolean;
-    /**
-     * 
-     * @type {CommerceRuntimePackageMeasurements}
-     * @memberof CommerceRuntimePackage
-     */
-    measurements?: CommerceRuntimePackageMeasurements;
-    /**
-     * Carrier of this package
-     * @type {string}
-     * @memberof CommerceRuntimePackage
-     */
-    carrier?: string | null;
-    /**
-     * SignatureRequired for this package
-     * @type {boolean}
-     * @memberof CommerceRuntimePackage
-     */
-    signatureRequired?: boolean | null;
-    /**
-     * Tracking number and url data for this package
-     * @type {Array<CommerceRuntimeTracking>}
-     * @memberof CommerceRuntimePackage
-     */
-    trackings?: Array<CommerceRuntimeTracking> | null;
-    /**
-     * PackingSlipItemDetails for this package
-     * @type {Array<PackingSlipItemDetail>}
-     * @memberof CommerceRuntimePackage
-     */
-    packingSlipItemDetails?: Array<PackingSlipItemDetail> | null;
-    /**
-     * PackingSlipNumber for this package
-     * @type {number}
-     * @memberof CommerceRuntimePackage
-     */
-    packingSlipNumber?: number | null;
-    /**
-     * 
-     * @type {Array<CommerceRuntimeTracking>}
-     * @memberof CommerceRuntimePackage
-     */
-    returnTrackings?: Array<CommerceRuntimeTracking> | null;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof CommerceRuntimePackage
-     */
-    returnTrackingNumbers?: Array<string> | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimePackage
-     */
-    returnCarrier?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimePackage
-     */
-    packageId?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimePackage
-     */
-    manifestId?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimePackage
-     */
-    labelFormat?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimePackage
-     */
-    integratorId?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimePackage
-     */
-    fxcbPackNotificationId?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimePackage
-     */
-    fxcbDocumentsUrl?: string | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof CommerceRuntimePackage
-     */
-    attributes?: { [key: string]: any; } | null;
-    /**
-     * ID of the fulfillment unit.
-     * @type {string}
-     * @memberof CommerceRuntimePackage
-     */
-    id?: string | null;
-    /**
-     * A human-readable identifier for this fulfillment unit.  If not set on create, will be autogenerated as a string of the form
-     *     {fulfillmentUnitType} #{next available int}
-     * @type {string}
-     * @memberof CommerceRuntimePackage
-     */
-    code?: string | null;
-    /**
-     * Status of the fulfillment unit
-     * See FulfillmentStatusConst
-     * @type {string}
-     * @memberof CommerceRuntimePackage
-     */
-    status?: string | null;
-    /**
-     * List of items in the fulfillment unit
-     * @type {Array<PackageItem>}
-     * @memberof CommerceRuntimePackage
-     */
-    items?: Array<PackageItem> | null;
-    /**
-     * Date of the pickup
-     * @type {string}
-     * @memberof CommerceRuntimePackage
-     */
-    fulfillmentDate?: string | null;
+    expectedDeliveryDate?: string | null;
     /**
      * Location code from which to obtain this item
      * @type {string}
-     * @memberof CommerceRuntimePackage
+     * @memberof CommerceRuntimeOrderItem
      */
     fulfillmentLocationCode?: string | null;
     /**
+     * Fulfillment method used to fulfill this item
+     * @type {string}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    fulfillmentMethod?: string | null;
+    /**
      * 
-     * @type {AdminUserAuditInfo}
-     * @memberof CommerceRuntimePackage
+     * @type {GiftInfo}
+     * @memberof CommerceRuntimeOrderItem
      */
-    auditInfo?: AdminUserAuditInfo;
+    giftInfo?: GiftInfo;
     /**
-     * Actions that can be taken on this fulfillment unit
-     * @type {Array<string>}
-     * @memberof CommerceRuntimePackage
+     * Unique identifier of the order line item. System-supplied and read-only.
+     * @type {string}
+     * @memberof CommerceRuntimeOrderItem
      */
-    availableActions?: Array<string> | null;
+    id?: string | null;
     /**
-     * Change messages related to the fulfillment unit.
-     * @type {Array<CommerceRuntimeChangeMessage>}
-     * @memberof CommerceRuntimePackage
+     * Flag to indicate reserve inventory in cart
+     * @type {boolean}
+     * @memberof CommerceRuntimeOrderItem
      */
-    changeMessages?: Array<CommerceRuntimeChangeMessage> | null;
+    isReservationEnabled?: boolean;
+    /**
+     * Unique identifier of the cart item that is associated with this line item. 
+     * (This is the original Cart Item ID expressed as a GUID.)
+     * @type {string}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    originalCartItemId?: string | null;
+    /**
+     * Determines if the item is using external or internal(catalog) pricing
+     * @type {string}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    priceMode?: string | null;
+    /**
+     * Requested ship date carried from the Call-Off Order line (spec COM-10941 follow-up).
+     * @type {string}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    requestedShipDate?: string | null;
+    /**
+     * 
+     * @type {ReturnRuleInfo}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    returnRuleInfo?: ReturnRuleInfo;
+    /**
+     * Code that uniquely identifies the shipping method.
+     * @type {string}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    shippingMethodCode?: string | null;
+    /**
+     * Readable name of the shipping method.
+     * @type {string}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    shippingMethodName?: string | null;
+    /**
+     * 
+     * @type {SubscriptionInfo}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    subscription?: SubscriptionInfo;
+    /**
+     * Routing suggestions
+     * @type {Array<Suggestion>}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    suggestions?: Array<Suggestion> | null;
+    /**
+     * Time-fence tolerance (days) carried from the Call-Off Order line's bound ReservationRule.
+     * @type {number}
+     * @memberof CommerceRuntimeOrderItem
+     */
+    timeFenceDays?: number | null;
+}
+/**
+ * 
+ * @export
+ * @interface CommerceRuntimeOrderItemAllOf
+ */
+export interface CommerceRuntimeOrderItemAllOf {
+    /**
+     * Extensible attributes for this order line.
+     * @type {Array<OrderLineAttribute>}
+     * @memberof CommerceRuntimeOrderItemAllOf
+     */
+    attributes?: Array<OrderLineAttribute> | null;
+    /**
+     * Identifier of the originating Call-Off Order line item, if this item was released
+     * from a Call-Off Order line. Null for standard order items.
+     * @type {string}
+     * @memberof CommerceRuntimeOrderItemAllOf
+     */
+    callOffOrderItemId?: string | null;
+    /**
+     * 
+     * @type {CommerceRuntimeDeliveryWindow}
+     * @memberof CommerceRuntimeOrderItemAllOf
+     */
+    deliveryWindow?: CommerceRuntimeDeliveryWindow;
+    /**
+     * The destination associated with this item when used with a multi-ship checkout.
+     * @type {string}
+     * @memberof CommerceRuntimeOrderItemAllOf
+     */
+    destinationId?: string | null;
+    /**
+     * Duty or Tariff for this item
+     * @type {number}
+     * @memberof CommerceRuntimeOrderItemAllOf
+     */
+    dutyAmount?: number | null;
+    /**
+     * Expected Delivery Date of shipment
+     * @type {string}
+     * @memberof CommerceRuntimeOrderItemAllOf
+     */
+    expectedDeliveryDate?: string | null;
+    /**
+     * Location code from which to obtain this item
+     * @type {string}
+     * @memberof CommerceRuntimeOrderItemAllOf
+     */
+    fulfillmentLocationCode?: string | null;
+    /**
+     * Fulfillment method used to fulfill this item
+     * @type {string}
+     * @memberof CommerceRuntimeOrderItemAllOf
+     */
+    fulfillmentMethod?: string | null;
+    /**
+     * 
+     * @type {GiftInfo}
+     * @memberof CommerceRuntimeOrderItemAllOf
+     */
+    giftInfo?: GiftInfo;
+    /**
+     * Unique identifier of the order line item. System-supplied and read-only.
+     * @type {string}
+     * @memberof CommerceRuntimeOrderItemAllOf
+     */
+    id?: string | null;
+    /**
+     * Flag to indicate reserve inventory in cart
+     * @type {boolean}
+     * @memberof CommerceRuntimeOrderItemAllOf
+     */
+    isReservationEnabled?: boolean;
+    /**
+     * Unique identifier of the cart item that is associated with this line item. 
+     * (This is the original Cart Item ID expressed as a GUID.)
+     * @type {string}
+     * @memberof CommerceRuntimeOrderItemAllOf
+     */
+    originalCartItemId?: string | null;
+    /**
+     * Determines if the item is using external or internal(catalog) pricing
+     * @type {string}
+     * @memberof CommerceRuntimeOrderItemAllOf
+     */
+    priceMode?: string | null;
+    /**
+     * Requested ship date carried from the Call-Off Order line (spec COM-10941 follow-up).
+     * @type {string}
+     * @memberof CommerceRuntimeOrderItemAllOf
+     */
+    requestedShipDate?: string | null;
+    /**
+     * 
+     * @type {ReturnRuleInfo}
+     * @memberof CommerceRuntimeOrderItemAllOf
+     */
+    returnRuleInfo?: ReturnRuleInfo;
+    /**
+     * Code that uniquely identifies the shipping method.
+     * @type {string}
+     * @memberof CommerceRuntimeOrderItemAllOf
+     */
+    shippingMethodCode?: string | null;
+    /**
+     * Readable name of the shipping method.
+     * @type {string}
+     * @memberof CommerceRuntimeOrderItemAllOf
+     */
+    shippingMethodName?: string | null;
+    /**
+     * 
+     * @type {SubscriptionInfo}
+     * @memberof CommerceRuntimeOrderItemAllOf
+     */
+    subscription?: SubscriptionInfo;
+    /**
+     * Routing suggestions
+     * @type {Array<Suggestion>}
+     * @memberof CommerceRuntimeOrderItemAllOf
+     */
+    suggestions?: Array<Suggestion> | null;
+    /**
+     * Time-fence tolerance (days) carried from the Call-Off Order line's bound ReservationRule.
+     * @type {number}
+     * @memberof CommerceRuntimeOrderItemAllOf
+     */
+    timeFenceDays?: number | null;
 }
 /**
  * Physical dimensions of the package required to ship the product and its weight.
@@ -2648,12 +3499,6 @@ export interface CommerceRuntimePackageMeasurements {
      * @type {CommerceRuntimeMeasurement}
      * @memberof CommerceRuntimePackageMeasurements
      */
-    width?: CommerceRuntimeMeasurement;
-    /**
-     * 
-     * @type {CommerceRuntimeMeasurement}
-     * @memberof CommerceRuntimePackageMeasurements
-     */
     length?: CommerceRuntimeMeasurement;
     /**
      * 
@@ -2661,6 +3506,12 @@ export interface CommerceRuntimePackageMeasurements {
      * @memberof CommerceRuntimePackageMeasurements
      */
     weight?: CommerceRuntimeMeasurement;
+    /**
+     * 
+     * @type {CommerceRuntimeMeasurement}
+     * @memberof CommerceRuntimePackageMeasurements
+     */
+    width?: CommerceRuntimeMeasurement;
 }
 /**
  * 
@@ -2694,18 +3545,6 @@ export interface CommerceRuntimePhone {
  */
 export interface CommerceRuntimePickupItem {
     /**
-     * Code of the Product to be fulfilled.
-     * @type {string}
-     * @memberof CommerceRuntimePickupItem
-     */
-    productCode?: string | null;
-    /**
-     * Quantity of the order item
-     * @type {number}
-     * @memberof CommerceRuntimePickupItem
-     */
-    quantity?: number;
-    /**
      * The type of fulfillment item
      * @type {string}
      * @memberof CommerceRuntimePickupItem
@@ -2723,6 +3562,18 @@ export interface CommerceRuntimePickupItem {
      * @memberof CommerceRuntimePickupItem
      */
     optionAttributeFQN?: string | null;
+    /**
+     * Code of the Product to be fulfilled.
+     * @type {string}
+     * @memberof CommerceRuntimePickupItem
+     */
+    productCode?: string | null;
+    /**
+     * Quantity of the order item
+     * @type {number}
+     * @memberof CommerceRuntimePickupItem
+     */
+    quantity?: number;
 }
 /**
  * The product as it appears on the order item.
@@ -2731,23 +3582,113 @@ export interface CommerceRuntimePickupItem {
  */
 export interface CommerceRuntimeProduct {
     /**
-     * Manufacturing Part Number of the product.
+     * Allocation ID associated with this product on this order.
      * @type {string}
      * @memberof CommerceRuntimeProduct
      */
-    mfgPartNumber?: string | null;
+    allocationExpiration?: string | null;
     /**
-     * Universal Product Code of the product.
-     * @type {string}
+     * Allocation ID associated with this product on this order.
+     * @type {number}
      * @memberof CommerceRuntimeProduct
      */
-    upc?: string | null;
+    allocationId?: number | null;
     /**
-     * Product Identifier specific to the store
+     * Short description of the product in the language specified by LocaleCode.
      * @type {string}
      * @memberof CommerceRuntimeProduct
      */
-    sku?: string | null;
+    description?: string | null;
+    /**
+     * Fulfillment status of the product.
+     * @type {string}
+     * @memberof CommerceRuntimeProduct
+     */
+    fulfillmentStatus?: string | null;
+    /**
+     * Goods Type
+     * @type {string}
+     * @memberof CommerceRuntimeProduct
+     */
+    goodsType?: string | null;
+    /**
+     * Indicates that this product ships by itself.
+     * @type {boolean}
+     * @memberof CommerceRuntimeProduct
+     */
+    isPackagedStandAlone?: boolean;
+    /**
+     * 
+     * @type {CommerceRuntimePackageMeasurements}
+     * @memberof CommerceRuntimeProduct
+     */
+    measurements?: CommerceRuntimePackageMeasurements;
+    /**
+     * Name of the product, this is the current value of the product's name in the language specified by LocaleCode.
+     * @type {string}
+     * @memberof CommerceRuntimeProduct
+     */
+    name?: string | null;
+    /**
+     * Merchant-created code that uniquely identifies the product.
+     * @type {string}
+     * @memberof CommerceRuntimeProduct
+     */
+    productCode?: string | null;
+    /**
+     * Reservation ID associated with this product in the bundle.
+     * @type {number}
+     * @memberof CommerceRuntimeProduct
+     */
+    productReservationId?: number | null;
+    /**
+     * 
+     * @type {ProductStock}
+     * @memberof CommerceRuntimeProduct
+     */
+    stock?: ProductStock;
+    /**
+     * Products bundled with this product (if the current product is a bundle)
+     * @type {Array<CommerceRuntimeBundledProduct>}
+     * @memberof CommerceRuntimeProduct
+     */
+    bundledProducts?: Array<CommerceRuntimeBundledProduct> | null;
+    /**
+     * Categories to which this product belongs.
+     * @type {Array<CommerceRuntimeCategory>}
+     * @memberof CommerceRuntimeProduct
+     */
+    categories?: Array<CommerceRuntimeCategory> | null;
+    /**
+     * Condition
+     * @type {string}
+     * @memberof CommerceRuntimeProduct
+     */
+    condition?: string | null;
+    /**
+     * Is the product discount restricted
+     * @type {boolean}
+     * @memberof CommerceRuntimeProduct
+     */
+    discountsRestricted?: boolean | null;
+    /**
+     * Product discount restriction end date
+     * @type {string}
+     * @memberof CommerceRuntimeProduct
+     */
+    discountsRestrictedEndDate?: string | null;
+    /**
+     * Product discount restriction start date
+     * @type {string}
+     * @memberof CommerceRuntimeProduct
+     */
+    discountsRestrictedStartDate?: string | null;
+    /**
+     * List of unique product identifiers for an item on shipment
+     * @type {Array<CommerceRuntimeFulfillmentField>}
+     * @memberof CommerceRuntimeProduct
+     */
+    fulfillmentFields?: Array<CommerceRuntimeFulfillmentField> | null;
     /**
      * Types of fulfillment that are supported for this product.
      * @type {Array<string>}
@@ -2767,54 +3708,6 @@ export interface CommerceRuntimeProduct {
      */
     imageUrl?: string | null;
     /**
-     * For configurable products, the unique identifier of the product variation that has been selected.
-     * @type {string}
-     * @memberof CommerceRuntimeProduct
-     */
-    variationProductCode?: string | null;
-    /**
-     * If the product contains configurable or stand-alone options, the list of product options that the shopper selected for this product.
-     * @type {Array<CommerceRuntimeProductOption>}
-     * @memberof CommerceRuntimeProduct
-     */
-    options?: Array<CommerceRuntimeProductOption> | null;
-    /**
-     * If the product contains properties, the list of properties that the shopper selected for this product.
-     * @type {Array<CommerceRuntimeProductProperty>}
-     * @memberof CommerceRuntimeProduct
-     */
-    properties?: Array<CommerceRuntimeProductProperty> | null;
-    /**
-     * Categories to which this product belongs.
-     * @type {Array<CommerceRuntimeCategory>}
-     * @memberof CommerceRuntimeProduct
-     */
-    categories?: Array<CommerceRuntimeCategory> | null;
-    /**
-     * 
-     * @type {CommerceRuntimeProductPrice}
-     * @memberof CommerceRuntimeProduct
-     */
-    price?: CommerceRuntimeProductPrice;
-    /**
-     * Is the product discount restricted
-     * @type {boolean}
-     * @memberof CommerceRuntimeProduct
-     */
-    discountsRestricted?: boolean | null;
-    /**
-     * Product discount restriction start date
-     * @type {string}
-     * @memberof CommerceRuntimeProduct
-     */
-    discountsRestrictedStartDate?: string | null;
-    /**
-     * Product discount restriction end date
-     * @type {string}
-     * @memberof CommerceRuntimeProduct
-     */
-    discountsRestrictedEndDate?: string | null;
-    /**
      * If true, the product is purchased or fulfilled at regular intervals, for example, a monthly billing or a subscription.
      * @type {boolean}
      * @memberof CommerceRuntimeProduct
@@ -2826,6 +3719,24 @@ export interface CommerceRuntimeProduct {
      * @memberof CommerceRuntimeProduct
      */
     isTaxable?: boolean | null;
+    /**
+     * Manufacturing Part Number of the product.
+     * @type {string}
+     * @memberof CommerceRuntimeProduct
+     */
+    mfgPartNumber?: string | null;
+    /**
+     * If the product contains configurable or stand-alone options, the list of product options that the shopper selected for this product.
+     * @type {Array<CommerceRuntimeProductOption>}
+     * @memberof CommerceRuntimeProduct
+     */
+    options?: Array<CommerceRuntimeProductOption> | null;
+    /**
+     * 
+     * @type {CommerceRuntimeProductPrice}
+     * @memberof CommerceRuntimeProduct
+     */
+    price?: CommerceRuntimeProductPrice;
     /**
      * Type of product, which can be a product with configurable options, a product with stand-alone options, or a simple product with no options.
      * @type {string}
@@ -2839,95 +3750,174 @@ export interface CommerceRuntimeProduct {
      */
     productUsage?: string | null;
     /**
+     * If the product contains properties, the list of properties that the shopper selected for this product.
+     * @type {Array<CommerceRuntimeProductProperty>}
+     * @memberof CommerceRuntimeProduct
+     */
+    properties?: Array<CommerceRuntimeProductProperty> | null;
+    /**
      * Serial Number
      * @type {string}
      * @memberof CommerceRuntimeProduct
      */
     serialNumber?: string | null;
     /**
-     * Condition
+     * Product Identifier specific to the store
      * @type {string}
      * @memberof CommerceRuntimeProduct
      */
-    condition?: string | null;
+    sku?: string | null;
+    /**
+     * Universal Product Code of the product.
+     * @type {string}
+     * @memberof CommerceRuntimeProduct
+     */
+    upc?: string | null;
+    /**
+     * For configurable products, the unique identifier of the product variation that has been selected.
+     * @type {string}
+     * @memberof CommerceRuntimeProduct
+     */
+    variationProductCode?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface CommerceRuntimeProductAllOf
+ */
+export interface CommerceRuntimeProductAllOf {
     /**
      * Products bundled with this product (if the current product is a bundle)
      * @type {Array<CommerceRuntimeBundledProduct>}
-     * @memberof CommerceRuntimeProduct
+     * @memberof CommerceRuntimeProductAllOf
      */
     bundledProducts?: Array<CommerceRuntimeBundledProduct> | null;
     /**
+     * Categories to which this product belongs.
+     * @type {Array<CommerceRuntimeCategory>}
+     * @memberof CommerceRuntimeProductAllOf
+     */
+    categories?: Array<CommerceRuntimeCategory> | null;
+    /**
+     * Condition
+     * @type {string}
+     * @memberof CommerceRuntimeProductAllOf
+     */
+    condition?: string | null;
+    /**
+     * Is the product discount restricted
+     * @type {boolean}
+     * @memberof CommerceRuntimeProductAllOf
+     */
+    discountsRestricted?: boolean | null;
+    /**
+     * Product discount restriction end date
+     * @type {string}
+     * @memberof CommerceRuntimeProductAllOf
+     */
+    discountsRestrictedEndDate?: string | null;
+    /**
+     * Product discount restriction start date
+     * @type {string}
+     * @memberof CommerceRuntimeProductAllOf
+     */
+    discountsRestrictedStartDate?: string | null;
+    /**
      * List of unique product identifiers for an item on shipment
      * @type {Array<CommerceRuntimeFulfillmentField>}
-     * @memberof CommerceRuntimeProduct
+     * @memberof CommerceRuntimeProductAllOf
      */
     fulfillmentFields?: Array<CommerceRuntimeFulfillmentField> | null;
     /**
-     * Merchant-created code that uniquely identifies the product.
-     * @type {string}
-     * @memberof CommerceRuntimeProduct
+     * Types of fulfillment that are supported for this product.
+     * @type {Array<string>}
+     * @memberof CommerceRuntimeProductAllOf
      */
-    productCode?: string | null;
+    fulfillmentTypesSupported?: Array<string> | null;
     /**
-     * Name of the product, this is the current value of the product's name in the language specified by LocaleCode.
+     * Descriptive text of the image associated with the product in the language specified by LocaleCode.
      * @type {string}
-     * @memberof CommerceRuntimeProduct
+     * @memberof CommerceRuntimeProductAllOf
      */
-    name?: string | null;
+    imageAlternateText?: string | null;
     /**
-     * Short description of the product in the language specified by LocaleCode.
+     * URL of the image that appears next to the product on the order item. Optional.
      * @type {string}
-     * @memberof CommerceRuntimeProduct
+     * @memberof CommerceRuntimeProductAllOf
      */
-    description?: string | null;
+    imageUrl?: string | null;
     /**
-     * Goods Type
-     * @type {string}
-     * @memberof CommerceRuntimeProduct
-     */
-    goodsType?: string | null;
-    /**
-     * Indicates that this product ships by itself.
+     * If true, the product is purchased or fulfilled at regular intervals, for example, a monthly billing or a subscription.
      * @type {boolean}
-     * @memberof CommerceRuntimeProduct
+     * @memberof CommerceRuntimeProductAllOf
      */
-    isPackagedStandAlone?: boolean;
+    isRecurring?: boolean | null;
+    /**
+     * If true, the product is eligible for tax.
+     * @type {boolean}
+     * @memberof CommerceRuntimeProductAllOf
+     */
+    isTaxable?: boolean | null;
+    /**
+     * Manufacturing Part Number of the product.
+     * @type {string}
+     * @memberof CommerceRuntimeProductAllOf
+     */
+    mfgPartNumber?: string | null;
+    /**
+     * If the product contains configurable or stand-alone options, the list of product options that the shopper selected for this product.
+     * @type {Array<CommerceRuntimeProductOption>}
+     * @memberof CommerceRuntimeProductAllOf
+     */
+    options?: Array<CommerceRuntimeProductOption> | null;
     /**
      * 
-     * @type {ProductStock}
-     * @memberof CommerceRuntimeProduct
+     * @type {CommerceRuntimeProductPrice}
+     * @memberof CommerceRuntimeProductAllOf
      */
-    stock?: ProductStock;
+    price?: CommerceRuntimeProductPrice;
     /**
-     * Reservation ID associated with this product in the bundle.
-     * @type {number}
-     * @memberof CommerceRuntimeProduct
-     */
-    productReservationId?: number | null;
-    /**
-     * Allocation ID associated with this product on this order.
-     * @type {number}
-     * @memberof CommerceRuntimeProduct
-     */
-    allocationId?: number | null;
-    /**
-     * Allocation ID associated with this product on this order.
+     * Type of product, which can be a product with configurable options, a product with stand-alone options, or a simple product with no options.
      * @type {string}
-     * @memberof CommerceRuntimeProduct
+     * @memberof CommerceRuntimeProductAllOf
      */
-    allocationExpiration?: string | null;
+    productType?: string | null;
     /**
-     * 
-     * @type {CommerceRuntimePackageMeasurements}
-     * @memberof CommerceRuntimeProduct
-     */
-    measurements?: CommerceRuntimePackageMeasurements;
-    /**
-     * Fulfillment status of the product.
+     * Usage of the product, primarily used to indicate a bundle in this context
      * @type {string}
-     * @memberof CommerceRuntimeProduct
+     * @memberof CommerceRuntimeProductAllOf
      */
-    fulfillmentStatus?: string | null;
+    productUsage?: string | null;
+    /**
+     * If the product contains properties, the list of properties that the shopper selected for this product.
+     * @type {Array<CommerceRuntimeProductProperty>}
+     * @memberof CommerceRuntimeProductAllOf
+     */
+    properties?: Array<CommerceRuntimeProductProperty> | null;
+    /**
+     * Serial Number
+     * @type {string}
+     * @memberof CommerceRuntimeProductAllOf
+     */
+    serialNumber?: string | null;
+    /**
+     * Product Identifier specific to the store
+     * @type {string}
+     * @memberof CommerceRuntimeProductAllOf
+     */
+    sku?: string | null;
+    /**
+     * Universal Product Code of the product.
+     * @type {string}
+     * @memberof CommerceRuntimeProductAllOf
+     */
+    upc?: string | null;
+    /**
+     * For configurable products, the unique identifier of the product variation that has been selected.
+     * @type {string}
+     * @memberof CommerceRuntimeProductAllOf
+     */
+    variationProductCode?: string | null;
 }
 /**
  * Product option for the product listed on this order item. If the product contains 
@@ -2936,24 +3926,6 @@ export interface CommerceRuntimeProduct {
  * @interface CommerceRuntimeProductOption
  */
 export interface CommerceRuntimeProductOption {
-    /**
-     * Name of the product option that appears with the order item in the language specified by LocaleCode.
-     * @type {string}
-     * @memberof CommerceRuntimeProductOption
-     */
-    name?: string | null;
-    /**
-     * Value of the product option.
-     * @type {any}
-     * @memberof CommerceRuntimeProductOption
-     */
-    value?: any | null;
-    /**
-     * The value entered by the shopper if this is an option that requires shopper input, for example, a monogram.
-     * @type {any}
-     * @memberof CommerceRuntimeProductOption
-     */
-    shopperEnteredValue?: any | null;
     /**
      * Value of the product option.
      * @type {string}
@@ -2967,11 +3939,29 @@ export interface CommerceRuntimeProductOption {
      */
     dataType?: string | null;
     /**
+     * Name of the product option that appears with the order item in the language specified by LocaleCode.
+     * @type {string}
+     * @memberof CommerceRuntimeProductOption
+     */
+    name?: string | null;
+    /**
+     * The value entered by the shopper if this is an option that requires shopper input, for example, a monogram.
+     * @type {any}
+     * @memberof CommerceRuntimeProductOption
+     */
+    shopperEnteredValue?: any | null;
+    /**
      * Value of the product option.
      * @type {string}
      * @memberof CommerceRuntimeProductOption
      */
     stringValue?: string | null;
+    /**
+     * Value of the product option.
+     * @type {any}
+     * @memberof CommerceRuntimeProductOption
+     */
+    value?: any | null;
 }
 /**
  * Price of the product with any sale and discounts applied.
@@ -2980,23 +3970,17 @@ export interface CommerceRuntimeProductOption {
  */
 export interface CommerceRuntimeProductPrice {
     /**
-     * Price of the product. This is the price that the merchant intends to sell the product if no sale price is present.
+     * Credit Value when the product happens to be a gift card or similar product
      * @type {number}
      * @memberof CommerceRuntimeProductPrice
      */
-    price?: number | null;
+    creditValue?: number | null;
     /**
-     * Current sale price of the product, which is a specific numerical amount (not a percentage off).
-     * @type {number}
+     * Indicate that External Price (TenantOverridePrice) is a Sale Price. And is used to calculate the line item discounts.
+     * @type {boolean}
      * @memberof CommerceRuntimeProductPrice
      */
-    salePrice?: number | null;
-    /**
-     * An override price applied on the product by the tenant.
-     * @type {number}
-     * @memberof CommerceRuntimeProductPrice
-     */
-    tenantOverridePrice?: number | null;
+    isOverRidePriceSalePrice?: boolean | null;
     /**
      * MSRP of product.
      * @type {number}
@@ -3004,11 +3988,11 @@ export interface CommerceRuntimeProductPrice {
      */
     msrp?: number | null;
     /**
-     * Credit Value when the product happens to be a gift card or similar product
+     * Price of the product. This is the price that the merchant intends to sell the product if no sale price is present.
      * @type {number}
      * @memberof CommerceRuntimeProductPrice
      */
-    creditValue?: number | null;
+    price?: number | null;
     /**
      * Pricelist code for the product
      * @type {string}
@@ -3026,11 +4010,17 @@ export interface CommerceRuntimeProductPrice {
      */
     priceListEntryMode?: string | null;
     /**
-     * Indicate that External Price (TenantOverridePrice) is a Sale Price. And is used to calculate the line item discounts.
-     * @type {boolean}
+     * Current sale price of the product, which is a specific numerical amount (not a percentage off).
+     * @type {number}
      * @memberof CommerceRuntimeProductPrice
      */
-    isOverRidePriceSalePrice?: boolean | null;
+    salePrice?: number | null;
+    /**
+     * An override price applied on the product by the tenant.
+     * @type {number}
+     * @memberof CommerceRuntimeProductPrice
+     */
+    tenantOverridePrice?: number | null;
 }
 /**
  * 
@@ -3049,12 +4039,6 @@ export interface CommerceRuntimeProductProperty {
      * @type {string}
      * @memberof CommerceRuntimeProductProperty
      */
-    name?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeProductProperty
-     */
     dataType?: string | null;
     /**
      * 
@@ -3062,6 +4046,12 @@ export interface CommerceRuntimeProductProperty {
      * @memberof CommerceRuntimeProductProperty
      */
     isMultiValue?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeProductProperty
+     */
+    name?: string | null;
     /**
      * 
      * @type {Array<CommerceRuntimeProductPropertyValue>}
@@ -3139,47 +4129,59 @@ export interface CommerceRuntimePurchaseOrderPaymentTerm {
  */
 export interface CommerceRuntimeShipment {
     /**
-     * ID of the shipment
-     * @type {string}
+     * 
+     * @type {FulfillmentAlternateContact}
      * @memberof CommerceRuntimeShipment
      */
-    id?: string | null;
+    alternateContact?: FulfillmentAlternateContact;
     /**
      * 
-     * @type {string}
+     * @type {Array<ShipmentAttribute>}
      * @memberof CommerceRuntimeShipment
      */
-    externalShipmentId?: string | null;
+    attributes?: Array<ShipmentAttribute> | null;
     /**
      * 
-     * @type {number}
+     * @type {CoreApiContractsAuditInfo}
      * @memberof CommerceRuntimeShipment
      */
-    number?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeShipment
-     */
-    orderId?: string | null;
+    auditInfo?: CoreApiContractsAuditInfo;
     /**
      * 
      * @type {number}
      * @memberof CommerceRuntimeShipment
      */
-    orderNumber?: number;
+    backorderCreatedDate?: number | null;
     /**
      * 
-     * @type {string}
+     * @type {Array<FulfillmentCanceledItem>}
      * @memberof CommerceRuntimeShipment
      */
-    email?: string | null;
+    canceledItems?: Array<FulfillmentCanceledItem> | null;
+    /**
+     * 
+     * @type {Array<CommerceRuntimeChangeMessage>}
+     * @memberof CommerceRuntimeShipment
+     */
+    changeMessages?: Array<CommerceRuntimeChangeMessage> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeShipment
+     */
+    cost?: number | null;
     /**
      * 
      * @type {string}
      * @memberof CommerceRuntimeShipment
      */
     currencyCode?: string | null;
+    /**
+     * 
+     * @type {CommerceRuntimeCustomer}
+     * @memberof CommerceRuntimeShipment
+     */
+    customer?: CommerceRuntimeCustomer;
     /**
      * 
      * @type {number}
@@ -3194,34 +4196,10 @@ export interface CommerceRuntimeShipment {
     readonly customerTaxId?: string | null;
     /**
      * 
-     * @type {string}
+     * @type {object}
      * @memberof CommerceRuntimeShipment
      */
-    shipmentType?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeShipment
-     */
-    shippingMethodCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeShipment
-     */
-    shippingMethodName?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeShipment
-     */
-    fulfillmentLocationCode?: string | null;
-    /**
-     * 
-     * @type {CommerceRuntimeContact}
-     * @memberof CommerceRuntimeShipment
-     */
-    origin?: CommerceRuntimeContact;
+    data?: object | null;
     /**
      * 
      * @type {CommerceRuntimeDestination}
@@ -3230,76 +4208,40 @@ export interface CommerceRuntimeShipment {
     destination?: CommerceRuntimeDestination;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof CommerceRuntimeShipment
      */
-    shipmentStatus?: string | null;
-    /**
-     * 
-     * @type {CommerceRuntimeShipmentStatusReason}
-     * @memberof CommerceRuntimeShipment
-     */
-    shipmentStatusReason?: CommerceRuntimeShipmentStatusReason;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof CommerceRuntimeShipment
-     */
-    transferShipmentNumbers?: Array<number> | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeShipment
-     */
-    isTransfer?: boolean | null;
+    dutyAdjustment?: number;
     /**
      * 
      * @type {number}
      * @memberof CommerceRuntimeShipment
      */
-    originalShipmentNumber?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeShipment
-     */
-    parentCheckoutNumber?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeShipment
-     */
-    parentShipmentNumber?: number | null;
+    dutyTotal?: number;
     /**
      * 
      * @type {string}
      * @memberof CommerceRuntimeShipment
      */
-    fulfillmentStatus?: string | null;
+    email?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CommerceRuntimeShipment
      */
-    workflowProcessId?: string | null;
+    expectedDeliveryDate?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CommerceRuntimeShipment
      */
-    workflowProcessContainerId?: string | null;
+    externalOrderId?: string | null;
     /**
      * 
-     * @type {CommerceRuntimeWorkflowState}
+     * @type {string}
      * @memberof CommerceRuntimeShipment
      */
-    workflowState?: CommerceRuntimeWorkflowState;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeShipment
-     */
-    backorderCreatedDate?: number | null;
+    externalShipmentId?: string | null;
     /**
      * 
      * @type {string}
@@ -3311,127 +4253,26 @@ export interface CommerceRuntimeShipment {
      * @type {string}
      * @memberof CommerceRuntimeShipment
      */
+    fulfillmentLocationCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeShipment
+     */
+    fulfillmentStatus?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeShipment
+     */
     futureDate?: string | null;
     /**
-     * 
+     * Identifier of the order-level shipping group (`ShippingGrouping.Id`) whose items are fulfilled
+     * by this shipment.  Distinct from the internal routing group key stored on the domain entity.
      * @type {string}
      * @memberof CommerceRuntimeShipment
      */
-    orderSubmitDate?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeShipment
-     */
-    pickStatus?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeShipment
-     */
-    pickType?: string | null;
-    /**
-     * 
-     * @type {Array<CommerceRuntimeChangeMessage>}
-     * @memberof CommerceRuntimeShipment
-     */
-    changeMessages?: Array<CommerceRuntimeChangeMessage> | null;
-    /**
-     * 
-     * @type {Array<CommerceRuntimePackage>}
-     * @memberof CommerceRuntimeShipment
-     */
-    packages?: Array<CommerceRuntimePackage> | null;
-    /**
-     * 
-     * @type {Array<ShipmentItem>}
-     * @memberof CommerceRuntimeShipment
-     */
-    items?: Array<ShipmentItem> | null;
-    /**
-     * 
-     * @type {Array<FulfillmentCanceledItem>}
-     * @memberof CommerceRuntimeShipment
-     */
-    canceledItems?: Array<FulfillmentCanceledItem> | null;
-    /**
-     * 
-     * @type {object}
-     * @memberof CommerceRuntimeShipment
-     */
-    data?: object | null;
-    /**
-     * 
-     * @type {object}
-     * @memberof CommerceRuntimeShipment
-     */
-    taxData?: object | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof CommerceRuntimeShipment
-     */
-    auditInfo?: AdminUserAuditInfo;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeShipment
-     */
-    shipmentAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeShipment
-     */
-    lineItemSubtotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeShipment
-     */
-    lineItemTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeShipment
-     */
-    lineItemTaxTotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeShipment
-     */
-    lineItemTotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeShipment
-     */
-    shippingAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeShipment
-     */
-    shippingSubtotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeShipment
-     */
-    shippingTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeShipment
-     */
-    shippingTaxTotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeShipment
-     */
-    shippingTotal?: number;
+    groupId?: string | null;
     /**
      * 
      * @type {number}
@@ -3464,34 +4305,16 @@ export interface CommerceRuntimeShipment {
     handlingTotal?: number;
     /**
      * 
-     * @type {number}
-     * @memberof CommerceRuntimeShipment
-     */
-    dutyAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeShipment
-     */
-    dutyTotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeShipment
-     */
-    total?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeShipment
-     */
-    cost?: number | null;
-    /**
-     * 
      * @type {string}
      * @memberof CommerceRuntimeShipment
      */
-    externalOrderId?: string | null;
+    holdReleaseDate?: string | null;
+    /**
+     * ID of the shipment
+     * @type {string}
+     * @memberof CommerceRuntimeShipment
+     */
+    id?: string | null;
     /**
      * 
      * @type {boolean}
@@ -3509,7 +4332,103 @@ export interface CommerceRuntimeShipment {
      * @type {boolean}
      * @memberof CommerceRuntimeShipment
      */
-    readyToCapture?: boolean;
+    isTransfer?: boolean | null;
+    /**
+     * 
+     * @type {Array<ShipmentItem>}
+     * @memberof CommerceRuntimeShipment
+     */
+    items?: Array<ShipmentItem> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeShipment
+     */
+    lineItemSubtotal?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeShipment
+     */
+    lineItemTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeShipment
+     */
+    lineItemTaxTotal?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeShipment
+     */
+    lineItemTotal?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeShipment
+     */
+    number?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeShipment
+     */
+    orderId?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeShipment
+     */
+    orderNumber?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeShipment
+     */
+    orderSubmitDate?: string | null;
+    /**
+     * 
+     * @type {CommerceRuntimeContact}
+     * @memberof CommerceRuntimeShipment
+     */
+    origin?: CommerceRuntimeContact;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeShipment
+     */
+    originalShipmentNumber?: number | null;
+    /**
+     * 
+     * @type {Array<SubscriptionRuntimePackage>}
+     * @memberof CommerceRuntimeShipment
+     */
+    packages?: Array<SubscriptionRuntimePackage> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeShipment
+     */
+    parentCheckoutNumber?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeShipment
+     */
+    parentShipmentNumber?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeShipment
+     */
+    pickStatus?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeShipment
+     */
+    pickType?: string | null;
     /**
      * 
      * @type {object}
@@ -3518,16 +4437,23 @@ export interface CommerceRuntimeShipment {
     pickupInfo?: object | null;
     /**
      * 
-     * @type {FulfillmentShopperNotes}
+     * @type {boolean}
      * @memberof CommerceRuntimeShipment
      */
-    shopperNotes?: FulfillmentShopperNotes;
+    readyToCapture?: boolean;
+    /**
+     * Requested ship date, carried from the originating OrderItem (Call-Off release, spec
+     * COM-10941 follow-up). Null for shipments not tied to a Call-Off Order line.
+     * @type {string}
+     * @memberof CommerceRuntimeShipment
+     */
+    requestedShipDate?: string | null;
     /**
      * 
-     * @type {CommerceRuntimeCustomer}
+     * @type {number}
      * @memberof CommerceRuntimeShipment
      */
-    customer?: CommerceRuntimeCustomer;
+    shipmentAdjustment?: number;
     /**
      * 
      * @type {Array<CommerceRuntimeShipmentNote>}
@@ -3536,10 +4462,70 @@ export interface CommerceRuntimeShipment {
     shipmentNotes?: Array<CommerceRuntimeShipmentNote> | null;
     /**
      * 
-     * @type {FulfillmentAlternateContact}
+     * @type {string}
      * @memberof CommerceRuntimeShipment
      */
-    alternateContact?: FulfillmentAlternateContact;
+    shipmentStatus?: string | null;
+    /**
+     * 
+     * @type {CommerceRuntimeShipmentStatusReason}
+     * @memberof CommerceRuntimeShipment
+     */
+    shipmentStatusReason?: CommerceRuntimeShipmentStatusReason;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeShipment
+     */
+    shipmentType?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeShipment
+     */
+    shippingAdjustment?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeShipment
+     */
+    shippingMethodCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeShipment
+     */
+    shippingMethodName?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeShipment
+     */
+    shippingSubtotal?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeShipment
+     */
+    shippingTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeShipment
+     */
+    shippingTaxTotal?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeShipment
+     */
+    shippingTotal?: number;
+    /**
+     * 
+     * @type {FulfillmentShopperNotes}
+     * @memberof CommerceRuntimeShipment
+     */
+    shopperNotes?: FulfillmentShopperNotes;
     /**
      * 
      * @type {Array<CommerceRuntimeSubstitutedItem>}
@@ -3548,16 +4534,40 @@ export interface CommerceRuntimeShipment {
     substitutedItems?: Array<CommerceRuntimeSubstitutedItem> | null;
     /**
      * 
-     * @type {string}
+     * @type {object}
      * @memberof CommerceRuntimeShipment
      */
-    expectedDeliveryDate?: string | null;
+    taxData?: object | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeShipment
+     */
+    total?: number;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof CommerceRuntimeShipment
+     */
+    transferShipmentNumbers?: Array<number> | null;
     /**
      * 
      * @type {string}
      * @memberof CommerceRuntimeShipment
      */
-    holdReleaseDate?: string | null;
+    workflowProcessContainerId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeShipment
+     */
+    workflowProcessId?: string | null;
+    /**
+     * 
+     * @type {CommerceRuntimeWorkflowState}
+     * @memberof CommerceRuntimeShipment
+     */
+    workflowState?: CommerceRuntimeWorkflowState;
 }
 /**
  * 
@@ -3573,10 +4583,10 @@ export interface CommerceRuntimeShipmentNote {
     attributes?: { [key: string]: any; } | null;
     /**
      * 
-     * @type {AdminUserAuditInfo}
+     * @type {CoreApiContractsAuditInfo}
      * @memberof CommerceRuntimeShipmentNote
      */
-    auditInfo?: AdminUserAuditInfo;
+    auditInfo?: CoreApiContractsAuditInfo;
     /**
      * 
      * @type {string}
@@ -3613,13 +4623,13 @@ export interface CommerceRuntimeShipmentStatusReason {
      * @type {string}
      * @memberof CommerceRuntimeShipmentStatusReason
      */
-    reasonCode?: string | null;
+    moreInfo?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CommerceRuntimeShipmentStatusReason
      */
-    moreInfo?: string | null;
+    reasonCode?: string | null;
 }
 /**
  * 
@@ -3627,6 +4637,12 @@ export interface CommerceRuntimeShipmentStatusReason {
  * @interface CommerceRuntimeShippingItemRate
  */
 export interface CommerceRuntimeShippingItemRate {
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeShippingItemRate
+     */
+    amount?: number | null;
     /**
      * 
      * @type {string}
@@ -3639,12 +4655,6 @@ export interface CommerceRuntimeShippingItemRate {
      * @memberof CommerceRuntimeShippingItemRate
      */
     quantity?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeShippingItemRate
-     */
-    amount?: number | null;
 }
 /**
  * How much the customer and merchant pay for shipping based on the current shipping rate. 
@@ -3655,11 +4665,47 @@ export interface CommerceRuntimeShippingItemRate {
  */
 export interface CommerceRuntimeShippingRate {
     /**
+     * ISO currency code such as US dollars. Currently, only USD is supported.
+     * @type {string}
+     * @memberof CommerceRuntimeShippingRate
+     */
+    currencyCode?: string | null;
+    /**
+     * How much the customer pays for shipping which includes any shipping discounts that the merchant offers.
+     * @type {number}
+     * @memberof CommerceRuntimeShippingRate
+     */
+    price?: number | null;
+    /**
+     * Custom data returned by the shipping service.
+     * @type {object}
+     * @memberof CommerceRuntimeShippingRate
+     */
+    data?: object | null;
+    /**
      * Fulfillment method of the shipping rate. eg) Ship or Delivery
      * @type {string}
      * @memberof CommerceRuntimeShippingRate
      */
     fulfillmentMethod?: string | null;
+    /**
+     * If true, the shipping rate is valid.
+     * @type {boolean}
+     * @memberof CommerceRuntimeShippingRate
+     */
+    isValid?: boolean | null;
+    /**
+     * Messages and detail about why the shipping rate may be invalid.
+     * @type {Array<string>}
+     * @memberof CommerceRuntimeShippingRate
+     */
+    messages?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<CommerceRuntimeShippingItemRate>}
+     * @memberof CommerceRuntimeShippingRate
+     */
+    shippingItemRates?: Array<CommerceRuntimeShippingItemRate> | null;
     /**
      * Code that uniquely identifies the selected shipping method.
      * @type {string}
@@ -3678,42 +4724,61 @@ export interface CommerceRuntimeShippingRate {
      * @memberof CommerceRuntimeShippingRate
      */
     shippingZoneCode?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface CommerceRuntimeShippingRateAllOf
+ */
+export interface CommerceRuntimeShippingRateAllOf {
+    /**
+     * Custom data returned by the shipping service.
+     * @type {object}
+     * @memberof CommerceRuntimeShippingRateAllOf
+     */
+    data?: object | null;
+    /**
+     * Fulfillment method of the shipping rate. eg) Ship or Delivery
+     * @type {string}
+     * @memberof CommerceRuntimeShippingRateAllOf
+     */
+    fulfillmentMethod?: string | null;
     /**
      * If true, the shipping rate is valid.
      * @type {boolean}
-     * @memberof CommerceRuntimeShippingRate
+     * @memberof CommerceRuntimeShippingRateAllOf
      */
     isValid?: boolean | null;
     /**
      * Messages and detail about why the shipping rate may be invalid.
      * @type {Array<string>}
-     * @memberof CommerceRuntimeShippingRate
+     * @memberof CommerceRuntimeShippingRateAllOf
      */
     messages?: Array<string> | null;
     /**
-     * Custom data returned by the shipping service.
-     * @type {object}
-     * @memberof CommerceRuntimeShippingRate
-     */
-    data?: object | null;
-    /**
      * 
      * @type {Array<CommerceRuntimeShippingItemRate>}
-     * @memberof CommerceRuntimeShippingRate
+     * @memberof CommerceRuntimeShippingRateAllOf
      */
     shippingItemRates?: Array<CommerceRuntimeShippingItemRate> | null;
     /**
-     * ISO currency code such as US dollars. Currently, only USD is supported.
+     * Code that uniquely identifies the selected shipping method.
      * @type {string}
-     * @memberof CommerceRuntimeShippingRate
+     * @memberof CommerceRuntimeShippingRateAllOf
      */
-    currencyCode?: string | null;
+    shippingMethodCode?: string | null;
     /**
-     * How much the customer pays for shipping which includes any shipping discounts that the merchant offers.
-     * @type {number}
-     * @memberof CommerceRuntimeShippingRate
+     * Shipping Method Name
+     * @type {string}
+     * @memberof CommerceRuntimeShippingRateAllOf
      */
-    price?: number | null;
+    shippingMethodName?: string | null;
+    /**
+     * The shipping zone to which this rate applies.
+     * @type {string}
+     * @memberof CommerceRuntimeShippingRateAllOf
+     */
+    shippingZoneCode?: string | null;
 }
 /**
  * Notes that the shopper has added to this order, for example, a gift message or other comments.
@@ -3721,12 +4786,6 @@ export interface CommerceRuntimeShippingRate {
  * @interface CommerceRuntimeShopperNotes
  */
 export interface CommerceRuntimeShopperNotes {
-    /**
-     * Gift message associated with this order.
-     * @type {string}
-     * @memberof CommerceRuntimeShopperNotes
-     */
-    giftMessage?: string | null;
     /**
      * Comments associated with this order.
      * @type {string}
@@ -3739,6 +4798,12 @@ export interface CommerceRuntimeShopperNotes {
      * @memberof CommerceRuntimeShopperNotes
      */
     deliveryInstructions?: string | null;
+    /**
+     * Gift message associated with this order.
+     * @type {string}
+     * @memberof CommerceRuntimeShopperNotes
+     */
+    giftMessage?: string | null;
 }
 /**
  * 
@@ -4102,6 +5167,12 @@ export interface CommerceRuntimeSubstitutedItem {
     serialNumber?: string | null;
     /**
      * 
+     * @type {Array<FulfillmentServiceShipmentItemAttribute>}
+     * @memberof CommerceRuntimeSubstitutedItem
+     */
+    shipmentItemAttributes?: Array<FulfillmentServiceShipmentItemAttribute> | null;
+    /**
+     * 
      * @type {number}
      * @memberof CommerceRuntimeSubstitutedItem
      */
@@ -4124,6 +5195,12 @@ export interface CommerceRuntimeSubstitutedItem {
      * @memberof CommerceRuntimeSubstitutedItem
      */
     sku?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeSubstitutedItem
+     */
+    stockValidationStatus?: string | null;
     /**
      * 
      * @type {FulfillmentServiceSubstituteInfo}
@@ -4183,6 +5260,12 @@ export interface CommerceRuntimeSubstitutedItem {
      * @type {number}
      * @memberof CommerceRuntimeSubstitutedItem
      */
+    timeFenceDays?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeSubstitutedItem
+     */
     transferQuantity?: number | null;
     /**
      * 
@@ -4202,6 +5285,12 @@ export interface CommerceRuntimeSubstitutedItem {
      * @memberof CommerceRuntimeSubstitutedItem
      */
     upc?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeSubstitutedItem
+     */
+    validatedQuantity?: number | null;
     /**
      * 
      * @type {string}
@@ -4244,6 +5333,24 @@ export interface CommerceRuntimeSubstitutedItem {
      * @memberof CommerceRuntimeSubstitutedItem
      */
     weightedLineItemTaxAdjustment?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeSubstitutedItem
+     */
+    weightedOrderHandlingFee?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeSubstitutedItem
+     */
+    weightedOrderHandlingFeeDiscount?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeSubstitutedItem
+     */
+    weightedOrderHandlingFeeTax?: number | null;
     /**
      * 
      * @type {number}
@@ -4362,16 +5469,10 @@ export interface CommerceRuntimeThresholdMessage {
     message?: string | null;
     /**
      * 
-     * @type {number}
-     * @memberof CommerceRuntimeThresholdMessage
-     */
-    thresholdValue?: number;
-    /**
-     * 
      * @type {boolean}
      * @memberof CommerceRuntimeThresholdMessage
      */
-    showOnCheckout?: boolean;
+    requiresCouponCode?: boolean;
     /**
      * 
      * @type {boolean}
@@ -4383,7 +5484,13 @@ export interface CommerceRuntimeThresholdMessage {
      * @type {boolean}
      * @memberof CommerceRuntimeThresholdMessage
      */
-    requiresCouponCode?: boolean;
+    showOnCheckout?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommerceRuntimeThresholdMessage
+     */
+    thresholdValue?: number;
 }
 /**
  * 
@@ -4424,10 +5531,10 @@ export interface CommerceRuntimeWorkflowState {
     attributes?: { [key: string]: any; } | null;
     /**
      * 
-     * @type {AdminUserAuditInfo}
+     * @type {CoreApiContractsAuditInfo}
      * @memberof CommerceRuntimeWorkflowState
      */
-    auditInfo?: AdminUserAuditInfo;
+    auditInfo?: CoreApiContractsAuditInfo;
     /**
      * 
      * @type {string}
@@ -4472,17 +5579,73 @@ export interface CommerceUnitPrice {
      */
     listAmount?: number | null;
     /**
-     * Sale amount indicated on the product.
-     * @type {number}
-     * @memberof CommerceUnitPrice
-     */
-    saleAmount?: number | null;
-    /**
      * Amount as manually overridden by the Merchant
      * @type {number}
      * @memberof CommerceUnitPrice
      */
     overrideAmount?: number | null;
+    /**
+     * Sale amount indicated on the product.
+     * @type {number}
+     * @memberof CommerceUnitPrice
+     */
+    saleAmount?: number | null;
+}
+/**
+ * 
+ * @export
+ * @interface CoreApiContractsAuditInfo
+ */
+export interface CoreApiContractsAuditInfo {
+    /**
+     * 
+     * @type {string}
+     * @memberof CoreApiContractsAuditInfo
+     */
+    createBy?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CoreApiContractsAuditInfo
+     */
+    createDate?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CoreApiContractsAuditInfo
+     */
+    updateBy?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CoreApiContractsAuditInfo
+     */
+    updateDate?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface CreditHoldReason
+ */
+export interface CreditHoldReason {
+    /**
+     * 
+     * @type {string}
+     * @memberof CreditHoldReason
+     */
+    description?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreditHoldReason
+     */
+    moreInfo?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreditHoldReason
+     */
+    reasonCode?: string | null;
 }
 /**
  * 
@@ -4491,11 +5654,23 @@ export interface CommerceUnitPrice {
  */
 export interface DigitalPackage {
     /**
-     * ID of the fulfillment unit.
-     * @type {string}
+     * 
+     * @type {CoreApiContractsAuditInfo}
      * @memberof DigitalPackage
      */
-    id?: string | null;
+    auditInfo?: CoreApiContractsAuditInfo;
+    /**
+     * Actions that can be taken on this fulfillment unit
+     * @type {Array<string>}
+     * @memberof DigitalPackage
+     */
+    availableActions?: Array<string> | null;
+    /**
+     * Change messages related to the fulfillment unit.
+     * @type {Array<CommerceRuntimeChangeMessage>}
+     * @memberof DigitalPackage
+     */
+    changeMessages?: Array<CommerceRuntimeChangeMessage> | null;
     /**
      * A human-readable identifier for this fulfillment unit.  If not set on create, will be autogenerated as a string of the form
      *     {fulfillmentUnitType} #{next available int}
@@ -4503,19 +5678,6 @@ export interface DigitalPackage {
      * @memberof DigitalPackage
      */
     code?: string | null;
-    /**
-     * Status of the fulfillment unit
-     * See FulfillmentStatusConst
-     * @type {string}
-     * @memberof DigitalPackage
-     */
-    status?: string | null;
-    /**
-     * List of items in the fulfillment unit
-     * @type {Array<DigitalPackageItem>}
-     * @memberof DigitalPackage
-     */
-    items?: Array<DigitalPackageItem> | null;
     /**
      * Date of the pickup
      * @type {string}
@@ -4529,23 +5691,24 @@ export interface DigitalPackage {
      */
     fulfillmentLocationCode?: string | null;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
+     * ID of the fulfillment unit.
+     * @type {string}
      * @memberof DigitalPackage
      */
-    auditInfo?: AdminUserAuditInfo;
+    id?: string | null;
     /**
-     * Actions that can be taken on this fulfillment unit
-     * @type {Array<string>}
+     * List of items in the fulfillment unit
+     * @type {Array<DigitalPackageItem>}
      * @memberof DigitalPackage
      */
-    availableActions?: Array<string> | null;
+    items?: Array<DigitalPackageItem> | null;
     /**
-     * Change messages related to the fulfillment unit.
-     * @type {Array<CommerceRuntimeChangeMessage>}
+     * Status of the fulfillment unit
+     * See FulfillmentStatusConst
+     * @type {string}
      * @memberof DigitalPackage
      */
-    changeMessages?: Array<CommerceRuntimeChangeMessage> | null;
+    status?: string | null;
 }
 /**
  * 
@@ -4553,24 +5716,6 @@ export interface DigitalPackage {
  * @interface DigitalPackageItem
  */
 export interface DigitalPackageItem {
-    /**
-     * 
-     * @type {string}
-     * @memberof DigitalPackageItem
-     */
-    giftCardCode?: string | null;
-    /**
-     * Code of the Product to be fulfilled.
-     * @type {string}
-     * @memberof DigitalPackageItem
-     */
-    productCode?: string | null;
-    /**
-     * Quantity of the order item
-     * @type {number}
-     * @memberof DigitalPackageItem
-     */
-    quantity?: number;
     /**
      * The type of fulfillment item
      * @type {string}
@@ -4589,6 +5734,159 @@ export interface DigitalPackageItem {
      * @memberof DigitalPackageItem
      */
     optionAttributeFQN?: string | null;
+    /**
+     * Code of the Product to be fulfilled.
+     * @type {string}
+     * @memberof DigitalPackageItem
+     */
+    productCode?: string | null;
+    /**
+     * Quantity of the order item
+     * @type {number}
+     * @memberof DigitalPackageItem
+     */
+    quantity?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DigitalPackageItem
+     */
+    giftCardCode?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface DigitalPackageItemAllOf
+ */
+export interface DigitalPackageItemAllOf {
+    /**
+     * 
+     * @type {string}
+     * @memberof DigitalPackageItemAllOf
+     */
+    giftCardCode?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface EmailGatewayGiftCard
+ */
+export interface EmailGatewayGiftCard {
+    /**
+     * 
+     * @type {number}
+     * @memberof EmailGatewayGiftCard
+     */
+    amount?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailGatewayGiftCard
+     */
+    cardNumber?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailGatewayGiftCard
+     */
+    cardPin?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailGatewayGiftCard
+     */
+    currencyCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailGatewayGiftCard
+     */
+    id?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailGatewayGiftCard
+     */
+    isRefund?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailGatewayGiftCard
+     */
+    orderId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailGatewayGiftCard
+     */
+    orderItemId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailGatewayGiftCard
+     */
+    paymentId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailGatewayGiftCard
+     */
+    returnId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailGatewayGiftCard
+     */
+    shipmentId?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface EmailGatewayGiftCardAllOf
+ */
+export interface EmailGatewayGiftCardAllOf {
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailGatewayGiftCardAllOf
+     */
+    cardPin?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailGatewayGiftCardAllOf
+     */
+    isRefund?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailGatewayGiftCardAllOf
+     */
+    orderId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailGatewayGiftCardAllOf
+     */
+    orderItemId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailGatewayGiftCardAllOf
+     */
+    paymentId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailGatewayGiftCardAllOf
+     */
+    returnId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailGatewayGiftCardAllOf
+     */
+    shipmentId?: string | null;
 }
 /**
  * 
@@ -4608,6 +5906,41 @@ export interface ExtendedProperty {
      * @memberof ExtendedProperty
      */
     value?: string | null;
+}
+/**
+ * Structured payment token for external (non-Mozu) payment processors.
+ * 
+ * Distinct from legacy PaymentToken (Apple Pay / PayPal).
+ * 
+ * Used in COM-10873 externally tokenized payments feature.
+ * 
+ * Validation rules:
+ * - All three fields (PaymentServiceTokenId, Type, Provider) are required
+ * - Type must match BillingInfo.PaymentType (case-insensitive)
+ * - Feature gate (externalTokenizationEnabled) must be true
+ * @export
+ * @interface ExternalPaymentToken
+ */
+export interface ExternalPaymentToken {
+    /**
+     * Actual token value from the external payment provider.
+     * @type {string}
+     * @memberof ExternalPaymentToken
+     */
+    paymentServiceTokenId?: string | null;
+    /**
+     * External token provider identifier (e.g., "Stripe", "Square", "PayPal").
+     * @type {string}
+     * @memberof ExternalPaymentToken
+     */
+    provider?: string | null;
+    /**
+     * Payment method type (e.g., "CreditCard", "PayPal", "ApplePay").
+     * Must match BillingInfo.PaymentType exactly (case-insensitive).
+     * @type {string}
+     * @memberof ExternalPaymentToken
+     */
+    type?: string | null;
 }
 /**
  * 
@@ -4635,6 +5968,12 @@ export interface Frequency {
  */
 export interface FulfillmentAlternateContact {
     /**
+     * Email Address of alternate contact during order process
+     * @type {string}
+     * @memberof FulfillmentAlternateContact
+     */
+    email?: string | null;
+    /**
      * First Name of alternate contact during order process
      * @type {string}
      * @memberof FulfillmentAlternateContact
@@ -4646,12 +5985,6 @@ export interface FulfillmentAlternateContact {
      * @memberof FulfillmentAlternateContact
      */
     lastNameOrSurname?: string | null;
-    /**
-     * Email Address of alternate contact during order process
-     * @type {string}
-     * @memberof FulfillmentAlternateContact
-     */
-    email?: string | null;
     /**
      * Phone Number of alternate contact during order process
      * @type {string}
@@ -4670,61 +6003,73 @@ export interface FulfillmentCanceledItem {
      * @type {number}
      * @memberof FulfillmentCanceledItem
      */
-    originalQuantity?: number | null;
+    actualPrice?: number;
     /**
      * 
-     * @type {CommerceRuntimeCanceledReason}
+     * @type {boolean}
      * @memberof FulfillmentCanceledItem
      */
-    canceledReason?: CommerceRuntimeCanceledReason;
+    allowsSubstitution?: boolean | null;
     /**
      * 
-     * @type {AdminUserAuditInfo}
+     * @type {CoreApiContractsAuditInfo}
      * @memberof FulfillmentCanceledItem
      */
-    auditInfo?: AdminUserAuditInfo;
+    auditInfo?: CoreApiContractsAuditInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentCanceledItem
+     */
+    backorderReleaseDate?: string | null;
+    /**
+     * 
+     * @type {BundleInfo}
+     * @memberof FulfillmentCanceledItem
+     */
+    bundleInfo?: BundleInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentCanceledItem
+     */
+    cartItemId?: string | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof FulfillmentCanceledItem
+     */
+    childItemIds?: Array<string> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentCanceledItem
+     */
+    condition?: string | null;
+    /**
+     * 
+     * @type {object}
+     * @memberof FulfillmentCanceledItem
+     */
+    data?: object | null;
     /**
      * 
      * @type {number}
      * @memberof FulfillmentCanceledItem
      */
-    lineId?: number;
+    duty?: number;
     /**
      * 
      * @type {string}
      * @memberof FulfillmentCanceledItem
      */
-    originalOrderItemId?: string | null;
+    expectedDeliveryDate?: string | null;
     /**
      * 
-     * @type {string}
+     * @type {Array<CommerceRuntimeFulfillmentField>}
      * @memberof FulfillmentCanceledItem
      */
-    parentId?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof FulfillmentCanceledItem
-     */
-    productCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof FulfillmentCanceledItem
-     */
-    variationProductCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof FulfillmentCanceledItem
-     */
-    optionAttributeFQN?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof FulfillmentCanceledItem
-     */
-    name?: string | null;
+    fulfillmentFields?: Array<CommerceRuntimeFulfillmentField> | null;
     /**
      * 
      * @type {string}
@@ -4733,10 +6078,78 @@ export interface FulfillmentCanceledItem {
     fulfillmentLocationCode?: string | null;
     /**
      * 
+     * @type {Array<CommerceRuntimeGiftCard>}
+     * @memberof FulfillmentCanceledItem
+     */
+    giftCards?: Array<CommerceRuntimeGiftCard> | null;
+    /**
+     * Gift message for item
+     * @type {string}
+     * @memberof FulfillmentCanceledItem
+     */
+    giftMessage?: string | null;
+    /**
+     * Total handling amount for this item, combining both product-level and order-level handling fees.
+     * To get the product-level handling portion: Handling - WeightedOrderHandlingFee.
+     * @type {number}
+     * @memberof FulfillmentCanceledItem
+     */
+    handling?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentCanceledItem
+     */
+    handlingDiscount?: number;
+    /**
+     * Total handling tax for this item, combining both product-level and order-level handling tax.
+     * To get the product-level handling tax: HandlingTax - WeightedOrderHandlingFeeTax.
+     * @type {number}
+     * @memberof FulfillmentCanceledItem
+     */
+    handlingTax?: number;
+    /**
+     * 
      * @type {string}
      * @memberof FulfillmentCanceledItem
      */
     imageUrl?: string | null;
+    /**
+     * 
+     * @type {Array<InventoryTags>}
+     * @memberof FulfillmentCanceledItem
+     */
+    inventoryTags?: Array<InventoryTags> | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentCanceledItem
+     */
+    isAssemblyRequired?: boolean | null;
+    /**
+     * Indicate item is gift or not
+     * @type {boolean}
+     * @memberof FulfillmentCanceledItem
+     */
+    isGift?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentCanceledItem
+     */
+    isPackagedStandAlone?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentCanceledItem
+     */
+    isReservedInventory?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentCanceledItem
+     */
+    isSubstitutable?: boolean | null;
     /**
      * 
      * @type {boolean}
@@ -4748,31 +6161,34 @@ export interface FulfillmentCanceledItem {
      * @type {number}
      * @memberof FulfillmentCanceledItem
      */
-    quantity?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof FulfillmentCanceledItem
-     */
-    unitPrice?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof FulfillmentCanceledItem
-     */
-    actualPrice?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof FulfillmentCanceledItem
-     */
-    overridePrice?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof FulfillmentCanceledItem
-     */
     itemDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentCanceledItem
+     */
+    itemTax?: number;
+    /**
+     * Extensible attributes for this shipment line.
+     * Named `LineAttributes` rather than `Attributes` because
+     * `Attributes` is already a System.Collections.Generic.Dictionary`2 of
+     * product attributes on Mozu.CommerceRuntime.Contracts.Fulfillment.ShipmentItem.
+     * @type {Array<ShipmentLineAttribute>}
+     * @memberof FulfillmentCanceledItem
+     */
+    lineAttributes?: Array<ShipmentLineAttribute> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentCanceledItem
+     */
+    lineId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentCanceledItem
+     */
+    lineItemAdjustment?: number | null;
     /**
      * 
      * @type {number}
@@ -4781,10 +6197,118 @@ export interface FulfillmentCanceledItem {
     lineItemCost?: number;
     /**
      * 
+     * @type {string}
+     * @memberof FulfillmentCanceledItem
+     */
+    locatorName?: string | null;
+    /**
+     * 
+     * @type {CommerceRuntimePackageMeasurements}
+     * @memberof FulfillmentCanceledItem
+     */
+    measurements?: CommerceRuntimePackageMeasurements;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentCanceledItem
+     */
+    name?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentCanceledItem
+     */
+    optionAttributeFQN?: string | null;
+    /**
+     * 
+     * @type {Array<CommerceRuntimeProductOption>}
+     * @memberof FulfillmentCanceledItem
+     */
+    options?: Array<CommerceRuntimeProductOption> | null;
+    /**
+     * 
      * @type {number}
      * @memberof FulfillmentCanceledItem
      */
-    itemTax?: number;
+    originalLineId?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentCanceledItem
+     */
+    originalOrderItemId?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentCanceledItem
+     */
+    originalQuantity?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentCanceledItem
+     */
+    overridePrice?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentCanceledItem
+     */
+    parentId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentCanceledItem
+     */
+    parentItemId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentCanceledItem
+     */
+    partNumber?: string | null;
+    /**
+     * Determines if the item is using external or internal(catalog) pricing
+     * @type {string}
+     * @memberof FulfillmentCanceledItem
+     */
+    priceMode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentCanceledItem
+     */
+    productCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentCanceledItem
+     */
+    purchaseLocation?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentCanceledItem
+     */
+    quantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentCanceledItem
+     */
+    readyForPickupQuantity?: number | null;
+    /**
+     * 
+     * @type {ReturnRuleInfo}
+     * @memberof FulfillmentCanceledItem
+     */
+    returnRuleInfo?: ReturnRuleInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentCanceledItem
+     */
+    serialNumber?: string | null;
     /**
      * 
      * @type {number}
@@ -4805,64 +6329,28 @@ export interface FulfillmentCanceledItem {
     shippingTax?: number;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof FulfillmentCanceledItem
      */
-    handling?: number;
+    sku?: string | null;
+    /**
+     * 
+     * @type {SubstituteInfo}
+     * @memberof FulfillmentCanceledItem
+     */
+    substituteInfo?: SubstituteInfo;
     /**
      * 
      * @type {number}
      * @memberof FulfillmentCanceledItem
      */
-    handlingDiscount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof FulfillmentCanceledItem
-     */
-    handlingTax?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof FulfillmentCanceledItem
-     */
-    duty?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof FulfillmentCanceledItem
-     */
-    isPackagedStandAlone?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof FulfillmentCanceledItem
-     */
-    readyForPickupQuantity?: number | null;
+    substituteQuantity?: number | null;
     /**
      * 
      * @type {string}
      * @memberof FulfillmentCanceledItem
      */
-    backorderReleaseDate?: string | null;
-    /**
-     * 
-     * @type {CommerceRuntimePackageMeasurements}
-     * @memberof FulfillmentCanceledItem
-     */
-    measurements?: CommerceRuntimePackageMeasurements;
-    /**
-     * 
-     * @type {Array<CommerceRuntimeProductOption>}
-     * @memberof FulfillmentCanceledItem
-     */
-    options?: Array<CommerceRuntimeProductOption> | null;
-    /**
-     * 
-     * @type {object}
-     * @memberof FulfillmentCanceledItem
-     */
-    data?: object | null;
+    substitutionType?: string | null;
     /**
      * 
      * @type {object}
@@ -4874,25 +6362,50 @@ export interface FulfillmentCanceledItem {
      * @type {number}
      * @memberof FulfillmentCanceledItem
      */
-    weightedShipmentAdjustment?: number;
+    taxableHandling?: number;
     /**
      * 
      * @type {number}
      * @memberof FulfillmentCanceledItem
      */
-    weightedLineItemTaxAdjustment?: number;
+    taxableLineItemCost?: number;
     /**
      * 
      * @type {number}
      * @memberof FulfillmentCanceledItem
      */
-    weightedShippingAdjustment?: number;
+    taxableShipping?: number;
+    /**
+     * Time-fence tolerance (days), carried from the originating OrderItem (Call-Off release,
+     * spec COM-10941 follow-up). Null for shipment items not tied to a Call-Off Order line.
+     * @type {number}
+     * @memberof FulfillmentCanceledItem
+     */
+    timeFenceDays?: number | null;
     /**
      * 
      * @type {number}
      * @memberof FulfillmentCanceledItem
      */
-    weightedShippingTaxAdjustment?: number;
+    unitPrice?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentCanceledItem
+     */
+    upc?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentCanceledItem
+     */
+    variationProductCode?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentCanceledItem
+     */
+    weightedDutyAdjustment?: number;
     /**
      * 
      * @type {number}
@@ -4910,193 +6423,79 @@ export interface FulfillmentCanceledItem {
      * @type {number}
      * @memberof FulfillmentCanceledItem
      */
-    weightedDutyAdjustment?: number;
+    weightedLineItemTaxAdjustment?: number;
+    /**
+     * Order-level handling fee allocated to this item. This represents only the order-level portion
+     * of handling, not product-level handling fees. Product-level handling can be derived as:
+     * Handling - WeightedOrderHandlingFee.
+     * During item cancellation with Granular Retention, order-level handling is retained on active items
+     * while product-level handling scales proportionally with quantity.
+     * @type {number}
+     * @memberof FulfillmentCanceledItem
+     */
+    weightedOrderHandlingFee?: number;
+    /**
+     * Discount applied to the order-level handling fee only.
+     * @type {number}
+     * @memberof FulfillmentCanceledItem
+     */
+    weightedOrderHandlingFeeDiscount?: number;
+    /**
+     * Tax on the order-level handling fee only (not total handling tax).
+     * Product-level handling tax can be derived as: HandlingTax - WeightedOrderHandlingFeeTax.
+     * @type {number}
+     * @memberof FulfillmentCanceledItem
+     */
+    weightedOrderHandlingFeeTax?: number;
     /**
      * 
      * @type {number}
      * @memberof FulfillmentCanceledItem
      */
-    taxableShipping?: number;
+    weightedShipmentAdjustment?: number;
     /**
      * 
      * @type {number}
      * @memberof FulfillmentCanceledItem
      */
-    taxableLineItemCost?: number;
+    weightedShippingAdjustment?: number;
     /**
      * 
      * @type {number}
      * @memberof FulfillmentCanceledItem
      */
-    taxableHandling?: number;
+    weightedShippingTaxAdjustment?: number;
     /**
      * 
-     * @type {Array<CommerceRuntimeFulfillmentField>}
+     * @type {CommerceRuntimeCanceledReason}
      * @memberof FulfillmentCanceledItem
      */
-    fulfillmentFields?: Array<CommerceRuntimeFulfillmentField> | null;
+    canceledReason?: CommerceRuntimeCanceledReason;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentCanceledItemAllOf
+ */
+export interface FulfillmentCanceledItemAllOf {
     /**
      * 
-     * @type {boolean}
-     * @memberof FulfillmentCanceledItem
+     * @type {CoreApiContractsAuditInfo}
+     * @memberof FulfillmentCanceledItemAllOf
      */
-    isAssemblyRequired?: boolean | null;
+    auditInfo?: CoreApiContractsAuditInfo;
     /**
      * 
-     * @type {string}
-     * @memberof FulfillmentCanceledItem
+     * @type {CommerceRuntimeCanceledReason}
+     * @memberof FulfillmentCanceledItemAllOf
      */
-    parentItemId?: string | null;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof FulfillmentCanceledItem
-     */
-    childItemIds?: Array<string> | null;
-    /**
-     * 
-     * @type {Array<CommerceRuntimeGiftCard>}
-     * @memberof FulfillmentCanceledItem
-     */
-    giftCards?: Array<CommerceRuntimeGiftCard> | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof FulfillmentCanceledItem
-     */
-    locatorName?: string | null;
-    /**
-     * 
-     * @type {Array<InventoryTags>}
-     * @memberof FulfillmentCanceledItem
-     */
-    inventoryTags?: Array<InventoryTags> | null;
+    canceledReason?: CommerceRuntimeCanceledReason;
     /**
      * 
      * @type {number}
-     * @memberof FulfillmentCanceledItem
+     * @memberof FulfillmentCanceledItemAllOf
      */
-    lineItemAdjustment?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof FulfillmentCanceledItem
-     */
-    isReservedInventory?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof FulfillmentCanceledItem
-     */
-    cartItemId?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof FulfillmentCanceledItem
-     */
-    sku?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof FulfillmentCanceledItem
-     */
-    partNumber?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof FulfillmentCanceledItem
-     */
-    upc?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof FulfillmentCanceledItem
-     */
-    isSubstitutable?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof FulfillmentCanceledItem
-     */
-    originalLineId?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof FulfillmentCanceledItem
-     */
-    substituteQuantity?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof FulfillmentCanceledItem
-     */
-    purchaseLocation?: string | null;
-    /**
-     * Indicate item is gift or not
-     * @type {boolean}
-     * @memberof FulfillmentCanceledItem
-     */
-    isGift?: boolean | null;
-    /**
-     * Gift message for item
-     * @type {string}
-     * @memberof FulfillmentCanceledItem
-     */
-    giftMessage?: string | null;
-    /**
-     * Determines if the item is using external or internal(catalog) pricing
-     * @type {string}
-     * @memberof FulfillmentCanceledItem
-     */
-    priceMode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof FulfillmentCanceledItem
-     */
-    serialNumber?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof FulfillmentCanceledItem
-     */
-    condition?: string | null;
-    /**
-     * 
-     * @type {SubstituteInfo}
-     * @memberof FulfillmentCanceledItem
-     */
-    substituteInfo?: SubstituteInfo;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof FulfillmentCanceledItem
-     */
-    allowsSubstitution?: boolean | null;
-    /**
-     * 
-     * @type {ReturnRuleInfo}
-     * @memberof FulfillmentCanceledItem
-     */
-    returnRuleInfo?: ReturnRuleInfo;
-    /**
-     * 
-     * @type {string}
-     * @memberof FulfillmentCanceledItem
-     */
-    substitutionType?: string | null;
-    /**
-     * 
-     * @type {BundleInfo}
-     * @memberof FulfillmentCanceledItem
-     */
-    bundleInfo?: BundleInfo;
-    /**
-     * 
-     * @type {string}
-     * @memberof FulfillmentCanceledItem
-     */
-    expectedDeliveryDate?: string | null;
+    originalQuantity?: number | null;
 }
 /**
  * Shipment information, which includes the shipping address, price, estimated delivery date, tracking information, method (for example, Ground, Overnight, or Pick-up), 
@@ -5105,6 +6504,18 @@ export interface FulfillmentCanceledItem {
  * @interface FulfillmentInfo
  */
 export interface FulfillmentInfo {
+    /**
+     * 
+     * @type {CoreApiContractsAuditInfo}
+     * @memberof FulfillmentInfo
+     */
+    auditInfo?: CoreApiContractsAuditInfo;
+    /**
+     * Custom data originated by the shipping service.
+     * @type {object}
+     * @memberof FulfillmentInfo
+     */
+    data?: object | null;
     /**
      * 
      * @type {CommerceRuntimeContact}
@@ -5130,18 +6541,6 @@ export interface FulfillmentInfo {
      * @memberof FulfillmentInfo
      */
     shippingMethodName?: string | null;
-    /**
-     * Custom data originated by the shipping service.
-     * @type {object}
-     * @memberof FulfillmentInfo
-     */
-    data?: object | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof FulfillmentInfo
-     */
-    auditInfo?: AdminUserAuditInfo;
 }
 /**
  * 
@@ -5509,6 +6908,43 @@ export interface FulfillmentServiceReturnRuleInfo {
 /**
  * 
  * @export
+ * @interface FulfillmentServiceShipmentItemAttribute
+ */
+export interface FulfillmentServiceShipmentItemAttribute {
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentServiceShipmentItemAttribute
+     */
+    attributeDefinitionId?: number | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof FulfillmentServiceShipmentItemAttribute
+     */
+    attributes?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {FulfillmentServiceAuditInfo}
+     * @memberof FulfillmentServiceShipmentItemAttribute
+     */
+    auditInfo?: FulfillmentServiceAuditInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentServiceShipmentItemAttribute
+     */
+    fullyQualifiedName?: string | null;
+    /**
+     * 
+     * @type {Array<any>}
+     * @memberof FulfillmentServiceShipmentItemAttribute
+     */
+    values?: Array<any> | null;
+}
+/**
+ * 
+ * @export
  * @interface FulfillmentServiceSubstituteInfo
  */
 export interface FulfillmentServiceSubstituteInfo {
@@ -5583,12 +7019,6 @@ export interface FulfillmentShopperNotes {
 export interface FulfillmentTask {
     /**
      * 
-     * @type {{ [key: string]: CommerceRuntimeLink; }}
-     * @memberof FulfillmentTask
-     */
-    links?: { [key: string]: CommerceRuntimeLink; } | null;
-    /**
-     * 
      * @type {boolean}
      * @memberof FulfillmentTask
      */
@@ -5625,6 +7055,12 @@ export interface FulfillmentTask {
     inputs?: Array<CommerceRuntimeTaskInput> | null;
     /**
      * 
+     * @type {{ [key: string]: CommerceRuntimeLink; }}
+     * @memberof FulfillmentTask
+     */
+    links?: { [key: string]: CommerceRuntimeLink; } | null;
+    /**
+     * 
      * @type {string}
      * @memberof FulfillmentTask
      */
@@ -5656,10 +7092,10 @@ export interface FulfillmentTask {
 export interface GatewayGiftCard {
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof GatewayGiftCard
      */
-    id?: string | null;
+    amount?: number;
     /**
      * 
      * @type {string}
@@ -5674,16 +7110,16 @@ export interface GatewayGiftCard {
     cardPin?: string | null;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof GatewayGiftCard
      */
-    amount?: number;
+    currencyCode?: string | null;
     /**
      * 
      * @type {string}
      * @memberof GatewayGiftCard
      */
-    currencyCode?: string | null;
+    id?: string | null;
 }
 /**
  * 
@@ -5692,17 +7128,17 @@ export interface GatewayGiftCard {
  */
 export interface GiftInfo {
     /**
-     * Flag to indicate whether the item is a gift item
-     * @type {boolean}
-     * @memberof GiftInfo
-     */
-    isGiftItem?: boolean | null;
-    /**
      * Item level gift message
      * @type {string}
      * @memberof GiftInfo
      */
     giftMessage?: string | null;
+    /**
+     * Flag to indicate whether the item is a gift item
+     * @type {boolean}
+     * @memberof GiftInfo
+     */
+    isGiftItem?: boolean | null;
 }
 /**
  * Installment plan to be updated on the subscription
@@ -5730,18 +7166,6 @@ export interface InvalidCoupon {
      */
     couponCode?: string | null;
     /**
-     * Code that identifies the reason the coupon was invalid.
-     * @type {number}
-     * @memberof InvalidCoupon
-     */
-    reasonCode?: number;
-    /**
-     * Description text of the reason.
-     * @type {string}
-     * @memberof InvalidCoupon
-     */
-    reason?: string | null;
-    /**
      * Create date of the invalid coupon.
      * @type {string}
      * @memberof InvalidCoupon
@@ -5753,6 +7177,18 @@ export interface InvalidCoupon {
      * @memberof InvalidCoupon
      */
     discountId?: number;
+    /**
+     * Description text of the reason.
+     * @type {string}
+     * @memberof InvalidCoupon
+     */
+    reason?: string | null;
+    /**
+     * Code that identifies the reason the coupon was invalid.
+     * @type {number}
+     * @memberof InvalidCoupon
+     */
+    reasonCode?: number;
 }
 /**
  * 
@@ -5780,11 +7216,509 @@ export interface InventoryTags {
  */
 export interface Order {
     /**
-     * Order Number. This is an integer that is only assigned after an order is placed and enters the open state.
+     * 
+     * @type {CoreApiContractsAuditInfo}
+     * @memberof Order
+     */
+    auditInfo?: CoreApiContractsAuditInfo;
+    /**
+     * List of messages displayed by the system based on the last cart action, for example, when a product price has changed or is out-of-stock. System-supplied and read-only.
+     * @type {Array<CommerceRuntimeChangeMessage>}
+     * @memberof Order
+     */
+    changeMessages?: Array<CommerceRuntimeChangeMessage> | null;
+    /**
+     * Unique identifier of the channel for this item.
+     * @type {string}
+     * @memberof Order
+     */
+    channelCode?: string | null;
+    /**
+     * ISO Currency Code. Currently, only USD is supported.
+     * @type {string}
+     * @memberof Order
+     */
+    currencyCode?: string | null;
+    /**
+     * Determines the interaction type that a customer will use to create this object.
+     * Valid values are: Website, Store, Call, Unknown
+     * @type {string}
+     * @memberof Order
+     */
+    customerInteractionType?: string | null;
+    /**
+     * Custom data for a given vendor set within the commerce process.
+     * @type {object}
+     * @memberof Order
+     */
+    data?: object | null;
+    /**
+     * List of Mozu.CommerceRuntime.Contracts.Commerce.ThresholdMessage objects that are valid for the current value of the cart/order.
+     * @type {Array<CommerceRuntimeThresholdMessage>}
+     * @memberof Order
+     */
+    discountThresholdMessages?: Array<CommerceRuntimeThresholdMessage> | null;
+    /**
+     * Amount of the discounts applied to all items in the cart. This is a negative number.  This also includes the order level discounts.
      * @type {number}
      * @memberof Order
      */
-    orderNumber?: number | null;
+    discountTotal?: number | null;
+    /**
+     * Combined price for all cart items, including all selected options as well as any discounts.
+     * @type {number}
+     * @memberof Order
+     */
+    discountedSubtotal?: number | null;
+    /**
+     * Subtotal minus the discounted total
+     * @type {number}
+     * @memberof Order
+     */
+    discountedTotal?: number | null;
+    /**
+     * When the order will no longer be active. That is, the order is considered abandoned. 
+     * Orders of anonymous shoppers expire after 14 days of inactivity. 
+     * An order never expires for shoppers who are logged into their account. 
+     * Date in UTC Date/Time.
+     * @type {string}
+     * @memberof Order
+     */
+    expirationDate?: string | null;
+    /**
+     * Extra properties (key-value pairs) that extend the primary object. Think of this as a property bag of string keys and string values.
+     * @type {Array<ExtendedProperty>}
+     * @memberof Order
+     */
+    extendedProperties?: Array<ExtendedProperty> | null;
+    /**
+     * Not implemented. Total cost of fees for all items in the cart.
+     * @type {number}
+     * @memberof Order
+     */
+    feeTotal?: number | null;
+    /**
+     * 
+     * @type {FulfillmentInfo}
+     * @memberof Order
+     */
+    fulfillmentInfo?: FulfillmentInfo;
+    /**
+     * Total tax on handling
+     * @type {number}
+     * @memberof Order
+     */
+    handlingTaxTotal?: number | null;
+    /**
+     * Unique identifier of the CommerceAggregate object (e.g. order, cart, wishlist, etc.).
+     * @type {string}
+     * @memberof Order
+     */
+    id?: string | null;
+    /**
+     * Not implemented. Tax does not appear on cart.
+     * @type {number}
+     * @memberof Order
+     */
+    itemTaxTotal?: number | null;
+    /**
+     * Occasionally the commerce runtime may validate that item/product names, descriptions, and prices have not changed. 
+     * If changed, it updates LastValidationDate.
+     * @type {string}
+     * @memberof Order
+     */
+    lastValidationDate?: string | null;
+    /**
+     * Line Item Subtotals with Order Adjustments
+     * @type {number}
+     * @memberof Order
+     */
+    lineItemSubtotalWithOrderAdjustments?: number | null;
+    /**
+     * The discount that has been applied to the cart itself. If multiple discounts exist, this is the discount that the system applies because it offers the best savings for the shopper. This is a negative number.
+     * @type {Array<CommerceRuntimeAppliedDiscount>}
+     * @memberof Order
+     */
+    orderDiscounts?: Array<CommerceRuntimeAppliedDiscount> | null;
+    /**
+     * 
+     * @type {Array<SuggestedDiscount>}
+     * @memberof Order
+     */
+    rejectedDiscounts?: Array<SuggestedDiscount> | null;
+    /**
+     * Shipping Amount before discount and adjustments
+     * @type {number}
+     * @memberof Order
+     */
+    shippingAmountBeforeDiscountsAndAdjustments?: number | null;
+    /**
+     * Shipping total without discounts applied.
+     * @type {number}
+     * @memberof Order
+     */
+    shippingSubTotal?: number | null;
+    /**
+     * Not implemented. Tax does not appear on cart.
+     * @type {number}
+     * @memberof Order
+     */
+    shippingTaxTotal?: number | null;
+    /**
+     * Shipping does not appear on cart.
+     * @type {number}
+     * @memberof Order
+     */
+    shippingTotal?: number | null;
+    /**
+     * Unique identifier of the Site.
+     * @type {number}
+     * @memberof Order
+     */
+    siteId?: number | null;
+    /**
+     * Combined price for all cart items, including all selected options but excluding any discounts.
+     * @type {number}
+     * @memberof Order
+     */
+    subtotal?: number | null;
+    /**
+     * 
+     * @type {Array<SuggestedDiscount>}
+     * @memberof Order
+     */
+    suggestedDiscounts?: Array<SuggestedDiscount> | null;
+    /**
+     * Storage for any additional/custom tax data.
+     * @type {object}
+     * @memberof Order
+     */
+    taxData?: object | null;
+    /**
+     * Tax does not appear on cart.
+     * @type {number}
+     * @memberof Order
+     */
+    taxTotal?: number | null;
+    /**
+     * Unique identifier of the Tenant.
+     * @type {number}
+     * @memberof Order
+     */
+    tenantId?: number | null;
+    /**
+     * Final total amount of the order including all discounts, shipping, and tax.
+     * @type {number}
+     * @memberof Order
+     */
+    total?: number | null;
+    /**
+     * Unique identifier of the shopper who created the cart.
+     * @type {string}
+     * @memberof Order
+     */
+    userId?: string | null;
+    /**
+     * Identifies the Visit ID that was current when the order was placed or when the cart was last updated.
+     * @type {string}
+     * @memberof Order
+     */
+    visitId?: string | null;
+    /**
+     * Identifies the web session used to place the order or last update the cart.
+     * @type {string}
+     * @memberof Order
+     */
+    webSessionId?: string | null;
+    /**
+     * When the order was accepted by the merchant
+     * @type {string}
+     * @memberof Order
+     */
+    acceptedDate?: string | null;
+    /**
+     * Does the customer accept marketing
+     * @type {boolean}
+     * @memberof Order
+     */
+    acceptsMarketing?: boolean | null;
+    /**
+     * 
+     * @type {Adjustment}
+     * @memberof Order
+     */
+    adjustment?: Adjustment;
+    /**
+     * 
+     * @type {AlternateContact}
+     * @memberof Order
+     */
+    alternateContact?: AlternateContact;
+    /**
+     * This property represents AmountCaptured - AmountRefunded via returns.
+     * It is read only.
+     * @type {number}
+     * @memberof Order
+     */
+    amountAvailableForRefund?: number;
+    /**
+     * A counter for how much money has been issued in refunds.
+     * This calculated field does NOT include refunds issued in returns.
+     * @type {number}
+     * @memberof Order
+     */
+    amountRefunded?: number;
+    /**
+     * A counter for how much of the order total has not been claimed by payments.
+     * This is computed by Order.Total-(sum of Order.Payments where State is not voided/declined)
+     * @type {number}
+     * @memberof Order
+     */
+    amountRemainingForPayment?: number;
+    /**
+     * 
+     * @type {Array<CommerceRuntimeOrderAttribute>}
+     * @memberof Order
+     */
+    attributes?: Array<CommerceRuntimeOrderAttribute> | null;
+    /**
+     * Actions available to the payment
+     * @type {Array<string>}
+     * @memberof Order
+     */
+    availableActions?: Array<string> | null;
+    /**
+     * 
+     * @type {BillingInfo}
+     * @memberof Order
+     */
+    billingInfo?: BillingInfo;
+    /**
+     * Identifier of the originating Call-Off Order, if this Sales Order was released
+     * from a Call-Off Order. Null for standard orders.
+     * @type {string}
+     * @memberof Order
+     */
+    callOffOrderId?: string | null;
+    /**
+     * Items canceled on the Order due to Rule violation
+     * @type {Array<OrderCanceledItem>}
+     * @memberof Order
+     */
+    canceledItems?: Array<OrderCanceledItem> | null;
+    /**
+     * Date the order was cancelled.
+     * @type {string}
+     * @memberof Order
+     */
+    cancelledDate?: string | null;
+    /**
+     * Date the order was closed. A closed order means that the order has been processed and items shipped.
+     * @type {string}
+     * @memberof Order
+     */
+    closedDate?: string | null;
+    /**
+     * The ordinal to track the Continuity order.
+     * @type {number}
+     * @memberof Order
+     */
+    continuityOrderOrdinal?: number;
+    /**
+     * Coupon codes associated with this order.  Only set on order import.
+     * @type {Array<string>}
+     * @memberof Order
+     */
+    couponCodes?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<CommerceRuntimeCredit>}
+     * @memberof Order
+     */
+    credits?: Array<CommerceRuntimeCredit> | null;
+    /**
+     * Unique identifier of the customer account.
+     * @type {number}
+     * @memberof Order
+     */
+    customerAccountId?: number | null;
+    /**
+     * The customers tax ID.  If Customer Account ID exists in the system, will set this.
+     * @type {string}
+     * @memberof Order
+     */
+    customerTaxId?: string | null;
+    /**
+     * Fulfillment digital packages associated with this order.
+     * @type {Array<DigitalPackage>}
+     * @memberof Order
+     */
+    digitalPackages?: Array<DigitalPackage> | null;
+    /**
+     * Order level duty or tariff amount. Does not take into account duties or tariffs specifically on items on the order
+     * @type {number}
+     * @memberof Order
+     */
+    dutyAmount?: number | null;
+    /**
+     * Duties or tariffs for the Order as well as OrderItems (e.g. if the Order has a $5 duty or tariff for any reason and an OrderItem has a $2 duty or tariff then the value in this property would be $7)
+     * @type {number}
+     * @memberof Order
+     */
+    dutyTotal?: number | null;
+    /**
+     * Email address of the customer at the time the order is placed.
+     * @type {string}
+     * @memberof Order
+     */
+    email?: string | null;
+    /**
+     * An order number to link this order to an external system
+     * @type {string}
+     * @memberof Order
+     */
+    externalId?: string | null;
+    /**
+     * Overrides the Fulfillment SiteSetting value for `ForceDeliveryConsolidationOnSplitShipments`.
+     * TODO autogen instead of manual addition
+     * @type {boolean}
+     * @memberof Order
+     */
+    forceDeliveryConsolidationOnSplitShipments?: boolean | null;
+    /**
+     * Overrides the Fulfillment SiteSetting value for `ForceSTHConsolidationOnSplitShipments`.
+     * TODO autogen instead of manual addition
+     * @type {boolean}
+     * @memberof Order
+     */
+    forceSTHConsolidationOnSplitShipments?: boolean | null;
+    /**
+     * Current fulfillment status, which can be "NotFulfilled,", "PartiallyFulfilled", or "Fufilled." 
+     * System-supplied and read-only.  Values are available in FulfillmentStatusConst of this class.
+     * @type {string}
+     * @memberof Order
+     */
+    fulfillmentStatus?: string | null;
+    /**
+     * 
+     * @type {Adjustment}
+     * @memberof Order
+     */
+    handlingAdjustment?: Adjustment;
+    /**
+     * Order level handling fees excluding any discounts.
+     * @type {number}
+     * @memberof Order
+     */
+    handlingAmount?: number | null;
+    /**
+     * The list of historically-applied handling discounts.  The active one will have IsExcluded == false
+     * @type {Array<CommerceRuntimeAppliedDiscount>}
+     * @memberof Order
+     */
+    handlingDiscounts?: Array<CommerceRuntimeAppliedDiscount> | null;
+    /**
+     * Handling fees for the Order as well as OrderItems (e.g. if the Order has a $5 handling fee and an OrderItem has a $2 handling fee per item quantity and the quantity of items is 2 then the value in this property would be $9)
+     * @type {number}
+     * @memberof Order
+     */
+    handlingSubTotal?: number | null;
+    /**
+     * Handling fees including any discounts.
+     * @type {number}
+     * @memberof Order
+     */
+    handlingTotal?: number | null;
+    /**
+     * Does this order have a draft version.
+     * @type {boolean}
+     * @memberof Order
+     */
+    hasDraft?: boolean | null;
+    /**
+     * Date this item was imported
+     * @type {string}
+     * @memberof Order
+     */
+    importDate?: string | null;
+    /**
+     * A list of invalid coupons that were attempted on the order
+     * @type {Array<InvalidCoupon>}
+     * @memberof Order
+     */
+    invalidCoupons?: Array<InvalidCoupon> | null;
+    /**
+     * IP address of the user placing the order. (User or customer?)
+     * @type {string}
+     * @memberof Order
+     */
+    ipAddress?: string | null;
+    /**
+     * Flag to check if the order is continuityOrder.
+     * @type {boolean}
+     * @memberof Order
+     */
+    isContinuityOrder?: boolean;
+    /**
+     * Is this order a draft version
+     * @type {boolean}
+     * @memberof Order
+     */
+    isDraft?: boolean | null;
+    /**
+     * Marker for determining if the order is a) complete or b) has some items that are shipped and not part of any other return
+     * @type {boolean}
+     * @memberof Order
+     */
+    isEligibleForReturns?: boolean;
+    /**
+     * Flag to indicate whether it is safe to proceed with fulfillment on shipments on the order.
+     * @type {boolean}
+     * @memberof Order
+     */
+    isFulfillable?: boolean;
+    /**
+     * Indicates this was an order in a terminal state (completed/canceled) that was imported into the system for historical purposes.
+     * @type {boolean}
+     * @memberof Order
+     */
+    isHistoricalImport?: boolean | null;
+    /**
+     * Was this order initiated from an external system
+     * @type {boolean}
+     * @memberof Order
+     */
+    isImport?: boolean | null;
+    /**
+     * Whether the shopper opts in to curbside text notifications.
+     * @type {boolean}
+     * @memberof Order
+     */
+    isOptInForSms?: boolean;
+    /**
+     * Returns `true` if this order originated from a checkout and has sibling partial orders, otherwise `false`.
+     * @type {boolean}
+     * @memberof Order
+     */
+    isPartialOrder?: boolean;
+    /**
+     * Unique identifier of the customer account.
+     * @type {boolean}
+     * @memberof Order
+     */
+    isTaxExempt?: boolean | null;
+    /**
+     * Was this order created by the Unified platform.
+     * @type {boolean}
+     * @memberof Order
+     */
+    isUnified?: boolean;
+    /**
+     * List of items in the order.
+     * @type {Array<CommerceRuntimeOrderItem>}
+     * @memberof Order
+     */
+    items?: Array<CommerceRuntimeOrderItem> | null;
     /**
      * Identifies the location at which the order was placed if the order was placed externally.
      * @type {string}
@@ -5792,65 +7726,17 @@ export interface Order {
      */
     locationCode?: string | null;
     /**
-     * Version for concurrency purposes
-     * @type {string}
+     * Internal notes that a merchant may add to the order. Maximum 250 characters.
+     * @type {Array<OrderNote>}
      * @memberof Order
      */
-    version?: string | null;
+    notes?: Array<OrderNote> | null;
     /**
-     * If this Order has a parent order, this should be the parent's ID.
-     * @type {string}
-     * @memberof Order
-     */
-    parentOrderId?: string | null;
-    /**
-     * If this order has a parent order, this should be the parent's Mozu.CommerceRuntime.Contracts.Orders.Order.OrderNumber.
+     * Order Number. This is an integer that is only assigned after an order is placed and enters the open state.
      * @type {number}
      * @memberof Order
      */
-    parentOrderNumber?: number | null;
-    /**
-     * If this order originated from a multi-ship enabled site, this is the identifier of the originating checkout.
-     * @type {string}
-     * @memberof Order
-     */
-    parentCheckoutId?: string | null;
-    /**
-     * If this order originated from a multi-ship enabled site, this is the number of the originating checkout.
-     * @type {number}
-     * @memberof Order
-     */
-    parentCheckoutNumber?: number | null;
-    /**
-     * If this order originated from a checkout, this is a sequence number out of the total orders created from that checkout.
-     * @type {number}
-     * @memberof Order
-     */
-    partialOrderNumber?: number | null;
-    /**
-     * If this order originated from a checkout, this is the total number of orders created from that checkout.
-     * @type {number}
-     * @memberof Order
-     */
-    partialOrderCount?: number | null;
-    /**
-     * Returns {true} if this order originated from a checkout and has sibling partial orders, otherwise {false}.
-     * @type {boolean}
-     * @memberof Order
-     */
-    isPartialOrder?: boolean;
-    /**
-     * If this order was created as part of a return, this should be the return's ID.
-     * @type {string}
-     * @memberof Order
-     */
-    parentReturnId?: string | null;
-    /**
-     * If this order was created as part of a return, this should be the return's ReturnNumber.
-     * @type {number}
-     * @memberof Order
-     */
-    parentReturnNumber?: number | null;
+    orderNumber?: number | null;
     /**
      * Unique identifier for the cart that was converted to order.
      * @type {string}
@@ -5870,83 +7756,59 @@ export interface Order {
      */
     originalQuoteNumber?: number | null;
     /**
-     * Pricelist code for the order
+     * Shipping package associated with this order.
+     * @type {Array<SubscriptionRuntimePackage>}
+     * @memberof Order
+     */
+    packages?: Array<SubscriptionRuntimePackage> | null;
+    /**
+     * If this order originated from a multi-ship enabled site, this is the identifier of the originating checkout.
      * @type {string}
      * @memberof Order
      */
-    priceListCode?: string | null;
+    parentCheckoutId?: string | null;
     /**
-     * Actions available to the payment
-     * @type {Array<string>}
-     * @memberof Order
-     */
-    availableActions?: Array<string> | null;
-    /**
-     * 
-     * @type {CommerceRuntimeShopperNotes}
-     * @memberof Order
-     */
-    shopperNotes?: CommerceRuntimeShopperNotes;
-    /**
-     * Unique identifier of the customer account.
+     * If this order originated from a multi-ship enabled site, this is the number of the originating checkout.
      * @type {number}
      * @memberof Order
      */
-    customerAccountId?: number | null;
+    parentCheckoutNumber?: number | null;
     /**
-     * The customers tax ID.  If Customer Account ID exists in the system, will set this.
+     * If this Order has a parent order, this should be the parent's ID.
      * @type {string}
      * @memberof Order
      */
-    customerTaxId?: string | null;
+    parentOrderId?: string | null;
     /**
-     * Unique identifier of the customer account.
-     * @type {boolean}
+     * If this order has a parent order, this should be the parent's Mozu.CommerceRuntime.Contracts.Orders.Order.OrderNumber.
+     * @type {number}
      * @memberof Order
      */
-    isTaxExempt?: boolean | null;
+    parentOrderNumber?: number | null;
     /**
-     * Email address of the customer at the time the order is placed.
+     * If this order was created as part of a return, this should be the return's ID.
      * @type {string}
      * @memberof Order
      */
-    email?: string | null;
+    parentReturnId?: string | null;
     /**
-     * 
-     * @type {AlternateContact}
+     * If this order was created as part of a return, this should be the return's ReturnNumber.
+     * @type {number}
      * @memberof Order
      */
-    alternateContact?: AlternateContact;
+    parentReturnNumber?: number | null;
     /**
-     * IP address of the user placing the order. (User or customer?)
-     * @type {string}
+     * If this order originated from a checkout, this is the total number of orders created from that checkout.
+     * @type {number}
      * @memberof Order
      */
-    ipAddress?: string | null;
+    partialOrderCount?: number | null;
     /**
-     * Source device of the user placing the order. (User or customer?)
-     * @type {string}
+     * If this order originated from a checkout, this is a sequence number out of the total orders created from that checkout.
+     * @type {number}
      * @memberof Order
      */
-    sourceDevice?: string | null;
-    /**
-     * Does the customer accept marketing
-     * @type {boolean}
-     * @memberof Order
-     */
-    acceptsMarketing?: boolean | null;
-    /**
-     * Current status of the order, which can be viewed in OrderStatusConst. System-supplied and read-only.
-     * @type {string}
-     * @memberof Order
-     */
-    status?: string | null;
-    /**
-     * Is this Order Online or Offline? Online means shopper entered at checkout, offline means a phone order.
-     * @type {string}
-     * @memberof Order
-     */
-    type?: string | null;
+    partialOrderNumber?: number | null;
     /**
      * Current status of payment, which can be "Null," "AwaitingCheck," "AwaitingPayment," "Paid," "Authorized," or "Void." 
      * System-supplied and read-only.
@@ -5955,163 +7817,6 @@ export interface Order {
      */
     paymentStatus?: string | null;
     /**
-     * System-supplied and read-only.
-     * @type {string}
-     * @memberof Order
-     */
-    returnStatus?: string | null;
-    /**
-     * Marker for determining if the order is a) complete or b) has some items that are shipped and not part of any other return
-     * @type {boolean}
-     * @memberof Order
-     */
-    isEligibleForReturns?: boolean;
-    /**
-     * Total amount of money collected on the order via payments.
-     * @type {number}
-     * @memberof Order
-     */
-    totalCollected?: number;
-    /**
-     * 
-     * @type {Array<CommerceRuntimeOrderAttribute>}
-     * @memberof Order
-     */
-    attributes?: Array<CommerceRuntimeOrderAttribute> | null;
-    /**
-     * 
-     * @type {Adjustment}
-     * @memberof Order
-     */
-    adjustment?: Adjustment;
-    /**
-     * 
-     * @type {Adjustment}
-     * @memberof Order
-     */
-    shippingAdjustment?: Adjustment;
-    /**
-     * 
-     * @type {Adjustment}
-     * @memberof Order
-     */
-    handlingAdjustment?: Adjustment;
-    /**
-     * 
-     * @type {Array<ShippingDiscount>}
-     * @memberof Order
-     */
-    shippingDiscounts?: Array<ShippingDiscount> | null;
-    /**
-     * The list of historically-applied handling discounts.  The active one will have IsExcluded == false
-     * @type {Array<CommerceRuntimeAppliedDiscount>}
-     * @memberof Order
-     */
-    handlingDiscounts?: Array<CommerceRuntimeAppliedDiscount> | null;
-    /**
-     * Order level handling fees excluding any discounts.
-     * @type {number}
-     * @memberof Order
-     */
-    handlingAmount?: number | null;
-    /**
-     * Handling fees for the Order as well as OrderItems (e.g. if the Order has a $5 handling fee and an OrderItem has a $2 handling fee per item quantity and the quantity of items is 2 then the value in this property would be $9)
-     * @type {number}
-     * @memberof Order
-     */
-    handlingSubTotal?: number | null;
-    /**
-     * Handling fees including any discounts.
-     * @type {number}
-     * @memberof Order
-     */
-    handlingTotal?: number | null;
-    /**
-     * Order level duty or tariff amount. Does not take into account duties or tariffs specifically on items on the order
-     * @type {number}
-     * @memberof Order
-     */
-    dutyAmount?: number | null;
-    /**
-     * Duties or tariffs for the Order as well as OrderItems (e.g. if the Order has a $5 duty or tariff for any reason and an OrderItem has a $2 duty or tariff then the value in this property would be $7)
-     * @type {number}
-     * @memberof Order
-     */
-    dutyTotal?: number | null;
-    /**
-     * Current fulfillment status, which can be "NotFulfilled,", "PartiallyFulfilled", or "Fufilled." 
-     * System-supplied and read-only.  Values are available in FulfillmentStatusConst of this class.
-     * @type {string}
-     * @memberof Order
-     */
-    fulfillmentStatus?: string | null;
-    /**
-     * Flag to indicate whether it is safe to proceed with fulfillment on shipments on the order.
-     * @type {boolean}
-     * @memberof Order
-     */
-    isFulfillable?: boolean;
-    /**
-     * When the customer placed (submitted) the order.
-     * @type {string}
-     * @memberof Order
-     */
-    submittedDate?: string | null;
-    /**
-     * Release Shipment After(in minutes) (Order Submitted Date).
-     * @type {number}
-     * @memberof Order
-     */
-    shipmentCreationOffset?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Order
-     */
-    releaseShipmentDate?: string | null;
-    /**
-     * Date the order was cancelled.
-     * @type {string}
-     * @memberof Order
-     */
-    cancelledDate?: string | null;
-    /**
-     * Date the order was closed. A closed order means that the order has been processed and items shipped.
-     * @type {string}
-     * @memberof Order
-     */
-    closedDate?: string | null;
-    /**
-     * When the order was accepted by the merchant
-     * @type {string}
-     * @memberof Order
-     */
-    acceptedDate?: string | null;
-    /**
-     * Internal notes that a merchant may add to the order. Maximum 250 characters.
-     * @type {Array<OrderNote>}
-     * @memberof Order
-     */
-    notes?: Array<OrderNote> | null;
-    /**
-     * List of items in the order.
-     * @type {Array<CommerceRuntimeOrderItem>}
-     * @memberof Order
-     */
-    items?: Array<CommerceRuntimeOrderItem> | null;
-    /**
-     * Validation results for the order when processes against validation capabilities.
-     * @type {Array<OrderValidationResult>}
-     * @memberof Order
-     */
-    validationResults?: Array<OrderValidationResult> | null;
-    /**
-     * 
-     * @type {BillingInfo}
-     * @memberof Order
-     */
-    billingInfo?: BillingInfo;
-    /**
      * Payment transaction associated with this order. It is the entire payment interchange between the merchant 
      * who is forwarding the customer's payment information and the payment service who is authorizing and 
      * capturing payment. Payment can be either by credit card, check, or PayPal.
@@ -6119,6 +7824,24 @@ export interface Order {
      * @memberof Order
      */
     payments?: Array<Payment> | null;
+    /**
+     * Fulfillment pickups associated with this order.
+     * @type {Array<Pickup>}
+     * @memberof Order
+     */
+    pickups?: Array<Pickup> | null;
+    /**
+     * Pricelist code for the order
+     * @type {string}
+     * @memberof Order
+     */
+    priceListCode?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Order
+     */
+    readyToCapture?: boolean;
     /**
      * Refunds associated with this order. A refund is a single exchange of money from merchant to customer
      * that either encapsulates a refund to a credit card or an issuance of a store credit.
@@ -6129,147 +7852,10 @@ export interface Order {
     refunds?: Array<Refund> | null;
     /**
      * 
-     * @type {Array<CommerceRuntimeCredit>}
-     * @memberof Order
-     */
-    credits?: Array<CommerceRuntimeCredit> | null;
-    /**
-     * Shipping package associated with this order.
-     * @type {Array<CommerceRuntimePackage>}
-     * @memberof Order
-     */
-    packages?: Array<CommerceRuntimePackage> | null;
-    /**
-     * Fulfillment pickups associated with this order.
-     * @type {Array<Pickup>}
-     * @memberof Order
-     */
-    pickups?: Array<Pickup> | null;
-    /**
-     * Fulfillment digital packages associated with this order.
-     * @type {Array<DigitalPackage>}
-     * @memberof Order
-     */
-    digitalPackages?: Array<DigitalPackage> | null;
-    /**
-     * Package shipments associated with this order.
-     * @type {Array<CommerceRuntimeShipment>}
-     * @memberof Order
-     */
-    shipments?: Array<CommerceRuntimeShipment> | null;
-    /**
-     * Is this order a draft version
-     * @type {boolean}
-     * @memberof Order
-     */
-    isDraft?: boolean | null;
-    /**
-     * Does this order have a draft version.
-     * @type {boolean}
-     * @memberof Order
-     */
-    hasDraft?: boolean | null;
-    /**
-     * Was this order initiated from an external system
-     * @type {boolean}
-     * @memberof Order
-     */
-    isImport?: boolean | null;
-    /**
-     * Indicates this was an order in a terminal state (completed/canceled) that was imported into the system for historical purposes.
-     * @type {boolean}
-     * @memberof Order
-     */
-    isHistoricalImport?: boolean | null;
-    /**
-     * Date this item was imported
      * @type {string}
      * @memberof Order
      */
-    importDate?: string | null;
-    /**
-     * Was this order created by the Unified platform.
-     * @type {boolean}
-     * @memberof Order
-     */
-    isUnified?: boolean;
-    /**
-     * An order number to link this order to an external system
-     * @type {string}
-     * @memberof Order
-     */
-    externalId?: string | null;
-    /**
-     * Coupon codes associated with this order.  Only set on order import.
-     * @type {Array<string>}
-     * @memberof Order
-     */
-    couponCodes?: Array<string> | null;
-    /**
-     * A list of invalid coupons that were attempted on the order
-     * @type {Array<InvalidCoupon>}
-     * @memberof Order
-     */
-    invalidCoupons?: Array<InvalidCoupon> | null;
-    /**
-     * This property represents AmountCaptured - AmountRefunded via returns.
-     * It is read only.
-     * @type {number}
-     * @memberof Order
-     */
-    amountAvailableForRefund?: number;
-    /**
-     * A counter for how much of the order total has not been claimed by payments.
-     * This is computed by Order.Total-(sum of Order.Payments where State is not voided/declined)
-     * @type {number}
-     * @memberof Order
-     */
-    amountRemainingForPayment?: number;
-    /**
-     * A counter for how much money has been issued in refunds.
-     * This calculated field does NOT include refunds issued in returns.
-     * @type {number}
-     * @memberof Order
-     */
-    amountRefunded?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Order
-     */
-    readyToCapture?: boolean;
-    /**
-     * Whether the shopper opts in to curbside text notifications.
-     * @type {boolean}
-     * @memberof Order
-     */
-    isOptInForSms?: boolean;
-    /**
-     * Overrides the Fulfillment SiteSetting value for `ForceSTHConsolidationOnSplitShipments`.
-     * TODO autogen instead of manual addition
-     * @type {boolean}
-     * @memberof Order
-     */
-    forceSTHConsolidationOnSplitShipments?: boolean | null;
-    /**
-     * Overrides the Fulfillment SiteSetting value for `ForceDeliveryConsolidationOnSplitShipments`.
-     * TODO autogen instead of manual addition
-     * @type {boolean}
-     * @memberof Order
-     */
-    forceDeliveryConsolidationOnSplitShipments?: boolean | null;
-    /**
-     * All the subscriptions associated with the current order.
-     * @type {Array<string>}
-     * @memberof Order
-     */
-    subscriptionIds?: Array<string> | null;
-    /**
-     * The ordinal to track the Continuity order.
-     * @type {number}
-     * @memberof Order
-     */
-    continuityOrderOrdinal?: number;
+    releaseShipmentDate?: string | null;
     /**
      * Inventory Reservation id for order.
      * @type {string}
@@ -6277,29 +7863,47 @@ export interface Order {
      */
     reservationId?: string | null;
     /**
-     * Setting this flag on the order will restrict user from editing the order
-     * @type {boolean}
-     * @memberof Order
-     */
-    restrictEdit?: boolean | null;
-    /**
      * Settings this flag on the order will restrict user from Cancelling the order
      * @type {boolean}
      * @memberof Order
      */
     restrictCancellation?: boolean | null;
     /**
-     * Flag to check if the order is continuityOrder.
+     * Setting this flag on the order will restrict user from editing the order
      * @type {boolean}
      * @memberof Order
      */
-    isContinuityOrder?: boolean;
+    restrictEdit?: boolean | null;
     /**
-     * Items canceled on the Order due to Rule violation
-     * @type {Array<OrderCanceledItem>}
+     * System-supplied and read-only.
+     * @type {string}
      * @memberof Order
      */
-    canceledItems?: Array<OrderCanceledItem> | null;
+    returnStatus?: string | null;
+    /**
+     * Release Shipment After(in minutes) (Order Submitted Date).
+     * @type {number}
+     * @memberof Order
+     */
+    shipmentCreationOffset?: number | null;
+    /**
+     * Package shipments associated with this order.
+     * @type {Array<CommerceRuntimeShipment>}
+     * @memberof Order
+     */
+    shipments?: Array<CommerceRuntimeShipment> | null;
+    /**
+     * 
+     * @type {Adjustment}
+     * @memberof Order
+     */
+    shippingAdjustment?: Adjustment;
+    /**
+     * 
+     * @type {Array<ShippingDiscount>}
+     * @memberof Order
+     */
+    shippingDiscounts?: Array<ShippingDiscount> | null;
     /**
      * List of order grouping.
      * @type {Array<ShippingGrouping>}
@@ -6307,220 +7911,600 @@ export interface Order {
      */
     shippingGroups?: Array<ShippingGrouping> | null;
     /**
-     * Unique identifier of the shopper who created the cart.
+     * 
+     * @type {CommerceRuntimeShopperNotes}
+     * @memberof Order
+     */
+    shopperNotes?: CommerceRuntimeShopperNotes;
+    /**
+     * Source device of the user placing the order. (User or customer?)
      * @type {string}
      * @memberof Order
      */
-    userId?: string | null;
+    sourceDevice?: string | null;
     /**
-     * Unique identifier of the CommerceAggregate object (e.g. order, cart, wishlist, etc.).
+     * Current status of the order, which can be viewed in OrderStatusConst. System-supplied and read-only.
      * @type {string}
      * @memberof Order
      */
-    id?: string | null;
+    status?: string | null;
     /**
-     * Unique identifier of the Tenant.
+     * When the customer placed (submitted) the order.
+     * @type {string}
+     * @memberof Order
+     */
+    submittedDate?: string | null;
+    /**
+     * All the subscriptions associated with the current order.
+     * @type {Array<string>}
+     * @memberof Order
+     */
+    subscriptionIds?: Array<string> | null;
+    /**
+     * Total amount of money collected on the order via payments.
      * @type {number}
      * @memberof Order
      */
-    tenantId?: number | null;
+    totalCollected?: number;
     /**
-     * Unique identifier of the Site.
-     * @type {number}
-     * @memberof Order
-     */
-    siteId?: number | null;
-    /**
-     * Unique identifier of the channel for this item.
+     * Is this Order Online or Offline? Online means shopper entered at checkout, offline means a phone order.
      * @type {string}
      * @memberof Order
      */
-    channelCode?: string | null;
+    type?: string | null;
     /**
-     * ISO Currency Code. Currently, only USD is supported.
+     * Validation results for the order when processes against validation capabilities.
+     * @type {Array<OrderValidationResult>}
+     * @memberof Order
+     */
+    validationResults?: Array<OrderValidationResult> | null;
+    /**
+     * Version for concurrency purposes
      * @type {string}
      * @memberof Order
      */
-    currencyCode?: string | null;
+    version?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface OrderAllOf
+ */
+export interface OrderAllOf {
     /**
-     * Identifies the Visit ID that was current when the order was placed or when the cart was last updated.
+     * When the order was accepted by the merchant
      * @type {string}
-     * @memberof Order
+     * @memberof OrderAllOf
      */
-    visitId?: string | null;
+    acceptedDate?: string | null;
     /**
-     * Identifies the web session used to place the order or last update the cart.
-     * @type {string}
-     * @memberof Order
+     * Does the customer accept marketing
+     * @type {boolean}
+     * @memberof OrderAllOf
      */
-    webSessionId?: string | null;
-    /**
-     * Determines the interaction type that a customer will use to create this object.
-     * Valid values are: Website, Store, Call, Unknown
-     * @type {string}
-     * @memberof Order
-     */
-    customerInteractionType?: string | null;
+    acceptsMarketing?: boolean | null;
     /**
      * 
-     * @type {FulfillmentInfo}
-     * @memberof Order
+     * @type {Adjustment}
+     * @memberof OrderAllOf
      */
-    fulfillmentInfo?: FulfillmentInfo;
+    adjustment?: Adjustment;
     /**
-     * The discount that has been applied to the cart itself. If multiple discounts exist, this is the discount that the system applies because it offers the best savings for the shopper. This is a negative number.
+     * 
+     * @type {AlternateContact}
+     * @memberof OrderAllOf
+     */
+    alternateContact?: AlternateContact;
+    /**
+     * This property represents AmountCaptured - AmountRefunded via returns.
+     * It is read only.
+     * @type {number}
+     * @memberof OrderAllOf
+     */
+    amountAvailableForRefund?: number;
+    /**
+     * A counter for how much money has been issued in refunds.
+     * This calculated field does NOT include refunds issued in returns.
+     * @type {number}
+     * @memberof OrderAllOf
+     */
+    amountRefunded?: number;
+    /**
+     * A counter for how much of the order total has not been claimed by payments.
+     * This is computed by Order.Total-(sum of Order.Payments where State is not voided/declined)
+     * @type {number}
+     * @memberof OrderAllOf
+     */
+    amountRemainingForPayment?: number;
+    /**
+     * 
+     * @type {Array<CommerceRuntimeOrderAttribute>}
+     * @memberof OrderAllOf
+     */
+    attributes?: Array<CommerceRuntimeOrderAttribute> | null;
+    /**
+     * Actions available to the payment
+     * @type {Array<string>}
+     * @memberof OrderAllOf
+     */
+    availableActions?: Array<string> | null;
+    /**
+     * 
+     * @type {BillingInfo}
+     * @memberof OrderAllOf
+     */
+    billingInfo?: BillingInfo;
+    /**
+     * Identifier of the originating Call-Off Order, if this Sales Order was released
+     * from a Call-Off Order. Null for standard orders.
+     * @type {string}
+     * @memberof OrderAllOf
+     */
+    callOffOrderId?: string | null;
+    /**
+     * Items canceled on the Order due to Rule violation
+     * @type {Array<OrderCanceledItem>}
+     * @memberof OrderAllOf
+     */
+    canceledItems?: Array<OrderCanceledItem> | null;
+    /**
+     * Date the order was cancelled.
+     * @type {string}
+     * @memberof OrderAllOf
+     */
+    cancelledDate?: string | null;
+    /**
+     * Date the order was closed. A closed order means that the order has been processed and items shipped.
+     * @type {string}
+     * @memberof OrderAllOf
+     */
+    closedDate?: string | null;
+    /**
+     * The ordinal to track the Continuity order.
+     * @type {number}
+     * @memberof OrderAllOf
+     */
+    continuityOrderOrdinal?: number;
+    /**
+     * Coupon codes associated with this order.  Only set on order import.
+     * @type {Array<string>}
+     * @memberof OrderAllOf
+     */
+    couponCodes?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<CommerceRuntimeCredit>}
+     * @memberof OrderAllOf
+     */
+    credits?: Array<CommerceRuntimeCredit> | null;
+    /**
+     * Unique identifier of the customer account.
+     * @type {number}
+     * @memberof OrderAllOf
+     */
+    customerAccountId?: number | null;
+    /**
+     * The customers tax ID.  If Customer Account ID exists in the system, will set this.
+     * @type {string}
+     * @memberof OrderAllOf
+     */
+    customerTaxId?: string | null;
+    /**
+     * Fulfillment digital packages associated with this order.
+     * @type {Array<DigitalPackage>}
+     * @memberof OrderAllOf
+     */
+    digitalPackages?: Array<DigitalPackage> | null;
+    /**
+     * Order level duty or tariff amount. Does not take into account duties or tariffs specifically on items on the order
+     * @type {number}
+     * @memberof OrderAllOf
+     */
+    dutyAmount?: number | null;
+    /**
+     * Duties or tariffs for the Order as well as OrderItems (e.g. if the Order has a $5 duty or tariff for any reason and an OrderItem has a $2 duty or tariff then the value in this property would be $7)
+     * @type {number}
+     * @memberof OrderAllOf
+     */
+    dutyTotal?: number | null;
+    /**
+     * Email address of the customer at the time the order is placed.
+     * @type {string}
+     * @memberof OrderAllOf
+     */
+    email?: string | null;
+    /**
+     * An order number to link this order to an external system
+     * @type {string}
+     * @memberof OrderAllOf
+     */
+    externalId?: string | null;
+    /**
+     * Overrides the Fulfillment SiteSetting value for `ForceDeliveryConsolidationOnSplitShipments`.
+     * TODO autogen instead of manual addition
+     * @type {boolean}
+     * @memberof OrderAllOf
+     */
+    forceDeliveryConsolidationOnSplitShipments?: boolean | null;
+    /**
+     * Overrides the Fulfillment SiteSetting value for `ForceSTHConsolidationOnSplitShipments`.
+     * TODO autogen instead of manual addition
+     * @type {boolean}
+     * @memberof OrderAllOf
+     */
+    forceSTHConsolidationOnSplitShipments?: boolean | null;
+    /**
+     * Current fulfillment status, which can be "NotFulfilled,", "PartiallyFulfilled", or "Fufilled." 
+     * System-supplied and read-only.  Values are available in FulfillmentStatusConst of this class.
+     * @type {string}
+     * @memberof OrderAllOf
+     */
+    fulfillmentStatus?: string | null;
+    /**
+     * 
+     * @type {Adjustment}
+     * @memberof OrderAllOf
+     */
+    handlingAdjustment?: Adjustment;
+    /**
+     * Order level handling fees excluding any discounts.
+     * @type {number}
+     * @memberof OrderAllOf
+     */
+    handlingAmount?: number | null;
+    /**
+     * The list of historically-applied handling discounts.  The active one will have IsExcluded == false
      * @type {Array<CommerceRuntimeAppliedDiscount>}
-     * @memberof Order
+     * @memberof OrderAllOf
      */
-    orderDiscounts?: Array<CommerceRuntimeAppliedDiscount> | null;
+    handlingDiscounts?: Array<CommerceRuntimeAppliedDiscount> | null;
     /**
-     * 
-     * @type {Array<SuggestedDiscount>}
-     * @memberof Order
-     */
-    suggestedDiscounts?: Array<SuggestedDiscount> | null;
-    /**
-     * 
-     * @type {Array<SuggestedDiscount>}
-     * @memberof Order
-     */
-    rejectedDiscounts?: Array<SuggestedDiscount> | null;
-    /**
-     * Custom data for a given vendor set within the commerce process.
-     * @type {object}
-     * @memberof Order
-     */
-    data?: object | null;
-    /**
-     * Storage for any additional/custom tax data.
-     * @type {object}
-     * @memberof Order
-     */
-    taxData?: object | null;
-    /**
-     * Combined price for all cart items, including all selected options but excluding any discounts.
+     * Handling fees for the Order as well as OrderItems (e.g. if the Order has a $5 handling fee and an OrderItem has a $2 handling fee per item quantity and the quantity of items is 2 then the value in this property would be $9)
      * @type {number}
-     * @memberof Order
+     * @memberof OrderAllOf
      */
-    subtotal?: number | null;
+    handlingSubTotal?: number | null;
     /**
-     * Combined price for all cart items, including all selected options as well as any discounts.
+     * Handling fees including any discounts.
      * @type {number}
-     * @memberof Order
+     * @memberof OrderAllOf
      */
-    discountedSubtotal?: number | null;
+    handlingTotal?: number | null;
     /**
-     * Amount of the discounts applied to all items in the cart. This is a negative number.  This also includes the order level discounts.
-     * @type {number}
-     * @memberof Order
+     * Does this order have a draft version.
+     * @type {boolean}
+     * @memberof OrderAllOf
      */
-    discountTotal?: number | null;
+    hasDraft?: boolean | null;
     /**
-     * Subtotal minus the discounted total
-     * @type {number}
-     * @memberof Order
-     */
-    discountedTotal?: number | null;
-    /**
-     * Shipping does not appear on cart.
-     * @type {number}
-     * @memberof Order
-     */
-    shippingTotal?: number | null;
-    /**
-     * Shipping total without discounts applied.
-     * @type {number}
-     * @memberof Order
-     */
-    shippingSubTotal?: number | null;
-    /**
-     * Not implemented. Tax does not appear on cart.
-     * @type {number}
-     * @memberof Order
-     */
-    shippingTaxTotal?: number | null;
-    /**
-     * Total tax on handling
-     * @type {number}
-     * @memberof Order
-     */
-    handlingTaxTotal?: number | null;
-    /**
-     * Not implemented. Tax does not appear on cart.
-     * @type {number}
-     * @memberof Order
-     */
-    itemTaxTotal?: number | null;
-    /**
-     * Tax does not appear on cart.
-     * @type {number}
-     * @memberof Order
-     */
-    taxTotal?: number | null;
-    /**
-     * Not implemented. Total cost of fees for all items in the cart.
-     * @type {number}
-     * @memberof Order
-     */
-    feeTotal?: number | null;
-    /**
-     * Final total amount of the order including all discounts, shipping, and tax.
-     * @type {number}
-     * @memberof Order
-     */
-    total?: number | null;
-    /**
-     * Line Item Subtotals with Order Adjustments
-     * @type {number}
-     * @memberof Order
-     */
-    lineItemSubtotalWithOrderAdjustments?: number | null;
-    /**
-     * Shipping Amount before discount and adjustments
-     * @type {number}
-     * @memberof Order
-     */
-    shippingAmountBeforeDiscountsAndAdjustments?: number | null;
-    /**
-     * Occasionally the commerce runtime may validate that item/product names, descriptions, and prices have not changed. 
-     * If changed, it updates LastValidationDate.
+     * Date this item was imported
      * @type {string}
-     * @memberof Order
+     * @memberof OrderAllOf
      */
-    lastValidationDate?: string | null;
+    importDate?: string | null;
     /**
-     * When the order will no longer be active. That is, the order is considered abandoned. 
-     * Orders of anonymous shoppers expire after 14 days of inactivity. 
-     * An order never expires for shoppers who are logged into their account. 
-     * Date in UTC Date/Time.
+     * A list of invalid coupons that were attempted on the order
+     * @type {Array<InvalidCoupon>}
+     * @memberof OrderAllOf
+     */
+    invalidCoupons?: Array<InvalidCoupon> | null;
+    /**
+     * IP address of the user placing the order. (User or customer?)
      * @type {string}
-     * @memberof Order
+     * @memberof OrderAllOf
      */
-    expirationDate?: string | null;
+    ipAddress?: string | null;
     /**
-     * List of messages displayed by the system based on the last cart action, for example, when a product price has changed or is out-of-stock. System-supplied and read-only.
-     * @type {Array<CommerceRuntimeChangeMessage>}
-     * @memberof Order
+     * Flag to check if the order is continuityOrder.
+     * @type {boolean}
+     * @memberof OrderAllOf
      */
-    changeMessages?: Array<CommerceRuntimeChangeMessage> | null;
+    isContinuityOrder?: boolean;
     /**
-     * Extra properties (key-value pairs) that extend the primary object. Think of this as a property bag of string keys and string values.
-     * @type {Array<ExtendedProperty>}
-     * @memberof Order
+     * Is this order a draft version
+     * @type {boolean}
+     * @memberof OrderAllOf
      */
-    extendedProperties?: Array<ExtendedProperty> | null;
+    isDraft?: boolean | null;
     /**
-     * List of Mozu.CommerceRuntime.Contracts.Commerce.ThresholdMessage objects that are valid for the current value of the cart/order.
-     * @type {Array<CommerceRuntimeThresholdMessage>}
-     * @memberof Order
+     * Marker for determining if the order is a) complete or b) has some items that are shipped and not part of any other return
+     * @type {boolean}
+     * @memberof OrderAllOf
      */
-    discountThresholdMessages?: Array<CommerceRuntimeThresholdMessage> | null;
+    isEligibleForReturns?: boolean;
+    /**
+     * Flag to indicate whether it is safe to proceed with fulfillment on shipments on the order.
+     * @type {boolean}
+     * @memberof OrderAllOf
+     */
+    isFulfillable?: boolean;
+    /**
+     * Indicates this was an order in a terminal state (completed/canceled) that was imported into the system for historical purposes.
+     * @type {boolean}
+     * @memberof OrderAllOf
+     */
+    isHistoricalImport?: boolean | null;
+    /**
+     * Was this order initiated from an external system
+     * @type {boolean}
+     * @memberof OrderAllOf
+     */
+    isImport?: boolean | null;
+    /**
+     * Whether the shopper opts in to curbside text notifications.
+     * @type {boolean}
+     * @memberof OrderAllOf
+     */
+    isOptInForSms?: boolean;
+    /**
+     * Returns `true` if this order originated from a checkout and has sibling partial orders, otherwise `false`.
+     * @type {boolean}
+     * @memberof OrderAllOf
+     */
+    isPartialOrder?: boolean;
+    /**
+     * Unique identifier of the customer account.
+     * @type {boolean}
+     * @memberof OrderAllOf
+     */
+    isTaxExempt?: boolean | null;
+    /**
+     * Was this order created by the Unified platform.
+     * @type {boolean}
+     * @memberof OrderAllOf
+     */
+    isUnified?: boolean;
+    /**
+     * List of items in the order.
+     * @type {Array<CommerceRuntimeOrderItem>}
+     * @memberof OrderAllOf
+     */
+    items?: Array<CommerceRuntimeOrderItem> | null;
+    /**
+     * Identifies the location at which the order was placed if the order was placed externally.
+     * @type {string}
+     * @memberof OrderAllOf
+     */
+    locationCode?: string | null;
+    /**
+     * Internal notes that a merchant may add to the order. Maximum 250 characters.
+     * @type {Array<OrderNote>}
+     * @memberof OrderAllOf
+     */
+    notes?: Array<OrderNote> | null;
+    /**
+     * Order Number. This is an integer that is only assigned after an order is placed and enters the open state.
+     * @type {number}
+     * @memberof OrderAllOf
+     */
+    orderNumber?: number | null;
+    /**
+     * Unique identifier for the cart that was converted to order.
+     * @type {string}
+     * @memberof OrderAllOf
+     */
+    originalCartId?: string | null;
+    /**
+     * If this order originated from a quote, this is the identifier of the originating quote.
+     * @type {string}
+     * @memberof OrderAllOf
+     */
+    originalQuoteId?: string | null;
+    /**
+     * If this order originated from a quote, this is the number of the originating quote.
+     * @type {number}
+     * @memberof OrderAllOf
+     */
+    originalQuoteNumber?: number | null;
+    /**
+     * Shipping package associated with this order.
+     * @type {Array<SubscriptionRuntimePackage>}
+     * @memberof OrderAllOf
+     */
+    packages?: Array<SubscriptionRuntimePackage> | null;
+    /**
+     * If this order originated from a multi-ship enabled site, this is the identifier of the originating checkout.
+     * @type {string}
+     * @memberof OrderAllOf
+     */
+    parentCheckoutId?: string | null;
+    /**
+     * If this order originated from a multi-ship enabled site, this is the number of the originating checkout.
+     * @type {number}
+     * @memberof OrderAllOf
+     */
+    parentCheckoutNumber?: number | null;
+    /**
+     * If this Order has a parent order, this should be the parent's ID.
+     * @type {string}
+     * @memberof OrderAllOf
+     */
+    parentOrderId?: string | null;
+    /**
+     * If this order has a parent order, this should be the parent's Mozu.CommerceRuntime.Contracts.Orders.Order.OrderNumber.
+     * @type {number}
+     * @memberof OrderAllOf
+     */
+    parentOrderNumber?: number | null;
+    /**
+     * If this order was created as part of a return, this should be the return's ID.
+     * @type {string}
+     * @memberof OrderAllOf
+     */
+    parentReturnId?: string | null;
+    /**
+     * If this order was created as part of a return, this should be the return's ReturnNumber.
+     * @type {number}
+     * @memberof OrderAllOf
+     */
+    parentReturnNumber?: number | null;
+    /**
+     * If this order originated from a checkout, this is the total number of orders created from that checkout.
+     * @type {number}
+     * @memberof OrderAllOf
+     */
+    partialOrderCount?: number | null;
+    /**
+     * If this order originated from a checkout, this is a sequence number out of the total orders created from that checkout.
+     * @type {number}
+     * @memberof OrderAllOf
+     */
+    partialOrderNumber?: number | null;
+    /**
+     * Current status of payment, which can be "Null," "AwaitingCheck," "AwaitingPayment," "Paid," "Authorized," or "Void." 
+     * System-supplied and read-only.
+     * @type {string}
+     * @memberof OrderAllOf
+     */
+    paymentStatus?: string | null;
+    /**
+     * Payment transaction associated with this order. It is the entire payment interchange between the merchant 
+     * who is forwarding the customer's payment information and the payment service who is authorizing and 
+     * capturing payment. Payment can be either by credit card, check, or PayPal.
+     * @type {Array<Payment>}
+     * @memberof OrderAllOf
+     */
+    payments?: Array<Payment> | null;
+    /**
+     * Fulfillment pickups associated with this order.
+     * @type {Array<Pickup>}
+     * @memberof OrderAllOf
+     */
+    pickups?: Array<Pickup> | null;
+    /**
+     * Pricelist code for the order
+     * @type {string}
+     * @memberof OrderAllOf
+     */
+    priceListCode?: string | null;
     /**
      * 
-     * @type {AdminUserAuditInfo}
-     * @memberof Order
+     * @type {boolean}
+     * @memberof OrderAllOf
      */
-    auditInfo?: AdminUserAuditInfo;
+    readyToCapture?: boolean;
+    /**
+     * Refunds associated with this order. A refund is a single exchange of money from merchant to customer
+     * that either encapsulates a refund to a credit card or an issuance of a store credit.
+     * Refunds does not reduce the 'amount collected' on an order and it is possible for refunds to exceed the total order amount.
+     * @type {Array<Refund>}
+     * @memberof OrderAllOf
+     */
+    refunds?: Array<Refund> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderAllOf
+     */
+    releaseShipmentDate?: string | null;
+    /**
+     * Inventory Reservation id for order.
+     * @type {string}
+     * @memberof OrderAllOf
+     */
+    reservationId?: string | null;
+    /**
+     * Settings this flag on the order will restrict user from Cancelling the order
+     * @type {boolean}
+     * @memberof OrderAllOf
+     */
+    restrictCancellation?: boolean | null;
+    /**
+     * Setting this flag on the order will restrict user from editing the order
+     * @type {boolean}
+     * @memberof OrderAllOf
+     */
+    restrictEdit?: boolean | null;
+    /**
+     * System-supplied and read-only.
+     * @type {string}
+     * @memberof OrderAllOf
+     */
+    returnStatus?: string | null;
+    /**
+     * Release Shipment After(in minutes) (Order Submitted Date).
+     * @type {number}
+     * @memberof OrderAllOf
+     */
+    shipmentCreationOffset?: number | null;
+    /**
+     * Package shipments associated with this order.
+     * @type {Array<CommerceRuntimeShipment>}
+     * @memberof OrderAllOf
+     */
+    shipments?: Array<CommerceRuntimeShipment> | null;
+    /**
+     * 
+     * @type {Adjustment}
+     * @memberof OrderAllOf
+     */
+    shippingAdjustment?: Adjustment;
+    /**
+     * 
+     * @type {Array<ShippingDiscount>}
+     * @memberof OrderAllOf
+     */
+    shippingDiscounts?: Array<ShippingDiscount> | null;
+    /**
+     * List of order grouping.
+     * @type {Array<ShippingGrouping>}
+     * @memberof OrderAllOf
+     */
+    shippingGroups?: Array<ShippingGrouping> | null;
+    /**
+     * 
+     * @type {CommerceRuntimeShopperNotes}
+     * @memberof OrderAllOf
+     */
+    shopperNotes?: CommerceRuntimeShopperNotes;
+    /**
+     * Source device of the user placing the order. (User or customer?)
+     * @type {string}
+     * @memberof OrderAllOf
+     */
+    sourceDevice?: string | null;
+    /**
+     * Current status of the order, which can be viewed in OrderStatusConst. System-supplied and read-only.
+     * @type {string}
+     * @memberof OrderAllOf
+     */
+    status?: string | null;
+    /**
+     * When the customer placed (submitted) the order.
+     * @type {string}
+     * @memberof OrderAllOf
+     */
+    submittedDate?: string | null;
+    /**
+     * All the subscriptions associated with the current order.
+     * @type {Array<string>}
+     * @memberof OrderAllOf
+     */
+    subscriptionIds?: Array<string> | null;
+    /**
+     * Total amount of money collected on the order via payments.
+     * @type {number}
+     * @memberof OrderAllOf
+     */
+    totalCollected?: number;
+    /**
+     * Is this Order Online or Offline? Online means shopper entered at checkout, offline means a phone order.
+     * @type {string}
+     * @memberof OrderAllOf
+     */
+    type?: string | null;
+    /**
+     * Validation results for the order when processes against validation capabilities.
+     * @type {Array<OrderValidationResult>}
+     * @memberof OrderAllOf
+     */
+    validationResults?: Array<OrderValidationResult> | null;
+    /**
+     * Version for concurrency purposes
+     * @type {string}
+     * @memberof OrderAllOf
+     */
+    version?: string | null;
 }
 /**
  * 
@@ -6529,86 +8513,35 @@ export interface Order {
  */
 export interface OrderCanceledItem {
     /**
-     * Original Quantity of OrderItem before Cancellation
+     * Order Level taxable sub total
      * @type {number}
      * @memberof OrderCanceledItem
      */
-    originalQuantity?: number;
-    /**
-     * Quantity Canceled on the OrderItem
-     * @type {number}
-     * @memberof OrderCanceledItem
-     */
-    canceledQuantity?: number;
-    /**
-     * Max Quantity Rule Code that was violated and led to Item Cancellation
-     * @type {string}
-     * @memberof OrderCanceledItem
-     */
-    ruleCode?: string | null;
-    /**
-     * Locale code for language that appears in text and descriptions on the site, for example, en_US. 
-     * This is not the currency code. Currently only en_US is supported.
-     * @type {string}
-     * @memberof OrderCanceledItem
-     */
-    localeCode?: string | null;
-    /**
-     * The location where the product is being purchased.. default is null. Products can have different prices
-     * by purchaseLocation via custom priceListResolution...
-     * @type {string}
-     * @memberof OrderCanceledItem
-     */
-    purchaseLocation?: string | null;
-    /**
-     * The line id assigned to the order item. Visible only in the Admin, this is set from the Admin or
-     * in CommerceRuntime when a cart is converted to an order.
-     * @type {number}
-     * @memberof OrderCanceledItem
-     */
-    lineId?: number | null;
+    adjustedLineItemSubtotal?: number | null;
     /**
      * 
-     * @type {CommerceRuntimeProduct}
+     * @type {CoreApiContractsAuditInfo}
      * @memberof OrderCanceledItem
      */
-    product?: CommerceRuntimeProduct;
+    auditInfo?: CoreApiContractsAuditInfo;
     /**
-     * Number of products ordered.
+     * Track the discoutid from which the item was auto added
      * @type {number}
      * @memberof OrderCanceledItem
      */
-    quantity?: number;
+    autoAddDiscountId?: number | null;
     /**
-     * If true, the cart item lists a product that can be purchased or fulfilled at regular intervals, for example, monthly billing or a subscription.
-     * @type {boolean}
+     * List of Child Item Ids for this order item
+     * @type {Array<string>}
      * @memberof OrderCanceledItem
      */
-    isRecurring?: boolean | null;
+    childItemIds?: Array<string> | null;
     /**
-     * Not implemented. If true, the cart item is eligible for tax.
-     * @type {boolean}
+     * Custom data for a given vendor set within the commerce process.
+     * @type {object}
      * @memberof OrderCanceledItem
      */
-    isTaxable?: boolean | null;
-    /**
-     * Line item subtotal (quantity multiplied by price) before discounts.
-     * @type {number}
-     * @memberof OrderCanceledItem
-     */
-    subtotal?: number | null;
-    /**
-     * Line item extended total (quantity multiplied by unit extended price) before discounts.
-     * @type {number}
-     * @memberof OrderCanceledItem
-     */
-    extendedTotal?: number | null;
-    /**
-     * Line item subtotal (quantity multiplied by price) before discounts.
-     * @type {number}
-     * @memberof OrderCanceledItem
-     */
-    taxableTotal?: number | null;
+    data?: object | null;
     /**
      * How much the shopper saves with the applied discount or sale price. This is a negative number.
      * @type {number}
@@ -6622,29 +8555,17 @@ export interface OrderCanceledItem {
      */
     discountedTotal?: number | null;
     /**
-     * Total price of taxes that apply to products in this item.
+     * Duty or Tariff for this item
      * @type {number}
      * @memberof OrderCanceledItem
      */
-    itemTaxTotal?: number | null;
+    dutyAmount?: number | null;
     /**
-     * Total price of taxes that apply to the shipping of this item.
+     * Line item extended total (quantity multiplied by unit extended price) before discounts.
      * @type {number}
      * @memberof OrderCanceledItem
      */
-    shippingTaxTotal?: number | null;
-    /**
-     * Total price of shipping that apply to this item.
-     * @type {number}
-     * @memberof OrderCanceledItem
-     */
-    shippingTotal?: number | null;
-    /**
-     * Handling Amount for this item
-     * @type {number}
-     * @memberof OrderCanceledItem
-     */
-    handlingAmount?: number | null;
+    extendedTotal?: number | null;
     /**
      * Not implemented. Total cost of fees that apply to this item.
      * @type {number}
@@ -6652,17 +8573,75 @@ export interface OrderCanceledItem {
      */
     feeTotal?: number | null;
     /**
-     * Total price of this cart item taking into account any discounts.
+     * Product-level handling fee for this item (e.g. special packaging, hazmat fees).
+     * This does NOT include order-level handling fees — those are in Mozu.CommerceRuntime.Contracts.Commerce.CommerceItem.WeightedOrderHandlingFee.
+     * Total handling on the shipment = HandlingAmount + WeightedOrderHandlingFee.
      * @type {number}
      * @memberof OrderCanceledItem
      */
-    total?: number | null;
+    handlingAmount?: number | null;
     /**
      * 
-     * @type {CommerceUnitPrice}
+     * @type {Array<InventoryTags>}
      * @memberof OrderCanceledItem
      */
-    unitPrice?: CommerceUnitPrice;
+    inventoryTags?: Array<InventoryTags> | null;
+    /**
+     * Assembly Required for this order item
+     * @type {boolean}
+     * @memberof OrderCanceledItem
+     */
+    isAssemblyRequired?: boolean;
+    /**
+     * If true, the cart item lists a product that can be purchased or fulfilled at regular intervals, for example, monthly billing or a subscription.
+     * @type {boolean}
+     * @memberof OrderCanceledItem
+     */
+    isRecurring?: boolean | null;
+    /**
+     * Not implemented. If true, the cart item is eligible for tax.
+     * @type {boolean}
+     * @memberof OrderCanceledItem
+     */
+    isTaxable?: boolean | null;
+    /**
+     * Total price of taxes that apply to products in this item.
+     * @type {number}
+     * @memberof OrderCanceledItem
+     */
+    itemTaxTotal?: number | null;
+    /**
+     * The line id assigned to the order item. Visible only in the Admin, this is set from the Admin or
+     * in CommerceRuntime when a cart is converted to an order.
+     * @type {number}
+     * @memberof OrderCanceledItem
+     */
+    lineId?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OrderCanceledItem
+     */
+    lineItemAdjustment?: number | null;
+    /**
+     * Locale code for language that appears in text and descriptions on the site, for example, en_US. 
+     * This is not the currency code. Currently only en_US is supported.
+     * @type {string}
+     * @memberof OrderCanceledItem
+     */
+    localeCode?: string | null;
+    /**
+     * Indicates Parent Item Id for this order item
+     * @type {string}
+     * @memberof OrderCanceledItem
+     */
+    parentItemId?: string | null;
+    /**
+     * 
+     * @type {CommerceRuntimeProduct}
+     * @memberof OrderCanceledItem
+     */
+    product?: CommerceRuntimeProduct;
     /**
      * 
      * @type {CommerceRuntimeAppliedLineItemProductDiscount}
@@ -6676,17 +8655,54 @@ export interface OrderCanceledItem {
      */
     productDiscounts?: Array<CommerceRuntimeAppliedLineItemProductDiscount> | null;
     /**
+     * The location where the product is being purchased.. default is null. Products can have different prices
+     * by purchaseLocation via custom priceListResolution...
+     * @type {string}
+     * @memberof OrderCanceledItem
+     */
+    purchaseLocation?: string | null;
+    /**
+     * Number of products ordered.
+     * @type {number}
+     * @memberof OrderCanceledItem
+     */
+    quantity?: number;
+    /**
+     * Shipping amount before Discounts and adjustments
+     * @type {number}
+     * @memberof OrderCanceledItem
+     */
+    shippingAmountBeforeDiscountsAndAdjustments?: number | null;
+    /**
      * A discount applied to the shipping
      * @type {Array<CommerceRuntimeAppliedLineItemShippingDiscount>}
      * @memberof OrderCanceledItem
      */
     shippingDiscounts?: Array<CommerceRuntimeAppliedLineItemShippingDiscount> | null;
     /**
-     * Custom data for a given vendor set within the commerce process.
-     * @type {object}
+     * Total price of taxes that apply to the shipping of this item.
+     * @type {number}
      * @memberof OrderCanceledItem
      */
-    data?: object | null;
+    shippingTaxTotal?: number | null;
+    /**
+     * Total price of shipping that apply to this item.
+     * @type {number}
+     * @memberof OrderCanceledItem
+     */
+    shippingTotal?: number | null;
+    /**
+     * 
+     * @type {SubstituteInfo}
+     * @memberof OrderCanceledItem
+     */
+    substituteInfo?: SubstituteInfo;
+    /**
+     * Line item subtotal (quantity multiplied by price) before discounts.
+     * @type {number}
+     * @memberof OrderCanceledItem
+     */
+    subtotal?: number | null;
     /**
      * Storage for any additional/custom tax data.
      * @type {object}
@@ -6694,17 +8710,35 @@ export interface OrderCanceledItem {
      */
     taxData?: object | null;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof OrderCanceledItem
-     */
-    auditInfo?: AdminUserAuditInfo;
-    /**
-     * Shipping amount before Discounts and adjustments
+     * Line item subtotal (quantity multiplied by price) before discounts.
      * @type {number}
      * @memberof OrderCanceledItem
      */
-    shippingAmountBeforeDiscountsAndAdjustments?: number | null;
+    taxableTotal?: number | null;
+    /**
+     * Total price of this cart item taking into account any discounts.
+     * @type {number}
+     * @memberof OrderCanceledItem
+     */
+    total?: number | null;
+    /**
+     * Line item total with line item, Tax, Weighted Tax with Weighted shipping and handling costs
+     * @type {number}
+     * @memberof OrderCanceledItem
+     */
+    totalWithWeightedShippingAndHandling?: number | null;
+    /**
+     * Taxable Subtotal including Weighted Order amounts
+     * @type {number}
+     * @memberof OrderCanceledItem
+     */
+    totalWithoutWeightedShippingAndHandling?: number | null;
+    /**
+     * 
+     * @type {CommerceUnitPrice}
+     * @memberof OrderCanceledItem
+     */
+    unitPrice?: CommerceUnitPrice;
     /**
      * Order Level Manual Adjustment applied to this Item
      * @type {number}
@@ -6718,23 +8752,38 @@ export interface OrderCanceledItem {
      */
     weightedOrderDiscount?: number | null;
     /**
-     * Order Level taxable sub total
+     * Order Level Duty applied to this Item
      * @type {number}
      * @memberof OrderCanceledItem
      */
-    adjustedLineItemSubtotal?: number | null;
+    weightedOrderDuty?: number | null;
     /**
-     * Taxable Subtotal including Weighted Order amounts
+     * Order-level handling manual adjustment allocated to this item.
      * @type {number}
      * @memberof OrderCanceledItem
      */
-    totalWithoutWeightedShippingAndHandling?: number | null;
+    weightedOrderHandlingAdjustment?: number | null;
     /**
-     * Order Level tax applied to this Item
+     * Order-level handling fee allocated to this item (e.g. flat handling fee spread across all items).
+     * This is separate from product-level handling in Mozu.CommerceRuntime.Contracts.Commerce.CommerceItem.HandlingAmount.
+     * Total handling on the shipment = HandlingAmount + WeightedOrderHandlingFee.
      * @type {number}
      * @memberof OrderCanceledItem
      */
-    weightedOrderTax?: number | null;
+    weightedOrderHandlingFee?: number | null;
+    /**
+     * Order-level handling fee discount allocated to this item.
+     * @type {number}
+     * @memberof OrderCanceledItem
+     */
+    weightedOrderHandlingFeeDiscount?: number | null;
+    /**
+     * Total handling tax for this item (covers both product-level and order-level handling tax combined).
+     * On the shipment item, this is split into: HandlingTax (total) and WeightedOrderHandlingFeeTax (order-level portion only).
+     * @type {number}
+     * @memberof OrderCanceledItem
+     */
+    weightedOrderHandlingFeeTax?: number | null;
     /**
      * Order Level Shipping applied to this Item
      * @type {number}
@@ -6760,89 +8809,201 @@ export interface OrderCanceledItem {
      */
     weightedOrderShippingTax?: number | null;
     /**
-     * Order Level handling fee applied to this item
+     * Order Level tax applied to this Item
      * @type {number}
      * @memberof OrderCanceledItem
      */
-    weightedOrderHandlingFee?: number | null;
+    weightedOrderTax?: number | null;
     /**
-     * Order Level handling fee tax applied to this item
-     * @type {number}
+     * Extensible attributes for this order line.
+     * @type {Array<OrderLineAttribute>}
      * @memberof OrderCanceledItem
      */
-    weightedOrderHandlingFeeTax?: number | null;
+    attributes?: Array<OrderLineAttribute> | null;
     /**
-     * Order Level handling fee discount applied to this item
-     * @type {number}
-     * @memberof OrderCanceledItem
-     */
-    weightedOrderHandlingFeeDiscount?: number | null;
-    /**
-     * Order Level Duty applied to this Item
-     * @type {number}
-     * @memberof OrderCanceledItem
-     */
-    weightedOrderDuty?: number | null;
-    /**
-     * Line item total with line item, Tax, Weighted Tax with Weighted shipping and handling costs
-     * @type {number}
-     * @memberof OrderCanceledItem
-     */
-    totalWithWeightedShippingAndHandling?: number | null;
-    /**
-     * Order level handling adjusment that applies to this item.
-     * @type {number}
-     * @memberof OrderCanceledItem
-     */
-    weightedOrderHandlingAdjustment?: number | null;
-    /**
-     * Track the discoutid from which the item was auto added
-     * @type {number}
-     * @memberof OrderCanceledItem
-     */
-    autoAddDiscountId?: number | null;
-    /**
-     * Assembly Required for this order item
-     * @type {boolean}
-     * @memberof OrderCanceledItem
-     */
-    isAssemblyRequired?: boolean;
-    /**
-     * List of Child Item Ids for this order item
-     * @type {Array<string>}
-     * @memberof OrderCanceledItem
-     */
-    childItemIds?: Array<string> | null;
-    /**
-     * Indicates Parent Item Id for this order item
+     * Identifier of the originating Call-Off Order line item, if this item was released
+     * from a Call-Off Order line. Null for standard order items.
      * @type {string}
      * @memberof OrderCanceledItem
      */
-    parentItemId?: string | null;
+    callOffOrderItemId?: string | null;
     /**
      * 
-     * @type {Array<InventoryTags>}
+     * @type {CommerceRuntimeDeliveryWindow}
      * @memberof OrderCanceledItem
      */
-    inventoryTags?: Array<InventoryTags> | null;
+    deliveryWindow?: CommerceRuntimeDeliveryWindow;
+    /**
+     * The destination associated with this item when used with a multi-ship checkout.
+     * @type {string}
+     * @memberof OrderCanceledItem
+     */
+    destinationId?: string | null;
+    /**
+     * Expected Delivery Date of shipment
+     * @type {string}
+     * @memberof OrderCanceledItem
+     */
+    expectedDeliveryDate?: string | null;
+    /**
+     * Location code from which to obtain this item
+     * @type {string}
+     * @memberof OrderCanceledItem
+     */
+    fulfillmentLocationCode?: string | null;
+    /**
+     * Fulfillment method used to fulfill this item
+     * @type {string}
+     * @memberof OrderCanceledItem
+     */
+    fulfillmentMethod?: string | null;
     /**
      * 
+     * @type {GiftInfo}
+     * @memberof OrderCanceledItem
+     */
+    giftInfo?: GiftInfo;
+    /**
+     * Unique identifier of the order line item. System-supplied and read-only.
+     * @type {string}
+     * @memberof OrderCanceledItem
+     */
+    id?: string | null;
+    /**
+     * Flag to indicate reserve inventory in cart
+     * @type {boolean}
+     * @memberof OrderCanceledItem
+     */
+    isReservationEnabled?: boolean;
+    /**
+     * Unique identifier of the cart item that is associated with this line item. 
+     * (This is the original Cart Item ID expressed as a GUID.)
+     * @type {string}
+     * @memberof OrderCanceledItem
+     */
+    originalCartItemId?: string | null;
+    /**
+     * Determines if the item is using external or internal(catalog) pricing
+     * @type {string}
+     * @memberof OrderCanceledItem
+     */
+    priceMode?: string | null;
+    /**
+     * Requested ship date carried from the Call-Off Order line (spec COM-10941 follow-up).
+     * @type {string}
+     * @memberof OrderCanceledItem
+     */
+    requestedShipDate?: string | null;
+    /**
+     * 
+     * @type {ReturnRuleInfo}
+     * @memberof OrderCanceledItem
+     */
+    returnRuleInfo?: ReturnRuleInfo;
+    /**
+     * Code that uniquely identifies the shipping method.
+     * @type {string}
+     * @memberof OrderCanceledItem
+     */
+    shippingMethodCode?: string | null;
+    /**
+     * Readable name of the shipping method.
+     * @type {string}
+     * @memberof OrderCanceledItem
+     */
+    shippingMethodName?: string | null;
+    /**
+     * 
+     * @type {SubscriptionInfo}
+     * @memberof OrderCanceledItem
+     */
+    subscription?: SubscriptionInfo;
+    /**
+     * Routing suggestions
+     * @type {Array<Suggestion>}
+     * @memberof OrderCanceledItem
+     */
+    suggestions?: Array<Suggestion> | null;
+    /**
+     * Time-fence tolerance (days) carried from the Call-Off Order line's bound ReservationRule.
      * @type {number}
      * @memberof OrderCanceledItem
      */
-    lineItemAdjustment?: number | null;
+    timeFenceDays?: number | null;
     /**
-     * Indicate Duty Amount for this item.
+     * Quantity Canceled on the OrderItem
      * @type {number}
      * @memberof OrderCanceledItem
      */
-    dutyAmount?: number | null;
+    canceledQuantity?: number;
     /**
-     * 
-     * @type {SubstituteInfo}
+     * Original Quantity of OrderItem before Cancellation
+     * @type {number}
      * @memberof OrderCanceledItem
      */
-    substituteInfo?: SubstituteInfo;
+    originalQuantity?: number;
+    /**
+     * Max Quantity Rule Code that was violated and led to Item Cancellation
+     * @type {string}
+     * @memberof OrderCanceledItem
+     */
+    ruleCode?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface OrderCanceledItemAllOf
+ */
+export interface OrderCanceledItemAllOf {
+    /**
+     * Quantity Canceled on the OrderItem
+     * @type {number}
+     * @memberof OrderCanceledItemAllOf
+     */
+    canceledQuantity?: number;
+    /**
+     * Original Quantity of OrderItem before Cancellation
+     * @type {number}
+     * @memberof OrderCanceledItemAllOf
+     */
+    originalQuantity?: number;
+    /**
+     * Max Quantity Rule Code that was violated and led to Item Cancellation
+     * @type {string}
+     * @memberof OrderCanceledItemAllOf
+     */
+    ruleCode?: string | null;
+}
+/**
+ * Attribute instance on an Order line item.
+ * @export
+ * @interface OrderLineAttribute
+ */
+export interface OrderLineAttribute {
+    /**
+     * 
+     * @type {number}
+     * @memberof OrderLineAttribute
+     */
+    attributeDefinitionId?: number | null;
+    /**
+     * 
+     * @type {CoreApiContractsAuditInfo}
+     * @memberof OrderLineAttribute
+     */
+    auditInfo?: CoreApiContractsAuditInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderLineAttribute
+     */
+    fullyQualifiedName?: string | null;
+    /**
+     * 
+     * @type {Array<any>}
+     * @memberof OrderLineAttribute
+     */
+    values?: Array<any> | null;
 }
 /**
  * Internal notes that a merchant may add to the order. Maximum 250 characters.
@@ -6850,6 +9011,12 @@ export interface OrderCanceledItem {
  * @interface OrderNote
  */
 export interface OrderNote {
+    /**
+     * 
+     * @type {CoreApiContractsAuditInfo}
+     * @memberof OrderNote
+     */
+    auditInfo?: CoreApiContractsAuditInfo;
     /**
      * Unique identifier of the note. System-supplied and read-only.
      * @type {string}
@@ -6862,12 +9029,6 @@ export interface OrderNote {
      * @memberof OrderNote
      */
     text?: string | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof OrderNote
-     */
-    auditInfo?: AdminUserAuditInfo;
 }
 /**
  * Validation message returned by an order validator.
@@ -6876,11 +9037,11 @@ export interface OrderNote {
  */
 export interface OrderValidationMessage {
     /**
-     * Order item id that this message applies to.  Can be empty.
+     * Actual message returned by the validator.
      * @type {string}
      * @memberof OrderValidationMessage
      */
-    orderItemId?: string | null;
+    message?: string | null;
     /**
      * Identifier to indicate the type of the message, See OrderValidatorMessageTypeConst for options.
      * @type {string}
@@ -6888,11 +9049,11 @@ export interface OrderValidationMessage {
      */
     messageType?: string | null;
     /**
-     * Actual message returned by the validator.
+     * Order item id that this message applies to.  Can be empty.
      * @type {string}
      * @memberof OrderValidationMessage
      */
-    message?: string | null;
+    orderItemId?: string | null;
 }
 /**
  * The result of an order validator.
@@ -6900,6 +9061,24 @@ export interface OrderValidationMessage {
  * @interface OrderValidationResult
  */
 export interface OrderValidationResult {
+    /**
+     * DateTime that this validation result was created
+     * @type {string}
+     * @memberof OrderValidationResult
+     */
+    createdDate?: string | null;
+    /**
+     * Messages returned by the order validator
+     * @type {Array<OrderValidationMessage>}
+     * @memberof OrderValidationResult
+     */
+    messages?: Array<OrderValidationMessage> | null;
+    /**
+     * Status of the order validation result.  See OrderValidatorStatusConst for options.
+     * @type {string}
+     * @memberof OrderValidationResult
+     */
+    status?: string | null;
     /**
      * Identifier set by the capability that states the id of this specific validation attempt
      * @type {string}
@@ -6918,24 +9097,6 @@ export interface OrderValidationResult {
      * @memberof OrderValidationResult
      */
     validatorType?: string | null;
-    /**
-     * Status of the order validation result.  See OrderValidatorStatusConst for options.
-     * @type {string}
-     * @memberof OrderValidationResult
-     */
-    status?: string | null;
-    /**
-     * DateTime that this validation result was created
-     * @type {string}
-     * @memberof OrderValidationResult
-     */
-    createdDate?: string | null;
-    /**
-     * Messages returned by the order validator
-     * @type {Array<OrderValidationMessage>}
-     * @memberof OrderValidationResult
-     */
-    messages?: Array<OrderValidationMessage> | null;
 }
 /**
  * An item in a package representing a particular product.
@@ -6943,18 +9104,6 @@ export interface OrderValidationResult {
  * @interface PackageItem
  */
 export interface PackageItem {
-    /**
-     * Code of the Product to be fulfilled.
-     * @type {string}
-     * @memberof PackageItem
-     */
-    productCode?: string | null;
-    /**
-     * Quantity of the order item
-     * @type {number}
-     * @memberof PackageItem
-     */
-    quantity?: number;
     /**
      * The type of fulfillment item
      * @type {string}
@@ -6973,6 +9122,18 @@ export interface PackageItem {
      * @memberof PackageItem
      */
     optionAttributeFQN?: string | null;
+    /**
+     * Code of the Product to be fulfilled.
+     * @type {string}
+     * @memberof PackageItem
+     */
+    productCode?: string | null;
+    /**
+     * Quantity of the order item
+     * @type {number}
+     * @memberof PackageItem
+     */
+    quantity?: number;
 }
 /**
  * 
@@ -7014,92 +9175,6 @@ export interface PackingSlipItemDetail {
  */
 export interface Payment {
     /**
-     * Unique identifier of this order transaction.
-     * @type {string}
-     * @memberof Payment
-     */
-    id?: string | null;
-    /**
-     * 
-     * @type {PaymentActionTarget}
-     * @memberof Payment
-     */
-    groupId?: PaymentActionTarget;
-    /**
-     * Unique identifier of the transaction, specified by the payment service processesing this transaction.
-     * @type {string}
-     * @memberof Payment
-     */
-    paymentServiceTransactionId?: string | null;
-    /**
-     * Actions available to the payment
-     * @type {Array<string>}
-     * @memberof Payment
-     */
-    availableActions?: Array<string> | null;
-    /**
-     * Unique identifier of the order with which this transaction is associated.
-     * @type {string}
-     * @memberof Payment
-     */
-    orderId?: string | null;
-    /**
-     * Type of Payment
-     * @type {string}
-     * @memberof Payment
-     */
-    paymentType?: string | null;
-    /**
-     * The source of data for this payment.  By default, this will be set to 'mozu'
-     * @type {string}
-     * @memberof Payment
-     */
-    paymentWorkflow?: string | null;
-    /**
-     * The external/third party transaction Id for this payment. This is used to store the transaction Id from digital wallet like Visa Checkout
-     * @type {string}
-     * @memberof Payment
-     */
-    externalTransactionId?: string | null;
-    /**
-     * 
-     * @type {BillingInfo}
-     * @memberof Payment
-     */
-    billingInfo?: BillingInfo;
-    /**
-     * Custom data from payment providers
-     * @type {object}
-     * @memberof Payment
-     */
-    data?: object | null;
-    /**
-     * Current status of this transaction which are described by the PaymentStatusConst class.
-     * @type {string}
-     * @memberof Payment
-     */
-    status?: string | null;
-    /**
-     * List of sub payments that correspond to child orders in case of multiship orders.
-     * @type {Array<SubPayment>}
-     * @memberof Payment
-     */
-    subPayments?: Array<SubPayment> | null;
-    /**
-     * List of intereactions for this transaction. A transaction is created upon authorization and lasts across the payment 
-     * interchange, which can consist of multiple interactions, such as consecutive captures.
-     * @type {Array<PaymentInteraction>}
-     * @memberof Payment
-     */
-    interactions?: Array<PaymentInteraction> | null;
-    /**
-     * If true, the product is purchased or fulfilled at regular intervals, for example, 
-     * monthly billing or a subscription. (Not currently supported.)
-     * @type {boolean}
-     * @memberof Payment
-     */
-    isRecurring?: boolean;
-    /**
      * Amount collected on the payment
      * @type {number}
      * @memberof Payment
@@ -7119,17 +9194,41 @@ export interface Payment {
      */
     amountRequested?: number;
     /**
+     * 
+     * @type {CoreApiContractsAuditInfo}
+     * @memberof Payment
+     */
+    auditInfo?: CoreApiContractsAuditInfo;
+    /**
+     * Actions available to the payment
+     * @type {Array<string>}
+     * @memberof Payment
+     */
+    availableActions?: Array<string> | null;
+    /**
+     * 
+     * @type {BillingInfo}
+     * @memberof Payment
+     */
+    billingInfo?: BillingInfo;
+    /**
      * Change messages related to the payment.
      * @type {Array<CommerceRuntimeChangeMessage>}
      * @memberof Payment
      */
     changeMessages?: Array<CommerceRuntimeChangeMessage> | null;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
+     * Custom data from payment providers
+     * @type {object}
      * @memberof Payment
      */
-    auditInfo?: AdminUserAuditInfo;
+    data?: object | null;
+    /**
+     * The external/third party transaction Id for this payment. This is used to store the transaction Id from digital wallet like Visa Checkout
+     * @type {string}
+     * @memberof Payment
+     */
+    externalTransactionId?: string | null;
     /**
      * 
      * @type {GatewayGiftCard}
@@ -7137,11 +9236,73 @@ export interface Payment {
      */
     gatewayGiftCard?: GatewayGiftCard;
     /**
+     * 
+     * @type {PaymentActionTarget}
+     * @memberof Payment
+     */
+    groupId?: PaymentActionTarget;
+    /**
+     * Unique identifier of this order transaction.
+     * @type {string}
+     * @memberof Payment
+     */
+    id?: string | null;
+    /**
      * Stores the Installment Plan code. Installment is only supported on subscription orders
      * @type {string}
      * @memberof Payment
      */
     installmentPlanCode?: string | null;
+    /**
+     * List of intereactions for this transaction. A transaction is created upon authorization and lasts across the payment 
+     * interchange, which can consist of multiple interactions, such as consecutive captures.
+     * @type {Array<PaymentInteraction>}
+     * @memberof Payment
+     */
+    interactions?: Array<PaymentInteraction> | null;
+    /**
+     * If true, the product is purchased or fulfilled at regular intervals, for example, 
+     * monthly billing or a subscription. (Not currently supported.)
+     * @type {boolean}
+     * @memberof Payment
+     */
+    isRecurring?: boolean;
+    /**
+     * Unique identifier of the order with which this transaction is associated.
+     * @type {string}
+     * @memberof Payment
+     */
+    orderId?: string | null;
+    /**
+     * Unique identifier of the transaction, specified by the payment service processesing this transaction.
+     * @type {string}
+     * @memberof Payment
+     */
+    paymentServiceTransactionId?: string | null;
+    /**
+     * Type of Payment
+     * @type {string}
+     * @memberof Payment
+     */
+    paymentType?: string | null;
+    /**
+     * The source of data for this payment.  By default, this will be set to 'mozu'
+     * @type {string}
+     * @memberof Payment
+     */
+    paymentWorkflow?: string | null;
+    /**
+     * Current status of this transaction which are described by the PaymentStatusConst class.
+     * @type {string}
+     * @memberof Payment
+     */
+    status?: string | null;
+    /**
+     * List of sub payments that correspond to child orders in case of multiship orders.
+     * @type {Array<SubPayment>}
+     * @memberof Payment
+     */
+    subPayments?: Array<SubPayment> | null;
 }
 /**
  * 
@@ -7149,12 +9310,6 @@ export interface Payment {
  * @interface PaymentActionTarget
  */
 export interface PaymentActionTarget {
-    /**
-     * Specifies if the Mozu.CommerceRuntime.Contracts.Payments.PaymentActionTarget.TargetId is a Checkout Id, Order Id, or Return Id.
-     * @type {string}
-     * @memberof PaymentActionTarget
-     */
-    targetType?: string | null;
     /**
      * The Id of the Checkout/Order/Return to target.
      * @type {string}
@@ -7167,6 +9322,12 @@ export interface PaymentActionTarget {
      * @memberof PaymentActionTarget
      */
     targetNumber?: number | null;
+    /**
+     * Specifies if the Mozu.CommerceRuntime.Contracts.Payments.PaymentActionTarget.TargetId is a Checkout Id, Order Id, or Return Id.
+     * @type {string}
+     * @memberof PaymentActionTarget
+     */
+    targetType?: string | null;
 }
 /**
  * If the customer is paying by credit card, the card holder's details, such as the name on the card, number, billing 
@@ -7176,23 +9337,43 @@ export interface PaymentActionTarget {
  */
 export interface PaymentCard {
     /**
-     * Credit card number.
+     * Year when the card expires.
      * @type {string}
      * @memberof PaymentCard
      */
-    paymentServiceCardId?: string | null;
+    bin?: string | null;
     /**
-     * If true, the credit card is charged on a regular interval, such as for a subscription. (Not supported currently.)
-     * @type {boolean}
-     * @memberof PaymentCard
-     */
-    isUsedRecurring?: boolean | null;
-    /**
-     * Card holder's name as it appears on the card.
+     * The visible part of the card number that the merchant uses to refer to 
+     * payment information, for example, the last for digits of the card number.
      * @type {string}
      * @memberof PaymentCard
      */
-    nameOnCard?: string | null;
+    cardNumberPartOrMask?: string | null;
+    /**
+     * Month when the card expires.
+     * @type {number}
+     * @memberof PaymentCard
+     */
+    expireMonth?: number;
+    /**
+     * Year when the card expires.
+     * @type {number}
+     * @memberof PaymentCard
+     */
+    expireYear?: number;
+    /**
+     * Card type such as Visa, MasterCard, American Express, or Discover.
+     * @type {string}
+     * @memberof PaymentCard
+     */
+    paymentOrCardType?: string | null;
+    /**
+     * Last four digit of Credit card
+     * Only for OMS Only tenant.
+     * @type {string}
+     * @memberof PaymentCard
+     */
+    ccLastFour?: string | null;
     /**
      * If true, the card information is stored in the customer's account.
      * @type {boolean}
@@ -7206,43 +9387,67 @@ export interface PaymentCard {
      */
     isTokenized?: boolean;
     /**
+     * If true, the credit card is charged on a regular interval, such as for a subscription. (Not supported currently.)
+     * @type {boolean}
+     * @memberof PaymentCard
+     */
+    isUsedRecurring?: boolean | null;
+    /**
+     * Card holder's name as it appears on the card.
+     * @type {string}
+     * @memberof PaymentCard
+     */
+    nameOnCard?: string | null;
+    /**
+     * Credit card number.
+     * @type {string}
+     * @memberof PaymentCard
+     */
+    paymentServiceCardId?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface PaymentCardAllOf
+ */
+export interface PaymentCardAllOf {
+    /**
      * Last four digit of Credit card
      * Only for OMS Only tenant.
      * @type {string}
-     * @memberof PaymentCard
+     * @memberof PaymentCardAllOf
      */
     ccLastFour?: string | null;
     /**
-     * Card type such as Visa, MasterCard, American Express, or Discover.
+     * If true, the card information is stored in the customer's account.
+     * @type {boolean}
+     * @memberof PaymentCardAllOf
+     */
+    isCardInfoSaved?: boolean;
+    /**
+     * If true, the card is tokenized by external provider
+     * @type {boolean}
+     * @memberof PaymentCardAllOf
+     */
+    isTokenized?: boolean;
+    /**
+     * If true, the credit card is charged on a regular interval, such as for a subscription. (Not supported currently.)
+     * @type {boolean}
+     * @memberof PaymentCardAllOf
+     */
+    isUsedRecurring?: boolean | null;
+    /**
+     * Card holder's name as it appears on the card.
      * @type {string}
-     * @memberof PaymentCard
+     * @memberof PaymentCardAllOf
      */
-    paymentOrCardType?: string | null;
+    nameOnCard?: string | null;
     /**
-     * The visible part of the card number that the merchant uses to refer to 
-     * payment information, for example, the last for digits of the card number.
+     * Credit card number.
      * @type {string}
-     * @memberof PaymentCard
+     * @memberof PaymentCardAllOf
      */
-    cardNumberPartOrMask?: string | null;
-    /**
-     * Month when the card expires.
-     * @type {number}
-     * @memberof PaymentCard
-     */
-    expireMonth?: number;
-    /**
-     * Year when the card expires.
-     * @type {number}
-     * @memberof PaymentCard
-     */
-    expireYear?: number;
-    /**
-     * Year when the card expires.
-     * @type {string}
-     * @memberof PaymentCard
-     */
-    bin?: string | null;
+    paymentServiceCardId?: string | null;
 }
 /**
  * 
@@ -7251,11 +9456,11 @@ export interface PaymentCard {
  */
 export interface PaymentCardReference {
     /**
-     * Card type such as Visa, MasterCard, American Express, or Discover.
+     * Year when the card expires.
      * @type {string}
      * @memberof PaymentCardReference
      */
-    paymentOrCardType?: string | null;
+    bin?: string | null;
     /**
      * The visible part of the card number that the merchant uses to refer to 
      * payment information, for example, the last for digits of the card number.
@@ -7276,11 +9481,11 @@ export interface PaymentCardReference {
      */
     expireYear?: number;
     /**
-     * Year when the card expires.
+     * Card type such as Visa, MasterCard, American Express, or Discover.
      * @type {string}
      * @memberof PaymentCardReference
      */
-    bin?: string | null;
+    paymentOrCardType?: string | null;
 }
 /**
  * Payment gateway reponse data
@@ -7310,11 +9515,53 @@ export interface PaymentGatewayResponseData {
  */
 export interface PaymentInteraction {
     /**
-     * Unique identifier of this payment transaction interaction.
+     * Amount of funds associated with this interaction.
+     * @type {number}
+     * @memberof PaymentInteraction
+     */
+    amount?: number | null;
+    /**
+     * 
+     * @type {CoreApiContractsAuditInfo}
+     * @memberof PaymentInteraction
+     */
+    auditInfo?: CoreApiContractsAuditInfo;
+    /**
+     * Stores pairings of shipment number to shipment total for all captured shipments. This was added for generating TLogs.
+     * @type {Array<CapturableShipmentSummary>}
+     * @memberof PaymentInteraction
+     */
+    capturableShipmentsSummary?: Array<CapturableShipmentSummary> | null;
+    /**
+     * If paying by check, the check number.
      * @type {string}
      * @memberof PaymentInteraction
      */
-    id?: string | null;
+    checkNumber?: string | null;
+    /**
+     * ISO currency code for the transaction. Currently, only USD is supported.
+     * @type {string}
+     * @memberof PaymentInteraction
+     */
+    currencyCode?: string | null;
+    /**
+     * Gateway AVS Codes. Supplied by PCIaaS.
+     * @type {string}
+     * @memberof PaymentInteraction
+     */
+    gatewayAVSCodes?: string | null;
+    /**
+     * If required by the payment gateway, the authorization code of the transaction. Supplied by PCIaaS.
+     * @type {string}
+     * @memberof PaymentInteraction
+     */
+    gatewayAuthCode?: string | null;
+    /**
+     * Gateway CVV2 Codes. Supplied by PCIaaS.
+     * @type {string}
+     * @memberof PaymentInteraction
+     */
+    gatewayCVV2Codes?: string | null;
     /**
      * Unique identifier of the gateway interaction. Used for credit card transactions, where the
      * payment service creates a GatewayInteractionId for each transaction interaction.
@@ -7323,29 +9570,41 @@ export interface PaymentInteraction {
      */
     gatewayInteractionId?: number | null;
     /**
-     * Unique identifier of the original transaction of which this current interaction is a part.
+     * Gateway response code. Supplied by PCIaaS.
      * @type {string}
      * @memberof PaymentInteraction
      */
-    paymentId?: string | null;
+    gatewayResponseCode?: string | null;
     /**
-     * Unique identifier of the order with which this transaction is associated.
+     * A List of payment response data required to act on authorization when using external order management systems
+     * @type {Array<PaymentGatewayResponseData>}
+     * @memberof PaymentInteraction
+     */
+    gatewayResponseData?: Array<PaymentGatewayResponseData> | null;
+    /**
+     * Gateway response text. Supplied by PCIaaS.
      * @type {string}
      * @memberof PaymentInteraction
      */
-    orderId?: string | null;
+    gatewayResponseText?: string | null;
     /**
-     * 
-     * @type {PaymentActionTarget}
-     * @memberof PaymentInteraction
-     */
-    target?: PaymentActionTarget;
-    /**
-     * ISO currency code for the transaction. Currently, only USD is supported.
+     * Unique identifier of the transaction supplied by PCIaaS.
      * @type {string}
      * @memberof PaymentInteraction
      */
-    currencyCode?: string | null;
+    gatewayTransactionId?: string | null;
+    /**
+     * Unique identifier of this payment transaction interaction.
+     * @type {string}
+     * @memberof PaymentInteraction
+     */
+    id?: string | null;
+    /**
+     * Date the interaction occurred
+     * @type {string}
+     * @memberof PaymentInteraction
+     */
+    interactionDate?: string | null;
     /**
      * Types of transaction interactions which can be "Authorization," "Capture," "AuthorizeAndCapture,"
      * "Void," or "Credit," "CheckRequested," or "CheckReceived."
@@ -7353,30 +9612,6 @@ export interface PaymentInteraction {
      * @memberof PaymentInteraction
      */
     interactionType?: string | null;
-    /**
-     * If paying by check, the check number.
-     * @type {string}
-     * @memberof PaymentInteraction
-     */
-    checkNumber?: string | null;
-    /**
-     * Status of the payment transaction interaction which can be either "Success" or "Failure."
-     * @type {string}
-     * @memberof PaymentInteraction
-     */
-    status?: string | null;
-    /**
-     * Status of the payment when the transaction interaction was created
-     * @type {string}
-     * @memberof PaymentInteraction
-     */
-    paymentEntryStatus?: string | null;
-    /**
-     * If true, the product is purchased or fulfilled at regular intervals, for example, a monthly billing or a subscription. (Not currently implemented.)
-     * @type {boolean}
-     * @memberof PaymentInteraction
-     */
-    isRecurring?: boolean | null;
     /**
      * If the payment is a manual payment, this is set to true
      * @type {boolean}
@@ -7390,47 +9625,35 @@ export interface PaymentInteraction {
      */
     isPending?: boolean;
     /**
-     * Unique identifier of the transaction supplied by PCIaaS.
+     * If true, the product is purchased or fulfilled at regular intervals, for example, a monthly billing or a subscription. (Not currently implemented.)
+     * @type {boolean}
+     * @memberof PaymentInteraction
+     */
+    isRecurring?: boolean | null;
+    /**
+     * Note to be entered by merchant/application
      * @type {string}
      * @memberof PaymentInteraction
      */
-    gatewayTransactionId?: string | null;
+    note?: string | null;
     /**
-     * If required by the payment gateway, the authorization code of the transaction. Supplied by PCIaaS.
+     * Unique identifier of the order with which this transaction is associated.
      * @type {string}
      * @memberof PaymentInteraction
      */
-    gatewayAuthCode?: string | null;
+    orderId?: string | null;
     /**
-     * Gateway AVS Codes. Supplied by PCIaaS.
+     * Status of the payment when the transaction interaction was created
      * @type {string}
      * @memberof PaymentInteraction
      */
-    gatewayAVSCodes?: string | null;
+    paymentEntryStatus?: string | null;
     /**
-     * Gateway CVV2 Codes. Supplied by PCIaaS.
+     * Unique identifier of the original transaction of which this current interaction is a part.
      * @type {string}
      * @memberof PaymentInteraction
      */
-    gatewayCVV2Codes?: string | null;
-    /**
-     * Gateway response code. Supplied by PCIaaS.
-     * @type {string}
-     * @memberof PaymentInteraction
-     */
-    gatewayResponseCode?: string | null;
-    /**
-     * Gateway response text. Supplied by PCIaaS.
-     * @type {string}
-     * @memberof PaymentInteraction
-     */
-    gatewayResponseText?: string | null;
-    /**
-     * A List of payment response data required to act on authorization when using external order management systems
-     * @type {Array<PaymentGatewayResponseData>}
-     * @memberof PaymentInteraction
-     */
-    gatewayResponseData?: Array<PaymentGatewayResponseData> | null;
+    paymentId?: string | null;
     /**
      * Unique identifier of previous PaymentTransactionInteraction that this PaymentTransactionInteraction is modifying.
      * For instance, when crediting a capture, set the PaymentTransactionInteractionIdReference to the capture PaymentTransactionInteractionID.
@@ -7439,29 +9662,11 @@ export interface PaymentInteraction {
      */
     paymentTransactionInteractionIdReference?: number | null;
     /**
-     * Amount of funds associated with this interaction.
-     * @type {number}
-     * @memberof PaymentInteraction
-     */
-    amount?: number | null;
-    /**
-     * Note to be entered by merchant/application
+     * Refund Id, if the interaction is for a stand alone refund.
      * @type {string}
      * @memberof PaymentInteraction
      */
-    note?: string | null;
-    /**
-     * Date the interaction occurred
-     * @type {string}
-     * @memberof PaymentInteraction
-     */
-    interactionDate?: string | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof PaymentInteraction
-     */
-    auditInfo?: AdminUserAuditInfo;
+    refundId?: string | null;
     /**
      * Return Id, if the interaction is a Credit for a return-refund.
      * @type {string}
@@ -7469,17 +9674,17 @@ export interface PaymentInteraction {
      */
     returnId?: string | null;
     /**
-     * Refund Id, if the interaction is for a stand alone refund.
+     * Status of the payment transaction interaction which can be either "Success" or "Failure."
      * @type {string}
      * @memberof PaymentInteraction
      */
-    refundId?: string | null;
+    status?: string | null;
     /**
-     * Stores pairings of shipment number to shipment total for all captured shipments. This was added for generating TLogs.
-     * @type {Array<CapturableShipmentSummary>}
+     * 
+     * @type {PaymentActionTarget}
      * @memberof PaymentInteraction
      */
-    capturableShipmentsSummary?: Array<CapturableShipmentSummary> | null;
+    target?: PaymentActionTarget;
 }
 /**
  * 
@@ -7498,6 +9703,12 @@ export interface PaymentToken {
      * @type {string}
      * @memberof PaymentToken
      */
+    provider?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentToken
+     */
     type?: string | null;
 }
 /**
@@ -7507,11 +9718,23 @@ export interface PaymentToken {
  */
 export interface Pickup {
     /**
-     * ID of the fulfillment unit.
-     * @type {string}
+     * 
+     * @type {CoreApiContractsAuditInfo}
      * @memberof Pickup
      */
-    id?: string | null;
+    auditInfo?: CoreApiContractsAuditInfo;
+    /**
+     * Actions that can be taken on this fulfillment unit
+     * @type {Array<string>}
+     * @memberof Pickup
+     */
+    availableActions?: Array<string> | null;
+    /**
+     * Change messages related to the fulfillment unit.
+     * @type {Array<CommerceRuntimeChangeMessage>}
+     * @memberof Pickup
+     */
+    changeMessages?: Array<CommerceRuntimeChangeMessage> | null;
     /**
      * A human-readable identifier for this fulfillment unit.  If not set on create, will be autogenerated as a string of the form
      *     {fulfillmentUnitType} #{next available int}
@@ -7519,19 +9742,6 @@ export interface Pickup {
      * @memberof Pickup
      */
     code?: string | null;
-    /**
-     * Status of the fulfillment unit
-     * See FulfillmentStatusConst
-     * @type {string}
-     * @memberof Pickup
-     */
-    status?: string | null;
-    /**
-     * List of items in the fulfillment unit
-     * @type {Array<CommerceRuntimePickupItem>}
-     * @memberof Pickup
-     */
-    items?: Array<CommerceRuntimePickupItem> | null;
     /**
      * Date of the pickup
      * @type {string}
@@ -7545,23 +9755,24 @@ export interface Pickup {
      */
     fulfillmentLocationCode?: string | null;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
+     * ID of the fulfillment unit.
+     * @type {string}
      * @memberof Pickup
      */
-    auditInfo?: AdminUserAuditInfo;
+    id?: string | null;
     /**
-     * Actions that can be taken on this fulfillment unit
-     * @type {Array<string>}
+     * List of items in the fulfillment unit
+     * @type {Array<CommerceRuntimePickupItem>}
      * @memberof Pickup
      */
-    availableActions?: Array<string> | null;
+    items?: Array<CommerceRuntimePickupItem> | null;
     /**
-     * Change messages related to the fulfillment unit.
-     * @type {Array<CommerceRuntimeChangeMessage>}
+     * Status of the fulfillment unit
+     * See FulfillmentStatusConst
+     * @type {string}
      * @memberof Pickup
      */
-    changeMessages?: Array<CommerceRuntimeChangeMessage> | null;
+    status?: string | null;
 }
 /**
  * 
@@ -7570,23 +9781,29 @@ export interface Pickup {
  */
 export interface ProductBase {
     /**
-     * Merchant-created code that uniquely identifies the product.
+     * Allocation ID associated with this product on this order.
      * @type {string}
      * @memberof ProductBase
      */
-    productCode?: string | null;
+    allocationExpiration?: string | null;
     /**
-     * Name of the product, this is the current value of the product's name in the language specified by LocaleCode.
-     * @type {string}
+     * Allocation ID associated with this product on this order.
+     * @type {number}
      * @memberof ProductBase
      */
-    name?: string | null;
+    allocationId?: number | null;
     /**
      * Short description of the product in the language specified by LocaleCode.
      * @type {string}
      * @memberof ProductBase
      */
     description?: string | null;
+    /**
+     * Fulfillment status of the product.
+     * @type {string}
+     * @memberof ProductBase
+     */
+    fulfillmentStatus?: string | null;
     /**
      * Goods Type
      * @type {string}
@@ -7601,10 +9818,22 @@ export interface ProductBase {
     isPackagedStandAlone?: boolean;
     /**
      * 
-     * @type {ProductStock}
+     * @type {CommerceRuntimePackageMeasurements}
      * @memberof ProductBase
      */
-    stock?: ProductStock;
+    measurements?: CommerceRuntimePackageMeasurements;
+    /**
+     * Name of the product, this is the current value of the product's name in the language specified by LocaleCode.
+     * @type {string}
+     * @memberof ProductBase
+     */
+    name?: string | null;
+    /**
+     * Merchant-created code that uniquely identifies the product.
+     * @type {string}
+     * @memberof ProductBase
+     */
+    productCode?: string | null;
     /**
      * Reservation ID associated with this product in the bundle.
      * @type {number}
@@ -7612,29 +9841,11 @@ export interface ProductBase {
      */
     productReservationId?: number | null;
     /**
-     * Allocation ID associated with this product on this order.
-     * @type {number}
-     * @memberof ProductBase
-     */
-    allocationId?: number | null;
-    /**
-     * Allocation ID associated with this product on this order.
-     * @type {string}
-     * @memberof ProductBase
-     */
-    allocationExpiration?: string | null;
-    /**
      * 
-     * @type {CommerceRuntimePackageMeasurements}
+     * @type {ProductStock}
      * @memberof ProductBase
      */
-    measurements?: CommerceRuntimePackageMeasurements;
-    /**
-     * Fulfillment status of the product.
-     * @type {string}
-     * @memberof ProductBase
-     */
-    fulfillmentStatus?: string | null;
+    stock?: ProductStock;
 }
 /**
  * 
@@ -7644,16 +9855,10 @@ export interface ProductBase {
 export interface ProductStock {
     /**
      * 
-     * @type {boolean}
+     * @type {number}
      * @memberof ProductStock
      */
-    manageStock?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ProductStock
-     */
-    isOnBackOrder?: boolean;
+    aggregateInventory?: number | null;
     /**
      * 
      * @type {string}
@@ -7665,13 +9870,7 @@ export interface ProductStock {
      * @type {number}
      * @memberof ProductStock
      */
-    stockAvailable?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof ProductStock
-     */
-    aggregateInventory?: number | null;
+    readonly availableFutureInventories?: number;
     /**
      * 
      * @type {Array<CommerceRuntimeFutureInventory>}
@@ -7680,22 +9879,34 @@ export interface ProductStock {
     futureInventories?: Array<CommerceRuntimeFutureInventory> | null;
     /**
      * 
-     * @type {number}
+     * @type {boolean}
      * @memberof ProductStock
      */
-    readonly availableFutureInventories?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ProductStock
-     */
-    readonly totalAvailableStock?: number;
+    isOnBackOrder?: boolean;
     /**
      * 
      * @type {boolean}
      * @memberof ProductStock
      */
     isSubstitutable?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ProductStock
+     */
+    manageStock?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductStock
+     */
+    stockAvailable?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductStock
+     */
+    readonly totalAvailableStock?: number;
 }
 /**
  * Purchase order payment
@@ -7704,11 +9915,11 @@ export interface ProductStock {
  */
 export interface PurchaseOrderPayment {
     /**
-     * Purchase order number
-     * @type {string}
+     * Memo/custom fields
+     * @type {Array<CommerceRuntimePurchaseOrderCustomField>}
      * @memberof PurchaseOrderPayment
      */
-    purchaseOrderNumber?: string | null;
+    customFields?: Array<CommerceRuntimePurchaseOrderCustomField> | null;
     /**
      * 
      * @type {CommerceRuntimePurchaseOrderPaymentTerm}
@@ -7716,11 +9927,36 @@ export interface PurchaseOrderPayment {
      */
     paymentTerm?: CommerceRuntimePurchaseOrderPaymentTerm;
     /**
-     * Memo/custom fields
-     * @type {Array<CommerceRuntimePurchaseOrderCustomField>}
+     * Purchase order number
+     * @type {string}
      * @memberof PurchaseOrderPayment
      */
-    customFields?: Array<CommerceRuntimePurchaseOrderCustomField> | null;
+    purchaseOrderNumber?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface Reason
+ */
+export interface Reason {
+    /**
+     * 
+     * @type {string}
+     * @memberof Reason
+     */
+    description?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Reason
+     */
+    moreInfo?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Reason
+     */
+    reasonCode?: string | null;
 }
 /**
  * Refund associated with an order. A refund is a single exchange of money from merchant to customer
@@ -7730,6 +9966,18 @@ export interface PurchaseOrderPayment {
  * @interface Refund
  */
 export interface Refund {
+    /**
+     * Amount refunded.
+     * @type {number}
+     * @memberof Refund
+     */
+    amount?: number;
+    /**
+     * 
+     * @type {CoreApiContractsAuditInfo}
+     * @memberof Refund
+     */
+    auditInfo?: CoreApiContractsAuditInfo;
     /**
      * Unique identifier of this order transaction.
      * @type {string}
@@ -7743,6 +9991,12 @@ export interface Refund {
      */
     orderId?: string | null;
     /**
+     * 
+     * @type {Payment}
+     * @memberof Refund
+     */
+    payment?: Payment;
+    /**
      * Merchant-entered reason for this refund.
      * @type {string}
      * @memberof Refund
@@ -7755,29 +10009,11 @@ export interface Refund {
      */
     reasonCode?: string | null;
     /**
-     * 
-     * @type {Payment}
-     * @memberof Refund
-     */
-    payment?: Payment;
-    /**
-     * Amount refunded.
-     * @type {number}
-     * @memberof Refund
-     */
-    amount?: number;
-    /**
      * Refund Method.
      * @type {string}
      * @memberof Refund
      */
     refundMethod?: string | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof Refund
-     */
-    auditInfo?: AdminUserAuditInfo;
 }
 /**
  * 
@@ -7792,23 +10028,55 @@ export interface ReturnRuleInfo {
      */
     isReturnable?: boolean | null;
     /**
-     * Maximum quantity that can be returned
-     * @type {number}
-     * @memberof ReturnRuleInfo
-     */
-    maxQty?: number | null;
-    /**
      * Return window within which an item can be returned
      * @type {number}
      * @memberof ReturnRuleInfo
      */
     maxDays?: number | null;
     /**
+     * Maximum quantity that can be returned
+     * @type {number}
+     * @memberof ReturnRuleInfo
+     */
+    maxQty?: number | null;
+    /**
      * Return rule code which is applied
      * @type {string}
      * @memberof ReturnRuleInfo
      */
     ruleCode?: string | null;
+}
+/**
+ * Attribute instance on a Shipment entity.
+ * Separate from OrderAttribute for type safety and future divergence.
+ * @export
+ * @interface ShipmentAttribute
+ */
+export interface ShipmentAttribute {
+    /**
+     * 
+     * @type {number}
+     * @memberof ShipmentAttribute
+     */
+    attributeDefinitionId?: number | null;
+    /**
+     * 
+     * @type {CoreApiContractsAuditInfo}
+     * @memberof ShipmentAttribute
+     */
+    auditInfo?: CoreApiContractsAuditInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShipmentAttribute
+     */
+    fullyQualifiedName?: string | null;
+    /**
+     * 
+     * @type {Array<any>}
+     * @memberof ShipmentAttribute
+     */
+    values?: Array<any> | null;
 }
 /**
  * 
@@ -7821,49 +10089,73 @@ export interface ShipmentItem {
      * @type {number}
      * @memberof ShipmentItem
      */
-    lineId?: number;
+    actualPrice?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ShipmentItem
+     */
+    allowsSubstitution?: boolean | null;
+    /**
+     * 
+     * @type {CoreApiContractsAuditInfo}
+     * @memberof ShipmentItem
+     */
+    auditInfo?: CoreApiContractsAuditInfo;
     /**
      * 
      * @type {string}
      * @memberof ShipmentItem
      */
-    originalOrderItemId?: string | null;
+    backorderReleaseDate?: string | null;
+    /**
+     * 
+     * @type {BundleInfo}
+     * @memberof ShipmentItem
+     */
+    bundleInfo?: BundleInfo;
     /**
      * 
      * @type {string}
      * @memberof ShipmentItem
      */
-    parentId?: string | null;
+    cartItemId?: string | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ShipmentItem
+     */
+    childItemIds?: Array<string> | null;
     /**
      * 
      * @type {string}
      * @memberof ShipmentItem
      */
-    productCode?: string | null;
+    condition?: string | null;
+    /**
+     * 
+     * @type {object}
+     * @memberof ShipmentItem
+     */
+    data?: object | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShipmentItem
+     */
+    duty?: number;
     /**
      * 
      * @type {string}
      * @memberof ShipmentItem
      */
-    variationProductCode?: string | null;
+    expectedDeliveryDate?: string | null;
     /**
      * 
-     * @type {string}
+     * @type {Array<CommerceRuntimeFulfillmentField>}
      * @memberof ShipmentItem
      */
-    optionAttributeFQN?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentItem
-     */
-    name?: string | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof ShipmentItem
-     */
-    auditInfo?: AdminUserAuditInfo;
+    fulfillmentFields?: Array<CommerceRuntimeFulfillmentField> | null;
     /**
      * 
      * @type {string}
@@ -7872,10 +10164,78 @@ export interface ShipmentItem {
     fulfillmentLocationCode?: string | null;
     /**
      * 
+     * @type {Array<CommerceRuntimeGiftCard>}
+     * @memberof ShipmentItem
+     */
+    giftCards?: Array<CommerceRuntimeGiftCard> | null;
+    /**
+     * Gift message for item
+     * @type {string}
+     * @memberof ShipmentItem
+     */
+    giftMessage?: string | null;
+    /**
+     * Total handling amount for this item, combining both product-level and order-level handling fees.
+     * To get the product-level handling portion: Handling - WeightedOrderHandlingFee.
+     * @type {number}
+     * @memberof ShipmentItem
+     */
+    handling?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShipmentItem
+     */
+    handlingDiscount?: number;
+    /**
+     * Total handling tax for this item, combining both product-level and order-level handling tax.
+     * To get the product-level handling tax: HandlingTax - WeightedOrderHandlingFeeTax.
+     * @type {number}
+     * @memberof ShipmentItem
+     */
+    handlingTax?: number;
+    /**
+     * 
      * @type {string}
      * @memberof ShipmentItem
      */
     imageUrl?: string | null;
+    /**
+     * 
+     * @type {Array<InventoryTags>}
+     * @memberof ShipmentItem
+     */
+    inventoryTags?: Array<InventoryTags> | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ShipmentItem
+     */
+    isAssemblyRequired?: boolean | null;
+    /**
+     * Indicate item is gift or not
+     * @type {boolean}
+     * @memberof ShipmentItem
+     */
+    isGift?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ShipmentItem
+     */
+    isPackagedStandAlone?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ShipmentItem
+     */
+    isReservedInventory?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ShipmentItem
+     */
+    isSubstitutable?: boolean | null;
     /**
      * 
      * @type {boolean}
@@ -7887,31 +10247,34 @@ export interface ShipmentItem {
      * @type {number}
      * @memberof ShipmentItem
      */
-    quantity?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentItem
-     */
-    unitPrice?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentItem
-     */
-    actualPrice?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentItem
-     */
-    overridePrice?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentItem
-     */
     itemDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShipmentItem
+     */
+    itemTax?: number;
+    /**
+     * Extensible attributes for this shipment line.
+     * Named `LineAttributes` rather than `Attributes` because
+     * `Attributes` is already a System.Collections.Generic.Dictionary`2 of
+     * product attributes on Mozu.CommerceRuntime.Contracts.Fulfillment.ShipmentItem.
+     * @type {Array<ShipmentLineAttribute>}
+     * @memberof ShipmentItem
+     */
+    lineAttributes?: Array<ShipmentLineAttribute> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShipmentItem
+     */
+    lineId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShipmentItem
+     */
+    lineItemAdjustment?: number | null;
     /**
      * 
      * @type {number}
@@ -7920,10 +10283,118 @@ export interface ShipmentItem {
     lineItemCost?: number;
     /**
      * 
+     * @type {string}
+     * @memberof ShipmentItem
+     */
+    locatorName?: string | null;
+    /**
+     * 
+     * @type {CommerceRuntimePackageMeasurements}
+     * @memberof ShipmentItem
+     */
+    measurements?: CommerceRuntimePackageMeasurements;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShipmentItem
+     */
+    name?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShipmentItem
+     */
+    optionAttributeFQN?: string | null;
+    /**
+     * 
+     * @type {Array<CommerceRuntimeProductOption>}
+     * @memberof ShipmentItem
+     */
+    options?: Array<CommerceRuntimeProductOption> | null;
+    /**
+     * 
      * @type {number}
      * @memberof ShipmentItem
      */
-    itemTax?: number;
+    originalLineId?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShipmentItem
+     */
+    originalOrderItemId?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShipmentItem
+     */
+    originalQuantity?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShipmentItem
+     */
+    overridePrice?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShipmentItem
+     */
+    parentId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShipmentItem
+     */
+    parentItemId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShipmentItem
+     */
+    partNumber?: string | null;
+    /**
+     * Determines if the item is using external or internal(catalog) pricing
+     * @type {string}
+     * @memberof ShipmentItem
+     */
+    priceMode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShipmentItem
+     */
+    productCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShipmentItem
+     */
+    purchaseLocation?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShipmentItem
+     */
+    quantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShipmentItem
+     */
+    readyForPickupQuantity?: number | null;
+    /**
+     * 
+     * @type {ReturnRuleInfo}
+     * @memberof ShipmentItem
+     */
+    returnRuleInfo?: ReturnRuleInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShipmentItem
+     */
+    serialNumber?: string | null;
     /**
      * 
      * @type {number}
@@ -7944,64 +10415,28 @@ export interface ShipmentItem {
     shippingTax?: number;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof ShipmentItem
      */
-    handling?: number;
+    sku?: string | null;
+    /**
+     * 
+     * @type {SubstituteInfo}
+     * @memberof ShipmentItem
+     */
+    substituteInfo?: SubstituteInfo;
     /**
      * 
      * @type {number}
      * @memberof ShipmentItem
      */
-    handlingDiscount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentItem
-     */
-    handlingTax?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentItem
-     */
-    duty?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ShipmentItem
-     */
-    isPackagedStandAlone?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentItem
-     */
-    readyForPickupQuantity?: number | null;
+    substituteQuantity?: number | null;
     /**
      * 
      * @type {string}
      * @memberof ShipmentItem
      */
-    backorderReleaseDate?: string | null;
-    /**
-     * 
-     * @type {CommerceRuntimePackageMeasurements}
-     * @memberof ShipmentItem
-     */
-    measurements?: CommerceRuntimePackageMeasurements;
-    /**
-     * 
-     * @type {Array<CommerceRuntimeProductOption>}
-     * @memberof ShipmentItem
-     */
-    options?: Array<CommerceRuntimeProductOption> | null;
-    /**
-     * 
-     * @type {object}
-     * @memberof ShipmentItem
-     */
-    data?: object | null;
+    substitutionType?: string | null;
     /**
      * 
      * @type {object}
@@ -8013,25 +10448,50 @@ export interface ShipmentItem {
      * @type {number}
      * @memberof ShipmentItem
      */
-    weightedShipmentAdjustment?: number;
+    taxableHandling?: number;
     /**
      * 
      * @type {number}
      * @memberof ShipmentItem
      */
-    weightedLineItemTaxAdjustment?: number;
+    taxableLineItemCost?: number;
     /**
      * 
      * @type {number}
      * @memberof ShipmentItem
      */
-    weightedShippingAdjustment?: number;
+    taxableShipping?: number;
+    /**
+     * Time-fence tolerance (days), carried from the originating OrderItem (Call-Off release,
+     * spec COM-10941 follow-up). Null for shipment items not tied to a Call-Off Order line.
+     * @type {number}
+     * @memberof ShipmentItem
+     */
+    timeFenceDays?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ShipmentItem
      */
-    weightedShippingTaxAdjustment?: number;
+    unitPrice?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShipmentItem
+     */
+    upc?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShipmentItem
+     */
+    variationProductCode?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShipmentItem
+     */
+    weightedDutyAdjustment?: number;
     /**
      * 
      * @type {number}
@@ -8049,199 +10509,79 @@ export interface ShipmentItem {
      * @type {number}
      * @memberof ShipmentItem
      */
-    weightedDutyAdjustment?: number;
+    weightedLineItemTaxAdjustment?: number;
+    /**
+     * Order-level handling fee allocated to this item. This represents only the order-level portion
+     * of handling, not product-level handling fees. Product-level handling can be derived as:
+     * Handling - WeightedOrderHandlingFee.
+     * During item cancellation with Granular Retention, order-level handling is retained on active items
+     * while product-level handling scales proportionally with quantity.
+     * @type {number}
+     * @memberof ShipmentItem
+     */
+    weightedOrderHandlingFee?: number;
+    /**
+     * Discount applied to the order-level handling fee only.
+     * @type {number}
+     * @memberof ShipmentItem
+     */
+    weightedOrderHandlingFeeDiscount?: number;
+    /**
+     * Tax on the order-level handling fee only (not total handling tax).
+     * Product-level handling tax can be derived as: HandlingTax - WeightedOrderHandlingFeeTax.
+     * @type {number}
+     * @memberof ShipmentItem
+     */
+    weightedOrderHandlingFeeTax?: number;
     /**
      * 
      * @type {number}
      * @memberof ShipmentItem
      */
-    taxableShipping?: number;
+    weightedShipmentAdjustment?: number;
     /**
      * 
      * @type {number}
      * @memberof ShipmentItem
      */
-    taxableLineItemCost?: number;
+    weightedShippingAdjustment?: number;
     /**
      * 
      * @type {number}
      * @memberof ShipmentItem
      */
-    taxableHandling?: number;
-    /**
-     * 
-     * @type {Array<CommerceRuntimeFulfillmentField>}
-     * @memberof ShipmentItem
-     */
-    fulfillmentFields?: Array<CommerceRuntimeFulfillmentField> | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ShipmentItem
-     */
-    isAssemblyRequired?: boolean | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentItem
-     */
-    parentItemId?: string | null;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof ShipmentItem
-     */
-    childItemIds?: Array<string> | null;
-    /**
-     * 
-     * @type {Array<CommerceRuntimeGiftCard>}
-     * @memberof ShipmentItem
-     */
-    giftCards?: Array<CommerceRuntimeGiftCard> | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentItem
-     */
-    locatorName?: string | null;
-    /**
-     * 
-     * @type {Array<InventoryTags>}
-     * @memberof ShipmentItem
-     */
-    inventoryTags?: Array<InventoryTags> | null;
+    weightedShippingTaxAdjustment?: number;
+}
+/**
+ * Attribute instance on a Shipment line item.
+ * @export
+ * @interface ShipmentLineAttribute
+ */
+export interface ShipmentLineAttribute {
     /**
      * 
      * @type {number}
-     * @memberof ShipmentItem
+     * @memberof ShipmentLineAttribute
      */
-    lineItemAdjustment?: number | null;
+    attributeDefinitionId?: number | null;
     /**
      * 
-     * @type {boolean}
-     * @memberof ShipmentItem
+     * @type {CoreApiContractsAuditInfo}
+     * @memberof ShipmentLineAttribute
      */
-    isReservedInventory?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentItem
-     */
-    cartItemId?: string | null;
+    auditInfo?: CoreApiContractsAuditInfo;
     /**
      * 
      * @type {string}
-     * @memberof ShipmentItem
+     * @memberof ShipmentLineAttribute
      */
-    sku?: string | null;
+    fullyQualifiedName?: string | null;
     /**
      * 
-     * @type {string}
-     * @memberof ShipmentItem
+     * @type {Array<any>}
+     * @memberof ShipmentLineAttribute
      */
-    partNumber?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentItem
-     */
-    upc?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ShipmentItem
-     */
-    isSubstitutable?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentItem
-     */
-    originalLineId?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentItem
-     */
-    originalQuantity?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentItem
-     */
-    substituteQuantity?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentItem
-     */
-    purchaseLocation?: string | null;
-    /**
-     * Indicate item is gift or not
-     * @type {boolean}
-     * @memberof ShipmentItem
-     */
-    isGift?: boolean | null;
-    /**
-     * Gift message for item
-     * @type {string}
-     * @memberof ShipmentItem
-     */
-    giftMessage?: string | null;
-    /**
-     * Determines if the item is using external or internal(catalog) pricing
-     * @type {string}
-     * @memberof ShipmentItem
-     */
-    priceMode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentItem
-     */
-    serialNumber?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentItem
-     */
-    condition?: string | null;
-    /**
-     * 
-     * @type {SubstituteInfo}
-     * @memberof ShipmentItem
-     */
-    substituteInfo?: SubstituteInfo;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ShipmentItem
-     */
-    allowsSubstitution?: boolean | null;
-    /**
-     * 
-     * @type {ReturnRuleInfo}
-     * @memberof ShipmentItem
-     */
-    returnRuleInfo?: ReturnRuleInfo;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentItem
-     */
-    substitutionType?: string | null;
-    /**
-     * 
-     * @type {BundleInfo}
-     * @memberof ShipmentItem
-     */
-    bundleInfo?: BundleInfo;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentItem
-     */
-    expectedDeliveryDate?: string | null;
+    values?: Array<any> | null;
 }
 /**
  * Value of the shipping discount.
@@ -8250,17 +10590,17 @@ export interface ShipmentItem {
  */
 export interface ShippingDiscount {
     /**
-     * Unique identifier of the shipping method discount.
-     * @type {string}
-     * @memberof ShippingDiscount
-     */
-    methodCode?: string | null;
-    /**
      * 
      * @type {CommerceRuntimeAppliedDiscount}
      * @memberof ShippingDiscount
      */
     discount?: CommerceRuntimeAppliedDiscount;
+    /**
+     * Unique identifier of the shipping method discount.
+     * @type {string}
+     * @memberof ShippingDiscount
+     */
+    methodCode?: string | null;
 }
 /**
  * 
@@ -8269,11 +10609,11 @@ export interface ShippingDiscount {
  */
 export interface ShippingGrouping {
     /**
-     * A unique identifier for this grouping.
+     * The Fulfillment location used by items in this grouping.
      * @type {string}
      * @memberof ShippingGrouping
      */
-    id?: string | null;
+    fulfillmentLocationCode?: string | null;
     /**
      * The FulfillmentMethod used by items in this grouping.
      * @type {string}
@@ -8281,11 +10621,53 @@ export interface ShippingGrouping {
      */
     fulfillmentMethod?: string | null;
     /**
+     * Group level order handling fees.
+     * @type {number}
+     * @memberof ShippingGrouping
+     */
+    handlingAmount?: number | null;
+    /**
+     * 
+     * @type {Array<CommerceRuntimeAppliedDiscount>}
+     * @memberof ShippingGrouping
+     */
+    handlingDiscounts?: Array<CommerceRuntimeAppliedDiscount> | null;
+    /**
+     * Group level order handling taxes.
+     * @type {number}
+     * @memberof ShippingGrouping
+     */
+    handlingTax?: number | null;
+    /**
+     * The total handling tax for this group, accounting for both group-level and item-level handling tax.
+     * @type {number}
+     * @memberof ShippingGrouping
+     */
+    handlingTaxTotal?: number;
+    /**
+     * The total handling cost for this group, accounting for discounts and tax.
+     * @type {number}
+     * @memberof ShippingGrouping
+     */
+    handlingTotal?: number;
+    /**
+     * A unique identifier for this grouping.
+     * @type {string}
+     * @memberof ShippingGrouping
+     */
+    id?: string | null;
+    /**
      * Identifiers of the items that make up this grouping.
      * @type {Array<string>}
      * @memberof ShippingGrouping
      */
     orderItemIds?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<ShippingDiscount>}
+     * @memberof ShippingGrouping
+     */
+    shippingDiscounts?: Array<ShippingDiscount> | null;
     /**
      * Code that uniquely identifies the shipping method such as "Ground," "Overnight".
      * @type {string}
@@ -8299,18 +10681,6 @@ export interface ShippingGrouping {
      */
     shippingMethodName?: string | null;
     /**
-     * 
-     * @type {Array<ShippingDiscount>}
-     * @memberof ShippingGrouping
-     */
-    shippingDiscounts?: Array<ShippingDiscount> | null;
-    /**
-     * 
-     * @type {Array<CommerceRuntimeAppliedDiscount>}
-     * @memberof ShippingGrouping
-     */
-    handlingDiscounts?: Array<CommerceRuntimeAppliedDiscount> | null;
-    /**
      * The total shipping tax for this group, accounting for both group-level and item-level shipping tax.
      * @type {number}
      * @memberof ShippingGrouping
@@ -8322,18 +10692,6 @@ export interface ShippingGrouping {
      * @memberof ShippingGrouping
      */
     shippingTotal?: number;
-    /**
-     * The total handling tax for this group, accounting for both group-level and item-level handling tax.
-     * @type {number}
-     * @memberof ShippingGrouping
-     */
-    handlingTaxTotal?: number;
-    /**
-     * The total handling cost for this group, accounting for discounts and tax.
-     * @type {number}
-     * @memberof ShippingGrouping
-     */
-    handlingTotal?: number;
 }
 /**
  * Shipping pricing information which includes the cost to the merchant and the price that the customer pays.
@@ -8362,12 +10720,6 @@ export interface ShippingPrice {
 export interface SubPayment {
     /**
      * 
-     * @type {string}
-     * @memberof SubPayment
-     */
-    status?: string | null;
-    /**
-     * 
      * @type {number}
      * @memberof SubPayment
      */
@@ -8383,13 +10735,19 @@ export interface SubPayment {
      * @type {number}
      * @memberof SubPayment
      */
-    amountRequested?: number;
+    amountRefunded?: number;
     /**
      * 
      * @type {number}
      * @memberof SubPayment
      */
-    amountRefunded?: number;
+    amountRequested?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubPayment
+     */
+    status?: string | null;
     /**
      * 
      * @type {PaymentActionTarget}
@@ -8424,6 +10782,18 @@ export interface SubscriptionAction {
 export interface SubscriptionAdjustment {
     /**
      * 
+     * @type {number}
+     * @memberof SubscriptionAdjustment
+     */
+    handlingAdjustment?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubscriptionAdjustment
+     */
+    itemAdjustment?: number | null;
+    /**
+     * 
      * @type {SubscriptionReason}
      * @memberof SubscriptionAdjustment
      */
@@ -8433,19 +10803,7 @@ export interface SubscriptionAdjustment {
      * @type {number}
      * @memberof SubscriptionAdjustment
      */
-    itemAdjustment?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionAdjustment
-     */
     shippingAdjustment?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionAdjustment
-     */
-    handlingAdjustment?: number | null;
 }
 /**
  * 
@@ -8455,22 +10813,22 @@ export interface SubscriptionAdjustment {
 export interface SubscriptionAttribute {
     /**
      * 
-     * @type {AdminUserAuditInfo}
+     * @type {number}
      * @memberof SubscriptionAttribute
      */
-    auditInfo?: AdminUserAuditInfo;
+    attributeDefinitionId?: number | null;
+    /**
+     * 
+     * @type {CoreApiContractsAuditInfo}
+     * @memberof SubscriptionAttribute
+     */
+    auditInfo?: CoreApiContractsAuditInfo;
     /**
      * 
      * @type {string}
      * @memberof SubscriptionAttribute
      */
     fullyQualifiedName?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionAttribute
-     */
-    attributeDefinitionId?: number | null;
     /**
      * 
      * @type {Array<any>}
@@ -8498,17 +10856,17 @@ export interface SubscriptionCoupons {
  */
 export interface SubscriptionInfo {
     /**
-     * Indicates commerce item is subscribed or not.
-     * @type {boolean}
-     * @memberof SubscriptionInfo
-     */
-    required?: boolean | null;
-    /**
      * 
      * @type {Frequency}
      * @memberof SubscriptionInfo
      */
     frequency?: Frequency;
+    /**
+     * Indicates commerce item is subscribed or not.
+     * @type {boolean}
+     * @memberof SubscriptionInfo
+     */
+    required?: boolean | null;
     /**
      * 
      * @type {Trial}
@@ -8523,110 +10881,35 @@ export interface SubscriptionInfo {
  */
 export interface SubscriptionItem {
     /**
-     * Unique identifier of the order line item. System-supplied and read-only.
-     * @type {string}
-     * @memberof SubscriptionItem
-     */
-    id?: string | null;
-    /**
-     * Location code from which to obtain this item
-     * @type {string}
-     * @memberof SubscriptionItem
-     */
-    fulfillmentLocationCode?: string | null;
-    /**
-     * Fulfillment method used to fulfill this item
-     * @type {string}
-     * @memberof SubscriptionItem
-     */
-    fulfillmentMethod?: string | null;
-    /**
-     * Product code of the parent item if split because of the splitItemOnSubsription attribute on the item
-     * @type {string}
-     * @memberof SubscriptionItem
-     */
-    parentItemCode?: string | null;
-    /**
-     * is onetime item
-     * @type {boolean}
-     * @memberof SubscriptionItem
-     */
-    isOnetimeItem?: boolean;
-    /**
-     * Code that uniquely identifies the shipping method.
-     * @type {string}
-     * @memberof SubscriptionItem
-     */
-    shippingMethodCode?: string | null;
-    /**
-     * Readable name of the shipping method.
-     * @type {string}
-     * @memberof SubscriptionItem
-     */
-    shippingMethodName?: string | null;
-    /**
-     * Locale code for language that appears in text and descriptions on the site, for example, en_US. 
-     * This is not the currency code. Currently only en_US is supported.
-     * @type {string}
-     * @memberof SubscriptionItem
-     */
-    localeCode?: string | null;
-    /**
-     * The location where the product is being purchased.. default is null. Products can have different prices
-     * by purchaseLocation via custom priceListResolution...
-     * @type {string}
-     * @memberof SubscriptionItem
-     */
-    purchaseLocation?: string | null;
-    /**
-     * The line id assigned to the order item. Visible only in the Admin, this is set from the Admin or
-     * in CommerceRuntime when a cart is converted to an order.
+     * Order Level taxable sub total
      * @type {number}
      * @memberof SubscriptionItem
      */
-    lineId?: number | null;
+    adjustedLineItemSubtotal?: number | null;
     /**
      * 
-     * @type {CommerceRuntimeProduct}
+     * @type {CoreApiContractsAuditInfo}
      * @memberof SubscriptionItem
      */
-    product?: CommerceRuntimeProduct;
+    auditInfo?: CoreApiContractsAuditInfo;
     /**
-     * Number of products ordered.
+     * Track the discoutid from which the item was auto added
      * @type {number}
      * @memberof SubscriptionItem
      */
-    quantity?: number;
+    autoAddDiscountId?: number | null;
     /**
-     * If true, the cart item lists a product that can be purchased or fulfilled at regular intervals, for example, monthly billing or a subscription.
-     * @type {boolean}
+     * List of Child Item Ids for this order item
+     * @type {Array<string>}
      * @memberof SubscriptionItem
      */
-    isRecurring?: boolean | null;
+    childItemIds?: Array<string> | null;
     /**
-     * Not implemented. If true, the cart item is eligible for tax.
-     * @type {boolean}
+     * Custom data for a given vendor set within the commerce process.
+     * @type {object}
      * @memberof SubscriptionItem
      */
-    isTaxable?: boolean | null;
-    /**
-     * Line item subtotal (quantity multiplied by price) before discounts.
-     * @type {number}
-     * @memberof SubscriptionItem
-     */
-    subtotal?: number | null;
-    /**
-     * Line item extended total (quantity multiplied by unit extended price) before discounts.
-     * @type {number}
-     * @memberof SubscriptionItem
-     */
-    extendedTotal?: number | null;
-    /**
-     * Line item subtotal (quantity multiplied by price) before discounts.
-     * @type {number}
-     * @memberof SubscriptionItem
-     */
-    taxableTotal?: number | null;
+    data?: object | null;
     /**
      * How much the shopper saves with the applied discount or sale price. This is a negative number.
      * @type {number}
@@ -8640,29 +10923,17 @@ export interface SubscriptionItem {
      */
     discountedTotal?: number | null;
     /**
-     * Total price of taxes that apply to products in this item.
+     * Indicate Duty Amount for this item.
      * @type {number}
      * @memberof SubscriptionItem
      */
-    itemTaxTotal?: number | null;
+    dutyAmount?: number | null;
     /**
-     * Total price of taxes that apply to the shipping of this item.
+     * Line item extended total (quantity multiplied by unit extended price) before discounts.
      * @type {number}
      * @memberof SubscriptionItem
      */
-    shippingTaxTotal?: number | null;
-    /**
-     * Total price of shipping that apply to this item.
-     * @type {number}
-     * @memberof SubscriptionItem
-     */
-    shippingTotal?: number | null;
-    /**
-     * Handling Amount for this item
-     * @type {number}
-     * @memberof SubscriptionItem
-     */
-    handlingAmount?: number | null;
+    extendedTotal?: number | null;
     /**
      * Not implemented. Total cost of fees that apply to this item.
      * @type {number}
@@ -8670,17 +10941,75 @@ export interface SubscriptionItem {
      */
     feeTotal?: number | null;
     /**
-     * Total price of this cart item taking into account any discounts.
+     * Product-level handling fee for this item (e.g. special packaging, hazmat fees).
+     * This does NOT include order-level handling fees — those are in Mozu.CommerceRuntime.Contracts.Commerce.CommerceItem.WeightedOrderHandlingFee.
+     * Total handling on the shipment = HandlingAmount + WeightedOrderHandlingFee.
      * @type {number}
      * @memberof SubscriptionItem
      */
-    total?: number | null;
+    handlingAmount?: number | null;
     /**
      * 
-     * @type {CommerceUnitPrice}
+     * @type {Array<InventoryTags>}
      * @memberof SubscriptionItem
      */
-    unitPrice?: CommerceUnitPrice;
+    inventoryTags?: Array<InventoryTags> | null;
+    /**
+     * Assembly Required for this order item
+     * @type {boolean}
+     * @memberof SubscriptionItem
+     */
+    isAssemblyRequired?: boolean;
+    /**
+     * If true, the cart item lists a product that can be purchased or fulfilled at regular intervals, for example, monthly billing or a subscription.
+     * @type {boolean}
+     * @memberof SubscriptionItem
+     */
+    isRecurring?: boolean | null;
+    /**
+     * Not implemented. If true, the cart item is eligible for tax.
+     * @type {boolean}
+     * @memberof SubscriptionItem
+     */
+    isTaxable?: boolean | null;
+    /**
+     * Total price of taxes that apply to products in this item.
+     * @type {number}
+     * @memberof SubscriptionItem
+     */
+    itemTaxTotal?: number | null;
+    /**
+     * The line id assigned to the order item. Visible only in the Admin, this is set from the Admin or
+     * in CommerceRuntime when a cart is converted to an order.
+     * @type {number}
+     * @memberof SubscriptionItem
+     */
+    lineId?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubscriptionItem
+     */
+    lineItemAdjustment?: number | null;
+    /**
+     * Locale code for language that appears in text and descriptions on the site, for example, en_US. 
+     * This is not the currency code. Currently only en_US is supported.
+     * @type {string}
+     * @memberof SubscriptionItem
+     */
+    localeCode?: string | null;
+    /**
+     * Indicates Parent Item Id for this order item
+     * @type {string}
+     * @memberof SubscriptionItem
+     */
+    parentItemId?: string | null;
+    /**
+     * 
+     * @type {CommerceRuntimeProduct}
+     * @memberof SubscriptionItem
+     */
+    product?: CommerceRuntimeProduct;
     /**
      * 
      * @type {CommerceRuntimeAppliedLineItemProductDiscount}
@@ -8694,17 +11023,54 @@ export interface SubscriptionItem {
      */
     productDiscounts?: Array<CommerceRuntimeAppliedLineItemProductDiscount> | null;
     /**
+     * The location where the product is being purchased.. default is null. Products can have different prices
+     * by purchaseLocation via custom priceListResolution...
+     * @type {string}
+     * @memberof SubscriptionItem
+     */
+    purchaseLocation?: string | null;
+    /**
+     * Number of products ordered.
+     * @type {number}
+     * @memberof SubscriptionItem
+     */
+    quantity?: number;
+    /**
+     * Shipping amount before Discounts and adjustments
+     * @type {number}
+     * @memberof SubscriptionItem
+     */
+    shippingAmountBeforeDiscountsAndAdjustments?: number | null;
+    /**
      * A discount applied to the shipping
      * @type {Array<CommerceRuntimeAppliedLineItemShippingDiscount>}
      * @memberof SubscriptionItem
      */
     shippingDiscounts?: Array<CommerceRuntimeAppliedLineItemShippingDiscount> | null;
     /**
-     * Custom data for a given vendor set within the commerce process.
-     * @type {object}
+     * Total price of taxes that apply to the shipping of this item.
+     * @type {number}
      * @memberof SubscriptionItem
      */
-    data?: object | null;
+    shippingTaxTotal?: number | null;
+    /**
+     * Total price of shipping that apply to this item.
+     * @type {number}
+     * @memberof SubscriptionItem
+     */
+    shippingTotal?: number | null;
+    /**
+     * 
+     * @type {SubstituteInfo}
+     * @memberof SubscriptionItem
+     */
+    substituteInfo?: SubstituteInfo;
+    /**
+     * Line item subtotal (quantity multiplied by price) before discounts.
+     * @type {number}
+     * @memberof SubscriptionItem
+     */
+    subtotal?: number | null;
     /**
      * Storage for any additional/custom tax data.
      * @type {object}
@@ -8712,17 +11078,35 @@ export interface SubscriptionItem {
      */
     taxData?: object | null;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof SubscriptionItem
-     */
-    auditInfo?: AdminUserAuditInfo;
-    /**
-     * Shipping amount before Discounts and adjustments
+     * Line item subtotal (quantity multiplied by price) before discounts.
      * @type {number}
      * @memberof SubscriptionItem
      */
-    shippingAmountBeforeDiscountsAndAdjustments?: number | null;
+    taxableTotal?: number | null;
+    /**
+     * Total price of this cart item taking into account any discounts.
+     * @type {number}
+     * @memberof SubscriptionItem
+     */
+    total?: number | null;
+    /**
+     * Line item total with line item, Tax, Weighted Tax with Weighted shipping and handling costs
+     * @type {number}
+     * @memberof SubscriptionItem
+     */
+    totalWithWeightedShippingAndHandling?: number | null;
+    /**
+     * Taxable Subtotal including Weighted Order amounts
+     * @type {number}
+     * @memberof SubscriptionItem
+     */
+    totalWithoutWeightedShippingAndHandling?: number | null;
+    /**
+     * 
+     * @type {CommerceUnitPrice}
+     * @memberof SubscriptionItem
+     */
+    unitPrice?: CommerceUnitPrice;
     /**
      * Order Level Manual Adjustment applied to this Item
      * @type {number}
@@ -8736,23 +11120,38 @@ export interface SubscriptionItem {
      */
     weightedOrderDiscount?: number | null;
     /**
-     * Order Level taxable sub total
+     * Order Level Duty applied to this Item
      * @type {number}
      * @memberof SubscriptionItem
      */
-    adjustedLineItemSubtotal?: number | null;
+    weightedOrderDuty?: number | null;
     /**
-     * Taxable Subtotal including Weighted Order amounts
+     * Order-level handling manual adjustment allocated to this item.
      * @type {number}
      * @memberof SubscriptionItem
      */
-    totalWithoutWeightedShippingAndHandling?: number | null;
+    weightedOrderHandlingAdjustment?: number | null;
     /**
-     * Order Level tax applied to this Item
+     * Order-level handling fee allocated to this item (e.g. flat handling fee spread across all items).
+     * This is separate from product-level handling in Mozu.CommerceRuntime.Contracts.Commerce.CommerceItem.HandlingAmount.
+     * Total handling on the shipment = HandlingAmount + WeightedOrderHandlingFee.
      * @type {number}
      * @memberof SubscriptionItem
      */
-    weightedOrderTax?: number | null;
+    weightedOrderHandlingFee?: number | null;
+    /**
+     * Order-level handling fee discount allocated to this item.
+     * @type {number}
+     * @memberof SubscriptionItem
+     */
+    weightedOrderHandlingFeeDiscount?: number | null;
+    /**
+     * Total handling tax for this item (covers both product-level and order-level handling tax combined).
+     * On the shipment item, this is split into: HandlingTax (total) and WeightedOrderHandlingFeeTax (order-level portion only).
+     * @type {number}
+     * @memberof SubscriptionItem
+     */
+    weightedOrderHandlingFeeTax?: number | null;
     /**
      * Order Level Shipping applied to this Item
      * @type {number}
@@ -8778,89 +11177,145 @@ export interface SubscriptionItem {
      */
     weightedOrderShippingTax?: number | null;
     /**
-     * Order Level handling fee applied to this item
+     * Order Level tax applied to this Item
      * @type {number}
      * @memberof SubscriptionItem
      */
-    weightedOrderHandlingFee?: number | null;
+    weightedOrderTax?: number | null;
     /**
-     * Order Level handling fee tax applied to this item
-     * @type {number}
+     * Extensible attributes for this subscription line.
+     * @type {Array<SubscriptionLineAttribute>}
      * @memberof SubscriptionItem
      */
-    weightedOrderHandlingFeeTax?: number | null;
+    attributes?: Array<SubscriptionLineAttribute> | null;
     /**
-     * Order Level handling fee discount applied to this item
-     * @type {number}
-     * @memberof SubscriptionItem
-     */
-    weightedOrderHandlingFeeDiscount?: number | null;
-    /**
-     * Order Level Duty applied to this Item
-     * @type {number}
-     * @memberof SubscriptionItem
-     */
-    weightedOrderDuty?: number | null;
-    /**
-     * Line item total with line item, Tax, Weighted Tax with Weighted shipping and handling costs
-     * @type {number}
-     * @memberof SubscriptionItem
-     */
-    totalWithWeightedShippingAndHandling?: number | null;
-    /**
-     * Order level handling adjusment that applies to this item.
-     * @type {number}
-     * @memberof SubscriptionItem
-     */
-    weightedOrderHandlingAdjustment?: number | null;
-    /**
-     * Track the discoutid from which the item was auto added
-     * @type {number}
-     * @memberof SubscriptionItem
-     */
-    autoAddDiscountId?: number | null;
-    /**
-     * Assembly Required for this order item
-     * @type {boolean}
-     * @memberof SubscriptionItem
-     */
-    isAssemblyRequired?: boolean;
-    /**
-     * List of Child Item Ids for this order item
-     * @type {Array<string>}
-     * @memberof SubscriptionItem
-     */
-    childItemIds?: Array<string> | null;
-    /**
-     * Indicates Parent Item Id for this order item
+     * Location code from which to obtain this item
      * @type {string}
      * @memberof SubscriptionItem
      */
-    parentItemId?: string | null;
+    fulfillmentLocationCode?: string | null;
     /**
-     * 
-     * @type {Array<InventoryTags>}
+     * Fulfillment method used to fulfill this item
+     * @type {string}
      * @memberof SubscriptionItem
      */
-    inventoryTags?: Array<InventoryTags> | null;
+    fulfillmentMethod?: string | null;
+    /**
+     * Unique identifier of the order line item. System-supplied and read-only.
+     * @type {string}
+     * @memberof SubscriptionItem
+     */
+    id?: string | null;
+    /**
+     * is onetime item
+     * @type {boolean}
+     * @memberof SubscriptionItem
+     */
+    isOnetimeItem?: boolean;
+    /**
+     * Product code of the parent item if split because of the splitItemOnSubsription attribute on the item
+     * @type {string}
+     * @memberof SubscriptionItem
+     */
+    parentItemCode?: string | null;
+    /**
+     * Code that uniquely identifies the shipping method.
+     * @type {string}
+     * @memberof SubscriptionItem
+     */
+    shippingMethodCode?: string | null;
+    /**
+     * Readable name of the shipping method.
+     * @type {string}
+     * @memberof SubscriptionItem
+     */
+    shippingMethodName?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface SubscriptionItemAllOf
+ */
+export interface SubscriptionItemAllOf {
+    /**
+     * Extensible attributes for this subscription line.
+     * @type {Array<SubscriptionLineAttribute>}
+     * @memberof SubscriptionItemAllOf
+     */
+    attributes?: Array<SubscriptionLineAttribute> | null;
+    /**
+     * Location code from which to obtain this item
+     * @type {string}
+     * @memberof SubscriptionItemAllOf
+     */
+    fulfillmentLocationCode?: string | null;
+    /**
+     * Fulfillment method used to fulfill this item
+     * @type {string}
+     * @memberof SubscriptionItemAllOf
+     */
+    fulfillmentMethod?: string | null;
+    /**
+     * Unique identifier of the order line item. System-supplied and read-only.
+     * @type {string}
+     * @memberof SubscriptionItemAllOf
+     */
+    id?: string | null;
+    /**
+     * is onetime item
+     * @type {boolean}
+     * @memberof SubscriptionItemAllOf
+     */
+    isOnetimeItem?: boolean;
+    /**
+     * Product code of the parent item if split because of the splitItemOnSubsription attribute on the item
+     * @type {string}
+     * @memberof SubscriptionItemAllOf
+     */
+    parentItemCode?: string | null;
+    /**
+     * Code that uniquely identifies the shipping method.
+     * @type {string}
+     * @memberof SubscriptionItemAllOf
+     */
+    shippingMethodCode?: string | null;
+    /**
+     * Readable name of the shipping method.
+     * @type {string}
+     * @memberof SubscriptionItemAllOf
+     */
+    shippingMethodName?: string | null;
+}
+/**
+ * Attribute instance on a Subscription line item.
+ * @export
+ * @interface SubscriptionLineAttribute
+ */
+export interface SubscriptionLineAttribute {
     /**
      * 
      * @type {number}
-     * @memberof SubscriptionItem
+     * @memberof SubscriptionLineAttribute
      */
-    lineItemAdjustment?: number | null;
-    /**
-     * Indicate Duty Amount for this item.
-     * @type {number}
-     * @memberof SubscriptionItem
-     */
-    dutyAmount?: number | null;
+    attributeDefinitionId?: number | null;
     /**
      * 
-     * @type {SubstituteInfo}
-     * @memberof SubscriptionItem
+     * @type {CoreApiContractsAuditInfo}
+     * @memberof SubscriptionLineAttribute
      */
-    substituteInfo?: SubstituteInfo;
+    auditInfo?: CoreApiContractsAuditInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionLineAttribute
+     */
+    fullyQualifiedName?: string | null;
+    /**
+     * 
+     * @type {Array<any>}
+     * @memberof SubscriptionLineAttribute
+     */
+    values?: Array<any> | null;
 }
 /**
  * 
@@ -8899,7 +11354,7 @@ export interface SubscriptionReason {
      * @type {string}
      * @memberof SubscriptionReason
      */
-    reasonCode?: string | null;
+    actionName?: string | null;
     /**
      * 
      * @type {string}
@@ -8917,7 +11372,7 @@ export interface SubscriptionReason {
      * @type {string}
      * @memberof SubscriptionReason
      */
-    actionName?: string | null;
+    reasonCode?: string | null;
 }
 /**
  * 
@@ -8927,16 +11382,16 @@ export interface SubscriptionReason {
 export interface SubscriptionReasonCollection {
     /**
      * 
-     * @type {number}
-     * @memberof SubscriptionReasonCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<SubscriptionReasonOption>}
      * @memberof SubscriptionReasonCollection
      */
     items?: Array<SubscriptionReasonOption> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubscriptionReasonCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -8949,12 +11404,6 @@ export interface SubscriptionReasonOption {
      * @type {string}
      * @memberof SubscriptionReasonOption
      */
-    reasonCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionReasonOption
-     */
     name?: string | null;
     /**
      * 
@@ -8962,6 +11411,358 @@ export interface SubscriptionReasonOption {
      * @memberof SubscriptionReasonOption
      */
     needsMoreInfo?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionReasonOption
+     */
+    reasonCode?: string | null;
+}
+/**
+ * Describes a package that will be shipped to somebody
+ * @export
+ * @interface SubscriptionRuntimePackage
+ */
+export interface SubscriptionRuntimePackage {
+    /**
+     * 
+     * @type {CoreApiContractsAuditInfo}
+     * @memberof SubscriptionRuntimePackage
+     */
+    auditInfo?: CoreApiContractsAuditInfo;
+    /**
+     * Actions that can be taken on this fulfillment unit
+     * @type {Array<string>}
+     * @memberof SubscriptionRuntimePackage
+     */
+    availableActions?: Array<string> | null;
+    /**
+     * Change messages related to the fulfillment unit.
+     * @type {Array<CommerceRuntimeChangeMessage>}
+     * @memberof SubscriptionRuntimePackage
+     */
+    changeMessages?: Array<CommerceRuntimeChangeMessage> | null;
+    /**
+     * A human-readable identifier for this fulfillment unit.  If not set on create, will be autogenerated as a string of the form
+     *     {fulfillmentUnitType} #{next available int}
+     * @type {string}
+     * @memberof SubscriptionRuntimePackage
+     */
+    code?: string | null;
+    /**
+     * Date of the pickup
+     * @type {string}
+     * @memberof SubscriptionRuntimePackage
+     */
+    fulfillmentDate?: string | null;
+    /**
+     * Location code from which to obtain this item
+     * @type {string}
+     * @memberof SubscriptionRuntimePackage
+     */
+    fulfillmentLocationCode?: string | null;
+    /**
+     * ID of the fulfillment unit.
+     * @type {string}
+     * @memberof SubscriptionRuntimePackage
+     */
+    id?: string | null;
+    /**
+     * List of items in the fulfillment unit
+     * @type {Array<PackageItem>}
+     * @memberof SubscriptionRuntimePackage
+     */
+    items?: Array<PackageItem> | null;
+    /**
+     * Status of the fulfillment unit
+     * See FulfillmentStatusConst
+     * @type {string}
+     * @memberof SubscriptionRuntimePackage
+     */
+    status?: string | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof SubscriptionRuntimePackage
+     */
+    attributes?: { [key: string]: any; } | null;
+    /**
+     * Carrier of this package
+     * @type {string}
+     * @memberof SubscriptionRuntimePackage
+     */
+    carrier?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionRuntimePackage
+     */
+    fxcbDocumentsUrl?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionRuntimePackage
+     */
+    fxcbPackNotificationId?: string | null;
+    /**
+     * If there is a shipping label present for this Package, this will be set to true
+     * @type {boolean}
+     * @memberof SubscriptionRuntimePackage
+     */
+    hasLabel?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionRuntimePackage
+     */
+    integratorId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionRuntimePackage
+     */
+    labelFormat?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionRuntimePackage
+     */
+    manifestId?: string | null;
+    /**
+     * 
+     * @type {CommerceRuntimePackageMeasurements}
+     * @memberof SubscriptionRuntimePackage
+     */
+    measurements?: CommerceRuntimePackageMeasurements;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionRuntimePackage
+     */
+    packageId?: string | null;
+    /**
+     * Packaging type of this package
+     * @type {string}
+     * @memberof SubscriptionRuntimePackage
+     */
+    packagingType?: string | null;
+    /**
+     * PackingSlipItemDetails for this package
+     * @type {Array<PackingSlipItemDetail>}
+     * @memberof SubscriptionRuntimePackage
+     */
+    packingSlipItemDetails?: Array<PackingSlipItemDetail> | null;
+    /**
+     * PackingSlipNumber for this package
+     * @type {number}
+     * @memberof SubscriptionRuntimePackage
+     */
+    packingSlipNumber?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionRuntimePackage
+     */
+    returnCarrier?: string | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof SubscriptionRuntimePackage
+     */
+    returnTrackingNumbers?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<CommerceRuntimeTracking>}
+     * @memberof SubscriptionRuntimePackage
+     */
+    returnTrackings?: Array<CommerceRuntimeTracking> | null;
+    /**
+     * ID of the related shipment
+     * @type {string}
+     * @memberof SubscriptionRuntimePackage
+     */
+    shipmentId?: string | null;
+    /**
+     * Code describing the shipping method.
+     * @type {string}
+     * @memberof SubscriptionRuntimePackage
+     */
+    shippingMethodCode?: string | null;
+    /**
+     * Name of the shipping method
+     * @type {string}
+     * @memberof SubscriptionRuntimePackage
+     */
+    shippingMethodName?: string | null;
+    /**
+     * SignatureRequired for this package
+     * @type {boolean}
+     * @memberof SubscriptionRuntimePackage
+     */
+    signatureRequired?: boolean | null;
+    /**
+     * Tracking number of this package (to support classic use cases)
+     * @type {string}
+     * @memberof SubscriptionRuntimePackage
+     */
+    trackingNumber?: string | null;
+    /**
+     * Tracking number of this package
+     * @type {Array<string>}
+     * @memberof SubscriptionRuntimePackage
+     */
+    trackingNumbers?: Array<string> | null;
+    /**
+     * Tracking number and url data for this package
+     * @type {Array<CommerceRuntimeTracking>}
+     * @memberof SubscriptionRuntimePackage
+     */
+    trackings?: Array<CommerceRuntimeTracking> | null;
+}
+/**
+ * 
+ * @export
+ * @interface SubscriptionRuntimePackageAllOf
+ */
+export interface SubscriptionRuntimePackageAllOf {
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof SubscriptionRuntimePackageAllOf
+     */
+    attributes?: { [key: string]: any; } | null;
+    /**
+     * Carrier of this package
+     * @type {string}
+     * @memberof SubscriptionRuntimePackageAllOf
+     */
+    carrier?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionRuntimePackageAllOf
+     */
+    fxcbDocumentsUrl?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionRuntimePackageAllOf
+     */
+    fxcbPackNotificationId?: string | null;
+    /**
+     * If there is a shipping label present for this Package, this will be set to true
+     * @type {boolean}
+     * @memberof SubscriptionRuntimePackageAllOf
+     */
+    hasLabel?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionRuntimePackageAllOf
+     */
+    integratorId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionRuntimePackageAllOf
+     */
+    labelFormat?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionRuntimePackageAllOf
+     */
+    manifestId?: string | null;
+    /**
+     * 
+     * @type {CommerceRuntimePackageMeasurements}
+     * @memberof SubscriptionRuntimePackageAllOf
+     */
+    measurements?: CommerceRuntimePackageMeasurements;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionRuntimePackageAllOf
+     */
+    packageId?: string | null;
+    /**
+     * Packaging type of this package
+     * @type {string}
+     * @memberof SubscriptionRuntimePackageAllOf
+     */
+    packagingType?: string | null;
+    /**
+     * PackingSlipItemDetails for this package
+     * @type {Array<PackingSlipItemDetail>}
+     * @memberof SubscriptionRuntimePackageAllOf
+     */
+    packingSlipItemDetails?: Array<PackingSlipItemDetail> | null;
+    /**
+     * PackingSlipNumber for this package
+     * @type {number}
+     * @memberof SubscriptionRuntimePackageAllOf
+     */
+    packingSlipNumber?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionRuntimePackageAllOf
+     */
+    returnCarrier?: string | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof SubscriptionRuntimePackageAllOf
+     */
+    returnTrackingNumbers?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<CommerceRuntimeTracking>}
+     * @memberof SubscriptionRuntimePackageAllOf
+     */
+    returnTrackings?: Array<CommerceRuntimeTracking> | null;
+    /**
+     * ID of the related shipment
+     * @type {string}
+     * @memberof SubscriptionRuntimePackageAllOf
+     */
+    shipmentId?: string | null;
+    /**
+     * Code describing the shipping method.
+     * @type {string}
+     * @memberof SubscriptionRuntimePackageAllOf
+     */
+    shippingMethodCode?: string | null;
+    /**
+     * Name of the shipping method
+     * @type {string}
+     * @memberof SubscriptionRuntimePackageAllOf
+     */
+    shippingMethodName?: string | null;
+    /**
+     * SignatureRequired for this package
+     * @type {boolean}
+     * @memberof SubscriptionRuntimePackageAllOf
+     */
+    signatureRequired?: boolean | null;
+    /**
+     * Tracking number of this package (to support classic use cases)
+     * @type {string}
+     * @memberof SubscriptionRuntimePackageAllOf
+     */
+    trackingNumber?: string | null;
+    /**
+     * Tracking number of this package
+     * @type {Array<string>}
+     * @memberof SubscriptionRuntimePackageAllOf
+     */
+    trackingNumbers?: Array<string> | null;
+    /**
+     * Tracking number and url data for this package
+     * @type {Array<CommerceRuntimeTracking>}
+     * @memberof SubscriptionRuntimePackageAllOf
+     */
+    trackings?: Array<CommerceRuntimeTracking> | null;
 }
 /**
  * 
@@ -8970,59 +11771,23 @@ export interface SubscriptionReasonOption {
  */
 export interface SubscriptionRuntimeSubscription {
     /**
-     * Unique identifier.
-     * @type {string}
+     * 
+     * @type {Adjustment}
      * @memberof SubscriptionRuntimeSubscription
      */
-    id?: string | null;
-    /**
-     * Unique identifier of the Site.
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    siteId?: number;
-    /**
-     * Unique identifier of the Tenant.
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    tenantId?: number;
-    /**
-     * Subscription number.
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    number?: number;
-    /**
-     * The parent order id from which the subscription was created.
-     * @type {string}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    parentOrderId?: string | null;
-    /**
-     * List of items in the Subscription.
-     * @type {Array<SubscriptionItem>}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    items?: Array<SubscriptionItem> | null;
+    adjustment?: Adjustment;
     /**
      * 
-     * @type {Payment}
+     * @type {Array<SubscriptionAttribute>}
      * @memberof SubscriptionRuntimeSubscription
      */
-    payment?: Payment;
+    attributes?: Array<SubscriptionAttribute> | null;
     /**
-     * Price-list code for the Subscription
-     * @type {string}
+     * 
+     * @type {CoreApiContractsAuditInfo}
      * @memberof SubscriptionRuntimeSubscription
      */
-    priceListCode?: string | null;
-    /**
-     * Notes
-     * @type {Array<OrderNote>}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    notes?: Array<OrderNote> | null;
+    auditInfo?: CoreApiContractsAuditInfo;
     /**
      * Change Messages
      * @type {Array<CommerceRuntimeChangeMessage>}
@@ -9030,47 +11795,17 @@ export interface SubscriptionRuntimeSubscription {
      */
     changeMessages?: Array<CommerceRuntimeChangeMessage> | null;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    auditInfo?: AdminUserAuditInfo;
-    /**
-     * 
-     * @type {FulfillmentInfo}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    fulfillmentInfo?: FulfillmentInfo;
-    /**
-     * 
+     * Unique identifier of the channel for this item.
      * @type {string}
      * @memberof SubscriptionRuntimeSubscription
      */
-    userId?: string | null;
+    channelCode?: string | null;
     /**
-     * Unique identifier of the customer account.
-     * @type {number}
+     * Coupon codes associated with this Subscription.
+     * @type {Array<string>}
      * @memberof SubscriptionRuntimeSubscription
      */
-    customerAccountId?: number | null;
-    /**
-     * Email address for checkout
-     * @type {string}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    email?: string | null;
-    /**
-     * The customers tax ID. If Customer Account ID exists in the system, will set this.
-     * @type {string}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    readonly customerTaxId?: string | null;
-    /**
-     * Unique identifier of the customer account.
-     * @type {boolean}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    readonly isTaxExempt?: boolean | null;
+    couponCodes?: Array<string> | null;
     /**
      * ISO Currency Code.
      * @type {string}
@@ -9078,53 +11813,11 @@ export interface SubscriptionRuntimeSubscription {
      */
     currencyCode?: string | null;
     /**
-     * Custom data for a given vendor set within the commerce process.
-     * @type {object}
+     * Unique identifier of the customer account.
+     * @type {number}
      * @memberof SubscriptionRuntimeSubscription
      */
-    data?: object | null;
-    /**
-     * Storage for any additional/custom tax data.
-     * @type {object}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    taxData?: object | null;
-    /**
-     * Unique identifier of the channel for this item.
-     * @type {string}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    channelCode?: string | null;
-    /**
-     * Identifies the location at which the order was placed if the order was placed externally.
-     * @type {string}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    locationCode?: string | null;
-    /**
-     * IP address of the user placing the order. (User or customer?)
-     * @type {string}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    ipAddress?: string | null;
-    /**
-     * Source device of the user placing the order. (User or customer?)
-     * @type {string}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    sourceDevice?: string | null;
-    /**
-     * Identifies the Visit ID that was current when the order was placed or when the cart was last updated.
-     * @type {string}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    visitId?: string | null;
-    /**
-     * Identifies the web session used to place the order or last update the cart.
-     * @type {string}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    webSessionId?: string | null;
+    customerAccountId?: number | null;
     /**
      * Determines the interaction type that a customer will use to create this object.
      * Valid values are: Website, Store, Call, Unknown
@@ -9133,6 +11826,54 @@ export interface SubscriptionRuntimeSubscription {
      */
     customerInteractionType?: string | null;
     /**
+     * The customers tax ID. If Customer Account ID exists in the system, will set this.
+     * @type {string}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    readonly customerTaxId?: string | null;
+    /**
+     * Custom data for a given vendor set within the commerce process.
+     * @type {object}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    data?: object | null;
+    /**
+     * Discounted Subtotal
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    discountedSubtotal?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    dutyAmount?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    dutyTotal?: number;
+    /**
+     * Email address for checkout
+     * @type {string}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    email?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    externalId?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    feeTotal?: number;
+    /**
      * 
      * @type {Frequency}
      * @memberof SubscriptionRuntimeSubscription
@@ -9140,184 +11881,22 @@ export interface SubscriptionRuntimeSubscription {
     frequency?: Frequency;
     /**
      * 
-     * @type {Frequency}
+     * @type {CoreApiContractsAuditInfo}
      * @memberof SubscriptionRuntimeSubscription
      */
-    previousFrequency?: Frequency;
+    frequencyAuditInfo?: CoreApiContractsAuditInfo;
     /**
      * 
-     * @type {AdminUserAuditInfo}
+     * @type {FulfillmentInfo}
      * @memberof SubscriptionRuntimeSubscription
      */
-    frequencyAuditInfo?: AdminUserAuditInfo;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    nextOrderDate?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    previousNextOrderDate?: string | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    nextOrderDateAuditInfo?: AdminUserAuditInfo;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    lastContinuityOrderDateOnSubPaused?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    ordinal?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    paymentErrorCode?: string | null;
-    /**
-     * 
-     * @type {Trial}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    trial?: Trial;
-    /**
-     * 
-     * @type {Array<CommerceRuntimeAppliedDiscount>}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    orderDiscounts?: Array<CommerceRuntimeAppliedDiscount> | null;
-    /**
-     * Subtotal before any coupon codes, taxes, fees, etc.
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    subTotal?: number;
-    /**
-     * The total value of item-level product discounts.
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    itemLevelProductDiscountTotal?: number;
-    /**
-     * The total value of all line item adjustments
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    itemLevelAdjustmentsTotal?: number;
-    /**
-     * The total value of order-level (group-level) product discounts.
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    orderLevelProductDiscountTotal?: number;
-    /**
-     * Total tax on products.
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    itemTaxTotal?: number;
+    fulfillmentInfo?: FulfillmentInfo;
     /**
      * 
      * @type {Adjustment}
      * @memberof SubscriptionRuntimeSubscription
      */
-    adjustment?: Adjustment;
-    /**
-     * The total product cost, accounting for discounts and tax.
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    itemTotal?: number;
-    /**
-     * Final total
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    total?: number;
-    /**
-     * 
-     * @type {Array<ShippingDiscount>}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    shippingDiscounts?: Array<ShippingDiscount> | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    itemLevelShippingDiscountTotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    orderLevelShippingDiscountTotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    shippingAmount?: number;
-    /**
-     * 
-     * @type {Adjustment}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    shippingAdjustment?: Adjustment;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    shippingSubTotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    shippingTax?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    shippingTaxTotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    shippingTotal?: number;
-    /**
-     * 
-     * @type {Array<CommerceRuntimeAppliedDiscount>}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    handlingDiscounts?: Array<CommerceRuntimeAppliedDiscount> | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    itemLevelHandlingDiscountTotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    orderLevelHandlingDiscountTotal?: number;
+    handlingAdjustment?: Adjustment;
     /**
      * 
      * @type {number}
@@ -9326,10 +11905,10 @@ export interface SubscriptionRuntimeSubscription {
     handlingAmount?: number | null;
     /**
      * 
-     * @type {Adjustment}
+     * @type {Array<CommerceRuntimeAppliedDiscount>}
      * @memberof SubscriptionRuntimeSubscription
      */
-    handlingAdjustment?: Adjustment;
+    handlingDiscounts?: Array<CommerceRuntimeAppliedDiscount> | null;
     /**
      * 
      * @type {number}
@@ -9355,41 +11934,17 @@ export interface SubscriptionRuntimeSubscription {
      */
     handlingTotal?: number;
     /**
-     * 
-     * @type {number}
+     * Does this subscription have a draft version.
+     * @type {boolean}
      * @memberof SubscriptionRuntimeSubscription
      */
-    dutyAmount?: number | null;
+    hasDraft?: boolean | null;
     /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    dutyTotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    feeTotal?: number;
-    /**
-     * 
+     * Unique identifier.
      * @type {string}
      * @memberof SubscriptionRuntimeSubscription
      */
-    status?: string | null;
-    /**
-     * 
-     * @type {Array<SubscriptionReason>}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    reasons?: Array<SubscriptionReason> | null;
-    /**
-     * Coupon codes associated with this Subscription.
-     * @type {Array<string>}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    couponCodes?: Array<string> | null;
+    id?: string | null;
     /**
      * A list of invalid coupons that were attempted on the Subscription
      * @type {Array<InvalidCoupon>}
@@ -9397,41 +11952,11 @@ export interface SubscriptionRuntimeSubscription {
      */
     invalidCoupons?: Array<InvalidCoupon> | null;
     /**
-     * 
-     * @type {boolean}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    isImport?: boolean;
-    /**
-     * 
+     * IP address of the user placing the order. (User or customer?)
      * @type {string}
      * @memberof SubscriptionRuntimeSubscription
      */
-    externalId?: string | null;
-    /**
-     * Line Item Subtotals with Order Adjustments
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    lineItemSubtotalWithOrderAdjustments?: number | null;
-    /**
-     * Discounted Subtotal
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    discountedSubtotal?: number;
-    /**
-     * counter to keep track of nextOrderDate limit.
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    nextOrderDateOffsetCounter?: number | null;
-    /**
-     * counter to keep track of skip limit
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    skipCounter?: number | null;
+    ipAddress?: string | null;
     /**
      * Is this subscription a draft version
      * @type {boolean}
@@ -9439,17 +11964,11 @@ export interface SubscriptionRuntimeSubscription {
      */
     isDraft?: boolean | null;
     /**
-     * Does this subscription have a draft version.
+     * 
      * @type {boolean}
      * @memberof SubscriptionRuntimeSubscription
      */
-    hasDraft?: boolean | null;
-    /**
-     * Is this subscription draft is a partial draft.
-     * @type {boolean}
-     * @memberof SubscriptionRuntimeSubscription
-     */
-    isPartialDraft?: boolean;
+    isImport?: boolean;
     /**
      * Has order reminder email sent.
      * @type {boolean}
@@ -9457,17 +11976,155 @@ export interface SubscriptionRuntimeSubscription {
      */
     isOrderReminderEmailSent?: boolean;
     /**
+     * Is this subscription draft is a partial draft.
+     * @type {boolean}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    isPartialDraft?: boolean;
+    /**
      * Has reactivation reminder email sent.
      * @type {boolean}
      * @memberof SubscriptionRuntimeSubscription
      */
     isReactivationReminderEmailSent?: boolean;
     /**
-     * This property is being used for reactivation email templete
+     * Unique identifier of the customer account.
+     * @type {boolean}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    readonly isTaxExempt?: boolean | null;
+    /**
+     * The total value of all line item adjustments
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    itemLevelAdjustmentsTotal?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    itemLevelHandlingDiscountTotal?: number;
+    /**
+     * The total value of item-level product discounts.
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    itemLevelProductDiscountTotal?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    itemLevelShippingDiscountTotal?: number;
+    /**
+     * Total tax on products.
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    itemTaxTotal?: number;
+    /**
+     * The total product cost, accounting for discounts and tax.
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    itemTotal?: number;
+    /**
+     * List of items in the Subscription.
+     * @type {Array<SubscriptionItem>}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    items?: Array<SubscriptionItem> | null;
+    /**
+     * 
      * @type {string}
      * @memberof SubscriptionRuntimeSubscription
      */
-    reactivationDate?: string;
+    lastContinuityOrderDateOnSubPaused?: string | null;
+    /**
+     * Indicate when "order now" and "partial order now" performed last time.
+     * @type {string}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    lastOrderNowDate?: string | null;
+    /**
+     * Line Item Subtotals with Order Adjustments
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    lineItemSubtotalWithOrderAdjustments?: number | null;
+    /**
+     * Identifies the location at which the order was placed if the order was placed externally.
+     * @type {string}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    locationCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    nextOrderDate?: string | null;
+    /**
+     * 
+     * @type {CoreApiContractsAuditInfo}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    nextOrderDateAuditInfo?: CoreApiContractsAuditInfo;
+    /**
+     * counter to keep track of nextOrderDate limit.
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    nextOrderDateOffsetCounter?: number | null;
+    /**
+     * Notes
+     * @type {Array<OrderNote>}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    notes?: Array<OrderNote> | null;
+    /**
+     * Subscription number.
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    number?: number;
+    /**
+     * 
+     * @type {Array<CommerceRuntimeAppliedDiscount>}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    orderDiscounts?: Array<CommerceRuntimeAppliedDiscount> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    orderLevelHandlingDiscountTotal?: number;
+    /**
+     * The total value of order-level (group-level) product discounts.
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    orderLevelProductDiscountTotal?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    orderLevelShippingDiscountTotal?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    ordinal?: number;
+    /**
+     * The parent order id from which the subscription was created.
+     * @type {string}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    parentOrderId?: string | null;
     /**
      * 
      * @type {string}
@@ -9476,10 +12133,34 @@ export interface SubscriptionRuntimeSubscription {
     pauseDate?: string | null;
     /**
      * 
-     * @type {Array<SubscriptionAttribute>}
+     * @type {Payment}
      * @memberof SubscriptionRuntimeSubscription
      */
-    attributes?: Array<SubscriptionAttribute> | null;
+    payment?: Payment;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    paymentErrorCode?: string | null;
+    /**
+     * 
+     * @type {Frequency}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    previousFrequency?: Frequency;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    previousNextOrderDate?: string | null;
+    /**
+     * Price-list code for the Subscription
+     * @type {string}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    priceListCode?: string | null;
     /**
      * LastErrorMessage from subscription ProcessingInfo.
      * @type {string}
@@ -9487,11 +12168,131 @@ export interface SubscriptionRuntimeSubscription {
      */
     processingErrorMessage?: string | null;
     /**
-     * Indicate when "order now" and "partial order now" performed last time.
+     * This property is being used for reactivation email templete
      * @type {string}
      * @memberof SubscriptionRuntimeSubscription
      */
-    lastOrderNowDate?: string | null;
+    reactivationDate?: string;
+    /**
+     * 
+     * @type {Array<SubscriptionReason>}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    reasons?: Array<SubscriptionReason> | null;
+    /**
+     * 
+     * @type {Adjustment}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    shippingAdjustment?: Adjustment;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    shippingAmount?: number;
+    /**
+     * 
+     * @type {Array<ShippingDiscount>}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    shippingDiscounts?: Array<ShippingDiscount> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    shippingSubTotal?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    shippingTax?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    shippingTaxTotal?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    shippingTotal?: number;
+    /**
+     * Unique identifier of the Site.
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    siteId?: number;
+    /**
+     * counter to keep track of skip limit
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    skipCounter?: number | null;
+    /**
+     * Source device of the user placing the order. (User or customer?)
+     * @type {string}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    sourceDevice?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    status?: string | null;
+    /**
+     * Subtotal before any coupon codes, taxes, fees, etc.
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    subTotal?: number;
+    /**
+     * Storage for any additional/custom tax data.
+     * @type {object}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    taxData?: object | null;
+    /**
+     * Unique identifier of the Tenant.
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    tenantId?: number;
+    /**
+     * Final total
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    total?: number;
+    /**
+     * 
+     * @type {Trial}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    trial?: Trial;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    userId?: string | null;
+    /**
+     * Identifies the Visit ID that was current when the order was placed or when the cart was last updated.
+     * @type {string}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    visitId?: string | null;
+    /**
+     * Identifies the web session used to place the order or last update the cart.
+     * @type {string}
+     * @memberof SubscriptionRuntimeSubscription
+     */
+    webSessionId?: string | null;
 }
 /**
  * 
@@ -9501,16 +12302,10 @@ export interface SubscriptionRuntimeSubscription {
 export interface SubscriptionRuntimeSubscriptionCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<SubscriptionRuntimeSubscription>}
      * @memberof SubscriptionRuntimeSubscriptionCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubscriptionRuntimeSubscriptionCollection
-     */
-    pageSize?: number;
+    items?: Array<SubscriptionRuntimeSubscription> | null;
     /**
      * 
      * @type {number}
@@ -9522,13 +12317,19 @@ export interface SubscriptionRuntimeSubscriptionCollection {
      * @type {number}
      * @memberof SubscriptionRuntimeSubscriptionCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<SubscriptionRuntimeSubscription>}
+     * @type {number}
      * @memberof SubscriptionRuntimeSubscriptionCollection
      */
-    items?: Array<SubscriptionRuntimeSubscription> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubscriptionRuntimeSubscriptionCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -9563,12 +12364,6 @@ export interface SubstituteInfo {
 export interface SuggestedDiscount {
     /**
      * 
-     * @type {string}
-     * @memberof SuggestedDiscount
-     */
-    productCode?: string | null;
-    /**
-     * 
      * @type {boolean}
      * @memberof SuggestedDiscount
      */
@@ -9591,6 +12386,12 @@ export interface SuggestedDiscount {
      * @memberof SuggestedDiscount
      */
     hasOptions?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof SuggestedDiscount
+     */
+    productCode?: string | null;
 }
 /**
  * 
@@ -9599,23 +12400,17 @@ export interface SuggestedDiscount {
  */
 export interface Suggestion {
     /**
+     * Used for future inventory suggestions.
+     * @type {string}
+     * @memberof Suggestion
+     */
+    futureDate?: string | null;
+    /**
      * Location Code
      * @type {string}
      * @memberof Suggestion
      */
     locationCode?: string | null;
-    /**
-     * Indicate whether suggestion is Transfer or Future.
-     * @type {string}
-     * @memberof Suggestion
-     */
-    suggestionType?: string | null;
-    /**
-     * Quantity
-     * @type {number}
-     * @memberof Suggestion
-     */
-    quantity?: number;
     /**
      * Unique identifier for the product.
      * @type {string}
@@ -9623,11 +12418,17 @@ export interface Suggestion {
      */
     productCode?: string | null;
     /**
-     * Used for future inventory suggestions.
+     * Quantity
+     * @type {number}
+     * @memberof Suggestion
+     */
+    quantity?: number;
+    /**
+     * Indicate whether suggestion is Transfer or Future.
      * @type {string}
      * @memberof Suggestion
      */
-    futureDate?: string | null;
+    suggestionType?: string | null;
     /**
      * Used in STH Consolidation, to indicate consolidation location on Transfer suggestion.
      * @type {string}
@@ -9642,23 +12443,29 @@ export interface Suggestion {
  */
 export interface Trial {
     /**
-     * Indicates if the trial is enabled
-     * @type {boolean}
-     * @memberof Trial
-     */
-    enabled?: boolean;
-    /**
      * Trial duration in days
      * @type {number}
      * @memberof Trial
      */
     duration?: number;
     /**
+     * Indicates if the trial is enabled
+     * @type {boolean}
+     * @memberof Trial
+     */
+    enabled?: boolean;
+    /**
      * Product code to substitute once the trial period is finished.
      * @type {string}
      * @memberof Trial
      */
     substituteProductCode?: string | null;
+    /**
+     * Configurable Options to substitute once the trial period is finished.
+     * @type {Array<CommerceRuntimeProductOption>}
+     * @memberof Trial
+     */
+    substituteProductOptions?: Array<CommerceRuntimeProductOption> | null;
     /**
      * Product quantity to substitute once the trail period is finished.
      * @type {number}
@@ -9671,10 +12478,729 @@ export interface Trial {
      * @memberof Trial
      */
     substituteVariationProductCode?: string | null;
+}
+/**
+ * Details of the wishlist, items listed in the wishlist, and any system messages.
+ * @export
+ * @interface Wishlist
+ */
+export interface Wishlist {
     /**
-     * Configurable Options to substitute once the trial period is finished.
-     * @type {Array<CommerceRuntimeProductOption>}
-     * @memberof Trial
+     * 
+     * @type {CoreApiContractsAuditInfo}
+     * @memberof Wishlist
      */
-    substituteProductOptions?: Array<CommerceRuntimeProductOption> | null;
+    auditInfo?: CoreApiContractsAuditInfo;
+    /**
+     * List of messages displayed by the system based on the last cart action, for example, when a product price has changed or is out-of-stock. System-supplied and read-only.
+     * @type {Array<CommerceRuntimeChangeMessage>}
+     * @memberof Wishlist
+     */
+    changeMessages?: Array<CommerceRuntimeChangeMessage> | null;
+    /**
+     * Unique identifier of the channel for this item.
+     * @type {string}
+     * @memberof Wishlist
+     */
+    channelCode?: string | null;
+    /**
+     * ISO Currency Code. Currently, only USD is supported.
+     * @type {string}
+     * @memberof Wishlist
+     */
+    currencyCode?: string | null;
+    /**
+     * Determines the interaction type that a customer will use to create this object.
+     * Valid values are: Website, Store, Call, Unknown
+     * @type {string}
+     * @memberof Wishlist
+     */
+    customerInteractionType?: string | null;
+    /**
+     * Custom data for a given vendor set within the commerce process.
+     * @type {object}
+     * @memberof Wishlist
+     */
+    data?: object | null;
+    /**
+     * List of Mozu.CommerceRuntime.Contracts.Commerce.ThresholdMessage objects that are valid for the current value of the cart/order.
+     * @type {Array<CommerceRuntimeThresholdMessage>}
+     * @memberof Wishlist
+     */
+    discountThresholdMessages?: Array<CommerceRuntimeThresholdMessage> | null;
+    /**
+     * Amount of the discounts applied to all items in the cart. This is a negative number.  This also includes the order level discounts.
+     * @type {number}
+     * @memberof Wishlist
+     */
+    discountTotal?: number | null;
+    /**
+     * Combined price for all cart items, including all selected options as well as any discounts.
+     * @type {number}
+     * @memberof Wishlist
+     */
+    discountedSubtotal?: number | null;
+    /**
+     * Subtotal minus the discounted total
+     * @type {number}
+     * @memberof Wishlist
+     */
+    discountedTotal?: number | null;
+    /**
+     * When the order will no longer be active. That is, the order is considered abandoned. 
+     * Orders of anonymous shoppers expire after 14 days of inactivity. 
+     * An order never expires for shoppers who are logged into their account. 
+     * Date in UTC Date/Time.
+     * @type {string}
+     * @memberof Wishlist
+     */
+    expirationDate?: string | null;
+    /**
+     * Extra properties (key-value pairs) that extend the primary object. Think of this as a property bag of string keys and string values.
+     * @type {Array<ExtendedProperty>}
+     * @memberof Wishlist
+     */
+    extendedProperties?: Array<ExtendedProperty> | null;
+    /**
+     * Not implemented. Total cost of fees for all items in the cart.
+     * @type {number}
+     * @memberof Wishlist
+     */
+    feeTotal?: number | null;
+    /**
+     * 
+     * @type {FulfillmentInfo}
+     * @memberof Wishlist
+     */
+    fulfillmentInfo?: FulfillmentInfo;
+    /**
+     * Total tax on handling
+     * @type {number}
+     * @memberof Wishlist
+     */
+    handlingTaxTotal?: number | null;
+    /**
+     * Unique identifier of the CommerceAggregate object (e.g. order, cart, wishlist, etc.).
+     * @type {string}
+     * @memberof Wishlist
+     */
+    id?: string | null;
+    /**
+     * Not implemented. Tax does not appear on cart.
+     * @type {number}
+     * @memberof Wishlist
+     */
+    itemTaxTotal?: number | null;
+    /**
+     * Occasionally the commerce runtime may validate that item/product names, descriptions, and prices have not changed. 
+     * If changed, it updates LastValidationDate.
+     * @type {string}
+     * @memberof Wishlist
+     */
+    lastValidationDate?: string | null;
+    /**
+     * Line Item Subtotals with Order Adjustments
+     * @type {number}
+     * @memberof Wishlist
+     */
+    lineItemSubtotalWithOrderAdjustments?: number | null;
+    /**
+     * The discount that has been applied to the cart itself. If multiple discounts exist, this is the discount that the system applies because it offers the best savings for the shopper. This is a negative number.
+     * @type {Array<CommerceRuntimeAppliedDiscount>}
+     * @memberof Wishlist
+     */
+    orderDiscounts?: Array<CommerceRuntimeAppliedDiscount> | null;
+    /**
+     * 
+     * @type {Array<SuggestedDiscount>}
+     * @memberof Wishlist
+     */
+    rejectedDiscounts?: Array<SuggestedDiscount> | null;
+    /**
+     * Shipping Amount before discount and adjustments
+     * @type {number}
+     * @memberof Wishlist
+     */
+    shippingAmountBeforeDiscountsAndAdjustments?: number | null;
+    /**
+     * Shipping total without discounts applied.
+     * @type {number}
+     * @memberof Wishlist
+     */
+    shippingSubTotal?: number | null;
+    /**
+     * Not implemented. Tax does not appear on cart.
+     * @type {number}
+     * @memberof Wishlist
+     */
+    shippingTaxTotal?: number | null;
+    /**
+     * Shipping does not appear on cart.
+     * @type {number}
+     * @memberof Wishlist
+     */
+    shippingTotal?: number | null;
+    /**
+     * Unique identifier of the Site.
+     * @type {number}
+     * @memberof Wishlist
+     */
+    siteId?: number | null;
+    /**
+     * Combined price for all cart items, including all selected options but excluding any discounts.
+     * @type {number}
+     * @memberof Wishlist
+     */
+    subtotal?: number | null;
+    /**
+     * 
+     * @type {Array<SuggestedDiscount>}
+     * @memberof Wishlist
+     */
+    suggestedDiscounts?: Array<SuggestedDiscount> | null;
+    /**
+     * Storage for any additional/custom tax data.
+     * @type {object}
+     * @memberof Wishlist
+     */
+    taxData?: object | null;
+    /**
+     * Tax does not appear on cart.
+     * @type {number}
+     * @memberof Wishlist
+     */
+    taxTotal?: number | null;
+    /**
+     * Unique identifier of the Tenant.
+     * @type {number}
+     * @memberof Wishlist
+     */
+    tenantId?: number | null;
+    /**
+     * Final total amount of the order including all discounts, shipping, and tax.
+     * @type {number}
+     * @memberof Wishlist
+     */
+    total?: number | null;
+    /**
+     * Unique identifier of the shopper who created the cart.
+     * @type {string}
+     * @memberof Wishlist
+     */
+    userId?: string | null;
+    /**
+     * Identifies the Visit ID that was current when the order was placed or when the cart was last updated.
+     * @type {string}
+     * @memberof Wishlist
+     */
+    visitId?: string | null;
+    /**
+     * Identifies the web session used to place the order or last update the cart.
+     * @type {string}
+     * @memberof Wishlist
+     */
+    webSessionId?: string | null;
+    /**
+     * Unique identifier of the customer account.
+     * @type {number}
+     * @memberof Wishlist
+     */
+    customerAccountId?: number | null;
+    /**
+     * Id in an external system this item may have been imported from
+     * @type {string}
+     * @memberof Wishlist
+     */
+    externalId?: string | null;
+    /**
+     * Date this item was imported
+     * @type {string}
+     * @memberof Wishlist
+     */
+    importDate?: string | null;
+    /**
+     * Was this object imported from an external system?
+     * @type {boolean}
+     * @memberof Wishlist
+     */
+    isImport?: boolean | null;
+    /**
+     * List of items in the wishlist.
+     * @type {Array<WishlistItem>}
+     * @memberof Wishlist
+     */
+    items?: Array<WishlistItem> | null;
+    /**
+     * Name of the list that is display or potentially shared (e.g. friends and family may view this description if the list is public and the list owner may see this description when viewing the list)
+     * @type {string}
+     * @memberof Wishlist
+     */
+    name?: string | null;
+    /**
+     * Is the wishlist public, viewable only through a shared link, or private (only the owner of the list may view the wishlist)?
+     * @type {string}
+     * @memberof Wishlist
+     */
+    privacyType?: string | null;
+    /**
+     * The wishlist sort order.  Useful for scenarios where there is a default wishlist and other wishlists or arbitrary ordering
+     * @type {number}
+     * @memberof Wishlist
+     */
+    sortOrder?: number | null;
+    /**
+     * Open-ended Wishlist type, e.g. giftlist, gift, wish, wishlist, wedding, baby.  If the merchant does not need this level of granularity this is always null.
+     * @type {string}
+     * @memberof Wishlist
+     */
+    typeTag?: string | null;
+    /**
+     * Version for concurrency purposes
+     * @type {string}
+     * @memberof Wishlist
+     */
+    version?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface WishlistAllOf
+ */
+export interface WishlistAllOf {
+    /**
+     * Unique identifier of the customer account.
+     * @type {number}
+     * @memberof WishlistAllOf
+     */
+    customerAccountId?: number | null;
+    /**
+     * Id in an external system this item may have been imported from
+     * @type {string}
+     * @memberof WishlistAllOf
+     */
+    externalId?: string | null;
+    /**
+     * Date this item was imported
+     * @type {string}
+     * @memberof WishlistAllOf
+     */
+    importDate?: string | null;
+    /**
+     * Was this object imported from an external system?
+     * @type {boolean}
+     * @memberof WishlistAllOf
+     */
+    isImport?: boolean | null;
+    /**
+     * List of items in the wishlist.
+     * @type {Array<WishlistItem>}
+     * @memberof WishlistAllOf
+     */
+    items?: Array<WishlistItem> | null;
+    /**
+     * Name of the list that is display or potentially shared (e.g. friends and family may view this description if the list is public and the list owner may see this description when viewing the list)
+     * @type {string}
+     * @memberof WishlistAllOf
+     */
+    name?: string | null;
+    /**
+     * Is the wishlist public, viewable only through a shared link, or private (only the owner of the list may view the wishlist)?
+     * @type {string}
+     * @memberof WishlistAllOf
+     */
+    privacyType?: string | null;
+    /**
+     * The wishlist sort order.  Useful for scenarios where there is a default wishlist and other wishlists or arbitrary ordering
+     * @type {number}
+     * @memberof WishlistAllOf
+     */
+    sortOrder?: number | null;
+    /**
+     * Open-ended Wishlist type, e.g. giftlist, gift, wish, wishlist, wedding, baby.  If the merchant does not need this level of granularity this is always null.
+     * @type {string}
+     * @memberof WishlistAllOf
+     */
+    typeTag?: string | null;
+    /**
+     * Version for concurrency purposes
+     * @type {string}
+     * @memberof WishlistAllOf
+     */
+    version?: string | null;
+}
+/**
+ * A single line item of an order.
+ * @export
+ * @interface WishlistItem
+ */
+export interface WishlistItem {
+    /**
+     * Order Level taxable sub total
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    adjustedLineItemSubtotal?: number | null;
+    /**
+     * 
+     * @type {CoreApiContractsAuditInfo}
+     * @memberof WishlistItem
+     */
+    auditInfo?: CoreApiContractsAuditInfo;
+    /**
+     * Track the discoutid from which the item was auto added
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    autoAddDiscountId?: number | null;
+    /**
+     * List of Child Item Ids for this order item
+     * @type {Array<string>}
+     * @memberof WishlistItem
+     */
+    childItemIds?: Array<string> | null;
+    /**
+     * Custom data for a given vendor set within the commerce process.
+     * @type {object}
+     * @memberof WishlistItem
+     */
+    data?: object | null;
+    /**
+     * How much the shopper saves with the applied discount or sale price. This is a negative number.
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    discountTotal?: number | null;
+    /**
+     * Subtotal minus any discounts.
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    discountedTotal?: number | null;
+    /**
+     * Indicate Duty Amount for this item.
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    dutyAmount?: number | null;
+    /**
+     * Line item extended total (quantity multiplied by unit extended price) before discounts.
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    extendedTotal?: number | null;
+    /**
+     * Not implemented. Total cost of fees that apply to this item.
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    feeTotal?: number | null;
+    /**
+     * Product-level handling fee for this item (e.g. special packaging, hazmat fees).
+     * This does NOT include order-level handling fees — those are in Mozu.CommerceRuntime.Contracts.Commerce.CommerceItem.WeightedOrderHandlingFee.
+     * Total handling on the shipment = HandlingAmount + WeightedOrderHandlingFee.
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    handlingAmount?: number | null;
+    /**
+     * 
+     * @type {Array<InventoryTags>}
+     * @memberof WishlistItem
+     */
+    inventoryTags?: Array<InventoryTags> | null;
+    /**
+     * Assembly Required for this order item
+     * @type {boolean}
+     * @memberof WishlistItem
+     */
+    isAssemblyRequired?: boolean;
+    /**
+     * If true, the cart item lists a product that can be purchased or fulfilled at regular intervals, for example, monthly billing or a subscription.
+     * @type {boolean}
+     * @memberof WishlistItem
+     */
+    isRecurring?: boolean | null;
+    /**
+     * Not implemented. If true, the cart item is eligible for tax.
+     * @type {boolean}
+     * @memberof WishlistItem
+     */
+    isTaxable?: boolean | null;
+    /**
+     * Total price of taxes that apply to products in this item.
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    itemTaxTotal?: number | null;
+    /**
+     * The line id assigned to the order item. Visible only in the Admin, this is set from the Admin or
+     * in CommerceRuntime when a cart is converted to an order.
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    lineId?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    lineItemAdjustment?: number | null;
+    /**
+     * Locale code for language that appears in text and descriptions on the site, for example, en_US. 
+     * This is not the currency code. Currently only en_US is supported.
+     * @type {string}
+     * @memberof WishlistItem
+     */
+    localeCode?: string | null;
+    /**
+     * Indicates Parent Item Id for this order item
+     * @type {string}
+     * @memberof WishlistItem
+     */
+    parentItemId?: string | null;
+    /**
+     * 
+     * @type {CommerceRuntimeProduct}
+     * @memberof WishlistItem
+     */
+    product?: CommerceRuntimeProduct;
+    /**
+     * 
+     * @type {CommerceRuntimeAppliedLineItemProductDiscount}
+     * @memberof WishlistItem
+     */
+    productDiscount?: CommerceRuntimeAppliedLineItemProductDiscount;
+    /**
+     * A list of discounts applied to the product
+     * @type {Array<CommerceRuntimeAppliedLineItemProductDiscount>}
+     * @memberof WishlistItem
+     */
+    productDiscounts?: Array<CommerceRuntimeAppliedLineItemProductDiscount> | null;
+    /**
+     * The location where the product is being purchased.. default is null. Products can have different prices
+     * by purchaseLocation via custom priceListResolution...
+     * @type {string}
+     * @memberof WishlistItem
+     */
+    purchaseLocation?: string | null;
+    /**
+     * Number of products ordered.
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    quantity?: number;
+    /**
+     * Shipping amount before Discounts and adjustments
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    shippingAmountBeforeDiscountsAndAdjustments?: number | null;
+    /**
+     * A discount applied to the shipping
+     * @type {Array<CommerceRuntimeAppliedLineItemShippingDiscount>}
+     * @memberof WishlistItem
+     */
+    shippingDiscounts?: Array<CommerceRuntimeAppliedLineItemShippingDiscount> | null;
+    /**
+     * Total price of taxes that apply to the shipping of this item.
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    shippingTaxTotal?: number | null;
+    /**
+     * Total price of shipping that apply to this item.
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    shippingTotal?: number | null;
+    /**
+     * 
+     * @type {SubstituteInfo}
+     * @memberof WishlistItem
+     */
+    substituteInfo?: SubstituteInfo;
+    /**
+     * Line item subtotal (quantity multiplied by price) before discounts.
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    subtotal?: number | null;
+    /**
+     * Storage for any additional/custom tax data.
+     * @type {object}
+     * @memberof WishlistItem
+     */
+    taxData?: object | null;
+    /**
+     * Line item subtotal (quantity multiplied by price) before discounts.
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    taxableTotal?: number | null;
+    /**
+     * Total price of this cart item taking into account any discounts.
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    total?: number | null;
+    /**
+     * Line item total with line item, Tax, Weighted Tax with Weighted shipping and handling costs
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    totalWithWeightedShippingAndHandling?: number | null;
+    /**
+     * Taxable Subtotal including Weighted Order amounts
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    totalWithoutWeightedShippingAndHandling?: number | null;
+    /**
+     * 
+     * @type {CommerceUnitPrice}
+     * @memberof WishlistItem
+     */
+    unitPrice?: CommerceUnitPrice;
+    /**
+     * Order Level Manual Adjustment applied to this Item
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    weightedOrderAdjustment?: number | null;
+    /**
+     * Order Level Discount applied to this Item
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    weightedOrderDiscount?: number | null;
+    /**
+     * Order Level Duty applied to this Item
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    weightedOrderDuty?: number | null;
+    /**
+     * Order-level handling manual adjustment allocated to this item.
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    weightedOrderHandlingAdjustment?: number | null;
+    /**
+     * Order-level handling fee allocated to this item (e.g. flat handling fee spread across all items).
+     * This is separate from product-level handling in Mozu.CommerceRuntime.Contracts.Commerce.CommerceItem.HandlingAmount.
+     * Total handling on the shipment = HandlingAmount + WeightedOrderHandlingFee.
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    weightedOrderHandlingFee?: number | null;
+    /**
+     * Order-level handling fee discount allocated to this item.
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    weightedOrderHandlingFeeDiscount?: number | null;
+    /**
+     * Total handling tax for this item (covers both product-level and order-level handling tax combined).
+     * On the shipment item, this is split into: HandlingTax (total) and WeightedOrderHandlingFeeTax (order-level portion only).
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    weightedOrderHandlingFeeTax?: number | null;
+    /**
+     * Order Level Shipping applied to this Item
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    weightedOrderShipping?: number | null;
+    /**
+     * Order Level Shipping discount applied to this Item
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    weightedOrderShippingDiscount?: number | null;
+    /**
+     * Order Level Shipping Manual Adjustment applied to this Item
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    weightedOrderShippingManualAdjustment?: number | null;
+    /**
+     * Order Level Shipping Tax applied to this Item
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    weightedOrderShippingTax?: number | null;
+    /**
+     * Order Level tax applied to this Item
+     * @type {number}
+     * @memberof WishlistItem
+     */
+    weightedOrderTax?: number | null;
+    /**
+     * Comments for the wishlist item that are entered by the wishlist owner
+     * @type {string}
+     * @memberof WishlistItem
+     */
+    comments?: string | null;
+    /**
+     * Unique identifier of the wishlist line item. System-supplied and read-only.
+     * @type {string}
+     * @memberof WishlistItem
+     */
+    id?: string | null;
+    /**
+     * Determines if the item is using external or internal(catalog) pricing
+     * @type {string}
+     * @memberof WishlistItem
+     */
+    priceMode?: string | null;
+    /**
+     * Wishlist item priority that is a hint to how much this item is needed or desired
+     * @type {string}
+     * @memberof WishlistItem
+     */
+    priorityType?: string | null;
+    /**
+     * Is the item purchasable?
+     * @type {string}
+     * @memberof WishlistItem
+     */
+    purchasableStatusType?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface WishlistItemAllOf
+ */
+export interface WishlistItemAllOf {
+    /**
+     * Comments for the wishlist item that are entered by the wishlist owner
+     * @type {string}
+     * @memberof WishlistItemAllOf
+     */
+    comments?: string | null;
+    /**
+     * Unique identifier of the wishlist line item. System-supplied and read-only.
+     * @type {string}
+     * @memberof WishlistItemAllOf
+     */
+    id?: string | null;
+    /**
+     * Determines if the item is using external or internal(catalog) pricing
+     * @type {string}
+     * @memberof WishlistItemAllOf
+     */
+    priceMode?: string | null;
+    /**
+     * Wishlist item priority that is a hint to how much this item is needed or desired
+     * @type {string}
+     * @memberof WishlistItemAllOf
+     */
+    priorityType?: string | null;
+    /**
+     * Is the item purchasable?
+     * @type {string}
+     * @memberof WishlistItemAllOf
+     */
+    purchasableStatusType?: string | null;
 }

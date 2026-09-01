@@ -2,9 +2,9 @@
 /* eslint-disable */
 /**
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -69,7 +69,7 @@ export namespace searchSynonymsApiParams {
 export interface SearchSynonymsApiService {
     /**
     * Add synonym definition
-    * @summary Add synonym definition
+    * @summary Add Synonym Definition
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {SynonymDefinition} [synonymDefinition] 
     * @param {*} [options] Override http request option.
@@ -80,13 +80,13 @@ export interface SearchSynonymsApiService {
 
     /**
     * Add synonym definition
-    * Add synonym definition
+    * Add Synonym Definition
     */
     addSynonymDefinition(requestParameters: searchSynonymsApiParams.AddSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinition>;
 
     /**
-    * Delete synonym definition
-    * @summary Delete synonym definition
+    * Delete a specific synonym definition by ID.
+    * @summary Delete Synonym Definition
     * @param {number} synonymId 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -95,14 +95,14 @@ export interface SearchSynonymsApiService {
     deleteSynonymDefinitionRaw(requestParameters: searchSynonymsApiParams.DeleteSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * Delete synonym definition
-    * Delete synonym definition
+    * Delete a specific synonym definition by ID.
+    * Delete Synonym Definition
     */
     deleteSynonymDefinition(requestParameters: searchSynonymsApiParams.DeleteSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * Get synonym definition collections
-    * @summary Get synonym definition collections
+    * Get synonym definition collections.
+    * @summary Get Synonym Definition Collections
     * @param {string} languageCode 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
@@ -112,14 +112,14 @@ export interface SearchSynonymsApiService {
     getAllSynonymDefinitionCollectionsForMasterCatalogRaw(requestParameters: searchSynonymsApiParams.GetAllSynonymDefinitionCollectionsForMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinitionCollection>>;
 
     /**
-    * Get synonym definition collections
-    * Get synonym definition collections
+    * Get synonym definition collections.
+    * Get Synonym Definition Collections
     */
     getAllSynonymDefinitionCollectionsForMasterCatalog(requestParameters: searchSynonymsApiParams.GetAllSynonymDefinitionCollectionsForMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinitionCollection>;
 
     /**
-    * Get synonym definition
-    * @summary Get synonym definition
+    * Get a specific synonym definition by ID.
+    * @summary Get Synonym Definition
     * @param {number} synonymId 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
@@ -129,14 +129,14 @@ export interface SearchSynonymsApiService {
     getSynonymDefinitionRaw(requestParameters: searchSynonymsApiParams.GetSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinition>>;
 
     /**
-    * Get synonym definition
-    * Get synonym definition
+    * Get a specific synonym definition by ID.
+    * Get Synonym Definition
     */
     getSynonymDefinition(requestParameters: searchSynonymsApiParams.GetSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinition>;
 
     /**
-    * Get synonym definition collection
-    * @summary Get synonym definition collection
+    * Get synonym definition collection.
+    * @summary Get Synonym Definition Collection
     * @param {string} localeCode 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
@@ -146,14 +146,14 @@ export interface SearchSynonymsApiService {
     getSynonymDefinitionCollectionRaw(requestParameters: searchSynonymsApiParams.GetSynonymDefinitionCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinitionCollection>>;
 
     /**
-    * Get synonym definition collection
-    * Get synonym definition collection
+    * Get synonym definition collection.
+    * Get Synonym Definition Collection
     */
     getSynonymDefinitionCollection(requestParameters: searchSynonymsApiParams.GetSynonymDefinitionCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinitionCollection>;
 
     /**
-    * Get synonym definitions
-    * @summary Get synonym definitions
+    * Get synonym definitions.
+    * @summary Get Synonym Definitions
     * @param {number} [startIndex] 
     * @param {number} [pageSize] 
     * @param {string} [sortBy] 
@@ -166,14 +166,14 @@ export interface SearchSynonymsApiService {
     getSynonymDefinitionsRaw(requestParameters: searchSynonymsApiParams.GetSynonymDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinitionPagedCollection>>;
 
     /**
-    * Get synonym definitions
-    * Get synonym definitions
+    * Get synonym definitions.
+    * Get Synonym Definitions
     */
     getSynonymDefinitions(requestParameters: searchSynonymsApiParams.GetSynonymDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinitionPagedCollection>;
 
     /**
-    * Update synonym definition
-    * @summary Update synonym definition
+    * Update a specific synonym definition by ID.
+    * @summary Update Synonym Definition
     * @param {number} synonymId 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {SynonymDefinition} [synonymDefinition] 
@@ -184,14 +184,14 @@ export interface SearchSynonymsApiService {
     updateSynonymDefinitionRaw(requestParameters: searchSynonymsApiParams.UpdateSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinition>>;
 
     /**
-    * Update synonym definition
-    * Update synonym definition
+    * Update a specific synonym definition by ID.
+    * Update Synonym Definition
     */
     updateSynonymDefinition(requestParameters: searchSynonymsApiParams.UpdateSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinition>;
 
     /**
-    * Upsert synonym definition collection
-    * @summary Add/Update synonym definition collection
+    * Add or update a synonym definition collection.
+    * @summary Add Synonym Definition Collection
     * @param {string} localeCode 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {SynonymDefinitionCollection} [synonymDefinitionCollection] 
@@ -202,8 +202,8 @@ export interface SearchSynonymsApiService {
     updateSynonymDefinitionCollectionRaw(requestParameters: searchSynonymsApiParams.UpdateSynonymDefinitionCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SynonymDefinitionCollection>>;
 
     /**
-    * Upsert synonym definition collection
-    * Add/Update synonym definition collection
+    * Add or update a synonym definition collection.
+    * Add Synonym Definition Collection
     */
     updateSynonymDefinitionCollection(requestParameters: searchSynonymsApiParams.UpdateSynonymDefinitionCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinitionCollection>;
 
@@ -220,7 +220,7 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
     }
     /**
      * Add synonym definition
-     * Add synonym definition
+     * Add Synonym Definition
      */
 
 
@@ -234,8 +234,6 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-
 
 
 
@@ -254,7 +252,7 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
 
     /**
      * Add synonym definition
-     * Add synonym definition
+     * Add Synonym Definition
      */
     async addSynonymDefinition(requestParameters: searchSynonymsApiParams.AddSynonymDefinitionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinition> {
         const response = await this.addSynonymDefinitionRaw(requestParameters, initOverrides);
@@ -262,8 +260,8 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
     }
 
     /**
-     * Delete synonym definition
-     * Delete synonym definition
+     * Delete a specific synonym definition by ID.
+     * Delete Synonym Definition
      */
 
 
@@ -275,8 +273,6 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-
 
 
 
@@ -293,16 +289,16 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
     }
 
     /**
-     * Delete synonym definition
-     * Delete synonym definition
+     * Delete a specific synonym definition by ID.
+     * Delete Synonym Definition
      */
     async deleteSynonymDefinition(requestParameters: searchSynonymsApiParams.DeleteSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteSynonymDefinitionRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Get synonym definition collections
-     * Get synonym definition collections
+     * Get synonym definition collections.
+     * Get Synonym Definition Collections
      */
 
 
@@ -321,8 +317,6 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -336,8 +330,8 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
     }
 
     /**
-     * Get synonym definition collections
-     * Get synonym definition collections
+     * Get synonym definition collections.
+     * Get Synonym Definition Collections
      */
     async getAllSynonymDefinitionCollectionsForMasterCatalog(requestParameters: searchSynonymsApiParams.GetAllSynonymDefinitionCollectionsForMasterCatalogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinitionCollection> {
         const response = await this.getAllSynonymDefinitionCollectionsForMasterCatalogRaw(requestParameters, initOverrides);
@@ -345,8 +339,8 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
     }
 
     /**
-     * Get synonym definition
-     * Get synonym definition
+     * Get a specific synonym definition by ID.
+     * Get Synonym Definition
      */
 
 
@@ -365,8 +359,6 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -380,8 +372,8 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
     }
 
     /**
-     * Get synonym definition
-     * Get synonym definition
+     * Get a specific synonym definition by ID.
+     * Get Synonym Definition
      */
     async getSynonymDefinition(requestParameters: searchSynonymsApiParams.GetSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinition> {
         const response = await this.getSynonymDefinitionRaw(requestParameters, initOverrides);
@@ -389,8 +381,8 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
     }
 
     /**
-     * Get synonym definition collection
-     * Get synonym definition collection
+     * Get synonym definition collection.
+     * Get Synonym Definition Collection
      */
 
 
@@ -409,8 +401,6 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -424,8 +414,8 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
     }
 
     /**
-     * Get synonym definition collection
-     * Get synonym definition collection
+     * Get synonym definition collection.
+     * Get Synonym Definition Collection
      */
     async getSynonymDefinitionCollection(requestParameters: searchSynonymsApiParams.GetSynonymDefinitionCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinitionCollection> {
         const response = await this.getSynonymDefinitionCollectionRaw(requestParameters, initOverrides);
@@ -433,8 +423,8 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
     }
 
     /**
-     * Get synonym definitions
-     * Get synonym definitions
+     * Get synonym definitions.
+     * Get Synonym Definitions
      */
 
 
@@ -465,8 +455,6 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -480,8 +468,8 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
     }
 
     /**
-     * Get synonym definitions
-     * Get synonym definitions
+     * Get synonym definitions.
+     * Get Synonym Definitions
      */
     async getSynonymDefinitions(requestParameters: searchSynonymsApiParams.GetSynonymDefinitionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinitionPagedCollection> {
         const response = await this.getSynonymDefinitionsRaw(requestParameters, initOverrides);
@@ -489,8 +477,8 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
     }
 
     /**
-     * Update synonym definition
-     * Update synonym definition
+     * Update a specific synonym definition by ID.
+     * Update Synonym Definition
      */
 
 
@@ -511,8 +499,6 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -527,8 +513,8 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
     }
 
     /**
-     * Update synonym definition
-     * Update synonym definition
+     * Update a specific synonym definition by ID.
+     * Update Synonym Definition
      */
     async updateSynonymDefinition(requestParameters: searchSynonymsApiParams.UpdateSynonymDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinition> {
         const response = await this.updateSynonymDefinitionRaw(requestParameters, initOverrides);
@@ -536,8 +522,8 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
     }
 
     /**
-     * Upsert synonym definition collection
-     * Add/Update synonym definition collection
+     * Add or update a synonym definition collection.
+     * Add Synonym Definition Collection
      */
 
 
@@ -558,8 +544,6 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -574,8 +558,8 @@ export class SearchSynonymsApi extends runtime.BaseAPI implements SearchSynonyms
     }
 
     /**
-     * Upsert synonym definition collection
-     * Add/Update synonym definition collection
+     * Add or update a synonym definition collection.
+     * Add Synonym Definition Collection
      */
     async updateSynonymDefinitionCollection(requestParameters: searchSynonymsApiParams.UpdateSynonymDefinitionCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SynonymDefinitionCollection> {
         const response = await this.updateSynonymDefinitionCollectionRaw(requestParameters, initOverrides);

@@ -2,9 +2,9 @@
 /* eslint-disable */
 /**
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -164,8 +164,8 @@ export namespace productTypesApiParams {
 */
 export interface ProductTypesApiService {
     /**
-    * Add extra.
-    * @summary Add extra
+    * Add a product type extra.
+    * @summary Add Product Type Extra
     * @param {number} productTypeId 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {AttributeInProductType} [attributeInProductType] 
@@ -176,14 +176,14 @@ export interface ProductTypesApiService {
     addExtraRaw(requestParameters: productTypesApiParams.AddExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
 
     /**
-    * Add extra.
-    * Add extra
+    * Add a product type extra.
+    * Add Product Type Extra
     */
     addExtra(requestParameters: productTypesApiParams.AddExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
 
     /**
-    * Add option.
-    * @summary Add option
+    * Add a product option to a product type.
+    * @summary Add Product Type Option
     * @param {number} productTypeId 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {AttributeInProductType} [attributeInProductType] 
@@ -194,14 +194,14 @@ export interface ProductTypesApiService {
     addOptionRaw(requestParameters: productTypesApiParams.AddOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
 
     /**
-    * Add option.
-    * Add option
+    * Add a product option to a product type.
+    * Add Product Type Option
     */
     addOption(requestParameters: productTypesApiParams.AddOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
 
     /**
     * Get product type by Id.
-    * @summary Add product type
+    * @summary Add Product Type
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {ProductType} [productType] 
     * @param {*} [options] Override http request option.
@@ -212,13 +212,13 @@ export interface ProductTypesApiService {
 
     /**
     * Get product type by Id.
-    * Add product type
+    * Add Product Type
     */
     addProductType(requestParameters: productTypesApiParams.AddProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductType>;
 
     /**
-    * Add property.
-    * @summary Add product type property
+    * Add a property to a product type.
+    * @summary Add Product Type Property
     * @param {number} productTypeId 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {AttributeInProductType} [attributeInProductType] 
@@ -229,14 +229,14 @@ export interface ProductTypesApiService {
     addPropertyRaw(requestParameters: productTypesApiParams.AddPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
 
     /**
-    * Add property.
-    * Add product type property
+    * Add a property to a product type.
+    * Add Product Type Property
     */
     addProperty(requestParameters: productTypesApiParams.AddPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
 
     /**
-    * Add variant property.
-    * @summary Add variant property
+    * Add a variant property to a product type.
+    * @summary Add Variant Product Type Property
     * @param {number} productTypeId 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {AttributeInProductType} [attributeInProductType] 
@@ -247,14 +247,14 @@ export interface ProductTypesApiService {
     addVariantPropertyRaw(requestParameters: productTypesApiParams.AddVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
 
     /**
-    * Add variant property.
-    * Add variant property
+    * Add a variant property to a product type.
+    * Add Variant Product Type Property
     */
     addVariantProperty(requestParameters: productTypesApiParams.AddVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
 
     /**
-    * Delete extra.
-    * @summary Delete extra
+    * Delete a product type extra.
+    * @summary Delete Product Type Extra
     * @param {number} productTypeId 
     * @param {string} attributeFQN 
     * @param {*} [options] Override http request option.
@@ -264,14 +264,14 @@ export interface ProductTypesApiService {
     deleteExtraRaw(requestParameters: productTypesApiParams.DeleteExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * Delete extra.
-    * Delete extra
+    * Delete a product type extra.
+    * Delete Product Type Extra
     */
     deleteExtra(requestParameters: productTypesApiParams.DeleteExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * Delete option.
-    * @summary Delete option
+    * Delete a product type option by its FQN.
+    * @summary Delete Product Type Option
     * @param {number} productTypeId 
     * @param {string} attributeFQN 
     * @param {*} [options] Override http request option.
@@ -281,14 +281,14 @@ export interface ProductTypesApiService {
     deleteOptionRaw(requestParameters: productTypesApiParams.DeleteOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * Delete option.
-    * Delete option
+    * Delete a product type option by its FQN.
+    * Delete Product Type Option
     */
     deleteOption(requestParameters: productTypesApiParams.DeleteOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
     * Delete product type.
-    * @summary Delete product type
+    * @summary Delete Product Type
     * @param {number} productTypeId 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -298,13 +298,13 @@ export interface ProductTypesApiService {
 
     /**
     * Delete product type.
-    * Delete product type
+    * Delete Product Type
     */
     deleteProductType(requestParameters: productTypesApiParams.DeleteProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * Delete property.
-    * @summary Delete product type property
+    * Delete a product type property by its FQN.
+    * @summary Delete Product Type Property
     * @param {number} productTypeId 
     * @param {string} attributeFQN 
     * @param {*} [options] Override http request option.
@@ -314,14 +314,14 @@ export interface ProductTypesApiService {
     deletePropertyRaw(requestParameters: productTypesApiParams.DeletePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * Delete property.
-    * Delete product type property
+    * Delete a product type property by its FQN.
+    * Delete Product Type Property
     */
     deleteProperty(requestParameters: productTypesApiParams.DeletePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * Delete variant property.
-    * @summary Delete variant property
+    * Delete a variant property by its FQN.
+    * @summary Delete Variant Product Type Property
     * @param {number} productTypeId 
     * @param {string} attributeFQN 
     * @param {*} [options] Override http request option.
@@ -331,14 +331,14 @@ export interface ProductTypesApiService {
     deleteVariantPropertyRaw(requestParameters: productTypesApiParams.DeleteVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * Delete variant property.
-    * Delete variant property
+    * Delete a variant property by its FQN.
+    * Delete Variant Product Type Property
     */
     deleteVariantProperty(requestParameters: productTypesApiParams.DeleteVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * 
-    * @summary Generate product variations
+    * Generate product variations for a product type.
+    * @summary Generate Product Variations
     * @param {number} productTypeId 
     * @param {string} [productCode] 
     * @param {number} [startIndex] 
@@ -354,14 +354,14 @@ export interface ProductTypesApiService {
     generateProductVariationsRaw(requestParameters: productTypesApiParams.GenerateProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationPagedCollection>>;
 
     /**
-    * 
-    * Generate product variations
+    * Generate product variations for a product type.
+    * Generate Product Variations
     */
     generateProductVariations(requestParameters: productTypesApiParams.GenerateProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationPagedCollection>;
 
     /**
-    * Get extra.
-    * @summary Get extra
+    * Get a product type extra.
+    * @summary Get Product Type Extra
     * @param {number} productTypeId 
     * @param {string} attributeFQN 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -372,14 +372,14 @@ export interface ProductTypesApiService {
     getExtraRaw(requestParameters: productTypesApiParams.GetExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
 
     /**
-    * Get extra.
-    * Get extra
+    * Get a product type extra.
+    * Get Product Type Extra
     */
     getExtra(requestParameters: productTypesApiParams.GetExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
 
     /**
-    * Get extras.
-    * @summary Get extras
+    * Get a list of product type extras.
+    * @summary Get Product Type Extras
     * @param {number} productTypeId 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
@@ -389,14 +389,14 @@ export interface ProductTypesApiService {
     getExtrasRaw(requestParameters: productTypesApiParams.GetExtrasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeInProductType>>>;
 
     /**
-    * Get extras.
-    * Get extras
+    * Get a list of product type extras.
+    * Get Product Type Extras
     */
     getExtras(requestParameters: productTypesApiParams.GetExtrasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeInProductType>>;
 
     /**
-    * Get individual option.
-    * @summary Get option
+    * Get an individual product type option by its FQN.
+    * @summary Get Product Type Option
     * @param {number} productTypeId 
     * @param {string} attributeFQN 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -407,14 +407,14 @@ export interface ProductTypesApiService {
     getOptionRaw(requestParameters: productTypesApiParams.GetOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
 
     /**
-    * Get individual option.
-    * Get option
+    * Get an individual product type option by its FQN.
+    * Get Product Type Option
     */
     getOption(requestParameters: productTypesApiParams.GetOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
 
     /**
     * Get options for the product type.
-    * @summary Get options
+    * @summary Get Product Type Options
     * @param {number} productTypeId 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
@@ -425,13 +425,13 @@ export interface ProductTypesApiService {
 
     /**
     * Get options for the product type.
-    * Get options
+    * Get Product Type Options
     */
     getOptions(requestParameters: productTypesApiParams.GetOptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeInProductType>>;
 
     /**
     * Get product type by Id.
-    * @summary Get product type
+    * @summary Get Product Type
     * @param {number} productTypeId 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
@@ -442,13 +442,13 @@ export interface ProductTypesApiService {
 
     /**
     * Get product type by Id.
-    * Get product type
+    * Get Product Type
     */
     getProductType(requestParameters: productTypesApiParams.GetProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductType>;
 
     /**
     * Retrieves a list of product types according to any specified filter criteria and sort options.
-    * @summary Get product types
+    * @summary Get Product Types
     * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0.
     * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a single query. The default value is 20 and the maximum value is 200.
     * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending or descending order. For example, to sort the results by “ID” ascending then by “CreateDate” descending, use: id asc,createdate desc.
@@ -463,13 +463,13 @@ export interface ProductTypesApiService {
 
     /**
     * Retrieves a list of product types according to any specified filter criteria and sort options.
-    * Get product types
+    * Get Product Types
     */
     getProductTypes(requestParameters: productTypesApiParams.GetProductTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductTypeCollection>;
 
     /**
-    * Get properties.
-    * @summary Get product type properties
+    * Get properties of a product type.
+    * @summary Get Product Type Properties
     * @param {number} productTypeId 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
@@ -479,14 +479,14 @@ export interface ProductTypesApiService {
     getPropertiesRaw(requestParameters: productTypesApiParams.GetPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeInProductType>>>;
 
     /**
-    * Get properties.
-    * Get product type properties
+    * Get properties of a product type.
+    * Get Product Type Properties
     */
     getProperties(requestParameters: productTypesApiParams.GetPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeInProductType>>;
 
     /**
-    * Get property.
-    * @summary Get product type property
+    * Get a product type property by its FQN.
+    * @summary Get Product Type Property
     * @param {number} productTypeId 
     * @param {string} attributeFQN 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -497,14 +497,14 @@ export interface ProductTypesApiService {
     getPropertyRaw(requestParameters: productTypesApiParams.GetPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
 
     /**
-    * Get property.
-    * Get product type property
+    * Get a product type property by its FQN.
+    * Get Product Type Property
     */
     getProperty(requestParameters: productTypesApiParams.GetPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
 
     /**
-    * Get variant properties.
-    * @summary Get variant properties
+    * Get variant properties for a product type.
+    * @summary Get Variant Product Type Properties
     * @param {number} productTypeId 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
@@ -514,14 +514,14 @@ export interface ProductTypesApiService {
     getVariantPropertiesRaw(requestParameters: productTypesApiParams.GetVariantPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeInProductType>>>;
 
     /**
-    * Get variant properties.
-    * Get variant properties
+    * Get variant properties for a product type.
+    * Get Variant Product Type Properties
     */
     getVariantProperties(requestParameters: productTypesApiParams.GetVariantPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeInProductType>>;
 
     /**
-    * Get variant property.
-    * @summary Get variant property
+    * Get a variant property by its FQN.
+    * @summary Get Variant Product Type Property
     * @param {number} productTypeId 
     * @param {string} attributeFQN 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -532,14 +532,14 @@ export interface ProductTypesApiService {
     getVariantPropertyRaw(requestParameters: productTypesApiParams.GetVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
 
     /**
-    * Get variant property.
-    * Get variant property
+    * Get a variant property by its FQN.
+    * Get Variant Product Type Property
     */
     getVariantProperty(requestParameters: productTypesApiParams.GetVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
 
     /**
-    * Update extra.
-    * @summary Update extra
+    * Update a product type extra
+    * @summary Update Product Type Extra
     * @param {number} productTypeId 
     * @param {string} attributeFQN 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -551,14 +551,14 @@ export interface ProductTypesApiService {
     updateExtraRaw(requestParameters: productTypesApiParams.UpdateExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
 
     /**
-    * Update extra.
-    * Update extra
+    * Update a product type extra
+    * Update Product Type Extra
     */
     updateExtra(requestParameters: productTypesApiParams.UpdateExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
 
     /**
-    * Update option.
-    * @summary Update option
+    * Update a product option type by its FQN.
+    * @summary Update Product Type Option
     * @param {number} productTypeId 
     * @param {string} attributeFQN 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -570,14 +570,14 @@ export interface ProductTypesApiService {
     updateOptionRaw(requestParameters: productTypesApiParams.UpdateOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
 
     /**
-    * Update option.
-    * Update option
+    * Update a product option type by its FQN.
+    * Update Product Type Option
     */
     updateOption(requestParameters: productTypesApiParams.UpdateOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
 
     /**
     * Update product type.
-    * @summary Update product type
+    * @summary Update Product Type
     * @param {number} productTypeId 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {ProductType} [productType] 
@@ -589,13 +589,13 @@ export interface ProductTypesApiService {
 
     /**
     * Update product type.
-    * Update product type
+    * Update Product Type
     */
     updateProductType(requestParameters: productTypesApiParams.UpdateProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductType>;
 
     /**
-    * Update property.
-    * @summary Update product type property
+    * Update a product type property by its FQN.
+    * @summary Update Product Type Property
     * @param {number} productTypeId 
     * @param {string} attributeFQN 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -607,14 +607,14 @@ export interface ProductTypesApiService {
     updatePropertyRaw(requestParameters: productTypesApiParams.UpdatePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
 
     /**
-    * Update property.
-    * Update product type property
+    * Update a product type property by its FQN.
+    * Update Product Type Property
     */
     updateProperty(requestParameters: productTypesApiParams.UpdatePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
 
     /**
-    * Update variant property.
-    * @summary Update variant property
+    * Update a variant property by its FQN.
+    * @summary Update Variant Product Type Property
     * @param {number} productTypeId 
     * @param {string} attributeFQN 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -626,8 +626,8 @@ export interface ProductTypesApiService {
     updateVariantPropertyRaw(requestParameters: productTypesApiParams.UpdateVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeInProductType>>;
 
     /**
-    * Update variant property.
-    * Update variant property
+    * Update a variant property by its FQN.
+    * Update Variant Product Type Property
     */
     updateVariantProperty(requestParameters: productTypesApiParams.UpdateVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType>;
 
@@ -643,8 +643,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
         this.basePathTemplate = basePathTemplate
     }
     /**
-     * Add extra.
-     * Add extra
+     * Add a product type extra.
+     * Add Product Type Extra
      */
 
 
@@ -665,8 +665,6 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -681,8 +679,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Add extra.
-     * Add extra
+     * Add a product type extra.
+     * Add Product Type Extra
      */
     async addExtra(requestParameters: productTypesApiParams.AddExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
         const response = await this.addExtraRaw(requestParameters, initOverrides);
@@ -690,8 +688,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Add option.
-     * Add option
+     * Add a product option to a product type.
+     * Add Product Type Option
      */
 
 
@@ -712,8 +710,6 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -728,8 +724,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Add option.
-     * Add option
+     * Add a product option to a product type.
+     * Add Product Type Option
      */
     async addOption(requestParameters: productTypesApiParams.AddOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
         const response = await this.addOptionRaw(requestParameters, initOverrides);
@@ -738,7 +734,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
     /**
      * Get product type by Id.
-     * Add product type
+     * Add Product Type
      */
 
 
@@ -752,8 +748,6 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-
 
 
 
@@ -772,7 +766,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
     /**
      * Get product type by Id.
-     * Add product type
+     * Add Product Type
      */
     async addProductType(requestParameters: productTypesApiParams.AddProductTypeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductType> {
         const response = await this.addProductTypeRaw(requestParameters, initOverrides);
@@ -780,8 +774,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Add property.
-     * Add product type property
+     * Add a property to a product type.
+     * Add Product Type Property
      */
 
 
@@ -802,8 +796,6 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -818,8 +810,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Add property.
-     * Add product type property
+     * Add a property to a product type.
+     * Add Product Type Property
      */
     async addProperty(requestParameters: productTypesApiParams.AddPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
         const response = await this.addPropertyRaw(requestParameters, initOverrides);
@@ -827,8 +819,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Add variant property.
-     * Add variant property
+     * Add a variant property to a product type.
+     * Add Variant Product Type Property
      */
 
 
@@ -849,8 +841,6 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -865,8 +855,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Add variant property.
-     * Add variant property
+     * Add a variant property to a product type.
+     * Add Variant Product Type Property
      */
     async addVariantProperty(requestParameters: productTypesApiParams.AddVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
         const response = await this.addVariantPropertyRaw(requestParameters, initOverrides);
@@ -874,8 +864,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Delete extra.
-     * Delete extra
+     * Delete a product type extra.
+     * Delete Product Type Extra
      */
 
 
@@ -894,8 +884,6 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -909,16 +897,16 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Delete extra.
-     * Delete extra
+     * Delete a product type extra.
+     * Delete Product Type Extra
      */
     async deleteExtra(requestParameters: productTypesApiParams.DeleteExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteExtraRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Delete option.
-     * Delete option
+     * Delete a product type option by its FQN.
+     * Delete Product Type Option
      */
 
 
@@ -937,8 +925,6 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -952,8 +938,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Delete option.
-     * Delete option
+     * Delete a product type option by its FQN.
+     * Delete Product Type Option
      */
     async deleteOption(requestParameters: productTypesApiParams.DeleteOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteOptionRaw(requestParameters, initOverrides);
@@ -961,7 +947,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
     /**
      * Delete product type.
-     * Delete product type
+     * Delete Product Type
      */
 
 
@@ -973,8 +959,6 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-
 
 
 
@@ -992,15 +976,15 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
     /**
      * Delete product type.
-     * Delete product type
+     * Delete Product Type
      */
     async deleteProductType(requestParameters: productTypesApiParams.DeleteProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteProductTypeRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Delete property.
-     * Delete product type property
+     * Delete a product type property by its FQN.
+     * Delete Product Type Property
      */
 
 
@@ -1019,8 +1003,6 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1034,16 +1016,16 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Delete property.
-     * Delete product type property
+     * Delete a product type property by its FQN.
+     * Delete Product Type Property
      */
     async deleteProperty(requestParameters: productTypesApiParams.DeletePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deletePropertyRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Delete variant property.
-     * Delete variant property
+     * Delete a variant property by its FQN.
+     * Delete Variant Product Type Property
      */
 
 
@@ -1062,8 +1044,6 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1077,16 +1057,16 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Delete variant property.
-     * Delete variant property
+     * Delete a variant property by its FQN.
+     * Delete Variant Product Type Property
      */
     async deleteVariantProperty(requestParameters: productTypesApiParams.DeleteVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteVariantPropertyRaw(requestParameters, initOverrides);
     }
 
     /**
-     * 
-     * Generate product variations
+     * Generate product variations for a product type.
+     * Generate Product Variations
      */
 
 
@@ -1127,8 +1107,6 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1143,8 +1121,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * 
-     * Generate product variations
+     * Generate product variations for a product type.
+     * Generate Product Variations
      */
     async generateProductVariations(requestParameters: productTypesApiParams.GenerateProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationPagedCollection> {
         const response = await this.generateProductVariationsRaw(requestParameters, initOverrides);
@@ -1152,8 +1130,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Get extra.
-     * Get extra
+     * Get a product type extra.
+     * Get Product Type Extra
      */
 
 
@@ -1176,8 +1154,6 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1191,8 +1167,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Get extra.
-     * Get extra
+     * Get a product type extra.
+     * Get Product Type Extra
      */
     async getExtra(requestParameters: productTypesApiParams.GetExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
         const response = await this.getExtraRaw(requestParameters, initOverrides);
@@ -1200,8 +1176,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Get extras.
-     * Get extras
+     * Get a list of product type extras.
+     * Get Product Type Extras
      */
 
 
@@ -1220,8 +1196,6 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1235,8 +1209,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Get extras.
-     * Get extras
+     * Get a list of product type extras.
+     * Get Product Type Extras
      */
     async getExtras(requestParameters: productTypesApiParams.GetExtrasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeInProductType>> {
         const response = await this.getExtrasRaw(requestParameters, initOverrides);
@@ -1244,8 +1218,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Get individual option.
-     * Get option
+     * Get an individual product type option by its FQN.
+     * Get Product Type Option
      */
 
 
@@ -1268,8 +1242,6 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1283,8 +1255,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Get individual option.
-     * Get option
+     * Get an individual product type option by its FQN.
+     * Get Product Type Option
      */
     async getOption(requestParameters: productTypesApiParams.GetOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
         const response = await this.getOptionRaw(requestParameters, initOverrides);
@@ -1293,7 +1265,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
     /**
      * Get options for the product type.
-     * Get options
+     * Get Product Type Options
      */
 
 
@@ -1312,8 +1284,6 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1328,7 +1298,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
     /**
      * Get options for the product type.
-     * Get options
+     * Get Product Type Options
      */
     async getOptions(requestParameters: productTypesApiParams.GetOptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeInProductType>> {
         const response = await this.getOptionsRaw(requestParameters, initOverrides);
@@ -1337,7 +1307,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
     /**
      * Get product type by Id.
-     * Get product type
+     * Get Product Type
      */
 
 
@@ -1356,8 +1326,6 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1372,7 +1340,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
     /**
      * Get product type by Id.
-     * Get product type
+     * Get Product Type
      */
     async getProductType(requestParameters: productTypesApiParams.GetProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductType> {
         const response = await this.getProductTypeRaw(requestParameters, initOverrides);
@@ -1381,7 +1349,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
     /**
      * Retrieves a list of product types according to any specified filter criteria and sort options.
-     * Get product types
+     * Get Product Types
      */
 
 
@@ -1416,8 +1384,6 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1432,7 +1398,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
     /**
      * Retrieves a list of product types according to any specified filter criteria and sort options.
-     * Get product types
+     * Get Product Types
      */
     async getProductTypes(requestParameters: productTypesApiParams.GetProductTypesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductTypeCollection> {
         const response = await this.getProductTypesRaw(requestParameters, initOverrides);
@@ -1440,8 +1406,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Get properties.
-     * Get product type properties
+     * Get properties of a product type.
+     * Get Product Type Properties
      */
 
 
@@ -1460,8 +1426,6 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1475,8 +1439,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Get properties.
-     * Get product type properties
+     * Get properties of a product type.
+     * Get Product Type Properties
      */
     async getProperties(requestParameters: productTypesApiParams.GetPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeInProductType>> {
         const response = await this.getPropertiesRaw(requestParameters, initOverrides);
@@ -1484,8 +1448,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Get property.
-     * Get product type property
+     * Get a product type property by its FQN.
+     * Get Product Type Property
      */
 
 
@@ -1508,8 +1472,6 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1523,8 +1485,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Get property.
-     * Get product type property
+     * Get a product type property by its FQN.
+     * Get Product Type Property
      */
     async getProperty(requestParameters: productTypesApiParams.GetPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
         const response = await this.getPropertyRaw(requestParameters, initOverrides);
@@ -1532,8 +1494,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Get variant properties.
-     * Get variant properties
+     * Get variant properties for a product type.
+     * Get Variant Product Type Properties
      */
 
 
@@ -1552,8 +1514,6 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1567,8 +1527,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Get variant properties.
-     * Get variant properties
+     * Get variant properties for a product type.
+     * Get Variant Product Type Properties
      */
     async getVariantProperties(requestParameters: productTypesApiParams.GetVariantPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeInProductType>> {
         const response = await this.getVariantPropertiesRaw(requestParameters, initOverrides);
@@ -1576,8 +1536,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Get variant property.
-     * Get variant property
+     * Get a variant property by its FQN.
+     * Get Variant Product Type Property
      */
 
 
@@ -1600,8 +1560,6 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1615,8 +1573,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Get variant property.
-     * Get variant property
+     * Get a variant property by its FQN.
+     * Get Variant Product Type Property
      */
     async getVariantProperty(requestParameters: productTypesApiParams.GetVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
         const response = await this.getVariantPropertyRaw(requestParameters, initOverrides);
@@ -1624,8 +1582,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Update extra.
-     * Update extra
+     * Update a product type extra
+     * Update Product Type Extra
      */
 
 
@@ -1650,8 +1608,6 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1666,8 +1622,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Update extra.
-     * Update extra
+     * Update a product type extra
+     * Update Product Type Extra
      */
     async updateExtra(requestParameters: productTypesApiParams.UpdateExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
         const response = await this.updateExtraRaw(requestParameters, initOverrides);
@@ -1675,8 +1631,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Update option.
-     * Update option
+     * Update a product option type by its FQN.
+     * Update Product Type Option
      */
 
 
@@ -1701,8 +1657,6 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1717,8 +1671,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Update option.
-     * Update option
+     * Update a product option type by its FQN.
+     * Update Product Type Option
      */
     async updateOption(requestParameters: productTypesApiParams.UpdateOptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
         const response = await this.updateOptionRaw(requestParameters, initOverrides);
@@ -1727,7 +1681,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
     /**
      * Update product type.
-     * Update product type
+     * Update Product Type
      */
 
 
@@ -1748,8 +1702,6 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1765,7 +1717,7 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
     /**
      * Update product type.
-     * Update product type
+     * Update Product Type
      */
     async updateProductType(requestParameters: productTypesApiParams.UpdateProductTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductType> {
         const response = await this.updateProductTypeRaw(requestParameters, initOverrides);
@@ -1773,8 +1725,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Update property.
-     * Update product type property
+     * Update a product type property by its FQN.
+     * Update Product Type Property
      */
 
 
@@ -1799,8 +1751,6 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1815,8 +1765,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Update property.
-     * Update product type property
+     * Update a product type property by its FQN.
+     * Update Product Type Property
      */
     async updateProperty(requestParameters: productTypesApiParams.UpdatePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
         const response = await this.updatePropertyRaw(requestParameters, initOverrides);
@@ -1824,8 +1774,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Update variant property.
-     * Update variant property
+     * Update a variant property by its FQN.
+     * Update Variant Product Type Property
      */
 
 
@@ -1850,8 +1800,6 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1866,8 +1814,8 @@ export class ProductTypesApi extends runtime.BaseAPI implements ProductTypesApiS
     }
 
     /**
-     * Update variant property.
-     * Update variant property
+     * Update a variant property by its FQN.
+     * Update Variant Product Type Property
      */
     async updateVariantProperty(requestParameters: productTypesApiParams.UpdateVariantPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeInProductType> {
         const response = await this.updateVariantPropertyRaw(requestParameters, initOverrides);

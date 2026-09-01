@@ -2,9 +2,9 @@
 /* eslint-disable */
 /**
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -90,8 +90,8 @@ export namespace priceListEntriesApiParams {
 */
 export interface PriceListEntriesApiService {
     /**
-    * 
-    * @summary Add price list entry
+    * Adds an entry to a price list.
+    * @summary Add Price List Entry
     * @param {string} priceListCode 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {PriceListEntry} [priceListEntry] 
@@ -102,17 +102,17 @@ export interface PriceListEntriesApiService {
     addPriceListEntryRaw(requestParameters: priceListEntriesApiParams.AddPriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListEntry>>;
 
     /**
-    * 
-    * Add price list entry
+    * Adds an entry to a price list.
+    * Add Price List Entry
     */
     addPriceListEntry(requestParameters: priceListEntriesApiParams.AddPriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListEntry>;
 
     /**
-    * 
-    * @summary Bulk add price list entries
+    * Add bulk price list entries. By default, any single error will cause the entire batch to fail. If desired, set allowPartialSuccess=true to allow valid entries to be completed even if others in the batch fail.
+    * @summary Bulk Add Price List Entries
     * @param {boolean} [publishEvents] 
     * @param {boolean} [invalidateCache] 
-    * @param {boolean} [allowPartialSuccess] 
+    * @param {boolean} [allowPartialSuccess] Returns status codes of 200 (complete success), 206 (some entries failed validation), 409 (all entries failed validation), or 500 (unexpected failure)
     * @param {string} [batchJobCode] 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {Array<PriceListEntry>} [priceListEntry] 
@@ -123,14 +123,14 @@ export interface PriceListEntriesApiService {
     bulkAddPriceListEntriesRaw(requestParameters: priceListEntriesApiParams.BulkAddPriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListBulkResult>>;
 
     /**
-    * 
-    * Bulk add price list entries
+    * Add bulk price list entries. By default, any single error will cause the entire batch to fail. If desired, set allowPartialSuccess=true to allow valid entries to be completed even if others in the batch fail.
+    * Bulk Add Price List Entries
     */
     bulkAddPriceListEntries(requestParameters: priceListEntriesApiParams.BulkAddPriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListBulkResult>;
 
     /**
-    * 
-    * @summary Bulk delete price list entries
+    * Deletes up to 5000 price list entries in bulk. By default, any single error will cause the entire batch to fail. If desired, set allowPartialSuccess=true to allow valid entries to be completed even if others in the batch fail.
+    * @summary Bulk Delete Price List Entries
     * @param {boolean} [publishEvents] 
     * @param {boolean} [invalidateCache] 
     * @param {boolean} [allowPartialSuccess] 
@@ -144,14 +144,14 @@ export interface PriceListEntriesApiService {
     bulkDeletePriceListEntriesRaw(requestParameters: priceListEntriesApiParams.BulkDeletePriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListBulkResult>>;
 
     /**
-    * 
-    * Bulk delete price list entries
+    * Deletes up to 5000 price list entries in bulk. By default, any single error will cause the entire batch to fail. If desired, set allowPartialSuccess=true to allow valid entries to be completed even if others in the batch fail.
+    * Bulk Delete Price List Entries
     */
     bulkDeletePriceListEntries(requestParameters: priceListEntriesApiParams.BulkDeletePriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListBulkResult>;
 
     /**
-    * 
-    * @summary Bulk update price list entries
+    * Updates up to 5000 price list entries in bulk. By default, any single error will cause the entire batch to fail. If desired, set allowPartialSuccess=true to allow valid entries to be completed even if others in the batch fail. <p>This method performs an upsert, which will add missing entries if they do not exist. It can be used in place of Bulk Add Price List Entries to simplify application logic when the desired behavior is to update an entry or add the entry if it does not exist.</p> <p>Disable the publishEvents parameter to prevent publishing the event related to updating price list entries in the system. Disabling this property helps you prevent performance delays if you expect the event to trigger the re-indexing of a large number of products, or if you want to postpone the operations of other applications and services listening for the event. Disable the invalidateCache parameter if you expect to encounter unacceptable performance hits related to clearing the cache for each product in the price list entries.</p>
+    * @summary Bulk Update Price List Entries.
     * @param {boolean} [publishEvents] 
     * @param {boolean} [invalidateCache] 
     * @param {boolean} [allowPartialSuccess] 
@@ -165,14 +165,14 @@ export interface PriceListEntriesApiService {
     bulkUpdatePriceListEntriesRaw(requestParameters: priceListEntriesApiParams.BulkUpdatePriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListBulkResult>>;
 
     /**
-    * 
-    * Bulk update price list entries
+    * Updates up to 5000 price list entries in bulk. By default, any single error will cause the entire batch to fail. If desired, set allowPartialSuccess=true to allow valid entries to be completed even if others in the batch fail. <p>This method performs an upsert, which will add missing entries if they do not exist. It can be used in place of Bulk Add Price List Entries to simplify application logic when the desired behavior is to update an entry or add the entry if it does not exist.</p> <p>Disable the publishEvents parameter to prevent publishing the event related to updating price list entries in the system. Disabling this property helps you prevent performance delays if you expect the event to trigger the re-indexing of a large number of products, or if you want to postpone the operations of other applications and services listening for the event. Disable the invalidateCache parameter if you expect to encounter unacceptable performance hits related to clearing the cache for each product in the price list entries.</p>
+    * Bulk Update Price List Entries.
     */
     bulkUpdatePriceListEntries(requestParameters: priceListEntriesApiParams.BulkUpdatePriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListBulkResult>;
 
     /**
-    * 
-    * @summary Delete price list entry
+    * Deletes a price liste entry for a particular product and currency code.
+    * @summary Delete Price List Entry by Currency
     * @param {string} priceListCode 
     * @param {string} productCode 
     * @param {string} currencyCode 
@@ -184,14 +184,14 @@ export interface PriceListEntriesApiService {
     deletePriceListEntryRaw(requestParameters: priceListEntriesApiParams.DeletePriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * 
-    * Delete price list entry
+    * Deletes a price liste entry for a particular product and currency code.
+    * Delete Price List Entry by Currency
     */
     deletePriceListEntry(requestParameters: priceListEntriesApiParams.DeletePriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * 
-    * @summary Get price list entries
+    * Retrieves the entries within a price list.
+    * @summary Get Price List Entries
     * @param {string} priceListCode 
     * @param {number} [startIndex] 
     * @param {number} [pageSize] 
@@ -205,14 +205,14 @@ export interface PriceListEntriesApiService {
     getPriceListEntriesRaw(requestParameters: priceListEntriesApiParams.GetPriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListEntryCollection>>;
 
     /**
-    * 
-    * Get price list entries
+    * Retrieves the entries within a price list.
+    * Get Price List Entries
     */
     getPriceListEntries(requestParameters: priceListEntriesApiParams.GetPriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListEntryCollection>;
 
     /**
-    * 
-    * @summary Get price list entry
+    * Retrieves price list entries for a particular product and currency code.
+    * @summary Get Price List Entries by Currency
     * @param {string} priceListCode 
     * @param {string} productCode 
     * @param {string} currencyCode 
@@ -225,14 +225,14 @@ export interface PriceListEntriesApiService {
     getPriceListEntryRaw(requestParameters: priceListEntriesApiParams.GetPriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListEntry>>;
 
     /**
-    * 
-    * Get price list entry
+    * Retrieves price list entries for a particular product and currency code.
+    * Get Price List Entries by Currency
     */
     getPriceListEntry(requestParameters: priceListEntriesApiParams.GetPriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListEntry>;
 
     /**
-    * 
-    * @summary Update price list entry
+    * Updates price list entry for a particular product and currency code.
+    * @summary Update Price List Entry by Currency
     * @param {string} priceListCode 
     * @param {string} productCode 
     * @param {string} currencyCode 
@@ -246,8 +246,8 @@ export interface PriceListEntriesApiService {
     updatePriceListEntryRaw(requestParameters: priceListEntriesApiParams.UpdatePriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceListEntry>>;
 
     /**
-    * 
-    * Update price list entry
+    * Updates price list entry for a particular product and currency code.
+    * Update Price List Entry by Currency
     */
     updatePriceListEntry(requestParameters: priceListEntriesApiParams.UpdatePriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListEntry>;
 
@@ -263,8 +263,8 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
         this.basePathTemplate = basePathTemplate
     }
     /**
-     * 
-     * Add price list entry
+     * Adds an entry to a price list.
+     * Add Price List Entry
      */
 
 
@@ -285,8 +285,6 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -301,8 +299,8 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
     }
 
     /**
-     * 
-     * Add price list entry
+     * Adds an entry to a price list.
+     * Add Price List Entry
      */
     async addPriceListEntry(requestParameters: priceListEntriesApiParams.AddPriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListEntry> {
         const response = await this.addPriceListEntryRaw(requestParameters, initOverrides);
@@ -310,8 +308,8 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
     }
 
     /**
-     * 
-     * Bulk add price list entries
+     * Add bulk price list entries. By default, any single error will cause the entire batch to fail. If desired, set allowPartialSuccess=true to allow valid entries to be completed even if others in the batch fail.
+     * Bulk Add Price List Entries
      */
 
 
@@ -344,8 +342,6 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -360,8 +356,8 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
     }
 
     /**
-     * 
-     * Bulk add price list entries
+     * Add bulk price list entries. By default, any single error will cause the entire batch to fail. If desired, set allowPartialSuccess=true to allow valid entries to be completed even if others in the batch fail.
+     * Bulk Add Price List Entries
      */
     async bulkAddPriceListEntries(requestParameters: priceListEntriesApiParams.BulkAddPriceListEntriesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListBulkResult> {
         const response = await this.bulkAddPriceListEntriesRaw(requestParameters, initOverrides);
@@ -369,8 +365,8 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
     }
 
     /**
-     * 
-     * Bulk delete price list entries
+     * Deletes up to 5000 price list entries in bulk. By default, any single error will cause the entire batch to fail. If desired, set allowPartialSuccess=true to allow valid entries to be completed even if others in the batch fail.
+     * Bulk Delete Price List Entries
      */
 
 
@@ -403,8 +399,6 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -419,8 +413,8 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
     }
 
     /**
-     * 
-     * Bulk delete price list entries
+     * Deletes up to 5000 price list entries in bulk. By default, any single error will cause the entire batch to fail. If desired, set allowPartialSuccess=true to allow valid entries to be completed even if others in the batch fail.
+     * Bulk Delete Price List Entries
      */
     async bulkDeletePriceListEntries(requestParameters: priceListEntriesApiParams.BulkDeletePriceListEntriesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListBulkResult> {
         const response = await this.bulkDeletePriceListEntriesRaw(requestParameters, initOverrides);
@@ -428,8 +422,8 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
     }
 
     /**
-     * 
-     * Bulk update price list entries
+     * Updates up to 5000 price list entries in bulk. By default, any single error will cause the entire batch to fail. If desired, set allowPartialSuccess=true to allow valid entries to be completed even if others in the batch fail. <p>This method performs an upsert, which will add missing entries if they do not exist. It can be used in place of Bulk Add Price List Entries to simplify application logic when the desired behavior is to update an entry or add the entry if it does not exist.</p> <p>Disable the publishEvents parameter to prevent publishing the event related to updating price list entries in the system. Disabling this property helps you prevent performance delays if you expect the event to trigger the re-indexing of a large number of products, or if you want to postpone the operations of other applications and services listening for the event. Disable the invalidateCache parameter if you expect to encounter unacceptable performance hits related to clearing the cache for each product in the price list entries.</p>
+     * Bulk Update Price List Entries.
      */
 
 
@@ -462,8 +456,6 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -478,8 +470,8 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
     }
 
     /**
-     * 
-     * Bulk update price list entries
+     * Updates up to 5000 price list entries in bulk. By default, any single error will cause the entire batch to fail. If desired, set allowPartialSuccess=true to allow valid entries to be completed even if others in the batch fail. <p>This method performs an upsert, which will add missing entries if they do not exist. It can be used in place of Bulk Add Price List Entries to simplify application logic when the desired behavior is to update an entry or add the entry if it does not exist.</p> <p>Disable the publishEvents parameter to prevent publishing the event related to updating price list entries in the system. Disabling this property helps you prevent performance delays if you expect the event to trigger the re-indexing of a large number of products, or if you want to postpone the operations of other applications and services listening for the event. Disable the invalidateCache parameter if you expect to encounter unacceptable performance hits related to clearing the cache for each product in the price list entries.</p>
+     * Bulk Update Price List Entries.
      */
     async bulkUpdatePriceListEntries(requestParameters: priceListEntriesApiParams.BulkUpdatePriceListEntriesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListBulkResult> {
         const response = await this.bulkUpdatePriceListEntriesRaw(requestParameters, initOverrides);
@@ -487,8 +479,8 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
     }
 
     /**
-     * 
-     * Delete price list entry
+     * Deletes a price liste entry for a particular product and currency code.
+     * Delete Price List Entry by Currency
      */
 
 
@@ -515,8 +507,6 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -530,16 +520,16 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
     }
 
     /**
-     * 
-     * Delete price list entry
+     * Deletes a price liste entry for a particular product and currency code.
+     * Delete Price List Entry by Currency
      */
     async deletePriceListEntry(requestParameters: priceListEntriesApiParams.DeletePriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deletePriceListEntryRaw(requestParameters, initOverrides);
     }
 
     /**
-     * 
-     * Get price list entries
+     * Retrieves the entries within a price list.
+     * Get Price List Entries
      */
 
 
@@ -574,8 +564,6 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -589,8 +577,8 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
     }
 
     /**
-     * 
-     * Get price list entries
+     * Retrieves the entries within a price list.
+     * Get Price List Entries
      */
     async getPriceListEntries(requestParameters: priceListEntriesApiParams.GetPriceListEntriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListEntryCollection> {
         const response = await this.getPriceListEntriesRaw(requestParameters, initOverrides);
@@ -598,8 +586,8 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
     }
 
     /**
-     * 
-     * Get price list entry
+     * Retrieves price list entries for a particular product and currency code.
+     * Get Price List Entries by Currency
      */
 
 
@@ -630,8 +618,6 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -645,8 +631,8 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
     }
 
     /**
-     * 
-     * Get price list entry
+     * Retrieves price list entries for a particular product and currency code.
+     * Get Price List Entries by Currency
      */
     async getPriceListEntry(requestParameters: priceListEntriesApiParams.GetPriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListEntry> {
         const response = await this.getPriceListEntryRaw(requestParameters, initOverrides);
@@ -654,8 +640,8 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
     }
 
     /**
-     * 
-     * Update price list entry
+     * Updates price list entry for a particular product and currency code.
+     * Update Price List Entry by Currency
      */
 
 
@@ -688,8 +674,6 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -704,8 +688,8 @@ export class PriceListEntriesApi extends runtime.BaseAPI implements PriceListEnt
     }
 
     /**
-     * 
-     * Update price list entry
+     * Updates price list entry for a particular product and currency code.
+     * Update Price List Entry by Currency
      */
     async updatePriceListEntry(requestParameters: priceListEntriesApiParams.UpdatePriceListEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceListEntry> {
         const response = await this.updatePriceListEntryRaw(requestParameters, initOverrides);

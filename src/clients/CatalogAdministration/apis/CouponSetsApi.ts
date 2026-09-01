@@ -2,9 +2,9 @@
 /* eslint-disable */
 /**
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -113,7 +113,7 @@ export namespace couponSetsApiParams {
 export interface CouponSetsApiService {
     /**
     * Adds a single CouponSet
-    * @summary Add coupon set
+    * @summary Add Coupon Set
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {CouponSet} [couponSet] 
     * @param {*} [options] Override http request option.
@@ -124,13 +124,13 @@ export interface CouponSetsApiService {
 
     /**
     * Adds a single CouponSet
-    * Add coupon set
+    * Add Coupon Set
     */
     addCouponSet(requestParameters: couponSetsApiParams.AddCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponSet>;
 
     /**
-    * 
-    * @summary Add coupons
+    * Adds coupon codes to a coupon set.
+    * @summary Add Coupons
     * @param {string} couponSetCode 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {Array<Coupon>} [coupon] 
@@ -141,14 +141,14 @@ export interface CouponSetsApiService {
     addCouponsRaw(requestParameters: couponSetsApiParams.AddCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * 
-    * Add coupons
+    * Adds coupon codes to a coupon set.
+    * Add Coupons
     */
     addCoupons(requestParameters: couponSetsApiParams.AddCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * 
-    * @summary Assign discount
+    * Assigns or associates an existing discount to a specified coupon set. Use the couponSetCode parameter to specify the coupon set.
+    * @summary Assign Discount to Coupon Set
     * @param {string} couponSetCode 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {AssignedDiscount} [assignedDiscount] 
@@ -159,14 +159,14 @@ export interface CouponSetsApiService {
     assignDiscountRaw(requestParameters: couponSetsApiParams.AssignDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * 
-    * Assign discount
+    * Assigns or associates an existing discount to a specified coupon set. Use the couponSetCode parameter to specify the coupon set.
+    * Assign Discount to Coupon Set
     */
     assignDiscount(requestParameters: couponSetsApiParams.AssignDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * 
-    * @summary Delete coupon
+    * Deletes a single coupon by its coupon code.
+    * @summary Delete Coupon
     * @param {string} couponSetCode 
     * @param {string} couponCode 
     * @param {*} [options] Override http request option.
@@ -176,14 +176,14 @@ export interface CouponSetsApiService {
     deleteCouponRaw(requestParameters: couponSetsApiParams.DeleteCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * 
-    * Delete coupon
+    * Deletes a single coupon by its coupon code.
+    * Delete Coupon
     */
     deleteCoupon(requestParameters: couponSetsApiParams.DeleteCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * 
-    * @summary Delete coupon set
+    * Deletes a CouponSet.
+    * @summary Delete Coupon Set
     * @param {string} couponSetCode 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -192,14 +192,14 @@ export interface CouponSetsApiService {
     deleteCouponSetRaw(requestParameters: couponSetsApiParams.DeleteCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * 
-    * Delete coupon set
+    * Deletes a CouponSet.
+    * Delete Coupon Set
     */
     deleteCouponSet(requestParameters: couponSetsApiParams.DeleteCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * 
-    * @summary Delete coupons
+    * Deletes coupons from a coupon set.
+    * @summary Delete Coupons
     * @param {string} couponSetCode 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {Array<string>} [requestBody] 
@@ -210,14 +210,14 @@ export interface CouponSetsApiService {
     deleteCouponsRaw(requestParameters: couponSetsApiParams.DeleteCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * 
-    * Delete coupons
+    * Deletes coupons from a coupon set.
+    * Delete Coupons
     */
     deleteCoupons(requestParameters: couponSetsApiParams.DeleteCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * 
-    * @summary Get assigned discounts
+    * Retrieves the discountIds of any assigned discounts for the specified coupon set.
+    * @summary Get Assigned Discounts
     * @param {string} couponSetCode 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
@@ -227,14 +227,14 @@ export interface CouponSetsApiService {
     getAssignedDiscountsRaw(requestParameters: couponSetsApiParams.GetAssignedDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AssignedDiscount>>>;
 
     /**
-    * 
-    * Get assigned discounts
+    * Retrieves the discountIds of any assigned discounts for the specified coupon set.
+    * Get Assigned Discounts
     */
     getAssignedDiscounts(requestParameters: couponSetsApiParams.GetAssignedDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AssignedDiscount>>;
 
     /**
-    * 
-    * @summary Get coupon
+    * Retrieves a single coupon by its coupon code.
+    * @summary Get Coupon
     * @param {string} couponSetCode 
     * @param {string} couponCode 
     * @param {boolean} [includeCounts] 
@@ -247,14 +247,14 @@ export interface CouponSetsApiService {
     getCouponRaw(requestParameters: couponSetsApiParams.GetCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Coupon>>;
 
     /**
-    * 
-    * Get coupon
+    * Retrieves a single coupon by its coupon code.
+    * Get Coupon
     */
     getCoupon(requestParameters: couponSetsApiParams.GetCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Coupon>;
 
     /**
     * Returns a single CouponSet
-    * @summary Get coupon set
+    * @summary Get Coupon Set
     * @param {string} couponSetCode CouponSetCode for the requested CouponSet
     * @param {boolean} [includeCounts] Include the redemption counts and coupon counts
     * @param {string} [responseGroups] \&quot;counts\&quot; includes the number of redemptions, coupon codes, and assigned discounts.
@@ -267,13 +267,13 @@ export interface CouponSetsApiService {
 
     /**
     * Returns a single CouponSet
-    * Get coupon set
+    * Get Coupon Set
     */
     getCouponSet(requestParameters: couponSetsApiParams.GetCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponSet>;
 
     /**
     * Returns a paged collection of CouponSets
-    * @summary Get coupon sets
+    * @summary Get Coupon Sets
     * @param {number} [startIndex] 
     * @param {number} [pageSize] 
     * @param {string} [sortBy] 
@@ -289,13 +289,13 @@ export interface CouponSetsApiService {
 
     /**
     * Returns a paged collection of CouponSets
-    * Get coupon sets
+    * Get Coupon Sets
     */
     getCouponSets(requestParameters: couponSetsApiParams.GetCouponSetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponSetCollection>;
 
     /**
-    * Returns a paged collection of Coupons
-    * @summary Get coupons
+    * Returns a paged collection of Coupons.
+    * @summary Get Coupons
     * @param {string} couponSetCode 
     * @param {number} [startIndex] 
     * @param {number} [pageSize] 
@@ -311,14 +311,14 @@ export interface CouponSetsApiService {
     getCouponsRaw(requestParameters: couponSetsApiParams.GetCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CouponCollection>>;
 
     /**
-    * Returns a paged collection of Coupons
-    * Get coupons
+    * Returns a paged collection of Coupons.
+    * Get Coupons
     */
     getCoupons(requestParameters: couponSetsApiParams.GetCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponCollection>;
 
     /**
     * Returns a random 4 character code that is unique as a coupon set code.
-    * @summary Get unique coupon set code
+    * @summary Get Unique Coupon Set Code
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -328,13 +328,13 @@ export interface CouponSetsApiService {
 
     /**
     * Returns a random 4 character code that is unique as a coupon set code.
-    * Get unique coupon set code
+    * Get Unique Coupon Set Code
     */
     getUniqueCouponSetCode(requestParameters: couponSetsApiParams.GetUniqueCouponSetCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
 
     /**
-    * 
-    * @summary UnAssign discount
+    * Unassigns or disassociates the specified discount with the specified coupon set.
+    * @summary Unassign Discount from Coupon Set
     * @param {string} couponSetCode 
     * @param {number} discountId 
     * @param {*} [options] Override http request option.
@@ -344,14 +344,14 @@ export interface CouponSetsApiService {
     unAssignDiscountRaw(requestParameters: couponSetsApiParams.UnAssignDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * 
-    * UnAssign discount
+    * Unassigns or disassociates the specified discount with the specified coupon set.
+    * Unassign Discount from Coupon Set
     */
     unAssignDiscount(requestParameters: couponSetsApiParams.UnAssignDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * Update a CouponSet.     You can not update the Code or ID once the set is created.
-    * @summary Update coupon set
+    * Update a CouponSet. You can not update the Code or ID once the set is created.
+    * @summary Update Coupon Set
     * @param {string} couponSetCode 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {CouponSet} [couponSet] 
@@ -362,14 +362,14 @@ export interface CouponSetsApiService {
     updateCouponSetRaw(requestParameters: couponSetsApiParams.UpdateCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CouponSet>>;
 
     /**
-    * Update a CouponSet.     You can not update the Code or ID once the set is created.
-    * Update coupon set
+    * Update a CouponSet. You can not update the Code or ID once the set is created.
+    * Update Coupon Set
     */
     updateCouponSet(requestParameters: couponSetsApiParams.UpdateCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponSet>;
 
     /**
-    *  Tests code for uniqueness and validity.
-    * @summary Validate unique coupon set code
+    * Tests a coupone set code for uniqueness and validity.
+    * @summary Validate Unique Coupon Set Code
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {string} [body] 
     * @param {*} [options] Override http request option.
@@ -379,8 +379,8 @@ export interface CouponSetsApiService {
     validateUniqueCouponSetCodeRaw(requestParameters: couponSetsApiParams.ValidateUniqueCouponSetCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    *  Tests code for uniqueness and validity.
-    * Validate unique coupon set code
+    * Tests a coupone set code for uniqueness and validity.
+    * Validate Unique Coupon Set Code
     */
     validateUniqueCouponSetCode(requestParameters: couponSetsApiParams.ValidateUniqueCouponSetCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
@@ -397,7 +397,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
     }
     /**
      * Adds a single CouponSet
-     * Add coupon set
+     * Add Coupon Set
      */
 
 
@@ -411,8 +411,6 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-
 
 
 
@@ -431,7 +429,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
 
     /**
      * Adds a single CouponSet
-     * Add coupon set
+     * Add Coupon Set
      */
     async addCouponSet(requestParameters: couponSetsApiParams.AddCouponSetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponSet> {
         const response = await this.addCouponSetRaw(requestParameters, initOverrides);
@@ -439,8 +437,8 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
     }
 
     /**
-     * 
-     * Add coupons
+     * Adds coupon codes to a coupon set.
+     * Add Coupons
      */
 
 
@@ -461,8 +459,6 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -477,16 +473,16 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
     }
 
     /**
-     * 
-     * Add coupons
+     * Adds coupon codes to a coupon set.
+     * Add Coupons
      */
     async addCoupons(requestParameters: couponSetsApiParams.AddCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.addCouponsRaw(requestParameters, initOverrides);
     }
 
     /**
-     * 
-     * Assign discount
+     * Assigns or associates an existing discount to a specified coupon set. Use the couponSetCode parameter to specify the coupon set.
+     * Assign Discount to Coupon Set
      */
 
 
@@ -507,8 +503,6 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -523,16 +517,16 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
     }
 
     /**
-     * 
-     * Assign discount
+     * Assigns or associates an existing discount to a specified coupon set. Use the couponSetCode parameter to specify the coupon set.
+     * Assign Discount to Coupon Set
      */
     async assignDiscount(requestParameters: couponSetsApiParams.AssignDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.assignDiscountRaw(requestParameters, initOverrides);
     }
 
     /**
-     * 
-     * Delete coupon
+     * Deletes a single coupon by its coupon code.
+     * Delete Coupon
      */
 
 
@@ -551,8 +545,6 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -566,16 +558,16 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
     }
 
     /**
-     * 
-     * Delete coupon
+     * Deletes a single coupon by its coupon code.
+     * Delete Coupon
      */
     async deleteCoupon(requestParameters: couponSetsApiParams.DeleteCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteCouponRaw(requestParameters, initOverrides);
     }
 
     /**
-     * 
-     * Delete coupon set
+     * Deletes a CouponSet.
+     * Delete Coupon Set
      */
 
 
@@ -587,8 +579,6 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-
 
 
 
@@ -605,16 +595,16 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
     }
 
     /**
-     * 
-     * Delete coupon set
+     * Deletes a CouponSet.
+     * Delete Coupon Set
      */
     async deleteCouponSet(requestParameters: couponSetsApiParams.DeleteCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteCouponSetRaw(requestParameters, initOverrides);
     }
 
     /**
-     * 
-     * Delete coupons
+     * Deletes coupons from a coupon set.
+     * Delete Coupons
      */
 
 
@@ -635,8 +625,6 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -651,16 +639,16 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
     }
 
     /**
-     * 
-     * Delete coupons
+     * Deletes coupons from a coupon set.
+     * Delete Coupons
      */
     async deleteCoupons(requestParameters: couponSetsApiParams.DeleteCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteCouponsRaw(requestParameters, initOverrides);
     }
 
     /**
-     * 
-     * Get assigned discounts
+     * Retrieves the discountIds of any assigned discounts for the specified coupon set.
+     * Get Assigned Discounts
      */
 
 
@@ -679,8 +667,6 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -694,8 +680,8 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
     }
 
     /**
-     * 
-     * Get assigned discounts
+     * Retrieves the discountIds of any assigned discounts for the specified coupon set.
+     * Get Assigned Discounts
      */
     async getAssignedDiscounts(requestParameters: couponSetsApiParams.GetAssignedDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AssignedDiscount>> {
         const response = await this.getAssignedDiscountsRaw(requestParameters, initOverrides);
@@ -703,8 +689,8 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
     }
 
     /**
-     * 
-     * Get coupon
+     * Retrieves a single coupon by its coupon code.
+     * Get Coupon
      */
 
 
@@ -735,8 +721,6 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -750,8 +734,8 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
     }
 
     /**
-     * 
-     * Get coupon
+     * Retrieves a single coupon by its coupon code.
+     * Get Coupon
      */
     async getCoupon(requestParameters: couponSetsApiParams.GetCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Coupon> {
         const response = await this.getCouponRaw(requestParameters, initOverrides);
@@ -760,7 +744,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
 
     /**
      * Returns a single CouponSet
-     * Get coupon set
+     * Get Coupon Set
      */
 
 
@@ -787,8 +771,6 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -803,7 +785,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
 
     /**
      * Returns a single CouponSet
-     * Get coupon set
+     * Get Coupon Set
      */
     async getCouponSet(requestParameters: couponSetsApiParams.GetCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponSet> {
         const response = await this.getCouponSetRaw(requestParameters, initOverrides);
@@ -812,7 +794,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
 
     /**
      * Returns a paged collection of CouponSets
-     * Get coupon sets
+     * Get Coupon Sets
      */
 
 
@@ -851,8 +833,6 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -867,7 +847,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
 
     /**
      * Returns a paged collection of CouponSets
-     * Get coupon sets
+     * Get Coupon Sets
      */
     async getCouponSets(requestParameters: couponSetsApiParams.GetCouponSetsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponSetCollection> {
         const response = await this.getCouponSetsRaw(requestParameters, initOverrides);
@@ -875,8 +855,8 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
     }
 
     /**
-     * Returns a paged collection of Coupons
-     * Get coupons
+     * Returns a paged collection of Coupons.
+     * Get Coupons
      */
 
 
@@ -919,8 +899,6 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -934,8 +912,8 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
     }
 
     /**
-     * Returns a paged collection of Coupons
-     * Get coupons
+     * Returns a paged collection of Coupons.
+     * Get Coupons
      */
     async getCoupons(requestParameters: couponSetsApiParams.GetCouponsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponCollection> {
         const response = await this.getCouponsRaw(requestParameters, initOverrides);
@@ -944,7 +922,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
 
     /**
      * Returns a random 4 character code that is unique as a coupon set code.
-     * Get unique coupon set code
+     * Get Unique Coupon Set Code
      */
 
 
@@ -956,8 +934,6 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-
 
 
 
@@ -975,7 +951,7 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
 
     /**
      * Returns a random 4 character code that is unique as a coupon set code.
-     * Get unique coupon set code
+     * Get Unique Coupon Set Code
      */
     async getUniqueCouponSetCode(requestParameters: couponSetsApiParams.GetUniqueCouponSetCodeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
         const response = await this.getUniqueCouponSetCodeRaw(requestParameters, initOverrides);
@@ -983,8 +959,8 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
     }
 
     /**
-     * 
-     * UnAssign discount
+     * Unassigns or disassociates the specified discount with the specified coupon set.
+     * Unassign Discount from Coupon Set
      */
 
 
@@ -1003,8 +979,6 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1018,16 +992,16 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
     }
 
     /**
-     * 
-     * UnAssign discount
+     * Unassigns or disassociates the specified discount with the specified coupon set.
+     * Unassign Discount from Coupon Set
      */
     async unAssignDiscount(requestParameters: couponSetsApiParams.UnAssignDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.unAssignDiscountRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Update a CouponSet.     You can not update the Code or ID once the set is created.
-     * Update coupon set
+     * Update a CouponSet. You can not update the Code or ID once the set is created.
+     * Update Coupon Set
      */
 
 
@@ -1048,8 +1022,6 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1064,8 +1036,8 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
     }
 
     /**
-     * Update a CouponSet.     You can not update the Code or ID once the set is created.
-     * Update coupon set
+     * Update a CouponSet. You can not update the Code or ID once the set is created.
+     * Update Coupon Set
      */
     async updateCouponSet(requestParameters: couponSetsApiParams.UpdateCouponSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CouponSet> {
         const response = await this.updateCouponSetRaw(requestParameters, initOverrides);
@@ -1073,8 +1045,8 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
     }
 
     /**
-     *  Tests code for uniqueness and validity.
-     * Validate unique coupon set code
+     * Tests a coupone set code for uniqueness and validity.
+     * Validate Unique Coupon Set Code
      */
 
 
@@ -1088,8 +1060,6 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-
 
 
 
@@ -1107,8 +1077,8 @@ export class CouponSetsApi extends runtime.BaseAPI implements CouponSetsApiServi
     }
 
     /**
-     *  Tests code for uniqueness and validity.
-     * Validate unique coupon set code
+     * Tests a coupone set code for uniqueness and validity.
+     * Validate Unique Coupon Set Code
      */
     async validateUniqueCouponSetCode(requestParameters: couponSetsApiParams.ValidateUniqueCouponSetCodeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.validateUniqueCouponSetCodeRaw(requestParameters, initOverrides);

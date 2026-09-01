@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 apis/DocumentListApi.ts
 apis/DocumentListTypeApi.ts
 apis/DocumentPropertyTypeApi.ts

@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 apis/AppAuthTicketsApi.ts
 apis/AppEventApi.ts
 apis/AppInstallApi.ts

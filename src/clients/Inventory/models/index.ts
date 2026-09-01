@@ -20,29 +20,67 @@ export interface AdjustFutureDate404Response {
     message?: string;
 }
 /**
+ * Request for adjusting the future date
+ * @export
+ * @interface AdjustFutureDateRequest
+ */
+export interface AdjustFutureDateRequest {
+    /**
+     * Future Date at which the inventory should be allocated against. Expected format '2020-09-28T12:00:00-0500'
+     * @type {string}
+     * @memberof AdjustFutureDateRequest
+     */
+    futureDate?: string;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof AdjustFutureDateRequest
+     */
+    locationCode?: string;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof AdjustFutureDateRequest
+     */
+    pageNum?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof AdjustFutureDateRequest
+     */
+    pageSize?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof AdjustFutureDateRequest
+     */
+    sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof AdjustFutureDateRequest
+     */
+    userID?: number;
+}
+/**
+ * 
+ * @export
+ * @interface AdjustFutureDateRequestAllOf
+ */
+export interface AdjustFutureDateRequestAllOf {
+    /**
+     * Future Date at which the inventory should be allocated against. Expected format '2020-09-28T12:00:00-0500'
+     * @type {string}
+     * @memberof AdjustFutureDateRequestAllOf
+     */
+    futureDate?: string;
+}
+/**
  * Adjust Item
  * @export
  * @interface AdjustItem
  */
 export interface AdjustItem {
-    /**
-     * Part/Product Number
-     * @type {string}
-     * @memberof AdjustItem
-     */
-    partNumber?: string;
-    /**
-     * Universal Product Code
-     * @type {string}
-     * @memberof AdjustItem
-     */
-    upc?: string;
-    /**
-     * Stock Keeping Unit
-     * @type {string}
-     * @memberof AdjustItem
-     */
-    sku?: string;
     /**
      * Bin Location Identifier
      * @type {number}
@@ -50,17 +88,17 @@ export interface AdjustItem {
      */
     binID?: number;
     /**
-     * Current Quantity of Item
-     * @type {number}
+     * Describes the state of the product
+     * @type {string}
      * @memberof AdjustItem
      */
-    quantity?: number;
+    condition?: string;
     /**
-     * Associative Map of <String, String> for tagCategoryName => tagName
-     * @type {{ [key: string]: string; }}
+     * Used by the retailer for storing information related to manufacturing date or expiry date and use date to allocate for better stock management
+     * @type {string}
      * @memberof AdjustItem
      */
-    tags?: { [key: string]: string; };
+    date?: string;
     /**
      * Date at which this inventory will become available. Expected format '2020-09-28T12:00:00-0500'
      * @type {string}
@@ -74,17 +112,29 @@ export interface AdjustItem {
      */
     externalID?: string;
     /**
+     * 
+     * @type {boolean}
+     * @memberof AdjustItem
+     */
+    readonly granularInventoryTrackingEnabled?: boolean;
+    /**
      * Track which lot a product is manufactured in
      * @type {string}
      * @memberof AdjustItem
      */
     lotCode?: string;
     /**
-     * Describes the state of the product
+     * Part/Product Number
      * @type {string}
      * @memberof AdjustItem
      */
-    condition?: string;
+    partNumber?: string;
+    /**
+     * Current Quantity of Item
+     * @type {number}
+     * @memberof AdjustItem
+     */
+    quantity: number;
     /**
      * A serial number is unique to a specific, physical unit of inventory
      * @type {string}
@@ -92,11 +142,23 @@ export interface AdjustItem {
      */
     serialNumber?: string;
     /**
-     * Used by the retailer for storing information related to manufacturing date or expiry date and use date to allocate for better stock management
+     * Stock Keeping Unit
      * @type {string}
      * @memberof AdjustItem
      */
-    date?: string;
+    sku?: string;
+    /**
+     * Associative Map of <String, String> for tagCategoryName => tagName
+     * @type {{ [key: string]: string; }}
+     * @memberof AdjustItem
+     */
+    tags?: { [key: string]: string; };
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof AdjustItem
+     */
+    upc?: string;
 }
 /**
  * Request needed for adjusting inventory
@@ -105,29 +167,17 @@ export interface AdjustItem {
  */
 export interface AdjustRequest {
     /**
-     * List of items to adjust
-     * @type {Array<AdjustItem>}
+     * 
+     * @type {any}
      * @memberof AdjustRequest
      */
-    items?: Array<AdjustItem>;
+    items: any | null;
     /**
-     * Location Code
-     * @type {string}
+     * 
+     * @type {any}
      * @memberof AdjustRequest
      */
-    locationCode?: string;
-    /**
-     * user id
-     * @type {number}
-     * @memberof AdjustRequest
-     */
-    userID?: number;
-    /**
-     * how many results to show per page
-     * @type {number}
-     * @memberof AdjustRequest
-     */
-    pageSize?: number;
+    locationCode: any | null;
     /**
      * which page to show
      * @type {number}
@@ -135,11 +185,23 @@ export interface AdjustRequest {
      */
     pageNum?: number;
     /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof AdjustRequest
+     */
+    pageSize?: number;
+    /**
      * index to sort results by
      * @type {string}
      * @memberof AdjustRequest
      */
     sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof AdjustRequest
+     */
+    userID?: number;
 }
 /**
  * 
@@ -161,23 +223,17 @@ export interface AdjustRequestAllOf {
  */
 export interface AggregateRequest {
     /**
-     * List of Items to search on
-     * @type {Array<InventoryItem>}
+     * Enum for including future inventory: [futureOnly, futureAndCurrent]
+     * @type {string}
      * @memberof AggregateRequest
      */
-    items: Array<InventoryItem>;
+    includeFutureInventory?: AggregateRequestIncludeFutureInventoryEnum;
     /**
-     * Whether to ignore the safety stock buffer put in place
-     * @type {boolean}
+     * Filter results by locations that have transfer enabled (true) or don't (false)
+     * @type {any}
      * @memberof AggregateRequest
      */
-    ignoreSafetyStock?: boolean;
-    /**
-     * Whether to allow items with negative inventory in the results
-     * @type {boolean}
-     * @memberof AggregateRequest
-     */
-    includeNegativeInventory?: boolean;
+    transferEnabled?: any | null;
     /**
      * Whether to limit results to locations that are shipping enabled
      * @type {boolean}
@@ -185,11 +241,47 @@ export interface AggregateRequest {
      */
     directShip?: boolean;
     /**
-     * Filter results by locations that apply tax (true) or don't (false)
+     * Whether to force populate default tags onto the request if they are unspecified for any tag category
      * @type {boolean}
      * @memberof AggregateRequest
      */
-    transferEnabled?: boolean;
+    forceDefaultsForUnspecifiedTagCategories?: boolean;
+    /**
+     * Future end Date at which the inventory should be allocated against.
+     * @type {string}
+     * @memberof AggregateRequest
+     */
+    futureEndDate?: string;
+    /**
+     * Future start Date at which the inventory should be allocated against.
+     * @type {string}
+     * @memberof AggregateRequest
+     */
+    futureStartDate?: string;
+    /**
+     * Whether to ignore the safety stock buffer put in place
+     * @type {boolean}
+     * @memberof AggregateRequest
+     */
+    ignoreSafetyStock?: boolean;
+    /**
+     * Whether to allow items with negative future inventory in the results
+     * @type {boolean}
+     * @memberof AggregateRequest
+     */
+    includeNegativeFutureInventory?: boolean;
+    /**
+     * Whether to allow items with negative inventory in the results
+     * @type {boolean}
+     * @memberof AggregateRequest
+     */
+    includeNegativeInventory?: boolean;
+    /**
+     * List of Items to search on
+     * @type {Array<InventoryItem>}
+     * @memberof AggregateRequest
+     */
+    items: Array<InventoryItem>;
     /**
      * Filter results by pickup enabled (true) or not (false)
      * @type {boolean}
@@ -203,53 +295,11 @@ export interface AggregateRequest {
      */
     tags?: { [key: string]: string; };
     /**
-     * Enum for including future inventory: [futureOnly, futureAndCurrent]
-     * @type {string}
-     * @memberof AggregateRequest
-     */
-    includeFutureInventory?: AggregateRequestIncludeFutureInventoryEnum;
-    /**
-     * Whether to allow items with negative future inventory in the results
-     * @type {boolean}
-     * @memberof AggregateRequest
-     */
-    includeNegativeFutureInventory?: boolean;
-    /**
-     * Future start Date at which the inventory should be allocated against.
-     * @type {string}
-     * @memberof AggregateRequest
-     */
-    futureStartDate?: string;
-    /**
-     * Future end Date at which the inventory should be allocated against.
-     * @type {string}
-     * @memberof AggregateRequest
-     */
-    futureEndDate?: string;
-    /**
-     * Whether to force populate default tags onto the request if they are unspecified for any tag category
-     * @type {boolean}
-     * @memberof AggregateRequest
-     */
-    forceDefaultsForUnspecifiedTagCategories?: boolean;
-    /**
      * Location Code
      * @type {string}
      * @memberof AggregateRequest
      */
     locationCode?: string;
-    /**
-     * user id
-     * @type {number}
-     * @memberof AggregateRequest
-     */
-    userID?: number;
-    /**
-     * how many results to show per page
-     * @type {number}
-     * @memberof AggregateRequest
-     */
-    pageSize?: number;
     /**
      * which page to show
      * @type {number}
@@ -257,11 +307,23 @@ export interface AggregateRequest {
      */
     pageNum?: number;
     /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof AggregateRequest
+     */
+    pageSize?: number;
+    /**
      * index to sort results by
      * @type {string}
      * @memberof AggregateRequest
      */
     sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof AggregateRequest
+     */
+    userID?: number;
 }
 
 
@@ -281,11 +343,29 @@ export type AggregateRequestIncludeFutureInventoryEnum = typeof AggregateRequest
  */
 export interface AggregateRequestAllOf {
     /**
-     * List of Items to search on
-     * @type {Array<InventoryItem>}
+     * Whether to limit results to locations that are shipping enabled
+     * @type {boolean}
      * @memberof AggregateRequestAllOf
      */
-    items?: Array<InventoryItem>;
+    directShip?: boolean;
+    /**
+     * Whether to force populate default tags onto the request if they are unspecified for any tag category
+     * @type {boolean}
+     * @memberof AggregateRequestAllOf
+     */
+    forceDefaultsForUnspecifiedTagCategories?: boolean;
+    /**
+     * Future end Date at which the inventory should be allocated against.
+     * @type {string}
+     * @memberof AggregateRequestAllOf
+     */
+    futureEndDate?: string;
+    /**
+     * Future start Date at which the inventory should be allocated against.
+     * @type {string}
+     * @memberof AggregateRequestAllOf
+     */
+    futureStartDate?: string;
     /**
      * Whether to ignore the safety stock buffer put in place
      * @type {boolean}
@@ -293,23 +373,29 @@ export interface AggregateRequestAllOf {
      */
     ignoreSafetyStock?: boolean;
     /**
+     * Include future inventory or not
+     * @type {string}
+     * @memberof AggregateRequestAllOf
+     */
+    includeFutureInventory?: AggregateRequestAllOfIncludeFutureInventoryEnum;
+    /**
+     * Whether to allow items with negative future inventory in the results
+     * @type {boolean}
+     * @memberof AggregateRequestAllOf
+     */
+    includeNegativeFutureInventory?: boolean;
+    /**
      * Whether to allow items with negative inventory in the results
      * @type {boolean}
      * @memberof AggregateRequestAllOf
      */
     includeNegativeInventory?: boolean;
     /**
-     * Whether to limit results to locations that are shipping enabled
-     * @type {boolean}
+     * List of Items to search on
+     * @type {Array<InventoryItem>}
      * @memberof AggregateRequestAllOf
      */
-    directShip?: boolean;
-    /**
-     * Filter results by locations that apply tax (true) or don't (false)
-     * @type {boolean}
-     * @memberof AggregateRequestAllOf
-     */
-    transferEnabled?: boolean;
+    items?: Array<InventoryItem>;
     /**
      * Filter results by pickup enabled (true) or not (false)
      * @type {boolean}
@@ -323,35 +409,11 @@ export interface AggregateRequestAllOf {
      */
     tags?: { [key: string]: string; };
     /**
-     * Enum for including future inventory: [futureOnly, futureAndCurrent]
-     * @type {string}
-     * @memberof AggregateRequestAllOf
-     */
-    includeFutureInventory?: AggregateRequestAllOfIncludeFutureInventoryEnum;
-    /**
-     * Whether to allow items with negative future inventory in the results
+     * Filter results by locations that apply tax (true) or don't (false)
      * @type {boolean}
      * @memberof AggregateRequestAllOf
      */
-    includeNegativeFutureInventory?: boolean;
-    /**
-     * Future start Date at which the inventory should be allocated against.
-     * @type {string}
-     * @memberof AggregateRequestAllOf
-     */
-    futureStartDate?: string;
-    /**
-     * Future end Date at which the inventory should be allocated against.
-     * @type {string}
-     * @memberof AggregateRequestAllOf
-     */
-    futureEndDate?: string;
-    /**
-     * Whether to force populate default tags onto the request if they are unspecified for any tag category
-     * @type {boolean}
-     * @memberof AggregateRequestAllOf
-     */
-    forceDefaultsForUnspecifiedTagCategories?: boolean;
+    transferEnabled?: boolean;
 }
 
 
@@ -359,8 +421,8 @@ export interface AggregateRequestAllOf {
  * @export
  */
 export const AggregateRequestAllOfIncludeFutureInventoryEnum = {
-    FutureOnly: 'futureOnly',
-    FutureAndCurrent: 'futureAndCurrent'
+    Only: 'FUTURE_ONLY',
+    AndCurrent: 'FUTURE_AND_CURRENT'
 } as const;
 export type AggregateRequestAllOfIncludeFutureInventoryEnum = typeof AggregateRequestAllOfIncludeFutureInventoryEnum[keyof typeof AggregateRequestAllOfIncludeFutureInventoryEnum];
 
@@ -371,41 +433,11 @@ export type AggregateRequestAllOfIncludeFutureInventoryEnum = typeof AggregateRe
  */
 export interface AggregateResponse {
     /**
-     * Manufacturer Identifier
-     * @type {number}
-     * @memberof AggregateResponse
-     */
-    tenantID?: number;
-    /**
-     * The quantity the location has in its possession
-     * @type {number}
-     * @memberof AggregateResponse
-     */
-    onHand?: number;
-    /**
      * The quantity the location has that are available for purchase
      * @type {number}
      * @memberof AggregateResponse
      */
     available?: number;
-    /**
-     * Part/Product Number
-     * @type {string}
-     * @memberof AggregateResponse
-     */
-    partNumber?: string;
-    /**
-     * Universal Product Code
-     * @type {string}
-     * @memberof AggregateResponse
-     */
-    upc?: string;
-    /**
-     * Stock Keeping Unit
-     * @type {string}
-     * @memberof AggregateResponse
-     */
-    sku?: string;
     /**
      * Absolute minimum quantity of this item that should be in stock at any time
      * @type {number}
@@ -413,17 +445,41 @@ export interface AggregateResponse {
      */
     floor?: number;
     /**
+     * The quantity the location has in its possession
+     * @type {number}
+     * @memberof AggregateResponse
+     */
+    onHand?: number;
+    /**
+     * Part/Product Number
+     * @type {string}
+     * @memberof AggregateResponse
+     */
+    partNumber?: string;
+    /**
+     * Stock Keeping Unit
+     * @type {string}
+     * @memberof AggregateResponse
+     */
+    sku?: string;
+    /**
      * Associative Map of <String, String> for tagCategoryName => tagName
      * @type {{ [key: string]: string; }}
      * @memberof AggregateResponse
      */
     tags?: { [key: string]: string; };
     /**
-     * Flag for success
-     * @type {boolean}
+     * Manufacturer Identifier
+     * @type {number}
      * @memberof AggregateResponse
      */
-    success?: boolean;
+    tenantID?: number;
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof AggregateResponse
+     */
+    upc?: string;
     /**
      * List of messages
      * @type {Array<string>}
@@ -436,6 +492,12 @@ export interface AggregateResponse {
      * @memberof AggregateResponse
      */
     numResults?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof AggregateResponse
+     */
+    success?: boolean;
 }
 /**
  * 
@@ -444,41 +506,11 @@ export interface AggregateResponse {
  */
 export interface AggregateResponseAllOf {
     /**
-     * Manufacturer Identifier
-     * @type {number}
-     * @memberof AggregateResponseAllOf
-     */
-    tenantID?: number;
-    /**
-     * The quantity the location has in its possession
-     * @type {number}
-     * @memberof AggregateResponseAllOf
-     */
-    onHand?: number;
-    /**
      * The quantity the location has that are available for purchase
      * @type {number}
      * @memberof AggregateResponseAllOf
      */
     available?: number;
-    /**
-     * Part/Product Number
-     * @type {string}
-     * @memberof AggregateResponseAllOf
-     */
-    partNumber?: string;
-    /**
-     * Universal Product Code
-     * @type {string}
-     * @memberof AggregateResponseAllOf
-     */
-    upc?: string;
-    /**
-     * Stock Keeping Unit
-     * @type {string}
-     * @memberof AggregateResponseAllOf
-     */
-    sku?: string;
     /**
      * Absolute minimum quantity of this item that should be in stock at any time
      * @type {number}
@@ -486,11 +518,41 @@ export interface AggregateResponseAllOf {
      */
     floor?: number;
     /**
+     * The quantity the location has in its possession
+     * @type {number}
+     * @memberof AggregateResponseAllOf
+     */
+    onHand?: number;
+    /**
+     * Part/Product Number
+     * @type {string}
+     * @memberof AggregateResponseAllOf
+     */
+    partNumber?: string;
+    /**
+     * Stock Keeping Unit
+     * @type {string}
+     * @memberof AggregateResponseAllOf
+     */
+    sku?: string;
+    /**
      * Associative Map of <String, String> for tagCategoryName => tagName
      * @type {{ [key: string]: string; }}
      * @memberof AggregateResponseAllOf
      */
     tags?: { [key: string]: string; };
+    /**
+     * Manufacturer Identifier
+     * @type {number}
+     * @memberof AggregateResponseAllOf
+     */
+    tenantID?: number;
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof AggregateResponseAllOf
+     */
+    upc?: string;
 }
 /**
  * 
@@ -518,6 +580,24 @@ export interface AllocateInventory500Response {
  */
 export interface AllocateInventoryRequest {
     /**
+     * flag to determine whether the runSyncronous flag is set and the allocation should be run synchronously
+     * @type {any}
+     * @memberof AllocateInventoryRequest
+     */
+    runSynchronous?: any | null;
+    /**
+     * flag to determine whether the allocation was due to auto assignment
+     * @type {boolean}
+     * @memberof AllocateInventoryRequest
+     */
+    autoAssign?: boolean;
+    /**
+     * flag to determine deallocation on decrements
+     * @type {boolean}
+     * @memberof AllocateInventoryRequest
+     */
+    decrementOnHandOnDeallocate?: boolean;
+    /**
      * list of AllocateItems
      * @type {Array<AllocateItem>}
      * @memberof AllocateInventoryRequest
@@ -536,41 +616,11 @@ export interface AllocateInventoryRequest {
      */
     orderWeight?: number;
     /**
-     * flag to determine deallocation on decrements
-     * @type {boolean}
-     * @memberof AllocateInventoryRequest
-     */
-    decrementOnHandOnDeallocate?: boolean;
-    /**
-     * flag to determine whether the allocation was due to auto assignment
-     * @type {boolean}
-     * @memberof AllocateInventoryRequest
-     */
-    autoAssign?: boolean;
-    /**
-     * flag to determine whether the runSyncronous flag is set and the allocation should be run synchronously
-     * @type {boolean}
-     * @memberof AllocateInventoryRequest
-     */
-    runSynchronous?: boolean;
-    /**
      * Location Code
      * @type {string}
      * @memberof AllocateInventoryRequest
      */
     locationCode?: string;
-    /**
-     * user id
-     * @type {number}
-     * @memberof AllocateInventoryRequest
-     */
-    userID?: number;
-    /**
-     * how many results to show per page
-     * @type {number}
-     * @memberof AllocateInventoryRequest
-     */
-    pageSize?: number;
     /**
      * which page to show
      * @type {number}
@@ -578,11 +628,23 @@ export interface AllocateInventoryRequest {
      */
     pageNum?: number;
     /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof AllocateInventoryRequest
+     */
+    pageSize?: number;
+    /**
      * index to sort results by
      * @type {string}
      * @memberof AllocateInventoryRequest
      */
     sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof AllocateInventoryRequest
+     */
+    userID?: number;
 }
 /**
  * 
@@ -590,6 +652,18 @@ export interface AllocateInventoryRequest {
  * @interface AllocateInventoryRequestAllOf
  */
 export interface AllocateInventoryRequestAllOf {
+    /**
+     * flag to determine whether the allocation was due to auto assignment
+     * @type {boolean}
+     * @memberof AllocateInventoryRequestAllOf
+     */
+    autoAssign?: boolean;
+    /**
+     * flag to determine deallocation on decrements
+     * @type {boolean}
+     * @memberof AllocateInventoryRequestAllOf
+     */
+    decrementOnHandOnDeallocate?: boolean;
     /**
      * list of AllocateItems
      * @type {Array<AllocateItem>}
@@ -609,19 +683,7 @@ export interface AllocateInventoryRequestAllOf {
      */
     orderWeight?: number;
     /**
-     * flag to determine deallocation on decrements
-     * @type {boolean}
-     * @memberof AllocateInventoryRequestAllOf
-     */
-    decrementOnHandOnDeallocate?: boolean;
-    /**
-     * flag to determine whether the allocation was due to auto assignment
-     * @type {boolean}
-     * @memberof AllocateInventoryRequestAllOf
-     */
-    autoAssign?: boolean;
-    /**
-     * flag to determine whether the runSyncronous flag is set and the allocation should be run synchronously
+     * flag to determine whether the allocation should run synchronously, defaults to false
      * @type {boolean}
      * @memberof AllocateInventoryRequestAllOf
      */
@@ -633,84 +695,6 @@ export interface AllocateInventoryRequestAllOf {
  * @interface AllocateItem
  */
 export interface AllocateItem {
-    /**
-     * part number
-     * @type {string}
-     * @memberof AllocateItem
-     */
-    partNumber?: string;
-    /**
-     * upc
-     * @type {string}
-     * @memberof AllocateItem
-     */
-    upc?: string;
-    /**
-     * sku
-     * @type {string}
-     * @memberof AllocateItem
-     */
-    sku?: string;
-    /**
-     * quantity
-     * @type {number}
-     * @memberof AllocateItem
-     */
-    quantity: number;
-    /**
-     * The Order Number in UCP
-     * @type {number}
-     * @memberof AllocateItem
-     */
-    orderID: number;
-    /**
-     * order item ID
-     * @type {number}
-     * @memberof AllocateItem
-     */
-    orderItemID: number;
-    /**
-     * The Order ID in UCP (GUID)
-     * @type {string}
-     * @memberof AllocateItem
-     */
-    ucpOrderID?: string;
-    /**
-     * Cart ID (GUID)
-     * @type {string}
-     * @memberof AllocateItem
-     */
-    cartID?: string;
-    /**
-     * Reservation ID
-     * @type {string}
-     * @memberof AllocateItem
-     */
-    reservationID?: string;
-    /**
-     * Cart Item ID (GUID)
-     * @type {string}
-     * @memberof AllocateItem
-     */
-    cartItemID?: string;
-    /**
-     * shipment ID
-     * @type {number}
-     * @memberof AllocateItem
-     */
-    shipmentID: number;
-    /**
-     * location Code
-     * @type {string}
-     * @memberof AllocateItem
-     */
-    locationCode?: string;
-    /**
-     * previous order item ID
-     * @type {number}
-     * @memberof AllocateItem
-     */
-    previousOrderItemID?: number;
     /**
      * Bin Location Identifier
      * @type {number}
@@ -724,29 +708,17 @@ export interface AllocateItem {
      */
     blockAssignment?: boolean;
     /**
-     * Hold Block assignment flag of item at product/location level. ONLY allowed on deallocate.
-     * @type {boolean}
-     * @memberof AllocateItem
-     */
-    holdBlockAssignment?: boolean;
-    /**
-     * Associative Map of <String, String> for tagCategoryName => tagName
-     * @type {{ [key: string]: string; }}
-     * @memberof AllocateItem
-     */
-    tags?: { [key: string]: string; };
-    /**
-     * Future Date at which the inventory should be allocated against. Expected format '2020-09-28T12:00:00-0500'
+     * Cart ID (GUID)
      * @type {string}
      * @memberof AllocateItem
      */
-    futureDate?: string;
+    cartID?: string;
     /**
-     * Extra Uniqueness Identifier used track which lot a product is manufactured in. Only used in Allocate calls.
+     * Cart Item ID (GUID)
      * @type {string}
      * @memberof AllocateItem
      */
-    lotCode?: string;
+    cartItemID?: string;
     /**
      * Descriptor for the state of the product. Only used in Allocate calls.
      * @type {string}
@@ -754,23 +726,464 @@ export interface AllocateItem {
      */
     condition?: string;
     /**
-     * A serial number unique to a specific, physical unit of inventory. Limit of 30 characters. Only used in Allocate calls.
-     * @type {string}
-     * @memberof AllocateItem
-     */
-    serialNumber?: string;
-    /**
      * Used by the retailer for storing information related to manufacturing date or expiry date and use date to allocate for better stock management. Only used in Allocate calls.
      * @type {string}
      * @memberof AllocateItem
      */
     date?: string;
     /**
-     * Specific inventory record to perform deallocates/fulfills against. Only used for Deallocate/Fulfill calls
+     * Future Date at which the inventory should be allocated against. Expected format '2020-09-28T12:00:00-0500'
+     * @type {string}
+     * @memberof AllocateItem
+     */
+    futureDate?: string;
+    /**
+     * location Code
+     * @type {string}
+     * @memberof AllocateItem
+     */
+    locationCode?: string;
+    /**
+     * Extra Uniqueness Identifier used track which lot a product is manufactured in. Only used in Allocate calls.
+     * @type {string}
+     * @memberof AllocateItem
+     */
+    lotCode?: string;
+    /**
+     * The Order Number in UCP
      * @type {number}
      * @memberof AllocateItem
      */
-    inventoryID?: number;
+    orderID: number;
+    /**
+     * order item ID
+     * @type {number}
+     * @memberof AllocateItem
+     */
+    orderItemID: number;
+    /**
+     * part number
+     * @type {string}
+     * @memberof AllocateItem
+     */
+    partNumber?: string;
+    /**
+     * previous order item ID
+     * @type {number}
+     * @memberof AllocateItem
+     */
+    previousOrderItemID?: number;
+    /**
+     * quantity
+     * @type {number}
+     * @memberof AllocateItem
+     */
+    quantity: number;
+    /**
+     * Reservation ID
+     * @type {string}
+     * @memberof AllocateItem
+     */
+    reservationID?: string;
+    /**
+     * A serial number unique to a specific, physical unit of inventory. Limit of 30 characters. Only used in Allocate calls.
+     * @type {string}
+     * @memberof AllocateItem
+     */
+    serialNumber?: string;
+    /**
+     * shipment ID
+     * @type {number}
+     * @memberof AllocateItem
+     */
+    shipmentID: number;
+    /**
+     * sku
+     * @type {string}
+     * @memberof AllocateItem
+     */
+    sku?: string;
+    /**
+     * Associative Map of <String, String> for tagCategoryName => tagName
+     * @type {{ [key: string]: string; }}
+     * @memberof AllocateItem
+     */
+    tags?: { [key: string]: string; };
+    /**
+     * upc
+     * @type {string}
+     * @memberof AllocateItem
+     */
+    upc?: string;
+}
+/**
+ * Audit
+ * @export
+ * @interface Audit
+ */
+export interface Audit {
+    /**
+     * Audit identifier
+     * @type {number}
+     * @memberof Audit
+     */
+    auditID?: number;
+    /**
+     * Date the audit was requested
+     * @type {string}
+     * @memberof Audit
+     */
+    dateRequested?: string;
+    /**
+     * Date the audit was started
+     * @type {string}
+     * @memberof Audit
+     */
+    dateStarted?: string;
+    /**
+     * List of Audit Items
+     * @type {Array<AuditItem>}
+     * @memberof Audit
+     */
+    items?: Array<AuditItem>;
+    /**
+     * Location code
+     * @type {string}
+     * @memberof Audit
+     */
+    locationCode?: string;
+    /**
+     * Audit status
+     * @type {string}
+     * @memberof Audit
+     */
+    status?: string;
+    /**
+     * User identifier
+     * @type {number}
+     * @memberof Audit
+     */
+    userID?: number;
+    /**
+     * List of messages
+     * @type {Array<string>}
+     * @memberof Audit
+     */
+    messages?: Array<string>;
+    /**
+     * Number of results
+     * @type {number}
+     * @memberof Audit
+     */
+    numResults?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof Audit
+     */
+    success?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface AuditAllOf
+ */
+export interface AuditAllOf {
+    /**
+     * Audit identifier
+     * @type {number}
+     * @memberof AuditAllOf
+     */
+    auditID?: number;
+    /**
+     * Date the audit was requested
+     * @type {string}
+     * @memberof AuditAllOf
+     */
+    dateRequested?: string;
+    /**
+     * Date the audit was started
+     * @type {string}
+     * @memberof AuditAllOf
+     */
+    dateStarted?: string;
+    /**
+     * List of Audit Items
+     * @type {Array<AuditItem>}
+     * @memberof AuditAllOf
+     */
+    items?: Array<AuditItem>;
+    /**
+     * Location code
+     * @type {string}
+     * @memberof AuditAllOf
+     */
+    locationCode?: string;
+    /**
+     * Audit status
+     * @type {string}
+     * @memberof AuditAllOf
+     */
+    status?: string;
+    /**
+     * User identifier
+     * @type {number}
+     * @memberof AuditAllOf
+     */
+    userID?: number;
+}
+/**
+ * Audit Item
+ * @export
+ * @interface AuditItem
+ */
+export interface AuditItem {
+    /**
+     * Audit Item identifier
+     * @type {number}
+     * @memberof AuditItem
+     */
+    auditItemID?: number;
+    /**
+     * Bin Name
+     * @type {string}
+     * @memberof AuditItem
+     */
+    binName?: string;
+    /**
+     * 
+     * @type {AuditItemQuantity}
+     * @memberof AuditItem
+     */
+    product?: AuditItemQuantity;
+    /**
+     * List of messages
+     * @type {Array<string>}
+     * @memberof AuditItem
+     */
+    messages?: Array<string>;
+    /**
+     * Number of results
+     * @type {number}
+     * @memberof AuditItem
+     */
+    numResults?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof AuditItem
+     */
+    success?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface AuditItemAllOf
+ */
+export interface AuditItemAllOf {
+    /**
+     * Audit Item identifier
+     * @type {number}
+     * @memberof AuditItemAllOf
+     */
+    auditItemID?: number;
+    /**
+     * Bin Name
+     * @type {string}
+     * @memberof AuditItemAllOf
+     */
+    binName?: string;
+    /**
+     * 
+     * @type {AuditItemQuantity}
+     * @memberof AuditItemAllOf
+     */
+    product?: AuditItemQuantity;
+}
+/**
+ * Audit Item Quantity
+ * @export
+ * @interface AuditItemQuantity
+ */
+export interface AuditItemQuantity {
+    /**
+     * Actual quantity of items
+     * @type {number}
+     * @memberof AuditItemQuantity
+     */
+    actualQuantity?: number;
+    /**
+     * Expected Quantity of items
+     * @type {number}
+     * @memberof AuditItemQuantity
+     */
+    expectedQuantity?: number;
+    /**
+     * Part Number
+     * @type {string}
+     * @memberof AuditItemQuantity
+     */
+    partNumber?: string;
+    /**
+     * SKU
+     * @type {string}
+     * @memberof AuditItemQuantity
+     */
+    sku?: string;
+    /**
+     * UPC
+     * @type {string}
+     * @memberof AuditItemQuantity
+     */
+    upc?: string;
+}
+/**
+ * Request for searching audits
+ * @export
+ * @interface AuditSearchRequest
+ */
+export interface AuditSearchRequest {
+    /**
+     * Audit identifier
+     * @type {number}
+     * @memberof AuditSearchRequest
+     */
+    auditID?: number;
+    /**
+     * Audit Status
+     * @type {string}
+     * @memberof AuditSearchRequest
+     */
+    auditStatus?: string;
+    /**
+     * Name of the bin
+     * @type {string}
+     * @memberof AuditSearchRequest
+     */
+    binName?: string;
+    /**
+     * 
+     * @type {DateRange}
+     * @memberof AuditSearchRequest
+     */
+    dateRange?: DateRange;
+    /**
+     * List of matching products
+     * @type {Array<ProductMatch>}
+     * @memberof AuditSearchRequest
+     */
+    products?: Array<ProductMatch>;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof AuditSearchRequest
+     */
+    locationCode?: string;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof AuditSearchRequest
+     */
+    pageNum?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof AuditSearchRequest
+     */
+    pageSize?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof AuditSearchRequest
+     */
+    sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof AuditSearchRequest
+     */
+    userID?: number;
+}
+/**
+ * 
+ * @export
+ * @interface AuditSearchRequestAllOf
+ */
+export interface AuditSearchRequestAllOf {
+    /**
+     * Audit identifier
+     * @type {number}
+     * @memberof AuditSearchRequestAllOf
+     */
+    auditID?: number;
+    /**
+     * Audit Status
+     * @type {string}
+     * @memberof AuditSearchRequestAllOf
+     */
+    auditStatus?: string;
+    /**
+     * Name of the bin
+     * @type {string}
+     * @memberof AuditSearchRequestAllOf
+     */
+    binName?: string;
+    /**
+     * 
+     * @type {DateRange}
+     * @memberof AuditSearchRequestAllOf
+     */
+    dateRange?: DateRange;
+    /**
+     * List of matching products
+     * @type {Array<ProductMatch>}
+     * @memberof AuditSearchRequestAllOf
+     */
+    products?: Array<ProductMatch>;
+}
+/**
+ * Audit Search Response
+ * @export
+ * @interface AuditSearchResponse
+ */
+export interface AuditSearchResponse {
+    /**
+     * List of found audits
+     * @type {Array<Audit>}
+     * @memberof AuditSearchResponse
+     */
+    audits?: Array<Audit>;
+    /**
+     * List of messages
+     * @type {Array<string>}
+     * @memberof AuditSearchResponse
+     */
+    messages?: Array<string>;
+    /**
+     * Number of results
+     * @type {number}
+     * @memberof AuditSearchResponse
+     */
+    numResults?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof AuditSearchResponse
+     */
+    success?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface AuditSearchResponseAllOf
+ */
+export interface AuditSearchResponseAllOf {
+    /**
+     * List of found audits
+     * @type {Array<Audit>}
+     * @memberof AuditSearchResponseAllOf
+     */
+    audits?: Array<Audit>;
 }
 /**
  * Base Request Model
@@ -785,11 +1198,11 @@ export interface BaseRequest {
      */
     locationCode?: string;
     /**
-     * user id
+     * which page to show
      * @type {number}
      * @memberof BaseRequest
      */
-    userID?: number;
+    pageNum?: number;
     /**
      * how many results to show per page
      * @type {number}
@@ -797,17 +1210,17 @@ export interface BaseRequest {
      */
     pageSize?: number;
     /**
-     * which page to show
-     * @type {number}
-     * @memberof BaseRequest
-     */
-    pageNum?: number;
-    /**
      * index to sort results by
      * @type {string}
      * @memberof BaseRequest
      */
     sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof BaseRequest
+     */
+    userID?: number;
 }
 /**
  * Base Response Model
@@ -816,12 +1229,6 @@ export interface BaseRequest {
  */
 export interface BaseResponse {
     /**
-     * Flag for success
-     * @type {boolean}
-     * @memberof BaseResponse
-     */
-    success?: boolean;
-    /**
      * List of messages
      * @type {Array<string>}
      * @memberof BaseResponse
@@ -833,6 +1240,12 @@ export interface BaseResponse {
      * @memberof BaseResponse
      */
     numResults?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof BaseResponse
+     */
+    success?: boolean;
 }
 /**
  * Response object for a bin
@@ -841,29 +1254,11 @@ export interface BaseResponse {
  */
 export interface Bin {
     /**
-     * Bin Name
-     * @type {string}
-     * @memberof Bin
-     */
-    name?: string;
-    /**
      * Bin ID
      * @type {number}
      * @memberof Bin
      */
     binID?: number;
-    /**
-     * Location Code
-     * @type {string}
-     * @memberof Bin
-     */
-    locationCode?: string;
-    /**
-     * Bin Type ID
-     * @type {number}
-     * @memberof Bin
-     */
-    binTypeID?: number;
     /**
      * Bin Status ID
      * @type {number}
@@ -871,11 +1266,23 @@ export interface Bin {
      */
     binStatusID?: number;
     /**
-     * Flag for success
-     * @type {boolean}
+     * Bin Type ID
+     * @type {number}
      * @memberof Bin
      */
-    success?: boolean;
+    binTypeID?: number;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof Bin
+     */
+    locationCode?: string;
+    /**
+     * Bin Name
+     * @type {string}
+     * @memberof Bin
+     */
+    name?: string;
     /**
      * List of messages
      * @type {Array<string>}
@@ -888,6 +1295,12 @@ export interface Bin {
      * @memberof Bin
      */
     numResults?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof Bin
+     */
+    success?: boolean;
 }
 /**
  * 
@@ -896,23 +1309,17 @@ export interface Bin {
  */
 export interface BinAllOf {
     /**
-     * Bin Name
-     * @type {string}
-     * @memberof BinAllOf
-     */
-    name?: string;
-    /**
      * Bin ID
      * @type {number}
      * @memberof BinAllOf
      */
     binID?: number;
     /**
-     * Location Code
-     * @type {string}
+     * Bin Status ID
+     * @type {number}
      * @memberof BinAllOf
      */
-    locationCode?: string;
+    binStatusID?: number;
     /**
      * Bin Type ID
      * @type {number}
@@ -920,11 +1327,17 @@ export interface BinAllOf {
      */
     binTypeID?: number;
     /**
-     * Bin Status ID
-     * @type {number}
+     * Location Code
+     * @type {string}
      * @memberof BinAllOf
      */
-    binStatusID?: number;
+    locationCode?: string;
+    /**
+     * Bin Name
+     * @type {string}
+     * @memberof BinAllOf
+     */
+    name?: string;
 }
 /**
  * Bin ID Response
@@ -952,11 +1365,11 @@ export interface BinModel {
      */
     binID?: number;
     /**
-     * Location Identifier of the owning location
+     * New Bin's Status ID
      * @type {number}
      * @memberof BinModel
      */
-    locationID?: number;
+    binStatusID?: number;
     /**
      * New Bin's Type ID
      * @type {number}
@@ -964,11 +1377,11 @@ export interface BinModel {
      */
     binTypeID?: number;
     /**
-     * New Bin's Status ID
+     * Location Identifier of the owning location
      * @type {number}
      * @memberof BinModel
      */
-    binStatusID?: number;
+    locationID?: number;
     /**
      * Client specified static bin name
      * @type {number}
@@ -1015,6 +1428,25 @@ export interface BinProductResponseQuantities {
     products?: Array<ProductQuantityResponse>;
 }
 /**
+ * Range of bins
+ * @export
+ * @interface BinRange
+ */
+export interface BinRange {
+    /**
+     * End Bin Name
+     * @type {string}
+     * @memberof BinRange
+     */
+    endBinName?: string;
+    /**
+     * Start Bin Name
+     * @type {string}
+     * @memberof BinRange
+     */
+    startBinName?: string;
+}
+/**
  * Bin Response Object
  * @export
  * @interface BinResponseModel
@@ -1052,17 +1484,17 @@ export interface BinSearchRequest {
      */
     product?: InventoryProduct;
     /**
-     * Flag for sorting ascending
-     * @type {boolean}
-     * @memberof BinSearchRequest
-     */
-    sortAscending?: boolean;
-    /**
      * Flag for showing negative inventory
      * @type {boolean}
      * @memberof BinSearchRequest
      */
     showNegativeInventory?: boolean;
+    /**
+     * Flag for sorting ascending
+     * @type {boolean}
+     * @memberof BinSearchRequest
+     */
+    sortAscending?: boolean;
     /**
      * Associative Map of <String, String> for tagCategoryName => tagName
      * @type {{ [key: string]: string; }}
@@ -1076,11 +1508,11 @@ export interface BinSearchRequest {
      */
     locationCode?: string;
     /**
-     * user id
+     * which page to show
      * @type {number}
      * @memberof BinSearchRequest
      */
-    userID?: number;
+    pageNum?: number;
     /**
      * how many results to show per page
      * @type {number}
@@ -1088,17 +1520,17 @@ export interface BinSearchRequest {
      */
     pageSize?: number;
     /**
-     * which page to show
-     * @type {number}
-     * @memberof BinSearchRequest
-     */
-    pageNum?: number;
-    /**
      * index to sort results by
      * @type {string}
      * @memberof BinSearchRequest
      */
     sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof BinSearchRequest
+     */
+    userID?: number;
 }
 /**
  * 
@@ -1119,17 +1551,17 @@ export interface BinSearchRequestAllOf {
      */
     product?: InventoryProduct;
     /**
-     * Flag for sorting ascending
-     * @type {boolean}
-     * @memberof BinSearchRequestAllOf
-     */
-    sortAscending?: boolean;
-    /**
      * Flag for showing negative inventory
      * @type {boolean}
      * @memberof BinSearchRequestAllOf
      */
     showNegativeInventory?: boolean;
+    /**
+     * Flag for sorting ascending
+     * @type {boolean}
+     * @memberof BinSearchRequestAllOf
+     */
+    sortAscending?: boolean;
     /**
      * Associative Map of <String, String> for tagCategoryName => tagName
      * @type {{ [key: string]: string; }}
@@ -1150,12 +1582,6 @@ export interface BinSearchResponse {
      */
     binQuantities?: Array<BinProductResponseQuantities>;
     /**
-     * Flag for success
-     * @type {boolean}
-     * @memberof BinSearchResponse
-     */
-    success?: boolean;
-    /**
      * List of messages
      * @type {Array<string>}
      * @memberof BinSearchResponse
@@ -1167,6 +1593,12 @@ export interface BinSearchResponse {
      * @memberof BinSearchResponse
      */
     numResults?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof BinSearchResponse
+     */
+    success?: boolean;
 }
 /**
  * 
@@ -1226,23 +1658,17 @@ export interface BinTypeModel {
  */
 export interface BlockAssignmentItem {
     /**
+     * Block assignment of item at product/location level. ONLY allowed on deallocate.
+     * @type {boolean}
+     * @memberof BlockAssignmentItem
+     */
+    blockAssignment: boolean;
+    /**
      * part number
      * @type {string}
      * @memberof BlockAssignmentItem
      */
     partNumber?: string;
-    /**
-     * upc
-     * @type {string}
-     * @memberof BlockAssignmentItem
-     */
-    upc?: string;
-    /**
-     * sku
-     * @type {string}
-     * @memberof BlockAssignmentItem
-     */
-    sku?: string;
     /**
      * quantity
      * @type {number}
@@ -1250,17 +1676,17 @@ export interface BlockAssignmentItem {
      */
     quantity?: number;
     /**
-     * Block assignment of item at product/location level. ONLY allowed on deallocate.
-     * @type {boolean}
+     * sku
+     * @type {string}
      * @memberof BlockAssignmentItem
      */
-    blockAssignment: boolean;
+    sku?: string;
     /**
-     * Hold Block assignment of item at product/location level. ONLY allowed on deallocate.
-     * @type {boolean}
+     * upc
+     * @type {string}
      * @memberof BlockAssignmentItem
      */
-    holdBlockAssignment?: boolean;
+    upc?: string;
 }
 /**
  * Request to block assignment on the product
@@ -1281,11 +1707,11 @@ export interface BlockAssignmentRequest {
      */
     locationCode?: string;
     /**
-     * user id
+     * which page to show
      * @type {number}
      * @memberof BlockAssignmentRequest
      */
-    userID?: number;
+    pageNum?: number;
     /**
      * how many results to show per page
      * @type {number}
@@ -1293,17 +1719,17 @@ export interface BlockAssignmentRequest {
      */
     pageSize?: number;
     /**
-     * which page to show
-     * @type {number}
-     * @memberof BlockAssignmentRequest
-     */
-    pageNum?: number;
-    /**
      * index to sort results by
      * @type {string}
      * @memberof BlockAssignmentRequest
      */
     sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof BlockAssignmentRequest
+     */
+    userID?: number;
 }
 /**
  * 
@@ -1319,23 +1745,302 @@ export interface BlockAssignmentRequestAllOf {
     items?: Array<BlockAssignmentItem>;
 }
 /**
+ * ClearEventQueueRequest
+ * @export
+ * @interface ClearEventQueueRequest
+ */
+export interface ClearEventQueueRequest {
+    /**
+     * Clear events queued after this date. Date format looks like: 2010-01-30
+     * @type {string}
+     * @memberof ClearEventQueueRequest
+     */
+    after?: string;
+    /**
+     * Clear events queued before this date. Date format looks like: 2010-01-30
+     * @type {string}
+     * @memberof ClearEventQueueRequest
+     */
+    before?: string;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof ClearEventQueueRequest
+     */
+    locationCode?: string;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof ClearEventQueueRequest
+     */
+    pageNum?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof ClearEventQueueRequest
+     */
+    pageSize?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof ClearEventQueueRequest
+     */
+    sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof ClearEventQueueRequest
+     */
+    userID?: number;
+}
+/**
+ * 
+ * @export
+ * @interface ClearEventQueueRequestAllOf
+ */
+export interface ClearEventQueueRequestAllOf {
+    /**
+     * Clear events queued after this date. Date format looks like: 2010-01-30
+     * @type {string}
+     * @memberof ClearEventQueueRequestAllOf
+     */
+    after?: string;
+    /**
+     * Clear events queued before this date. Date format looks like: 2010-01-30
+     * @type {string}
+     * @memberof ClearEventQueueRequestAllOf
+     */
+    before?: string;
+}
+/**
+ * Request for creating a tenant
+ * @export
+ * @interface CloneTenantRequest
+ */
+export interface CloneTenantRequest {
+    /**
+     * Source Tenant ID
+     * @type {number}
+     * @memberof CloneTenantRequest
+     */
+    sourceTenantID?: number;
+    /**
+     * Target Tenant ID
+     * @type {number}
+     * @memberof CloneTenantRequest
+     */
+    targetTenantID?: number;
+    /**
+     * Target Tenant name
+     * @type {string}
+     * @memberof CloneTenantRequest
+     */
+    targetTenantName?: string;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof CloneTenantRequest
+     */
+    locationCode?: string;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof CloneTenantRequest
+     */
+    pageNum?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof CloneTenantRequest
+     */
+    pageSize?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof CloneTenantRequest
+     */
+    sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof CloneTenantRequest
+     */
+    userID?: number;
+}
+/**
+ * 
+ * @export
+ * @interface CloneTenantRequestAllOf
+ */
+export interface CloneTenantRequestAllOf {
+    /**
+     * Source Tenant ID
+     * @type {number}
+     * @memberof CloneTenantRequestAllOf
+     */
+    sourceTenantID?: number;
+    /**
+     * Target Tenant ID
+     * @type {number}
+     * @memberof CloneTenantRequestAllOf
+     */
+    targetTenantID?: number;
+    /**
+     * Target Tenant name
+     * @type {string}
+     * @memberof CloneTenantRequestAllOf
+     */
+    targetTenantName?: string;
+}
+/**
+ * Complete Wave Response
+ * @export
+ * @interface CompleteWaveResponse
+ */
+export interface CompleteWaveResponse {
+    /**
+     * Audit Identifier
+     * @type {number}
+     * @memberof CompleteWaveResponse
+     */
+    auditID?: number;
+    /**
+     * Recovery Wave Identifier
+     * @type {number}
+     * @memberof CompleteWaveResponse
+     */
+    recoveryWaveID?: number;
+    /**
+     * List of messages
+     * @type {Array<string>}
+     * @memberof CompleteWaveResponse
+     */
+    messages?: Array<string>;
+    /**
+     * Number of results
+     * @type {number}
+     * @memberof CompleteWaveResponse
+     */
+    numResults?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof CompleteWaveResponse
+     */
+    success?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface CompleteWaveResponseAllOf
+ */
+export interface CompleteWaveResponseAllOf {
+    /**
+     * Audit Identifier
+     * @type {number}
+     * @memberof CompleteWaveResponseAllOf
+     */
+    auditID?: number;
+    /**
+     * Recovery Wave Identifier
+     * @type {number}
+     * @memberof CompleteWaveResponseAllOf
+     */
+    recoveryWaveID?: number;
+}
+/**
+ * Request for creating an audit
+ * @export
+ * @interface CreateAuditRequest
+ */
+export interface CreateAuditRequest {
+    /**
+     * List of Create Audit Request Bins
+     * @type {Array<CreateAuditRequestBin>}
+     * @memberof CreateAuditRequest
+     */
+    bins?: Array<CreateAuditRequestBin>;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof CreateAuditRequest
+     */
+    locationCode?: string;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof CreateAuditRequest
+     */
+    pageNum?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof CreateAuditRequest
+     */
+    pageSize?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof CreateAuditRequest
+     */
+    sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof CreateAuditRequest
+     */
+    userID?: number;
+}
+/**
+ * 
+ * @export
+ * @interface CreateAuditRequestAllOf
+ */
+export interface CreateAuditRequestAllOf {
+    /**
+     * List of Create Audit Request Bins
+     * @type {Array<CreateAuditRequestBin>}
+     * @memberof CreateAuditRequestAllOf
+     */
+    bins?: Array<CreateAuditRequestBin>;
+}
+/**
+ * Request for creating an audit bin
+ * @export
+ * @interface CreateAuditRequestBin
+ */
+export interface CreateAuditRequestBin {
+    /**
+     * Name of bin
+     * @type {string}
+     * @memberof CreateAuditRequestBin
+     */
+    binName?: string;
+    /**
+     * List of Products within a bin
+     * @type {Array<InventoryProduct>}
+     * @memberof CreateAuditRequestBin
+     */
+    products?: Array<InventoryProduct>;
+}
+/**
  * Request needed for creating a new bin
  * @export
  * @interface CreateBinRequest
  */
 export interface CreateBinRequest {
     /**
-     * Bin Type Identifier
-     * @type {number}
-     * @memberof CreateBinRequest
-     */
-    binTypeID?: number;
-    /**
      * Bin Status Identifier
      * @type {number}
      * @memberof CreateBinRequest
      */
     binStatusID?: number;
+    /**
+     * Bin Type Identifier
+     * @type {number}
+     * @memberof CreateBinRequest
+     */
+    binTypeID?: number;
     /**
      * Name
      * @type {string}
@@ -1349,11 +2054,11 @@ export interface CreateBinRequest {
      */
     locationCode?: string;
     /**
-     * user id
+     * which page to show
      * @type {number}
      * @memberof CreateBinRequest
      */
-    userID?: number;
+    pageNum?: number;
     /**
      * how many results to show per page
      * @type {number}
@@ -1361,17 +2066,17 @@ export interface CreateBinRequest {
      */
     pageSize?: number;
     /**
-     * which page to show
-     * @type {number}
-     * @memberof CreateBinRequest
-     */
-    pageNum?: number;
-    /**
      * index to sort results by
      * @type {string}
      * @memberof CreateBinRequest
      */
     sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof CreateBinRequest
+     */
+    userID?: number;
 }
 /**
  * 
@@ -1380,17 +2085,17 @@ export interface CreateBinRequest {
  */
 export interface CreateBinRequestAllOf {
     /**
-     * Bin Type Identifier
-     * @type {number}
-     * @memberof CreateBinRequestAllOf
-     */
-    binTypeID?: number;
-    /**
      * Bin Status Identifier
      * @type {number}
      * @memberof CreateBinRequestAllOf
      */
     binStatusID?: number;
+    /**
+     * Bin Type Identifier
+     * @type {number}
+     * @memberof CreateBinRequestAllOf
+     */
+    binTypeID?: number;
     /**
      * Name
      * @type {string}
@@ -1405,17 +2110,17 @@ export interface CreateBinRequestAllOf {
  */
 export interface CreateExportSettingsFTPRequest {
     /**
-     * Export Settings Name to associate the ftp settings with
-     * @type {string}
-     * @memberof CreateExportSettingsFTPRequest
-     */
-    exportSettingsName: string;
-    /**
      * 
      * @type {ExportSettingsFTP}
      * @memberof CreateExportSettingsFTPRequest
      */
     exportSettingsFTP: ExportSettingsFTP;
+    /**
+     * Export Settings Name to associate the ftp settings with
+     * @type {string}
+     * @memberof CreateExportSettingsFTPRequest
+     */
+    exportSettingsName: string;
     /**
      * Location Code
      * @type {string}
@@ -1423,11 +2128,11 @@ export interface CreateExportSettingsFTPRequest {
      */
     locationCode?: string;
     /**
-     * user id
+     * which page to show
      * @type {number}
      * @memberof CreateExportSettingsFTPRequest
      */
-    userID?: number;
+    pageNum?: number;
     /**
      * how many results to show per page
      * @type {number}
@@ -1435,17 +2140,17 @@ export interface CreateExportSettingsFTPRequest {
      */
     pageSize?: number;
     /**
-     * which page to show
-     * @type {number}
-     * @memberof CreateExportSettingsFTPRequest
-     */
-    pageNum?: number;
-    /**
      * index to sort results by
      * @type {string}
      * @memberof CreateExportSettingsFTPRequest
      */
     sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof CreateExportSettingsFTPRequest
+     */
+    userID?: number;
 }
 /**
  * 
@@ -1454,85 +2159,17 @@ export interface CreateExportSettingsFTPRequest {
  */
 export interface CreateExportSettingsFTPRequestAllOf {
     /**
-     * Export Settings Name to associate the ftp settings with
-     * @type {string}
-     * @memberof CreateExportSettingsFTPRequestAllOf
-     */
-    exportSettingsName?: string;
-    /**
      * 
      * @type {ExportSettingsFTP}
      * @memberof CreateExportSettingsFTPRequestAllOf
      */
     exportSettingsFTP?: ExportSettingsFTP;
-}
-/**
- * Request needed for creating Export Settings GCS
- * @export
- * @interface CreateExportSettingsGcsRequest
- */
-export interface CreateExportSettingsGcsRequest {
     /**
-     * Export Settings Name to associate the GCS settings with
+     * Export Settings Name to associate the ftp settings with
      * @type {string}
-     * @memberof CreateExportSettingsGcsRequest
-     */
-    exportSettingsName: string;
-    /**
-     * 
-     * @type {ExportSettingsGcs}
-     * @memberof CreateExportSettingsGcsRequest
-     */
-    exportSettingsGcs: ExportSettingsGcs;
-    /**
-     * Location Code
-     * @type {string}
-     * @memberof CreateExportSettingsGcsRequest
-     */
-    locationCode?: string;
-    /**
-     * user id
-     * @type {number}
-     * @memberof CreateExportSettingsGcsRequest
-     */
-    userID?: number;
-    /**
-     * how many results to show per page
-     * @type {number}
-     * @memberof CreateExportSettingsGcsRequest
-     */
-    pageSize?: number;
-    /**
-     * which page to show
-     * @type {number}
-     * @memberof CreateExportSettingsGcsRequest
-     */
-    pageNum?: number;
-    /**
-     * index to sort results by
-     * @type {string}
-     * @memberof CreateExportSettingsGcsRequest
-     */
-    sortBy?: string;
-}
-/**
- * 
- * @export
- * @interface CreateExportSettingsGcsRequestAllOf
- */
-export interface CreateExportSettingsGcsRequestAllOf {
-    /**
-     * Export Settings Name to associate the GCS settings with
-     * @type {string}
-     * @memberof CreateExportSettingsGcsRequestAllOf
+     * @memberof CreateExportSettingsFTPRequestAllOf
      */
     exportSettingsName?: string;
-    /**
-     * 
-     * @type {ExportSettingsGcs}
-     * @memberof CreateExportSettingsGcsRequestAllOf
-     */
-    exportSettingsGcs?: ExportSettingsGcs;
 }
 /**
  * Request needed for creating Export Settings
@@ -1553,11 +2190,11 @@ export interface CreateExportSettingsRequest {
      */
     locationCode?: string;
     /**
-     * user id
+     * which page to show
      * @type {number}
      * @memberof CreateExportSettingsRequest
      */
-    userID?: number;
+    pageNum?: number;
     /**
      * how many results to show per page
      * @type {number}
@@ -1565,17 +2202,17 @@ export interface CreateExportSettingsRequest {
      */
     pageSize?: number;
     /**
-     * which page to show
-     * @type {number}
-     * @memberof CreateExportSettingsRequest
-     */
-    pageNum?: number;
-    /**
      * index to sort results by
      * @type {string}
      * @memberof CreateExportSettingsRequest
      */
     sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof CreateExportSettingsRequest
+     */
+    userID?: number;
 }
 /**
  * 
@@ -1615,11 +2252,11 @@ export interface CreateExportSettingsS3Request {
      */
     locationCode?: string;
     /**
-     * user id
+     * which page to show
      * @type {number}
      * @memberof CreateExportSettingsS3Request
      */
-    userID?: number;
+    pageNum?: number;
     /**
      * how many results to show per page
      * @type {number}
@@ -1627,17 +2264,17 @@ export interface CreateExportSettingsS3Request {
      */
     pageSize?: number;
     /**
-     * which page to show
-     * @type {number}
-     * @memberof CreateExportSettingsS3Request
-     */
-    pageNum?: number;
-    /**
      * index to sort results by
      * @type {string}
      * @memberof CreateExportSettingsS3Request
      */
     sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof CreateExportSettingsS3Request
+     */
+    userID?: number;
 }
 /**
  * 
@@ -1659,11 +2296,240 @@ export interface CreateExportSettingsS3RequestAllOf {
     exportSettingsS3?: ExportSettingsS3;
 }
 /**
+ * Request for creating a site
+ * @export
+ * @interface CreateSiteRequest
+ */
+export interface CreateSiteRequest {
+    /**
+     * Site name
+     * @type {string}
+     * @memberof CreateSiteRequest
+     */
+    name?: string;
+    /**
+     * Site ID
+     * @type {number}
+     * @memberof CreateSiteRequest
+     */
+    siteID?: number;
+    /**
+     * Tenant ID
+     * @type {number}
+     * @memberof CreateSiteRequest
+     */
+    tenantID?: number;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof CreateSiteRequest
+     */
+    locationCode?: string;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof CreateSiteRequest
+     */
+    pageNum?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof CreateSiteRequest
+     */
+    pageSize?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof CreateSiteRequest
+     */
+    sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof CreateSiteRequest
+     */
+    userID?: number;
+}
+/**
+ * 
+ * @export
+ * @interface CreateSiteRequestAllOf
+ */
+export interface CreateSiteRequestAllOf {
+    /**
+     * Site name
+     * @type {string}
+     * @memberof CreateSiteRequestAllOf
+     */
+    name?: string;
+    /**
+     * Site ID
+     * @type {number}
+     * @memberof CreateSiteRequestAllOf
+     */
+    siteID?: number;
+    /**
+     * Tenant ID
+     * @type {number}
+     * @memberof CreateSiteRequestAllOf
+     */
+    tenantID?: number;
+}
+/**
+ * Request for creating a tenant
+ * @export
+ * @interface CreateTenantRequest
+ */
+export interface CreateTenantRequest {
+    /**
+     * Tenant name
+     * @type {string}
+     * @memberof CreateTenantRequest
+     */
+    name?: string;
+    /**
+     * Tenant ID
+     * @type {number}
+     * @memberof CreateTenantRequest
+     */
+    tenantID?: number;
+    /**
+     * String Enum value for Unified Tenant Type (EcommOnly, EcommPlusOms, OmsOnly, CurbsideOnly)
+     * @type {string}
+     * @memberof CreateTenantRequest
+     */
+    unifiedTenantType?: string;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof CreateTenantRequest
+     */
+    locationCode?: string;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof CreateTenantRequest
+     */
+    pageNum?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof CreateTenantRequest
+     */
+    pageSize?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof CreateTenantRequest
+     */
+    sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof CreateTenantRequest
+     */
+    userID?: number;
+}
+/**
+ * 
+ * @export
+ * @interface CreateTenantRequestAllOf
+ */
+export interface CreateTenantRequestAllOf {
+    /**
+     * Tenant name
+     * @type {string}
+     * @memberof CreateTenantRequestAllOf
+     */
+    name?: string;
+    /**
+     * Tenant ID
+     * @type {number}
+     * @memberof CreateTenantRequestAllOf
+     */
+    tenantID?: number;
+    /**
+     * String Enum value for Unified Tenant Type (EcommOnly, EcommPlusOms, OmsOnly, CurbsideOnly)
+     * @type {string}
+     * @memberof CreateTenantRequestAllOf
+     */
+    unifiedTenantType?: string;
+}
+/**
+ * Create Wave Response
+ * @export
+ * @interface CreateWaveResponse
+ */
+export interface CreateWaveResponse {
+    /**
+     * Wave Identifier
+     * @type {number}
+     * @memberof CreateWaveResponse
+     */
+    waveID?: number;
+    /**
+     * List of messages
+     * @type {Array<string>}
+     * @memberof CreateWaveResponse
+     */
+    messages?: Array<string>;
+    /**
+     * Number of results
+     * @type {number}
+     * @memberof CreateWaveResponse
+     */
+    numResults?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof CreateWaveResponse
+     */
+    success?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface CreateWaveResponseAllOf
+ */
+export interface CreateWaveResponseAllOf {
+    /**
+     * Wave Identifier
+     * @type {number}
+     * @memberof CreateWaveResponseAllOf
+     */
+    waveID?: number;
+}
+/**
+ * Range of dates
+ * @export
+ * @interface DateRange
+ */
+export interface DateRange {
+    /**
+     * End Date
+     * @type {string}
+     * @memberof DateRange
+     */
+    endDate?: string;
+    /**
+     * Start Date
+     * @type {string}
+     * @memberof DateRange
+     */
+    startDate?: string;
+}
+/**
  * Request needed for deleting future inventory
  * @export
  * @interface DeleteFutureItemRequest
  */
 export interface DeleteFutureItemRequest {
+    /**
+     * Flag used to request deletion of future inventory across all locations (overrides locationCodes).
+     * @type {boolean}
+     * @memberof DeleteFutureItemRequest
+     */
+    allLocations?: boolean;
     /**
      * Flag used to differentiate between a test and a non-test run.
      * @type {boolean}
@@ -1677,36 +2543,11 @@ export interface DeleteFutureItemRequest {
      */
     explicit?: boolean;
     /**
-     * An array of locationCodes to be considered for item-deletion purposes. Optional.
-     *     All locationCodes associated with the requesting tenant will be considered if no locationCodes are provided.
-     * @type {Array<string>}
-     * @memberof DeleteFutureItemRequest
-     */
-    locationCodes?: Array<string>;
-    /**
-     * Flag used to request deletion of future inventory across all locations (overrides locationCodes).
-     * @type {boolean}
-     * @memberof DeleteFutureItemRequest
-     */
-    allLocations?: boolean;
-    /**
-     * The part number of the item to be deleted. Supports basic regex operators: .*+?^$[]
+     * End of future date range to search on. Required Field example '2023-01-26T19:59:00+0000'
      * @type {string}
      * @memberof DeleteFutureItemRequest
      */
-    partNumber?: string;
-    /**
-     * The upc of the item to be deleted. Supports basic regex operators: .*+?^$[]
-     * @type {string}
-     * @memberof DeleteFutureItemRequest
-     */
-    upc?: string;
-    /**
-     * The sku of the item to be deleted. Supports basic regex operators: .*+?^$[]
-     * @type {string}
-     * @memberof DeleteFutureItemRequest
-     */
-    sku?: string;
+    futureEndDate?: string;
     /**
      * Start of future date range to search on. Required field example '2023-01-26T19:59:00+0000'
      * @type {string}
@@ -1714,47 +2555,30 @@ export interface DeleteFutureItemRequest {
      */
     futureStartDate?: string;
     /**
-     * End of future date range to search on. Required Field example '2023-01-26T19:59:00+0000'
-     * @type {string}
-     * @memberof DeleteFutureItemRequest
-     */
-    futureEndDate?: string;
-    /**
-     * An array of externalIDs to be considered for item-deletion purposes. Optional.
+     * An array of locationCodes to be considered for item-deletion purposes. Optional.
+     *     All locationCodes associated with the requesting tenant will be considered if no locationCodes are provided.
      * @type {Array<string>}
      * @memberof DeleteFutureItemRequest
      */
-    externalIDs?: Array<string>;
+    locationCodes?: Array<string>;
     /**
-     * Track which lot a product is manufactured in
+     * The part number of the item to be deleted. Supports basic regex operators: .*+?^$[]
      * @type {string}
      * @memberof DeleteFutureItemRequest
      */
-    lotCode?: string;
+    partNumber?: string;
     /**
-     * Describes the state of the product
+     * The sku of the item to be deleted. Supports basic regex operators: .*+?^$[]
      * @type {string}
      * @memberof DeleteFutureItemRequest
      */
-    condition?: string;
+    sku?: string;
     /**
-     * A serial number is unique to a specific, physical unit of inventory
+     * The upc of the item to be deleted. Supports basic regex operators: .*+?^$[]
      * @type {string}
      * @memberof DeleteFutureItemRequest
      */
-    serialNumber?: string;
-    /**
-     * Used by the retailer for storing information related to manufacturing date or expiry date and use date to allocate for better stock management
-     * @type {string}
-     * @memberof DeleteFutureItemRequest
-     */
-    date?: string;
-    /**
-     * Flag to determine whether to delete a granular record without granular fields or delete all associated granular records. Only considered when no granular fields are specified.
-     * @type {boolean}
-     * @memberof DeleteFutureItemRequest
-     */
-    deleteGranularRecord?: boolean;
+    upc?: string;
 }
 /**
  * Delete Future Item Response
@@ -1779,6 +2603,12 @@ export interface DeleteFutureItemResponse {
      * @type {boolean}
      * @memberof DeleteFutureItemResponse
      */
+    jobIDs?: boolean;
+    /**
+     * Flag used to differentiate between a test and a non-test run.
+     * @type {boolean}
+     * @memberof DeleteFutureItemResponse
+     */
     totalInventoryEntriesDeleted?: boolean;
     /**
      * Flag used to differentiate between a test and a non-test run.
@@ -1786,18 +2616,6 @@ export interface DeleteFutureItemResponse {
      * @memberof DeleteFutureItemResponse
      */
     totalLocationsAffected?: boolean;
-    /**
-     * Flag used to differentiate between a test and a non-test run.
-     * @type {boolean}
-     * @memberof DeleteFutureItemResponse
-     */
-    totalexternalIDsAffected?: boolean;
-    /**
-     * Flag used to differentiate between a test and a non-test run.
-     * @type {boolean}
-     * @memberof DeleteFutureItemResponse
-     */
-    jobIDs?: boolean;
 }
 /**
  * Request needed for deleting inventory
@@ -1805,6 +2623,12 @@ export interface DeleteFutureItemResponse {
  * @interface DeleteItemRequest
  */
 export interface DeleteItemRequest {
+    /**
+     * Flag used to request deletion of inventory across all locations (overrides locationCodes).
+     * @type {boolean}
+     * @memberof DeleteItemRequest
+     */
+    allLocations?: boolean;
     /**
      * Flag used to differentiate between a test and a non-test run.
      * @type {boolean}
@@ -1825,23 +2649,11 @@ export interface DeleteItemRequest {
      */
     locationCodes?: Array<string>;
     /**
-     * Flag used to request deletion of inventory across all locations (overrides locationCodes).
-     * @type {boolean}
-     * @memberof DeleteItemRequest
-     */
-    allLocations?: boolean;
-    /**
      * The part number of the item to be deleted. Supports basic regex operators: .*+?^$[]
      * @type {string}
      * @memberof DeleteItemRequest
      */
     partNumber?: string;
-    /**
-     * The upc of the item to be deleted. Supports basic regex operators: .*+?^$[]
-     * @type {string}
-     * @memberof DeleteItemRequest
-     */
-    upc?: string;
     /**
      * The sku of the item to be deleted. Supports basic regex operators: .*+?^$[]
      * @type {string}
@@ -1855,35 +2667,11 @@ export interface DeleteItemRequest {
      */
     tags?: { [key: string]: string; };
     /**
-     * Track which lot a product is manufactured in
+     * The upc of the item to be deleted. Supports basic regex operators: .*+?^$[]
      * @type {string}
      * @memberof DeleteItemRequest
      */
-    lotCode?: string;
-    /**
-     * Describes the state of the product
-     * @type {string}
-     * @memberof DeleteItemRequest
-     */
-    condition?: string;
-    /**
-     * A serial number is unique to a specific, physical unit of inventory
-     * @type {string}
-     * @memberof DeleteItemRequest
-     */
-    serialNumber?: string;
-    /**
-     * Used by the retailer for storing information related to manufacturing date or expiry date and use date to allocate for better stock management
-     * @type {string}
-     * @memberof DeleteItemRequest
-     */
-    date?: string;
-    /**
-     * Flag to determine whether to delete a granular record without granular fields or delete all associated granular records. Only considered when no granular fields are specified.
-     * @type {boolean}
-     * @memberof DeleteItemRequest
-     */
-    deleteGranularRecord?: boolean;
+    upc?: string;
 }
 /**
  * Delete Item Response
@@ -1903,6 +2691,12 @@ export interface DeleteItemResponse {
      * @memberof DeleteItemResponse
      */
     itemsDeleted?: Array<MDeleteItem>;
+    /**
+     * Flag used to differentiate between a test and a non-test run.
+     * @type {boolean}
+     * @memberof DeleteItemResponse
+     */
+    jobIDs?: boolean;
     /**
      * Flag used to differentiate between a test and a non-test run.
      * @type {boolean}
@@ -1933,12 +2727,6 @@ export interface DeleteItemResponse {
      * @memberof DeleteItemResponse
      */
     totalProductsDeleted?: boolean;
-    /**
-     * Flag used to differentiate between a test and a non-test run.
-     * @type {boolean}
-     * @memberof DeleteItemResponse
-     */
-    jobIDs?: boolean;
 }
 /**
  * Request needed for deleting inventory
@@ -1946,6 +2734,12 @@ export interface DeleteItemResponse {
  * @interface DeleteItemsRequest
  */
 export interface DeleteItemsRequest {
+    /**
+     * Flag used to request deletion of inventory across all locations (overrides locationCodes).
+     * @type {boolean}
+     * @memberof DeleteItemsRequest
+     */
+    allLocations?: boolean;
     /**
      * Flag used to differentiate between a test and a non-test run.
      * @type {boolean}
@@ -1959,24 +2753,18 @@ export interface DeleteItemsRequest {
      */
     explicit?: boolean;
     /**
+     * List of items to delete. Supports basic regex operators: .*+?^$[]
+     * @type {Array<InventoryItem>}
+     * @memberof DeleteItemsRequest
+     */
+    items?: Array<InventoryItem>;
+    /**
      * An array of locationCodes to be considered for item-deletion purposes. Optional.
      *     All locationCodes associated with the requesting tenant will be considered if no locationCodes are provided.
      * @type {Array<string>}
      * @memberof DeleteItemsRequest
      */
     locationCodes?: Array<string>;
-    /**
-     * Flag used to request deletion of inventory across all locations (overrides locationCodes).
-     * @type {boolean}
-     * @memberof DeleteItemsRequest
-     */
-    allLocations?: boolean;
-    /**
-     * List of items to delete. Supports basic regex operators: .*+?^$[]
-     * @type {Array<InventoryItem>}
-     * @memberof DeleteItemsRequest
-     */
-    items?: Array<InventoryItem>;
     /**
      * Associative Map of <String, String> for tagCategoryName => tagName
      * @type {{ [key: string]: string; }}
@@ -2036,11 +2824,11 @@ export interface ExportInventoryJobResponse {
  */
 export interface ExportInventoryRequest {
     /**
-     * Name of the Export Settings to use
-     * @type {string}
+     * Flag for sending the exports to the development droppoint
+     * @type {boolean}
      * @memberof ExportInventoryRequest
      */
-    exportSettingsName?: string;
+    development?: boolean;
     /**
      * Name of the FTP Settings to use. Will only check for this if exportID is already set
      * @type {string}
@@ -2048,35 +2836,17 @@ export interface ExportInventoryRequest {
      */
     exportSettingsFTPName?: string;
     /**
+     * Name of the Export Settings to use
+     * @type {string}
+     * @memberof ExportInventoryRequest
+     */
+    exportSettingsName?: string;
+    /**
      * Name of the S3 Settings to use. Will only check for this if exportID is already set
      * @type {string}
      * @memberof ExportInventoryRequest
      */
     exportSettingsS3Name?: string;
-    /**
-     * Name of the Gcs Settings to use. Will only check for this if exportID is already set
-     * @type {string}
-     * @memberof ExportInventoryRequest
-     */
-    exportSettingsGcsName?: string;
-    /**
-     * Flag for sending the exports to the development droppoint
-     * @type {boolean}
-     * @memberof ExportInventoryRequest
-     */
-    development?: boolean;
-    /**
-     * Export id post import
-     * @type {number}
-     * @memberof ExportInventoryRequest
-     */
-    exportSettingsId?: number;
-    /**
-     * FTP id post import
-     * @type {number}
-     * @memberof ExportInventoryRequest
-     */
-    exportSettingsFtpId?: number;
     /**
      * Location Code
      * @type {string}
@@ -2084,11 +2854,11 @@ export interface ExportInventoryRequest {
      */
     locationCode?: string;
     /**
-     * user id
+     * which page to show
      * @type {number}
      * @memberof ExportInventoryRequest
      */
-    userID?: number;
+    pageNum?: number;
     /**
      * how many results to show per page
      * @type {number}
@@ -2096,17 +2866,17 @@ export interface ExportInventoryRequest {
      */
     pageSize?: number;
     /**
-     * which page to show
-     * @type {number}
-     * @memberof ExportInventoryRequest
-     */
-    pageNum?: number;
-    /**
      * index to sort results by
      * @type {string}
      * @memberof ExportInventoryRequest
      */
     sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof ExportInventoryRequest
+     */
+    userID?: number;
 }
 /**
  * 
@@ -2115,11 +2885,11 @@ export interface ExportInventoryRequest {
  */
 export interface ExportInventoryRequestAllOf {
     /**
-     * Name of the Export Settings to use
-     * @type {string}
+     * Flag for sending the exports to the development droppoint
+     * @type {boolean}
      * @memberof ExportInventoryRequestAllOf
      */
-    exportSettingsName?: string;
+    development?: boolean;
     /**
      * Name of the FTP Settings to use. Will only check for this if exportID is already set
      * @type {string}
@@ -2127,35 +2897,17 @@ export interface ExportInventoryRequestAllOf {
      */
     exportSettingsFTPName?: string;
     /**
+     * Name of the Export Settings to use
+     * @type {string}
+     * @memberof ExportInventoryRequestAllOf
+     */
+    exportSettingsName?: string;
+    /**
      * Name of the S3 Settings to use. Will only check for this if exportID is already set
      * @type {string}
      * @memberof ExportInventoryRequestAllOf
      */
     exportSettingsS3Name?: string;
-    /**
-     * Name of the Gcs Settings to use. Will only check for this if exportID is already set
-     * @type {string}
-     * @memberof ExportInventoryRequestAllOf
-     */
-    exportSettingsGcsName?: string;
-    /**
-     * Flag for sending the exports to the development droppoint
-     * @type {boolean}
-     * @memberof ExportInventoryRequestAllOf
-     */
-    development?: boolean;
-    /**
-     * Export id post import
-     * @type {number}
-     * @memberof ExportInventoryRequestAllOf
-     */
-    exportSettingsId?: number;
-    /**
-     * FTP id post import
-     * @type {number}
-     * @memberof ExportInventoryRequestAllOf
-     */
-    exportSettingsFtpId?: number;
 }
 /**
  * Response for Export Inventory api
@@ -2177,53 +2929,11 @@ export interface ExportInventoryResponse {
  */
 export interface ExportSettings {
     /**
-     * Export Settings Name
-     * @type {string}
-     * @memberof ExportSettings
-     */
-    name: string;
-    /**
-     * Format for the export file
-     * @type {string}
-     * @memberof ExportSettings
-     */
-    fileFormat: ExportSettingsFileFormatEnum;
-    /**
-     * Type of exportGG for the settings
-     * @type {string}
-     * @memberof ExportSettings
-     */
-    exportType: ExportSettingsExportTypeEnum;
-    /**
-     * Flag for only sending available
+     * Flag for only using locations with Direct Ship enabled
      * @type {boolean}
      * @memberof ExportSettings
      */
-    onlySendAvailable?: boolean;
-    /**
-     * Flag for only sending from active locations
-     * @type {boolean}
-     * @memberof ExportSettings
-     */
-    onlySendActiveLocations?: boolean;
-    /**
-     * List of export FTP settings
-     * @type {Array<ExportSettingsFTP>}
-     * @memberof ExportSettings
-     */
-    ftpInformation: Array<ExportSettingsFTP>;
-    /**
-     * List of export S3 settings
-     * @type {Array<ExportSettingsS3>}
-     * @memberof ExportSettings
-     */
-    s3Information?: Array<ExportSettingsS3>;
-    /**
-     * List of export S3 settings
-     * @type {Array<ExportSettingsGcs>}
-     * @memberof ExportSettings
-     */
-    gcsInformation?: Array<ExportSettingsGcs>;
+    directShip?: boolean;
     /**
      * Flag for exporting as a single file
      * @type {boolean}
@@ -2231,23 +2941,17 @@ export interface ExportSettings {
      */
     exportSingleFile?: boolean;
     /**
-     * Safety Stock
+     * Type of exportGG for the settings
      * @type {string}
      * @memberof ExportSettings
      */
-    safetyStock?: ExportSettingsSafetyStockEnum;
+    exportType: ExportSettingsExportTypeEnum;
     /**
-     * Floor
+     * Format for the export file
      * @type {string}
      * @memberof ExportSettings
      */
-    floor?: ExportSettingsFloorEnum;
-    /**
-     * LTD
-     * @type {string}
-     * @memberof ExportSettings
-     */
-    ltd?: ExportSettingsLtdEnum;
+    fileFormat: ExportSettingsFileFormatEnum;
     /**
      * Name for the export file
      * @type {string}
@@ -2255,11 +2959,23 @@ export interface ExportSettings {
      */
     fileName?: string;
     /**
-     * Flag for using shortened filenames
+     * Floor
+     * @type {string}
+     * @memberof ExportSettings
+     */
+    floor?: ExportSettingsFloorEnum;
+    /**
+     * List of export FTP settings
+     * @type {Array<ExportSettingsFTP>}
+     * @memberof ExportSettings
+     */
+    ftpInformation: Array<ExportSettingsFTP>;
+    /**
+     * Flag for excluding negative inventory locations
      * @type {boolean}
      * @memberof ExportSettings
      */
-    shortenFilename?: boolean;
+    ignoreNegativeInventoryLocations?: boolean;
     /**
      * Flag for including attributes
      * @type {boolean}
@@ -2267,17 +2983,89 @@ export interface ExportSettings {
      */
     includeAttributes?: boolean;
     /**
-     * Flag for zipping the files
+     * Flag for marking the setting as a classic export
      * @type {boolean}
      * @memberof ExportSettings
      */
-    zipFiles?: boolean;
+    isClassic?: boolean;
     /**
-     * Name for the zipped file
+     * Location Group Ids associated with the settings
+     * @type {Array<number>}
+     * @memberof ExportSettings
+     */
+    locationGroupIDs?: Array<number>;
+    /**
+     * LTD
      * @type {string}
      * @memberof ExportSettings
      */
-    zipFileName?: string;
+    ltd?: ExportSettingsLtdEnum;
+    /**
+     * Export Settings Name
+     * @type {string}
+     * @memberof ExportSettings
+     */
+    name: string;
+    /**
+     * Flag for only sending from active locations
+     * @type {boolean}
+     * @memberof ExportSettings
+     */
+    onlySendActiveLocations?: boolean;
+    /**
+     * Flag for only sending available
+     * @type {boolean}
+     * @memberof ExportSettings
+     */
+    onlySendAvailable?: boolean;
+    /**
+     * Flag for only using locations with In Store Pickup enabled
+     * @type {boolean}
+     * @memberof ExportSettings
+     */
+    pickup?: boolean;
+    /**
+     * Enum for export productMapping
+     * @type {string}
+     * @memberof ExportSettings
+     */
+    productMapping?: ExportSettingsProductMappingEnum;
+    /**
+     * List of export S3 settings
+     * @type {Array<ExportSettingsS3>}
+     * @memberof ExportSettings
+     */
+    s3Information?: Array<ExportSettingsS3>;
+    /**
+     * Safety Stock
+     * @type {string}
+     * @memberof ExportSettings
+     */
+    safetyStock?: ExportSettingsSafetyStockEnum;
+    /**
+     * Flag for using shortened filenames
+     * @type {boolean}
+     * @memberof ExportSettings
+     */
+    shortenFilename?: boolean;
+    /**
+     * Site Ids associated with the settings
+     * @type {Array<number>}
+     * @memberof ExportSettings
+     */
+    siteIDs?: Array<number>;
+    /**
+     * Associative Map of <String, String> for tagCategoryName => tagName
+     * @type {{ [key: string]: string; }}
+     * @memberof ExportSettings
+     */
+    tags?: { [key: string]: string; };
+    /**
+     * Flag for only using locations with Transfer enabled
+     * @type {boolean}
+     * @memberof ExportSettings
+     */
+    transfer?: boolean;
     /**
      * Untransformed File Name
      * @type {string}
@@ -2291,70 +3079,19 @@ export interface ExportSettings {
      */
     untransformedZipFileName?: string;
     /**
-     * Location Group Ids associated with the settings
-     * @type {Array<number>}
-     * @memberof ExportSettings
-     */
-    locationGroupIDs?: Array<number>;
-    /**
-     * Site Ids associated with the settings
-     * @type {Array<number>}
-     * @memberof ExportSettings
-     */
-    siteIDs?: Array<number>;
-    /**
-     * Flag for only using locations with Direct Ship enabled
-     * @type {boolean}
-     * @memberof ExportSettings
-     */
-    directShip?: boolean;
-    /**
-     * Flag for only using locations with In Store Pickup enabled
-     * @type {boolean}
-     * @memberof ExportSettings
-     */
-    pickup?: boolean;
-    /**
-     * Flag for only using locations with Transfer enabled
-     * @type {boolean}
-     * @memberof ExportSettings
-     */
-    transfer?: boolean;
-    /**
-     * Enum for export productMapping
+     * Name for the zipped file
      * @type {string}
      * @memberof ExportSettings
      */
-    productMapping?: ExportSettingsProductMappingEnum;
+    zipFileName?: string;
     /**
-     * Flag for marking the setting as a classic export
+     * Flag for zipping the files
      * @type {boolean}
      * @memberof ExportSettings
      */
-    isClassic?: boolean;
-    /**
-     * Flag for excluding negative inventory locations
-     * @type {boolean}
-     * @memberof ExportSettings
-     */
-    ignoreNegativeInventoryLocations?: boolean;
-    /**
-     * Associative Map of <String, String> for tagCategoryName => tagName
-     * @type {{ [key: string]: string; }}
-     * @memberof ExportSettings
-     */
-    tags?: { [key: string]: string; };
+    zipFiles?: boolean;
 }
 
-
-/**
- * @export
- */
-export const ExportSettingsFileFormatEnum = {
-    Xml: 'XML',
-    Csv: 'CSV'
-} as const;
-export type ExportSettingsFileFormatEnum = typeof ExportSettingsFileFormatEnum[keyof typeof ExportSettingsFileFormatEnum];
 
 /**
  * @export
@@ -2368,13 +3105,11 @@ export type ExportSettingsExportTypeEnum = typeof ExportSettingsExportTypeEnum[k
 /**
  * @export
  */
-export const ExportSettingsSafetyStockEnum = {
-    Max: 'SAFETY_STOCK_MAX',
-    Min: 'SAFETY_STOCK_MIN',
-    Avg: 'SAFETY_STOCK_AVG',
-    Sum: 'SAFETY_STOCK_SUM'
+export const ExportSettingsFileFormatEnum = {
+    Xml: 'XML',
+    Csv: 'CSV'
 } as const;
-export type ExportSettingsSafetyStockEnum = typeof ExportSettingsSafetyStockEnum[keyof typeof ExportSettingsSafetyStockEnum];
+export type ExportSettingsFileFormatEnum = typeof ExportSettingsFileFormatEnum[keyof typeof ExportSettingsFileFormatEnum];
 
 /**
  * @export
@@ -2408,6 +3143,17 @@ export const ExportSettingsProductMappingEnum = {
 export type ExportSettingsProductMappingEnum = typeof ExportSettingsProductMappingEnum[keyof typeof ExportSettingsProductMappingEnum];
 
 /**
+ * @export
+ */
+export const ExportSettingsSafetyStockEnum = {
+    Max: 'SAFETY_STOCK_MAX',
+    Min: 'SAFETY_STOCK_MIN',
+    Avg: 'SAFETY_STOCK_AVG',
+    Sum: 'SAFETY_STOCK_SUM'
+} as const;
+export type ExportSettingsSafetyStockEnum = typeof ExportSettingsSafetyStockEnum[keyof typeof ExportSettingsSafetyStockEnum];
+
+/**
  * Export Settings FTP
  * @export
  * @interface ExportSettingsFTP
@@ -2419,66 +3165,6 @@ export interface ExportSettingsFTP {
      * @memberof ExportSettingsFTP
      */
     active?: boolean;
-    /**
-     * Export Settings ID
-     * @type {number}
-     * @memberof ExportSettingsFTP
-     */
-    exportSettingsID?: number;
-    /**
-     * Export Settings FTP ID
-     * @type {number}
-     * @memberof ExportSettingsFTP
-     */
-    exportSettingsFTPID?: number;
-    /**
-     * Export Settings FTP Name
-     * @type {string}
-     * @memberof ExportSettingsFTP
-     */
-    name: string;
-    /**
-     * FTP Server Address
-     * @type {string}
-     * @memberof ExportSettingsFTP
-     */
-    ftpServer: string;
-    /**
-     * FTP Server Port
-     * @type {number}
-     * @memberof ExportSettingsFTP
-     */
-    ftpPort: number;
-    /**
-     * FTP Server Directory
-     * @type {string}
-     * @memberof ExportSettingsFTP
-     */
-    ftpDirectory: string;
-    /**
-     * FTP Server Control File Directory
-     * @type {string}
-     * @memberof ExportSettingsFTP
-     */
-    ftpDirectoryControlFile?: string;
-    /**
-     * FTP Username
-     * @type {string}
-     * @memberof ExportSettingsFTP
-     */
-    ftpUser?: string;
-    /**
-     * FTP Password
-     * @type {string}
-     * @memberof ExportSettingsFTP
-     */
-    ftpPassword?: string;
-    /**
-     * FTP Delivery Class. Defaults to ExportDeliveryDefault
-     * @type {string}
-     * @memberof ExportSettingsFTP
-     */
-    deliveryClass?: string;
     /**
      * Control File
      * @type {string}
@@ -2492,17 +3178,17 @@ export interface ExportSettingsFTP {
      */
     controlFileEmail?: string;
     /**
-     * Remote File Name
-     * @type {string}
-     * @memberof ExportSettingsFTP
-     */
-    remoteFileName?: string;
-    /**
      * Control File Name
      * @type {string}
      * @memberof ExportSettingsFTP
      */
     controlFileName?: string;
+    /**
+     * FTP Delivery Class. Defaults to ExportDeliveryDefault
+     * @type {string}
+     * @memberof ExportSettingsFTP
+     */
+    deliveryClass?: string;
     /**
      * Endpoint
      * @type {string}
@@ -2515,43 +3201,66 @@ export interface ExportSettingsFTP {
      * @memberof ExportSettingsFTP
      */
     environment?: string;
-}
-/**
- * Export Settings GCS
- * @export
- * @interface ExportSettingsGcs
- */
-export interface ExportSettingsGcs {
+    /**
+     * Export Settings FTP ID
+     * @type {number}
+     * @memberof ExportSettingsFTP
+     */
+    exportSettingsFTPID?: number;
     /**
      * Export Settings ID
      * @type {number}
-     * @memberof ExportSettingsGcs
+     * @memberof ExportSettingsFTP
      */
     exportSettingsID?: number;
     /**
-     * Export Settings GCS ID
-     * @type {number}
-     * @memberof ExportSettingsGcs
-     */
-    exportSettingsGcsID?: number;
-    /**
-     * Export Settings GCS Name
+     * FTP Server Directory
      * @type {string}
-     * @memberof ExportSettingsGcs
+     * @memberof ExportSettingsFTP
+     */
+    ftpDirectory: string;
+    /**
+     * FTP Server Control File Directory
+     * @type {string}
+     * @memberof ExportSettingsFTP
+     */
+    ftpDirectoryControlFile?: string;
+    /**
+     * FTP Password
+     * @type {string}
+     * @memberof ExportSettingsFTP
+     */
+    ftpPassword?: string;
+    /**
+     * FTP Server Port
+     * @type {number}
+     * @memberof ExportSettingsFTP
+     */
+    ftpPort: number;
+    /**
+     * FTP Server Address
+     * @type {string}
+     * @memberof ExportSettingsFTP
+     */
+    ftpServer: string;
+    /**
+     * FTP Username
+     * @type {string}
+     * @memberof ExportSettingsFTP
+     */
+    ftpUser?: string;
+    /**
+     * Export Settings FTP Name
+     * @type {string}
+     * @memberof ExportSettingsFTP
      */
     name: string;
     /**
-     * Flag for Active State
-     * @type {boolean}
-     * @memberof ExportSettingsGcs
-     */
-    active?: boolean;
-    /**
-     * GCS Bucket (directory)
+     * Remote File Name
      * @type {string}
-     * @memberof ExportSettingsGcs
+     * @memberof ExportSettingsFTP
      */
-    gcsBucket?: string;
+    remoteFileName?: string;
 }
 /**
  * Job ID Response
@@ -2560,29 +3269,23 @@ export interface ExportSettingsGcs {
  */
 export interface ExportSettingsResponse {
     /**
-     * Created Export Settings Name
-     * @type {string}
-     * @memberof ExportSettingsResponse
-     */
-    exportSettingsName?: string;
-    /**
      * Created Export Settings FTP Name
      * @type {string}
      * @memberof ExportSettingsResponse
      */
     exportSettingsFTPName?: string;
     /**
+     * Created Export Settings Name
+     * @type {string}
+     * @memberof ExportSettingsResponse
+     */
+    exportSettingsName?: string;
+    /**
      * Created Export Settings S3 Name
      * @type {string}
      * @memberof ExportSettingsResponse
      */
     exportSettingsS3Name?: string;
-    /**
-     * Created Export Settings GCS Name
-     * @type {string}
-     * @memberof ExportSettingsResponse
-     */
-    exportSettingsGcsName?: string;
 }
 /**
  * Export Settings S3
@@ -2590,6 +3293,18 @@ export interface ExportSettingsResponse {
  * @interface ExportSettingsS3
  */
 export interface ExportSettingsS3 {
+    /**
+     * Flag for Active State
+     * @type {boolean}
+     * @memberof ExportSettingsS3
+     */
+    active?: boolean;
+    /**
+     * S3 Bucket (directory)
+     * @type {string}
+     * @memberof ExportSettingsS3
+     */
+    bucket: string;
     /**
      * Export Settings ID
      * @type {number}
@@ -2609,23 +3324,11 @@ export interface ExportSettingsS3 {
      */
     name: string;
     /**
-     * Flag for Active State
-     * @type {boolean}
-     * @memberof ExportSettingsS3
-     */
-    active?: boolean;
-    /**
      * S3 Region
      * @type {string}
      * @memberof ExportSettingsS3
      */
     region: string;
-    /**
-     * S3 Bucket (directory)
-     * @type {string}
-     * @memberof ExportSettingsS3
-     */
-    bucket: string;
 }
 /**
  * Request for Fetch File Configs
@@ -2634,17 +3337,71 @@ export interface ExportSettingsS3 {
  */
 export interface FetchFileConfigRequest {
     /**
-     * Fetch File Config ID
-     * @type {number}
+     * 
+     * @type {any}
      * @memberof FetchFileConfigRequest
      */
-    fetchFileConfigID?: number;
+    active: any | null;
     /**
-     * Flag for active state
-     * @type {boolean}
+     * 
+     * @type {any}
      * @memberof FetchFileConfigRequest
      */
-    active: boolean;
+    blankQuantityIsZero?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof FetchFileConfigRequest
+     */
+    ignoreExtraFields?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof FetchFileConfigRequest
+     */
+    multipleFiles?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof FetchFileConfigRequest
+     */
+    refreshEnabled?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof FetchFileConfigRequest
+     */
+    updateEnabled?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof FetchFileConfigRequest
+     */
+    useControlFile?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof FetchFileConfigRequest
+     */
+    zeroOutNegatives?: any | null;
+    /**
+     * S3 Archive Bucket
+     * @type {string}
+     * @memberof FetchFileConfigRequest
+     */
+    archiveBucket?: string;
+    /**
+     * S3 Bucket
+     * @type {string}
+     * @memberof FetchFileConfigRequest
+     */
+    bucket?: string;
+    /**
+     * Delimiter
+     * @type {string}
+     * @memberof FetchFileConfigRequest
+     */
+    csvDelimiter?: string;
     /**
      * Email List
      * @type {string}
@@ -2652,41 +3409,17 @@ export interface FetchFileConfigRequest {
      */
     emailList?: string;
     /**
-     * Flag for Refresh Enabled
-     * @type {boolean}
+     * Fetch File Config ID
+     * @type {number}
      * @memberof FetchFileConfigRequest
      */
-    refreshEnabled?: boolean;
+    fetchFileConfigID?: number;
     /**
-     * Description for the refresh file
-     * @type {string}
+     * List of field names
+     * @type {Array<string>}
      * @memberof FetchFileConfigRequest
      */
-    refreshFileDescription?: string;
-    /**
-     * Flag for Update Enabled
-     * @type {boolean}
-     * @memberof FetchFileConfigRequest
-     */
-    updateEnabled?: boolean;
-    /**
-     * Description for the update file
-     * @type {string}
-     * @memberof FetchFileConfigRequest
-     */
-    updateFileDescription?: string;
-    /**
-     * FTP server address
-     * @type {string}
-     * @memberof FetchFileConfigRequest
-     */
-    ftpServer: string;
-    /**
-     * FTP server username
-     * @type {string}
-     * @memberof FetchFileConfigRequest
-     */
-    ftpUsername: string;
+    fieldNameMap?: Array<string>;
     /**
      * FTP server password
      * @type {string}
@@ -2712,53 +3445,17 @@ export interface FetchFileConfigRequest {
      */
     ftpRemotePathArchive?: string;
     /**
-     * GCS Bucket
+     * FTP server address
      * @type {string}
      * @memberof FetchFileConfigRequest
      */
-    gcsBucket?: string;
+    ftpServer: string;
     /**
-     * GCS Path
+     * FTP server username
      * @type {string}
      * @memberof FetchFileConfigRequest
      */
-    gcsPath?: string;
-    /**
-     * GCS Archive Path
-     * @type {string}
-     * @memberof FetchFileConfigRequest
-     */
-    gcsArchivePath?: string;
-    /**
-     * S3 Region
-     * @type {string}
-     * @memberof FetchFileConfigRequest
-     */
-    region?: string;
-    /**
-     * S3 Bucket
-     * @type {string}
-     * @memberof FetchFileConfigRequest
-     */
-    bucket?: string;
-    /**
-     * S3 Bucket Path (directory)
-     * @type {string}
-     * @memberof FetchFileConfigRequest
-     */
-    s3Path?: string;
-    /**
-     * S3 Archive Bucket
-     * @type {string}
-     * @memberof FetchFileConfigRequest
-     */
-    archiveBucket?: string;
-    /**
-     * S3 Archive Bucket Path (directory)
-     * @type {string}
-     * @memberof FetchFileConfigRequest
-     */
-    s3ArchivePath?: string;
+    ftpUsername: string;
     /**
      * Lock name
      * @type {string}
@@ -2772,23 +3469,35 @@ export interface FetchFileConfigRequest {
      */
     postProcessAction: number;
     /**
-     * Flag for using control file
-     * @type {boolean}
+     * Enum for fetch file productMapping
+     * @type {string}
      * @memberof FetchFileConfigRequest
      */
-    useControlFile?: boolean;
+    productMapping?: FetchFileConfigRequestProductMappingEnum;
     /**
-     * Flag for using multiple files
-     * @type {boolean}
+     * Description for the refresh file
+     * @type {string}
      * @memberof FetchFileConfigRequest
      */
-    multipleFiles?: boolean;
+    refreshFileDescription?: string;
     /**
-     * Flag for converting negatives to zero
-     * @type {boolean}
+     * S3 Region
+     * @type {string}
      * @memberof FetchFileConfigRequest
      */
-    zeroOutNegatives?: boolean;
+    region?: string;
+    /**
+     * S3 Archive Bucket Path (directory)
+     * @type {string}
+     * @memberof FetchFileConfigRequest
+     */
+    s3ArchivePath?: string;
+    /**
+     * S3 Bucket Path (directory)
+     * @type {string}
+     * @memberof FetchFileConfigRequest
+     */
+    s3Path?: string;
     /**
      * Flag for if its a test ftp config
      * @type {boolean}
@@ -2796,35 +3505,11 @@ export interface FetchFileConfigRequest {
      */
     testFTPConfigs?: boolean;
     /**
-     * List of field names
-     * @type {Array<string>}
-     * @memberof FetchFileConfigRequest
-     */
-    fieldNameMap?: Array<string>;
-    /**
-     * Flag for ignoring extra fields
-     * @type {boolean}
-     * @memberof FetchFileConfigRequest
-     */
-    ignoreExtraFields?: boolean;
-    /**
-     * Flag to convert null quantities to zero
-     * @type {boolean}
-     * @memberof FetchFileConfigRequest
-     */
-    blankQuantityIsZero?: boolean;
-    /**
-     * Delimiter
+     * Description for the update file
      * @type {string}
      * @memberof FetchFileConfigRequest
      */
-    csvDelimiter?: string;
-    /**
-     * Enum for fetch file productMapping
-     * @type {string}
-     * @memberof FetchFileConfigRequest
-     */
-    productMapping?: FetchFileConfigRequestProductMappingEnum;
+    updateFileDescription?: string;
     /**
      * Location Code
      * @type {string}
@@ -2832,11 +3517,11 @@ export interface FetchFileConfigRequest {
      */
     locationCode?: string;
     /**
-     * user id
+     * which page to show
      * @type {number}
      * @memberof FetchFileConfigRequest
      */
-    userID?: number;
+    pageNum?: number;
     /**
      * how many results to show per page
      * @type {number}
@@ -2844,17 +3529,17 @@ export interface FetchFileConfigRequest {
      */
     pageSize?: number;
     /**
-     * which page to show
-     * @type {number}
-     * @memberof FetchFileConfigRequest
-     */
-    pageNum?: number;
-    /**
      * index to sort results by
      * @type {string}
      * @memberof FetchFileConfigRequest
      */
     sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof FetchFileConfigRequest
+     */
+    userID?: number;
 }
 
 
@@ -2874,17 +3559,35 @@ export type FetchFileConfigRequestProductMappingEnum = typeof FetchFileConfigReq
  */
 export interface FetchFileConfigRequestAllOf {
     /**
-     * Fetch File Config ID
-     * @type {number}
-     * @memberof FetchFileConfigRequestAllOf
-     */
-    fetchFileConfigID?: number;
-    /**
      * Flag for active state
      * @type {boolean}
      * @memberof FetchFileConfigRequestAllOf
      */
     active?: boolean;
+    /**
+     * S3 Archive Bucket
+     * @type {string}
+     * @memberof FetchFileConfigRequestAllOf
+     */
+    archiveBucket?: string;
+    /**
+     * Flag to convert null quantities to zero
+     * @type {boolean}
+     * @memberof FetchFileConfigRequestAllOf
+     */
+    blankQuantityIsZero?: boolean;
+    /**
+     * S3 Bucket
+     * @type {string}
+     * @memberof FetchFileConfigRequestAllOf
+     */
+    bucket?: string;
+    /**
+     * Delimiter
+     * @type {string}
+     * @memberof FetchFileConfigRequestAllOf
+     */
+    csvDelimiter?: string;
     /**
      * Email List
      * @type {string}
@@ -2892,41 +3595,17 @@ export interface FetchFileConfigRequestAllOf {
      */
     emailList?: string;
     /**
-     * Flag for Refresh Enabled
-     * @type {boolean}
+     * Fetch File Config ID
+     * @type {number}
      * @memberof FetchFileConfigRequestAllOf
      */
-    refreshEnabled?: boolean;
+    fetchFileConfigID?: number;
     /**
-     * Description for the refresh file
-     * @type {string}
+     * List of field names
+     * @type {Array<string>}
      * @memberof FetchFileConfigRequestAllOf
      */
-    refreshFileDescription?: string;
-    /**
-     * Flag for Update Enabled
-     * @type {boolean}
-     * @memberof FetchFileConfigRequestAllOf
-     */
-    updateEnabled?: boolean;
-    /**
-     * Description for the update file
-     * @type {string}
-     * @memberof FetchFileConfigRequestAllOf
-     */
-    updateFileDescription?: string;
-    /**
-     * FTP server address
-     * @type {string}
-     * @memberof FetchFileConfigRequestAllOf
-     */
-    ftpServer?: string;
-    /**
-     * FTP server username
-     * @type {string}
-     * @memberof FetchFileConfigRequestAllOf
-     */
-    ftpUsername?: string;
+    fieldNameMap?: Array<string>;
     /**
      * FTP server password
      * @type {string}
@@ -2952,95 +3631,17 @@ export interface FetchFileConfigRequestAllOf {
      */
     ftpRemotePathArchive?: string;
     /**
-     * GCS Bucket
+     * FTP server address
      * @type {string}
      * @memberof FetchFileConfigRequestAllOf
      */
-    gcsBucket?: string;
+    ftpServer?: string;
     /**
-     * GCS Path
+     * FTP server username
      * @type {string}
      * @memberof FetchFileConfigRequestAllOf
      */
-    gcsPath?: string;
-    /**
-     * GCS Archive Path
-     * @type {string}
-     * @memberof FetchFileConfigRequestAllOf
-     */
-    gcsArchivePath?: string;
-    /**
-     * S3 Region
-     * @type {string}
-     * @memberof FetchFileConfigRequestAllOf
-     */
-    region?: string;
-    /**
-     * S3 Bucket
-     * @type {string}
-     * @memberof FetchFileConfigRequestAllOf
-     */
-    bucket?: string;
-    /**
-     * S3 Bucket Path (directory)
-     * @type {string}
-     * @memberof FetchFileConfigRequestAllOf
-     */
-    s3Path?: string;
-    /**
-     * S3 Archive Bucket
-     * @type {string}
-     * @memberof FetchFileConfigRequestAllOf
-     */
-    archiveBucket?: string;
-    /**
-     * S3 Archive Bucket Path (directory)
-     * @type {string}
-     * @memberof FetchFileConfigRequestAllOf
-     */
-    s3ArchivePath?: string;
-    /**
-     * Lock name
-     * @type {string}
-     * @memberof FetchFileConfigRequestAllOf
-     */
-    lockName?: string;
-    /**
-     * Enum denoting action post processing
-     * @type {number}
-     * @memberof FetchFileConfigRequestAllOf
-     */
-    postProcessAction?: number;
-    /**
-     * Flag for using control file
-     * @type {boolean}
-     * @memberof FetchFileConfigRequestAllOf
-     */
-    useControlFile?: boolean;
-    /**
-     * Flag for using multiple files
-     * @type {boolean}
-     * @memberof FetchFileConfigRequestAllOf
-     */
-    multipleFiles?: boolean;
-    /**
-     * Flag for converting negatives to zero
-     * @type {boolean}
-     * @memberof FetchFileConfigRequestAllOf
-     */
-    zeroOutNegatives?: boolean;
-    /**
-     * Flag for if its a test ftp config
-     * @type {boolean}
-     * @memberof FetchFileConfigRequestAllOf
-     */
-    testFTPConfigs?: boolean;
-    /**
-     * List of field names
-     * @type {Array<string>}
-     * @memberof FetchFileConfigRequestAllOf
-     */
-    fieldNameMap?: Array<string>;
+    ftpUsername?: string;
     /**
      * Flag for ignoring extra fields
      * @type {boolean}
@@ -3048,23 +3649,89 @@ export interface FetchFileConfigRequestAllOf {
      */
     ignoreExtraFields?: boolean;
     /**
-     * Flag to convert null quantities to zero
-     * @type {boolean}
-     * @memberof FetchFileConfigRequestAllOf
-     */
-    blankQuantityIsZero?: boolean;
-    /**
-     * Delimiter
+     * Lock name
      * @type {string}
      * @memberof FetchFileConfigRequestAllOf
      */
-    csvDelimiter?: string;
+    lockName?: string;
+    /**
+     * Flag for using multiple files
+     * @type {boolean}
+     * @memberof FetchFileConfigRequestAllOf
+     */
+    multipleFiles?: boolean;
+    /**
+     * Enum denoting action post processing
+     * @type {number}
+     * @memberof FetchFileConfigRequestAllOf
+     */
+    postProcessAction?: number;
     /**
      * Enum for fetch file productMapping
      * @type {string}
      * @memberof FetchFileConfigRequestAllOf
      */
     productMapping?: FetchFileConfigRequestAllOfProductMappingEnum;
+    /**
+     * Flag for Refresh Enabled
+     * @type {boolean}
+     * @memberof FetchFileConfigRequestAllOf
+     */
+    refreshEnabled?: boolean;
+    /**
+     * Description for the refresh file
+     * @type {string}
+     * @memberof FetchFileConfigRequestAllOf
+     */
+    refreshFileDescription?: string;
+    /**
+     * S3 Region
+     * @type {string}
+     * @memberof FetchFileConfigRequestAllOf
+     */
+    region?: string;
+    /**
+     * S3 Archive Bucket Path (directory)
+     * @type {string}
+     * @memberof FetchFileConfigRequestAllOf
+     */
+    s3ArchivePath?: string;
+    /**
+     * S3 Bucket Path (directory)
+     * @type {string}
+     * @memberof FetchFileConfigRequestAllOf
+     */
+    s3Path?: string;
+    /**
+     * Flag for if its a test ftp config
+     * @type {boolean}
+     * @memberof FetchFileConfigRequestAllOf
+     */
+    testFTPConfigs?: boolean;
+    /**
+     * Flag for Update Enabled
+     * @type {boolean}
+     * @memberof FetchFileConfigRequestAllOf
+     */
+    updateEnabled?: boolean;
+    /**
+     * Description for the update file
+     * @type {string}
+     * @memberof FetchFileConfigRequestAllOf
+     */
+    updateFileDescription?: string;
+    /**
+     * Flag for using control file
+     * @type {boolean}
+     * @memberof FetchFileConfigRequestAllOf
+     */
+    useControlFile?: boolean;
+    /**
+     * Flag for converting negatives to zero
+     * @type {boolean}
+     * @memberof FetchFileConfigRequestAllOf
+     */
+    zeroOutNegatives?: boolean;
 }
 
 
@@ -3084,288 +3751,98 @@ export type FetchFileConfigRequestAllOfProductMappingEnum = typeof FetchFileConf
  */
 export interface FetchFileConnectionResponse {
     /**
-     * List of files found on the specified sftp directory
-     * @type {Array<string>}
-     * @memberof FetchFileConnectionResponse
-     */
-    ftpFiles?: Array<string>;
-    /**
      * List of files found on the specified sftp archive directory
      * @type {Array<string>}
      * @memberof FetchFileConnectionResponse
      */
     ftpArchiveFiles?: Array<string>;
     /**
-     * List of files found on the specified gcs bucket/path
+     * List of files found on the specified sftp directory
      * @type {Array<string>}
      * @memberof FetchFileConnectionResponse
      */
-    gcsFiles?: Array<string>;
-    /**
-     * List of files found on the specified gcs archive bucket/path
-     * @type {Array<string>}
-     * @memberof FetchFileConnectionResponse
-     */
-    gcsArchiveFiles?: Array<string>;
-    /**
-     * List of files found on the specified s3 bucket/path
-     * @type {Array<string>}
-     * @memberof FetchFileConnectionResponse
-     */
-    s3Files?: Array<string>;
+    ftpFiles?: Array<string>;
     /**
      * List of files found on the specified s3 archive bucket/path
      * @type {Array<string>}
      * @memberof FetchFileConnectionResponse
      */
     s3ArchiveFiles?: Array<string>;
-}
-/**
- * Fetch File Config Model
- * @export
- * @interface GetFetchFileConfigItem
- */
-export interface GetFetchFileConfigItem {
     /**
-     * Fetch File Config ID
-     * @type {number}
-     * @memberof GetFetchFileConfigItem
-     */
-    fetchFileConfigID?: number;
-    /**
-     * Tenant ID
-     * @type {number}
-     * @memberof GetFetchFileConfigItem
-     */
-    tenantID?: number;
-    /**
-     * Active
-     * @type {boolean}
-     * @memberof GetFetchFileConfigItem
-     */
-    active?: boolean;
-    /**
-     * Time config was last modified
-     * @type {string}
-     * @memberof GetFetchFileConfigItem
-     */
-    lastModified?: string;
-    /**
-     * Email List
-     * @type {string}
-     * @memberof GetFetchFileConfigItem
-     */
-    emailList?: string;
-    /**
-     * Flag for Refresh Enabled
-     * @type {boolean}
-     * @memberof GetFetchFileConfigItem
-     */
-    refreshEnabled?: boolean;
-    /**
-     * Description for the refresh file
-     * @type {string}
-     * @memberof GetFetchFileConfigItem
-     */
-    refreshFileDescription?: string;
-    /**
-     * Flag for Update Enabled
-     * @type {boolean}
-     * @memberof GetFetchFileConfigItem
-     */
-    updateEnabled?: boolean;
-    /**
-     * Description for the update file
-     * @type {string}
-     * @memberof GetFetchFileConfigItem
-     */
-    updateFileDescription?: string;
-    /**
-     * FTP server address
-     * @type {string}
-     * @memberof GetFetchFileConfigItem
-     */
-    ftpServer?: string;
-    /**
-     * FTP server username
-     * @type {string}
-     * @memberof GetFetchFileConfigItem
-     */
-    ftpUsername?: string;
-    /**
-     * FTP server password
-     * @type {string}
-     * @memberof GetFetchFileConfigItem
-     */
-    ftpPassword?: string;
-    /**
-     * FTP server port
-     * @type {number}
-     * @memberof GetFetchFileConfigItem
-     */
-    ftpPort?: number;
-    /**
-     * FTP server remote path
-     * @type {string}
-     * @memberof GetFetchFileConfigItem
-     */
-    ftpRemotePath?: string;
-    /**
-     * FTP server remote path archive
-     * @type {string}
-     * @memberof GetFetchFileConfigItem
-     */
-    ftpRemotePathArchive?: string;
-    /**
-     * S3 Region
-     * @type {string}
-     * @memberof GetFetchFileConfigItem
-     */
-    region?: string;
-    /**
-     * S3 Bucket
-     * @type {string}
-     * @memberof GetFetchFileConfigItem
-     */
-    bucket?: string;
-    /**
-     * S3 Bucket Path (directory)
-     * @type {string}
-     * @memberof GetFetchFileConfigItem
-     */
-    s3Path?: string;
-    /**
-     * S3 Archive Bucket
-     * @type {string}
-     * @memberof GetFetchFileConfigItem
-     */
-    archiveBucket?: string;
-    /**
-     * S3 Archive Bucket Path (directory)
-     * @type {string}
-     * @memberof GetFetchFileConfigItem
-     */
-    s3ArchivePath?: string;
-    /**
-     * Lock name
-     * @type {string}
-     * @memberof GetFetchFileConfigItem
-     */
-    lockName?: string;
-    /**
-     * Enum denoting action post processing
-     * @type {number}
-     * @memberof GetFetchFileConfigItem
-     */
-    postProcessAction?: number;
-    /**
-     * Flag for using control file
-     * @type {boolean}
-     * @memberof GetFetchFileConfigItem
-     */
-    useControlFile?: boolean;
-    /**
-     * Flag for using multiple files
-     * @type {boolean}
-     * @memberof GetFetchFileConfigItem
-     */
-    multipleFiles?: boolean;
-    /**
-     * Flag for converting negatives to zero
-     * @type {boolean}
-     * @memberof GetFetchFileConfigItem
-     */
-    zeroOutNegatives?: boolean;
-    /**
-     * List of field names
+     * List of files found on the specified s3 bucket/path
      * @type {Array<string>}
-     * @memberof GetFetchFileConfigItem
+     * @memberof FetchFileConnectionResponse
      */
-    fieldNameMap?: Array<string>;
-    /**
-     * Flag for ignoring extra fields
-     * @type {boolean}
-     * @memberof GetFetchFileConfigItem
-     */
-    ignoreExtraFields?: boolean;
-    /**
-     * Flag to convert null quantities to zero
-     * @type {boolean}
-     * @memberof GetFetchFileConfigItem
-     */
-    blankQuantityIsZero?: boolean;
-    /**
-     * CSV Delimiter
-     * @type {string}
-     * @memberof GetFetchFileConfigItem
-     */
-    csvDelimiter?: string;
-    /**
-     * Flag for exporting after refresh
-     * @type {boolean}
-     * @memberof GetFetchFileConfigItem
-     */
-    exportAfterRefresh?: boolean;
-    /**
-     * Export id post import
-     * @type {number}
-     * @memberof GetFetchFileConfigItem
-     */
-    postImportExportId?: number;
-    /**
-     * FTP id post import
-     * @type {number}
-     * @memberof GetFetchFileConfigItem
-     */
-    postImportFtpId?: number;
-    /**
-     * Enum for fetch file mapping
-     * @type {string}
-     * @memberof GetFetchFileConfigItem
-     */
-    productMapping?: GetFetchFileConfigItemProductMappingEnum;
-    /**
-     * GCS Bucket
-     * @type {string}
-     * @memberof GetFetchFileConfigItem
-     */
-    gcsBucket?: string;
-    /**
-     * GCS Path (directory)
-     * @type {string}
-     * @memberof GetFetchFileConfigItem
-     */
-    gcsPath?: string;
-    /**
-     * GCS Archive Bucket
-     * @type {string}
-     * @memberof GetFetchFileConfigItem
-     */
-    gcsArchivePath?: string;
+    s3Files?: Array<string>;
 }
-
-
 /**
+ * Request needed for getting a list of bins
  * @export
+ * @interface GetBinsRequest
  */
-export const GetFetchFileConfigItemProductMappingEnum = {
-    PartNumberWithUpc: 'SWAP_PART_NUMBER_WITH_UPC',
-    SkuWithUpc: 'SWAP_SKU_WITH_UPC'
-} as const;
-export type GetFetchFileConfigItemProductMappingEnum = typeof GetFetchFileConfigItemProductMappingEnum[keyof typeof GetFetchFileConfigItemProductMappingEnum];
-
-/**
- * Get Fetch File Config Response
- * @export
- * @interface GetFetchFileConfigResponse
- */
-export interface GetFetchFileConfigResponse {
+export interface GetBinsRequest {
     /**
-     * List of Fetch File Configurations
-     * @type {Array<GetFetchFileConfigItem>}
-     * @memberof GetFetchFileConfigResponse
+     * term to search for
+     * @type {string}
+     * @memberof GetBinsRequest
      */
-    items?: Array<GetFetchFileConfigItem>;
+    searchTerm?: string;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof GetBinsRequest
+     */
+    locationCode?: string;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof GetBinsRequest
+     */
+    pageNum?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof GetBinsRequest
+     */
+    pageSize?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof GetBinsRequest
+     */
+    sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof GetBinsRequest
+     */
+    userID?: number;
+}
+/**
+ * 
+ * @export
+ * @interface GetBinsRequestAllOf
+ */
+export interface GetBinsRequestAllOf {
+    /**
+     * term to search for
+     * @type {string}
+     * @memberof GetBinsRequestAllOf
+     */
+    searchTerm?: string;
+}
+/**
+ * Response for get Export Settings
+ * @export
+ * @interface GetExportSettingsResponse
+ */
+export interface GetExportSettingsResponse {
+    /**
+     * 
+     * @type {ExportSettings}
+     * @memberof GetExportSettingsResponse
+     */
+    exportSettings?: ExportSettings;
 }
 /**
  * 
@@ -3387,130 +3864,23 @@ export interface GetShipmentInventoryAllocations500Response {
     message?: ShipmentInventoryAllocationResponse;
 }
 /**
- * 
- * @export
- * @interface InvalidateCache200Response
- */
-export interface InvalidateCache200Response {
-    /**
-     * 
-     * @type {string}
-     * @memberof InvalidateCache200Response
-     */
-    message?: string;
-}
-/**
- * 
- * @export
- * @interface InvalidateCache400Response
- */
-export interface InvalidateCache400Response {
-    /**
-     * 
-     * @type {string}
-     * @memberof InvalidateCache400Response
-     */
-    error?: string;
-}
-/**
- * 
- * @export
- * @interface InvalidateCache500Response
- */
-export interface InvalidateCache500Response {
-    /**
-     * 
-     * @type {string}
-     * @memberof InvalidateCache500Response
-     */
-    error?: string;
-}
-/**
- * Request to invalidate a specific cache entry by its key
- * @export
- * @interface InvalidateCacheRequest
- */
-export interface InvalidateCacheRequest {
-    /**
-     * Cache key to invalidate
-     * @type {string}
-     * @memberof InvalidateCacheRequest
-     */
-    cacheKey: string;
-    /**
-     * Location Code
-     * @type {string}
-     * @memberof InvalidateCacheRequest
-     */
-    locationCode?: string;
-    /**
-     * user id
-     * @type {number}
-     * @memberof InvalidateCacheRequest
-     */
-    userID?: number;
-    /**
-     * how many results to show per page
-     * @type {number}
-     * @memberof InvalidateCacheRequest
-     */
-    pageSize?: number;
-    /**
-     * which page to show
-     * @type {number}
-     * @memberof InvalidateCacheRequest
-     */
-    pageNum?: number;
-    /**
-     * index to sort results by
-     * @type {string}
-     * @memberof InvalidateCacheRequest
-     */
-    sortBy?: string;
-}
-/**
- * 
- * @export
- * @interface InvalidateCacheRequestAllOf
- */
-export interface InvalidateCacheRequestAllOf {
-    /**
-     * Cache key to invalidate
-     * @type {string}
-     * @memberof InvalidateCacheRequestAllOf
-     */
-    cacheKey?: string;
-}
-/**
  * InventoryAllocationResponse Object
  * @export
  * @interface InventoryAllocationResponse
  */
 export interface InventoryAllocationResponse {
     /**
-     * order item ID
-     * @type {number}
-     * @memberof InventoryAllocationResponse
-     */
-    orderItemID?: number;
-    /**
-     * upc
+     * 
      * @type {string}
      * @memberof InventoryAllocationResponse
      */
-    upc?: string;
+    condition?: string;
     /**
-     * state
+     * 
      * @type {string}
      * @memberof InventoryAllocationResponse
      */
-    state?: string;
-    /**
-     * quantity
-     * @type {number}
-     * @memberof InventoryAllocationResponse
-     */
-    quantity?: number;
+    date?: string;
     /**
      * Future Date at which the inventory should be allocated against. Expected format '2020-09-28T12:00:00-0500'
      * @type {string}
@@ -3518,17 +3888,47 @@ export interface InventoryAllocationResponse {
      */
     futureDate?: string;
     /**
-     * External ID
+     * 
      * @type {string}
      * @memberof InventoryAllocationResponse
      */
-    externalId?: string;
+    lotCode?: string;
+    /**
+     * order item ID
+     * @type {number}
+     * @memberof InventoryAllocationResponse
+     */
+    orderItemID?: number;
+    /**
+     * quantity
+     * @type {number}
+     * @memberof InventoryAllocationResponse
+     */
+    quantity?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InventoryAllocationResponse
+     */
+    serialNumber?: string;
+    /**
+     * state
+     * @type {string}
+     * @memberof InventoryAllocationResponse
+     */
+    state?: string;
     /**
      * Associative Map of <String, String> for tagCategoryName => tagName
      * @type {{ [key: string]: string; }}
      * @memberof InventoryAllocationResponse
      */
     tags?: { [key: string]: string; };
+    /**
+     * upc
+     * @type {string}
+     * @memberof InventoryAllocationResponse
+     */
+    upc?: string;
 }
 /**
  * Future Inventory Model
@@ -3536,6 +3936,30 @@ export interface InventoryAllocationResponse {
  * @interface InventoryFutureInventory
  */
 export interface InventoryFutureInventory {
+    /**
+     * Expected change in the actual allocated inventory value when this future inventory record is released.
+     * @type {number}
+     * @memberof InventoryFutureInventory
+     */
+    allocated?: number;
+    /**
+     * Expected change in the actual available inventory value when this future inventory record is released.
+     * @type {number}
+     * @memberof InventoryFutureInventory
+     */
+    available?: number;
+    /**
+     * Date the inventory was created.
+     * @type {string}
+     * @memberof InventoryFutureInventory
+     */
+    createDate?: string;
+    /**
+     * Date at which this inventory will become available. Expected format '2020-09-28T12:00:00-0500'
+     * @type {string}
+     * @memberof InventoryFutureInventory
+     */
+    deliveryDate?: string;
     /**
      * Future Inventory unique identifier.
      * @type {number}
@@ -3549,18 +3973,6 @@ export interface InventoryFutureInventory {
      */
     onhand?: number;
     /**
-     * Expected change in the actual available inventory value when this future inventory record is released.
-     * @type {number}
-     * @memberof InventoryFutureInventory
-     */
-    available?: number;
-    /**
-     * Expected change in the actual allocated inventory value when this future inventory record is released.
-     * @type {number}
-     * @memberof InventoryFutureInventory
-     */
-    allocated?: number;
-    /**
      * Number of new expected pending items that would be created by releasing this future inventory record assuming no actual inventory is available
      * @type {number}
      * @memberof InventoryFutureInventory
@@ -3572,18 +3984,6 @@ export interface InventoryFutureInventory {
      * @memberof InventoryFutureInventory
      */
     type?: string;
-    /**
-     * Date at which this inventory will become available. Expected format '2020-09-28T12:00:00-0500'
-     * @type {string}
-     * @memberof InventoryFutureInventory
-     */
-    deliveryDate?: string;
-    /**
-     * Date the inventory was created.
-     * @type {string}
-     * @memberof InventoryFutureInventory
-     */
-    createDate?: string;
 }
 /**
  * Item
@@ -3592,17 +3992,35 @@ export interface InventoryFutureInventory {
  */
 export interface InventoryItem {
     /**
+     * 
+     * @type {string}
+     * @memberof InventoryItem
+     */
+    condition?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InventoryItem
+     */
+    date?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InventoryItem
+     */
+    lotCode?: string;
+    /**
      * Part/Product Number
      * @type {string}
      * @memberof InventoryItem
      */
     partNumber?: string;
     /**
-     * Universal Product Code
+     * 
      * @type {string}
      * @memberof InventoryItem
      */
-    upc?: string;
+    serialNumber?: string;
     /**
      * Stock Keeping Unit
      * @type {string}
@@ -3615,6 +4033,12 @@ export interface InventoryItem {
      * @memberof InventoryItem
      */
     tags?: { [key: string]: string; };
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof InventoryItem
+     */
+    upc?: string;
 }
 /**
  * Product within a bin
@@ -3629,17 +4053,17 @@ export interface InventoryProduct {
      */
     partNumber?: string;
     /**
-     * UPC
-     * @type {string}
-     * @memberof InventoryProduct
-     */
-    upc?: string;
-    /**
      * SKU
      * @type {string}
      * @memberof InventoryProduct
      */
     sku?: string;
+    /**
+     * UPC
+     * @type {string}
+     * @memberof InventoryProduct
+     */
+    upc?: string;
 }
 /**
  * Request for getting Inventory
@@ -3648,59 +4072,17 @@ export interface InventoryProduct {
  */
 export interface InventoryRequest {
     /**
-     * Inventory Request Type Enum
+     * DateTime to filter for only future inventory with a delivery date after or equal to the given date
      * @type {string}
      * @memberof InventoryRequest
      */
-    type: InventoryRequestTypeEnum;
+    deliveryDateAfter?: string;
     /**
-     * List of Items to search on
-     * @type {Array<ItemQuantity>}
+     * DateTime to filter for only future inventory with a delivery date before or equal to the given date
+     * @type {string}
      * @memberof InventoryRequest
      */
-    items: Array<ItemQuantity>;
-    /**
-     * 
-     * @type {RequestLocation}
-     * @memberof InventoryRequest
-     */
-    requestLocation?: RequestLocation;
-    /**
-     * The maximum number of results to return, defaults to 100 for most
-     * @type {number}
-     * @memberof InventoryRequest
-     */
-    limit?: number;
-    /**
-     * List of location codes that are allowed to be included in results
-     * @type {Array<string>}
-     * @memberof InventoryRequest
-     */
-    locationWhitelist?: Array<string>;
-    /**
-     * List of location codes that should be returned before all others, preventing them from being excluded by limit
-     * @type {Array<string>}
-     * @memberof InventoryRequest
-     */
-    locationPriorityList?: Array<string>;
-    /**
-     * List of location codes that are NOT allowed to be included in results
-     * @type {Array<string>}
-     * @memberof InventoryRequest
-     */
-    locationBlacklist?: Array<string>;
-    /**
-     * Whether to ignore the safety stock buffer put in place
-     * @type {boolean}
-     * @memberof InventoryRequest
-     */
-    ignoreSafetyStock?: boolean;
-    /**
-     * Whether to allow items with negative inventory in the results
-     * @type {boolean}
-     * @memberof InventoryRequest
-     */
-    includeNegativeInventory?: boolean;
+    deliveryDateBefore?: string;
     /**
      * Whether to limit results to locations that are shipping enabled
      * @type {boolean}
@@ -3708,35 +4090,23 @@ export interface InventoryRequest {
      */
     directShip?: boolean;
     /**
-     * Filter results by locations that have transfer enabled (true) or don't (false)
-     * @type {boolean}
-     * @memberof InventoryRequest
-     */
-    transferEnabled?: boolean;
-    /**
-     * Filter results by locations that have finderbot enabled (true) or don't (false)
-     * @type {boolean}
-     * @memberof InventoryRequest
-     */
-    pickup?: boolean;
-    /**
-     * Filter results by locations that have aggregate export enabled (true) or don't (false)
-     * @type {boolean}
-     * @memberof InventoryRequest
-     */
-    includeInAggregateExport?: boolean;
-    /**
-     * Filter results by locations that have physical storefronts (true) or don't (false)
-     * @type {boolean}
-     * @memberof InventoryRequest
-     */
-    includeInLocationExport?: boolean;
-    /**
      * Filter out results that are blocked from assignment (at the product/location level) 
      * @type {boolean}
      * @memberof InventoryRequest
      */
     excludeBlockedAssignment?: boolean;
+    /**
+     * Whether to force populate default tags onto the request if they are unspecified for any tag category
+     * @type {boolean}
+     * @memberof InventoryRequest
+     */
+    forceDefaultsForUnspecifiedTagCategories?: boolean;
+    /**
+     * Whether to ignore the safety stock buffer put in place
+     * @type {boolean}
+     * @memberof InventoryRequest
+     */
+    ignoreSafetyStock?: boolean;
     /**
      * Flag to include attributes or not
      * @type {boolean}
@@ -3750,23 +4120,71 @@ export interface InventoryRequest {
      */
     includeFutureInventory?: boolean;
     /**
+     * Filter results by locations that have aggregate export enabled (true) or don't (false)
+     * @type {boolean}
+     * @memberof InventoryRequest
+     */
+    includeInAggregateExport?: boolean;
+    /**
+     * Filter results by locations that have physical storefronts (true) or don't (false)
+     * @type {boolean}
+     * @memberof InventoryRequest
+     */
+    includeInLocationExport?: boolean;
+    /**
      * Whether to allow items with negative future inventory in the results
      * @type {boolean}
      * @memberof InventoryRequest
      */
     includeNegativeFutureInventory?: boolean;
     /**
-     * DateTime to filter for only future inventory with a delivery date before or equal to the given date
-     * @type {string}
+     * Whether to allow items with negative inventory in the results
+     * @type {boolean}
      * @memberof InventoryRequest
      */
-    deliveryDateBefore?: string;
+    includeNegativeInventory?: boolean;
     /**
-     * DateTime to filter for only future inventory with a delivery date after or equal to the given date
-     * @type {string}
+     * List of Items to search on
+     * @type {Array<ItemQuantity>}
      * @memberof InventoryRequest
      */
-    deliveryDateAfter?: string;
+    items: Array<ItemQuantity>;
+    /**
+     * The maximum number of results to return, defaults to 100 for most
+     * @type {number}
+     * @memberof InventoryRequest
+     */
+    limit?: number;
+    /**
+     * List of location codes that are NOT allowed to be included in results
+     * @type {Array<string>}
+     * @memberof InventoryRequest
+     */
+    locationBlacklist?: Array<string>;
+    /**
+     * List of location codes that should be returned before all others, preventing them from being excluded by limit
+     * @type {Array<string>}
+     * @memberof InventoryRequest
+     */
+    locationPriorityList?: Array<string>;
+    /**
+     * List of location codes that are allowed to be included in results
+     * @type {Array<string>}
+     * @memberof InventoryRequest
+     */
+    locationWhitelist?: Array<string>;
+    /**
+     * Filter results by locations that have finderbot enabled (true) or don't (false)
+     * @type {boolean}
+     * @memberof InventoryRequest
+     */
+    pickup?: boolean;
+    /**
+     * 
+     * @type {RequestLocation}
+     * @memberof InventoryRequest
+     */
+    requestLocation?: RequestLocation;
     /**
      * What to sort the inventory results by. Only used for GetInventoryByLocation calls (locationCode must be set)
      * @type {string}
@@ -3780,17 +4198,23 @@ export interface InventoryRequest {
      */
     sortDescending?: boolean;
     /**
-     * Whether to force populate default tags onto the request if they are unspecified for any tag category
-     * @type {boolean}
-     * @memberof InventoryRequest
-     */
-    forceDefaultsForUnspecifiedTagCategories?: boolean;
-    /**
      * Associative Map of <String, String> for tagCategoryName => tagName
      * @type {{ [key: string]: string; }}
      * @memberof InventoryRequest
      */
     tags?: { [key: string]: string; };
+    /**
+     * Filter results by locations that have transfer enabled (true) or don't (false)
+     * @type {boolean}
+     * @memberof InventoryRequest
+     */
+    transferEnabled?: boolean;
+    /**
+     * Inventory Request Type Enum
+     * @type {string}
+     * @memberof InventoryRequest
+     */
+    type: InventoryRequestTypeEnum;
     /**
      * Location Code
      * @type {string}
@@ -3798,11 +4222,11 @@ export interface InventoryRequest {
      */
     locationCode?: string;
     /**
-     * user id
+     * which page to show
      * @type {number}
      * @memberof InventoryRequest
      */
-    userID?: number;
+    pageNum?: number;
     /**
      * how many results to show per page
      * @type {number}
@@ -3810,30 +4234,19 @@ export interface InventoryRequest {
      */
     pageSize?: number;
     /**
-     * which page to show
-     * @type {number}
-     * @memberof InventoryRequest
-     */
-    pageNum?: number;
-    /**
      * index to sort results by
      * @type {string}
      * @memberof InventoryRequest
      */
     sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof InventoryRequest
+     */
+    userID?: number;
 }
 
-
-/**
- * @export
- */
-export const InventoryRequestTypeEnum = {
-    All: 'ALL',
-    Partial: 'PARTIAL',
-    Any: 'ANY',
-    AllStores: 'ALL_STORES'
-} as const;
-export type InventoryRequestTypeEnum = typeof InventoryRequestTypeEnum[keyof typeof InventoryRequestTypeEnum];
 
 /**
  * @export
@@ -3848,65 +4261,34 @@ export const InventoryRequestSortByEnumEnum = {
 export type InventoryRequestSortByEnumEnum = typeof InventoryRequestSortByEnumEnum[keyof typeof InventoryRequestSortByEnumEnum];
 
 /**
+ * @export
+ */
+export const InventoryRequestTypeEnum = {
+    All: 'ALL',
+    Partial: 'PARTIAL',
+    Any: 'ANY',
+    AllStores: 'ALL_STORES'
+} as const;
+export type InventoryRequestTypeEnum = typeof InventoryRequestTypeEnum[keyof typeof InventoryRequestTypeEnum];
+
+/**
  * 
  * @export
  * @interface InventoryRequestAllOf
  */
 export interface InventoryRequestAllOf {
     /**
-     * Inventory Request Type Enum
+     * DateTime to filter for only future inventory with a delivery date after or equal to the given date
      * @type {string}
      * @memberof InventoryRequestAllOf
      */
-    type?: InventoryRequestAllOfTypeEnum;
+    deliveryDateAfter?: string;
     /**
-     * List of Items to search on
-     * @type {Array<ItemQuantity>}
+     * DateTime to filter for only future inventory with a delivery date before or equal to the given date
+     * @type {string}
      * @memberof InventoryRequestAllOf
      */
-    items?: Array<ItemQuantity>;
-    /**
-     * 
-     * @type {RequestLocation}
-     * @memberof InventoryRequestAllOf
-     */
-    requestLocation?: RequestLocation;
-    /**
-     * The maximum number of results to return, defaults to 100 for most
-     * @type {number}
-     * @memberof InventoryRequestAllOf
-     */
-    limit?: number;
-    /**
-     * List of location codes that are allowed to be included in results
-     * @type {Array<string>}
-     * @memberof InventoryRequestAllOf
-     */
-    locationWhitelist?: Array<string>;
-    /**
-     * List of location codes that should be returned before all others, preventing them from being excluded by limit
-     * @type {Array<string>}
-     * @memberof InventoryRequestAllOf
-     */
-    locationPriorityList?: Array<string>;
-    /**
-     * List of location codes that are NOT allowed to be included in results
-     * @type {Array<string>}
-     * @memberof InventoryRequestAllOf
-     */
-    locationBlacklist?: Array<string>;
-    /**
-     * Whether to ignore the safety stock buffer put in place
-     * @type {boolean}
-     * @memberof InventoryRequestAllOf
-     */
-    ignoreSafetyStock?: boolean;
-    /**
-     * Whether to allow items with negative inventory in the results
-     * @type {boolean}
-     * @memberof InventoryRequestAllOf
-     */
-    includeNegativeInventory?: boolean;
+    deliveryDateBefore?: string;
     /**
      * Whether to limit results to locations that are shipping enabled
      * @type {boolean}
@@ -3914,35 +4296,23 @@ export interface InventoryRequestAllOf {
      */
     directShip?: boolean;
     /**
-     * Filter results by locations that have transfer enabled (true) or don't (false)
-     * @type {boolean}
-     * @memberof InventoryRequestAllOf
-     */
-    transferEnabled?: boolean;
-    /**
-     * Filter results by locations that have finderbot enabled (true) or don't (false)
-     * @type {boolean}
-     * @memberof InventoryRequestAllOf
-     */
-    pickup?: boolean;
-    /**
-     * Filter results by locations that have aggregate export enabled (true) or don't (false)
-     * @type {boolean}
-     * @memberof InventoryRequestAllOf
-     */
-    includeInAggregateExport?: boolean;
-    /**
-     * Filter results by locations that have physical storefronts (true) or don't (false)
-     * @type {boolean}
-     * @memberof InventoryRequestAllOf
-     */
-    includeInLocationExport?: boolean;
-    /**
      * Filter out results that are blocked from assignment (at the product/location level) 
      * @type {boolean}
      * @memberof InventoryRequestAllOf
      */
     excludeBlockedAssignment?: boolean;
+    /**
+     * Whether to force populate default tags onto the request if they are unspecified for any tag category
+     * @type {boolean}
+     * @memberof InventoryRequestAllOf
+     */
+    forceDefaultsForUnspecifiedTagCategories?: boolean;
+    /**
+     * Whether to ignore the safety stock buffer put in place
+     * @type {boolean}
+     * @memberof InventoryRequestAllOf
+     */
+    ignoreSafetyStock?: boolean;
     /**
      * Flag to include attributes or not
      * @type {boolean}
@@ -3956,23 +4326,71 @@ export interface InventoryRequestAllOf {
      */
     includeFutureInventory?: boolean;
     /**
+     * Filter results by locations that have aggregate export enabled (true) or don't (false)
+     * @type {boolean}
+     * @memberof InventoryRequestAllOf
+     */
+    includeInAggregateExport?: boolean;
+    /**
+     * Filter results by locations that have physical storefronts (true) or don't (false)
+     * @type {boolean}
+     * @memberof InventoryRequestAllOf
+     */
+    includeInLocationExport?: boolean;
+    /**
      * Whether to allow items with negative future inventory in the results
      * @type {boolean}
      * @memberof InventoryRequestAllOf
      */
     includeNegativeFutureInventory?: boolean;
     /**
-     * DateTime to filter for only future inventory with a delivery date before or equal to the given date
-     * @type {string}
+     * Whether to allow items with negative inventory in the results
+     * @type {boolean}
      * @memberof InventoryRequestAllOf
      */
-    deliveryDateBefore?: string;
+    includeNegativeInventory?: boolean;
     /**
-     * DateTime to filter for only future inventory with a delivery date after or equal to the given date
-     * @type {string}
+     * List of Items to search on
+     * @type {Array<ItemQuantity>}
      * @memberof InventoryRequestAllOf
      */
-    deliveryDateAfter?: string;
+    items?: Array<ItemQuantity>;
+    /**
+     * The maximum number of results to return, defaults to 100 for most
+     * @type {number}
+     * @memberof InventoryRequestAllOf
+     */
+    limit?: number;
+    /**
+     * List of location codes that are NOT allowed to be included in results
+     * @type {Array<string>}
+     * @memberof InventoryRequestAllOf
+     */
+    locationBlacklist?: Array<string>;
+    /**
+     * List of location codes that should be returned before all others, preventing them from being excluded by limit
+     * @type {Array<string>}
+     * @memberof InventoryRequestAllOf
+     */
+    locationPriorityList?: Array<string>;
+    /**
+     * List of location codes that are allowed to be included in results
+     * @type {Array<string>}
+     * @memberof InventoryRequestAllOf
+     */
+    locationWhitelist?: Array<string>;
+    /**
+     * Filter results by locations that have finderbot enabled (true) or don't (false)
+     * @type {boolean}
+     * @memberof InventoryRequestAllOf
+     */
+    pickup?: boolean;
+    /**
+     * 
+     * @type {RequestLocation}
+     * @memberof InventoryRequestAllOf
+     */
+    requestLocation?: RequestLocation;
     /**
      * What to sort the inventory results by. Only used for GetInventoryByLocation calls (locationCode must be set)
      * @type {string}
@@ -3986,30 +4404,25 @@ export interface InventoryRequestAllOf {
      */
     sortDescending?: boolean;
     /**
-     * Whether to force populate default tags onto the request if they are unspecified for any tag category
-     * @type {boolean}
-     * @memberof InventoryRequestAllOf
-     */
-    forceDefaultsForUnspecifiedTagCategories?: boolean;
-    /**
      * Associative Map of <String, String> for tagCategoryName => tagName
      * @type {{ [key: string]: string; }}
      * @memberof InventoryRequestAllOf
      */
     tags?: { [key: string]: string; };
+    /**
+     * Filter results by locations that have transfer enabled (true) or don't (false)
+     * @type {boolean}
+     * @memberof InventoryRequestAllOf
+     */
+    transferEnabled?: boolean;
+    /**
+     * Inventory Request Type Enum
+     * @type {string}
+     * @memberof InventoryRequestAllOf
+     */
+    type?: InventoryRequestAllOfTypeEnum;
 }
 
-
-/**
- * @export
- */
-export const InventoryRequestAllOfTypeEnum = {
-    All: 'ALL',
-    Partial: 'PARTIAL',
-    Any: 'ANY',
-    AllStores: 'ALL_STORES'
-} as const;
-export type InventoryRequestAllOfTypeEnum = typeof InventoryRequestAllOfTypeEnum[keyof typeof InventoryRequestAllOfTypeEnum];
 
 /**
  * @export
@@ -4024,41 +4437,22 @@ export const InventoryRequestAllOfSortByEnumEnum = {
 export type InventoryRequestAllOfSortByEnumEnum = typeof InventoryRequestAllOfSortByEnumEnum[keyof typeof InventoryRequestAllOfSortByEnumEnum];
 
 /**
+ * @export
+ */
+export const InventoryRequestAllOfTypeEnum = {
+    All: 'ALL',
+    Partial: 'PARTIAL',
+    Any: 'ANY',
+    AllStores: 'ALL_STORES'
+} as const;
+export type InventoryRequestAllOfTypeEnum = typeof InventoryRequestAllOfTypeEnum[keyof typeof InventoryRequestAllOfTypeEnum];
+
+/**
  * Inventory Response
  * @export
  * @interface InventoryResponse
  */
 export interface InventoryResponse {
-    /**
-     * Location Name
-     * @type {string}
-     * @memberof InventoryResponse
-     */
-    locationName?: string;
-    /**
-     * Location Code
-     * @type {string}
-     * @memberof InventoryResponse
-     */
-    locationCode?: string;
-    /**
-     * Tenant Identifier
-     * @type {number}
-     * @memberof InventoryResponse
-     */
-    tenantID?: number;
-    /**
-     * The quantity the location has in its possession
-     * @type {number}
-     * @memberof InventoryResponse
-     */
-    onHand?: number;
-    /**
-     * The quantity the location has that are available for purchase
-     * @type {number}
-     * @memberof InventoryResponse
-     */
-    available?: number;
     /**
      * The quantity the location has that are already allocated.
      * @type {number}
@@ -4066,29 +4460,17 @@ export interface InventoryResponse {
      */
     allocated?: number;
     /**
-     * The quantity the location has that are pending.
+     * List of Inventory Attributes
+     * @type {Array<string>}
+     * @memberof InventoryResponse
+     */
+    attributes?: Array<string>;
+    /**
+     * The quantity the location has that are available for purchase
      * @type {number}
      * @memberof InventoryResponse
      */
-    pending?: number;
-    /**
-     * Part/Product Number
-     * @type {string}
-     * @memberof InventoryResponse
-     */
-    partNumber?: string;
-    /**
-     * Universal Product Code
-     * @type {string}
-     * @memberof InventoryResponse
-     */
-    upc?: string;
-    /**
-     * Stock Keeping Unit
-     * @type {string}
-     * @memberof InventoryResponse
-     */
-    sku?: string;
+    available?: number;
     /**
      * Whether or not the product is blocked for assignment
      * @type {boolean}
@@ -4096,29 +4478,11 @@ export interface InventoryResponse {
      */
     blockAssignment?: boolean;
     /**
-     * Custom field used for store prioritization
-     * @type {number}
+     * The country code of this location
+     * @type {string}
      * @memberof InventoryResponse
      */
-    ltd?: number;
-    /**
-     * Absolute minimum quantity of this item that should be in stock at any time
-     * @type {number}
-     * @memberof InventoryResponse
-     */
-    floor?: number;
-    /**
-     * Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
-     * @type {number}
-     * @memberof InventoryResponse
-     */
-    safetyStock?: number;
-    /**
-     * The distance in miles from this location to the item's destination
-     * @type {number}
-     * @memberof InventoryResponse
-     */
-    distance?: number;
+    countryCode?: string;
     /**
      * Whether this location can ship to a consumer
      * @type {boolean}
@@ -4126,53 +4490,23 @@ export interface InventoryResponse {
      */
     directShip?: boolean;
     /**
-     * Whether the location can ship to another location (store), thus restocking that location.
-     * @type {boolean}
-     * @memberof InventoryResponse
-     */
-    transferEnabled?: boolean;
-    /**
-     * Whether a consumer can pick up product at this location (store)
-     * @type {boolean}
-     * @memberof InventoryResponse
-     */
-    pickup?: boolean;
-    /**
-     * The country code of this location
-     * @type {string}
-     * @memberof InventoryResponse
-     */
-    countryCode?: string;
-    /**
-     * The currency identifier for the retailPrice
+     * The distance in miles from this location to the item's destination
      * @type {number}
      * @memberof InventoryResponse
      */
-    currencyID?: number;
+    distance?: number;
     /**
-     * The price of the product at this location
-     * @type {number}
-     * @memberof InventoryResponse
-     */
-    retailPrice?: number;
-    /**
-     * The inventory locator name of the individual item
+     * External ID of the item
      * @type {string}
      * @memberof InventoryResponse
      */
-    inventoryLocatorName?: string;
+    externalID?: string;
     /**
-     * List of Inventory Attributes
-     * @type {Array<string>}
+     * Absolute minimum quantity of this item that should be in stock at any time
+     * @type {number}
      * @memberof InventoryResponse
      */
-    attributes?: Array<string>;
-    /**
-     * 
-     * @type {Array<InventoryTagQuantity>}
-     * @memberof InventoryResponse
-     */
-    taggedInventory?: Array<InventoryTagQuantity>;
+    floor?: number;
     /**
      * 
      * @type {Array<InventoryFutureInventory>}
@@ -4180,11 +4514,89 @@ export interface InventoryResponse {
      */
     futureInventory?: Array<InventoryFutureInventory>;
     /**
-     * Flag for success
+     * The inventory locator name of the individual item
+     * @type {string}
+     * @memberof InventoryResponse
+     */
+    inventoryLocatorName?: string;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof InventoryResponse
+     */
+    locationCode?: string;
+    /**
+     * Location Name
+     * @type {string}
+     * @memberof InventoryResponse
+     */
+    locationName?: string;
+    /**
+     * Custom field used for store prioritization
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    ltd?: number;
+    /**
+     * The quantity the location has in its possession
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    onHand?: number;
+    /**
+     * Part/Product Number
+     * @type {string}
+     * @memberof InventoryResponse
+     */
+    partNumber?: string;
+    /**
+     * The quantity the location has that are pending.
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    pending?: number;
+    /**
+     * Whether a consumer can pick up product at this location (store)
      * @type {boolean}
      * @memberof InventoryResponse
      */
-    success?: boolean;
+    pickup?: boolean;
+    /**
+     * Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    safetyStock?: number;
+    /**
+     * Stock Keeping Unit
+     * @type {string}
+     * @memberof InventoryResponse
+     */
+    sku?: string;
+    /**
+     * 
+     * @type {Array<TagQuantity>}
+     * @memberof InventoryResponse
+     */
+    taggedInventory?: Array<TagQuantity>;
+    /**
+     * Tenant Identifier
+     * @type {number}
+     * @memberof InventoryResponse
+     */
+    tenantID?: number;
+    /**
+     * Whether the location can ship to another location (store), thus restocking that location.
+     * @type {boolean}
+     * @memberof InventoryResponse
+     */
+    transferEnabled?: boolean;
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof InventoryResponse
+     */
+    upc?: string;
     /**
      * List of messages
      * @type {Array<string>}
@@ -4197,6 +4609,12 @@ export interface InventoryResponse {
      * @memberof InventoryResponse
      */
     numResults?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof InventoryResponse
+     */
+    success?: boolean;
 }
 /**
  * 
@@ -4205,137 +4623,11 @@ export interface InventoryResponse {
  */
 export interface InventoryResponseAllOf {
     /**
-     * Location Name
-     * @type {string}
-     * @memberof InventoryResponseAllOf
-     */
-    locationName?: string;
-    /**
-     * Location Code
-     * @type {string}
-     * @memberof InventoryResponseAllOf
-     */
-    locationCode?: string;
-    /**
-     * Tenant Identifier
-     * @type {number}
-     * @memberof InventoryResponseAllOf
-     */
-    tenantID?: number;
-    /**
-     * The quantity the location has in its possession
-     * @type {number}
-     * @memberof InventoryResponseAllOf
-     */
-    onHand?: number;
-    /**
-     * The quantity the location has that are available for purchase
-     * @type {number}
-     * @memberof InventoryResponseAllOf
-     */
-    available?: number;
-    /**
      * The quantity the location has that are already allocated.
      * @type {number}
      * @memberof InventoryResponseAllOf
      */
     allocated?: number;
-    /**
-     * The quantity the location has that are pending.
-     * @type {number}
-     * @memberof InventoryResponseAllOf
-     */
-    pending?: number;
-    /**
-     * Part/Product Number
-     * @type {string}
-     * @memberof InventoryResponseAllOf
-     */
-    partNumber?: string;
-    /**
-     * Universal Product Code
-     * @type {string}
-     * @memberof InventoryResponseAllOf
-     */
-    upc?: string;
-    /**
-     * Stock Keeping Unit
-     * @type {string}
-     * @memberof InventoryResponseAllOf
-     */
-    sku?: string;
-    /**
-     * Whether or not the product is blocked for assignment
-     * @type {boolean}
-     * @memberof InventoryResponseAllOf
-     */
-    blockAssignment?: boolean;
-    /**
-     * Custom field used for store prioritization
-     * @type {number}
-     * @memberof InventoryResponseAllOf
-     */
-    ltd?: number;
-    /**
-     * Absolute minimum quantity of this item that should be in stock at any time
-     * @type {number}
-     * @memberof InventoryResponseAllOf
-     */
-    floor?: number;
-    /**
-     * Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
-     * @type {number}
-     * @memberof InventoryResponseAllOf
-     */
-    safetyStock?: number;
-    /**
-     * The distance in miles from this location to the item's destination
-     * @type {number}
-     * @memberof InventoryResponseAllOf
-     */
-    distance?: number;
-    /**
-     * Whether this location can ship to a consumer
-     * @type {boolean}
-     * @memberof InventoryResponseAllOf
-     */
-    directShip?: boolean;
-    /**
-     * Whether the location can ship to another location (store), thus restocking that location.
-     * @type {boolean}
-     * @memberof InventoryResponseAllOf
-     */
-    transferEnabled?: boolean;
-    /**
-     * Whether a consumer can pick up product at this location (store)
-     * @type {boolean}
-     * @memberof InventoryResponseAllOf
-     */
-    pickup?: boolean;
-    /**
-     * The country code of this location
-     * @type {string}
-     * @memberof InventoryResponseAllOf
-     */
-    countryCode?: string;
-    /**
-     * The currency identifier for the retailPrice
-     * @type {number}
-     * @memberof InventoryResponseAllOf
-     */
-    currencyID?: number;
-    /**
-     * The price of the product at this location
-     * @type {number}
-     * @memberof InventoryResponseAllOf
-     */
-    retailPrice?: number;
-    /**
-     * The inventory locator name of the individual item
-     * @type {string}
-     * @memberof InventoryResponseAllOf
-     */
-    inventoryLocatorName?: string;
     /**
      * List of Inventory Attributes
      * @type {Array<string>}
@@ -4343,17 +4635,137 @@ export interface InventoryResponseAllOf {
      */
     attributes?: Array<string>;
     /**
-     * 
-     * @type {Array<InventoryTagQuantity>}
+     * The quantity the location has that are available for purchase
+     * @type {number}
      * @memberof InventoryResponseAllOf
      */
-    taggedInventory?: Array<InventoryTagQuantity>;
+    available?: number;
+    /**
+     * Whether or not the product is blocked for assignment
+     * @type {boolean}
+     * @memberof InventoryResponseAllOf
+     */
+    blockAssignment?: boolean;
+    /**
+     * The country code of this location
+     * @type {string}
+     * @memberof InventoryResponseAllOf
+     */
+    countryCode?: string;
+    /**
+     * Whether this location can ship to a consumer
+     * @type {boolean}
+     * @memberof InventoryResponseAllOf
+     */
+    directShip?: boolean;
+    /**
+     * The distance in miles from this location to the item's destination
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    distance?: number;
+    /**
+     * External ID of the item
+     * @type {string}
+     * @memberof InventoryResponseAllOf
+     */
+    externalID?: string;
+    /**
+     * Absolute minimum quantity of this item that should be in stock at any time
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    floor?: number;
     /**
      * 
      * @type {Array<InventoryFutureInventory>}
      * @memberof InventoryResponseAllOf
      */
     futureInventory?: Array<InventoryFutureInventory>;
+    /**
+     * The inventory locator name of the individual item
+     * @type {string}
+     * @memberof InventoryResponseAllOf
+     */
+    inventoryLocatorName?: string;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof InventoryResponseAllOf
+     */
+    locationCode?: string;
+    /**
+     * Location Name
+     * @type {string}
+     * @memberof InventoryResponseAllOf
+     */
+    locationName?: string;
+    /**
+     * Custom field used for store prioritization
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    ltd?: number;
+    /**
+     * The quantity the location has in its possession
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    onHand?: number;
+    /**
+     * Part/Product Number
+     * @type {string}
+     * @memberof InventoryResponseAllOf
+     */
+    partNumber?: string;
+    /**
+     * The quantity the location has that are pending.
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    pending?: number;
+    /**
+     * Whether a consumer can pick up product at this location (store)
+     * @type {boolean}
+     * @memberof InventoryResponseAllOf
+     */
+    pickup?: boolean;
+    /**
+     * Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    safetyStock?: number;
+    /**
+     * Stock Keeping Unit
+     * @type {string}
+     * @memberof InventoryResponseAllOf
+     */
+    sku?: string;
+    /**
+     * 
+     * @type {Array<TagQuantity>}
+     * @memberof InventoryResponseAllOf
+     */
+    taggedInventory?: Array<TagQuantity>;
+    /**
+     * Tenant Identifier
+     * @type {number}
+     * @memberof InventoryResponseAllOf
+     */
+    tenantID?: number;
+    /**
+     * Whether the location can ship to another location (store), thus restocking that location.
+     * @type {boolean}
+     * @memberof InventoryResponseAllOf
+     */
+    transferEnabled?: boolean;
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof InventoryResponseAllOf
+     */
+    upc?: string;
 }
 /**
  * Request/Response object for a tag
@@ -4362,17 +4774,11 @@ export interface InventoryResponseAllOf {
  */
 export interface InventoryTag {
     /**
-     * Tag ID
-     * @type {number}
-     * @memberof InventoryTag
-     */
-    tagID?: number;
-    /**
-     * Tag Value
+     * Date this tag was created
      * @type {string}
      * @memberof InventoryTag
      */
-    tagValue?: string;
+    created?: string;
     /**
      * Whether or not this tag is the default tag for its category.
      * @type {boolean}
@@ -4386,11 +4792,17 @@ export interface InventoryTag {
      */
     percent?: number;
     /**
-     * Date this tag was created
+     * Tag ID
+     * @type {number}
+     * @memberof InventoryTag
+     */
+    tagID?: number;
+    /**
+     * Tag Value
      * @type {string}
      * @memberof InventoryTag
      */
-    created?: string;
+    tagValue?: string;
     /**
      * Date this tag was last updated
      * @type {string}
@@ -4399,47 +4811,35 @@ export interface InventoryTag {
     updated?: string;
 }
 /**
- * Response object for a tag quantity
+ * 
  * @export
  * @interface InventoryTagQuantity
  */
 export interface InventoryTagQuantity {
     /**
-     * The quantity the the location has in its possession for this tag
-     * @type {number}
+     * 
+     * @type {any}
      * @memberof InventoryTagQuantity
      */
-    onHand?: number;
-    /**
-     * The quantity the location has that are available for purchase for this tag
-     * @type {number}
-     * @memberof InventoryTagQuantity
-     */
-    available?: number;
-    /**
-     * The quantity the location has that are already allocated for this tag
-     * @type {number}
-     * @memberof InventoryTagQuantity
-     */
-    allocated?: number;
-    /**
-     * The quantity the location has that are pending for this tag
-     * @type {number}
-     * @memberof InventoryTagQuantity
-     */
-    pending?: number;
-    /**
-     * Associative Map of <String, String> for tagCategoryName => tagName
-     * @type {{ [key: string]: string; }}
-     * @memberof InventoryTagQuantity
-     */
-    tags?: { [key: string]: string; };
+    allocated?: any | null;
     /**
      * 
-     * @type {Array<InventoryFutureInventory>}
+     * @type {any}
      * @memberof InventoryTagQuantity
      */
-    futureInventory?: Array<InventoryFutureInventory>;
+    available?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof InventoryTagQuantity
+     */
+    onHand?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof InventoryTagQuantity
+     */
+    pending?: any | null;
 }
 /**
  * Item Quantity Model
@@ -4448,23 +4848,29 @@ export interface InventoryTagQuantity {
  */
 export interface ItemQuantity {
     /**
+     * 
+     * @type {string}
+     * @memberof ItemQuantity
+     */
+    condition?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemQuantity
+     */
+    date?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemQuantity
+     */
+    lotCode?: string;
+    /**
      * Part/Product Number
      * @type {string}
      * @memberof ItemQuantity
      */
     partNumber?: string;
-    /**
-     * Universal Product Code
-     * @type {string}
-     * @memberof ItemQuantity
-     */
-    upc?: string;
-    /**
-     * Stock Keeping Unit
-     * @type {string}
-     * @memberof ItemQuantity
-     */
-    sku?: string;
     /**
      * Quantity
      * @type {number}
@@ -4472,11 +4878,29 @@ export interface ItemQuantity {
      */
     quantity?: number;
     /**
+     * 
+     * @type {string}
+     * @memberof ItemQuantity
+     */
+    serialNumber?: string;
+    /**
+     * Stock Keeping Unit
+     * @type {string}
+     * @memberof ItemQuantity
+     */
+    sku?: string;
+    /**
      * Associative Map of <String, String> for tagCategoryName => tagName
      * @type {{ [key: string]: string; }}
      * @memberof ItemQuantity
      */
     tags?: { [key: string]: string; };
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof ItemQuantity
+     */
+    upc?: string;
 }
 /**
  * Job ID Response
@@ -4498,53 +4922,17 @@ export interface JobIDResponse {
  */
 export interface JobQueueResponse {
     /**
-     * Internal identifier that uniquely identifies a single job
-     * @type {number}
-     * @memberof JobQueueResponse
-     */
-    jobID?: number;
-    /**
-     * Unique internal identifier of the tenant that owns the job
-     * @type {number}
-     * @memberof JobQueueResponse
-     */
-    tenantID?: number;
-    /**
-     * Unique internal Identifier of the owning location
-     * @type {string}
-     * @memberof JobQueueResponse
-     */
-    locationCode?: string;
-    /**
-     * Purpose of the job
-     * @type {string}
-     * @memberof JobQueueResponse
-     */
-    type?: JobQueueResponseTypeEnum;
-    /**
      * Time and date the job was added to the queue in ISO8601 format in UTC
      * @type {string}
      * @memberof JobQueueResponse
      */
     added?: string;
     /**
-     * Time and date the job was started in ISO8601 format in UTC
-     * @type {string}
-     * @memberof JobQueueResponse
-     */
-    started?: string;
-    /**
      * Time and date the job was finished in ISO8601 format in UTC
      * @type {string}
      * @memberof JobQueueResponse
      */
     finished?: string;
-    /**
-     * The full name of the file that was picked up at the secure droppoint server before being split up by location. Applies only to refresh and adjust jobs created via file fetch process
-     * @type {string}
-     * @memberof JobQueueResponse
-     */
-    originalFilename?: string;
     /**
      * True if the job was not created from a fetched file
      * @type {boolean}
@@ -4558,17 +4946,47 @@ export interface JobQueueResponse {
      */
     itemCount?: number;
     /**
+     * Internal identifier that uniquely identifies a single job
+     * @type {number}
+     * @memberof JobQueueResponse
+     */
+    jobID?: number;
+    /**
+     * Unique internal Identifier of the owning location
+     * @type {string}
+     * @memberof JobQueueResponse
+     */
+    locationCode?: string;
+    /**
+     * The full name of the file that was picked up at the secure droppoint server before being split up by location. Applies only to refresh and adjust jobs created via file fetch process
+     * @type {string}
+     * @memberof JobQueueResponse
+     */
+    originalFilename?: string;
+    /**
+     * Time and date the job was started in ISO8601 format in UTC
+     * @type {string}
+     * @memberof JobQueueResponse
+     */
+    started?: string;
+    /**
      * Current status of job completion
      * @type {string}
      * @memberof JobQueueResponse
      */
     status?: JobQueueResponseStatusEnum;
     /**
-     * Flag for success
-     * @type {boolean}
+     * Unique internal identifier of the tenant that owns the job
+     * @type {number}
      * @memberof JobQueueResponse
      */
-    success?: boolean;
+    tenantID?: number;
+    /**
+     * Purpose of the job
+     * @type {string}
+     * @memberof JobQueueResponse
+     */
+    type?: JobQueueResponseTypeEnum;
     /**
      * List of messages
      * @type {Array<string>}
@@ -4581,8 +4999,25 @@ export interface JobQueueResponse {
      * @memberof JobQueueResponse
      */
     numResults?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof JobQueueResponse
+     */
+    success?: boolean;
 }
 
+
+/**
+ * @export
+ */
+export const JobQueueResponseStatusEnum = {
+    Pending: 'PENDING',
+    Working: 'WORKING',
+    Success: 'SUCCESS',
+    Failed: 'FAILED'
+} as const;
+export type JobQueueResponseStatusEnum = typeof JobQueueResponseStatusEnum[keyof typeof JobQueueResponseStatusEnum];
 
 /**
  * @export
@@ -4607,46 +5042,11 @@ export const JobQueueResponseTypeEnum = {
 export type JobQueueResponseTypeEnum = typeof JobQueueResponseTypeEnum[keyof typeof JobQueueResponseTypeEnum];
 
 /**
- * @export
- */
-export const JobQueueResponseStatusEnum = {
-    Pending: 'PENDING',
-    Working: 'WORKING',
-    Success: 'SUCCESS',
-    Failed: 'FAILED'
-} as const;
-export type JobQueueResponseStatusEnum = typeof JobQueueResponseStatusEnum[keyof typeof JobQueueResponseStatusEnum];
-
-/**
  * 
  * @export
  * @interface JobQueueResponseAllOf
  */
 export interface JobQueueResponseAllOf {
-    /**
-     * Internal identifier that uniquely identifies a single job
-     * @type {number}
-     * @memberof JobQueueResponseAllOf
-     */
-    jobID?: number;
-    /**
-     * Unique internal identifier of the tenant that owns the job
-     * @type {number}
-     * @memberof JobQueueResponseAllOf
-     */
-    tenantID?: number;
-    /**
-     * Unique internal Identifier of the owning location
-     * @type {string}
-     * @memberof JobQueueResponseAllOf
-     */
-    locationCode?: string;
-    /**
-     * Purpose of the job
-     * @type {string}
-     * @memberof JobQueueResponseAllOf
-     */
-    type?: JobQueueResponseAllOfTypeEnum;
     /**
      * Time and date the job was added to the queue in ISO8601 format in UTC
      * @type {string}
@@ -4654,23 +5054,11 @@ export interface JobQueueResponseAllOf {
      */
     added?: string;
     /**
-     * Time and date the job was started in ISO8601 format in UTC
-     * @type {string}
-     * @memberof JobQueueResponseAllOf
-     */
-    started?: string;
-    /**
      * Time and date the job was finished in ISO8601 format in UTC
      * @type {string}
      * @memberof JobQueueResponseAllOf
      */
     finished?: string;
-    /**
-     * The full name of the file that was picked up at the secure droppoint server before being split up by location. Applies only to refresh and adjust jobs created via file fetch process
-     * @type {string}
-     * @memberof JobQueueResponseAllOf
-     */
-    originalFilename?: string;
     /**
      * True if the job was not created from a fetched file
      * @type {boolean}
@@ -4684,13 +5072,60 @@ export interface JobQueueResponseAllOf {
      */
     itemCount?: number;
     /**
+     * Internal identifier that uniquely identifies a single job
+     * @type {number}
+     * @memberof JobQueueResponseAllOf
+     */
+    jobID?: number;
+    /**
+     * Unique internal Identifier of the owning location
+     * @type {string}
+     * @memberof JobQueueResponseAllOf
+     */
+    locationCode?: string;
+    /**
+     * The full name of the file that was picked up at the secure droppoint server before being split up by location. Applies only to refresh and adjust jobs created via file fetch process
+     * @type {string}
+     * @memberof JobQueueResponseAllOf
+     */
+    originalFilename?: string;
+    /**
+     * Time and date the job was started in ISO8601 format in UTC
+     * @type {string}
+     * @memberof JobQueueResponseAllOf
+     */
+    started?: string;
+    /**
      * Current status of job completion
      * @type {string}
      * @memberof JobQueueResponseAllOf
      */
     status?: JobQueueResponseAllOfStatusEnum;
+    /**
+     * Unique internal identifier of the tenant that owns the job
+     * @type {number}
+     * @memberof JobQueueResponseAllOf
+     */
+    tenantID?: number;
+    /**
+     * Purpose of the job
+     * @type {string}
+     * @memberof JobQueueResponseAllOf
+     */
+    type?: JobQueueResponseAllOfTypeEnum;
 }
 
+
+/**
+ * @export
+ */
+export const JobQueueResponseAllOfStatusEnum = {
+    Pending: 'PENDING',
+    Working: 'WORKING',
+    Success: 'SUCCESS',
+    Failed: 'FAILED'
+} as const;
+export type JobQueueResponseAllOfStatusEnum = typeof JobQueueResponseAllOfStatusEnum[keyof typeof JobQueueResponseAllOfStatusEnum];
 
 /**
  * @export
@@ -4713,17 +5148,6 @@ export const JobQueueResponseAllOfTypeEnum = {
     Delete: 'DELETE'
 } as const;
 export type JobQueueResponseAllOfTypeEnum = typeof JobQueueResponseAllOfTypeEnum[keyof typeof JobQueueResponseAllOfTypeEnum];
-
-/**
- * @export
- */
-export const JobQueueResponseAllOfStatusEnum = {
-    Pending: 'PENDING',
-    Working: 'WORKING',
-    Success: 'SUCCESS',
-    Failed: 'FAILED'
-} as const;
-export type JobQueueResponseAllOfStatusEnum = typeof JobQueueResponseAllOfStatusEnum[keyof typeof JobQueueResponseAllOfStatusEnum];
 
 /**
  * Request needed for loading bin inventory
@@ -4750,11 +5174,11 @@ export interface LoadBinInventoryRequest {
      */
     locationCode?: string;
     /**
-     * user id
+     * which page to show
      * @type {number}
      * @memberof LoadBinInventoryRequest
      */
-    userID?: number;
+    pageNum?: number;
     /**
      * how many results to show per page
      * @type {number}
@@ -4762,17 +5186,17 @@ export interface LoadBinInventoryRequest {
      */
     pageSize?: number;
     /**
-     * which page to show
-     * @type {number}
-     * @memberof LoadBinInventoryRequest
-     */
-    pageNum?: number;
-    /**
      * index to sort results by
      * @type {string}
      * @memberof LoadBinInventoryRequest
      */
     sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof LoadBinInventoryRequest
+     */
+    userID?: number;
 }
 /**
  * 
@@ -4800,17 +5224,11 @@ export interface LoadBinInventoryRequestAllOf {
  */
 export interface LoadBinInventoryResponse {
     /**
-     * Number of units added
-     * @type {number}
+     * List of new bin product quantities
+     * @type {Array<BinProductQuantities>}
      * @memberof LoadBinInventoryResponse
      */
-    unitsAdded?: number;
-    /**
-     * Number of removed units
-     * @type {number}
-     * @memberof LoadBinInventoryResponse
-     */
-    unitsRemoved?: number;
+    binQuantities?: Array<BinProductQuantities>;
     /**
      * Names of created bins
      * @type {Array<string>}
@@ -4824,17 +5242,17 @@ export interface LoadBinInventoryResponse {
      */
     productsCreated?: Array<InventoryProduct>;
     /**
-     * List of new bin product quantities
-     * @type {Array<BinProductQuantities>}
+     * Number of units added
+     * @type {number}
      * @memberof LoadBinInventoryResponse
      */
-    binQuantities?: Array<BinProductQuantities>;
+    unitsAdded?: number;
     /**
-     * Flag for success
-     * @type {boolean}
+     * Number of removed units
+     * @type {number}
      * @memberof LoadBinInventoryResponse
      */
-    success?: boolean;
+    unitsRemoved?: number;
     /**
      * List of messages
      * @type {Array<string>}
@@ -4847,6 +5265,12 @@ export interface LoadBinInventoryResponse {
      * @memberof LoadBinInventoryResponse
      */
     numResults?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof LoadBinInventoryResponse
+     */
+    success?: boolean;
 }
 /**
  * 
@@ -4855,17 +5279,11 @@ export interface LoadBinInventoryResponse {
  */
 export interface LoadBinInventoryResponseAllOf {
     /**
-     * Number of units added
-     * @type {number}
+     * List of new bin product quantities
+     * @type {Array<BinProductQuantities>}
      * @memberof LoadBinInventoryResponseAllOf
      */
-    unitsAdded?: number;
-    /**
-     * Number of removed units
-     * @type {number}
-     * @memberof LoadBinInventoryResponseAllOf
-     */
-    unitsRemoved?: number;
+    binQuantities?: Array<BinProductQuantities>;
     /**
      * Names of created bins
      * @type {Array<string>}
@@ -4879,11 +5297,17 @@ export interface LoadBinInventoryResponseAllOf {
      */
     productsCreated?: Array<InventoryProduct>;
     /**
-     * List of new bin product quantities
-     * @type {Array<BinProductQuantities>}
+     * Number of units added
+     * @type {number}
      * @memberof LoadBinInventoryResponseAllOf
      */
-    binQuantities?: Array<BinProductQuantities>;
+    unitsAdded?: number;
+    /**
+     * Number of removed units
+     * @type {number}
+     * @memberof LoadBinInventoryResponseAllOf
+     */
+    unitsRemoved?: number;
 }
 /**
  * LocationGroup Response Object
@@ -4892,23 +5316,11 @@ export interface LoadBinInventoryResponseAllOf {
  */
 export interface LocationGroupResponse {
     /**
-     * Location Group ID
+     * Admin Location Group ID
      * @type {number}
      * @memberof LocationGroupResponse
      */
-    locationGroupID?: number;
-    /**
-     * Tenant ID
-     * @type {number}
-     * @memberof LocationGroupResponse
-     */
-    tenantID?: number;
-    /**
-     * Location Group Code
-     * @type {string}
-     * @memberof LocationGroupResponse
-     */
-    locationGroupCode?: string;
+    adminLocationGroupID?: number;
     /**
      * Created
      * @type {string}
@@ -4916,11 +5328,23 @@ export interface LocationGroupResponse {
      */
     created?: string;
     /**
-     * Admin Location Group ID
+     * Location IDs
+     * @type {Array<string>}
+     * @memberof LocationGroupResponse
+     */
+    locationCodes?: Array<string>;
+    /**
+     * Location Group Code
+     * @type {string}
+     * @memberof LocationGroupResponse
+     */
+    locationGroupCode?: string;
+    /**
+     * Location Group ID
      * @type {number}
      * @memberof LocationGroupResponse
      */
-    adminLocationGroupID?: number;
+    locationGroupID?: number;
     /**
      * Site IDs
      * @type {Array<number>}
@@ -4928,17 +5352,11 @@ export interface LocationGroupResponse {
      */
     sites?: Array<number>;
     /**
-     * Location IDs
-     * @type {Array<string>}
+     * Tenant ID
+     * @type {number}
      * @memberof LocationGroupResponse
      */
-    locationCodes?: Array<string>;
-    /**
-     * Flag for success
-     * @type {boolean}
-     * @memberof LocationGroupResponse
-     */
-    success?: boolean;
+    tenantID?: number;
     /**
      * List of messages
      * @type {Array<string>}
@@ -4951,6 +5369,12 @@ export interface LocationGroupResponse {
      * @memberof LocationGroupResponse
      */
     numResults?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof LocationGroupResponse
+     */
+    success?: boolean;
 }
 /**
  * 
@@ -4959,23 +5383,11 @@ export interface LocationGroupResponse {
  */
 export interface LocationGroupResponseAllOf {
     /**
-     * Location Group ID
+     * Admin Location Group ID
      * @type {number}
      * @memberof LocationGroupResponseAllOf
      */
-    locationGroupID?: number;
-    /**
-     * Tenant ID
-     * @type {number}
-     * @memberof LocationGroupResponseAllOf
-     */
-    tenantID?: number;
-    /**
-     * Location Group Code
-     * @type {string}
-     * @memberof LocationGroupResponseAllOf
-     */
-    locationGroupCode?: string;
+    adminLocationGroupID?: number;
     /**
      * Created
      * @type {string}
@@ -4983,11 +5395,23 @@ export interface LocationGroupResponseAllOf {
      */
     created?: string;
     /**
-     * Admin Location Group ID
+     * Location IDs
+     * @type {Array<string>}
+     * @memberof LocationGroupResponseAllOf
+     */
+    locationCodes?: Array<string>;
+    /**
+     * Location Group Code
+     * @type {string}
+     * @memberof LocationGroupResponseAllOf
+     */
+    locationGroupCode?: string;
+    /**
+     * Location Group ID
      * @type {number}
      * @memberof LocationGroupResponseAllOf
      */
-    adminLocationGroupID?: number;
+    locationGroupID?: number;
     /**
      * Site IDs
      * @type {Array<number>}
@@ -4995,11 +5419,11 @@ export interface LocationGroupResponseAllOf {
      */
     sites?: Array<number>;
     /**
-     * Location IDs
-     * @type {Array<string>}
+     * Tenant ID
+     * @type {number}
      * @memberof LocationGroupResponseAllOf
      */
-    locationCodes?: Array<string>;
+    tenantID?: number;
 }
 /**
  * Location Request Object
@@ -5008,65 +5432,11 @@ export interface LocationGroupResponseAllOf {
  */
 export interface LocationRequest {
     /**
-     * Tenant ID
-     * @type {number}
-     * @memberof LocationRequest
-     */
-    tenantID: number;
-    /**
-     * Location Code
-     * @type {string}
-     * @memberof LocationRequest
-     */
-    locationCode: string;
-    /**
-     * Flag for whether the location is express enabled or not
-     * @type {boolean}
-     * @memberof LocationRequest
-     */
-    express?: boolean;
-    /**
-     * Flag for whether the location is to be included in location exports
-     * @type {boolean}
-     * @memberof LocationRequest
-     */
-    includeInLocationExport?: boolean;
-    /**
-     * Flag for whether the location is to be included in aggregate exports
-     * @type {boolean}
-     * @memberof LocationRequest
-     */
-    includeInAggregate?: boolean;
-    /**
      * Flag for whether the location is active
      * @type {boolean}
      * @memberof LocationRequest
      */
     active: boolean;
-    /**
-     * Flag for whether the location allows Direct Ship (STH) orders
-     * @type {boolean}
-     * @memberof LocationRequest
-     */
-    directShip: boolean;
-    /**
-     * Flag for whether the location allows Pickup (BOPIS) orders
-     * @type {boolean}
-     * @memberof LocationRequest
-     */
-    pickup: boolean;
-    /**
-     * Flag for whether the location allows Transfer orders
-     * @type {boolean}
-     * @memberof LocationRequest
-     */
-    transferEnabled?: boolean;
-    /**
-     * Postal Code
-     * @type {string}
-     * @memberof LocationRequest
-     */
-    postalCode?: string;
     /**
      * Country Code
      * @type {string}
@@ -5074,11 +5444,47 @@ export interface LocationRequest {
      */
     countryCode?: string;
     /**
+     * Flag for whether the location allows Direct Ship (STH) orders
+     * @type {boolean}
+     * @memberof LocationRequest
+     */
+    directShip: boolean;
+    /**
+     * Flag for whether the location is express enabled or not
+     * @type {boolean}
+     * @memberof LocationRequest
+     */
+    express?: boolean;
+    /**
+     * Flag for whether the location is to be included in aggregate exports
+     * @type {boolean}
+     * @memberof LocationRequest
+     */
+    includeInAggregate?: boolean;
+    /**
+     * Flag for whether the location is to be included in location exports
+     * @type {boolean}
+     * @memberof LocationRequest
+     */
+    includeInLocationExport?: boolean;
+    /**
      * Latitude
      * @type {number}
      * @memberof LocationRequest
      */
     latitude?: number;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof LocationRequest
+     */
+    locationCode: string;
+    /**
+     * Location Name
+     * @type {string}
+     * @memberof LocationRequest
+     */
+    locationName: string;
     /**
      * Longitude
      * @type {number}
@@ -5086,11 +5492,29 @@ export interface LocationRequest {
      */
     longitude?: number;
     /**
-     * Location Name
+     * Flag for whether the location allows Pickup (BOPIS) orders
+     * @type {boolean}
+     * @memberof LocationRequest
+     */
+    pickup: boolean;
+    /**
+     * Postal Code
      * @type {string}
      * @memberof LocationRequest
      */
-    locationName: string;
+    postalCode?: string;
+    /**
+     * Tenant ID
+     * @type {number}
+     * @memberof LocationRequest
+     */
+    tenantID: number;
+    /**
+     * Flag for whether the location allows Transfer orders
+     * @type {boolean}
+     * @memberof LocationRequest
+     */
+    transferEnabled?: boolean;
     /**
      * Flag for whether the location is WMS Enabled
      * @type {boolean}
@@ -5105,71 +5529,11 @@ export interface LocationRequest {
  */
 export interface LocationResponse {
     /**
-     * Internal Location ID
-     * @type {number}
-     * @memberof LocationResponse
-     */
-    locationID?: number;
-    /**
-     * Tenant ID
-     * @type {number}
-     * @memberof LocationResponse
-     */
-    tenantID?: number;
-    /**
-     * Location Code
-     * @type {string}
-     * @memberof LocationResponse
-     */
-    locationCode?: string;
-    /**
-     * Flag for whether the location is express enabled or not
-     * @type {boolean}
-     * @memberof LocationResponse
-     */
-    express?: boolean;
-    /**
-     * Flag for whether the location is to be included in location exports
-     * @type {boolean}
-     * @memberof LocationResponse
-     */
-    includeInLocationExport?: boolean;
-    /**
-     * Flag for whether the location is to be included in aggregate exports
-     * @type {boolean}
-     * @memberof LocationResponse
-     */
-    includeInAggregate?: boolean;
-    /**
      * Flag for whether the location is active
      * @type {boolean}
      * @memberof LocationResponse
      */
     active?: boolean;
-    /**
-     * Flag for whether the location allows Direct Ship (STH) orders
-     * @type {boolean}
-     * @memberof LocationResponse
-     */
-    directShip?: boolean;
-    /**
-     * Flag for whether the location allows Pickup (BOPIS) orders
-     * @type {boolean}
-     * @memberof LocationResponse
-     */
-    pickup?: boolean;
-    /**
-     * Flag for whether the location allows Transfer orders
-     * @type {boolean}
-     * @memberof LocationResponse
-     */
-    transferEnabled?: boolean;
-    /**
-     * Postal Code
-     * @type {string}
-     * @memberof LocationResponse
-     */
-    postalCode?: string;
     /**
      * Country Code
      * @type {string}
@@ -5177,17 +5541,47 @@ export interface LocationResponse {
      */
     countryCode?: string;
     /**
+     * Flag for whether the location allows Direct Ship (STH) orders
+     * @type {boolean}
+     * @memberof LocationResponse
+     */
+    directShip?: boolean;
+    /**
+     * Flag for whether the location is express enabled or not
+     * @type {boolean}
+     * @memberof LocationResponse
+     */
+    express?: boolean;
+    /**
+     * Flag for whether the location is to be included in aggregate exports
+     * @type {boolean}
+     * @memberof LocationResponse
+     */
+    includeInAggregate?: boolean;
+    /**
+     * Flag for whether the location is to be included in location exports
+     * @type {boolean}
+     * @memberof LocationResponse
+     */
+    includeInLocationExport?: boolean;
+    /**
      * Latitude
      * @type {number}
      * @memberof LocationResponse
      */
     latitude?: number;
     /**
-     * Longitude
+     * Location Code
+     * @type {string}
+     * @memberof LocationResponse
+     */
+    locationCode?: string;
+    /**
+     * Internal Location ID
      * @type {number}
      * @memberof LocationResponse
      */
-    longitude?: number;
+    locationID?: number;
     /**
      * Location Name
      * @type {string}
@@ -5195,23 +5589,41 @@ export interface LocationResponse {
      */
     locationName?: string;
     /**
+     * Longitude
+     * @type {number}
+     * @memberof LocationResponse
+     */
+    longitude?: number;
+    /**
+     * Flag for whether the location allows Pickup (BOPIS) orders
+     * @type {boolean}
+     * @memberof LocationResponse
+     */
+    pickup?: boolean;
+    /**
+     * Postal Code
+     * @type {string}
+     * @memberof LocationResponse
+     */
+    postalCode?: string;
+    /**
+     * Tenant ID
+     * @type {number}
+     * @memberof LocationResponse
+     */
+    tenantID?: number;
+    /**
+     * Flag for whether the location allows Transfer orders
+     * @type {boolean}
+     * @memberof LocationResponse
+     */
+    transferEnabled?: boolean;
+    /**
      * Flag for whether the location is WMS Enabled
      * @type {boolean}
      * @memberof LocationResponse
      */
     wmsEnabled?: boolean;
-    /**
-     * Flag for whether the location is deliveryEnabled
-     * @type {boolean}
-     * @memberof LocationResponse
-     */
-    deliveryEnabled?: boolean;
-    /**
-     * Flag for success
-     * @type {boolean}
-     * @memberof LocationResponse
-     */
-    success?: boolean;
     /**
      * List of messages
      * @type {Array<string>}
@@ -5224,6 +5636,12 @@ export interface LocationResponse {
      * @memberof LocationResponse
      */
     numResults?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof LocationResponse
+     */
+    success?: boolean;
 }
 /**
  * 
@@ -5232,71 +5650,11 @@ export interface LocationResponse {
  */
 export interface LocationResponseAllOf {
     /**
-     * Internal Location ID
-     * @type {number}
-     * @memberof LocationResponseAllOf
-     */
-    locationID?: number;
-    /**
-     * Tenant ID
-     * @type {number}
-     * @memberof LocationResponseAllOf
-     */
-    tenantID?: number;
-    /**
-     * Location Code
-     * @type {string}
-     * @memberof LocationResponseAllOf
-     */
-    locationCode?: string;
-    /**
-     * Flag for whether the location is express enabled or not
-     * @type {boolean}
-     * @memberof LocationResponseAllOf
-     */
-    express?: boolean;
-    /**
-     * Flag for whether the location is to be included in location exports
-     * @type {boolean}
-     * @memberof LocationResponseAllOf
-     */
-    includeInLocationExport?: boolean;
-    /**
-     * Flag for whether the location is to be included in aggregate exports
-     * @type {boolean}
-     * @memberof LocationResponseAllOf
-     */
-    includeInAggregate?: boolean;
-    /**
      * Flag for whether the location is active
      * @type {boolean}
      * @memberof LocationResponseAllOf
      */
     active?: boolean;
-    /**
-     * Flag for whether the location allows Direct Ship (STH) orders
-     * @type {boolean}
-     * @memberof LocationResponseAllOf
-     */
-    directShip?: boolean;
-    /**
-     * Flag for whether the location allows Pickup (BOPIS) orders
-     * @type {boolean}
-     * @memberof LocationResponseAllOf
-     */
-    pickup?: boolean;
-    /**
-     * Flag for whether the location allows Transfer orders
-     * @type {boolean}
-     * @memberof LocationResponseAllOf
-     */
-    transferEnabled?: boolean;
-    /**
-     * Postal Code
-     * @type {string}
-     * @memberof LocationResponseAllOf
-     */
-    postalCode?: string;
     /**
      * Country Code
      * @type {string}
@@ -5304,17 +5662,47 @@ export interface LocationResponseAllOf {
      */
     countryCode?: string;
     /**
+     * Flag for whether the location allows Direct Ship (STH) orders
+     * @type {boolean}
+     * @memberof LocationResponseAllOf
+     */
+    directShip?: boolean;
+    /**
+     * Flag for whether the location is express enabled or not
+     * @type {boolean}
+     * @memberof LocationResponseAllOf
+     */
+    express?: boolean;
+    /**
+     * Flag for whether the location is to be included in aggregate exports
+     * @type {boolean}
+     * @memberof LocationResponseAllOf
+     */
+    includeInAggregate?: boolean;
+    /**
+     * Flag for whether the location is to be included in location exports
+     * @type {boolean}
+     * @memberof LocationResponseAllOf
+     */
+    includeInLocationExport?: boolean;
+    /**
      * Latitude
      * @type {number}
      * @memberof LocationResponseAllOf
      */
     latitude?: number;
     /**
-     * Longitude
+     * Location Code
+     * @type {string}
+     * @memberof LocationResponseAllOf
+     */
+    locationCode?: string;
+    /**
+     * Internal Location ID
      * @type {number}
      * @memberof LocationResponseAllOf
      */
-    longitude?: number;
+    locationID?: number;
     /**
      * Location Name
      * @type {string}
@@ -5322,17 +5710,41 @@ export interface LocationResponseAllOf {
      */
     locationName?: string;
     /**
+     * Longitude
+     * @type {number}
+     * @memberof LocationResponseAllOf
+     */
+    longitude?: number;
+    /**
+     * Flag for whether the location allows Pickup (BOPIS) orders
+     * @type {boolean}
+     * @memberof LocationResponseAllOf
+     */
+    pickup?: boolean;
+    /**
+     * Postal Code
+     * @type {string}
+     * @memberof LocationResponseAllOf
+     */
+    postalCode?: string;
+    /**
+     * Tenant ID
+     * @type {number}
+     * @memberof LocationResponseAllOf
+     */
+    tenantID?: number;
+    /**
+     * Flag for whether the location allows Transfer orders
+     * @type {boolean}
+     * @memberof LocationResponseAllOf
+     */
+    transferEnabled?: boolean;
+    /**
      * Flag for whether the location is WMS Enabled
      * @type {boolean}
      * @memberof LocationResponseAllOf
      */
     wmsEnabled?: boolean;
-    /**
-     * Flag for whether the location is deliveryEnabled
-     * @type {boolean}
-     * @memberof LocationResponseAllOf
-     */
-    deliveryEnabled?: boolean;
 }
 /**
  * Delete Item Model
@@ -5341,11 +5753,11 @@ export interface LocationResponseAllOf {
  */
 export interface MDeleteItem {
     /**
-     * Product Identifier
-     * @type {number}
+     * List of audit identifiers associated with the deleted item
+     * @type {Array<number>}
      * @memberof MDeleteItem
      */
-    productID?: number;
+    auditIDs?: Array<number>;
     /**
      * List of inventory identifiers associated with the deleted item
      * @type {Array<number>}
@@ -5353,11 +5765,11 @@ export interface MDeleteItem {
      */
     inventoryIDs?: Array<number>;
     /**
-     * List of location identifiers associated with the deleted item
-     * @type {Array<number>}
+     * 
+     * @type {ProductIdentifier}
      * @memberof MDeleteItem
      */
-    locationIDs?: Array<number>;
+    itemIdentifier?: ProductIdentifier;
     /**
      * List of location codes associated with the deleted item
      * @type {Array<string>}
@@ -5365,114 +5777,258 @@ export interface MDeleteItem {
      */
     locationCodes?: Array<string>;
     /**
-     * List of audit identifiers associated with the deleted item
+     * List of location identifiers associated with the deleted item
      * @type {Array<number>}
      * @memberof MDeleteItem
      */
-    auditIDs?: Array<number>;
+    locationIDs?: Array<number>;
     /**
-     * 
-     * @type {ProductIdentifier}
+     * Product Identifier
+     * @type {number}
      * @memberof MDeleteItem
      */
-    itemIdentifier?: ProductIdentifier;
+    productID?: number;
 }
+/**
+ * Fetch File Config Model
+ * @export
+ * @interface MFetchFileConfig
+ */
+export interface MFetchFileConfig {
+    /**
+     * Active
+     * @type {boolean}
+     * @memberof MFetchFileConfig
+     */
+    active?: boolean;
+    /**
+     * S3 Archive Bucket
+     * @type {string}
+     * @memberof MFetchFileConfig
+     */
+    archiveBucket?: string;
+    /**
+     * Flag to convert null quantities to zero
+     * @type {boolean}
+     * @memberof MFetchFileConfig
+     */
+    blankQuantityIsZero?: boolean;
+    /**
+     * S3 Bucket
+     * @type {string}
+     * @memberof MFetchFileConfig
+     */
+    bucket?: string;
+    /**
+     * CSV Delimiter
+     * @type {string}
+     * @memberof MFetchFileConfig
+     */
+    csvDelimiter?: string;
+    /**
+     * Email List
+     * @type {string}
+     * @memberof MFetchFileConfig
+     */
+    emailList?: string;
+    /**
+     * Flag for exporting after refresh
+     * @type {boolean}
+     * @memberof MFetchFileConfig
+     */
+    exportAfterRefresh?: boolean;
+    /**
+     * Failed Attempts
+     * @type {number}
+     * @memberof MFetchFileConfig
+     */
+    failedAttempts?: number;
+    /**
+     * Fetch File Config ID
+     * @type {number}
+     * @memberof MFetchFileConfig
+     */
+    fetchFileConfigID?: number;
+    /**
+     * List of field names
+     * @type {Array<string>}
+     * @memberof MFetchFileConfig
+     */
+    fieldNameMap?: Array<string>;
+    /**
+     * FTP server password
+     * @type {string}
+     * @memberof MFetchFileConfig
+     */
+    ftpPassword?: string;
+    /**
+     * FTP server port
+     * @type {number}
+     * @memberof MFetchFileConfig
+     */
+    ftpPort?: number;
+    /**
+     * FTP server remote path
+     * @type {string}
+     * @memberof MFetchFileConfig
+     */
+    ftpRemotePath?: string;
+    /**
+     * FTP server remote path archive
+     * @type {string}
+     * @memberof MFetchFileConfig
+     */
+    ftpRemotePathArchive?: string;
+    /**
+     * FTP server address
+     * @type {string}
+     * @memberof MFetchFileConfig
+     */
+    ftpServer?: string;
+    /**
+     * FTP server username
+     * @type {string}
+     * @memberof MFetchFileConfig
+     */
+    ftpUsername?: string;
+    /**
+     * Flag for ignoring extra fields
+     * @type {boolean}
+     * @memberof MFetchFileConfig
+     */
+    ignoreExtraFields?: boolean;
+    /**
+     * Time config was last modified
+     * @type {string}
+     * @memberof MFetchFileConfig
+     */
+    lastModified?: string;
+    /**
+     * Lock name
+     * @type {string}
+     * @memberof MFetchFileConfig
+     */
+    lockName?: string;
+    /**
+     * Flag for using multiple files
+     * @type {boolean}
+     * @memberof MFetchFileConfig
+     */
+    multipleFiles?: boolean;
+    /**
+     * Export id post import
+     * @type {number}
+     * @memberof MFetchFileConfig
+     */
+    postImportExportId?: number;
+    /**
+     * FTP id post import
+     * @type {number}
+     * @memberof MFetchFileConfig
+     */
+    postImportFtpId?: number;
+    /**
+     * Enum denoting action post processing
+     * @type {number}
+     * @memberof MFetchFileConfig
+     */
+    postProcessAction?: number;
+    /**
+     * Enum for fetch file mapping
+     * @type {string}
+     * @memberof MFetchFileConfig
+     */
+    productMapping?: MFetchFileConfigProductMappingEnum;
+    /**
+     * Flag for Refresh Enabled
+     * @type {boolean}
+     * @memberof MFetchFileConfig
+     */
+    refreshEnabled?: boolean;
+    /**
+     * Description for the refresh file
+     * @type {string}
+     * @memberof MFetchFileConfig
+     */
+    refreshFileDescription?: string;
+    /**
+     * S3 Region
+     * @type {string}
+     * @memberof MFetchFileConfig
+     */
+    region?: string;
+    /**
+     * S3 Archive Bucket Path (directory)
+     * @type {string}
+     * @memberof MFetchFileConfig
+     */
+    s3ArchivePath?: string;
+    /**
+     * S3 Key
+     * @type {string}
+     * @memberof MFetchFileConfig
+     */
+    s3Key?: string;
+    /**
+     * S3 Bucket Path (directory)
+     * @type {string}
+     * @memberof MFetchFileConfig
+     */
+    s3Path?: string;
+    /**
+     * S3 Secret
+     * @type {string}
+     * @memberof MFetchFileConfig
+     */
+    secret?: string;
+    /**
+     * Tenant ID
+     * @type {number}
+     * @memberof MFetchFileConfig
+     */
+    tenantID?: number;
+    /**
+     * Flag for Update Enabled
+     * @type {boolean}
+     * @memberof MFetchFileConfig
+     */
+    updateEnabled?: boolean;
+    /**
+     * Description for the update file
+     * @type {string}
+     * @memberof MFetchFileConfig
+     */
+    updateFileDescription?: string;
+    /**
+     * Flag for using control file
+     * @type {boolean}
+     * @memberof MFetchFileConfig
+     */
+    useControlFile?: boolean;
+    /**
+     * Flag for converting negatives to zero
+     * @type {boolean}
+     * @memberof MFetchFileConfig
+     */
+    zeroOutNegatives?: boolean;
+}
+
+
+/**
+ * @export
+ */
+export const MFetchFileConfigProductMappingEnum = {
+    PartNumberWithUpc: 'SWAP_PART_NUMBER_WITH_UPC',
+    SkuWithUpc: 'SWAP_SKU_WITH_UPC'
+} as const;
+export type MFetchFileConfigProductMappingEnum = typeof MFetchFileConfigProductMappingEnum[keyof typeof MFetchFileConfigProductMappingEnum];
+
 /**
  * Order Item Information
  * @export
  * @interface OrderItemInformation
  */
 export interface OrderItemInformation {
-    /**
-     * Order Identifier
-     * @type {number}
-     * @memberof OrderItemInformation
-     */
-    orderID?: number;
-    /**
-     * Order Item Identifier
-     * @type {number}
-     * @memberof OrderItemInformation
-     */
-    orderItemID?: number;
-    /**
-     * Location Identifier
-     * @type {number}
-     * @memberof OrderItemInformation
-     */
-    locationID?: number;
-    /**
-     * Flag for whether the location is active
-     * @type {boolean}
-     * @memberof OrderItemInformation
-     */
-    locationActive?: boolean;
-    /**
-     * External Store Identifier
-     * @type {number}
-     * @memberof OrderItemInformation
-     */
-    locationCode?: number;
-    /**
-     * Location Name
-     * @type {string}
-     * @memberof OrderItemInformation
-     */
-    locationName?: string;
-    /**
-     * Bin Identifier
-     * @type {number}
-     * @memberof OrderItemInformation
-     */
-    binID?: number;
-    /**
-     * Part/Product Number
-     * @type {string}
-     * @memberof OrderItemInformation
-     */
-    partNumber?: string;
-    /**
-     * Universal Product Code
-     * @type {string}
-     * @memberof OrderItemInformation
-     */
-    upc?: string;
-    /**
-     * Stock Keeping Unit
-     * @type {string}
-     * @memberof OrderItemInformation
-     */
-    sku?: string;
-    /**
-     * Custom field used for store prioritization
-     * @type {string}
-     * @memberof OrderItemInformation
-     */
-    ltd?: string;
-    /**
-     * Absolute minimum quantity of this item that should be in stock at any time
-     * @type {number}
-     * @memberof OrderItemInformation
-     */
-    floor?: number;
-    /**
-     * Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
-     * @type {number}
-     * @memberof OrderItemInformation
-     */
-    safetyStock?: number;
-    /**
-     * The quantity the location has in its possession
-     * @type {number}
-     * @memberof OrderItemInformation
-     */
-    onHand?: number;
-    /**
-     * The quantity the location has that are available for purchase
-     * @type {number}
-     * @memberof OrderItemInformation
-     */
-    available?: number;
     /**
      * The quantity the location has that are allocated
      * @type {number}
@@ -5486,29 +6042,23 @@ export interface OrderItemInformation {
      */
     allocates?: number;
     /**
+     * The quantity the location has that are available for purchase
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    available?: number;
+    /**
+     * Bin Identifier
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    binID?: number;
+    /**
      * Total number of deallocations
      * @type {number}
      * @memberof OrderItemInformation
      */
     deallocates?: number;
-    /**
-     * Total number of fulfillments. Should never be greater than 1.
-     * @type {number}
-     * @memberof OrderItemInformation
-     */
-    fulfills?: number;
-    /**
-     * Total number of picks (WMS only)
-     * @type {number}
-     * @memberof OrderItemInformation
-     */
-    picks?: number;
-    /**
-     * Pending quantity (WMS only)
-     * @type {number}
-     * @memberof OrderItemInformation
-     */
-    pendingQuantity?: number;
     /**
      * Order Identifier
      * @type {Array<OrderItemInformationEvent>}
@@ -5516,11 +6066,101 @@ export interface OrderItemInformation {
      */
     events?: Array<OrderItemInformationEvent>;
     /**
-     * Flag for success
+     * Absolute minimum quantity of this item that should be in stock at any time
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    floor?: number;
+    /**
+     * Total number of fulfillments. Should never be greater than 1.
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    fulfills?: number;
+    /**
+     * Flag for whether the location is active
      * @type {boolean}
      * @memberof OrderItemInformation
      */
-    success?: boolean;
+    locationActive?: boolean;
+    /**
+     * External Store Identifier
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    locationCode?: number;
+    /**
+     * Location Identifier
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    locationID?: number;
+    /**
+     * Location Name
+     * @type {string}
+     * @memberof OrderItemInformation
+     */
+    locationName?: string;
+    /**
+     * Custom field used for store prioritization
+     * @type {string}
+     * @memberof OrderItemInformation
+     */
+    ltd?: string;
+    /**
+     * The quantity the location has in its possession
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    onHand?: number;
+    /**
+     * Order Identifier
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    orderID?: number;
+    /**
+     * Order Item Identifier
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    orderItemID?: number;
+    /**
+     * Part/Product Number
+     * @type {string}
+     * @memberof OrderItemInformation
+     */
+    partNumber?: string;
+    /**
+     * Pending quantity (WMS only)
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    pendingQuantity?: number;
+    /**
+     * Total number of picks (WMS only)
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    picks?: number;
+    /**
+     * Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
+     * @type {number}
+     * @memberof OrderItemInformation
+     */
+    safetyStock?: number;
+    /**
+     * Stock Keeping Unit
+     * @type {string}
+     * @memberof OrderItemInformation
+     */
+    sku?: string;
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof OrderItemInformation
+     */
+    upc?: string;
     /**
      * List of messages
      * @type {Array<string>}
@@ -5533,6 +6173,12 @@ export interface OrderItemInformation {
      * @memberof OrderItemInformation
      */
     numResults?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof OrderItemInformation
+     */
+    success?: boolean;
 }
 /**
  * 
@@ -5540,96 +6186,6 @@ export interface OrderItemInformation {
  * @interface OrderItemInformationAllOf
  */
 export interface OrderItemInformationAllOf {
-    /**
-     * Order Identifier
-     * @type {number}
-     * @memberof OrderItemInformationAllOf
-     */
-    orderID?: number;
-    /**
-     * Order Item Identifier
-     * @type {number}
-     * @memberof OrderItemInformationAllOf
-     */
-    orderItemID?: number;
-    /**
-     * Location Identifier
-     * @type {number}
-     * @memberof OrderItemInformationAllOf
-     */
-    locationID?: number;
-    /**
-     * Flag for whether the location is active
-     * @type {boolean}
-     * @memberof OrderItemInformationAllOf
-     */
-    locationActive?: boolean;
-    /**
-     * External Store Identifier
-     * @type {number}
-     * @memberof OrderItemInformationAllOf
-     */
-    locationCode?: number;
-    /**
-     * Location Name
-     * @type {string}
-     * @memberof OrderItemInformationAllOf
-     */
-    locationName?: string;
-    /**
-     * Bin Identifier
-     * @type {number}
-     * @memberof OrderItemInformationAllOf
-     */
-    binID?: number;
-    /**
-     * Part/Product Number
-     * @type {string}
-     * @memberof OrderItemInformationAllOf
-     */
-    partNumber?: string;
-    /**
-     * Universal Product Code
-     * @type {string}
-     * @memberof OrderItemInformationAllOf
-     */
-    upc?: string;
-    /**
-     * Stock Keeping Unit
-     * @type {string}
-     * @memberof OrderItemInformationAllOf
-     */
-    sku?: string;
-    /**
-     * Custom field used for store prioritization
-     * @type {string}
-     * @memberof OrderItemInformationAllOf
-     */
-    ltd?: string;
-    /**
-     * Absolute minimum quantity of this item that should be in stock at any time
-     * @type {number}
-     * @memberof OrderItemInformationAllOf
-     */
-    floor?: number;
-    /**
-     * Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
-     * @type {number}
-     * @memberof OrderItemInformationAllOf
-     */
-    safetyStock?: number;
-    /**
-     * The quantity the location has in its possession
-     * @type {number}
-     * @memberof OrderItemInformationAllOf
-     */
-    onHand?: number;
-    /**
-     * The quantity the location has that are available for purchase
-     * @type {number}
-     * @memberof OrderItemInformationAllOf
-     */
-    available?: number;
     /**
      * The quantity the location has that are allocated
      * @type {number}
@@ -5643,11 +6199,35 @@ export interface OrderItemInformationAllOf {
      */
     allocates?: number;
     /**
+     * The quantity the location has that are available for purchase
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    available?: number;
+    /**
+     * Bin Identifier
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    binID?: number;
+    /**
      * Total number of deallocations
      * @type {number}
      * @memberof OrderItemInformationAllOf
      */
     deallocates?: number;
+    /**
+     * Order Identifier
+     * @type {Array<OrderItemInformationEvent>}
+     * @memberof OrderItemInformationAllOf
+     */
+    events?: Array<OrderItemInformationEvent>;
+    /**
+     * Absolute minimum quantity of this item that should be in stock at any time
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    floor?: number;
     /**
      * Total number of fulfillments. Should never be greater than 1.
      * @type {number}
@@ -5655,11 +6235,59 @@ export interface OrderItemInformationAllOf {
      */
     fulfills?: number;
     /**
-     * Total number of picks (WMS only)
+     * Flag for whether the location is active
+     * @type {boolean}
+     * @memberof OrderItemInformationAllOf
+     */
+    locationActive?: boolean;
+    /**
+     * External Store Identifier
      * @type {number}
      * @memberof OrderItemInformationAllOf
      */
-    picks?: number;
+    locationCode?: number;
+    /**
+     * Location Identifier
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    locationID?: number;
+    /**
+     * Location Name
+     * @type {string}
+     * @memberof OrderItemInformationAllOf
+     */
+    locationName?: string;
+    /**
+     * Custom field used for store prioritization
+     * @type {string}
+     * @memberof OrderItemInformationAllOf
+     */
+    ltd?: string;
+    /**
+     * The quantity the location has in its possession
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    onHand?: number;
+    /**
+     * Order Identifier
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    orderID?: number;
+    /**
+     * Order Item Identifier
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    orderItemID?: number;
+    /**
+     * Part/Product Number
+     * @type {string}
+     * @memberof OrderItemInformationAllOf
+     */
+    partNumber?: string;
     /**
      * Pending quantity (WMS only)
      * @type {number}
@@ -5667,11 +6295,29 @@ export interface OrderItemInformationAllOf {
      */
     pendingQuantity?: number;
     /**
-     * Order Identifier
-     * @type {Array<OrderItemInformationEvent>}
+     * Total number of picks (WMS only)
+     * @type {number}
      * @memberof OrderItemInformationAllOf
      */
-    events?: Array<OrderItemInformationEvent>;
+    picks?: number;
+    /**
+     * Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
+     * @type {number}
+     * @memberof OrderItemInformationAllOf
+     */
+    safetyStock?: number;
+    /**
+     * Stock Keeping Unit
+     * @type {string}
+     * @memberof OrderItemInformationAllOf
+     */
+    sku?: string;
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof OrderItemInformationAllOf
+     */
+    upc?: string;
 }
 /**
  * Order Item Information Event
@@ -5698,12 +6344,6 @@ export interface OrderItemInformationEvent {
      */
     quantity?: number;
     /**
-     * Flag for success
-     * @type {boolean}
-     * @memberof OrderItemInformationEvent
-     */
-    success?: boolean;
-    /**
      * List of messages
      * @type {Array<string>}
      * @memberof OrderItemInformationEvent
@@ -5715,6 +6355,12 @@ export interface OrderItemInformationEvent {
      * @memberof OrderItemInformationEvent
      */
     numResults?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof OrderItemInformationEvent
+     */
+    success?: boolean;
 }
 
 
@@ -5776,17 +6422,17 @@ export type OrderItemInformationEventAllOfEventTypeEnum = typeof OrderItemInform
  */
 export interface OrderItemInformationRequest {
     /**
-     * Order Identifier
-     * @type {number}
-     * @memberof OrderItemInformationRequest
-     */
-    orderID?: number;
-    /**
      * List of Items to search on
      * @type {Array<InventoryItem>}
      * @memberof OrderItemInformationRequest
      */
     items?: Array<InventoryItem>;
+    /**
+     * Order Identifier
+     * @type {number}
+     * @memberof OrderItemInformationRequest
+     */
+    orderID?: number;
     /**
      * Location Code
      * @type {string}
@@ -5794,11 +6440,11 @@ export interface OrderItemInformationRequest {
      */
     locationCode?: string;
     /**
-     * user id
+     * which page to show
      * @type {number}
      * @memberof OrderItemInformationRequest
      */
-    userID?: number;
+    pageNum?: number;
     /**
      * how many results to show per page
      * @type {number}
@@ -5806,17 +6452,17 @@ export interface OrderItemInformationRequest {
      */
     pageSize?: number;
     /**
-     * which page to show
-     * @type {number}
-     * @memberof OrderItemInformationRequest
-     */
-    pageNum?: number;
-    /**
      * index to sort results by
      * @type {string}
      * @memberof OrderItemInformationRequest
      */
     sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof OrderItemInformationRequest
+     */
+    userID?: number;
 }
 /**
  * 
@@ -5825,18 +6471,639 @@ export interface OrderItemInformationRequest {
  */
 export interface OrderItemInformationRequestAllOf {
     /**
-     * Order Identifier
-     * @type {number}
-     * @memberof OrderItemInformationRequestAllOf
-     */
-    orderID?: number;
-    /**
      * List of Items to search on
      * @type {Array<InventoryItem>}
      * @memberof OrderItemInformationRequestAllOf
      */
     items?: Array<InventoryItem>;
+    /**
+     * Order Identifier
+     * @type {number}
+     * @memberof OrderItemInformationRequestAllOf
+     */
+    orderID?: number;
 }
+/**
+ * OrderItem Log Identifier
+ * @export
+ * @interface OrderItemLogIdentifier
+ */
+export interface OrderItemLogIdentifier {
+    /**
+     * Order Identifier
+     * @type {number}
+     * @memberof OrderItemLogIdentifier
+     */
+    orderID?: number;
+    /**
+     * Order Item Identifier
+     * @type {number}
+     * @memberof OrderItemLogIdentifier
+     */
+    orderItemID?: number;
+    /**
+     * Part/Product Number
+     * @type {string}
+     * @memberof OrderItemLogIdentifier
+     */
+    partNumber?: string;
+    /**
+     * Shipment Identifier
+     * @type {number}
+     * @memberof OrderItemLogIdentifier
+     */
+    shipmentID?: number;
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof OrderItemLogIdentifier
+     */
+    upc?: string;
+}
+/**
+ * OrderItem Log Request
+ * @export
+ * @interface OrderItemLogRequest
+ */
+export interface OrderItemLogRequest {
+    /**
+     * A list of order item log identifiers to search for
+     * @type {Array<OrderItemLogIdentifier>}
+     * @memberof OrderItemLogRequest
+     */
+    identifiers?: Array<OrderItemLogIdentifier>;
+    /**
+     * The maximum number of results to return
+     * @type {number}
+     * @memberof OrderItemLogRequest
+     */
+    limit?: number;
+    /**
+     * Order Identifier
+     * @type {string}
+     * @memberof OrderItemLogRequest
+     */
+    orderBy?: OrderItemLogRequestOrderByEnum;
+    /**
+     * Whether to sort results ascending, based on orderBy
+     * @type {boolean}
+     * @memberof OrderItemLogRequest
+     */
+    sortAscending?: boolean;
+    /**
+     * The type of logs to retrieve
+     * @type {string}
+     * @memberof OrderItemLogRequest
+     */
+    type?: OrderItemLogRequestTypeEnum;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof OrderItemLogRequest
+     */
+    locationCode?: string;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof OrderItemLogRequest
+     */
+    pageNum?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof OrderItemLogRequest
+     */
+    pageSize?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof OrderItemLogRequest
+     */
+    sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof OrderItemLogRequest
+     */
+    userID?: number;
+}
+
+
+/**
+ * @export
+ */
+export const OrderItemLogRequestOrderByEnum = {
+    OrderId: 'ORDER_ID',
+    OrderItemId: 'ORDER_ITEM_ID',
+    InventoryId: 'INVENTORY_ID',
+    TenantId: 'TENANT_ID',
+    LocationId: 'LOCATION_ID',
+    UserId: 'USER_ID',
+    Quantity: 'QUANTITY',
+    Type: 'TYPE',
+    Resolved: 'RESOLVED',
+    Fixed: 'FIXED',
+    Date: 'DATE',
+    ShipmentId: 'SHIPMENT_ID'
+} as const;
+export type OrderItemLogRequestOrderByEnum = typeof OrderItemLogRequestOrderByEnum[keyof typeof OrderItemLogRequestOrderByEnum];
+
+/**
+ * @export
+ */
+export const OrderItemLogRequestTypeEnum = {
+    Allocate: 'ALLOCATE',
+    Deallocate: 'DEALLOCATE',
+    Fulfill: 'FULFILL',
+    Pick: 'PICK'
+} as const;
+export type OrderItemLogRequestTypeEnum = typeof OrderItemLogRequestTypeEnum[keyof typeof OrderItemLogRequestTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface OrderItemLogRequestAllOf
+ */
+export interface OrderItemLogRequestAllOf {
+    /**
+     * A list of order item log identifiers to search for
+     * @type {Array<OrderItemLogIdentifier>}
+     * @memberof OrderItemLogRequestAllOf
+     */
+    identifiers?: Array<OrderItemLogIdentifier>;
+    /**
+     * The maximum number of results to return
+     * @type {number}
+     * @memberof OrderItemLogRequestAllOf
+     */
+    limit?: number;
+    /**
+     * Order Identifier
+     * @type {string}
+     * @memberof OrderItemLogRequestAllOf
+     */
+    orderBy?: OrderItemLogRequestAllOfOrderByEnum;
+    /**
+     * Whether to sort results ascending, based on orderBy
+     * @type {boolean}
+     * @memberof OrderItemLogRequestAllOf
+     */
+    sortAscending?: boolean;
+    /**
+     * The type of logs to retrieve
+     * @type {string}
+     * @memberof OrderItemLogRequestAllOf
+     */
+    type?: OrderItemLogRequestAllOfTypeEnum;
+}
+
+
+/**
+ * @export
+ */
+export const OrderItemLogRequestAllOfOrderByEnum = {
+    OrderId: 'ORDER_ID',
+    OrderItemId: 'ORDER_ITEM_ID',
+    InventoryId: 'INVENTORY_ID',
+    TenantId: 'TENANT_ID',
+    LocationId: 'LOCATION_ID',
+    UserId: 'USER_ID',
+    Quantity: 'QUANTITY',
+    Type: 'TYPE',
+    Resolved: 'RESOLVED',
+    Fixed: 'FIXED',
+    Date: 'DATE',
+    ShipmentId: 'SHIPMENT_ID'
+} as const;
+export type OrderItemLogRequestAllOfOrderByEnum = typeof OrderItemLogRequestAllOfOrderByEnum[keyof typeof OrderItemLogRequestAllOfOrderByEnum];
+
+/**
+ * @export
+ */
+export const OrderItemLogRequestAllOfTypeEnum = {
+    Allocate: 'ALLOCATE',
+    Deallocate: 'DEALLOCATE',
+    Fulfill: 'FULFILL',
+    Pick: 'PICK'
+} as const;
+export type OrderItemLogRequestAllOfTypeEnum = typeof OrderItemLogRequestAllOfTypeEnum[keyof typeof OrderItemLogRequestAllOfTypeEnum];
+
+/**
+ * OrderItem Log Response
+ * @export
+ * @interface OrderItemLogResponse
+ */
+export interface OrderItemLogResponse {
+    /**
+     * The date of this log entry
+     * @type {string}
+     * @memberof OrderItemLogResponse
+     */
+    date?: string;
+    /**
+     * Whether this event has been fixed
+     * @type {boolean}
+     * @memberof OrderItemLogResponse
+     */
+    fixed?: boolean;
+    /**
+     * Inventory Identifier
+     * @type {number}
+     * @memberof OrderItemLogResponse
+     */
+    inventoryID?: number;
+    /**
+     * Location Code Identifier
+     * @type {string}
+     * @memberof OrderItemLogResponse
+     */
+    locationCode?: string;
+    /**
+     * Order Identifier
+     * @type {number}
+     * @memberof OrderItemLogResponse
+     */
+    orderID?: number;
+    /**
+     * Order Item Identifier
+     * @type {number}
+     * @memberof OrderItemLogResponse
+     */
+    orderItemID?: number;
+    /**
+     * Part/Product Number
+     * @type {string}
+     * @memberof OrderItemLogResponse
+     */
+    partNumber?: string;
+    /**
+     * The number of items affected for this log entry
+     * @type {number}
+     * @memberof OrderItemLogResponse
+     */
+    quantity?: number;
+    /**
+     * Whether this event is resolved
+     * @type {boolean}
+     * @memberof OrderItemLogResponse
+     */
+    resolved?: boolean;
+    /**
+     * Shipment Identifier
+     * @type {number}
+     * @memberof OrderItemLogResponse
+     */
+    shipmentID?: number;
+    /**
+     * Tenant Identifier
+     * @type {number}
+     * @memberof OrderItemLogResponse
+     */
+    tenantID?: number;
+    /**
+     * The type of logs to retrieve
+     * @type {string}
+     * @memberof OrderItemLogResponse
+     */
+    type?: OrderItemLogResponseTypeEnum;
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof OrderItemLogResponse
+     */
+    upc?: string;
+    /**
+     * User Identifier
+     * @type {number}
+     * @memberof OrderItemLogResponse
+     */
+    userID?: number;
+    /**
+     * List of messages
+     * @type {Array<string>}
+     * @memberof OrderItemLogResponse
+     */
+    messages?: Array<string>;
+    /**
+     * Number of results
+     * @type {number}
+     * @memberof OrderItemLogResponse
+     */
+    numResults?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof OrderItemLogResponse
+     */
+    success?: boolean;
+}
+
+
+/**
+ * @export
+ */
+export const OrderItemLogResponseTypeEnum = {
+    Allocate: 'ALLOCATE',
+    Deallocate: 'DEALLOCATE',
+    Fulfill: 'FULFILL',
+    Pick: 'PICK'
+} as const;
+export type OrderItemLogResponseTypeEnum = typeof OrderItemLogResponseTypeEnum[keyof typeof OrderItemLogResponseTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface OrderItemLogResponseAllOf
+ */
+export interface OrderItemLogResponseAllOf {
+    /**
+     * The date of this log entry
+     * @type {string}
+     * @memberof OrderItemLogResponseAllOf
+     */
+    date?: string;
+    /**
+     * Whether this event has been fixed
+     * @type {boolean}
+     * @memberof OrderItemLogResponseAllOf
+     */
+    fixed?: boolean;
+    /**
+     * Inventory Identifier
+     * @type {number}
+     * @memberof OrderItemLogResponseAllOf
+     */
+    inventoryID?: number;
+    /**
+     * Location Code Identifier
+     * @type {string}
+     * @memberof OrderItemLogResponseAllOf
+     */
+    locationCode?: string;
+    /**
+     * Order Identifier
+     * @type {number}
+     * @memberof OrderItemLogResponseAllOf
+     */
+    orderID?: number;
+    /**
+     * Order Item Identifier
+     * @type {number}
+     * @memberof OrderItemLogResponseAllOf
+     */
+    orderItemID?: number;
+    /**
+     * Part/Product Number
+     * @type {string}
+     * @memberof OrderItemLogResponseAllOf
+     */
+    partNumber?: string;
+    /**
+     * The number of items affected for this log entry
+     * @type {number}
+     * @memberof OrderItemLogResponseAllOf
+     */
+    quantity?: number;
+    /**
+     * Whether this event is resolved
+     * @type {boolean}
+     * @memberof OrderItemLogResponseAllOf
+     */
+    resolved?: boolean;
+    /**
+     * Shipment Identifier
+     * @type {number}
+     * @memberof OrderItemLogResponseAllOf
+     */
+    shipmentID?: number;
+    /**
+     * Tenant Identifier
+     * @type {number}
+     * @memberof OrderItemLogResponseAllOf
+     */
+    tenantID?: number;
+    /**
+     * The type of logs to retrieve
+     * @type {string}
+     * @memberof OrderItemLogResponseAllOf
+     */
+    type?: OrderItemLogResponseAllOfTypeEnum;
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof OrderItemLogResponseAllOf
+     */
+    upc?: string;
+    /**
+     * User Identifier
+     * @type {number}
+     * @memberof OrderItemLogResponseAllOf
+     */
+    userID?: number;
+}
+
+
+/**
+ * @export
+ */
+export const OrderItemLogResponseAllOfTypeEnum = {
+    Allocate: 'ALLOCATE',
+    Deallocate: 'DEALLOCATE',
+    Fulfill: 'FULFILL',
+    Pick: 'PICK'
+} as const;
+export type OrderItemLogResponseAllOfTypeEnum = typeof OrderItemLogResponseAllOfTypeEnum[keyof typeof OrderItemLogResponseAllOfTypeEnum];
+
+/**
+ * Pending Item
+ * @export
+ * @interface PendingItem
+ */
+export interface PendingItem {
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof PendingItem
+     */
+    locationCode?: string;
+    /**
+     * Order Identifier
+     * @type {number}
+     * @memberof PendingItem
+     */
+    orderID?: number;
+    /**
+     * Part/Product Number
+     * @type {string}
+     * @memberof PendingItem
+     */
+    partNumber?: string;
+    /**
+     * Pending Item Identifier
+     * @type {number}
+     * @memberof PendingItem
+     */
+    pendingItemID?: number;
+    /**
+     * The number of items affected for this log entry
+     * @type {number}
+     * @memberof PendingItem
+     */
+    quantity?: number;
+    /**
+     * Shipment Identifier
+     * @type {number}
+     * @memberof PendingItem
+     */
+    shipmentID?: number;
+    /**
+     * Stock Keeping Unit
+     * @type {string}
+     * @memberof PendingItem
+     */
+    sku?: string;
+    /**
+     * To Bin ID
+     * @type {string}
+     * @memberof PendingItem
+     */
+    toBin?: string;
+    /**
+     * To Bin ID
+     * @type {number}
+     * @memberof PendingItem
+     */
+    toBinID?: number;
+    /**
+     * Pending Item type
+     * @type {string}
+     * @memberof PendingItem
+     */
+    type?: PendingItemTypeEnum;
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof PendingItem
+     */
+    upc?: string;
+    /**
+     * List of messages
+     * @type {Array<string>}
+     * @memberof PendingItem
+     */
+    messages?: Array<string>;
+    /**
+     * Number of results
+     * @type {number}
+     * @memberof PendingItem
+     */
+    numResults?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof PendingItem
+     */
+    success?: boolean;
+}
+
+
+/**
+ * @export
+ */
+export const PendingItemTypeEnum = {
+    Bin: 'TYPE_BIN',
+    Dc: 'TYPE_DC',
+    Audit: 'TYPE_AUDIT',
+    Restock: 'TYPE_RESTOCK'
+} as const;
+export type PendingItemTypeEnum = typeof PendingItemTypeEnum[keyof typeof PendingItemTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface PendingItemAllOf
+ */
+export interface PendingItemAllOf {
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof PendingItemAllOf
+     */
+    locationCode?: string;
+    /**
+     * Order Identifier
+     * @type {number}
+     * @memberof PendingItemAllOf
+     */
+    orderID?: number;
+    /**
+     * Part/Product Number
+     * @type {string}
+     * @memberof PendingItemAllOf
+     */
+    partNumber?: string;
+    /**
+     * Pending Item Identifier
+     * @type {number}
+     * @memberof PendingItemAllOf
+     */
+    pendingItemID?: number;
+    /**
+     * The number of items affected for this log entry
+     * @type {number}
+     * @memberof PendingItemAllOf
+     */
+    quantity?: number;
+    /**
+     * Shipment Identifier
+     * @type {number}
+     * @memberof PendingItemAllOf
+     */
+    shipmentID?: number;
+    /**
+     * Stock Keeping Unit
+     * @type {string}
+     * @memberof PendingItemAllOf
+     */
+    sku?: string;
+    /**
+     * To Bin ID
+     * @type {string}
+     * @memberof PendingItemAllOf
+     */
+    toBin?: string;
+    /**
+     * To Bin ID
+     * @type {number}
+     * @memberof PendingItemAllOf
+     */
+    toBinID?: number;
+    /**
+     * Pending Item type
+     * @type {string}
+     * @memberof PendingItemAllOf
+     */
+    type?: PendingItemAllOfTypeEnum;
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof PendingItemAllOf
+     */
+    upc?: string;
+}
+
+
+/**
+ * @export
+ */
+export const PendingItemAllOfTypeEnum = {
+    Bin: 'TYPE_BIN',
+    Dc: 'TYPE_DC',
+    Audit: 'TYPE_AUDIT',
+    Restock: 'TYPE_RESTOCK'
+} as const;
+export type PendingItemAllOfTypeEnum = typeof PendingItemAllOfTypeEnum[keyof typeof PendingItemAllOfTypeEnum];
+
 /**
  * Product Identifier Model
  * @export
@@ -5850,17 +7117,258 @@ export interface ProductIdentifier {
      */
     partNumber?: string;
     /**
-     * Universal Product Code
-     * @type {string}
-     * @memberof ProductIdentifier
-     */
-    upc?: string;
-    /**
      * Stock Keeping Unit
      * @type {string}
      * @memberof ProductIdentifier
      */
     sku?: string;
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof ProductIdentifier
+     */
+    upc?: string;
+}
+/**
+ * Product Mapping
+ * @export
+ * @interface ProductMapping
+ */
+export interface ProductMapping {
+    /**
+     * Enum for direction of the mapping
+     * @type {string}
+     * @memberof ProductMapping
+     */
+    direction?: ProductMappingDirectionEnum;
+    /**
+     * Enum for mapping rule
+     * @type {string}
+     * @memberof ProductMapping
+     */
+    mapping?: ProductMappingMappingEnum;
+    /**
+     * Tenant Identifier
+     * @type {number}
+     * @memberof ProductMapping
+     */
+    tenantID?: number;
+}
+
+
+/**
+ * @export
+ */
+export const ProductMappingDirectionEnum = {
+    Inbound: 'INBOUND',
+    Outbound: 'OUTBOUND',
+    Skip: 'SKIP'
+} as const;
+export type ProductMappingDirectionEnum = typeof ProductMappingDirectionEnum[keyof typeof ProductMappingDirectionEnum];
+
+/**
+ * @export
+ */
+export const ProductMappingMappingEnum = {
+    DefaultMapping: 'DEFAULT_MAPPING',
+    CustomMappingPartToAll: 'CUSTOM_MAPPING_PART_TO_ALL',
+    CustomMappingPartToSku: 'CUSTOM_MAPPING_PART_TO_SKU',
+    CustomMappingOnlyUpc: 'CUSTOM_MAPPING_ONLY_UPC',
+    CustomMappingPartToUpcIfEmpty: 'CUSTOM_MAPPING_PART_TO_UPC_IF_EMPTY',
+    CustomMappingSkuToPartUpcSku: 'CUSTOM_MAPPING_SKU_TO_PART_UPC_SKU',
+    CustomMappingSkuToPart: 'CUSTOM_MAPPING_SKU_TO_PART',
+    CustomMappingSkuToUpcIfEmpty: 'CUSTOM_MAPPING_SKU_TO_UPC_IF_EMPTY'
+} as const;
+export type ProductMappingMappingEnum = typeof ProductMappingMappingEnum[keyof typeof ProductMappingMappingEnum];
+
+/**
+ * Request needed to interact with Product Mappings
+ * @export
+ * @interface ProductMappingRequest
+ */
+export interface ProductMappingRequest {
+    /**
+     * Enum for direction of the mapping
+     * @type {string}
+     * @memberof ProductMappingRequest
+     */
+    direction?: ProductMappingRequestDirectionEnum;
+    /**
+     * Enum for mapping rule
+     * @type {string}
+     * @memberof ProductMappingRequest
+     */
+    mapping?: ProductMappingRequestMappingEnum;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof ProductMappingRequest
+     */
+    locationCode?: string;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof ProductMappingRequest
+     */
+    pageNum?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof ProductMappingRequest
+     */
+    pageSize?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof ProductMappingRequest
+     */
+    sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof ProductMappingRequest
+     */
+    userID?: number;
+}
+
+
+/**
+ * @export
+ */
+export const ProductMappingRequestDirectionEnum = {
+    Inbound: 'INBOUND',
+    Outbound: 'OUTBOUND',
+    Skip: 'SKIP'
+} as const;
+export type ProductMappingRequestDirectionEnum = typeof ProductMappingRequestDirectionEnum[keyof typeof ProductMappingRequestDirectionEnum];
+
+/**
+ * @export
+ */
+export const ProductMappingRequestMappingEnum = {
+    DefaultMapping: 'DEFAULT_MAPPING',
+    CustomMappingPartToAll: 'CUSTOM_MAPPING_PART_TO_ALL',
+    CustomMappingPartToSku: 'CUSTOM_MAPPING_PART_TO_SKU',
+    CustomMappingOnlyUpc: 'CUSTOM_MAPPING_ONLY_UPC',
+    CustomMappingPartToUpcIfEmpty: 'CUSTOM_MAPPING_PART_TO_UPC_IF_EMPTY',
+    CustomMappingSkuToPartUpcSku: 'CUSTOM_MAPPING_SKU_TO_PART_UPC_SKU',
+    CustomMappingSkuToPart: 'CUSTOM_MAPPING_SKU_TO_PART'
+} as const;
+export type ProductMappingRequestMappingEnum = typeof ProductMappingRequestMappingEnum[keyof typeof ProductMappingRequestMappingEnum];
+
+/**
+ * 
+ * @export
+ * @interface ProductMappingRequestAllOf
+ */
+export interface ProductMappingRequestAllOf {
+    /**
+     * Enum for direction of the mapping
+     * @type {string}
+     * @memberof ProductMappingRequestAllOf
+     */
+    direction?: ProductMappingRequestAllOfDirectionEnum;
+    /**
+     * Enum for mapping rule
+     * @type {string}
+     * @memberof ProductMappingRequestAllOf
+     */
+    mapping?: ProductMappingRequestAllOfMappingEnum;
+}
+
+
+/**
+ * @export
+ */
+export const ProductMappingRequestAllOfDirectionEnum = {
+    Inbound: 'INBOUND',
+    Outbound: 'OUTBOUND',
+    Skip: 'SKIP'
+} as const;
+export type ProductMappingRequestAllOfDirectionEnum = typeof ProductMappingRequestAllOfDirectionEnum[keyof typeof ProductMappingRequestAllOfDirectionEnum];
+
+/**
+ * @export
+ */
+export const ProductMappingRequestAllOfMappingEnum = {
+    DefaultMapping: 'DEFAULT_MAPPING',
+    CustomMappingPartToAll: 'CUSTOM_MAPPING_PART_TO_ALL',
+    CustomMappingPartToSku: 'CUSTOM_MAPPING_PART_TO_SKU',
+    CustomMappingOnlyUpc: 'CUSTOM_MAPPING_ONLY_UPC',
+    CustomMappingPartToUpcIfEmpty: 'CUSTOM_MAPPING_PART_TO_UPC_IF_EMPTY',
+    CustomMappingSkuToPartUpcSku: 'CUSTOM_MAPPING_SKU_TO_PART_UPC_SKU',
+    CustomMappingSkuToPart: 'CUSTOM_MAPPING_SKU_TO_PART'
+} as const;
+export type ProductMappingRequestAllOfMappingEnum = typeof ProductMappingRequestAllOfMappingEnum[keyof typeof ProductMappingRequestAllOfMappingEnum];
+
+/**
+ * Product Mapping Response
+ * @export
+ * @interface ProductMappingResponse
+ */
+export interface ProductMappingResponse {
+    /**
+     * 
+     * @type {ProductMapping}
+     * @memberof ProductMappingResponse
+     */
+    productMappings?: ProductMapping;
+    /**
+     * List of messages
+     * @type {Array<string>}
+     * @memberof ProductMappingResponse
+     */
+    messages?: Array<string>;
+    /**
+     * Number of results
+     * @type {number}
+     * @memberof ProductMappingResponse
+     */
+    numResults?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof ProductMappingResponse
+     */
+    success?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface ProductMappingResponseAllOf
+ */
+export interface ProductMappingResponseAllOf {
+    /**
+     * 
+     * @type {ProductMapping}
+     * @memberof ProductMappingResponseAllOf
+     */
+    productMappings?: ProductMapping;
+}
+/**
+ * Product Match
+ * @export
+ * @interface ProductMatch
+ */
+export interface ProductMatch {
+    /**
+     * Identifier
+     * @type {string}
+     * @memberof ProductMatch
+     */
+    identifier?: string;
+    /**
+     * How the product matches with the identifier
+     * @type {string}
+     * @memberof ProductMatch
+     */
+    matchType?: string;
+    /**
+     * Value
+     * @type {string}
+     * @memberof ProductMatch
+     */
+    value?: string;
 }
 /**
  * A product and its associated quantity
@@ -5869,77 +7377,11 @@ export interface ProductIdentifier {
  */
 export interface ProductQuantity {
     /**
-     * Part Number
-     * @type {string}
-     * @memberof ProductQuantity
-     */
-    partNumber?: string;
-    /**
-     * UPC
-     * @type {string}
-     * @memberof ProductQuantity
-     */
-    upc?: string;
-    /**
-     * SKU
-     * @type {string}
-     * @memberof ProductQuantity
-     */
-    sku?: string;
-    /**
-     * Quantity of product
+     * Amount of product allocated
      * @type {number}
      * @memberof ProductQuantity
      */
-    quantity?: number;
-    /**
-     * ID of associated bin
-     * @type {number}
-     * @memberof ProductQuantity
-     */
-    binID?: number;
-    /**
-     * Location Identifier of the owning location
-     * @type {number}
-     * @memberof ProductQuantity
-     */
-    locationID?: number;
-    /**
-     * Bin Type ID
-     * @type {number}
-     * @memberof ProductQuantity
-     */
-    binTypeID?: number;
-    /**
-     * Bin Status ID
-     * @type {number}
-     * @memberof ProductQuantity
-     */
-    binStatusID?: number;
-    /**
-     * Name of the product
-     * @type {string}
-     * @memberof ProductQuantity
-     */
-    name?: string;
-    /**
-     * Inventory ID
-     * @type {number}
-     * @memberof ProductQuantity
-     */
-    inventoryID?: number;
-    /**
-     * Tenant Location Product ID
-     * @type {number}
-     * @memberof ProductQuantity
-     */
-    tenantLocProductID?: number;
-    /**
-     * Audit Product ID
-     * @type {number}
-     * @memberof ProductQuantity
-     */
-    auditProductID?: number;
+    allocated?: number;
     /**
      * Audit ID
      * @type {number}
@@ -5947,11 +7389,11 @@ export interface ProductQuantity {
      */
     auditID?: number;
     /**
-     * Amount of product on hand
+     * Audit Product ID
      * @type {number}
      * @memberof ProductQuantity
      */
-    onHand?: number;
+    auditProductID?: number;
     /**
      * Amount of product available
      * @type {number}
@@ -5959,23 +7401,23 @@ export interface ProductQuantity {
      */
     available?: number;
     /**
-     * Amount of product allocated
+     * ID of associated bin
      * @type {number}
      * @memberof ProductQuantity
      */
-    allocated?: number;
+    binID?: number;
     /**
-     * Amount of product pending
+     * Bin Status ID
      * @type {number}
      * @memberof ProductQuantity
      */
-    pending?: number;
+    binStatusID?: number;
     /**
-     * Custom field used for store prioritization
+     * Bin Type ID
      * @type {number}
      * @memberof ProductQuantity
      */
-    ltd?: number;
+    binTypeID?: number;
     /**
      * Absolute minimum quantity of this item that should be in stock at any time
      * @type {number}
@@ -5983,17 +7425,83 @@ export interface ProductQuantity {
      */
     floor?: number;
     /**
+     * Inventory ID
+     * @type {number}
+     * @memberof ProductQuantity
+     */
+    inventoryID?: number;
+    /**
+     * Location Identifier of the owning location
+     * @type {number}
+     * @memberof ProductQuantity
+     */
+    locationID?: number;
+    /**
+     * Custom field used for store prioritization
+     * @type {number}
+     * @memberof ProductQuantity
+     */
+    ltd?: number;
+    /**
+     * Name of the product
+     * @type {string}
+     * @memberof ProductQuantity
+     */
+    name?: string;
+    /**
+     * Amount of product on hand
+     * @type {number}
+     * @memberof ProductQuantity
+     */
+    onHand?: number;
+    /**
+     * Part Number
+     * @type {string}
+     * @memberof ProductQuantity
+     */
+    partNumber?: string;
+    /**
+     * Amount of product pending
+     * @type {number}
+     * @memberof ProductQuantity
+     */
+    pending?: number;
+    /**
+     * Quantity of product
+     * @type {number}
+     * @memberof ProductQuantity
+     */
+    quantity?: number;
+    /**
      * Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
      * @type {number}
      * @memberof ProductQuantity
      */
     safetystock?: number;
     /**
+     * SKU
+     * @type {string}
+     * @memberof ProductQuantity
+     */
+    sku?: string;
+    /**
      * Associative Map of <String, String> for tagCategoryName => tagName
      * @type {{ [key: string]: string; }}
      * @memberof ProductQuantity
      */
     tags?: { [key: string]: string; };
+    /**
+     * Tenant Location Product ID
+     * @type {number}
+     * @memberof ProductQuantity
+     */
+    tenantLocProductID?: number;
+    /**
+     * UPC
+     * @type {string}
+     * @memberof ProductQuantity
+     */
+    upc?: string;
 }
 /**
  * A response object for a product and its associated quantity
@@ -6002,77 +7510,11 @@ export interface ProductQuantity {
  */
 export interface ProductQuantityResponse {
     /**
-     * Part Number
-     * @type {string}
-     * @memberof ProductQuantityResponse
-     */
-    partNumber?: string;
-    /**
-     * UPC
-     * @type {string}
-     * @memberof ProductQuantityResponse
-     */
-    upc?: string;
-    /**
-     * SKU
-     * @type {string}
-     * @memberof ProductQuantityResponse
-     */
-    sku?: string;
-    /**
-     * Quantity of product
+     * Amount of product allocated
      * @type {number}
      * @memberof ProductQuantityResponse
      */
-    quantity?: number;
-    /**
-     * ID of associated bin
-     * @type {number}
-     * @memberof ProductQuantityResponse
-     */
-    binID?: number;
-    /**
-     * Location Code of the owning location
-     * @type {string}
-     * @memberof ProductQuantityResponse
-     */
-    locationCode?: string;
-    /**
-     * Bin Type ID
-     * @type {number}
-     * @memberof ProductQuantityResponse
-     */
-    binTypeID?: number;
-    /**
-     * Bin Status ID
-     * @type {number}
-     * @memberof ProductQuantityResponse
-     */
-    binStatusID?: number;
-    /**
-     * Name of the product
-     * @type {string}
-     * @memberof ProductQuantityResponse
-     */
-    name?: string;
-    /**
-     * Inventory ID
-     * @type {number}
-     * @memberof ProductQuantityResponse
-     */
-    inventoryID?: number;
-    /**
-     * Tenant Location Product ID
-     * @type {number}
-     * @memberof ProductQuantityResponse
-     */
-    tenantLocProductID?: number;
-    /**
-     * Audit Product ID
-     * @type {number}
-     * @memberof ProductQuantityResponse
-     */
-    auditProductID?: number;
+    allocated?: number;
     /**
      * Audit ID
      * @type {number}
@@ -6080,11 +7522,11 @@ export interface ProductQuantityResponse {
      */
     auditID?: number;
     /**
-     * Amount of product on hand
+     * Audit Product ID
      * @type {number}
      * @memberof ProductQuantityResponse
      */
-    onHand?: number;
+    auditProductID?: number;
     /**
      * Amount of product available
      * @type {number}
@@ -6092,23 +7534,23 @@ export interface ProductQuantityResponse {
      */
     available?: number;
     /**
-     * Amount of product allocated
+     * ID of associated bin
      * @type {number}
      * @memberof ProductQuantityResponse
      */
-    allocated?: number;
+    binID?: number;
     /**
-     * Amount of product pending
+     * Bin Status ID
      * @type {number}
      * @memberof ProductQuantityResponse
      */
-    pending?: number;
+    binStatusID?: number;
     /**
-     * Custom field used for store prioritization
+     * Bin Type ID
      * @type {number}
      * @memberof ProductQuantityResponse
      */
-    ltd?: number;
+    binTypeID?: number;
     /**
      * Absolute minimum quantity of this item that should be in stock at any time
      * @type {number}
@@ -6116,17 +7558,139 @@ export interface ProductQuantityResponse {
      */
     floor?: number;
     /**
+     * Inventory ID
+     * @type {number}
+     * @memberof ProductQuantityResponse
+     */
+    inventoryID?: number;
+    /**
+     * Location Code of the owning location
+     * @type {string}
+     * @memberof ProductQuantityResponse
+     */
+    locationCode?: string;
+    /**
+     * Custom field used for store prioritization
+     * @type {number}
+     * @memberof ProductQuantityResponse
+     */
+    ltd?: number;
+    /**
+     * Name of the product
+     * @type {string}
+     * @memberof ProductQuantityResponse
+     */
+    name?: string;
+    /**
+     * Amount of product on hand
+     * @type {number}
+     * @memberof ProductQuantityResponse
+     */
+    onHand?: number;
+    /**
+     * Part Number
+     * @type {string}
+     * @memberof ProductQuantityResponse
+     */
+    partNumber?: string;
+    /**
+     * Amount of product pending
+     * @type {number}
+     * @memberof ProductQuantityResponse
+     */
+    pending?: number;
+    /**
+     * Quantity of product
+     * @type {number}
+     * @memberof ProductQuantityResponse
+     */
+    quantity?: number;
+    /**
      * Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
      * @type {number}
      * @memberof ProductQuantityResponse
      */
     safetystock?: number;
     /**
-     * 
-     * @type {Array<InventoryTagQuantity>}
+     * SKU
+     * @type {string}
      * @memberof ProductQuantityResponse
      */
-    tags?: Array<InventoryTagQuantity>;
+    sku?: string;
+    /**
+     * 
+     * @type {Array<TagQuantity>}
+     * @memberof ProductQuantityResponse
+     */
+    tags?: Array<TagQuantity>;
+    /**
+     * Tenant Location Product ID
+     * @type {number}
+     * @memberof ProductQuantityResponse
+     */
+    tenantLocProductID?: number;
+    /**
+     * UPC
+     * @type {string}
+     * @memberof ProductQuantityResponse
+     */
+    upc?: string;
+}
+/**
+ * Request for creating a site
+ * @export
+ * @interface ProvisionSiloRequest
+ */
+export interface ProvisionSiloRequest {
+    /**
+     * Tenant ID
+     * @type {number}
+     * @memberof ProvisionSiloRequest
+     */
+    tenantID?: number;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof ProvisionSiloRequest
+     */
+    locationCode?: string;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof ProvisionSiloRequest
+     */
+    pageNum?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof ProvisionSiloRequest
+     */
+    pageSize?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof ProvisionSiloRequest
+     */
+    sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof ProvisionSiloRequest
+     */
+    userID?: number;
+}
+/**
+ * 
+ * @export
+ * @interface ProvisionSiloRequestAllOf
+ */
+export interface ProvisionSiloRequestAllOf {
+    /**
+     * Tenant ID
+     * @type {number}
+     * @memberof ProvisionSiloRequestAllOf
+     */
+    tenantID?: number;
 }
 /**
  * Refresh Item
@@ -6135,71 +7699,11 @@ export interface ProductQuantityResponse {
  */
 export interface RefreshItem {
     /**
-     * Part/Product Number
-     * @type {string}
-     * @memberof RefreshItem
-     */
-    partNumber?: string;
-    /**
-     * Universal Product Code
-     * @type {string}
-     * @memberof RefreshItem
-     */
-    upc?: string;
-    /**
-     * Stock Keeping Unit
-     * @type {string}
-     * @memberof RefreshItem
-     */
-    sku?: string;
-    /**
-     * Bin Location Identifier
-     * @type {number}
-     * @memberof RefreshItem
-     */
-    binID?: number;
-    /**
      * Custom field used for store prioritization
      * @type {number}
      * @memberof RefreshItem
      */
     lTD?: number;
-    /**
-     * Absolute minimum quantity of this item that should be in stock at any time
-     * @type {number}
-     * @memberof RefreshItem
-     */
-    floor?: number;
-    /**
-     * Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
-     * @type {number}
-     * @memberof RefreshItem
-     */
-    safetyStock?: number;
-    /**
-     * Current Quantity of Item
-     * @type {number}
-     * @memberof RefreshItem
-     */
-    quantity?: number;
-    /**
-     * Stock Keeping Unit
-     * @type {number}
-     * @memberof RefreshItem
-     */
-    retailPrice?: number;
-    /**
-     * The price of the item
-     * @type {number}
-     * @memberof RefreshItem
-     */
-    currencyID?: number;
-    /**
-     * The inventory locator name of the item
-     * @type {string}
-     * @memberof RefreshItem
-     */
-    inventoryLocatorName?: string;
     /**
      * List of Item Attributes
      * @type {Array<string>}
@@ -6207,11 +7711,23 @@ export interface RefreshItem {
      */
     attributes?: Array<string>;
     /**
-     * Associative Map of <String, String> for tagCategoryName => tagName
-     * @type {{ [key: string]: string; }}
+     * Bin Location Identifier
+     * @type {number}
      * @memberof RefreshItem
      */
-    tags?: { [key: string]: string; };
+    binID?: number;
+    /**
+     * Describes the state of the product
+     * @type {string}
+     * @memberof RefreshItem
+     */
+    condition?: string;
+    /**
+     * Used by the retailer for storing information related to manufacturing date or expiry date and use date to allocate for better stock management
+     * @type {string}
+     * @memberof RefreshItem
+     */
+    date?: string;
     /**
      * Date at which this inventory will become available. Expected format '2020-09-28T12:00:00-0500'
      * @type {string}
@@ -6225,17 +7741,47 @@ export interface RefreshItem {
      */
     externalID?: string;
     /**
+     * Absolute minimum quantity of this item that should be in stock at any time
+     * @type {number}
+     * @memberof RefreshItem
+     */
+    floor?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RefreshItem
+     */
+    readonly granularInventoryTrackingEnabled?: boolean;
+    /**
+     * The inventory locator name of the item
+     * @type {string}
+     * @memberof RefreshItem
+     */
+    inventoryLocatorName?: string;
+    /**
      * Track which lot a product is manufactured in
      * @type {string}
      * @memberof RefreshItem
      */
     lotCode?: string;
     /**
-     * Describes the state of the product
+     * Part/Product Number
      * @type {string}
      * @memberof RefreshItem
      */
-    condition?: string;
+    partNumber?: string;
+    /**
+     * Current Quantity of Item
+     * @type {number}
+     * @memberof RefreshItem
+     */
+    quantity?: number;
+    /**
+     * Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
+     * @type {number}
+     * @memberof RefreshItem
+     */
+    safetyStock?: number;
     /**
      * A serial number is unique to a specific, physical unit of inventory
      * @type {string}
@@ -6243,11 +7789,23 @@ export interface RefreshItem {
      */
     serialNumber?: string;
     /**
-     * Used by the retailer for storing information related to manufacturing date or expiry date and use date to allocate for better stock management
+     * Stock Keeping Unit
      * @type {string}
      * @memberof RefreshItem
      */
-    date?: string;
+    sku?: string;
+    /**
+     * Associative Map of <String, String> for tagCategoryName => tagName
+     * @type {{ [key: string]: string; }}
+     * @memberof RefreshItem
+     */
+    tags?: { [key: string]: string; };
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof RefreshItem
+     */
+    upc?: string;
 }
 /**
  * Request needed for refreshing inventory
@@ -6256,29 +7814,17 @@ export interface RefreshItem {
  */
 export interface RefreshRequest {
     /**
-     * List of items to refresh
-     * @type {Array<RefreshItem>}
+     * 
+     * @type {any}
      * @memberof RefreshRequest
      */
-    items?: Array<RefreshItem>;
+    items: any | null;
     /**
-     * Location Code
-     * @type {string}
+     * 
+     * @type {any}
      * @memberof RefreshRequest
      */
-    locationCode: string;
-    /**
-     * user id
-     * @type {number}
-     * @memberof RefreshRequest
-     */
-    userID?: number;
-    /**
-     * how many results to show per page
-     * @type {number}
-     * @memberof RefreshRequest
-     */
-    pageSize?: number;
+    locationCode: any | null;
     /**
      * which page to show
      * @type {number}
@@ -6286,11 +7832,23 @@ export interface RefreshRequest {
      */
     pageNum?: number;
     /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof RefreshRequest
+     */
+    pageSize?: number;
+    /**
      * index to sort results by
      * @type {string}
      * @memberof RefreshRequest
      */
     sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof RefreshRequest
+     */
+    userID?: number;
 }
 /**
  * 
@@ -6312,59 +7870,11 @@ export interface RefreshRequestAllOf {
  */
 export interface RequestLocation {
     /**
-     * Unit of distance used for radius
-     * @type {string}
-     * @memberof RequestLocation
-     */
-    unit?: RequestLocationUnitEnum;
-    /**
-     * Distance from location
-     * @type {number}
-     * @memberof RequestLocation
-     */
-    radius?: number;
-    /**
-     * Postal Code of this location
-     * @type {string}
-     * @memberof RequestLocation
-     */
-    postalCode?: string;
-    /**
-     * Latitude coordinate of this location
-     * @type {number}
-     * @memberof RequestLocation
-     */
-    latitude?: number;
-    /**
-     * Longitude coordinate of this location
-     * @type {number}
-     * @memberof RequestLocation
-     */
-    longitude?: number;
-    /**
-     * Country Code for this location
-     * @type {string}
-     * @memberof RequestLocation
-     */
-    countryCode?: string;
-    /**
-     * Location Code for this location. This being set will trigger GetInventoryByLocation
-     * @type {string}
-     * @memberof RequestLocation
-     */
-    locationCode?: string;
-    /**
      * Address ID for this location
      * @type {number}
      * @memberof RequestLocation
      */
     addressID?: number;
-    /**
-     * CustomerID ID for this location
-     * @type {number}
-     * @memberof RequestLocation
-     */
-    customerID?: number;
     /**
      * Address line 1 for this location
      * @type {string}
@@ -6372,23 +7882,71 @@ export interface RequestLocation {
      */
     addressLine1?: string;
     /**
-     * Phone number for this location
-     * @type {string}
-     * @memberof RequestLocation
-     */
-    phone?: string;
-    /**
      * City for this location
      * @type {string}
      * @memberof RequestLocation
      */
     city?: string;
     /**
+     * Country Code for this location
+     * @type {string}
+     * @memberof RequestLocation
+     */
+    countryCode?: string;
+    /**
+     * CustomerID ID for this location
+     * @type {number}
+     * @memberof RequestLocation
+     */
+    customerID?: number;
+    /**
+     * Latitude coordinate of this location
+     * @type {number}
+     * @memberof RequestLocation
+     */
+    latitude?: number;
+    /**
+     * Location Code for this location. This being set will trigger GetInventoryByLocation
+     * @type {string}
+     * @memberof RequestLocation
+     */
+    locationCode?: string;
+    /**
+     * Longitude coordinate of this location
+     * @type {number}
+     * @memberof RequestLocation
+     */
+    longitude?: number;
+    /**
+     * Phone number for this location
+     * @type {string}
+     * @memberof RequestLocation
+     */
+    phone?: string;
+    /**
+     * Postal Code of this location
+     * @type {string}
+     * @memberof RequestLocation
+     */
+    postalCode?: string;
+    /**
+     * Distance from location
+     * @type {number}
+     * @memberof RequestLocation
+     */
+    radius?: number;
+    /**
      * State for this location
      * @type {string}
      * @memberof RequestLocation
      */
     state?: string;
+    /**
+     * Unit of distance used for radius
+     * @type {string}
+     * @memberof RequestLocation
+     */
+    unit?: RequestLocationUnitEnum;
 }
 
 
@@ -6447,23 +8005,41 @@ export interface ShipmentInventoryAllocationResponse {
     shipments?: { [key: string]: ShipmentAllocationsResponse; };
 }
 /**
+ * Response from smart inventory endpoints indicating the processing method used
+ * @export
+ * @interface SmartInventoryResponse
+ */
+export interface SmartInventoryResponse {
+    /**
+     * The job identifier for tracking asynchronous requests. This field is null for synchronous requests.
+     * @type {string}
+     * @memberof SmartInventoryResponse
+     */
+    jobID?: string | null;
+    /**
+     * The processing method used: 'sync' for synchronous processing or 'async' for asynchronous processing. Kibo determines the routing based on payload size.
+     * @type {string}
+     * @memberof SmartInventoryResponse
+     */
+    method?: SmartInventoryResponseMethodEnum;
+}
+
+
+/**
+ * @export
+ */
+export const SmartInventoryResponseMethodEnum = {
+    Sync: 'sync',
+    Async: 'async'
+} as const;
+export type SmartInventoryResponseMethodEnum = typeof SmartInventoryResponseMethodEnum[keyof typeof SmartInventoryResponseMethodEnum];
+
+/**
  * Request and response object for a tag category
  * @export
  * @interface TagCategory
  */
 export interface TagCategory {
-    /**
-     * Tag Category ID
-     * @type {number}
-     * @memberof TagCategory
-     */
-    tagCategoryID?: number;
-    /**
-     * Tag Category Name
-     * @type {string}
-     * @memberof TagCategory
-     */
-    name?: string;
     /**
      * Date tag category was created.
      * @type {string}
@@ -6477,6 +8053,18 @@ export interface TagCategory {
      */
     deletionJobIds?: Array<number>;
     /**
+     * Tag Category Name
+     * @type {string}
+     * @memberof TagCategory
+     */
+    name?: string;
+    /**
+     * Tag Category ID
+     * @type {number}
+     * @memberof TagCategory
+     */
+    tagCategoryID?: number;
+    /**
      * Tags within this category
      * @type {Array<InventoryTag>}
      * @memberof TagCategory
@@ -6484,35 +8072,54 @@ export interface TagCategory {
     tags?: Array<InventoryTag>;
 }
 /**
+ * Response object for a tag quantity
+ * @export
+ * @interface TagQuantity
+ */
+export interface TagQuantity {
+    /**
+     * The quantity the location has that are already allocated for this tag
+     * @type {number}
+     * @memberof TagQuantity
+     */
+    allocated?: number;
+    /**
+     * The quantity the location has that are available for purchase for this tag
+     * @type {number}
+     * @memberof TagQuantity
+     */
+    available?: number;
+    /**
+     * 
+     * @type {Array<InventoryFutureInventory>}
+     * @memberof TagQuantity
+     */
+    futureInventory?: Array<InventoryFutureInventory>;
+    /**
+     * The quantity the the location has in its possession for this tag
+     * @type {number}
+     * @memberof TagQuantity
+     */
+    onHand?: number;
+    /**
+     * The quantity the location has that are pending for this tag
+     * @type {number}
+     * @memberof TagQuantity
+     */
+    pending?: number;
+    /**
+     * Associative Map of <String, String> for tagCategoryName => tagName
+     * @type {{ [key: string]: string; }}
+     * @memberof TagQuantity
+     */
+    tags?: { [key: string]: string; };
+}
+/**
  * Model of a tenant silo config.
  * @export
  * @interface TenantSiloConfigModel
  */
 export interface TenantSiloConfigModel {
-    /**
-     * A Silo ID
-     * @type {number}
-     * @memberof TenantSiloConfigModel
-     */
-    siloID?: number;
-    /**
-     * Name of the Silo
-     * @type {string}
-     * @memberof TenantSiloConfigModel
-     */
-    name?: string;
-    /**
-     * Description of silo configuration
-     * @type {string}
-     * @memberof TenantSiloConfigModel
-     */
-    description?: string;
-    /**
-     * Whether the  silo config is usable or not
-     * @type {boolean}
-     * @memberof TenantSiloConfigModel
-     */
-    usable?: boolean;
     /**
      * Check whether theAdditional tenants allowed or not 
      * @type {boolean}
@@ -6526,29 +8133,41 @@ export interface TenantSiloConfigModel {
      */
     batchWorkers?: number;
     /**
+     * Description of silo configuration
+     * @type {string}
+     * @memberof TenantSiloConfigModel
+     */
+    description?: string;
+    /**
      * Number of Event Sender Workers to run for this tenant.
      * @type {number}
      * @memberof TenantSiloConfigModel
      */
     eventSenderWorkers?: number;
     /**
-     * Number of Non-Batch Workers to run for this tenant.
+     * Name of the Silo
+     * @type {string}
+     * @memberof TenantSiloConfigModel
+     */
+    name?: string;
+    /**
+     * A Silo ID
      * @type {number}
      * @memberof TenantSiloConfigModel
      */
-    nonBatchWorkers?: number;
-    /**
-     * Whether to isolate non-batch jobs or not
-     * @type {boolean}
-     * @memberof TenantSiloConfigModel
-     */
-    isolateNonBatchJobs?: boolean;
+    siloID?: number;
     /**
      * A Tenant ID
      * @type {number}
      * @memberof TenantSiloConfigModel
      */
     tenantID?: number;
+    /**
+     * Whether the  silo config is usable or not
+     * @type {boolean}
+     * @memberof TenantSiloConfigModel
+     */
+    usable?: boolean;
 }
 /**
  * Item for Transitioning Cart allocations
@@ -6557,35 +8176,23 @@ export interface TenantSiloConfigModel {
  */
 export interface TransitionCartItem {
     /**
-     * order item ID
-     * @type {number}
-     * @memberof TransitionCartItem
-     */
-    orderItemID: number;
-    /**
      * Cart Item ID (GUID)
      * @type {string}
      * @memberof TransitionCartItem
      */
     cartItemID: string;
     /**
+     * order item ID
+     * @type {number}
+     * @memberof TransitionCartItem
+     */
+    orderItemID: number;
+    /**
      * shipment ID
      * @type {number}
      * @memberof TransitionCartItem
      */
     shipmentID: number;
-    /**
-     * Expected format '2020-09-28T12:00:00-0500'
-     * @type {string}
-     * @memberof TransitionCartItem
-     */
-    futureDate?: string;
-    /**
-     * Location Code
-     * @type {string}
-     * @memberof TransitionCartItem
-     */
-    locationCode?: string;
     /**
      * If provided, overrides the order item ID (orderItemID) in the db records
      * @type {number}
@@ -6600,17 +8207,17 @@ export interface TransitionCartItem {
  */
 export interface TransitionCartRequest {
     /**
-     * list of TransitionCartItem
-     * @type {Array<TransitionCartItem>}
-     * @memberof TransitionCartRequest
-     */
-    items: Array<TransitionCartItem>;
-    /**
      * Cart ID that we are transitioning the allocation from
      * @type {string}
      * @memberof TransitionCartRequest
      */
     cartID: string;
+    /**
+     * list of TransitionCartItem
+     * @type {Array<TransitionCartItem>}
+     * @memberof TransitionCartRequest
+     */
+    items: Array<TransitionCartItem>;
     /**
      * Order ID for the cart to transition to
      * @type {number}
@@ -6624,11 +8231,11 @@ export interface TransitionCartRequest {
      */
     locationCode?: string;
     /**
-     * user id
+     * which page to show
      * @type {number}
      * @memberof TransitionCartRequest
      */
-    userID?: number;
+    pageNum?: number;
     /**
      * how many results to show per page
      * @type {number}
@@ -6636,17 +8243,17 @@ export interface TransitionCartRequest {
      */
     pageSize?: number;
     /**
-     * which page to show
-     * @type {number}
-     * @memberof TransitionCartRequest
-     */
-    pageNum?: number;
-    /**
      * index to sort results by
      * @type {string}
      * @memberof TransitionCartRequest
      */
     sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof TransitionCartRequest
+     */
+    userID?: number;
 }
 /**
  * 
@@ -6655,17 +8262,17 @@ export interface TransitionCartRequest {
  */
 export interface TransitionCartRequestAllOf {
     /**
-     * list of TransitionCartItem
-     * @type {Array<TransitionCartItem>}
-     * @memberof TransitionCartRequestAllOf
-     */
-    items?: Array<TransitionCartItem>;
-    /**
      * Cart ID that we are transitioning the allocation from
      * @type {string}
      * @memberof TransitionCartRequestAllOf
      */
     cartID?: string;
+    /**
+     * list of TransitionCartItem
+     * @type {Array<TransitionCartItem>}
+     * @memberof TransitionCartRequestAllOf
+     */
+    items?: Array<TransitionCartItem>;
     /**
      * Order ID for the cart to transition to
      * @type {number}
@@ -6686,17 +8293,17 @@ export interface UpdateBinRequest {
      */
     binID: number;
     /**
-     * New Bin's Type ID
-     * @type {number}
-     * @memberof UpdateBinRequest
-     */
-    binTypeID?: number;
-    /**
      * New Bin's Status ID
      * @type {number}
      * @memberof UpdateBinRequest
      */
     binStatusID?: number;
+    /**
+     * New Bin's Type ID
+     * @type {number}
+     * @memberof UpdateBinRequest
+     */
+    binTypeID?: number;
     /**
      * Location Code
      * @type {string}
@@ -6704,11 +8311,11 @@ export interface UpdateBinRequest {
      */
     locationCode: string;
     /**
-     * user id
+     * which page to show
      * @type {number}
      * @memberof UpdateBinRequest
      */
-    userID?: number;
+    pageNum?: number;
     /**
      * how many results to show per page
      * @type {number}
@@ -6716,17 +8323,17 @@ export interface UpdateBinRequest {
      */
     pageSize?: number;
     /**
-     * which page to show
-     * @type {number}
-     * @memberof UpdateBinRequest
-     */
-    pageNum?: number;
-    /**
      * index to sort results by
      * @type {string}
      * @memberof UpdateBinRequest
      */
     sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof UpdateBinRequest
+     */
+    userID?: number;
 }
 /**
  * 
@@ -6741,17 +8348,17 @@ export interface UpdateBinRequestAllOf {
      */
     binID?: number;
     /**
-     * New Bin's Type ID
-     * @type {number}
-     * @memberof UpdateBinRequestAllOf
-     */
-    binTypeID?: number;
-    /**
      * New Bin's Status ID
      * @type {number}
      * @memberof UpdateBinRequestAllOf
      */
     binStatusID?: number;
+    /**
+     * New Bin's Type ID
+     * @type {number}
+     * @memberof UpdateBinRequestAllOf
+     */
+    binTypeID?: number;
 }
 /**
  * Request needed for updating bins
@@ -6772,11 +8379,11 @@ export interface UpdateBinsRequest {
      */
     locationCode?: string;
     /**
-     * user id
+     * which page to show
      * @type {number}
      * @memberof UpdateBinsRequest
      */
-    userID?: number;
+    pageNum?: number;
     /**
      * how many results to show per page
      * @type {number}
@@ -6784,17 +8391,17 @@ export interface UpdateBinsRequest {
      */
     pageSize?: number;
     /**
-     * which page to show
-     * @type {number}
-     * @memberof UpdateBinsRequest
-     */
-    pageNum?: number;
-    /**
      * index to sort results by
      * @type {string}
      * @memberof UpdateBinsRequest
      */
     sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof UpdateBinsRequest
+     */
+    userID?: number;
 }
 /**
  * 
@@ -6822,12 +8429,6 @@ export interface UpdateBinsResponse {
      */
     numberAffected?: number;
     /**
-     * Flag for success
-     * @type {boolean}
-     * @memberof UpdateBinsResponse
-     */
-    success?: boolean;
-    /**
      * List of messages
      * @type {Array<string>}
      * @memberof UpdateBinsResponse
@@ -6839,6 +8440,12 @@ export interface UpdateBinsResponse {
      * @memberof UpdateBinsResponse
      */
     numResults?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof UpdateBinsResponse
+     */
+    success?: boolean;
 }
 /**
  * 
@@ -6860,17 +8467,17 @@ export interface UpdateBinsResponseAllOf {
  */
 export interface UpdateExportSettingsFTPRequest {
     /**
-     * Export Settings Name to associate the ftp settings with
-     * @type {string}
-     * @memberof UpdateExportSettingsFTPRequest
-     */
-    exportSettingsName: string;
-    /**
      * 
      * @type {ExportSettingsFTP}
      * @memberof UpdateExportSettingsFTPRequest
      */
     exportSettingsFTP: ExportSettingsFTP;
+    /**
+     * Export Settings Name to associate the ftp settings with
+     * @type {string}
+     * @memberof UpdateExportSettingsFTPRequest
+     */
+    exportSettingsName: string;
     /**
      * Location Code
      * @type {string}
@@ -6878,11 +8485,11 @@ export interface UpdateExportSettingsFTPRequest {
      */
     locationCode?: string;
     /**
-     * user id
+     * which page to show
      * @type {number}
      * @memberof UpdateExportSettingsFTPRequest
      */
-    userID?: number;
+    pageNum?: number;
     /**
      * how many results to show per page
      * @type {number}
@@ -6890,30 +8497,24 @@ export interface UpdateExportSettingsFTPRequest {
      */
     pageSize?: number;
     /**
-     * which page to show
-     * @type {number}
-     * @memberof UpdateExportSettingsFTPRequest
-     */
-    pageNum?: number;
-    /**
      * index to sort results by
      * @type {string}
      * @memberof UpdateExportSettingsFTPRequest
      */
     sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof UpdateExportSettingsFTPRequest
+     */
+    userID?: number;
 }
 /**
- * Update Export Settings FTP Response
+ * 
  * @export
  * @interface UpdateExportSettingsFTPResponse
  */
 export interface UpdateExportSettingsFTPResponse {
-    /**
-     * Tenant ID
-     * @type {number}
-     * @memberof UpdateExportSettingsFTPResponse
-     */
-    tenantID?: number;
     /**
      * Export Settings FTP Name
      * @type {string}
@@ -6927,11 +8528,11 @@ export interface UpdateExportSettingsFTPResponse {
      */
     exportSettingsName?: string;
     /**
-     * Flag for success
-     * @type {boolean}
+     * Tenant ID
+     * @type {number}
      * @memberof UpdateExportSettingsFTPResponse
      */
-    success?: boolean;
+    tenantID?: number;
     /**
      * List of messages
      * @type {Array<string>}
@@ -6944,6 +8545,12 @@ export interface UpdateExportSettingsFTPResponse {
      * @memberof UpdateExportSettingsFTPResponse
      */
     numResults?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof UpdateExportSettingsFTPResponse
+     */
+    success?: boolean;
 }
 /**
  * 
@@ -6952,12 +8559,6 @@ export interface UpdateExportSettingsFTPResponse {
  */
 export interface UpdateExportSettingsFTPResponseAllOf {
     /**
-     * Tenant ID
-     * @type {number}
-     * @memberof UpdateExportSettingsFTPResponseAllOf
-     */
-    tenantID?: number;
-    /**
      * Export Settings FTP Name
      * @type {string}
      * @memberof UpdateExportSettingsFTPResponseAllOf
@@ -6969,142 +8570,12 @@ export interface UpdateExportSettingsFTPResponseAllOf {
      * @memberof UpdateExportSettingsFTPResponseAllOf
      */
     exportSettingsName?: string;
-}
-/**
- * Update Export Settings Gcs Response
- * @export
- * @interface UpdateExportSettingsGCSResponse
- */
-export interface UpdateExportSettingsGCSResponse {
     /**
      * Tenant ID
      * @type {number}
-     * @memberof UpdateExportSettingsGCSResponse
+     * @memberof UpdateExportSettingsFTPResponseAllOf
      */
     tenantID?: number;
-    /**
-     * Export Settings Gcs ID
-     * @type {number}
-     * @memberof UpdateExportSettingsGCSResponse
-     */
-    exportSettingsGcsID?: number;
-    /**
-     * Export Settings ID to associate the Gcs settings with
-     * @type {number}
-     * @memberof UpdateExportSettingsGCSResponse
-     */
-    exportSettingsID?: number;
-    /**
-     * Flag for success
-     * @type {boolean}
-     * @memberof UpdateExportSettingsGCSResponse
-     */
-    success?: boolean;
-    /**
-     * List of messages
-     * @type {Array<string>}
-     * @memberof UpdateExportSettingsGCSResponse
-     */
-    messages?: Array<string>;
-    /**
-     * Number of results
-     * @type {number}
-     * @memberof UpdateExportSettingsGCSResponse
-     */
-    numResults?: number;
-}
-/**
- * 
- * @export
- * @interface UpdateExportSettingsGCSResponseAllOf
- */
-export interface UpdateExportSettingsGCSResponseAllOf {
-    /**
-     * Tenant ID
-     * @type {number}
-     * @memberof UpdateExportSettingsGCSResponseAllOf
-     */
-    tenantID?: number;
-    /**
-     * Export Settings Gcs ID
-     * @type {number}
-     * @memberof UpdateExportSettingsGCSResponseAllOf
-     */
-    exportSettingsGcsID?: number;
-    /**
-     * Export Settings ID to associate the Gcs settings with
-     * @type {number}
-     * @memberof UpdateExportSettingsGCSResponseAllOf
-     */
-    exportSettingsID?: number;
-}
-/**
- * Request needed for updating existing Export Settings GCS
- * @export
- * @interface UpdateExportSettingsGcsRequest
- */
-export interface UpdateExportSettingsGcsRequest {
-    /**
-     * Export Settings Name to associate the ftp settings with
-     * @type {string}
-     * @memberof UpdateExportSettingsGcsRequest
-     */
-    exportSettingsName: string;
-    /**
-     * 
-     * @type {ExportSettingsGcs}
-     * @memberof UpdateExportSettingsGcsRequest
-     */
-    exportSettingsGcs: ExportSettingsGcs;
-    /**
-     * Location Code
-     * @type {string}
-     * @memberof UpdateExportSettingsGcsRequest
-     */
-    locationCode?: string;
-    /**
-     * user id
-     * @type {number}
-     * @memberof UpdateExportSettingsGcsRequest
-     */
-    userID?: number;
-    /**
-     * how many results to show per page
-     * @type {number}
-     * @memberof UpdateExportSettingsGcsRequest
-     */
-    pageSize?: number;
-    /**
-     * which page to show
-     * @type {number}
-     * @memberof UpdateExportSettingsGcsRequest
-     */
-    pageNum?: number;
-    /**
-     * index to sort results by
-     * @type {string}
-     * @memberof UpdateExportSettingsGcsRequest
-     */
-    sortBy?: string;
-}
-/**
- * 
- * @export
- * @interface UpdateExportSettingsGcsRequestAllOf
- */
-export interface UpdateExportSettingsGcsRequestAllOf {
-    /**
-     * Export Settings Name to associate the ftp settings with
-     * @type {string}
-     * @memberof UpdateExportSettingsGcsRequestAllOf
-     */
-    exportSettingsName?: string;
-    /**
-     * 
-     * @type {ExportSettingsGcs}
-     * @memberof UpdateExportSettingsGcsRequestAllOf
-     */
-    exportSettingsGcs?: ExportSettingsGcs;
 }
 /**
  * Request needed updating existing Export Settings
@@ -7125,11 +8596,11 @@ export interface UpdateExportSettingsRequest {
      */
     locationCode?: string;
     /**
-     * user id
+     * which page to show
      * @type {number}
      * @memberof UpdateExportSettingsRequest
      */
-    userID?: number;
+    pageNum?: number;
     /**
      * how many results to show per page
      * @type {number}
@@ -7137,17 +8608,17 @@ export interface UpdateExportSettingsRequest {
      */
     pageSize?: number;
     /**
-     * which page to show
-     * @type {number}
-     * @memberof UpdateExportSettingsRequest
-     */
-    pageNum?: number;
-    /**
      * index to sort results by
      * @type {string}
      * @memberof UpdateExportSettingsRequest
      */
     sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof UpdateExportSettingsRequest
+     */
+    userID?: number;
 }
 /**
  * Update Export Settings Response
@@ -7156,23 +8627,17 @@ export interface UpdateExportSettingsRequest {
  */
 export interface UpdateExportSettingsResponse {
     /**
-     * Tenant ID
-     * @type {number}
-     * @memberof UpdateExportSettingsResponse
-     */
-    tenantID?: number;
-    /**
      * Name
      * @type {string}
      * @memberof UpdateExportSettingsResponse
      */
     name?: string;
     /**
-     * Flag for success
-     * @type {boolean}
+     * Tenant ID
+     * @type {number}
      * @memberof UpdateExportSettingsResponse
      */
-    success?: boolean;
+    tenantID?: number;
     /**
      * List of messages
      * @type {Array<string>}
@@ -7185,6 +8650,12 @@ export interface UpdateExportSettingsResponse {
      * @memberof UpdateExportSettingsResponse
      */
     numResults?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof UpdateExportSettingsResponse
+     */
+    success?: boolean;
 }
 /**
  * 
@@ -7193,17 +8664,17 @@ export interface UpdateExportSettingsResponse {
  */
 export interface UpdateExportSettingsResponseAllOf {
     /**
-     * Tenant ID
-     * @type {number}
-     * @memberof UpdateExportSettingsResponseAllOf
-     */
-    tenantID?: number;
-    /**
      * Name
      * @type {string}
      * @memberof UpdateExportSettingsResponseAllOf
      */
     name?: string;
+    /**
+     * Tenant ID
+     * @type {number}
+     * @memberof UpdateExportSettingsResponseAllOf
+     */
+    tenantID?: number;
 }
 /**
  * Request needed updating existing Export Settings S3
@@ -7230,11 +8701,11 @@ export interface UpdateExportSettingsS3Request {
      */
     locationCode?: string;
     /**
-     * user id
+     * which page to show
      * @type {number}
      * @memberof UpdateExportSettingsS3Request
      */
-    userID?: number;
+    pageNum?: number;
     /**
      * how many results to show per page
      * @type {number}
@@ -7242,17 +8713,17 @@ export interface UpdateExportSettingsS3Request {
      */
     pageSize?: number;
     /**
-     * which page to show
-     * @type {number}
-     * @memberof UpdateExportSettingsS3Request
-     */
-    pageNum?: number;
-    /**
      * index to sort results by
      * @type {string}
      * @memberof UpdateExportSettingsS3Request
      */
     sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof UpdateExportSettingsS3Request
+     */
+    userID?: number;
 }
 /**
  * Update Export Settings S3 Response
@@ -7261,11 +8732,11 @@ export interface UpdateExportSettingsS3Request {
  */
 export interface UpdateExportSettingsS3Response {
     /**
-     * Tenant ID
+     * Export Settings ID to associate the s3 settings with
      * @type {number}
      * @memberof UpdateExportSettingsS3Response
      */
-    tenantID?: number;
+    exportSettingsID?: number;
     /**
      * Export Settings S3 ID
      * @type {number}
@@ -7273,17 +8744,11 @@ export interface UpdateExportSettingsS3Response {
      */
     exportSettingsS3ID?: number;
     /**
-     * Export Settings ID to associate the s3 settings with
+     * Tenant ID
      * @type {number}
      * @memberof UpdateExportSettingsS3Response
      */
-    exportSettingsID?: number;
-    /**
-     * Flag for success
-     * @type {boolean}
-     * @memberof UpdateExportSettingsS3Response
-     */
-    success?: boolean;
+    tenantID?: number;
     /**
      * List of messages
      * @type {Array<string>}
@@ -7296,6 +8761,12 @@ export interface UpdateExportSettingsS3Response {
      * @memberof UpdateExportSettingsS3Response
      */
     numResults?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof UpdateExportSettingsS3Response
+     */
+    success?: boolean;
 }
 /**
  * 
@@ -7304,11 +8775,11 @@ export interface UpdateExportSettingsS3Response {
  */
 export interface UpdateExportSettingsS3ResponseAllOf {
     /**
-     * Tenant ID
+     * Export Settings ID to associate the s3 settings with
      * @type {number}
      * @memberof UpdateExportSettingsS3ResponseAllOf
      */
-    tenantID?: number;
+    exportSettingsID?: number;
     /**
      * Export Settings S3 ID
      * @type {number}
@@ -7316,11 +8787,11 @@ export interface UpdateExportSettingsS3ResponseAllOf {
      */
     exportSettingsS3ID?: number;
     /**
-     * Export Settings ID to associate the s3 settings with
+     * Tenant ID
      * @type {number}
      * @memberof UpdateExportSettingsS3ResponseAllOf
      */
-    exportSettingsID?: number;
+    tenantID?: number;
 }
 /**
  * Request for creating or updating tenant silo config.
@@ -7328,12 +8799,6 @@ export interface UpdateExportSettingsS3ResponseAllOf {
  * @interface UpdateTenantSiloConfigRequest
  */
 export interface UpdateTenantSiloConfigRequest {
-    /**
-     * A Tenant ID
-     * @type {number}
-     * @memberof UpdateTenantSiloConfigRequest
-     */
-    tenantID?: number;
     /**
      * Number of batch workers to run for this tenant.
      * @type {number}
@@ -7347,9 +8812,415 @@ export interface UpdateTenantSiloConfigRequest {
      */
     eventSenderWorkers?: number;
     /**
-     * Number of event dedicated non-batch workers to run for this silo.
+     * A Tenant ID
      * @type {number}
      * @memberof UpdateTenantSiloConfigRequest
      */
-    nonBatchWorkers?: number;
+    tenantID?: number;
+}
+/**
+ * Wave Completion
+ * @export
+ * @interface WaveCompletion
+ */
+export interface WaveCompletion {
+    /**
+     * Maximum number of orders
+     * @type {Array<BinProductQuantities>}
+     * @memberof WaveCompletion
+     */
+    bins?: Array<BinProductQuantities>;
+    /**
+     * Flag for creating a recovery
+     * @type {boolean}
+     * @memberof WaveCompletion
+     */
+    createRecovery?: boolean;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof WaveCompletion
+     */
+    locationCode?: string;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof WaveCompletion
+     */
+    pageNum?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof WaveCompletion
+     */
+    pageSize?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof WaveCompletion
+     */
+    sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof WaveCompletion
+     */
+    userID?: number;
+}
+/**
+ * 
+ * @export
+ * @interface WaveCompletionAllOf
+ */
+export interface WaveCompletionAllOf {
+    /**
+     * Maximum number of orders
+     * @type {Array<BinProductQuantities>}
+     * @memberof WaveCompletionAllOf
+     */
+    bins?: Array<BinProductQuantities>;
+    /**
+     * Flag for creating a recovery
+     * @type {boolean}
+     * @memberof WaveCompletionAllOf
+     */
+    createRecovery?: boolean;
+}
+/**
+ * Wave Content Model
+ * @export
+ * @interface WaveContent
+ */
+export interface WaveContent {
+    /**
+     * Actual Quantity of Item
+     * @type {number}
+     * @memberof WaveContent
+     */
+    actualQuantity?: number;
+    /**
+     * Bin Name
+     * @type {string}
+     * @memberof WaveContent
+     */
+    binName?: string;
+    /**
+     * Order Identifier
+     * @type {number}
+     * @memberof WaveContent
+     */
+    orderID?: number;
+    /**
+     * Part/Product Number
+     * @type {string}
+     * @memberof WaveContent
+     */
+    partNumber?: string;
+    /**
+     * Current Quantity of Item
+     * @type {number}
+     * @memberof WaveContent
+     */
+    quantity?: number;
+    /**
+     * Shipment Identifier
+     * @type {number}
+     * @memberof WaveContent
+     */
+    shipmentID?: number;
+    /**
+     * Stock Keeping Unit
+     * @type {string}
+     * @memberof WaveContent
+     */
+    sku?: string;
+    /**
+     * Slot Identifier
+     * @type {number}
+     * @memberof WaveContent
+     */
+    slotID?: number;
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof WaveContent
+     */
+    upc?: string;
+    /**
+     * List of messages
+     * @type {Array<string>}
+     * @memberof WaveContent
+     */
+    messages?: Array<string>;
+    /**
+     * Number of results
+     * @type {number}
+     * @memberof WaveContent
+     */
+    numResults?: number;
+    /**
+     * Flag for success
+     * @type {boolean}
+     * @memberof WaveContent
+     */
+    success?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface WaveContentAllOf
+ */
+export interface WaveContentAllOf {
+    /**
+     * Actual Quantity of Item
+     * @type {number}
+     * @memberof WaveContentAllOf
+     */
+    actualQuantity?: number;
+    /**
+     * Bin Name
+     * @type {string}
+     * @memberof WaveContentAllOf
+     */
+    binName?: string;
+    /**
+     * Order Identifier
+     * @type {number}
+     * @memberof WaveContentAllOf
+     */
+    orderID?: number;
+    /**
+     * Part/Product Number
+     * @type {string}
+     * @memberof WaveContentAllOf
+     */
+    partNumber?: string;
+    /**
+     * Current Quantity of Item
+     * @type {number}
+     * @memberof WaveContentAllOf
+     */
+    quantity?: number;
+    /**
+     * Shipment Identifier
+     * @type {number}
+     * @memberof WaveContentAllOf
+     */
+    shipmentID?: number;
+    /**
+     * Stock Keeping Unit
+     * @type {string}
+     * @memberof WaveContentAllOf
+     */
+    sku?: string;
+    /**
+     * Slot Identifier
+     * @type {number}
+     * @memberof WaveContentAllOf
+     */
+    slotID?: number;
+    /**
+     * Universal Product Code
+     * @type {string}
+     * @memberof WaveContentAllOf
+     */
+    upc?: string;
+}
+/**
+ * An item quantity used in wave shipments
+ * @export
+ * @interface WaveItem
+ */
+export interface WaveItem {
+    /**
+     * Order Item ID
+     * @type {number}
+     * @memberof WaveItem
+     */
+    orderItemID: number;
+    /**
+     * Part Number
+     * @type {string}
+     * @memberof WaveItem
+     */
+    partNumber?: string;
+    /**
+     * Current Quantity of Item
+     * @type {number}
+     * @memberof WaveItem
+     */
+    quantity: number;
+    /**
+     * SKU
+     * @type {string}
+     * @memberof WaveItem
+     */
+    sku?: string;
+    /**
+     * Upc
+     * @type {string}
+     * @memberof WaveItem
+     */
+    upc?: string;
+}
+/**
+ * A shipment (used in getting wave suggestions)
+ * @export
+ * @interface WaveShipment
+ */
+export interface WaveShipment {
+    /**
+     * List of Items in the shipment
+     * @type {Array<WaveItem>}
+     * @memberof WaveShipment
+     */
+    items: Array<WaveItem>;
+    /**
+     * Order Identifier
+     * @type {number}
+     * @memberof WaveShipment
+     */
+    orderID: number;
+    /**
+     * Shipment Identifier
+     * @type {number}
+     * @memberof WaveShipment
+     */
+    shipmentID: number;
+}
+/**
+ * A suggestion of where to add an item to a pick wave.
+ * @export
+ * @interface WaveSuggestionItem
+ */
+export interface WaveSuggestionItem {
+    /**
+     * Bin Name
+     * @type {string}
+     * @memberof WaveSuggestionItem
+     */
+    binName: string;
+    /**
+     * Order Item ID
+     * @type {number}
+     * @memberof WaveSuggestionItem
+     */
+    orderItemID: number;
+    /**
+     * Part Number
+     * @type {string}
+     * @memberof WaveSuggestionItem
+     */
+    partNumber?: string;
+    /**
+     * Current Quantity of Item
+     * @type {number}
+     * @memberof WaveSuggestionItem
+     */
+    quantity: number;
+    /**
+     * SKU
+     * @type {string}
+     * @memberof WaveSuggestionItem
+     */
+    sku?: string;
+    /**
+     * Upc
+     * @type {string}
+     * @memberof WaveSuggestionItem
+     */
+    upc?: string;
+}
+/**
+ * 
+ * @export
+ * @interface WaveSuggestionItemAllOf
+ */
+export interface WaveSuggestionItemAllOf {
+    /**
+     * Bin Name
+     * @type {string}
+     * @memberof WaveSuggestionItemAllOf
+     */
+    binName?: string;
+}
+/**
+ * Wave Suggestion Request
+ * @export
+ * @interface WaveSuggestionRequest
+ */
+export interface WaveSuggestionRequest {
+    /**
+     * List of Bin Ranges
+     * @type {Array<BinRange>}
+     * @memberof WaveSuggestionRequest
+     */
+    binRanges?: Array<BinRange>;
+    /**
+     * Flag for including zero inventory items
+     * @type {boolean}
+     * @memberof WaveSuggestionRequest
+     */
+    includeZeroInventory?: boolean;
+    /**
+     * List of Wave Shipments
+     * @type {Array<WaveShipment>}
+     * @memberof WaveSuggestionRequest
+     */
+    shipments: Array<WaveShipment>;
+    /**
+     * Location Code
+     * @type {string}
+     * @memberof WaveSuggestionRequest
+     */
+    locationCode: string;
+    /**
+     * which page to show
+     * @type {number}
+     * @memberof WaveSuggestionRequest
+     */
+    pageNum?: number;
+    /**
+     * how many results to show per page
+     * @type {number}
+     * @memberof WaveSuggestionRequest
+     */
+    pageSize?: number;
+    /**
+     * index to sort results by
+     * @type {string}
+     * @memberof WaveSuggestionRequest
+     */
+    sortBy?: string;
+    /**
+     * user id
+     * @type {number}
+     * @memberof WaveSuggestionRequest
+     */
+    userID?: number;
+}
+/**
+ * 
+ * @export
+ * @interface WaveSuggestionRequestAllOf
+ */
+export interface WaveSuggestionRequestAllOf {
+    /**
+     * List of Bin Ranges
+     * @type {Array<BinRange>}
+     * @memberof WaveSuggestionRequestAllOf
+     */
+    binRanges?: Array<BinRange>;
+    /**
+     * Flag for including zero inventory items
+     * @type {boolean}
+     * @memberof WaveSuggestionRequestAllOf
+     */
+    includeZeroInventory?: boolean;
+    /**
+     * List of Wave Shipments
+     * @type {Array<WaveShipment>}
+     * @memberof WaveSuggestionRequestAllOf
+     */
+    shipments?: Array<WaveShipment>;
 }

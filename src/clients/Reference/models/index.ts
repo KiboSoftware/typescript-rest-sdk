@@ -14,12 +14,6 @@ export interface AddressSchema {
     countryCode?: string | null;
     /**
      * 
-     * @type {number}
-     * @memberof AddressSchema
-     */
-    id?: number;
-    /**
-     * 
      * @type {string}
      * @memberof AddressSchema
      */
@@ -30,6 +24,12 @@ export interface AddressSchema {
      * @memberof AddressSchema
      */
     fields?: Array<Field> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof AddressSchema
+     */
+    id?: number;
 }
 /**
  * 
@@ -39,16 +39,16 @@ export interface AddressSchema {
 export interface AddressSchemaCollection {
     /**
      * 
-     * @type {number}
-     * @memberof AddressSchemaCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<AddressSchema>}
      * @memberof AddressSchemaCollection
      */
     items?: Array<AddressSchema> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof AddressSchemaCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -61,19 +61,31 @@ export interface Behavior {
      * @type {number}
      * @memberof Behavior
      */
-    id?: number;
+    categoryId?: number;
     /**
      * 
      * @type {number}
      * @memberof Behavior
      */
-    categoryId?: number;
+    id?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Behavior
+     */
+    isPrivate?: boolean;
     /**
      * 
      * @type {string}
      * @memberof Behavior
      */
     name?: string | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof Behavior
+     */
+    oAuthScopes?: Array<string> | null;
     /**
      * 
      * @type {Array<number>}
@@ -85,19 +97,13 @@ export interface Behavior {
      * @type {Array<string>}
      * @memberof Behavior
      */
-    validUserTypes?: Array<string> | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Behavior
-     */
-    isPrivate?: boolean;
+    systemRoles?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof Behavior
      */
-    systemRoles?: Array<string> | null;
+    validUserTypes?: Array<string> | null;
 }
 /**
  * 
@@ -126,16 +132,16 @@ export interface BehaviorCategory {
 export interface BehaviorCategoryCollection {
     /**
      * 
-     * @type {number}
-     * @memberof BehaviorCategoryCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<BehaviorCategory>}
      * @memberof BehaviorCategoryCollection
      */
     items?: Array<BehaviorCategory> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof BehaviorCategoryCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -145,16 +151,16 @@ export interface BehaviorCategoryCollection {
 export interface BehaviorCategoryCollectionBase {
     /**
      * 
-     * @type {number}
-     * @memberof BehaviorCategoryCollectionBase
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<BehaviorCategory>}
      * @memberof BehaviorCategoryCollectionBase
      */
     items?: Array<BehaviorCategory> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof BehaviorCategoryCollectionBase
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -164,16 +170,16 @@ export interface BehaviorCategoryCollectionBase {
 export interface BehaviorCollection {
     /**
      * 
-     * @type {number}
-     * @memberof BehaviorCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<Behavior>}
      * @memberof BehaviorCollection
      */
     items?: Array<Behavior> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof BehaviorCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -183,16 +189,16 @@ export interface BehaviorCollection {
 export interface BehaviorCollectionBase {
     /**
      * 
-     * @type {number}
-     * @memberof BehaviorCollectionBase
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<Behavior>}
      * @memberof BehaviorCollectionBase
      */
     items?: Array<Behavior> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof BehaviorCollectionBase
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -221,16 +227,16 @@ export interface ContentLocale {
 export interface ContentLocaleCollection {
     /**
      * 
-     * @type {number}
-     * @memberof ContentLocaleCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<ContentLocale>}
      * @memberof ContentLocaleCollection
      */
     items?: Array<ContentLocale> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ContentLocaleCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -259,16 +265,16 @@ export interface Country {
 export interface CountryCollection {
     /**
      * 
-     * @type {number}
-     * @memberof CountryCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<Country>}
      * @memberof CountryCollection
      */
     items?: Array<Country> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CountryCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -297,35 +303,16 @@ export interface CountryWithStates {
 export interface CountryWithStatesCollection {
     /**
      * 
-     * @type {number}
-     * @memberof CountryWithStatesCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<CountryWithStates>}
      * @memberof CountryWithStatesCollection
      */
     items?: Array<CountryWithStates> | null;
-}
-/**
- * 
- * @export
- * @interface Currency
- */
-export interface Currency {
     /**
      * 
-     * @type {string}
-     * @memberof Currency
+     * @type {number}
+     * @memberof CountryWithStatesCollection
      */
-    code?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Currency
-     */
-    name?: string | null;
+    totalCount?: number;
 }
 /**
  * 
@@ -335,16 +322,16 @@ export interface Currency {
 export interface CurrencyCollection {
     /**
      * 
+     * @type {Array<ReferenceCurrency>}
+     * @memberof CurrencyCollection
+     */
+    items?: Array<ReferenceCurrency> | null;
+    /**
+     * 
      * @type {number}
      * @memberof CurrencyCollection
      */
     totalCount?: number;
-    /**
-     * 
-     * @type {Array<Currency>}
-     * @memberof CurrencyCollection
-     */
-    items?: Array<Currency> | null;
 }
 /**
  * 
@@ -352,18 +339,6 @@ export interface CurrencyCollection {
  * @interface Field
  */
 export interface Field {
-    /**
-     * 
-     * @type {string}
-     * @memberof Field
-     */
-    type?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Field
-     */
-    label?: string | null;
     /**
      * 
      * @type {Array<FieldData>}
@@ -378,10 +353,22 @@ export interface Field {
     id?: number;
     /**
      * 
+     * @type {string}
+     * @memberof Field
+     */
+    label?: string | null;
+    /**
+     * 
      * @type {number}
      * @memberof Field
      */
     order?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Field
+     */
+    type?: string | null;
 }
 /**
  * 
@@ -394,13 +381,32 @@ export interface FieldData {
      * @type {string}
      * @memberof FieldData
      */
-    value?: string | null;
+    code?: string | null;
     /**
      * 
      * @type {string}
      * @memberof FieldData
      */
+    value?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface ReferenceCurrency
+ */
+export interface ReferenceCurrency {
+    /**
+     * 
+     * @type {string}
+     * @memberof ReferenceCurrency
+     */
     code?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReferenceCurrency
+     */
+    name?: string | null;
 }
 /**
  * 
@@ -434,17 +440,17 @@ export interface ReferenceState {
  */
 export interface ReferenceTimeZone {
     /**
+     * IANA Code valid for the Windows Code used as Id
+     * @type {string}
+     * @memberof ReferenceTimeZone
+     */
+    ianaCode?: string | null;
+    /**
      * The Id of the TimeZone (examples include: "Central Standard Time", ...)
      * @type {string}
      * @memberof ReferenceTimeZone
      */
     id?: string | null;
-    /**
-     * The current offset for this TimeZone in hours
-     * @type {number}
-     * @memberof ReferenceTimeZone
-     */
-    offset?: number;
     /**
      * 
      * @type {boolean}
@@ -452,11 +458,36 @@ export interface ReferenceTimeZone {
      */
     isDaylightSavingsTime?: boolean;
     /**
-     * IANA Code valid for the Windows Code used as Id
-     * @type {string}
+     * The current offset for this TimeZone in hours
+     * @type {number}
      * @memberof ReferenceTimeZone
      */
-    ianaCode?: string | null;
+    offset?: number;
+}
+/**
+ * 
+ * @export
+ * @interface StateCollection
+ */
+export interface StateCollection {
+    /**
+     * 
+     * @type {string}
+     * @memberof StateCollection
+     */
+    countryCode?: string | null;
+    /**
+     * 
+     * @type {Array<ReferenceState>}
+     * @memberof StateCollection
+     */
+    items?: Array<ReferenceState> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof StateCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -466,16 +497,16 @@ export interface ReferenceTimeZone {
 export interface TimeZoneCollection {
     /**
      * 
-     * @type {number}
-     * @memberof TimeZoneCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<ReferenceTimeZone>}
      * @memberof TimeZoneCollection
      */
     items?: Array<ReferenceTimeZone> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof TimeZoneCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -485,16 +516,16 @@ export interface TimeZoneCollection {
 export interface TopLevelDomainCollection {
     /**
      * 
-     * @type {number}
-     * @memberof TopLevelDomainCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<string>}
      * @memberof TopLevelDomainCollection
      */
     items?: Array<string> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof TopLevelDomainCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -507,12 +538,6 @@ export interface UnitOfMeasure {
      * @type {string}
      * @memberof UnitOfMeasure
      */
-    symbol?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof UnitOfMeasure
-     */
     name?: string | null;
     /**
      * 
@@ -520,6 +545,12 @@ export interface UnitOfMeasure {
      * @memberof UnitOfMeasure
      */
     pluralName?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UnitOfMeasure
+     */
+    symbol?: string | null;
     /**
      * This value can be "Length", "Weight", or "Volume"
      * @type {string}
@@ -535,14 +566,14 @@ export interface UnitOfMeasure {
 export interface UnitOfMeasureCollection {
     /**
      * 
-     * @type {number}
-     * @memberof UnitOfMeasureCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<UnitOfMeasure>}
      * @memberof UnitOfMeasureCollection
      */
     items?: Array<UnitOfMeasure> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof UnitOfMeasureCollection
+     */
+    totalCount?: number;
 }

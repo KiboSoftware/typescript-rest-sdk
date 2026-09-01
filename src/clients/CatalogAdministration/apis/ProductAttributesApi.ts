@@ -2,9 +2,9 @@
 /* eslint-disable */
 /**
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -161,8 +161,8 @@ export namespace productAttributesApiParams {
 */
 export interface ProductAttributesApiService {
     /**
-    * Add / Create Attribute
-    * @summary Add a product attribute
+    * Create a new attribute. The attribute name, attribute type, input type, and data type are required. This current version of the Attributes API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Add Product Attribute
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {CatalogAdminsAttribute} [catalogAdminsAttribute] 
     * @param {*} [options] Override http request option.
@@ -172,14 +172,14 @@ export interface ProductAttributesApiService {
     addAttributeRaw(requestParameters: productAttributesApiParams.AddAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttribute>>;
 
     /**
-    * Add / Create Attribute
-    * Add a product attribute
+    * Create a new attribute. The attribute name, attribute type, input type, and data type are required. This current version of the Attributes API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Add Product Attribute
     */
     addAttribute(requestParameters: productAttributesApiParams.AddAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttribute>;
 
     /**
-    * Add product attribute vocabulary value
-    * @summary Add product attribute vocabulary value
+    * Creates product attribute vocabulary values
+    * @summary Add Vocabulary Value
     * @param {string} attributeFQN 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {CatalogAdminsAttributeVocabularyValue} [catalogAdminsAttributeVocabularyValue] 
@@ -190,14 +190,14 @@ export interface ProductAttributesApiService {
     addAttributeVocabularyValueRaw(requestParameters: productAttributesApiParams.AddAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeVocabularyValue>>;
 
     /**
-    * Add product attribute vocabulary value
-    * Add product attribute vocabulary value
+    * Creates product attribute vocabulary values
+    * Add Vocabulary Value
     */
     addAttributeVocabularyValue(requestParameters: productAttributesApiParams.AddAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeVocabularyValue>;
 
     /**
-    * 
-    * @summary Add product attribute vocabulary value
+    * Creates vocabulary value localized content
+    * @summary Add Vocabulary Value Localized Content
     * @param {string} attributeFQN 
     * @param {string} value 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -209,14 +209,14 @@ export interface ProductAttributesApiService {
     addAttributeVocabularyValueLocalizedContentRaw(requestParameters: productAttributesApiParams.AddAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeVocabularyValueLocalizedContent>>;
 
     /**
-    * 
-    * Add product attribute vocabulary value
+    * Creates vocabulary value localized content
+    * Add Vocabulary Value Localized Content
     */
     addAttributeVocabularyValueLocalizedContent(requestParameters: productAttributesApiParams.AddAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeVocabularyValueLocalizedContent>;
 
     /**
-    * 
-    * @summary Add product attribute localized content
+    * Creates product attribute localized content
+    * @summary Add Localized Content
     * @param {string} attributeFQN 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {CatalogAdminsAttributeLocalizedContent} [catalogAdminsAttributeLocalizedContent] 
@@ -227,14 +227,14 @@ export interface ProductAttributesApiService {
     addLocalizedContentRaw(requestParameters: productAttributesApiParams.AddLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeLocalizedContent>>;
 
     /**
-    * 
-    * Add product attribute localized content
+    * Creates product attribute localized content
+    * Add Localized Content
     */
     addLocalizedContent(requestParameters: productAttributesApiParams.AddLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeLocalizedContent>;
 
     /**
-    * 
-    * @summary Delete product attribute
+    * Deletes a product attribute by its FQN
+    * @summary Delete Product Attribute
     * @param {string} attributeFQN 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -243,14 +243,14 @@ export interface ProductAttributesApiService {
     deleteAttributeRaw(requestParameters: productAttributesApiParams.DeleteAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * 
-    * Delete product attribute
+    * Deletes a product attribute by its FQN
+    * Delete Product Attribute
     */
     deleteAttribute(requestParameters: productAttributesApiParams.DeleteAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * 
-    * @summary Delete product attribute vocabulary value
+    * Deletes a product attribute vocabulary value
+    * @summary Delete Vocabulary Value
     * @param {string} attributeFQN 
     * @param {string} value 
     * @param {*} [options] Override http request option.
@@ -260,14 +260,14 @@ export interface ProductAttributesApiService {
     deleteAttributeVocabularyValueRaw(requestParameters: productAttributesApiParams.DeleteAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * 
-    * Delete product attribute vocabulary value
+    * Deletes a product attribute vocabulary value
+    * Delete Vocabulary Value
     */
     deleteAttributeVocabularyValue(requestParameters: productAttributesApiParams.DeleteAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * 
-    * @summary Delete product attribute vocabulary value localized content
+    * Delete product attribute vocabulary value localized content by its locale code
+    * @summary Delete Vocabulary Value Localized Content by Locale Code
     * @param {string} attributeFQN 
     * @param {string} value 
     * @param {string} localeCode 
@@ -278,14 +278,14 @@ export interface ProductAttributesApiService {
     deleteAttributeVocabularyValueLocalizedContentRaw(requestParameters: productAttributesApiParams.DeleteAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * 
-    * Delete product attribute vocabulary value localized content
+    * Delete product attribute vocabulary value localized content by its locale code
+    * Delete Vocabulary Value Localized Content by Locale Code
     */
     deleteAttributeVocabularyValueLocalizedContent(requestParameters: productAttributesApiParams.DeleteAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * 
-    * @summary Delete product attribute localized content
+    * Deletes localized content by its locale code
+    * @summary Delete Localized Content by Locale Code
     * @param {string} attributeFQN 
     * @param {string} localeCode 
     * @param {*} [options] Override http request option.
@@ -295,14 +295,14 @@ export interface ProductAttributesApiService {
     deleteLocalizedContentRaw(requestParameters: productAttributesApiParams.DeleteLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * 
-    * Delete product attribute localized content
+    * Deletes localized content by its locale code
+    * Delete Localized Content by Locale Code
     */
     deleteLocalizedContent(requestParameters: productAttributesApiParams.DeleteLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * 
-    * @summary Get product attribute
+    * Retrieves a product attribute by its FQN. This current version of the Attributes API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Get Product Attribute
     * @param {string} attributeFQN 
     * @param {string} [responseGroups] 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -313,14 +313,14 @@ export interface ProductAttributesApiService {
     getAttributeRaw(requestParameters: productAttributesApiParams.GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttribute>>;
 
     /**
-    * 
-    * Get product attribute
+    * Retrieves a product attribute by its FQN. This current version of the Attributes API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Get Product Attribute
     */
     getAttribute(requestParameters: productAttributesApiParams.GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttribute>;
 
     /**
-    * 
-    * @summary Get product attribute localized content
+    * Retrieves localized content by its locale code
+    * @summary Get Localized Content by Locale Code
     * @param {string} attributeFQN 
     * @param {string} localeCode 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -331,14 +331,14 @@ export interface ProductAttributesApiService {
     getAttributeLocalizedContentRaw(requestParameters: productAttributesApiParams.GetAttributeLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeLocalizedContent>>;
 
     /**
-    * 
-    * Get product attribute localized content
+    * Retrieves localized content by its locale code
+    * Get Localized Content by Locale Code
     */
     getAttributeLocalizedContent(requestParameters: productAttributesApiParams.GetAttributeLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeLocalizedContent>;
 
     /**
-    * 
-    * @summary Get product attribute localized contents
+    * Retrieves product attribute localized content
+    * @summary Get Localized Content
     * @param {string} attributeFQN 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
@@ -348,14 +348,14 @@ export interface ProductAttributesApiService {
     getAttributeLocalizedContentsRaw(requestParameters: productAttributesApiParams.GetAttributeLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsAttributeLocalizedContent>>>;
 
     /**
-    * 
-    * Get product attribute localized contents
+    * Retrieves product attribute localized content
+    * Get Localized Content
     */
     getAttributeLocalizedContents(requestParameters: productAttributesApiParams.GetAttributeLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsAttributeLocalizedContent>>;
 
     /**
     * Retrieves a paged list of attribute type rules according to any specified filter criteria and sort options.
-    * @summary Get attribute type rules
+    * @summary Get Attribute Type Rules
     * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
     * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
     * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
@@ -369,13 +369,13 @@ export interface ProductAttributesApiService {
 
     /**
     * Retrieves a paged list of attribute type rules according to any specified filter criteria and sort options.
-    * Get attribute type rules
+    * Get Attribute Type Rules
     */
     getAttributeTypeRules(requestParameters: productAttributesApiParams.GetAttributeTypeRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeTypeRuleCollection>;
 
     /**
-    * 
-    * @summary Get product attribute vocabulary value
+    * Retrieves a product attribute vocabulary value
+    * @summary Get Vocabulary Value
     * @param {string} attributeFQN 
     * @param {string} value 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -386,14 +386,14 @@ export interface ProductAttributesApiService {
     getAttributeVocabularyValueRaw(requestParameters: productAttributesApiParams.GetAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeVocabularyValue>>;
 
     /**
-    * 
-    * Get product attribute vocabulary value
+    * Retrieves a product attribute vocabulary value
+    * Get Vocabulary Value
     */
     getAttributeVocabularyValue(requestParameters: productAttributesApiParams.GetAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeVocabularyValue>;
 
     /**
-    * 
-    * @summary Get product attribute vocabulary value localized content
+    * Get product attribute vocabulary value localized content by its locale code
+    * @summary Get Vocabulary Value Localized Content by Locale Code
     * @param {string} attributeFQN 
     * @param {string} value 
     * @param {string} localeCode 
@@ -405,14 +405,14 @@ export interface ProductAttributesApiService {
     getAttributeVocabularyValueLocalizedContentRaw(requestParameters: productAttributesApiParams.GetAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeVocabularyValueLocalizedContent>>;
 
     /**
-    * 
-    * Get product attribute vocabulary value localized content
+    * Get product attribute vocabulary value localized content by its locale code
+    * Get Vocabulary Value Localized Content by Locale Code
     */
     getAttributeVocabularyValueLocalizedContent(requestParameters: productAttributesApiParams.GetAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeVocabularyValueLocalizedContent>;
 
     /**
-    * 
-    * @summary Get product attribute vocabulary value localized content
+    * Retrieves vocabulary value localized content
+    * @summary Get Vocabulary Value Localized Content
     * @param {string} attributeFQN 
     * @param {string} value 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -423,14 +423,14 @@ export interface ProductAttributesApiService {
     getAttributeVocabularyValueLocalizedContentsRaw(requestParameters: productAttributesApiParams.GetAttributeVocabularyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeVocabularyValueLocalizedContent>>>;
 
     /**
-    * 
-    * Get product attribute vocabulary value localized content
+    * Retrieves vocabulary value localized content
+    * Get Vocabulary Value Localized Content
     */
     getAttributeVocabularyValueLocalizedContents(requestParameters: productAttributesApiParams.GetAttributeVocabularyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeVocabularyValueLocalizedContent>>;
 
     /**
-    * 
-    * @summary Get product attribute vocabulary values
+    * Retrieves product attribute vocabulary values
+    * @summary Get Vocabulary Values
     * @param {string} attributeFQN 
     * @param {string} [responseGroups] 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -441,14 +441,14 @@ export interface ProductAttributesApiService {
     getAttributeVocabularyValuesRaw(requestParameters: productAttributesApiParams.GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsAttributeVocabularyValue>>>;
 
     /**
-    * 
-    * Get product attribute vocabulary values
+    * Retrieves product attribute vocabulary values
+    * Get Vocabulary Values
     */
     getAttributeVocabularyValues(requestParameters: productAttributesApiParams.GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsAttributeVocabularyValue>>;
 
     /**
-    * Get product attributes
-    * @summary Get product attributes
+    * Get product attributes. This current version of the Attributes API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Get Product Attributes.
     * @param {number} [startIndex] 
     * @param {number} [pageSize] 
     * @param {string} [sortBy] 
@@ -462,14 +462,14 @@ export interface ProductAttributesApiService {
     getAttributesRaw(requestParameters: productAttributesApiParams.GetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeCollection>>;
 
     /**
-    * Get product attributes
-    * Get product attributes
+    * Get product attributes. This current version of the Attributes API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Get Product Attributes.
     */
     getAttributes(requestParameters: productAttributesApiParams.GetAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeCollection>;
 
     /**
-    * 
-    * @summary Update a product attribute
+    * Updates a product attribute by its FQN. This current version of the Attributes API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Update Product Attribute
     * @param {string} attributeFQN 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {CatalogAdminsAttribute} [catalogAdminsAttribute] 
@@ -480,14 +480,14 @@ export interface ProductAttributesApiService {
     updateAttributeRaw(requestParameters: productAttributesApiParams.UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttribute>>;
 
     /**
-    * 
-    * Update a product attribute
+    * Updates a product attribute by its FQN. This current version of the Attributes API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Update Product Attribute
     */
     updateAttribute(requestParameters: productAttributesApiParams.UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttribute>;
 
     /**
-    * 
-    * @summary Update product attribute vocabulary value
+    * Updates a product attribute vocabulary value
+    * @summary Update Vocabulary Value
     * @param {string} attributeFQN 
     * @param {string} value 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -499,14 +499,14 @@ export interface ProductAttributesApiService {
     updateAttributeVocabularyValueRaw(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeVocabularyValue>>;
 
     /**
-    * 
-    * Update product attribute vocabulary value
+    * Updates a product attribute vocabulary value
+    * Update Vocabulary Value
     */
     updateAttributeVocabularyValue(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeVocabularyValue>;
 
     /**
-    * 
-    * @summary Update product attribute vocabulary value localized content
+    * Update product attribute vocabulary value localized content by its locale code
+    * @summary Update Vocabulary Value Localized Content by Locale Code
     * @param {string} attributeFQN 
     * @param {string} value 
     * @param {string} localeCode 
@@ -519,14 +519,14 @@ export interface ProductAttributesApiService {
     updateAttributeVocabularyValueLocalizedContentRaw(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AttributeVocabularyValueLocalizedContent>>;
 
     /**
-    * 
-    * Update product attribute vocabulary value localized content
+    * Update product attribute vocabulary value localized content by its locale code
+    * Update Vocabulary Value Localized Content by Locale Code
     */
     updateAttributeVocabularyValueLocalizedContent(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeVocabularyValueLocalizedContent>;
 
     /**
-    * 
-    * @summary Update product attribute vocabulary value localized content
+    * Updates vocabulary value localized content
+    * @summary Update Vocabulary Value Localized Content
     * @param {string} attributeFQN 
     * @param {string} value 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -538,14 +538,14 @@ export interface ProductAttributesApiService {
     updateAttributeVocabularyValueLocalizedContentsRaw(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AttributeVocabularyValueLocalizedContent>>>;
 
     /**
-    * 
-    * Update product attribute vocabulary value localized content
+    * Updates vocabulary value localized content
+    * Update Vocabulary Value Localized Content
     */
     updateAttributeVocabularyValueLocalizedContents(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeVocabularyValueLocalizedContent>>;
 
     /**
-    * 
-    * @summary Update product attribute vocabulary values
+    * Updates product attribute vocabulary values
+    * @summary Update Vocabulary Values
     * @param {string} attributeFQN 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {Array<CatalogAdminsAttributeVocabularyValue>} [catalogAdminsAttributeVocabularyValue] 
@@ -556,14 +556,14 @@ export interface ProductAttributesApiService {
     updateAttributeVocabularyValuesRaw(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsAttributeVocabularyValue>>>;
 
     /**
-    * 
-    * Update product attribute vocabulary values
+    * Updates product attribute vocabulary values
+    * Update Vocabulary Values
     */
     updateAttributeVocabularyValues(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsAttributeVocabularyValue>>;
 
     /**
-    * 
-    * @summary Update product attribute localized content
+    * Updates localized content by its locale code
+    * @summary Update Localized Content by Locale Code
     * @param {string} attributeFQN 
     * @param {string} localeCode 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -575,14 +575,14 @@ export interface ProductAttributesApiService {
     updateLocalizedContentRaw(requestParameters: productAttributesApiParams.UpdateLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsAttributeLocalizedContent>>;
 
     /**
-    * 
-    * Update product attribute localized content
+    * Updates localized content by its locale code
+    * Update Localized Content by Locale Code
     */
     updateLocalizedContent(requestParameters: productAttributesApiParams.UpdateLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeLocalizedContent>;
 
     /**
-    * 
-    * @summary Update product attribute localized content
+    * Updates product attribute localized content
+    * @summary Update Localized Content
     * @param {string} attributeFQN 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {Array<CatalogAdminsAttributeLocalizedContent>} [catalogAdminsAttributeLocalizedContent] 
@@ -593,8 +593,8 @@ export interface ProductAttributesApiService {
     updateLocalizedContentsRaw(requestParameters: productAttributesApiParams.UpdateLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsAttributeLocalizedContent>>>;
 
     /**
-    * 
-    * Update product attribute localized content
+    * Updates product attribute localized content
+    * Update Localized Content
     */
     updateLocalizedContents(requestParameters: productAttributesApiParams.UpdateLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsAttributeLocalizedContent>>;
 
@@ -610,8 +610,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
         this.basePathTemplate = basePathTemplate
     }
     /**
-     * Add / Create Attribute
-     * Add a product attribute
+     * Create a new attribute. The attribute name, attribute type, input type, and data type are required. This current version of the Attributes API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Add Product Attribute
      */
 
 
@@ -625,8 +625,6 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-
 
 
 
@@ -644,8 +642,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * Add / Create Attribute
-     * Add a product attribute
+     * Create a new attribute. The attribute name, attribute type, input type, and data type are required. This current version of the Attributes API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Add Product Attribute
      */
     async addAttribute(requestParameters: productAttributesApiParams.AddAttributeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttribute> {
         const response = await this.addAttributeRaw(requestParameters, initOverrides);
@@ -653,8 +651,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * Add product attribute vocabulary value
-     * Add product attribute vocabulary value
+     * Creates product attribute vocabulary values
+     * Add Vocabulary Value
      */
 
 
@@ -675,8 +673,6 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -691,8 +687,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * Add product attribute vocabulary value
-     * Add product attribute vocabulary value
+     * Creates product attribute vocabulary values
+     * Add Vocabulary Value
      */
     async addAttributeVocabularyValue(requestParameters: productAttributesApiParams.AddAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeVocabularyValue> {
         const response = await this.addAttributeVocabularyValueRaw(requestParameters, initOverrides);
@@ -700,8 +696,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Add product attribute vocabulary value
+     * Creates vocabulary value localized content
+     * Add Vocabulary Value Localized Content
      */
 
 
@@ -726,8 +722,6 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -742,8 +736,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Add product attribute vocabulary value
+     * Creates vocabulary value localized content
+     * Add Vocabulary Value Localized Content
      */
     async addAttributeVocabularyValueLocalizedContent(requestParameters: productAttributesApiParams.AddAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeVocabularyValueLocalizedContent> {
         const response = await this.addAttributeVocabularyValueLocalizedContentRaw(requestParameters, initOverrides);
@@ -751,8 +745,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Add product attribute localized content
+     * Creates product attribute localized content
+     * Add Localized Content
      */
 
 
@@ -773,8 +767,6 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -789,8 +781,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Add product attribute localized content
+     * Creates product attribute localized content
+     * Add Localized Content
      */
     async addLocalizedContent(requestParameters: productAttributesApiParams.AddLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeLocalizedContent> {
         const response = await this.addLocalizedContentRaw(requestParameters, initOverrides);
@@ -798,8 +790,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Delete product attribute
+     * Deletes a product attribute by its FQN
+     * Delete Product Attribute
      */
 
 
@@ -811,8 +803,6 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-
 
 
 
@@ -829,16 +819,16 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Delete product attribute
+     * Deletes a product attribute by its FQN
+     * Delete Product Attribute
      */
     async deleteAttribute(requestParameters: productAttributesApiParams.DeleteAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteAttributeRaw(requestParameters, initOverrides);
     }
 
     /**
-     * 
-     * Delete product attribute vocabulary value
+     * Deletes a product attribute vocabulary value
+     * Delete Vocabulary Value
      */
 
 
@@ -857,8 +847,6 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -872,16 +860,16 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Delete product attribute vocabulary value
+     * Deletes a product attribute vocabulary value
+     * Delete Vocabulary Value
      */
     async deleteAttributeVocabularyValue(requestParameters: productAttributesApiParams.DeleteAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteAttributeVocabularyValueRaw(requestParameters, initOverrides);
     }
 
     /**
-     * 
-     * Delete product attribute vocabulary value localized content
+     * Delete product attribute vocabulary value localized content by its locale code
+     * Delete Vocabulary Value Localized Content by Locale Code
      */
 
 
@@ -904,8 +892,6 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -919,16 +905,16 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Delete product attribute vocabulary value localized content
+     * Delete product attribute vocabulary value localized content by its locale code
+     * Delete Vocabulary Value Localized Content by Locale Code
      */
     async deleteAttributeVocabularyValueLocalizedContent(requestParameters: productAttributesApiParams.DeleteAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteAttributeVocabularyValueLocalizedContentRaw(requestParameters, initOverrides);
     }
 
     /**
-     * 
-     * Delete product attribute localized content
+     * Deletes localized content by its locale code
+     * Delete Localized Content by Locale Code
      */
 
 
@@ -947,8 +933,6 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -962,16 +946,16 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Delete product attribute localized content
+     * Deletes localized content by its locale code
+     * Delete Localized Content by Locale Code
      */
     async deleteLocalizedContent(requestParameters: productAttributesApiParams.DeleteLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteLocalizedContentRaw(requestParameters, initOverrides);
     }
 
     /**
-     * 
-     * Get product attribute
+     * Retrieves a product attribute by its FQN. This current version of the Attributes API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Get Product Attribute
      */
 
 
@@ -994,8 +978,6 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1009,8 +991,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Get product attribute
+     * Retrieves a product attribute by its FQN. This current version of the Attributes API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Get Product Attribute
      */
     async getAttribute(requestParameters: productAttributesApiParams.GetAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttribute> {
         const response = await this.getAttributeRaw(requestParameters, initOverrides);
@@ -1018,8 +1000,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Get product attribute localized content
+     * Retrieves localized content by its locale code
+     * Get Localized Content by Locale Code
      */
 
 
@@ -1042,8 +1024,6 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1057,8 +1037,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Get product attribute localized content
+     * Retrieves localized content by its locale code
+     * Get Localized Content by Locale Code
      */
     async getAttributeLocalizedContent(requestParameters: productAttributesApiParams.GetAttributeLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeLocalizedContent> {
         const response = await this.getAttributeLocalizedContentRaw(requestParameters, initOverrides);
@@ -1066,8 +1046,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Get product attribute localized contents
+     * Retrieves product attribute localized content
+     * Get Localized Content
      */
 
 
@@ -1086,8 +1066,6 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1101,8 +1079,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Get product attribute localized contents
+     * Retrieves product attribute localized content
+     * Get Localized Content
      */
     async getAttributeLocalizedContents(requestParameters: productAttributesApiParams.GetAttributeLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsAttributeLocalizedContent>> {
         const response = await this.getAttributeLocalizedContentsRaw(requestParameters, initOverrides);
@@ -1111,7 +1089,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
 
     /**
      * Retrieves a paged list of attribute type rules according to any specified filter criteria and sort options.
-     * Get attribute type rules
+     * Get Attribute Type Rules
      */
 
 
@@ -1142,8 +1120,6 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1158,7 +1134,7 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
 
     /**
      * Retrieves a paged list of attribute type rules according to any specified filter criteria and sort options.
-     * Get attribute type rules
+     * Get Attribute Type Rules
      */
     async getAttributeTypeRules(requestParameters: productAttributesApiParams.GetAttributeTypeRulesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeTypeRuleCollection> {
         const response = await this.getAttributeTypeRulesRaw(requestParameters, initOverrides);
@@ -1166,8 +1142,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Get product attribute vocabulary value
+     * Retrieves a product attribute vocabulary value
+     * Get Vocabulary Value
      */
 
 
@@ -1190,8 +1166,6 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1205,8 +1179,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Get product attribute vocabulary value
+     * Retrieves a product attribute vocabulary value
+     * Get Vocabulary Value
      */
     async getAttributeVocabularyValue(requestParameters: productAttributesApiParams.GetAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeVocabularyValue> {
         const response = await this.getAttributeVocabularyValueRaw(requestParameters, initOverrides);
@@ -1214,8 +1188,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Get product attribute vocabulary value localized content
+     * Get product attribute vocabulary value localized content by its locale code
+     * Get Vocabulary Value Localized Content by Locale Code
      */
 
 
@@ -1242,8 +1216,6 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1257,8 +1229,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Get product attribute vocabulary value localized content
+     * Get product attribute vocabulary value localized content by its locale code
+     * Get Vocabulary Value Localized Content by Locale Code
      */
     async getAttributeVocabularyValueLocalizedContent(requestParameters: productAttributesApiParams.GetAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeVocabularyValueLocalizedContent> {
         const response = await this.getAttributeVocabularyValueLocalizedContentRaw(requestParameters, initOverrides);
@@ -1266,8 +1238,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Get product attribute vocabulary value localized content
+     * Retrieves vocabulary value localized content
+     * Get Vocabulary Value Localized Content
      */
 
 
@@ -1290,8 +1262,6 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1305,8 +1275,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Get product attribute vocabulary value localized content
+     * Retrieves vocabulary value localized content
+     * Get Vocabulary Value Localized Content
      */
     async getAttributeVocabularyValueLocalizedContents(requestParameters: productAttributesApiParams.GetAttributeVocabularyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeVocabularyValueLocalizedContent>> {
         const response = await this.getAttributeVocabularyValueLocalizedContentsRaw(requestParameters, initOverrides);
@@ -1314,8 +1284,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Get product attribute vocabulary values
+     * Retrieves product attribute vocabulary values
+     * Get Vocabulary Values
      */
 
 
@@ -1338,8 +1308,6 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1353,8 +1321,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Get product attribute vocabulary values
+     * Retrieves product attribute vocabulary values
+     * Get Vocabulary Values
      */
     async getAttributeVocabularyValues(requestParameters: productAttributesApiParams.GetAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsAttributeVocabularyValue>> {
         const response = await this.getAttributeVocabularyValuesRaw(requestParameters, initOverrides);
@@ -1362,8 +1330,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * Get product attributes
-     * Get product attributes
+     * Get product attributes. This current version of the Attributes API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Get Product Attributes.
      */
 
 
@@ -1398,8 +1366,6 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1413,8 +1379,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * Get product attributes
-     * Get product attributes
+     * Get product attributes. This current version of the Attributes API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Get Product Attributes.
      */
     async getAttributes(requestParameters: productAttributesApiParams.GetAttributesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeCollection> {
         const response = await this.getAttributesRaw(requestParameters, initOverrides);
@@ -1422,8 +1388,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Update a product attribute
+     * Updates a product attribute by its FQN. This current version of the Attributes API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Update Product Attribute
      */
 
 
@@ -1444,8 +1410,6 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1460,8 +1424,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Update a product attribute
+     * Updates a product attribute by its FQN. This current version of the Attributes API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Update Product Attribute
      */
     async updateAttribute(requestParameters: productAttributesApiParams.UpdateAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttribute> {
         const response = await this.updateAttributeRaw(requestParameters, initOverrides);
@@ -1469,8 +1433,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Update product attribute vocabulary value
+     * Updates a product attribute vocabulary value
+     * Update Vocabulary Value
      */
 
 
@@ -1495,8 +1459,6 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1511,8 +1473,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Update product attribute vocabulary value
+     * Updates a product attribute vocabulary value
+     * Update Vocabulary Value
      */
     async updateAttributeVocabularyValue(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeVocabularyValue> {
         const response = await this.updateAttributeVocabularyValueRaw(requestParameters, initOverrides);
@@ -1520,8 +1482,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Update product attribute vocabulary value localized content
+     * Update product attribute vocabulary value localized content by its locale code
+     * Update Vocabulary Value Localized Content by Locale Code
      */
 
 
@@ -1550,8 +1512,6 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1566,8 +1526,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Update product attribute vocabulary value localized content
+     * Update product attribute vocabulary value localized content by its locale code
+     * Update Vocabulary Value Localized Content by Locale Code
      */
     async updateAttributeVocabularyValueLocalizedContent(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AttributeVocabularyValueLocalizedContent> {
         const response = await this.updateAttributeVocabularyValueLocalizedContentRaw(requestParameters, initOverrides);
@@ -1575,8 +1535,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Update product attribute vocabulary value localized content
+     * Updates vocabulary value localized content
+     * Update Vocabulary Value Localized Content
      */
 
 
@@ -1601,8 +1561,6 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1617,8 +1575,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Update product attribute vocabulary value localized content
+     * Updates vocabulary value localized content
+     * Update Vocabulary Value Localized Content
      */
     async updateAttributeVocabularyValueLocalizedContents(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AttributeVocabularyValueLocalizedContent>> {
         const response = await this.updateAttributeVocabularyValueLocalizedContentsRaw(requestParameters, initOverrides);
@@ -1626,8 +1584,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Update product attribute vocabulary values
+     * Updates product attribute vocabulary values
+     * Update Vocabulary Values
      */
 
 
@@ -1648,8 +1606,6 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1664,8 +1620,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Update product attribute vocabulary values
+     * Updates product attribute vocabulary values
+     * Update Vocabulary Values
      */
     async updateAttributeVocabularyValues(requestParameters: productAttributesApiParams.UpdateAttributeVocabularyValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsAttributeVocabularyValue>> {
         const response = await this.updateAttributeVocabularyValuesRaw(requestParameters, initOverrides);
@@ -1673,8 +1629,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Update product attribute localized content
+     * Updates localized content by its locale code
+     * Update Localized Content by Locale Code
      */
 
 
@@ -1699,8 +1655,6 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1715,8 +1669,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Update product attribute localized content
+     * Updates localized content by its locale code
+     * Update Localized Content by Locale Code
      */
     async updateLocalizedContent(requestParameters: productAttributesApiParams.UpdateLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsAttributeLocalizedContent> {
         const response = await this.updateLocalizedContentRaw(requestParameters, initOverrides);
@@ -1724,8 +1678,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Update product attribute localized content
+     * Updates product attribute localized content
+     * Update Localized Content
      */
 
 
@@ -1746,8 +1700,6 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1762,8 +1714,8 @@ export class ProductAttributesApi extends runtime.BaseAPI implements ProductAttr
     }
 
     /**
-     * 
-     * Update product attribute localized content
+     * Updates product attribute localized content
+     * Update Localized Content
      */
     async updateLocalizedContents(requestParameters: productAttributesApiParams.UpdateLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsAttributeLocalizedContent>> {
         const response = await this.updateLocalizedContentsRaw(requestParameters, initOverrides);

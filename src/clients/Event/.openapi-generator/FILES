@@ -1,5 +1,6 @@
+.openapi-generator-ignore
 apis/EventApi.ts
-apis/SubscriptionApi.ts
+apis/EventSubscriptionApi.ts
 apis/index.ts
 index.ts
 models/index.ts
