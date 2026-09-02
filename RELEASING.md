@@ -46,9 +46,16 @@ report separates the two kinds:
 
 Run the `Publish to npm` workflow and pick a release type.
 
-Versions are `2.<KiboApiVersion>.<patch>` - `2.2530.1` is Kibo API version 1.2530.
-The workflow's `patch`/`minor`/`major` inputs bump the npm semver; when the API
-version changes, set the middle number in `package.json` in the refresh PR.
+Versions are `<major>.<KiboApiVersion>.<patch>` - `2.2530.1` is Kibo API version
+1.2530. The workflow's `patch`/`minor`/`major` inputs bump the npm semver; when the
+API version changes, set the middle number in `package.json` in the refresh PR.
+
+The first segment is the SDK's own major and moves independently of the API
+version. A refresh that removes methods or models breaks consumers at compile
+time, so it needs a major bump - otherwise everyone on the previous `^major`
+picks it up on their next install. `3.2634.1` was the first of these: the 1.2634
+refresh dropped 142 methods and 279 models. Bump it by hand here rather than
+using the workflow's `major` input, which would reset the API segment to 0.
 
 Publishing requires `NPMJS_ACCESS_TOKEN`. The scheduled refresh never publishes.
 
