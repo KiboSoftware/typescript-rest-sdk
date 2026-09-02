@@ -3,286 +3,201 @@
 /**
  * 
  * @export
- * @interface AddressDto
+ * @interface AcceptedPackingSuggestionRequest
  */
-export interface AddressDto {
+export interface AcceptedPackingSuggestionRequest {
     /**
      * 
      * @type {{ [key: string]: object; }}
-     * @memberof AddressDto
+     * @memberof AcceptedPackingSuggestionRequest
      */
     attributes?: { [key: string]: object; };
     /**
      * 
-     * @type {string}
-     * @memberof AddressDto
+     * @type {Array<PackedBox>}
+     * @memberof AcceptedPackingSuggestionRequest
      */
-    address1?: string;
+    boxes?: Array<PackedBox>;
     /**
      * 
-     * @type {string}
-     * @memberof AddressDto
+     * @type {Array<PackedItem>}
+     * @memberof AcceptedPackingSuggestionRequest
      */
-    address2?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AddressDto
-     */
-    address3?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AddressDto
-     */
-    address4?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AddressDto
-     */
-    addressType?: AddressDtoAddressTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof AddressDto
-     */
-    cityOrTown?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AddressDto
-     */
-    countryCode?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof AddressDto
-     */
-    isValidated?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof AddressDto
-     */
-    postalOrZipCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AddressDto
-     */
-    stateOrProvince?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AddressDto
-     */
-    latitude?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AddressDto
-     */
-    longitude?: string;
-}
-
-
-/**
- * @export
- */
-export const AddressDtoAddressTypeEnum = {
-    Commercial: 'Commercial',
-    Residential: 'Residential'
-} as const;
-export type AddressDtoAddressTypeEnum = typeof AddressDtoAddressTypeEnum[keyof typeof AddressDtoAddressTypeEnum];
-
-/**
- * 
- * @export
- * @interface AppeasementReasonDto
- */
-export interface AppeasementReasonDto {
-    /**
-     * 
-     * @type {string}
-     * @memberof AppeasementReasonDto
-     */
-    reasonCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AppeasementReasonDto
-     */
-    moreInfo?: string;
-}
-/**
- * 
- * @export
- * @interface AuditInfoDto
- */
-export interface AuditInfoDto {
-    /**
-     * 
-     * @type {string}
-     * @memberof AuditInfoDto
-     */
-    updateDate?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AuditInfoDto
-     */
-    createDate?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AuditInfoDto
-     */
-    updateBy?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AuditInfoDto
-     */
-    createBy?: string;
-}
-/**
- * 
- * @export
- * @interface BackorderItemDto
- */
-export interface BackorderItemDto {
+    leftOvers?: Array<PackedItem>;
     /**
      * 
      * @type {number}
-     * @memberof BackorderItemDto
+     * @memberof AcceptedPackingSuggestionRequest
      */
-    lineId: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof BackorderItemDto
-     */
-    quantity: number;
+    lenLeftovers?: number;
     /**
      * 
      * @type {string}
-     * @memberof BackorderItemDto
+     * @memberof AcceptedPackingSuggestionRequest
+     */
+    packingSuggestionId?: string;
+}
+/**
+ * 
+ * @export
+ * @interface BackorderItem
+ */
+export interface BackorderItem {
+    /**
+     * 
+     * @type {string}
+     * @memberof BackorderItem
      */
     backorderReleaseDate?: string;
     /**
      * 
      * @type {boolean}
-     * @memberof BackorderItemDto
+     * @memberof BackorderItem
      */
     blockAssignment?: boolean;
-}
-/**
- * 
- * @export
- * @interface BackorderItemUpdateDto
- */
-export interface BackorderItemUpdateDto {
-    /**
-     * 
-     * @type {number}
-     * @memberof BackorderItemUpdateDto
-     */
-    lineId: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof BackorderItemUpdateDto
-     */
-    backorderReleaseDate?: string;
-}
-/**
- * 
- * @export
- * @interface BackorderItemsRequestDto
- */
-export interface BackorderItemsRequestDto {
     /**
      * 
      * @type {boolean}
-     * @memberof BackorderItemsRequestDto
+     * @memberof BackorderItem
+     */
+    holdBlockAssignment?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof BackorderItem
+     */
+    lineId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof BackorderItem
+     */
+    quantity?: number;
+}
+/**
+ * 
+ * @export
+ * @interface BackorderItemUpdate
+ */
+export interface BackorderItemUpdate {
+    /**
+     * 
+     * @type {string}
+     * @memberof BackorderItemUpdate
+     */
+    backorderReleaseDate?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof BackorderItemUpdate
+     */
+    lineId?: number;
+}
+/**
+ * 
+ * @export
+ * @interface BackorderItemsRequest
+ */
+export interface BackorderItemsRequest {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof BackorderItemsRequest
      */
     isUserAction?: boolean;
     /**
      * 
-     * @type {Array<BackorderItemDto>}
-     * @memberof BackorderItemsRequestDto
+     * @type {Array<BackorderItem>}
+     * @memberof BackorderItemsRequest
      */
-    items: Array<BackorderItemDto>;
-}
-/**
- * 
- * @export
- * @interface BackorderItemsUpdateRequestDto
- */
-export interface BackorderItemsUpdateRequestDto {
-    /**
-     * 
-     * @type {Array<BackorderItemUpdateDto>}
-     * @memberof BackorderItemsUpdateRequestDto
-     */
-    items: Array<BackorderItemUpdateDto>;
-}
-/**
- * 
- * @export
- * @interface BackorderShipmentRequestDto
- */
-export interface BackorderShipmentRequestDto {
+    items?: Array<BackorderItem>;
     /**
      * 
      * @type {string}
-     * @memberof BackorderShipmentRequestDto
+     * @memberof BackorderItemsRequest
      */
-    backorderReleaseDate?: string;
+    runId?: string;
 }
 /**
  * 
  * @export
- * @interface BinShipmentProductQuantityDto
+ * @interface BackorderItemsUpdateRequest
  */
-export interface BinShipmentProductQuantityDto {
+export interface BackorderItemsUpdateRequest {
+    /**
+     * 
+     * @type {Array<BackorderItemUpdate>}
+     * @memberof BackorderItemsUpdateRequest
+     */
+    items?: Array<BackorderItemUpdate>;
+}
+/**
+ * 
+ * @export
+ * @interface BackorderShipmentRequest
+ */
+export interface BackorderShipmentRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof BackorderShipmentRequest
+     */
+    backorderReleaseDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BackorderShipmentRequest
+     */
+    runId?: string;
+}
+/**
+ * 
+ * @export
+ * @interface BinShipmentProductQuantity
+ */
+export interface BinShipmentProductQuantity {
+    /**
+     * 
+     * @type {number}
+     * @memberof BinShipmentProductQuantity
+     */
+    actualQuantity?: number;
     /**
      * 
      * @type {{ [key: string]: object; }}
-     * @memberof BinShipmentProductQuantityDto
+     * @memberof BinShipmentProductQuantity
      */
     attributes?: { [key: string]: object; };
     /**
      * 
      * @type {string}
-     * @memberof BinShipmentProductQuantityDto
+     * @memberof BinShipmentProductQuantity
      */
-    binName: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof BinShipmentProductQuantityDto
-     */
-    shipmentNumber: number;
+    binName?: string;
     /**
      * 
      * @type {string}
-     * @memberof BinShipmentProductQuantityDto
+     * @memberof BinShipmentProductQuantity
      */
     productCode?: string;
     /**
      * 
-     * @type {string}
-     * @memberof BinShipmentProductQuantityDto
+     * @type {number}
+     * @memberof BinShipmentProductQuantity
      */
-    variationProductCode?: string;
+    shipmentNumber?: number;
     /**
      * 
-     * @type {number}
-     * @memberof BinShipmentProductQuantityDto
+     * @type {ShortageReason}
+     * @memberof BinShipmentProductQuantity
      */
-    actualQuantity: number;
+    shortageReason?: ShortageReason;
+    /**
+     * 
+     * @type {string}
+     * @memberof BinShipmentProductQuantity
+     */
+    variationProductCode?: string;
 }
 /**
  * 
@@ -292,10 +207,10 @@ export interface BinShipmentProductQuantityDto {
 export interface BlockActionsRequest {
     /**
      * 
-     * @type {Set<string>}
+     * @type {Array<string>}
      * @memberof BlockActionsRequest
      */
-    blockedActions?: Set<string>;
+    blockedActions?: Array<string>;
     /**
      * 
      * @type {string}
@@ -306,2764 +221,3051 @@ export interface BlockActionsRequest {
 /**
  * 
  * @export
- * @interface BpmVariableDto
+ * @interface BoxTypeDto
  */
-export interface BpmVariableDto {
+export interface BoxTypeDto {
+    /**
+     * 
+     * @type {number}
+     * @memberof BoxTypeDto
+     */
+    boxId?: number;
+    /**
+     * 
+     * @type {DimensionsDto}
+     * @memberof BoxTypeDto
+     */
+    dimensions?: DimensionsDto;
     /**
      * 
      * @type {string}
-     * @memberof BpmVariableDto
+     * @memberof BoxTypeDto
+     */
+    name?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof BoxTypeDto
+     */
+    weightMax?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof BoxTypeDto
+     */
+    weightUnit?: string;
+}
+/**
+ * 
+ * @export
+ * @interface BpmVariable
+ */
+export interface BpmVariable {
+    /**
+     * 
+     * @type {string}
+     * @memberof BpmVariable
      */
     name?: string;
     /**
      * 
      * @type {string}
-     * @memberof BpmVariableDto
+     * @memberof BpmVariable
      */
     oldValue?: string;
     /**
      * 
      * @type {string}
-     * @memberof BpmVariableDto
-     */
-    value?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof BpmVariableDto
+     * @memberof BpmVariable
      */
     updateDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BpmVariable
+     */
+    value?: string;
 }
 /**
  * 
  * @export
- * @interface BundleInfoDto
+ * @interface CancelItem
  */
-export interface BundleInfoDto {
+export interface CancelItem {
     /**
      * 
-     * @type {{ [key: string]: object; }}
-     * @memberof BundleInfoDto
+     * @type {FulfillmentAPICanceledReason}
+     * @memberof CancelItem
      */
-    attributes?: { [key: string]: object; };
-    /**
-     * 
-     * @type {string}
-     * @memberof BundleInfoDto
-     */
-    productCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof BundleInfoDto
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof BundleInfoDto
-     */
-    imageUrl?: string;
+    canceledReason?: FulfillmentAPICanceledReason;
     /**
      * 
      * @type {number}
-     * @memberof BundleInfoDto
+     * @memberof CancelItem
      */
-    unitPrice?: number;
+    lineId?: number;
     /**
      * 
      * @type {number}
-     * @memberof BundleInfoDto
+     * @memberof CancelItem
      */
     quantity?: number;
 }
 /**
  * 
  * @export
- * @interface BundledProductDto
+ * @interface CancelItemsRequest
  */
-export interface BundledProductDto {
-    /**
-     * 
-     * @type {string}
-     * @memberof BundledProductDto
-     */
-    productCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof BundledProductDto
-     */
-    variationProductCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof BundledProductDto
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof BundledProductDto
-     */
-    imageUrl?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof BundledProductDto
-     */
-    quantity?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof BundledProductDto
-     */
-    availableInventory?: number;
-}
-/**
- * 
- * @export
- * @interface CancelItemDto
- */
-export interface CancelItemDto {
-    /**
-     * 
-     * @type {number}
-     * @memberof CancelItemDto
-     */
-    lineId: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CancelItemDto
-     */
-    quantity: number;
-    /**
-     * 
-     * @type {CanceledReasonDto}
-     * @memberof CancelItemDto
-     */
-    canceledReason?: CanceledReasonDto;
-}
-/**
- * 
- * @export
- * @interface CancelItemsRequestDto
- */
-export interface CancelItemsRequestDto {
+export interface CancelItemsRequest {
     /**
      * 
      * @type {boolean}
-     * @memberof CancelItemsRequestDto
+     * @memberof CancelItemsRequest
+     */
+    blockAssignment?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CancelItemsRequest
+     */
+    holdBlockAssignment?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CancelItemsRequest
      */
     isUserAction?: boolean;
     /**
      * 
-     * @type {Array<CancelItemDto>}
-     * @memberof CancelItemsRequestDto
+     * @type {Array<CancelItem>}
+     * @memberof CancelItemsRequest
      */
-    items: Array<CancelItemDto>;
+    items?: Array<CancelItem>;
     /**
      * 
      * @type {boolean}
-     * @memberof CancelItemsRequestDto
+     * @memberof CancelItemsRequest
      */
     sendNotifications?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CancelItemsRequestDto
-     */
-    blockAssignment?: boolean;
 }
 /**
  * 
  * @export
- * @interface CancelShipmentRequestDto
+ * @interface CancelShipment
  */
-export interface CancelShipmentRequestDto {
-    /**
-     * 
-     * @type {CanceledReasonDto}
-     * @memberof CancelShipmentRequestDto
-     */
-    canceledReason?: CanceledReasonDto;
+export interface CancelShipment {
     /**
      * 
      * @type {boolean}
-     * @memberof CancelShipmentRequestDto
-     */
-    sendNotifications?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CancelShipmentRequestDto
+     * @memberof CancelShipment
      */
     blockAssignment?: boolean;
+    /**
+     * 
+     * @type {FulfillmentAPICanceledReason}
+     * @memberof CancelShipment
+     */
+    canceledReason?: FulfillmentAPICanceledReason;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CancelShipment
+     */
+    holdBlockAssignment?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CancelShipment
+     */
+    sendNotifications?: boolean;
 }
 /**
  * 
  * @export
- * @interface CanceledItemDto
+ * @interface CanceledItem
  */
-export interface CanceledItemDto {
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof CanceledItemDto
-     */
-    attributes?: { [key: string]: object; };
+export interface CanceledItem {
     /**
      * 
      * @type {number}
-     * @memberof CanceledItemDto
-     */
-    lineId: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CanceledItemDto
-     */
-    originalOrderItemId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CanceledItemDto
-     */
-    goodsType?: CanceledItemDtoGoodsTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof CanceledItemDto
-     */
-    optionAttributeFQN?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CanceledItemDto
-     */
-    productCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CanceledItemDto
-     */
-    variationProductCode?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    quantity: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    transferQuantity?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    trueTransferQuantity?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    readyForPickupQuantity?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    allocatedQuantity?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CanceledItemDto
-     */
-    imageUrl?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CanceledItemDto
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CanceledItemDto
-     */
-    partNumber?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CanceledItemDto
-     */
-    upc?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CanceledItemDto
-     */
-    sku?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CanceledItemDto
-     */
-    allowsBackOrder?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    unitPrice?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CanceledItemDto
-     */
-    isTaxable?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
+     * @memberof CanceledItem
      */
     actualPrice?: number;
     /**
      * 
      * @type {number}
-     * @memberof CanceledItemDto
+     * @memberof CanceledItem
      */
-    overridePrice?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    itemDiscount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    lineItemCost?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    itemTax: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    shipping: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    shippingDiscount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    shippingTax: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    handling: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    handlingDiscount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    handlingTax: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    duty?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    weightedShipmentAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    weightedLineItemTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    weightedShippingAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    weightedShippingTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    weightedHandlingAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    weightedHandlingTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    weightedDutyAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    taxableShipping?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    taxableLineItemCost?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    taxableHandling?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    weight?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    length?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    width?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    height?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    lineItemAdjustment?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CanceledItemDto
-     */
-    weightUnit?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CanceledItemDto
-     */
-    expectedDeliveryDate?: string;
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof CanceledItemDto
-     */
-    data?: { [key: string]: object; };
-    /**
-     * 
-     * @type {object}
-     * @memberof CanceledItemDto
-     */
-    taxData?: object;
-    /**
-     * 
-     * @type {string}
-     * @memberof CanceledItemDto
-     */
-    backorderReleaseDate?: string;
-    /**
-     * 
-     * @type {AuditInfoDto}
-     * @memberof CanceledItemDto
-     */
-    auditInfo?: AuditInfoDto;
-    /**
-     * 
-     * @type {Array<ProductOptionDto>}
-     * @memberof CanceledItemDto
-     */
-    options?: Array<ProductOptionDto>;
+    allocatedQuantity?: number;
     /**
      * 
      * @type {boolean}
-     * @memberof CanceledItemDto
+     * @memberof CanceledItem
      */
-    manageStock?: boolean;
-    /**
-     * 
-     * @type {Array<FulfillmentFieldDto>}
-     * @memberof CanceledItemDto
-     */
-    fulfillmentFields?: Array<FulfillmentFieldDto>;
-    /**
-     * 
-     * @type {string}
-     * @memberof CanceledItemDto
-     */
-    locatorName?: string;
-    /**
-     * 
-     * @type {AppeasementReasonDto}
-     * @memberof CanceledItemDto
-     * @deprecated
-     */
-    appeasementReason?: AppeasementReasonDto;
-    /**
-     * 
-     * @type {string}
-     * @memberof CanceledItemDto
-     */
-    creditCurrencyCode?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CanceledItemDto
-     */
-    creditValue?: number;
-    /**
-     * 
-     * @type {Array<GiftCardDto>}
-     * @memberof CanceledItemDto
-     */
-    giftCards?: Array<GiftCardDto>;
+    allowsBackOrder?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof CanceledItemDto
-     */
-    isAssemblyRequired?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof CanceledItemDto
-     */
-    parentItemId?: string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof CanceledItemDto
-     */
-    childItemIds?: Array<string>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CanceledItemDto
-     */
-    isPackagedStandAlone?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CanceledItemDto
+     * @memberof CanceledItem
      */
     allowsFutureAllocate?: boolean;
     /**
      * 
-     * @type {Array<InventoryTagDto>}
-     * @memberof CanceledItemDto
-     */
-    inventoryTags?: Array<InventoryTagDto>;
-    /**
-     * 
-     * @type {string}
-     * @memberof CanceledItemDto
-     */
-    cartItemId?: string;
-    /**
-     * 
      * @type {boolean}
-     * @memberof CanceledItemDto
-     */
-    isReservedInventory?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CanceledItemDto
+     * @memberof CanceledItem
      */
     allowsSubstitution?: boolean;
     /**
      * 
-     * @type {number}
-     * @memberof CanceledItemDto
+     * @type {FulfillmentAPIAppeasementReason}
+     * @memberof CanceledItem
      */
-    originalQuantity?: number;
+    appeasementReason?: FulfillmentAPIAppeasementReason;
     /**
      * 
-     * @type {number}
-     * @memberof CanceledItemDto
+     * @type {{ [key: string]: object; }}
+     * @memberof CanceledItem
      */
-    originalLineId?: number;
+    attributes?: { [key: string]: object; };
     /**
      * 
-     * @type {number}
-     * @memberof CanceledItemDto
+     * @type {FulfillmentAPIAuditInfo}
+     * @memberof CanceledItem
      */
-    substituteQuantity?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CanceledItemDto
-     */
-    isGift?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof CanceledItemDto
-     */
-    giftMessage?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CanceledItemDto
-     */
-    purchaseLocation?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CanceledItemDto
-     */
-    priceMode?: CanceledItemDtoPriceModeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof CanceledItemDto
-     */
-    condition?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CanceledItemDto
-     */
-    serialNumber?: string;
-    /**
-     * 
-     * @type {Array<InventoryAllocationDto>}
-     * @memberof CanceledItemDto
-     */
-    inventoryAllocations?: Array<InventoryAllocationDto>;
-    /**
-     * 
-     * @type {SubstituteInfoDto}
-     * @memberof CanceledItemDto
-     */
-    substituteInfo?: SubstituteInfoDto;
+    auditInfo?: FulfillmentAPIAuditInfo;
     /**
      * 
      * @type {boolean}
-     * @memberof CanceledItemDto
+     * @memberof CanceledItem
      */
     autoSubstitution?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof CanceledItemDto
+     * @memberof CanceledItem
      */
-    substitutionType?: CanceledItemDtoSubstitutionTypeEnum;
-    /**
-     * 
-     * @type {BundleInfoDto}
-     * @memberof CanceledItemDto
-     */
-    bundleInfo?: BundleInfoDto;
-    /**
-     * 
-     * @type {ReturnRuleInfoDto}
-     * @memberof CanceledItemDto
-     */
-    returnRuleInfo?: ReturnRuleInfoDto;
-    /**
-     * 
-     * @type {CanceledReasonDto}
-     * @memberof CanceledItemDto
-     */
-    canceledReason?: CanceledReasonDto;
+    backorderReleaseDate?: string;
     /**
      * 
      * @type {boolean}
-     * @memberof CanceledItemDto
+     * @memberof CanceledItem
      */
     blockAssignment?: boolean;
+    /**
+     * 
+     * @type {FulfillmentAPIBundleInfo}
+     * @memberof CanceledItem
+     */
+    bundleInfo?: FulfillmentAPIBundleInfo;
+    /**
+     * 
+     * @type {FulfillmentAPICanceledReason}
+     * @memberof CanceledItem
+     */
+    canceledReason?: FulfillmentAPICanceledReason;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    cartItemId?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof CanceledItem
+     */
+    childItemIds?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    condition?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    creditCurrencyCode?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    creditValue?: number;
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof CanceledItem
+     */
+    data?: { [key: string]: object; };
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    duty?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    expectedDeliveryDate?: string;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIFulfillmentField>}
+     * @memberof CanceledItem
+     */
+    fulfillmentFields?: Array<FulfillmentAPIFulfillmentField>;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIGiftCard>}
+     * @memberof CanceledItem
+     */
+    giftCards?: Array<FulfillmentAPIGiftCard>;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    giftMessage?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    goodsType?: CanceledItemGoodsTypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    handling?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    handlingDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    handlingTax?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    height?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CanceledItem
+     */
+    holdBlockAssignment?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    imageUrl?: string;
+    /**
+     * 
+     * @type {Array<InventoryAllocation>}
+     * @memberof CanceledItem
+     */
+    inventoryAllocations?: Array<InventoryAllocation>;
+    /**
+     * 
+     * @type {Array<InventoryTag>}
+     * @memberof CanceledItem
+     */
+    inventoryTags?: Array<InventoryTag>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CanceledItem
+     */
+    isAssemblyRequired?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CanceledItem
+     */
+    isGift?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CanceledItem
+     */
+    isPackagedStandAlone?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CanceledItem
+     */
+    isReservedInventory?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CanceledItem
+     */
+    isTaxable?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    itemDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    itemTax?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    length?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    lineId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    lineItemAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    lineItemCost?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    locatorName?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CanceledItem
+     */
+    manageStock?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    optionAttributeFQN?: string;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIProductOption>}
+     * @memberof CanceledItem
+     */
+    options?: Array<FulfillmentAPIProductOption>;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    originalLineId?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    originalOrderItemId?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    originalQuantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    overridePrice?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    parentItemId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    partNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    priceMode?: CanceledItemPriceModeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    productCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    purchaseLocation?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    quantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    readyForPickupQuantity?: number;
+    /**
+     * 
+     * @type {FulfillmentAPIReturnRuleInfo}
+     * @memberof CanceledItem
+     */
+    returnRuleInfo?: FulfillmentAPIReturnRuleInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    serialNumber?: string;
+    /**
+     * 
+     * @type {Array<ShipmentItemAttribute>}
+     * @memberof CanceledItem
+     */
+    shipmentItemAttributes?: Array<ShipmentItemAttribute>;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    shipping?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    shippingDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    shippingTax?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    sku?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    stockValidationStatus?: string;
+    /**
+     * 
+     * @type {FulfillmentAPISubstituteInfo}
+     * @memberof CanceledItem
+     */
+    substituteInfo?: FulfillmentAPISubstituteInfo;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    substituteQuantity?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    substitutionType?: CanceledItemSubstitutionTypeEnum;
+    /**
+     * 
+     * @type {object}
+     * @memberof CanceledItem
+     */
+    taxData?: object;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    taxableHandling?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    taxableLineItemCost?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    taxableShipping?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    timeFenceDays?: number;
+    /**
+     * This is deprecated.
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    transferQuantity?: number;
+    /**
+     * This is the actual quantity transferred.
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    trueTransferQuantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    unitPrice?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    upc?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    validatedQuantity?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    variationProductCode?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    weight?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CanceledItem
+     */
+    weightUnit?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    weightedDutyAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    weightedHandlingAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    weightedHandlingTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    weightedLineItemTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    weightedOrderHandlingFee?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    weightedOrderHandlingFeeDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    weightedOrderHandlingFeeTax?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    weightedShipmentAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    weightedShippingAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    weightedShippingTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CanceledItem
+     */
+    width?: number;
 }
 
 
 /**
  * @export
  */
-export const CanceledItemDtoGoodsTypeEnum = {
+export const CanceledItemGoodsTypeEnum = {
     Physical: 'Physical',
     Digital: 'Digital',
     DigitalCredit: 'DigitalCredit',
     DigitalGiftCard: 'DigitalGiftCard',
     Service: 'Service'
 } as const;
-export type CanceledItemDtoGoodsTypeEnum = typeof CanceledItemDtoGoodsTypeEnum[keyof typeof CanceledItemDtoGoodsTypeEnum];
+export type CanceledItemGoodsTypeEnum = typeof CanceledItemGoodsTypeEnum[keyof typeof CanceledItemGoodsTypeEnum];
 
 /**
  * @export
  */
-export const CanceledItemDtoPriceModeEnum = {
+export const CanceledItemPriceModeEnum = {
     Internal: 'Internal',
     External: 'External'
 } as const;
-export type CanceledItemDtoPriceModeEnum = typeof CanceledItemDtoPriceModeEnum[keyof typeof CanceledItemDtoPriceModeEnum];
+export type CanceledItemPriceModeEnum = typeof CanceledItemPriceModeEnum[keyof typeof CanceledItemPriceModeEnum];
 
 /**
  * @export
  */
-export const CanceledItemDtoSubstitutionTypeEnum = {
+export const CanceledItemSubstitutionTypeEnum = {
     PreFulfillment: 'PRE_FULFILLMENT',
-    AtFullfillment: 'AT_FULLFILLMENT'
+    AtFulfillment: 'AT_FULFILLMENT'
 } as const;
-export type CanceledItemDtoSubstitutionTypeEnum = typeof CanceledItemDtoSubstitutionTypeEnum[keyof typeof CanceledItemDtoSubstitutionTypeEnum];
+export type CanceledItemSubstitutionTypeEnum = typeof CanceledItemSubstitutionTypeEnum[keyof typeof CanceledItemSubstitutionTypeEnum];
 
 /**
  * 
  * @export
- * @interface CanceledReasonDto
+ * @interface CartPackingSuggestionRequestDto
  */
-export interface CanceledReasonDto {
+export interface CartPackingSuggestionRequestDto {
+    /**
+     * 
+     * @type {Array<BoxTypeDto>}
+     * @memberof CartPackingSuggestionRequestDto
+     */
+    boxTypes?: Array<BoxTypeDto>;
+    /**
+     * 
+     * @type {Array<ItemDto>}
+     * @memberof CartPackingSuggestionRequestDto
+     */
+    items?: Array<ItemDto>;
+    /**
+     * 
+     * @type {number}
+     * @memberof CartPackingSuggestionRequestDto
+     */
+    maxPackingSlips?: number;
+}
+/**
+ * 
+ * @export
+ * @interface CartonizationDto
+ */
+export interface CartonizationDto {
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof CartonizationDto
+     */
+    attributes?: { [key: string]: object; };
+    /**
+     * 
+     * @type {Array<PackedBoxDto>}
+     * @memberof CartonizationDto
+     */
+    boxes?: Array<PackedBoxDto>;
     /**
      * 
      * @type {string}
-     * @memberof CanceledReasonDto
+     * @memberof CartonizationDto
+     */
+    packingSuggestionId?: string;
+}
+/**
+ * 
+ * @export
+ * @interface CartonizationRejectionReason
+ */
+export interface CartonizationRejectionReason {
+    /**
+     * 
+     * @type {number}
+     * @memberof CartonizationRejectionReason
+     */
+    displayOrder?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CartonizationRejectionReason
+     */
+    name?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CartonizationRejectionReason
+     */
+    needsMoreInfo?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof CartonizationRejectionReason
      */
     reasonCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CanceledReasonDto
-     */
-    moreInfo?: string;
 }
 /**
  * 
  * @export
- * @interface ChangeMessageDto
+ * @interface ChangeDto
  */
-export interface ChangeMessageDto {
+export interface ChangeDto {
     /**
      * 
-     * @type {{ [key: string]: object; }}
-     * @memberof ChangeMessageDto
+     * @type {object}
+     * @memberof ChangeDto
      */
-    attributes?: { [key: string]: object; };
+    afterValue?: object;
+    /**
+     * 
+     * @type {object}
+     * @memberof ChangeDto
+     */
+    beforeValue?: object;
     /**
      * 
      * @type {string}
-     * @memberof ChangeMessageDto
+     * @memberof ChangeDto
      */
-    changeMessageId?: string;
+    changeCategory?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ChangeDto
+     */
+    detectedAt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ChangeDto
+     */
+    eventId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ChangeDto
+     */
+    locationCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ChangeDto
+     */
+    referenceId?: string;
     /**
      * 
      * @type {number}
-     * @memberof ChangeMessageDto
+     * @memberof ChangeDto
      */
-    amount?: number;
+    sequenceId?: number;
     /**
      * 
      * @type {string}
-     * @memberof ChangeMessageDto
+     * @memberof ChangeDto
      */
-    appId?: string;
+    subtype?: string;
     /**
      * 
-     * @type {string}
-     * @memberof ChangeMessageDto
+     * @type {Array<string>}
+     * @memberof ChangeDto
      */
-    appKey?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChangeMessageDto
-     */
-    appName?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChangeMessageDto
-     */
-    createdDate?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChangeMessageDto
-     */
-    correlationId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChangeMessageDto
-     */
-    identifier?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChangeMessageDto
-     */
-    message?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChangeMessageDto
-     */
-    oldValue?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChangeMessageDto
-     */
-    newValue?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChangeMessageDto
-     */
-    subject?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChangeMessageDto
-     */
-    subjectType?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ChangeMessageDto
-     */
-    success?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChangeMessageDto
-     */
-    userId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChangeMessageDto
-     */
-    userFirstName?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChangeMessageDto
-     */
-    userLastName?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChangeMessageDto
-     */
-    userDisplayName?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChangeMessageDto
-     */
-    verb?: string;
-    /**
-     * 
-     * @type {AppeasementReasonDto}
-     * @memberof ChangeMessageDto
-     * @deprecated
-     */
-    appeasementReason?: AppeasementReasonDto;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChangeMessageDto
-     * @deprecated
-     */
-    metadata?: string;
+    upcs?: Array<string>;
 }
 /**
  * 
  * @export
- * @interface ClosePickWaveDto
+ * @interface ClosePickWave
  */
-export interface ClosePickWaveDto {
+export interface ClosePickWave {
     /**
      * 
      * @type {{ [key: string]: object; }}
-     * @memberof ClosePickWaveDto
+     * @memberof ClosePickWave
      */
     attributes?: { [key: string]: object; };
     /**
      * 
-     * @type {Array<BinShipmentProductQuantityDto>}
-     * @memberof ClosePickWaveDto
-     */
-    quantities: Array<BinShipmentProductQuantityDto>;
-    /**
-     * 
      * @type {boolean}
-     * @memberof ClosePickWaveDto
+     * @memberof ClosePickWave
      */
     createRecovery?: boolean;
+    /**
+     * 
+     * @type {Array<BinShipmentProductQuantity>}
+     * @memberof ClosePickWave
+     */
+    quantities?: Array<BinShipmentProductQuantity>;
 }
 /**
  * 
  * @export
- * @interface CollectionModelEntityModelCustomerSurveyDto
+ * @interface CollectionModelOfAttributeVocabularyValue
  */
-export interface CollectionModelEntityModelCustomerSurveyDto {
+export interface CollectionModelOfAttributeVocabularyValue {
     /**
      * 
-     * @type {CollectionModelEntityModelCustomerSurveyDtoEmbedded}
-     * @memberof CollectionModelEntityModelCustomerSurveyDto
+     * @type {{ [key: string]: Array<FulfillmentAPIAttributeVocabularyValue>; }}
+     * @memberof CollectionModelOfAttributeVocabularyValue
      */
-    embedded?: CollectionModelEntityModelCustomerSurveyDtoEmbedded;
+    embedded?: { [key: string]: Array<FulfillmentAPIAttributeVocabularyValue>; };
     /**
      * 
-     * @type {{ [key: string]: FulfillmentLink; }}
-     * @memberof CollectionModelEntityModelCustomerSurveyDto
+     * @type {{ [key: string]: FulfillmentAPILink; }}
+     * @memberof CollectionModelOfAttributeVocabularyValue
      */
-    links?: { [key: string]: FulfillmentLink; };
+    links?: { [key: string]: FulfillmentAPILink; };
 }
 /**
  * 
  * @export
- * @interface CollectionModelEntityModelCustomerSurveyDtoEmbedded
+ * @interface CollectionModelOfEntityModelOfCustomerSurvey
  */
-export interface CollectionModelEntityModelCustomerSurveyDtoEmbedded {
+export interface CollectionModelOfEntityModelOfCustomerSurvey {
     /**
      * 
-     * @type {Array<EntityModelCustomerSurveyDto>}
-     * @memberof CollectionModelEntityModelCustomerSurveyDtoEmbedded
+     * @type {{ [key: string]: Array<EntityModelOfCustomerSurvey>; }}
+     * @memberof CollectionModelOfEntityModelOfCustomerSurvey
      */
-    customerSurveys?: Array<EntityModelCustomerSurveyDto>;
+    embedded?: { [key: string]: Array<EntityModelOfCustomerSurvey>; };
+    /**
+     * 
+     * @type {{ [key: string]: FulfillmentAPILink; }}
+     * @memberof CollectionModelOfEntityModelOfCustomerSurvey
+     */
+    links?: { [key: string]: FulfillmentAPILink; };
 }
 /**
  * 
  * @export
- * @interface CollectionModelEntityModelShipmentDto
+ * @interface CollectionModelOfEntityModelOfShipment
  */
-export interface CollectionModelEntityModelShipmentDto {
+export interface CollectionModelOfEntityModelOfShipment {
     /**
      * 
-     * @type {CollectionModelEntityModelShipmentDtoEmbedded}
-     * @memberof CollectionModelEntityModelShipmentDto
+     * @type {{ [key: string]: Array<EntityModelOfShipment>; }}
+     * @memberof CollectionModelOfEntityModelOfShipment
      */
-    embedded?: CollectionModelEntityModelShipmentDtoEmbedded;
+    embedded?: { [key: string]: Array<EntityModelOfShipment>; };
     /**
      * 
-     * @type {{ [key: string]: FulfillmentLink; }}
-     * @memberof CollectionModelEntityModelShipmentDto
+     * @type {{ [key: string]: FulfillmentAPILink; }}
+     * @memberof CollectionModelOfEntityModelOfShipment
      */
-    links?: { [key: string]: FulfillmentLink; };
+    links?: { [key: string]: FulfillmentAPILink; };
 }
 /**
  * 
  * @export
- * @interface CollectionModelEntityModelShipmentDtoEmbedded
+ * @interface CollectionModelOfLocationShipmentCount
  */
-export interface CollectionModelEntityModelShipmentDtoEmbedded {
+export interface CollectionModelOfLocationShipmentCount {
     /**
      * 
-     * @type {Array<EntityModelShipmentDto>}
-     * @memberof CollectionModelEntityModelShipmentDtoEmbedded
+     * @type {{ [key: string]: Array<LocationShipmentCount>; }}
+     * @memberof CollectionModelOfLocationShipmentCount
      */
-    shipments?: Array<EntityModelShipmentDto>;
+    embedded?: { [key: string]: Array<LocationShipmentCount>; };
+    /**
+     * 
+     * @type {{ [key: string]: FulfillmentAPILink; }}
+     * @memberof CollectionModelOfLocationShipmentCount
+     */
+    links?: { [key: string]: FulfillmentAPILink; };
 }
 /**
  * 
  * @export
- * @interface CollectionModelLocationSummaryDto
+ * @interface CollectionModelOfLocationSummary
  */
-export interface CollectionModelLocationSummaryDto {
+export interface CollectionModelOfLocationSummary {
     /**
      * 
-     * @type {CollectionModelLocationSummaryDtoEmbedded}
-     * @memberof CollectionModelLocationSummaryDto
+     * @type {{ [key: string]: Array<LocationSummary>; }}
+     * @memberof CollectionModelOfLocationSummary
      */
-    embedded?: CollectionModelLocationSummaryDtoEmbedded;
+    embedded?: { [key: string]: Array<LocationSummary>; };
     /**
      * 
-     * @type {{ [key: string]: FulfillmentLink; }}
-     * @memberof CollectionModelLocationSummaryDto
+     * @type {{ [key: string]: FulfillmentAPILink; }}
+     * @memberof CollectionModelOfLocationSummary
      */
-    links?: { [key: string]: FulfillmentLink; };
+    links?: { [key: string]: FulfillmentAPILink; };
 }
 /**
  * 
  * @export
- * @interface CollectionModelLocationSummaryDtoEmbedded
+ * @interface CollectionModelOfManifest
  */
-export interface CollectionModelLocationSummaryDtoEmbedded {
+export interface CollectionModelOfManifest {
     /**
      * 
-     * @type {Array<LocationSummaryDto>}
-     * @memberof CollectionModelLocationSummaryDtoEmbedded
+     * @type {{ [key: string]: Array<Manifest>; }}
+     * @memberof CollectionModelOfManifest
      */
-    locationSummaries?: Array<LocationSummaryDto>;
+    embedded?: { [key: string]: Array<Manifest>; };
+    /**
+     * 
+     * @type {{ [key: string]: FulfillmentAPILink; }}
+     * @memberof CollectionModelOfManifest
+     */
+    links?: { [key: string]: FulfillmentAPILink; };
 }
 /**
  * 
  * @export
- * @interface CollectionModelManifestDto
+ * @interface CollectionModelOfPickWave
  */
-export interface CollectionModelManifestDto {
+export interface CollectionModelOfPickWave {
     /**
      * 
-     * @type {CollectionModelManifestDtoEmbedded}
-     * @memberof CollectionModelManifestDto
+     * @type {{ [key: string]: Array<PickWave>; }}
+     * @memberof CollectionModelOfPickWave
      */
-    embedded?: CollectionModelManifestDtoEmbedded;
+    embedded?: { [key: string]: Array<PickWave>; };
     /**
      * 
-     * @type {{ [key: string]: FulfillmentLink; }}
-     * @memberof CollectionModelManifestDto
+     * @type {{ [key: string]: FulfillmentAPILink; }}
+     * @memberof CollectionModelOfPickWave
      */
-    links?: { [key: string]: FulfillmentLink; };
+    links?: { [key: string]: FulfillmentAPILink; };
 }
 /**
  * 
  * @export
- * @interface CollectionModelManifestDtoEmbedded
+ * @interface CollectionModelOfShipment
  */
-export interface CollectionModelManifestDtoEmbedded {
+export interface CollectionModelOfShipment {
     /**
      * 
-     * @type {Array<ManifestDto>}
-     * @memberof CollectionModelManifestDtoEmbedded
+     * @type {{ [key: string]: Array<FulfillmentAPIShipment>; }}
+     * @memberof CollectionModelOfShipment
      */
-    manifests?: Array<ManifestDto>;
+    embedded?: { [key: string]: Array<FulfillmentAPIShipment>; };
+    /**
+     * 
+     * @type {{ [key: string]: FulfillmentAPILink; }}
+     * @memberof CollectionModelOfShipment
+     */
+    links?: { [key: string]: FulfillmentAPILink; };
 }
 /**
  * 
  * @export
- * @interface CollectionModelPickWaveDto
+ * @interface CollectionModelOfSubstitutableItemResponse
  */
-export interface CollectionModelPickWaveDto {
+export interface CollectionModelOfSubstitutableItemResponse {
     /**
      * 
-     * @type {CollectionModelPickWaveDtoEmbedded}
-     * @memberof CollectionModelPickWaveDto
+     * @type {{ [key: string]: Array<SubstitutableItemResponse>; }}
+     * @memberof CollectionModelOfSubstitutableItemResponse
      */
-    embedded?: CollectionModelPickWaveDtoEmbedded;
+    embedded?: { [key: string]: Array<SubstitutableItemResponse>; };
     /**
      * 
-     * @type {{ [key: string]: FulfillmentLink; }}
-     * @memberof CollectionModelPickWaveDto
+     * @type {{ [key: string]: FulfillmentAPILink; }}
+     * @memberof CollectionModelOfSubstitutableItemResponse
      */
-    links?: { [key: string]: FulfillmentLink; };
+    links?: { [key: string]: FulfillmentAPILink; };
 }
 /**
  * 
  * @export
- * @interface CollectionModelPickWaveDtoEmbedded
+ * @interface CollectionModelOfTask
  */
-export interface CollectionModelPickWaveDtoEmbedded {
+export interface CollectionModelOfTask {
     /**
      * 
-     * @type {Array<PickWaveDto>}
-     * @memberof CollectionModelPickWaveDtoEmbedded
+     * @type {{ [key: string]: Array<Task>; }}
+     * @memberof CollectionModelOfTask
      */
-    pickWaves?: Array<PickWaveDto>;
+    embedded?: { [key: string]: Array<Task>; };
+    /**
+     * 
+     * @type {{ [key: string]: FulfillmentAPILink; }}
+     * @memberof CollectionModelOfTask
+     */
+    links?: { [key: string]: FulfillmentAPILink; };
 }
 /**
  * 
  * @export
- * @interface CollectionModelShipmentDto
+ * @interface ContentGroup
  */
-export interface CollectionModelShipmentDto {
+export interface ContentGroup {
     /**
      * 
-     * @type {CollectionModelShipmentDtoEmbedded}
-     * @memberof CollectionModelShipmentDto
+     * @type {FulfillmentAPIAuditInfo}
+     * @memberof ContentGroup
      */
-    embedded?: CollectionModelShipmentDtoEmbedded;
+    auditInfo?: FulfillmentAPIAuditInfo;
     /**
      * 
-     * @type {{ [key: string]: FulfillmentLink; }}
-     * @memberof CollectionModelShipmentDto
+     * @type {Array<PickWaveContent>}
+     * @memberof ContentGroup
      */
-    links?: { [key: string]: FulfillmentLink; };
-}
-/**
- * 
- * @export
- * @interface CollectionModelShipmentDtoEmbedded
- */
-export interface CollectionModelShipmentDtoEmbedded {
-    /**
-     * 
-     * @type {Array<ShipmentDto>}
-     * @memberof CollectionModelShipmentDtoEmbedded
-     */
-    shipments?: Array<ShipmentDto>;
-}
-/**
- * 
- * @export
- * @interface CollectionModelSubstitutableItemResponseDto
- */
-export interface CollectionModelSubstitutableItemResponseDto {
-    /**
-     * 
-     * @type {CollectionModelSubstitutableItemResponseDtoEmbedded}
-     * @memberof CollectionModelSubstitutableItemResponseDto
-     */
-    embedded?: CollectionModelSubstitutableItemResponseDtoEmbedded;
-    /**
-     * 
-     * @type {{ [key: string]: FulfillmentLink; }}
-     * @memberof CollectionModelSubstitutableItemResponseDto
-     */
-    links?: { [key: string]: FulfillmentLink; };
-}
-/**
- * 
- * @export
- * @interface CollectionModelSubstitutableItemResponseDtoEmbedded
- */
-export interface CollectionModelSubstitutableItemResponseDtoEmbedded {
-    /**
-     * 
-     * @type {Array<SubstitutableItemResponseDto>}
-     * @memberof CollectionModelSubstitutableItemResponseDtoEmbedded
-     */
-    substitutableItems?: Array<SubstitutableItemResponseDto>;
-}
-/**
- * 
- * @export
- * @interface ContactDto
- */
-export interface ContactDto {
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof ContactDto
-     */
-    attributes?: { [key: string]: object; };
-    /**
-     * 
-     * @type {number}
-     * @memberof ContactDto
-     */
-    id?: number;
-    /**
-     * 
-     * @type {AddressDto}
-     * @memberof ContactDto
-     */
-    address?: AddressDto;
+    contents?: Array<PickWaveContent>;
     /**
      * 
      * @type {string}
-     * @memberof ContactDto
-     */
-    companyOrOrganization?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactDto
-     */
-    email?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactDto
-     */
-    firstName?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactDto
-     */
-    lastNameOrSurname?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactDto
-     */
-    middleNameOrInitial?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactDto
-     */
-    shortFullName?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactDto
-     */
-    fullName?: string;
-    /**
-     * 
-     * @type {PhoneDto}
-     * @memberof ContactDto
-     */
-    phoneNumbers?: PhoneDto;
-}
-/**
- * 
- * @export
- * @interface ContentGroupDto
- */
-export interface ContentGroupDto {
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentGroupDto
-     */
-    productCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentGroupDto
-     */
-    upc?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentGroupDto
+     * @memberof ContentGroup
      */
     imageUrl?: string;
     /**
      * 
      * @type {string}
-     * @memberof ContentGroupDto
+     * @memberof ContentGroup
+     */
+    locatorName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ContentGroup
      */
     name?: string;
     /**
      * 
      * @type {string}
-     * @memberof ContentGroupDto
+     * @memberof ContentGroup
      */
-    locatorName?: string;
+    productCode?: string;
     /**
      * 
      * @type {number}
-     * @memberof ContentGroupDto
+     * @memberof ContentGroup
      */
     quantity?: number;
     /**
      * 
-     * @type {Array<PickWaveContent>}
-     * @memberof ContentGroupDto
+     * @type {string}
+     * @memberof ContentGroup
      */
-    contents?: Array<PickWaveContent>;
-    /**
-     * 
-     * @type {FulfillmentAuditInfo}
-     * @memberof ContentGroupDto
-     */
-    auditInfo?: FulfillmentAuditInfo;
+    upc?: string;
 }
 /**
  * 
  * @export
- * @interface CreatePickWaveDto
+ * @interface CreatePickWave
  */
-export interface CreatePickWaveDto {
+export interface CreatePickWave {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CreatePickWave
+     */
+    allowEmptyWave?: boolean;
     /**
      * 
      * @type {{ [key: string]: object; }}
-     * @memberof CreatePickWaveDto
+     * @memberof CreatePickWave
      */
     attributes?: { [key: string]: object; };
     /**
      * 
-     * @type {string}
-     * @memberof CreatePickWaveDto
+     * @type {Array<PickWaveBinRange>}
+     * @memberof CreatePickWave
      */
-    fulfillmentLocationCode: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreatePickWaveDto
-     */
-    shipmentType: CreatePickWaveDtoShipmentTypeEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreatePickWaveDto
-     */
-    maxShipments: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreatePickWaveDto
-     */
-    pickWaveType?: CreatePickWaveDtoPickWaveTypeEnum;
-    /**
-     * 
-     * @type {Array<PickWaveBinRangeDto>}
-     * @memberof CreatePickWaveDto
-     */
-    binRanges?: Array<PickWaveBinRangeDto>;
-    /**
-     * 
-     * @type {Array<PickWaveProductMatchDto>}
-     * @memberof CreatePickWaveDto
-     */
-    products?: Array<PickWaveProductMatchDto>;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreatePickWaveDto
-     */
-    shippingOption?: CreatePickWaveDtoShippingOptionEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreatePickWaveDto
-     */
-    shipmentDateStart?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreatePickWaveDto
-     */
-    shipmentDateEnd?: string;
+    binRanges?: Array<PickWaveBinRange>;
     /**
      * 
      * @type {boolean}
-     * @memberof CreatePickWaveDto
+     * @memberof CreatePickWave
      */
-    lockWave?: boolean;
+    fulfillableShipmentsOnly?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreatePickWave
+     */
+    fulfillmentLocationCode?: string;
     /**
      * 
      * @type {boolean}
-     * @memberof CreatePickWaveDto
+     * @memberof CreatePickWave
      */
     includeZeroInventory?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof CreatePickWaveDto
+     * @memberof CreatePickWave
      */
-    allowEmptyWave?: boolean;
+    lockWave?: boolean;
     /**
      * 
-     * @type {boolean}
-     * @memberof CreatePickWaveDto
+     * @type {number}
+     * @memberof CreatePickWave
      */
-    fulfillableShipmentsOnly?: boolean;
+    maxShipments?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreatePickWave
+     */
+    pickWaveType?: CreatePickWavePickWaveTypeEnum;
+    /**
+     * 
+     * @type {Array<PickWaveProductMatch>}
+     * @memberof CreatePickWave
+     */
+    products?: Array<PickWaveProductMatch>;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreatePickWave
+     */
+    shipmentDateEnd?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreatePickWave
+     */
+    shipmentDateStart?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreatePickWave
+     */
+    shipmentType?: CreatePickWaveShipmentTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreatePickWave
+     */
+    shippingOption?: CreatePickWaveShippingOptionEnum;
 }
 
 
 /**
  * @export
  */
-export const CreatePickWaveDtoShipmentTypeEnum = {
-    Sth: 'STH',
-    Bopis: 'BOPIS'
-} as const;
-export type CreatePickWaveDtoShipmentTypeEnum = typeof CreatePickWaveDtoShipmentTypeEnum[keyof typeof CreatePickWaveDtoShipmentTypeEnum];
-
-/**
- * @export
- */
-export const CreatePickWaveDtoPickWaveTypeEnum = {
+export const CreatePickWavePickWaveTypeEnum = {
     Normal: 'NORMAL',
     Single: 'SINGLE',
     Multiple: 'MULTIPLE'
 } as const;
-export type CreatePickWaveDtoPickWaveTypeEnum = typeof CreatePickWaveDtoPickWaveTypeEnum[keyof typeof CreatePickWaveDtoPickWaveTypeEnum];
+export type CreatePickWavePickWaveTypeEnum = typeof CreatePickWavePickWaveTypeEnum[keyof typeof CreatePickWavePickWaveTypeEnum];
 
 /**
  * @export
  */
-export const CreatePickWaveDtoShippingOptionEnum = {
+export const CreatePickWaveShipmentTypeEnum = {
+    Sth: 'STH',
+    Bopis: 'BOPIS'
+} as const;
+export type CreatePickWaveShipmentTypeEnum = typeof CreatePickWaveShipmentTypeEnum[keyof typeof CreatePickWaveShipmentTypeEnum];
+
+/**
+ * @export
+ */
+export const CreatePickWaveShippingOptionEnum = {
     StandardOnly: 'STANDARD_ONLY',
     ExpressOnly: 'EXPRESS_ONLY',
     All: 'ALL'
 } as const;
-export type CreatePickWaveDtoShippingOptionEnum = typeof CreatePickWaveDtoShippingOptionEnum[keyof typeof CreatePickWaveDtoShippingOptionEnum];
+export type CreatePickWaveShippingOptionEnum = typeof CreatePickWaveShippingOptionEnum[keyof typeof CreatePickWaveShippingOptionEnum];
 
 /**
  * 
  * @export
- * @interface CustomerDto
+ * @interface CreateRuleBasedPickWave
  */
-export interface CustomerDto {
-    /**
-     * 
-     * @type {ContactDto}
-     * @memberof CustomerDto
-     */
-    customerContact?: ContactDto;
+export interface CreateRuleBasedPickWave {
     /**
      * 
      * @type {boolean}
-     * @memberof CustomerDto
+     * @memberof CreateRuleBasedPickWave
      */
-    isDestinationCommercial?: boolean;
-    /**
-     * 
-     * @type {object}
-     * @memberof CustomerDto
-     */
-    data?: object;
-}
-/**
- * 
- * @export
- * @interface CustomerSurveyDto
- */
-export interface CustomerSurveyDto {
+    allowEmptyWave?: boolean;
     /**
      * 
      * @type {{ [key: string]: object; }}
-     * @memberof CustomerSurveyDto
+     * @memberof CreateRuleBasedPickWave
      */
     attributes?: { [key: string]: object; };
     /**
      * 
+     * @type {boolean}
+     * @memberof CreateRuleBasedPickWave
+     */
+    fulfillableShipmentsOnly?: boolean;
+    /**
+     * 
      * @type {string}
-     * @memberof CustomerSurveyDto
+     * @memberof CreateRuleBasedPickWave
+     */
+    fulfillmentLocationCode?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateRuleBasedPickWave
+     */
+    maxShipments?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRuleBasedPickWave
+     */
+    pickWaveRuleCode?: string;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof CreateRuleBasedPickWave
+     */
+    shipmentNumbers?: Array<number>;
+}
+/**
+ * 
+ * @export
+ * @interface CustomerSurvey
+ */
+export interface CustomerSurvey {
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof CustomerSurvey
+     */
+    attributes?: { [key: string]: object; };
+    /**
+     * 
+     * @type {FulfillmentAPIAuditInfo}
+     * @memberof CustomerSurvey
+     */
+    auditInfo?: FulfillmentAPIAuditInfo;
+    /**
+     * 
+     * @type {Array<CustomerSurveyEntry>}
+     * @memberof CustomerSurvey
+     */
+    entries?: Array<CustomerSurveyEntry>;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerSurvey
      */
     id?: string;
     /**
      * 
      * @type {number}
-     * @memberof CustomerSurveyDto
+     * @memberof CustomerSurvey
      */
     shipmentNumber?: number;
     /**
      * 
      * @type {number}
-     * @memberof CustomerSurveyDto
-     */
-    tenantId?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CustomerSurveyDto
+     * @memberof CustomerSurvey
      */
     siteId?: number;
     /**
      * 
-     * @type {Array<CustomerSurveyEntryDto>}
-     * @memberof CustomerSurveyDto
+     * @type {number}
+     * @memberof CustomerSurvey
      */
-    entries?: Array<CustomerSurveyEntryDto>;
-    /**
-     * 
-     * @type {AuditInfoDto}
-     * @memberof CustomerSurveyDto
-     */
-    auditInfo?: AuditInfoDto;
+    tenantId?: number;
 }
 /**
  * 
  * @export
- * @interface CustomerSurveyEntryDto
+ * @interface CustomerSurveyEntry
  */
-export interface CustomerSurveyEntryDto {
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomerSurveyEntryDto
-     */
-    question?: string;
+export interface CustomerSurveyEntry {
     /**
      * 
      * @type {object}
-     * @memberof CustomerSurveyEntryDto
+     * @memberof CustomerSurveyEntry
      */
     answer?: object;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerSurveyEntry
+     */
+    question?: string;
 }
 /**
  * 
  * @export
- * @interface DashboardStepDto
+ * @interface DashboardStep
  */
-export interface DashboardStepDto {
+export interface DashboardStep {
+    /**
+     * 
+     * @type {Links}
+     * @memberof DashboardStep
+     */
+    links?: Links;
     /**
      * 
      * @type {{ [key: string]: object; }}
-     * @memberof DashboardStepDto
+     * @memberof DashboardStep
      */
     attributes?: { [key: string]: object; };
     /**
      * 
      * @type {string}
-     * @memberof DashboardStepDto
+     * @memberof DashboardStep
      */
     name?: string;
     /**
      * 
      * @type {number}
-     * @memberof DashboardStepDto
+     * @memberof DashboardStep
      */
     total?: number;
-    /**
-     * 
-     * @type {{ [key: string]: FulfillmentLink; }}
-     * @memberof DashboardStepDto
-     */
-    links?: { [key: string]: FulfillmentLink; };
 }
 /**
  * 
  * @export
- * @interface DestinationDto
+ * @interface DimensionsDto
  */
-export interface DestinationDto {
+export interface DimensionsDto {
+    /**
+     * 
+     * @type {number}
+     * @memberof DimensionsDto
+     */
+    height?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DimensionsDto
+     */
+    length?: number;
     /**
      * 
      * @type {string}
-     * @memberof DestinationDto
+     * @memberof DimensionsDto
+     */
+    unit?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof DimensionsDto
+     */
+    width?: number;
+}
+/**
+ * 
+ * @export
+ * @interface DisruptionEventDto
+ */
+export interface DisruptionEventDto {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof DisruptionEventDto
+     */
+    affectedCallOffOrderIds?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof DisruptionEventDto
+     */
+    affectedReservationIds?: Array<string>;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof DisruptionEventDto
+     */
+    affectedShipmentIds?: Array<number>;
+    /**
+     * 
+     * @type {number}
+     * @memberof DisruptionEventDto
+     */
+    deltaQty?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DisruptionEventDto
+     */
+    eventId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DisruptionEventDto
+     */
+    eventType?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DisruptionEventDto
+     */
+    jobId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DisruptionEventDto
      */
     locationCode?: string;
     /**
      * 
-     * @type {ContactDto}
-     * @memberof DestinationDto
+     * @type {number}
+     * @memberof DisruptionEventDto
      */
-    destinationContact?: ContactDto;
+    newQuantity?: number;
     /**
      * 
-     * @type {boolean}
-     * @memberof DestinationDto
+     * @type {string}
+     * @memberof DisruptionEventDto
      */
-    isDestinationCommercial?: boolean;
+    occurredAt?: string;
     /**
      * 
-     * @type {object}
-     * @memberof DestinationDto
+     * @type {number}
+     * @memberof DisruptionEventDto
      */
-    data?: object;
+    oldQuantity?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DisruptionEventDto
+     */
+    status?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DisruptionEventDto
+     */
+    upc?: string;
 }
 /**
  * 
  * @export
- * @interface EntityModelContactDto
+ * @interface EntityModelOfContact
  */
-export interface EntityModelContactDto {
+export interface EntityModelOfContact {
+    /**
+     * 
+     * @type {Links}
+     * @memberof EntityModelOfContact
+     */
+    links?: Links;
+    /**
+     * 
+     * @type {FulfillmentAPIAddress}
+     * @memberof EntityModelOfContact
+     */
+    address?: FulfillmentAPIAddress;
     /**
      * 
      * @type {{ [key: string]: object; }}
-     * @memberof EntityModelContactDto
+     * @memberof EntityModelOfContact
      */
     attributes?: { [key: string]: object; };
     /**
      * 
-     * @type {number}
-     * @memberof EntityModelContactDto
-     */
-    id?: number;
-    /**
-     * 
-     * @type {AddressDto}
-     * @memberof EntityModelContactDto
-     */
-    address?: AddressDto;
-    /**
-     * 
      * @type {string}
-     * @memberof EntityModelContactDto
+     * @memberof EntityModelOfContact
      */
     companyOrOrganization?: string;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelContactDto
+     * @memberof EntityModelOfContact
      */
     email?: string;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelContactDto
+     * @memberof EntityModelOfContact
      */
     firstName?: string;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelContactDto
+     * @memberof EntityModelOfContact
+     */
+    fullName?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfContact
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfContact
      */
     lastNameOrSurname?: string;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelContactDto
+     * @memberof EntityModelOfContact
      */
     middleNameOrInitial?: string;
     /**
      * 
+     * @type {FulfillmentAPIPhone}
+     * @memberof EntityModelOfContact
+     */
+    phoneNumbers?: FulfillmentAPIPhone;
+    /**
+     * 
      * @type {string}
-     * @memberof EntityModelContactDto
+     * @memberof EntityModelOfContact
      */
     shortFullName?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelContactDto
-     */
-    fullName?: string;
-    /**
-     * 
-     * @type {PhoneDto}
-     * @memberof EntityModelContactDto
-     */
-    phoneNumbers?: PhoneDto;
-    /**
-     * 
-     * @type {{ [key: string]: FulfillmentLink; }}
-     * @memberof EntityModelContactDto
-     */
-    links?: { [key: string]: FulfillmentLink; };
 }
 /**
  * 
  * @export
- * @interface EntityModelCustomerSurveyDto
+ * @interface EntityModelOfCustomerSurvey
  */
-export interface EntityModelCustomerSurveyDto {
+export interface EntityModelOfCustomerSurvey {
+    /**
+     * 
+     * @type {Links}
+     * @memberof EntityModelOfCustomerSurvey
+     */
+    links?: Links;
     /**
      * 
      * @type {{ [key: string]: object; }}
-     * @memberof EntityModelCustomerSurveyDto
+     * @memberof EntityModelOfCustomerSurvey
      */
     attributes?: { [key: string]: object; };
     /**
      * 
+     * @type {FulfillmentAPIAuditInfo}
+     * @memberof EntityModelOfCustomerSurvey
+     */
+    auditInfo?: FulfillmentAPIAuditInfo;
+    /**
+     * 
+     * @type {Array<CustomerSurveyEntry>}
+     * @memberof EntityModelOfCustomerSurvey
+     */
+    entries?: Array<CustomerSurveyEntry>;
+    /**
+     * 
      * @type {string}
-     * @memberof EntityModelCustomerSurveyDto
+     * @memberof EntityModelOfCustomerSurvey
      */
     id?: string;
     /**
      * 
      * @type {number}
-     * @memberof EntityModelCustomerSurveyDto
+     * @memberof EntityModelOfCustomerSurvey
      */
     shipmentNumber?: number;
     /**
      * 
      * @type {number}
-     * @memberof EntityModelCustomerSurveyDto
-     */
-    tenantId?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelCustomerSurveyDto
+     * @memberof EntityModelOfCustomerSurvey
      */
     siteId?: number;
     /**
      * 
-     * @type {Array<CustomerSurveyEntryDto>}
-     * @memberof EntityModelCustomerSurveyDto
+     * @type {number}
+     * @memberof EntityModelOfCustomerSurvey
      */
-    entries?: Array<CustomerSurveyEntryDto>;
-    /**
-     * 
-     * @type {AuditInfoDto}
-     * @memberof EntityModelCustomerSurveyDto
-     */
-    auditInfo?: AuditInfoDto;
-    /**
-     * 
-     * @type {{ [key: string]: FulfillmentLink; }}
-     * @memberof EntityModelCustomerSurveyDto
-     */
-    links?: { [key: string]: FulfillmentLink; };
+    tenantId?: number;
 }
 /**
  * 
  * @export
- * @interface EntityModelDashboardResponseDto
+ * @interface EntityModelOfDashboardResponse
  */
-export interface EntityModelDashboardResponseDto {
+export interface EntityModelOfDashboardResponse {
+    /**
+     * 
+     * @type {Links}
+     * @memberof EntityModelOfDashboardResponse
+     */
+    links?: Links;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelDashboardResponseDto
+     * @memberof EntityModelOfDashboardResponse
      */
     shipmentType?: string;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelDashboardResponseDto
+     * @memberof EntityModelOfDashboardResponse
      */
     shipmentTypeDisplayName?: string;
     /**
      * 
-     * @type {Array<DashboardStepDto>}
-     * @memberof EntityModelDashboardResponseDto
+     * @type {Array<DashboardStep>}
+     * @memberof EntityModelOfDashboardResponse
      */
-    steps?: Array<DashboardStepDto>;
-    /**
-     * 
-     * @type {{ [key: string]: FulfillmentLink; }}
-     * @memberof EntityModelDashboardResponseDto
-     */
-    links?: { [key: string]: FulfillmentLink; };
+    steps?: Array<DashboardStep>;
 }
 /**
  * 
  * @export
- * @interface EntityModelManifestDto
+ * @interface EntityModelOfManifest
  */
-export interface EntityModelManifestDto {
+export interface EntityModelOfManifest {
+    /**
+     * 
+     * @type {Links}
+     * @memberof EntityModelOfManifest
+     */
+    links?: Links;
     /**
      * 
      * @type {{ [key: string]: object; }}
-     * @memberof EntityModelManifestDto
+     * @memberof EntityModelOfManifest
      */
     attributes?: { [key: string]: object; };
     /**
      * 
-     * @type {string}
-     * @memberof EntityModelManifestDto
+     * @type {FulfillmentAPIAuditInfo}
+     * @memberof EntityModelOfManifest
      */
-    internalId?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelManifestDto
-     */
-    tenantId?: number;
+    auditInfo?: FulfillmentAPIAuditInfo;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelManifestDto
-     */
-    locationCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelManifestDto
+     * @memberof EntityModelOfManifest
      */
     carrierId?: string;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelManifestDto
+     * @memberof EntityModelOfManifest
      */
-    userId?: string;
+    internalId?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EntityModelOfManifest
+     */
+    isSuccessfulPreviously?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelManifestDto
+     * @memberof EntityModelOfManifest
      */
-    userDisplayName?: string;
-    /**
-     * 
-     * @type {AuditInfoDto}
-     * @memberof EntityModelManifestDto
-     */
-    auditInfo?: AuditInfoDto;
-    /**
-     * 
-     * @type {Array<ManifestShipmentDto>}
-     * @memberof EntityModelManifestDto
-     */
-    shipments?: Array<ManifestShipmentDto>;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelManifestDto
-     */
-    numberOfShipments?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelManifestDto
-     */
-    numberOfPackages?: number;
+    locationCode?: string;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelManifestDto
+     * @memberof EntityModelOfManifest
      */
     manifestId?: string;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelManifestDto
+     * @memberof EntityModelOfManifest
      */
     manifestUrl?: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof EntityModelManifestDto
+     * @type {number}
+     * @memberof EntityModelOfManifest
      */
-    isSuccessfulPreviously?: boolean;
+    numberOfPackages?: number;
     /**
      * 
-     * @type {Array<ManifestShipmentDto>}
-     * @memberof EntityModelManifestDto
+     * @type {number}
+     * @memberof EntityModelOfManifest
      */
-    shipmentsSuccessfulPreviously?: Array<ManifestShipmentDto>;
+    numberOfShipments?: number;
     /**
      * 
-     * @type {{ [key: string]: FulfillmentLink; }}
-     * @memberof EntityModelManifestDto
+     * @type {Array<ManifestShipment>}
+     * @memberof EntityModelOfManifest
      */
-    links?: { [key: string]: FulfillmentLink; };
+    shipments?: Array<ManifestShipment>;
+    /**
+     * 
+     * @type {Array<ManifestShipment>}
+     * @memberof EntityModelOfManifest
+     */
+    shipmentsSuccessfulPreviously?: Array<ManifestShipment>;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfManifest
+     */
+    tenantId?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfManifest
+     */
+    userDisplayName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfManifest
+     */
+    userId?: string;
 }
 /**
  * 
  * @export
- * @interface EntityModelPackageConsolidationCandidatesResponseDto
+ * @interface EntityModelOfPackageConsolidationCandidatesResponse
  */
-export interface EntityModelPackageConsolidationCandidatesResponseDto {
+export interface EntityModelOfPackageConsolidationCandidatesResponse {
     /**
      * 
-     * @type {Array<PackageConsolidationSuggestionDto>}
-     * @memberof EntityModelPackageConsolidationCandidatesResponseDto
+     * @type {Links}
+     * @memberof EntityModelOfPackageConsolidationCandidatesResponse
      */
-    suggestions?: Array<PackageConsolidationSuggestionDto>;
+    links?: Links;
     /**
      * 
-     * @type {{ [key: string]: FulfillmentLink; }}
-     * @memberof EntityModelPackageConsolidationCandidatesResponseDto
+     * @type {Array<PackageConsolidationSuggestion>}
+     * @memberof EntityModelOfPackageConsolidationCandidatesResponse
      */
-    links?: { [key: string]: FulfillmentLink; };
+    suggestions?: Array<PackageConsolidationSuggestion>;
 }
 /**
  * 
  * @export
- * @interface EntityModelPackageConsolidationResponseDto
+ * @interface EntityModelOfPackageConsolidationResponse
  */
-export interface EntityModelPackageConsolidationResponseDto {
+export interface EntityModelOfPackageConsolidationResponse {
+    /**
+     * 
+     * @type {Links}
+     * @memberof EntityModelOfPackageConsolidationResponse
+     */
+    links?: Links;
     /**
      * 
      * @type {{ [key: string]: object; }}
-     * @memberof EntityModelPackageConsolidationResponseDto
+     * @memberof EntityModelOfPackageConsolidationResponse
      */
     attributes?: { [key: string]: object; };
     /**
      * 
      * @type {string}
-     * @memberof EntityModelPackageConsolidationResponseDto
-     */
-    shipmentConsolidationId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelPackageConsolidationResponseDto
+     * @memberof EntityModelOfPackageConsolidationResponse
      */
     packageConsolidationId?: string;
     /**
      * 
      * @type {Array<PackageConsolidationDto>}
-     * @memberof EntityModelPackageConsolidationResponseDto
+     * @memberof EntityModelOfPackageConsolidationResponse
      */
     packageConsolidations?: Array<PackageConsolidationDto>;
     /**
      * 
-     * @type {{ [key: string]: FulfillmentLink; }}
-     * @memberof EntityModelPackageConsolidationResponseDto
+     * @type {string}
+     * @memberof EntityModelOfPackageConsolidationResponse
      */
-    links?: { [key: string]: FulfillmentLink; };
+    shipmentConsolidationId?: string;
 }
 /**
  * 
  * @export
- * @interface EntityModelPickWaveDetailDto
+ * @interface EntityModelOfPaymentInvoice
  */
-export interface EntityModelPickWaveDetailDto {
+export interface EntityModelOfPaymentInvoice {
+    /**
+     * 
+     * @type {Links}
+     * @memberof EntityModelOfPaymentInvoice
+     */
+    links?: Links;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelPickWaveDetailDto
+     * @memberof EntityModelOfPaymentInvoice
      */
-    pickWaveId?: string;
+    currency?: string;
+    /**
+     * 
+     * @type {object}
+     * @memberof EntityModelOfPaymentInvoice
+     */
+    data?: object;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfPaymentInvoice
+     */
+    invoiceDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfPaymentInvoice
+     */
+    invoiceNumber?: string;
+    /**
+     * 
+     * @type {Array<InvoiceLineItem>}
+     * @memberof EntityModelOfPaymentInvoice
+     */
+    lineItems?: Array<InvoiceLineItem>;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfPaymentInvoice
+     */
+    rawEdiData?: string;
+    /**
+     * 
+     * @type {InvoiceReferences}
+     * @memberof EntityModelOfPaymentInvoice
+     */
+    references?: InvoiceReferences;
+    /**
+     * 
+     * @type {Array<InvoiceTax>}
+     * @memberof EntityModelOfPaymentInvoice
+     */
+    taxes?: Array<InvoiceTax>;
+    /**
+     * 
+     * @type {InvoiceTerms}
+     * @memberof EntityModelOfPaymentInvoice
+     */
+    terms?: InvoiceTerms;
     /**
      * 
      * @type {number}
-     * @memberof EntityModelPickWaveDetailDto
+     * @memberof EntityModelOfPaymentInvoice
      */
-    tenantId?: number;
+    totalAmount?: number;
     /**
      * 
-     * @type {number}
-     * @memberof EntityModelPickWaveDetailDto
+     * @type {InvoiceVendor}
+     * @memberof EntityModelOfPaymentInvoice
      */
-    pickWaveNumber?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelPickWaveDetailDto
-     */
-    userDisplayName?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelPickWaveDetailDto
-     */
-    userId?: string;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof EntityModelPickWaveDetailDto
-     */
-    shipmentNumbers?: Array<number>;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelPickWaveDetailDto
-     */
-    fulfillmentLocationCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelPickWaveDetailDto
-     */
-    pickWaveStatus?: EntityModelPickWaveDetailDtoPickWaveStatusEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelPickWaveDetailDto
-     */
-    pickType?: EntityModelPickWaveDetailDtoPickTypeEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelPickWaveDetailDto
-     */
-    maxShipments?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelPickWaveDetailDto
-     */
-    shipmentType?: string;
-    /**
-     * 
-     * @type {Array<ContentGroupDto>}
-     * @memberof EntityModelPickWaveDetailDto
-     */
-    contentGroups?: Array<ContentGroupDto>;
-    /**
-     * 
-     * @type {AuditInfoDto}
-     * @memberof EntityModelPickWaveDetailDto
-     */
-    auditInfo?: AuditInfoDto;
-    /**
-     * 
-     * @type {{ [key: string]: FulfillmentLink; }}
-     * @memberof EntityModelPickWaveDetailDto
-     */
-    links?: { [key: string]: FulfillmentLink; };
+    vendor?: InvoiceVendor;
 }
-
-
-/**
- * @export
- */
-export const EntityModelPickWaveDetailDtoPickWaveStatusEnum = {
-    Error: 'ERROR',
-    Pending: 'PENDING',
-    InProgress: 'IN_PROGRESS',
-    Closed: 'CLOSED',
-    PendingRecovery: 'PENDING_RECOVERY'
-} as const;
-export type EntityModelPickWaveDetailDtoPickWaveStatusEnum = typeof EntityModelPickWaveDetailDtoPickWaveStatusEnum[keyof typeof EntityModelPickWaveDetailDtoPickWaveStatusEnum];
-
-/**
- * @export
- */
-export const EntityModelPickWaveDetailDtoPickTypeEnum = {
-    Normal: 'NORMAL',
-    Single: 'SINGLE',
-    Multiple: 'MULTIPLE'
-} as const;
-export type EntityModelPickWaveDetailDtoPickTypeEnum = typeof EntityModelPickWaveDetailDtoPickTypeEnum[keyof typeof EntityModelPickWaveDetailDtoPickTypeEnum];
-
 /**
  * 
  * @export
- * @interface EntityModelPickWaveDto
+ * @interface EntityModelOfPickWave
  */
-export interface EntityModelPickWaveDto {
+export interface EntityModelOfPickWave {
+    /**
+     * 
+     * @type {Links}
+     * @memberof EntityModelOfPickWave
+     */
+    links?: Links;
     /**
      * 
      * @type {{ [key: string]: object; }}
-     * @memberof EntityModelPickWaveDto
+     * @memberof EntityModelOfPickWave
      */
     attributes?: { [key: string]: object; };
     /**
      * 
+     * @type {FulfillmentAPIAuditInfo}
+     * @memberof EntityModelOfPickWave
+     */
+    auditInfo?: FulfillmentAPIAuditInfo;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIChangeMessage>}
+     * @memberof EntityModelOfPickWave
+     */
+    changeMessages?: Array<FulfillmentAPIChangeMessage>;
+    /**
+     * 
+     * @type {Array<PickWaveContent>}
+     * @memberof EntityModelOfPickWave
+     */
+    contents?: Array<PickWaveContent>;
+    /**
+     * 
      * @type {string}
-     * @memberof EntityModelPickWaveDto
+     * @memberof EntityModelOfPickWave
      */
-    pickWaveId?: string;
+    fulfillmentLocationCode?: string;
     /**
      * 
      * @type {number}
-     * @memberof EntityModelPickWaveDto
+     * @memberof EntityModelOfPickWave
      */
-    tenantId?: number;
+    maxShipments?: number;
     /**
      * 
      * @type {number}
-     * @memberof EntityModelPickWaveDto
-     */
-    pickWaveNumber?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelPickWaveDto
+     * @memberof EntityModelOfPickWave
      */
     parentPickWaveNumber?: number;
     /**
      * 
+     * @type {string}
+     * @memberof EntityModelOfPickWave
+     */
+    pickType?: EntityModelOfPickWavePickTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfPickWave
+     */
+    pickWaveId?: string;
+    /**
+     * 
      * @type {number}
-     * @memberof EntityModelPickWaveDto
+     * @memberof EntityModelOfPickWave
+     */
+    pickWaveNumber?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfPickWave
+     */
+    pickWaveRuleCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfPickWave
+     */
+    pickWaveStatus?: EntityModelOfPickWavePickWaveStatusEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfPickWave
      */
     recoveryPickWaveNumber?: number;
     /**
      * 
-     * @type {string}
-     * @memberof EntityModelPickWaveDto
-     */
-    userId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelPickWaveDto
-     */
-    userDisplayName?: string;
-    /**
-     * 
      * @type {Array<number>}
-     * @memberof EntityModelPickWaveDto
+     * @memberof EntityModelOfPickWave
      */
     shipmentNumbers?: Array<number>;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelPickWaveDto
-     */
-    fulfillmentLocationCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelPickWaveDto
-     */
-    pickWaveStatus?: EntityModelPickWaveDtoPickWaveStatusEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelPickWaveDto
-     */
-    pickType?: EntityModelPickWaveDtoPickTypeEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelPickWaveDto
-     */
-    maxShipments?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelPickWaveDto
+     * @memberof EntityModelOfPickWave
      */
     shipmentType?: string;
     /**
      * 
-     * @type {Array<PickWaveContentDto>}
-     * @memberof EntityModelPickWaveDto
+     * @type {number}
+     * @memberof EntityModelOfPickWave
      */
-    contents?: Array<PickWaveContentDto>;
+    tenantId?: number;
     /**
      * 
-     * @type {AuditInfoDto}
-     * @memberof EntityModelPickWaveDto
+     * @type {string}
+     * @memberof EntityModelOfPickWave
      */
-    auditInfo?: AuditInfoDto;
+    userDisplayName?: string;
     /**
      * 
-     * @type {Array<ChangeMessageDto>}
-     * @memberof EntityModelPickWaveDto
+     * @type {string}
+     * @memberof EntityModelOfPickWave
      */
-    changeMessages?: Array<ChangeMessageDto>;
-    /**
-     * 
-     * @type {{ [key: string]: FulfillmentLink; }}
-     * @memberof EntityModelPickWaveDto
-     */
-    links?: { [key: string]: FulfillmentLink; };
+    userId?: string;
 }
 
 
 /**
  * @export
  */
-export const EntityModelPickWaveDtoPickWaveStatusEnum = {
+export const EntityModelOfPickWavePickTypeEnum = {
+    Normal: 'NORMAL',
+    Single: 'SINGLE',
+    Multiple: 'MULTIPLE'
+} as const;
+export type EntityModelOfPickWavePickTypeEnum = typeof EntityModelOfPickWavePickTypeEnum[keyof typeof EntityModelOfPickWavePickTypeEnum];
+
+/**
+ * @export
+ */
+export const EntityModelOfPickWavePickWaveStatusEnum = {
     Error: 'ERROR',
     Pending: 'PENDING',
     InProgress: 'IN_PROGRESS',
     Closed: 'CLOSED',
     PendingRecovery: 'PENDING_RECOVERY'
 } as const;
-export type EntityModelPickWaveDtoPickWaveStatusEnum = typeof EntityModelPickWaveDtoPickWaveStatusEnum[keyof typeof EntityModelPickWaveDtoPickWaveStatusEnum];
-
-/**
- * @export
- */
-export const EntityModelPickWaveDtoPickTypeEnum = {
-    Normal: 'NORMAL',
-    Single: 'SINGLE',
-    Multiple: 'MULTIPLE'
-} as const;
-export type EntityModelPickWaveDtoPickTypeEnum = typeof EntityModelPickWaveDtoPickTypeEnum[keyof typeof EntityModelPickWaveDtoPickTypeEnum];
+export type EntityModelOfPickWavePickWaveStatusEnum = typeof EntityModelOfPickWavePickWaveStatusEnum[keyof typeof EntityModelOfPickWavePickWaveStatusEnum];
 
 /**
  * 
  * @export
- * @interface EntityModelRenderedContentDto
+ * @interface EntityModelOfPickWaveDetail
  */
-export interface EntityModelRenderedContentDto {
+export interface EntityModelOfPickWaveDetail {
+    /**
+     * 
+     * @type {Links}
+     * @memberof EntityModelOfPickWaveDetail
+     */
+    links?: Links;
+    /**
+     * 
+     * @type {FulfillmentAPIAuditInfo}
+     * @memberof EntityModelOfPickWaveDetail
+     */
+    auditInfo?: FulfillmentAPIAuditInfo;
+    /**
+     * 
+     * @type {Array<ContentGroup>}
+     * @memberof EntityModelOfPickWaveDetail
+     */
+    contentGroups?: Array<ContentGroup>;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelRenderedContentDto
+     * @memberof EntityModelOfPickWaveDetail
      */
-    content?: string;
-    /**
-     * 
-     * @type {{ [key: string]: FulfillmentLink; }}
-     * @memberof EntityModelRenderedContentDto
-     */
-    links?: { [key: string]: FulfillmentLink; };
-}
-/**
- * 
- * @export
- * @interface EntityModelShipmentDto
- */
-export interface EntityModelShipmentDto {
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof EntityModelShipmentDto
-     */
-    attributes?: { [key: string]: object; };
+    fulfillmentLocationCode?: string;
     /**
      * 
      * @type {number}
-     * @memberof EntityModelShipmentDto
+     * @memberof EntityModelOfPickWaveDetail
      */
-    shipmentNumber?: number;
+    maxShipments?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfPickWaveDetail
+     */
+    pickType?: EntityModelOfPickWaveDetailPickTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfPickWaveDetail
+     */
+    pickWaveId?: string;
     /**
      * 
      * @type {number}
-     * @memberof EntityModelShipmentDto
-     */
-    originalShipmentNumber?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelShipmentDto
-     */
-    parentShipmentNumber?: number;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof EntityModelShipmentDto
-     */
-    childShipmentNumbers?: Array<number>;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof EntityModelShipmentDto
-     */
-    transferShipmentNumbers?: Array<number>;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelShipmentDto
+     * @memberof EntityModelOfPickWaveDetail
      */
     pickWaveNumber?: number;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelShipmentDto
+     * @memberof EntityModelOfPickWaveDetail
      */
-    orderId: string;
+    pickWaveStatus?: EntityModelOfPickWaveDetailPickWaveStatusEnum;
     /**
      * 
-     * @type {number}
-     * @memberof EntityModelShipmentDto
+     * @type {Array<number>}
+     * @memberof EntityModelOfPickWaveDetail
      */
-    orderNumber: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelShipmentDto
-     */
-    parentCheckoutNumber?: number;
+    shipmentNumbers?: Array<number>;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelShipmentDto
+     * @memberof EntityModelOfPickWaveDetail
      */
-    orderSubmitDate?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelShipmentDto
-     */
-    externalOrderId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelShipmentDto
-     */
-    userId?: string;
+    shipmentType?: string;
     /**
      * 
      * @type {number}
-     * @memberof EntityModelShipmentDto
-     */
-    customerAccountId?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelShipmentDto
-     */
-    customerTaxId?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelShipmentDto
+     * @memberof EntityModelOfPickWaveDetail
      */
     tenantId?: number;
     /**
      * 
-     * @type {number}
-     * @memberof EntityModelShipmentDto
+     * @type {string}
+     * @memberof EntityModelOfPickWaveDetail
      */
-    siteId?: number;
+    userDisplayName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfPickWaveDetail
+     */
+    userId?: string;
+}
+
+
+/**
+ * @export
+ */
+export const EntityModelOfPickWaveDetailPickTypeEnum = {
+    Normal: 'NORMAL',
+    Single: 'SINGLE',
+    Multiple: 'MULTIPLE'
+} as const;
+export type EntityModelOfPickWaveDetailPickTypeEnum = typeof EntityModelOfPickWaveDetailPickTypeEnum[keyof typeof EntityModelOfPickWaveDetailPickTypeEnum];
+
+/**
+ * @export
+ */
+export const EntityModelOfPickWaveDetailPickWaveStatusEnum = {
+    Error: 'ERROR',
+    Pending: 'PENDING',
+    InProgress: 'IN_PROGRESS',
+    Closed: 'CLOSED',
+    PendingRecovery: 'PENDING_RECOVERY'
+} as const;
+export type EntityModelOfPickWaveDetailPickWaveStatusEnum = typeof EntityModelOfPickWaveDetailPickWaveStatusEnum[keyof typeof EntityModelOfPickWaveDetailPickWaveStatusEnum];
+
+/**
+ * 
+ * @export
+ * @interface EntityModelOfRateShoppingResponseDto
+ */
+export interface EntityModelOfRateShoppingResponseDto {
+    /**
+     * 
+     * @type {Links}
+     * @memberof EntityModelOfRateShoppingResponseDto
+     */
+    links?: Links;
+    /**
+     * 
+     * @type {RateShoppingMetadataDto}
+     * @memberof EntityModelOfRateShoppingResponseDto
+     */
+    metadata?: RateShoppingMetadataDto;
+    /**
+     * List of shipping rates from carriers
+     * @type {Array<ShippingRateDto>}
+     * @memberof EntityModelOfRateShoppingResponseDto
+     */
+    rates: Array<ShippingRateDto>;
+    /**
+     * 
+     * @type {RecommendedRateDto}
+     * @memberof EntityModelOfRateShoppingResponseDto
+     */
+    recommendedRate: RecommendedRateDto;
+}
+/**
+ * 
+ * @export
+ * @interface EntityModelOfRenderedContent
+ */
+export interface EntityModelOfRenderedContent {
+    /**
+     * 
+     * @type {Links}
+     * @memberof EntityModelOfRenderedContent
+     */
+    links?: Links;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfRenderedContent
+     */
+    content?: string;
+}
+/**
+ * 
+ * @export
+ * @interface EntityModelOfShipment
+ */
+export interface EntityModelOfShipment {
+    /**
+     * 
+     * @type {Links}
+     * @memberof EntityModelOfShipment
+     */
+    links?: Links;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfShipment
+     */
+    acceptedDate?: string;
+    /**
+     * 
+     * @type {FulfillmentAPIContact}
+     * @memberof EntityModelOfShipment
+     */
+    alternateContact?: FulfillmentAPIContact;
+    /**
+     * 
+     * @type {FulfillmentAPIAppeasementReason}
+     * @memberof EntityModelOfShipment
+     */
+    appeasementReason?: FulfillmentAPIAppeasementReason;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfShipment
+     */
+    assignedLocationCode?: string;
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof EntityModelOfShipment
+     */
+    attributes?: { [key: string]: object; };
+    /**
+     * 
+     * @type {FulfillmentAPIAuditInfo}
+     * @memberof EntityModelOfShipment
+     */
+    auditInfo?: FulfillmentAPIAuditInfo;
+    /**
+     * 
+     * @type {Array<CanceledItem>}
+     * @memberof EntityModelOfShipment
+     */
+    canceledItems?: Array<CanceledItem>;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfShipment
+     */
+    carrier?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfShipment
+     */
+    cartId?: string;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIChangeMessage>}
+     * @memberof EntityModelOfShipment
+     */
+    changeMessages?: Array<FulfillmentAPIChangeMessage>;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfShipment
+     */
+    channel?: string;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof EntityModelOfShipment
+     */
+    childShipmentNumbers?: Array<number>;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfShipment
+     */
+    currencyCode?: string;
+    /**
+     * Run currently mutating this shipment (== Kibo.Jobs jobId); null when idle (FR-059d)
+     * @type {string}
+     * @memberof EntityModelOfShipment
+     */
+    currentRunId?: string;
+    /**
+     * 
+     * @type {FulfillmentAPICustomer}
+     * @memberof EntityModelOfShipment
+     */
+    customer?: FulfillmentAPICustomer;
     /**
      * 
      * @type {number}
-     * @memberof EntityModelShipmentDto
+     * @memberof EntityModelOfShipment
+     */
+    customerAccountId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfShipment
      */
     customerAddressId?: number;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelShipmentDto
+     * @memberof EntityModelOfShipment
      */
-    fulfillmentDate?: string;
+    customerTaxId?: string;
     /**
      * 
-     * @type {string}
-     * @memberof EntityModelShipmentDto
+     * @type {{ [key: string]: object; }}
+     * @memberof EntityModelOfShipment
      */
-    shipmentType: string;
+    data?: { [key: string]: object; };
     /**
      * 
-     * @type {string}
-     * @memberof EntityModelShipmentDto
+     * @type {FulfillmentAPIDeliveryWindow}
+     * @memberof EntityModelOfShipment
      */
-    shipmentStatus?: EntityModelShipmentDtoShipmentStatusEnum;
+    deliveryWindow?: FulfillmentAPIDeliveryWindow;
     /**
      * 
-     * @type {FulfillmentShipmentStatusReason}
-     * @memberof EntityModelShipmentDto
+     * @type {FulfillmentAPIDestination}
+     * @memberof EntityModelOfShipment
      */
-    shipmentStatusReason?: FulfillmentShipmentStatusReason;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelShipmentDto
-     */
-    fulfillmentStatus?: EntityModelShipmentDtoFulfillmentStatusEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelShipmentDto
-     */
-    fulfillmentLocationCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelShipmentDto
-     */
-    assignedLocationCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelShipmentDto
-     */
-    workflowProcessId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelShipmentDto
-     */
-    workflowProcessContainerId?: string;
+    destination?: FulfillmentAPIDestination;
     /**
      * 
      * @type {number}
-     * @memberof EntityModelShipmentDto
-     */
-    shipmentAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelShipmentDto
-     */
-    lineItemSubtotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelShipmentDto
-     */
-    lineItemTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelShipmentDto
-     */
-    lineItemTaxTotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelShipmentDto
-     */
-    lineItemTotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelShipmentDto
-     */
-    shippingAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelShipmentDto
-     */
-    shippingSubtotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelShipmentDto
-     */
-    shippingTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelShipmentDto
-     */
-    shippingTaxTotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelShipmentDto
-     */
-    shippingTotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelShipmentDto
-     */
-    handlingAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelShipmentDto
-     */
-    handlingSubtotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelShipmentDto
-     */
-    handlingTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelShipmentDto
-     */
-    handlingTaxTotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelShipmentDto
-     */
-    handlingTotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelShipmentDto
+     * @memberof EntityModelOfShipment
      */
     dutyAdjustment?: number;
     /**
      * 
      * @type {number}
-     * @memberof EntityModelShipmentDto
+     * @memberof EntityModelOfShipment
      */
     dutyTotal?: number;
     /**
      * 
-     * @type {number}
-     * @memberof EntityModelShipmentDto
-     */
-    total: number;
-    /**
-     * 
      * @type {string}
-     * @memberof EntityModelShipmentDto
-     */
-    currencyCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelShipmentDto
-     */
-    pickStatus?: EntityModelShipmentDtoPickStatusEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelShipmentDto
-     */
-    pickType?: EntityModelShipmentDtoPickTypeEnum;
-    /**
-     * 
-     * @type {DestinationDto}
-     * @memberof EntityModelShipmentDto
-     */
-    destination?: DestinationDto;
-    /**
-     * 
-     * @type {CustomerDto}
-     * @memberof EntityModelShipmentDto
-     */
-    customer?: CustomerDto;
-    /**
-     * 
-     * @type {ContactDto}
-     * @memberof EntityModelShipmentDto
-     */
-    alternateContact?: ContactDto;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelShipmentDto
-     */
-    shippingMethodCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelShipmentDto
-     */
-    shippingMethodName?: string;
-    /**
-     * 
-     * @type {Array<ItemDto>}
-     * @memberof EntityModelShipmentDto
-     */
-    items?: Array<ItemDto>;
-    /**
-     * 
-     * @type {Array<CanceledItemDto>}
-     * @memberof EntityModelShipmentDto
-     */
-    canceledItems?: Array<CanceledItemDto>;
-    /**
-     * 
-     * @type {Array<ReassignedItemDto>}
-     * @memberof EntityModelShipmentDto
-     */
-    reassignedItems?: Array<ReassignedItemDto>;
-    /**
-     * 
-     * @type {Array<RejectedItemDto>}
-     * @memberof EntityModelShipmentDto
-     */
-    rejectedItems?: Array<RejectedItemDto>;
-    /**
-     * 
-     * @type {Array<TransferredItemDto>}
-     * @memberof EntityModelShipmentDto
-     */
-    transferredItems?: Array<TransferredItemDto>;
-    /**
-     * 
-     * @type {Array<PackageDto>}
-     * @memberof EntityModelShipmentDto
-     */
-    packages?: Array<PackageDto>;
-    /**
-     * 
-     * @type {WorkflowStateDto}
-     * @memberof EntityModelShipmentDto
-     */
-    workflowState?: WorkflowStateDto;
-    /**
-     * 
-     * @type {Array<ChangeMessageDto>}
-     * @memberof EntityModelShipmentDto
-     */
-    changeMessages?: Array<ChangeMessageDto>;
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof EntityModelShipmentDto
-     */
-    data?: { [key: string]: object; };
-    /**
-     * 
-     * @type {object}
-     * @memberof EntityModelShipmentDto
-     */
-    taxData?: object;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelShipmentDto
+     * @memberof EntityModelOfShipment
      */
     email?: string;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelShipmentDto
+     * @memberof EntityModelOfShipment
      */
-    acceptedDate?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EntityModelShipmentDto
-     */
-    readyForPickup?: boolean;
+    expectedDeliveryDate?: string;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelShipmentDto
+     * @memberof EntityModelOfShipment
      */
-    readyForPickupDate?: string;
+    externalOrderId?: string;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelShipmentDto
+     * @memberof EntityModelOfShipment
      */
-    receivedDate?: string;
+    fulfillmentDate?: string;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelShipmentDto
+     * @memberof EntityModelOfShipment
      */
-    transitTime?: string;
+    fulfillmentLocationCode?: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof EntityModelShipmentDto
+     * @type {number}
+     * @memberof EntityModelOfShipment
      */
-    isExpress?: boolean;
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof EntityModelShipmentDto
-     */
-    pickupInfo?: { [key: string]: object; };
-    /**
-     * 
-     * @type {AuditInfoDto}
-     * @memberof EntityModelShipmentDto
-     */
-    auditInfo?: AuditInfoDto;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EntityModelShipmentDto
-     */
-    readyToCapture?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EntityModelShipmentDto
-     */
-    isOptInForSms?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EntityModelShipmentDto
-     */
-    sentCustomerInTransitNotification?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EntityModelShipmentDto
-     */
-    sentCustomerAtStoreNotification?: boolean;
-    /**
-     * 
-     * @type {ShopperNotesDto}
-     * @memberof EntityModelShipmentDto
-     */
-    shopperNotes?: ShopperNotesDto;
-    /**
-     * 
-     * @type {AppeasementReasonDto}
-     * @memberof EntityModelShipmentDto
-     * @deprecated
-     */
-    appeasementReason?: AppeasementReasonDto;
-    /**
-     * 
-     * @type {Array<ShipmentNoteDto>}
-     * @memberof EntityModelShipmentDto
-     */
-    shipmentNotes?: Array<ShipmentNoteDto>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EntityModelShipmentDto
-     */
-    isAutoAssigned?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof EntityModelShipmentDto
-     */
-    isHistoricalImport?: boolean;
+    fulfillmentPriority?: number;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelShipmentDto
+     * @memberof EntityModelOfShipment
+     */
+    fulfillmentStatus?: EntityModelOfShipmentFulfillmentStatusEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfShipment
      */
     futureDate?: string;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelShipmentDto
+     * @memberof EntityModelOfShipment
      */
-    cartId?: string;
+    groupId?: string;
     /**
      * 
-     * @type {Array<SubstitutedItemDto>}
-     * @memberof EntityModelShipmentDto
+     * @type {number}
+     * @memberof EntityModelOfShipment
      */
-    substitutedItems?: Array<SubstitutedItemDto>;
+    handlingAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    handlingSubtotal?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    handlingTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    handlingTaxTotal?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    handlingTotal?: number;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelShipmentDto
+     * @memberof EntityModelOfShipment
      */
-    orderType?: EntityModelShipmentDtoOrderTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelShipmentDto
-     */
-    workflowProcessVersion?: string;
+    holdReleaseDate?: string;
     /**
      * 
      * @type {boolean}
-     * @memberof EntityModelShipmentDto
+     * @memberof EntityModelOfShipment
+     */
+    isAutoAssigned?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EntityModelOfShipment
+     */
+    isCrossDockEligible?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EntityModelOfShipment
+     */
+    isDropship?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EntityModelOfShipment
+     */
+    isExpress?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EntityModelOfShipment
      */
     isFlatRateShipping?: boolean;
     /**
      * 
-     * @type {string}
-     * @memberof EntityModelShipmentDto
+     * @type {boolean}
+     * @memberof EntityModelOfShipment
      */
-    masterTrackingNumber?: string;
+    isHistoricalImport?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof EntityModelShipmentDto
+     * @memberof EntityModelOfShipment
      */
     isImmutable?: boolean;
     /**
      * 
+     * @type {boolean}
+     * @memberof EntityModelOfShipment
+     */
+    isOptInForSms?: boolean;
+    /**
+     * 
+     * @type {Array<FilterOptionDtoResultItem>}
+     * @memberof EntityModelOfShipment
+     */
+    items?: Array<FilterOptionDtoResultItem>;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfShipment
+     */
+    lastCancellationDate?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    lineItemSubtotal?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    lineItemTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    lineItemTaxTotal?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    lineItemTotal?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfShipment
+     */
+    lowestComplianceLevel?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfShipment
+     */
+    masterTrackingNumber?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    minutesSinceOnWorkflowStep?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    minutesSinceOrdered?: number;
+    /**
+     * 
      * @type {MutabilityInfo}
-     * @memberof EntityModelShipmentDto
+     * @memberof EntityModelOfShipment
      */
     mutabilityInfo?: MutabilityInfo;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelShipmentDto
+     * @memberof EntityModelOfShipment
+     */
+    orderId?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    orderNumber?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfShipment
+     */
+    orderSubmitDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfShipment
+     */
+    orderType?: EntityModelOfShipmentOrderTypeEnum;
+    /**
+     * First expectedDeliveryDate this shipment ever carried (write-once, never cleared); non-null marks that the shipment has, at some point, had an EDD. Server-managed (FR-060); ignored on inbound writes.
+     * @type {string}
+     * @memberof EntityModelOfShipment
+     */
+    originalEdd?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    originalShipmentNumber?: number;
+    /**
+     * FR-014/FR-016 multi-package-receiving eligibility signal. Only present when the MULTI_PACKAGE_RECEIVING_FOR_TRANSFER_SHIPMENTS tenant attribute is enabled and the transfer shipment has at least one package; null otherwise so tenants without the attribute enabled see no shape change (US2-AC2).
+     * @type {boolean}
+     * @memberof EntityModelOfShipment
+     */
+    packageReceivingEligible?: boolean;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIPackage>}
+     * @memberof EntityModelOfShipment
+     */
+    packages?: Array<FulfillmentAPIPackage>;
+    /**
+     * US4 progress display: packagesTotalCount minus packagesReceivedCount. Null when not eligible/flag disabled.
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    packagesPendingCount?: number;
+    /**
+     * US4 progress display: count of packages with receiptStatus=RECEIVED. Null when not eligible/flag disabled.
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    packagesReceivedCount?: number;
+    /**
+     * US4 progress display: total expected package count. Null when not eligible/flag disabled.
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    packagesTotalCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    parentCheckoutNumber?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    parentShipmentNumber?: number;
+    /**
+     * 
+     * @type {PaymentInvoice}
+     * @memberof EntityModelOfShipment
+     */
+    paymentInvoice?: PaymentInvoice;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfShipment
+     */
+    pickStatus?: EntityModelOfShipmentPickStatusEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfShipment
+     */
+    pickType?: EntityModelOfShipmentPickTypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    pickWaveNumber?: number;
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof EntityModelOfShipment
+     */
+    pickupInfo?: { [key: string]: object; };
+    /**
+     * 
+     * @type {PriorityInfo}
+     * @memberof EntityModelOfShipment
+     */
+    priorityInfo?: PriorityInfo;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EntityModelOfShipment
+     */
+    readyForPickup?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfShipment
+     */
+    readyForPickupDate?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EntityModelOfShipment
+     */
+    readyToCapture?: boolean;
+    /**
+     * 
+     * @type {Array<ReassignedItem>}
+     * @memberof EntityModelOfShipment
+     */
+    reassignedItems?: Array<ReassignedItem>;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfShipment
+     */
+    receivedDate?: string;
+    /**
+     * 
+     * @type {Array<RejectedItem>}
+     * @memberof EntityModelOfShipment
+     */
+    rejectedItems?: Array<RejectedItem>;
+    /**
+     * Capped per-run history of operations that created/mutated this shipment (FR-059d)
+     * @type {Array<RunInfo>}
+     * @memberof EntityModelOfShipment
+     */
+    runInfo?: Array<RunInfo>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EntityModelOfShipment
+     */
+    sentCustomerAtStoreNotification?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EntityModelOfShipment
+     */
+    sentCustomerInTransitNotification?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfShipment
+     */
+    shipDate?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    shipmentAdjustment?: number;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIShipmentAttribute>}
+     * @memberof EntityModelOfShipment
+     */
+    shipmentAttributes?: Array<FulfillmentAPIShipmentAttribute>;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfShipment
      */
     shipmentConsolidationId?: string;
     /**
      * 
-     * @type {Array<SlaDto>}
-     * @memberof EntityModelShipmentDto
+     * @type {string}
+     * @memberof EntityModelOfShipment
      */
-    slas?: Array<SlaDto>;
+    shipmentGroup?: string;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIShipmentNote>}
+     * @memberof EntityModelOfShipment
+     */
+    shipmentNotes?: Array<FulfillmentAPIShipmentNote>;
     /**
      * 
      * @type {number}
-     * @memberof EntityModelShipmentDto
+     * @memberof EntityModelOfShipment
      */
-    minutesSinceOrdered?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityModelShipmentDto
-     */
-    minutesSinceOnWorkflowStep?: number;
+    shipmentNumber?: number;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelShipmentDto
+     * @memberof EntityModelOfShipment
      */
-    lowestComplianceLevel?: string;
+    shipmentStatus?: EntityModelOfShipmentShipmentStatusEnum;
     /**
      * 
-     * @type {{ [key: string]: FulfillmentLink; }}
-     * @memberof EntityModelShipmentDto
+     * @type {FulfillmentAPIShipmentStatusReason}
+     * @memberof EntityModelOfShipment
      */
-    links?: { [key: string]: FulfillmentLink; };
+    shipmentStatusReason?: FulfillmentAPIShipmentStatusReason;
+    /**
+     * Shipment type code
+     * @type {string}
+     * @memberof EntityModelOfShipment
+     */
+    shipmentType: EntityModelOfShipmentShipmentTypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    shippingAdjustment?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfShipment
+     */
+    shippingMethodCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfShipment
+     */
+    shippingMethodName?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    shippingSubtotal?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    shippingTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    shippingTaxTotal?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    shippingTotal?: number;
+    /**
+     * 
+     * @type {FulfillmentAPIShopperNotes}
+     * @memberof EntityModelOfShipment
+     */
+    shopperNotes?: FulfillmentAPIShopperNotes;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    siteId?: number;
+    /**
+     * 
+     * @type {Array<Sla>}
+     * @memberof EntityModelOfShipment
+     */
+    slas?: Array<Sla>;
+    /**
+     * 
+     * @type {Array<FulfillmentAPISubstitutedItem>}
+     * @memberof EntityModelOfShipment
+     */
+    substitutedItems?: Array<FulfillmentAPISubstitutedItem>;
+    /**
+     * 
+     * @type {object}
+     * @memberof EntityModelOfShipment
+     */
+    taxData?: object;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    tenantId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityModelOfShipment
+     */
+    total?: number;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof EntityModelOfShipment
+     */
+    transferShipmentNumbers?: Array<number>;
+    /**
+     * 
+     * @type {Array<TransferredItem>}
+     * @memberof EntityModelOfShipment
+     */
+    transferredItems?: Array<TransferredItem>;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfShipment
+     */
+    transitTime?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfShipment
+     */
+    userId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfShipment
+     */
+    workflowProcessContainerId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfShipment
+     */
+    workflowProcessId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfShipment
+     */
+    workflowProcessVersion?: string;
+    /**
+     * 
+     * @type {FulfillmentAPIWorkflowState}
+     * @memberof EntityModelOfShipment
+     */
+    workflowState?: FulfillmentAPIWorkflowState;
 }
 
 
 /**
  * @export
  */
-export const EntityModelShipmentDtoShipmentStatusEnum = {
+export const EntityModelOfShipmentFulfillmentStatusEnum = {
+    NotFulfilled: 'NotFulfilled',
+    Fulfilled: 'Fulfilled'
+} as const;
+export type EntityModelOfShipmentFulfillmentStatusEnum = typeof EntityModelOfShipmentFulfillmentStatusEnum[keyof typeof EntityModelOfShipmentFulfillmentStatusEnum];
+
+/**
+ * @export
+ */
+export const EntityModelOfShipmentOrderTypeEnum = {
+    Offline: 'Offline',
+    Online: 'Online'
+} as const;
+export type EntityModelOfShipmentOrderTypeEnum = typeof EntityModelOfShipmentOrderTypeEnum[keyof typeof EntityModelOfShipmentOrderTypeEnum];
+
+/**
+ * @export
+ */
+export const EntityModelOfShipmentPickStatusEnum = {
+    Available: 'AVAILABLE',
+    InWave: 'IN_WAVE',
+    Picked: 'PICKED',
+    Transfer: 'TRANSFER',
+    Complete: 'COMPLETE'
+} as const;
+export type EntityModelOfShipmentPickStatusEnum = typeof EntityModelOfShipmentPickStatusEnum[keyof typeof EntityModelOfShipmentPickStatusEnum];
+
+/**
+ * @export
+ */
+export const EntityModelOfShipmentPickTypeEnum = {
+    Normal: 'NORMAL',
+    Single: 'SINGLE',
+    Multiple: 'MULTIPLE'
+} as const;
+export type EntityModelOfShipmentPickTypeEnum = typeof EntityModelOfShipmentPickTypeEnum[keyof typeof EntityModelOfShipmentPickTypeEnum];
+
+/**
+ * @export
+ */
+export const EntityModelOfShipmentShipmentStatusEnum = {
     Ready: 'READY',
     Reassigned: 'REASSIGNED',
     Backorder: 'BACKORDER',
@@ -3073,190 +3275,95 @@ export const EntityModelShipmentDtoShipmentStatusEnum = {
     Deleted: 'DELETED',
     Future: 'FUTURE'
 } as const;
-export type EntityModelShipmentDtoShipmentStatusEnum = typeof EntityModelShipmentDtoShipmentStatusEnum[keyof typeof EntityModelShipmentDtoShipmentStatusEnum];
+export type EntityModelOfShipmentShipmentStatusEnum = typeof EntityModelOfShipmentShipmentStatusEnum[keyof typeof EntityModelOfShipmentShipmentStatusEnum];
 
 /**
  * @export
  */
-export const EntityModelShipmentDtoFulfillmentStatusEnum = {
-    NotFulfilled: 'NotFulfilled',
-    Fulfilled: 'Fulfilled'
+export const EntityModelOfShipmentShipmentTypeEnum = {
+    Sth: 'STH',
+    Bopis: 'BOPIS',
+    BopisCurbside: 'BOPIS_Curbside',
+    Transfer: 'Transfer',
+    Curbside: 'Curbside',
+    Digital: 'Digital',
+    Delivery: 'Delivery'
 } as const;
-export type EntityModelShipmentDtoFulfillmentStatusEnum = typeof EntityModelShipmentDtoFulfillmentStatusEnum[keyof typeof EntityModelShipmentDtoFulfillmentStatusEnum];
-
-/**
- * @export
- */
-export const EntityModelShipmentDtoPickStatusEnum = {
-    Available: 'AVAILABLE',
-    InWave: 'IN_WAVE',
-    Picked: 'PICKED',
-    Transfer: 'TRANSFER',
-    Complete: 'COMPLETE'
-} as const;
-export type EntityModelShipmentDtoPickStatusEnum = typeof EntityModelShipmentDtoPickStatusEnum[keyof typeof EntityModelShipmentDtoPickStatusEnum];
-
-/**
- * @export
- */
-export const EntityModelShipmentDtoPickTypeEnum = {
-    Normal: 'NORMAL',
-    Single: 'SINGLE',
-    Multiple: 'MULTIPLE'
-} as const;
-export type EntityModelShipmentDtoPickTypeEnum = typeof EntityModelShipmentDtoPickTypeEnum[keyof typeof EntityModelShipmentDtoPickTypeEnum];
-
-/**
- * @export
- */
-export const EntityModelShipmentDtoOrderTypeEnum = {
-    Offline: 'Offline',
-    Online: 'Online'
-} as const;
-export type EntityModelShipmentDtoOrderTypeEnum = typeof EntityModelShipmentDtoOrderTypeEnum[keyof typeof EntityModelShipmentDtoOrderTypeEnum];
+export type EntityModelOfShipmentShipmentTypeEnum = typeof EntityModelOfShipmentShipmentTypeEnum[keyof typeof EntityModelOfShipmentShipmentTypeEnum];
 
 /**
  * 
  * @export
- * @interface EntityModelWorkflowProcessDto
+ * @interface EntityModelOfWorkflowProcess
  */
-export interface EntityModelWorkflowProcessDto {
+export interface EntityModelOfWorkflowProcess {
+    /**
+     * 
+     * @type {Links}
+     * @memberof EntityModelOfWorkflowProcess
+     */
+    links?: Links;
     /**
      * 
      * @type {{ [key: string]: object; }}
-     * @memberof EntityModelWorkflowProcessDto
+     * @memberof EntityModelOfWorkflowProcess
      */
     attributes?: { [key: string]: object; };
     /**
      * 
      * @type {string}
-     * @memberof EntityModelWorkflowProcessDto
+     * @memberof EntityModelOfWorkflowProcess
      */
-    id?: string;
+    containerAlias?: string;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelWorkflowProcessDto
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelWorkflowProcessDto
-     */
-    version?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityModelWorkflowProcessDto
-     * @deprecated
+     * @memberof EntityModelOfWorkflowProcess
      */
     containerId?: string;
     /**
      * 
      * @type {string}
-     * @memberof EntityModelWorkflowProcessDto
+     * @memberof EntityModelOfWorkflowProcess
      */
-    containerAlias?: string;
+    id?: string;
     /**
      * 
-     * @type {Array<TaskDefinitionDto>}
-     * @memberof EntityModelWorkflowProcessDto
+     * @type {string}
+     * @memberof EntityModelOfWorkflowProcess
      */
-    tasks?: Array<TaskDefinitionDto>;
+    name?: string;
     /**
      * 
-     * @type {Array<WorkflowProcessVariableDto>}
-     * @memberof EntityModelWorkflowProcessDto
+     * @type {Array<TaskDefinition>}
+     * @memberof EntityModelOfWorkflowProcess
      */
-    variables?: Array<WorkflowProcessVariableDto>;
+    tasks?: Array<TaskDefinition>;
     /**
      * 
-     * @type {{ [key: string]: FulfillmentLink; }}
-     * @memberof EntityModelWorkflowProcessDto
+     * @type {Array<WorkflowProcessVariable>}
+     * @memberof EntityModelOfWorkflowProcess
      */
-    links?: { [key: string]: FulfillmentLink; };
+    variables?: Array<WorkflowProcessVariable>;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityModelOfWorkflowProcess
+     */
+    version?: string;
 }
 /**
  * 
  * @export
- * @interface ErrorItem
+ * @interface EstimatedDeliveryDateUpdateRequest
  */
-export interface ErrorItem {
+export interface EstimatedDeliveryDateUpdateRequest {
     /**
      * 
      * @type {string}
-     * @memberof ErrorItem
+     * @memberof EstimatedDeliveryDateUpdateRequest
      */
-    code?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ErrorItem
-     */
-    message?: string;
-}
-/**
- * 
- * @export
- * @interface ErrorResponse
- */
-export interface ErrorResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof ErrorResponse
-     */
-    code?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ErrorResponse
-     */
-    message?: string;
-    /**
-     * 
-     * @type {Array<ErrorItem>}
-     * @memberof ErrorResponse
-     */
-    errors?: Array<ErrorItem>;
-}
-/**
- * 
- * @export
- * @interface FilterOptionDtoLocationSummaryDetailDto
- */
-export interface FilterOptionDtoLocationSummaryDetailDto {
-    /**
-     * 
-     * @type {Array<LocationSummaryDetailDto>}
-     * @memberof FilterOptionDtoLocationSummaryDetailDto
-     */
-    items?: Array<LocationSummaryDetailDto>;
-    /**
-     * 
-     * @type {number}
-     * @memberof FilterOptionDtoLocationSummaryDetailDto
-     */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof FilterOptionDtoLocationSummaryDetailDto
-     */
-    pageSize?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof FilterOptionDtoLocationSummaryDetailDto
-     */
-    pageCount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof FilterOptionDtoLocationSummaryDetailDto
-     */
-    totalCount?: number;
+    estimatedDeliveryDate?: string;
 }
 /**
  * 
@@ -3266,830 +3373,4159 @@ export interface FilterOptionDtoLocationSummaryDetailDto {
 export interface FilterOptionDtoResultItem {
     /**
      * 
-     * @type {Array<ResultItem>}
+     * @type {number}
      * @memberof FilterOptionDtoResultItem
+     */
+    actualPrice?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    allocatedQuantity?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FilterOptionDtoResultItem
+     */
+    allowsBackOrder?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FilterOptionDtoResultItem
+     */
+    allowsFutureAllocate?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FilterOptionDtoResultItem
+     */
+    allowsSubstitution?: boolean;
+    /**
+     * 
+     * @type {FulfillmentAPIAppeasementReason}
+     * @memberof FilterOptionDtoResultItem
+     */
+    appeasementReason?: FulfillmentAPIAppeasementReason;
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof FilterOptionDtoResultItem
+     */
+    attributes?: { [key: string]: object; };
+    /**
+     * 
+     * @type {FulfillmentAPIAuditInfo}
+     * @memberof FilterOptionDtoResultItem
+     */
+    auditInfo?: FulfillmentAPIAuditInfo;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FilterOptionDtoResultItem
+     */
+    autoSubstitution?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof FilterOptionDtoResultItem
+     */
+    backorderReleaseDate?: string;
+    /**
+     * 
+     * @type {FulfillmentAPIBundleInfo}
+     * @memberof FilterOptionDtoResultItem
+     */
+    bundleInfo?: FulfillmentAPIBundleInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof FilterOptionDtoResultItem
+     */
+    cartItemId?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof FilterOptionDtoResultItem
+     */
+    childItemIds?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof FilterOptionDtoResultItem
+     */
+    condition?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FilterOptionDtoResultItem
+     */
+    creditCurrencyCode?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    creditValue?: number;
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof FilterOptionDtoResultItem
+     */
+    data?: { [key: string]: object; };
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    duty?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FilterOptionDtoResultItem
+     */
+    expectedDeliveryDate?: string;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIFulfillmentField>}
+     * @memberof FilterOptionDtoResultItem
+     */
+    fulfillmentFields?: Array<FulfillmentAPIFulfillmentField>;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIGiftCard>}
+     * @memberof FilterOptionDtoResultItem
+     */
+    giftCards?: Array<FulfillmentAPIGiftCard>;
+    /**
+     * 
+     * @type {string}
+     * @memberof FilterOptionDtoResultItem
+     */
+    giftMessage?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FilterOptionDtoResultItem
+     */
+    goodsType?: FilterOptionDtoResultItemGoodsTypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    handling?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    handlingDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    handlingTax?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    height?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FilterOptionDtoResultItem
+     */
+    imageUrl?: string;
+    /**
+     * 
+     * @type {Array<InventoryAllocation>}
+     * @memberof FilterOptionDtoResultItem
+     */
+    inventoryAllocations?: Array<InventoryAllocation>;
+    /**
+     * 
+     * @type {Array<InventoryTag>}
+     * @memberof FilterOptionDtoResultItem
+     */
+    inventoryTags?: Array<InventoryTag>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FilterOptionDtoResultItem
+     */
+    isAssemblyRequired?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FilterOptionDtoResultItem
+     */
+    isGift?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FilterOptionDtoResultItem
+     */
+    isPackagedStandAlone?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FilterOptionDtoResultItem
+     */
+    isReservedInventory?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FilterOptionDtoResultItem
+     */
+    isTaxable?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    itemDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    itemTax?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    length?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    lineId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    lineItemAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    lineItemCost?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FilterOptionDtoResultItem
+     */
+    locatorName?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FilterOptionDtoResultItem
+     */
+    manageStock?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof FilterOptionDtoResultItem
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FilterOptionDtoResultItem
+     */
+    optionAttributeFQN?: string;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIProductOption>}
+     * @memberof FilterOptionDtoResultItem
+     */
+    options?: Array<FulfillmentAPIProductOption>;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    originalLineId?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FilterOptionDtoResultItem
+     */
+    originalOrderItemId?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    originalQuantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    overridePrice?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FilterOptionDtoResultItem
+     */
+    parentItemId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FilterOptionDtoResultItem
+     */
+    partNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FilterOptionDtoResultItem
+     */
+    priceMode?: FilterOptionDtoResultItemPriceModeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof FilterOptionDtoResultItem
+     */
+    productCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FilterOptionDtoResultItem
+     */
+    purchaseLocation?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    quantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    readyForPickupQuantity?: number;
+    /**
+     * 
+     * @type {FulfillmentAPIReturnRuleInfo}
+     * @memberof FilterOptionDtoResultItem
+     */
+    returnRuleInfo?: FulfillmentAPIReturnRuleInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof FilterOptionDtoResultItem
+     */
+    serialNumber?: string;
+    /**
+     * 
+     * @type {Array<ShipmentItemAttribute>}
+     * @memberof FilterOptionDtoResultItem
+     */
+    shipmentItemAttributes?: Array<ShipmentItemAttribute>;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    shipping?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    shippingDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    shippingTax?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FilterOptionDtoResultItem
+     */
+    sku?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FilterOptionDtoResultItem
+     */
+    stockValidationStatus?: string;
+    /**
+     * 
+     * @type {FulfillmentAPISubstituteInfo}
+     * @memberof FilterOptionDtoResultItem
+     */
+    substituteInfo?: FulfillmentAPISubstituteInfo;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    substituteQuantity?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FilterOptionDtoResultItem
+     */
+    substitutionType?: FilterOptionDtoResultItemSubstitutionTypeEnum;
+    /**
+     * 
+     * @type {object}
+     * @memberof FilterOptionDtoResultItem
+     */
+    taxData?: object;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    taxableHandling?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    taxableLineItemCost?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    taxableShipping?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    timeFenceDays?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    transferQuantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    trueTransferQuantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    unitPrice?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FilterOptionDtoResultItem
+     */
+    upc?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    validatedQuantity?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FilterOptionDtoResultItem
+     */
+    variationProductCode?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    weight?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FilterOptionDtoResultItem
+     */
+    weightUnit?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    weightedDutyAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    weightedHandlingAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    weightedHandlingTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    weightedLineItemTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    weightedOrderHandlingFee?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    weightedOrderHandlingFeeDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    weightedOrderHandlingFeeTax?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    weightedShipmentAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    weightedShippingAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    weightedShippingTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionDtoResultItem
+     */
+    width?: number;
+}
+
+
+/**
+ * @export
+ */
+export const FilterOptionDtoResultItemGoodsTypeEnum = {
+    Physical: 'Physical',
+    Digital: 'Digital',
+    DigitalCredit: 'DigitalCredit',
+    DigitalGiftCard: 'DigitalGiftCard',
+    Service: 'Service'
+} as const;
+export type FilterOptionDtoResultItemGoodsTypeEnum = typeof FilterOptionDtoResultItemGoodsTypeEnum[keyof typeof FilterOptionDtoResultItemGoodsTypeEnum];
+
+/**
+ * @export
+ */
+export const FilterOptionDtoResultItemPriceModeEnum = {
+    Internal: 'Internal',
+    External: 'External'
+} as const;
+export type FilterOptionDtoResultItemPriceModeEnum = typeof FilterOptionDtoResultItemPriceModeEnum[keyof typeof FilterOptionDtoResultItemPriceModeEnum];
+
+/**
+ * @export
+ */
+export const FilterOptionDtoResultItemSubstitutionTypeEnum = {
+    PreFulfillment: 'PRE_FULFILLMENT',
+    AtFulfillment: 'AT_FULFILLMENT'
+} as const;
+export type FilterOptionDtoResultItemSubstitutionTypeEnum = typeof FilterOptionDtoResultItemSubstitutionTypeEnum[keyof typeof FilterOptionDtoResultItemSubstitutionTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface FilterOptionOfLocationSummaryDetail
+ */
+export interface FilterOptionOfLocationSummaryDetail {
+    /**
+     * 
+     * @type {Array<LocationSummaryDetail>}
+     * @memberof FilterOptionOfLocationSummaryDetail
+     */
+    items?: Array<LocationSummaryDetail>;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionOfLocationSummaryDetail
+     */
+    pageCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionOfLocationSummaryDetail
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionOfLocationSummaryDetail
+     */
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionOfLocationSummaryDetail
+     */
+    totalCount?: number;
+}
+/**
+ * 
+ * @export
+ * @interface FilterOptionOfResultItem
+ */
+export interface FilterOptionOfResultItem {
+    /**
+     * 
+     * @type {Array<ResultItem>}
+     * @memberof FilterOptionOfResultItem
      */
     items?: Array<ResultItem>;
     /**
      * 
      * @type {number}
-     * @memberof FilterOptionDtoResultItem
-     */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof FilterOptionDtoResultItem
-     */
-    pageSize?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof FilterOptionDtoResultItem
+     * @memberof FilterOptionOfResultItem
      */
     pageCount?: number;
     /**
      * 
      * @type {number}
-     * @memberof FilterOptionDtoResultItem
+     * @memberof FilterOptionOfResultItem
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionOfResultItem
+     */
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionOfResultItem
      */
     totalCount?: number;
 }
 /**
  * 
  * @export
- * @interface FilterOptionDtoShipmentTypeSummaryDto
+ * @interface FilterOptionOfShipmentTypeSummary
  */
-export interface FilterOptionDtoShipmentTypeSummaryDto {
+export interface FilterOptionOfShipmentTypeSummary {
     /**
      * 
-     * @type {Array<ShipmentTypeSummaryDto>}
-     * @memberof FilterOptionDtoShipmentTypeSummaryDto
+     * @type {Array<ShipmentTypeSummary>}
+     * @memberof FilterOptionOfShipmentTypeSummary
      */
-    items?: Array<ShipmentTypeSummaryDto>;
+    items?: Array<ShipmentTypeSummary>;
     /**
      * 
      * @type {number}
-     * @memberof FilterOptionDtoShipmentTypeSummaryDto
-     */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof FilterOptionDtoShipmentTypeSummaryDto
-     */
-    pageSize?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof FilterOptionDtoShipmentTypeSummaryDto
+     * @memberof FilterOptionOfShipmentTypeSummary
      */
     pageCount?: number;
     /**
      * 
      * @type {number}
-     * @memberof FilterOptionDtoShipmentTypeSummaryDto
+     * @memberof FilterOptionOfShipmentTypeSummary
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionOfShipmentTypeSummary
+     */
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionOfShipmentTypeSummary
      */
     totalCount?: number;
 }
 /**
  * 
  * @export
- * @interface FilterOptionDtoSlaSummaryDto
+ * @interface FilterOptionOfSlaSummaryDto
  */
-export interface FilterOptionDtoSlaSummaryDto {
+export interface FilterOptionOfSlaSummaryDto {
     /**
      * 
      * @type {Array<SlaSummaryDto>}
-     * @memberof FilterOptionDtoSlaSummaryDto
+     * @memberof FilterOptionOfSlaSummaryDto
      */
     items?: Array<SlaSummaryDto>;
     /**
      * 
      * @type {number}
-     * @memberof FilterOptionDtoSlaSummaryDto
-     */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof FilterOptionDtoSlaSummaryDto
-     */
-    pageSize?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof FilterOptionDtoSlaSummaryDto
+     * @memberof FilterOptionOfSlaSummaryDto
      */
     pageCount?: number;
     /**
      * 
      * @type {number}
-     * @memberof FilterOptionDtoSlaSummaryDto
+     * @memberof FilterOptionOfSlaSummaryDto
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionOfSlaSummaryDto
+     */
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilterOptionOfSlaSummaryDto
      */
     totalCount?: number;
 }
 /**
  * 
  * @export
- * @interface FilterOptionsDto
+ * @interface FilterOptions
  */
-export interface FilterOptionsDto {
+export interface FilterOptions {
     /**
      * 
-     * @type {FilterOptionDtoLocationSummaryDetailDto}
-     * @memberof FilterOptionsDto
+     * @type {FilterOptionOfLocationSummaryDetail}
+     * @memberof FilterOptions
      */
-    locations?: FilterOptionDtoLocationSummaryDetailDto;
+    locations?: FilterOptionOfLocationSummaryDetail;
     /**
      * 
-     * @type {FilterOptionDtoShipmentTypeSummaryDto}
-     * @memberof FilterOptionsDto
+     * @type {FilterOptionOfShipmentTypeSummary}
+     * @memberof FilterOptions
      */
-    shipmentTypes?: FilterOptionDtoShipmentTypeSummaryDto;
+    shipmentTypes?: FilterOptionOfShipmentTypeSummary;
     /**
      * 
-     * @type {FilterOptionDtoResultItem}
-     * @memberof FilterOptionsDto
+     * @type {FilterOptionOfResultItem}
+     * @memberof FilterOptions
      */
-    workflowTasks?: FilterOptionDtoResultItem;
+    slaComplianceLevels?: FilterOptionOfResultItem;
     /**
      * 
-     * @type {FilterOptionDtoSlaSummaryDto}
-     * @memberof FilterOptionsDto
+     * @type {FilterOptionOfSlaSummaryDto}
+     * @memberof FilterOptions
      */
-    slas?: FilterOptionDtoSlaSummaryDto;
+    slas?: FilterOptionOfSlaSummaryDto;
     /**
      * 
-     * @type {FilterOptionDtoResultItem}
-     * @memberof FilterOptionsDto
+     * @type {FilterOptionOfResultItem}
+     * @memberof FilterOptions
      */
-    slaComplianceLevels?: FilterOptionDtoResultItem;
+    workflowTasks?: FilterOptionOfResultItem;
 }
 /**
  * 
  * @export
- * @interface FilteredShipmentsDto
+ * @interface FilteredShipments
  */
-export interface FilteredShipmentsDto {
+export interface FilteredShipments {
     /**
      * 
-     * @type {Array<ShipmentDto>}
-     * @memberof FilteredShipmentsDto
+     * @type {Array<FulfillmentAPIShipment>}
+     * @memberof FilteredShipments
      */
-    items?: Array<ShipmentDto>;
+    items?: Array<FulfillmentAPIShipment>;
     /**
      * 
      * @type {number}
-     * @memberof FilteredShipmentsDto
-     */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof FilteredShipmentsDto
-     */
-    pageSize?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof FilteredShipmentsDto
+     * @memberof FilteredShipments
      */
     pageCount?: number;
     /**
      * 
      * @type {number}
-     * @memberof FilteredShipmentsDto
+     * @memberof FilteredShipments
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilteredShipments
+     */
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FilteredShipments
      */
     totalCount?: number;
 }
 /**
  * 
  * @export
- * @interface FulfillmentAuditInfo
+ * @interface FulfillmentAPIAddress
  */
-export interface FulfillmentAuditInfo {
+export interface FulfillmentAPIAddress {
     /**
      * 
      * @type {string}
-     * @memberof FulfillmentAuditInfo
+     * @memberof FulfillmentAPIAddress
      */
-    updateDate?: string;
+    address1?: string;
     /**
      * 
      * @type {string}
-     * @memberof FulfillmentAuditInfo
+     * @memberof FulfillmentAPIAddress
+     */
+    address2?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAddress
+     */
+    address3?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAddress
+     */
+    address4?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAddress
+     */
+    addressType?: FulfillmentAPIAddressAddressTypeEnum;
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof FulfillmentAPIAddress
+     */
+    attributes?: { [key: string]: object; };
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAddress
+     */
+    cityOrTown?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAddress
+     */
+    countryCode?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPIAddress
+     */
+    isValidated?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAddress
+     */
+    latitude?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAddress
+     */
+    longitude?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAddress
+     */
+    postalOrZipCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAddress
+     */
+    stateOrProvince?: string;
+}
+
+
+/**
+ * @export
+ */
+export const FulfillmentAPIAddressAddressTypeEnum = {
+    Commercial: 'Commercial',
+    Residential: 'Residential'
+} as const;
+export type FulfillmentAPIAddressAddressTypeEnum = typeof FulfillmentAPIAddressAddressTypeEnum[keyof typeof FulfillmentAPIAddressAddressTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPIAppeasementReason
+ */
+export interface FulfillmentAPIAppeasementReason {
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAppeasementReason
+     */
+    moreInfo?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAppeasementReason
+     */
+    reasonCode?: string;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPIAttribute
+ */
+export interface FulfillmentAPIAttribute {
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAttribute
+     */
+    adminName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAttribute
+     */
+    attributeCode: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAttribute
+     */
+    attributeFQN?: string;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIAttributeMetadataItem>}
+     * @memberof FulfillmentAPIAttribute
+     */
+    attributeMetadata?: Array<FulfillmentAPIAttributeMetadataItem>;
+    /**
+     * 
+     * @type {FulfillmentAPICoreApiContractsAuditInfo}
+     * @memberof FulfillmentAPIAttribute
+     */
+    auditInfo?: FulfillmentAPICoreApiContractsAuditInfo;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPIAttribute
+     */
+    availableForDiscounts?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPIAttribute
+     */
+    availableForOrderRouting?: boolean;
+    /**
+     * 
+     * @type {FulfillmentAPIAttributeLocalizedContent}
+     * @memberof FulfillmentAPIAttribute
+     */
+    content?: FulfillmentAPIAttributeLocalizedContent;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAttribute
+     */
+    dataType?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAttribute
+     */
+    displayGroup: string;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIAttributeEntityConfig>}
+     * @memberof FulfillmentAPIAttribute
+     */
+    entityConfigs?: Array<FulfillmentAPIAttributeEntityConfig>;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIAttribute
+     */
+    id?: number;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIAttributeInheritanceRule>}
+     * @memberof FulfillmentAPIAttribute
+     */
+    inheritanceRules?: Array<FulfillmentAPIAttributeInheritanceRule>;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAttribute
+     */
+    inputType?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPIAttribute
+     */
+    isActive?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPIAttribute
+     */
+    isMultiValued?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPIAttribute
+     */
+    isReadOnly?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPIAttribute
+     */
+    isRequired?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPIAttribute
+     */
+    isVisible?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAttribute
+     */
+    namespace?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIAttribute
+     */
+    order?: number;
+    /**
+     * 
+     * @type {FulfillmentAPIAttributeValidation}
+     * @memberof FulfillmentAPIAttribute
+     */
+    validation?: FulfillmentAPIAttributeValidation;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAttribute
+     */
+    valueType: string;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIAttributeVocabularyValue>}
+     * @memberof FulfillmentAPIAttribute
+     */
+    vocabularyValues?: Array<FulfillmentAPIAttributeVocabularyValue>;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPIAttributeCollection
+ */
+export interface FulfillmentAPIAttributeCollection {
+    /**
+     * 
+     * @type {Array<FulfillmentAPIAttribute>}
+     * @memberof FulfillmentAPIAttributeCollection
+     */
+    items?: Array<FulfillmentAPIAttribute>;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIAttributeCollection
+     */
+    pageCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIAttributeCollection
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIAttributeCollection
+     */
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIAttributeCollection
+     */
+    totalCount?: number;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPIAttributeEntityConfig
+ */
+export interface FulfillmentAPIAttributeEntityConfig {
+    /**
+     * 
+     * @type {FulfillmentAPICoreAuditInfo}
+     * @memberof FulfillmentAPIAttributeEntityConfig
+     */
+    auditInfo?: FulfillmentAPICoreAuditInfo;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPIAttributeEntityConfig
+     */
+    editable?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAttributeEntityConfig
+     */
+    entityType?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIAttributeEntityConfig
+     */
+    id?: number;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPIAttributeInheritanceRule
+ */
+export interface FulfillmentAPIAttributeInheritanceRule {
+    /**
+     * 
+     * @type {FulfillmentAPICoreAuditInfo}
+     * @memberof FulfillmentAPIAttributeInheritanceRule
+     */
+    auditInfo?: FulfillmentAPICoreAuditInfo;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIAttributeInheritanceRule
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAttributeInheritanceRule
+     */
+    inheritanceMode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAttributeInheritanceRule
+     */
+    sourceEntityType?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAttributeInheritanceRule
+     */
+    targetEntityType?: string;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPIAttributeLocalizedContent
+ */
+export interface FulfillmentAPIAttributeLocalizedContent {
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAttributeLocalizedContent
+     */
+    localeCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAttributeLocalizedContent
+     */
+    value?: string;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPIAttributeMetadataItem
+ */
+export interface FulfillmentAPIAttributeMetadataItem {
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAttributeMetadataItem
+     */
+    key: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAttributeMetadataItem
+     */
+    value: string;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPIAttributeValidation
+ */
+export interface FulfillmentAPIAttributeValidation {
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAttributeValidation
+     */
+    maxDateTime?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIAttributeValidation
+     */
+    maxNumericValue?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIAttributeValidation
+     */
+    maxStringLength?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAttributeValidation
+     */
+    minDateTime?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIAttributeValidation
+     */
+    minNumericValue?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIAttributeValidation
+     */
+    minStringLength?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAttributeValidation
+     */
+    regularExpression?: string;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPIAttributeValueLocalizedContent
+ */
+export interface FulfillmentAPIAttributeValueLocalizedContent {
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAttributeValueLocalizedContent
+     */
+    localeCode: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAttributeValueLocalizedContent
+     */
+    value: string;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPIAttributeVocabularyValue
+ */
+export interface FulfillmentAPIAttributeVocabularyValue {
+    /**
+     * 
+     * @type {FulfillmentAPIAttributeValueLocalizedContent}
+     * @memberof FulfillmentAPIAttributeVocabularyValue
+     */
+    content?: FulfillmentAPIAttributeValueLocalizedContent;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPIAttributeVocabularyValue
+     */
+    isHidden?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIAttributeVocabularyValue
+     */
+    sequence?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAttributeVocabularyValue
+     */
+    value: string;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPIAuditInfo
+ */
+export interface FulfillmentAPIAuditInfo {
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAuditInfo
+     */
+    createBy?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIAuditInfo
      */
     createDate?: string;
     /**
      * 
      * @type {string}
-     * @memberof FulfillmentAuditInfo
+     * @memberof FulfillmentAPIAuditInfo
      */
     updateBy?: string;
     /**
      * 
      * @type {string}
-     * @memberof FulfillmentAuditInfo
+     * @memberof FulfillmentAPIAuditInfo
      */
-    createBy?: string;
+    updateDate?: string;
 }
 /**
  * 
  * @export
- * @interface FulfillmentFieldDto
+ * @interface FulfillmentAPIBundleInfo
  */
-export interface FulfillmentFieldDto {
+export interface FulfillmentAPIBundleInfo {
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof FulfillmentAPIBundleInfo
+     */
+    attributes?: { [key: string]: object; };
     /**
      * 
      * @type {string}
-     * @memberof FulfillmentFieldDto
+     * @memberof FulfillmentAPIBundleInfo
+     */
+    imageUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIBundleInfo
      */
     name?: string;
     /**
      * 
-     * @type {object}
-     * @memberof FulfillmentFieldDto
+     * @type {string}
+     * @memberof FulfillmentAPIBundleInfo
      */
-    userEnteredValue?: object;
+    productCode?: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof FulfillmentFieldDto
+     * @type {number}
+     * @memberof FulfillmentAPIBundleInfo
      */
-    required?: boolean;
+    quantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIBundleInfo
+     */
+    unitPrice?: number;
 }
 /**
  * 
  * @export
- * @interface FulfillmentLink
+ * @interface FulfillmentAPIBundledProduct
  */
-export interface FulfillmentLink {
+export interface FulfillmentAPIBundledProduct {
     /**
      * 
-     * @type {string}
-     * @memberof FulfillmentLink
+     * @type {number}
+     * @memberof FulfillmentAPIBundledProduct
      */
-    href?: string;
+    availableInventory?: number;
     /**
      * 
      * @type {string}
-     * @memberof FulfillmentLink
+     * @memberof FulfillmentAPIBundledProduct
      */
-    hreflang?: string;
+    imageUrl?: string;
     /**
      * 
      * @type {string}
-     * @memberof FulfillmentLink
+     * @memberof FulfillmentAPIBundledProduct
      */
-    title?: string;
+    name?: string;
     /**
      * 
      * @type {string}
-     * @memberof FulfillmentLink
+     * @memberof FulfillmentAPIBundledProduct
      */
-    type?: string;
+    productCode?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIBundledProduct
+     */
+    quantity?: number;
     /**
      * 
      * @type {string}
-     * @memberof FulfillmentLink
+     * @memberof FulfillmentAPIBundledProduct
+     */
+    variationProductCode?: string;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPICanceledReason
+ */
+export interface FulfillmentAPICanceledReason {
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPICanceledReason
+     */
+    moreInfo?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPICanceledReason
+     */
+    reasonCode?: string;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPIChangeMessage
+ */
+export interface FulfillmentAPIChangeMessage {
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIChangeMessage
+     */
+    amount?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIChangeMessage
+     */
+    appId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIChangeMessage
+     */
+    appKey?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIChangeMessage
+     */
+    appName?: string;
+    /**
+     * 
+     * @type {FulfillmentAPIAppeasementReason}
+     * @memberof FulfillmentAPIChangeMessage
+     */
+    appeasementReason?: FulfillmentAPIAppeasementReason;
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof FulfillmentAPIChangeMessage
+     */
+    attributes?: { [key: string]: object; };
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIChangeMessage
+     */
+    changeMessageId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIChangeMessage
+     */
+    correlationId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIChangeMessage
+     */
+    createdDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIChangeMessage
+     */
+    identifier?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIChangeMessage
+     */
+    message?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIChangeMessage
+     */
+    metadata?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIChangeMessage
+     */
+    newValue?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIChangeMessage
+     */
+    oldValue?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIChangeMessage
+     */
+    subject?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIChangeMessage
+     */
+    subjectType?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPIChangeMessage
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIChangeMessage
+     */
+    userDisplayName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIChangeMessage
+     */
+    userFirstName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIChangeMessage
+     */
+    userId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIChangeMessage
+     */
+    userLastName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIChangeMessage
+     */
+    verb?: string;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPIContact
+ */
+export interface FulfillmentAPIContact {
+    /**
+     * 
+     * @type {FulfillmentAPIAddress}
+     * @memberof FulfillmentAPIContact
+     */
+    address?: FulfillmentAPIAddress;
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof FulfillmentAPIContact
+     */
+    attributes?: { [key: string]: object; };
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIContact
+     */
+    companyOrOrganization?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIContact
+     */
+    email?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIContact
+     */
+    firstName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIContact
+     */
+    fullName?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIContact
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIContact
+     */
+    lastNameOrSurname?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIContact
+     */
+    middleNameOrInitial?: string;
+    /**
+     * 
+     * @type {FulfillmentAPIPhone}
+     * @memberof FulfillmentAPIContact
+     */
+    phoneNumbers?: FulfillmentAPIPhone;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIContact
+     */
+    shortFullName?: string;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPICoreApiContractsAuditInfo
+ */
+export interface FulfillmentAPICoreApiContractsAuditInfo {
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPICoreApiContractsAuditInfo
+     */
+    createBy?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPICoreApiContractsAuditInfo
+     */
+    createDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPICoreApiContractsAuditInfo
+     */
+    updateBy?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPICoreApiContractsAuditInfo
+     */
+    updateDate?: string;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPICoreAuditInfo
+ */
+export interface FulfillmentAPICoreAuditInfo {
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPICoreAuditInfo
+     */
+    createBy?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPICoreAuditInfo
+     */
+    createDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPICoreAuditInfo
+     */
+    updateBy?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPICoreAuditInfo
+     */
+    updateDate?: string;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPICustomer
+ */
+export interface FulfillmentAPICustomer {
+    /**
+     * 
+     * @type {FulfillmentAPIContact}
+     * @memberof FulfillmentAPICustomer
+     */
+    customerContact?: FulfillmentAPIContact;
+    /**
+     * 
+     * @type {object}
+     * @memberof FulfillmentAPICustomer
+     */
+    data?: object;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPICustomer
+     */
+    isDestinationCommercial?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPIDeliveryWindow
+ */
+export interface FulfillmentAPIDeliveryWindow {
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIDeliveryWindow
+     */
+    endTime?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIDeliveryWindow
+     */
+    startTime?: string;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPIDestination
+ */
+export interface FulfillmentAPIDestination {
+    /**
+     * 
+     * @type {object}
+     * @memberof FulfillmentAPIDestination
+     */
+    data?: object;
+    /**
+     * 
+     * @type {FulfillmentAPIContact}
+     * @memberof FulfillmentAPIDestination
+     */
+    destinationContact?: FulfillmentAPIContact;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPIDestination
+     */
+    isDestinationCommercial?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIDestination
+     */
+    locationCode?: string;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPIFulfillmentField
+ */
+export interface FulfillmentAPIFulfillmentField {
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIFulfillmentField
+     */
+    name?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPIFulfillmentField
+     */
+    required?: boolean;
+    /**
+     * 
+     * @type {object}
+     * @memberof FulfillmentAPIFulfillmentField
+     */
+    userEnteredValue?: object;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPIGiftCard
+ */
+export interface FulfillmentAPIGiftCard {
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIGiftCard
+     */
+    activationDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIGiftCard
+     */
+    cardNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIGiftCard
+     */
+    code?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIGiftCard
+     */
+    creditType?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIGiftCard
+     */
+    creditValue?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIGiftCard
+     */
+    currencyCode?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIGiftCard
+     */
+    currentBalance?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIGiftCard
+     */
+    customerId?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIGiftCard
+     */
+    expirationDate?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIGiftCard
+     */
+    initialBalance?: number;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPILink
+ */
+export interface FulfillmentAPILink {
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPILink
      */
     deprecation?: string;
     /**
      * 
      * @type {string}
-     * @memberof FulfillmentLink
+     * @memberof FulfillmentAPILink
      */
-    profile?: string;
+    href?: string;
     /**
      * 
      * @type {string}
-     * @memberof FulfillmentLink
+     * @memberof FulfillmentAPILink
+     */
+    hreflang?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPILink
+     */
+    media?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPILink
      */
     name?: string;
     /**
      * 
+     * @type {string}
+     * @memberof FulfillmentAPILink
+     */
+    profile?: string;
+    /**
+     * 
+     * @type {object}
+     * @memberof FulfillmentAPILink
+     */
+    rel?: object;
+    /**
+     * 
+     * @type {UriTemplate}
+     * @memberof FulfillmentAPILink
+     */
+    template?: UriTemplate;
+    /**
+     * 
      * @type {boolean}
-     * @memberof FulfillmentLink
+     * @memberof FulfillmentAPILink
      */
     templated?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPILink
+     */
+    title?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPILink
+     */
+    type?: string;
 }
 /**
  * 
  * @export
- * @interface FulfillmentMeasurement
+ * @interface FulfillmentAPIMeasurement
  */
-export interface FulfillmentMeasurement {
+export interface FulfillmentAPIMeasurement {
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof FulfillmentAPIMeasurement
+     */
+    attributes?: { [key: string]: object; };
     /**
      * 
      * @type {string}
-     * @memberof FulfillmentMeasurement
+     * @memberof FulfillmentAPIMeasurement
      */
     unit?: string;
     /**
      * 
      * @type {number}
-     * @memberof FulfillmentMeasurement
+     * @memberof FulfillmentAPIMeasurement
      */
     value?: number;
 }
 /**
  * 
  * @export
- * @interface FulfillmentPackage
+ * @interface FulfillmentAPIPackage
  */
-export interface FulfillmentPackage {
+export interface FulfillmentAPIPackage {
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof FulfillmentAPIPackage
+     */
+    attributes?: { [key: string]: object; };
+    /**
+     * 
+     * @type {FulfillmentAPIAuditInfo}
+     * @memberof FulfillmentAPIPackage
+     */
+    auditInfo?: FulfillmentAPIAuditInfo;
     /**
      * 
      * @type {string}
-     * @memberof FulfillmentPackage
-     */
-    packageId?: string;
-    /**
-     * 
-     * @type {FulfillmentPackageMeasurements}
-     * @memberof FulfillmentPackage
-     */
-    measurements?: FulfillmentPackageMeasurements;
-    /**
-     * 
-     * @type {string}
-     * @memberof FulfillmentPackage
+     * @memberof FulfillmentAPIPackage
      */
     carrier?: string;
     /**
      * 
      * @type {string}
-     * @memberof FulfillmentPackage
+     * @memberof FulfillmentAPIPackage
      */
     carrierName?: string;
     /**
      * 
-     * @type {string}
-     * @memberof FulfillmentPackage
+     * @type {CartonizationDto}
+     * @memberof FulfillmentAPIPackage
      */
-    returnCarrier?: string;
+    cartonization?: CartonizationDto;
     /**
-     * 
-     * @type {string}
-     * @memberof FulfillmentPackage
-     */
-    packagingType?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FulfillmentPackage
-     */
-    shippingMethodCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FulfillmentPackage
-     */
-    shippingMethodName?: string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof FulfillmentPackage
-     */
-    trackingNumbers?: Array<string>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof FulfillmentPackage
-     */
-    returnTrackingNumbers?: Array<string>;
-    /**
-     * 
-     * @type {string}
-     * @memberof FulfillmentPackage
-     */
-    stringBarcode?: string;
-    /**
-     * 
+     * Whether every line item's received+substituted quantity matched its expected quantity for this package. Null until received or when not eligible/flag disabled.
      * @type {boolean}
-     * @memberof FulfillmentPackage
+     * @memberof FulfillmentAPIPackage
      */
-    hasLabel?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof FulfillmentPackage
-     */
-    signatureRequired?: boolean;
+    fullyMatched?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof FulfillmentPackage
-     */
-    integratorId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FulfillmentPackage
-     */
-    manifestId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FulfillmentPackage
-     */
-    labelFormat?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FulfillmentPackage
+     * @memberof FulfillmentAPIPackage
      */
     fxcbDocumentsUrl?: string;
     /**
      * 
      * @type {string}
-     * @memberof FulfillmentPackage
+     * @memberof FulfillmentAPIPackage
      */
     fxcbPackNotificationId?: string;
     /**
      * 
-     * @type {number}
-     * @memberof FulfillmentPackage
+     * @type {boolean}
+     * @memberof FulfillmentAPIPackage
      */
-    packingSlipNumber?: number;
-    /**
-     * 
-     * @type {Array<FulfillmentPackingSlipItemDetail>}
-     * @memberof FulfillmentPackage
-     */
-    packingSlipItemDetails?: Array<FulfillmentPackingSlipItemDetail>;
-    /**
-     * 
-     * @type {FulfillmentAuditInfo}
-     * @memberof FulfillmentPackage
-     */
-    auditInfo?: FulfillmentAuditInfo;
+    hasLabel?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof FulfillmentPackage
+     * @memberof FulfillmentAPIPackage
+     */
+    integratorId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIPackage
+     */
+    labelFormat?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIPackage
+     */
+    manifestId?: string;
+    /**
+     * 
+     * @type {FulfillmentAPIPackageMeasurements}
+     * @memberof FulfillmentAPIPackage
+     */
+    measurements?: FulfillmentAPIPackageMeasurements;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIPackage
      */
     packageConsolidationId?: string;
-}
-/**
- * 
- * @export
- * @interface FulfillmentPackageMeasurements
- */
-export interface FulfillmentPackageMeasurements {
     /**
      * 
-     * @type {FulfillmentMeasurement}
-     * @memberof FulfillmentPackageMeasurements
+     * @type {string}
+     * @memberof FulfillmentAPIPackage
      */
-    height?: FulfillmentMeasurement;
+    packageId?: string;
     /**
      * 
-     * @type {FulfillmentMeasurement}
-     * @memberof FulfillmentPackageMeasurements
+     * @type {string}
+     * @memberof FulfillmentAPIPackage
      */
-    length?: FulfillmentMeasurement;
+    packagingType?: string;
     /**
      * 
-     * @type {FulfillmentMeasurement}
-     * @memberof FulfillmentPackageMeasurements
+     * @type {Array<PackingSlipItemDetailDto>}
+     * @memberof FulfillmentAPIPackage
      */
-    width?: FulfillmentMeasurement;
-    /**
-     * 
-     * @type {FulfillmentMeasurement}
-     * @memberof FulfillmentPackageMeasurements
-     */
-    weight?: FulfillmentMeasurement;
-}
-/**
- * 
- * @export
- * @interface FulfillmentPackingSlipItemDetail
- */
-export interface FulfillmentPackingSlipItemDetail {
+    packingSlipItemDetails?: Array<PackingSlipItemDetailDto>;
     /**
      * 
      * @type {number}
-     * @memberof FulfillmentPackingSlipItemDetail
+     * @memberof FulfillmentAPIPackage
+     */
+    packingSlipNumber?: number;
+    /**
+     * Package-level receipt status (NOT_RECEIVED/RECEIVED). Null when not eligible/tenant attribute disabled.
+     * @type {string}
+     * @memberof FulfillmentAPIPackage
+     */
+    receiptStatus?: FulfillmentAPIPackageReceiptStatusEnum;
+    /**
+     * User ID that received this package. Null until received or when not eligible/flag disabled.
+     * @type {string}
+     * @memberof FulfillmentAPIPackage
+     */
+    receivedBy?: string;
+    /**
+     * Timestamp this package was marked received. Null until received or when not eligible/flag disabled.
+     * @type {string}
+     * @memberof FulfillmentAPIPackage
+     */
+    receivedDate?: string;
+    /**
+     * Method used to receive this package (TRACKING_NUMBER_RECEIPT/ITEM_VALIDATION). Null until received or when not eligible/flag disabled.
+     * @type {string}
+     * @memberof FulfillmentAPIPackage
+     */
+    receivingMethod?: FulfillmentAPIPackageReceivingMethodEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIPackage
+     */
+    returnCarrier?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof FulfillmentAPIPackage
+     */
+    returnTrackingNumbers?: Array<string>;
+    /**
+     * 
+     * @type {Array<FulfillmentAPITracking>}
+     * @memberof FulfillmentAPIPackage
+     */
+    returnTrackings?: Array<FulfillmentAPITracking>;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIPackage
+     */
+    shippingMethodCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIPackage
+     */
+    shippingMethodName?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPIPackage
+     */
+    signatureRequired?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIPackage
+     */
+    stringBarcode?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof FulfillmentAPIPackage
+     */
+    trackingNumbers?: Array<string>;
+    /**
+     * 
+     * @type {Array<FulfillmentAPITracking>}
+     * @memberof FulfillmentAPIPackage
+     */
+    trackings?: Array<FulfillmentAPITracking>;
+}
+
+
+/**
+ * @export
+ */
+export const FulfillmentAPIPackageReceiptStatusEnum = {
+    NotReceived: 'NOT_RECEIVED',
+    Received: 'RECEIVED'
+} as const;
+export type FulfillmentAPIPackageReceiptStatusEnum = typeof FulfillmentAPIPackageReceiptStatusEnum[keyof typeof FulfillmentAPIPackageReceiptStatusEnum];
+
+/**
+ * @export
+ */
+export const FulfillmentAPIPackageReceivingMethodEnum = {
+    TrackingNumberReceipt: 'TRACKING_NUMBER_RECEIPT',
+    ItemValidation: 'ITEM_VALIDATION',
+    WholeShipmentReceipt: 'WHOLE_SHIPMENT_RECEIPT'
+} as const;
+export type FulfillmentAPIPackageReceivingMethodEnum = typeof FulfillmentAPIPackageReceivingMethodEnum[keyof typeof FulfillmentAPIPackageReceivingMethodEnum];
+
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPIPackageMeasurements
+ */
+export interface FulfillmentAPIPackageMeasurements {
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof FulfillmentAPIPackageMeasurements
+     */
+    attributes?: { [key: string]: object; };
+    /**
+     * 
+     * @type {FulfillmentAPIMeasurement}
+     * @memberof FulfillmentAPIPackageMeasurements
+     */
+    height?: FulfillmentAPIMeasurement;
+    /**
+     * 
+     * @type {FulfillmentAPIMeasurement}
+     * @memberof FulfillmentAPIPackageMeasurements
+     */
+    length?: FulfillmentAPIMeasurement;
+    /**
+     * 
+     * @type {FulfillmentAPIMeasurement}
+     * @memberof FulfillmentAPIPackageMeasurements
+     */
+    weight?: FulfillmentAPIMeasurement;
+    /**
+     * 
+     * @type {FulfillmentAPIMeasurement}
+     * @memberof FulfillmentAPIPackageMeasurements
+     */
+    width?: FulfillmentAPIMeasurement;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPIPhone
+ */
+export interface FulfillmentAPIPhone {
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof FulfillmentAPIPhone
+     */
+    attributes?: { [key: string]: object; };
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIPhone
+     */
+    home?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIPhone
+     */
+    mobile?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIPhone
+     */
+    work?: string;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPIPickupItem
+ */
+export interface FulfillmentAPIPickupItem {
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIPickupItem
      */
     lineId?: number;
     /**
      * 
-     * @type {string}
-     * @memberof FulfillmentPackingSlipItemDetail
-     */
-    originalOrderItemId?: string;
-    /**
-     * 
      * @type {number}
-     * @memberof FulfillmentPackingSlipItemDetail
+     * @memberof FulfillmentAPIPickupItem
      */
     quantity?: number;
 }
 /**
  * 
  * @export
- * @interface FulfillmentProductOption
+ * @interface FulfillmentAPIProductOption
  */
-export interface FulfillmentProductOption {
+export interface FulfillmentAPIProductOption {
     /**
      * 
      * @type {string}
-     * @memberof FulfillmentProductOption
+     * @memberof FulfillmentAPIProductOption
      */
     attributeFQN?: string;
     /**
      * 
-     * @type {string}
-     * @memberof FulfillmentProductOption
+     * @type {{ [key: string]: object; }}
+     * @memberof FulfillmentAPIProductOption
      */
-    name?: string;
+    attributes?: { [key: string]: object; };
     /**
      * 
      * @type {string}
-     * @memberof FulfillmentProductOption
+     * @memberof FulfillmentAPIProductOption
      */
     dataType?: string;
     /**
      * 
      * @type {string}
-     * @memberof FulfillmentProductOption
+     * @memberof FulfillmentAPIProductOption
+     */
+    name?: string;
+    /**
+     * 
+     * @type {object}
+     * @memberof FulfillmentAPIProductOption
+     */
+    shopperEnteredValue?: object;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIProductOption
      */
     stringValue?: string;
     /**
      * 
      * @type {object}
-     * @memberof FulfillmentProductOption
+     * @memberof FulfillmentAPIProductOption
      */
     value?: object;
-    /**
-     * 
-     * @type {object}
-     * @memberof FulfillmentProductOption
-     */
-    shopperEnteredValue?: object;
 }
 /**
  * 
  * @export
- * @interface FulfillmentShipmentStatusReason
+ * @interface FulfillmentAPIReturnRuleInfo
  */
-export interface FulfillmentShipmentStatusReason {
+export interface FulfillmentAPIReturnRuleInfo {
     /**
      * 
-     * @type {string}
-     * @memberof FulfillmentShipmentStatusReason
+     * @type {{ [key: string]: object; }}
+     * @memberof FulfillmentAPIReturnRuleInfo
      */
-    reasonCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof FulfillmentShipmentStatusReason
-     */
-    moreInfo?: string;
-}
-/**
- * 
- * @export
- * @interface FutureItemDto
- */
-export interface FutureItemDto {
-    /**
-     * 
-     * @type {number}
-     * @memberof FutureItemDto
-     */
-    lineId: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof FutureItemDto
-     */
-    quantity: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof FutureItemDto
-     */
-    futureDate: string;
-}
-/**
- * 
- * @export
- * @interface FutureItemsRequestDto
- */
-export interface FutureItemsRequestDto {
+    attributes?: { [key: string]: object; };
     /**
      * 
      * @type {boolean}
-     * @memberof FutureItemsRequestDto
+     * @memberof FulfillmentAPIReturnRuleInfo
      */
-    isUserAction?: boolean;
+    isReturnable?: boolean;
     /**
      * 
-     * @type {Array<FutureItemDto>}
-     * @memberof FutureItemsRequestDto
+     * @type {number}
+     * @memberof FulfillmentAPIReturnRuleInfo
      */
-    items: Array<FutureItemDto>;
+    maxDays?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIReturnRuleInfo
+     */
+    maxQty?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIReturnRuleInfo
+     */
+    ruleCode?: string;
 }
 /**
  * 
  * @export
- * @interface FutureShipmentUpdateDateRequestDto
+ * @interface FulfillmentAPIShipment
  */
-export interface FutureShipmentUpdateDateRequestDto {
+export interface FulfillmentAPIShipment {
     /**
      * 
      * @type {string}
-     * @memberof FutureShipmentUpdateDateRequestDto
+     * @memberof FulfillmentAPIShipment
      */
-    futureDate: string;
+    acceptedDate?: string;
+    /**
+     * 
+     * @type {FulfillmentAPIContact}
+     * @memberof FulfillmentAPIShipment
+     */
+    alternateContact?: FulfillmentAPIContact;
+    /**
+     * 
+     * @type {FulfillmentAPIAppeasementReason}
+     * @memberof FulfillmentAPIShipment
+     */
+    appeasementReason?: FulfillmentAPIAppeasementReason;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    assignedLocationCode?: string;
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof FulfillmentAPIShipment
+     */
+    attributes?: { [key: string]: object; };
+    /**
+     * 
+     * @type {FulfillmentAPIAuditInfo}
+     * @memberof FulfillmentAPIShipment
+     */
+    auditInfo?: FulfillmentAPIAuditInfo;
+    /**
+     * 
+     * @type {Array<CanceledItem>}
+     * @memberof FulfillmentAPIShipment
+     */
+    canceledItems?: Array<CanceledItem>;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    carrier?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    cartId?: string;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIChangeMessage>}
+     * @memberof FulfillmentAPIShipment
+     */
+    changeMessages?: Array<FulfillmentAPIChangeMessage>;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    channel?: string;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof FulfillmentAPIShipment
+     */
+    childShipmentNumbers?: Array<number>;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    currencyCode?: string;
+    /**
+     * Run currently mutating this shipment (== Kibo.Jobs jobId); null when idle (FR-059d)
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    currentRunId?: string;
+    /**
+     * 
+     * @type {FulfillmentAPICustomer}
+     * @memberof FulfillmentAPIShipment
+     */
+    customer?: FulfillmentAPICustomer;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    customerAccountId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    customerAddressId?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    customerTaxId?: string;
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof FulfillmentAPIShipment
+     */
+    data?: { [key: string]: object; };
+    /**
+     * 
+     * @type {FulfillmentAPIDeliveryWindow}
+     * @memberof FulfillmentAPIShipment
+     */
+    deliveryWindow?: FulfillmentAPIDeliveryWindow;
+    /**
+     * 
+     * @type {FulfillmentAPIDestination}
+     * @memberof FulfillmentAPIShipment
+     */
+    destination?: FulfillmentAPIDestination;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    dutyAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    dutyTotal?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    email?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    expectedDeliveryDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    externalOrderId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    fulfillmentDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    fulfillmentLocationCode?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    fulfillmentPriority?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    fulfillmentStatus?: FulfillmentAPIShipmentFulfillmentStatusEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    futureDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    groupId?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    handlingAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    handlingSubtotal?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    handlingTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    handlingTaxTotal?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    handlingTotal?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    holdReleaseDate?: string;
     /**
      * 
      * @type {boolean}
-     * @memberof FutureShipmentUpdateDateRequestDto
+     * @memberof FulfillmentAPIShipment
      */
-    bypassFutureAllocateDeallocate?: boolean;
-}
-/**
- * 
- * @export
- * @interface GetPickWaveRequest
- */
-export interface GetPickWaveRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof GetPickWaveRequest
-     */
-    sortContents?: string;
-}
-/**
- * 
- * @export
- * @interface GetProcessesRequest
- */
-export interface GetProcessesRequest {
-    /**
-     * 
-     * @type {number}
-     * @memberof GetProcessesRequest
-     */
-    page?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof GetProcessesRequest
-     */
-    pageSize?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetProcessesRequest
-     */
-    sort?: string;
-}
-/**
- * 
- * @export
- * @interface GetShipmentsAggregationRequest
- */
-export interface GetShipmentsAggregationRequest {
-    /**
-     * 
-     * @type {number}
-     * @memberof GetShipmentsAggregationRequest
-     */
-    page?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof GetShipmentsAggregationRequest
-     */
-    pageSize?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetShipmentsAggregationRequest
-     */
-    sort?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetShipmentsAggregationRequest
-     */
-    filter?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetShipmentsAggregationRequest
-     */
-    quickSearch?: string;
+    isAutoAssigned?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof GetShipmentsAggregationRequest
+     * @memberof FulfillmentAPIShipment
      */
-    isLate?: boolean;
+    isCrossDockEligible?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof GetShipmentsAggregationRequest
+     * @memberof FulfillmentAPIShipment
+     */
+    isDropship?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPIShipment
      */
     isExpress?: boolean;
     /**
      * 
-     * @type {string}
-     * @memberof GetShipmentsAggregationRequest
+     * @type {boolean}
+     * @memberof FulfillmentAPIShipment
      */
-    workflowTaskName?: string;
+    isFlatRateShipping?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof GetShipmentsAggregationRequest
+     * @memberof FulfillmentAPIShipment
      */
-    bypassSearchIndex?: boolean;
+    isHistoricalImport?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPIShipment
+     */
+    isImmutable?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPIShipment
+     */
+    isOptInForSms?: boolean;
+    /**
+     * 
+     * @type {Array<FilterOptionDtoResultItem>}
+     * @memberof FulfillmentAPIShipment
+     */
+    items?: Array<FilterOptionDtoResultItem>;
     /**
      * 
      * @type {string}
-     * @memberof GetShipmentsAggregationRequest
+     * @memberof FulfillmentAPIShipment
      */
-    slaCompliance?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetShipmentsAggregationRequest
-     */
-    locationGroupCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetShipmentsAggregationRequest
-     */
-    timePeriodUnit?: GetShipmentsAggregationRequestTimePeriodUnitEnum;
+    lastCancellationDate?: string;
     /**
      * 
      * @type {number}
-     * @memberof GetShipmentsAggregationRequest
+     * @memberof FulfillmentAPIShipment
      */
-    timePeriodValue?: number;
+    lineItemSubtotal?: number;
     /**
      * 
-     * @type {Set<string>}
-     * @memberof GetShipmentsAggregationRequest
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
      */
-    locations?: Set<string>;
+    lineItemTaxAdjustment?: number;
     /**
      * 
-     * @type {PageDimensions}
-     * @memberof GetShipmentsAggregationRequest
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
      */
-    locationPage?: PageDimensions;
+    lineItemTaxTotal?: number;
     /**
      * 
-     * @type {Array<string>}
-     * @memberof GetShipmentsAggregationRequest
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
      */
-    shipmentTypes?: Array<string>;
+    lineItemTotal?: number;
     /**
      * 
-     * @type {PageDimensions}
-     * @memberof GetShipmentsAggregationRequest
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
      */
-    shipmentTypePage?: PageDimensions;
+    lowestComplianceLevel?: string;
     /**
      * 
-     * @type {Array<string>}
-     * @memberof GetShipmentsAggregationRequest
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
      */
-    workflowTaskNames?: Array<string>;
+    masterTrackingNumber?: string;
     /**
      * 
-     * @type {PageDimensions}
-     * @memberof GetShipmentsAggregationRequest
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
      */
-    workflowTaskPage?: PageDimensions;
+    minutesSinceOnWorkflowStep?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    minutesSinceOrdered?: number;
+    /**
+     * 
+     * @type {MutabilityInfo}
+     * @memberof FulfillmentAPIShipment
+     */
+    mutabilityInfo?: MutabilityInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    orderId?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    orderNumber?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    orderSubmitDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    orderType?: FulfillmentAPIShipmentOrderTypeEnum;
+    /**
+     * First expectedDeliveryDate this shipment ever carried (write-once, never cleared); non-null marks that the shipment has, at some point, had an EDD. Server-managed (FR-060); ignored on inbound writes.
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    originalEdd?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    originalShipmentNumber?: number;
+    /**
+     * FR-014/FR-016 multi-package-receiving eligibility signal. Only present when the MULTI_PACKAGE_RECEIVING_FOR_TRANSFER_SHIPMENTS tenant attribute is enabled and the transfer shipment has at least one package; null otherwise so tenants without the attribute enabled see no shape change (US2-AC2).
+     * @type {boolean}
+     * @memberof FulfillmentAPIShipment
+     */
+    packageReceivingEligible?: boolean;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIPackage>}
+     * @memberof FulfillmentAPIShipment
+     */
+    packages?: Array<FulfillmentAPIPackage>;
+    /**
+     * US4 progress display: packagesTotalCount minus packagesReceivedCount. Null when not eligible/flag disabled.
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    packagesPendingCount?: number;
+    /**
+     * US4 progress display: count of packages with receiptStatus=RECEIVED. Null when not eligible/flag disabled.
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    packagesReceivedCount?: number;
+    /**
+     * US4 progress display: total expected package count. Null when not eligible/flag disabled.
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    packagesTotalCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    parentCheckoutNumber?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    parentShipmentNumber?: number;
+    /**
+     * 
+     * @type {PaymentInvoice}
+     * @memberof FulfillmentAPIShipment
+     */
+    paymentInvoice?: PaymentInvoice;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    pickStatus?: FulfillmentAPIShipmentPickStatusEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    pickType?: FulfillmentAPIShipmentPickTypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    pickWaveNumber?: number;
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof FulfillmentAPIShipment
+     */
+    pickupInfo?: { [key: string]: object; };
+    /**
+     * 
+     * @type {PriorityInfo}
+     * @memberof FulfillmentAPIShipment
+     */
+    priorityInfo?: PriorityInfo;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPIShipment
+     */
+    readyForPickup?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    readyForPickupDate?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPIShipment
+     */
+    readyToCapture?: boolean;
+    /**
+     * 
+     * @type {Array<ReassignedItem>}
+     * @memberof FulfillmentAPIShipment
+     */
+    reassignedItems?: Array<ReassignedItem>;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    receivedDate?: string;
+    /**
+     * 
+     * @type {Array<RejectedItem>}
+     * @memberof FulfillmentAPIShipment
+     */
+    rejectedItems?: Array<RejectedItem>;
+    /**
+     * Capped per-run history of operations that created/mutated this shipment (FR-059d)
+     * @type {Array<RunInfo>}
+     * @memberof FulfillmentAPIShipment
+     */
+    runInfo?: Array<RunInfo>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPIShipment
+     */
+    sentCustomerAtStoreNotification?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPIShipment
+     */
+    sentCustomerInTransitNotification?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    shipDate?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    shipmentAdjustment?: number;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIShipmentAttribute>}
+     * @memberof FulfillmentAPIShipment
+     */
+    shipmentAttributes?: Array<FulfillmentAPIShipmentAttribute>;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    shipmentConsolidationId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    shipmentGroup?: string;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIShipmentNote>}
+     * @memberof FulfillmentAPIShipment
+     */
+    shipmentNotes?: Array<FulfillmentAPIShipmentNote>;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    shipmentNumber?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    shipmentStatus?: FulfillmentAPIShipmentShipmentStatusEnum;
+    /**
+     * 
+     * @type {FulfillmentAPIShipmentStatusReason}
+     * @memberof FulfillmentAPIShipment
+     */
+    shipmentStatusReason?: FulfillmentAPIShipmentStatusReason;
+    /**
+     * Shipment type code
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    shipmentType: FulfillmentAPIShipmentShipmentTypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    shippingAdjustment?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    shippingMethodCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    shippingMethodName?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    shippingSubtotal?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    shippingTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    shippingTaxTotal?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    shippingTotal?: number;
+    /**
+     * 
+     * @type {FulfillmentAPIShopperNotes}
+     * @memberof FulfillmentAPIShipment
+     */
+    shopperNotes?: FulfillmentAPIShopperNotes;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    siteId?: number;
+    /**
+     * 
+     * @type {Array<Sla>}
+     * @memberof FulfillmentAPIShipment
+     */
+    slas?: Array<Sla>;
+    /**
+     * 
+     * @type {Array<FulfillmentAPISubstitutedItem>}
+     * @memberof FulfillmentAPIShipment
+     */
+    substitutedItems?: Array<FulfillmentAPISubstitutedItem>;
+    /**
+     * 
+     * @type {object}
+     * @memberof FulfillmentAPIShipment
+     */
+    taxData?: object;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    tenantId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipment
+     */
+    total?: number;
     /**
      * 
      * @type {Array<number>}
-     * @memberof GetShipmentsAggregationRequest
+     * @memberof FulfillmentAPIShipment
      */
-    slaDefinitionNumbers?: Array<number>;
+    transferShipmentNumbers?: Array<number>;
     /**
      * 
-     * @type {PageDimensions}
-     * @memberof GetShipmentsAggregationRequest
+     * @type {Array<TransferredItem>}
+     * @memberof FulfillmentAPIShipment
      */
-    slaPage?: PageDimensions;
+    transferredItems?: Array<TransferredItem>;
     /**
      * 
-     * @type {Array<string>}
-     * @memberof GetShipmentsAggregationRequest
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
      */
-    slaComplianceLevels?: Array<string>;
+    transitTime?: string;
     /**
      * 
-     * @type {PageDimensions}
-     * @memberof GetShipmentsAggregationRequest
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
      */
-    slaComplianceLevelPage?: PageDimensions;
+    userId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    workflowProcessContainerId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    workflowProcessId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipment
+     */
+    workflowProcessVersion?: string;
+    /**
+     * 
+     * @type {FulfillmentAPIWorkflowState}
+     * @memberof FulfillmentAPIShipment
+     */
+    workflowState?: FulfillmentAPIWorkflowState;
 }
 
 
 /**
  * @export
  */
-export const GetShipmentsAggregationRequestTimePeriodUnitEnum = {
-    Hours: 'HOURS',
-    Days: 'DAYS',
-    Weeks: 'WEEKS',
-    Months: 'MONTHS',
-    Years: 'YEARS'
+export const FulfillmentAPIShipmentFulfillmentStatusEnum = {
+    NotFulfilled: 'NotFulfilled',
+    Fulfilled: 'Fulfilled'
 } as const;
-export type GetShipmentsAggregationRequestTimePeriodUnitEnum = typeof GetShipmentsAggregationRequestTimePeriodUnitEnum[keyof typeof GetShipmentsAggregationRequestTimePeriodUnitEnum];
+export type FulfillmentAPIShipmentFulfillmentStatusEnum = typeof FulfillmentAPIShipmentFulfillmentStatusEnum[keyof typeof FulfillmentAPIShipmentFulfillmentStatusEnum];
 
+/**
+ * @export
+ */
+export const FulfillmentAPIShipmentOrderTypeEnum = {
+    Offline: 'Offline',
+    Online: 'Online'
+} as const;
+export type FulfillmentAPIShipmentOrderTypeEnum = typeof FulfillmentAPIShipmentOrderTypeEnum[keyof typeof FulfillmentAPIShipmentOrderTypeEnum];
+
+/**
+ * @export
+ */
+export const FulfillmentAPIShipmentPickStatusEnum = {
+    Available: 'AVAILABLE',
+    InWave: 'IN_WAVE',
+    Picked: 'PICKED',
+    Transfer: 'TRANSFER',
+    Complete: 'COMPLETE'
+} as const;
+export type FulfillmentAPIShipmentPickStatusEnum = typeof FulfillmentAPIShipmentPickStatusEnum[keyof typeof FulfillmentAPIShipmentPickStatusEnum];
+
+/**
+ * @export
+ */
+export const FulfillmentAPIShipmentPickTypeEnum = {
+    Normal: 'NORMAL',
+    Single: 'SINGLE',
+    Multiple: 'MULTIPLE'
+} as const;
+export type FulfillmentAPIShipmentPickTypeEnum = typeof FulfillmentAPIShipmentPickTypeEnum[keyof typeof FulfillmentAPIShipmentPickTypeEnum];
+
+/**
+ * @export
+ */
+export const FulfillmentAPIShipmentShipmentStatusEnum = {
+    Ready: 'READY',
+    Reassigned: 'REASSIGNED',
+    Backorder: 'BACKORDER',
+    Canceled: 'CANCELED',
+    Fulfilled: 'FULFILLED',
+    CustomerCare: 'CUSTOMER_CARE',
+    Deleted: 'DELETED',
+    Future: 'FUTURE',
+    Hold: 'HOLD',
+    PartiallyReceived: 'PARTIALLY_RECEIVED'
+} as const;
+export type FulfillmentAPIShipmentShipmentStatusEnum = typeof FulfillmentAPIShipmentShipmentStatusEnum[keyof typeof FulfillmentAPIShipmentShipmentStatusEnum];
+
+/**
+ * @export
+ */
+export const FulfillmentAPIShipmentShipmentTypeEnum = {
+    Sth: 'STH',
+    Bopis: 'BOPIS',
+    BopisCurbside: 'BOPIS_Curbside',
+    Transfer: 'Transfer',
+    Curbside: 'Curbside',
+    Digital: 'Digital',
+    Delivery: 'Delivery'
+} as const;
+export type FulfillmentAPIShipmentShipmentTypeEnum = typeof FulfillmentAPIShipmentShipmentTypeEnum[keyof typeof FulfillmentAPIShipmentShipmentTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPIShipmentAttribute
+ */
+export interface FulfillmentAPIShipmentAttribute {
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPIShipmentAttribute
+     */
+    attributeDefinitionId?: number;
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof FulfillmentAPIShipmentAttribute
+     */
+    attributes?: { [key: string]: object; };
+    /**
+     * 
+     * @type {FulfillmentAPIAuditInfo}
+     * @memberof FulfillmentAPIShipmentAttribute
+     */
+    auditInfo?: FulfillmentAPIAuditInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipmentAttribute
+     */
+    fullyQualifiedName?: string;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof FulfillmentAPIShipmentAttribute
+     */
+    values?: Array<object>;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPIShipmentNote
+ */
+export interface FulfillmentAPIShipmentNote {
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof FulfillmentAPIShipmentNote
+     */
+    attributes?: { [key: string]: object; };
+    /**
+     * 
+     * @type {FulfillmentAPIAuditInfo}
+     * @memberof FulfillmentAPIShipmentNote
+     */
+    auditInfo?: FulfillmentAPIAuditInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipmentNote
+     */
+    noteId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipmentNote
+     */
+    noteText?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipmentNote
+     */
+    role?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipmentNote
+     */
+    username?: string;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPIShipmentStatusReason
+ */
+export interface FulfillmentAPIShipmentStatusReason {
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipmentStatusReason
+     */
+    moreInfo?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShipmentStatusReason
+     */
+    reasonCode?: string;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPIShopperNotes
+ */
+export interface FulfillmentAPIShopperNotes {
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShopperNotes
+     */
+    comments?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShopperNotes
+     */
+    deliveryInstructions?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIShopperNotes
+     */
+    giftMessage?: string;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPISubstituteInfo
+ */
+export interface FulfillmentAPISubstituteInfo {
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstituteInfo
+     */
+    optIn?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstituteInfo
+     */
+    substituteProductCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstituteInfo
+     */
+    substituteVariantCode?: string;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPISubstitutedItem
+ */
+export interface FulfillmentAPISubstitutedItem {
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    actualPrice?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    allocatedQuantity?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    allowsBackOrder?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    allowsFutureAllocate?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    allowsSubstitution?: boolean;
+    /**
+     * 
+     * @type {FulfillmentAPIAppeasementReason}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    appeasementReason?: FulfillmentAPIAppeasementReason;
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    attributes?: { [key: string]: object; };
+    /**
+     * 
+     * @type {FulfillmentAPIAuditInfo}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    auditInfo?: FulfillmentAPIAuditInfo;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    autoSubstitution?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    backorderReleaseDate?: string;
+    /**
+     * 
+     * @type {FulfillmentAPIBundleInfo}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    bundleInfo?: FulfillmentAPIBundleInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    cartItemId?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    childItemIds?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    condition?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    creditCurrencyCode?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    creditValue?: number;
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    data?: { [key: string]: object; };
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    duty?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    expectedDeliveryDate?: string;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIFulfillmentField>}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    fulfillmentFields?: Array<FulfillmentAPIFulfillmentField>;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIGiftCard>}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    giftCards?: Array<FulfillmentAPIGiftCard>;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    giftMessage?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    goodsType?: FulfillmentAPISubstitutedItemGoodsTypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    handling?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    handlingDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    handlingTax?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    height?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    imageUrl?: string;
+    /**
+     * 
+     * @type {Array<InventoryAllocation>}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    inventoryAllocations?: Array<InventoryAllocation>;
+    /**
+     * 
+     * @type {Array<InventoryTag>}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    inventoryTags?: Array<InventoryTag>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    isAssemblyRequired?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    isGift?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    isPackagedStandAlone?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    isReservedInventory?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    isTaxable?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    itemDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    itemTax?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    length?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    lineId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    lineItemAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    lineItemCost?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    locatorName?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    manageStock?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    optionAttributeFQN?: string;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIProductOption>}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    options?: Array<FulfillmentAPIProductOption>;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    originalLineId?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    originalOrderItemId?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    originalQuantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    overridePrice?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    parentItemId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    partNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    priceMode?: FulfillmentAPISubstitutedItemPriceModeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    productCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    purchaseLocation?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    quantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    readyForPickupQuantity?: number;
+    /**
+     * 
+     * @type {FulfillmentAPIReturnRuleInfo}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    returnRuleInfo?: FulfillmentAPIReturnRuleInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    serialNumber?: string;
+    /**
+     * 
+     * @type {Array<ShipmentItemAttribute>}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    shipmentItemAttributes?: Array<ShipmentItemAttribute>;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    shipping?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    shippingDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    shippingTax?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    sku?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    stockValidationStatus?: string;
+    /**
+     * 
+     * @type {FulfillmentAPISubstituteInfo}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    substituteInfo?: FulfillmentAPISubstituteInfo;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    substituteItemLineIds?: Array<number>;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    substituteQuantity?: number;
+    /**
+     * 
+     * @type {SubstituteReason}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    substituteReason?: SubstituteReason;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    substitutionType?: FulfillmentAPISubstitutedItemSubstitutionTypeEnum;
+    /**
+     * 
+     * @type {object}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    taxData?: object;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    taxableHandling?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    taxableLineItemCost?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    taxableShipping?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    timeFenceDays?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    transferQuantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    trueTransferQuantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    unitPrice?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    upc?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    validatedQuantity?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    variationProductCode?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    weight?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    weightUnit?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    weightedDutyAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    weightedHandlingAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    weightedHandlingTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    weightedLineItemTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    weightedOrderHandlingFee?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    weightedOrderHandlingFeeDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    weightedOrderHandlingFeeTax?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    weightedShipmentAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    weightedShippingAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    weightedShippingTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPISubstitutedItem
+     */
+    width?: number;
+}
+
+
+/**
+ * @export
+ */
+export const FulfillmentAPISubstitutedItemGoodsTypeEnum = {
+    Physical: 'Physical',
+    Digital: 'Digital',
+    DigitalCredit: 'DigitalCredit',
+    DigitalGiftCard: 'DigitalGiftCard',
+    Service: 'Service'
+} as const;
+export type FulfillmentAPISubstitutedItemGoodsTypeEnum = typeof FulfillmentAPISubstitutedItemGoodsTypeEnum[keyof typeof FulfillmentAPISubstitutedItemGoodsTypeEnum];
+
+/**
+ * @export
+ */
+export const FulfillmentAPISubstitutedItemPriceModeEnum = {
+    Internal: 'Internal',
+    External: 'External'
+} as const;
+export type FulfillmentAPISubstitutedItemPriceModeEnum = typeof FulfillmentAPISubstitutedItemPriceModeEnum[keyof typeof FulfillmentAPISubstitutedItemPriceModeEnum];
+
+/**
+ * @export
+ */
+export const FulfillmentAPISubstitutedItemSubstitutionTypeEnum = {
+    PreFulfillment: 'PRE_FULFILLMENT',
+    AtFulfillment: 'AT_FULFILLMENT'
+} as const;
+export type FulfillmentAPISubstitutedItemSubstitutionTypeEnum = typeof FulfillmentAPISubstitutedItemSubstitutionTypeEnum[keyof typeof FulfillmentAPISubstitutedItemSubstitutionTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPITaskInput
+ */
+export interface FulfillmentAPITaskInput {
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPITaskInput
+     */
+    helpMessage?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPITaskInput
+     */
+    label?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPITaskInput
+     */
+    maxLength?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPITaskInput
+     */
+    maximum?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPITaskInput
+     */
+    minLength?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FulfillmentAPITaskInput
+     */
+    minimum?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPITaskInput
+     */
+    name?: string;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof FulfillmentAPITaskInput
+     */
+    options?: Array<object>;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPITaskInput
+     */
+    pattern?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FulfillmentAPITaskInput
+     */
+    required?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPITaskInput
+     */
+    type?: FulfillmentAPITaskInputTypeEnum;
+}
+
+
+/**
+ * @export
+ */
+export const FulfillmentAPITaskInputTypeEnum = {
+    String: 'STRING',
+    Integer: 'INTEGER',
+    Number: 'NUMBER',
+    Boolean: 'BOOLEAN',
+    Object: 'OBJECT',
+    List: 'LIST',
+    Unknown: 'UNKNOWN'
+} as const;
+export type FulfillmentAPITaskInputTypeEnum = typeof FulfillmentAPITaskInputTypeEnum[keyof typeof FulfillmentAPITaskInputTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPITracking
+ */
+export interface FulfillmentAPITracking {
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof FulfillmentAPITracking
+     */
+    attributes?: { [key: string]: object; };
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPITracking
+     */
+    number?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPITracking
+     */
+    url?: string;
+}
+/**
+ * 
+ * @export
+ * @interface FulfillmentAPIWorkflowState
+ */
+export interface FulfillmentAPIWorkflowState {
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIWorkflowState
+     */
+    activeTaskName?: string;
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof FulfillmentAPIWorkflowState
+     */
+    attributes?: { [key: string]: object; };
+    /**
+     * 
+     * @type {FulfillmentAPIAuditInfo}
+     * @memberof FulfillmentAPIWorkflowState
+     */
+    auditInfo?: FulfillmentAPIAuditInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIWorkflowState
+     */
+    completedDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIWorkflowState
+     */
+    processInstanceId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FulfillmentAPIWorkflowState
+     */
+    shipmentState?: string;
+    /**
+     * 
+     * @type {Array<Task>}
+     * @memberof FulfillmentAPIWorkflowState
+     */
+    taskList?: Array<Task>;
+    /**
+     * 
+     * @type {{ [key: string]: BpmVariable; }}
+     * @memberof FulfillmentAPIWorkflowState
+     */
+    variables?: { [key: string]: BpmVariable; };
+}
+/**
+ * 
+ * @export
+ * @interface FutureItem
+ */
+export interface FutureItem {
+    /**
+     * 
+     * @type {string}
+     * @memberof FutureItem
+     */
+    futureDate?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FutureItem
+     */
+    lineId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FutureItem
+     */
+    quantity?: number;
+}
+/**
+ * 
+ * @export
+ * @interface FutureItemsRequest
+ */
+export interface FutureItemsRequest {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FutureItemsRequest
+     */
+    isUserAction?: boolean;
+    /**
+     * 
+     * @type {Array<FutureItem>}
+     * @memberof FutureItemsRequest
+     */
+    items?: Array<FutureItem>;
+    /**
+     * 
+     * @type {string}
+     * @memberof FutureItemsRequest
+     */
+    runId?: string;
+}
+/**
+ * 
+ * @export
+ * @interface FutureShipmentUpdateDateRequest
+ */
+export interface FutureShipmentUpdateDateRequest {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FutureShipmentUpdateDateRequest
+     */
+    bypassFutureAllocateDeallocate?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof FutureShipmentUpdateDateRequest
+     */
+    futureDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FutureShipmentUpdateDateRequest
+     */
+    runId?: string;
+}
 /**
  * 
  * @export
@@ -4098,6 +7534,36 @@ export type GetShipmentsAggregationRequestTimePeriodUnitEnum = typeof GetShipmen
 export interface GetShipmentsRequest {
     /**
      * 
+     * @type {boolean}
+     * @memberof GetShipmentsRequest
+     */
+    bypassSearchIndex?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetShipmentsRequest
+     */
+    filter?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetShipmentsRequest
+     */
+    isExpress?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetShipmentsRequest
+     */
+    isLate?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetShipmentsRequest
+     */
+    locationGroupCode?: string;
+    /**
+     * 
      * @type {number}
      * @memberof GetShipmentsRequest
      */
@@ -4113,43 +7579,25 @@ export interface GetShipmentsRequest {
      * @type {string}
      * @memberof GetShipmentsRequest
      */
-    sort?: string;
+    pickStatus?: GetShipmentsRequestPickStatusEnum;
     /**
      * 
      * @type {string}
      * @memberof GetShipmentsRequest
      */
-    filter?: string;
+    pickWaveType?: GetShipmentsRequestPickWaveTypeEnum;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetShipmentsRequest
+     */
+    pickable?: boolean;
     /**
      * 
      * @type {string}
      * @memberof GetShipmentsRequest
      */
     quickSearch?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof GetShipmentsRequest
-     */
-    isLate?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof GetShipmentsRequest
-     */
-    isExpress?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetShipmentsRequest
-     */
-    workflowTaskName?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof GetShipmentsRequest
-     */
-    bypassSearchIndex?: boolean;
     /**
      * 
      * @type {string}
@@ -4161,7 +7609,7 @@ export interface GetShipmentsRequest {
      * @type {string}
      * @memberof GetShipmentsRequest
      */
-    locationGroupCode?: string;
+    sort?: string;
     /**
      * 
      * @type {string}
@@ -4174,8 +7622,36 @@ export interface GetShipmentsRequest {
      * @memberof GetShipmentsRequest
      */
     timePeriodValue?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetShipmentsRequest
+     */
+    workflowTaskName?: string;
 }
 
+
+/**
+ * @export
+ */
+export const GetShipmentsRequestPickStatusEnum = {
+    Available: 'AVAILABLE',
+    InWave: 'IN_WAVE',
+    Picked: 'PICKED',
+    Transfer: 'TRANSFER',
+    Complete: 'COMPLETE'
+} as const;
+export type GetShipmentsRequestPickStatusEnum = typeof GetShipmentsRequestPickStatusEnum[keyof typeof GetShipmentsRequestPickStatusEnum];
+
+/**
+ * @export
+ */
+export const GetShipmentsRequestPickWaveTypeEnum = {
+    Normal: 'NORMAL',
+    Single: 'SINGLE',
+    Multiple: 'MULTIPLE'
+} as const;
+export type GetShipmentsRequestPickWaveTypeEnum = typeof GetShipmentsRequestPickWaveTypeEnum[keyof typeof GetShipmentsRequestPickWaveTypeEnum];
 
 /**
  * @export
@@ -4192,144 +7668,64 @@ export type GetShipmentsRequestTimePeriodUnitEnum = typeof GetShipmentsRequestTi
 /**
  * 
  * @export
- * @interface GetSubstitutableItemsRequest
+ * @interface GiftCardInfoRequest
  */
-export interface GetSubstitutableItemsRequest {
+export interface GiftCardInfoRequest {
     /**
      * 
      * @type {string}
-     * @memberof GetSubstitutableItemsRequest
+     * @memberof GiftCardInfoRequest
      */
-    productCode?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof GetSubstitutableItemsRequest
-     */
-    originalLineId?: number;
-}
-/**
- * 
- * @export
- * @interface GiftCardDto
- */
-export interface GiftCardDto {
+    email?: string;
     /**
      * 
      * @type {string}
-     * @memberof GiftCardDto
-     */
-    cardNumber?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GiftCardDto
-     */
-    currencyCode?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof GiftCardDto
-     */
-    creditValue?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof GiftCardDto
-     */
-    activationDate?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GiftCardDto
-     */
-    expirationDate?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GiftCardDto
-     */
-    creditType?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof GiftCardDto
-     */
-    initialBalance?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof GiftCardDto
-     */
-    customerId?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof GiftCardDto
-     */
-    code?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof GiftCardDto
-     */
-    currentBalance?: number;
-}
-/**
- * 
- * @export
- * @interface GiftCardInfoRequestDto
- */
-export interface GiftCardInfoRequestDto {
-    /**
-     * 
-     * @type {string}
-     * @memberof GiftCardInfoRequestDto
+     * @memberof GiftCardInfoRequest
      */
     firstName?: string;
     /**
      * 
      * @type {string}
-     * @memberof GiftCardInfoRequestDto
-     */
-    lastNameOrSurname?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GiftCardInfoRequestDto
-     */
-    email: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GiftCardInfoRequestDto
+     * @memberof GiftCardInfoRequest
      */
     giftCardMessage?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GiftCardInfoRequest
+     */
+    lastNameOrSurname?: string;
 }
 /**
  * 
  * @export
- * @interface HandleOptionDto
+ * @interface HandleOption
  */
-export interface HandleOptionDto {
-    /**
-     * 
-     * @type {TaskReasonDto}
-     * @memberof HandleOptionDto
-     */
-    reason?: TaskReasonDto;
+export interface HandleOption {
     /**
      * 
      * @type {boolean}
-     * @memberof HandleOptionDto
+     * @memberof HandleOption
      */
     blockAssignment?: boolean;
     /**
      * 
+     * @type {boolean}
+     * @memberof HandleOption
+     */
+    holdBlockAssignment?: boolean;
+    /**
+     * 
      * @type {Array<HandleOptionItem>}
-     * @memberof HandleOptionDto
+     * @memberof HandleOption
      */
     items?: Array<HandleOptionItem>;
+    /**
+     * 
+     * @type {TaskReason}
+     * @memberof HandleOption
+     */
+    reason?: TaskReason;
 }
 /**
  * 
@@ -4339,114 +7735,765 @@ export interface HandleOptionDto {
 export interface HandleOptionItem {
     /**
      * 
-     * @type {number}
+     * @type {boolean}
      * @memberof HandleOptionItem
      */
-    lineId: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof HandleOptionItem
-     */
-    quantity: number;
-    /**
-     * 
-     * @type {TaskReasonDto}
-     * @memberof HandleOptionItem
-     */
-    reason?: TaskReasonDto;
+    blockAssignment?: boolean;
     /**
      * 
      * @type {boolean}
      * @memberof HandleOptionItem
      */
-    blockAssignment?: boolean;
-}
-/**
- * 
- * @export
- * @interface InventoryAllocationDto
- */
-export interface InventoryAllocationDto {
+    holdBlockAssignment?: boolean;
     /**
      * 
      * @type {number}
-     * @memberof InventoryAllocationDto
+     * @memberof HandleOptionItem
      */
-    inventoryId?: number;
+    lineId?: number;
     /**
      * 
      * @type {number}
-     * @memberof InventoryAllocationDto
+     * @memberof HandleOptionItem
      */
     quantity?: number;
     /**
      * 
-     * @type {string}
-     * @memberof InventoryAllocationDto
+     * @type {TaskReason}
+     * @memberof HandleOptionItem
      */
-    status?: string;
+    reason?: TaskReason;
+}
+/**
+ * 
+ * @export
+ * @interface HoldReleaseDateUpdateRequest
+ */
+export interface HoldReleaseDateUpdateRequest {
     /**
      * 
      * @type {string}
-     * @memberof InventoryAllocationDto
+     * @memberof HoldReleaseDateUpdateRequest
      */
-    sku?: string;
+    holdReleaseDate?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InventoryAllocation
+ */
+export interface InventoryAllocation {
+    /**
+     * 
+     * @type {FulfillmentAPIAuditInfo}
+     * @memberof InventoryAllocation
+     */
+    auditInfo?: FulfillmentAPIAuditInfo;
     /**
      * 
      * @type {string}
-     * @memberof InventoryAllocationDto
+     * @memberof InventoryAllocation
      */
     condition?: string;
     /**
      * 
      * @type {string}
-     * @memberof InventoryAllocationDto
-     */
-    lotCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InventoryAllocationDto
+     * @memberof InventoryAllocation
      */
     date?: string;
     /**
      * 
      * @type {string}
-     * @memberof InventoryAllocationDto
+     * @memberof InventoryAllocation
+     */
+    fulfilledDate?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof InventoryAllocation
+     */
+    inventoryId?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InventoryAllocation
+     */
+    lotCode?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof InventoryAllocation
+     */
+    originalQuantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InventoryAllocation
+     */
+    quantity?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InventoryAllocation
      */
     serialNumber?: string;
     /**
      * 
      * @type {string}
-     * @memberof InventoryAllocationDto
+     * @memberof InventoryAllocation
      */
-    fulfilledDate?: string;
+    sku?: string;
     /**
      * 
-     * @type {AuditInfoDto}
-     * @memberof InventoryAllocationDto
+     * @type {string}
+     * @memberof InventoryAllocation
      */
-    auditInfo?: AuditInfoDto;
+    status?: string;
 }
 /**
  * 
  * @export
- * @interface InventoryTagDto
+ * @interface InventoryTag
  */
-export interface InventoryTagDto {
+export interface InventoryTag {
     /**
      * 
      * @type {string}
-     * @memberof InventoryTagDto
+     * @memberof InventoryTag
      */
     name?: string;
     /**
      * 
      * @type {string}
-     * @memberof InventoryTagDto
+     * @memberof InventoryTag
      */
     value?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InvoiceLineItem
+ */
+export interface InvoiceLineItem {
+    /**
+     * 
+     * @type {object}
+     * @memberof InvoiceLineItem
+     */
+    data?: object;
+    /**
+     * 
+     * @type {string}
+     * @memberof InvoiceLineItem
+     */
+    description?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InvoiceLineItem
+     */
+    lineItemType?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof InvoiceLineItem
+     */
+    quantity?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InvoiceLineItem
+     */
+    sku?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof InvoiceLineItem
+     */
+    totalPrice?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof InvoiceLineItem
+     */
+    unitPrice?: number;
+}
+/**
+ * 
+ * @export
+ * @interface InvoiceReferences
+ */
+export interface InvoiceReferences {
+    /**
+     * 
+     * @type {object}
+     * @memberof InvoiceReferences
+     */
+    data?: object;
+    /**
+     * 
+     * @type {number}
+     * @memberof InvoiceReferences
+     */
+    orderNumber?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InvoiceReferences
+     */
+    purchaseOrderNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InvoiceReferences
+     */
+    shipmentId?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InvoiceTax
+ */
+export interface InvoiceTax {
+    /**
+     * 
+     * @type {number}
+     * @memberof InvoiceTax
+     */
+    amount?: number;
+    /**
+     * 
+     * @type {object}
+     * @memberof InvoiceTax
+     */
+    data?: object;
+    /**
+     * 
+     * @type {string}
+     * @memberof InvoiceTax
+     */
+    jurisdiction?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof InvoiceTax
+     */
+    rate?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof InvoiceTax
+     */
+    type?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InvoiceTerms
+ */
+export interface InvoiceTerms {
+    /**
+     * 
+     * @type {object}
+     * @memberof InvoiceTerms
+     */
+    data?: object;
+    /**
+     * 
+     * @type {string}
+     * @memberof InvoiceTerms
+     */
+    dueDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InvoiceTerms
+     */
+    paymentTerms?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InvoiceVendor
+ */
+export interface InvoiceVendor {
+    /**
+     * 
+     * @type {FulfillmentAPIAddress}
+     * @memberof InvoiceVendor
+     */
+    address?: FulfillmentAPIAddress;
+    /**
+     * 
+     * @type {object}
+     * @memberof InvoiceVendor
+     */
+    data?: object;
+    /**
+     * 
+     * @type {string}
+     * @memberof InvoiceVendor
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InvoiceVendor
+     */
+    taxId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InvoiceVendor
+     */
+    vendorId?: string;
+}
+/**
+ * 
+ * @export
+ * @interface ItemAttributes
+ */
+export interface ItemAttributes {
+    /**
+     * 
+     * @type {Array<ShipmentItemAttribute>}
+     * @memberof ItemAttributes
+     */
+    attributes?: Array<ShipmentItemAttribute>;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemAttributes
+     */
+    lineId?: number;
+}
+/**
+ * 
+ * @export
+ * @interface ItemAuditDetailDto
+ */
+export interface ItemAuditDetailDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDetailDto
+     */
+    accountName?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemAuditDetailDto
+     */
+    accountNumber?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemAuditDetailDto
+     */
+    assignedPriority?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDetailDto
+     */
+    callOffState?: string;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof ItemAuditDetailDto
+     */
+    childShipmentNumbers?: Array<number>;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemAuditDetailDto
+     */
+    contractedQty?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemAuditDetailDto
+     */
+    distinctProductCount?: number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ItemAuditDetailDto
+     */
+    donorReservationIds?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDetailDto
+     */
+    fulfillmentType?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemAuditDetailDto
+     */
+    lineItemCount?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDetailDto
+     */
+    locationCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDetailDto
+     */
+    locationName?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemAuditDetailDto
+     */
+    newPriority?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemAuditDetailDto
+     */
+    orderNumber?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemAuditDetailDto
+     */
+    originShipmentNumber?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDetailDto
+     */
+    outcomeCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDetailDto
+     */
+    outcomeText?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemAuditDetailDto
+     */
+    previousPriority?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDetailDto
+     */
+    queue?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDetailDto
+     */
+    reservationCategory?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDetailDto
+     */
+    reservationId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDetailDto
+     */
+    reservationState?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDetailDto
+     */
+    reservationType?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDetailDto
+     */
+    ruleCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDetailDto
+     */
+    ruleDescription?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDetailDto
+     */
+    ruleName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDetailDto
+     */
+    shipDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDetailDto
+     */
+    shipWindowEnd?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDetailDto
+     */
+    shipWindowStart?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemAuditDetailDto
+     */
+    shipmentNumber?: number;
+    /**
+     * 
+     * @type {SourcingDto}
+     * @memberof ItemAuditDetailDto
+     */
+    sourcing?: SourcingDto;
+    /**
+     * 
+     * @type {SplitLineageDto}
+     * @memberof ItemAuditDetailDto
+     */
+    splitLineage?: SplitLineageDto;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemAuditDetailDto
+     */
+    totalUnits?: number;
+    /**
+     * 
+     * @type {Array<ChangeDto>}
+     * @memberof ItemAuditDetailDto
+     */
+    triggeringEvents?: Array<ChangeDto>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDetailDto
+     */
+    view?: string;
+}
+/**
+ * 
+ * @export
+ * @interface ItemAuditDto
+ */
+export interface ItemAuditDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDto
+     */
+    accountName?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemAuditDto
+     */
+    accountNumber?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemAuditDto
+     */
+    assignedPriority?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDto
+     */
+    callOffState?: string;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof ItemAuditDto
+     */
+    childShipmentNumbers?: Array<number>;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemAuditDto
+     */
+    contractedQty?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemAuditDto
+     */
+    distinctProductCount?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDto
+     */
+    fulfillmentType?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ItemAuditDto
+     */
+    isDonor?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemAuditDto
+     */
+    lineItemCount?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDto
+     */
+    locationCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDto
+     */
+    locationName?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemAuditDto
+     */
+    orderNumber?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemAuditDto
+     */
+    originShipmentNumber?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDto
+     */
+    outcomeCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDto
+     */
+    outcomeText?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDto
+     */
+    queue?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDto
+     */
+    recipientReservationId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDto
+     */
+    reservationCategory?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDto
+     */
+    reservationId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDto
+     */
+    reservationState?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDto
+     */
+    reservationType?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDto
+     */
+    ruleCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDto
+     */
+    ruleDescription?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDto
+     */
+    ruleName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDto
+     */
+    shipDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDto
+     */
+    shipWindowEnd?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDto
+     */
+    shipWindowStart?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemAuditDto
+     */
+    shipmentNumber?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDto
+     */
+    splitGroupId?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemAuditDto
+     */
+    totalUnits?: number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ItemAuditDto
+     */
+    triggeringEventIds?: Array<string>;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemAuditDto
+     */
+    unitsGivenUp?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAuditDto
+     */
+    view?: string;
 }
 /**
  * 
@@ -4456,34 +8503,16 @@ export interface InventoryTagDto {
 export interface ItemDto {
     /**
      * 
-     * @type {{ [key: string]: object; }}
+     * @type {DimensionsDto}
      * @memberof ItemDto
      */
-    attributes?: { [key: string]: object; };
+    dimensions?: DimensionsDto;
     /**
      * 
      * @type {number}
      * @memberof ItemDto
      */
-    lineId: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemDto
-     */
-    originalOrderItemId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemDto
-     */
-    goodsType?: ItemDtoGoodsTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemDto
-     */
-    optionAttributeFQN?: string;
+    lineId?: number;
     /**
      * 
      * @type {string}
@@ -4492,220 +8521,22 @@ export interface ItemDto {
     productCode?: string;
     /**
      * 
-     * @type {string}
-     * @memberof ItemDto
-     */
-    variationProductCode?: string;
-    /**
-     * 
      * @type {number}
      * @memberof ItemDto
      */
-    quantity: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    transferQuantity?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    trueTransferQuantity?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    readyForPickupQuantity?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    allocatedQuantity?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemDto
-     */
-    imageUrl?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemDto
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemDto
-     */
-    partNumber?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemDto
-     */
-    upc?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemDto
-     */
-    sku?: string;
+    quantity?: number;
     /**
      * 
      * @type {boolean}
      * @memberof ItemDto
      */
-    allowsBackOrder?: boolean;
+    shipByItself?: boolean;
     /**
      * 
      * @type {number}
      * @memberof ItemDto
      */
-    unitPrice?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ItemDto
-     */
-    isTaxable?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    actualPrice?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    overridePrice?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    itemDiscount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    lineItemCost?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    itemTax: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    shipping: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    shippingDiscount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    shippingTax: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    handling: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    handlingDiscount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    handlingTax: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    duty?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    weightedShipmentAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    weightedLineItemTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    weightedShippingAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    weightedShippingTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    weightedHandlingAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    weightedHandlingTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    weightedDutyAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    taxableShipping?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    taxableLineItemCost?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    taxableHandling?: number;
+    sourceShipmentNumber?: number;
     /**
      * 
      * @type {number}
@@ -4714,683 +8545,995 @@ export interface ItemDto {
     weight?: number;
     /**
      * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    length?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    width?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    height?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    lineItemAdjustment?: number;
-    /**
-     * 
      * @type {string}
      * @memberof ItemDto
      */
     weightUnit?: string;
+}
+/**
+ * 
+ * @export
+ * @interface ItemGiftReceiptRequest
+ */
+export interface ItemGiftReceiptRequest {
     /**
      * 
      * @type {string}
-     * @memberof ItemDto
-     */
-    expectedDeliveryDate?: string;
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof ItemDto
-     */
-    data?: { [key: string]: object; };
-    /**
-     * 
-     * @type {object}
-     * @memberof ItemDto
-     */
-    taxData?: object;
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemDto
-     */
-    backorderReleaseDate?: string;
-    /**
-     * 
-     * @type {AuditInfoDto}
-     * @memberof ItemDto
-     */
-    auditInfo?: AuditInfoDto;
-    /**
-     * 
-     * @type {Array<ProductOptionDto>}
-     * @memberof ItemDto
-     */
-    options?: Array<ProductOptionDto>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ItemDto
-     */
-    manageStock?: boolean;
-    /**
-     * 
-     * @type {Array<FulfillmentFieldDto>}
-     * @memberof ItemDto
-     */
-    fulfillmentFields?: Array<FulfillmentFieldDto>;
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemDto
-     */
-    locatorName?: string;
-    /**
-     * 
-     * @type {AppeasementReasonDto}
-     * @memberof ItemDto
-     * @deprecated
-     */
-    appeasementReason?: AppeasementReasonDto;
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemDto
-     */
-    creditCurrencyCode?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    creditValue?: number;
-    /**
-     * 
-     * @type {Array<GiftCardDto>}
-     * @memberof ItemDto
-     */
-    giftCards?: Array<GiftCardDto>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ItemDto
-     */
-    isAssemblyRequired?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemDto
-     */
-    parentItemId?: string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof ItemDto
-     */
-    childItemIds?: Array<string>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ItemDto
-     */
-    isPackagedStandAlone?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ItemDto
-     */
-    allowsFutureAllocate?: boolean;
-    /**
-     * 
-     * @type {Array<InventoryTagDto>}
-     * @memberof ItemDto
-     */
-    inventoryTags?: Array<InventoryTagDto>;
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemDto
-     */
-    cartItemId?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ItemDto
-     */
-    isReservedInventory?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ItemDto
-     */
-    allowsSubstitution?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    originalQuantity?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    originalLineId?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ItemDto
-     */
-    substituteQuantity?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ItemDto
-     */
-    isGift?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemDto
+     * @memberof ItemGiftReceiptRequest
      */
     giftMessage?: string;
     /**
      * 
-     * @type {string}
-     * @memberof ItemDto
+     * @type {number}
+     * @memberof ItemGiftReceiptRequest
      */
-    purchaseLocation?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemDto
-     */
-    priceMode?: ItemDtoPriceModeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemDto
-     */
-    condition?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemDto
-     */
-    serialNumber?: string;
-    /**
-     * 
-     * @type {Array<InventoryAllocationDto>}
-     * @memberof ItemDto
-     */
-    inventoryAllocations?: Array<InventoryAllocationDto>;
-    /**
-     * 
-     * @type {SubstituteInfoDto}
-     * @memberof ItemDto
-     */
-    substituteInfo?: SubstituteInfoDto;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ItemDto
-     */
-    autoSubstitution?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemDto
-     */
-    substitutionType?: ItemDtoSubstitutionTypeEnum;
-    /**
-     * 
-     * @type {BundleInfoDto}
-     * @memberof ItemDto
-     */
-    bundleInfo?: BundleInfoDto;
-    /**
-     * 
-     * @type {ReturnRuleInfoDto}
-     * @memberof ItemDto
-     */
-    returnRuleInfo?: ReturnRuleInfoDto;
+    lineId?: number;
 }
-
-
-/**
- * @export
- */
-export const ItemDtoGoodsTypeEnum = {
-    Physical: 'Physical',
-    Digital: 'Digital',
-    DigitalCredit: 'DigitalCredit',
-    DigitalGiftCard: 'DigitalGiftCard',
-    Service: 'Service'
-} as const;
-export type ItemDtoGoodsTypeEnum = typeof ItemDtoGoodsTypeEnum[keyof typeof ItemDtoGoodsTypeEnum];
-
-/**
- * @export
- */
-export const ItemDtoPriceModeEnum = {
-    Internal: 'Internal',
-    External: 'External'
-} as const;
-export type ItemDtoPriceModeEnum = typeof ItemDtoPriceModeEnum[keyof typeof ItemDtoPriceModeEnum];
-
-/**
- * @export
- */
-export const ItemDtoSubstitutionTypeEnum = {
-    PreFulfillment: 'PRE_FULFILLMENT',
-    AtFullfillment: 'AT_FULLFILLMENT'
-} as const;
-export type ItemDtoSubstitutionTypeEnum = typeof ItemDtoSubstitutionTypeEnum[keyof typeof ItemDtoSubstitutionTypeEnum];
-
 /**
  * 
  * @export
- * @interface ItemGiftReceiptRequestDto
+ * @interface ItemLineDto
  */
-export interface ItemGiftReceiptRequestDto {
+export interface ItemLineDto {
     /**
      * 
      * @type {number}
-     * @memberof ItemGiftReceiptRequestDto
+     * @memberof ItemLineDto
+     */
+    calledQty?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemLineDto
      */
     lineId?: number;
     /**
      * 
      * @type {string}
-     * @memberof ItemGiftReceiptRequestDto
+     * @memberof ItemLineDto
      */
-    giftMessage?: string;
+    movement?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemLineDto
+     */
+    productDescription?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemLineDto
+     */
+    qty?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemLineDto
+     */
+    reservedQty?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemLineDto
+     */
+    sku?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemLineDto
+     */
+    state?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemLineDto
+     */
+    supplyDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemLineDto
+     */
+    supplySource?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemLineDto
+     */
+    uncalledQty?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemLineDto
+     */
+    unitsChanged?: number;
 }
 /**
  * 
  * @export
- * @interface LocationSummaryDetailDto
+ * @interface ItemLinesResponseDto
  */
-export interface LocationSummaryDetailDto {
+export interface ItemLinesResponseDto {
+    /**
+     * 
+     * @type {Array<ItemLineDto>}
+     * @memberof ItemLinesResponseDto
+     */
+    content?: Array<ItemLineDto>;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemLinesResponseDto
+     */
+    page?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemLinesResponseDto
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {LineRollupDto}
+     * @memberof ItemLinesResponseDto
+     */
+    rollup?: LineRollupDto;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemLinesResponseDto
+     */
+    totalElements?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemLinesResponseDto
+     */
+    totalPages?: number;
+}
+/**
+ * 
+ * @export
+ * @interface LastCancellationDateDto
+ */
+export interface LastCancellationDateDto {
     /**
      * 
      * @type {string}
-     * @memberof LocationSummaryDetailDto
+     * @memberof LastCancellationDateDto
+     */
+    lastCancellationDate?: string;
+}
+/**
+ * 
+ * @export
+ * @interface Line
+ */
+export interface Line {
+    /**
+     * 
+     * @type {number}
+     * @memberof Line
+     */
+    inventoryId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Line
+     */
+    lineId?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Line
+     */
+    movement?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Line
+     */
+    productCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Line
+     */
+    productDescription?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Line
+     */
+    qty?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Line
+     */
+    sku?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Line
+     */
+    supplyDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Line
+     */
+    supplySource?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Line
+     */
+    unitsChanged?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Line
+     */
+    upc?: string;
+}
+/**
+ * 
+ * @export
+ * @interface LineRollupDto
+ */
+export interface LineRollupDto {
+    /**
+     * 
+     * @type {number}
+     * @memberof LineRollupDto
+     */
+    backordered?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof LineRollupDto
+     */
+    evaluatedOnly?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof LineRollupDto
+     */
+    repegged?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof LineRollupDto
+     */
+    unchanged?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof LineRollupDto
+     */
+    unitsRepegged?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof LineRollupDto
+     */
+    unitsUnpegged?: number;
+}
+/**
+ * 
+ * @export
+ * @interface Links
+ */
+export interface Links {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Links
+     */
+    empty?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface LocationShipmentCount
+ */
+export interface LocationShipmentCount {
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationShipmentCount
      */
     locationCode?: string;
     /**
      * 
      * @type {number}
-     * @memberof LocationSummaryDetailDto
-     */
-    currentShipments?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof LocationSummaryDetailDto
+     * @memberof LocationShipmentCount
      */
     totalShipments?: number;
+}
+/**
+ * 
+ * @export
+ * @interface LocationSummary
+ */
+export interface LocationSummary {
     /**
      * 
-     * @type {number}
-     * @memberof LocationSummaryDetailDto
+     * @type {string}
+     * @memberof LocationSummary
      */
-    currentItems?: number;
+    currencyCode?: string;
     /**
      * 
      * @type {number}
-     * @memberof LocationSummaryDetailDto
-     */
-    totalItems?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof LocationSummaryDetailDto
+     * @memberof LocationSummary
      */
     currentAmount?: number;
     /**
      * 
      * @type {number}
-     * @memberof LocationSummaryDetailDto
+     * @memberof LocationSummary
+     */
+    currentItems?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof LocationSummary
+     */
+    currentShipments?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationSummary
+     */
+    locationCode?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof LocationSummary
      */
     totalAmount?: number;
     /**
      * 
+     * @type {number}
+     * @memberof LocationSummary
+     */
+    totalItems?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof LocationSummary
+     */
+    totalShipments?: number;
+}
+/**
+ * 
+ * @export
+ * @interface LocationSummaryDetail
+ */
+export interface LocationSummaryDetail {
+    /**
+     * 
+     * @type {FulfillmentAPIAddress}
+     * @memberof LocationSummaryDetail
+     */
+    address?: FulfillmentAPIAddress;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LocationSummaryDetail
+     */
+    allowFulfillmentWithNoStock?: boolean;
+    /**
+     * 
      * @type {string}
-     * @memberof LocationSummaryDetailDto
+     * @memberof LocationSummaryDetail
      */
     currencyCode?: string;
     /**
      * 
+     * @type {number}
+     * @memberof LocationSummaryDetail
+     */
+    currentAmount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof LocationSummaryDetail
+     */
+    currentItems?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof LocationSummaryDetail
+     */
+    currentShipments?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LocationSummaryDetail
+     */
+    deliveryConsolidation?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LocationSummaryDetail
+     */
+    express?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LocationSummaryDetail
+     */
+    includeInInventoryAggregrate?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LocationSummaryDetail
+     */
+    includeInLocationExport?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LocationSummaryDetail
+     */
+    isDisabled?: boolean;
+    /**
+     * 
      * @type {string}
-     * @memberof LocationSummaryDetailDto
+     * @memberof LocationSummaryDetail
+     */
+    locationCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationSummaryDetail
      */
     locationName?: string;
     /**
      * 
-     * @type {AddressDto}
-     * @memberof LocationSummaryDetailDto
+     * @type {boolean}
+     * @memberof LocationSummaryDetail
      */
-    address?: AddressDto;
+    requiresManifest?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LocationSummaryDetail
+     */
+    shipToHomeConsolidation?: boolean;
     /**
      * 
      * @type {number}
-     * @memberof LocationSummaryDetailDto
-     */
-    slaOnTrackCount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof LocationSummaryDetailDto
+     * @memberof LocationSummaryDetail
      */
     slaAtRiskCount?: number;
     /**
      * 
      * @type {number}
-     * @memberof LocationSummaryDetailDto
+     * @memberof LocationSummaryDetail
      */
     slaNonCompliantCount?: number;
-}
-/**
- * 
- * @export
- * @interface LocationSummaryDto
- */
-export interface LocationSummaryDto {
-    /**
-     * 
-     * @type {string}
-     * @memberof LocationSummaryDto
-     */
-    locationCode?: string;
     /**
      * 
      * @type {number}
-     * @memberof LocationSummaryDto
+     * @memberof LocationSummaryDetail
      */
-    currentShipments?: number;
+    slaOnTrackCount?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LocationSummaryDetail
+     */
+    supportsInventory?: boolean;
     /**
      * 
      * @type {number}
-     * @memberof LocationSummaryDto
+     * @memberof LocationSummaryDetail
      */
-    totalShipments?: number;
+    totalAmount?: number;
     /**
      * 
      * @type {number}
-     * @memberof LocationSummaryDto
-     */
-    currentItems?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof LocationSummaryDto
+     * @memberof LocationSummaryDetail
      */
     totalItems?: number;
     /**
      * 
      * @type {number}
-     * @memberof LocationSummaryDto
+     * @memberof LocationSummaryDetail
      */
-    currentAmount?: number;
+    totalShipments?: number;
     /**
      * 
-     * @type {number}
-     * @memberof LocationSummaryDto
+     * @type {boolean}
+     * @memberof LocationSummaryDetail
      */
-    totalAmount?: number;
+    transferEnabled?: boolean;
     /**
      * 
-     * @type {string}
-     * @memberof LocationSummaryDto
+     * @type {boolean}
+     * @memberof LocationSummaryDetail
      */
-    currencyCode?: string;
+    warehouseEnabled?: boolean;
 }
 /**
  * 
  * @export
- * @interface ManifestDto
+ * @interface LogBatchRequestDto
  */
-export interface ManifestDto {
+export interface LogBatchRequestDto {
+    /**
+     * 
+     * @type {Array<LogEntryRequestDto>}
+     * @memberof LogBatchRequestDto
+     */
+    entries?: Array<LogEntryRequestDto>;
+}
+/**
+ * 
+ * @export
+ * @interface LogBatchResponseDto
+ */
+export interface LogBatchResponseDto {
+    /**
+     * 
+     * @type {number}
+     * @memberof LogBatchResponseDto
+     */
+    accepted?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof LogBatchResponseDto
+     */
+    duplicates?: number;
+}
+/**
+ * 
+ * @export
+ * @interface LogEntryRequestDto
+ */
+export interface LogEntryRequestDto {
+    /**
+     * 
+     * @type {number}
+     * @memberof LogEntryRequestDto
+     */
+    accountNumber?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof LogEntryRequestDto
+     */
+    assignedPriority?: number;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof LogEntryRequestDto
+     */
+    childShipmentNumbers?: Array<number>;
+    /**
+     * 
+     * @type {number}
+     * @memberof LogEntryRequestDto
+     */
+    distinctProductCount?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof LogEntryRequestDto
+     */
+    entityId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LogEntryRequestDto
+     */
+    entityType?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LogEntryRequestDto
+     */
+    fulfillmentType?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LogEntryRequestDto
+     */
+    inventoryRef?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof LogEntryRequestDto
+     */
+    lineItemCount?: number;
+    /**
+     * 
+     * @type {Array<Line>}
+     * @memberof LogEntryRequestDto
+     */
+    lines?: Array<Line>;
+    /**
+     * 
+     * @type {string}
+     * @memberof LogEntryRequestDto
+     */
+    locationFromCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LogEntryRequestDto
+     */
+    locationToCode?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof LogEntryRequestDto
+     */
+    newPriority?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof LogEntryRequestDto
+     */
+    newStatus?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LogEntryRequestDto
+     */
+    occurredAt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LogEntryRequestDto
+     */
+    orderId?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof LogEntryRequestDto
+     */
+    originShipmentNumber?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof LogEntryRequestDto
+     */
+    outcome?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LogEntryRequestDto
+     */
+    phase?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof LogEntryRequestDto
+     */
+    previousPriority?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof LogEntryRequestDto
+     */
+    priorStatus?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LogEntryRequestDto
+     */
+    reason?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LogEntryRequestDto
+     */
+    ruleCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LogEntryRequestDto
+     */
+    ruleDescription?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LogEntryRequestDto
+     */
+    ruleName?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof LogEntryRequestDto
+     */
+    ruleRank?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof LogEntryRequestDto
+     */
+    ruleVersionHash?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof LogEntryRequestDto
+     */
+    sequenceId?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof LogEntryRequestDto
+     */
+    serviceOrigin?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LogEntryRequestDto
+     */
+    shipWindowEnd?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LogEntryRequestDto
+     */
+    shipWindowStart?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LogEntryRequestDto
+     */
+    splitGroupId?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof LogEntryRequestDto
+     */
+    totalUnits?: number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof LogEntryRequestDto
+     */
+    triggeringEventIds?: Array<string>;
+}
+/**
+ * 
+ * @export
+ * @interface LogicalOperatorsDto
+ */
+export interface LogicalOperatorsDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof LogicalOperatorsDto
+     */
+    and?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LogicalOperatorsDto
+     */
+    or?: string;
+}
+/**
+ * 
+ * @export
+ * @interface Manifest
+ */
+export interface Manifest {
     /**
      * 
      * @type {{ [key: string]: object; }}
-     * @memberof ManifestDto
+     * @memberof Manifest
      */
     attributes?: { [key: string]: object; };
     /**
      * 
-     * @type {string}
-     * @memberof ManifestDto
+     * @type {FulfillmentAPIAuditInfo}
+     * @memberof Manifest
      */
-    internalId?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ManifestDto
-     */
-    tenantId?: number;
+    auditInfo?: FulfillmentAPIAuditInfo;
     /**
      * 
      * @type {string}
-     * @memberof ManifestDto
-     */
-    locationCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ManifestDto
+     * @memberof Manifest
      */
     carrierId?: string;
     /**
      * 
      * @type {string}
-     * @memberof ManifestDto
+     * @memberof Manifest
      */
-    userId?: string;
+    internalId?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Manifest
+     */
+    isSuccessfulPreviously?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof ManifestDto
+     * @memberof Manifest
      */
-    userDisplayName?: string;
-    /**
-     * 
-     * @type {AuditInfoDto}
-     * @memberof ManifestDto
-     */
-    auditInfo?: AuditInfoDto;
-    /**
-     * 
-     * @type {Array<ManifestShipmentDto>}
-     * @memberof ManifestDto
-     */
-    shipments?: Array<ManifestShipmentDto>;
-    /**
-     * 
-     * @type {number}
-     * @memberof ManifestDto
-     */
-    numberOfShipments?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ManifestDto
-     */
-    numberOfPackages?: number;
+    locationCode?: string;
     /**
      * 
      * @type {string}
-     * @memberof ManifestDto
+     * @memberof Manifest
      */
     manifestId?: string;
     /**
      * 
      * @type {string}
-     * @memberof ManifestDto
+     * @memberof Manifest
      */
     manifestUrl?: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof ManifestDto
+     * @type {number}
+     * @memberof Manifest
      */
-    isSuccessfulPreviously?: boolean;
-    /**
-     * 
-     * @type {Array<ManifestShipmentDto>}
-     * @memberof ManifestDto
-     */
-    shipmentsSuccessfulPreviously?: Array<ManifestShipmentDto>;
-}
-/**
- * 
- * @export
- * @interface ManifestRequestDto
- */
-export interface ManifestRequestDto {
-    /**
-     * 
-     * @type {string}
-     * @memberof ManifestRequestDto
-     */
-    carrierId: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ManifestRequestDto
-     */
-    locationCode: string;
-    /**
-     * 
-     * @type {Array<ManifestRequestShipmentDto>}
-     * @memberof ManifestRequestDto
-     */
-    includedShipments: Array<ManifestRequestShipmentDto>;
-}
-/**
- * 
- * @export
- * @interface ManifestRequestShipmentDto
- */
-export interface ManifestRequestShipmentDto {
+    numberOfPackages?: number;
     /**
      * 
      * @type {number}
-     * @memberof ManifestRequestShipmentDto
+     * @memberof Manifest
      */
-    shipmentNumber: number;
+    numberOfShipments?: number;
+    /**
+     * 
+     * @type {Array<ManifestShipment>}
+     * @memberof Manifest
+     */
+    shipments?: Array<ManifestShipment>;
+    /**
+     * 
+     * @type {Array<ManifestShipment>}
+     * @memberof Manifest
+     */
+    shipmentsSuccessfulPreviously?: Array<ManifestShipment>;
+    /**
+     * 
+     * @type {number}
+     * @memberof Manifest
+     */
+    tenantId?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Manifest
+     */
+    userDisplayName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Manifest
+     */
+    userId?: string;
+}
+/**
+ * 
+ * @export
+ * @interface ManifestRequest
+ */
+export interface ManifestRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ManifestRequest
+     */
+    carrierId?: string;
+    /**
+     * 
+     * @type {Array<ManifestRequestShipment>}
+     * @memberof ManifestRequest
+     */
+    includedShipments?: Array<ManifestRequestShipment>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ManifestRequest
+     */
+    locationCode?: string;
+}
+/**
+ * 
+ * @export
+ * @interface ManifestRequestShipment
+ */
+export interface ManifestRequestShipment {
     /**
      * 
      * @type {Array<string>}
-     * @memberof ManifestRequestShipmentDto
+     * @memberof ManifestRequestShipment
      */
-    integratorIds: Array<string>;
+    integratorIds?: Array<string>;
+    /**
+     * 
+     * @type {number}
+     * @memberof ManifestRequestShipment
+     */
+    shipmentNumber?: number;
 }
 /**
  * 
  * @export
- * @interface ManifestShipmentDto
+ * @interface ManifestShipment
  */
-export interface ManifestShipmentDto {
+export interface ManifestShipment {
     /**
      * 
-     * @type {number}
-     * @memberof ManifestShipmentDto
+     * @type {FulfillmentAPIDestination}
+     * @memberof ManifestShipment
      */
-    shipmentNumber?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ManifestShipmentDto
-     */
-    orderNumber?: number;
+    destination?: FulfillmentAPIDestination;
     /**
      * 
      * @type {string}
-     * @memberof ManifestShipmentDto
+     * @memberof ManifestShipment
      */
     externalOrderId?: string;
     /**
      * 
      * @type {string}
-     * @memberof ManifestShipmentDto
-     */
-    shipmentType?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ManifestShipmentDto
+     * @memberof ManifestShipment
      */
     fulfillmentLocationCode?: string;
     /**
      * 
-     * @type {DestinationDto}
-     * @memberof ManifestShipmentDto
+     * @type {number}
+     * @memberof ManifestShipment
      */
-    destination?: DestinationDto;
+    orderNumber?: number;
     /**
      * 
-     * @type {Array<PackageDto>}
-     * @memberof ManifestShipmentDto
+     * @type {Array<FulfillmentAPIPackage>}
+     * @memberof ManifestShipment
      */
-    packages?: Array<PackageDto>;
+    packages?: Array<FulfillmentAPIPackage>;
+    /**
+     * 
+     * @type {number}
+     * @memberof ManifestShipment
+     */
+    shipmentNumber?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ManifestShipment
+     */
+    shipmentType?: string;
 }
 /**
  * 
  * @export
- * @interface MeasurementDto
+ * @interface ModifiedReason
  */
-export interface MeasurementDto {
+export interface ModifiedReason {
     /**
      * 
      * @type {{ [key: string]: object; }}
-     * @memberof MeasurementDto
+     * @memberof ModifiedReason
      */
     attributes?: { [key: string]: object; };
     /**
      * 
      * @type {string}
-     * @memberof MeasurementDto
+     * @memberof ModifiedReason
      */
-    unit?: string;
+    moreInfo?: string;
     /**
      * 
-     * @type {number}
-     * @memberof MeasurementDto
+     * @type {string}
+     * @memberof ModifiedReason
      */
-    value?: number;
-}
-/**
- * 
- * @export
- * @interface MultiValueMapStringString
- */
-export interface MultiValueMapStringString {
-    [key: string]: Array<string> | any;
-    /**
-     * 
-     * @type {{ [key: string]: string; }}
-     * @memberof MultiValueMapStringString
-     */
-    all?: { [key: string]: string; };
-    /**
-     * 
-     * @type {boolean}
-     * @memberof MultiValueMapStringString
-     */
-    empty?: boolean;
+    reasonCode?: string;
 }
 /**
  * 
@@ -5400,22 +9543,28 @@ export interface MultiValueMapStringString {
 export interface MutabilityInfo {
     /**
      * 
+     * @type {{ [key: string]: object; }}
+     * @memberof MutabilityInfo
+     */
+    attributes?: { [key: string]: object; };
+    /**
+     * 
+     * @type {FulfillmentAPIAuditInfo}
+     * @memberof MutabilityInfo
+     */
+    auditInfo?: FulfillmentAPIAuditInfo;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof MutabilityInfo
+     */
+    blockedActions?: Array<string>;
+    /**
+     * 
      * @type {string}
      * @memberof MutabilityInfo
      */
     reason?: string;
-    /**
-     * 
-     * @type {FulfillmentAuditInfo}
-     * @memberof MutabilityInfo
-     */
-    auditInfo?: FulfillmentAuditInfo;
-    /**
-     * 
-     * @type {Set<string>}
-     * @memberof MutabilityInfo
-     */
-    blockedActions?: Set<string>;
 }
 /**
  * 
@@ -5425,248 +9574,286 @@ export interface MutabilityInfo {
 export interface PackageConsolidationDto {
     /**
      * 
-     * @type {number}
+     * @type {FulfillmentAPIPackage}
      * @memberof PackageConsolidationDto
      */
-    shipmentNumber?: number;
-    /**
-     * 
-     * @type {FulfillmentPackage}
-     * @memberof PackageConsolidationDto
-     */
-    packageDetails?: FulfillmentPackage;
-}
-/**
- * 
- * @export
- * @interface PackageConsolidationRequestDto
- */
-export interface PackageConsolidationRequestDto {
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof PackageConsolidationRequestDto
-     */
-    attributes?: { [key: string]: object; };
-    /**
-     * 
-     * @type {Array<PackageConsolidationDto>}
-     * @memberof PackageConsolidationRequestDto
-     */
-    packageConsolidations?: Array<PackageConsolidationDto>;
-    /**
-     * 
-     * @type {FulfillmentPackage}
-     * @memberof PackageConsolidationRequestDto
-     */
-    commonPackageDetails?: FulfillmentPackage;
-}
-/**
- * 
- * @export
- * @interface PackageConsolidationSuggestionDto
- */
-export interface PackageConsolidationSuggestionDto {
-    /**
-     * 
-     * @type {PagedModelEntityModelShipmentDto}
-     * @memberof PackageConsolidationSuggestionDto
-     */
-    shipmentList?: PagedModelEntityModelShipmentDto;
-}
-/**
- * 
- * @export
- * @interface PackageDto
- */
-export interface PackageDto {
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof PackageDto
-     */
-    attributes?: { [key: string]: object; };
+    packageDetails?: FulfillmentAPIPackage;
     /**
      * 
      * @type {string}
-     * @memberof PackageDto
+     * @memberof PackageConsolidationDto
      */
     packageId?: string;
     /**
      * 
-     * @type {PackageMeasurementsDto}
-     * @memberof PackageDto
-     */
-    measurements?: PackageMeasurementsDto;
-    /**
-     * 
-     * @type {string}
-     * @memberof PackageDto
-     */
-    carrier?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PackageDto
-     */
-    carrierName?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PackageDto
-     */
-    returnCarrier?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PackageDto
-     */
-    packagingType?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PackageDto
-     */
-    shippingMethodCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PackageDto
-     */
-    shippingMethodName?: string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof PackageDto
-     */
-    trackingNumbers?: Array<string>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof PackageDto
-     */
-    returnTrackingNumbers?: Array<string>;
-    /**
-     * 
-     * @type {string}
-     * @memberof PackageDto
-     */
-    stringBarcode?: string;
-    /**
-     * 
-     * @type {Array<TrackingDto>}
-     * @memberof PackageDto
-     */
-    trackings?: Array<TrackingDto>;
-    /**
-     * 
-     * @type {Array<TrackingDto>}
-     * @memberof PackageDto
-     */
-    returnTrackings?: Array<TrackingDto>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PackageDto
-     */
-    hasLabel?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PackageDto
-     */
-    signatureRequired?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof PackageDto
-     */
-    integratorId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PackageDto
-     */
-    manifestId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PackageDto
-     */
-    labelFormat?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PackageDto
-     */
-    fxcbDocumentsUrl?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PackageDto
-     */
-    fxcbPackNotificationId?: string;
-    /**
-     * 
      * @type {number}
-     * @memberof PackageDto
+     * @memberof PackageConsolidationDto
      */
-    packingSlipNumber?: number;
-    /**
-     * 
-     * @type {Array<PackingSlipItemDetailDto>}
-     * @memberof PackageDto
-     */
-    packingSlipItemDetails?: Array<PackingSlipItemDetailDto>;
-    /**
-     * 
-     * @type {FulfillmentAuditInfo}
-     * @memberof PackageDto
-     */
-    auditInfo?: FulfillmentAuditInfo;
-    /**
-     * 
-     * @type {string}
-     * @memberof PackageDto
-     */
-    packageConsolidationId?: string;
+    shipmentNumber?: number;
 }
 /**
  * 
  * @export
- * @interface PackageMeasurementsDto
+ * @interface PackageConsolidationRequest
  */
-export interface PackageMeasurementsDto {
+export interface PackageConsolidationRequest {
     /**
      * 
      * @type {{ [key: string]: object; }}
-     * @memberof PackageMeasurementsDto
+     * @memberof PackageConsolidationRequest
      */
     attributes?: { [key: string]: object; };
     /**
      * 
-     * @type {MeasurementDto}
-     * @memberof PackageMeasurementsDto
+     * @type {FulfillmentAPIPackage}
+     * @memberof PackageConsolidationRequest
      */
-    height?: MeasurementDto;
+    commonPackageDetails?: FulfillmentAPIPackage;
     /**
      * 
-     * @type {MeasurementDto}
-     * @memberof PackageMeasurementsDto
+     * @type {Array<PackageConsolidationDto>}
+     * @memberof PackageConsolidationRequest
      */
-    length?: MeasurementDto;
+    packageConsolidations?: Array<PackageConsolidationDto>;
+}
+/**
+ * 
+ * @export
+ * @interface PackageConsolidationSuggestion
+ */
+export interface PackageConsolidationSuggestion {
     /**
      * 
-     * @type {MeasurementDto}
-     * @memberof PackageMeasurementsDto
+     * @type {PagedModelOfEntityModelOfShipment}
+     * @memberof PackageConsolidationSuggestion
      */
-    width?: MeasurementDto;
+    shipmentList?: PagedModelOfEntityModelOfShipment;
+}
+/**
+ * 
+ * @export
+ * @interface PackedBox
+ */
+export interface PackedBox {
     /**
      * 
-     * @type {MeasurementDto}
-     * @memberof PackageMeasurementsDto
+     * @type {number}
+     * @memberof PackedBox
      */
-    weight?: MeasurementDto;
+    boxId?: number;
+    /**
+     * 
+     * @type {PageDimensions}
+     * @memberof PackedBox
+     */
+    dimensions?: PageDimensions;
+    /**
+     * 
+     * @type {Array<PackedItem>}
+     * @memberof PackedBox
+     */
+    items?: Array<PackedItem>;
+    /**
+     * 
+     * @type {string}
+     * @memberof PackedBox
+     */
+    name?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PackedBox
+     */
+    volumeUtilization?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PackedBox
+     */
+    weightUnit?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PackedBox
+     */
+    weightUsed?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PackedBox
+     */
+    weightUtilization?: number;
+}
+/**
+ * 
+ * @export
+ * @interface PackedBoxDto
+ */
+export interface PackedBoxDto {
+    /**
+     * 
+     * @type {number}
+     * @memberof PackedBoxDto
+     */
+    boxId?: number;
+    /**
+     * 
+     * @type {DimensionsDto}
+     * @memberof PackedBoxDto
+     */
+    dimensions?: DimensionsDto;
+    /**
+     * 
+     * @type {Array<PackedItemDto>}
+     * @memberof PackedBoxDto
+     */
+    items?: Array<PackedItemDto>;
+    /**
+     * 
+     * @type {string}
+     * @memberof PackedBoxDto
+     */
+    name?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PackedBoxDto
+     */
+    volumeUtilization?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PackedBoxDto
+     */
+    weightUnit?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PackedBoxDto
+     */
+    weightUsed?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PackedBoxDto
+     */
+    weightUtilization?: number;
+}
+/**
+ * 
+ * @export
+ * @interface PackedItem
+ */
+export interface PackedItem {
+    /**
+     * 
+     * @type {PageDimensions}
+     * @memberof PackedItem
+     */
+    dimensions?: PageDimensions;
+    /**
+     * 
+     * @type {number}
+     * @memberof PackedItem
+     */
+    lineId?: number;
+    /**
+     * 
+     * @type {Position}
+     * @memberof PackedItem
+     */
+    origin?: Position;
+    /**
+     * 
+     * @type {string}
+     * @memberof PackedItem
+     */
+    productCode?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PackedItem
+     */
+    quantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PackedItem
+     */
+    sourceShipmentNumber?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PackedItem
+     */
+    uniqueId?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PackedItem
+     */
+    weight?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PackedItem
+     */
+    weightUnit?: string;
+}
+/**
+ * 
+ * @export
+ * @interface PackedItemDto
+ */
+export interface PackedItemDto {
+    /**
+     * 
+     * @type {DimensionsDto}
+     * @memberof PackedItemDto
+     */
+    dimensions?: DimensionsDto;
+    /**
+     * 
+     * @type {number}
+     * @memberof PackedItemDto
+     */
+    lineId?: number;
+    /**
+     * 
+     * @type {PositionDto}
+     * @memberof PackedItemDto
+     */
+    origin?: PositionDto;
+    /**
+     * 
+     * @type {number}
+     * @memberof PackedItemDto
+     */
+    quantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PackedItemDto
+     */
+    sourceShipmentNumber?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PackedItemDto
+     */
+    uniqueId?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PackedItemDto
+     */
+    weight?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PackedItemDto
+     */
+    weightUnit?: string;
 }
 /**
  * 
@@ -5698,6 +9885,99 @@ export interface PackingSlipItemDetailDto {
      * @memberof PackingSlipItemDetailDto
      */
     quantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PackingSlipItemDetailDto
+     */
+    receivedQuantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PackingSlipItemDetailDto
+     */
+    substitutedQuantity?: number;
+}
+/**
+ * 
+ * @export
+ * @interface PackingSuggestionRejectionRequest
+ */
+export interface PackingSuggestionRejectionRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof PackingSuggestionRejectionRequest
+     */
+    additionalDetails?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PackingSuggestionRejectionRequest
+     */
+    packingSuggestionId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PackingSuggestionRejectionRequest
+     */
+    rejectionReasonCode?: string;
+}
+/**
+ * 
+ * @export
+ * @interface PackingSuggestionRequestDto
+ */
+export interface PackingSuggestionRequestDto {
+    /**
+     * 
+     * @type {Array<BoxTypeDto>}
+     * @memberof PackingSuggestionRequestDto
+     */
+    boxTypes?: Array<BoxTypeDto>;
+    /**
+     * 
+     * @type {Array<ItemDto>}
+     * @memberof PackingSuggestionRequestDto
+     */
+    items?: Array<ItemDto>;
+}
+/**
+ * 
+ * @export
+ * @interface PackingSuggestionResponseDto
+ */
+export interface PackingSuggestionResponseDto {
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof PackingSuggestionResponseDto
+     */
+    attributes?: { [key: string]: object; };
+    /**
+     * 
+     * @type {Array<PackedBoxDto>}
+     * @memberof PackingSuggestionResponseDto
+     */
+    boxes?: Array<PackedBoxDto>;
+    /**
+     * 
+     * @type {Array<PackedItemDto>}
+     * @memberof PackingSuggestionResponseDto
+     */
+    leftOvers?: Array<PackedItemDto>;
+    /**
+     * 
+     * @type {number}
+     * @memberof PackingSuggestionResponseDto
+     */
+    lenLeftovers?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PackingSuggestionResponseDto
+     */
+    packingSuggestionId?: string;
 }
 /**
  * 
@@ -5707,22 +9987,34 @@ export interface PackingSlipItemDetailDto {
 export interface PageDimensions {
     /**
      * 
-     * @type {number}
+     * @type {{ [key: string]: object; }}
      * @memberof PageDimensions
      */
-    pageIndex?: number;
+    attributes?: { [key: string]: object; };
     /**
      * 
      * @type {number}
      * @memberof PageDimensions
      */
-    pageSize?: number;
+    height?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PageDimensions
+     */
+    length?: number;
     /**
      * 
      * @type {string}
      * @memberof PageDimensions
      */
-    sort?: string;
+    unit?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PageDimensions
+     */
+    width?: number;
 }
 /**
  * 
@@ -5730,6 +10022,12 @@ export interface PageDimensions {
  * @interface PageMetadata
  */
 export interface PageMetadata {
+    /**
+     * 
+     * @type {number}
+     * @memberof PageMetadata
+     */
+    number?: number;
     /**
      * 
      * @type {number}
@@ -5748,131 +10046,654 @@ export interface PageMetadata {
      * @memberof PageMetadata
      */
     totalPages?: number;
+}
+/**
+ * 
+ * @export
+ * @interface PageOfDisruptionEventDto
+ */
+export interface PageOfDisruptionEventDto {
+    /**
+     * 
+     * @type {Array<DisruptionEventDto>}
+     * @memberof PageOfDisruptionEventDto
+     */
+    content?: Array<DisruptionEventDto>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PageOfDisruptionEventDto
+     */
+    empty?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PageOfDisruptionEventDto
+     */
+    first?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PageOfDisruptionEventDto
+     */
+    last?: boolean;
     /**
      * 
      * @type {number}
-     * @memberof PageMetadata
+     * @memberof PageOfDisruptionEventDto
      */
     number?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PageOfDisruptionEventDto
+     */
+    numberOfElements?: number;
+    /**
+     * 
+     * @type {Pageable}
+     * @memberof PageOfDisruptionEventDto
+     */
+    pageable?: Pageable;
+    /**
+     * 
+     * @type {number}
+     * @memberof PageOfDisruptionEventDto
+     */
+    size?: number;
+    /**
+     * 
+     * @type {Sort}
+     * @memberof PageOfDisruptionEventDto
+     */
+    sort?: Sort;
+    /**
+     * 
+     * @type {number}
+     * @memberof PageOfDisruptionEventDto
+     */
+    totalElements?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PageOfDisruptionEventDto
+     */
+    totalPages?: number;
 }
 /**
  * 
  * @export
- * @interface PagedModelEntityModelShipmentDto
+ * @interface PageOfRuleDto
  */
-export interface PagedModelEntityModelShipmentDto {
+export interface PageOfRuleDto {
     /**
      * 
-     * @type {CollectionModelEntityModelShipmentDtoEmbedded}
-     * @memberof PagedModelEntityModelShipmentDto
+     * @type {Array<RuleDto>}
+     * @memberof PageOfRuleDto
      */
-    embedded?: CollectionModelEntityModelShipmentDtoEmbedded;
+    content?: Array<RuleDto>;
     /**
      * 
-     * @type {{ [key: string]: FulfillmentLink; }}
-     * @memberof PagedModelEntityModelShipmentDto
+     * @type {boolean}
+     * @memberof PageOfRuleDto
      */
-    links?: { [key: string]: FulfillmentLink; };
+    empty?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PageOfRuleDto
+     */
+    first?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PageOfRuleDto
+     */
+    last?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof PageOfRuleDto
+     */
+    number?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PageOfRuleDto
+     */
+    numberOfElements?: number;
+    /**
+     * 
+     * @type {Pageable}
+     * @memberof PageOfRuleDto
+     */
+    pageable?: Pageable;
+    /**
+     * 
+     * @type {number}
+     * @memberof PageOfRuleDto
+     */
+    size?: number;
+    /**
+     * 
+     * @type {Sort}
+     * @memberof PageOfRuleDto
+     */
+    sort?: Sort;
+    /**
+     * 
+     * @type {number}
+     * @memberof PageOfRuleDto
+     */
+    totalElements?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PageOfRuleDto
+     */
+    totalPages?: number;
+}
+/**
+ * 
+ * @export
+ * @interface Pageable
+ */
+export interface Pageable {
+    /**
+     * 
+     * @type {number}
+     * @memberof Pageable
+     */
+    offset?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Pageable
+     */
+    pageNumber?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Pageable
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Pageable
+     */
+    paged?: boolean;
+    /**
+     * 
+     * @type {Sort}
+     * @memberof Pageable
+     */
+    sort?: Sort;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Pageable
+     */
+    unpaged?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface PagedModelOfEntityModelOfShipment
+ */
+export interface PagedModelOfEntityModelOfShipment {
+    /**
+     * 
+     * @type {{ [key: string]: Array<EntityModelOfShipment>; }}
+     * @memberof PagedModelOfEntityModelOfShipment
+     */
+    embedded?: { [key: string]: Array<EntityModelOfShipment>; };
+    /**
+     * 
+     * @type {Links}
+     * @memberof PagedModelOfEntityModelOfShipment
+     */
+    links?: Links;
     /**
      * 
      * @type {PageMetadata}
-     * @memberof PagedModelEntityModelShipmentDto
+     * @memberof PagedModelOfEntityModelOfShipment
      */
     page?: PageMetadata;
 }
 /**
  * 
  * @export
- * @interface PagedModelEntityModelWorkflowProcessDto
+ * @interface PagedModelOfEntityModelOfWorkflowProcess
  */
-export interface PagedModelEntityModelWorkflowProcessDto {
+export interface PagedModelOfEntityModelOfWorkflowProcess {
     /**
      * 
-     * @type {PagedModelEntityModelWorkflowProcessDtoEmbedded}
-     * @memberof PagedModelEntityModelWorkflowProcessDto
+     * @type {{ [key: string]: Array<EntityModelOfWorkflowProcess>; }}
+     * @memberof PagedModelOfEntityModelOfWorkflowProcess
      */
-    embedded?: PagedModelEntityModelWorkflowProcessDtoEmbedded;
+    embedded?: { [key: string]: Array<EntityModelOfWorkflowProcess>; };
     /**
      * 
-     * @type {{ [key: string]: FulfillmentLink; }}
-     * @memberof PagedModelEntityModelWorkflowProcessDto
+     * @type {Links}
+     * @memberof PagedModelOfEntityModelOfWorkflowProcess
      */
-    links?: { [key: string]: FulfillmentLink; };
+    links?: Links;
     /**
      * 
      * @type {PageMetadata}
-     * @memberof PagedModelEntityModelWorkflowProcessDto
+     * @memberof PagedModelOfEntityModelOfWorkflowProcess
      */
     page?: PageMetadata;
 }
 /**
  * 
  * @export
- * @interface PagedModelEntityModelWorkflowProcessDtoEmbedded
+ * @interface PagedResponseDtoOfChangeDto
  */
-export interface PagedModelEntityModelWorkflowProcessDtoEmbedded {
+export interface PagedResponseDtoOfChangeDto {
     /**
      * 
-     * @type {Array<EntityModelWorkflowProcessDto>}
-     * @memberof PagedModelEntityModelWorkflowProcessDtoEmbedded
+     * @type {Array<ChangeDto>}
+     * @memberof PagedResponseDtoOfChangeDto
      */
-    processes?: Array<EntityModelWorkflowProcessDto>;
+    content?: Array<ChangeDto>;
+    /**
+     * 
+     * @type {{ [key: string]: number; }}
+     * @memberof PagedResponseDtoOfChangeDto
+     */
+    outcomeCounts?: { [key: string]: number; };
+    /**
+     * 
+     * @type {number}
+     * @memberof PagedResponseDtoOfChangeDto
+     */
+    page?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PagedResponseDtoOfChangeDto
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PagedResponseDtoOfChangeDto
+     */
+    totalElements?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PagedResponseDtoOfChangeDto
+     */
+    totalPages?: number;
+    /**
+     * 
+     * @type {{ [key: string]: number; }}
+     * @memberof PagedResponseDtoOfChangeDto
+     */
+    viewTotals?: { [key: string]: number; };
 }
 /**
  * 
  * @export
- * @interface PhoneDto
+ * @interface PagedResponseDtoOfItemAuditDto
  */
-export interface PhoneDto {
+export interface PagedResponseDtoOfItemAuditDto {
+    /**
+     * 
+     * @type {Array<ItemAuditDto>}
+     * @memberof PagedResponseDtoOfItemAuditDto
+     */
+    content?: Array<ItemAuditDto>;
+    /**
+     * 
+     * @type {{ [key: string]: number; }}
+     * @memberof PagedResponseDtoOfItemAuditDto
+     */
+    outcomeCounts?: { [key: string]: number; };
+    /**
+     * 
+     * @type {number}
+     * @memberof PagedResponseDtoOfItemAuditDto
+     */
+    page?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PagedResponseDtoOfItemAuditDto
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PagedResponseDtoOfItemAuditDto
+     */
+    totalElements?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PagedResponseDtoOfItemAuditDto
+     */
+    totalPages?: number;
+    /**
+     * 
+     * @type {{ [key: string]: number; }}
+     * @memberof PagedResponseDtoOfItemAuditDto
+     */
+    viewTotals?: { [key: string]: number; };
+}
+/**
+ * 
+ * @export
+ * @interface PagedResponseDtoOfRunSummaryDto
+ */
+export interface PagedResponseDtoOfRunSummaryDto {
+    /**
+     * 
+     * @type {Array<RunSummaryDto>}
+     * @memberof PagedResponseDtoOfRunSummaryDto
+     */
+    content?: Array<RunSummaryDto>;
+    /**
+     * 
+     * @type {{ [key: string]: number; }}
+     * @memberof PagedResponseDtoOfRunSummaryDto
+     */
+    outcomeCounts?: { [key: string]: number; };
+    /**
+     * 
+     * @type {number}
+     * @memberof PagedResponseDtoOfRunSummaryDto
+     */
+    page?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PagedResponseDtoOfRunSummaryDto
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PagedResponseDtoOfRunSummaryDto
+     */
+    totalElements?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PagedResponseDtoOfRunSummaryDto
+     */
+    totalPages?: number;
+    /**
+     * 
+     * @type {{ [key: string]: number; }}
+     * @memberof PagedResponseDtoOfRunSummaryDto
+     */
+    viewTotals?: { [key: string]: number; };
+}
+/**
+ * 
+ * @export
+ * @interface PaginationDto
+ */
+export interface PaginationDto {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginationDto
+     */
+    defaultPageSize?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginationDto
+     */
+    pageParam?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginationDto
+     */
+    pageSizeParam?: string;
+}
+/**
+ * 
+ * @export
+ * @interface PaymentInvoice
+ */
+export interface PaymentInvoice {
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentInvoice
+     */
+    currency?: string;
+    /**
+     * 
+     * @type {object}
+     * @memberof PaymentInvoice
+     */
+    data?: object;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentInvoice
+     */
+    invoiceDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentInvoice
+     */
+    invoiceNumber?: string;
+    /**
+     * 
+     * @type {Array<InvoiceLineItem>}
+     * @memberof PaymentInvoice
+     */
+    lineItems?: Array<InvoiceLineItem>;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentInvoice
+     */
+    rawEdiData?: string;
+    /**
+     * 
+     * @type {InvoiceReferences}
+     * @memberof PaymentInvoice
+     */
+    references?: InvoiceReferences;
+    /**
+     * 
+     * @type {Array<InvoiceTax>}
+     * @memberof PaymentInvoice
+     */
+    taxes?: Array<InvoiceTax>;
+    /**
+     * 
+     * @type {InvoiceTerms}
+     * @memberof PaymentInvoice
+     */
+    terms?: InvoiceTerms;
+    /**
+     * 
+     * @type {number}
+     * @memberof PaymentInvoice
+     */
+    totalAmount?: number;
+    /**
+     * 
+     * @type {InvoiceVendor}
+     * @memberof PaymentInvoice
+     */
+    vendor?: InvoiceVendor;
+}
+/**
+ * 
+ * @export
+ * @interface PickWave
+ */
+export interface PickWave {
     /**
      * 
      * @type {{ [key: string]: object; }}
-     * @memberof PhoneDto
+     * @memberof PickWave
+     */
+    attributes?: { [key: string]: object; };
+    /**
+     * 
+     * @type {FulfillmentAPIAuditInfo}
+     * @memberof PickWave
+     */
+    auditInfo?: FulfillmentAPIAuditInfo;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIChangeMessage>}
+     * @memberof PickWave
+     */
+    changeMessages?: Array<FulfillmentAPIChangeMessage>;
+    /**
+     * 
+     * @type {Array<PickWaveContent>}
+     * @memberof PickWave
+     */
+    contents?: Array<PickWaveContent>;
+    /**
+     * 
+     * @type {string}
+     * @memberof PickWave
+     */
+    fulfillmentLocationCode?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PickWave
+     */
+    maxShipments?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PickWave
+     */
+    parentPickWaveNumber?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PickWave
+     */
+    pickType?: PickWavePickTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof PickWave
+     */
+    pickWaveId?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PickWave
+     */
+    pickWaveNumber?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PickWave
+     */
+    pickWaveRuleCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PickWave
+     */
+    pickWaveStatus?: PickWavePickWaveStatusEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof PickWave
+     */
+    recoveryPickWaveNumber?: number;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof PickWave
+     */
+    shipmentNumbers?: Array<number>;
+    /**
+     * 
+     * @type {string}
+     * @memberof PickWave
+     */
+    shipmentType?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PickWave
+     */
+    tenantId?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PickWave
+     */
+    userDisplayName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PickWave
+     */
+    userId?: string;
+}
+
+
+/**
+ * @export
+ */
+export const PickWavePickTypeEnum = {
+    Normal: 'NORMAL',
+    Single: 'SINGLE',
+    Multiple: 'MULTIPLE'
+} as const;
+export type PickWavePickTypeEnum = typeof PickWavePickTypeEnum[keyof typeof PickWavePickTypeEnum];
+
+/**
+ * @export
+ */
+export const PickWavePickWaveStatusEnum = {
+    Error: 'ERROR',
+    Pending: 'PENDING',
+    InProgress: 'IN_PROGRESS',
+    Closed: 'CLOSED',
+    PendingRecovery: 'PENDING_RECOVERY'
+} as const;
+export type PickWavePickWaveStatusEnum = typeof PickWavePickWaveStatusEnum[keyof typeof PickWavePickWaveStatusEnum];
+
+/**
+ * 
+ * @export
+ * @interface PickWaveBinRange
+ */
+export interface PickWaveBinRange {
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof PickWaveBinRange
      */
     attributes?: { [key: string]: object; };
     /**
      * 
      * @type {string}
-     * @memberof PhoneDto
-     */
-    home?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PhoneDto
-     */
-    mobile?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PhoneDto
-     */
-    work?: string;
-}
-/**
- * 
- * @export
- * @interface PickWaveBinRangeDto
- */
-export interface PickWaveBinRangeDto {
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof PickWaveBinRangeDto
-     */
-    attributes?: { [key: string]: object; };
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveBinRangeDto
-     */
-    startBinName?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveBinRangeDto
+     * @memberof PickWaveBinRange
      */
     endBinName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PickWaveBinRange
+     */
+    startBinName?: string;
 }
 /**
  * 
@@ -5882,52 +10703,22 @@ export interface PickWaveBinRangeDto {
 export interface PickWaveContent {
     /**
      * 
-     * @type {string}
-     * @memberof PickWaveContent
-     */
-    contentId?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PickWaveContent
-     */
-    orderNumber?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveContent
-     */
-    externalOrderId?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PickWaveContent
-     */
-    shipmentNumber?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PickWaveContent
-     */
-    itemLineId?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PickWaveContent
-     */
-    quantity?: number;
-    /**
-     * 
      * @type {number}
      * @memberof PickWaveContent
      */
     actualQuantity?: number;
     /**
      * 
-     * @type {string}
+     * @type {{ [key: string]: object; }}
      * @memberof PickWaveContent
      */
-    status?: PickWaveContentStatusEnum;
+    attributes?: { [key: string]: object; };
+    /**
+     * 
+     * @type {FulfillmentAPIAuditInfo}
+     * @memberof PickWaveContent
+     */
+    auditInfo?: FulfillmentAPIAuditInfo;
     /**
      * 
      * @type {number}
@@ -5945,43 +10736,31 @@ export interface PickWaveContent {
      * @type {string}
      * @memberof PickWaveContent
      */
-    optionAttributeFQN?: string;
+    contentId?: string;
     /**
      * 
      * @type {string}
      * @memberof PickWaveContent
      */
-    productCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveContent
-     */
-    variationProductCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveContent
-     */
-    partNumber?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveContent
-     */
-    upc?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveContent
-     */
-    sku?: string;
+    externalOrderId?: string;
     /**
      * 
      * @type {string}
      * @memberof PickWaveContent
      */
     imageUrl?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PickWaveContent
+     */
+    itemLineId?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PickWaveContent
+     */
+    locatorName?: string;
     /**
      * 
      * @type {string}
@@ -5993,19 +10772,73 @@ export interface PickWaveContent {
      * @type {string}
      * @memberof PickWaveContent
      */
-    locatorName?: string;
+    optionAttributeFQN?: string;
     /**
      * 
-     * @type {FulfillmentAuditInfo}
+     * @type {Array<FulfillmentAPIProductOption>}
      * @memberof PickWaveContent
      */
-    auditInfo?: FulfillmentAuditInfo;
+    options?: Array<FulfillmentAPIProductOption>;
     /**
      * 
-     * @type {Array<FulfillmentProductOption>}
+     * @type {number}
      * @memberof PickWaveContent
      */
-    options?: Array<FulfillmentProductOption>;
+    orderNumber?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PickWaveContent
+     */
+    partNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PickWaveContent
+     */
+    productCode?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PickWaveContent
+     */
+    quantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PickWaveContent
+     */
+    shipmentNumber?: number;
+    /**
+     * 
+     * @type {ModifiedReason}
+     * @memberof PickWaveContent
+     */
+    shortageReason?: ModifiedReason;
+    /**
+     * 
+     * @type {string}
+     * @memberof PickWaveContent
+     */
+    sku?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PickWaveContent
+     */
+    status?: PickWaveContentStatusEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof PickWaveContent
+     */
+    upc?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PickWaveContent
+     */
+    variationProductCode?: string;
 }
 
 
@@ -6022,315 +10855,31 @@ export type PickWaveContentStatusEnum = typeof PickWaveContentStatusEnum[keyof t
 /**
  * 
  * @export
- * @interface PickWaveContentDto
+ * @interface PickWaveProductMatch
  */
-export interface PickWaveContentDto {
+export interface PickWaveProductMatch {
     /**
      * 
      * @type {{ [key: string]: object; }}
-     * @memberof PickWaveContentDto
+     * @memberof PickWaveProductMatch
      */
     attributes?: { [key: string]: object; };
     /**
      * 
      * @type {string}
-     * @memberof PickWaveContentDto
+     * @memberof PickWaveProductMatch
      */
-    contentId?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PickWaveContentDto
-     */
-    orderNumber?: number;
+    identifier?: PickWaveProductMatchIdentifierEnum;
     /**
      * 
      * @type {string}
-     * @memberof PickWaveContentDto
+     * @memberof PickWaveProductMatch
      */
-    externalOrderId?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PickWaveContentDto
-     */
-    shipmentNumber?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PickWaveContentDto
-     */
-    itemLineId?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PickWaveContentDto
-     */
-    quantity?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PickWaveContentDto
-     */
-    actualQuantity?: number;
+    matchType?: PickWaveProductMatchMatchTypeEnum;
     /**
      * 
      * @type {string}
-     * @memberof PickWaveContentDto
-     */
-    status?: PickWaveContentDtoStatusEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof PickWaveContentDto
-     */
-    binId?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveContentDto
-     */
-    binName?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveContentDto
-     */
-    optionAttributeFQN?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveContentDto
-     */
-    productCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveContentDto
-     */
-    variationProductCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveContentDto
-     */
-    partNumber?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveContentDto
-     */
-    upc?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveContentDto
-     */
-    sku?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveContentDto
-     */
-    imageUrl?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveContentDto
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveContentDto
-     */
-    locatorName?: string;
-    /**
-     * 
-     * @type {AuditInfoDto}
-     * @memberof PickWaveContentDto
-     */
-    auditInfo?: AuditInfoDto;
-    /**
-     * 
-     * @type {Array<ProductOptionDto>}
-     * @memberof PickWaveContentDto
-     */
-    options?: Array<ProductOptionDto>;
-}
-
-
-/**
- * @export
- */
-export const PickWaveContentDtoStatusEnum = {
-    InProgress: 'IN_PROGRESS',
-    Picked: 'PICKED',
-    Removed: 'REMOVED'
-} as const;
-export type PickWaveContentDtoStatusEnum = typeof PickWaveContentDtoStatusEnum[keyof typeof PickWaveContentDtoStatusEnum];
-
-/**
- * 
- * @export
- * @interface PickWaveDto
- */
-export interface PickWaveDto {
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof PickWaveDto
-     */
-    attributes?: { [key: string]: object; };
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveDto
-     */
-    pickWaveId?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PickWaveDto
-     */
-    tenantId?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PickWaveDto
-     */
-    pickWaveNumber?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PickWaveDto
-     */
-    parentPickWaveNumber?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PickWaveDto
-     */
-    recoveryPickWaveNumber?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveDto
-     */
-    userId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveDto
-     */
-    userDisplayName?: string;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof PickWaveDto
-     */
-    shipmentNumbers?: Array<number>;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveDto
-     */
-    fulfillmentLocationCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveDto
-     */
-    pickWaveStatus?: PickWaveDtoPickWaveStatusEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveDto
-     */
-    pickType?: PickWaveDtoPickTypeEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof PickWaveDto
-     */
-    maxShipments?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveDto
-     */
-    shipmentType?: string;
-    /**
-     * 
-     * @type {Array<PickWaveContentDto>}
-     * @memberof PickWaveDto
-     */
-    contents?: Array<PickWaveContentDto>;
-    /**
-     * 
-     * @type {AuditInfoDto}
-     * @memberof PickWaveDto
-     */
-    auditInfo?: AuditInfoDto;
-    /**
-     * 
-     * @type {Array<ChangeMessageDto>}
-     * @memberof PickWaveDto
-     */
-    changeMessages?: Array<ChangeMessageDto>;
-}
-
-
-/**
- * @export
- */
-export const PickWaveDtoPickWaveStatusEnum = {
-    Error: 'ERROR',
-    Pending: 'PENDING',
-    InProgress: 'IN_PROGRESS',
-    Closed: 'CLOSED',
-    PendingRecovery: 'PENDING_RECOVERY'
-} as const;
-export type PickWaveDtoPickWaveStatusEnum = typeof PickWaveDtoPickWaveStatusEnum[keyof typeof PickWaveDtoPickWaveStatusEnum];
-
-/**
- * @export
- */
-export const PickWaveDtoPickTypeEnum = {
-    Normal: 'NORMAL',
-    Single: 'SINGLE',
-    Multiple: 'MULTIPLE'
-} as const;
-export type PickWaveDtoPickTypeEnum = typeof PickWaveDtoPickTypeEnum[keyof typeof PickWaveDtoPickTypeEnum];
-
-/**
- * 
- * @export
- * @interface PickWaveProductMatchDto
- */
-export interface PickWaveProductMatchDto {
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof PickWaveProductMatchDto
-     */
-    attributes?: { [key: string]: object; };
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveProductMatchDto
-     */
-    matchType: PickWaveProductMatchDtoMatchTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveProductMatchDto
-     */
-    identifier: PickWaveProductMatchDtoIdentifierEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof PickWaveProductMatchDto
+     * @memberof PickWaveProductMatch
      */
     value?: string;
 }
@@ -6339,1496 +10888,2003 @@ export interface PickWaveProductMatchDto {
 /**
  * @export
  */
-export const PickWaveProductMatchDtoMatchTypeEnum = {
+export const PickWaveProductMatchIdentifierEnum = {
+    Upc: 'UPC',
+    ProductCode: 'PRODUCT_CODE'
+} as const;
+export type PickWaveProductMatchIdentifierEnum = typeof PickWaveProductMatchIdentifierEnum[keyof typeof PickWaveProductMatchIdentifierEnum];
+
+/**
+ * @export
+ */
+export const PickWaveProductMatchMatchTypeEnum = {
     Exact: 'EXACT',
     Contains: 'CONTAINS',
     StartsWith: 'STARTS_WITH',
     EndsWith: 'ENDS_WITH'
 } as const;
-export type PickWaveProductMatchDtoMatchTypeEnum = typeof PickWaveProductMatchDtoMatchTypeEnum[keyof typeof PickWaveProductMatchDtoMatchTypeEnum];
-
-/**
- * @export
- */
-export const PickWaveProductMatchDtoIdentifierEnum = {
-    Upc: 'UPC',
-    ProductCode: 'PRODUCT_CODE'
-} as const;
-export type PickWaveProductMatchDtoIdentifierEnum = typeof PickWaveProductMatchDtoIdentifierEnum[keyof typeof PickWaveProductMatchDtoIdentifierEnum];
+export type PickWaveProductMatchMatchTypeEnum = typeof PickWaveProductMatchMatchTypeEnum[keyof typeof PickWaveProductMatchMatchTypeEnum];
 
 /**
  * 
  * @export
- * @interface PickupItemDto
+ * @interface PickupItemsRequest
  */
-export interface PickupItemDto {
+export interface PickupItemsRequest {
     /**
      * 
-     * @type {number}
-     * @memberof PickupItemDto
+     * @type {Array<BpmVariable>}
+     * @memberof PickupItemsRequest
      */
-    lineId: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PickupItemDto
-     */
-    quantity: number;
-}
-/**
- * 
- * @export
- * @interface PickupItemsRequestDto
- */
-export interface PickupItemsRequestDto {
+    bpmVariables?: Array<BpmVariable>;
     /**
      * 
      * @type {boolean}
-     * @memberof PickupItemsRequestDto
+     * @memberof PickupItemsRequest
+     */
+    forceFulfill?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PickupItemsRequest
      */
     isUserAction?: boolean;
     /**
      * 
-     * @type {Array<PickupItemDto>}
-     * @memberof PickupItemsRequestDto
+     * @type {Array<FulfillmentAPIPickupItem>}
+     * @memberof PickupItemsRequest
      */
-    items: Array<PickupItemDto>;
+    items?: Array<FulfillmentAPIPickupItem>;
 }
 /**
  * 
  * @export
- * @interface ProductOptionDto
+ * @interface Position
  */
-export interface ProductOptionDto {
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof ProductOptionDto
-     */
-    attributes?: { [key: string]: object; };
-    /**
-     * 
-     * @type {string}
-     * @memberof ProductOptionDto
-     */
-    attributeFQN?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProductOptionDto
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProductOptionDto
-     */
-    dataType?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProductOptionDto
-     */
-    stringValue?: string;
-    /**
-     * 
-     * @type {object}
-     * @memberof ProductOptionDto
-     */
-    value?: object;
-    /**
-     * 
-     * @type {object}
-     * @memberof ProductOptionDto
-     */
-    shopperEnteredValue?: object;
-}
-/**
- * 
- * @export
- * @interface ReadyForPrepItemDto
- */
-export interface ReadyForPrepItemDto {
+export interface Position {
     /**
      * 
      * @type {number}
-     * @memberof ReadyForPrepItemDto
+     * @memberof Position
      */
-    lineId: number;
+    x?: number;
     /**
      * 
      * @type {number}
-     * @memberof ReadyForPrepItemDto
+     * @memberof Position
      */
-    quantity: number;
+    y?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Position
+     */
+    z?: number;
 }
 /**
  * 
  * @export
- * @interface ReadyForPrepItemsRequestDto
+ * @interface PositionDto
  */
-export interface ReadyForPrepItemsRequestDto {
+export interface PositionDto {
+    /**
+     * 
+     * @type {number}
+     * @memberof PositionDto
+     */
+    x?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PositionDto
+     */
+    y?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PositionDto
+     */
+    z?: number;
+}
+/**
+ * 
+ * @export
+ * @interface PriorityAssignment
+ */
+export interface PriorityAssignment {
+    /**
+     * 
+     * @type {number}
+     * @memberof PriorityAssignment
+     */
+    fulfillmentPriority?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PriorityAssignment
+     */
+    ruleCode?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PriorityAssignment
+     */
+    shipmentNumber?: number;
+}
+/**
+ * 
+ * @export
+ * @interface PriorityEvent
+ */
+export interface PriorityEvent {
+    /**
+     * 
+     * @type {string}
+     * @memberof PriorityEvent
+     */
+    action?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PriorityEvent
+     */
+    priority?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PriorityEvent
+     */
+    ruleCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PriorityEvent
+     */
+    ruleType?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PriorityEvent
+     */
+    shipmentStatus?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PriorityEvent
+     */
+    timestamp?: string;
+}
+/**
+ * 
+ * @export
+ * @interface PriorityInfo
+ */
+export interface PriorityInfo {
+    /**
+     * 
+     * @type {Array<PriorityEvent>}
+     * @memberof PriorityInfo
+     */
+    history?: Array<PriorityEvent>;
+    /**
+     * 
+     * @type {string}
+     * @memberof PriorityInfo
+     */
+    prioritizedAt?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PriorityInfo
+     */
+    priority?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PriorityInfo
+     */
+    ruleCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PriorityInfo
+     */
+    ruleType?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PriorityInfo
+     */
+    statusWhenPrioritized?: string;
+}
+/**
+ * 
+ * @export
+ * @interface PriorityResult
+ */
+export interface PriorityResult {
+    /**
+     * 
+     * @type {string}
+     * @memberof PriorityResult
+     */
+    actual?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PriorityResult
+     */
+    expected?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PriorityResult
+     */
+    fulfillmentPriority?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PriorityResult
+     */
+    previousPriority?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PriorityResult
+     */
+    reason?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PriorityResult
+     */
+    ruleCode?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PriorityResult
+     */
+    shipmentNumber?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PriorityResult
+     */
+    status?: string;
+}
+/**
+ * 
+ * @export
+ * @interface QueryDescriptorDto
+ */
+export interface QueryDescriptorDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof QueryDescriptorDto
+     */
+    endpoint?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof QueryDescriptorDto
+     */
+    filterParam?: string;
+    /**
+     * 
+     * @type {LogicalOperatorsDto}
+     * @memberof QueryDescriptorDto
+     */
+    logicalOperators?: LogicalOperatorsDto;
+    /**
+     * 
+     * @type {string}
+     * @memberof QueryDescriptorDto
+     */
+    multiSortSeparator?: string;
+    /**
+     * 
+     * @type {PaginationDto}
+     * @memberof QueryDescriptorDto
+     */
+    pagination?: PaginationDto;
+    /**
+     * 
+     * @type {string}
+     * @memberof QueryDescriptorDto
+     */
+    ruleFieldsEndpoint?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof QueryDescriptorDto
+     */
+    sortAscPrefix?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof QueryDescriptorDto
+     */
+    sortDescPrefix?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof QueryDescriptorDto
+     */
+    sortParam?: string;
+}
+/**
+ * 
+ * @export
+ * @interface RateShoppingMetadataDto
+ */
+export interface RateShoppingMetadataDto {
+    /**
+     * Destination ZIP code
+     * @type {string}
+     * @memberof RateShoppingMetadataDto
+     */
+    destinationZip: string;
+    /**
+     * Expected delivery date used for rate shopping
+     * @type {string}
+     * @memberof RateShoppingMetadataDto
+     */
+    expectedDeliveryDate: string;
+    /**
+     * Origin ZIP code
+     * @type {string}
+     * @memberof RateShoppingMetadataDto
+     */
+    originZip: string;
+    /**
+     * Number of packages in the shipment
+     * @type {number}
+     * @memberof RateShoppingMetadataDto
+     */
+    packageCount: number;
+    /**
+     * 
+     * @type {object}
+     * @memberof RateShoppingMetadataDto
+     */
+    scoringWeights: object;
+    /**
+     * Ship Date used for rate shopping
+     * @type {string}
+     * @memberof RateShoppingMetadataDto
+     */
+    shipDate: string;
+}
+/**
+ * 
+ * @export
+ * @interface RateShoppingPackage
+ */
+export interface RateShoppingPackage {
+    /**
+     * 
+     * @type {FulfillmentAPIPackageMeasurements}
+     * @memberof RateShoppingPackage
+     */
+    measurements?: FulfillmentAPIPackageMeasurements;
+    /**
+     * 
+     * @type {string}
+     * @memberof RateShoppingPackage
+     */
+    packageId?: string;
+}
+/**
+ * Rate shopping request containing shipment details
+ * @export
+ * @interface RateShoppingRequestDto
+ */
+export interface RateShoppingRequestDto {
+    /**
+     * Packages override
+     * @type {Array<RateShoppingPackage>}
+     * @memberof RateShoppingRequestDto
+     */
+    packagesOverride?: Array<RateShoppingPackage>;
+}
+/**
+ * 
+ * @export
+ * @interface ReadyForPackItemsRequest
+ */
+export interface ReadyForPackItemsRequest {
     /**
      * 
      * @type {boolean}
-     * @memberof ReadyForPrepItemsRequestDto
+     * @memberof ReadyForPackItemsRequest
      */
     isUserAction?: boolean;
     /**
      * 
-     * @type {Array<ReadyForPrepItemDto>}
-     * @memberof ReadyForPrepItemsRequestDto
+     * @type {Array<ReadyForPrepItem>}
+     * @memberof ReadyForPackItemsRequest
      */
-    items: Array<ReadyForPrepItemDto>;
+    items?: Array<ReadyForPrepItem>;
 }
 /**
  * 
  * @export
- * @interface ReassignItemDto
+ * @interface ReadyForPrepItem
  */
-export interface ReassignItemDto {
+export interface ReadyForPrepItem {
     /**
      * 
      * @type {number}
-     * @memberof ReassignItemDto
+     * @memberof ReadyForPrepItem
      */
-    lineId: number;
+    lineId?: number;
     /**
      * 
      * @type {number}
-     * @memberof ReassignItemDto
+     * @memberof ReadyForPrepItem
      */
-    quantity: number;
+    quantity?: number;
+}
+/**
+ * 
+ * @export
+ * @interface ReadyForPrepItemsRequest
+ */
+export interface ReadyForPrepItemsRequest {
     /**
      * 
-     * @type {ReassignedReasonDto}
-     * @memberof ReassignItemDto
+     * @type {boolean}
+     * @memberof ReadyForPrepItemsRequest
      */
-    reassignedReason?: ReassignedReasonDto;
+    isUserAction?: boolean;
+    /**
+     * 
+     * @type {Array<ReadyForPrepItem>}
+     * @memberof ReadyForPrepItemsRequest
+     */
+    items?: Array<ReadyForPrepItem>;
+}
+/**
+ * 
+ * @export
+ * @interface ReassignItem
+ */
+export interface ReassignItem {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ReassignItem
+     */
+    blockAssignment?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof ReassignItemDto
+     * @memberof ReassignItem
      */
     fulfillmentLocationCode?: string;
     /**
      * 
      * @type {boolean}
-     * @memberof ReassignItemDto
+     * @memberof ReassignItem
      */
-    blockAssignment?: boolean;
+    holdBlockAssignment?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ReassignItem
+     */
+    isReservedInventory?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignItem
+     */
+    lineId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignItem
+     */
+    quantity?: number;
+    /**
+     * 
+     * @type {ReassignedReason}
+     * @memberof ReassignItem
+     */
+    reassignedReason?: ReassignedReason;
 }
 /**
  * 
  * @export
- * @interface ReassignItemsRequestDto
+ * @interface ReassignItemsRequest
  */
-export interface ReassignItemsRequestDto {
+export interface ReassignItemsRequest {
     /**
      * 
      * @type {boolean}
-     * @memberof ReassignItemsRequestDto
+     * @memberof ReassignItemsRequest
      */
     isUserAction?: boolean;
     /**
      * 
-     * @type {Array<ReassignItemDto>}
-     * @memberof ReassignItemsRequestDto
+     * @type {Array<ReassignItem>}
+     * @memberof ReassignItemsRequest
      */
-    items: Array<ReassignItemDto>;
-}
-/**
- * 
- * @export
- * @interface ReassignShipmentRequestDto
- */
-export interface ReassignShipmentRequestDto {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ReassignShipmentRequestDto
-     */
-    isUserAction?: boolean;
-    /**
-     * 
-     * @type {ReassignedReasonDto}
-     * @memberof ReassignShipmentRequestDto
-     */
-    reassignedReason?: ReassignedReasonDto;
+    items?: Array<ReassignItem>;
     /**
      * 
      * @type {string}
-     * @memberof ReassignShipmentRequestDto
+     * @memberof ReassignItemsRequest
+     */
+    runId?: string;
+}
+/**
+ * 
+ * @export
+ * @interface ReassignShipment
+ */
+export interface ReassignShipment {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ReassignShipment
+     */
+    blockAssignment?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReassignShipment
      */
     fulfillmentLocationCode?: string;
     /**
      * 
      * @type {boolean}
-     * @memberof ReassignShipmentRequestDto
+     * @memberof ReassignShipment
      */
-    blockAssignment?: boolean;
+    holdBlockAssignment?: boolean;
     /**
      * 
-     * @type {Array<ReassignItemDto>}
-     * @memberof ReassignShipmentRequestDto
+     * @type {boolean}
+     * @memberof ReassignShipment
      */
-    items?: Array<ReassignItemDto>;
+    isUserAction?: boolean;
+    /**
+     * 
+     * @type {Array<ReassignItem>}
+     * @memberof ReassignShipment
+     */
+    items?: Array<ReassignItem>;
+    /**
+     * 
+     * @type {ReassignedReason}
+     * @memberof ReassignShipment
+     */
+    reassignedReason?: ReassignedReason;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReassignShipment
+     */
+    runId?: string;
 }
 /**
  * 
  * @export
- * @interface ReassignedItemDto
+ * @interface ReassignedItem
  */
-export interface ReassignedItemDto {
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof ReassignedItemDto
-     */
-    attributes?: { [key: string]: object; };
+export interface ReassignedItem {
     /**
      * 
      * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    lineId: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReassignedItemDto
-     */
-    originalOrderItemId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReassignedItemDto
-     */
-    goodsType?: ReassignedItemDtoGoodsTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReassignedItemDto
-     */
-    optionAttributeFQN?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReassignedItemDto
-     */
-    productCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReassignedItemDto
-     */
-    variationProductCode?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    quantity: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    transferQuantity?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    trueTransferQuantity?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    readyForPickupQuantity?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    allocatedQuantity?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReassignedItemDto
-     */
-    imageUrl?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReassignedItemDto
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReassignedItemDto
-     */
-    partNumber?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReassignedItemDto
-     */
-    upc?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReassignedItemDto
-     */
-    sku?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ReassignedItemDto
-     */
-    allowsBackOrder?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    unitPrice?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ReassignedItemDto
-     */
-    isTaxable?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
+     * @memberof ReassignedItem
      */
     actualPrice?: number;
     /**
      * 
      * @type {number}
-     * @memberof ReassignedItemDto
+     * @memberof ReassignedItem
      */
-    overridePrice?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    itemDiscount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    lineItemCost?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    itemTax: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    shipping: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    shippingDiscount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    shippingTax: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    handling: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    handlingDiscount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    handlingTax: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    duty?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    weightedShipmentAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    weightedLineItemTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    weightedShippingAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    weightedShippingTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    weightedHandlingAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    weightedHandlingTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    weightedDutyAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    taxableShipping?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    taxableLineItemCost?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    taxableHandling?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    weight?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    length?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    width?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    height?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    lineItemAdjustment?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReassignedItemDto
-     */
-    weightUnit?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReassignedItemDto
-     */
-    expectedDeliveryDate?: string;
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof ReassignedItemDto
-     */
-    data?: { [key: string]: object; };
-    /**
-     * 
-     * @type {object}
-     * @memberof ReassignedItemDto
-     */
-    taxData?: object;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReassignedItemDto
-     */
-    backorderReleaseDate?: string;
-    /**
-     * 
-     * @type {AuditInfoDto}
-     * @memberof ReassignedItemDto
-     */
-    auditInfo?: AuditInfoDto;
-    /**
-     * 
-     * @type {Array<ProductOptionDto>}
-     * @memberof ReassignedItemDto
-     */
-    options?: Array<ProductOptionDto>;
+    allocatedQuantity?: number;
     /**
      * 
      * @type {boolean}
-     * @memberof ReassignedItemDto
+     * @memberof ReassignedItem
      */
-    manageStock?: boolean;
-    /**
-     * 
-     * @type {Array<FulfillmentFieldDto>}
-     * @memberof ReassignedItemDto
-     */
-    fulfillmentFields?: Array<FulfillmentFieldDto>;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReassignedItemDto
-     */
-    locatorName?: string;
-    /**
-     * 
-     * @type {AppeasementReasonDto}
-     * @memberof ReassignedItemDto
-     * @deprecated
-     */
-    appeasementReason?: AppeasementReasonDto;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReassignedItemDto
-     */
-    creditCurrencyCode?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReassignedItemDto
-     */
-    creditValue?: number;
-    /**
-     * 
-     * @type {Array<GiftCardDto>}
-     * @memberof ReassignedItemDto
-     */
-    giftCards?: Array<GiftCardDto>;
+    allowsBackOrder?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof ReassignedItemDto
-     */
-    isAssemblyRequired?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReassignedItemDto
-     */
-    parentItemId?: string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof ReassignedItemDto
-     */
-    childItemIds?: Array<string>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ReassignedItemDto
-     */
-    isPackagedStandAlone?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ReassignedItemDto
+     * @memberof ReassignedItem
      */
     allowsFutureAllocate?: boolean;
     /**
      * 
-     * @type {Array<InventoryTagDto>}
-     * @memberof ReassignedItemDto
-     */
-    inventoryTags?: Array<InventoryTagDto>;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReassignedItemDto
-     */
-    cartItemId?: string;
-    /**
-     * 
      * @type {boolean}
-     * @memberof ReassignedItemDto
-     */
-    isReservedInventory?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ReassignedItemDto
+     * @memberof ReassignedItem
      */
     allowsSubstitution?: boolean;
     /**
      * 
-     * @type {number}
-     * @memberof ReassignedItemDto
+     * @type {FulfillmentAPIAppeasementReason}
+     * @memberof ReassignedItem
      */
-    originalQuantity?: number;
+    appeasementReason?: FulfillmentAPIAppeasementReason;
     /**
      * 
-     * @type {number}
-     * @memberof ReassignedItemDto
+     * @type {{ [key: string]: object; }}
+     * @memberof ReassignedItem
      */
-    originalLineId?: number;
+    attributes?: { [key: string]: object; };
     /**
      * 
-     * @type {number}
-     * @memberof ReassignedItemDto
+     * @type {FulfillmentAPIAuditInfo}
+     * @memberof ReassignedItem
      */
-    substituteQuantity?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ReassignedItemDto
-     */
-    isGift?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReassignedItemDto
-     */
-    giftMessage?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReassignedItemDto
-     */
-    purchaseLocation?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReassignedItemDto
-     */
-    priceMode?: ReassignedItemDtoPriceModeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReassignedItemDto
-     */
-    condition?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReassignedItemDto
-     */
-    serialNumber?: string;
-    /**
-     * 
-     * @type {Array<InventoryAllocationDto>}
-     * @memberof ReassignedItemDto
-     */
-    inventoryAllocations?: Array<InventoryAllocationDto>;
-    /**
-     * 
-     * @type {SubstituteInfoDto}
-     * @memberof ReassignedItemDto
-     */
-    substituteInfo?: SubstituteInfoDto;
+    auditInfo?: FulfillmentAPIAuditInfo;
     /**
      * 
      * @type {boolean}
-     * @memberof ReassignedItemDto
+     * @memberof ReassignedItem
      */
     autoSubstitution?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof ReassignedItemDto
+     * @memberof ReassignedItem
      */
-    substitutionType?: ReassignedItemDtoSubstitutionTypeEnum;
-    /**
-     * 
-     * @type {BundleInfoDto}
-     * @memberof ReassignedItemDto
-     */
-    bundleInfo?: BundleInfoDto;
-    /**
-     * 
-     * @type {ReturnRuleInfoDto}
-     * @memberof ReassignedItemDto
-     */
-    returnRuleInfo?: ReturnRuleInfoDto;
+    backorderReleaseDate?: string;
     /**
      * 
      * @type {boolean}
-     * @memberof ReassignedItemDto
+     * @memberof ReassignedItem
      */
     blockAssignment?: boolean;
     /**
      * 
-     * @type {ReassignedReasonDto}
-     * @memberof ReassignedItemDto
+     * @type {FulfillmentAPIBundleInfo}
+     * @memberof ReassignedItem
      */
-    reassignedReason?: ReassignedReasonDto;
+    bundleInfo?: FulfillmentAPIBundleInfo;
     /**
      * 
      * @type {string}
-     * @memberof ReassignedItemDto
+     * @memberof ReassignedItem
+     */
+    cartItemId?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ReassignedItem
+     */
+    childItemIds?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReassignedItem
+     */
+    condition?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReassignedItem
+     */
+    creditCurrencyCode?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    creditValue?: number;
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof ReassignedItem
+     */
+    data?: { [key: string]: object; };
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    duty?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReassignedItem
+     */
+    expectedDeliveryDate?: string;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIFulfillmentField>}
+     * @memberof ReassignedItem
+     */
+    fulfillmentFields?: Array<FulfillmentAPIFulfillmentField>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReassignedItem
      */
     fulfillmentLocationCode?: string;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIGiftCard>}
+     * @memberof ReassignedItem
+     */
+    giftCards?: Array<FulfillmentAPIGiftCard>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReassignedItem
+     */
+    giftMessage?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReassignedItem
+     */
+    goodsType?: ReassignedItemGoodsTypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    handling?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    handlingDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    handlingTax?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    height?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ReassignedItem
+     */
+    holdBlockAssignment?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReassignedItem
+     */
+    imageUrl?: string;
+    /**
+     * 
+     * @type {Array<InventoryAllocation>}
+     * @memberof ReassignedItem
+     */
+    inventoryAllocations?: Array<InventoryAllocation>;
+    /**
+     * 
+     * @type {Array<InventoryTag>}
+     * @memberof ReassignedItem
+     */
+    inventoryTags?: Array<InventoryTag>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ReassignedItem
+     */
+    isAssemblyRequired?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ReassignedItem
+     */
+    isGift?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ReassignedItem
+     */
+    isPackagedStandAlone?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ReassignedItem
+     */
+    isReservedInventory?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ReassignedItem
+     */
+    isTaxable?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    itemDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    itemTax?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    length?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    lineId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    lineItemAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    lineItemCost?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReassignedItem
+     */
+    locatorName?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ReassignedItem
+     */
+    manageStock?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReassignedItem
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReassignedItem
+     */
+    optionAttributeFQN?: string;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIProductOption>}
+     * @memberof ReassignedItem
+     */
+    options?: Array<FulfillmentAPIProductOption>;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    originalLineId?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReassignedItem
+     */
+    originalOrderItemId?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    originalQuantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    overridePrice?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReassignedItem
+     */
+    parentItemId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReassignedItem
+     */
+    partNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReassignedItem
+     */
+    priceMode?: ReassignedItemPriceModeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReassignedItem
+     */
+    productCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReassignedItem
+     */
+    purchaseLocation?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    quantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    readyForPickupQuantity?: number;
+    /**
+     * 
+     * @type {ReassignedReason}
+     * @memberof ReassignedItem
+     */
+    reassignedReason?: ReassignedReason;
+    /**
+     * 
+     * @type {FulfillmentAPIReturnRuleInfo}
+     * @memberof ReassignedItem
+     */
+    returnRuleInfo?: FulfillmentAPIReturnRuleInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReassignedItem
+     */
+    serialNumber?: string;
+    /**
+     * 
+     * @type {Array<ShipmentItemAttribute>}
+     * @memberof ReassignedItem
+     */
+    shipmentItemAttributes?: Array<ShipmentItemAttribute>;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    shipping?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    shippingDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    shippingTax?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReassignedItem
+     */
+    sku?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReassignedItem
+     */
+    stockValidationStatus?: string;
+    /**
+     * 
+     * @type {FulfillmentAPISubstituteInfo}
+     * @memberof ReassignedItem
+     */
+    substituteInfo?: FulfillmentAPISubstituteInfo;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    substituteQuantity?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReassignedItem
+     */
+    substitutionType?: ReassignedItemSubstitutionTypeEnum;
+    /**
+     * 
+     * @type {object}
+     * @memberof ReassignedItem
+     */
+    taxData?: object;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    taxableHandling?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    taxableLineItemCost?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    taxableShipping?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    timeFenceDays?: number;
+    /**
+     * This is deprecated.
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    transferQuantity?: number;
+    /**
+     * This is the actual quantity transferred.
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    trueTransferQuantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    unitPrice?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReassignedItem
+     */
+    upc?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    validatedQuantity?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReassignedItem
+     */
+    variationProductCode?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    weight?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReassignedItem
+     */
+    weightUnit?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    weightedDutyAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    weightedHandlingAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    weightedHandlingTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    weightedLineItemTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    weightedOrderHandlingFee?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    weightedOrderHandlingFeeDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    weightedOrderHandlingFeeTax?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    weightedShipmentAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    weightedShippingAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    weightedShippingTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReassignedItem
+     */
+    width?: number;
 }
 
 
 /**
  * @export
  */
-export const ReassignedItemDtoGoodsTypeEnum = {
+export const ReassignedItemGoodsTypeEnum = {
     Physical: 'Physical',
     Digital: 'Digital',
     DigitalCredit: 'DigitalCredit',
     DigitalGiftCard: 'DigitalGiftCard',
     Service: 'Service'
 } as const;
-export type ReassignedItemDtoGoodsTypeEnum = typeof ReassignedItemDtoGoodsTypeEnum[keyof typeof ReassignedItemDtoGoodsTypeEnum];
+export type ReassignedItemGoodsTypeEnum = typeof ReassignedItemGoodsTypeEnum[keyof typeof ReassignedItemGoodsTypeEnum];
 
 /**
  * @export
  */
-export const ReassignedItemDtoPriceModeEnum = {
+export const ReassignedItemPriceModeEnum = {
     Internal: 'Internal',
     External: 'External'
 } as const;
-export type ReassignedItemDtoPriceModeEnum = typeof ReassignedItemDtoPriceModeEnum[keyof typeof ReassignedItemDtoPriceModeEnum];
+export type ReassignedItemPriceModeEnum = typeof ReassignedItemPriceModeEnum[keyof typeof ReassignedItemPriceModeEnum];
 
 /**
  * @export
  */
-export const ReassignedItemDtoSubstitutionTypeEnum = {
+export const ReassignedItemSubstitutionTypeEnum = {
     PreFulfillment: 'PRE_FULFILLMENT',
-    AtFullfillment: 'AT_FULLFILLMENT'
+    AtFulfillment: 'AT_FULFILLMENT'
 } as const;
-export type ReassignedItemDtoSubstitutionTypeEnum = typeof ReassignedItemDtoSubstitutionTypeEnum[keyof typeof ReassignedItemDtoSubstitutionTypeEnum];
+export type ReassignedItemSubstitutionTypeEnum = typeof ReassignedItemSubstitutionTypeEnum[keyof typeof ReassignedItemSubstitutionTypeEnum];
 
 /**
  * 
  * @export
- * @interface ReassignedReasonDto
+ * @interface ReassignedReason
  */
-export interface ReassignedReasonDto {
+export interface ReassignedReason {
     /**
      * 
      * @type {string}
-     * @memberof ReassignedReasonDto
-     */
-    reasonCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ReassignedReasonDto
+     * @memberof ReassignedReason
      */
     moreInfo?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReassignedReason
+     */
+    reasonCode?: string;
 }
 /**
  * 
  * @export
- * @interface RejectItemDto
+ * @interface RebalanceTriggerResponseDto
  */
-export interface RejectItemDto {
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectItemDto
-     */
-    lineId: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectItemDto
-     */
-    quantity: number;
-    /**
-     * 
-     * @type {RejectedReasonDto}
-     * @memberof RejectItemDto
-     */
-    rejectedReason?: RejectedReasonDto;
+export interface RebalanceTriggerResponseDto {
     /**
      * 
      * @type {boolean}
-     * @memberof RejectItemDto
+     * @memberof RebalanceTriggerResponseDto
+     */
+    accepted?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof RebalanceTriggerResponseDto
+     */
+    jobGroup?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RebalanceTriggerResponseDto
+     */
+    jobName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RebalanceTriggerResponseDto
+     */
+    reason?: string;
+}
+/**
+ * 
+ * @export
+ * @interface RecommendedRateDto
+ */
+export interface RecommendedRateDto {
+    /**
+     * Carrier code
+     * @type {string}
+     * @memberof RecommendedRateDto
+     */
+    carrier: string;
+    /**
+     * Estimated delivery date
+     * @type {string}
+     * @memberof RecommendedRateDto
+     */
+    estimatedDeliveryDate: string;
+    /**
+     * Service type code
+     * @type {string}
+     * @memberof RecommendedRateDto
+     */
+    serviceType: string;
+    /**
+     * Total rate
+     * @type {number}
+     * @memberof RecommendedRateDto
+     */
+    totalRate: number;
+}
+/**
+ * 
+ * @export
+ * @interface RejectItem
+ */
+export interface RejectItem {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RejectItem
      */
     blockAssignment?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RejectItem
+     */
+    holdBlockAssignment?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectItem
+     */
+    lineId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectItem
+     */
+    quantity?: number;
+    /**
+     * 
+     * @type {RejectedReason}
+     * @memberof RejectItem
+     */
+    rejectedReason?: RejectedReason;
 }
 /**
  * 
  * @export
- * @interface RejectItemsRequestDto
+ * @interface RejectItemsRequest
  */
-export interface RejectItemsRequestDto {
+export interface RejectItemsRequest {
     /**
      * 
      * @type {boolean}
-     * @memberof RejectItemsRequestDto
+     * @memberof RejectItemsRequest
      */
     isUserAction?: boolean;
     /**
      * 
-     * @type {Array<RejectItemDto>}
-     * @memberof RejectItemsRequestDto
+     * @type {Array<RejectItem>}
+     * @memberof RejectItemsRequest
      */
-    items: Array<RejectItemDto>;
+    items?: Array<RejectItem>;
 }
 /**
  * 
  * @export
- * @interface RejectShipmentRequestDto
+ * @interface RejectShipment
  */
-export interface RejectShipmentRequestDto {
+export interface RejectShipment {
     /**
      * 
      * @type {boolean}
-     * @memberof RejectShipmentRequestDto
-     */
-    isUserAction?: boolean;
-    /**
-     * 
-     * @type {RejectedReasonDto}
-     * @memberof RejectShipmentRequestDto
-     */
-    rejectedReason?: RejectedReasonDto;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof RejectShipmentRequestDto
+     * @memberof RejectShipment
      */
     blockAssignment?: boolean;
     /**
      * 
-     * @type {Array<RejectItemDto>}
-     * @memberof RejectShipmentRequestDto
+     * @type {boolean}
+     * @memberof RejectShipment
      */
-    items?: Array<RejectItemDto>;
+    holdBlockAssignment?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RejectShipment
+     */
+    isUserAction?: boolean;
+    /**
+     * 
+     * @type {Array<RejectItem>}
+     * @memberof RejectShipment
+     */
+    items?: Array<RejectItem>;
+    /**
+     * 
+     * @type {RejectedReason}
+     * @memberof RejectShipment
+     */
+    rejectedReason?: RejectedReason;
 }
 /**
  * 
  * @export
- * @interface RejectedItemDto
+ * @interface RejectedItem
  */
-export interface RejectedItemDto {
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof RejectedItemDto
-     */
-    attributes?: { [key: string]: object; };
+export interface RejectedItem {
     /**
      * 
      * @type {number}
-     * @memberof RejectedItemDto
-     */
-    lineId: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof RejectedItemDto
-     */
-    originalOrderItemId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RejectedItemDto
-     */
-    goodsType?: RejectedItemDtoGoodsTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof RejectedItemDto
-     */
-    optionAttributeFQN?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RejectedItemDto
-     */
-    productCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RejectedItemDto
-     */
-    variationProductCode?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    quantity: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    transferQuantity?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    trueTransferQuantity?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    readyForPickupQuantity?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    allocatedQuantity?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof RejectedItemDto
-     */
-    imageUrl?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RejectedItemDto
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RejectedItemDto
-     */
-    partNumber?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RejectedItemDto
-     */
-    upc?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RejectedItemDto
-     */
-    sku?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof RejectedItemDto
-     */
-    allowsBackOrder?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    unitPrice?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof RejectedItemDto
-     */
-    isTaxable?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
+     * @memberof RejectedItem
      */
     actualPrice?: number;
     /**
      * 
      * @type {number}
-     * @memberof RejectedItemDto
+     * @memberof RejectedItem
      */
-    overridePrice?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    itemDiscount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    lineItemCost?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    itemTax: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    shipping: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    shippingDiscount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    shippingTax: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    handling: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    handlingDiscount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    handlingTax: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    duty?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    weightedShipmentAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    weightedLineItemTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    weightedShippingAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    weightedShippingTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    weightedHandlingAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    weightedHandlingTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    weightedDutyAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    taxableShipping?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    taxableLineItemCost?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    taxableHandling?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    weight?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    length?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    width?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    height?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    lineItemAdjustment?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof RejectedItemDto
-     */
-    weightUnit?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RejectedItemDto
-     */
-    expectedDeliveryDate?: string;
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof RejectedItemDto
-     */
-    data?: { [key: string]: object; };
-    /**
-     * 
-     * @type {object}
-     * @memberof RejectedItemDto
-     */
-    taxData?: object;
-    /**
-     * 
-     * @type {string}
-     * @memberof RejectedItemDto
-     */
-    backorderReleaseDate?: string;
-    /**
-     * 
-     * @type {AuditInfoDto}
-     * @memberof RejectedItemDto
-     */
-    auditInfo?: AuditInfoDto;
-    /**
-     * 
-     * @type {Array<ProductOptionDto>}
-     * @memberof RejectedItemDto
-     */
-    options?: Array<ProductOptionDto>;
+    allocatedQuantity?: number;
     /**
      * 
      * @type {boolean}
-     * @memberof RejectedItemDto
+     * @memberof RejectedItem
      */
-    manageStock?: boolean;
-    /**
-     * 
-     * @type {Array<FulfillmentFieldDto>}
-     * @memberof RejectedItemDto
-     */
-    fulfillmentFields?: Array<FulfillmentFieldDto>;
-    /**
-     * 
-     * @type {string}
-     * @memberof RejectedItemDto
-     */
-    locatorName?: string;
-    /**
-     * 
-     * @type {AppeasementReasonDto}
-     * @memberof RejectedItemDto
-     * @deprecated
-     */
-    appeasementReason?: AppeasementReasonDto;
-    /**
-     * 
-     * @type {string}
-     * @memberof RejectedItemDto
-     */
-    creditCurrencyCode?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof RejectedItemDto
-     */
-    creditValue?: number;
-    /**
-     * 
-     * @type {Array<GiftCardDto>}
-     * @memberof RejectedItemDto
-     */
-    giftCards?: Array<GiftCardDto>;
+    allowsBackOrder?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof RejectedItemDto
-     */
-    isAssemblyRequired?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof RejectedItemDto
-     */
-    parentItemId?: string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof RejectedItemDto
-     */
-    childItemIds?: Array<string>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof RejectedItemDto
-     */
-    isPackagedStandAlone?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof RejectedItemDto
+     * @memberof RejectedItem
      */
     allowsFutureAllocate?: boolean;
     /**
      * 
-     * @type {Array<InventoryTagDto>}
-     * @memberof RejectedItemDto
-     */
-    inventoryTags?: Array<InventoryTagDto>;
-    /**
-     * 
-     * @type {string}
-     * @memberof RejectedItemDto
-     */
-    cartItemId?: string;
-    /**
-     * 
      * @type {boolean}
-     * @memberof RejectedItemDto
-     */
-    isReservedInventory?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof RejectedItemDto
+     * @memberof RejectedItem
      */
     allowsSubstitution?: boolean;
     /**
      * 
-     * @type {number}
-     * @memberof RejectedItemDto
+     * @type {FulfillmentAPIAppeasementReason}
+     * @memberof RejectedItem
      */
-    originalQuantity?: number;
+    appeasementReason?: FulfillmentAPIAppeasementReason;
     /**
      * 
-     * @type {number}
-     * @memberof RejectedItemDto
+     * @type {{ [key: string]: object; }}
+     * @memberof RejectedItem
      */
-    originalLineId?: number;
+    attributes?: { [key: string]: object; };
     /**
      * 
-     * @type {number}
-     * @memberof RejectedItemDto
+     * @type {FulfillmentAPIAuditInfo}
+     * @memberof RejectedItem
      */
-    substituteQuantity?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof RejectedItemDto
-     */
-    isGift?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof RejectedItemDto
-     */
-    giftMessage?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RejectedItemDto
-     */
-    purchaseLocation?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RejectedItemDto
-     */
-    priceMode?: RejectedItemDtoPriceModeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof RejectedItemDto
-     */
-    condition?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RejectedItemDto
-     */
-    serialNumber?: string;
-    /**
-     * 
-     * @type {Array<InventoryAllocationDto>}
-     * @memberof RejectedItemDto
-     */
-    inventoryAllocations?: Array<InventoryAllocationDto>;
-    /**
-     * 
-     * @type {SubstituteInfoDto}
-     * @memberof RejectedItemDto
-     */
-    substituteInfo?: SubstituteInfoDto;
+    auditInfo?: FulfillmentAPIAuditInfo;
     /**
      * 
      * @type {boolean}
-     * @memberof RejectedItemDto
+     * @memberof RejectedItem
      */
     autoSubstitution?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof RejectedItemDto
+     * @memberof RejectedItem
      */
-    substitutionType?: RejectedItemDtoSubstitutionTypeEnum;
-    /**
-     * 
-     * @type {BundleInfoDto}
-     * @memberof RejectedItemDto
-     */
-    bundleInfo?: BundleInfoDto;
-    /**
-     * 
-     * @type {ReturnRuleInfoDto}
-     * @memberof RejectedItemDto
-     */
-    returnRuleInfo?: ReturnRuleInfoDto;
-    /**
-     * 
-     * @type {RejectedReasonDto}
-     * @memberof RejectedItemDto
-     */
-    rejectedReason?: RejectedReasonDto;
+    backorderReleaseDate?: string;
     /**
      * 
      * @type {boolean}
-     * @memberof RejectedItemDto
+     * @memberof RejectedItem
      */
     blockAssignment?: boolean;
+    /**
+     * 
+     * @type {FulfillmentAPIBundleInfo}
+     * @memberof RejectedItem
+     */
+    bundleInfo?: FulfillmentAPIBundleInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof RejectedItem
+     */
+    cartItemId?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof RejectedItem
+     */
+    childItemIds?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof RejectedItem
+     */
+    condition?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RejectedItem
+     */
+    creditCurrencyCode?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    creditValue?: number;
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof RejectedItem
+     */
+    data?: { [key: string]: object; };
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    duty?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RejectedItem
+     */
+    expectedDeliveryDate?: string;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIFulfillmentField>}
+     * @memberof RejectedItem
+     */
+    fulfillmentFields?: Array<FulfillmentAPIFulfillmentField>;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIGiftCard>}
+     * @memberof RejectedItem
+     */
+    giftCards?: Array<FulfillmentAPIGiftCard>;
+    /**
+     * 
+     * @type {string}
+     * @memberof RejectedItem
+     */
+    giftMessage?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RejectedItem
+     */
+    goodsType?: RejectedItemGoodsTypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    handling?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    handlingDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    handlingTax?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    height?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RejectedItem
+     */
+    holdBlockAssignment?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof RejectedItem
+     */
+    imageUrl?: string;
+    /**
+     * 
+     * @type {Array<InventoryAllocation>}
+     * @memberof RejectedItem
+     */
+    inventoryAllocations?: Array<InventoryAllocation>;
+    /**
+     * 
+     * @type {Array<InventoryTag>}
+     * @memberof RejectedItem
+     */
+    inventoryTags?: Array<InventoryTag>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RejectedItem
+     */
+    isAssemblyRequired?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RejectedItem
+     */
+    isGift?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RejectedItem
+     */
+    isPackagedStandAlone?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RejectedItem
+     */
+    isReservedInventory?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RejectedItem
+     */
+    isTaxable?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    itemDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    itemTax?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    length?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    lineId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    lineItemAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    lineItemCost?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RejectedItem
+     */
+    locatorName?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RejectedItem
+     */
+    manageStock?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof RejectedItem
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RejectedItem
+     */
+    optionAttributeFQN?: string;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIProductOption>}
+     * @memberof RejectedItem
+     */
+    options?: Array<FulfillmentAPIProductOption>;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    originalLineId?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RejectedItem
+     */
+    originalOrderItemId?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    originalQuantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    overridePrice?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RejectedItem
+     */
+    parentItemId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RejectedItem
+     */
+    partNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RejectedItem
+     */
+    priceMode?: RejectedItemPriceModeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof RejectedItem
+     */
+    productCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RejectedItem
+     */
+    purchaseLocation?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    quantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    readyForPickupQuantity?: number;
+    /**
+     * 
+     * @type {RejectedReason}
+     * @memberof RejectedItem
+     */
+    rejectedReason?: RejectedReason;
+    /**
+     * 
+     * @type {FulfillmentAPIReturnRuleInfo}
+     * @memberof RejectedItem
+     */
+    returnRuleInfo?: FulfillmentAPIReturnRuleInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof RejectedItem
+     */
+    serialNumber?: string;
+    /**
+     * 
+     * @type {Array<ShipmentItemAttribute>}
+     * @memberof RejectedItem
+     */
+    shipmentItemAttributes?: Array<ShipmentItemAttribute>;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    shipping?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    shippingDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    shippingTax?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RejectedItem
+     */
+    sku?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RejectedItem
+     */
+    stockValidationStatus?: string;
+    /**
+     * 
+     * @type {FulfillmentAPISubstituteInfo}
+     * @memberof RejectedItem
+     */
+    substituteInfo?: FulfillmentAPISubstituteInfo;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    substituteQuantity?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RejectedItem
+     */
+    substitutionType?: RejectedItemSubstitutionTypeEnum;
+    /**
+     * 
+     * @type {object}
+     * @memberof RejectedItem
+     */
+    taxData?: object;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    taxableHandling?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    taxableLineItemCost?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    taxableShipping?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    timeFenceDays?: number;
+    /**
+     * This is deprecated.
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    transferQuantity?: number;
+    /**
+     * This is the actual quantity transferred.
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    trueTransferQuantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    unitPrice?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RejectedItem
+     */
+    upc?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    validatedQuantity?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RejectedItem
+     */
+    variationProductCode?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    weight?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RejectedItem
+     */
+    weightUnit?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    weightedDutyAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    weightedHandlingAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    weightedHandlingTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    weightedLineItemTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    weightedOrderHandlingFee?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    weightedOrderHandlingFeeDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    weightedOrderHandlingFeeTax?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    weightedShipmentAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    weightedShippingAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    weightedShippingTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RejectedItem
+     */
+    width?: number;
 }
 
 
 /**
  * @export
  */
-export const RejectedItemDtoGoodsTypeEnum = {
+export const RejectedItemGoodsTypeEnum = {
     Physical: 'Physical',
     Digital: 'Digital',
     DigitalCredit: 'DigitalCredit',
     DigitalGiftCard: 'DigitalGiftCard',
     Service: 'Service'
 } as const;
-export type RejectedItemDtoGoodsTypeEnum = typeof RejectedItemDtoGoodsTypeEnum[keyof typeof RejectedItemDtoGoodsTypeEnum];
+export type RejectedItemGoodsTypeEnum = typeof RejectedItemGoodsTypeEnum[keyof typeof RejectedItemGoodsTypeEnum];
 
 /**
  * @export
  */
-export const RejectedItemDtoPriceModeEnum = {
+export const RejectedItemPriceModeEnum = {
     Internal: 'Internal',
     External: 'External'
 } as const;
-export type RejectedItemDtoPriceModeEnum = typeof RejectedItemDtoPriceModeEnum[keyof typeof RejectedItemDtoPriceModeEnum];
+export type RejectedItemPriceModeEnum = typeof RejectedItemPriceModeEnum[keyof typeof RejectedItemPriceModeEnum];
 
 /**
  * @export
  */
-export const RejectedItemDtoSubstitutionTypeEnum = {
+export const RejectedItemSubstitutionTypeEnum = {
     PreFulfillment: 'PRE_FULFILLMENT',
-    AtFullfillment: 'AT_FULLFILLMENT'
+    AtFulfillment: 'AT_FULFILLMENT'
 } as const;
-export type RejectedItemDtoSubstitutionTypeEnum = typeof RejectedItemDtoSubstitutionTypeEnum[keyof typeof RejectedItemDtoSubstitutionTypeEnum];
+export type RejectedItemSubstitutionTypeEnum = typeof RejectedItemSubstitutionTypeEnum[keyof typeof RejectedItemSubstitutionTypeEnum];
 
 /**
  * 
  * @export
- * @interface RejectedReasonDto
+ * @interface RejectedReason
  */
-export interface RejectedReasonDto {
+export interface RejectedReason {
     /**
      * 
      * @type {string}
-     * @memberof RejectedReasonDto
-     */
-    reasonCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RejectedReasonDto
+     * @memberof RejectedReason
      */
     moreInfo?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RejectedReason
+     */
+    reasonCode?: string;
 }
-/**
- * @type RemoveSpecificShipmentFromConsolidationGroup400Response
- * 
- * @export
- */
-export type RemoveSpecificShipmentFromConsolidationGroup400Response = ErrorItem | ErrorResponse | string;
 /**
  * 
  * @export
@@ -7837,91 +12893,464 @@ export type RemoveSpecificShipmentFromConsolidationGroup400Response = ErrorItem 
 export interface ResultItem {
     /**
      * 
-     * @type {string}
-     * @memberof ResultItem
-     */
-    name?: string;
-    /**
-     * 
      * @type {number}
      * @memberof ResultItem
      */
     count?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ResultItem
+     */
+    name?: string;
 }
 /**
  * 
  * @export
- * @interface ReturnRuleInfoDto
+ * @interface RuleAuditInfoDto
  */
-export interface ReturnRuleInfoDto {
+export interface RuleAuditInfoDto {
     /**
      * 
-     * @type {{ [key: string]: object; }}
-     * @memberof ReturnRuleInfoDto
+     * @type {string}
+     * @memberof RuleAuditInfoDto
      */
-    attributes?: { [key: string]: object; };
+    createBy?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RuleAuditInfoDto
+     */
+    createDate?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RuleAuditInfoDto
+     */
+    updateBy?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RuleAuditInfoDto
+     */
+    updateDate?: string;
+}
+/**
+ * 
+ * @export
+ * @interface RuleDto
+ */
+export interface RuleDto {
+    /**
+     * 
+     * @type {RuleAuditInfoDto}
+     * @memberof RuleDto
+     */
+    auditInfo?: RuleAuditInfoDto;
+    /**
+     * 
+     * @type {string}
+     * @memberof RuleDto
+     */
+    code?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof RuleDto
+     */
+    customerRules?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof RuleDto
+     */
+    description?: string;
     /**
      * 
      * @type {boolean}
-     * @memberof ReturnRuleInfoDto
+     * @memberof RuleDto
      */
-    isReturnable?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReturnRuleInfoDto
-     */
-    maxQty?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReturnRuleInfoDto
-     */
-    maxDays?: number;
+    enabled?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof ReturnRuleInfoDto
+     * @memberof RuleDto
      */
-    ruleCode?: string;
+    name?: string;
+    /**
+     * 
+     * @type {Array<RuleReferenceDto>}
+     * @memberof RuleDto
+     */
+    productRules?: Array<RuleReferenceDto>;
+    /**
+     * 
+     * @type {number}
+     * @memberof RuleDto
+     */
+    rank?: number;
+    /**
+     * 
+     * @type {Array<RuleReferenceDto>}
+     * @memberof RuleDto
+     */
+    shipmentRules?: Array<RuleReferenceDto>;
+    /**
+     * 
+     * @type {string}
+     * @memberof RuleDto
+     */
+    sortAttribute?: string;
+}
+/**
+ * Metadata for a rule field operator including display text and RSQL syntax
+ * @export
+ * @interface RuleOperatorDto
+ */
+export interface RuleOperatorDto {
+    /**
+     * Operator code identifier
+     * @type {string}
+     * @memberof RuleOperatorDto
+     */
+    code: RuleOperatorDtoCodeEnum;
+    /**
+     * Human-readable operator display text for UI
+     * @type {string}
+     * @memberof RuleOperatorDto
+     */
+    display: string;
+    /**
+     * RSQL filter syntax token for query construction
+     * @type {string}
+     * @memberof RuleOperatorDto
+     */
+    filterSyntax: string;
+}
+
+
+/**
+ * @export
+ */
+export const RuleOperatorDtoCodeEnum = {
+    Eq: 'eq',
+    Ne: 'ne',
+    In: 'in',
+    Le: 'le',
+    Lt: 'lt',
+    Ge: 'ge',
+    Gt: 'gt',
+    Cont: 'cont',
+    Sw: 'sw'
+} as const;
+export type RuleOperatorDtoCodeEnum = typeof RuleOperatorDtoCodeEnum[keyof typeof RuleOperatorDtoCodeEnum];
+
+/**
+ * 
+ * @export
+ * @interface RuleReferenceDto
+ */
+export interface RuleReferenceDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof RuleReferenceDto
+     */
+    code?: string;
 }
 /**
  * 
  * @export
- * @interface SaveMpsPackagesRequestDto
+ * @interface RunCountsDto
  */
-export interface SaveMpsPackagesRequestDto {
+export interface RunCountsDto {
+    /**
+     * 
+     * @type {number}
+     * @memberof RunCountsDto
+     */
+    affected?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RunCountsDto
+     */
+    affectedBackorder?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RunCountsDto
+     */
+    affectedFuture?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RunCountsDto
+     */
+    createdBackorder?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RunCountsDto
+     */
+    createdFuture?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RunCountsDto
+     */
+    evaluatedBackorder?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RunCountsDto
+     */
+    evaluatedFuture?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RunCountsDto
+     */
+    eventsTracked?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RunCountsDto
+     */
+    reservationsEvaluated?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RunCountsDto
+     */
+    stealFromDonors?: number;
+}
+/**
+ * 
+ * @export
+ * @interface RunDetailDto
+ */
+export interface RunDetailDto {
     /**
      * 
      * @type {string}
-     * @memberof SaveMpsPackagesRequestDto
+     * @memberof RunDetailDto
+     */
+    completedAt?: string;
+    /**
+     * 
+     * @type {RunCountsDto}
+     * @memberof RunDetailDto
+     */
+    counts?: RunCountsDto;
+    /**
+     * 
+     * @type {string}
+     * @memberof RunDetailDto
+     */
+    displayStatus?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RunDetailDto
+     */
+    primaryChangeReferenceId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RunDetailDto
+     */
+    primaryChangeType?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RunDetailDto
+     */
+    runId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RunDetailDto
+     */
+    runType?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RunDetailDto
+     */
+    startedAt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RunDetailDto
+     */
+    summaryText?: string;
+    /**
+     * 
+     * @type {Array<RunDetailTabDto>}
+     * @memberof RunDetailDto
+     */
+    tabs?: Array<RunDetailTabDto>;
+    /**
+     * 
+     * @type {string}
+     * @memberof RunDetailDto
+     */
+    trigger?: string;
+}
+/**
+ * 
+ * @export
+ * @interface RunDetailTabDto
+ */
+export interface RunDetailTabDto {
+    /**
+     * 
+     * @type {number}
+     * @memberof RunDetailTabDto
+     */
+    count?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RunDetailTabDto
+     */
+    name?: string;
+}
+/**
+ * 
+ * @export
+ * @interface RunInfo
+ */
+export interface RunInfo {
+    /**
+     * 
+     * @type {string}
+     * @memberof RunInfo
+     */
+    action?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RunInfo
+     */
+    occurredAt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RunInfo
+     */
+    queue?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RunInfo
+     */
+    routedLocationCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RunInfo
+     */
+    runId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RunInfo
+     */
+    runType?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RunInfo
+     */
+    shipmentStatus?: string;
+}
+/**
+ * 
+ * @export
+ * @interface RunSummaryDto
+ */
+export interface RunSummaryDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof RunSummaryDto
+     */
+    completedAt?: string;
+    /**
+     * 
+     * @type {RunCountsDto}
+     * @memberof RunSummaryDto
+     */
+    counts?: RunCountsDto;
+    /**
+     * 
+     * @type {string}
+     * @memberof RunSummaryDto
+     */
+    displayStatus?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RunSummaryDto
+     */
+    primaryChangeReferenceId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RunSummaryDto
+     */
+    primaryChangeType?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RunSummaryDto
+     */
+    runId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RunSummaryDto
+     */
+    runType?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RunSummaryDto
+     */
+    startedAt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RunSummaryDto
+     */
+    summaryText?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RunSummaryDto
+     */
+    trigger?: string;
+}
+/**
+ * 
+ * @export
+ * @interface SaveMpsPackagesRequest
+ */
+export interface SaveMpsPackagesRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof SaveMpsPackagesRequest
      */
     masterTrackingNumber?: string;
     /**
      * 
-     * @type {Array<PackageDto>}
-     * @memberof SaveMpsPackagesRequestDto
+     * @type {Array<FulfillmentAPIPackage>}
+     * @memberof SaveMpsPackagesRequest
      */
-    packages?: Array<PackageDto>;
-}
-/**
- * 
- * @export
- * @interface ShipmentAttributeDto
- */
-export interface ShipmentAttributeDto {
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentAttributeDto
-     */
-    key?: string;
-    /**
-     * 
-     * @type {object}
-     * @memberof ShipmentAttributeDto
-     */
-    value?: object;
+    packages?: Array<FulfillmentAPIPackage>;
 }
 /**
  * 
@@ -7939,865 +13368,448 @@ export interface ShipmentConsolidationRequest {
 /**
  * 
  * @export
- * @interface ShipmentDto
+ * @interface ShipmentGiftReceiptRequest
  */
-export interface ShipmentDto {
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof ShipmentDto
-     */
-    attributes?: { [key: string]: object; };
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    shipmentNumber?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    originalShipmentNumber?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    parentShipmentNumber?: number;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof ShipmentDto
-     */
-    childShipmentNumbers?: Array<number>;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof ShipmentDto
-     */
-    transferShipmentNumbers?: Array<number>;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    pickWaveNumber?: number;
+export interface ShipmentGiftReceiptRequest {
     /**
      * 
      * @type {string}
-     * @memberof ShipmentDto
-     */
-    orderId: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    orderNumber: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    parentCheckoutNumber?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    orderSubmitDate?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    externalOrderId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    userId?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    customerAccountId?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    customerTaxId?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    tenantId?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    siteId?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    customerAddressId?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    fulfillmentDate?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    shipmentType: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    shipmentStatus?: ShipmentDtoShipmentStatusEnum;
-    /**
-     * 
-     * @type {FulfillmentShipmentStatusReason}
-     * @memberof ShipmentDto
-     */
-    shipmentStatusReason?: FulfillmentShipmentStatusReason;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    fulfillmentStatus?: ShipmentDtoFulfillmentStatusEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    fulfillmentLocationCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    assignedLocationCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    workflowProcessId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    workflowProcessContainerId?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    shipmentAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    lineItemSubtotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    lineItemTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    lineItemTaxTotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    lineItemTotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    shippingAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    shippingSubtotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    shippingTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    shippingTaxTotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    shippingTotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    handlingAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    handlingSubtotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    handlingTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    handlingTaxTotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    handlingTotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    dutyAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    dutyTotal?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    total: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    currencyCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    pickStatus?: ShipmentDtoPickStatusEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    pickType?: ShipmentDtoPickTypeEnum;
-    /**
-     * 
-     * @type {DestinationDto}
-     * @memberof ShipmentDto
-     */
-    destination?: DestinationDto;
-    /**
-     * 
-     * @type {CustomerDto}
-     * @memberof ShipmentDto
-     */
-    customer?: CustomerDto;
-    /**
-     * 
-     * @type {ContactDto}
-     * @memberof ShipmentDto
-     */
-    alternateContact?: ContactDto;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    shippingMethodCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    shippingMethodName?: string;
-    /**
-     * 
-     * @type {Array<ItemDto>}
-     * @memberof ShipmentDto
-     */
-    items?: Array<ItemDto>;
-    /**
-     * 
-     * @type {Array<CanceledItemDto>}
-     * @memberof ShipmentDto
-     */
-    canceledItems?: Array<CanceledItemDto>;
-    /**
-     * 
-     * @type {Array<ReassignedItemDto>}
-     * @memberof ShipmentDto
-     */
-    reassignedItems?: Array<ReassignedItemDto>;
-    /**
-     * 
-     * @type {Array<RejectedItemDto>}
-     * @memberof ShipmentDto
-     */
-    rejectedItems?: Array<RejectedItemDto>;
-    /**
-     * 
-     * @type {Array<TransferredItemDto>}
-     * @memberof ShipmentDto
-     */
-    transferredItems?: Array<TransferredItemDto>;
-    /**
-     * 
-     * @type {Array<PackageDto>}
-     * @memberof ShipmentDto
-     */
-    packages?: Array<PackageDto>;
-    /**
-     * 
-     * @type {WorkflowStateDto}
-     * @memberof ShipmentDto
-     */
-    workflowState?: WorkflowStateDto;
-    /**
-     * 
-     * @type {Array<ChangeMessageDto>}
-     * @memberof ShipmentDto
-     */
-    changeMessages?: Array<ChangeMessageDto>;
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof ShipmentDto
-     */
-    data?: { [key: string]: object; };
-    /**
-     * 
-     * @type {object}
-     * @memberof ShipmentDto
-     */
-    taxData?: object;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    email?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    acceptedDate?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ShipmentDto
-     */
-    readyForPickup?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    readyForPickupDate?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    receivedDate?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    transitTime?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ShipmentDto
-     */
-    isExpress?: boolean;
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof ShipmentDto
-     */
-    pickupInfo?: { [key: string]: object; };
-    /**
-     * 
-     * @type {AuditInfoDto}
-     * @memberof ShipmentDto
-     */
-    auditInfo?: AuditInfoDto;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ShipmentDto
-     */
-    readyToCapture?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ShipmentDto
-     */
-    isOptInForSms?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ShipmentDto
-     */
-    sentCustomerInTransitNotification?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ShipmentDto
-     */
-    sentCustomerAtStoreNotification?: boolean;
-    /**
-     * 
-     * @type {ShopperNotesDto}
-     * @memberof ShipmentDto
-     */
-    shopperNotes?: ShopperNotesDto;
-    /**
-     * 
-     * @type {AppeasementReasonDto}
-     * @memberof ShipmentDto
-     * @deprecated
-     */
-    appeasementReason?: AppeasementReasonDto;
-    /**
-     * 
-     * @type {Array<ShipmentNoteDto>}
-     * @memberof ShipmentDto
-     */
-    shipmentNotes?: Array<ShipmentNoteDto>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ShipmentDto
-     */
-    isAutoAssigned?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ShipmentDto
-     */
-    isHistoricalImport?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    futureDate?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    cartId?: string;
-    /**
-     * 
-     * @type {Array<SubstitutedItemDto>}
-     * @memberof ShipmentDto
-     */
-    substitutedItems?: Array<SubstitutedItemDto>;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    orderType?: ShipmentDtoOrderTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    workflowProcessVersion?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ShipmentDto
-     */
-    isFlatRateShipping?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    masterTrackingNumber?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ShipmentDto
-     */
-    isImmutable?: boolean;
-    /**
-     * 
-     * @type {MutabilityInfo}
-     * @memberof ShipmentDto
-     */
-    mutabilityInfo?: MutabilityInfo;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    shipmentConsolidationId?: string;
-    /**
-     * 
-     * @type {Array<SlaDto>}
-     * @memberof ShipmentDto
-     */
-    slas?: Array<SlaDto>;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    minutesSinceOrdered?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentDto
-     */
-    minutesSinceOnWorkflowStep?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentDto
-     */
-    lowestComplianceLevel?: string;
-}
-
-
-/**
- * @export
- */
-export const ShipmentDtoShipmentStatusEnum = {
-    Ready: 'READY',
-    Reassigned: 'REASSIGNED',
-    Backorder: 'BACKORDER',
-    Canceled: 'CANCELED',
-    Fulfilled: 'FULFILLED',
-    CustomerCare: 'CUSTOMER_CARE',
-    Deleted: 'DELETED',
-    Future: 'FUTURE'
-} as const;
-export type ShipmentDtoShipmentStatusEnum = typeof ShipmentDtoShipmentStatusEnum[keyof typeof ShipmentDtoShipmentStatusEnum];
-
-/**
- * @export
- */
-export const ShipmentDtoFulfillmentStatusEnum = {
-    NotFulfilled: 'NotFulfilled',
-    Fulfilled: 'Fulfilled'
-} as const;
-export type ShipmentDtoFulfillmentStatusEnum = typeof ShipmentDtoFulfillmentStatusEnum[keyof typeof ShipmentDtoFulfillmentStatusEnum];
-
-/**
- * @export
- */
-export const ShipmentDtoPickStatusEnum = {
-    Available: 'AVAILABLE',
-    InWave: 'IN_WAVE',
-    Picked: 'PICKED',
-    Transfer: 'TRANSFER',
-    Complete: 'COMPLETE'
-} as const;
-export type ShipmentDtoPickStatusEnum = typeof ShipmentDtoPickStatusEnum[keyof typeof ShipmentDtoPickStatusEnum];
-
-/**
- * @export
- */
-export const ShipmentDtoPickTypeEnum = {
-    Normal: 'NORMAL',
-    Single: 'SINGLE',
-    Multiple: 'MULTIPLE'
-} as const;
-export type ShipmentDtoPickTypeEnum = typeof ShipmentDtoPickTypeEnum[keyof typeof ShipmentDtoPickTypeEnum];
-
-/**
- * @export
- */
-export const ShipmentDtoOrderTypeEnum = {
-    Offline: 'Offline',
-    Online: 'Online'
-} as const;
-export type ShipmentDtoOrderTypeEnum = typeof ShipmentDtoOrderTypeEnum[keyof typeof ShipmentDtoOrderTypeEnum];
-
-/**
- * 
- * @export
- * @interface ShipmentGiftReceiptRequestDto
- */
-export interface ShipmentGiftReceiptRequestDto {
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentGiftReceiptRequestDto
+     * @memberof ShipmentGiftReceiptRequest
      */
     giftMessage?: string;
 }
 /**
  * 
  * @export
- * @interface ShipmentNoteDto
+ * @interface ShipmentItemAttribute
  */
-export interface ShipmentNoteDto {
+export interface ShipmentItemAttribute {
+    /**
+     * 
+     * @type {number}
+     * @memberof ShipmentItemAttribute
+     */
+    attributeDefinitionId?: number;
     /**
      * 
      * @type {{ [key: string]: object; }}
-     * @memberof ShipmentNoteDto
+     * @memberof ShipmentItemAttribute
      */
     attributes?: { [key: string]: object; };
     /**
      * 
-     * @type {string}
-     * @memberof ShipmentNoteDto
+     * @type {FulfillmentAPIAuditInfo}
+     * @memberof ShipmentItemAttribute
      */
-    noteId?: string;
+    auditInfo?: FulfillmentAPIAuditInfo;
     /**
      * 
      * @type {string}
-     * @memberof ShipmentNoteDto
+     * @memberof ShipmentItemAttribute
      */
-    noteText?: string;
+    fullyQualifiedName?: string;
     /**
      * 
-     * @type {string}
-     * @memberof ShipmentNoteDto
+     * @type {Array<object>}
+     * @memberof ShipmentItemAttribute
      */
-    username?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShipmentNoteDto
-     */
-    role?: string;
-    /**
-     * 
-     * @type {FulfillmentAuditInfo}
-     * @memberof ShipmentNoteDto
-     */
-    auditInfo?: FulfillmentAuditInfo;
+    values?: Array<object>;
 }
 /**
  * 
  * @export
- * @interface ShipmentTypeSummaryDto
+ * @interface ShipmentReleaseDto
  */
-export interface ShipmentTypeSummaryDto {
+export interface ShipmentReleaseDto {
     /**
      * 
-     * @type {string}
-     * @memberof ShipmentTypeSummaryDto
+     * @type {boolean}
+     * @memberof ShipmentReleaseDto
      */
-    shipmentType?: string;
+    isCrossDockEligible?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof ShipmentTypeSummaryDto
+     * @memberof ShipmentReleaseDto
+     */
+    shipDate?: string;
+}
+/**
+ * 
+ * @export
+ * @interface ShipmentRuleEnumValueDto
+ */
+export interface ShipmentRuleEnumValueDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof ShipmentRuleEnumValueDto
+     */
+    id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShipmentRuleEnumValueDto
+     */
+    name?: string;
+}
+/**
+ * Metadata for a shipment rule field including operators, data type, and UI grouping information
+ * @export
+ * @interface ShipmentRuleFieldDto
+ */
+export interface ShipmentRuleFieldDto {
+    /**
+     * Whether null values are allowed on the right side of the operator
+     * @type {boolean}
+     * @memberof ShipmentRuleFieldDto
+     */
+    allowNullOnRight: boolean;
+    /**
+     * API field name for RSQL filter construction
+     * @type {string}
+     * @memberof ShipmentRuleFieldDto
+     */
+    apiFieldName?: string;
+    /**
+     * Comprehensive operator metadata with display text and RSQL syntax
+     * @type {Array<RuleOperatorDto>}
+     * @memberof ShipmentRuleFieldDto
+     */
+    apiOperators?: Array<RuleOperatorDto>;
+    /**
+     * Attribute scope (Shipment, ShipmentItem, ShipmentAndShipmentItem) for custom attributes only
+     * @type {string}
+     * @memberof ShipmentRuleFieldDto
+     */
+    applicableTo?: string;
+    /**
+     * Data type of the field (string, enum, date, boolean, number)
+     * @type {string}
+     * @memberof ShipmentRuleFieldDto
+     */
+    dataType: string;
+    /**
+     * Human-readable display name for UI
+     * @type {string}
+     * @memberof ShipmentRuleFieldDto
+     */
+    displayValue: string;
+    /**
+     * Field name identifier used internally
+     * @type {string}
+     * @memberof ShipmentRuleFieldDto
+     */
+    fieldName: string;
+    /**
+     * Field type for UI grouping (ShipmentField, ShipmentAttribute, ItemAttribute)
+     * @type {string}
+     * @memberof ShipmentRuleFieldDto
+     */
+    ruleFieldType?: string;
+    /**
+     * Display value for the field type group header
+     * @type {string}
+     * @memberof ShipmentRuleFieldDto
+     */
+    ruleFieldTypeDisplayValue?: string;
+    /**
+     * 
+     * @type {SortDescriptorDto}
+     * @memberof ShipmentRuleFieldDto
+     */
+    sortDescriptor?: SortDescriptorDto;
+    /**
+     * Whether this field supports sorting in result sets
+     * @type {boolean}
+     * @memberof ShipmentRuleFieldDto
+     */
+    sortable?: boolean;
+    /**
+     * List of supported operator codes (legacy, use apiOperators instead)
+     * @type {Array<string>}
+     * @memberof ShipmentRuleFieldDto
+     */
+    supportedOperators: Array<string>;
+    /**
+     * List of valid enumerated values for enum/list data types
+     * @type {Array<ShipmentRuleEnumValueDto>}
+     * @memberof ShipmentRuleFieldDto
+     */
+    validEnumValues?: Array<ShipmentRuleEnumValueDto>;
+}
+/**
+ * 
+ * @export
+ * @interface ShipmentTypeSummary
+ */
+export interface ShipmentTypeSummary {
+    /**
+     * Shipment type code
+     * @type {string}
+     * @memberof ShipmentTypeSummary
+     */
+    shipmentType?: ShipmentTypeSummaryShipmentTypeEnum;
+    /**
+     * Display name for the shipment type
+     * @type {string}
+     * @memberof ShipmentTypeSummary
      */
     shipmentTypeDisplayName?: string;
     /**
      * 
      * @type {number}
-     * @memberof ShipmentTypeSummaryDto
+     * @memberof ShipmentTypeSummary
      */
     totalShipments?: number;
     /**
      * 
      * @type {Array<ResultItem>}
-     * @memberof ShipmentTypeSummaryDto
+     * @memberof ShipmentTypeSummary
      */
     workflowTaskNames?: Array<ResultItem>;
 }
+
+
+/**
+ * @export
+ */
+export const ShipmentTypeSummaryShipmentTypeEnum = {
+    Sth: 'STH',
+    Bopis: 'BOPIS',
+    BopisCurbside: 'BOPIS_Curbside',
+    Transfer: 'Transfer',
+    Curbside: 'Curbside',
+    Digital: 'Digital',
+    Delivery: 'Delivery'
+} as const;
+export type ShipmentTypeSummaryShipmentTypeEnum = typeof ShipmentTypeSummaryShipmentTypeEnum[keyof typeof ShipmentTypeSummaryShipmentTypeEnum];
+
 /**
  * 
  * @export
- * @interface ShipmentsAggregationResponseDto
+ * @interface ShipmentsAggregation
  */
-export interface ShipmentsAggregationResponseDto {
+export interface ShipmentsAggregation {
     /**
      * 
-     * @type {FilterOptionsDto}
-     * @memberof ShipmentsAggregationResponseDto
+     * @type {Array<UpcQuantity>}
+     * @memberof ShipmentsAggregation
      */
-    filterOptions?: FilterOptionsDto;
+    demandByUpc?: Array<UpcQuantity>;
     /**
      * 
-     * @type {FilteredShipmentsDto}
-     * @memberof ShipmentsAggregationResponseDto
+     * @type {FilterOptions}
+     * @memberof ShipmentsAggregation
      */
-    filteredShipmentsDto?: FilteredShipmentsDto;
+    filterOptions?: FilterOptions;
+    /**
+     * 
+     * @type {FilteredShipments}
+     * @memberof ShipmentsAggregation
+     */
+    filteredShipmentsDto?: FilteredShipments;
+    /**
+     * 
+     * @type {{ [key: string]: number; }}
+     * @memberof ShipmentsAggregation
+     */
+    statusCounts?: { [key: string]: number; };
+}
+/**
+ * Shipping rate from a carrier
+ * @export
+ * @interface ShippingRateDto
+ */
+export interface ShippingRateDto {
+    /**
+     * Carrier code
+     * @type {string}
+     * @memberof ShippingRateDto
+     */
+    carrier: string;
+    /**
+     * Currency code
+     * @type {string}
+     * @memberof ShippingRateDto
+     */
+    currency: string;
+    /**
+     * Estimated delivery date
+     * @type {string}
+     * @memberof ShippingRateDto
+     */
+    estimatedDeliveryDate: string;
+    /**
+     * Exclusion code
+     * @type {string}
+     * @memberof ShippingRateDto
+     */
+    exclusionCode: string;
+    /**
+     * Exclusion message
+     * @type {string}
+     * @memberof ShippingRateDto
+     */
+    exclusionMessage: string;
+    /**
+     * Normalized cost
+     * @type {number}
+     * @memberof ShippingRateDto
+     */
+    normalizedCost: number;
+    /**
+     * Normalized speed
+     * @type {number}
+     * @memberof ShippingRateDto
+     */
+    normalizedSpeed: number;
+    /**
+     * Service Type code
+     * @type {string}
+     * @memberof ShippingRateDto
+     */
+    serviceType: string;
+    /**
+     * Service Type Name
+     * @type {string}
+     * @memberof ShippingRateDto
+     */
+    serviceTypeName?: string;
+    /**
+     * Total rate
+     * @type {number}
+     * @memberof ShippingRateDto
+     */
+    totalRate: number;
+    /**
+     * Transit time in business days
+     * @type {number}
+     * @memberof ShippingRateDto
+     */
+    transitDays: number;
+    /**
+     * Weighted score
+     * @type {number}
+     * @memberof ShippingRateDto
+     */
+    weightedScore: number;
 }
 /**
  * 
  * @export
- * @interface ShopperNotesDto
+ * @interface ShortageReason
  */
-export interface ShopperNotesDto {
+export interface ShortageReason {
     /**
      * 
      * @type {string}
-     * @memberof ShopperNotesDto
+     * @memberof ShortageReason
      */
-    giftMessage?: string;
+    moreInfo?: string;
     /**
      * 
      * @type {string}
-     * @memberof ShopperNotesDto
+     * @memberof ShortageReason
      */
-    comments?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShopperNotesDto
-     */
-    deliveryInstructions?: string;
+    reasonCode?: string;
 }
 /**
  * 
  * @export
- * @interface SlaDto
+ * @interface Sla
  */
-export interface SlaDto {
+export interface Sla {
+    /**
+     * 
+     * @type {ThresholdTrackingInfo}
+     * @memberof Sla
+     */
+    atRiskTrackingInfo?: ThresholdTrackingInfo;
     /**
      * 
      * @type {{ [key: string]: object; }}
-     * @memberof SlaDto
+     * @memberof Sla
      */
     attributes?: { [key: string]: object; };
     /**
      * 
-     * @type {number}
-     * @memberof SlaDto
+     * @type {ThresholdTrackingInfo}
+     * @memberof Sla
      */
-    slaId?: number;
+    compliantTrackingInfo?: ThresholdTrackingInfo;
     /**
      * 
      * @type {string}
-     * @memberof SlaDto
+     * @memberof Sla
      */
-    slaStatus?: string;
+    endDisplayValue?: string;
+    /**
+     * 
+     * @type {ThresholdTrackingInfo}
+     * @memberof Sla
+     */
+    nonCompliantTrackingInfo?: ThresholdTrackingInfo;
     /**
      * 
      * @type {string}
-     * @memberof SlaDto
-     */
-    slaDefinitionId?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof SlaDto
-     */
-    slaDefinitionNumber?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof SlaDto
-     */
-    slaName?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SlaDto
+     * @memberof Sla
      */
     slaCode?: string;
     /**
      * 
      * @type {string}
-     * @memberof SlaDto
+     * @memberof Sla
      */
-    slaDueDate?: string;
+    slaComplianceLevel?: string;
     /**
      * 
      * @type {string}
-     * @memberof SlaDto
+     * @memberof Sla
+     */
+    slaDefinitionId?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Sla
+     */
+    slaDefinitionNumber?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Sla
      */
     slaDefinitionStatus?: string;
     /**
      * 
      * @type {string}
-     * @memberof SlaDto
+     * @memberof Sla
+     */
+    slaDueDate?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Sla
+     */
+    slaId?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Sla
+     */
+    slaName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Sla
+     */
+    slaStatus?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Sla
      */
     startDisplayValue?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SlaDto
-     */
-    endDisplayValue?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SlaDto
-     */
-    slaComplianceLevel?: string;
-    /**
-     * 
-     * @type {ThresholdTrackingInfoDto}
-     * @memberof SlaDto
-     */
-    compliantTrackingInfo?: ThresholdTrackingInfoDto;
-    /**
-     * 
-     * @type {ThresholdTrackingInfoDto}
-     * @memberof SlaDto
-     */
-    atRiskTrackingInfo?: ThresholdTrackingInfoDto;
-    /**
-     * 
-     * @type {ThresholdTrackingInfoDto}
-     * @memberof SlaDto
-     */
-    nonCompliantTrackingInfo?: ThresholdTrackingInfoDto;
 }
 /**
  * 
@@ -8807,6 +13819,24 @@ export interface SlaDto {
 export interface SlaSummaryDto {
     /**
      * 
+     * @type {string}
+     * @memberof SlaSummaryDto
+     */
+    endDisplayValue?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SlaSummaryDto
+     */
+    slaCode?: string;
+    /**
+     * 
+     * @type {{ [key: string]: number; }}
+     * @memberof SlaSummaryDto
+     */
+    slaComplianceCounts?: { [key: string]: number; };
+    /**
+     * 
      * @type {number}
      * @memberof SlaSummaryDto
      */
@@ -8822,12 +13852,6 @@ export interface SlaSummaryDto {
      * @type {string}
      * @memberof SlaSummaryDto
      */
-    slaCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SlaSummaryDto
-     */
     slaStatus?: string;
     /**
      * 
@@ -8835,1770 +13859,1444 @@ export interface SlaSummaryDto {
      * @memberof SlaSummaryDto
      */
     startDisplayValue?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SlaSummaryDto
-     */
-    endDisplayValue?: string;
-    /**
-     * 
-     * @type {{ [key: string]: number; }}
-     * @memberof SlaSummaryDto
-     */
-    slaComplianceCounts?: { [key: string]: number; };
 }
 /**
  * 
  * @export
- * @interface SubstitutableItemResponseDto
+ * @interface Sort
  */
-export interface SubstitutableItemResponseDto {
+export interface Sort {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Sort
+     */
+    empty?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Sort
+     */
+    sorted?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Sort
+     */
+    unsorted?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface SortDescriptorDto
+ */
+export interface SortDescriptorDto {
     /**
      * 
      * @type {string}
-     * @memberof SubstitutableItemResponseDto
+     * @memberof SortDescriptorDto
+     */
+    ascValue?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SortDescriptorDto
+     */
+    descValue?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SortDescriptorDto
+     */
+    multiFieldSeparator?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SortDescriptorDto
+     */
+    queryParam?: string;
+}
+/**
+ * 
+ * @export
+ * @interface SourcingDto
+ */
+export interface SourcingDto {
+    /**
+     * 
+     * @type {number}
+     * @memberof SourcingDto
+     */
+    atpAtScope?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SourcingDto
+     */
+    atsAtScope?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SourcingDto
+     */
+    balanceCalled?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SourcingDto
+     */
+    balanceContracted?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SourcingDto
+     */
+    balanceUncalled?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SourcingDto
+     */
+    heldBeforeRun?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SourcingDto
+     */
+    lostUnits?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SourcingDto
+     */
+    nettingPosition?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SourcingDto
+     */
+    reSecuredUnits?: number;
+    /**
+     * 
+     * @type {Array<StolenFromDto>}
+     * @memberof SourcingDto
+     */
+    stolenFrom?: Array<StolenFromDto>;
+}
+/**
+ * 
+ * @export
+ * @interface SplitLineageDto
+ */
+export interface SplitLineageDto {
+    /**
+     * 
+     * @type {SplitLineageOriginDto}
+     * @memberof SplitLineageDto
+     */
+    origin?: SplitLineageOriginDto;
+    /**
+     * 
+     * @type {Array<SplitLineageEntryDto>}
+     * @memberof SplitLineageDto
+     */
+    results?: Array<SplitLineageEntryDto>;
+}
+/**
+ * 
+ * @export
+ * @interface SplitLineageEntryDto
+ */
+export interface SplitLineageEntryDto {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SplitLineageEntryDto
+     */
+    origin?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof SplitLineageEntryDto
+     */
+    queue?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof SplitLineageEntryDto
+     */
+    shipmentNumber?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SplitLineageEntryDto
+     */
+    units?: number;
+}
+/**
+ * 
+ * @export
+ * @interface SplitLineageOriginDto
+ */
+export interface SplitLineageOriginDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof SplitLineageOriginDto
+     */
+    queue?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof SplitLineageOriginDto
+     */
+    shipmentNumber?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SplitLineageOriginDto
+     */
+    totalUnits?: number;
+}
+/**
+ * 
+ * @export
+ * @interface StolenFromDto
+ */
+export interface StolenFromDto {
+    /**
+     * 
+     * @type {number}
+     * @memberof StolenFromDto
+     */
+    orderNumber?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof StolenFromDto
+     */
+    shipDate?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof StolenFromDto
+     */
+    unitsStolen?: number;
+}
+/**
+ * 
+ * @export
+ * @interface SubstitutableItemResponse
+ */
+export interface SubstitutableItemResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutableItemResponse
+     */
+    availableInventory?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutableItemResponse
+     */
+    baseProductCode?: string;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIBundledProduct>}
+     * @memberof SubstitutableItemResponse
+     */
+    bundledProducts?: Array<FulfillmentAPIBundledProduct>;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutableItemResponse
+     */
+    condition?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutableItemResponse
+     */
+    imageUrl?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstitutableItemResponse
+     */
+    itemDiscount?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutableItemResponse
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutableItemResponse
+     */
+    partNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstitutableItemResponse
      */
     productCode?: string;
     /**
      * 
      * @type {string}
-     * @memberof SubstitutableItemResponseDto
+     * @memberof SubstitutableItemResponse
      */
     productUsage?: string;
     /**
      * 
      * @type {string}
-     * @memberof SubstitutableItemResponseDto
-     */
-    baseProductCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutableItemResponseDto
-     */
-    imageUrl?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutableItemResponseDto
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutableItemResponseDto
-     */
-    partNumber?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutableItemResponseDto
-     */
-    upc?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutableItemResponseDto
+     * @memberof SubstitutableItemResponse
      */
     sku?: string;
     /**
      * 
      * @type {number}
-     * @memberof SubstitutableItemResponseDto
+     * @memberof SubstitutableItemResponse
      */
     unitPrice?: number;
     /**
      * 
-     * @type {number}
-     * @memberof SubstitutableItemResponseDto
+     * @type {string}
+     * @memberof SubstitutableItemResponse
      */
-    itemDiscount?: number;
-    /**
-     * 
-     * @type {Array<BundledProductDto>}
-     * @memberof SubstitutableItemResponseDto
-     */
-    bundledProducts?: Array<BundledProductDto>;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutableItemResponseDto
-     */
-    availableInventory?: number;
+    upc?: string;
 }
 /**
  * 
  * @export
- * @interface SubstituteInfoDto
+ * @interface SubstituteItem
  */
-export interface SubstituteInfoDto {
+export interface SubstituteItem {
     /**
      * 
-     * @type {string}
-     * @memberof SubstituteInfoDto
+     * @type {FulfillmentAPIBundleInfo}
+     * @memberof SubstituteItem
      */
-    optIn?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstituteInfoDto
-     */
-    substituteProductCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstituteInfoDto
-     */
-    substituteVariantCode?: string;
-}
-/**
- * 
- * @export
- * @interface SubstituteItemDto
- */
-export interface SubstituteItemDto {
+    bundleInfo?: FulfillmentAPIBundleInfo;
     /**
      * 
      * @type {number}
-     * @memberof SubstituteItemDto
-     */
-    lineId: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstituteItemDto
-     */
-    quantity: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstituteItemDto
-     */
-    productCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstituteItemDto
-     */
-    variationProductCode?: string;
-    /**
-     * 
-     * @type {SubstituteReasonDto}
-     * @memberof SubstituteItemDto
-     */
-    substituteReason?: SubstituteReasonDto;
-}
-/**
- * 
- * @export
- * @interface SubstituteItemsRequestDto
- */
-export interface SubstituteItemsRequestDto {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SubstituteItemsRequestDto
-     */
-    isUserAction?: boolean;
-    /**
-     * 
-     * @type {Array<SubstituteItemDto>}
-     * @memberof SubstituteItemsRequestDto
-     */
-    items: Array<SubstituteItemDto>;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstituteItemsRequestDto
+     * @memberof SubstituteItem
      */
     lineId?: number;
     /**
      * 
-     * @type {number}
-     * @memberof SubstituteItemsRequestDto
-     */
-    quantity?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SubstituteItemsRequestDto
-     */
-    blockAssignment?: boolean;
-}
-/**
- * 
- * @export
- * @interface SubstituteReasonDto
- */
-export interface SubstituteReasonDto {
-    /**
-     * 
      * @type {string}
-     * @memberof SubstituteReasonDto
-     */
-    reasonCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstituteReasonDto
-     */
-    moreInfo?: string;
-}
-/**
- * 
- * @export
- * @interface SubstitutedItemDto
- */
-export interface SubstitutedItemDto {
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof SubstitutedItemDto
-     */
-    attributes?: { [key: string]: object; };
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    lineId: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutedItemDto
-     */
-    originalOrderItemId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutedItemDto
-     */
-    goodsType?: SubstitutedItemDtoGoodsTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutedItemDto
-     */
-    optionAttributeFQN?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutedItemDto
+     * @memberof SubstituteItem
      */
     productCode?: string;
     /**
      * 
+     * @type {number}
+     * @memberof SubstituteItem
+     */
+    quantity?: number;
+    /**
+     * 
+     * @type {SubstituteReason}
+     * @memberof SubstituteItem
+     */
+    substituteReason?: SubstituteReason;
+    /**
+     * 
      * @type {string}
-     * @memberof SubstitutedItemDto
+     * @memberof SubstituteItem
      */
     variationProductCode?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    quantity: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    transferQuantity?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    trueTransferQuantity?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    readyForPickupQuantity?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    allocatedQuantity?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutedItemDto
-     */
-    imageUrl?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutedItemDto
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutedItemDto
-     */
-    partNumber?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutedItemDto
-     */
-    upc?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutedItemDto
-     */
-    sku?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SubstitutedItemDto
-     */
-    allowsBackOrder?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    unitPrice?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SubstitutedItemDto
-     */
-    isTaxable?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    actualPrice?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    overridePrice?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    itemDiscount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    lineItemCost?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    itemTax: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    shipping: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    shippingDiscount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    shippingTax: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    handling: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    handlingDiscount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    handlingTax: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    duty?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    weightedShipmentAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    weightedLineItemTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    weightedShippingAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    weightedShippingTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    weightedHandlingAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    weightedHandlingTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    weightedDutyAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    taxableShipping?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    taxableLineItemCost?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    taxableHandling?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    weight?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    length?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    width?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    height?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    lineItemAdjustment?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutedItemDto
-     */
-    weightUnit?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutedItemDto
-     */
-    expectedDeliveryDate?: string;
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof SubstitutedItemDto
-     */
-    data?: { [key: string]: object; };
-    /**
-     * 
-     * @type {object}
-     * @memberof SubstitutedItemDto
-     */
-    taxData?: object;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutedItemDto
-     */
-    backorderReleaseDate?: string;
-    /**
-     * 
-     * @type {AuditInfoDto}
-     * @memberof SubstitutedItemDto
-     */
-    auditInfo?: AuditInfoDto;
-    /**
-     * 
-     * @type {Array<ProductOptionDto>}
-     * @memberof SubstitutedItemDto
-     */
-    options?: Array<ProductOptionDto>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SubstitutedItemDto
-     */
-    manageStock?: boolean;
-    /**
-     * 
-     * @type {Array<FulfillmentFieldDto>}
-     * @memberof SubstitutedItemDto
-     */
-    fulfillmentFields?: Array<FulfillmentFieldDto>;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutedItemDto
-     */
-    locatorName?: string;
-    /**
-     * 
-     * @type {AppeasementReasonDto}
-     * @memberof SubstitutedItemDto
-     * @deprecated
-     */
-    appeasementReason?: AppeasementReasonDto;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutedItemDto
-     */
-    creditCurrencyCode?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    creditValue?: number;
-    /**
-     * 
-     * @type {Array<GiftCardDto>}
-     * @memberof SubstitutedItemDto
-     */
-    giftCards?: Array<GiftCardDto>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SubstitutedItemDto
-     */
-    isAssemblyRequired?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutedItemDto
-     */
-    parentItemId?: string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof SubstitutedItemDto
-     */
-    childItemIds?: Array<string>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SubstitutedItemDto
-     */
-    isPackagedStandAlone?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SubstitutedItemDto
-     */
-    allowsFutureAllocate?: boolean;
-    /**
-     * 
-     * @type {Array<InventoryTagDto>}
-     * @memberof SubstitutedItemDto
-     */
-    inventoryTags?: Array<InventoryTagDto>;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutedItemDto
-     */
-    cartItemId?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SubstitutedItemDto
-     */
-    isReservedInventory?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SubstitutedItemDto
-     */
-    allowsSubstitution?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    originalQuantity?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    originalLineId?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SubstitutedItemDto
-     */
-    substituteQuantity?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SubstitutedItemDto
-     */
-    isGift?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutedItemDto
-     */
-    giftMessage?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutedItemDto
-     */
-    purchaseLocation?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutedItemDto
-     */
-    priceMode?: SubstitutedItemDtoPriceModeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutedItemDto
-     */
-    condition?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutedItemDto
-     */
-    serialNumber?: string;
-    /**
-     * 
-     * @type {Array<InventoryAllocationDto>}
-     * @memberof SubstitutedItemDto
-     */
-    inventoryAllocations?: Array<InventoryAllocationDto>;
-    /**
-     * 
-     * @type {SubstituteInfoDto}
-     * @memberof SubstitutedItemDto
-     */
-    substituteInfo?: SubstituteInfoDto;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SubstitutedItemDto
-     */
-    autoSubstitution?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubstitutedItemDto
-     */
-    substitutionType?: SubstitutedItemDtoSubstitutionTypeEnum;
-    /**
-     * 
-     * @type {BundleInfoDto}
-     * @memberof SubstitutedItemDto
-     */
-    bundleInfo?: BundleInfoDto;
-    /**
-     * 
-     * @type {ReturnRuleInfoDto}
-     * @memberof SubstitutedItemDto
-     */
-    returnRuleInfo?: ReturnRuleInfoDto;
-    /**
-     * 
-     * @type {SubstituteReasonDto}
-     * @memberof SubstitutedItemDto
-     */
-    substituteReason?: SubstituteReasonDto;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof SubstitutedItemDto
-     */
-    substituteItemLineIds?: Array<number>;
-}
-
-
-/**
- * @export
- */
-export const SubstitutedItemDtoGoodsTypeEnum = {
-    Physical: 'Physical',
-    Digital: 'Digital',
-    DigitalCredit: 'DigitalCredit',
-    DigitalGiftCard: 'DigitalGiftCard',
-    Service: 'Service'
-} as const;
-export type SubstitutedItemDtoGoodsTypeEnum = typeof SubstitutedItemDtoGoodsTypeEnum[keyof typeof SubstitutedItemDtoGoodsTypeEnum];
-
-/**
- * @export
- */
-export const SubstitutedItemDtoPriceModeEnum = {
-    Internal: 'Internal',
-    External: 'External'
-} as const;
-export type SubstitutedItemDtoPriceModeEnum = typeof SubstitutedItemDtoPriceModeEnum[keyof typeof SubstitutedItemDtoPriceModeEnum];
-
-/**
- * @export
- */
-export const SubstitutedItemDtoSubstitutionTypeEnum = {
-    PreFulfillment: 'PRE_FULFILLMENT',
-    AtFullfillment: 'AT_FULLFILLMENT'
-} as const;
-export type SubstitutedItemDtoSubstitutionTypeEnum = typeof SubstitutedItemDtoSubstitutionTypeEnum[keyof typeof SubstitutedItemDtoSubstitutionTypeEnum];
-
-/**
- * 
- * @export
- * @interface TaskCompleteDto
- */
-export interface TaskCompleteDto {
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof TaskCompleteDto
-     */
-    taskBody?: { [key: string]: object; };
-    /**
-     * 
-     * @type {HandleOptionDto}
-     * @memberof TaskCompleteDto
-     */
-    handleOption?: HandleOptionDto;
 }
 /**
  * 
  * @export
- * @interface TaskDefinitionDto
+ * @interface SubstituteItemsRequest
  */
-export interface TaskDefinitionDto {
-    /**
-     * 
-     * @type {string}
-     * @memberof TaskDefinitionDto
-     * @deprecated
-     */
-    id?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TaskDefinitionDto
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TaskDefinitionDto
-     */
-    subject?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TaskDefinitionDto
-     */
-    description?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof TaskDefinitionDto
-     */
-    priority?: number;
+export interface SubstituteItemsRequest {
     /**
      * 
      * @type {boolean}
-     * @memberof TaskDefinitionDto
+     * @memberof SubstituteItemsRequest
      */
-    skippable?: boolean;
+    blockAssignment?: boolean;
     /**
      * 
-     * @type {Array<TaskInputDto>}
-     * @memberof TaskDefinitionDto
+     * @type {boolean}
+     * @memberof SubstituteItemsRequest
      */
-    inputs?: Array<TaskInputDto>;
+    holdBlockAssignment?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SubstituteItemsRequest
+     */
+    isUserAction?: boolean;
+    /**
+     * 
+     * @type {Array<SubstituteItem>}
+     * @memberof SubstituteItemsRequest
+     */
+    items?: Array<SubstituteItem>;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstituteItemsRequest
+     */
+    lineId?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubstituteItemsRequest
+     */
+    packageId?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof SubstituteItemsRequest
+     */
+    quantity?: number;
 }
 /**
  * 
  * @export
- * @interface TaskDto
+ * @interface SubstituteReason
  */
-export interface TaskDto {
+export interface SubstituteReason {
     /**
      * 
      * @type {string}
-     * @memberof TaskDto
-     * @deprecated
+     * @memberof SubstituteReason
      */
-    taskId?: string;
+    moreInfo?: string;
     /**
      * 
      * @type {string}
-     * @memberof TaskDto
+     * @memberof SubstituteReason
      */
-    name?: string;
+    reasonCode?: string;
+}
+/**
+ * 
+ * @export
+ * @interface Task
+ */
+export interface Task {
     /**
      * 
-     * @type {string}
-     * @memberof TaskDto
+     * @type {{ [key: string]: FulfillmentAPILink; }}
+     * @memberof Task
      */
-    subject?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TaskDto
-     */
-    description?: string;
+    links?: { [key: string]: FulfillmentAPILink; };
     /**
      * 
      * @type {boolean}
-     * @memberof TaskDto
-     */
-    skippable?: boolean;
-    /**
-     * 
-     * @type {Array<TaskInputDto>}
-     * @memberof TaskDto
-     */
-    inputs?: Array<TaskInputDto>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof TaskDto
+     * @memberof Task
      */
     active?: boolean;
     /**
      * 
+     * @type {string}
+     * @memberof Task
+     */
+    activeDate?: string;
+    /**
+     * 
      * @type {boolean}
-     * @memberof TaskDto
+     * @memberof Task
      */
     completed?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof TaskDto
+     * @memberof Task
      */
     completedDate?: string;
     /**
      * 
-     * @type {string}
-     * @memberof TaskDto
-     */
-    activeDate?: string;
-    /**
-     * 
      * @type {number}
-     * @memberof TaskDto
+     * @memberof Task
      */
     completedDurationMillis?: number;
     /**
      * 
-     * @type {{ [key: string]: FulfillmentLink; }}
-     * @memberof TaskDto
+     * @type {string}
+     * @memberof Task
      */
-    links?: { [key: string]: FulfillmentLink; };
-}
-/**
- * 
- * @export
- * @interface TaskInputDto
- */
-export interface TaskInputDto {
+    description?: string;
+    /**
+     * 
+     * @type {Array<FulfillmentAPITaskInput>}
+     * @memberof Task
+     */
+    inputs?: Array<FulfillmentAPITaskInput>;
     /**
      * 
      * @type {string}
-     * @memberof TaskInputDto
+     * @memberof Task
      */
     name?: string;
     /**
      * 
      * @type {boolean}
-     * @memberof TaskInputDto
+     * @memberof Task
      */
-    required?: boolean;
+    skippable?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof TaskInputDto
+     * @memberof Task
      */
-    label?: string;
+    subject?: string;
     /**
      * 
      * @type {string}
-     * @memberof TaskInputDto
+     * @memberof Task
      */
-    helpMessage?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TaskInputDto
-     */
-    type?: TaskInputDtoTypeEnum;
-    /**
-     * 
-     * @type {Array<object>}
-     * @memberof TaskInputDto
-     */
-    options?: Array<object>;
-    /**
-     * 
-     * @type {string}
-     * @memberof TaskInputDto
-     */
-    pattern?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof TaskInputDto
-     */
-    maxLength?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TaskInputDto
-     */
-    minLength?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TaskInputDto
-     */
-    maximum?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TaskInputDto
-     */
-    minimum?: number;
+    taskId?: string;
 }
-
-
-/**
- * @export
- */
-export const TaskInputDtoTypeEnum = {
-    String: 'STRING',
-    Integer: 'INTEGER',
-    Number: 'NUMBER',
-    Boolean: 'BOOLEAN',
-    Object: 'OBJECT',
-    List: 'LIST',
-    Unknown: 'UNKNOWN'
-} as const;
-export type TaskInputDtoTypeEnum = typeof TaskInputDtoTypeEnum[keyof typeof TaskInputDtoTypeEnum];
-
 /**
  * 
  * @export
- * @interface TaskReasonDto
+ * @interface TaskComplete
  */
-export interface TaskReasonDto {
+export interface TaskComplete {
     /**
-     * 
+     * Caller-supplied email template name; required when triggerEmail is true
      * @type {string}
-     * @memberof TaskReasonDto
+     * @memberof TaskComplete
      */
-    reasonCode?: string;
+    emailTemplateName?: string;
+    /**
+     * 
+     * @type {HandleOption}
+     * @memberof TaskComplete
+     */
+    handleOption?: HandleOption;
+    /**
+     * Recipient audience (Shopper, Fulfiller, Recipient, AlternateContact); required when triggerEmail is true
+     * @type {string}
+     * @memberof TaskComplete
+     */
+    recipientType?: string;
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof TaskComplete
+     */
+    taskBody?: { [key: string]: object; };
+    /**
+     * When true, publishes a SendWorkflowTaskCompletedEmail after the task completes
+     * @type {boolean}
+     * @memberof TaskComplete
+     */
+    triggerEmail?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface TaskDefinition
+ */
+export interface TaskDefinition {
     /**
      * 
      * @type {string}
-     * @memberof TaskReasonDto
+     * @memberof TaskDefinition
+     */
+    description?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TaskDefinition
+     */
+    id?: string;
+    /**
+     * 
+     * @type {Array<FulfillmentAPITaskInput>}
+     * @memberof TaskDefinition
+     */
+    inputs?: Array<FulfillmentAPITaskInput>;
+    /**
+     * 
+     * @type {string}
+     * @memberof TaskDefinition
+     */
+    name?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof TaskDefinition
+     */
+    priority?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof TaskDefinition
+     */
+    skippable?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof TaskDefinition
+     */
+    subject?: string;
+}
+/**
+ * 
+ * @export
+ * @interface TaskReason
+ */
+export interface TaskReason {
+    /**
+     * 
+     * @type {string}
+     * @memberof TaskReason
      */
     moreInfo?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TaskReason
+     */
+    reasonCode?: string;
 }
 /**
  * 
  * @export
- * @interface ThresholdTrackingInfoDto
+ * @interface TemplateVariable
  */
-export interface ThresholdTrackingInfoDto {
+export interface TemplateVariable {
     /**
      * 
      * @type {string}
-     * @memberof ThresholdTrackingInfoDto
+     * @memberof TemplateVariable
+     */
+    description?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TemplateVariable
      */
     name?: string;
     /**
      * 
      * @type {string}
-     * @memberof ThresholdTrackingInfoDto
+     * @memberof TemplateVariable
+     */
+    type?: TemplateVariableTypeEnum;
+}
+
+
+/**
+ * @export
+ */
+export const TemplateVariableTypeEnum = {
+    Empty: '',
+    QuestionMark: '?',
+    Ampersand: '&',
+    Slash: '/',
+    Hash: '#',
+    Star: '*'
+} as const;
+export type TemplateVariableTypeEnum = typeof TemplateVariableTypeEnum[keyof typeof TemplateVariableTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface ThresholdTrackingInfo
+ */
+export interface ThresholdTrackingInfo {
+    /**
+     * 
+     * @type {string}
+     * @memberof ThresholdTrackingInfo
      */
     code?: string;
     /**
      * 
      * @type {string}
-     * @memberof ThresholdTrackingInfoDto
-     */
-    startDate?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ThresholdTrackingInfoDto
+     * @memberof ThresholdTrackingInfo
      */
     endDate?: string;
-}
-/**
- * 
- * @export
- * @interface TrackingDto
- */
-export interface TrackingDto {
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof TrackingDto
-     */
-    attributes?: { [key: string]: object; };
     /**
      * 
      * @type {string}
-     * @memberof TrackingDto
-     */
-    number?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TrackingDto
-     */
-    url?: string;
-}
-/**
- * 
- * @export
- * @interface TransferItemDto
- */
-export interface TransferItemDto {
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferItemDto
-     */
-    lineId: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferItemDto
-     */
-    quantity: number;
-    /**
-     * 
-     * @type {TransferredReasonDto}
-     * @memberof TransferItemDto
-     */
-    transferredReason?: TransferredReasonDto;
-    /**
-     * 
-     * @type {string}
-     * @memberof TransferItemDto
-     */
-    fulfillmentLocationCode?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof TransferItemDto
-     */
-    blockAssignment?: boolean;
-}
-/**
- * 
- * @export
- * @interface TransferItemsRequestDto
- */
-export interface TransferItemsRequestDto {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof TransferItemsRequestDto
-     */
-    isUserAction?: boolean;
-    /**
-     * 
-     * @type {Array<TransferItemDto>}
-     * @memberof TransferItemsRequestDto
-     */
-    items: Array<TransferItemDto>;
-}
-/**
- * 
- * @export
- * @interface TransferShipmentRequestDto
- */
-export interface TransferShipmentRequestDto {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof TransferShipmentRequestDto
-     */
-    isUserAction?: boolean;
-    /**
-     * 
-     * @type {TransferredReasonDto}
-     * @memberof TransferShipmentRequestDto
-     */
-    transferredReason?: TransferredReasonDto;
-    /**
-     * 
-     * @type {string}
-     * @memberof TransferShipmentRequestDto
-     */
-    fulfillmentLocationCode?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof TransferShipmentRequestDto
-     */
-    blockAssignment?: boolean;
-    /**
-     * 
-     * @type {Array<TransferItemDto>}
-     * @memberof TransferShipmentRequestDto
-     */
-    items?: Array<TransferItemDto>;
-}
-/**
- * 
- * @export
- * @interface TransferredItemDto
- */
-export interface TransferredItemDto {
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof TransferredItemDto
-     */
-    attributes?: { [key: string]: object; };
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    lineId: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof TransferredItemDto
-     */
-    originalOrderItemId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TransferredItemDto
-     */
-    goodsType?: TransferredItemDtoGoodsTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof TransferredItemDto
-     */
-    optionAttributeFQN?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TransferredItemDto
-     */
-    productCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TransferredItemDto
-     */
-    variationProductCode?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    quantity: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    transferQuantity?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    trueTransferQuantity?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    readyForPickupQuantity?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    allocatedQuantity?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof TransferredItemDto
-     */
-    imageUrl?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TransferredItemDto
+     * @memberof ThresholdTrackingInfo
      */
     name?: string;
     /**
      * 
      * @type {string}
-     * @memberof TransferredItemDto
+     * @memberof ThresholdTrackingInfo
      */
-    partNumber?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TransferredItemDto
-     */
-    upc?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TransferredItemDto
-     */
-    sku?: string;
+    startDate?: string;
+}
+/**
+ * 
+ * @export
+ * @interface TransferItem
+ */
+export interface TransferItem {
     /**
      * 
      * @type {boolean}
-     * @memberof TransferredItemDto
+     * @memberof TransferItem
      */
-    allowsBackOrder?: boolean;
+    blockAssignment?: boolean;
     /**
      * 
-     * @type {number}
-     * @memberof TransferredItemDto
+     * @type {string}
+     * @memberof TransferItem
      */
-    unitPrice?: number;
+    fulfillmentLocationCode?: string;
     /**
      * 
      * @type {boolean}
-     * @memberof TransferredItemDto
+     * @memberof TransferItem
      */
-    isTaxable?: boolean;
+    holdBlockAssignment?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof TransferItem
+     */
+    isReservedInventory?: boolean;
     /**
      * 
      * @type {number}
-     * @memberof TransferredItemDto
+     * @memberof TransferItem
+     */
+    lineId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferItem
+     */
+    quantity?: number;
+    /**
+     * 
+     * @type {TransferredReason}
+     * @memberof TransferItem
+     */
+    transferredReason?: TransferredReason;
+}
+/**
+ * 
+ * @export
+ * @interface TransferItemsRequest
+ */
+export interface TransferItemsRequest {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof TransferItemsRequest
+     */
+    isUserAction?: boolean;
+    /**
+     * 
+     * @type {Array<TransferItem>}
+     * @memberof TransferItemsRequest
+     */
+    items?: Array<TransferItem>;
+}
+/**
+ * 
+ * @export
+ * @interface TransferShipment
+ */
+export interface TransferShipment {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof TransferShipment
+     */
+    blockAssignment?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransferShipment
+     */
+    fulfillmentLocationCode?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof TransferShipment
+     */
+    holdBlockAssignment?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof TransferShipment
+     */
+    isUserAction?: boolean;
+    /**
+     * 
+     * @type {Array<TransferItem>}
+     * @memberof TransferShipment
+     */
+    items?: Array<TransferItem>;
+    /**
+     * 
+     * @type {TransferredReason}
+     * @memberof TransferShipment
+     */
+    transferredReason?: TransferredReason;
+}
+/**
+ * 
+ * @export
+ * @interface TransferredItem
+ */
+export interface TransferredItem {
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
      */
     actualPrice?: number;
     /**
      * 
      * @type {number}
-     * @memberof TransferredItemDto
+     * @memberof TransferredItem
      */
-    overridePrice?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    itemDiscount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    lineItemCost?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    itemTax: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    shipping: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    shippingDiscount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    shippingTax: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    handling: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    handlingDiscount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    handlingTax: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    duty?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    weightedShipmentAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    weightedLineItemTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    weightedShippingAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    weightedShippingTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    weightedHandlingAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    weightedHandlingTaxAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    weightedDutyAdjustment?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    taxableShipping?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    taxableLineItemCost?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    taxableHandling?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    weight?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    length?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    width?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    height?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    lineItemAdjustment?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof TransferredItemDto
-     */
-    weightUnit?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TransferredItemDto
-     */
-    expectedDeliveryDate?: string;
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof TransferredItemDto
-     */
-    data?: { [key: string]: object; };
-    /**
-     * 
-     * @type {object}
-     * @memberof TransferredItemDto
-     */
-    taxData?: object;
-    /**
-     * 
-     * @type {string}
-     * @memberof TransferredItemDto
-     */
-    backorderReleaseDate?: string;
-    /**
-     * 
-     * @type {AuditInfoDto}
-     * @memberof TransferredItemDto
-     */
-    auditInfo?: AuditInfoDto;
-    /**
-     * 
-     * @type {Array<ProductOptionDto>}
-     * @memberof TransferredItemDto
-     */
-    options?: Array<ProductOptionDto>;
+    allocatedQuantity?: number;
     /**
      * 
      * @type {boolean}
-     * @memberof TransferredItemDto
+     * @memberof TransferredItem
      */
-    manageStock?: boolean;
-    /**
-     * 
-     * @type {Array<FulfillmentFieldDto>}
-     * @memberof TransferredItemDto
-     */
-    fulfillmentFields?: Array<FulfillmentFieldDto>;
-    /**
-     * 
-     * @type {string}
-     * @memberof TransferredItemDto
-     */
-    locatorName?: string;
-    /**
-     * 
-     * @type {AppeasementReasonDto}
-     * @memberof TransferredItemDto
-     * @deprecated
-     */
-    appeasementReason?: AppeasementReasonDto;
-    /**
-     * 
-     * @type {string}
-     * @memberof TransferredItemDto
-     */
-    creditCurrencyCode?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof TransferredItemDto
-     */
-    creditValue?: number;
-    /**
-     * 
-     * @type {Array<GiftCardDto>}
-     * @memberof TransferredItemDto
-     */
-    giftCards?: Array<GiftCardDto>;
+    allowsBackOrder?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof TransferredItemDto
-     */
-    isAssemblyRequired?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof TransferredItemDto
-     */
-    parentItemId?: string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof TransferredItemDto
-     */
-    childItemIds?: Array<string>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof TransferredItemDto
-     */
-    isPackagedStandAlone?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof TransferredItemDto
+     * @memberof TransferredItem
      */
     allowsFutureAllocate?: boolean;
     /**
      * 
-     * @type {Array<InventoryTagDto>}
-     * @memberof TransferredItemDto
-     */
-    inventoryTags?: Array<InventoryTagDto>;
-    /**
-     * 
-     * @type {string}
-     * @memberof TransferredItemDto
-     */
-    cartItemId?: string;
-    /**
-     * 
      * @type {boolean}
-     * @memberof TransferredItemDto
-     */
-    isReservedInventory?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof TransferredItemDto
+     * @memberof TransferredItem
      */
     allowsSubstitution?: boolean;
     /**
      * 
-     * @type {number}
-     * @memberof TransferredItemDto
+     * @type {FulfillmentAPIAppeasementReason}
+     * @memberof TransferredItem
      */
-    originalQuantity?: number;
+    appeasementReason?: FulfillmentAPIAppeasementReason;
     /**
      * 
-     * @type {number}
-     * @memberof TransferredItemDto
+     * @type {{ [key: string]: object; }}
+     * @memberof TransferredItem
      */
-    originalLineId?: number;
+    attributes?: { [key: string]: object; };
     /**
      * 
-     * @type {number}
-     * @memberof TransferredItemDto
+     * @type {FulfillmentAPIAuditInfo}
+     * @memberof TransferredItem
      */
-    substituteQuantity?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof TransferredItemDto
-     */
-    isGift?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof TransferredItemDto
-     */
-    giftMessage?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TransferredItemDto
-     */
-    purchaseLocation?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TransferredItemDto
-     */
-    priceMode?: TransferredItemDtoPriceModeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof TransferredItemDto
-     */
-    condition?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TransferredItemDto
-     */
-    serialNumber?: string;
-    /**
-     * 
-     * @type {Array<InventoryAllocationDto>}
-     * @memberof TransferredItemDto
-     */
-    inventoryAllocations?: Array<InventoryAllocationDto>;
-    /**
-     * 
-     * @type {SubstituteInfoDto}
-     * @memberof TransferredItemDto
-     */
-    substituteInfo?: SubstituteInfoDto;
+    auditInfo?: FulfillmentAPIAuditInfo;
     /**
      * 
      * @type {boolean}
-     * @memberof TransferredItemDto
+     * @memberof TransferredItem
      */
     autoSubstitution?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof TransferredItemDto
+     * @memberof TransferredItem
      */
-    substitutionType?: TransferredItemDtoSubstitutionTypeEnum;
-    /**
-     * 
-     * @type {BundleInfoDto}
-     * @memberof TransferredItemDto
-     */
-    bundleInfo?: BundleInfoDto;
-    /**
-     * 
-     * @type {ReturnRuleInfoDto}
-     * @memberof TransferredItemDto
-     */
-    returnRuleInfo?: ReturnRuleInfoDto;
+    backorderReleaseDate?: string;
     /**
      * 
      * @type {boolean}
-     * @memberof TransferredItemDto
+     * @memberof TransferredItem
      */
     blockAssignment?: boolean;
     /**
      * 
-     * @type {RejectedReasonDto}
-     * @memberof TransferredItemDto
+     * @type {FulfillmentAPIBundleInfo}
+     * @memberof TransferredItem
      */
-    rejectedReason?: RejectedReasonDto;
+    bundleInfo?: FulfillmentAPIBundleInfo;
     /**
      * 
      * @type {string}
-     * @memberof TransferredItemDto
+     * @memberof TransferredItem
+     */
+    cartItemId?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof TransferredItem
+     */
+    childItemIds?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransferredItem
+     */
+    condition?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransferredItem
+     */
+    creditCurrencyCode?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    creditValue?: number;
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof TransferredItem
+     */
+    data?: { [key: string]: object; };
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    duty?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransferredItem
+     */
+    expectedDeliveryDate?: string;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIFulfillmentField>}
+     * @memberof TransferredItem
+     */
+    fulfillmentFields?: Array<FulfillmentAPIFulfillmentField>;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransferredItem
      */
     fulfillmentLocationCode?: string;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIGiftCard>}
+     * @memberof TransferredItem
+     */
+    giftCards?: Array<FulfillmentAPIGiftCard>;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransferredItem
+     */
+    giftMessage?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransferredItem
+     */
+    goodsType?: TransferredItemGoodsTypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    handling?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    handlingDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    handlingTax?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    height?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof TransferredItem
+     */
+    holdBlockAssignment?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransferredItem
+     */
+    imageUrl?: string;
+    /**
+     * 
+     * @type {Array<InventoryAllocation>}
+     * @memberof TransferredItem
+     */
+    inventoryAllocations?: Array<InventoryAllocation>;
+    /**
+     * 
+     * @type {Array<InventoryTag>}
+     * @memberof TransferredItem
+     */
+    inventoryTags?: Array<InventoryTag>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof TransferredItem
+     */
+    isAssemblyRequired?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof TransferredItem
+     */
+    isGift?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof TransferredItem
+     */
+    isPackagedStandAlone?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof TransferredItem
+     */
+    isReservedInventory?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof TransferredItem
+     */
+    isTaxable?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    itemDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    itemTax?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    length?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    lineId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    lineItemAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    lineItemCost?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransferredItem
+     */
+    locatorName?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof TransferredItem
+     */
+    manageStock?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransferredItem
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransferredItem
+     */
+    optionAttributeFQN?: string;
+    /**
+     * 
+     * @type {Array<FulfillmentAPIProductOption>}
+     * @memberof TransferredItem
+     */
+    options?: Array<FulfillmentAPIProductOption>;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    originalLineId?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransferredItem
+     */
+    originalOrderItemId?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    originalQuantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    overridePrice?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransferredItem
+     */
+    parentItemId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransferredItem
+     */
+    partNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransferredItem
+     */
+    priceMode?: TransferredItemPriceModeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransferredItem
+     */
+    productCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransferredItem
+     */
+    purchaseLocation?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    quantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    readyForPickupQuantity?: number;
+    /**
+     * 
+     * @type {RejectedReason}
+     * @memberof TransferredItem
+     */
+    rejectedReason?: RejectedReason;
+    /**
+     * 
+     * @type {FulfillmentAPIReturnRuleInfo}
+     * @memberof TransferredItem
+     */
+    returnRuleInfo?: FulfillmentAPIReturnRuleInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransferredItem
+     */
+    serialNumber?: string;
+    /**
+     * 
+     * @type {Array<ShipmentItemAttribute>}
+     * @memberof TransferredItem
+     */
+    shipmentItemAttributes?: Array<ShipmentItemAttribute>;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    shipping?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    shippingDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    shippingTax?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransferredItem
+     */
+    sku?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransferredItem
+     */
+    stockValidationStatus?: string;
+    /**
+     * 
+     * @type {FulfillmentAPISubstituteInfo}
+     * @memberof TransferredItem
+     */
+    substituteInfo?: FulfillmentAPISubstituteInfo;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    substituteQuantity?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransferredItem
+     */
+    substitutionType?: TransferredItemSubstitutionTypeEnum;
+    /**
+     * 
+     * @type {object}
+     * @memberof TransferredItem
+     */
+    taxData?: object;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    taxableHandling?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    taxableLineItemCost?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    taxableShipping?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    timeFenceDays?: number;
+    /**
+     * This is deprecated.
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    transferQuantity?: number;
+    /**
+     * This is the actual quantity transferred.
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    trueTransferQuantity?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    unitPrice?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransferredItem
+     */
+    upc?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    validatedQuantity?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransferredItem
+     */
+    variationProductCode?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    weight?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransferredItem
+     */
+    weightUnit?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    weightedDutyAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    weightedHandlingAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    weightedHandlingTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    weightedLineItemTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    weightedOrderHandlingFee?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    weightedOrderHandlingFeeDiscount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    weightedOrderHandlingFeeTax?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    weightedShipmentAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    weightedShippingAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    weightedShippingTaxAdjustment?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TransferredItem
+     */
+    width?: number;
 }
 
 
 /**
  * @export
  */
-export const TransferredItemDtoGoodsTypeEnum = {
+export const TransferredItemGoodsTypeEnum = {
     Physical: 'Physical',
     Digital: 'Digital',
     DigitalCredit: 'DigitalCredit',
     DigitalGiftCard: 'DigitalGiftCard',
     Service: 'Service'
 } as const;
-export type TransferredItemDtoGoodsTypeEnum = typeof TransferredItemDtoGoodsTypeEnum[keyof typeof TransferredItemDtoGoodsTypeEnum];
+export type TransferredItemGoodsTypeEnum = typeof TransferredItemGoodsTypeEnum[keyof typeof TransferredItemGoodsTypeEnum];
 
 /**
  * @export
  */
-export const TransferredItemDtoPriceModeEnum = {
+export const TransferredItemPriceModeEnum = {
     Internal: 'Internal',
     External: 'External'
 } as const;
-export type TransferredItemDtoPriceModeEnum = typeof TransferredItemDtoPriceModeEnum[keyof typeof TransferredItemDtoPriceModeEnum];
+export type TransferredItemPriceModeEnum = typeof TransferredItemPriceModeEnum[keyof typeof TransferredItemPriceModeEnum];
 
 /**
  * @export
  */
-export const TransferredItemDtoSubstitutionTypeEnum = {
+export const TransferredItemSubstitutionTypeEnum = {
     PreFulfillment: 'PRE_FULFILLMENT',
-    AtFullfillment: 'AT_FULLFILLMENT'
+    AtFulfillment: 'AT_FULFILLMENT'
 } as const;
-export type TransferredItemDtoSubstitutionTypeEnum = typeof TransferredItemDtoSubstitutionTypeEnum[keyof typeof TransferredItemDtoSubstitutionTypeEnum];
+export type TransferredItemSubstitutionTypeEnum = typeof TransferredItemSubstitutionTypeEnum[keyof typeof TransferredItemSubstitutionTypeEnum];
 
 /**
  * 
  * @export
- * @interface TransferredReasonDto
+ * @interface TransferredReason
  */
-export interface TransferredReasonDto {
+export interface TransferredReason {
     /**
      * 
      * @type {string}
-     * @memberof TransferredReasonDto
-     */
-    reasonCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TransferredReasonDto
+     * @memberof TransferredReason
      */
     moreInfo?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransferredReason
+     */
+    reasonCode?: string;
+}
+/**
+ * 
+ * @export
+ * @interface UpcQuantity
+ */
+export interface UpcQuantity {
+    /**
+     * 
+     * @type {number}
+     * @memberof UpcQuantity
+     */
+    shipmentQuantity?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpcQuantity
+     */
+    upc?: string;
 }
 /**
  * 
@@ -10608,36 +15306,198 @@ export interface TransferredReasonDto {
 export interface UpdateContactRequest {
     /**
      * 
-     * @type {ContactDto}
+     * @type {FulfillmentAPIContact}
      * @memberof UpdateContactRequest
      */
-    contact?: ContactDto;
+    contact?: FulfillmentAPIContact;
 }
 /**
  * 
  * @export
- * @interface WorkflowProcessVariableDto
+ * @interface UpdatePrioritiesDto
  */
-export interface WorkflowProcessVariableDto {
+export interface UpdatePrioritiesDto {
     /**
      * 
      * @type {string}
-     * @memberof WorkflowProcessVariableDto
+     * @memberof UpdatePrioritiesDto
+     */
+    locationCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdatePrioritiesDto
+     */
+    moreInfo?: string;
+    /**
+     * 
+     * @type {Array<PriorityAssignment>}
+     * @memberof UpdatePrioritiesDto
+     */
+    priorities?: Array<PriorityAssignment>;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdatePrioritiesDto
+     */
+    reasonCode?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdatePrioritiesDto
+     */
+    resetOrphanedPriorities?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdatePrioritiesDto
+     */
+    ruleType?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdatePrioritiesDto
+     */
+    shipmentStatus?: string;
+}
+/**
+ * 
+ * @export
+ * @interface UpdatePrioritiesResponseDto
+ */
+export interface UpdatePrioritiesResponseDto {
+    /**
+     * 
+     * @type {Array<PriorityResult>}
+     * @memberof UpdatePrioritiesResponseDto
+     */
+    results?: Array<PriorityResult>;
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdatePrioritiesResponseDto
+     */
+    shipmentsReset?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdatePrioritiesResponseDto
+     */
+    shipmentsUnchanged?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdatePrioritiesResponseDto
+     */
+    shipmentsUpdated?: number;
+}
+/**
+ * 
+ * @export
+ * @interface UriTemplate
+ */
+export interface UriTemplate {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UriTemplate
+     */
+    variableNames?: Array<string>;
+    /**
+     * 
+     * @type {Array<TemplateVariable>}
+     * @memberof UriTemplate
+     */
+    variables?: Array<TemplateVariable>;
+}
+/**
+ * 
+ * @export
+ * @interface ValidatePackageItemEntry
+ */
+export interface ValidatePackageItemEntry {
+    /**
+     * 
+     * @type {number}
+     * @memberof ValidatePackageItemEntry
+     */
+    lineId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ValidatePackageItemEntry
+     */
+    quantity?: number;
+    /**
+     * 
+     * @type {Array<SubstituteItem>}
+     * @memberof ValidatePackageItemEntry
+     */
+    substituteItems?: Array<SubstituteItem>;
+}
+/**
+ * 
+ * @export
+ * @interface ValidatePackageReceipt
+ */
+export interface ValidatePackageReceipt {
+    /**
+     * 
+     * @type {Array<ValidatePackageItemEntry>}
+     * @memberof ValidatePackageReceipt
+     */
+    items?: Array<ValidatePackageItemEntry>;
+}
+/**
+ * 
+ * @export
+ * @interface ValidateStockItem
+ */
+export interface ValidateStockItem {
+    /**
+     * 
+     * @type {Array<SubstituteItem>}
+     * @memberof ValidateStockItem
+     */
+    substituteItems?: Array<SubstituteItem>;
+    /**
+     * 
+     * @type {number}
+     * @memberof ValidateStockItem
+     */
+    validatedQuantity?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ValidateStockItem
+     */
+    validationComplete?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface WorkflowProcessVariable
+ */
+export interface WorkflowProcessVariable {
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowProcessVariable
      */
     name?: string;
     /**
      * 
      * @type {string}
-     * @memberof WorkflowProcessVariableDto
+     * @memberof WorkflowProcessVariable
      */
-    type?: WorkflowProcessVariableDtoTypeEnum;
+    type?: WorkflowProcessVariableTypeEnum;
 }
 
 
 /**
  * @export
  */
-export const WorkflowProcessVariableDtoTypeEnum = {
+export const WorkflowProcessVariableTypeEnum = {
     String: 'STRING',
     Integer: 'INTEGER',
     Number: 'NUMBER',
@@ -10646,60 +15506,5 @@ export const WorkflowProcessVariableDtoTypeEnum = {
     List: 'LIST',
     Unknown: 'UNKNOWN'
 } as const;
-export type WorkflowProcessVariableDtoTypeEnum = typeof WorkflowProcessVariableDtoTypeEnum[keyof typeof WorkflowProcessVariableDtoTypeEnum];
+export type WorkflowProcessVariableTypeEnum = typeof WorkflowProcessVariableTypeEnum[keyof typeof WorkflowProcessVariableTypeEnum];
 
-/**
- * 
- * @export
- * @interface WorkflowStateDto
- */
-export interface WorkflowStateDto {
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof WorkflowStateDto
-     */
-    attributes?: { [key: string]: object; };
-    /**
-     * 
-     * @type {string}
-     * @memberof WorkflowStateDto
-     */
-    shipmentState?: string;
-    /**
-     * 
-     * @type {Array<TaskDto>}
-     * @memberof WorkflowStateDto
-     */
-    taskList?: Array<TaskDto>;
-    /**
-     * 
-     * @type {string}
-     * @memberof WorkflowStateDto
-     */
-    activeTaskName?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WorkflowStateDto
-     */
-    processInstanceId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof WorkflowStateDto
-     */
-    completedDate?: string;
-    /**
-     * 
-     * @type {AuditInfoDto}
-     * @memberof WorkflowStateDto
-     */
-    auditInfo?: AuditInfoDto;
-    /**
-     * 
-     * @type {{ [key: string]: BpmVariableDto; }}
-     * @memberof WorkflowStateDto
-     */
-    variables?: { [key: string]: BpmVariableDto; };
-}

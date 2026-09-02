@@ -8,3 +8,4 @@ export * from './LocationInventoryAttributeDefinitionApi';
 export * from './LocationSettingsApi';
 export * from './LocationTypeApi';
 export * from './TransferTimesApi';
+export * from './VendorApi';

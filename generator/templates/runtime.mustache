@@ -1,0 +1,20 @@
+/* tslint:disable */
+/* eslint-disable */
+{{>licenseInfo}}
+
+{{^withoutRuntimeChecks}}
+export function exists(json: any, key: string) {
+    const value = json[key];
+    return value !== null && value !== undefined;
+}
+{{/withoutRuntimeChecks}}
+
+{{^withoutRuntimeChecks}}
+export function mapValues(data: any, fn: (item: any) => any) {
+  return Object.keys(data).reduce(
+    (acc, key) => ({ ...acc, [key]: fn(data[key]) }),
+    {}
+  );
+}
+{{/withoutRuntimeChecks}}
+export const basePathTemplate = {{#servers.0}}'{{url}}'{{/servers.0}}{{^servers.0}}undefined{{/servers.0}}

@@ -2,9 +2,9 @@
 /* eslint-disable */
 /**
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -95,8 +95,8 @@ export namespace discountsApiParams {
 */
 export interface DiscountsApiService {
     /**
-    * Creates a discount.
-    * @summary Create discount
+    * Creates a discount. This current version of the Discounts API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access discount data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Create Discount
     * @param {string} [tagCode] 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {CatalogAdminsDiscount} [catalogAdminsDiscount] Properties of the discount to create. Required properties: Content.Name, AmountType, StartDate, and Target.Type.
@@ -107,14 +107,14 @@ export interface DiscountsApiService {
     createDiscountRaw(requestParameters: discountsApiParams.CreateDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscount>>;
 
     /**
-    * Creates a discount.
-    * Create discount
+    * Creates a discount. This current version of the Discounts API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access discount data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Create Discount
     */
     createDiscount(requestParameters: discountsApiParams.CreateDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscount>;
 
     /**
     * Deletes a discount specified by its discount ID.
-    * @summary Delete discount
+    * @summary Delete Discount
     * @param {number} discountId Unique identifier of the discount. System-supplied and read-only.
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -124,13 +124,13 @@ export interface DiscountsApiService {
 
     /**
     * Deletes a discount specified by its discount ID.
-    * Delete discount
+    * Delete Discount
     */
     deleteDiscount(requestParameters: discountsApiParams.DeleteDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
     * Generates a random code for a coupon.
-    * @summary Generate a random coupon
+    * @summary Generate Random Coupon
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -140,13 +140,13 @@ export interface DiscountsApiService {
 
     /**
     * Generates a random code for a coupon.
-    * Generate a random coupon
+    * Generate Random Coupon
     */
     generateRandomCoupon(requestParameters: discountsApiParams.GenerateRandomCouponRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
 
     /**
-    * Retrieves the details of a single discount.
-    * @summary Get discount
+    * Retrieves the details of a single discount. This current version of the Discounts API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access discount data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Get Discount
     * @param {number} discountId Unique identifier of the discount. System-supplied and read-only.
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
@@ -156,14 +156,14 @@ export interface DiscountsApiService {
     getDiscountRaw(requestParameters: discountsApiParams.GetDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscount>>;
 
     /**
-    * Retrieves the details of a single discount.
-    * Get discount
+    * Retrieves the details of a single discount. This current version of the Discounts API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access discount data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Get Discount
     */
     getDiscount(requestParameters: discountsApiParams.GetDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscount>;
 
     /**
     * Retrieves the localized content specified for the specified discount.
-    * @summary Get discount content
+    * @summary Get Discount Content
     * @param {number} discountId Unique identifier of the discount. System-supplied and read-only.
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
@@ -174,13 +174,13 @@ export interface DiscountsApiService {
 
     /**
     * Retrieves the localized content specified for the specified discount.
-    * Get discount content
+    * Get Discount Content
     */
     getDiscountContent(requestParameters: discountsApiParams.GetDiscountContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountLocalizedContent>;
 
     /**
     * Retrieves the discount target, that is which products, categories, or shipping methods are eligible for the discount.
-    * @summary Get discount target
+    * @summary Get Discount Target
     * @param {number} discountId Unique identifier of the discount. System-supplied and read-only.
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
@@ -191,13 +191,13 @@ export interface DiscountsApiService {
 
     /**
     * Retrieves the discount target, that is which products, categories, or shipping methods are eligible for the discount.
-    * Get discount target
+    * Get Discount Target
     */
     getDiscountTarget(requestParameters: discountsApiParams.GetDiscountTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscountTarget>;
 
     /**
-    * Retrieves a list of discounts according to any specified filter criteria and sort options.
-    * @summary Get discounts
+    * Retrieves a list of discounts according to any specified filter criteria and sort options. This current version of the Discounts API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access discount data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". 
+    * @summary Get Discounts
     * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
     * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
     * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
@@ -211,14 +211,14 @@ export interface DiscountsApiService {
     getDiscountsRaw(requestParameters: discountsApiParams.GetDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscountCollection>>;
 
     /**
-    * Retrieves a list of discounts according to any specified filter criteria and sort options.
-    * Get discounts
+    * Retrieves a list of discounts according to any specified filter criteria and sort options. This current version of the Discounts API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access discount data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". 
+    * Get Discounts
     */
     getDiscounts(requestParameters: discountsApiParams.GetDiscountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscountCollection>;
 
     /**
     * Retrieves all tags associated to a discount
-    * @summary Get tags for a discount
+    * @summary Get Discount Tags
     * @param {number} discountId 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
@@ -229,16 +229,16 @@ export interface DiscountsApiService {
 
     /**
     * Retrieves all tags associated to a discount
-    * Get tags for a discount
+    * Get Discount Tags
     */
     getTags(requestParameters: discountsApiParams.GetTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagCollection>;
 
     /**
-    * Modifies a discount.
-    * @summary Update discount
+    * Modifies a discount. This current version of the Discounts API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access discount data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Update Discount
     * @param {number} discountId Unique identifier of the discount. System-supplied and read-only.
     * @param {string} [responseFields] limits which fields are returned in the response body
-    * @param {CatalogAdminsDiscount} [catalogAdminsDiscount] Properties of the discount to update.               Required properties: Content.Name, AmountType, StartDate, and Target.Type.               Any unspecified properties are set to null and boolean variables are set to false.
+    * @param {CatalogAdminsDiscount} [catalogAdminsDiscount] Properties of the discount to update.              Required properties: Content.Name, AmountType, StartDate, and Target.Type.              Any unspecified properties are set to null and boolean variables are set to false.
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof DiscountsApiInterface
@@ -246,14 +246,14 @@ export interface DiscountsApiService {
     updateDiscountRaw(requestParameters: discountsApiParams.UpdateDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDiscount>>;
 
     /**
-    * Modifies a discount.
-    * Update discount
+    * Modifies a discount. This current version of the Discounts API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access discount data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Update Discount
     */
     updateDiscount(requestParameters: discountsApiParams.UpdateDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscount>;
 
     /**
     * Modifies the localized content for the specified discount. Allows you to rename the discount without modifying any other discount properties.
-    * @summary Update discount content
+    * @summary Update Discount Content
     * @param {number} discountId Unique identifier of the discount. System-supplied and read-only.
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {DiscountLocalizedContent} [discountLocalizedContent] New Name and/or LocaleCode. Properties of the content to update. Required property: Name.
@@ -265,13 +265,13 @@ export interface DiscountsApiService {
 
     /**
     * Modifies the localized content for the specified discount. Allows you to rename the discount without modifying any other discount properties.
-    * Update discount content
+    * Update Discount Content
     */
     updateDiscountContent(requestParameters: discountsApiParams.UpdateDiscountContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountLocalizedContent>;
 
     /**
     * Modifies tags of the discount. The original tags are overwritten.
-    * @summary Update discount tags
+    * @summary Update Discount Tags
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {Array<DiscountTag>} [discountTag] 
     * @param {*} [options] Override http request option.
@@ -282,16 +282,16 @@ export interface DiscountsApiService {
 
     /**
     * Modifies tags of the discount. The original tags are overwritten.
-    * Update discount tags
+    * Update Discount Tags
     */
     updateDiscountTags(requestParameters: discountsApiParams.UpdateDiscountTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountTagCollection>;
 
     /**
     * Modifies properties of the discount target, for example, the dollar amount, or percentage off the price.
-    * @summary Update discount target
+    * @summary Update Discount Target
     * @param {number} discountId Unique identifier of the discount. System-supplied and read-only.
     * @param {string} [responseFields] limits which fields are returned in the response body
-    * @param {CatalogAdminsDiscountTarget} [catalogAdminsDiscountTarget] Properties of the discount target to modify.               Required properties: Target.Type. Any unspecified properties are set to null and boolean variables to false.
+    * @param {CatalogAdminsDiscountTarget} [catalogAdminsDiscountTarget] Properties of the discount target to modify.              Required properties: Target.Type. Any unspecified properties are set to null and boolean variables to false.
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof DiscountsApiInterface
@@ -300,13 +300,13 @@ export interface DiscountsApiService {
 
     /**
     * Modifies properties of the discount target, for example, the dollar amount, or percentage off the price.
-    * Update discount target
+    * Update Discount Target
     */
     updateDiscountTarget(requestParameters: discountsApiParams.UpdateDiscountTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscountTarget>;
 
     /**
     * Validate a discount expression.
-    * @summary Validate discount expression
+    * @summary Validate Discount Expression
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {CatalogAdminsDiscount} [catalogAdminsDiscount] 
     * @param {*} [options] Override http request option.
@@ -317,7 +317,7 @@ export interface DiscountsApiService {
 
     /**
     * Validate a discount expression.
-    * Validate discount expression
+    * Validate Discount Expression
     */
     validateDiscountExpression(requestParameters: discountsApiParams.ValidateDiscountExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExpressionValidationResult>;
 
@@ -333,8 +333,8 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
         this.basePathTemplate = basePathTemplate
     }
     /**
-     * Creates a discount.
-     * Create discount
+     * Creates a discount. This current version of the Discounts API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access discount data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Create Discount
      */
 
 
@@ -355,8 +355,6 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -371,8 +369,8 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
     }
 
     /**
-     * Creates a discount.
-     * Create discount
+     * Creates a discount. This current version of the Discounts API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access discount data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Create Discount
      */
     async createDiscount(requestParameters: discountsApiParams.CreateDiscountRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscount> {
         const response = await this.createDiscountRaw(requestParameters, initOverrides);
@@ -381,7 +379,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
     /**
      * Deletes a discount specified by its discount ID.
-     * Delete discount
+     * Delete Discount
      */
 
 
@@ -393,8 +391,6 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-
 
 
 
@@ -412,7 +408,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
     /**
      * Deletes a discount specified by its discount ID.
-     * Delete discount
+     * Delete Discount
      */
     async deleteDiscount(requestParameters: discountsApiParams.DeleteDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteDiscountRaw(requestParameters, initOverrides);
@@ -420,7 +416,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
     /**
      * Generates a random code for a coupon.
-     * Generate a random coupon
+     * Generate Random Coupon
      */
 
 
@@ -432,8 +428,6 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-
 
 
 
@@ -451,7 +445,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
     /**
      * Generates a random code for a coupon.
-     * Generate a random coupon
+     * Generate Random Coupon
      */
     async generateRandomCoupon(requestParameters: discountsApiParams.GenerateRandomCouponRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
         const response = await this.generateRandomCouponRaw(requestParameters, initOverrides);
@@ -459,8 +453,8 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
     }
 
     /**
-     * Retrieves the details of a single discount.
-     * Get discount
+     * Retrieves the details of a single discount. This current version of the Discounts API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access discount data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Get Discount
      */
 
 
@@ -479,8 +473,6 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -494,8 +486,8 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
     }
 
     /**
-     * Retrieves the details of a single discount.
-     * Get discount
+     * Retrieves the details of a single discount. This current version of the Discounts API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access discount data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Get Discount
      */
     async getDiscount(requestParameters: discountsApiParams.GetDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscount> {
         const response = await this.getDiscountRaw(requestParameters, initOverrides);
@@ -504,7 +496,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
     /**
      * Retrieves the localized content specified for the specified discount.
-     * Get discount content
+     * Get Discount Content
      */
 
 
@@ -523,8 +515,6 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -539,7 +529,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
     /**
      * Retrieves the localized content specified for the specified discount.
-     * Get discount content
+     * Get Discount Content
      */
     async getDiscountContent(requestParameters: discountsApiParams.GetDiscountContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountLocalizedContent> {
         const response = await this.getDiscountContentRaw(requestParameters, initOverrides);
@@ -548,7 +538,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
     /**
      * Retrieves the discount target, that is which products, categories, or shipping methods are eligible for the discount.
-     * Get discount target
+     * Get Discount Target
      */
 
 
@@ -567,8 +557,6 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -583,7 +571,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
     /**
      * Retrieves the discount target, that is which products, categories, or shipping methods are eligible for the discount.
-     * Get discount target
+     * Get Discount Target
      */
     async getDiscountTarget(requestParameters: discountsApiParams.GetDiscountTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscountTarget> {
         const response = await this.getDiscountTargetRaw(requestParameters, initOverrides);
@@ -591,8 +579,8 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
     }
 
     /**
-     * Retrieves a list of discounts according to any specified filter criteria and sort options.
-     * Get discounts
+     * Retrieves a list of discounts according to any specified filter criteria and sort options. This current version of the Discounts API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access discount data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". 
+     * Get Discounts
      */
 
 
@@ -627,8 +615,6 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -642,8 +628,8 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
     }
 
     /**
-     * Retrieves a list of discounts according to any specified filter criteria and sort options.
-     * Get discounts
+     * Retrieves a list of discounts according to any specified filter criteria and sort options. This current version of the Discounts API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access discount data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". 
+     * Get Discounts
      */
     async getDiscounts(requestParameters: discountsApiParams.GetDiscountsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscountCollection> {
         const response = await this.getDiscountsRaw(requestParameters, initOverrides);
@@ -652,7 +638,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
     /**
      * Retrieves all tags associated to a discount
-     * Get tags for a discount
+     * Get Discount Tags
      */
 
 
@@ -671,8 +657,6 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -687,7 +671,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
     /**
      * Retrieves all tags associated to a discount
-     * Get tags for a discount
+     * Get Discount Tags
      */
     async getTags(requestParameters: discountsApiParams.GetTagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagCollection> {
         const response = await this.getTagsRaw(requestParameters, initOverrides);
@@ -695,8 +679,8 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
     }
 
     /**
-     * Modifies a discount.
-     * Update discount
+     * Modifies a discount. This current version of the Discounts API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access discount data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Update Discount
      */
 
 
@@ -717,8 +701,6 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -733,8 +715,8 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
     }
 
     /**
-     * Modifies a discount.
-     * Update discount
+     * Modifies a discount. This current version of the Discounts API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access discount data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Update Discount
      */
     async updateDiscount(requestParameters: discountsApiParams.UpdateDiscountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscount> {
         const response = await this.updateDiscountRaw(requestParameters, initOverrides);
@@ -743,7 +725,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
     /**
      * Modifies the localized content for the specified discount. Allows you to rename the discount without modifying any other discount properties.
-     * Update discount content
+     * Update Discount Content
      */
 
 
@@ -764,8 +746,6 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -781,7 +761,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
     /**
      * Modifies the localized content for the specified discount. Allows you to rename the discount without modifying any other discount properties.
-     * Update discount content
+     * Update Discount Content
      */
     async updateDiscountContent(requestParameters: discountsApiParams.UpdateDiscountContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountLocalizedContent> {
         const response = await this.updateDiscountContentRaw(requestParameters, initOverrides);
@@ -790,7 +770,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
     /**
      * Modifies tags of the discount. The original tags are overwritten.
-     * Update discount tags
+     * Update Discount Tags
      */
 
 
@@ -804,8 +784,6 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-
 
 
 
@@ -824,7 +802,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
     /**
      * Modifies tags of the discount. The original tags are overwritten.
-     * Update discount tags
+     * Update Discount Tags
      */
     async updateDiscountTags(requestParameters: discountsApiParams.UpdateDiscountTagsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscountTagCollection> {
         const response = await this.updateDiscountTagsRaw(requestParameters, initOverrides);
@@ -833,7 +811,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
     /**
      * Modifies properties of the discount target, for example, the dollar amount, or percentage off the price.
-     * Update discount target
+     * Update Discount Target
      */
 
 
@@ -854,8 +832,6 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -871,7 +847,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
     /**
      * Modifies properties of the discount target, for example, the dollar amount, or percentage off the price.
-     * Update discount target
+     * Update Discount Target
      */
     async updateDiscountTarget(requestParameters: discountsApiParams.UpdateDiscountTargetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDiscountTarget> {
         const response = await this.updateDiscountTargetRaw(requestParameters, initOverrides);
@@ -880,7 +856,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
     /**
      * Validate a discount expression.
-     * Validate discount expression
+     * Validate Discount Expression
      */
 
 
@@ -894,8 +870,6 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-
 
 
 
@@ -914,7 +888,7 @@ export class DiscountsApi extends runtime.BaseAPI implements DiscountsApiService
 
     /**
      * Validate a discount expression.
-     * Validate discount expression
+     * Validate Discount Expression
      */
     async validateDiscountExpression(requestParameters: discountsApiParams.ValidateDiscountExpressionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExpressionValidationResult> {
         const response = await this.validateDiscountExpressionRaw(requestParameters, initOverrides);

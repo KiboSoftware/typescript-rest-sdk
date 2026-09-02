@@ -11,25 +11,51 @@ export interface AddOrDeletePublishItem {
      * @type {string}
      * @memberof AddOrDeletePublishItem
      */
-    documentId?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof AddOrDeletePublishItem
-     */
     docListFQN?: string | null;
     /**
      * 
      * @type {string}
      * @memberof AddOrDeletePublishItem
      */
-    scopeType?: string | null;
+    documentId?: string | null;
     /**
      * 
      * @type {number}
      * @memberof AddOrDeletePublishItem
      */
     scopeId?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof AddOrDeletePublishItem
+     */
+    scopeType?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface BrotliDecompressedContent
+ */
+export interface BrotliDecompressedContent {
+    /**
+     * 
+     * @type {Array<KeyValuePair>}
+     * @memberof BrotliDecompressedContent
+     */
+    readonly headers?: Array<KeyValuePair> | null;
+}
+/**
+ * 
+ * @export
+ * @interface ByteArrayContent
+ */
+export interface ByteArrayContent {
+    /**
+     * 
+     * @type {Array<KeyValuePair>}
+     * @memberof ByteArrayContent
+     */
+    readonly headers?: Array<KeyValuePair> | null;
 }
 /**
  * 
@@ -38,17 +64,17 @@ export interface AddOrDeletePublishItem {
  */
 export interface ContentActiveDateRange {
     /**
-     * The beginning of the active date range of this document
-     * @type {string}
-     * @memberof ContentActiveDateRange
-     */
-    startDate?: string | null;
-    /**
      * The end of the active date range for this document
      * @type {string}
      * @memberof ContentActiveDateRange
      */
     endDate?: string | null;
+    /**
+     * The beginning of the active date range of this document
+     * @type {string}
+     * @memberof ContentActiveDateRange
+     */
+    startDate?: string | null;
 }
 /**
  * 
@@ -58,10 +84,10 @@ export interface ContentActiveDateRange {
 export interface ContentHttpContent {
     /**
      * 
-     * @type {Array<KeyValuePair2>}
+     * @type {Array<KeyValuePair>}
      * @memberof ContentHttpContent
      */
-    readonly headers?: Array<KeyValuePair2> | null;
+    readonly headers?: Array<KeyValuePair> | null;
 }
 /**
  * 
@@ -69,6 +95,43 @@ export interface ContentHttpContent {
  * @interface ContentHttpRequestMessage
  */
 export interface ContentHttpRequestMessage {
+    /**
+     * 
+     * @type {ContentHttpContent}
+     * @memberof ContentHttpRequestMessage
+     */
+    content?: ContentHttpContent;
+    /**
+     * 
+     * @type {Array<KeyValuePair>}
+     * @memberof ContentHttpRequestMessage
+     */
+    readonly headers?: Array<KeyValuePair> | null;
+    /**
+     * 
+     * @type {HttpMethod}
+     * @memberof ContentHttpRequestMessage
+     */
+    method?: HttpMethod;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof ContentHttpRequestMessage
+     */
+    readonly options?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof ContentHttpRequestMessage
+     * @deprecated
+     */
+    readonly properties?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ContentHttpRequestMessage
+     */
+    requestUri?: string | null;
     /**
      * 
      * @type {string}
@@ -81,43 +144,6 @@ export interface ContentHttpRequestMessage {
      * @memberof ContentHttpRequestMessage
      */
     versionPolicy?: ContentHttpVersionPolicy;
-    /**
-     * 
-     * @type {ContentHttpContent}
-     * @memberof ContentHttpRequestMessage
-     */
-    content?: ContentHttpContent;
-    /**
-     * 
-     * @type {HttpMethod}
-     * @memberof ContentHttpRequestMessage
-     */
-    method?: HttpMethod;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContentHttpRequestMessage
-     */
-    requestUri?: string | null;
-    /**
-     * 
-     * @type {Array<KeyValuePair2>}
-     * @memberof ContentHttpRequestMessage
-     */
-    readonly headers?: Array<KeyValuePair2> | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof ContentHttpRequestMessage
-     * @deprecated
-     */
-    readonly properties?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof ContentHttpRequestMessage
-     */
-    readonly options?: { [key: string]: any; } | null;
 }
 
 /**
@@ -132,6 +158,32 @@ export const ContentHttpVersionPolicy = {
 export type ContentHttpVersionPolicy = typeof ContentHttpVersionPolicy[keyof typeof ContentHttpVersionPolicy];
 
 /**
+ * 
+ * @export
+ * @interface DecompressedContent
+ */
+export interface DecompressedContent {
+    /**
+     * 
+     * @type {Array<KeyValuePair>}
+     * @memberof DecompressedContent
+     */
+    readonly headers?: Array<KeyValuePair> | null;
+}
+/**
+ * 
+ * @export
+ * @interface DeflateDecompressedContent
+ */
+export interface DeflateDecompressedContent {
+    /**
+     * 
+     * @type {Array<KeyValuePair>}
+     * @memberof DeflateDecompressedContent
+     */
+    readonly headers?: Array<KeyValuePair> | null;
+}
+/**
  * Container for schema-enforced and schemaless data. A document is primarily used to store content (html, text,
  * numbers, dates, JSON, binary data) that is directly or indirectly used for the storefront website experience
  * and may be addressed via the Hypr theming engine language. A document belongs to a documentList and has an
@@ -142,50 +194,11 @@ export type ContentHttpVersionPolicy = typeof ContentHttpVersionPolicy[keyof typ
  */
 export interface Document {
     /**
-     * Read-only, system generated 32 digit alpha-numeric string that uniquely identifies the document.
-     * @type {string}
+     * 
+     * @type {ContentActiveDateRange}
      * @memberof Document
      */
-    id?: string | null;
-    /**
-     * The fully qualified name of the document including path.
-     * Unique within the documentList. This field is a required field, but it can be updated.
-     * @type {string}
-     * @memberof Document
-     */
-    name?: string | null;
-    /**
-     * ReadOnly, path portion of the Name property.
-     * @type {string}
-     * @memberof Document
-     */
-    path?: string | null;
-    /**
-     * The name of the publish set that this document belongs to, if any.
-     * @type {string}
-     * @memberof Document
-     */
-    publishSetCode?: string | null;
-    /**
-     * If applicable, the file extension associated with the document content.
-     * @type {string}
-     * @memberof Document
-     */
-    extension?: string | null;
-    /**
-     * The full name of the documentType that underlies this document.
-     * This field must be supplied upon document creation and cannot be updated.
-     * @type {string}
-     * @memberof Document
-     */
-    documentTypeFQN?: string | null;
-    /**
-     * The fully qualified name of the documentList to which the document belongs.
-     * This field is read-only and represents which documentList the document is created in.
-     * @type {string}
-     * @memberof Document
-     */
-    listFQN?: string | null;
+    activeDateRange?: ContentActiveDateRange;
     /**
      * The size of the content subresource in decimal number of OCTETs.
      * When updating the content subresource, the  contentLength is captured from the
@@ -209,15 +222,50 @@ export interface Document {
      */
     contentUpdateDate?: string | null;
     /**
-     * The current publish status of the document. If publishing is not supported or is currently disabled in the
-     * documentList then the value will be "active".
-     * If publishing is supported and enabled, then the publish state may be "draft" or "active". A document may have both
-     * an "active" and "draft" version. The publishState
-     * denotes which version of the document being interacted with. This field is read-only.
+     * The full name of the documentType that underlies this document.
+     * This field must be supplied upon document creation and cannot be updated.
      * @type {string}
      * @memberof Document
      */
-    publishState?: string | null;
+    documentTypeFQN?: string | null;
+    /**
+     * If applicable, the file extension associated with the document content.
+     * @type {string}
+     * @memberof Document
+     */
+    extension?: string | null;
+    /**
+     * Read-only, system generated 32 digit alpha-numeric string that uniquely identifies the document.
+     * @type {string}
+     * @memberof Document
+     */
+    readonly id?: string | null;
+    /**
+     * The date and time the document was added to the documentList. This field is system-supplied and read-only.
+     * @type {string}
+     * @memberof Document
+     */
+    insertDate?: string | null;
+    /**
+     * The fully qualified name of the documentList to which the document belongs.
+     * This field is read-only and represents which documentList the document is created in.
+     * @type {string}
+     * @memberof Document
+     */
+    listFQN?: string | null;
+    /**
+     * The fully qualified name of the document including path.
+     * Unique within the documentList. This field is a required field, but it can be updated.
+     * @type {string}
+     * @memberof Document
+     */
+    name?: string | null;
+    /**
+     * ReadOnly, path portion of the Name property.
+     * @type {string}
+     * @memberof Document
+     */
+    readonly path?: string | null;
     /**
      * A JSON object of name/value pairs. Name parts are matched against the underlying documentType properties names. Any
      * matching name parts must have a value part that conforms to the matching property schema.
@@ -229,11 +277,21 @@ export interface Document {
      */
     properties?: any | null;
     /**
-     * The date and time the document was added to the documentList. This field is system-supplied and read-only.
+     * The name of the publish set that this document belongs to, if any.
      * @type {string}
      * @memberof Document
      */
-    insertDate?: string | null;
+    publishSetCode?: string | null;
+    /**
+     * The current publish status of the document. If publishing is not supported or is currently disabled in the
+     * documentList then the value will be "active".
+     * If publishing is supported and enabled, then the publish state may be "draft" or "active". A document may have both
+     * an "active" and "draft" version. The publishState
+     * denotes which version of the document being interacted with. This field is read-only.
+     * @type {string}
+     * @memberof Document
+     */
+    publishState?: string | null;
     /**
      * The date and time the most recent document update was made. If publishing is enabled, then this value will
      * represent
@@ -242,12 +300,6 @@ export interface Document {
      * @memberof Document
      */
     updateDate?: string | null;
-    /**
-     * 
-     * @type {ContentActiveDateRange}
-     * @memberof Document
-     */
-    activeDateRange?: ContentActiveDateRange;
 }
 /**
  * 
@@ -257,22 +309,10 @@ export interface Document {
 export interface DocumentCollection {
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<Document>}
      * @memberof DocumentCollection
      */
-    subPaths?: Array<string> | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof DocumentCollection
-     */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DocumentCollection
-     */
-    pageSize?: number;
+    items?: Array<Document> | null;
     /**
      * 
      * @type {number}
@@ -284,13 +324,25 @@ export interface DocumentCollection {
      * @type {number}
      * @memberof DocumentCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<Document>}
+     * @type {number}
      * @memberof DocumentCollection
      */
-    items?: Array<Document> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof DocumentCollection
+     */
+    readonly subPaths?: Array<string> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof DocumentCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -298,12 +350,6 @@ export interface DocumentCollection {
  * @interface DocumentCopyMessage
  */
 export interface DocumentCopyMessage {
-    /**
-     * 
-     * @type {string}
-     * @memberof DocumentCopyMessage
-     */
-    originalDocumentId?: string | null;
     /**
      * 
      * @type {string}
@@ -330,6 +376,12 @@ export interface DocumentCopyMessage {
     message?: string | null;
     /**
      * 
+     * @type {string}
+     * @memberof DocumentCopyMessage
+     */
+    originalDocumentId?: string | null;
+    /**
+     * 
      * @type {boolean}
      * @memberof DocumentCopyMessage
      */
@@ -342,17 +394,17 @@ export interface DocumentCopyMessage {
  */
 export interface DocumentCopyRequest {
     /**
-     * Document Id's to copy
-     * @type {Array<string>}
-     * @memberof DocumentCopyRequest
-     */
-    documentIds?: Array<string> | null;
-    /**
      * The destination path to copy documents to
      * @type {string}
      * @memberof DocumentCopyRequest
      */
     destinationPath?: string | null;
+    /**
+     * Document Id's to copy
+     * @type {Array<string>}
+     * @memberof DocumentCopyRequest
+     */
+    documentIds?: Array<string> | null;
     /**
      * 
      * @type {string}
@@ -392,17 +444,23 @@ export interface DocumentCopyResponse {
  */
 export interface DocumentDraftSummary {
     /**
-     * The system generated 32 digit alpha-numeric string that uniquely identifies the document.
+     * The date and time the document was last published, if any.
      * @type {string}
      * @memberof DocumentDraftSummary
      */
-    id?: string | null;
+    activeUpdateDate?: string | null;
     /**
-     * The unique name of the document.
+     * 
      * @type {string}
      * @memberof DocumentDraftSummary
      */
-    name?: string | null;
+    activeUpdatedBy?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof DocumentDraftSummary
+     */
+    catalogId?: number | null;
     /**
      * The full name of the documentType that underlies this document.
      * @type {string}
@@ -410,35 +468,41 @@ export interface DocumentDraftSummary {
      */
     documentTypeFQN?: string | null;
     /**
-     * The fully qualified name of the documentList to which the document belongs.
-     * @type {string}
-     * @memberof DocumentDraftSummary
-     */
-    listFQN?: string | null;
-    /**
-     * The date and time the document was last published, if any.
-     * @type {string}
-     * @memberof DocumentDraftSummary
-     */
-    activeUpdateDate?: string | null;
-    /**
      * The date and time the document draft was last updated.
      * @type {string}
      * @memberof DocumentDraftSummary
      */
     draftUpdateDate?: string;
     /**
-     * The userId or applicationId that last updated the draft document.
+     * The system generated 32 digit alpha-numeric string that uniquely identifies the document.
      * @type {string}
      * @memberof DocumentDraftSummary
      */
-    updatedBy?: string | null;
+    id?: string | null;
+    /**
+     * The fully qualified name of the documentList to which the document belongs.
+     * @type {string}
+     * @memberof DocumentDraftSummary
+     */
+    listFQN?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof DocumentDraftSummary
+     */
+    masterCatalogId?: number | null;
+    /**
+     * The unique name of the document.
+     * @type {string}
+     * @memberof DocumentDraftSummary
+     */
+    name?: string | null;
     /**
      * 
      * @type {string}
      * @memberof DocumentDraftSummary
      */
-    activeUpdatedBy?: string | null;
+    publishSetCode?: string | null;
     /**
      * Denotes the type of draft. 
      * "Created" -- the document has never been published. 
@@ -450,28 +514,16 @@ export interface DocumentDraftSummary {
     publishType?: string | null;
     /**
      * 
-     * @type {string}
-     * @memberof DocumentDraftSummary
-     */
-    publishSetCode?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof DocumentDraftSummary
-     */
-    masterCatalogId?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof DocumentDraftSummary
-     */
-    catalogId?: number | null;
-    /**
-     * 
      * @type {number}
      * @memberof DocumentDraftSummary
      */
     siteId?: number | null;
+    /**
+     * The userId or applicationId that last updated the draft document.
+     * @type {string}
+     * @memberof DocumentDraftSummary
+     */
+    updatedBy?: string | null;
 }
 /**
  * 
@@ -481,16 +533,10 @@ export interface DocumentDraftSummary {
 export interface DocumentDraftSummaryPagedCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<DocumentDraftSummary>}
      * @memberof DocumentDraftSummaryPagedCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DocumentDraftSummaryPagedCollection
-     */
-    pageSize?: number;
+    items?: Array<DocumentDraftSummary> | null;
     /**
      * 
      * @type {number}
@@ -502,13 +548,19 @@ export interface DocumentDraftSummaryPagedCollection {
      * @type {number}
      * @memberof DocumentDraftSummaryPagedCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<DocumentDraftSummary>}
+     * @type {number}
      * @memberof DocumentDraftSummaryPagedCollection
      */
-    items?: Array<DocumentDraftSummary> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DocumentDraftSummaryPagedCollection
+     */
+    totalCount?: number;
 }
 /**
  * The definition of a document to create when a documentList is created.
@@ -517,29 +569,29 @@ export interface DocumentDraftSummaryPagedCollection {
  */
 export interface DocumentInstallation {
     /**
-     * The name of the document to create.
-     * @type {string}
-     * @memberof DocumentInstallation
-     */
-    name?: string | null;
-    /**
      * The full name of the documentType that underlies this document.
      * @type {string}
      * @memberof DocumentInstallation
      */
     documentTypeFQN?: string | null;
     /**
-     * The properties of this document.
-     * @type {any}
-     * @memberof DocumentInstallation
-     */
-    properties?: any | null;
-    /**
      * tbd
      * @type {string}
      * @memberof DocumentInstallation
      */
     locale?: string | null;
+    /**
+     * The name of the document to create.
+     * @type {string}
+     * @memberof DocumentInstallation
+     */
+    name?: string | null;
+    /**
+     * The properties of this document.
+     * @type {any}
+     * @memberof DocumentInstallation
+     */
+    properties?: any | null;
 }
 /**
  * A container for documents and related settings, such as supported documentTypes and publishing. 
@@ -555,6 +607,55 @@ export interface DocumentInstallation {
  */
 export interface DocumentList {
     /**
+     * The full name of the documentListType (name@namespace) that underlies the documentList. This value is only populated when the Mozu platform creates a documentList from a documentListType.
+     * A documentList that is directly created cannot specify a documentListType. This field is therefore read-only.
+     * @type {string}
+     * @memberof DocumentList
+     */
+    documentListType?: string | null;
+    /**
+     * An array of the full names (name@namespace) of the documentTypes supported by the documentList. A document in the documentList must belong to one of these documentTypes.
+     * If the documentList is based on a documentListType, then this value will be derived from the documentListType. DocumentTypes can be added/removed to the documentList, even when
+     * based on a documentListType. Existing documents that belong to a documentType removed from the documentList will not be removed.
+     * @type {Array<string>}
+     * @memberof DocumentList
+     */
+    documentTypes?: Array<string> | null;
+    /**
+     * Determines if the documentList has ActiveDateRanges turned on or off. If the documentList has a supportsActiveDateRanges value of true, then the enableActiveDateRanges value will be honored.
+     * If enableActiveDateRanges is true, then a document will only be returned if the request is made within the time frame the document has been set to be 'active'.
+     * If enableActiveDateRanges is false, then the properties can be set but will not be honored.
+     * If enableActiveDateRanges is true, then updating it to false will immediately start honoring the previously-set date range.
+     * If the documentList is based on a documentListType, then this value will be derived from the documentListType, but can be overridden on update.
+     * @type {boolean}
+     * @memberof DocumentList
+     */
+    enableActiveDateRanges?: boolean | null;
+    /**
+     * Determines if the documentList has publishing turned on or off. If the documentList has a supportsPublishing value of true, then the enablePublishing value will be honored.
+     * If enablePublishing is true, then a document draft will be created for a document create or update operation. A document must then be published to become "active".
+     * If enablePublish is false, then all document changes are immediately "active".
+     * If enablePublish is true, then updating it to false will immediately publish all draft changes.
+     * If the documentList is based on a documentListType, then this value will be derived from the documentListType, but can be overridden on update.
+     * @type {boolean}
+     * @memberof DocumentList
+     */
+    enablePublishing?: boolean | null;
+    /**
+     * The unique identifier of the documentList, represented by name@namespace. The listFQN must be provided when creating the documentList, or the name and namespace fields must be provided.
+     * If the documentList is based on a documentListType, then this value will be derived from the documentListType.
+     * @type {string}
+     * @memberof DocumentList
+     */
+    listFQN?: string | null;
+    /**
+     * Allows arbitrary data to be stored on the documentList.
+     * If the documentList is based on a documentListType, then this value will be derived from the documentListType, but can be overridden on update.
+     * @type {any}
+     * @memberof DocumentList
+     */
+    metadata?: any | null;
+    /**
      * The name component of the listFQN, name@namespace. The name must be unique within the namespace component and cannot be updated.
      * If the documentList is based on a documentListType, then this value will be derived from the documentListType.
      * @type {string}
@@ -568,81 +669,6 @@ export interface DocumentList {
      * @memberof DocumentList
      */
     namespace?: string | null;
-    /**
-     * The unique identifier of the documentList, represented by name@namespace. The listFQN must be provided when creating the documentList, or the name and namespace fields must be provided.
-     * If the documentList is based on a documentListType, then this value will be derived from the documentListType.
-     * @type {string}
-     * @memberof DocumentList
-     */
-    listFQN?: string | null;
-    /**
-     * An array of the full names (name@namespace) of the documentTypes supported by the documentList. A document in the documentList must belong to one of these documentTypes.
-     * If the documentList is based on a documentListType, then this value will be derived from the documentListType. DocumentTypes can be added/removed to the documentList, even when
-     * based on a documentListType. Existing documents that belong to a documentType removed from the documentList will not be removed.
-     * @type {Array<string>}
-     * @memberof DocumentList
-     */
-    documentTypes?: Array<string> | null;
-    /**
-     * Determines if the documentList will support drafting and publishing documents. 
-     * This field defaults to false and cannot be updated.
-     * If the documentList is based on a documentListType, then this value will be derived from the documentListType.
-     * @type {boolean}
-     * @memberof DocumentList
-     */
-    supportsPublishing?: boolean | null;
-    /**
-     * Determines if the documentList has publishing turned on or off. If the documentList has a supportsPublishing value of true, then the enablePublishing value will be honored.
-     * If enablePublishing is true, then a document draft will be created for a document create or update operation. A document must then be published to become "active".
-     * If enablePublish is false, then all document changes are immediately "active".
-     * If enablePublish is true, then updating it to false will immediately publish all draft changes.
-     * If the documentList is based on a documentListType, then this value will be derived from the documentListType, but can be overridden on update.
-     * @type {boolean}
-     * @memberof DocumentList
-     */
-    enablePublishing?: boolean | null;
-    /**
-     * Determines if the documentList will support ranges of dates that documents are considered 'active'. 
-     * This field defaults to false and cannot be updated.
-     * If the documentList is based on a documentListType, then this value will be derived from the documentListType.
-     * @type {boolean}
-     * @memberof DocumentList
-     */
-    supportsActiveDateRanges?: boolean | null;
-    /**
-     * Determines if the documentList has ActiveDateRanges turned on or off. If the documentList has a supportsActiveDateRanges value of true, then the enableActiveDateRanges value will be honored.
-     * If enableActiveDateRanges is true, then a document will only be returned if the request is made within the time frame the document has been set to be 'active'.
-     * If enableActiveDateRanges is false, then the properties can be set but will not be honored.
-     * If enableActiveDateRanges is true, then updating it to false will immediately start honoring the previously-set date range.
-     * If the documentList is based on a documentListType, then this value will be derived from the documentListType, but can be overridden on update.
-     * @type {boolean}
-     * @memberof DocumentList
-     */
-    enableActiveDateRanges?: boolean | null;
-    /**
-     * An array of one or more views, which each allow GET access to a projection of fields from the documents in the given documentList. 
-     * If the documentList is based on a documentListType, then this value will be derived from the documentListType. Views can be added/removed to the documentList, even when
-     * the documentList derives from a documentListType.
-     * @type {Array<View>}
-     * @memberof DocumentList
-     */
-    views?: Array<View> | null;
-    /**
-     * An array of strings that describes to the Mozu platform the manner(s) in which a documentList can be used. The following values are valid:
-     * entitymanager -- the documentList should be visible in the Admin Content/Entities UI, which allows admin users to create, manage and publish documents within the documentList.
-     * sitebuilder -- the documentList should be visible in Site Builder. A documentList will display in the Site Builder Navigation Content List node, which supports document creation, management and web cms integration.
-     * If the documentList is based on a documentListType, then this value will be derived from the documentListType. Usages can be added or removed from the documentList, even when the documentList derives from a
-     * documentListType.
-     * @type {Array<string>}
-     * @memberof DocumentList
-     */
-    usages?: Array<string> | null;
-    /**
-     * tbd
-     * @type {string}
-     * @memberof DocumentList
-     */
-    security?: string | null;
     /**
      * Used in conjunction with the scopeType field to determine the exact context within which the documentList resides.
      * Example: A documentList with a scopeId of 5 and scopeType of masterCatalog belongs to masterCatalog 5.
@@ -660,19 +686,45 @@ export interface DocumentList {
      */
     scopeType?: string | null;
     /**
-     * The full name of the documentListType (name@namespace) that underlies the documentList. This value is only populated when the Mozu platform creates a documentList from a documentListType.
-     * A documentList that is directly created cannot specify a documentListType. This field is therefore read-only.
+     * tbd
      * @type {string}
      * @memberof DocumentList
      */
-    documentListType?: string | null;
+    security?: string | null;
     /**
-     * Allows arbitrary data to be stored on the documentList.
-     * If the documentList is based on a documentListType, then this value will be derived from the documentListType, but can be overridden on update.
-     * @type {any}
+     * Determines if the documentList will support ranges of dates that documents are considered 'active'. 
+     * This field defaults to false and cannot be updated.
+     * If the documentList is based on a documentListType, then this value will be derived from the documentListType.
+     * @type {boolean}
      * @memberof DocumentList
      */
-    metadata?: any | null;
+    supportsActiveDateRanges?: boolean | null;
+    /**
+     * Determines if the documentList will support drafting and publishing documents. 
+     * This field defaults to false and cannot be updated.
+     * If the documentList is based on a documentListType, then this value will be derived from the documentListType.
+     * @type {boolean}
+     * @memberof DocumentList
+     */
+    supportsPublishing?: boolean | null;
+    /**
+     * An array of strings that describes to the Mozu platform the manner(s) in which a documentList can be used. The following values are valid:
+     * entitymanager -- the documentList should be visible in the Admin Content/Entities UI, which allows admin users to create, manage and publish documents within the documentList.
+     * sitebuilder -- the documentList should be visible in Site Builder. A documentList will display in the Site Builder Navigation Content List node, which supports document creation, management and web cms integration.
+     * If the documentList is based on a documentListType, then this value will be derived from the documentListType. Usages can be added or removed from the documentList, even when the documentList derives from a
+     * documentListType.
+     * @type {Array<string>}
+     * @memberof DocumentList
+     */
+    usages?: Array<string> | null;
+    /**
+     * An array of one or more views, which each allow GET access to a projection of fields from the documents in the given documentList. 
+     * If the documentList is based on a documentListType, then this value will be derived from the documentListType. Views can be added/removed to the documentList, even when
+     * the documentList derives from a documentListType.
+     * @type {Array<View>}
+     * @memberof DocumentList
+     */
+    views?: Array<View> | null;
 }
 /**
  * 
@@ -682,16 +734,10 @@ export interface DocumentList {
 export interface DocumentListCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<DocumentList>}
      * @memberof DocumentListCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DocumentListCollection
-     */
-    pageSize?: number;
+    items?: Array<DocumentList> | null;
     /**
      * 
      * @type {number}
@@ -703,13 +749,19 @@ export interface DocumentListCollection {
      * @type {number}
      * @memberof DocumentListCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<DocumentList>}
+     * @type {number}
      * @memberof DocumentListCollection
      */
-    items?: Array<DocumentList> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DocumentListCollection
+     */
+    totalCount?: number;
 }
 /**
  * A documentListType instructs the Mozu platform to automatically create documentLists within a scopeType. Example: Creating a documentListType in tenant X with a 
@@ -721,6 +773,54 @@ export interface DocumentListCollection {
  * @interface DocumentListType
  */
 export interface DocumentListType {
+    /**
+     * The definition of any documents to create when a documentList is created.
+     * @type {Array<DocumentInstallation>}
+     * @memberof DocumentListType
+     */
+    defaultDocuments?: Array<DocumentInstallation> | null;
+    /**
+     * The unique identifier of the documentListType, represented by name@namespace. The documentListTypeFQN must be provided when creating the documentListType, or the name and namespace fields must be provided.
+     * This field cannot be updated and each documentList created from the documentListType will use this value.
+     * @type {string}
+     * @memberof DocumentListType
+     */
+    documentListTypeFQN?: string | null;
+    /**
+     * The full names (name@namespace) of the types of documents that can be created within the documentLists belonging to this documentListType. 
+     * Each documentList created from the documentListType will use this value, but it can be overridden in an individual documentList.
+     * @type {Array<string>}
+     * @memberof DocumentListType
+     */
+    documentTypeFQNs?: Array<string> | null;
+    /**
+     * Determines if documentLists belonging to this documentListType have ActiveDateRanges turned on or off. 
+     * Each documentList created from the documentListType will use this value, but it can be overridden in an individual documentList.
+     * @type {boolean}
+     * @memberof DocumentListType
+     */
+    enableActiveDateRanges?: boolean | null;
+    /**
+     * Determines if documentLists belonging to this documentListType have publishing turned on or off. 
+     * Each documentList created from the documentListType will use this value, but it can be overridden in an individual documentList.
+     * @type {boolean}
+     * @memberof DocumentListType
+     */
+    enablePublishing?: boolean | null;
+    /**
+     * Optionally, a documentListType can be defined in an installationPackage and then installed into a tenant. Installed documentListsTypes can only be updated via installation upgrades. 
+     * Currently only internal Mozu platform components can create installations. This field is system-supplied and read-only.
+     * @type {string}
+     * @memberof DocumentListType
+     */
+    installationPackage?: string | null;
+    /**
+     * Allows arbitrary data to be stored on the documentListType. Each documentList created from this documentListType will use this value, 
+     * but it can be overridden in an individual documentList.
+     * @type {any}
+     * @memberof DocumentListType
+     */
+    metadata?: any | null;
     /**
      * The name component of the documentListTypeFQN, name@namespace. The name must be unique within the namespace component and cannot be updated.
      * Each documentList created from the documentListType will use this value.
@@ -736,58 +836,11 @@ export interface DocumentListType {
      */
     namespace?: string | null;
     /**
-     * The unique identifier of the documentListType, represented by name@namespace. The documentListTypeFQN must be provided when creating the documentListType, or the name and namespace fields must be provided.
-     * This field cannot be updated and each documentList created from the documentListType will use this value.
-     * @type {string}
-     * @memberof DocumentListType
-     */
-    documentListTypeFQN?: string | null;
-    /**
      * The context level at which this documentListType will create documentLists. Valid values are "tenant", "masterCatalog", "catalog" and "site". This field is read-only after insert.
      * @type {string}
      * @memberof DocumentListType
      */
     scopeType?: string | null;
-    /**
-     * Optionally, a documentListType can be defined in an installationPackage and then installed into a tenant. Installed documentListsTypes can only be updated via installation upgrades. 
-     * Currently only internal Mozu platform components can create installations. This field is system-supplied and read-only.
-     * @type {string}
-     * @memberof DocumentListType
-     */
-    installationPackage?: string | null;
-    /**
-     * The version of the installationPackge installed. This field is read-only.
-     * @type {string}
-     * @memberof DocumentListType
-     */
-    version?: string | null;
-    /**
-     * The definition of any documents to create when a documentList is created.
-     * @type {Array<DocumentInstallation>}
-     * @memberof DocumentListType
-     */
-    defaultDocuments?: Array<DocumentInstallation> | null;
-    /**
-     * The full names (name@namespace) of the types of documents that can be created within the documentLists belonging to this documentListType. 
-     * Each documentList created from the documentListType will use this value, but it can be overridden in an individual documentList.
-     * @type {Array<string>}
-     * @memberof DocumentListType
-     */
-    documentTypeFQNs?: Array<string> | null;
-    /**
-     * Determines if documentLists belonging to this documentListType will support drafting and publishing documents. 
-     * This field defaults to false and cannot be updated. Each documentList created from the documentListType will use this value.
-     * @type {boolean}
-     * @memberof DocumentListType
-     */
-    supportsPublishing?: boolean;
-    /**
-     * Determines if documentLists belonging to this documentListType have publishing turned on or off. 
-     * Each documentList created from the documentListType will use this value, but it can be overridden in an individual documentList.
-     * @type {boolean}
-     * @memberof DocumentListType
-     */
-    enablePublishing?: boolean | null;
     /**
      * Determines if documentLists belonging to this documentListType will support drafting and ActiveDateRanges documents. 
      * This field defaults to false and cannot be updated. Each documentList created from the documentListType will use this value.
@@ -796,19 +849,12 @@ export interface DocumentListType {
      */
     supportsActiveDateRanges?: boolean;
     /**
-     * Determines if documentLists belonging to this documentListType have ActiveDateRanges turned on or off. 
-     * Each documentList created from the documentListType will use this value, but it can be overridden in an individual documentList.
+     * Determines if documentLists belonging to this documentListType will support drafting and publishing documents. 
+     * This field defaults to false and cannot be updated. Each documentList created from the documentListType will use this value.
      * @type {boolean}
      * @memberof DocumentListType
      */
-    enableActiveDateRanges?: boolean | null;
-    /**
-     * An array of one or more views, which each allow GET access to a projection of fields from the documents in the given documentList. 
-     * Each documentList created from this documentListType will use this value, but it can be overridden in an individual documentList.
-     * @type {Array<View>}
-     * @memberof DocumentListType
-     */
-    views?: Array<View> | null;
+    supportsPublishing?: boolean;
     /**
      * An array of strings that describes to the Mozu platform the manner(s) in which a documentList can be used. The following values are valid:
      * entitymanager -- the documentList should be visible in the Admin Content/Entities screen, which allows admin users to create, manage and publish documents within the documentList.
@@ -819,12 +865,18 @@ export interface DocumentListType {
      */
     usages?: Array<string> | null;
     /**
-     * Allows arbitrary data to be stored on the documentListType. Each documentList created from this documentListType will use this value, 
-     * but it can be overridden in an individual documentList.
-     * @type {any}
+     * The version of the installationPackge installed. This field is read-only.
+     * @type {string}
      * @memberof DocumentListType
      */
-    metadata?: any | null;
+    version?: string | null;
+    /**
+     * An array of one or more views, which each allow GET access to a projection of fields from the documents in the given documentList. 
+     * Each documentList created from this documentListType will use this value, but it can be overridden in an individual documentList.
+     * @type {Array<View>}
+     * @memberof DocumentListType
+     */
+    views?: Array<View> | null;
 }
 /**
  * 
@@ -834,16 +886,10 @@ export interface DocumentListType {
 export interface DocumentListTypeCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<DocumentListType>}
      * @memberof DocumentListTypeCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DocumentListTypeCollection
-     */
-    pageSize?: number;
+    items?: Array<DocumentListType> | null;
     /**
      * 
      * @type {number}
@@ -855,13 +901,19 @@ export interface DocumentListTypeCollection {
      * @type {number}
      * @memberof DocumentListTypeCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<DocumentListType>}
+     * @type {number}
      * @memberof DocumentListTypeCollection
      */
-    items?: Array<DocumentListType> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DocumentListTypeCollection
+     */
+    totalCount?: number;
 }
 /**
  * Summary information for Move operation
@@ -871,16 +923,10 @@ export interface DocumentListTypeCollection {
 export interface DocumentMoveSummary {
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof DocumentMoveSummary
      */
-    totalCount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DocumentMoveSummary
-     */
-    moveCount?: number;
+    destPath?: string | null;
     /**
      * 
      * @type {number}
@@ -895,16 +941,10 @@ export interface DocumentMoveSummary {
     messages?: Array<string> | null;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof DocumentMoveSummary
      */
-    sourcePath?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof DocumentMoveSummary
-     */
-    destPath?: string | null;
+    moveCount?: number;
     /**
      * 
      * @type {boolean}
@@ -917,6 +957,18 @@ export interface DocumentMoveSummary {
      * @memberof DocumentMoveSummary
      */
     renameDuplicates?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof DocumentMoveSummary
+     */
+    sourcePath?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof DocumentMoveSummary
+     */
+    totalCount?: number;
 }
 /**
  * The schema a document must implement and associated metadata. A documentType is created at a tenant scope and is therefore shared amongst all child contexts (masterCatalog, catalog, site).
@@ -924,6 +976,31 @@ export interface DocumentMoveSummary {
  * @interface DocumentType
  */
 export interface DocumentType {
+    /**
+     * The administrative name of the documentType.
+     * @type {string}
+     * @memberof DocumentType
+     */
+    adminName?: string | null;
+    /**
+     * The unique identifier of the documentType, represented by name@namespace. The documentTypeFQN must be provided when creating the documentType, or the name and namespace fields must be provided.
+     * @type {string}
+     * @memberof DocumentType
+     */
+    documentTypeFQN?: string | null;
+    /**
+     * Optionally, a documentType can be defined in an installationPackage and then installed into a tenant. Installed documentTypes can only be updated via installation upgrades. 
+     * Currently only internal Mozu platform components can create installations. This field is system-supplied and read-only.
+     * @type {string}
+     * @memberof DocumentType
+     */
+    installationPackage?: string | null;
+    /**
+     * Allows arbitrary data to be stored on the documentType.
+     * @type {any}
+     * @memberof DocumentType
+     */
+    metadata?: any | null;
     /**
      * The name component of the documentType, name@namespace. The name must be unique within the namespace component and cannot be updated.
      * @type {string}
@@ -937,42 +1014,17 @@ export interface DocumentType {
      */
     namespace?: string | null;
     /**
-     * The unique identifier of the documentType, represented by name@namespace. The documentTypeFQN must be provided when creating the documentType, or the name and namespace fields must be provided.
-     * @type {string}
+     * An array of the schema elements that a document implementing this documentType will have.
+     * @type {Array<Property>}
      * @memberof DocumentType
      */
-    documentTypeFQN?: string | null;
-    /**
-     * The administrative name of the documentType.
-     * @type {string}
-     * @memberof DocumentType
-     */
-    adminName?: string | null;
-    /**
-     * Optionally, a documentType can be defined in an installationPackage and then installed into a tenant. Installed documentTypes can only be updated via installation upgrades. 
-     * Currently only internal Mozu platform components can create installations. This field is system-supplied and read-only.
-     * @type {string}
-     * @memberof DocumentType
-     */
-    installationPackage?: string | null;
+    properties?: Array<Property> | null;
     /**
      * The version of the installationPackge installed. This field is read-only.
      * @type {string}
      * @memberof DocumentType
      */
     version?: string | null;
-    /**
-     * Allows arbitrary data to be stored on the documentType.
-     * @type {any}
-     * @memberof DocumentType
-     */
-    metadata?: any | null;
-    /**
-     * An array of the schema elements that a document implementing this documentType will have.
-     * @type {Array<Property>}
-     * @memberof DocumentType
-     */
-    properties?: Array<Property> | null;
 }
 /**
  * 
@@ -982,16 +1034,10 @@ export interface DocumentType {
 export interface DocumentTypeCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<DocumentType>}
      * @memberof DocumentTypeCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DocumentTypeCollection
-     */
-    pageSize?: number;
+    items?: Array<DocumentType> | null;
     /**
      * 
      * @type {number}
@@ -1003,13 +1049,71 @@ export interface DocumentTypeCollection {
      * @type {number}
      * @memberof DocumentTypeCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<DocumentType>}
+     * @type {number}
      * @memberof DocumentTypeCollection
      */
-    items?: Array<DocumentType> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DocumentTypeCollection
+     */
+    totalCount?: number;
+}
+/**
+ * 
+ * @export
+ * @interface EmptyContent
+ */
+export interface EmptyContent {
+    /**
+     * 
+     * @type {Array<KeyValuePair>}
+     * @memberof EmptyContent
+     */
+    readonly headers?: Array<KeyValuePair> | null;
+}
+/**
+ * 
+ * @export
+ * @interface FormUrlEncodedContent
+ */
+export interface FormUrlEncodedContent {
+    /**
+     * 
+     * @type {Array<KeyValuePair>}
+     * @memberof FormUrlEncodedContent
+     */
+    readonly headers?: Array<KeyValuePair> | null;
+}
+/**
+ * 
+ * @export
+ * @interface GZipDecompressedContent
+ */
+export interface GZipDecompressedContent {
+    /**
+     * 
+     * @type {Array<KeyValuePair>}
+     * @memberof GZipDecompressedContent
+     */
+    readonly headers?: Array<KeyValuePair> | null;
+}
+/**
+ * 
+ * @export
+ * @interface HttpConnectionResponseContent
+ */
+export interface HttpConnectionResponseContent {
+    /**
+     * 
+     * @type {Array<KeyValuePair>}
+     * @memberof HttpConnectionResponseContent
+     */
+    readonly headers?: Array<KeyValuePair> | null;
 }
 /**
  * 
@@ -1027,19 +1131,19 @@ export interface HttpMethod {
 /**
  * 
  * @export
- * @interface KeyValuePair2
+ * @interface KeyValuePair
  */
-export interface KeyValuePair2 {
+export interface KeyValuePair {
     /**
      * 
      * @type {string}
-     * @memberof KeyValuePair2
+     * @memberof KeyValuePair
      */
     key?: string | null;
     /**
      * 
      * @type {Array<string>}
-     * @memberof KeyValuePair2
+     * @memberof KeyValuePair
      */
     value?: Array<string> | null;
 }
@@ -1050,12 +1154,11 @@ export interface KeyValuePair2 {
  */
 export interface Property {
     /**
-     * The name portion of the name/value pair stored on a document's properties field. The property name value must be unique within the properties defined on the documentType.
-     * This value cannot be updated after property creation.
-     * @type {string}
+     * True if the property value is an array, where each array value must conform to the propertyType. When false, the property value must directly conform to the propertyType. This value is false by default.
+     * @type {boolean}
      * @memberof Property
      */
-    name?: string | null;
+    isMultiValued?: boolean;
     /**
      * True if the property must be present on the document. This value is false by default.
      * @type {boolean}
@@ -1063,11 +1166,12 @@ export interface Property {
      */
     isRequired?: boolean;
     /**
-     * True if the property value is an array, where each array value must conform to the propertyType. When false, the property value must directly conform to the propertyType. This value is false by default.
-     * @type {boolean}
+     * The name portion of the name/value pair stored on a document's properties field. The property name value must be unique within the properties defined on the documentType.
+     * This value cannot be updated after property creation.
+     * @type {string}
      * @memberof Property
      */
-    isMultiValued?: boolean;
+    name?: string | null;
     /**
      * 
      * @type {PropertyType}
@@ -1083,6 +1187,49 @@ export interface Property {
  * @interface PropertyType
  */
 export interface PropertyType {
+    /**
+     * The administrative name of the propertyType.
+     * @type {string}
+     * @memberof PropertyType
+     */
+    adminName?: string | null;
+    /**
+     * The underlying value type that can be held in the document's property value. Valid values are
+     * string
+     * number
+     * boolean
+     * datetime
+     * json
+     * The dataType is analogous to an intrinsic value type in object oriented programming, or to a column data type in relational database terminology.
+     * @type {string}
+     * @memberof PropertyType
+     */
+    dataType?: string | null;
+    /**
+     * Optionally, a propertyType can be defined in an installationPackage and then installed into a tenant. Installed propertyTypes can only be updated via installation upgrades. 
+     * Currently only internal Mozu platform components can create installations. This field is system-supplied and read-only.
+     * @type {string}
+     * @memberof PropertyType
+     */
+    installationPackage?: string | null;
+    /**
+     * tbd
+     * @type {boolean}
+     * @memberof PropertyType
+     */
+    isAggregatable?: boolean | null;
+    /**
+     * tbd
+     * @type {boolean}
+     * @memberof PropertyType
+     */
+    isQueryable?: boolean | null;
+    /**
+     * tbd
+     * @type {boolean}
+     * @memberof PropertyType
+     */
+    isSortable?: boolean | null;
     /**
      * The name component of the propertyType, name@namespace. The name must be unique within the namespace component and cannot be updated.
      * @type {string}
@@ -1102,54 +1249,11 @@ export interface PropertyType {
      */
     propertyTypeFQN?: string | null;
     /**
-     * The administrative name of the propertyType.
-     * @type {string}
-     * @memberof PropertyType
-     */
-    adminName?: string | null;
-    /**
-     * Optionally, a propertyType can be defined in an installationPackage and then installed into a tenant. Installed propertyTypes can only be updated via installation upgrades. 
-     * Currently only internal Mozu platform components can create installations. This field is system-supplied and read-only.
-     * @type {string}
-     * @memberof PropertyType
-     */
-    installationPackage?: string | null;
-    /**
      * The version of the installationPackge installed. This field is read-only.
      * @type {string}
      * @memberof PropertyType
      */
     version?: string | null;
-    /**
-     * The underlying value type that can be held in the document's property value. Valid values are
-     * string
-     * number
-     * boolean
-     * datetime
-     * json
-     * The dataType is analogous to an intrinsic value type in object oriented programming, or to a column data type in relational database terminology.
-     * @type {string}
-     * @memberof PropertyType
-     */
-    dataType?: string | null;
-    /**
-     * tbd
-     * @type {boolean}
-     * @memberof PropertyType
-     */
-    isQueryable?: boolean | null;
-    /**
-     * tbd
-     * @type {boolean}
-     * @memberof PropertyType
-     */
-    isSortable?: boolean | null;
-    /**
-     * tbd
-     * @type {boolean}
-     * @memberof PropertyType
-     */
-    isAggregatable?: boolean | null;
 }
 /**
  * 
@@ -1159,16 +1263,10 @@ export interface PropertyType {
 export interface PropertyTypeCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<PropertyType>}
      * @memberof PropertyTypeCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PropertyTypeCollection
-     */
-    pageSize?: number;
+    items?: Array<PropertyType> | null;
     /**
      * 
      * @type {number}
@@ -1180,13 +1278,19 @@ export interface PropertyTypeCollection {
      * @type {number}
      * @memberof PropertyTypeCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<PropertyType>}
+     * @type {number}
      * @memberof PropertyTypeCollection
      */
-    items?: Array<PropertyType> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PropertyTypeCollection
+     */
+    totalCount?: number;
 }
 /**
  * Summary information of documents in a publishing set
@@ -1195,17 +1299,17 @@ export interface PropertyTypeCollection {
  */
 export interface PublishSetSummary {
     /**
-     * the code of the associated publish set
-     * @type {string}
-     * @memberof PublishSetSummary
-     */
-    publishSetCode?: string | null;
-    /**
      * the count of documents in the associated publish set
      * @type {number}
      * @memberof PublishSetSummary
      */
     count?: number;
+    /**
+     * the code of the associated publish set
+     * @type {string}
+     * @memberof PublishSetSummary
+     */
+    publishSetCode?: string | null;
 }
 /**
  * 
@@ -1215,16 +1319,10 @@ export interface PublishSetSummary {
 export interface PublishSetSummaryPagedCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<PublishSetSummary>}
      * @memberof PublishSetSummaryPagedCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PublishSetSummaryPagedCollection
-     */
-    pageSize?: number;
+    items?: Array<PublishSetSummary> | null;
     /**
      * 
      * @type {number}
@@ -1236,13 +1334,58 @@ export interface PublishSetSummaryPagedCollection {
      * @type {number}
      * @memberof PublishSetSummaryPagedCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<PublishSetSummary>}
+     * @type {number}
      * @memberof PublishSetSummaryPagedCollection
      */
-    items?: Array<PublishSetSummary> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PublishSetSummaryPagedCollection
+     */
+    totalCount?: number;
+}
+/**
+ * 
+ * @export
+ * @interface ReadOnlyMemoryContent
+ */
+export interface ReadOnlyMemoryContent {
+    /**
+     * 
+     * @type {Array<KeyValuePair>}
+     * @memberof ReadOnlyMemoryContent
+     */
+    readonly headers?: Array<KeyValuePair> | null;
+}
+/**
+ * 
+ * @export
+ * @interface StreamContent
+ */
+export interface StreamContent {
+    /**
+     * 
+     * @type {Array<KeyValuePair>}
+     * @memberof StreamContent
+     */
+    readonly headers?: Array<KeyValuePair> | null;
+}
+/**
+ * 
+ * @export
+ * @interface StringContent
+ */
+export interface StringContent {
+    /**
+     * 
+     * @type {Array<KeyValuePair>}
+     * @memberof StringContent
+     */
+    readonly headers?: Array<KeyValuePair> | null;
 }
 /**
  * A view provides GET access to documents within the documentList the view belongs to. The view can designate which document fields are returned (projection) and
@@ -1252,30 +1395,11 @@ export interface PublishSetSummaryPagedCollection {
  */
 export interface View {
     /**
-     * A view is addressed via its name, which is unique within the documentList or documentListType in which it is defined.
-     * @type {string}
+     * Designation of which document fields are returned (projection) when GETing documents from the view.
+     * @type {Array<ViewField>}
      * @memberof View
      */
-    name?: string | null;
-    /**
-     * tbd
-     * @type {Array<string>}
-     * @memberof View
-     */
-    usages?: Array<string> | null;
-    /**
-     * The metadata field allows arbitrary data to be stored on the view.
-     * @type {any}
-     * @memberof View
-     */
-    metadata?: any | null;
-    /**
-     * The isVisibleInStorefront field indicates whether documents in the view can be accessed from the Mozu storefront application. If true, the storefront application and storefront client application (javascript tier) 
-     * can GET documents from the view.
-     * @type {boolean}
-     * @memberof View
-     */
-    isVisibleInStorefront?: boolean | null;
+    fields?: Array<ViewField> | null;
     /**
      * Filter criteria to apply automatically when documents from this view are accessed, using the standard Mozu filter syntax. Only documents matching the filter criteria will be returned. 
      * Any filter provided by an operation is combined with the view filter.
@@ -1301,11 +1425,30 @@ export interface View {
      */
     isAdminDefault?: boolean | null;
     /**
-     * Designation of which document fields are returned (projection) when GETing documents from the view.
-     * @type {Array<ViewField>}
+     * The isVisibleInStorefront field indicates whether documents in the view can be accessed from the Mozu storefront application. If true, the storefront application and storefront client application (javascript tier) 
+     * can GET documents from the view.
+     * @type {boolean}
      * @memberof View
      */
-    fields?: Array<ViewField> | null;
+    isVisibleInStorefront?: boolean | null;
+    /**
+     * The metadata field allows arbitrary data to be stored on the view.
+     * @type {any}
+     * @memberof View
+     */
+    metadata?: any | null;
+    /**
+     * A view is addressed via its name, which is unique within the documentList or documentListType in which it is defined.
+     * @type {string}
+     * @memberof View
+     */
+    name?: string | null;
+    /**
+     * tbd
+     * @type {Array<string>}
+     * @memberof View
+     */
+    usages?: Array<string> | null;
 }
 /**
  * The projection of an individual field in a view.

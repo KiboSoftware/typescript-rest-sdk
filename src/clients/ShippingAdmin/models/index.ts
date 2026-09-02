@@ -11,7 +11,7 @@ export interface AdminUserAuditInfo {
      * @type {string}
      * @memberof AdminUserAuditInfo
      */
-    updateDate?: string | null;
+    createBy?: string | null;
     /**
      * 
      * @type {string}
@@ -29,7 +29,7 @@ export interface AdminUserAuditInfo {
      * @type {string}
      * @memberof AdminUserAuditInfo
      */
-    createBy?: string | null;
+    updateDate?: string | null;
 }
 /**
  * 
@@ -47,34 +47,29 @@ export interface AppDevHttpContent {
 /**
  * 
  * @export
- * @interface AttributeValueLocalizedContent
- */
-export interface AttributeValueLocalizedContent {
-    /**
-     * 
-     * @type {string}
-     * @memberof AttributeValueLocalizedContent
-     */
-    localeCode: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AttributeValueLocalizedContent
-     */
-    value: string;
-}
-/**
- * 
- * @export
  * @interface CarrierConfiguration
  */
 export interface CarrierConfiguration {
     /**
-     * Carrier Id (usually a shortname of a carrier, e.g. FedEx)
-     * @type {string}
+     * Indicates whether the credentials/passwords are set.
+     * <remarks>Credetials are updated only if this flag is set to true</remarks>
+     * @type {boolean}
      * @memberof CarrierConfiguration
      */
-    id?: string | null;
+    areCredentialsSet?: boolean;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof CarrierConfiguration
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * A list of custom table rates for the 'Custom' carrier
+     * <remarks>only use this if Id == 'Custom'</remarks>
+     * @type {Array<CustomTableRate>}
+     * @memberof CarrierConfiguration
+     */
+    customTableRates?: Array<CustomTableRate> | null;
     /**
      * Indicates that this CarrierConfiguration should be used at runtime
      * @type {boolean}
@@ -88,31 +83,23 @@ export interface CarrierConfiguration {
      */
     enabledForReturns?: boolean;
     /**
+     * Carrier Id (usually a shortname of a carrier, e.g. FedEx)
+     * @type {string}
+     * @memberof CarrierConfiguration
+     */
+    id?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CarrierConfiguration
+     */
+    isDeliveryMethod?: boolean;
+    /**
      * Carrier Configuration Settings
      * @type {Array<Setting>}
      * @memberof CarrierConfiguration
      */
     settings?: Array<Setting> | null;
-    /**
-     * A list of custom table rates for the 'Custom' carrier
-     * <remarks>only use this if Id == 'Custom'</remarks>
-     * @type {Array<CustomTableRate>}
-     * @memberof CarrierConfiguration
-     */
-    customTableRates?: Array<CustomTableRate> | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof CarrierConfiguration
-     */
-    auditInfo?: AdminUserAuditInfo;
-    /**
-     * Indicates whether the credentials/passwords are set.
-     * <remarks>Credetials are updated only if this flag is set to true</remarks>
-     * @type {boolean}
-     * @memberof CarrierConfiguration
-     */
-    areCredentialsSet?: boolean;
 }
 /**
  * Collection of carrrier configurations.
@@ -122,16 +109,10 @@ export interface CarrierConfiguration {
 export interface CarrierConfigurationCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<CarrierConfiguration>}
      * @memberof CarrierConfigurationCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CarrierConfigurationCollection
-     */
-    pageSize?: number;
+    items?: Array<CarrierConfiguration> | null;
     /**
      * 
      * @type {number}
@@ -143,13 +124,19 @@ export interface CarrierConfigurationCollection {
      * @type {number}
      * @memberof CarrierConfigurationCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<CarrierConfiguration>}
+     * @type {number}
      * @memberof CarrierConfigurationCollection
      */
-    items?: Array<CarrierConfiguration> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CarrierConfigurationCollection
+     */
+    totalCount?: number;
 }
 /**
  * Stores a reference to a Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSet for use at different levels.
@@ -160,6 +147,12 @@ export interface CarrierConfigurationCollection {
  */
 export interface CarrierCredential {
     /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof CarrierCredential
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
      * The Carrier ID associated with this carrier credential.
      * Usually the short name of a carrier (e.g., "FedEx").
      * @type {string}
@@ -167,17 +160,11 @@ export interface CarrierCredential {
      */
     carrierId?: string | null;
     /**
-     * The Site ID associated with this carrier credential, if any.
-     * @type {number}
+     * 
+     * @type {CarrierCredentialSet}
      * @memberof CarrierCredential
      */
-    siteId?: number | null;
-    /**
-     * The Location Group Code associated with this carrier credential, if any.
-     * @type {string}
-     * @memberof CarrierCredential
-     */
-    locationGroupCode?: string | null;
+    credentialSet?: CarrierCredentialSet;
     /**
      * The Location Code associated with this carrier credential, if any.
      * @type {string}
@@ -185,17 +172,17 @@ export interface CarrierCredential {
      */
     locationCode?: string | null;
     /**
-     * 
-     * @type {CarrierCredentialSet}
+     * The Location Group Code associated with this carrier credential, if any.
+     * @type {string}
      * @memberof CarrierCredential
      */
-    credentialSet?: CarrierCredentialSet;
+    locationGroupCode?: string | null;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
+     * The Site ID associated with this carrier credential, if any.
+     * @type {number}
      * @memberof CarrierCredential
      */
-    auditInfo?: AdminUserAuditInfo;
+    siteId?: number | null;
 }
 /**
  * A collection of <see cref="T:Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredential">carrier credentials</see>.
@@ -205,16 +192,10 @@ export interface CarrierCredential {
 export interface CarrierCredentialCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<CarrierCredential>}
      * @memberof CarrierCredentialCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CarrierCredentialCollection
-     */
-    pageSize?: number;
+    items?: Array<CarrierCredential> | null;
     /**
      * 
      * @type {number}
@@ -226,13 +207,19 @@ export interface CarrierCredentialCollection {
      * @type {number}
      * @memberof CarrierCredentialCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<CarrierCredential>}
+     * @type {number}
      * @memberof CarrierCredentialCollection
      */
-    items?: Array<CarrierCredential> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CarrierCredentialCollection
+     */
+    totalCount?: number;
 }
 /**
  * Stores a set of <see cref="T:Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSetValue">carrier credential key-value pairs</see>.
@@ -241,6 +228,12 @@ export interface CarrierCredentialCollection {
  * @interface CarrierCredentialSet
  */
 export interface CarrierCredentialSet {
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof CarrierCredentialSet
+     */
+    auditInfo?: AdminUserAuditInfo;
     /**
      * The Carrier ID associated with this credential set.
      * Usually the short name of a carrier (e.g., "FedEx").
@@ -256,6 +249,12 @@ export interface CarrierCredentialSet {
      */
     code?: string | null;
     /**
+     * Specifies the ID returned from an integration.
+     * @type {string}
+     * @memberof CarrierCredentialSet
+     */
+    integrationId?: string | null;
+    /**
      * A name (i.e., nickname) for this credential set.
      * @type {string}
      * @memberof CarrierCredentialSet
@@ -267,18 +266,6 @@ export interface CarrierCredentialSet {
      * @memberof CarrierCredentialSet
      */
     values?: Array<CarrierCredentialSetValue> | null;
-    /**
-     * Specifies the ID returned from an integration.
-     * @type {string}
-     * @memberof CarrierCredentialSet
-     */
-    integrationId?: string | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof CarrierCredentialSet
-     */
-    auditInfo?: AdminUserAuditInfo;
 }
 /**
  * A collection of <see cref="T:Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSet">carrier credential sets</see>.
@@ -288,16 +275,10 @@ export interface CarrierCredentialSet {
 export interface CarrierCredentialSetCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<CarrierCredentialSet>}
      * @memberof CarrierCredentialSetCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CarrierCredentialSetCollection
-     */
-    pageSize?: number;
+    items?: Array<CarrierCredentialSet> | null;
     /**
      * 
      * @type {number}
@@ -309,13 +290,19 @@ export interface CarrierCredentialSetCollection {
      * @type {number}
      * @memberof CarrierCredentialSetCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<CarrierCredentialSet>}
+     * @type {number}
      * @memberof CarrierCredentialSetCollection
      */
-    items?: Array<CarrierCredentialSet> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CarrierCredentialSetCollection
+     */
+    totalCount?: number;
 }
 /**
  * The metadata for a single field on a Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSet.
@@ -326,28 +313,28 @@ export interface CarrierCredentialSetCollection {
 export interface CarrierCredentialSetMetadata {
     /**
      * 
-     * @type {string}
-     * @memberof CarrierCredentialSetMetadata
-     */
-    name?: string | null;
-    /**
-     * 
      * @type {CarrierCredentialSetMetadataDataType}
      * @memberof CarrierCredentialSetMetadata
      */
     dataType?: CarrierCredentialSetMetadataDataType;
     /**
      * 
-     * @type {boolean}
-     * @memberof CarrierCredentialSetMetadata
-     */
-    required?: boolean;
-    /**
-     * 
      * @type {Array<CarrierCredentialSetMetadataLocalizedContent>}
      * @memberof CarrierCredentialSetMetadata
      */
     localizations?: Array<CarrierCredentialSetMetadataLocalizedContent> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CarrierCredentialSetMetadata
+     */
+    name?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CarrierCredentialSetMetadata
+     */
+    required?: boolean;
 }
 
 /**
@@ -373,7 +360,7 @@ export interface CarrierCredentialSetMetadataLocalizedContent {
      * @type {string}
      * @memberof CarrierCredentialSetMetadataLocalizedContent
      */
-    localeCode?: string | null;
+    description?: string | null;
     /**
      * 
      * @type {string}
@@ -385,10 +372,10 @@ export interface CarrierCredentialSetMetadataLocalizedContent {
      * @type {string}
      * @memberof CarrierCredentialSetMetadataLocalizedContent
      */
-    description?: string | null;
+    localeCode?: string | null;
 }
 /**
- * A key-value pair associated with a Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSet.
+ * 
  * @export
  * @interface CarrierCredentialSetValue
  */
@@ -415,6 +402,12 @@ export interface CarrierCredentialSetValue {
 export interface CarrierDefinition {
     /**
      * 
+     * @type {AdminUserAuditInfo}
+     * @memberof CarrierDefinition
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * 
      * @type {string}
      * @memberof CarrierDefinition
      */
@@ -424,37 +417,7 @@ export interface CarrierDefinition {
      * @type {boolean}
      * @memberof CarrierDefinition
      */
-    isBuiltIn?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CarrierDefinition
-     */
     certified?: boolean | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CarrierDefinition
-     */
-    name?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CarrierDefinition
-     */
-    description?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CarrierDefinition
-     */
-    logoUrl?: string | null;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof CarrierDefinition
-     */
-    features?: Array<string> | null;
     /**
      * 
      * @type {Array<CarrierCredentialSetMetadata>}
@@ -463,304 +426,34 @@ export interface CarrierDefinition {
     configFields?: Array<CarrierCredentialSetMetadata> | null;
     /**
      * 
-     * @type {AdminUserAuditInfo}
+     * @type {string}
      * @memberof CarrierDefinition
      */
-    auditInfo?: AdminUserAuditInfo;
-}
-/**
- * 
- * @export
- * @interface CommerceRuntimeAttribute
- */
-export interface CommerceRuntimeAttribute {
+    description?: string | null;
     /**
      * 
-     * @type {number}
-     * @memberof CommerceRuntimeAttribute
+     * @type {Array<string>}
+     * @memberof CarrierDefinition
      */
-    id?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttribute
-     */
-    adminName?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttribute
-     */
-    namespace?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttribute
-     */
-    attributeCode: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttribute
-     */
-    inputType?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttribute
-     */
-    valueType: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttribute
-     */
-    dataType?: string | null;
-    /**
-     * 
-     * @type {Array<CommerceRuntimeAttributeMetadataItem>}
-     * @memberof CommerceRuntimeAttribute
-     */
-    attributeMetadata?: Array<CommerceRuntimeAttributeMetadataItem> | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttribute
-     */
-    attributeFQN?: string | null;
-    /**
-     * 
-     * @type {CommerceRuntimeAttributeLocalizedContent}
-     * @memberof CommerceRuntimeAttribute
-     */
-    content?: CommerceRuntimeAttributeLocalizedContent;
-    /**
-     * 
-     * @type {CommerceRuntimeAttributeValidation}
-     * @memberof CommerceRuntimeAttribute
-     */
-    validation?: CommerceRuntimeAttributeValidation;
-    /**
-     * 
-     * @type {Array<CommerceRuntimeAttributeVocabularyValue>}
-     * @memberof CommerceRuntimeAttribute
-     */
-    vocabularyValues?: Array<CommerceRuntimeAttributeVocabularyValue> | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof CommerceRuntimeAttribute
-     */
-    auditInfo?: AdminUserAuditInfo;
+    features?: Array<string> | null;
     /**
      * 
      * @type {boolean}
-     * @memberof CommerceRuntimeAttribute
+     * @memberof CarrierDefinition
      */
-    isActive?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAttribute
-     */
-    isRequired?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAttribute
-     */
-    isReadOnly?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAttribute
-     */
-    isMultiValued?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAttribute
-     */
-    isVisible?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeAttribute
-     */
-    order?: number | null;
+    isBuiltIn?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof CommerceRuntimeAttribute
+     * @memberof CarrierDefinition
      */
-    displayGroup: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAttribute
-     */
-    availableForOrderRouting?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAttribute
-     */
-    availableForDiscounts?: boolean;
-}
-/**
- * 
- * @export
- * @interface CommerceRuntimeAttributeCollection
- */
-export interface CommerceRuntimeAttributeCollection {
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeAttributeCollection
-     */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeAttributeCollection
-     */
-    pageSize?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeAttributeCollection
-     */
-    pageCount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeAttributeCollection
-     */
-    totalCount?: number;
-    /**
-     * 
-     * @type {Array<CommerceRuntimeAttribute>}
-     * @memberof CommerceRuntimeAttributeCollection
-     */
-    items?: Array<CommerceRuntimeAttribute> | null;
-}
-/**
- * 
- * @export
- * @interface CommerceRuntimeAttributeLocalizedContent
- */
-export interface CommerceRuntimeAttributeLocalizedContent {
+    logoUrl?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof CommerceRuntimeAttributeLocalizedContent
+     * @memberof CarrierDefinition
      */
-    localeCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttributeLocalizedContent
-     */
-    value?: string | null;
-}
-/**
- * 
- * @export
- * @interface CommerceRuntimeAttributeMetadataItem
- */
-export interface CommerceRuntimeAttributeMetadataItem {
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttributeMetadataItem
-     */
-    key: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttributeMetadataItem
-     */
-    value: string;
-}
-/**
- * 
- * @export
- * @interface CommerceRuntimeAttributeValidation
- */
-export interface CommerceRuntimeAttributeValidation {
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttributeValidation
-     */
-    regularExpression?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeAttributeValidation
-     */
-    minStringLength?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeAttributeValidation
-     */
-    maxStringLength?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeAttributeValidation
-     */
-    minNumericValue?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeAttributeValidation
-     */
-    maxNumericValue?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttributeValidation
-     */
-    minDateTime?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttributeValidation
-     */
-    maxDateTime?: string | null;
-}
-/**
- * 
- * @export
- * @interface CommerceRuntimeAttributeVocabularyValue
- */
-export interface CommerceRuntimeAttributeVocabularyValue {
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttributeVocabularyValue
-     */
-    value: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeAttributeVocabularyValue
-     */
-    sequence?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAttributeVocabularyValue
-     */
-    isHidden?: boolean | null;
-    /**
-     * 
-     * @type {AttributeValueLocalizedContent}
-     * @memberof CommerceRuntimeAttributeVocabularyValue
-     */
-    content?: AttributeValueLocalizedContent;
+    name?: string | null;
 }
 /**
  * 
@@ -769,17 +462,24 @@ export interface CommerceRuntimeAttributeVocabularyValue {
  */
 export interface CustomTableRate {
     /**
-     * The Id of the CustomTableRate
-     * @type {string}
-     * @memberof CustomTableRate
-     */
-    id?: string | null;
-    /**
      * 
      * @type {CustomTableRateContent}
      * @memberof CustomTableRate
      */
     content?: CustomTableRateContent;
+    /**
+     * The number of days it takes to ship the item on custom carrier types. 
+     * Allowed values : EXPRESS, 1_DAY, 2_DAY, 3_DAY
+     * @type {string}
+     * @memberof CustomTableRate
+     */
+    deliveryDuration?: string | null;
+    /**
+     * The Id of the CustomTableRate
+     * @type {string}
+     * @memberof CustomTableRate
+     */
+    id?: string | null;
     /**
      * The type of this rate
      * <value>see ../commerce/catalog/admin/shipping/global/carriers/custom/serviceTypes/en-us</value>
@@ -793,13 +493,6 @@ export interface CustomTableRate {
      * @memberof CustomTableRate
      */
     value?: number;
-    /**
-     * The number of days it takes to ship the item on custom carrier types. 
-     * Allowed values : EXPRESS, 1_DAY, 2_DAY, 3_DAY
-     * @type {string}
-     * @memberof CustomTableRate
-     */
-    deliveryDuration?: string | null;
 }
 /**
  * 
@@ -827,24 +520,38 @@ export interface CustomTableRateContent {
  */
 export interface HandlingFeeRule {
     /**
+     * The level at which this fee applies
+     * <value>shippingrate</value><value>order</value>
+     * @type {string}
+     * @memberof HandlingFeeRule
+     */
+    appliesTo?: string | null;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof HandlingFeeRule
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * Fulfillment method this rule applies to.
+     * <value>Ship</value><value>Pickup</value><value>Delivery</value>
+     * @type {string}
+     * @memberof HandlingFeeRule
+     */
+    fulfillmentMethod?: string | null;
+    /**
      * The system generated id for this rule
      * @type {string}
      * @memberof HandlingFeeRule
      */
     id?: string | null;
     /**
-     * The sequence in which this rule is preferred over others
-     * @type {number}
-     * @memberof HandlingFeeRule
-     */
-    sequence?: number;
-    /**
-     * The shipping target rule codes associated with this rule
-     * <remarks>leave empty or null to denote all destinations</remarks>
+     * Optional location codes for Pickup/Delivery rules.
+     * <remarks>Must be null for Ship rules. When empty/null for Pickup/Delivery, the rule applies to all locations.</remarks>
      * @type {Array<string>}
      * @memberof HandlingFeeRule
      */
-    shippingTargetRuleCodes?: Array<string> | null;
+    locationCodes?: Array<string> | null;
     /**
      * the product target rule codes associated with this rule
      * <remarks>leave empty or null to denote all products</remarks>
@@ -853,6 +560,12 @@ export interface HandlingFeeRule {
      */
     productTargetRuleCodes?: Array<string> | null;
     /**
+     * The sequence in which this rule is preferred over others
+     * @type {number}
+     * @memberof HandlingFeeRule
+     */
+    sequence?: number;
+    /**
      * the servicetypes associated with this rule
      * <remarks>leave empty or null to denote all carriers and subsequent service types</remarks>
      * @type {Array<ServiceType>}
@@ -860,19 +573,12 @@ export interface HandlingFeeRule {
      */
     serviceTypes?: Array<ServiceType> | null;
     /**
-     * The type of this handling fee
-     * <value>percentage</value><value>flatrate</value>
-     * @type {string}
+     * The shipping target rule codes associated with this rule
+     * <remarks>leave empty or null to denote all destinations</remarks>
+     * @type {Array<string>}
      * @memberof HandlingFeeRule
      */
-    valueType?: string | null;
-    /**
-     * The level at which this fee applies
-     * <value>shippingrate</value><value>order</value>
-     * @type {string}
-     * @memberof HandlingFeeRule
-     */
-    appliesTo?: string | null;
+    shippingTargetRuleCodes?: Array<string> | null;
     /**
      * The value of this fee
      * @type {number}
@@ -880,11 +586,12 @@ export interface HandlingFeeRule {
      */
     value?: number;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
+     * The type of this handling fee
+     * <value>percentage</value><value>flatrate</value>
+     * @type {string}
      * @memberof HandlingFeeRule
      */
-    auditInfo?: AdminUserAuditInfo;
+    valueType?: string | null;
 }
 /**
  * A collection of FeeGroups
@@ -894,16 +601,16 @@ export interface HandlingFeeRule {
 export interface HandlingFeeRuleCollection {
     /**
      * 
-     * @type {number}
-     * @memberof HandlingFeeRuleCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<HandlingFeeRule>}
      * @memberof HandlingFeeRuleCollection
      */
     items?: Array<HandlingFeeRule> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof HandlingFeeRuleCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -925,11 +632,11 @@ export interface HttpMethod {
  */
 export interface Option {
     /**
-     * User readable value to be shown to the user
+     * Value required by other carrier or carrier aggragator like Easypost
      * @type {string}
      * @memberof Option
      */
-    displayName?: string | null;
+    alternateCarrierValue?: string | null;
     /**
      * Value required by the actual carrier in carrier request
      * @type {string}
@@ -937,11 +644,11 @@ export interface Option {
      */
     carrierValue?: string | null;
     /**
-     * Value required by other carrier or carrier aggragator like Easypost
+     * User readable value to be shown to the user
      * @type {string}
      * @memberof Option
      */
-    alternateCarrierValue?: string | null;
+    displayName?: string | null;
 }
 /**
  * Service Type aka Shipping Method
@@ -957,16 +664,16 @@ export interface ServiceType {
     code?: string | null;
     /**
      * 
-     * @type {string}
-     * @memberof ServiceType
-     */
-    deliveryDuration?: string | null;
-    /**
-     * 
      * @type {ServiceTypeLocalizedContent}
      * @memberof ServiceType
      */
     content?: ServiceTypeLocalizedContent;
+    /**
+     * 
+     * @type {string}
+     * @memberof ServiceType
+     */
+    deliveryDuration?: string | null;
 }
 /**
  * 
@@ -1009,9 +716,150 @@ export interface Setting {
 /**
  * 
  * @export
+ * @interface ShippingAdminBrotliDecompressedContent
+ */
+export interface ShippingAdminBrotliDecompressedContent {
+    /**
+     * 
+     * @type {Array<StringStringIEnumerableKeyValuePair>}
+     * @memberof ShippingAdminBrotliDecompressedContent
+     */
+    readonly headers?: Array<StringStringIEnumerableKeyValuePair> | null;
+}
+/**
+ * 
+ * @export
+ * @interface ShippingAdminByteArrayContent
+ */
+export interface ShippingAdminByteArrayContent {
+    /**
+     * 
+     * @type {Array<StringStringIEnumerableKeyValuePair>}
+     * @memberof ShippingAdminByteArrayContent
+     */
+    readonly headers?: Array<StringStringIEnumerableKeyValuePair> | null;
+}
+/**
+ * 
+ * @export
+ * @interface ShippingAdminDecompressedContent
+ */
+export interface ShippingAdminDecompressedContent {
+    /**
+     * 
+     * @type {Array<StringStringIEnumerableKeyValuePair>}
+     * @memberof ShippingAdminDecompressedContent
+     */
+    readonly headers?: Array<StringStringIEnumerableKeyValuePair> | null;
+}
+/**
+ * 
+ * @export
+ * @interface ShippingAdminDeflateDecompressedContent
+ */
+export interface ShippingAdminDeflateDecompressedContent {
+    /**
+     * 
+     * @type {Array<StringStringIEnumerableKeyValuePair>}
+     * @memberof ShippingAdminDeflateDecompressedContent
+     */
+    readonly headers?: Array<StringStringIEnumerableKeyValuePair> | null;
+}
+/**
+ * 
+ * @export
+ * @interface ShippingAdminEmptyContent
+ */
+export interface ShippingAdminEmptyContent {
+    /**
+     * 
+     * @type {Array<StringStringIEnumerableKeyValuePair>}
+     * @memberof ShippingAdminEmptyContent
+     */
+    readonly headers?: Array<StringStringIEnumerableKeyValuePair> | null;
+}
+/**
+ * 
+ * @export
+ * @interface ShippingAdminFormUrlEncodedContent
+ */
+export interface ShippingAdminFormUrlEncodedContent {
+    /**
+     * 
+     * @type {Array<StringStringIEnumerableKeyValuePair>}
+     * @memberof ShippingAdminFormUrlEncodedContent
+     */
+    readonly headers?: Array<StringStringIEnumerableKeyValuePair> | null;
+}
+/**
+ * 
+ * @export
+ * @interface ShippingAdminGZipDecompressedContent
+ */
+export interface ShippingAdminGZipDecompressedContent {
+    /**
+     * 
+     * @type {Array<StringStringIEnumerableKeyValuePair>}
+     * @memberof ShippingAdminGZipDecompressedContent
+     */
+    readonly headers?: Array<StringStringIEnumerableKeyValuePair> | null;
+}
+/**
+ * 
+ * @export
+ * @interface ShippingAdminHttpConnectionResponseContent
+ */
+export interface ShippingAdminHttpConnectionResponseContent {
+    /**
+     * 
+     * @type {Array<StringStringIEnumerableKeyValuePair>}
+     * @memberof ShippingAdminHttpConnectionResponseContent
+     */
+    readonly headers?: Array<StringStringIEnumerableKeyValuePair> | null;
+}
+/**
+ * 
+ * @export
  * @interface ShippingAdminHttpRequestMessage
  */
 export interface ShippingAdminHttpRequestMessage {
+    /**
+     * 
+     * @type {AppDevHttpContent}
+     * @memberof ShippingAdminHttpRequestMessage
+     */
+    content?: AppDevHttpContent;
+    /**
+     * 
+     * @type {Array<StringStringIEnumerableKeyValuePair>}
+     * @memberof ShippingAdminHttpRequestMessage
+     */
+    readonly headers?: Array<StringStringIEnumerableKeyValuePair> | null;
+    /**
+     * 
+     * @type {HttpMethod}
+     * @memberof ShippingAdminHttpRequestMessage
+     */
+    method?: HttpMethod;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof ShippingAdminHttpRequestMessage
+     */
+    readonly options?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof ShippingAdminHttpRequestMessage
+     * @deprecated
+     */
+    readonly properties?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShippingAdminHttpRequestMessage
+     */
+    requestUri?: string | null;
     /**
      * 
      * @type {string}
@@ -1024,43 +872,6 @@ export interface ShippingAdminHttpRequestMessage {
      * @memberof ShippingAdminHttpRequestMessage
      */
     versionPolicy?: ShippingAdminHttpVersionPolicy;
-    /**
-     * 
-     * @type {AppDevHttpContent}
-     * @memberof ShippingAdminHttpRequestMessage
-     */
-    content?: AppDevHttpContent;
-    /**
-     * 
-     * @type {HttpMethod}
-     * @memberof ShippingAdminHttpRequestMessage
-     */
-    method?: HttpMethod;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShippingAdminHttpRequestMessage
-     */
-    requestUri?: string | null;
-    /**
-     * 
-     * @type {Array<StringStringIEnumerableKeyValuePair>}
-     * @memberof ShippingAdminHttpRequestMessage
-     */
-    readonly headers?: Array<StringStringIEnumerableKeyValuePair> | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof ShippingAdminHttpRequestMessage
-     * @deprecated
-     */
-    readonly properties?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof ShippingAdminHttpRequestMessage
-     */
-    readonly options?: { [key: string]: any; } | null;
 }
 /**
  * 
@@ -1070,28 +881,10 @@ export interface ShippingAdminHttpRequestMessage {
 export interface ShippingAdminHttpResponseMessage {
     /**
      * 
-     * @type {string}
-     * @memberof ShippingAdminHttpResponseMessage
-     */
-    version?: string | null;
-    /**
-     * 
      * @type {AppDevHttpContent}
      * @memberof ShippingAdminHttpResponseMessage
      */
     content?: AppDevHttpContent;
-    /**
-     * 
-     * @type {ShippingAdminHttpStatusCode}
-     * @memberof ShippingAdminHttpResponseMessage
-     */
-    statusCode?: ShippingAdminHttpStatusCode;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShippingAdminHttpResponseMessage
-     */
-    reasonPhrase?: string | null;
     /**
      * 
      * @type {Array<StringStringIEnumerableKeyValuePair>}
@@ -1100,10 +893,16 @@ export interface ShippingAdminHttpResponseMessage {
     readonly headers?: Array<StringStringIEnumerableKeyValuePair> | null;
     /**
      * 
-     * @type {Array<StringStringIEnumerableKeyValuePair>}
+     * @type {boolean}
      * @memberof ShippingAdminHttpResponseMessage
      */
-    readonly trailingHeaders?: Array<StringStringIEnumerableKeyValuePair> | null;
+    readonly isSuccessStatusCode?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShippingAdminHttpResponseMessage
+     */
+    reasonPhrase?: string | null;
     /**
      * 
      * @type {ShippingAdminHttpRequestMessage}
@@ -1112,10 +911,22 @@ export interface ShippingAdminHttpResponseMessage {
     requestMessage?: ShippingAdminHttpRequestMessage;
     /**
      * 
-     * @type {boolean}
+     * @type {ShippingAdminHttpStatusCode}
      * @memberof ShippingAdminHttpResponseMessage
      */
-    readonly isSuccessStatusCode?: boolean;
+    statusCode?: ShippingAdminHttpStatusCode;
+    /**
+     * 
+     * @type {Array<StringStringIEnumerableKeyValuePair>}
+     * @memberof ShippingAdminHttpResponseMessage
+     */
+    readonly trailingHeaders?: Array<StringStringIEnumerableKeyValuePair> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShippingAdminHttpResponseMessage
+     */
+    version?: string | null;
 }
 
 /**
@@ -1207,6 +1018,19 @@ export type ShippingAdminHttpVersionPolicy = typeof ShippingAdminHttpVersionPoli
 /**
  * 
  * @export
+ * @interface ShippingAdminReadOnlyMemoryContent
+ */
+export interface ShippingAdminReadOnlyMemoryContent {
+    /**
+     * 
+     * @type {Array<StringStringIEnumerableKeyValuePair>}
+     * @memberof ShippingAdminReadOnlyMemoryContent
+     */
+    readonly headers?: Array<StringStringIEnumerableKeyValuePair> | null;
+}
+/**
+ * 
+ * @export
  * @interface ShippingAdminState
  */
 export interface ShippingAdminState {
@@ -1224,30 +1048,49 @@ export interface ShippingAdminState {
     name?: string | null;
 }
 /**
+ * 
+ * @export
+ * @interface ShippingAdminStreamContent
+ */
+export interface ShippingAdminStreamContent {
+    /**
+     * 
+     * @type {Array<StringStringIEnumerableKeyValuePair>}
+     * @memberof ShippingAdminStreamContent
+     */
+    readonly headers?: Array<StringStringIEnumerableKeyValuePair> | null;
+}
+/**
+ * 
+ * @export
+ * @interface ShippingAdminStringContent
+ */
+export interface ShippingAdminStringContent {
+    /**
+     * 
+     * @type {Array<StringStringIEnumerableKeyValuePair>}
+     * @memberof ShippingAdminStringContent
+     */
+    readonly headers?: Array<StringStringIEnumerableKeyValuePair> | null;
+}
+/**
  * An object to bind service types to shipping target rules and/or product target rules
  * @export
  * @interface ShippingInclusionRule
  */
 export interface ShippingInclusionRule {
     /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof ShippingInclusionRule
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
      * The system generated id of this shipping inclusion rule
      * @type {string}
      * @memberof ShippingInclusionRule
      */
     id?: string | null;
-    /**
-     * The sequence in which this rule is preferred over others
-     * @type {number}
-     * @memberof ShippingInclusionRule
-     */
-    sequence?: number;
-    /**
-     * The shipping target rule codes associated with this rule
-     * <remarks>leave empty or null to denote all destinations</remarks>
-     * @type {Array<string>}
-     * @memberof ShippingInclusionRule
-     */
-    shippingTargetRuleCodes?: Array<string> | null;
     /**
      * the product target rule codes associated with this rule
      * <remarks>leave empty or null to denote all products</remarks>
@@ -1256,6 +1099,12 @@ export interface ShippingInclusionRule {
      */
     productTargetRuleCodes?: Array<string> | null;
     /**
+     * The sequence in which this rule is preferred over others
+     * @type {number}
+     * @memberof ShippingInclusionRule
+     */
+    sequence?: number;
+    /**
      * the servicetypes associated with this rule
      * <remarks>leave empty or null to denote all carriers and subsequent service types</remarks>
      * @type {Array<ServiceType>}
@@ -1263,11 +1112,12 @@ export interface ShippingInclusionRule {
      */
     serviceTypes?: Array<ServiceType> | null;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
+     * The shipping target rule codes associated with this rule
+     * <remarks>leave empty or null to denote all destinations</remarks>
+     * @type {Array<string>}
      * @memberof ShippingInclusionRule
      */
-    auditInfo?: AdminUserAuditInfo;
+    shippingTargetRuleCodes?: Array<string> | null;
 }
 /**
  * A collection of methodgroup
@@ -1277,16 +1127,16 @@ export interface ShippingInclusionRule {
 export interface ShippingInclusionRuleCollection {
     /**
      * 
-     * @type {number}
-     * @memberof ShippingInclusionRuleCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<ShippingInclusionRule>}
      * @memberof ShippingInclusionRuleCollection
      */
     items?: Array<ShippingInclusionRule> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShippingInclusionRuleCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -1295,30 +1145,17 @@ export interface ShippingInclusionRuleCollection {
  */
 export interface ShippingProfile {
     /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof ShippingProfile
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
      * Merchant entered unique identifier for a ShippingProfile
      * @type {string}
      * @memberof ShippingProfile
      */
     code?: string | null;
-    /**
-     * The siteid's for which this profile applies
-     * <remarks>for now there is a 1-1 relationship between this profile and site so only 1 siteid should be in this list</remarks>
-     * @type {Array<number>}
-     * @memberof ShippingProfile
-     */
-    targetedSiteIds?: Array<number> | null;
-    /**
-     * 
-     * @type {Array<ShippingInclusionRule>}
-     * @memberof ShippingProfile
-     */
-    shippingInclusionRules?: Array<ShippingInclusionRule> | null;
-    /**
-     * 
-     * @type {Array<HandlingFeeRule>}
-     * @memberof ShippingProfile
-     */
-    productHandlingFeeRules?: Array<HandlingFeeRule> | null;
     /**
      * 
      * @type {Array<HandlingFeeRule>}
@@ -1327,10 +1164,23 @@ export interface ShippingProfile {
     orderHandlingFeeRules?: Array<HandlingFeeRule> | null;
     /**
      * 
-     * @type {AdminUserAuditInfo}
+     * @type {Array<HandlingFeeRule>}
      * @memberof ShippingProfile
      */
-    auditInfo?: AdminUserAuditInfo;
+    productHandlingFeeRules?: Array<HandlingFeeRule> | null;
+    /**
+     * 
+     * @type {Array<ShippingInclusionRule>}
+     * @memberof ShippingProfile
+     */
+    shippingInclusionRules?: Array<ShippingInclusionRule> | null;
+    /**
+     * The siteid's for which this profile applies
+     * <remarks>for now there is a 1-1 relationship between this profile and site so only 1 siteid should be in this list</remarks>
+     * @type {Array<number>}
+     * @memberof ShippingProfile
+     */
+    targetedSiteIds?: Array<number> | null;
 }
 /**
  * a collection of profiles
@@ -1340,16 +1190,16 @@ export interface ShippingProfile {
 export interface ShippingProfileCollection {
     /**
      * 
-     * @type {number}
-     * @memberof ShippingProfileCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<ShippingProfile>}
      * @memberof ShippingProfileCollection
      */
     items?: Array<ShippingProfile> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShippingProfileCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -1377,6 +1227,12 @@ export interface ShippingStates {
  */
 export interface SignatureOption {
     /**
+     * Carrier Id
+     * @type {string}
+     * @memberof SignatureOption
+     */
+    carrierId?: string | null;
+    /**
      * If carrier is enabled for signature option.
      * @type {boolean}
      * @memberof SignatureOption
@@ -1388,12 +1244,6 @@ export interface SignatureOption {
      * @memberof SignatureOption
      */
     options?: Array<Option> | null;
-    /**
-     * Carrier Id
-     * @type {string}
-     * @memberof SignatureOption
-     */
-    carrierId?: string | null;
 }
 /**
  * 
@@ -1455,14 +1305,14 @@ export interface TargetRule {
 export interface TargetRuleCollection {
     /**
      * 
-     * @type {number}
-     * @memberof TargetRuleCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<TargetRule>}
      * @memberof TargetRuleCollection
      */
     items?: Array<TargetRule> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof TargetRuleCollection
+     */
+    totalCount?: number;
 }

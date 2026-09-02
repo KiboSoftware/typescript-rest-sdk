@@ -1,4 +1,4 @@
 /* tslint:disable */
 /* eslint-disable */
 export * from './EventApi';
-export * from './SubscriptionApi';
+export * from './EventSubscriptionApi';

@@ -1,3 +1,8 @@
+.openapi-generator-ignore
+apis/BlanketOrderApi.ts
+apis/CallOffOrderApi.ts
+apis/CallOffOrderRuleApi.ts
+apis/CancelReasonsApi.ts
 apis/CartApi.ts
 apis/ChannelApi.ts
 apis/ChannelGroupApi.ts
@@ -5,7 +10,10 @@ apis/CheckoutApi.ts
 apis/JobApi.ts
 apis/OrderApi.ts
 apis/OrderAttributeDefinitionsApi.ts
+apis/OrderLineAttributeDefinitionApi.ts
 apis/QuoteApi.ts
+apis/ReleaseRulesApi.ts
+apis/ReservationRulesApi.ts
 apis/ReturnApi.ts
 apis/ReturnAttributeDefinitionsApi.ts
 apis/WishlistApi.ts

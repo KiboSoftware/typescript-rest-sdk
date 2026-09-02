@@ -11,7 +11,7 @@ export interface AdminUserAuditInfo {
      * @type {string}
      * @memberof AdminUserAuditInfo
      */
-    updateDate?: string | null;
+    createBy?: string | null;
     /**
      * 
      * @type {string}
@@ -29,7 +29,7 @@ export interface AdminUserAuditInfo {
      * @type {string}
      * @memberof AdminUserAuditInfo
      */
-    createBy?: string | null;
+    updateDate?: string | null;
 }
 /**
  * 
@@ -37,6 +37,12 @@ export interface AdminUserAuditInfo {
  * @interface AssignedDiscount
  */
 export interface AssignedDiscount {
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof AssignedDiscount
+     */
+    auditInfo?: AdminUserAuditInfo;
     /**
      * ReadOnly, CouponSetCode copied from URI
      * @type {string}
@@ -55,12 +61,6 @@ export interface AssignedDiscount {
      * @memberof AssignedDiscount
      */
     discountId: number;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof AssignedDiscount
-     */
-    auditInfo?: AdminUserAuditInfo;
 }
 /**
  * 
@@ -69,53 +69,17 @@ export interface AssignedDiscount {
  */
 export interface AttributeInProductType {
     /**
+     * 
+     * @type {CatalogAdminsAttribute}
+     * @memberof AttributeInProductType
+     */
+    attributeDetail?: CatalogAdminsAttribute;
+    /**
      * Unique identifier of the Attribute. Must be an attribute fully qualilfied name that already exists. If no namespace is specified Tenant is assumed
      * @type {string}
      * @memberof AttributeInProductType
      */
     attributeFQN?: string | null;
-    /**
-     * If True, the attribute is part of the base product type and can only have order modified.
-     * @type {boolean}
-     * @memberof AttributeInProductType
-     */
-    isInheritedFromBaseType?: boolean | null;
-    /**
-     * Used to order the display of the attributes within a section
-     * @type {number}
-     * @memberof AttributeInProductType
-     */
-    order?: number | null;
-    /**
-     * If True, the admin must include this attribute in products of this productType
-     * @type {boolean}
-     * @memberof AttributeInProductType
-     */
-    isRequiredByAdmin?: boolean | null;
-    /**
-     * If True, the property is hidden in the storefront. This field only applies to properties.
-     * @type {boolean}
-     * @memberof AttributeInProductType
-     */
-    isHiddenProperty?: boolean | null;
-    /**
-     * If true, this property is not available on the storefront. If false, this property will be available on storefront. The IsHiddenProperty hides the property from the customer, but is still available from the API.
-     * @type {boolean}
-     * @memberof AttributeInProductType
-     */
-    isAdminOnlyProperty?: boolean | null;
-    /**
-     * If True this property will not be returned  storefront product listings (Search,GetProduct) it will still be returned on GetProduct, ValidateProduct...)
-     * @type {boolean}
-     * @memberof AttributeInProductType
-     */
-    isProductDetailsOnlyProperty?: boolean | null;
-    /**
-     * If True, the property can have multiple values selected on the product. Only applies to PredefinedVocabulary properties.
-     * @type {boolean}
-     * @memberof AttributeInProductType
-     */
-    isMultiValueProperty?: boolean | null;
     /**
      * 
      * @type {AttributeInProductTypeDisplayInfo}
@@ -123,17 +87,53 @@ export interface AttributeInProductType {
      */
     displayInfo?: AttributeInProductTypeDisplayInfo;
     /**
+     * If true, this property is not available on the storefront. If false, this property will be available on storefront. The IsHiddenProperty hides the property from the customer, but is still available from the API.
+     * @type {boolean}
+     * @memberof AttributeInProductType
+     */
+    isAdminOnlyProperty?: boolean | null;
+    /**
+     * If True, the property is hidden in the storefront. This field only applies to properties.
+     * @type {boolean}
+     * @memberof AttributeInProductType
+     */
+    isHiddenProperty?: boolean | null;
+    /**
+     * If True, the attribute is part of the base product type and can only have order modified.
+     * @type {boolean}
+     * @memberof AttributeInProductType
+     */
+    isInheritedFromBaseType?: boolean | null;
+    /**
+     * If True, the property can have multiple values selected on the product. Only applies to PredefinedVocabulary properties.
+     * @type {boolean}
+     * @memberof AttributeInProductType
+     */
+    isMultiValueProperty?: boolean | null;
+    /**
+     * If True this property will not be returned  storefront product listings (Search,GetProduct) it will still be returned on GetProduct, ValidateProduct...)
+     * @type {boolean}
+     * @memberof AttributeInProductType
+     */
+    isProductDetailsOnlyProperty?: boolean | null;
+    /**
+     * If True, the admin must include this attribute in products of this productType
+     * @type {boolean}
+     * @memberof AttributeInProductType
+     */
+    isRequiredByAdmin?: boolean | null;
+    /**
+     * Used to order the display of the attributes within a section
+     * @type {number}
+     * @memberof AttributeInProductType
+     */
+    order?: number | null;
+    /**
      * The collection of vocabulary values included in this product type.
      * @type {Array<AttributeVocabularyValueInProductType>}
      * @memberof AttributeInProductType
      */
     vocabularyValues?: Array<AttributeVocabularyValueInProductType> | null;
-    /**
-     * 
-     * @type {CatalogAdminsAttribute}
-     * @memberof AttributeInProductType
-     */
-    attributeDetail?: CatalogAdminsAttribute;
 }
 /**
  * 
@@ -155,30 +155,17 @@ export interface AttributeInProductTypeDisplayInfo {
  */
 export interface AttributeSearchSettings {
     /**
-     * Indicates whether the attribute value should be searchable on the public storefront.
-     * @type {boolean}
-     * @memberof AttributeSearchSettings
-     */
-    searchableInStorefront?: boolean;
-    /**
-     * Indicates whether the attribute value should be searchable in the merchant catalog admin.
-     * @type {boolean}
-     * @memberof AttributeSearchSettings
-     */
-    searchableInAdmin?: boolean;
-    /**
-     * If true, the system will index the display value of string attributes instead of the canonical value for searching. 
-     * The canonical value will always be used for filtering. Does not apply for for non-string attributes.
-     * @type {boolean}
-     * @memberof AttributeSearchSettings
-     */
-    searchDisplayValue?: boolean;
-    /**
      * Indicates whether the attribute should be able to be used in filters, facets, and sorting on the public storefront.
      * @type {boolean}
      * @memberof AttributeSearchSettings
      */
     allowFilteringAndSortingInStorefront?: boolean | null;
+    /**
+     * Indicates whether the attribute is indevidually stored as a tokenized field in search for custom term search weight
+     * @type {boolean}
+     * @memberof AttributeSearchSettings
+     */
+    customWeightInStorefrontSearch?: boolean | null;
     /**
      * Indicates whether the attribute value is case sensative for filtering and faceting. This applies to Text Admin entered attributes. 
      * A null value means it is not case sensative
@@ -187,11 +174,24 @@ export interface AttributeSearchSettings {
      */
     indexValueWithCase?: boolean | null;
     /**
-     * Indicates whether the attribute is indevidually stored as a tokenized field in search for custom term search weight
+     * If true, the system will index the display value of string attributes instead of the canonical value for searching. 
+     * The canonical value will always be used for filtering. Does not apply for for non-string attributes.
      * @type {boolean}
      * @memberof AttributeSearchSettings
      */
-    customWeightInStorefrontSearch?: boolean | null;
+    searchDisplayValue?: boolean;
+    /**
+     * Indicates whether the attribute value should be searchable in the merchant catalog admin.
+     * @type {boolean}
+     * @memberof AttributeSearchSettings
+     */
+    searchableInAdmin?: boolean;
+    /**
+     * Indicates whether the attribute value should be searchable on the public storefront.
+     * @type {boolean}
+     * @memberof AttributeSearchSettings
+     */
+    searchableInStorefront?: boolean;
 }
 /**
  * Attribute Value Localized Resource
@@ -200,29 +200,29 @@ export interface AttributeSearchSettings {
  */
 export interface AttributeTypeRule {
     /**
-     * AttributeInputType identifier
-     * @type {string}
-     * @memberof AttributeTypeRule
-     */
-    attributeInputType?: string | null;
-    /**
      * AttributeDataType identifier
      * @type {string}
      * @memberof AttributeTypeRule
      */
     attributeDataType?: string | null;
     /**
-     * AttributeValueType identifier
+     * AttributeInputType identifier
      * @type {string}
      * @memberof AttributeTypeRule
      */
-    attributeValueType?: string | null;
+    attributeInputType?: string | null;
     /**
      * AttributeUsageType identifier
      * @type {string}
      * @memberof AttributeTypeRule
      */
     attributeUsageType?: string | null;
+    /**
+     * AttributeValueType identifier
+     * @type {string}
+     * @memberof AttributeTypeRule
+     */
+    attributeValueType?: string | null;
 }
 /**
  * A collection of AttributeType rules
@@ -232,16 +232,10 @@ export interface AttributeTypeRule {
 export interface AttributeTypeRuleCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<AttributeTypeRule>}
      * @memberof AttributeTypeRuleCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof AttributeTypeRuleCollection
-     */
-    pageSize?: number;
+    items?: Array<AttributeTypeRule> | null;
     /**
      * 
      * @type {number}
@@ -253,13 +247,19 @@ export interface AttributeTypeRuleCollection {
      * @type {number}
      * @memberof AttributeTypeRuleCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<AttributeTypeRule>}
+     * @type {number}
      * @memberof AttributeTypeRuleCollection
      */
-    items?: Array<AttributeTypeRule> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AttributeTypeRuleCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -268,11 +268,11 @@ export interface AttributeTypeRuleCollection {
  */
 export interface AttributeVocabularyValueInProductType {
     /**
-     * The actual value of the attribute vocabulary. This must be an existing value defined in the attribute vocabulary
-     * @type {any}
+     * 
+     * @type {CatalogAdminsAttributeVocabularyValueDisplayInfo}
      * @memberof AttributeVocabularyValueInProductType
      */
-    value?: any | null;
+    displayInfo?: CatalogAdminsAttributeVocabularyValueDisplayInfo;
     /**
      * Used to order the display of the attribute values in the storefront....
      * @type {number}
@@ -280,11 +280,11 @@ export interface AttributeVocabularyValueInProductType {
      */
     order?: number | null;
     /**
-     * 
-     * @type {CatalogAdminsAttributeVocabularyValueDisplayInfo}
+     * The actual value of the attribute vocabulary. This must be an existing value defined in the attribute vocabulary
+     * @type {any}
      * @memberof AttributeVocabularyValueInProductType
      */
-    displayInfo?: CatalogAdminsAttributeVocabularyValueDisplayInfo;
+    value?: any | null;
     /**
      * 
      * @type {CatalogAdminsAttributeVocabularyValue}
@@ -309,7 +309,144 @@ export interface AttributeVocabularyValueLocalizedContent {
      * @type {string}
      * @memberof AttributeVocabularyValueLocalizedContent
      */
-    stringValue?: string | null;
+    stringValue?: string;
+}
+/**
+ * Contract DTO for a BackorderRebalancing rule. Rules determine priority ordering
+ * for shipments in the Backorder Queue when inventory becomes available.
+ * @export
+ * @interface BackorderRebalancingRule
+ */
+export interface BackorderRebalancingRule {
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof BackorderRebalancingRule
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof BackorderRebalancingRule
+     */
+    code?: string | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof BackorderRebalancingRule
+     */
+    customerRules?: Array<string> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof BackorderRebalancingRule
+     */
+    description?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof BackorderRebalancingRule
+     */
+    enabled?: boolean | null;
+    /**
+     * End of the rule's effective window. Null = never expires. Must be >= StartDate when both supplied.
+     * @type {string}
+     * @memberof BackorderRebalancingRule
+     */
+    endDate?: string | null;
+    /**
+     * Read-only. Computed server-side: true when the current UTC instant is inside the effective window
+     * (StartDate null/≤now AND EndDate null/≥now), false otherwise. A rule with no dates is always active.
+     * This reflects the effective window alone and does not incorporate the enabled flag.
+     * @type {boolean}
+     * @memberof BackorderRebalancingRule
+     */
+    isActive?: boolean | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof BackorderRebalancingRule
+     */
+    metaData?: any | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof BackorderRebalancingRule
+     */
+    name?: string | null;
+    /**
+     * 
+     * @type {Array<ProductRuleCode>}
+     * @memberof BackorderRebalancingRule
+     */
+    productRules?: Array<ProductRuleCode> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof BackorderRebalancingRule
+     */
+    rank?: number | null;
+    /**
+     * 
+     * @type {Array<ShipmentRuleCode>}
+     * @memberof BackorderRebalancingRule
+     */
+    shipmentRules?: Array<ShipmentRuleCode> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof BackorderRebalancingRule
+     */
+    sortAttribute?: string | null;
+    /**
+     * Start of the rule's effective window. Null = no lower bound (already active).
+     * @type {string}
+     * @memberof BackorderRebalancingRule
+     */
+    startDate?: string | null;
+    /**
+     * Time fence in days. Inclusive [0, 365].
+     * @type {number}
+     * @memberof BackorderRebalancingRule
+     */
+    timeFenceDays?: number;
+}
+/**
+ * Paginated collection of Mozu.ProductAdmin.Contracts.BackorderRebalancingRules.BackorderRebalancingRule contract DTOs.
+ * @export
+ * @interface BackorderRebalancingRuleCollection
+ */
+export interface BackorderRebalancingRuleCollection {
+    /**
+     * 
+     * @type {Array<BackorderRebalancingRule>}
+     * @memberof BackorderRebalancingRuleCollection
+     */
+    items?: Array<BackorderRebalancingRule> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof BackorderRebalancingRuleCollection
+     */
+    pageCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof BackorderRebalancingRuleCollection
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof BackorderRebalancingRuleCollection
+     */
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof BackorderRebalancingRuleCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -338,12 +475,6 @@ export interface BoostField {
 export interface BoostValue {
     /**
      * 
-     * @type {string}
-     * @memberof BoostValue
-     */
-    value?: string | null;
-    /**
-     * 
      * @type {number}
      * @memberof BoostValue
      */
@@ -354,6 +485,174 @@ export interface BoostValue {
      * @memberof BoostValue
      */
     operator?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof BoostValue
+     */
+    value?: string | null;
+}
+/**
+ * Call-Off Release Rule contract (CAT-7736).
+ * Tenant-owned, internally master-catalog-scoped ranked admin rule for the
+ * B2B Supply Chain OMS call-off order release pipeline.
+ * @export
+ * @interface CallOffReleaseRule
+ */
+export interface CallOffReleaseRule {
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof CallOffReleaseRule
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * Referenced Call-Off-Order Rule codes. Max 1 entry. At least one of ProductRules,
+     * CustomerRules, or CallOffOrderRules must be non-empty (FR-007, FR-008).
+     * @type {Array<string>}
+     * @memberof CallOffReleaseRule
+     */
+    callOffOrderRules?: Array<string> | null;
+    /**
+     * Unique identifier. Auto-generated on create if not supplied. Immutable after creation.
+     * Max 30 characters; must match GeneralAlphaNumericCharactersRegex (FR-005, FR-016).
+     * @type {string}
+     * @memberof CallOffReleaseRule
+     */
+    code?: string | null;
+    /**
+     * Referenced Customer Rule codes. Max 1 entry (FR-007, FR-008).
+     * @type {Array<string>}
+     * @memberof CallOffReleaseRule
+     */
+    customerRules?: Array<string> | null;
+    /**
+     * Days before the ship date within which this rule applies. Inclusive [0, 365] (FR-015).
+     * @type {number}
+     * @memberof CallOffReleaseRule
+     */
+    daysBeforeShipDate?: number;
+    /**
+     * Optional description. Max 500 characters (FR-003).
+     * @type {string}
+     * @memberof CallOffReleaseRule
+     */
+    description?: string | null;
+    /**
+     * Whether the rule is active. Defaults to true on insert (FR-003, FR-011).
+     * @type {boolean}
+     * @memberof CallOffReleaseRule
+     */
+    enabled?: boolean | null;
+    /**
+     * End of the rule's effective window. Null = never expires. Must be >= StartDate when both supplied.
+     * @type {string}
+     * @memberof CallOffReleaseRule
+     */
+    endDate?: string | null;
+    /**
+     * Read-only. Computed server-side: true when the current UTC instant is inside the effective window
+     * (StartDate null/≤now AND EndDate null/≥now), false otherwise. A rule with no dates is always active.
+     * This reflects the effective window alone and does not incorporate the enabled flag.
+     * @type {boolean}
+     * @memberof CallOffReleaseRule
+     */
+    isActive?: boolean | null;
+    /**
+     * Opaque JSON metadata passthrough. Persisted as nvarchar(MAX). Cleared on PUT if omitted (FR-023).
+     * @type {any}
+     * @memberof CallOffReleaseRule
+     */
+    metaData?: any | null;
+    /**
+     * Minimum fill rate threshold [0, 100] (integer percentage). 0 is valid (FR-027).
+     * @type {number}
+     * @memberof CallOffReleaseRule
+     */
+    minimumFillRate?: number;
+    /**
+     * Display name. Required. Max 200 characters (FR-003).
+     * @type {string}
+     * @memberof CallOffReleaseRule
+     */
+    name?: string | null;
+    /**
+     * Referenced Product Rule criteria. Max 1 entry. Each entry requires both code and
+     * masterCatalogId; the (code, masterCatalogId) pair must resolve to an existing
+     * ProductRule with RuleType=CallOffRelease (FR-007, FR-008).
+     * @type {Array<ProductRuleCode>}
+     * @memberof CallOffReleaseRule
+     */
+    productRules?: Array<ProductRuleCode> | null;
+    /**
+     * Priority rank, unique per (TenantId, MasterCatalogId). Auto-assigned to MAX(Rank)+1
+     * when omitted or ≤0 on create (FR-006, FR-017).
+     * @type {number}
+     * @memberof CallOffReleaseRule
+     */
+    rank?: number;
+    /**
+     * Optional tiebreaker attribute name used by the downstream call-off release engine.
+     * Max 50 characters. null, absent, and empty are all accepted (FR-026).
+     * @type {string}
+     * @memberof CallOffReleaseRule
+     */
+    sortAttribute?: string | null;
+    /**
+     * Start of the rule's effective window. Null = no lower bound (already active).
+     * @type {string}
+     * @memberof CallOffReleaseRule
+     */
+    startDate?: string | null;
+    /**
+     * When true the rule applies to all tenant sites; ValidSites is ignored (FR-022).
+     * @type {boolean}
+     * @memberof CallOffReleaseRule
+     */
+    validForAllSites?: boolean | null;
+    /**
+     * Site IDs this rule applies to. Each must be tenant-owned (FR-007, FR-022).
+     * @type {Array<number>}
+     * @memberof CallOffReleaseRule
+     */
+    validSites?: Array<number> | null;
+}
+/**
+ * 
+ * @export
+ * @interface CallOffReleaseRuleCollection
+ */
+export interface CallOffReleaseRuleCollection {
+    /**
+     * 
+     * @type {Array<CallOffReleaseRule>}
+     * @memberof CallOffReleaseRuleCollection
+     */
+    items?: Array<CallOffReleaseRule> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CallOffReleaseRuleCollection
+     */
+    pageCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CallOffReleaseRuleCollection
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CallOffReleaseRuleCollection
+     */
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CallOffReleaseRuleCollection
+     */
+    totalCount?: number;
 }
 /**
  * Active Effectivity Dates
@@ -366,13 +665,13 @@ export interface CatalogAdminsActiveDateRange {
      * @type {string}
      * @memberof CatalogAdminsActiveDateRange
      */
-    startDate?: string | null;
+    endDate?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CatalogAdminsActiveDateRange
      */
-    endDate?: string | null;
+    startDate?: string | null;
 }
 /**
  * Attribute
@@ -387,13 +686,6 @@ export interface CatalogAdminsAttribute {
      */
     adminName?: string | null;
     /**
-     * NameSpace, each application creating attributes will have a uniqe namespace to avoid name (Code) collisions. The namespace provided must be a valid registered
-     * namespace. If no namespace is specified it is assumed to be the namespace of the Tenant.
-     * @type {string}
-     * @memberof CatalogAdminsAttribute
-     */
-    namespace?: string | null;
-    /**
      * Unique identifier of the Attribute. Must be unique within a namespace and cannot be changed once the attribute is created. This value will be generated and match the attribute
      * sequence if not provided on create.
      * @type {string}
@@ -401,23 +693,23 @@ export interface CatalogAdminsAttribute {
      */
     attributeCode?: string | null;
     /**
+     * Read only System generated monotonically increasing unique sequence for each attribute,DataType created (this is used to optimize indexed field names in search).
+     * @type {number}
+     * @memberof CatalogAdminsAttribute
+     */
+    attributeDataTypeSequence?: number | null;
+    /**
      * Attribute fully qualified name, Read only value that combines namespace and attribute code as NameSpace~AttributeCode
      * @type {string}
      * @memberof CatalogAdminsAttribute
      */
     attributeFQN?: string | null;
     /**
-     * Specifies if this attribute can can be used to generalize values of another attribute
-     * @type {boolean}
+     * Attribute Metadata. This list can contain opaque data (key value pairs) that can be used as a property bag for UI concerns.
+     * @type {Array<CatalogAdminsAttributeMetadataItem>}
      * @memberof CatalogAdminsAttribute
      */
-    isValueMappingAttribute?: boolean | null;
-    /**
-     * Attribute fully qualified name of a corresponding value mapping atribuite
-     * @type {string}
-     * @memberof CatalogAdminsAttribute
-     */
-    valueMappingAttributeFQN?: string | null;
+    attributeMetadata?: Array<CatalogAdminsAttributeMetadataItem> | null;
     /**
      * Read only System generated monotonically increasing unique sequence for each attribute created.
      * @type {number}
@@ -425,31 +717,23 @@ export interface CatalogAdminsAttribute {
      */
     attributeSequence?: number | null;
     /**
-     * Read only System generated monotonically increasing unique sequence for each attribute,DataType created (this is used to optimize indexed field names in search).
-     * @type {number}
+     * 
+     * @type {AdminUserAuditInfo}
      * @memberof CatalogAdminsAttribute
      */
-    attributeDataTypeSequence?: number | null;
+    auditInfo?: AdminUserAuditInfo;
     /**
-     * Indentifier of the master that this attribute is a member of. System-supplied and read-only. Attributes will be created in the MasterCatalog of the supplied context.
-     * @type {number}
+     * Specifies if this attribute is available for order routing
+     * @type {boolean}
      * @memberof CatalogAdminsAttribute
      */
-    masterCatalogId?: number | null;
+    availableForOrderRouting?: boolean;
     /**
-     * The InputType type of the attribute. Must be a valid value for InputType defined in InputTypeConst and the combination of types set must match an entry in the AttributeTypeRules resource. 
-     * This value cannot be changed after create
-     * @type {string}
+     * 
+     * @type {CatalogAdminsAttributeLocalizedContent}
      * @memberof CatalogAdminsAttribute
      */
-    inputType?: string | null;
-    /**
-     * The ValueType of the attribute.  Must be a valid value for ValueType defined in ValueTypeTypeConst and the combination of types set must match an entry in the AttributeTypeRules resource. 
-     * This value cannot be changed after create
-     * @type {string}
-     * @memberof CatalogAdminsAttribute
-     */
-    valueType?: string | null;
+    content?: CatalogAdminsAttributeLocalizedContent;
     /**
      * The DataType of the attribute.  Must be a valid value for DataType defined in DataTypeTypeConst and the combination of types set must match an entry in the AttributeTypeRules resource. 
      * This value cannot be changed after create
@@ -458,11 +742,12 @@ export interface CatalogAdminsAttribute {
      */
     dataType?: string | null;
     /**
-     * Specifies if this attribute can have a usage type of Option in a ProductType. This value can only be true when when it matches an AttributeTypeRule in the AttributeTypeRules resource.
-     * @type {boolean}
+     * The InputType type of the attribute. Must be a valid value for InputType defined in InputTypeConst and the combination of types set must match an entry in the AttributeTypeRules resource. 
+     * This value cannot be changed after create
+     * @type {string}
      * @memberof CatalogAdminsAttribute
      */
-    isOption?: boolean | null;
+    inputType?: string | null;
     /**
      * Specifies if this attribute can have a usage type of Extra in a ProductType. This value can only be true when when it matches an AttributeTypeRule in the AttributeTypeRules resource.
      * @type {boolean}
@@ -470,29 +755,23 @@ export interface CatalogAdminsAttribute {
      */
     isExtra?: boolean | null;
     /**
+     * Specifies if this attribute can have a usage type of Option in a ProductType. This value can only be true when when it matches an AttributeTypeRule in the AttributeTypeRules resource.
+     * @type {boolean}
+     * @memberof CatalogAdminsAttribute
+     */
+    isOption?: boolean | null;
+    /**
      * Specifies if this attribute can have a usage type of Property in a ProductType. This value can only be true when when it matches an AttributeTypeRule in the AttributeTypeRules resource.
      * @type {boolean}
      * @memberof CatalogAdminsAttribute
      */
     isProperty?: boolean | null;
     /**
-     * Specifies if this attribute is available for order routing
+     * Specifies if this attribute can can be used to generalize values of another attribute
      * @type {boolean}
      * @memberof CatalogAdminsAttribute
      */
-    availableForOrderRouting?: boolean;
-    /**
-     * Attribute Metadata. This list can contain opaque data (key value pairs) that can be used as a property bag for UI concerns.
-     * @type {Array<CatalogAdminsAttributeMetadataItem>}
-     * @memberof CatalogAdminsAttribute
-     */
-    attributeMetadata?: Array<CatalogAdminsAttributeMetadataItem> | null;
-    /**
-     * 
-     * @type {CatalogAdminsAttributeLocalizedContent}
-     * @memberof CatalogAdminsAttribute
-     */
-    content?: CatalogAdminsAttributeLocalizedContent;
+    isValueMappingAttribute?: boolean | null;
     /**
      * The Content of an attribute. This content is always in the default language of the MasterCatalog.
      * @type {Array<CatalogAdminsAttributeLocalizedContent>}
@@ -500,17 +779,18 @@ export interface CatalogAdminsAttribute {
      */
     localizedContent?: Array<CatalogAdminsAttributeLocalizedContent> | null;
     /**
-     * 
-     * @type {CatalogAdminsAttributeValidation}
+     * Indentifier of the master that this attribute is a member of. System-supplied and read-only. Attributes will be created in the MasterCatalog of the supplied context.
+     * @type {number}
      * @memberof CatalogAdminsAttribute
      */
-    validation?: CatalogAdminsAttributeValidation;
+    masterCatalogId?: number | null;
     /**
-     * The list of Values for this attribute. Only available for ValueType:PredefinedVocabulary
-     * @type {Array<CatalogAdminsAttributeVocabularyValue>}
+     * NameSpace, each application creating attributes will have a uniqe namespace to avoid name (Code) collisions. The namespace provided must be a valid registered
+     * namespace. If no namespace is specified it is assumed to be the namespace of the Tenant.
+     * @type {string}
      * @memberof CatalogAdminsAttribute
      */
-    vocabularyValues?: Array<CatalogAdminsAttributeVocabularyValue> | null;
+    namespace?: string | null;
     /**
      * 
      * @type {AttributeSearchSettings}
@@ -519,10 +799,29 @@ export interface CatalogAdminsAttribute {
     searchSettings?: AttributeSearchSettings;
     /**
      * 
-     * @type {AdminUserAuditInfo}
+     * @type {CatalogAdminsAttributeValidation}
      * @memberof CatalogAdminsAttribute
      */
-    auditInfo?: AdminUserAuditInfo;
+    validation?: CatalogAdminsAttributeValidation;
+    /**
+     * Attribute fully qualified name of a corresponding value mapping atribuite
+     * @type {string}
+     * @memberof CatalogAdminsAttribute
+     */
+    valueMappingAttributeFQN?: string | null;
+    /**
+     * The ValueType of the attribute.  Must be a valid value for ValueType defined in ValueTypeTypeConst and the combination of types set must match an entry in the AttributeTypeRules resource. 
+     * This value cannot be changed after create
+     * @type {string}
+     * @memberof CatalogAdminsAttribute
+     */
+    valueType?: string | null;
+    /**
+     * The list of Values for this attribute. Only available for ValueType:PredefinedVocabulary
+     * @type {Array<CatalogAdminsAttributeVocabularyValue>}
+     * @memberof CatalogAdminsAttribute
+     */
+    vocabularyValues?: Array<CatalogAdminsAttributeVocabularyValue> | null;
 }
 /**
  * Collection of attributes.
@@ -532,16 +831,10 @@ export interface CatalogAdminsAttribute {
 export interface CatalogAdminsAttributeCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<CatalogAdminsAttribute>}
      * @memberof CatalogAdminsAttributeCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CatalogAdminsAttributeCollection
-     */
-    pageSize?: number;
+    items?: Array<CatalogAdminsAttribute> | null;
     /**
      * 
      * @type {number}
@@ -553,13 +846,19 @@ export interface CatalogAdminsAttributeCollection {
      * @type {number}
      * @memberof CatalogAdminsAttributeCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<CatalogAdminsAttribute>}
+     * @type {number}
      * @memberof CatalogAdminsAttributeCollection
      */
-    items?: Array<CatalogAdminsAttribute> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CatalogAdminsAttributeCollection
+     */
+    totalCount?: number;
 }
 /**
  * Container for language-specific content to display on the storefront. You'll have a container for each supported language (LocaleCode). This enables you to display an attribute in multiple languages yet manage it as a single attribute internally.
@@ -567,6 +866,12 @@ export interface CatalogAdminsAttributeCollection {
  * @interface CatalogAdminsAttributeLocalizedContent
  */
 export interface CatalogAdminsAttributeLocalizedContent {
+    /**
+     * Description of the attribute in the language specified by LocaleCode.
+     * @type {string}
+     * @memberof CatalogAdminsAttributeLocalizedContent
+     */
+    description?: string | null;
     /**
      * Language used for the attribute name and description. Currently, only en_US is supported.
      * @type {string}
@@ -579,12 +884,6 @@ export interface CatalogAdminsAttributeLocalizedContent {
      * @memberof CatalogAdminsAttributeLocalizedContent
      */
     name?: string | null;
-    /**
-     * Description of the attribute in the language specified by LocaleCode.
-     * @type {string}
-     * @memberof CatalogAdminsAttributeLocalizedContent
-     */
-    description?: string | null;
 }
 /**
  * Attribute Metadata Item.  It can be utilized for storing abitrary key/value pairs of data related to an attribute.
@@ -612,29 +911,11 @@ export interface CatalogAdminsAttributeMetadataItem {
  */
 export interface CatalogAdminsAttributeValidation {
     /**
-     * Regular expression to run against the attribute value. This should follow JavaScript/EMCA's Regular Expression syntax.
+     * For validating a DateTime attribute value, maximum datetime allowed.
      * @type {string}
      * @memberof CatalogAdminsAttributeValidation
      */
-    regularExpression?: string | null;
-    /**
-     * For validating strings, minimum length allowed for a string.
-     * @type {number}
-     * @memberof CatalogAdminsAttributeValidation
-     */
-    minStringLength?: number | null;
-    /**
-     * For validating strings, maximum length allowed for a string.
-     * @type {number}
-     * @memberof CatalogAdminsAttributeValidation
-     */
-    maxStringLength?: number | null;
-    /**
-     * For validating Number attribute value, minimum number allowed.
-     * @type {number}
-     * @memberof CatalogAdminsAttributeValidation
-     */
-    minNumericValue?: number | null;
+    maxDateValue?: string | null;
     /**
      * For validating Number attribute value, maximum number allowed.
      * @type {number}
@@ -642,17 +923,35 @@ export interface CatalogAdminsAttributeValidation {
      */
     maxNumericValue?: number | null;
     /**
+     * For validating strings, maximum length allowed for a string.
+     * @type {number}
+     * @memberof CatalogAdminsAttributeValidation
+     */
+    maxStringLength?: number | null;
+    /**
      * For validating a DateTime attribute value, minimum datetime allowed.
      * @type {string}
      * @memberof CatalogAdminsAttributeValidation
      */
     minDateValue?: string | null;
     /**
-     * For validating a DateTime attribute value, maximum datetime allowed.
+     * For validating Number attribute value, minimum number allowed.
+     * @type {number}
+     * @memberof CatalogAdminsAttributeValidation
+     */
+    minNumericValue?: number | null;
+    /**
+     * For validating strings, minimum length allowed for a string.
+     * @type {number}
+     * @memberof CatalogAdminsAttributeValidation
+     */
+    minStringLength?: number | null;
+    /**
+     * Regular expression to run against the attribute value. This should follow JavaScript/EMCA's Regular Expression syntax.
      * @type {string}
      * @memberof CatalogAdminsAttributeValidation
      */
-    maxDateValue?: string | null;
+    regularExpression?: string | null;
 }
 /**
  * Value of an attribute
@@ -661,20 +960,23 @@ export interface CatalogAdminsAttributeValidation {
  */
 export interface CatalogAdminsAttributeVocabularyValue {
     /**
-     * Read only System generated monotonically increasing unique sequence.
+     * 
+     * @type {AttributeVocabularyValueLocalizedContent}
+     * @memberof CatalogAdminsAttributeVocabularyValue
+     */
+    content?: AttributeVocabularyValueLocalizedContent;
+    /**
+     * The order in which the attribute value displays. If you omit a value for this property, Mozu infers the display order from the attribute value's position the list.
      * @type {number}
      * @memberof CatalogAdminsAttributeVocabularyValue
      */
-    valueSequence?: number | null;
+    displayOrder?: number | null;
     /**
-     * The actual value of the attribute vocabulary. This value must be unique within the vocabulary for a single attribute and match the datatype of the attribute. 
-     * String data type requires a canonical value here or one will be system generated if null. The actual string content displayed to users should be stored as Content. 
-     * String values require content to be present.
-     * Once this value is set it cannot be changed.
-     * @type {any}
+     * The Content of an attribute value. This content is in multiple locals supported by the master catalog and is only valid for String DataType.
+     * @type {Array<AttributeVocabularyValueLocalizedContent>}
      * @memberof CatalogAdminsAttributeVocabularyValue
      */
-    value?: any | null;
+    localizedContent?: Array<AttributeVocabularyValueLocalizedContent> | null;
     /**
      * The actual values of the related generic attribute. This value must match the datatype of the attribute and already exist 
      * within the Vocabulary values of the related ValueMappingAttribute. Only supporting string at this time.
@@ -689,23 +991,20 @@ export interface CatalogAdminsAttributeVocabularyValue {
      */
     productName?: string | null;
     /**
-     * 
-     * @type {AttributeVocabularyValueLocalizedContent}
+     * The actual value of the attribute vocabulary. This value must be unique within the vocabulary for a single attribute and match the datatype of the attribute. 
+     * String data type requires a canonical value here or one will be system generated if null. The actual string content displayed to users should be stored as Content. 
+     * String values require content to be present.
+     * Once this value is set it cannot be changed.
+     * @type {any}
      * @memberof CatalogAdminsAttributeVocabularyValue
      */
-    content?: AttributeVocabularyValueLocalizedContent;
+    value?: any | null;
     /**
-     * The Content of an attribute value. This content is in multiple locals supported by the master catalog and is only valid for String DataType.
-     * @type {Array<AttributeVocabularyValueLocalizedContent>}
-     * @memberof CatalogAdminsAttributeVocabularyValue
-     */
-    localizedContent?: Array<AttributeVocabularyValueLocalizedContent> | null;
-    /**
-     * The order in which the attribute value displays. If you omit a value for this property, Mozu infers the display order from the attribute value's position the list.
+     * Read only System generated monotonically increasing unique sequence.
      * @type {number}
      * @memberof CatalogAdminsAttributeVocabularyValue
      */
-    displayOrder?: number | null;
+    valueSequence?: number | null;
 }
 /**
  * 
@@ -720,17 +1019,17 @@ export interface CatalogAdminsAttributeVocabularyValueDisplayInfo {
      */
     cmsId?: string | null;
     /**
-     * URL of the image.
-     * @type {string}
-     * @memberof CatalogAdminsAttributeVocabularyValueDisplayInfo
-     */
-    imageUrl?: string | null;
-    /**
      * Hex Color value to display in a color picker
      * @type {string}
      * @memberof CatalogAdminsAttributeVocabularyValueDisplayInfo
      */
     colorValue?: string | null;
+    /**
+     * URL of the image.
+     * @type {string}
+     * @memberof CatalogAdminsAttributeVocabularyValueDisplayInfo
+     */
+    imageUrl?: string | null;
 }
 /**
  * Price of the product and currency used.
@@ -739,41 +1038,17 @@ export interface CatalogAdminsAttributeVocabularyValueDisplayInfo {
  */
 export interface CatalogAdminsBundledProduct {
     /**
-     * Product Code
-     * @type {string}
+     * Indicates the fulfillment types the product supports.
+     * @type {Array<string>}
      * @memberof CatalogAdminsBundledProduct
      */
-    productCode?: string | null;
-    /**
-     * Qty of the bundled PRoduct
-     * @type {number}
-     * @memberof CatalogAdminsBundledProduct
-     */
-    quantity?: number;
-    /**
-     * 
-     * @type {CatalogAdminsProductPrice}
-     * @memberof CatalogAdminsBundledProduct
-     */
-    price?: CatalogAdminsProductPrice;
-    /**
-     * Read only Name of the BundledProduct
-     * @type {string}
-     * @memberof CatalogAdminsBundledProduct
-     */
-    productName?: string | null;
+    fulfillmentTypesSupported?: Array<string> | null;
     /**
      * 
      * @type {CommerceRuntimeMeasurement}
      * @memberof CatalogAdminsBundledProduct
      */
     packageHeight?: CommerceRuntimeMeasurement;
-    /**
-     * 
-     * @type {CommerceRuntimeMeasurement}
-     * @memberof CatalogAdminsBundledProduct
-     */
-    packageWidth?: CommerceRuntimeMeasurement;
     /**
      * 
      * @type {CommerceRuntimeMeasurement}
@@ -787,11 +1062,35 @@ export interface CatalogAdminsBundledProduct {
      */
     packageWeight?: CommerceRuntimeMeasurement;
     /**
-     * Indicates the fulfillment types the product supports.
-     * @type {Array<string>}
+     * 
+     * @type {CommerceRuntimeMeasurement}
      * @memberof CatalogAdminsBundledProduct
      */
-    fulfillmentTypesSupported?: Array<string> | null;
+    packageWidth?: CommerceRuntimeMeasurement;
+    /**
+     * 
+     * @type {CatalogAdminsProductPrice}
+     * @memberof CatalogAdminsBundledProduct
+     */
+    price?: CatalogAdminsProductPrice;
+    /**
+     * Product Code
+     * @type {string}
+     * @memberof CatalogAdminsBundledProduct
+     */
+    productCode?: string | null;
+    /**
+     * Read only Name of the BundledProduct
+     * @type {string}
+     * @memberof CatalogAdminsBundledProduct
+     */
+    productName?: string | null;
+    /**
+     * Qty of the bundled PRoduct
+     * @type {number}
+     * @memberof CatalogAdminsBundledProduct
+     */
+    quantity?: number;
 }
 /**
  * Category
@@ -800,17 +1099,29 @@ export interface CatalogAdminsBundledProduct {
  */
 export interface CatalogAdminsCategory {
     /**
-     * Internal unique identifier of the category. System-supplied and read-only.
-     * @type {number}
-     * @memberof CatalogAdminsCategory
-     */
-    id?: number | null;
-    /**
-     * The Type of Category Static, Dyanmic, DynamicPreComputed
+     * Active end Date
      * @type {string}
      * @memberof CatalogAdminsCategory
      */
-    categoryType?: string | null;
+    activeDateEnd?: string | null;
+    /**
+     * Active Start Date
+     * @type {string}
+     * @memberof CatalogAdminsCategory
+     */
+    activeDateStart?: string | null;
+    /**
+     * List of attributes for the category.
+     * @type {Array<CatalogAdminsCategoryAttribute>}
+     * @memberof CatalogAdminsCategory
+     */
+    attributes?: Array<CatalogAdminsCategoryAttribute> | null;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof CatalogAdminsCategory
+     */
+    auditInfo?: AdminUserAuditInfo;
     /**
      * The CatalogId that the category belongs to.
      * @type {number}
@@ -818,35 +1129,41 @@ export interface CatalogAdminsCategory {
      */
     catalogId?: number | null;
     /**
-     * Unique identifier of the category to which this category belongs. If nil, this is a top-level category. System-supplied and read-only.
-     * @type {number}
-     * @memberof CatalogAdminsCategory
-     */
-    parentCategoryId?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CatalogAdminsCategory
-     */
-    parentCategoryCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CatalogAdminsCategory
-     */
-    parentCategoryName?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CatalogAdminsCategory
-     */
-    parentIsActive?: boolean | null;
-    /**
      * External unique identifier of the category.
      * @type {string}
      * @memberof CatalogAdminsCategory
      */
     categoryCode?: string | null;
+    /**
+     * The Type of Category Static, Dyanmic, DynamicPreComputed
+     * @type {string}
+     * @memberof CatalogAdminsCategory
+     */
+    categoryType?: string | null;
+    /**
+     * Number of subcategories that belong to this category. These subcategories are at the same level (siblings).
+     * @type {number}
+     * @memberof CatalogAdminsCategory
+     */
+    childCount?: number | null;
+    /**
+     * 
+     * @type {CategoryLocalizedContent}
+     * @memberof CatalogAdminsCategory
+     */
+    content?: CategoryLocalizedContent;
+    /**
+     * 
+     * @type {CatalogAdminsDynamicExpression}
+     * @memberof CatalogAdminsCategory
+     */
+    dynamicExpression?: CatalogAdminsDynamicExpression;
+    /**
+     * Internal unique identifier of the category. System-supplied and read-only.
+     * @type {number}
+     * @memberof CatalogAdminsCategory
+     */
+    id?: number | null;
     /**
      * If false, the category is considered unavailable in runtime (default is true if not specified on create)
      * @type {boolean}
@@ -860,18 +1177,6 @@ export interface CatalogAdminsCategory {
      */
     isDisplayed?: boolean | null;
     /**
-     * Order in which categories appear when they are at the same level (siblings). For example, you could change the sequence of categories so that a specific category always appears first.
-     * @type {number}
-     * @memberof CatalogAdminsCategory
-     */
-    sequence?: number | null;
-    /**
-     * 
-     * @type {CategoryLocalizedContent}
-     * @memberof CatalogAdminsCategory
-     */
-    content?: CategoryLocalizedContent;
-    /**
      * Container for language-specific content to display on the storefront. You'll have a container for each supported language (LocaleCode). 
      * This enables you to display a category in multiple languages yet manage it as a single category internally.
      * @type {Array<CategoryLocalizedContent>}
@@ -880,10 +1185,28 @@ export interface CatalogAdminsCategory {
     localizedContent?: Array<CategoryLocalizedContent> | null;
     /**
      * 
-     * @type {CatalogAdminsCustomerDynamicExpression}
+     * @type {string}
      * @memberof CatalogAdminsCategory
      */
-    dynamicExpression?: CatalogAdminsCustomerDynamicExpression;
+    parentCategoryCode?: string | null;
+    /**
+     * Unique identifier of the category to which this category belongs. If nil, this is a top-level category. System-supplied and read-only.
+     * @type {number}
+     * @memberof CatalogAdminsCategory
+     */
+    parentCategoryId?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CatalogAdminsCategory
+     */
+    parentCategoryName?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CatalogAdminsCategory
+     */
+    parentIsActive?: boolean | null;
     /**
      * Number of products contained in this category. This count includes all products contained in any subcategories of this category.
      * @type {number}
@@ -891,41 +1214,17 @@ export interface CatalogAdminsCategory {
      */
     productCount?: number | null;
     /**
-     * Number of subcategories that belong to this category. These subcategories are at the same level (siblings).
+     * Order in which categories appear when they are at the same level (siblings). For example, you could change the sequence of categories so that a specific category always appears first.
      * @type {number}
      * @memberof CatalogAdminsCategory
      */
-    childCount?: number | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof CatalogAdminsCategory
-     */
-    auditInfo?: AdminUserAuditInfo;
+    sequence?: number | null;
     /**
      * If True, search displays sliced view
      * @type {boolean}
      * @memberof CatalogAdminsCategory
      */
     shouldSlice?: boolean | null;
-    /**
-     * Active Start Date
-     * @type {string}
-     * @memberof CatalogAdminsCategory
-     */
-    activeDateStart?: string | null;
-    /**
-     * Active end Date
-     * @type {string}
-     * @memberof CatalogAdminsCategory
-     */
-    activeDateEnd?: string | null;
-    /**
-     * List of attributes for the category.
-     * @type {Array<CatalogAdminsCategoryAttribute>}
-     * @memberof CatalogAdminsCategory
-     */
-    attributes?: Array<CatalogAdminsCategoryAttribute> | null;
 }
 /**
  * 
@@ -935,16 +1234,16 @@ export interface CatalogAdminsCategory {
 export interface CatalogAdminsCategoryAttribute {
     /**
      * 
-     * @type {string}
-     * @memberof CatalogAdminsCategoryAttribute
-     */
-    fullyQualifiedName?: string | null;
-    /**
-     * 
      * @type {number}
      * @memberof CatalogAdminsCategoryAttribute
      */
     attributeDefinitionId?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CatalogAdminsCategoryAttribute
+     */
+    fullyQualifiedName?: string | null;
     /**
      * 
      * @type {Array<any>}
@@ -960,16 +1259,16 @@ export interface CatalogAdminsCategoryAttribute {
 export interface CatalogAdminsCategoryCollection {
     /**
      * 
-     * @type {number}
-     * @memberof CatalogAdminsCategoryCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<CatalogAdminsCategory>}
      * @memberof CatalogAdminsCategoryCollection
      */
     items?: Array<CatalogAdminsCategory> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CatalogAdminsCategoryCollection
+     */
+    totalCount?: number;
 }
 /**
  * Collection of categories where categories are returned in a series of pages.
@@ -979,16 +1278,10 @@ export interface CatalogAdminsCategoryCollection {
 export interface CatalogAdminsCategoryPagedCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<CatalogAdminsCategory>}
      * @memberof CatalogAdminsCategoryPagedCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CatalogAdminsCategoryPagedCollection
-     */
-    pageSize?: number;
+    items?: Array<CatalogAdminsCategory> | null;
     /**
      * 
      * @type {number}
@@ -1000,13 +1293,19 @@ export interface CatalogAdminsCategoryPagedCollection {
      * @type {number}
      * @memberof CatalogAdminsCategoryPagedCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<CatalogAdminsCategory>}
+     * @type {number}
      * @memberof CatalogAdminsCategoryPagedCollection
      */
-    items?: Array<CatalogAdminsCategory> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CatalogAdminsCategoryPagedCollection
+     */
+    totalCount?: number;
 }
 /**
  * The exchange rate between two currencies
@@ -1015,23 +1314,17 @@ export interface CatalogAdminsCategoryPagedCollection {
  */
 export interface CatalogAdminsCurrencyExchangeRate {
     /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof CatalogAdminsCurrencyExchangeRate
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
      * The source currency code
      * @type {string}
      * @memberof CatalogAdminsCurrencyExchangeRate
      */
     fromCurrencyCode?: string | null;
-    /**
-     * The target currency code
-     * @type {string}
-     * @memberof CatalogAdminsCurrencyExchangeRate
-     */
-    toCurrencyCode?: string | null;
-    /**
-     * The exchange rate
-     * @type {number}
-     * @memberof CatalogAdminsCurrencyExchangeRate
-     */
-    rate: number;
     /**
      * An additional multiplier to use in calculations
      * @type {number}
@@ -1039,36 +1332,37 @@ export interface CatalogAdminsCurrencyExchangeRate {
      */
     multiplier?: number | null;
     /**
+     * The exchange rate
+     * @type {number}
+     * @memberof CatalogAdminsCurrencyExchangeRate
+     */
+    rate: number;
+    /**
      * Reference data for miscellaneous metadata from updates
      * @type {string}
      * @memberof CatalogAdminsCurrencyExchangeRate
      */
     referenceData?: string | null;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
+     * The target currency code
+     * @type {string}
      * @memberof CatalogAdminsCurrencyExchangeRate
      */
-    auditInfo?: AdminUserAuditInfo;
+    toCurrencyCode?: string | null;
 }
 /**
- * Category
+ * Represents a customer segment
  * @export
- * @interface CatalogAdminsCustomerDynamicExpression
+ * @interface CatalogAdminsCustomerSegment
  */
-export interface CatalogAdminsCustomerDynamicExpression {
+export interface CatalogAdminsCustomerSegment {
     /**
-     * 
-     * @type {string}
-     * @memberof CatalogAdminsCustomerDynamicExpression
+     * The Customer segment Id.
+     * This is the  system Id not the code.
+     * @type {number}
+     * @memberof CatalogAdminsCustomerSegment
      */
-    text?: string | null;
-    /**
-     * 
-     * @type {CatalogAdminsExpression}
-     * @memberof CatalogAdminsCustomerDynamicExpression
-     */
-    tree?: CatalogAdminsExpression;
+    id?: number;
 }
 /**
  * Allows you to define and manage discounts to apply to your products, product categories, or orders. The discounts can be a specified monetary amount off the price, percentage off the price, or for free shipping.
@@ -1077,49 +1371,6 @@ export interface CatalogAdminsCustomerDynamicExpression {
  * @interface CatalogAdminsDiscount
  */
 export interface CatalogAdminsDiscount {
-    /**
-     * Unique identifier of the discount. System-supplied and read-only.
-     * @type {number}
-     * @memberof CatalogAdminsDiscount
-     */
-    id?: number | null;
-    /**
-     * 
-     * @type {DiscountLocalizedContent}
-     * @memberof CatalogAdminsDiscount
-     */
-    content?: DiscountLocalizedContent;
-    /**
-     * Container for the language-specific name of the discount. You will have a container for each supported language (LocaleCode).
-     * This enables you to display the discount name in multiple languages yet manage it as a single discount internally.
-     * @type {Array<DiscountLocalizedContent>}
-     * @memberof CatalogAdminsDiscount
-     */
-    localizedContent?: Array<DiscountLocalizedContent> | null;
-    /**
-     * Scope to which the discount applies, valid values are: Order, LineItem
-     * @type {string}
-     * @memberof CatalogAdminsDiscount
-     */
-    scope: string;
-    /**
-     * 
-     * @type {CatalogAdminsDiscountCondition}
-     * @memberof CatalogAdminsDiscount
-     */
-    conditions?: CatalogAdminsDiscountCondition;
-    /**
-     * 
-     * @type {CatalogAdminsDiscountTarget}
-     * @memberof CatalogAdminsDiscount
-     */
-    target: CatalogAdminsDiscountTarget;
-    /**
-     * How many times this discount has been redeemed. System-supplied and read-only.
-     * @type {number}
-     * @memberof CatalogAdminsDiscount
-     */
-    currentRedemptionCount?: number | null;
     /**
      *     Amount of the discount, as a percentage or monetary amount, for example 15% or $15.
      * Must be either null or greater than zero.
@@ -1140,11 +1391,11 @@ export interface CatalogAdminsDiscount {
      */
     amountType: string;
     /**
-     * Discount status which can be "Active," "Scheduled," or "Expired." System-supplied and read-only.
-     * @type {string}
+     * 
+     * @type {AdminUserAuditInfo}
      * @memberof CatalogAdminsDiscount
      */
-    status?: string | null;
+    auditInfo?: AdminUserAuditInfo;
     /**
      * Signifies that the discount is not referenced and can be hard deleted
      * @type {boolean}
@@ -1152,13 +1403,42 @@ export interface CatalogAdminsDiscount {
      */
     canBeDeleted?: boolean;
     /**
-     * Determines if the discount should apply to sale price or regular price only.
-     * Discounts will apply to sale prices by default.
-     * Only applies to LineItem product discounts.
+     * Indicates whether or not stacking is enabled for this discount
      * @type {boolean}
      * @memberof CatalogAdminsDiscount
      */
-    doesNotApplyToSalePrice?: boolean | null;
+    canBeStackedUpon?: boolean | null;
+    /**
+     * Indicates unique code for the discount, if not present Discount Id is used as a code.
+     * @type {string}
+     * @memberof CatalogAdminsDiscount
+     */
+    code?: string | null;
+    /**
+     * 
+     * @type {CatalogAdminsDiscountCondition}
+     * @memberof CatalogAdminsDiscount
+     */
+    conditions?: CatalogAdminsDiscountCondition;
+    /**
+     * 
+     * @type {DiscountLocalizedContent}
+     * @memberof CatalogAdminsDiscount
+     */
+    content?: DiscountLocalizedContent;
+    /**
+     * How many times this discount has been redeemed. System-supplied and read-only.
+     * @type {number}
+     * @memberof CatalogAdminsDiscount
+     */
+    currentRedemptionCount?: number | null;
+    /**
+     * Flag to allow or prevent application to multi-ship-to orders,
+     * Only applicable to shipping discounts.
+     * @type {boolean}
+     * @memberof CatalogAdminsDiscount
+     */
+    doesNotApplyToMultiShipToOrders?: boolean | null;
     /**
      * Determines whether or not a discount applies to a items with a sale price.  Applicable 
      * on order and line item discounts.  For line items, when this is true, the discount will 
@@ -1169,18 +1449,71 @@ export interface CatalogAdminsDiscount {
      */
     doesNotApplyToProductsWithSalePrice?: boolean | null;
     /**
+     * Determines if the discount should apply to sale price or regular price only.
+     * Discounts will apply to sale prices by default.
+     * Only applies to LineItem product discounts.
+     * @type {boolean}
+     * @memberof CatalogAdminsDiscount
+     */
+    doesNotApplyToSalePrice?: boolean | null;
+    /**
+     * Indicates if this discount has purchase conditions that must be met before 
+     * the discount is applied
+     * @type {boolean}
+     * @memberof CatalogAdminsDiscount
+     */
+    hasPurchaseConditions?: boolean;
+    /**
+     * Unique identifier of the discount. System-supplied and read-only.
+     * @type {number}
+     * @memberof CatalogAdminsDiscount
+     */
+    id?: number | null;
+    /**
+     * Products receiving a price from a price list specified here or a child of a specified 
+     * price list can be discounted.
+     * @type {Array<string>}
+     * @memberof CatalogAdminsDiscount
+     */
+    includedPriceLists?: Array<string> | null;
+    /**
+     * Readonly property indicating that the condition required purchase is the 
+     * same as the target items.  Used in BxGx and BoGo type discounts.
+     * @type {boolean}
+     * @memberof CatalogAdminsDiscount
+     */
+    isBxGx?: boolean | null;
+    /**
      * Signifies if the discount is disabled (Null is treated as false)
      * @type {boolean}
      * @memberof CatalogAdminsDiscount
      */
     isDisabled?: boolean | null;
     /**
-     * Maximum number of times a user can redeem this discount.
-     *  Must be either null or greater than zero.
-     * @type {number}
+     * Determines whether the discount is available for every shopper.
+     * @type {boolean}
      * @memberof CatalogAdminsDiscount
      */
-    maximumUsesPerUser?: number | null;
+    isPublic?: boolean | null;
+    /**
+     * Determines how discounts will be evaluated for subscription items and during continuity orders.
+     * @type {boolean}
+     * @memberof CatalogAdminsDiscount
+     */
+    isSubscriptionDiscount?: boolean | null;
+    /**
+     * Indicates unique discount labels.
+     * @type {Array<string>}
+     * @memberof CatalogAdminsDiscount
+     */
+    labels?: Array<string> | null;
+    /**
+     * Container for the language-specific name of the discount. You will have a container for each supported language (LocaleCode).
+     * This enables you to display the discount name in multiple languages yet manage it as a single discount internally.
+     * @type {Array<DiscountLocalizedContent>}
+     * @memberof CatalogAdminsDiscount
+     */
+    localizedContent?: Array<DiscountLocalizedContent> | null;
     /**
      * Maximum impact this discount can apply on a single order.
      *  Must be either null or greater than zero.
@@ -1203,44 +1536,12 @@ export interface CatalogAdminsDiscount {
      */
     maximumRedemptionsPerOrder?: number | null;
     /**
-     * Products receiving a price from a price list specified here or a child of a specified 
-     * price list can be discounted.
-     * @type {Array<string>}
-     * @memberof CatalogAdminsDiscount
-     */
-    includedPriceLists?: Array<string> | null;
-    /**
-     * Flag to allow or prevent application to multi-ship-to orders,
-     * Only applicable to shipping discounts.
-     * @type {boolean}
-     * @memberof CatalogAdminsDiscount
-     */
-    doesNotApplyToMultiShipToOrders?: boolean | null;
-    /**
-     * Readonly property indicating that the condition required purchase is the 
-     * same as the target items.  Used in BxGx and BoGo type discounts.
-     * @type {boolean}
-     * @memberof CatalogAdminsDiscount
-     */
-    isBxGx?: boolean | null;
-    /**
-     * Indicates whether or not stacking is enabled for this discount
-     * @type {boolean}
-     * @memberof CatalogAdminsDiscount
-     */
-    canBeStackedUpon?: boolean | null;
-    /**
-     * Indicates which stacking layer this discount is a part of
+     * Maximum number of times a user can redeem this discount.
+     *  Must be either null or greater than zero.
      * @type {number}
      * @memberof CatalogAdminsDiscount
      */
-    stackingLayer?: number | null;
-    /**
-     * 
-     * @type {CatalogAdminsThresholdMessage}
-     * @memberof CatalogAdminsDiscount
-     */
-    thresholdMessage?: CatalogAdminsThresholdMessage;
+    maximumUsesPerUser?: number | null;
     /**
      * Prevents Line Item Shipping discounts from being applied when a Line Item Product  
      * discount has been applied
@@ -1263,13 +1564,6 @@ export interface CatalogAdminsDiscount {
      */
     preventOrderShippingDiscounts?: boolean | null;
     /**
-     * Indicates if this discount has purchase conditions that must be met before 
-     * the discount is applied
-     * @type {boolean}
-     * @memberof CatalogAdminsDiscount
-     */
-    hasPurchaseConditions?: boolean;
-    /**
      * The type of purchase requirement for this discount, either purchase conditions and targets which   
      * Supports BoGo, and BxGx scenarios. Or Target only that only have a target and no purchase conditions
      * @type {string}
@@ -1277,11 +1571,30 @@ export interface CatalogAdminsDiscount {
      */
     purchaseRequirementType?: string | null;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
+     * Enables post-order-discount minimum re-evaluation for eligible free-item discounts.
+     * Values null and false are treated as disabled.
+     * @type {boolean}
      * @memberof CatalogAdminsDiscount
      */
-    auditInfo?: AdminUserAuditInfo;
+    reevalFreeItemMinOrderPostDiscounts?: boolean | null;
+    /**
+     * Scope to which the discount applies, valid values are: Order, LineItem
+     * @type {string}
+     * @memberof CatalogAdminsDiscount
+     */
+    scope: string;
+    /**
+     * Indicates which stacking layer this discount is a part of
+     * @type {number}
+     * @memberof CatalogAdminsDiscount
+     */
+    stackingLayer?: number | null;
+    /**
+     * Discount status which can be "Active," "Scheduled," or "Expired." System-supplied and read-only.
+     * @type {string}
+     * @memberof CatalogAdminsDiscount
+     */
+    status?: string | null;
     /**
      * System-supplied and read-only.
      * @type {Array<string>}
@@ -1289,29 +1602,17 @@ export interface CatalogAdminsDiscount {
      */
     tagCodes?: Array<string> | null;
     /**
-     * Determines how discounts will be evaluated for subscription items and during continuity orders.
-     * @type {boolean}
+     * 
+     * @type {CatalogAdminsDiscountTarget}
      * @memberof CatalogAdminsDiscount
      */
-    isSubscriptionDiscount?: boolean | null;
+    target: CatalogAdminsDiscountTarget;
     /**
-     * Determines whether the discount is available for every shopper.
-     * @type {boolean}
+     * 
+     * @type {CatalogAdminsThresholdMessage}
      * @memberof CatalogAdminsDiscount
      */
-    isPublic?: boolean | null;
-    /**
-     * Indicates unique code for the discount, if not present Discount Id is used as a code.
-     * @type {string}
-     * @memberof CatalogAdminsDiscount
-     */
-    code?: string | null;
-    /**
-     * Indicates unique discount labels.
-     * @type {Array<string>}
-     * @memberof CatalogAdminsDiscount
-     */
-    labels?: Array<string> | null;
+    thresholdMessage?: CatalogAdminsThresholdMessage;
 }
 /**
  * Collection of discounts returned as a whole. A collection is not paged.
@@ -1321,16 +1622,10 @@ export interface CatalogAdminsDiscount {
 export interface CatalogAdminsDiscountCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<CatalogAdminsDiscount>}
      * @memberof CatalogAdminsDiscountCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CatalogAdminsDiscountCollection
-     */
-    pageSize?: number;
+    items?: Array<CatalogAdminsDiscount> | null;
     /**
      * 
      * @type {number}
@@ -1342,13 +1637,19 @@ export interface CatalogAdminsDiscountCollection {
      * @type {number}
      * @memberof CatalogAdminsDiscountCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<CatalogAdminsDiscount>}
+     * @type {number}
      * @memberof CatalogAdminsDiscountCollection
      */
-    items?: Array<CatalogAdminsDiscount> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CatalogAdminsDiscountCollection
+     */
+    totalCount?: number;
 }
 /**
  * Specifies constraints that must be satified for a discount to be applied to a target.
@@ -1358,17 +1659,17 @@ export interface CatalogAdminsDiscountCollection {
  */
 export interface CatalogAdminsDiscountCondition {
     /**
-     * Maximum number of times that the discount can be redeemed. Default is null (no limit to discount redemptions).
-     * @type {number}
+     * List of categories to discount. When a discount applies to a category, all products in the category are discounted.
+     * @type {Array<CategoryDiscountCondition>}
      * @memberof CatalogAdminsDiscountCondition
      */
-    maxRedemptionCount?: number | null;
+    categoriesToExcludeFromMinOrderTotal?: Array<CategoryDiscountCondition> | null;
     /**
-     * If true, the shopper needs to enter a coupon code to redeem the discount.
-     * @type {boolean}
+     * 
+     * @type {ContinuityRecurrenceSettings}
      * @memberof CatalogAdminsDiscountCondition
      */
-    requiresCoupon?: boolean;
+    continuityRecurrenceSettings?: ContinuityRecurrenceSettings;
     /**
      * Code of the coupon associated with the discount (if a coupon code is required). The merchant can supply the code or the system can generate it.
      * @type {string}
@@ -1376,24 +1677,11 @@ export interface CatalogAdminsDiscountCondition {
      */
     couponCode?: string | null;
     /**
-     * Determines is this discount can be used by an anonymous user 
-     * Defaults to false to allow discounts for anonymous users.
-     * @type {boolean}
+     * List of customer groups for which the discount applies
+     * @type {Array<CatalogAdminsCustomerSegment>}
      * @memberof CatalogAdminsDiscountCondition
      */
-    requiresAuthenticatedUser?: boolean;
-    /**
-     * List of payment types that trigger this discount to be valid.
-     * @type {Array<string>}
-     * @memberof CatalogAdminsDiscountCondition
-     */
-    includedPaymentWorkflows?: Array<string> | null;
-    /**
-     * List of categories that must be purchased in order for the discount to be valid.
-     * @type {Array<CategoryDiscountCondition>}
-     * @memberof CatalogAdminsDiscountCondition
-     */
-    includedCategories?: Array<CategoryDiscountCondition> | null;
+    customerSegments?: Array<CatalogAdminsCustomerSegment> | null;
     /**
      * List of categories to discount. When a discount applies to a category, all products in the category are discounted.
      * @type {Array<CategoryDiscountCondition>}
@@ -1405,73 +1693,20 @@ export interface CatalogAdminsDiscountCondition {
      * @type {Array<ProductDiscountCondition>}
      * @memberof CatalogAdminsDiscountCondition
      */
-    includedProducts?: Array<ProductDiscountCondition> | null;
-    /**
-     * List of products that are eligible for the discount.
-     * @type {Array<ProductDiscountCondition>}
-     * @memberof CatalogAdminsDiscountCondition
-     */
     excludedProducts?: Array<ProductDiscountCondition> | null;
     /**
-     * List of customer groups for which the discount applies
-     * @type {Array<PricingRuntimeCustomerSegment>}
+     * List of locations where the item/order should be fulfilled for the discount to be valid.
+     * @type {Array<string>}
      * @memberof CatalogAdminsDiscountCondition
      */
-    customerSegments?: Array<PricingRuntimeCustomerSegment> | null;
+    exclusiveLocationCodes?: Array<string> | null;
     /**
-     * Minimum quantity of products in the specified IncludedProducts that must be purchased to
-     * qualify for the associated discount.
-     * Defaults to 1 if  null and IncludedProducts has values.
-     * @type {number}
+     * The discount condition for site Ids, if present the discount will be applied only to these sites.
+     * If not present discount will work for all sites in a catalog.
+     * @type {Array<number>}
      * @memberof CatalogAdminsDiscountCondition
      */
-    minimumQuantityRequiredProducts?: number | null;
-    /**
-     * Minimum quantity of products in the categories specified in IncludedCategories that must be purchased to
-     * qualify for the associated discount.
-     * Defaults to 1 if  null and IncludedCategories has values
-     * @type {number}
-     * @memberof CatalogAdminsDiscountCondition
-     */
-    minimumQuantityProductsRequiredInCategories?: number | null;
-    /**
-     * Only applies to order.
-     * Minimum order subtotal after discounts in order for the associated discount to be applied
-     * @type {number}
-     * @memberof CatalogAdminsDiscountCondition
-     */
-    minimumOrderAmount?: number | null;
-    /**
-     * Only applies to order.
-     * Maximum order subtotal after discounts in order for the associated discount to be applied
-     * @type {number}
-     * @memberof CatalogAdminsDiscountCondition
-     */
-    maximumOrderAmount?: number | null;
-    /**
-     * List of categories to discount. When a discount applies to a category, all products in the category are discounted.
-     * @type {Array<CategoryDiscountCondition>}
-     * @memberof CatalogAdminsDiscountCondition
-     */
-    categoriesToExcludeFromMinOrderTotal?: Array<CategoryDiscountCondition> | null;
-    /**
-     * List of products that are eligible for the discount.
-     * @type {Array<ProductDiscountCondition>}
-     * @memberof CatalogAdminsDiscountCondition
-     */
-    productsToExcludeFromMinOrderTotal?: Array<ProductDiscountCondition> | null;
-    /**
-     * Minimum lifetime value amount required for this discount to apply
-     * @type {number}
-     * @memberof CatalogAdminsDiscountCondition
-     */
-    minimumLifetimeValueAmount?: number | null;
-    /**
-     * Date when the discount can goes into effect, in the format yyyy-mm-dd.
-     * @type {string}
-     * @memberof CatalogAdminsDiscountCondition
-     */
-    startDate?: string | null;
+    exclusiveSiteIds?: Array<number> | null;
     /**
      * Date when the discount expires. Default is null (no expiration date).
      * @type {string}
@@ -1479,31 +1714,42 @@ export interface CatalogAdminsDiscountCondition {
      */
     expirationDate?: string | null;
     /**
-     * Minimum amount that must be purchased in the combined categories defined in 
-     * IncludedCategories.  Amount is calculated before discounting.
-     * Not used if IncludedCategories is empty.
-     * @type {number}
+     * 
+     * @type {CatalogAdminsDynamicExpression}
      * @memberof CatalogAdminsDiscountCondition
      */
-    minimumCategorySubtotalBeforeDiscounts?: number | null;
+    expression?: CatalogAdminsDynamicExpression;
     /**
-     * Defines a minimum quantity that is required for a target only discount
-     * @type {number}
+     * List of categories that must be purchased in order for the discount to be valid.
+     * @type {Array<CategoryDiscountCondition>}
      * @memberof CatalogAdminsDiscountCondition
      */
-    minimumRequiredQuantityPerRedemption?: number | null;
+    includedCategories?: Array<CategoryDiscountCondition> | null;
     /**
-     * List of subscription frequencies to which the discount will apply.
+     * List of payment types that trigger this discount to be valid.
      * @type {Array<string>}
      * @memberof CatalogAdminsDiscountCondition
      */
-    validSubscriptionFrequencies?: Array<string> | null;
+    includedPaymentWorkflows?: Array<string> | null;
     /**
-     * Ordinals at which a continuity order should receive the discount.
-     * @type {Array<number>}
+     * List of products that are eligible for the discount.
+     * @type {Array<ProductDiscountCondition>}
      * @memberof CatalogAdminsDiscountCondition
      */
-    validSubscriptionContinuityOrdinals?: Array<number> | null;
+    includedProducts?: Array<ProductDiscountCondition> | null;
+    /**
+     * Maximum number of times that the discount can be redeemed. Default is null (no limit to discount redemptions).
+     * @type {number}
+     * @memberof CatalogAdminsDiscountCondition
+     */
+    maxRedemptionCount?: number | null;
+    /**
+     * Only applies to order.
+     * Maximum order subtotal after discounts in order for the associated discount to be applied
+     * @type {number}
+     * @memberof CatalogAdminsDiscountCondition
+     */
+    maximumOrderAmount?: number | null;
     /**
      * The minimum number of distinct products on the order
      * Not a quantity calculation.
@@ -1519,6 +1765,49 @@ export interface CatalogAdminsDiscountCondition {
      */
     minTotalOrderQuantity?: number | null;
     /**
+     * Minimum amount that must be purchased in the combined categories defined in 
+     * IncludedCategories.  Amount is calculated before discounting.
+     * Not used if IncludedCategories is empty.
+     * @type {number}
+     * @memberof CatalogAdminsDiscountCondition
+     */
+    minimumCategorySubtotalBeforeDiscounts?: number | null;
+    /**
+     * Minimum lifetime value amount required for this discount to apply
+     * @type {number}
+     * @memberof CatalogAdminsDiscountCondition
+     */
+    minimumLifetimeValueAmount?: number | null;
+    /**
+     * Only applies to order.
+     * Minimum order subtotal after discounts in order for the associated discount to be applied
+     * @type {number}
+     * @memberof CatalogAdminsDiscountCondition
+     */
+    minimumOrderAmount?: number | null;
+    /**
+     * Minimum quantity of products in the categories specified in IncludedCategories that must be purchased to
+     * qualify for the associated discount.
+     * Defaults to 1 if  null and IncludedCategories has values
+     * @type {number}
+     * @memberof CatalogAdminsDiscountCondition
+     */
+    minimumQuantityProductsRequiredInCategories?: number | null;
+    /**
+     * Minimum quantity of products in the specified IncludedProducts that must be purchased to
+     * qualify for the associated discount.
+     * Defaults to 1 if  null and IncludedProducts has values.
+     * @type {number}
+     * @memberof CatalogAdminsDiscountCondition
+     */
+    minimumQuantityRequiredProducts?: number | null;
+    /**
+     * Defines a minimum quantity that is required for a target only discount
+     * @type {number}
+     * @memberof CatalogAdminsDiscountCondition
+     */
+    minimumRequiredQuantityPerRedemption?: number | null;
+    /**
      * The pricing context must match on this value for the discount to apply.
      * This only matters for tenants that use subscription products
      * @type {string}
@@ -1526,11 +1815,30 @@ export interface CatalogAdminsDiscountCondition {
      */
     pricingContext?: string | null;
     /**
-     * 
-     * @type {ContinuityRecurrenceSettings}
+     * List of products that are eligible for the discount.
+     * @type {Array<ProductDiscountCondition>}
      * @memberof CatalogAdminsDiscountCondition
      */
-    continuityRecurrenceSettings?: ContinuityRecurrenceSettings;
+    productsToExcludeFromMinOrderTotal?: Array<ProductDiscountCondition> | null;
+    /**
+     * Determines is this discount can be used by an anonymous user 
+     * Defaults to false to allow discounts for anonymous users.
+     * @type {boolean}
+     * @memberof CatalogAdminsDiscountCondition
+     */
+    requiresAuthenticatedUser?: boolean;
+    /**
+     * If true, the shopper needs to enter a coupon code to redeem the discount.
+     * @type {boolean}
+     * @memberof CatalogAdminsDiscountCondition
+     */
+    requiresCoupon?: boolean;
+    /**
+     * Date when the discount can goes into effect, in the format yyyy-mm-dd.
+     * @type {string}
+     * @memberof CatalogAdminsDiscountCondition
+     */
+    startDate?: string | null;
     /**
      * The discount condition for fulfillment methods, if present the discount will be applied only to these fulfillment methods.
      * This must be a value defined in FulfillmentMethodConst below.
@@ -1539,24 +1847,17 @@ export interface CatalogAdminsDiscountCondition {
      */
     validFulfillmentMethods?: Array<string> | null;
     /**
-     * The discount condition for site Ids, if present the discount will be applied only to these sites.
-     * If not present discount will work for all sites in a catalog.
+     * Ordinals at which a continuity order should receive the discount.
      * @type {Array<number>}
      * @memberof CatalogAdminsDiscountCondition
      */
-    exclusiveSiteIds?: Array<number> | null;
+    validSubscriptionContinuityOrdinals?: Array<number> | null;
     /**
-     * 
-     * @type {CatalogAdminsCustomerDynamicExpression}
-     * @memberof CatalogAdminsDiscountCondition
-     */
-    expression?: CatalogAdminsCustomerDynamicExpression;
-    /**
-     * List of locations where the item/order should be fulfilled for the discount to be valid.
+     * List of subscription frequencies to which the discount will apply.
      * @type {Array<string>}
      * @memberof CatalogAdminsDiscountCondition
      */
-    exclusiveLocationCodes?: Array<string> | null;
+    validSubscriptionFrequencies?: Array<string> | null;
 }
 /**
  * What to discount. Specifies the type of discount (percentage off, monetary amount, or free shipping) and which products, categories, or shipping methods are eligible for the discount.
@@ -1566,13 +1867,58 @@ export interface CatalogAdminsDiscountCondition {
  */
 export interface CatalogAdminsDiscountTarget {
     /**
-     *     Type of target to which the discount applies. Possible values: <pre>Product</pre> or <pre>Shipping</pre>. 
-     * If this is a <pre>Product</pre> type, you can specify which products or categories that the discount applies to.
-     *     If this is a <pre>Shipping</pre> type then you must specify which shipping methods apply.
+     * Determines which way the discount is optimized.  Consumers favor(default - false/null) or tenants favor (when this is set to true)
+     * Applies to discounts where target is not a specific product or list of products.  
+     * May also impact behavior of Buy X Get Y so that X is the most expensive items and Y the least expensive.
+     * @type {boolean}
+     * @memberof CatalogAdminsDiscountTarget
+     */
+    appliesToLeastExpensiveProductsFirst?: boolean | null;
+    /**
+     * List of categories to discount. When a discount applies to a category, all products in the category are discounted.
+     * @type {Array<CatalogAdminsTargetedCategory>}
+     * @memberof CatalogAdminsDiscountTarget
+     */
+    categories?: Array<CatalogAdminsTargetedCategory> | null;
+    /**
+     * Prevents the discount from being applied to handling fees
+     * @type {boolean}
+     * @memberof CatalogAdminsDiscountTarget
+     */
+    doNotApplyToHandlingFees?: boolean | null;
+    /**
+     * Prevents order scoped discounts from layering over items that already have a product discount with the 
+     * same type.
+     * @type {boolean}
+     * @memberof CatalogAdminsDiscountTarget
+     */
+    excludeItemsWithExistingProductDiscounts?: boolean | null;
+    /**
+     * Prevents order scoped discounts from layering over items that already have a shipping discount with the 
+     * same type.
+     * @type {boolean}
+     * @memberof CatalogAdminsDiscountTarget
+     */
+    excludeItemsWithExistingShippingDiscounts?: boolean | null;
+    /**
+     * List of categories to exclude from the discount. Useful to exclude specific child categories.
+     * @type {Array<CatalogAdminsTargetedCategory>}
+     * @memberof CatalogAdminsDiscountTarget
+     */
+    excludedCategories?: Array<CatalogAdminsTargetedCategory> | null;
+    /**
+     * Applies to Included categories
+     * Defaults to Any
      * @type {string}
      * @memberof CatalogAdminsDiscountTarget
      */
-    type: string;
+    excludedCategoriesOperator?: string | null;
+    /**
+     * List of products that are excluded from the discount.
+     * @type {Array<TargetedProduct>}
+     * @memberof CatalogAdminsDiscountTarget
+     */
+    excludedProducts?: Array<TargetedProduct> | null;
     /**
      * If yes, the discount applies to all products sold on the storefront.
      * @type {boolean}
@@ -1589,50 +1935,21 @@ export interface CatalogAdminsDiscountTarget {
      */
     includedCategoriesOperator?: string | null;
     /**
-     * List of categories to discount. When a discount applies to a category, all products in the category are discounted.
-     * @type {Array<CatalogAdminsTargetedCategory>}
+     * When a condition is specified, this property limits the number of items that can be targeted per discount redemption with an order.
+     * if multiple redemptions are allowed per order then multiples of this value would be allowed in multiples of the associated 
+     * condition.
+     * If no condition is specified then this value is not used.  
+     * If null and condition exists, then defaults to 1.
+     * @type {number}
      * @memberof CatalogAdminsDiscountTarget
      */
-    categories?: Array<CatalogAdminsTargetedCategory> | null;
-    /**
-     * Applies to Included categories
-     * Defaults to Any
-     * @type {string}
-     * @memberof CatalogAdminsDiscountTarget
-     */
-    excludedCategoriesOperator?: string | null;
-    /**
-     * List of categories to exclude from the discount. Useful to exclude specific child categories.
-     * @type {Array<CatalogAdminsTargetedCategory>}
-     * @memberof CatalogAdminsDiscountTarget
-     */
-    excludedCategories?: Array<CatalogAdminsTargetedCategory> | null;
+    maximumQuantityPerRedemption?: number | null;
     /**
      * List of products that are eligible for the discount.
      * @type {Array<TargetedProduct>}
      * @memberof CatalogAdminsDiscountTarget
      */
     products?: Array<TargetedProduct> | null;
-    /**
-     * List of products that are excluded from the discount.
-     * @type {Array<TargetedProduct>}
-     * @memberof CatalogAdminsDiscountTarget
-     */
-    excludedProducts?: Array<TargetedProduct> | null;
-    /**
-     * Prevents order scoped discounts from layering over items that already have a shipping discount with the 
-     * same type.
-     * @type {boolean}
-     * @memberof CatalogAdminsDiscountTarget
-     */
-    excludeItemsWithExistingShippingDiscounts?: boolean | null;
-    /**
-     * Prevents order scoped discounts from layering over items that already have a product discount with the 
-     * same type.
-     * @type {boolean}
-     * @memberof CatalogAdminsDiscountTarget
-     */
-    excludeItemsWithExistingProductDiscounts?: boolean | null;
     /**
      * Shipping method that is eligible for shipping discounts. This is a shipping method defined in Shipping Settings.
      * @type {Array<CatalogAdminsTargetedShippingMethod>}
@@ -1646,29 +1963,32 @@ export interface CatalogAdminsDiscountTarget {
      */
     shippingZones?: Array<CatalogAdminsTargetedShippingZone> | null;
     /**
-     * Prevents the discount from being applied to handling fees
-     * @type {boolean}
+     *     Type of target to which the discount applies. Possible values: <pre>Product</pre> or <pre>Shipping</pre>. 
+     * If this is a <pre>Product</pre> type, you can specify which products or categories that the discount applies to.
+     *     If this is a <pre>Shipping</pre> type then you must specify which shipping methods apply.
+     * @type {string}
      * @memberof CatalogAdminsDiscountTarget
      */
-    doNotApplyToHandlingFees?: boolean | null;
+    type: string;
+}
+/**
+ * Category
+ * @export
+ * @interface CatalogAdminsDynamicExpression
+ */
+export interface CatalogAdminsDynamicExpression {
     /**
-     * When a condition is specified, this property limits the number of items that can be targeted per discount redemption with an order.
-     * if multiple redemptions are allowed per order then multiples of this value would be allowed in multiples of the associated 
-     * condition.
-     * If no condition is specified then this value is not used.  
-     * If null and condition exists, then defaults to 1.
-     * @type {number}
-     * @memberof CatalogAdminsDiscountTarget
+     * 
+     * @type {string}
+     * @memberof CatalogAdminsDynamicExpression
      */
-    maximumQuantityPerRedemption?: number | null;
+    text?: string | null;
     /**
-     * Determines which way the discount is optimized.  Consumers favor(default - false/null) or tenants favor (when this is set to true)
-     * Applies to discounts where target is not a specific product or list of products.  
-     * May also impact behavior of Buy X Get Y so that X is the most expensive items and Y the least expensive.
-     * @type {boolean}
-     * @memberof CatalogAdminsDiscountTarget
+     * 
+     * @type {CatalogAdminsExpression}
+     * @memberof CatalogAdminsDynamicExpression
      */
-    appliesToLeastExpensiveProductsFirst?: boolean | null;
+    tree?: CatalogAdminsExpression;
 }
 /**
  * 
@@ -1677,11 +1997,11 @@ export interface CatalogAdminsDiscountTarget {
  */
 export interface CatalogAdminsExpression {
     /**
-     * Container or Predicate
+     * The field target of a predicate
      * @type {string}
      * @memberof CatalogAdminsExpression
      */
-    type?: string | null;
+    left?: string | null;
     /**
      * And or Or (if Container with More than one Node)
      * @type {string}
@@ -1695,12 +2015,6 @@ export interface CatalogAdminsExpression {
      */
     nodes?: Array<CatalogAdminsExpression> | null;
     /**
-     * The field target of a predicate
-     * @type {string}
-     * @memberof CatalogAdminsExpression
-     */
-    left?: string | null;
-    /**
      * The operator of a predicate
      * @type {string}
      * @memberof CatalogAdminsExpression
@@ -1712,6 +2026,12 @@ export interface CatalogAdminsExpression {
      * @memberof CatalogAdminsExpression
      */
     right?: any | null;
+    /**
+     * Container or Predicate
+     * @type {string}
+     * @memberof CatalogAdminsExpression
+     */
+    type?: string | null;
 }
 /**
  * The definition of a Facet
@@ -1720,17 +2040,29 @@ export interface CatalogAdminsExpression {
  */
 export interface CatalogAdminsFacet {
     /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof CatalogAdminsFacet
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * The category that the facet is being configured at
+     * @type {string}
+     * @memberof CatalogAdminsFacet
+     */
+    categoryCode?: string | null;
+    /**
+     * The category that the facet is being configured at
+     * @type {number}
+     * @memberof CatalogAdminsFacet
+     */
+    categoryId?: number | null;
+    /**
      * The unique identifier for the facet definition
      * @type {number}
      * @memberof CatalogAdminsFacet
      */
     facetId?: number | null;
-    /**
-     * 
-     * @type {FacetSource}
-     * @memberof CatalogAdminsFacet
-     */
-    source?: FacetSource;
     /**
      * The type of facet. Allowable values are: Value, RangeQuery 
      * Must be a valid value for DataType defined in FacetTypeConst.
@@ -1739,23 +2071,41 @@ export interface CatalogAdminsFacet {
      */
     facetType?: string | null;
     /**
+     * Indicates whether the facet is hidden for the given category
+     * @type {boolean}
+     * @memberof CatalogAdminsFacet
+     */
+    isHidden?: boolean;
+    /**
      * Used to order the display of the facets within a section
      * @type {number}
      * @memberof CatalogAdminsFacet
      */
     order?: number;
     /**
-     * The category that the facet is being configured at
+     * The ID of a parent category's facet being overriden
      * @type {number}
      * @memberof CatalogAdminsFacet
      */
-    categoryId?: number | null;
+    overrideFacetId?: number | null;
     /**
-     * The category that the facet is being configured at
-     * @type {string}
+     * List of ranges if the Facet is of type Range
+     * @type {Array<FacetRangeQuery>}
      * @memberof CatalogAdminsFacet
      */
-    categoryCode?: string | null;
+    rangeQueries?: Array<FacetRangeQuery> | null;
+    /**
+     * 
+     * @type {FacetSource}
+     * @memberof CatalogAdminsFacet
+     */
+    source?: FacetSource;
+    /**
+     * 
+     * @type {FacetValidity}
+     * @memberof CatalogAdminsFacet
+     */
+    validity?: FacetValidity;
     /**
      * Determines how the facet values will be sorted in the store. 
      * Must be a valid value for DataType defined in FacetValueSortTypeConst. 
@@ -1765,36 +2115,6 @@ export interface CatalogAdminsFacet {
      * @memberof CatalogAdminsFacet
      */
     valueSortType?: string | null;
-    /**
-     * The ID of a parent category's facet being overriden
-     * @type {number}
-     * @memberof CatalogAdminsFacet
-     */
-    overrideFacetId?: number | null;
-    /**
-     * Indicates whether the facet is hidden for the given category
-     * @type {boolean}
-     * @memberof CatalogAdminsFacet
-     */
-    isHidden?: boolean;
-    /**
-     * 
-     * @type {FacetValidity}
-     * @memberof CatalogAdminsFacet
-     */
-    validity?: FacetValidity;
-    /**
-     * List of ranges if the Facet is of type Range
-     * @type {Array<FacetRangeQuery>}
-     * @memberof CatalogAdminsFacet
-     */
-    rangeQueries?: Array<FacetRangeQuery> | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof CatalogAdminsFacet
-     */
-    auditInfo?: AdminUserAuditInfo;
 }
 /**
  * 
@@ -1803,11 +2123,23 @@ export interface CatalogAdminsFacet {
  */
 export interface CatalogAdminsMasterCatalog {
     /**
+     * If the publishingMode is Pending and LiveEditsEnabled = true, DataViewMode live can be passed in the header and live products can be directly edited.
+     * @type {boolean}
+     * @memberof CatalogAdminsMasterCatalog
+     */
+    enableLiveEdit?: boolean | null;
+    /**
      * MasterCatalogId (readonly)
      * @type {number}
      * @memberof CatalogAdminsMasterCatalog
      */
     id?: number;
+    /**
+     * Indicates whether the MasterCatalog has been deleted and should no longer be used
+     * @type {boolean}
+     * @memberof CatalogAdminsMasterCatalog
+     */
+    isDeleted?: boolean;
     /**
      * Name of the MasterCatalog (readonly)
      * @type {string}
@@ -1821,23 +2153,11 @@ export interface CatalogAdminsMasterCatalog {
      */
     productPublishingMode?: string | null;
     /**
-     * If the publishingMode is Pending and LiveEditsEnabled = true, DataViewMode live can be passed in the header and live products can be directly edited.
-     * @type {boolean}
-     * @memberof CatalogAdminsMasterCatalog
-     */
-    enableLiveEdit?: boolean | null;
-    /**
      * Master catalog supported locale codes
      * @type {Array<string>}
      * @memberof CatalogAdminsMasterCatalog
      */
     supportedLocaleCodes?: Array<string> | null;
-    /**
-     * Indicates whether the MasterCatalog has been deleted and should no longer be used
-     * @type {boolean}
-     * @memberof CatalogAdminsMasterCatalog
-     */
-    isDeleted?: boolean;
 }
 /**
  * Category
@@ -1846,35 +2166,17 @@ export interface CatalogAdminsMasterCatalog {
  */
 export interface CatalogAdminsPriceList {
     /**
-     * External unique identifier of the PriceList. Must be unique an only contain url sanitized characters. Max length is 50
-     * @type {string}
+     * 
+     * @type {AdminUserAuditInfo}
      * @memberof CatalogAdminsPriceList
      */
-    priceListCode: string;
+    auditInfo?: AdminUserAuditInfo;
     /**
      * 
-     * @type {number}
+     * @type {Array<number>}
      * @memberof CatalogAdminsPriceList
      */
-    priceListSequence?: number;
-    /**
-     * Parent PriceList code, Can be null for root level priceLists
-     * @type {string}
-     * @memberof CatalogAdminsPriceList
-     */
-    parentPriceListCode?: string | null;
-    /**
-     * Parent PriceList name, Can be null for root level priceLists. Read only in contract.
-     * @type {string}
-     * @memberof CatalogAdminsPriceList
-     */
-    parentPriceListName?: string | null;
-    /**
-     * Name of the priceList. Max length is 100
-     * @type {string}
-     * @memberof CatalogAdminsPriceList
-     */
-    name: string;
+    defaultForSites?: Array<number> | null;
     /**
      * Description of the price list. Max length is 300
      * @type {string}
@@ -1894,24 +2196,6 @@ export interface CatalogAdminsPriceList {
      */
     filteredInStorefront?: boolean | null;
     /**
-     * When true, no valid sites need to be specifiied. Price list is considered valid for all sites. Default is true
-     * @type {boolean}
-     * @memberof CatalogAdminsPriceList
-     */
-    validForAllSites?: boolean | null;
-    /**
-     * When ValidForAllSites = false, a list of siteIDs that the price list is valid for should be supplied
-     * @type {Array<number>}
-     * @memberof CatalogAdminsPriceList
-     */
-    validSites?: Array<number> | null;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof CatalogAdminsPriceList
-     */
-    defaultForSites?: Array<number> | null;
-    /**
      * 
      * @type {Array<number>}
      * @memberof CatalogAdminsPriceList
@@ -1924,6 +2208,36 @@ export interface CatalogAdminsPriceList {
      * @memberof CatalogAdminsPriceList
      */
     mappedCustomerSegments?: Array<string> | null;
+    /**
+     * Name of the priceList. Max length is 100
+     * @type {string}
+     * @memberof CatalogAdminsPriceList
+     */
+    name: string;
+    /**
+     * Parent PriceList code, Can be null for root level priceLists
+     * @type {string}
+     * @memberof CatalogAdminsPriceList
+     */
+    parentPriceListCode?: string | null;
+    /**
+     * Parent PriceList name, Can be null for root level priceLists. Read only in contract.
+     * @type {string}
+     * @memberof CatalogAdminsPriceList
+     */
+    parentPriceListName?: string | null;
+    /**
+     * External unique identifier of the PriceList. Must be unique an only contain url sanitized characters. Max length is 50
+     * @type {string}
+     * @memberof CatalogAdminsPriceList
+     */
+    priceListCode: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CatalogAdminsPriceList
+     */
+    priceListSequence?: number;
     /**
      * Used to prioritize price list resolution when more than 1 price list maps
      * @type {number}
@@ -1938,11 +2252,17 @@ export interface CatalogAdminsPriceList {
      */
     resolvable?: boolean | null;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
+     * When true, no valid sites need to be specifiied. Price list is considered valid for all sites. Default is true
+     * @type {boolean}
      * @memberof CatalogAdminsPriceList
      */
-    auditInfo?: AdminUserAuditInfo;
+    validForAllSites?: boolean | null;
+    /**
+     * When ValidForAllSites = false, a list of siteIDs that the price list is valid for should be supplied
+     * @type {Array<number>}
+     * @memberof CatalogAdminsPriceList
+     */
+    validSites?: Array<number> | null;
 }
 /**
  * Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs.
@@ -1951,47 +2271,17 @@ export interface CatalogAdminsPriceList {
  */
 export interface CatalogAdminsProduct {
     /**
-     * Merchant-created code identifier associated with the product, for example, a SKU or product item number.
-     * @type {string}
+     * Read only. List of discounts that are available for a product.
+     * @type {Array<CatalogAdminsDiscount>}
      * @memberof CatalogAdminsProduct
      */
-    productCode?: string | null;
+    applicableDiscounts?: Array<CatalogAdminsDiscount> | null;
     /**
-     * Indicates the usage type of this product. Must be one of the values in ProductUsageConst.
-     * @type {string}
+     * 
+     * @type {AdminUserAuditInfo}
      * @memberof CatalogAdminsProduct
      */
-    productUsage?: string | null;
-    /**
-     * Indicates the fulfillment types the product supports.
-     * @type {Array<string>}
-     * @memberof CatalogAdminsProduct
-     */
-    fulfillmentTypesSupported?: Array<string> | null;
-    /**
-     * Identifier of the Master Catalog that this product is a member of. System-supplied and read-only
-     * @type {number}
-     * @memberof CatalogAdminsProduct
-     */
-    masterCatalogId?: number | null;
-    /**
-     * System generated monotonically increasing sequence
-     * @type {number}
-     * @memberof CatalogAdminsProduct
-     */
-    productSequence?: number | null;
-    /**
-     * Unique identifier of the productType of the product. Refers to a valid ProductType that was previously created with the ProductType resource.
-     * @type {number}
-     * @memberof CatalogAdminsProduct
-     */
-    productTypeId?: number | null;
-    /**
-     * Read only flag that indicates if the product meets the product type constraints (All adminRequired attributes have a valid value)
-     * @type {boolean}
-     * @memberof CatalogAdminsProduct
-     */
-    isValidForProductType?: boolean | null;
+    auditInfo?: AdminUserAuditInfo;
     /**
      * This is the base product ProductCode of a product that is a variation. It is read-only and only populated for products that are variations of a configurable base product.
      * @type {string}
@@ -1999,11 +2289,12 @@ export interface CatalogAdminsProduct {
      */
     baseProductCode?: string | null;
     /**
-     * Catalog specific info for each catalog a product is valid in. There should always be one or more entries here.
-     * @type {Array<ProductInCatalogInfo>}
+     * list of other products that are included in a BundleProduct
+     * This requires that the ProductUsage be set to Bundle
+     * @type {Array<CatalogAdminsBundledProduct>}
      * @memberof CatalogAdminsProduct
      */
-    productInCatalogs?: Array<ProductInCatalogInfo> | null;
+    bundledProducts?: Array<CatalogAdminsBundledProduct> | null;
     /**
      * 
      * @type {ProductLocalizedContent}
@@ -2011,143 +2302,17 @@ export interface CatalogAdminsProduct {
      */
     content?: ProductLocalizedContent;
     /**
-     * The content for each locale code supported by the master catalog
-     * @type {Array<ProductLocalizedContent>}
-     * @memberof CatalogAdminsProduct
-     */
-    localizedContent?: Array<ProductLocalizedContent> | null;
-    /**
-     * 
-     * @type {CatalogAdminsProductPrice}
-     * @memberof CatalogAdminsProduct
-     */
-    price?: CatalogAdminsProductPrice;
-    /**
-     * 
-     * @type {CatalogAdminsProductPricingBehaviorInfo}
-     * @memberof CatalogAdminsProduct
-     */
-    pricingBehavior?: CatalogAdminsProductPricingBehaviorInfo;
-    /**
-     * 
-     * @type {ProductLocalizedSEOContent}
-     * @memberof CatalogAdminsProduct
-     */
-    seoContent?: ProductLocalizedSEOContent;
-    /**
-     * The default content SEO content of a product. This content is always in the default language of the MasterCatalog
-     * @type {Array<ProductLocalizedSEOContent>}
-     * @memberof CatalogAdminsProduct
-     */
-    localizedSEOContent?: Array<ProductLocalizedSEOContent> | null;
-    /**
-     * The Options defined in the product Type that are currently assigned to this product
-     * @type {Array<CatalogAdminsProductOption>}
-     * @memberof CatalogAdminsProduct
-     */
-    options?: Array<CatalogAdminsProductOption> | null;
-    /**
      * The Extras defined in the product Type that are currently assigned to this product
      * @type {Array<ProductExtra>}
      * @memberof CatalogAdminsProduct
      */
     extras?: Array<ProductExtra> | null;
     /**
-     * The Properties defined in the product Type that are currently assigned to this product
-     * @type {Array<CatalogAdminsProductProperty>}
+     * Indicates the fulfillment types the product supports.
+     * @type {Array<string>}
      * @memberof CatalogAdminsProduct
      */
-    properties?: Array<CatalogAdminsProductProperty> | null;
-    /**
-     * If true, the product is subject to tax.
-     * @type {boolean}
-     * @memberof CatalogAdminsProduct
-     */
-    isTaxable?: boolean | null;
-    /**
-     * 
-     * @type {CatalogAdminsProductInventoryInfo}
-     * @memberof CatalogAdminsProduct
-     */
-    inventoryInfo?: CatalogAdminsProductInventoryInfo;
-    /**
-     * 
-     * @type {number}
-     * @memberof CatalogAdminsProduct
-     */
-    shippingClassId?: number | null;
-    /**
-     * If true, the product can be purchased or fulfilled at regular intervals, for example, monthly billing or a subscription.
-     * @type {boolean}
-     * @memberof CatalogAdminsProduct
-     */
-    isRecurring?: boolean | null;
-    /**
-     * UPC code of the product.
-     * @type {string}
-     * @memberof CatalogAdminsProduct
-     */
-    upc?: string | null;
-    /**
-     * 
-     * @type {ProductSupplierInfo}
-     * @memberof CatalogAdminsProduct
-     */
-    supplierInfo?: ProductSupplierInfo;
-    /**
-     * Does this product need to be packaged on its own
-     * @type {boolean}
-     * @memberof CatalogAdminsProduct
-     */
-    isPackagedStandAlone?: boolean | null;
-    /**
-     * When packaged alone this is the package type
-     * @type {string}
-     * @memberof CatalogAdminsProduct
-     */
-    standAlonePackageType?: string | null;
-    /**
-     * 
-     * @type {CommerceRuntimeMeasurement}
-     * @memberof CatalogAdminsProduct
-     */
-    packageHeight?: CommerceRuntimeMeasurement;
-    /**
-     * 
-     * @type {CommerceRuntimeMeasurement}
-     * @memberof CatalogAdminsProduct
-     */
-    packageWidth?: CommerceRuntimeMeasurement;
-    /**
-     * 
-     * @type {CommerceRuntimeMeasurement}
-     * @memberof CatalogAdminsProduct
-     */
-    packageLength?: CommerceRuntimeMeasurement;
-    /**
-     * 
-     * @type {CommerceRuntimeMeasurement}
-     * @memberof CatalogAdminsProduct
-     */
-    packageWeight?: CommerceRuntimeMeasurement;
-    /**
-     * Read only. List of discounts that are available for a product.
-     * @type {Array<CatalogAdminsDiscount>}
-     * @memberof CatalogAdminsProduct
-     */
-    applicableDiscounts?: Array<CatalogAdminsDiscount> | null;
-    /**
-     * Read only. If true, this is a product variation of a product with configurable options. System-supplied and read-only.
-     * @type {boolean}
-     * @memberof CatalogAdminsProduct
-     */
-    isVariation?: boolean;
-    /**
-     * Read only. If IsVariation true, thish provides a unique key to manage the variation of the base product.
-     * @type {string}
-     * @memberof CatalogAdminsProduct
-     */
-    variationKey?: string | null;
+    fulfillmentTypesSupported?: Array<string> | null;
     /**
      * Read only. If true, this product has configurable options. The product is not purchasable until the shopper selects options that resolve to a product variation. System-supplied and read-only.
      * @type {boolean}
@@ -2161,24 +2326,113 @@ export interface CatalogAdminsProduct {
      */
     hasStandAloneOptions?: boolean;
     /**
-     * Read only List of variations that exist for a product. This is only populated when IsVariation is true. To get the list of options, the GET request must include the VariationOptions response group.
-     * @type {Array<ProductVariationOption>}
+     * 
+     * @type {CatalogAdminsProductInventoryInfo}
      * @memberof CatalogAdminsProduct
      */
-    variationOptions?: Array<ProductVariationOption> | null;
+    inventoryInfo?: CatalogAdminsProductInventoryInfo;
+    /**
+     * Does this product need to be packaged on its own
+     * @type {boolean}
+     * @memberof CatalogAdminsProduct
+     */
+    isPackagedStandAlone?: boolean | null;
+    /**
+     * If true, the product can be purchased or fulfilled at regular intervals, for example, monthly billing or a subscription.
+     * @type {boolean}
+     * @memberof CatalogAdminsProduct
+     */
+    isRecurring?: boolean | null;
+    /**
+     * If true, the product is subject to tax.
+     * @type {boolean}
+     * @memberof CatalogAdminsProduct
+     */
+    isTaxable?: boolean | null;
+    /**
+     * Read only flag that indicates if the product meets the product type constraints (All adminRequired attributes have a valid value)
+     * @type {boolean}
+     * @memberof CatalogAdminsProduct
+     */
+    isValidForProductType?: boolean | null;
+    /**
+     * Read only. If true, this is a product variation of a product with configurable options. System-supplied and read-only.
+     * @type {boolean}
+     * @memberof CatalogAdminsProduct
+     */
+    isVariation?: boolean;
+    /**
+     * The content for each locale code supported by the master catalog
+     * @type {Array<ProductLocalizedContent>}
+     * @memberof CatalogAdminsProduct
+     */
+    localizedContent?: Array<ProductLocalizedContent> | null;
+    /**
+     * The default content SEO content of a product. This content is always in the default language of the MasterCatalog
+     * @type {Array<ProductLocalizedSEOContent>}
+     * @memberof CatalogAdminsProduct
+     */
+    localizedSEOContent?: Array<ProductLocalizedSEOContent> | null;
+    /**
+     * Identifier of the Master Catalog that this product is a member of. System-supplied and read-only
+     * @type {number}
+     * @memberof CatalogAdminsProduct
+     */
+    masterCatalogId?: number | null;
+    /**
+     * The Options defined in the product Type that are currently assigned to this product
+     * @type {Array<CatalogAdminsProductOption>}
+     * @memberof CatalogAdminsProduct
+     */
+    options?: Array<CatalogAdminsProductOption> | null;
     /**
      * 
-     * @type {ProductPublishingInfo}
+     * @type {CommerceRuntimeMeasurement}
      * @memberof CatalogAdminsProduct
      */
-    publishingInfo?: ProductPublishingInfo;
+    packageHeight?: CommerceRuntimeMeasurement;
     /**
-     * list of other products that are included in a BundleProduct
-     * This requires that the ProductUsage be set to Bundle
-     * @type {Array<CatalogAdminsBundledProduct>}
+     * 
+     * @type {CommerceRuntimeMeasurement}
      * @memberof CatalogAdminsProduct
      */
-    bundledProducts?: Array<CatalogAdminsBundledProduct> | null;
+    packageLength?: CommerceRuntimeMeasurement;
+    /**
+     * 
+     * @type {CommerceRuntimeMeasurement}
+     * @memberof CatalogAdminsProduct
+     */
+    packageWeight?: CommerceRuntimeMeasurement;
+    /**
+     * 
+     * @type {CommerceRuntimeMeasurement}
+     * @memberof CatalogAdminsProduct
+     */
+    packageWidth?: CommerceRuntimeMeasurement;
+    /**
+     * 
+     * @type {CatalogAdminsProductPrice}
+     * @memberof CatalogAdminsProduct
+     */
+    price?: CatalogAdminsProductPrice;
+    /**
+     * 
+     * @type {CatalogAdminsProductPricingBehaviorInfo}
+     * @memberof CatalogAdminsProduct
+     */
+    pricingBehavior?: CatalogAdminsProductPricingBehaviorInfo;
+    /**
+     * When this product belongs to a product collection this is the product id for the primary collection.
+     * @type {string}
+     * @memberof CatalogAdminsProduct
+     */
+    primaryProductCollectionCode?: string | null;
+    /**
+     * Merchant-created code identifier associated with the product, for example, a SKU or product item number.
+     * @type {string}
+     * @memberof CatalogAdminsProduct
+     */
+    productCode?: string | null;
     /**
      * list of other products that are members of a ProductCollection
      * This requires that the ProductUsage be set to Collection
@@ -2197,16 +2451,58 @@ export interface CatalogAdminsProduct {
      * Image groups are used to map different images to different product options.
      * If the product doesn't have options then all images will be in the default
      * image group.
-     * @type {Array<CatalogAdminsProductImageGroup>}
+     * @type {Array<ProductImageGroup>}
      * @memberof CatalogAdminsProduct
      */
-    productImageGroups?: Array<CatalogAdminsProductImageGroup> | null;
+    productImageGroups?: Array<ProductImageGroup> | null;
+    /**
+     * Catalog specific info for each catalog a product is valid in. There should always be one or more entries here.
+     * @type {Array<ProductInCatalogInfo>}
+     * @memberof CatalogAdminsProduct
+     */
+    productInCatalogs?: Array<ProductInCatalogInfo> | null;
+    /**
+     * System generated monotonically increasing sequence
+     * @type {number}
+     * @memberof CatalogAdminsProduct
+     */
+    productSequence?: number | null;
+    /**
+     * Unique identifier of the productType of the product. Refers to a valid ProductType that was previously created with the ProductType resource.
+     * @type {number}
+     * @memberof CatalogAdminsProduct
+     */
+    productTypeId?: number | null;
+    /**
+     * Indicates the usage type of this product. Must be one of the values in ProductUsageConst.
+     * @type {string}
+     * @memberof CatalogAdminsProduct
+     */
+    productUsage?: string | null;
+    /**
+     * The Properties defined in the product Type that are currently assigned to this product
+     * @type {Array<CatalogAdminsProductProperty>}
+     * @memberof CatalogAdminsProduct
+     */
+    properties?: Array<CatalogAdminsProductProperty> | null;
     /**
      * 
-     * @type {AdminUserAuditInfo}
+     * @type {ProductPublishingInfo}
      * @memberof CatalogAdminsProduct
      */
-    auditInfo?: AdminUserAuditInfo;
+    publishingInfo?: ProductPublishingInfo;
+    /**
+     * 
+     * @type {ProductLocalizedSEOContent}
+     * @memberof CatalogAdminsProduct
+     */
+    seoContent?: ProductLocalizedSEOContent;
+    /**
+     * 
+     * @type {number}
+     * @memberof CatalogAdminsProduct
+     */
+    shippingClassId?: number | null;
     /**
      * 
      * @type {SlicingSettings}
@@ -2214,11 +2510,35 @@ export interface CatalogAdminsProduct {
      */
     slicingSettings?: SlicingSettings;
     /**
-     * When this product belongs to a product collection this is the product id for the primary collection.
+     * When packaged alone this is the package type
      * @type {string}
      * @memberof CatalogAdminsProduct
      */
-    primaryProductCollectionCode?: string | null;
+    standAlonePackageType?: string | null;
+    /**
+     * 
+     * @type {ProductSupplierInfo}
+     * @memberof CatalogAdminsProduct
+     */
+    supplierInfo?: ProductSupplierInfo;
+    /**
+     * UPC code of the product.
+     * @type {string}
+     * @memberof CatalogAdminsProduct
+     */
+    upc?: string | null;
+    /**
+     * Read only. If IsVariation true, thish provides a unique key to manage the variation of the base product.
+     * @type {string}
+     * @memberof CatalogAdminsProduct
+     */
+    variationKey?: string | null;
+    /**
+     * Read only List of variations that exist for a product. This is only populated when IsVariation is true. To get the list of options, the GET request must include the VariationOptions response group.
+     * @type {Array<ProductVariationOption>}
+     * @memberof CatalogAdminsProduct
+     */
+    variationOptions?: Array<ProductVariationOption> | null;
 }
 /**
  * Collection of products returned as a whole. A collection is not paged.
@@ -2228,16 +2548,10 @@ export interface CatalogAdminsProduct {
 export interface CatalogAdminsProductCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<CatalogAdminsProduct>}
      * @memberof CatalogAdminsProductCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CatalogAdminsProductCollection
-     */
-    pageSize?: number;
+    items?: Array<CatalogAdminsProduct> | null;
     /**
      * 
      * @type {number}
@@ -2249,13 +2563,19 @@ export interface CatalogAdminsProductCollection {
      * @type {number}
      * @memberof CatalogAdminsProductCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<CatalogAdminsProduct>}
+     * @type {number}
      * @memberof CatalogAdminsProductCollection
      */
-    items?: Array<CatalogAdminsProduct> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CatalogAdminsProductCollection
+     */
+    totalCount?: number;
 }
 /**
  * Information about the relationship between a Mozu.ProductAdmin.Contracts.Product and a productCollection (product with usagetype of collection)
@@ -2265,17 +2585,17 @@ export interface CatalogAdminsProductCollection {
  */
 export interface CatalogAdminsProductCollectionInfo {
     /**
-     * Product code of the product that is the collection that the containing product belongs to
-     * @type {string}
-     * @memberof CatalogAdminsProductCollectionInfo
-     */
-    collectionProductCode?: string | null;
-    /**
      * Collection name in the language of the master catalog
      * @type {string}
      * @memberof CatalogAdminsProductCollectionInfo
      */
     collectionName?: string | null;
+    /**
+     * Product code of the product that is the collection that the containing product belongs to
+     * @type {string}
+     * @memberof CatalogAdminsProductCollectionInfo
+     */
+    collectionProductCode?: string | null;
     /**
      * True when this is the primary collection for the containing product.
      * @type {boolean}
@@ -2303,17 +2623,17 @@ export interface CatalogAdminsProductCollectionMemberKey {
  */
 export interface CatalogAdminsProductCost {
     /**
-     * Currency code.
-     * @type {string}
-     * @memberof CatalogAdminsProductCost
-     */
-    isoCurrencyCode?: string | null;
-    /**
      * Cost of the product. This is the price the merchant pays for the product.
      * @type {number}
      * @memberof CatalogAdminsProductCost
      */
     cost?: number | null;
+    /**
+     * Currency code.
+     * @type {string}
+     * @memberof CatalogAdminsProductCost
+     */
+    isoCurrencyCode?: string | null;
 }
 /**
  * 
@@ -2323,16 +2643,10 @@ export interface CatalogAdminsProductCost {
 export interface CatalogAdminsProductImageGroup {
     /**
      * 
-     * @type {string}
+     * @type {any}
      * @memberof CatalogAdminsProductImageGroup
      */
-    productImageGroupId: string;
-    /**
-     * 
-     * @type {Array<CatalogAdminsProductImageGroupTag>}
-     * @memberof CatalogAdminsProductImageGroup
-     */
-    productImageGroupTags?: Array<CatalogAdminsProductImageGroupTag> | null;
+    productImageGroupId?: any | null;
 }
 /**
  * 
@@ -2342,16 +2656,10 @@ export interface CatalogAdminsProductImageGroup {
 export interface CatalogAdminsProductImageGroupTag {
     /**
      * 
-     * @type {string}
+     * @type {any}
      * @memberof CatalogAdminsProductImageGroupTag
      */
-    fqn: string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof CatalogAdminsProductImageGroupTag
-     */
-    values?: Array<string> | null;
+    fqn?: any | null;
 }
 /**
  * Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs.
@@ -2406,16 +2714,16 @@ export interface CatalogAdminsProductOption {
 export interface CatalogAdminsProductOptionValue {
     /**
      * 
-     * @type {any}
-     * @memberof CatalogAdminsProductOptionValue
-     */
-    value?: any | null;
-    /**
-     * 
      * @type {CatalogAdminsAttributeVocabularyValue}
      * @memberof CatalogAdminsProductOptionValue
      */
     attributeVocabularyValueDetail?: CatalogAdminsAttributeVocabularyValue;
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsProductOptionValue
+     */
+    value?: any | null;
 }
 /**
  * Price of the product and currency used.
@@ -2424,11 +2732,41 @@ export interface CatalogAdminsProductOptionValue {
  */
 export interface CatalogAdminsProductPrice {
     /**
+     * Credit amt of the product
+     * @type {number}
+     * @memberof CatalogAdminsProductPrice
+     */
+    creditValue?: number | null;
+    /**
      * Currency code.
      * @type {string}
      * @memberof CatalogAdminsProductPrice
      */
     isoCurrencyCode?: string | null;
+    /**
+     * Minimum Advertised Price
+     * @type {number}
+     * @memberof CatalogAdminsProductPrice
+     */
+    map?: number | null;
+    /**
+     * Minimum Advertised Price effectivity end date (null = forever)
+     * @type {string}
+     * @memberof CatalogAdminsProductPrice
+     */
+    mapEndDate?: string | null;
+    /**
+     * Minimum Advertised Price effective start date (null = begining of time)
+     * @type {string}
+     * @memberof CatalogAdminsProductPrice
+     */
+    mapStartDate?: string | null;
+    /**
+     * Manufacturer Suggested Retail Price. +
+     * @type {number}
+     * @memberof CatalogAdminsProductPrice
+     */
+    msrp?: number | null;
     /**
      * Price of the product. This is the price the merchant intends to sell the product if no sale price is present.
      * @type {number}
@@ -2441,36 +2779,6 @@ export interface CatalogAdminsProductPrice {
      * @memberof CatalogAdminsProductPrice
      */
     salePrice?: number | null;
-    /**
-     * Manufacturer Suggested Retail Price. +
-     * @type {number}
-     * @memberof CatalogAdminsProductPrice
-     */
-    msrp?: number | null;
-    /**
-     * Minimum Advertised Price
-     * @type {number}
-     * @memberof CatalogAdminsProductPrice
-     */
-    map?: number | null;
-    /**
-     * Minimum Advertised Price effective start date (null = begining of time)
-     * @type {string}
-     * @memberof CatalogAdminsProductPrice
-     */
-    mapStartDate?: string | null;
-    /**
-     * Minimum Advertised Price effectivity end date (null = forever)
-     * @type {string}
-     * @memberof CatalogAdminsProductPrice
-     */
-    mapEndDate?: string | null;
-    /**
-     * Credit amt of the product
-     * @type {number}
-     * @memberof CatalogAdminsProductPrice
-     */
-    creditValue?: number | null;
 }
 /**
  * Pricing behavior associated with the product
@@ -2489,13 +2797,13 @@ export interface CatalogAdminsProductPricingBehaviorInfo {
      * @type {string}
      * @memberof CatalogAdminsProductPricingBehaviorInfo
      */
-    discountsRestrictedStartDate?: string | null;
+    discountsRestrictedEndDate?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CatalogAdminsProductPricingBehaviorInfo
      */
-    discountsRestrictedEndDate?: string | null;
+    discountsRestrictedStartDate?: string | null;
     /**
      * Only used when product is a variation
      * @type {string}
@@ -2518,16 +2826,16 @@ export interface CatalogAdminsProductProperty {
     attributeFQN?: string | null;
     /**
      * 
-     * @type {Array<CatalogAdminsProductPropertyValue>}
-     * @memberof CatalogAdminsProductProperty
-     */
-    values?: Array<CatalogAdminsProductPropertyValue> | null;
-    /**
-     * 
      * @type {boolean}
      * @memberof CatalogAdminsProductProperty
      */
     forceOrder?: boolean | null;
+    /**
+     * 
+     * @type {Array<CatalogAdminsProductPropertyValue>}
+     * @memberof CatalogAdminsProductProperty
+     */
+    values?: Array<CatalogAdminsProductPropertyValue> | null;
 }
 /**
  * A value of a product option for this product. For example, a computer product may have an option called "Memory" that can have the values "6GB,"8GB," and "12GB."
@@ -2537,10 +2845,10 @@ export interface CatalogAdminsProductProperty {
 export interface CatalogAdminsProductPropertyValue {
     /**
      * 
-     * @type {any}
+     * @type {CatalogAdminsAttributeVocabularyValue}
      * @memberof CatalogAdminsProductPropertyValue
      */
-    value?: any | null;
+    attributeVocabularyValueDetail?: CatalogAdminsAttributeVocabularyValue;
     /**
      * 
      * @type {ProductPropertyValueLocalizedContent}
@@ -2555,10 +2863,10 @@ export interface CatalogAdminsProductPropertyValue {
     localizedContent?: Array<ProductPropertyValueLocalizedContent> | null;
     /**
      * 
-     * @type {CatalogAdminsAttributeVocabularyValue}
+     * @type {any}
      * @memberof CatalogAdminsProductPropertyValue
      */
-    attributeVocabularyValueDetail?: CatalogAdminsAttributeVocabularyValue;
+    value?: any | null;
 }
 /**
  * 
@@ -2567,17 +2875,17 @@ export interface CatalogAdminsProductPropertyValue {
  */
 export interface CatalogAdminsProductRule {
     /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof CatalogAdminsProductRule
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
      * Unique identifier of the ProductRule. System-supplied and read-only.
      * @type {string}
      * @memberof CatalogAdminsProductRule
      */
     code?: string | null;
-    /**
-     * ProductRule name
-     * @type {string}
-     * @memberof CatalogAdminsProductRule
-     */
-    name?: string | null;
     /**
      * ProductRule description
      * @type {string}
@@ -2585,17 +2893,11 @@ export interface CatalogAdminsProductRule {
      */
     description?: string | null;
     /**
-     * Scope to which the ProductRule applies, valid values are: Product, Variant
-     * @type {string}
-     * @memberof CatalogAdminsProductRule
-     */
-    scope?: string | null;
-    /**
      * 
-     * @type {CatalogAdminsCustomerDynamicExpression}
+     * @type {CatalogAdminsDynamicExpression}
      * @memberof CatalogAdminsProductRule
      */
-    expression?: CatalogAdminsCustomerDynamicExpression;
+    expression?: CatalogAdminsDynamicExpression;
     /**
      * 
      * @type {any}
@@ -2603,17 +2905,23 @@ export interface CatalogAdminsProductRule {
      */
     metaData?: any | null;
     /**
+     * ProductRule name
+     * @type {string}
+     * @memberof CatalogAdminsProductRule
+     */
+    name?: string | null;
+    /**
      * The type of rule this ProductRule belongs to.
      * @type {string}
      * @memberof CatalogAdminsProductRule
      */
     ruleType: string;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
+     * Scope to which the ProductRule applies, valid values are: Product, Variant
+     * @type {string}
      * @memberof CatalogAdminsProductRule
      */
-    auditInfo?: AdminUserAuditInfo;
+    scope?: string | null;
 }
 /**
  * Search Merchandizing Rule
@@ -2622,6 +2930,12 @@ export interface CatalogAdminsProductRule {
  */
 export interface CatalogAdminsSearchMerchandizingRule {
     /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof CatalogAdminsSearchMerchandizingRule
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
      * Unique identifier. Will be generated if not provided.
      * @type {string}
      * @memberof CatalogAdminsSearchMerchandizingRule
@@ -2629,10 +2943,10 @@ export interface CatalogAdminsSearchMerchandizingRule {
     code?: string | null;
     /**
      * 
-     * @type {string}
+     * @type {CatalogAdminsSearchMerchandizingRuleContext}
      * @memberof CatalogAdminsSearchMerchandizingRule
      */
-    name?: string | null;
+    context?: CatalogAdminsSearchMerchandizingRuleContext;
     /**
      * 
      * @type {string}
@@ -2647,16 +2961,10 @@ export interface CatalogAdminsSearchMerchandizingRule {
     isDisabled?: boolean | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {string}
      * @memberof CatalogAdminsSearchMerchandizingRule
      */
-    tags?: Array<string> | null;
-    /**
-     * 
-     * @type {CatalogAdminsSearchMerchandizingRuleContext}
-     * @memberof CatalogAdminsSearchMerchandizingRule
-     */
-    context?: CatalogAdminsSearchMerchandizingRuleContext;
+    name?: string | null;
     /**
      * 
      * @type {SearchMerchandizingRuleImpact}
@@ -2665,10 +2973,10 @@ export interface CatalogAdminsSearchMerchandizingRule {
     ruleImpact?: SearchMerchandizingRuleImpact;
     /**
      * 
-     * @type {AdminUserAuditInfo}
+     * @type {Array<string>}
      * @memberof CatalogAdminsSearchMerchandizingRule
      */
-    auditInfo?: AdminUserAuditInfo;
+    tags?: Array<string> | null;
 }
 /**
  * SearchMerchandizingRule Condition
@@ -2678,16 +2986,16 @@ export interface CatalogAdminsSearchMerchandizingRule {
 export interface CatalogAdminsSearchMerchandizingRuleCondition {
     /**
      * 
-     * @type {Array<string>}
-     * @memberof CatalogAdminsSearchMerchandizingRuleCondition
-     */
-    terms?: Array<string> | null;
-    /**
-     * 
      * @type {Array<SearchMerchandizingRuleField>}
      * @memberof CatalogAdminsSearchMerchandizingRuleCondition
      */
     fields?: Array<SearchMerchandizingRuleField> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof CatalogAdminsSearchMerchandizingRuleCondition
+     */
+    terms?: Array<string> | null;
 }
 /**
  * SearchMerchandizingRule Condition
@@ -2695,6 +3003,18 @@ export interface CatalogAdminsSearchMerchandizingRuleCondition {
  * @interface CatalogAdminsSearchMerchandizingRuleContext
  */
 export interface CatalogAdminsSearchMerchandizingRuleContext {
+    /**
+     * 
+     * @type {CatalogAdminsSearchMerchandizingRuleCondition}
+     * @memberof CatalogAdminsSearchMerchandizingRuleContext
+     */
+    condition?: CatalogAdminsSearchMerchandizingRuleCondition;
+    /**
+     * Defaults to MAXDATE
+     * @type {string}
+     * @memberof CatalogAdminsSearchMerchandizingRuleContext
+     */
+    endDate?: string | null;
     /**
      * 
      * @type {SearchType}
@@ -2707,18 +3027,6 @@ export interface CatalogAdminsSearchMerchandizingRuleContext {
      * @memberof CatalogAdminsSearchMerchandizingRuleContext
      */
     startDate?: string | null;
-    /**
-     * Defaults to MAXDATE
-     * @type {string}
-     * @memberof CatalogAdminsSearchMerchandizingRuleContext
-     */
-    endDate?: string | null;
-    /**
-     * 
-     * @type {CatalogAdminsSearchMerchandizingRuleCondition}
-     * @memberof CatalogAdminsSearchMerchandizingRuleContext
-     */
-    condition?: CatalogAdminsSearchMerchandizingRuleCondition;
 }
 /**
  * 
@@ -2828,23 +3136,42 @@ export interface CatalogAdminsTargetedShippingZone {
  */
 export interface CatalogAdminsThresholdMessage {
     /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof CatalogAdminsThresholdMessage
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * 
+     * @type {ThresholdMessageLocalizedContent}
+     * @memberof CatalogAdminsThresholdMessage
+     */
+    content?: ThresholdMessageLocalizedContent;
+    /**
      * Unique identifier of the discount. System-supplied and read-only.
      * @type {number}
      * @memberof CatalogAdminsThresholdMessage
      */
     discountId: number;
     /**
-     * The cart total amount that must be met before the threshold message is displayed
-     * @type {number}
-     * @memberof CatalogAdminsThresholdMessage
-     */
-    thresholdValue: number;
-    /**
      * Indicates if threshold messages are active for this discount
      * @type {boolean}
      * @memberof CatalogAdminsThresholdMessage
      */
     isActive?: boolean;
+    /**
+     * Container for the language-specific name of the threshold message. You will have a container for each supported language (LocaleCode).
+     * This enables you to display the message in multiple languages yet manage it as a single message internally.
+     * @type {Array<ThresholdMessageLocalizedContent>}
+     * @memberof CatalogAdminsThresholdMessage
+     */
+    localizedContent?: Array<ThresholdMessageLocalizedContent> | null;
+    /**
+     * Indicates if the threshold message will display when a promo code is evaluated
+     * @type {boolean}
+     * @memberof CatalogAdminsThresholdMessage
+     */
+    requiresCouponCode?: boolean;
     /**
      * Indicates if the threshold message will display in the cart
      * @type {boolean}
@@ -2858,30 +3185,11 @@ export interface CatalogAdminsThresholdMessage {
      */
     showOnCheckout?: boolean;
     /**
-     * Indicates if the threshold message will display when a promo code is evaluated
-     * @type {boolean}
+     * The cart total amount that must be met before the threshold message is displayed
+     * @type {number}
      * @memberof CatalogAdminsThresholdMessage
      */
-    requiresCouponCode?: boolean;
-    /**
-     * 
-     * @type {ThresholdMessageLocalizedContent}
-     * @memberof CatalogAdminsThresholdMessage
-     */
-    content?: ThresholdMessageLocalizedContent;
-    /**
-     * Container for the language-specific name of the threshold message. You will have a container for each supported language (LocaleCode).
-     * This enables you to display the message in multiple languages yet manage it as a single message internally.
-     * @type {Array<ThresholdMessageLocalizedContent>}
-     * @memberof CatalogAdminsThresholdMessage
-     */
-    localizedContent?: Array<ThresholdMessageLocalizedContent> | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof CatalogAdminsThresholdMessage
-     */
-    auditInfo?: AdminUserAuditInfo;
+    thresholdValue: number;
 }
 /**
  * 
@@ -2891,16 +3199,10 @@ export interface CatalogAdminsThresholdMessage {
 export interface CategoryAttributeCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<CatalogAdminsCategoryAttribute>}
      * @memberof CategoryAttributeCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CategoryAttributeCollection
-     */
-    pageSize?: number;
+    items?: Array<CatalogAdminsCategoryAttribute> | null;
     /**
      * 
      * @type {number}
@@ -2912,13 +3214,19 @@ export interface CategoryAttributeCollection {
      * @type {number}
      * @memberof CategoryAttributeCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<CatalogAdminsCategoryAttribute>}
+     * @type {number}
      * @memberof CategoryAttributeCollection
      */
-    items?: Array<CatalogAdminsCategoryAttribute> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CategoryAttributeCollection
+     */
+    totalCount?: number;
 }
 /**
  * Represents a product category and quantity constraint
@@ -2946,35 +3254,17 @@ export interface CategoryLocalizedContent {
      */
     categoryImages?: Array<CategoryLocalizedImage> | null;
     /**
-     * Name of the category.
-     * @type {string}
-     * @memberof CategoryLocalizedContent
-     */
-    name?: string | null;
-    /**
      * Description of the category to display on the storefront.
      * @type {string}
      * @memberof CategoryLocalizedContent
      */
     description?: string | null;
     /**
-     * Title that appears at the top of new pages.
-     * @type {string}
-     * @memberof CategoryLocalizedContent
-     */
-    pageTitle?: string | null;
-    /**
      * Lanugage used for category content. Currently, only en_US is supported.
      * @type {string}
      * @memberof CategoryLocalizedContent
      */
     localeCode?: string | null;
-    /**
-     * Metadata title. Metadata can be used to manage information internally. Sometimes used for SEO.
-     * @type {string}
-     * @memberof CategoryLocalizedContent
-     */
-    metaTagTitle?: string | null;
     /**
      * Metadata description. Metadata can be used to manage information internally. Sometimes used for SEO.
      * @type {string}
@@ -2987,6 +3277,24 @@ export interface CategoryLocalizedContent {
      * @memberof CategoryLocalizedContent
      */
     metaTagKeywords?: string | null;
+    /**
+     * Metadata title. Metadata can be used to manage information internally. Sometimes used for SEO.
+     * @type {string}
+     * @memberof CategoryLocalizedContent
+     */
+    metaTagTitle?: string | null;
+    /**
+     * Name of the category.
+     * @type {string}
+     * @memberof CategoryLocalizedContent
+     */
+    name?: string | null;
+    /**
+     * Title that appears at the top of new pages.
+     * @type {string}
+     * @memberof CategoryLocalizedContent
+     */
+    pageTitle?: string | null;
     /**
      * Human-readable identifier that you can give to the category to create friendly URLs. For example, 
      * instead of "http: //example.com/products?category=2&id=25," the friendly URL can be "http: //example.com/products/category/2/25."
@@ -3002,35 +3310,11 @@ export interface CategoryLocalizedContent {
  */
 export interface CategoryLocalizedImage {
     /**
-     * Unique identifier of the image. System-supplied and read-only.
-     * @type {number}
-     * @memberof CategoryLocalizedImage
-     */
-    id?: number | null;
-    /**
-     * Language used for the image content.
-     * @type {string}
-     * @memberof CategoryLocalizedImage
-     */
-    localeCode?: string | null;
-    /**
-     * Image title that appears on the storefront.
-     * @type {string}
-     * @memberof CategoryLocalizedImage
-     */
-    imageLabel?: string | null;
-    /**
      * Descriptive text associated with the image or video that appears on the storefront.
      * @type {string}
      * @memberof CategoryLocalizedImage
      */
     altText?: string | null;
-    /**
-     * URL of the image.
-     * @type {string}
-     * @memberof CategoryLocalizedImage
-     */
-    imageUrl?: string | null;
     /**
      * Id of the image in the CMS.
      * @type {string}
@@ -3038,11 +3322,29 @@ export interface CategoryLocalizedImage {
      */
     cmsId?: string | null;
     /**
-     * URL of a video associated with the category.
+     * Unique identifier of the image. System-supplied and read-only.
+     * @type {number}
+     * @memberof CategoryLocalizedImage
+     */
+    id?: number | null;
+    /**
+     * Image title that appears on the storefront.
      * @type {string}
      * @memberof CategoryLocalizedImage
      */
-    videoUrl?: string | null;
+    imageLabel?: string | null;
+    /**
+     * URL of the image.
+     * @type {string}
+     * @memberof CategoryLocalizedImage
+     */
+    imageUrl?: string | null;
+    /**
+     * Language used for the image content.
+     * @type {string}
+     * @memberof CategoryLocalizedImage
+     */
+    localeCode?: string | null;
     /**
      * Type of media. Used by the client to determine how to render the image or video or what have you.
      * @type {string}
@@ -3055,6 +3357,12 @@ export interface CategoryLocalizedImage {
      * @memberof CategoryLocalizedImage
      */
     sequence?: number | null;
+    /**
+     * URL of a video associated with the category.
+     * @type {string}
+     * @memberof CategoryLocalizedImage
+     */
+    videoUrl?: string | null;
 }
 /**
  * List of JsonPatch operations to be applied to a Mozu.ProductAdmin.Contracts.Product
@@ -3062,12 +3370,6 @@ export interface CategoryLocalizedImage {
  * @interface ChangeProductTypeAction
  */
 export interface ChangeProductTypeAction {
-    /**
-     * Product code of the target product
-     * @type {string}
-     * @memberof ChangeProductTypeAction
-     */
-    productCode?: string | null;
     /**
      * Whether to ignore data loss.
      * If true, data loss will be ignored.
@@ -3077,17 +3379,17 @@ export interface ChangeProductTypeAction {
      */
     ignoreDataLoss?: boolean;
     /**
-     * Whether to run in test mode.  If true, no changes will be made.
-     * @type {boolean}
-     * @memberof ChangeProductTypeAction
-     */
-    testMode?: boolean;
-    /**
      * 
      * @type {ProductV1PatchDocument}
      * @memberof ChangeProductTypeAction
      */
     patches?: ProductV1PatchDocument;
+    /**
+     * Product code of the target product
+     * @type {string}
+     * @memberof ChangeProductTypeAction
+     */
+    productCode?: string | null;
     /**
      * If true and publishing is enabled, actions are applied to a draft version of the product and then the draft is published otherwise
      * changes are saved to the live product.
@@ -3095,6 +3397,12 @@ export interface ChangeProductTypeAction {
      * @memberof ChangeProductTypeAction
      */
     saveAndPublish?: boolean;
+    /**
+     * Whether to run in test mode.  If true, no changes will be made.
+     * @type {boolean}
+     * @memberof ChangeProductTypeAction
+     */
+    testMode?: boolean;
 }
 /**
  * Settings to control product search and indexing behavior
@@ -3102,24 +3410,6 @@ export interface ChangeProductTypeAction {
  * @interface CollapseSettings
  */
 export interface CollapseSettings {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CollapseSettings
-     */
-    collapseSiteSearch?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CollapseSettings
-     */
-    collapseListing?: boolean | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CollapseSettings
-     */
-    collapseFieldName?: string | null;
     /**
      * 
      * @type {string}
@@ -3131,13 +3421,31 @@ export interface CollapseSettings {
      * @type {boolean}
      * @memberof CollapseSettings
      */
-    boostRankSiteSearch?: boolean | null;
+    boostRankListing?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof CollapseSettings
      */
-    boostRankListing?: boolean | null;
+    boostRankSiteSearch?: boolean | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CollapseSettings
+     */
+    collapseFieldName?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CollapseSettings
+     */
+    collapseListing?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CollapseSettings
+     */
+    collapseSiteSearch?: boolean | null;
     /**
      * 
      * @type {boolean}
@@ -3171,17 +3479,17 @@ export interface CommerceRuntimeMeasurement {
  */
 export interface ContinuityRecurrenceSettings {
     /**
-     * Continuity ordinal to start discounting
-     * @type {number}
-     * @memberof ContinuityRecurrenceSettings
-     */
-    startOrdinal?: number | null;
-    /**
      * Interval until next discount applies
      * @type {number}
      * @memberof ContinuityRecurrenceSettings
      */
     interval?: number | null;
+    /**
+     * Continuity ordinal to start discounting
+     * @type {number}
+     * @memberof ContinuityRecurrenceSettings
+     */
+    startOrdinal?: number | null;
     /**
      * Continuity ordinal to stop discounting
      * @type {number}
@@ -3196,23 +3504,11 @@ export interface ContinuityRecurrenceSettings {
  */
 export interface Coupon {
     /**
-     * ReadOnly system id for releated couponset.
-     * @type {number}
+     * 
+     * @type {AdminUserAuditInfo}
      * @memberof Coupon
      */
-    couponSetId?: number;
-    /**
-     * Link to associated coupon
-     * @type {string}
-     * @memberof Coupon
-     */
-    couponSetCode?: string | null;
-    /**
-     * The code the customer uses to claim this coupon
-     * @type {string}
-     * @memberof Coupon
-     */
-    couponCode: string;
+    auditInfo?: AdminUserAuditInfo;
     /**
      * 
      * @type {boolean}
@@ -3220,18 +3516,30 @@ export interface Coupon {
      */
     canBeDeleted?: boolean;
     /**
+     * The code the customer uses to claim this coupon
+     * @type {string}
+     * @memberof Coupon
+     */
+    couponCode: string;
+    /**
+     * Link to associated coupon
+     * @type {string}
+     * @memberof Coupon
+     */
+    couponSetCode?: string | null;
+    /**
+     * ReadOnly system id for releated couponset.
+     * @type {number}
+     * @memberof Coupon
+     */
+    couponSetId?: number;
+    /**
      * Total number of times this code has been redeemed. ReadOnly, calculated.
      * Only returned with response group includeCounts
      * @type {number}
      * @memberof Coupon
      */
     redemptionCount?: number | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof Coupon
-     */
-    auditInfo?: AdminUserAuditInfo;
 }
 /**
  * 
@@ -3241,16 +3549,10 @@ export interface Coupon {
 export interface CouponCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<Coupon>}
      * @memberof CouponCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CouponCollection
-     */
-    pageSize?: number;
+    items?: Array<Coupon> | null;
     /**
      * 
      * @type {number}
@@ -3262,13 +3564,19 @@ export interface CouponCollection {
      * @type {number}
      * @memberof CouponCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<Coupon>}
+     * @type {number}
      * @memberof CouponCollection
      */
-    items?: Array<Coupon> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CouponCollection
+     */
+    totalCount?: number;
 }
 /**
  * Represents a claimable item that allows a user to use one or more discounts.
@@ -3277,11 +3585,40 @@ export interface CouponCollection {
  */
 export interface CouponSet {
     /**
-     * Internal unique identifier of the couponset. System-supplied and read-only.
+     * ReadOnly sum of all redemptions for this coupon.
+     * Use "counts" response group.
      * @type {number}
      * @memberof CouponSet
      */
-    id?: number | null;
+    assignedDiscountCount?: number | null;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof CouponSet
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * Signifies that the coupon has not been exported and can be updated
+     * ReadOnly
+     * @type {boolean}
+     * @memberof CouponSet
+     */
+    canBeDeleted?: boolean;
+    /**
+     * Count of associated couponCodes.
+     * Must use "counts" response group to get this value
+     * ReadOnly
+     * @type {number}
+     * @memberof CouponSet
+     */
+    couponCodeCount?: number | null;
+    /**
+     * Determines if the coupon is a persisted list of codes (static) or a list based on generated specification
+     * (dynamic).
+     * @type {string}
+     * @memberof CouponSet
+     */
+    couponCodeType?: string | null;
     /**
      * Unique tenant supplied identifier.
      * Used as the prefix for generated sets.
@@ -3292,68 +3629,45 @@ export interface CouponSet {
      */
     couponSetCode?: string | null;
     /**
-     * CouponSet Name
-     * @type {string}
-     * @memberof CouponSet
-     */
-    name: string;
-    /**
-     * Determines if the coupon is a persisted list of codes (static) or a list based on generated specification
-     * (dynamic).
-     * @type {string}
-     * @memberof CouponSet
-     */
-    couponCodeType?: string | null;
-    /**
-     * CouponSet status which can be: Active, Expired,  Inactive
-     * System-supplied and read-only.
-     * @type {string}
-     * @memberof CouponSet
-     */
-    status?: string | null;
-    /**
-     * Signifies that the coupon has not been exported and can be updated
-     * ReadOnly
-     * @type {boolean}
-     * @memberof CouponSet
-     */
-    canBeDeleted?: boolean;
-    /**
-     * Maximum number of times any single user can redeem any code.
-     * Must be null, >=1 or -1.
-     * Defaults to 1 on creation if null.
-     * -1 indicates unlimited.
-     * @type {number}
-     * @memberof CouponSet
-     */
-    maxRedemptionsPerUser?: number | null;
-    /**
-     * Maximum number of times any code can de used.
-     * Must be null, >=1 or -1.
-     * Defaults to 1 on creation if null.
-     * -1 indicates unlimited.
-     * @type {number}
-     * @memberof CouponSet
-     */
-    maxRedemptionsPerCouponCode?: number | null;
-    /**
      * Date and time that the coupon codes becomes expired
      * @type {string}
      * @memberof CouponSet
      */
     endDate?: string | null;
     /**
-     * Date and time that the coupon codes becomes active
+     * Internal unique identifier of the couponset. System-supplied and read-only.
+     * @type {number}
+     * @memberof CouponSet
+     */
+    id?: number | null;
+    /**
+     * Maximum number of times any code can de used.
+     * Must be null or >= 1 (0 is invalid).
+     * Defaults to 1 on creation if null.
+     * @type {number}
+     * @memberof CouponSet
+     */
+    maxRedemptionsPerCouponCode?: number | null;
+    /**
+     * Maximum number of times any single user can redeem any code.
+     * Must be null or >= 1 (0 is invalid).
+     * Defaults to 1 on creation only when legacy tenant behavior is enabled; otherwise null is preserved.
+     * @type {number}
+     * @memberof CouponSet
+     */
+    maxRedemptionsPerUser?: number | null;
+    /**
+     * CouponSet Name
      * @type {string}
      * @memberof CouponSet
      */
-    startDate?: string | null;
+    name: string;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
+     * ReadOnly count of all redemptions for this coupon set.
+     * @type {number}
      * @memberof CouponSet
      */
-    auditInfo?: AdminUserAuditInfo;
+    redemptionCount?: number | null;
     /**
      * Sets the number of codes to generate for dynamic coupons
      * Required when CouponCodeType is "Dynamic"
@@ -3362,26 +3676,18 @@ export interface CouponSet {
      */
     setSize?: number | null;
     /**
-     * Count of associated couponCodes.
-     * Must use "counts" response group to get this value
-     * ReadOnly
-     * @type {number}
+     * Date and time that the coupon codes becomes active
+     * @type {string}
      * @memberof CouponSet
      */
-    couponCodeCount?: number | null;
+    startDate?: string | null;
     /**
-     * ReadOnly count of all redemptions for this coupon set.
-     * @type {number}
+     * CouponSet status which can be: Active, Expired,  Inactive
+     * System-supplied and read-only.
+     * @type {string}
      * @memberof CouponSet
      */
-    redemptionCount?: number | null;
-    /**
-     * ReadOnly sum of all redemptions for this coupon.
-     * Use "counts" response group.
-     * @type {number}
-     * @memberof CouponSet
-     */
-    assignedDiscountCount?: number | null;
+    status?: string | null;
 }
 /**
  * Paged collection of Mozu.ProductAdmin.Contracts.CouponSet
@@ -3391,16 +3697,10 @@ export interface CouponSet {
 export interface CouponSetCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<CouponSet>}
      * @memberof CouponSetCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CouponSetCollection
-     */
-    pageSize?: number;
+    items?: Array<CouponSet> | null;
     /**
      * 
      * @type {number}
@@ -3412,13 +3712,19 @@ export interface CouponSetCollection {
      * @type {number}
      * @memberof CouponSetCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<CouponSet>}
+     * @type {number}
      * @memberof CouponSetCollection
      */
-    items?: Array<CouponSet> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CouponSetCollection
+     */
+    totalCount?: number;
 }
 /**
  * Non-pages collection of currency-exchange-rates.
@@ -3428,16 +3734,16 @@ export interface CouponSetCollection {
 export interface CurrencyExchangeRateCollection {
     /**
      * 
-     * @type {number}
-     * @memberof CurrencyExchangeRateCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<CatalogAdminsCurrencyExchangeRate>}
      * @memberof CurrencyExchangeRateCollection
      */
     items?: Array<CatalogAdminsCurrencyExchangeRate> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CurrencyExchangeRateCollection
+     */
+    totalCount?: number;
 }
 /**
  * A currency and some localization options
@@ -3445,6 +3751,12 @@ export interface CurrencyExchangeRateCollection {
  * @interface CurrencyLocalization
  */
 export interface CurrencyLocalization {
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof CurrencyLocalization
+     */
+    auditInfo?: AdminUserAuditInfo;
     /**
      * Currency Code
      * @type {string}
@@ -3463,12 +3775,6 @@ export interface CurrencyLocalization {
      * @memberof CurrencyLocalization
      */
     roundingStrategy?: number | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof CurrencyLocalization
-     */
-    auditInfo?: AdminUserAuditInfo;
 }
 /**
  * Non-pages collection of currency-localizations.
@@ -3478,16 +3784,16 @@ export interface CurrencyLocalization {
 export interface CurrencyLocalizationCollection {
     /**
      * 
-     * @type {number}
-     * @memberof CurrencyLocalizationCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<CurrencyLocalization>}
      * @memberof CurrencyLocalizationCollection
      */
     items?: Array<CurrencyLocalization> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CurrencyLocalizationCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -3497,16 +3803,16 @@ export interface CurrencyLocalizationCollection {
 export interface CustomProperty {
     /**
      * 
-     * @type {number}
-     * @memberof CustomProperty
-     */
-    position?: number;
-    /**
-     * 
      * @type {string}
      * @memberof CustomProperty
      */
     code?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CustomProperty
+     */
+    enabled?: boolean | null;
     /**
      * 
      * @type {string}
@@ -3515,10 +3821,10 @@ export interface CustomProperty {
     name?: string | null;
     /**
      * 
-     * @type {boolean}
+     * @type {number}
      * @memberof CustomProperty
      */
-    enabled?: boolean | null;
+    position?: number;
 }
 /**
  * 
@@ -3532,6 +3838,12 @@ export interface CustomPropertyValues {
      * @memberof CustomPropertyValues
      */
     value1?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomPropertyValues
+     */
+    value10?: string | null;
     /**
      * 
      * @type {string}
@@ -3580,12 +3892,6 @@ export interface CustomPropertyValues {
      * @memberof CustomPropertyValues
      */
     value9?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CustomPropertyValues
-     */
-    value10?: string | null;
 }
 /**
  * Container for the language-specific name of the discount. You will have a container for each supported language
@@ -3595,6 +3901,24 @@ export interface CustomPropertyValues {
  * @interface DiscountLocalizedContent
  */
 export interface DiscountLocalizedContent {
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof DiscountLocalizedContent
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * 
+     * @type {CustomPropertyValues}
+     * @memberof DiscountLocalizedContent
+     */
+    customPropertyValues?: CustomPropertyValues;
+    /**
+     * Promotional text or HTML that can be utilized as friendly content like "Buy this product now and get X!"
+     * @type {string}
+     * @memberof DiscountLocalizedContent
+     */
+    friendlyDescription?: string | null;
     /**
      * Lanugage used for the discount in the current catalog. Defaults setting for the active catalog.
      * @type {string}
@@ -3607,24 +3931,6 @@ export interface DiscountLocalizedContent {
      * @memberof DiscountLocalizedContent
      */
     name: string;
-    /**
-     * Promotional text or HTML that can be utilized as friendly content like "Buy this product now and get X!"
-     * @type {string}
-     * @memberof DiscountLocalizedContent
-     */
-    friendlyDescription?: string | null;
-    /**
-     * 
-     * @type {CustomPropertyValues}
-     * @memberof DiscountLocalizedContent
-     */
-    customPropertyValues?: CustomPropertyValues;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof DiscountLocalizedContent
-     */
-    auditInfo?: AdminUserAuditInfo;
 }
 /**
  * Tenant level discount settings
@@ -3632,6 +3938,25 @@ export interface DiscountLocalizedContent {
  * @interface DiscountSettings
  */
 export interface DiscountSettings {
+    /**
+     * Discount settings additional custom properties for storing property codes and names.
+     * @type {Array<CustomProperty>}
+     * @memberof DiscountSettings
+     */
+    customProperties?: Array<CustomProperty> | null;
+    /**
+     * Prevents discounts from applying to handling fees
+     * @type {boolean}
+     * @memberof DiscountSettings
+     */
+    doNotApplyToHandlingFees?: boolean | null;
+    /**
+     * When true, the line-item planning loop rejects discounts whose application would
+     * violate their own minimum order amount constraint.
+     * @type {boolean}
+     * @memberof DiscountSettings
+     */
+    rejectSelfDefeatingDiscounts?: boolean | null;
     /**
      * 
      * @type {StackingConfiguration}
@@ -3644,18 +3969,6 @@ export interface DiscountSettings {
      * @memberof DiscountSettings
      */
     usePostDiscountedOrderValue?: boolean | null;
-    /**
-     * Prevents discounts from applying to handling fees
-     * @type {boolean}
-     * @memberof DiscountSettings
-     */
-    doNotApplyToHandlingFees?: boolean | null;
-    /**
-     * Discount settings additional custom properties for storing property codes and names.
-     * @type {Array<CustomProperty>}
-     * @memberof DiscountSettings
-     */
-    customProperties?: Array<CustomProperty> | null;
 }
 /**
  * 
@@ -3684,16 +3997,10 @@ export interface DiscountTag {
 export interface DiscountTagCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<DiscountTag>}
      * @memberof DiscountTagCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DiscountTagCollection
-     */
-    pageSize?: number;
+    items?: Array<DiscountTag> | null;
     /**
      * 
      * @type {number}
@@ -3705,13 +4012,19 @@ export interface DiscountTagCollection {
      * @type {number}
      * @memberof DiscountTagCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<DiscountTag>}
+     * @type {number}
      * @memberof DiscountTagCollection
      */
-    items?: Array<DiscountTag> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DiscountTagCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -3724,13 +4037,13 @@ export interface ExpressionValidationError {
      * @type {string}
      * @memberof ExpressionValidationError
      */
-    message?: string | null;
+    expression?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ExpressionValidationError
      */
-    expression?: string | null;
+    message?: string | null;
 }
 /**
  * 
@@ -3740,16 +4053,16 @@ export interface ExpressionValidationError {
 export interface ExpressionValidationResult {
     /**
      * 
-     * @type {boolean}
-     * @memberof ExpressionValidationResult
-     */
-    readonly hasErrors?: boolean;
-    /**
-     * 
      * @type {Array<ExpressionValidationError>}
      * @memberof ExpressionValidationResult
      */
     errors?: Array<ExpressionValidationError> | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ExpressionValidationResult
+     */
+    readonly hasErrors?: boolean;
 }
 /**
  * 
@@ -3757,12 +4070,6 @@ export interface ExpressionValidationResult {
  * @interface ExtensibleAttribute
  */
 export interface ExtensibleAttribute {
-    /**
-     * 
-     * @type {number}
-     * @memberof ExtensibleAttribute
-     */
-    id?: number | null;
     /**
      * 
      * @type {string}
@@ -3774,37 +4081,7 @@ export interface ExtensibleAttribute {
      * @type {string}
      * @memberof ExtensibleAttribute
      */
-    namespace?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExtensibleAttribute
-     */
     attributeCode: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExtensibleAttribute
-     */
-    inputType?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExtensibleAttribute
-     */
-    valueType: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExtensibleAttribute
-     */
-    dataType?: string | null;
-    /**
-     * 
-     * @type {Array<ExtensibleAttributeMetadataItem>}
-     * @memberof ExtensibleAttribute
-     */
-    attributeMetadata?: Array<ExtensibleAttributeMetadataItem> | null;
     /**
      * 
      * @type {string}
@@ -3813,22 +4090,10 @@ export interface ExtensibleAttribute {
     attributeFQN?: string | null;
     /**
      * 
-     * @type {ExtensibleAttributeLocalizedContent}
+     * @type {Array<ExtensibleAttributeMetadataItem>}
      * @memberof ExtensibleAttribute
      */
-    content?: ExtensibleAttributeLocalizedContent;
-    /**
-     * 
-     * @type {ExtensibleAttributeValidation}
-     * @memberof ExtensibleAttribute
-     */
-    validation?: ExtensibleAttributeValidation;
-    /**
-     * 
-     * @type {Array<ExtensibleAttributeVocabularyValue>}
-     * @memberof ExtensibleAttribute
-     */
-    vocabularyValues?: Array<ExtensibleAttributeVocabularyValue> | null;
+    attributeMetadata?: Array<ExtensibleAttributeMetadataItem> | null;
     /**
      * 
      * @type {AdminUserAuditInfo}
@@ -3840,19 +4105,49 @@ export interface ExtensibleAttribute {
      * @type {boolean}
      * @memberof ExtensibleAttribute
      */
+    availableForDiscounts?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ExtensibleAttribute
+     */
+    availableForOrderRouting?: boolean;
+    /**
+     * 
+     * @type {ExtensibleAttributeLocalizedContent}
+     * @memberof ExtensibleAttribute
+     */
+    content?: ExtensibleAttributeLocalizedContent;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExtensibleAttribute
+     */
+    dataType?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExtensibleAttribute
+     */
+    displayGroup: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ExtensibleAttribute
+     */
+    id?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExtensibleAttribute
+     */
+    inputType?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ExtensibleAttribute
+     */
     isActive?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ExtensibleAttribute
-     */
-    isRequired?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ExtensibleAttribute
-     */
-    isReadOnly?: boolean;
     /**
      * 
      * @type {boolean}
@@ -3864,7 +4159,25 @@ export interface ExtensibleAttribute {
      * @type {boolean}
      * @memberof ExtensibleAttribute
      */
+    isReadOnly?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ExtensibleAttribute
+     */
+    isRequired?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ExtensibleAttribute
+     */
     isVisible?: boolean | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExtensibleAttribute
+     */
+    namespace?: string | null;
     /**
      * 
      * @type {number}
@@ -3873,22 +4186,22 @@ export interface ExtensibleAttribute {
     order?: number | null;
     /**
      * 
+     * @type {ExtensibleAttributeValidation}
+     * @memberof ExtensibleAttribute
+     */
+    validation?: ExtensibleAttributeValidation;
+    /**
+     * 
      * @type {string}
      * @memberof ExtensibleAttribute
      */
-    displayGroup: string;
+    valueType: string;
     /**
      * 
-     * @type {boolean}
+     * @type {Array<ExtensibleAttributeVocabularyValue>}
      * @memberof ExtensibleAttribute
      */
-    availableForOrderRouting?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ExtensibleAttribute
-     */
-    availableForDiscounts?: boolean;
+    vocabularyValues?: Array<ExtensibleAttributeVocabularyValue> | null;
 }
 /**
  * 
@@ -3898,16 +4211,10 @@ export interface ExtensibleAttribute {
 export interface ExtensibleAttributeCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<ExtensibleAttribute>}
      * @memberof ExtensibleAttributeCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ExtensibleAttributeCollection
-     */
-    pageSize?: number;
+    items?: Array<ExtensibleAttribute> | null;
     /**
      * 
      * @type {number}
@@ -3919,13 +4226,19 @@ export interface ExtensibleAttributeCollection {
      * @type {number}
      * @memberof ExtensibleAttributeCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<ExtensibleAttribute>}
+     * @type {number}
      * @memberof ExtensibleAttributeCollection
      */
-    items?: Array<ExtensibleAttribute> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ExtensibleAttributeCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -3976,19 +4289,25 @@ export interface ExtensibleAttributeValidation {
      * @type {string}
      * @memberof ExtensibleAttributeValidation
      */
-    regularExpression?: string | null;
+    maxDateTime?: string | null;
     /**
      * 
      * @type {number}
      * @memberof ExtensibleAttributeValidation
      */
-    minStringLength?: number | null;
+    maxNumericValue?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ExtensibleAttributeValidation
      */
     maxStringLength?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExtensibleAttributeValidation
+     */
+    minDateTime?: string | null;
     /**
      * 
      * @type {number}
@@ -4000,19 +4319,13 @@ export interface ExtensibleAttributeValidation {
      * @type {number}
      * @memberof ExtensibleAttributeValidation
      */
-    maxNumericValue?: number | null;
+    minStringLength?: number | null;
     /**
      * 
      * @type {string}
      * @memberof ExtensibleAttributeValidation
      */
-    minDateTime?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExtensibleAttributeValidation
-     */
-    maxDateTime?: string | null;
+    regularExpression?: string | null;
 }
 /**
  * 
@@ -4041,16 +4354,10 @@ export interface ExtensibleAttributeValueLocalizedContent {
 export interface ExtensibleAttributeVocabularyValue {
     /**
      * 
-     * @type {string}
+     * @type {ExtensibleAttributeValueLocalizedContent}
      * @memberof ExtensibleAttributeVocabularyValue
      */
-    value: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ExtensibleAttributeVocabularyValue
-     */
-    sequence?: number | null;
+    content?: ExtensibleAttributeValueLocalizedContent;
     /**
      * 
      * @type {boolean}
@@ -4059,10 +4366,16 @@ export interface ExtensibleAttributeVocabularyValue {
     isHidden?: boolean | null;
     /**
      * 
-     * @type {ExtensibleAttributeValueLocalizedContent}
+     * @type {number}
      * @memberof ExtensibleAttributeVocabularyValue
      */
-    content?: ExtensibleAttributeValueLocalizedContent;
+    sequence?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExtensibleAttributeVocabularyValue
+     */
+    value: string;
 }
 /**
  * 
@@ -4072,16 +4385,10 @@ export interface ExtensibleAttributeVocabularyValue {
 export interface FacetCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<CatalogAdminsFacet>}
      * @memberof FacetCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof FacetCollection
-     */
-    pageSize?: number;
+    items?: Array<CatalogAdminsFacet> | null;
     /**
      * 
      * @type {number}
@@ -4093,13 +4400,19 @@ export interface FacetCollection {
      * @type {number}
      * @memberof FacetCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<CatalogAdminsFacet>}
+     * @type {number}
      * @memberof FacetCollection
      */
-    items?: Array<CatalogAdminsFacet> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FacetCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -4112,13 +4425,13 @@ export interface FacetRangeQuery {
      * @type {any}
      * @memberof FacetRangeQuery
      */
-    rangeValueStart?: any | null;
+    rangeValueEnd?: any | null;
     /**
      * 
      * @type {any}
      * @memberof FacetRangeQuery
      */
-    rangeValueEnd?: any | null;
+    rangeValueStart?: any | null;
 }
 /**
  * 
@@ -4127,17 +4440,17 @@ export interface FacetRangeQuery {
  */
 export interface FacetSet {
     /**
-     * Facets that are configured
-     * @type {Array<CatalogAdminsFacet>}
-     * @memberof FacetSet
-     */
-    configured?: Array<CatalogAdminsFacet> | null;
-    /**
      * Facets that are not configured, but COULD BE!
      * @type {Array<FacetSource>}
      * @memberof FacetSet
      */
     available?: Array<FacetSource> | null;
+    /**
+     * Facets that are configured
+     * @type {Array<CatalogAdminsFacet>}
+     * @memberof FacetSet
+     */
+    configured?: Array<CatalogAdminsFacet> | null;
 }
 /**
  * 
@@ -4146,24 +4459,11 @@ export interface FacetSet {
  */
 export interface FacetSource {
     /**
-     * Name of field, or FQN of attribute
-     * @type {string}
+     * Read-only system-generated indicator of whether the source field supports RangeQuery type facets.
+     * @type {boolean}
      * @memberof FacetSource
      */
-    id?: string | null;
-    /**
-     * The type of source field used by the facet. Allowable values are: Element, Attribute. 
-     * Must be a valid value for DataType defined in FacetFieldTypeConst.
-     * @type {string}
-     * @memberof FacetSource
-     */
-    type?: string | null;
-    /**
-     * Read-only system-generated label for the source field.
-     * @type {string}
-     * @memberof FacetSource
-     */
-    name?: string | null;
+    allowsRangeQuery?: boolean;
     /**
      * Read-only system-generated DataType of the Attribute or Element source field. Will be valid value for DataType defined in DataTypeConst.
      * @type {string}
@@ -4171,11 +4471,24 @@ export interface FacetSource {
      */
     dataType?: string | null;
     /**
-     * Read-only system-generated indicator of whether the source field supports RangeQuery type facets.
-     * @type {boolean}
+     * Name of field, or FQN of attribute
+     * @type {string}
      * @memberof FacetSource
      */
-    allowsRangeQuery?: boolean;
+    id?: string | null;
+    /**
+     * Read-only system-generated label for the source field.
+     * @type {string}
+     * @memberof FacetSource
+     */
+    name?: string | null;
+    /**
+     * The type of source field used by the facet. Allowable values are: Element, Attribute. 
+     * Must be a valid value for DataType defined in FacetFieldTypeConst.
+     * @type {string}
+     * @memberof FacetSource
+     */
+    type?: string | null;
 }
 /**
  * 
@@ -4235,6 +4548,199 @@ export interface FieldWeight {
     weight?: number;
 }
 /**
+ * Contract DTO for a FutureShipmentRebalancing rule. Rules determine priority ordering
+ * for shipments in the Future Shipments Queue when supply changes trigger rebalancing.
+ * @export
+ * @interface FutureShipmentRebalancingRule
+ */
+export interface FutureShipmentRebalancingRule {
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof FutureShipmentRebalancingRule
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof FutureShipmentRebalancingRule
+     */
+    code?: string | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof FutureShipmentRebalancingRule
+     */
+    customerRules?: Array<string> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof FutureShipmentRebalancingRule
+     */
+    description?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FutureShipmentRebalancingRule
+     */
+    enabled?: boolean | null;
+    /**
+     * End of the rule's effective window. Null = never expires. Must be >= StartDate when both supplied.
+     * @type {string}
+     * @memberof FutureShipmentRebalancingRule
+     */
+    endDate?: string | null;
+    /**
+     * Read-only. Computed server-side: true when the current UTC instant is inside the effective window
+     * (StartDate null/≤now AND EndDate null/≥now), false otherwise. A rule with no dates is always active.
+     * This reflects the effective window alone and does not incorporate the enabled flag.
+     * @type {boolean}
+     * @memberof FutureShipmentRebalancingRule
+     */
+    isActive?: boolean | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof FutureShipmentRebalancingRule
+     */
+    metaData?: any | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof FutureShipmentRebalancingRule
+     */
+    name?: string | null;
+    /**
+     * 
+     * @type {Array<ProductRuleCode>}
+     * @memberof FutureShipmentRebalancingRule
+     */
+    productRules?: Array<ProductRuleCode> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof FutureShipmentRebalancingRule
+     */
+    rank?: number | null;
+    /**
+     * 
+     * @type {Array<ShipmentRuleCode>}
+     * @memberof FutureShipmentRebalancingRule
+     */
+    shipmentRules?: Array<ShipmentRuleCode> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof FutureShipmentRebalancingRule
+     */
+    sortAttribute?: string | null;
+    /**
+     * Start of the rule's effective window. Null = no lower bound (already active).
+     * @type {string}
+     * @memberof FutureShipmentRebalancingRule
+     */
+    startDate?: string | null;
+    /**
+     * Time fence in days. Inclusive [0, 365].
+     * @type {number}
+     * @memberof FutureShipmentRebalancingRule
+     */
+    timeFenceDays?: number;
+}
+/**
+ * Paginated collection of Mozu.ProductAdmin.Contracts.FutureShipmentRebalancingRules.FutureShipmentRebalancingRule contract DTOs.
+ * @export
+ * @interface FutureShipmentRebalancingRuleCollection
+ */
+export interface FutureShipmentRebalancingRuleCollection {
+    /**
+     * 
+     * @type {Array<FutureShipmentRebalancingRule>}
+     * @memberof FutureShipmentRebalancingRuleCollection
+     */
+    items?: Array<FutureShipmentRebalancingRule> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof FutureShipmentRebalancingRuleCollection
+     */
+    pageCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FutureShipmentRebalancingRuleCollection
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FutureShipmentRebalancingRuleCollection
+     */
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FutureShipmentRebalancingRuleCollection
+     */
+    totalCount?: number;
+}
+/**
+ * 
+ * @export
+ * @interface HttpValidationProblemDetails
+ */
+export interface HttpValidationProblemDetails {
+    /**
+     * 
+     * @type {string}
+     * @memberof HttpValidationProblemDetails
+     */
+    detail?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof HttpValidationProblemDetails
+     */
+    instance?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof HttpValidationProblemDetails
+     */
+    status?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof HttpValidationProblemDetails
+     */
+    title?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof HttpValidationProblemDetails
+     */
+    type?: string | null;
+    /**
+     * 
+     * @type {{ [key: string]: Array<string>; }}
+     * @memberof HttpValidationProblemDetails
+     */
+    errors?: { [key: string]: Array<string>; } | null;
+}
+/**
+ * 
+ * @export
+ * @interface HttpValidationProblemDetailsAllOf
+ */
+export interface HttpValidationProblemDetailsAllOf {
+    /**
+     * 
+     * @type {{ [key: string]: Array<string>; }}
+     * @memberof HttpValidationProblemDetailsAllOf
+     */
+    errors?: { [key: string]: Array<string>; } | null;
+}
+/**
  * 
  * @export
  * @interface ListingSettings
@@ -4273,16 +4779,16 @@ export interface ListingSettings {
 export interface MasterCatalogCollection {
     /**
      * 
-     * @type {number}
-     * @memberof MasterCatalogCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<CatalogAdminsMasterCatalog>}
      * @memberof MasterCatalogCollection
      */
     items?: Array<CatalogAdminsMasterCatalog> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof MasterCatalogCollection
+     */
+    totalCount?: number;
 }
 /**
  * Request parameters for evaluating pick wave rules
@@ -4295,13 +4801,13 @@ export interface PickWaveEvalRequest {
      * @type {string}
      * @memberof PickWaveEvalRequest
      */
-    fulfillmentLocationCode?: string | null;
+    fulfillmentLocationCode: string | null;
     /**
      * Pick wave rule code to evaluate
      * @type {string}
      * @memberof PickWaveEvalRequest
      */
-    pickWaveRuleCode?: string | null;
+    pickWaveRuleCode: string | null;
 }
 /**
  * Collection of pick wave evaluation response items
@@ -4311,16 +4817,16 @@ export interface PickWaveEvalRequest {
 export interface PickWaveEvalResponseCollection {
     /**
      * 
-     * @type {number}
-     * @memberof PickWaveEvalResponseCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<PickWaveEvalResponseItem>}
      * @memberof PickWaveEvalResponseCollection
      */
     items?: Array<PickWaveEvalResponseItem> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PickWaveEvalResponseCollection
+     */
+    totalCount?: number;
 }
 /**
  * Pick wave evaluation response item
@@ -4342,6 +4848,12 @@ export interface PickWaveEvalResponseItem {
  */
 export interface PickWaveRule {
     /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof PickWaveRule
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
      * Gets or sets the unique identifier of the PickWaveRule.
      * If not given provided on create one will be assigned. Read-only after creation.
      * @type {string}
@@ -4349,11 +4861,11 @@ export interface PickWaveRule {
      */
     code?: string | null;
     /**
-     * Gets or sets the name of the PickWaveRule.
-     * @type {string}
+     * Gets or sets the list of Customer Rule where the PickWaveRule applies.
+     * @type {Array<string>}
      * @memberof PickWaveRule
      */
-    name?: string | null;
+    customerRules?: Array<string> | null;
     /**
      * Gets or sets the description of the PickWaveRule.
      * @type {string}
@@ -4367,6 +4879,26 @@ export interface PickWaveRule {
      */
     enabled?: boolean | null;
     /**
+     * End of the rule's effective window. Null = never expires. Must be >= StartDate when both supplied.
+     * @type {string}
+     * @memberof PickWaveRule
+     */
+    endDate?: string | null;
+    /**
+     * Read-only. Computed server-side: true when the current UTC instant is inside the effective window
+     * (StartDate null/≤now AND EndDate null/≥now), false otherwise. A rule with no dates is always active.
+     * This reflects the effective window alone and does not incorporate the enabled flag.
+     * @type {boolean}
+     * @memberof PickWaveRule
+     */
+    isActive?: boolean | null;
+    /**
+     * Gets or sets the name of the PickWaveRule.
+     * @type {string}
+     * @memberof PickWaveRule
+     */
+    name?: string | null;
+    /**
      * Gets or sets the list of product rules associated with the PickWaveRule.
      * @type {Array<ProductRuleCode>}
      * @memberof PickWaveRule
@@ -4379,17 +4911,11 @@ export interface PickWaveRule {
      */
     shipmentRules?: Array<ShipmentRuleCode> | null;
     /**
-     * Gets or sets the list of Customer Rule where the PickWaveRule applies.
-     * @type {Array<string>}
+     * Start of the rule's effective window. Null = no lower bound (already active).
+     * @type {string}
      * @memberof PickWaveRule
      */
-    customerRules?: Array<string> | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof PickWaveRule
-     */
-    auditInfo?: AdminUserAuditInfo;
+    startDate?: string | null;
 }
 /**
  * Represents a collection of Pick Wave Rules.
@@ -4399,16 +4925,10 @@ export interface PickWaveRule {
 export interface PickWaveRuleCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<PickWaveRule>}
      * @memberof PickWaveRuleCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PickWaveRuleCollection
-     */
-    pageSize?: number;
+    items?: Array<PickWaveRule> | null;
     /**
      * 
      * @type {number}
@@ -4420,13 +4940,19 @@ export interface PickWaveRuleCollection {
      * @type {number}
      * @memberof PickWaveRuleCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<PickWaveRule>}
+     * @type {number}
      * @memberof PickWaveRuleCollection
      */
-    items?: Array<PickWaveRule> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PickWaveRuleCollection
+     */
+    totalCount?: number;
 }
 /**
  * Category
@@ -4439,12 +4965,6 @@ export interface PriceListBulkResult {
      * @type {number}
      * @memberof PriceListBulkResult
      */
-    successCount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PriceListBulkResult
-     */
     failureCount?: number;
     /**
      * 
@@ -4452,6 +4972,12 @@ export interface PriceListBulkResult {
      * @memberof PriceListBulkResult
      */
     failureDetails?: Array<PriceListEntryFailure> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PriceListBulkResult
+     */
+    successCount?: number;
 }
 /**
  * Collection of categories returned as a whole. A collection is not paged.
@@ -4461,16 +4987,10 @@ export interface PriceListBulkResult {
 export interface PriceListCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<CatalogAdminsPriceList>}
      * @memberof PriceListCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PriceListCollection
-     */
-    pageSize?: number;
+    items?: Array<CatalogAdminsPriceList> | null;
     /**
      * 
      * @type {number}
@@ -4482,13 +5002,19 @@ export interface PriceListCollection {
      * @type {number}
      * @memberof PriceListCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<CatalogAdminsPriceList>}
+     * @type {number}
      * @memberof PriceListCollection
      */
-    items?: Array<CatalogAdminsPriceList> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PriceListCollection
+     */
+    totalCount?: number;
 }
 /**
  * Category
@@ -4496,6 +5022,120 @@ export interface PriceListCollection {
  * @interface PriceListEntry
  */
 export interface PriceListEntry {
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof PriceListEntry
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * 
+     * @type {number}
+     * @memberof PriceListEntry
+     */
+    cost?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PriceListEntry
+     */
+    costMode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PriceListEntry
+     */
+    currencyCode: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PriceListEntry
+     */
+    discountsRestricted?: boolean | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PriceListEntry
+     */
+    discountsRestrictedEndDate?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PriceListEntry
+     */
+    discountsRestrictedMode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PriceListEntry
+     */
+    discountsRestrictedStartDate?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PriceListEntry
+     */
+    endDate?: string | null;
+    /**
+     * 
+     * @type {Array<PriceListEntryExtra>}
+     * @memberof PriceListEntry
+     */
+    extraEntries?: Array<PriceListEntryExtra> | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PriceListEntry
+     */
+    isVariation?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof PriceListEntry
+     */
+    map?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PriceListEntry
+     */
+    mapEndDate?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PriceListEntry
+     */
+    mapMode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PriceListEntry
+     */
+    mapStartDate?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PriceListEntry
+     */
+    msrp?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PriceListEntry
+     */
+    msrpMode?: string | null;
+    /**
+     * 
+     * @type {Array<CatalogAdminsProductOption>}
+     * @memberof PriceListEntry
+     */
+    options?: Array<CatalogAdminsProductOption> | null;
+    /**
+     * 
+     * @type {Array<PriceListEntryPrice>}
+     * @memberof PriceListEntry
+     */
+    priceEntries?: Array<PriceListEntryPrice> | null;
     /**
      * External unique identifier of the PriceList. Must be unique an only contain url sanitized characters. Max length is
      * 50
@@ -4505,10 +5145,22 @@ export interface PriceListEntry {
     priceListCode?: string | null;
     /**
      * 
+     * @type {string}
+     * @memberof PriceListEntry
+     */
+    priceListEntryMode?: string | null;
+    /**
+     * 
      * @type {number}
      * @memberof PriceListEntry
      */
     priceListEntrySequence?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PriceListEntry
+     */
+    priceListEntryTypeCode?: string | null;
     /**
      * 
      * @type {string}
@@ -4523,136 +5175,10 @@ export interface PriceListEntry {
     productName?: string | null;
     /**
      * 
-     * @type {boolean}
-     * @memberof PriceListEntry
-     */
-    isVariation?: boolean;
-    /**
-     * 
-     * @type {Array<CatalogAdminsProductOption>}
-     * @memberof PriceListEntry
-     */
-    options?: Array<CatalogAdminsProductOption> | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PriceListEntry
-     */
-    currencyCode: string;
-    /**
-     * 
      * @type {string}
      * @memberof PriceListEntry
      */
     startDate?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PriceListEntry
-     */
-    endDate?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PriceListEntry
-     */
-    priceListEntryMode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PriceListEntry
-     */
-    priceListEntryTypeCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PriceListEntry
-     */
-    discountsRestrictedMode?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PriceListEntry
-     */
-    discountsRestricted?: boolean | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PriceListEntry
-     */
-    discountsRestrictedStartDate?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PriceListEntry
-     */
-    discountsRestrictedEndDate?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PriceListEntry
-     */
-    msrpMode?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PriceListEntry
-     */
-    msrp?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PriceListEntry
-     */
-    mapMode?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PriceListEntry
-     */
-    map?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PriceListEntry
-     */
-    mapStartDate?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PriceListEntry
-     */
-    mapEndDate?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PriceListEntry
-     */
-    costMode?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PriceListEntry
-     */
-    cost?: number | null;
-    /**
-     * 
-     * @type {Array<PriceListEntryPrice>}
-     * @memberof PriceListEntry
-     */
-    priceEntries?: Array<PriceListEntryPrice> | null;
-    /**
-     * 
-     * @type {Array<PriceListEntryExtra>}
-     * @memberof PriceListEntry
-     */
-    extraEntries?: Array<PriceListEntryExtra> | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof PriceListEntry
-     */
-    auditInfo?: AdminUserAuditInfo;
 }
 /**
  * Collection of categories returned as a whole. A collection is not paged.
@@ -4662,16 +5188,10 @@ export interface PriceListEntry {
 export interface PriceListEntryCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<PriceListEntry>}
      * @memberof PriceListEntryCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PriceListEntryCollection
-     */
-    pageSize?: number;
+    items?: Array<PriceListEntry> | null;
     /**
      * 
      * @type {number}
@@ -4683,13 +5203,19 @@ export interface PriceListEntryCollection {
      * @type {number}
      * @memberof PriceListEntryCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<PriceListEntry>}
+     * @type {number}
      * @memberof PriceListEntryCollection
      */
-    items?: Array<PriceListEntry> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PriceListEntryCollection
+     */
+    totalCount?: number;
 }
 /**
  * Extra for an entry on a price list
@@ -4698,26 +5224,6 @@ export interface PriceListEntryCollection {
  */
 export interface PriceListEntryExtra {
     /**
-     * AttributeFQN of the extra
-     * ReadOnly
-     * @type {string}
-     * @memberof PriceListEntryExtra
-     */
-    attributeFQN: string;
-    /**
-     * The value stored with the extra
-     * ReadOnly
-     * @type {any}
-     * @memberof PriceListEntryExtra
-     */
-    value?: any | null;
-    /**
-     * PriceList price for the extra
-     * @type {number}
-     * @memberof PriceListEntryExtra
-     */
-    price?: number;
-    /**
      * AttributeCode.
      * ReadOnly
      * @type {string}
@@ -4725,12 +5231,32 @@ export interface PriceListEntryExtra {
      */
     attributeCode?: string | null;
     /**
+     * AttributeFQN of the extra
+     * ReadOnly
+     * @type {string}
+     * @memberof PriceListEntryExtra
+     */
+    attributeFQN: string;
+    /**
      * Value to display.  Currently only vaild when Value is a string type.
      * ReadOnly
      * @type {string}
      * @memberof PriceListEntryExtra
      */
     displayValue?: string | null;
+    /**
+     * PriceList price for the extra
+     * @type {number}
+     * @memberof PriceListEntryExtra
+     */
+    price?: number;
+    /**
+     * The value stored with the extra
+     * ReadOnly
+     * @type {any}
+     * @memberof PriceListEntryExtra
+     */
+    value?: any | null;
 }
 /**
  * 
@@ -4738,6 +5264,18 @@ export interface PriceListEntryExtra {
  * @interface PriceListEntryFailure
  */
 export interface PriceListEntryFailure {
+    /**
+     * 
+     * @type {string}
+     * @memberof PriceListEntryFailure
+     */
+    currencyCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PriceListEntryFailure
+     */
+    msg?: string | null;
     /**
      * 
      * @type {string}
@@ -4755,19 +5293,7 @@ export interface PriceListEntryFailure {
      * @type {string}
      * @memberof PriceListEntryFailure
      */
-    currencyCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PriceListEntryFailure
-     */
     startDate?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PriceListEntryFailure
-     */
-    msg?: string | null;
 }
 /**
  * 
@@ -4780,7 +5306,7 @@ export interface PriceListEntryPrice {
      * @type {number}
      * @memberof PriceListEntryPrice
      */
-    minQty?: number;
+    listPrice?: number | null;
     /**
      * 
      * @type {string}
@@ -4792,13 +5318,7 @@ export interface PriceListEntryPrice {
      * @type {number}
      * @memberof PriceListEntryPrice
      */
-    listPrice?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PriceListEntryPrice
-     */
-    salePriceMode?: string | null;
+    minQty?: number;
     /**
      * 
      * @type {number}
@@ -4810,7 +5330,7 @@ export interface PriceListEntryPrice {
      * @type {string}
      * @memberof PriceListEntryPrice
      */
-    subscriptionPriceMode?: string | null;
+    salePriceMode?: string | null;
     /**
      * 
      * @type {number}
@@ -4822,27 +5342,70 @@ export interface PriceListEntryPrice {
      * @type {string}
      * @memberof PriceListEntryPrice
      */
-    subscriptionSalePriceMode?: string | null;
+    subscriptionPriceMode?: string | null;
     /**
      * 
      * @type {number}
      * @memberof PriceListEntryPrice
      */
     subscriptionSalePrice?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PriceListEntryPrice
+     */
+    subscriptionSalePriceMode?: string | null;
 }
 /**
- * Represents a customer segment
+ * 
  * @export
  * @interface PricingRuntimeCustomerSegment
  */
 export interface PricingRuntimeCustomerSegment {
     /**
-     * The Customer segment Id.
-     * This is the  system Id not the code.
-     * @type {number}
+     * 
+     * @type {any}
      * @memberof PricingRuntimeCustomerSegment
      */
-    id?: number;
+    id?: any | null;
+}
+/**
+ * 
+ * @export
+ * @interface ProblemDetails
+ */
+export interface ProblemDetails {
+    [key: string]: any | any;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProblemDetails
+     */
+    detail?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProblemDetails
+     */
+    instance?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProblemDetails
+     */
+    status?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProblemDetails
+     */
+    title?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProblemDetails
+     */
+    type?: string | null;
 }
 /**
  * Categories to which the product belongs.
@@ -4884,28 +5447,28 @@ export interface ProductCodeRename {
 export interface ProductCollectionProduct {
     /**
      * 
-     * @type {CatalogAdminsProductCollectionMemberKey}
-     * @memberof ProductCollectionProduct
-     */
-    memberKey?: CatalogAdminsProductCollectionMemberKey;
-    /**
-     * ReadOnly Indicates the usage type of this product. Must be one of the values in ProductUsageConst.
-     * @type {string}
-     * @memberof ProductCollectionProduct
-     */
-    productUsage?: string | null;
-    /**
-     * 
      * @type {ProductLocalizedContent}
      * @memberof ProductCollectionProduct
      */
     content?: ProductLocalizedContent;
     /**
      * 
+     * @type {CatalogAdminsProductCollectionMemberKey}
+     * @memberof ProductCollectionProduct
+     */
+    memberKey?: CatalogAdminsProductCollectionMemberKey;
+    /**
+     * 
      * @type {CatalogAdminsProductPrice}
      * @memberof ProductCollectionProduct
      */
     price?: CatalogAdminsProductPrice;
+    /**
+     * ReadOnly Indicates the usage type of this product. Must be one of the values in ProductUsageConst.
+     * @type {string}
+     * @memberof ProductCollectionProduct
+     */
+    readonly productUsage?: string | null;
 }
 /**
  * Collection of products returned as a whole. A collection is not paged.
@@ -4915,16 +5478,10 @@ export interface ProductCollectionProduct {
 export interface ProductCollectionV1 {
     /**
      * 
-     * @type {number}
+     * @type {Array<ProductV1>}
      * @memberof ProductCollectionV1
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ProductCollectionV1
-     */
-    pageSize?: number;
+    items?: Array<ProductV1> | null;
     /**
      * 
      * @type {number}
@@ -4936,13 +5493,19 @@ export interface ProductCollectionV1 {
      * @type {number}
      * @memberof ProductCollectionV1
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<ProductV1>}
+     * @type {number}
      * @memberof ProductCollectionV1
      */
-    items?: Array<ProductV1> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductCollectionV1
+     */
+    totalCount?: number;
 }
 /**
  * Represents a product and quantity constraint
@@ -4975,13 +5538,13 @@ export interface ProductExtra {
      * @type {boolean}
      * @memberof ProductExtra
      */
-    isRequired?: boolean | null;
+    isMultiSelect?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof ProductExtra
      */
-    isMultiSelect?: boolean | null;
+    isRequired?: boolean | null;
     /**
      * 
      * @type {Array<ProductExtraValue>}
@@ -4997,22 +5560,16 @@ export interface ProductExtra {
 export interface ProductExtraValue {
     /**
      * 
-     * @type {any}
+     * @type {CatalogAdminsAttributeVocabularyValue}
      * @memberof ProductExtraValue
      */
-    value?: any | null;
+    attributeVocabularyValueDetail?: CatalogAdminsAttributeVocabularyValue;
     /**
      * 
      * @type {ProductExtraValueDeltaPrice}
      * @memberof ProductExtraValue
      */
     deltaPrice?: ProductExtraValueDeltaPrice;
-    /**
-     * 
-     * @type {Array<ProductExtraValueDeltaPrice>}
-     * @memberof ProductExtraValue
-     */
-    localizedDeltaPrice?: Array<ProductExtraValueDeltaPrice> | null;
     /**
      * 
      * @type {number}
@@ -5027,16 +5584,22 @@ export interface ProductExtraValue {
     isDefaulted?: boolean | null;
     /**
      * 
+     * @type {Array<ProductExtraValueDeltaPrice>}
+     * @memberof ProductExtraValue
+     */
+    localizedDeltaPrice?: Array<ProductExtraValueDeltaPrice> | null;
+    /**
+     * 
      * @type {number}
      * @memberof ProductExtraValue
      */
     quantity?: number | null;
     /**
      * 
-     * @type {CatalogAdminsAttributeVocabularyValue}
+     * @type {any}
      * @memberof ProductExtraValue
      */
-    attributeVocabularyValueDetail?: CatalogAdminsAttributeVocabularyValue;
+    value?: any | null;
 }
 /**
  * How much a product option costs above the cost of the base product, if at all.
@@ -5058,20 +5621,73 @@ export interface ProductExtraValueDeltaPrice {
     deltaPrice?: number;
 }
 /**
- * Use the Products resource to create and manage products for your store.
- * You can create products with options that a shopper configures
- * (such as a T-shirt color and size). The system can manage inventory for all
- * combinations of your product options, and can calculate tax and shipping costs.
+ * 
+ * @export
+ * @interface ProductImageGroup
+ */
+export interface ProductImageGroup {
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductImageGroup
+     */
+    productImageGroupId: string;
+    /**
+     * 
+     * @type {Array<ProductImageGroupTag>}
+     * @memberof ProductImageGroup
+     */
+    productImageGroupTags?: Array<ProductImageGroupTag> | null;
+}
+/**
+ * 
+ * @export
+ * @interface ProductImageGroupTag
+ */
+export interface ProductImageGroupTag {
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductImageGroupTag
+     */
+    fqn: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ProductImageGroupTag
+     */
+    values?: Array<string> | null;
+}
+/**
+ * Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs.
  * @export
  * @interface ProductInCatalogInfo
  */
 export interface ProductInCatalogInfo {
+    /**
+     * 
+     * @type {CatalogAdminsActiveDateRange}
+     * @memberof ProductInCatalogInfo
+     */
+    activeDateRange?: CatalogAdminsActiveDateRange;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof ProductInCatalogInfo
+     */
+    auditInfo?: AdminUserAuditInfo;
     /**
      * The CatalogId of the catalog that the product is associated with (The catalog must a valid catalog within the MasterCatalog that the product belongs to)
      * @type {number}
      * @memberof ProductInCatalogInfo
      */
     catalogId?: number;
+    /**
+     * Date this product was first Available for sale in the catalog. This is utilized in expressions that reference DaysInCatloag.
+     * @type {string}
+     * @memberof ProductInCatalogInfo
+     */
+    dateFirstAvailableInCatalog?: string | null;
     /**
      * If true, the product is marked as available for sale in the catalog. Setting a product to IsActive = false will prevent it from being shown on the customer facing storefront.
      * @type {boolean}
@@ -5091,35 +5707,17 @@ export interface ProductInCatalogInfo {
      */
     price?: CatalogAdminsProductPrice;
     /**
-     * Categories to which the product belongs for this catalog.
-     * @type {Array<ProductCategory>}
-     * @memberof ProductInCatalogInfo
-     */
-    productCategories?: Array<ProductCategory> | null;
-    /**
      * 
      * @type {ProductCategory}
      * @memberof ProductInCatalogInfo
      */
     primaryProductCategory?: ProductCategory;
     /**
-     * Date this product was first Available for sale in the catalog. This is utilized in expressions that reference DaysInCatloag.
-     * @type {string}
+     * Categories to which the product belongs for this catalog.
+     * @type {Array<ProductCategory>}
      * @memberof ProductInCatalogInfo
      */
-    dateFirstAvailableInCatalog?: string | null;
-    /**
-     * 
-     * @type {CatalogAdminsActiveDateRange}
-     * @memberof ProductInCatalogInfo
-     */
-    activeDateRange?: CatalogAdminsActiveDateRange;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof ProductInCatalogInfo
-     */
-    auditInfo?: AdminUserAuditInfo;
+    productCategories?: Array<ProductCategory> | null;
 }
 /**
  * Use the Products resource to create and manage products for your store.
@@ -5131,11 +5729,35 @@ export interface ProductInCatalogInfo {
  */
 export interface ProductInCatalogInfoV1 {
     /**
+     * 
+     * @type {CatalogAdminsActiveDateRange}
+     * @memberof ProductInCatalogInfoV1
+     */
+    activeDateRange?: CatalogAdminsActiveDateRange;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof ProductInCatalogInfoV1
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
      * The CatalogId of the catalog that the product is associated with (The catalog must a valid catalog within the MasterCatalog that the product belongs to)
      * @type {number}
      * @memberof ProductInCatalogInfoV1
      */
     catalogId?: number;
+    /**
+     * 
+     * @type {ProductLocalizedContent}
+     * @memberof ProductInCatalogInfoV1
+     */
+    content?: ProductLocalizedContent;
+    /**
+     * Date this product was first Available for sale in the catalog. This is utilized in expressions that reference DaysInCatloag.
+     * @type {string}
+     * @memberof ProductInCatalogInfoV1
+     */
+    dateFirstAvailableInCatalog?: string | null;
     /**
      * If true, the product is marked as available for sale in the catalog. Setting a product to IsActive = false will prevent it from being shown on the customer facing storefront.
      * @type {boolean}
@@ -5149,23 +5771,11 @@ export interface ProductInCatalogInfoV1 {
      */
     isContentOverridden?: boolean | null;
     /**
-     * 
-     * @type {ProductLocalizedContent}
-     * @memberof ProductInCatalogInfoV1
-     */
-    content?: ProductLocalizedContent;
-    /**
      * If true, the price for this product is overridden in the catalog. If false, the MasterCatalog level price will be used for the product.
      * @type {boolean}
      * @memberof ProductInCatalogInfoV1
      */
     isPriceOverridden?: boolean | null;
-    /**
-     * 
-     * @type {CatalogAdminsProductPrice}
-     * @memberof ProductInCatalogInfoV1
-     */
-    price?: CatalogAdminsProductPrice;
     /**
      * If true, the SEO content for this product is overridden in the catalog. If false, the MasterCatalog level SEO content will be used for the product.
      * @type {boolean}
@@ -5174,10 +5784,16 @@ export interface ProductInCatalogInfoV1 {
     isSEOContentOverridden?: boolean | null;
     /**
      * 
-     * @type {ProductLocalizedSEOContent}
+     * @type {CatalogAdminsProductPrice}
      * @memberof ProductInCatalogInfoV1
      */
-    seoContent?: ProductLocalizedSEOContent;
+    price?: CatalogAdminsProductPrice;
+    /**
+     * 
+     * @type {ProductCategory}
+     * @memberof ProductInCatalogInfoV1
+     */
+    primaryProductCategory?: ProductCategory;
     /**
      * Categories to which the product belongs for this catalog.
      * @type {Array<ProductCategory>}
@@ -5186,28 +5802,10 @@ export interface ProductInCatalogInfoV1 {
     productCategories?: Array<ProductCategory> | null;
     /**
      * 
-     * @type {ProductCategory}
+     * @type {ProductLocalizedSEOContent}
      * @memberof ProductInCatalogInfoV1
      */
-    primaryProductCategory?: ProductCategory;
-    /**
-     * Date this product was first Available for sale in the catalog. This is utilized in expressions that reference DaysInCatloag.
-     * @type {string}
-     * @memberof ProductInCatalogInfoV1
-     */
-    dateFirstAvailableInCatalog?: string | null;
-    /**
-     * 
-     * @type {CatalogAdminsActiveDateRange}
-     * @memberof ProductInCatalogInfoV1
-     */
-    activeDateRange?: CatalogAdminsActiveDateRange;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof ProductInCatalogInfoV1
-     */
-    auditInfo?: AdminUserAuditInfo;
+    seoContent?: ProductLocalizedSEOContent;
 }
 /**
  * 
@@ -5230,16 +5828,10 @@ export interface ProductInCatalogInfoV1PatchDocument {
 export interface ProductInCatalogInfoV1PatchOperation {
     /**
      * 
-     * @type {any}
-     * @memberof ProductInCatalogInfoV1PatchOperation
-     */
-    value?: any | null;
-    /**
-     * 
      * @type {string}
      * @memberof ProductInCatalogInfoV1PatchOperation
      */
-    path?: string | null;
+    from?: string | null;
     /**
      * 
      * @type {string}
@@ -5251,7 +5843,13 @@ export interface ProductInCatalogInfoV1PatchOperation {
      * @type {string}
      * @memberof ProductInCatalogInfoV1PatchOperation
      */
-    from?: string | null;
+    path?: string | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof ProductInCatalogInfoV1PatchOperation
+     */
+    value?: any | null;
 }
 /**
  * List of JsonPatch operations to be applied to a Mozu.ProductAdmin.Contracts.ProductInCatalogInfo
@@ -5259,12 +5857,6 @@ export interface ProductInCatalogInfoV1PatchOperation {
  * @interface ProductInCatalogPatchAction
  */
 export interface ProductInCatalogPatchAction {
-    /**
-     * Product code of the target product
-     * @type {string}
-     * @memberof ProductInCatalogPatchAction
-     */
-    productCode?: string | null;
     /**
      * CatalogId
      * @type {number}
@@ -5277,6 +5869,12 @@ export interface ProductInCatalogPatchAction {
      * @memberof ProductInCatalogPatchAction
      */
     patches?: ProductInCatalogInfoV1PatchDocument;
+    /**
+     * Product code of the target product
+     * @type {string}
+     * @memberof ProductInCatalogPatchAction
+     */
+    productCode?: string | null;
     /**
      * If true and publishing is enabled, actions are applied to a draft version of the product and then the draft is published otherwise
      * changes are saved to the live product.
@@ -5298,29 +5896,29 @@ export interface ProductLocalizedContent {
      */
     localeCode?: string | null;
     /**
-     * Name of the product.
-     * @type {string}
-     * @memberof ProductLocalizedContent
-     */
-    productName?: string | null;
-    /**
      * Long description of the product typically used for a product details page.
      * @type {string}
      * @memberof ProductLocalizedContent
      */
     productFullDescription?: string | null;
     /**
-     * Brief description of the product typically used when the product is displayed in a list or search results.
-     * @type {string}
-     * @memberof ProductLocalizedContent
-     */
-    productShortDescription?: string | null;
-    /**
      * List of images associated with the product.
      * @type {Array<ProductLocalizedImage>}
      * @memberof ProductLocalizedContent
      */
     productImages?: Array<ProductLocalizedImage> | null;
+    /**
+     * Name of the product.
+     * @type {string}
+     * @memberof ProductLocalizedContent
+     */
+    productName?: string;
+    /**
+     * Brief description of the product typically used when the product is displayed in a list or search results.
+     * @type {string}
+     * @memberof ProductLocalizedContent
+     */
+    productShortDescription?: string | null;
 }
 /**
  * Contains the image label and alternate text for a product image or video in the language specified by LocalCode.
@@ -5329,35 +5927,11 @@ export interface ProductLocalizedContent {
  */
 export interface ProductLocalizedImage {
     /**
-     * Unique identifier of the image. System-supplied and read-only.
-     * @type {number}
-     * @memberof ProductLocalizedImage
-     */
-    id?: number | null;
-    /**
-     * Language used for the image content.
-     * @type {string}
-     * @memberof ProductLocalizedImage
-     */
-    localeCode?: string | null;
-    /**
-     * Image title that appears on the storefront.
-     * @type {string}
-     * @memberof ProductLocalizedImage
-     */
-    imageLabel?: string | null;
-    /**
      * Descriptive text associated with the image or video that appears on the storefront.
      * @type {string}
      * @memberof ProductLocalizedImage
      */
     altText?: string | null;
-    /**
-     * URL of the image.
-     * @type {string}
-     * @memberof ProductLocalizedImage
-     */
-    imageUrl?: string | null;
     /**
      * Id of the image in the CMS.
      * @type {string}
@@ -5365,11 +5939,29 @@ export interface ProductLocalizedImage {
      */
     cmsId?: string | null;
     /**
-     * URL of a video associated with the product.
+     * Unique identifier of the image. System-supplied and read-only.
+     * @type {number}
+     * @memberof ProductLocalizedImage
+     */
+    id?: number | null;
+    /**
+     * Image title that appears on the storefront.
      * @type {string}
      * @memberof ProductLocalizedImage
      */
-    videoUrl?: string | null;
+    imageLabel?: string | null;
+    /**
+     * URL of the image.
+     * @type {string}
+     * @memberof ProductLocalizedImage
+     */
+    imageUrl?: string | null;
+    /**
+     * Language used for the image content.
+     * @type {string}
+     * @memberof ProductLocalizedImage
+     */
+    localeCode?: string | null;
     /**
      * Type of media. Used by the client to determine how to render the image or video or what have you.
      * @type {string}
@@ -5377,17 +5969,23 @@ export interface ProductLocalizedImage {
      */
     mediaType?: string | null;
     /**
+     * Image group to which this image belongs.  Default is null.
+     * @type {string}
+     * @memberof ProductLocalizedImage
+     */
+    productImageGroupId?: string | null;
+    /**
      * For products with multiple images, the order in which this image appears on the storefront.
      * @type {number}
      * @memberof ProductLocalizedImage
      */
     sequence?: number | null;
     /**
-     * Image group to which this image belongs.  Default is null.
+     * URL of a video associated with the product.
      * @type {string}
      * @memberof ProductLocalizedImage
      */
-    productImageGroupId?: string | null;
+    videoUrl?: string | null;
 }
 /**
  * Container for language-specific content to display on the storefront. You'll have a container for each supported language (LocaleCode). This enables you to display a product in multiple languages yet manage it as a single product internally.
@@ -5402,12 +6000,6 @@ export interface ProductLocalizedSEOContent {
      */
     localeCode?: string | null;
     /**
-     * Metadata title. Metadata can be used to manage information internally. Sometimes used for SEO.
-     * @type {string}
-     * @memberof ProductLocalizedSEOContent
-     */
-    metaTagTitle?: string | null;
-    /**
      * Metadata description. Metadata can be used to manage information internally. Sometimes used for SEO.
      * @type {string}
      * @memberof ProductLocalizedSEOContent
@@ -5420,11 +6012,11 @@ export interface ProductLocalizedSEOContent {
      */
     metaTagKeywords?: string | null;
     /**
-     * Used to customize the HTML title tag within the head section of the product details page
+     * Metadata title. Metadata can be used to manage information internally. Sometimes used for SEO.
      * @type {string}
      * @memberof ProductLocalizedSEOContent
      */
-    titleTagTitle?: string | null;
+    metaTagTitle?: string | null;
     /**
      * Human-readable identifier that you can give to the product to create friendly URLs. For example, 
      * instead of "http: //example.com/products?category=2&id=25," the friendly URL can be "http: //example.com/products/category/2/25."
@@ -5432,6 +6024,12 @@ export interface ProductLocalizedSEOContent {
      * @memberof ProductLocalizedSEOContent
      */
     seoFriendlyUrl?: string | null;
+    /**
+     * Used to customize the HTML title tag within the head section of the product details page
+     * @type {string}
+     * @memberof ProductLocalizedSEOContent
+     */
+    titleTagTitle?: string | null;
 }
 /**
  * List of JsonPatch operations to be applied to a Mozu.ProductAdmin.Contracts.Product
@@ -5440,17 +6038,17 @@ export interface ProductLocalizedSEOContent {
  */
 export interface ProductPatchAction {
     /**
-     * Target product code
-     * @type {string}
-     * @memberof ProductPatchAction
-     */
-    productCode?: string | null;
-    /**
      * 
      * @type {ProductV1PatchDocument}
      * @memberof ProductPatchAction
      */
     patches?: ProductV1PatchDocument;
+    /**
+     * Target product code
+     * @type {string}
+     * @memberof ProductPatchAction
+     */
+    productCode?: string | null;
     /**
      * If true and publishing is enabled, actions are applied to a draft version of the product and then the draft is published otherwise
      * changes are saved to the live product.
@@ -5466,12 +6064,6 @@ export interface ProductPatchAction {
  */
 export interface ProductPropertyPatchAction {
     /**
-     * Product code of the target product
-     * @type {string}
-     * @memberof ProductPropertyPatchAction
-     */
-    productCode?: string | null;
-    /**
      * AttributeFQN
      * @type {string}
      * @memberof ProductPropertyPatchAction
@@ -5483,6 +6075,12 @@ export interface ProductPropertyPatchAction {
      * @memberof ProductPropertyPatchAction
      */
     patches?: ProductPropertyPatchDocument;
+    /**
+     * Product code of the target product
+     * @type {string}
+     * @memberof ProductPropertyPatchAction
+     */
+    productCode?: string | null;
     /**
      * If true and publishing is enabled, actions are applied to a draft version of the product and then the draft is published otherwise
      * changes are saved to the live product.
@@ -5512,16 +6110,10 @@ export interface ProductPropertyPatchDocument {
 export interface ProductPropertyPatchOperation {
     /**
      * 
-     * @type {any}
-     * @memberof ProductPropertyPatchOperation
-     */
-    value?: any | null;
-    /**
-     * 
      * @type {string}
      * @memberof ProductPropertyPatchOperation
      */
-    path?: string | null;
+    from?: string | null;
     /**
      * 
      * @type {string}
@@ -5533,7 +6125,13 @@ export interface ProductPropertyPatchOperation {
      * @type {string}
      * @memberof ProductPropertyPatchOperation
      */
-    from?: string | null;
+    path?: string | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof ProductPropertyPatchOperation
+     */
+    value?: any | null;
 }
 /**
  * Attribute Value Localized Resource
@@ -5565,12 +6163,6 @@ export interface ProductPublishingInfo {
      * @type {string}
      * @memberof ProductPublishingInfo
      */
-    publishedState?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProductPublishingInfo
-     */
     lastPublishedBy?: string | null;
     /**
      * 
@@ -5584,6 +6176,12 @@ export interface ProductPublishingInfo {
      * @memberof ProductPublishingInfo
      */
     publishSetCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProductPublishingInfo
+     */
+    publishedState?: string | null;
 }
 /**
  * 
@@ -5612,16 +6210,10 @@ export interface ProductRuleCode {
 export interface ProductRuleCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<CatalogAdminsProductRule>}
      * @memberof ProductRuleCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ProductRuleCollection
-     */
-    pageSize?: number;
+    items?: Array<CatalogAdminsProductRule> | null;
     /**
      * 
      * @type {number}
@@ -5633,13 +6225,19 @@ export interface ProductRuleCollection {
      * @type {number}
      * @memberof ProductRuleCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<CatalogAdminsProductRule>}
+     * @type {number}
      * @memberof ProductRuleCollection
      */
-    items?: Array<CatalogAdminsProductRule> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductRuleCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -5648,17 +6246,17 @@ export interface ProductRuleCollection {
  */
 export interface ProductRuleUsage {
     /**
-     * The type of rule this ProductRule belongs to.
-     * @type {string}
-     * @memberof ProductRuleUsage
-     */
-    ruleType?: string | null;
-    /**
      * Unique identifier of the ProductRule. System-supplied and read-only.
      * @type {string}
      * @memberof ProductRuleUsage
      */
     code?: string | null;
+    /**
+     * The type of rule this ProductRule belongs to.
+     * @type {string}
+     * @memberof ProductRuleUsage
+     */
+    ruleType?: string | null;
 }
 /**
  * 
@@ -5668,16 +6266,10 @@ export interface ProductRuleUsage {
 export interface ProductRuleUsageCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<ProductRuleUsage>}
      * @memberof ProductRuleUsageCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ProductRuleUsageCollection
-     */
-    pageSize?: number;
+    items?: Array<ProductRuleUsage> | null;
     /**
      * 
      * @type {number}
@@ -5689,13 +6281,19 @@ export interface ProductRuleUsageCollection {
      * @type {number}
      * @memberof ProductRuleUsageCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<ProductRuleUsage>}
+     * @type {number}
      * @memberof ProductRuleUsageCollection
      */
-    items?: Array<ProductRuleUsage> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductRuleUsageCollection
+     */
+    totalCount?: number;
 }
 /**
  * Defines a default sort for a list of products and allows some products to be
@@ -5706,42 +6304,11 @@ export interface ProductRuleUsageCollection {
  */
 export interface ProductSortDefinition {
     /**
-     * System or user provided ID for the ProductSortDefinition
-     * @type {number}
-     * @memberof ProductSortDefinition
-     */
-    productSortDefinitionId?: number | null;
-    /**
      * 
-     * @type {number}
+     * @type {AdminUserAuditInfo}
      * @memberof ProductSortDefinition
      */
-    categoryId?: number | null;
-    /**
-     * Short Name for the sort definition. Required.
-     * @type {string}
-     * @memberof ProductSortDefinition
-     */
-    name: string;
-    /**
-     * The Start Date when the sort definition becomes active
-     * @type {string}
-     * @memberof ProductSortDefinition
-     */
-    startDate: string;
-    /**
-     * Optional end date for a product sort definition
-     * @type {string}
-     * @memberof ProductSortDefinition
-     */
-    endDate?: string | null;
-    /**
-     * Sort expression to apply
-     * Max two expressions
-     * @type {Array<ProductSortExpression>}
-     * @memberof ProductSortDefinition
-     */
-    sortExpressions: Array<ProductSortExpression>;
+    auditInfo?: AdminUserAuditInfo;
     /**
      * List of products being positioned
      * @type {Array<ProductSortOverride>}
@@ -5756,10 +6323,41 @@ export interface ProductSortDefinition {
     buried?: Array<ProductSortOverride> | null;
     /**
      * 
-     * @type {AdminUserAuditInfo}
+     * @type {number}
      * @memberof ProductSortDefinition
      */
-    auditInfo?: AdminUserAuditInfo;
+    categoryId?: number | null;
+    /**
+     * Optional end date for a product sort definition
+     * @type {string}
+     * @memberof ProductSortDefinition
+     */
+    endDate?: string | null;
+    /**
+     * Short Name for the sort definition. Required.
+     * @type {string}
+     * @memberof ProductSortDefinition
+     */
+    name: string;
+    /**
+     * System or user provided ID for the ProductSortDefinition
+     * @type {number}
+     * @memberof ProductSortDefinition
+     */
+    productSortDefinitionId?: number | null;
+    /**
+     * Sort expression to apply
+     * Max two expressions
+     * @type {Array<ProductSortExpression>}
+     * @memberof ProductSortDefinition
+     */
+    sortExpressions: Array<ProductSortExpression>;
+    /**
+     * The Start Date when the sort definition becomes active
+     * @type {string}
+     * @memberof ProductSortDefinition
+     */
+    startDate: string;
 }
 /**
  * Collection of product sort definitions where product sort definitions are returned in a series of pages.
@@ -5769,16 +6367,10 @@ export interface ProductSortDefinition {
 export interface ProductSortDefinitionPagedCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<ProductSortDefinition>}
      * @memberof ProductSortDefinitionPagedCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ProductSortDefinitionPagedCollection
-     */
-    pageSize?: number;
+    items?: Array<ProductSortDefinition> | null;
     /**
      * 
      * @type {number}
@@ -5790,13 +6382,19 @@ export interface ProductSortDefinitionPagedCollection {
      * @type {number}
      * @memberof ProductSortDefinitionPagedCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<ProductSortDefinition>}
+     * @type {number}
      * @memberof ProductSortDefinitionPagedCollection
      */
-    items?: Array<ProductSortDefinition> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductSortDefinitionPagedCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -5805,18 +6403,18 @@ export interface ProductSortDefinitionPagedCollection {
  */
 export interface ProductSortExpression {
     /**
+     * ASC or DESC
+     * @type {string}
+     * @memberof ProductSortExpression
+     */
+    direction?: string | null;
+    /**
      * The name of the field to sort on.
      * Must be a known sort field or sortable attribute
      * @type {string}
      * @memberof ProductSortExpression
      */
     field: string;
-    /**
-     * ASC or DESC
-     * @type {string}
-     * @memberof ProductSortExpression
-     */
-    direction?: string | null;
 }
 /**
  * Represents a product that is positioned out of its normal sort position.
@@ -5825,6 +6423,22 @@ export interface ProductSortExpression {
  * @interface ProductSortOverride
  */
 export interface ProductSortOverride {
+    /**
+     * Flag to indicate that the product is pinned at the specified position.
+     * Not applicable to buried products
+     * @type {boolean}
+     * @memberof ProductSortOverride
+     */
+    isPinned?: boolean | null;
+    /**
+     * Indicates the relative position of the product to other overridden products.
+     * Position is absolute if IsPinned is true.
+     * Not applicable to buried products. Buried products will be given a default
+     * position of -1
+     * @type {number}
+     * @memberof ProductSortOverride
+     */
+    position?: number | null;
     /**
      * The product code of the product being overridden
      * @type {string}
@@ -5837,22 +6451,6 @@ export interface ProductSortOverride {
      * @memberof ProductSortOverride
      */
     sliceValue?: string | null;
-    /**
-     * Indicates the relative position of the product to other overridden products.
-     * Position is absolute if IsPinned is true.
-     * Not applicable to buried products. Buried products will be given a default
-     * position of -1
-     * @type {number}
-     * @memberof ProductSortOverride
-     */
-    position?: number | null;
-    /**
-     * Flag to indicate that the product is pinned at the specified position.
-     * Not applicable to buried products
-     * @type {boolean}
-     * @memberof ProductSortOverride
-     */
-    isPinned?: boolean | null;
 }
 /**
  * 
@@ -5862,22 +6460,10 @@ export interface ProductSortOverride {
 export interface ProductSuggestSettings {
     /**
      * 
-     * @type {Array<string>}
+     * @type {number}
      * @memberof ProductSuggestSettings
      */
-    customBoosts?: Array<string> | null;
-    /**
-     * 
-     * @type {FieldValueBoost}
-     * @memberof ProductSuggestSettings
-     */
-    fieldValueBoost?: FieldValueBoost;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ProductSuggestSettings
-     */
-    searchChildProductsByDefault?: boolean;
+    crossFieldAdditiveScoreFactor?: number;
     /**
      * 
      * @type {Array<FieldWeight>}
@@ -5904,10 +6490,47 @@ export interface ProductSuggestSettings {
     returnFields?: Array<string> | null;
     /**
      * 
-     * @type {number}
+     * @type {Array<string>}
      * @memberof ProductSuggestSettings
      */
-    crossFieldAdditiveScoreFactor?: number;
+    customBoosts?: Array<string> | null;
+    /**
+     * 
+     * @type {FieldValueBoost}
+     * @memberof ProductSuggestSettings
+     */
+    fieldValueBoost?: FieldValueBoost;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ProductSuggestSettings
+     */
+    searchChildProductsByDefault?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface ProductSuggestSettingsAllOf
+ */
+export interface ProductSuggestSettingsAllOf {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ProductSuggestSettingsAllOf
+     */
+    customBoosts?: Array<string> | null;
+    /**
+     * 
+     * @type {FieldValueBoost}
+     * @memberof ProductSuggestSettingsAllOf
+     */
+    fieldValueBoost?: FieldValueBoost;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ProductSuggestSettingsAllOf
+     */
+    searchChildProductsByDefault?: boolean;
 }
 /**
  * Supplier info for the product
@@ -5917,10 +6540,10 @@ export interface ProductSuggestSettings {
 export interface ProductSupplierInfo {
     /**
      * 
-     * @type {string}
+     * @type {CatalogAdminsProductCost}
      * @memberof ProductSupplierInfo
      */
-    mfgPartNumber?: string | null;
+    cost?: CatalogAdminsProductCost;
     /**
      * 
      * @type {string}
@@ -5929,10 +6552,10 @@ export interface ProductSupplierInfo {
     distPartNumber?: string | null;
     /**
      * 
-     * @type {CatalogAdminsProductCost}
+     * @type {string}
      * @memberof ProductSupplierInfo
      */
-    cost?: CatalogAdminsProductCost;
+    mfgPartNumber?: string | null;
 }
 /**
  * 
@@ -5941,17 +6564,35 @@ export interface ProductSupplierInfo {
  */
 export interface ProductType {
     /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof ProductType
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * Collection of the Attributes that are Extras in this productType
+     * @type {Array<AttributeInProductType>}
+     * @memberof ProductType
+     */
+    extras?: Array<AttributeInProductType> | null;
+    /**
+     * The TYpe of Goods of this product
+     * @type {string}
+     * @memberof ProductType
+     */
+    goodsType?: string | null;
+    /**
      * Unique identifier of the ProductType. System-supplied and read-only.
      * @type {number}
      * @memberof ProductType
      */
     id?: number | null;
     /**
-     * Name of the productType
-     * @type {string}
+     * System supplied and read only. There is only one BaseProductType per MasterCatalog.
+     * @type {boolean}
      * @memberof ProductType
      */
-    name?: string | null;
+    isBaseProductType?: boolean;
     /**
      * Indentifier of the Master Catalog that this ProductType is a member of. System-supplied and read-only.
      * @type {number}
@@ -5959,11 +6600,17 @@ export interface ProductType {
      */
     masterCatalogId?: number | null;
     /**
-     * System supplied and read only. There is only one BaseProductType per MasterCatalog.
-     * @type {boolean}
+     * Name of the productType
+     * @type {string}
      * @memberof ProductType
      */
-    isBaseProductType?: boolean;
+    name?: string | null;
+    /**
+     * Collection of the Attributes that are Options in this productType
+     * @type {Array<AttributeInProductType>}
+     * @memberof ProductType
+     */
+    options?: Array<AttributeInProductType> | null;
     /**
      * Indicates the number of products currently using this Product Type. System-supplied and read-only.
      * @type {number}
@@ -5977,24 +6624,6 @@ export interface ProductType {
      */
     productUsages?: Array<string> | null;
     /**
-     * The TYpe of Goods of this product
-     * @type {string}
-     * @memberof ProductType
-     */
-    goodsType?: string | null;
-    /**
-     * Collection of the Attributes that are Options in this productType
-     * @type {Array<AttributeInProductType>}
-     * @memberof ProductType
-     */
-    options?: Array<AttributeInProductType> | null;
-    /**
-     * Collection of the Attributes that are Extras in this productType
-     * @type {Array<AttributeInProductType>}
-     * @memberof ProductType
-     */
-    extras?: Array<AttributeInProductType> | null;
-    /**
      * Collection of the Attributes that are Properties in this productType
      * @type {Array<AttributeInProductType>}
      * @memberof ProductType
@@ -6006,12 +6635,6 @@ export interface ProductType {
      * @memberof ProductType
      */
     variantProperties?: Array<AttributeInProductType> | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof ProductType
-     */
-    auditInfo?: AdminUserAuditInfo;
 }
 /**
  * 
@@ -6019,12 +6642,6 @@ export interface ProductType {
  * @interface ProductTypeChangeRequest
  */
 export interface ProductTypeChangeRequest {
-    /**
-     * The target product type id to move the product to.
-     * @type {number}
-     * @memberof ProductTypeChangeRequest
-     */
-    targetProductTypeId?: number;
     /**
      * When set to true any attributes or values that were set on the product that are
      * not defined the target product type will be lost.  When false, the process will stop
@@ -6035,18 +6652,24 @@ export interface ProductTypeChangeRequest {
      */
     ignoreDataLoss?: boolean;
     /**
+     * When true the validation will stop on the first error.  Defaults to run all validation.
+     * @type {boolean}
+     * @memberof ProductTypeChangeRequest
+     */
+    shouldFailFast?: boolean | null;
+    /**
+     * The target product type id to move the product to.
+     * @type {number}
+     * @memberof ProductTypeChangeRequest
+     */
+    targetProductTypeId?: number;
+    /**
      * When set to true no updates will be made but the validation will return any
      * warnings or failures. Defaults to false.
      * @type {boolean}
      * @memberof ProductTypeChangeRequest
      */
     testMode?: boolean | null;
-    /**
-     * When true the validation will stop on the first error.  Defaults to run all validation.
-     * @type {boolean}
-     * @memberof ProductTypeChangeRequest
-     */
-    shouldFailFast?: boolean | null;
 }
 /**
  * 
@@ -6056,28 +6679,28 @@ export interface ProductTypeChangeRequest {
 export interface ProductTypeChangeResponse {
     /**
      * 
-     * @type {string}
-     * @memberof ProductTypeChangeResponse
-     */
-    productCode?: string | null;
-    /**
-     * 
      * @type {number}
      * @memberof ProductTypeChangeResponse
      */
     initialProductTypeId?: number;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof ProductTypeChangeResponse
      */
-    targetProductTypeId?: number;
+    productCode?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ProductTypeChangeResponse
      */
     status?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductTypeChangeResponse
+     */
+    targetProductTypeId?: number;
     /**
      * 
      * @type {Array<ProductTypeChangeValidationResult>}
@@ -6108,13 +6731,13 @@ export interface ProductTypeChangeValidationResult {
      * @type {string}
      * @memberof ProductTypeChangeValidationResult
      */
-    severity?: string | null;
+    message?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ProductTypeChangeValidationResult
      */
-    message?: string | null;
+    severity?: string | null;
 }
 /**
  * Collection of attributes.
@@ -6124,16 +6747,10 @@ export interface ProductTypeChangeValidationResult {
 export interface ProductTypeCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<ProductType>}
      * @memberof ProductTypeCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ProductTypeCollection
-     */
-    pageSize?: number;
+    items?: Array<ProductType> | null;
     /**
      * 
      * @type {number}
@@ -6145,13 +6762,19 @@ export interface ProductTypeCollection {
      * @type {number}
      * @memberof ProductTypeCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<ProductType>}
+     * @type {number}
      * @memberof ProductTypeCollection
      */
-    items?: Array<ProductType> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductTypeCollection
+     */
+    totalCount?: number;
 }
 /**
  * Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs.
@@ -6160,47 +6783,17 @@ export interface ProductTypeCollection {
  */
 export interface ProductV1 {
     /**
-     * Merchant-created code identifier associated with the product, for example, a SKU or product item number.
-     * @type {string}
+     * Read only. List of discounts that are available for a product.
+     * @type {Array<CatalogAdminsDiscount>}
      * @memberof ProductV1
      */
-    productCode?: string | null;
+    applicableDiscounts?: Array<CatalogAdminsDiscount> | null;
     /**
-     * Indicates the usage type of this product. Must be one of the values in ProductUsageConst.
-     * @type {string}
+     * 
+     * @type {AdminUserAuditInfo}
      * @memberof ProductV1
      */
-    productUsage?: string | null;
-    /**
-     * Indicates the fulfillment types the product supports.
-     * @type {Array<string>}
-     * @memberof ProductV1
-     */
-    fulfillmentTypesSupported?: Array<string> | null;
-    /**
-     * Identifier of the Master Catalog that this product is a member of. System-supplied and read-only
-     * @type {number}
-     * @memberof ProductV1
-     */
-    masterCatalogId?: number | null;
-    /**
-     * System generated monotonically increasing sequence
-     * @type {number}
-     * @memberof ProductV1
-     */
-    productSequence?: number | null;
-    /**
-     * Unique identifier of the productType of the product. Refers to a valid ProductType that was previously created with the ProductType resource.
-     * @type {number}
-     * @memberof ProductV1
-     */
-    productTypeId?: number | null;
-    /**
-     * Read only flag that indicates if the product meets the product type constraints (All adminRequired attributes have a valid value)
-     * @type {boolean}
-     * @memberof ProductV1
-     */
-    isValidForProductType?: boolean | null;
+    auditInfo?: AdminUserAuditInfo;
     /**
      * This is the base product ProductCode of a product that is a variation. It is read-only and only populated for products that are variations of a configurable base product.
      * @type {string}
@@ -6208,11 +6801,12 @@ export interface ProductV1 {
      */
     baseProductCode?: string | null;
     /**
-     * Catalog specific info for each catalog a product is valid in. There should always be one or more entries here.
-     * @type {Array<ProductInCatalogInfoV1>}
+     * list of other products that are included in a BundleProduct
+     * This requires that the ProductUsage be set to Bundle
+     * @type {Array<CatalogAdminsBundledProduct>}
      * @memberof ProductV1
      */
-    productInCatalogs?: Array<ProductInCatalogInfoV1> | null;
+    bundledProducts?: Array<CatalogAdminsBundledProduct> | null;
     /**
      * 
      * @type {ProductLocalizedContent}
@@ -6220,131 +6814,17 @@ export interface ProductV1 {
      */
     content?: ProductLocalizedContent;
     /**
-     * 
-     * @type {CatalogAdminsProductPrice}
-     * @memberof ProductV1
-     */
-    price?: CatalogAdminsProductPrice;
-    /**
-     * 
-     * @type {CatalogAdminsProductPricingBehaviorInfo}
-     * @memberof ProductV1
-     */
-    pricingBehavior?: CatalogAdminsProductPricingBehaviorInfo;
-    /**
-     * 
-     * @type {ProductLocalizedSEOContent}
-     * @memberof ProductV1
-     */
-    seoContent?: ProductLocalizedSEOContent;
-    /**
-     * The Options defined in the product Type that are currently assigned to this product
-     * @type {Array<CatalogAdminsProductOption>}
-     * @memberof ProductV1
-     */
-    options?: Array<CatalogAdminsProductOption> | null;
-    /**
      * The Extras defined in the product Type that are currently assigned to this product
      * @type {Array<ProductExtra>}
      * @memberof ProductV1
      */
     extras?: Array<ProductExtra> | null;
     /**
-     * The Properties defined in the product Type that are currently assigned to this product
-     * @type {Array<CatalogAdminsProductProperty>}
+     * Indicates the fulfillment types the product supports.
+     * @type {Array<string>}
      * @memberof ProductV1
      */
-    properties?: Array<CatalogAdminsProductProperty> | null;
-    /**
-     * If true, the product is subject to tax.
-     * @type {boolean}
-     * @memberof ProductV1
-     */
-    isTaxable?: boolean | null;
-    /**
-     * 
-     * @type {CatalogAdminsProductInventoryInfo}
-     * @memberof ProductV1
-     */
-    inventoryInfo?: CatalogAdminsProductInventoryInfo;
-    /**
-     * 
-     * @type {number}
-     * @memberof ProductV1
-     */
-    shippingClassId?: number | null;
-    /**
-     * If true, the product can be purchased or fulfilled at regular intervals, for example, monthly billing or a subscription.
-     * @type {boolean}
-     * @memberof ProductV1
-     */
-    isRecurring?: boolean | null;
-    /**
-     * UPC code of the product.
-     * @type {string}
-     * @memberof ProductV1
-     */
-    upc?: string | null;
-    /**
-     * 
-     * @type {ProductSupplierInfo}
-     * @memberof ProductV1
-     */
-    supplierInfo?: ProductSupplierInfo;
-    /**
-     * Does this product need to be packaged on its own
-     * @type {boolean}
-     * @memberof ProductV1
-     */
-    isPackagedStandAlone?: boolean | null;
-    /**
-     * When packaged alone this is the package type
-     * @type {string}
-     * @memberof ProductV1
-     */
-    standAlonePackageType?: string | null;
-    /**
-     * 
-     * @type {CommerceRuntimeMeasurement}
-     * @memberof ProductV1
-     */
-    packageHeight?: CommerceRuntimeMeasurement;
-    /**
-     * 
-     * @type {CommerceRuntimeMeasurement}
-     * @memberof ProductV1
-     */
-    packageWidth?: CommerceRuntimeMeasurement;
-    /**
-     * 
-     * @type {CommerceRuntimeMeasurement}
-     * @memberof ProductV1
-     */
-    packageLength?: CommerceRuntimeMeasurement;
-    /**
-     * 
-     * @type {CommerceRuntimeMeasurement}
-     * @memberof ProductV1
-     */
-    packageWeight?: CommerceRuntimeMeasurement;
-    /**
-     * Read only. List of discounts that are available for a product.
-     * @type {Array<CatalogAdminsDiscount>}
-     * @memberof ProductV1
-     */
-    applicableDiscounts?: Array<CatalogAdminsDiscount> | null;
-    /**
-     * Read only. If true, this is a product variation of a product with configurable options. System-supplied and read-only.
-     * @type {boolean}
-     * @memberof ProductV1
-     */
-    isVariation?: boolean;
-    /**
-     * Read only. If IsVariation true, thish provides a unique key to manage the variation of the base product.
-     * @type {string}
-     * @memberof ProductV1
-     */
-    variationKey?: string | null;
+    fulfillmentTypesSupported?: Array<string> | null;
     /**
      * Read only. If true, this product has configurable options. The product is not purchasable until the shopper selects options that resolve to a product variation. System-supplied and read-only.
      * @type {boolean}
@@ -6358,24 +6838,101 @@ export interface ProductV1 {
      */
     hasStandAloneOptions?: boolean;
     /**
-     * Read only List of variations that exist for a product. This is only populated when IsVariation is true. To get the list of options, the GET request must include the VariationOptions response group.
-     * @type {Array<ProductVariationOption>}
+     * 
+     * @type {CatalogAdminsProductInventoryInfo}
      * @memberof ProductV1
      */
-    variationOptions?: Array<ProductVariationOption> | null;
+    inventoryInfo?: CatalogAdminsProductInventoryInfo;
+    /**
+     * Does this product need to be packaged on its own
+     * @type {boolean}
+     * @memberof ProductV1
+     */
+    isPackagedStandAlone?: boolean | null;
+    /**
+     * If true, the product can be purchased or fulfilled at regular intervals, for example, monthly billing or a subscription.
+     * @type {boolean}
+     * @memberof ProductV1
+     */
+    isRecurring?: boolean | null;
+    /**
+     * If true, the product is subject to tax.
+     * @type {boolean}
+     * @memberof ProductV1
+     */
+    isTaxable?: boolean | null;
+    /**
+     * Read only flag that indicates if the product meets the product type constraints (All adminRequired attributes have a valid value)
+     * @type {boolean}
+     * @memberof ProductV1
+     */
+    isValidForProductType?: boolean | null;
+    /**
+     * Read only. If true, this is a product variation of a product with configurable options. System-supplied and read-only.
+     * @type {boolean}
+     * @memberof ProductV1
+     */
+    isVariation?: boolean;
+    /**
+     * Identifier of the Master Catalog that this product is a member of. System-supplied and read-only
+     * @type {number}
+     * @memberof ProductV1
+     */
+    masterCatalogId?: number | null;
+    /**
+     * The Options defined in the product Type that are currently assigned to this product
+     * @type {Array<CatalogAdminsProductOption>}
+     * @memberof ProductV1
+     */
+    options?: Array<CatalogAdminsProductOption> | null;
     /**
      * 
-     * @type {ProductPublishingInfo}
+     * @type {CommerceRuntimeMeasurement}
      * @memberof ProductV1
      */
-    publishingInfo?: ProductPublishingInfo;
+    packageHeight?: CommerceRuntimeMeasurement;
     /**
-     * list of other products that are included in a BundleProduct
-     * This requires that the ProductUsage be set to Bundle
-     * @type {Array<CatalogAdminsBundledProduct>}
+     * 
+     * @type {CommerceRuntimeMeasurement}
      * @memberof ProductV1
      */
-    bundledProducts?: Array<CatalogAdminsBundledProduct> | null;
+    packageLength?: CommerceRuntimeMeasurement;
+    /**
+     * 
+     * @type {CommerceRuntimeMeasurement}
+     * @memberof ProductV1
+     */
+    packageWeight?: CommerceRuntimeMeasurement;
+    /**
+     * 
+     * @type {CommerceRuntimeMeasurement}
+     * @memberof ProductV1
+     */
+    packageWidth?: CommerceRuntimeMeasurement;
+    /**
+     * 
+     * @type {CatalogAdminsProductPrice}
+     * @memberof ProductV1
+     */
+    price?: CatalogAdminsProductPrice;
+    /**
+     * 
+     * @type {CatalogAdminsProductPricingBehaviorInfo}
+     * @memberof ProductV1
+     */
+    pricingBehavior?: CatalogAdminsProductPricingBehaviorInfo;
+    /**
+     * When this product belongs to a product collection this is the product id for the primary collection.
+     * @type {string}
+     * @memberof ProductV1
+     */
+    primaryProductCollectionCode?: string | null;
+    /**
+     * Merchant-created code identifier associated with the product, for example, a SKU or product item number.
+     * @type {string}
+     * @memberof ProductV1
+     */
+    productCode?: string | null;
     /**
      * list of other products that are members of a ProductCollection
      * This requires that the ProductUsage be set to Collection
@@ -6394,16 +6951,58 @@ export interface ProductV1 {
      * Image groups are used to map different images to different product options.
      * If the product doesn't have options then all images will be in the default
      * image group.
-     * @type {Array<CatalogAdminsProductImageGroup>}
+     * @type {Array<ProductImageGroup>}
      * @memberof ProductV1
      */
-    productImageGroups?: Array<CatalogAdminsProductImageGroup> | null;
+    productImageGroups?: Array<ProductImageGroup> | null;
+    /**
+     * Catalog specific info for each catalog a product is valid in. There should always be one or more entries here.
+     * @type {Array<ProductInCatalogInfoV1>}
+     * @memberof ProductV1
+     */
+    productInCatalogs?: Array<ProductInCatalogInfoV1> | null;
+    /**
+     * System generated monotonically increasing sequence
+     * @type {number}
+     * @memberof ProductV1
+     */
+    productSequence?: number | null;
+    /**
+     * Unique identifier of the productType of the product. Refers to a valid ProductType that was previously created with the ProductType resource.
+     * @type {number}
+     * @memberof ProductV1
+     */
+    productTypeId?: number | null;
+    /**
+     * Indicates the usage type of this product. Must be one of the values in ProductUsageConst.
+     * @type {string}
+     * @memberof ProductV1
+     */
+    productUsage?: string | null;
+    /**
+     * The Properties defined in the product Type that are currently assigned to this product
+     * @type {Array<CatalogAdminsProductProperty>}
+     * @memberof ProductV1
+     */
+    properties?: Array<CatalogAdminsProductProperty> | null;
     /**
      * 
-     * @type {AdminUserAuditInfo}
+     * @type {ProductPublishingInfo}
      * @memberof ProductV1
      */
-    auditInfo?: AdminUserAuditInfo;
+    publishingInfo?: ProductPublishingInfo;
+    /**
+     * 
+     * @type {ProductLocalizedSEOContent}
+     * @memberof ProductV1
+     */
+    seoContent?: ProductLocalizedSEOContent;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductV1
+     */
+    shippingClassId?: number | null;
     /**
      * 
      * @type {SlicingSettings}
@@ -6411,11 +7010,35 @@ export interface ProductV1 {
      */
     slicingSettings?: SlicingSettings;
     /**
-     * When this product belongs to a product collection this is the product id for the primary collection.
+     * When packaged alone this is the package type
      * @type {string}
      * @memberof ProductV1
      */
-    primaryProductCollectionCode?: string | null;
+    standAlonePackageType?: string | null;
+    /**
+     * 
+     * @type {ProductSupplierInfo}
+     * @memberof ProductV1
+     */
+    supplierInfo?: ProductSupplierInfo;
+    /**
+     * UPC code of the product.
+     * @type {string}
+     * @memberof ProductV1
+     */
+    upc?: string | null;
+    /**
+     * Read only. If IsVariation true, thish provides a unique key to manage the variation of the base product.
+     * @type {string}
+     * @memberof ProductV1
+     */
+    variationKey?: string | null;
+    /**
+     * Read only List of variations that exist for a product. This is only populated when IsVariation is true. To get the list of options, the GET request must include the VariationOptions response group.
+     * @type {Array<ProductVariationOption>}
+     * @memberof ProductV1
+     */
+    variationOptions?: Array<ProductVariationOption> | null;
 }
 /**
  * 
@@ -6438,16 +7061,10 @@ export interface ProductV1PatchDocument {
 export interface ProductV1PatchOperation {
     /**
      * 
-     * @type {any}
-     * @memberof ProductV1PatchOperation
-     */
-    value?: any | null;
-    /**
-     * 
      * @type {string}
      * @memberof ProductV1PatchOperation
      */
-    path?: string | null;
+    from?: string | null;
     /**
      * 
      * @type {string}
@@ -6459,7 +7076,13 @@ export interface ProductV1PatchOperation {
      * @type {string}
      * @memberof ProductV1PatchOperation
      */
-    from?: string | null;
+    path?: string | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof ProductV1PatchOperation
+     */
+    value?: any | null;
 }
 /**
  * The ProductVariation resource helps merchants manage their products with configurable options. Using this resource, the system creates a matrix of all possible combinations of the product options and the merchant confirms which variations match products for sale. For example, a T-shirt with three color and three size options has nine possible product variations. The system keeps track of inventory for each variation.
@@ -6467,6 +7090,36 @@ export interface ProductV1PatchOperation {
  * @interface ProductVariation
  */
 export interface ProductVariation {
+    /**
+     * 
+     * @type {ProductVariationDeltaPrice}
+     * @memberof ProductVariation
+     */
+    deltaPrice?: ProductVariationDeltaPrice;
+    /**
+     * Weight of the product with this variation.
+     * @type {number}
+     * @memberof ProductVariation
+     */
+    deltaWeight?: number | null;
+    /**
+     * 
+     * @type {ProductVariationFixedPrice}
+     * @memberof ProductVariation
+     */
+    fixedPrice?: ProductVariationFixedPrice;
+    /**
+     * Fixed weight of the product with this variation.
+     * @type {number}
+     * @memberof ProductVariation
+     */
+    fixedWeight?: number | null;
+    /**
+     * Indicates the fulfillment types the product supports.
+     * @type {Array<string>}
+     * @memberof ProductVariation
+     */
+    fulfillmentTypesSupported?: Array<string> | null;
     /**
      * If true, the merchant accepts the variation generated from the configurable options as a product offering. If IsActive is false then the product variation is not for sale--either because it was never a product offering or it was permanently dropped. IsActive is not intended for temporary unavailability. Default is false.
      * @type {boolean}
@@ -6480,30 +7133,6 @@ export interface ProductVariation {
      */
     isOrphan?: boolean | null;
     /**
-     * If true, the product variation exists. When the merchant sets IsActive to true, the system sets VariationExists to true and creates a Variation Key as a unique identifier for this variation. System-supplied and read-only.
-     * @type {boolean}
-     * @memberof ProductVariation
-     */
-    variationExists?: boolean | null;
-    /**
-     * Unique identifier for a single variation ("small" + "red" + "short-sleeved"). System-supplied and read-only.
-     * @type {string}
-     * @memberof ProductVariation
-     */
-    variationkey?: string | null;
-    /**
-     * Descriptive code to refer to a single variation. Typically this is a sequence appended to the base ProduceCode. A merchant can create this code to easily recognize a product variation. By default, the system creates this code by appending a number to the base product. After the merchant supplies this code, it becomes read-only.
-     * @type {string}
-     * @memberof ProductVariation
-     */
-    variationProductCode?: string | null;
-    /**
-     * 
-     * @type {ProductVariationDeltaPrice}
-     * @memberof ProductVariation
-     */
-    deltaPrice?: ProductVariationDeltaPrice;
-    /**
      * How much more the variation costs above the cost of the base product. If the price of the base product changes, this price is adjusted accordingly.
      * This collection allows for multiple currencies.
      * @type {Array<ProductVariationDeltaPrice>}
@@ -6511,30 +7140,12 @@ export interface ProductVariation {
      */
     localizedDeltaPrice?: Array<ProductVariationDeltaPrice> | null;
     /**
-     * 
-     * @type {ProductVariationFixedPrice}
-     * @memberof ProductVariation
-     */
-    fixedPrice?: ProductVariationFixedPrice;
-    /**
      * Price of the variation using fixed per currency
      * This collection allows for multiple currencies.
      * @type {Array<ProductVariationFixedPrice>}
      * @memberof ProductVariation
      */
     localizedFixedPrice?: Array<ProductVariationFixedPrice> | null;
-    /**
-     * Weight of the product with this variation.
-     * @type {number}
-     * @memberof ProductVariation
-     */
-    deltaWeight?: number | null;
-    /**
-     * Fixed weight of the product with this variation.
-     * @type {number}
-     * @memberof ProductVariation
-     */
-    fixedWeight?: number | null;
     /**
      * List of values for this product variation: such as "small, "red.. these are read only here as the variationKey defines the values "
      * @type {Array<ProductVariationOption>}
@@ -6548,23 +7159,35 @@ export interface ProductVariation {
      */
     properties?: Array<ProductVariationProperty> | null;
     /**
+     * 
+     * @type {ProductSupplierInfo}
+     * @memberof ProductVariation
+     */
+    supplierInfo?: ProductSupplierInfo;
+    /**
      * Price Lookup Unit code for the product
      * @type {string}
      * @memberof ProductVariation
      */
     upc?: string | null;
     /**
-     * Indicates the fulfillment types the product supports.
-     * @type {Array<string>}
+     * If true, the product variation exists. When the merchant sets IsActive to true, the system sets VariationExists to true and creates a Variation Key as a unique identifier for this variation. System-supplied and read-only.
+     * @type {boolean}
      * @memberof ProductVariation
      */
-    fulfillmentTypesSupported?: Array<string> | null;
+    variationExists?: boolean | null;
     /**
-     * 
-     * @type {ProductSupplierInfo}
+     * Descriptive code to refer to a single variation. Typically this is a sequence appended to the base ProduceCode. A merchant can create this code to easily recognize a product variation. By default, the system creates this code by appending a number to the base product. After the merchant supplies this code, it becomes read-only.
+     * @type {string}
      * @memberof ProductVariation
      */
-    supplierInfo?: ProductSupplierInfo;
+    variationProductCode?: string | null;
+    /**
+     * Unique identifier for a single variation ("small" + "red" + "short-sleeved"). System-supplied and read-only.
+     * @type {string}
+     * @memberof ProductVariation
+     */
+    variationkey?: string | null;
 }
 /**
  * Collection of product variations returned as a whole. A collection is not paged.
@@ -6574,16 +7197,16 @@ export interface ProductVariation {
 export interface ProductVariationCollection {
     /**
      * 
-     * @type {number}
-     * @memberof ProductVariationCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<ProductVariation>}
      * @memberof ProductVariationCollection
      */
     items?: Array<ProductVariation> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductVariationCollection
+     */
+    totalCount?: number;
 }
 /**
  * How much more a product variation costs above the cost of the base product. If the price of the base product changes, this price is adjusted automatically.
@@ -6592,17 +7215,17 @@ export interface ProductVariationCollection {
  */
 export interface ProductVariationDeltaPrice {
     /**
+     * Credit amt of the product
+     * @type {number}
+     * @memberof ProductVariationDeltaPrice
+     */
+    creditValue?: number | null;
+    /**
      * Which currency is in use.
      * @type {string}
      * @memberof ProductVariationDeltaPrice
      */
     currencyCode?: string | null;
-    /**
-     * How much more the variation costs above the cost of the base product.
-     * @type {number}
-     * @memberof ProductVariationDeltaPrice
-     */
-    value?: number | null;
     /**
      * Manufacturer Suggested Retail Price.
      * @type {number}
@@ -6610,11 +7233,11 @@ export interface ProductVariationDeltaPrice {
      */
     msrp?: number | null;
     /**
-     * Credit amt of the product
+     * How much more the variation costs above the cost of the base product.
      * @type {number}
      * @memberof ProductVariationDeltaPrice
      */
-    creditValue?: number | null;
+    value?: number | null;
 }
 /**
  * 
@@ -6622,6 +7245,12 @@ export interface ProductVariationDeltaPrice {
  * @interface ProductVariationFixedPrice
  */
 export interface ProductVariationFixedPrice {
+    /**
+     * Credit amt of the product
+     * @type {number}
+     * @memberof ProductVariationFixedPrice
+     */
+    creditValue?: number | null;
     /**
      * Which currency is in use.
      * @type {string}
@@ -6635,23 +7264,17 @@ export interface ProductVariationFixedPrice {
      */
     listPrice?: number | null;
     /**
-     * Variation sale price whne fixed pricing
-     * @type {number}
-     * @memberof ProductVariationFixedPrice
-     */
-    salePrice?: number | null;
-    /**
      * Manufacturer Suggested Retail Price.
      * @type {number}
      * @memberof ProductVariationFixedPrice
      */
     msrp?: number | null;
     /**
-     * Credit amt of the product
+     * Variation sale price whne fixed pricing
      * @type {number}
      * @memberof ProductVariationFixedPrice
      */
-    creditValue?: number | null;
+    salePrice?: number | null;
 }
 /**
  * An option for a product variation. For example, a T-shirt with size and color configurable options, might have a product variation option of "size" or "color."
@@ -6666,17 +7289,17 @@ export interface ProductVariationOption {
      */
     attributeFQN?: string | null;
     /**
-     * Name of the product variation option used on the admin side independent of how it appears on the storefront. For example, the internal "SZ" attribute might appear as "size" on the storefront.
-     * @type {any}
-     * @memberof ProductVariationOption
-     */
-    value?: any | null;
-    /**
      * 
      * @type {AttributeVocabularyValueLocalizedContent}
      * @memberof ProductVariationOption
      */
     content?: AttributeVocabularyValueLocalizedContent;
+    /**
+     * Name of the product variation option used on the admin side independent of how it appears on the storefront. For example, the internal "SZ" attribute might appear as "size" on the storefront.
+     * @type {any}
+     * @memberof ProductVariationOption
+     */
+    value?: any | null;
 }
 /**
  * Collection of product variations where the variations are returned in a series of pages.
@@ -6686,16 +7309,10 @@ export interface ProductVariationOption {
 export interface ProductVariationPagedCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<ProductVariation>}
      * @memberof ProductVariationPagedCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ProductVariationPagedCollection
-     */
-    pageSize?: number;
+    items?: Array<ProductVariation> | null;
     /**
      * 
      * @type {number}
@@ -6707,13 +7324,19 @@ export interface ProductVariationPagedCollection {
      * @type {number}
      * @memberof ProductVariationPagedCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<ProductVariation>}
+     * @type {number}
      * @memberof ProductVariationPagedCollection
      */
-    items?: Array<ProductVariation> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProductVariationPagedCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -6747,17 +7370,17 @@ export interface PublishSet {
      */
     code?: string | null;
     /**
-     * Number of product drafts that are included in the publish set
-     * @type {number}
-     * @memberof PublishSet
-     */
-    productCount?: number;
-    /**
      * List of specific product codes that are included in the publish set
      * @type {Array<string>}
      * @memberof PublishSet
      */
     productCodes?: Array<string> | null;
+    /**
+     * Number of product drafts that are included in the publish set
+     * @type {number}
+     * @memberof PublishSet
+     */
+    productCount?: number;
 }
 /**
  * Non-paged collection of PublishSets.
@@ -6767,16 +7390,16 @@ export interface PublishSet {
 export interface PublishSetCollection {
     /**
      * 
-     * @type {number}
-     * @memberof PublishSetCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<PublishSet>}
      * @memberof PublishSetCollection
      */
     items?: Array<PublishSet> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PublishSetCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -6810,35 +7433,17 @@ export interface PublishingScope {
  */
 export interface PurchaseLimitRule {
     /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof PurchaseLimitRule
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
      * Unique identifier of the PurchaseLimit.
      * @type {string}
      * @memberof PurchaseLimitRule
      */
     code?: string | null;
-    /**
-     * PurchaseLimit name
-     * @type {string}
-     * @memberof PurchaseLimitRule
-     */
-    name?: string | null;
-    /**
-     * PurchaseLimit description
-     * @type {string}
-     * @memberof PurchaseLimitRule
-     */
-    description?: string | null;
-    /**
-     * Maximum quantity of the PurchaseLimit
-     * @type {number}
-     * @memberof PurchaseLimitRule
-     */
-    maxQty?: number;
-    /**
-     * List of product rule codes that apply to the PurchaseLimit
-     * @type {Array<string>}
-     * @memberof PurchaseLimitRule
-     */
-    productRules?: Array<string> | null;
     /**
      * List of customer rule codes that apply to the PurchaseLimit
      * @type {Array<string>}
@@ -6846,17 +7451,67 @@ export interface PurchaseLimitRule {
      */
     customerRules?: Array<string> | null;
     /**
-     * Rank of the PurchaseLimit
-     * @type {number}
+     * PurchaseLimit description
+     * @type {string}
      * @memberof PurchaseLimitRule
      */
-    rank?: number;
+    description?: string | null;
     /**
      * Indicates if the PurchaseLimit is enabled
      * @type {boolean}
      * @memberof PurchaseLimitRule
      */
     enabled?: boolean | null;
+    /**
+     * End of the rule's effective window. Null = never expires. Must be >= StartDate when both supplied.
+     * @type {string}
+     * @memberof PurchaseLimitRule
+     */
+    endDate?: string | null;
+    /**
+     * Read-only. Computed server-side: true when the current UTC instant is inside the effective window
+     * (StartDate null/≤now AND EndDate null/≥now), false otherwise. A rule with no dates is always active.
+     * This reflects the effective window alone and does not incorporate the enabled flag.
+     * @type {boolean}
+     * @memberof PurchaseLimitRule
+     */
+    isActive?: boolean | null;
+    /**
+     * Maximum quantity of the PurchaseLimit
+     * @type {number}
+     * @memberof PurchaseLimitRule
+     */
+    maxQty?: number;
+    /**
+     * Metadata for the PurchaseLimit which is a json format, used to store additional information
+     * @type {any}
+     * @memberof PurchaseLimitRule
+     */
+    metaData?: any | null;
+    /**
+     * PurchaseLimit name
+     * @type {string}
+     * @memberof PurchaseLimitRule
+     */
+    name?: string | null;
+    /**
+     * List of product rule codes that apply to the PurchaseLimit
+     * @type {Array<string>}
+     * @memberof PurchaseLimitRule
+     */
+    productRules?: Array<string> | null;
+    /**
+     * Rank of the PurchaseLimit
+     * @type {number}
+     * @memberof PurchaseLimitRule
+     */
+    rank?: number;
+    /**
+     * Start of the rule's effective window. Null = no lower bound (already active).
+     * @type {string}
+     * @memberof PurchaseLimitRule
+     */
+    startDate?: string | null;
     /**
      * Indicates if the PurchaseLimit is valid for all sites
      * @type {boolean}
@@ -6869,18 +7524,6 @@ export interface PurchaseLimitRule {
      * @memberof PurchaseLimitRule
      */
     validSites?: Array<number> | null;
-    /**
-     * Metadata for the PurchaseLimit which is a json format, used to store additional information
-     * @type {any}
-     * @memberof PurchaseLimitRule
-     */
-    metaData?: any | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof PurchaseLimitRule
-     */
-    auditInfo?: AdminUserAuditInfo;
 }
 /**
  * Purchase Limit collection contract
@@ -6890,16 +7533,10 @@ export interface PurchaseLimitRule {
 export interface PurchaseLimitRuleCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<PurchaseLimitRule>}
      * @memberof PurchaseLimitRuleCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PurchaseLimitRuleCollection
-     */
-    pageSize?: number;
+    items?: Array<PurchaseLimitRule> | null;
     /**
      * 
      * @type {number}
@@ -6911,13 +7548,19 @@ export interface PurchaseLimitRuleCollection {
      * @type {number}
      * @memberof PurchaseLimitRuleCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<PurchaseLimitRule>}
+     * @type {number}
      * @memberof PurchaseLimitRuleCollection
      */
-    items?: Array<PurchaseLimitRule> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PurchaseLimitRuleCollection
+     */
+    totalCount?: number;
 }
 /**
  * List of Mozu.ProductAdmin.Contracts.ChangeProductTypeActions to be applied to a list of Mozu.ProductAdmin.Contracts.Products.
@@ -6952,23 +7595,11 @@ export interface QuickEditChangeProductTypeResponse {
  */
 export interface QuickEditChangeProductTypeResult {
     /**
-     * The target product type id
-     * @type {number}
+     * Error message if any.
+     * @type {string}
      * @memberof QuickEditChangeProductTypeResult
      */
-    targetProductTypeId?: number;
-    /**
-     * The original product type id
-     * @type {number}
-     * @memberof QuickEditChangeProductTypeResult
-     */
-    initialProductTypeId?: number;
-    /**
-     * List of Mozu.ProductAdmin.Contracts.ProductTypeChangeValidationResult
-     * @type {Array<ProductTypeChangeValidationResult>}
-     * @memberof QuickEditChangeProductTypeResult
-     */
-    validationResults?: Array<ProductTypeChangeValidationResult> | null;
+    message?: string | null;
     /**
      * The unique resouce identifier
      * @type {string}
@@ -6982,11 +7613,48 @@ export interface QuickEditChangeProductTypeResult {
      */
     success?: boolean;
     /**
-     * Error message if any.
-     * @type {string}
+     * The original product type id
+     * @type {number}
      * @memberof QuickEditChangeProductTypeResult
      */
-    message?: string | null;
+    initialProductTypeId?: number;
+    /**
+     * The target product type id
+     * @type {number}
+     * @memberof QuickEditChangeProductTypeResult
+     */
+    targetProductTypeId?: number;
+    /**
+     * List of Mozu.ProductAdmin.Contracts.ProductTypeChangeValidationResult
+     * @type {Array<ProductTypeChangeValidationResult>}
+     * @memberof QuickEditChangeProductTypeResult
+     */
+    validationResults?: Array<ProductTypeChangeValidationResult> | null;
+}
+/**
+ * 
+ * @export
+ * @interface QuickEditChangeProductTypeResultAllOf
+ */
+export interface QuickEditChangeProductTypeResultAllOf {
+    /**
+     * The original product type id
+     * @type {number}
+     * @memberof QuickEditChangeProductTypeResultAllOf
+     */
+    initialProductTypeId?: number;
+    /**
+     * The target product type id
+     * @type {number}
+     * @memberof QuickEditChangeProductTypeResultAllOf
+     */
+    targetProductTypeId?: number;
+    /**
+     * List of Mozu.ProductAdmin.Contracts.ProductTypeChangeValidationResult
+     * @type {Array<ProductTypeChangeValidationResult>}
+     * @memberof QuickEditChangeProductTypeResultAllOf
+     */
+    validationResults?: Array<ProductTypeChangeValidationResult> | null;
 }
 /**
  * List of Mozu.ProductAdmin.Contracts.ProductPatchActions to be applied to a list of Mozu.ProductAdmin.Contracts.Products.
@@ -7048,6 +7716,12 @@ export interface QuickEditResponse {
  */
 export interface QuickEditResult {
     /**
+     * Error message if any.
+     * @type {string}
+     * @memberof QuickEditResult
+     */
+    message?: string | null;
+    /**
      * The unique resouce identifier
      * @type {string}
      * @memberof QuickEditResult
@@ -7059,12 +7733,452 @@ export interface QuickEditResult {
      * @memberof QuickEditResult
      */
     success?: boolean;
+}
+/**
+ * Reservation Rule contract (CAT-7686)
+ * @export
+ * @interface ReservationRule
+ */
+export interface ReservationRule {
     /**
-     * Error message if any.
-     * @type {string}
-     * @memberof QuickEditResult
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof ReservationRule
      */
-    message?: string | null;
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * Referenced call-off-order rule codes. Max 1 entry.
+     * @type {Array<string>}
+     * @memberof ReservationRule
+     */
+    callOffOrderRules?: Array<string> | null;
+    /**
+     * Unique identifier. Auto-generated when omitted on create.
+     * @type {string}
+     * @memberof ReservationRule
+     */
+    code?: string | null;
+    /**
+     * Referenced customer rule codes. Max 1 entry.
+     * @type {Array<string>}
+     * @memberof ReservationRule
+     */
+    customerRules?: Array<string> | null;
+    /**
+     * Optional description, max 500 chars.
+     * @type {string}
+     * @memberof ReservationRule
+     */
+    description?: string | null;
+    /**
+     * Whether the rule is active. Defaults to true on insert.
+     * @type {boolean}
+     * @memberof ReservationRule
+     */
+    enabled?: boolean | null;
+    /**
+     * End of the rule's effective window. Null = never expires. Must be >= StartDate when both supplied.
+     * @type {string}
+     * @memberof ReservationRule
+     */
+    endDate?: string | null;
+    /**
+     * Read-only. Computed server-side: true when the current UTC instant is inside the effective window
+     * (StartDate null/≤now AND EndDate null/≥now), false otherwise. A rule with no dates is always active.
+     * This reflects the effective window alone and does not incorporate the enabled flag.
+     * @type {boolean}
+     * @memberof ReservationRule
+     */
+    isActive?: boolean | null;
+    /**
+     * Opaque JSON metadata. Passed through unchanged.
+     * @type {any}
+     * @memberof ReservationRule
+     */
+    metaData?: any | null;
+    /**
+     * Display name. Required, max 200 chars.
+     * @type {string}
+     * @memberof ReservationRule
+     */
+    name?: string | null;
+    /**
+     * Referenced product rules. Max 1 entry.
+     * @type {Array<ProductRuleCode>}
+     * @memberof ReservationRule
+     */
+    productRules?: Array<ProductRuleCode> | null;
+    /**
+     * Priority rank, unique per master catalog within the tenant. Auto-assigned when omitted or ≤0.
+     * @type {number}
+     * @memberof ReservationRule
+     */
+    rank?: number;
+    /**
+     * Optional tiebreaker attribute name used by the reservation engine when two call-off orders match. Max 50 chars.
+     * @type {string}
+     * @memberof ReservationRule
+     */
+    sortAttribute?: string | null;
+    /**
+     * Start of the rule's effective window. Null = no lower bound (already active).
+     * @type {string}
+     * @memberof ReservationRule
+     */
+    startDate?: string | null;
+    /**
+     * Time fence in days. Inclusive [0, 365].
+     * @type {number}
+     * @memberof ReservationRule
+     */
+    timeFenceDays?: number;
+    /**
+     * When true the rule applies to all sites; ValidSites is ignored.
+     * @type {boolean}
+     * @memberof ReservationRule
+     */
+    validForAllSites?: boolean | null;
+    /**
+     * Site IDs this rule applies to. Optional — when omitted and ValidForAllSites is not true, the server auto-sets ValidForAllSites=true (FR-022).
+     * @type {Array<number>}
+     * @memberof ReservationRule
+     */
+    validSites?: Array<number> | null;
+}
+/**
+ * 
+ * @export
+ * @interface ReservationRuleCollection
+ */
+export interface ReservationRuleCollection {
+    /**
+     * 
+     * @type {Array<ReservationRule>}
+     * @memberof ReservationRuleCollection
+     */
+    items?: Array<ReservationRule> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReservationRuleCollection
+     */
+    pageCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReservationRuleCollection
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReservationRuleCollection
+     */
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReservationRuleCollection
+     */
+    totalCount?: number;
+}
+/**
+ * Reservation Steal-For Rule contract (CAT-7911). Structurally identical to
+ * Mozu.ProductAdmin.Contracts.ReservationRules.ReservationRule except it does not
+ * have `TimeFenceDays`; instead it adds an explicit Mozu.ProductAdmin.Contracts.ReservationStealForRules.ReservationStealForRule.StartDate/Mozu.ProductAdmin.Contracts.ReservationStealForRules.ReservationStealForRule.EndDate
+ * window during which the rule is enabled — the same effective-date-window concept used by
+ * Discounts and Price Lists, not a reworded time fence. Fully independent of the sibling
+ * Mozu.ProductAdmin.Contracts.ReservationStealFromRules.ReservationStealFromRule.
+ * @export
+ * @interface ReservationStealForRule
+ */
+export interface ReservationStealForRule {
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof ReservationStealForRule
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * Referenced call-off-order rule codes. Max 1 entry.
+     * @type {Array<string>}
+     * @memberof ReservationStealForRule
+     */
+    callOffOrderRules?: Array<string> | null;
+    /**
+     * Unique identifier. Auto-generated when omitted on create.
+     * @type {string}
+     * @memberof ReservationStealForRule
+     */
+    code?: string | null;
+    /**
+     * Referenced customer rule codes. Max 1 entry.
+     * @type {Array<string>}
+     * @memberof ReservationStealForRule
+     */
+    customerRules?: Array<string> | null;
+    /**
+     * Optional description, max 500 chars.
+     * @type {string}
+     * @memberof ReservationStealForRule
+     */
+    description?: string | null;
+    /**
+     * Whether the rule is active. Defaults to true when omitted/null on create or update.
+     * @type {boolean}
+     * @memberof ReservationStealForRule
+     */
+    enabled?: boolean | null;
+    /**
+     * End of the rule's effective window. Null = never expires. Must be >= StartDate when both supplied.
+     * @type {string}
+     * @memberof ReservationStealForRule
+     */
+    endDate?: string | null;
+    /**
+     * Read-only. Computed server-side: true when the current UTC instant is inside the effective window
+     * (StartDate null/≤now AND EndDate null/≥now), false otherwise. A rule with no dates is always active.
+     * This reflects the effective window alone and does not incorporate the enabled flag.
+     * @type {boolean}
+     * @memberof ReservationStealForRule
+     */
+    isActive?: boolean | null;
+    /**
+     * Opaque JSON metadata. Passed through unchanged.
+     * @type {any}
+     * @memberof ReservationStealForRule
+     */
+    metaData?: any | null;
+    /**
+     * Display name. Required, max 200 chars.
+     * @type {string}
+     * @memberof ReservationStealForRule
+     */
+    name?: string | null;
+    /**
+     * Referenced product rules. Max 1 entry.
+     * @type {Array<ProductRuleCode>}
+     * @memberof ReservationStealForRule
+     */
+    productRules?: Array<ProductRuleCode> | null;
+    /**
+     * Priority rank, unique per master catalog within the tenant. Auto-assigned on create when omitted or ≤0. Rejected (not auto-assigned) on update when omitted or ≤0.
+     * @type {number}
+     * @memberof ReservationStealForRule
+     */
+    rank?: number;
+    /**
+     * Optional tiebreaker attribute name used by the reservation-stealing engine when two candidates match. Max 50 chars.
+     * @type {string}
+     * @memberof ReservationStealForRule
+     */
+    sortAttribute?: string | null;
+    /**
+     * Start of the rule's effective window. Null = no lower bound.
+     * @type {string}
+     * @memberof ReservationStealForRule
+     */
+    startDate?: string | null;
+    /**
+     * When true the rule applies to all sites; ValidSites is ignored. When false/omitted and
+     *             ValidSites is also omitted, ValidSites auto-populates with the calling site from the request
+     *             context (FR-022); the save is rejected if no site context is available.
+     * @type {boolean}
+     * @memberof ReservationStealForRule
+     */
+    validForAllSites?: boolean | null;
+    /**
+     * Site IDs this rule applies to.
+     * @type {Array<number>}
+     * @memberof ReservationStealForRule
+     */
+    validSites?: Array<number> | null;
+}
+/**
+ * 
+ * @export
+ * @interface ReservationStealForRuleCollection
+ */
+export interface ReservationStealForRuleCollection {
+    /**
+     * 
+     * @type {Array<ReservationStealForRule>}
+     * @memberof ReservationStealForRuleCollection
+     */
+    items?: Array<ReservationStealForRule> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReservationStealForRuleCollection
+     */
+    pageCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReservationStealForRuleCollection
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReservationStealForRuleCollection
+     */
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReservationStealForRuleCollection
+     */
+    totalCount?: number;
+}
+/**
+ * Reservation Steal-From Rule contract (CAT-7911). Structurally identical to
+ * Mozu.ProductAdmin.Contracts.ReservationRules.ReservationRule except it does not
+ * have `TimeFenceDays`; instead it adds an explicit Mozu.ProductAdmin.Contracts.ReservationStealFromRules.ReservationStealFromRule.StartDate/Mozu.ProductAdmin.Contracts.ReservationStealFromRules.ReservationStealFromRule.EndDate
+ * window during which the rule is enabled — the same effective-date-window concept used by
+ * Discounts and Price Lists, not a reworded time fence. Fully independent of the sibling
+ * Mozu.ProductAdmin.Contracts.ReservationStealForRules.ReservationStealForRule.
+ * @export
+ * @interface ReservationStealFromRule
+ */
+export interface ReservationStealFromRule {
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof ReservationStealFromRule
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * Referenced call-off-order rule codes. Max 1 entry.
+     * @type {Array<string>}
+     * @memberof ReservationStealFromRule
+     */
+    callOffOrderRules?: Array<string> | null;
+    /**
+     * Unique identifier. Auto-generated when omitted on create.
+     * @type {string}
+     * @memberof ReservationStealFromRule
+     */
+    code?: string | null;
+    /**
+     * Referenced customer rule codes. Max 1 entry.
+     * @type {Array<string>}
+     * @memberof ReservationStealFromRule
+     */
+    customerRules?: Array<string> | null;
+    /**
+     * Optional description, max 500 chars.
+     * @type {string}
+     * @memberof ReservationStealFromRule
+     */
+    description?: string | null;
+    /**
+     * Whether the rule is active. Defaults to true when omitted/null on create or update.
+     * @type {boolean}
+     * @memberof ReservationStealFromRule
+     */
+    enabled?: boolean | null;
+    /**
+     * End of the rule's effective window. Null = never expires. Must be >= StartDate when both supplied.
+     * @type {string}
+     * @memberof ReservationStealFromRule
+     */
+    endDate?: string | null;
+    /**
+     * Read-only. Computed server-side: true when the current UTC instant is inside the effective window
+     * (StartDate null/≤now AND EndDate null/≥now), false otherwise. A rule with no dates is always active.
+     * This reflects the effective window alone and does not incorporate the enabled flag.
+     * @type {boolean}
+     * @memberof ReservationStealFromRule
+     */
+    isActive?: boolean | null;
+    /**
+     * Opaque JSON metadata. Passed through unchanged.
+     * @type {any}
+     * @memberof ReservationStealFromRule
+     */
+    metaData?: any | null;
+    /**
+     * Display name. Required, max 200 chars.
+     * @type {string}
+     * @memberof ReservationStealFromRule
+     */
+    name?: string | null;
+    /**
+     * Referenced product rules. Max 1 entry.
+     * @type {Array<ProductRuleCode>}
+     * @memberof ReservationStealFromRule
+     */
+    productRules?: Array<ProductRuleCode> | null;
+    /**
+     * Priority rank, unique per master catalog within the tenant. Auto-assigned on create when omitted or ≤0. Rejected (not auto-assigned) on update when omitted or ≤0.
+     * @type {number}
+     * @memberof ReservationStealFromRule
+     */
+    rank?: number;
+    /**
+     * Optional tiebreaker attribute name used by the reservation-stealing engine when two candidates match. Max 50 chars.
+     * @type {string}
+     * @memberof ReservationStealFromRule
+     */
+    sortAttribute?: string | null;
+    /**
+     * Start of the rule's effective window. Null = no lower bound.
+     * @type {string}
+     * @memberof ReservationStealFromRule
+     */
+    startDate?: string | null;
+    /**
+     * When true the rule applies to all sites; ValidSites is ignored. When false/omitted and
+     *             ValidSites is also omitted, ValidSites auto-populates with the calling site from the request
+     *             context (FR-022); the save is rejected if no site context is available.
+     * @type {boolean}
+     * @memberof ReservationStealFromRule
+     */
+    validForAllSites?: boolean | null;
+    /**
+     * Site IDs this rule applies to.
+     * @type {Array<number>}
+     * @memberof ReservationStealFromRule
+     */
+    validSites?: Array<number> | null;
+}
+/**
+ * 
+ * @export
+ * @interface ReservationStealFromRuleCollection
+ */
+export interface ReservationStealFromRuleCollection {
+    /**
+     * 
+     * @type {Array<ReservationStealFromRule>}
+     * @memberof ReservationStealFromRuleCollection
+     */
+    items?: Array<ReservationStealFromRule> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReservationStealFromRuleCollection
+     */
+    pageCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReservationStealFromRuleCollection
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReservationStealFromRuleCollection
+     */
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReservationStealFromRuleCollection
+     */
+    totalCount?: number;
 }
 /**
  * Return Rule contract
@@ -7073,41 +8187,17 @@ export interface QuickEditResult {
  */
 export interface ReturnRule {
     /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof ReturnRule
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
      * Unique identifier of the Return.
      * @type {string}
      * @memberof ReturnRule
      */
     code?: string | null;
-    /**
-     * Return name
-     * @type {string}
-     * @memberof ReturnRule
-     */
-    name?: string | null;
-    /**
-     * Return description
-     * @type {string}
-     * @memberof ReturnRule
-     */
-    description?: string | null;
-    /**
-     * Maximum quantity of the Return
-     * @type {number}
-     * @memberof ReturnRule
-     */
-    maxQty?: number | null;
-    /**
-     * Maximum Days of the Return
-     * @type {number}
-     * @memberof ReturnRule
-     */
-    maxDays?: number | null;
-    /**
-     * List of product rule codes that apply to the Return
-     * @type {Array<string>}
-     * @memberof ReturnRule
-     */
-    productRules?: Array<string> | null;
     /**
      * List of customer rule codes that apply to the Return
      * @type {Array<string>}
@@ -7115,11 +8205,11 @@ export interface ReturnRule {
      */
     customerRules?: Array<string> | null;
     /**
-     * Rank of the Return
-     * @type {number}
+     * Return description
+     * @type {string}
      * @memberof ReturnRule
      */
-    rank?: number;
+    description?: string | null;
     /**
      * Indicates if the Return is enabled
      * @type {boolean}
@@ -7127,11 +8217,67 @@ export interface ReturnRule {
      */
     enabled?: boolean | null;
     /**
+     * End of the rule's effective window. Null = never expires. Must be >= StartDate when both supplied.
+     * @type {string}
+     * @memberof ReturnRule
+     */
+    endDate?: string | null;
+    /**
+     * Read-only. Computed server-side: true when the current UTC instant is inside the effective window
+     * (StartDate null/≤now AND EndDate null/≥now), false otherwise. A rule with no dates is always active.
+     * This reflects the effective window alone and does not incorporate the enabled flag.
+     * @type {boolean}
+     * @memberof ReturnRule
+     */
+    isActive?: boolean | null;
+    /**
      * Indicates if the Return is IsReturnable
      * @type {boolean}
      * @memberof ReturnRule
      */
     isReturnable?: boolean | null;
+    /**
+     * Maximum Days of the Return
+     * @type {number}
+     * @memberof ReturnRule
+     */
+    maxDays?: number | null;
+    /**
+     * Maximum quantity of the Return
+     * @type {number}
+     * @memberof ReturnRule
+     */
+    maxQty?: number | null;
+    /**
+     * Metadata for the ReturnRule which is a json format, used to store additional information
+     * @type {any}
+     * @memberof ReturnRule
+     */
+    metaData?: any | null;
+    /**
+     * Return name
+     * @type {string}
+     * @memberof ReturnRule
+     */
+    name?: string | null;
+    /**
+     * List of product rule codes that apply to the Return
+     * @type {Array<string>}
+     * @memberof ReturnRule
+     */
+    productRules?: Array<string> | null;
+    /**
+     * Rank of the Return
+     * @type {number}
+     * @memberof ReturnRule
+     */
+    rank?: number;
+    /**
+     * Start of the rule's effective window. Null = no lower bound (already active).
+     * @type {string}
+     * @memberof ReturnRule
+     */
+    startDate?: string | null;
     /**
      * Indicates if the ReturnRule is valid for all sites
      * @type {boolean}
@@ -7144,18 +8290,6 @@ export interface ReturnRule {
      * @memberof ReturnRule
      */
     validSites?: Array<number> | null;
-    /**
-     * Metadata for the ReturnRule which is a json format, used to store additional information
-     * @type {any}
-     * @memberof ReturnRule
-     */
-    metaData?: any | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof ReturnRule
-     */
-    auditInfo?: AdminUserAuditInfo;
 }
 /**
  * Return Rule collection contract
@@ -7165,16 +8299,10 @@ export interface ReturnRule {
 export interface ReturnRuleCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<ReturnRule>}
      * @memberof ReturnRuleCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ReturnRuleCollection
-     */
-    pageSize?: number;
+    items?: Array<ReturnRule> | null;
     /**
      * 
      * @type {number}
@@ -7186,13 +8314,81 @@ export interface ReturnRuleCollection {
      * @type {number}
      * @memberof ReturnRuleCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<ReturnRule>}
+     * @type {number}
      * @memberof ReturnRuleCollection
      */
-    items?: Array<ReturnRule> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReturnRuleCollection
+     */
+    totalCount?: number;
+}
+/**
+ * 
+ * @export
+ * @interface RulesEngineJobCreateRequest
+ */
+export interface RulesEngineJobCreateRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof RulesEngineJobCreateRequest
+     */
+    filter?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof RulesEngineJobCreateRequest
+     */
+    jobType?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof RulesEngineJobCreateRequest
+     */
+    status?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface RulesEngineJobCreateResponse
+ */
+export interface RulesEngineJobCreateResponse {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof RulesEngineJobCreateResponse
+     */
+    eventIds?: Array<string> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof RulesEngineJobCreateResponse
+     */
+    jobId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof RulesEngineJobCreateResponse
+     */
+    jobType?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof RulesEngineJobCreateResponse
+     */
+    skippedCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RulesEngineJobCreateResponse
+     */
+    stampedCount?: number;
 }
 /**
  * Represents a rule for safety stock in the product administration system.
@@ -7201,18 +8397,18 @@ export interface ReturnRuleCollection {
  */
 export interface SafetyStockRule {
     /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof SafetyStockRule
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
      * Gets or sets the unique identifier of the SafetyStockRule.
      * If not given provided on create one will be assigned. Read-only after creation.
      * @type {string}
      * @memberof SafetyStockRule
      */
     code?: string | null;
-    /**
-     * Gets or sets the name of the SafetyStockRule.
-     * @type {string}
-     * @memberof SafetyStockRule
-     */
-    name?: string | null;
     /**
      * Gets or sets the description of the SafetyStockRule.
      * @type {string}
@@ -7226,11 +8422,19 @@ export interface SafetyStockRule {
      */
     enabled?: boolean | null;
     /**
-     * Gets or sets the list of product rules associated with the SafetyStockRule.
-     * @type {Array<ProductRuleCode>}
+     * End of the rule's effective window. Null = never expires. Must be >= StartDate when both supplied.
+     * @type {string}
      * @memberof SafetyStockRule
      */
-    productRules?: Array<ProductRuleCode> | null;
+    endDate?: string | null;
+    /**
+     * Read-only. Computed server-side: true when the current UTC instant is inside the effective window
+     * (StartDate null/≤now AND EndDate null/≥now), false otherwise. A rule with no dates is always active.
+     * This reflects the effective window alone and does not incorporate the enabled flag.
+     * @type {boolean}
+     * @memberof SafetyStockRule
+     */
+    isActive?: boolean | null;
     /**
      * Gets or sets the list of location codes where the SafetyStockRule applies.
      * @type {Array<string>}
@@ -7243,6 +8447,24 @@ export interface SafetyStockRule {
      * @memberof SafetyStockRule
      */
     locationGroups?: Array<string> | null;
+    /**
+     * Metadata for the Safety stock rule which is a json format, used to store additional information
+     * @type {any}
+     * @memberof SafetyStockRule
+     */
+    metaData?: any | null;
+    /**
+     * Gets or sets the name of the SafetyStockRule.
+     * @type {string}
+     * @memberof SafetyStockRule
+     */
+    name?: string | null;
+    /**
+     * Gets or sets the list of product rules associated with the SafetyStockRule.
+     * @type {Array<ProductRuleCode>}
+     * @memberof SafetyStockRule
+     */
+    productRules?: Array<ProductRuleCode> | null;
     /**
      * Gets or sets the quantity defined by the SafetyStockRule.
      * @type {number}
@@ -7257,17 +8479,11 @@ export interface SafetyStockRule {
      */
     rank?: number;
     /**
-     * Metadata for the Safety stock rule which is a json format, used to store additional information
-     * @type {any}
+     * Start of the rule's effective window. Null = no lower bound (already active).
+     * @type {string}
      * @memberof SafetyStockRule
      */
-    metaData?: any | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof SafetyStockRule
-     */
-    auditInfo?: AdminUserAuditInfo;
+    startDate?: string | null;
 }
 /**
  * Represents a collection of SafetyStockRule objects with pagination information.
@@ -7277,16 +8493,10 @@ export interface SafetyStockRule {
 export interface SafetyStockRuleCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<SafetyStockRule>}
      * @memberof SafetyStockRuleCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SafetyStockRuleCollection
-     */
-    pageSize?: number;
+    items?: Array<SafetyStockRule> | null;
     /**
      * 
      * @type {number}
@@ -7298,13 +8508,19 @@ export interface SafetyStockRuleCollection {
      * @type {number}
      * @memberof SafetyStockRuleCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<SafetyStockRule>}
+     * @type {number}
      * @memberof SafetyStockRuleCollection
      */
-    items?: Array<SafetyStockRule> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SafetyStockRuleCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -7343,12 +8559,6 @@ export type SearchMerchandizingBoostType = typeof SearchMerchandizingBoostType[k
 export interface SearchMerchandizingBoostValueExpression {
     /**
      * 
-     * @type {string}
-     * @memberof SearchMerchandizingBoostValueExpression
-     */
-    value?: string | null;
-    /**
-     * 
      * @type {number}
      * @memberof SearchMerchandizingBoostValueExpression
      */
@@ -7359,6 +8569,12 @@ export interface SearchMerchandizingBoostValueExpression {
      * @memberof SearchMerchandizingBoostValueExpression
      */
     operator?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SearchMerchandizingBoostValueExpression
+     */
+    value?: string | null;
 }
 /**
  * 
@@ -7390,13 +8606,13 @@ export interface SearchMerchandizingFilter {
      * @type {string}
      * @memberof SearchMerchandizingFilter
      */
-    inclusion?: string | null;
+    exclusion?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SearchMerchandizingFilter
      */
-    exclusion?: string | null;
+    inclusion?: string | null;
 }
 /**
  * 
@@ -7404,6 +8620,18 @@ export interface SearchMerchandizingFilter {
  * @interface SearchMerchandizingImpactItem
  */
 export interface SearchMerchandizingImpactItem {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SearchMerchandizingImpactItem
+     */
+    isPinned?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof SearchMerchandizingImpactItem
+     */
+    position?: number;
     /**
      * 
      * @type {string}
@@ -7416,18 +8644,6 @@ export interface SearchMerchandizingImpactItem {
      * @memberof SearchMerchandizingImpactItem
      */
     sliceValue?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof SearchMerchandizingImpactItem
-     */
-    position?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SearchMerchandizingImpactItem
-     */
-    isPinned?: boolean;
 }
 /**
  * 
@@ -7437,16 +8653,10 @@ export interface SearchMerchandizingImpactItem {
 export interface SearchMerchandizingRuleCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<CatalogAdminsSearchMerchandizingRule>}
      * @memberof SearchMerchandizingRuleCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SearchMerchandizingRuleCollection
-     */
-    pageSize?: number;
+    items?: Array<CatalogAdminsSearchMerchandizingRule> | null;
     /**
      * 
      * @type {number}
@@ -7458,13 +8668,19 @@ export interface SearchMerchandizingRuleCollection {
      * @type {number}
      * @memberof SearchMerchandizingRuleCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<CatalogAdminsSearchMerchandizingRule>}
+     * @type {number}
      * @memberof SearchMerchandizingRuleCollection
      */
-    items?: Array<CatalogAdminsSearchMerchandizingRule> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SearchMerchandizingRuleCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -7496,12 +8712,6 @@ export interface SearchMerchandizingRuleImpact {
      * @type {Array<SearchMerchandizingImpactItem>}
      * @memberof SearchMerchandizingRuleImpact
      */
-    rankedItems?: Array<SearchMerchandizingImpactItem> | null;
-    /**
-     * 
-     * @type {Array<SearchMerchandizingImpactItem>}
-     * @memberof SearchMerchandizingRuleImpact
-     */
     buriedItems?: Array<SearchMerchandizingImpactItem> | null;
     /**
      * 
@@ -7509,12 +8719,6 @@ export interface SearchMerchandizingRuleImpact {
      * @memberof SearchMerchandizingRuleImpact
      */
     excludedItems?: Array<SearchMerchandizingImpactItem> | null;
-    /**
-     * 
-     * @type {Array<SearchMerchandizingSortField>}
-     * @memberof SearchMerchandizingRuleImpact
-     */
-    sortFields?: Array<SearchMerchandizingSortField> | null;
     /**
      * 
      * @type {SearchMerchandizingFieldValueBoost}
@@ -7527,6 +8731,18 @@ export interface SearchMerchandizingRuleImpact {
      * @memberof SearchMerchandizingRuleImpact
      */
     filter?: SearchMerchandizingFilter;
+    /**
+     * 
+     * @type {Array<SearchMerchandizingImpactItem>}
+     * @memberof SearchMerchandizingRuleImpact
+     */
+    rankedItems?: Array<SearchMerchandizingImpactItem> | null;
+    /**
+     * 
+     * @type {Array<SearchMerchandizingSortField>}
+     * @memberof SearchMerchandizingRuleImpact
+     */
+    sortFields?: Array<SearchMerchandizingSortField> | null;
 }
 /**
  * 
@@ -7555,16 +8771,28 @@ export interface SearchMerchandizingSortField {
 export interface SearchRedirect {
     /**
      * 
+     * @type {AdminUserAuditInfo}
+     * @memberof SearchRedirect
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * 
      * @type {string}
      * @memberof SearchRedirect
      */
     redirectId?: string | null;
     /**
      * 
-     * @type {string}
+     * @type {Array<string>}
      * @memberof SearchRedirect
      */
-    url?: string | null;
+    searchTermList?: Array<string> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SearchRedirect
+     */
+    siteId?: number | null;
     /**
      * 
      * @type {number}
@@ -7579,22 +8807,10 @@ export interface SearchRedirect {
     tenantId?: number;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof SearchRedirect
      */
-    siteId?: number | null;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof SearchRedirect
-     */
-    searchTermList?: Array<string> | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof SearchRedirect
-     */
-    auditInfo?: AdminUserAuditInfo;
+    url?: string | null;
 }
 /**
  * List of search redirects
@@ -7604,16 +8820,16 @@ export interface SearchRedirect {
 export interface SearchRedirectCollection {
     /**
      * 
-     * @type {number}
-     * @memberof SearchRedirectCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<SearchRedirect>}
      * @memberof SearchRedirectCollection
      */
     items?: Array<SearchRedirect> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SearchRedirectCollection
+     */
+    totalCount?: number;
 }
 /**
  * Settings to control product search and indexing behavior
@@ -7623,10 +8839,22 @@ export interface SearchRedirectCollection {
 export interface SearchSettings {
     /**
      * 
-     * @type {string}
+     * @type {AdminUserAuditInfo}
      * @memberof SearchSettings
      */
-    settingsName?: string | null;
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * 
+     * @type {SuggestSettings}
+     * @memberof SearchSettings
+     */
+    categorySuggestSettings?: SuggestSettings;
+    /**
+     * 
+     * @type {CollapseSettings}
+     * @memberof SearchSettings
+     */
+    collapseSettings?: CollapseSettings;
     /**
      * 
      * @type {string}
@@ -7641,10 +8869,10 @@ export interface SearchSettings {
     isDefault?: boolean;
     /**
      * 
-     * @type {SiteSearchSettings}
+     * @type {ListingSettings}
      * @memberof SearchSettings
      */
-    siteSearchSettings?: SiteSearchSettings;
+    listingSettings?: ListingSettings;
     /**
      * 
      * @type {ProductSuggestSettings}
@@ -7653,28 +8881,16 @@ export interface SearchSettings {
     productSuggestSettings?: ProductSuggestSettings;
     /**
      * 
-     * @type {SuggestSettings}
+     * @type {string}
      * @memberof SearchSettings
      */
-    categorySuggestSettings?: SuggestSettings;
+    settingsName?: string | null;
     /**
      * 
-     * @type {ListingSettings}
+     * @type {SiteSearchSettings}
      * @memberof SearchSettings
      */
-    listingSettings?: ListingSettings;
-    /**
-     * 
-     * @type {CollapseSettings}
-     * @memberof SearchSettings
-     */
-    collapseSettings?: CollapseSettings;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof SearchSettings
-     */
-    auditInfo?: AdminUserAuditInfo;
+    siteSearchSettings?: SiteSearchSettings;
 }
 /**
  * 
@@ -7684,16 +8900,16 @@ export interface SearchSettings {
 export interface SearchSettingsCollection {
     /**
      * 
-     * @type {number}
-     * @memberof SearchSettingsCollection
-     */
-    totalCount?: number;
-    /**
-     * 
      * @type {Array<SearchSettings>}
      * @memberof SearchSettingsCollection
      */
     items?: Array<SearchSettings> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SearchSettingsCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -7703,34 +8919,40 @@ export interface SearchSettingsCollection {
 export interface SearchTuningRule {
     /**
      * 
-     * @type {number}
+     * @type {boolean}
      * @memberof SearchTuningRule
      */
-    siteId?: number;
+    active?: boolean;
     /**
      * 
      * @type {string}
      * @memberof SearchTuningRule
      */
-    searchTuningRuleCode?: string | null;
+    activeEndDate?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SearchTuningRule
      */
-    searchTuningRuleName?: string | null;
+    activeStartDate?: string | null;
     /**
      * 
-     * @type {string}
+     * @type {AdminUserAuditInfo}
      * @memberof SearchTuningRule
      */
-    searchTuningRuleDescription?: string | null;
+    auditInfo?: AdminUserAuditInfo;
     /**
      * 
      * @type {Array<string>}
      * @memberof SearchTuningRule
      */
-    keywords?: Array<string> | null;
+    blockedProductCodes?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof SearchTuningRule
+     */
+    boostedProductCodes?: Array<string> | null;
     /**
      * 
      * @type {Array<SearchTuningRuleFilter>}
@@ -7742,43 +8964,37 @@ export interface SearchTuningRule {
      * @type {boolean}
      * @memberof SearchTuningRule
      */
-    active?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SearchTuningRule
-     */
     isDefault?: boolean;
     /**
      * 
-     * @type {string}
-     * @memberof SearchTuningRule
-     */
-    activeStartDate?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof SearchTuningRule
-     */
-    activeEndDate?: string | null;
-    /**
-     * 
      * @type {Array<string>}
      * @memberof SearchTuningRule
      */
-    boostedProductCodes?: Array<string> | null;
+    keywords?: Array<string> | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {string}
      * @memberof SearchTuningRule
      */
-    blockedProductCodes?: Array<string> | null;
+    searchTuningRuleCode?: string | null;
     /**
      * 
-     * @type {AdminUserAuditInfo}
+     * @type {string}
      * @memberof SearchTuningRule
      */
-    auditInfo?: AdminUserAuditInfo;
+    searchTuningRuleDescription?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SearchTuningRule
+     */
+    searchTuningRuleName?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SearchTuningRule
+     */
+    siteId?: number;
 }
 /**
  * 
@@ -7788,16 +9004,10 @@ export interface SearchTuningRule {
 export interface SearchTuningRuleCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<SearchTuningRule>}
      * @memberof SearchTuningRuleCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SearchTuningRuleCollection
-     */
-    pageSize?: number;
+    items?: Array<SearchTuningRule> | null;
     /**
      * 
      * @type {number}
@@ -7809,13 +9019,19 @@ export interface SearchTuningRuleCollection {
      * @type {number}
      * @memberof SearchTuningRuleCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<SearchTuningRule>}
+     * @type {number}
      * @memberof SearchTuningRuleCollection
      */
-    items?: Array<SearchTuningRule> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SearchTuningRuleCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -7844,16 +9060,16 @@ export interface SearchTuningRuleFilter {
 export interface SearchTuningRuleSortFields {
     /**
      * 
-     * @type {Array<string>}
-     * @memberof SearchTuningRuleSortFields
-     */
-    sortFields?: Array<string> | null;
-    /**
-     * 
      * @type {string}
      * @memberof SearchTuningRuleSortFields
      */
     inclusionExclusionType?: string | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof SearchTuningRuleSortFields
+     */
+    sortFields?: Array<string> | null;
 }
 
 /**
@@ -7869,21 +9085,163 @@ export type SearchType = typeof SearchType[keyof typeof SearchType];
 /**
  * 
  * @export
+ * @interface ShipmentReleaseRule
+ */
+export interface ShipmentReleaseRule {
+    /**
+     * 
+     * @type {any}
+     * @memberof ShipmentReleaseRule
+     */
+    attributeSelection?: any | null;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof ShipmentReleaseRule
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShipmentReleaseRule
+     */
+    code?: string | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ShipmentReleaseRule
+     */
+    customerRules?: Array<string> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShipmentReleaseRule
+     */
+    description?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ShipmentReleaseRule
+     */
+    enabled?: boolean | null;
+    /**
+     * End of the rule's effective window. Null = never expires. Must be >= StartDate when both supplied.
+     * @type {string}
+     * @memberof ShipmentReleaseRule
+     */
+    endDate?: string | null;
+    /**
+     * Read-only. Computed server-side: true when the current UTC instant is inside the effective window
+     * (StartDate null/≤now AND EndDate null/≥now), false otherwise. A rule with no dates is always active.
+     * This reflects the effective window alone and does not incorporate the enabled flag.
+     * @type {boolean}
+     * @memberof ShipmentReleaseRule
+     */
+    isActive?: boolean | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ShipmentReleaseRule
+     */
+    locationCodes?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ShipmentReleaseRule
+     */
+    locationGroups?: Array<string> | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof ShipmentReleaseRule
+     */
+    metaData?: any | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShipmentReleaseRule
+     */
+    name?: string | null;
+    /**
+     * 
+     * @type {Array<ProductRuleCode>}
+     * @memberof ShipmentReleaseRule
+     */
+    productRules?: Array<ProductRuleCode> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShipmentReleaseRule
+     */
+    rank?: number | null;
+    /**
+     * 
+     * @type {Array<ShipmentRuleCode>}
+     * @memberof ShipmentReleaseRule
+     */
+    shipmentRules?: Array<ShipmentRuleCode> | null;
+    /**
+     * Start of the rule's effective window. Null = no lower bound (already active).
+     * @type {string}
+     * @memberof ShipmentReleaseRule
+     */
+    startDate?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface ShipmentReleaseRuleCollection
+ */
+export interface ShipmentReleaseRuleCollection {
+    /**
+     * 
+     * @type {Array<ShipmentReleaseRule>}
+     * @memberof ShipmentReleaseRuleCollection
+     */
+    items?: Array<ShipmentReleaseRule> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShipmentReleaseRuleCollection
+     */
+    pageCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShipmentReleaseRuleCollection
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShipmentReleaseRuleCollection
+     */
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShipmentReleaseRuleCollection
+     */
+    totalCount?: number;
+}
+/**
+ * 
+ * @export
  * @interface ShipmentRule
  */
 export interface ShipmentRule {
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof ShipmentRule
+     */
+    auditInfo?: AdminUserAuditInfo;
     /**
      * Unique identifier of the ShipmentRule. System-supplied and read-only.
      * @type {string}
      * @memberof ShipmentRule
      */
     code?: string | null;
-    /**
-     * ShipmentRule name
-     * @type {string}
-     * @memberof ShipmentRule
-     */
-    name?: string | null;
     /**
      * ShipmentRule description
      * @type {string}
@@ -7892,10 +9250,10 @@ export interface ShipmentRule {
     description?: string | null;
     /**
      * 
-     * @type {CatalogAdminsCustomerDynamicExpression}
+     * @type {CatalogAdminsDynamicExpression}
      * @memberof ShipmentRule
      */
-    expression?: CatalogAdminsCustomerDynamicExpression;
+    expression?: CatalogAdminsDynamicExpression;
     /**
      * Additional metadata.
      * @type {any}
@@ -7903,11 +9261,17 @@ export interface ShipmentRule {
      */
     metaData?: any | null;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
+     * ShipmentRule name
+     * @type {string}
      * @memberof ShipmentRule
      */
-    auditInfo?: AdminUserAuditInfo;
+    name?: string | null;
+    /**
+     * Discriminator identifying the rule type that owns this shipment rule. Required on create and update.
+     * @type {string}
+     * @memberof ShipmentRule
+     */
+    ruleType: string;
 }
 /**
  * 
@@ -7930,16 +9294,10 @@ export interface ShipmentRuleCode {
 export interface ShipmentRuleCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<ShipmentRule>}
      * @memberof ShipmentRuleCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ShipmentRuleCollection
-     */
-    pageSize?: number;
+    items?: Array<ShipmentRule> | null;
     /**
      * 
      * @type {number}
@@ -7951,13 +9309,19 @@ export interface ShipmentRuleCollection {
      * @type {number}
      * @memberof ShipmentRuleCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<ShipmentRule>}
+     * @type {number}
      * @memberof ShipmentRuleCollection
      */
-    items?: Array<ShipmentRule> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShipmentRuleCollection
+     */
+    totalCount?: number;
 }
 /**
  * A custom field and weight value for search relevancy
@@ -7965,12 +9329,6 @@ export interface ShipmentRuleCollection {
  * @interface SiteSearchFieldWeight
  */
 export interface SiteSearchFieldWeight {
-    /**
-     * weight to apply in phrase boosting
-     * @type {number}
-     * @memberof SiteSearchFieldWeight
-     */
-    phraseWeight?: number;
     /**
      * field in the index to target
      * @type {string}
@@ -7983,6 +9341,25 @@ export interface SiteSearchFieldWeight {
      * @memberof SiteSearchFieldWeight
      */
     weight?: number;
+    /**
+     * weight to apply in phrase boosting
+     * @type {number}
+     * @memberof SiteSearchFieldWeight
+     */
+    phraseWeight?: number;
+}
+/**
+ * 
+ * @export
+ * @interface SiteSearchFieldWeightAllOf
+ */
+export interface SiteSearchFieldWeightAllOf {
+    /**
+     * weight to apply in phrase boosting
+     * @type {number}
+     * @memberof SiteSearchFieldWeightAllOf
+     */
+    phraseWeight?: number;
 }
 /**
  * 
@@ -7991,30 +9368,11 @@ export interface SiteSearchFieldWeight {
  */
 export interface SiteSearchSettings {
     /**
-     * controls sowBehavior (Never=0, Always=1, WhenNoMultiTermSyn=2)
-     * never sow=false, always sow=true,  WhenNoMultiTermSyn = (depends on existance of multitermsynonym match in query)
-     * @type {number}
-     * @memberof SiteSearchSettings
-     */
-    sowBehavior?: number | null;
-    /**
      * 
      * @type {number}
      * @memberof SiteSearchSettings
      */
-    searchMode?: number | null;
-    /**
-     * 
-     * @type {VectorSearchSettings}
-     * @memberof SiteSearchSettings
-     */
-    vectorSettings?: VectorSearchSettings;
-    /**
-     * 
-     * @type {Array<SiteSearchFieldWeight>}
-     * @memberof SiteSearchSettings
-     */
-    fieldWeights?: Array<SiteSearchFieldWeight> | null;
+    crossFieldAdditiveScoreFactor?: number;
     /**
      * 
      * @type {Array<string>}
@@ -8028,12 +9386,11 @@ export interface SiteSearchSettings {
      */
     fieldValueBoost?: FieldValueBoost;
     /**
-     * if values present is used for mm when sowBehavior.WhenNoMultiTermSyn and multi term sym match found in query
-     * if no values are present or null fallback to MinMatchPercents
-     * @type {Array<number>}
+     * 
+     * @type {Array<SiteSearchFieldWeight>}
      * @memberof SiteSearchSettings
      */
-    multiTermSynMinimumMatchPercents?: Array<number> | null;
+    fieldWeights?: Array<SiteSearchFieldWeight> | null;
     /**
      * 
      * @type {Array<number>}
@@ -8041,18 +9398,12 @@ export interface SiteSearchSettings {
      */
     minimumMatchPercents?: Array<number> | null;
     /**
-     * 
-     * @type {number}
+     * if values present is used for mm when sowBehavior.WhenNoMultiTermSyn and multi term sym match found in query
+     * if no values are present or null fallback to MinMatchPercents
+     * @type {Array<number>}
      * @memberof SiteSearchSettings
      */
-    phraseSlop?: number;
-    /**
-     * if true, 2 word shingles used for phrase boosting based on fields with phrase weights greater than 0
-     * if false, only full phrase mathing used for phrase boosting
-     * @type {boolean}
-     * @memberof SiteSearchSettings
-     */
-    twoWordPhraseBoost?: boolean | null;
+    multiTermSynMinimumMatchPercents?: Array<number> | null;
     /**
      * 
      * @type {string}
@@ -8067,6 +9418,12 @@ export interface SiteSearchSettings {
     personalizationFactor?: number | null;
     /**
      * 
+     * @type {number}
+     * @memberof SiteSearchSettings
+     */
+    phraseSlop?: number;
+    /**
+     * 
      * @type {boolean}
      * @memberof SiteSearchSettings
      */
@@ -8076,7 +9433,27 @@ export interface SiteSearchSettings {
      * @type {number}
      * @memberof SiteSearchSettings
      */
-    crossFieldAdditiveScoreFactor?: number;
+    searchMode?: number | null;
+    /**
+     * controls sowBehavior (Never=0, Always=1, WhenNoMultiTermSyn=2)
+     * never sow=false, always sow=true,  WhenNoMultiTermSyn = (depends on existance of multitermsynonym match in query)
+     * @type {number}
+     * @memberof SiteSearchSettings
+     */
+    sowBehavior?: number | null;
+    /**
+     * 
+     * @type {CatalogAdminsSpellcheck}
+     * @memberof SiteSearchSettings
+     */
+    spellcheck?: CatalogAdminsSpellcheck;
+    /**
+     * if true, 2 word shingles used for phrase boosting based on fields with phrase weights greater than 0
+     * if false, only full phrase mathing used for phrase boosting
+     * @type {boolean}
+     * @memberof SiteSearchSettings
+     */
+    twoWordPhraseBoost?: boolean | null;
     /**
      * 
      * @type {TypoTolerance}
@@ -8085,10 +9462,10 @@ export interface SiteSearchSettings {
     typoTolerance?: TypoTolerance;
     /**
      * 
-     * @type {CatalogAdminsSpellcheck}
+     * @type {VectorSearchSettings}
      * @memberof SiteSearchSettings
      */
-    spellcheck?: CatalogAdminsSpellcheck;
+    vectorSettings?: VectorSearchSettings;
 }
 /**
  * Container class for Slicing Settings
@@ -8110,6 +9487,18 @@ export interface SlicingSettings {
  */
 export interface SpellcheckUpdate {
     /**
+     * e.g en-US
+     * @type {string}
+     * @memberof SpellcheckUpdate
+     */
+    localeCode?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof SpellcheckUpdate
+     */
+    masterCatalogId?: number;
+    /**
      * Spellcheck true/false
      * @type {boolean}
      * @memberof SpellcheckUpdate
@@ -8121,18 +9510,6 @@ export interface SpellcheckUpdate {
      * @memberof SpellcheckUpdate
      */
     tenantId?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SpellcheckUpdate
-     */
-    masterCatalogId?: number;
-    /**
-     * e.g en-US
-     * @type {string}
-     * @memberof SpellcheckUpdate
-     */
-    localeCode?: string | null;
 }
 /**
  * 
@@ -8141,11 +9518,11 @@ export interface SpellcheckUpdate {
  */
 export interface StackingConfiguration {
     /**
-     * Indicates if discount stacking is enabled for discounts in this catalog
-     * @type {boolean}
+     * Number of Product Line Item discount layers
+     * @type {number}
      * @memberof StackingConfiguration
      */
-    stackingEnabled?: boolean;
+    productLineItemLayers?: number;
     /**
      * Number of Product Order discount layers
      * @type {number}
@@ -8153,11 +9530,11 @@ export interface StackingConfiguration {
      */
     productOrderLayers?: number;
     /**
-     * Number of Product Line Item discount layers
-     * @type {number}
+     * Indicates if discount stacking is enabled for discounts in this catalog
+     * @type {boolean}
      * @memberof StackingConfiguration
      */
-    productLineItemLayers?: number;
+    stackingEnabled?: boolean;
 }
 /**
  * 
@@ -8165,6 +9542,12 @@ export interface StackingConfiguration {
  * @interface SuggestSettings
  */
 export interface SuggestSettings {
+    /**
+     * 
+     * @type {number}
+     * @memberof SuggestSettings
+     */
+    crossFieldAdditiveScoreFactor?: number;
     /**
      * 
      * @type {Array<FieldWeight>}
@@ -8189,12 +9572,6 @@ export interface SuggestSettings {
      * @memberof SuggestSettings
      */
     returnFields?: Array<string> | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof SuggestSettings
-     */
-    crossFieldAdditiveScoreFactor?: number;
 }
 /**
  * 
@@ -8203,17 +9580,17 @@ export interface SuggestSettings {
  */
 export interface SynonymDefinition {
     /**
-     * The unique identifier for the synonym definition
-     * @type {number}
-     * @memberof SynonymDefinition
-     */
-    synonymId?: number | null;
-    /**
      * If key is defined then map is directed
      * @type {string}
      * @memberof SynonymDefinition
      */
     key?: string | null;
+    /**
+     * The unique identifier for the synonym definition
+     * @type {number}
+     * @memberof SynonymDefinition
+     */
+    synonymId?: number | null;
     /**
      * List of synonyms.  If no key is defined the matches are bidirectional
      * @type {Array<string>}
@@ -8228,11 +9605,11 @@ export interface SynonymDefinition {
  */
 export interface SynonymDefinitionCollection {
     /**
-     * Read-only TenantId
-     * @type {number}
+     * The locale code to which this definition applies
+     * @type {string}
      * @memberof SynonymDefinitionCollection
      */
-    tenantId?: number;
+    localeCode?: string | null;
     /**
      * Read-only  Site Id
      * @type {number}
@@ -8240,17 +9617,17 @@ export interface SynonymDefinitionCollection {
      */
     siteId?: number;
     /**
-     * The locale code to which this definition applies
-     * @type {string}
-     * @memberof SynonymDefinitionCollection
-     */
-    localeCode?: string | null;
-    /**
      * List of mappings for this definition
      * @type {Array<SynonymDefinition>}
      * @memberof SynonymDefinitionCollection
      */
     synonymDefinitions?: Array<SynonymDefinition> | null;
+    /**
+     * Read-only TenantId
+     * @type {number}
+     * @memberof SynonymDefinitionCollection
+     */
+    tenantId?: number;
 }
 /**
  * Paged collection of synonyms for a Site-Locale.
@@ -8260,16 +9637,10 @@ export interface SynonymDefinitionCollection {
 export interface SynonymDefinitionPagedCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<SynonymDefinition>}
      * @memberof SynonymDefinitionPagedCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SynonymDefinitionPagedCollection
-     */
-    pageSize?: number;
+    items?: Array<SynonymDefinition> | null;
     /**
      * 
      * @type {number}
@@ -8281,13 +9652,19 @@ export interface SynonymDefinitionPagedCollection {
      * @type {number}
      * @memberof SynonymDefinitionPagedCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<SynonymDefinition>}
+     * @type {number}
      * @memberof SynonymDefinitionPagedCollection
      */
-    items?: Array<SynonymDefinition> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SynonymDefinitionPagedCollection
+     */
+    totalCount?: number;
 }
 /**
  * Collection of Tags returned as a whole. A collection is not paged.
@@ -8297,16 +9674,10 @@ export interface SynonymDefinitionPagedCollection {
 export interface TagCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<CatalogAdminsTag>}
      * @memberof TagCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof TagCollection
-     */
-    pageSize?: number;
+    items?: Array<CatalogAdminsTag> | null;
     /**
      * 
      * @type {number}
@@ -8318,13 +9689,19 @@ export interface TagCollection {
      * @type {number}
      * @memberof TagCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<CatalogAdminsTag>}
+     * @type {number}
      * @memberof TagCollection
      */
-    items?: Array<CatalogAdminsTag> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TagCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -8332,6 +9709,24 @@ export interface TagCollection {
  * @interface TagNode
  */
 export interface TagNode {
+    /**
+     * 
+     * @type {Array<TagNode>}
+     * @memberof TagNode
+     */
+    children?: Array<TagNode> | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof TagNode
+     */
+    isRoot?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof TagNode
+     */
+    tagCode?: string | null;
     /**
      * 
      * @type {string}
@@ -8344,24 +9739,6 @@ export interface TagNode {
      * @memberof TagNode
      */
     tagPath?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof TagNode
-     */
-    tagCode?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof TagNode
-     */
-    isRoot?: boolean;
-    /**
-     * 
-     * @type {Array<TagNode>}
-     * @memberof TagNode
-     */
-    children?: Array<TagNode> | null;
 }
 /**
  * Hierarchical tree for Tags
@@ -8371,10 +9748,10 @@ export interface TagNode {
 export interface TagNodeTree {
     /**
      * 
-     * @type {number}
+     * @type {TagNode}
      * @memberof TagNodeTree
      */
-    total?: number;
+    items?: TagNode;
     /**
      * 
      * @type {boolean}
@@ -8383,10 +9760,10 @@ export interface TagNodeTree {
     success?: boolean;
     /**
      * 
-     * @type {TagNode}
+     * @type {number}
      * @memberof TagNodeTree
      */
-    items?: TagNode;
+    total?: number;
 }
 /**
  * Product to discount.
@@ -8408,6 +9785,12 @@ export interface TargetedProduct {
  */
 export interface ThresholdMessageLocalizedContent {
     /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof ThresholdMessageLocalizedContent
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
      * Language used for the discount in the current catalog. Defaults setting for the active catalog.
      * @type {string}
      * @memberof ThresholdMessageLocalizedContent
@@ -8419,12 +9802,6 @@ export interface ThresholdMessageLocalizedContent {
      * @memberof ThresholdMessageLocalizedContent
      */
     messageTemplate: string;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof ThresholdMessageLocalizedContent
-     */
-    auditInfo?: AdminUserAuditInfo;
 }
 /**
  * 
@@ -8432,12 +9809,6 @@ export interface ThresholdMessageLocalizedContent {
  * @interface TypoTolerance
  */
 export interface TypoTolerance {
-    /**
-     * Typo tolerance distance for fuzzy match. Must be Integer 1-10.
-     * @type {number}
-     * @memberof TypoTolerance
-     */
-    factor?: number;
     /**
      * Typo tolerance distance for fuzzy match. Must be Integer 1 or 2.
      * @type {number}
@@ -8451,6 +9822,12 @@ export interface TypoTolerance {
      * @memberof TypoTolerance
      */
     readonly enabled?: boolean;
+    /**
+     * Typo tolerance distance for fuzzy match. Must be Integer 1-10.
+     * @type {number}
+     * @memberof TypoTolerance
+     */
+    factor?: number;
 }
 /**
  * Represents a request to update the rank of a SafetyStock, PurchaseLimit and Return Rule.
@@ -8466,17 +9843,17 @@ export interface UpdateRankRequest {
      */
     code?: string | null;
     /**
-     * Gets or sets the old rank of the rule.
-     * @type {number}
-     * @memberof UpdateRankRequest
-     */
-    oldRank?: number;
-    /**
      * Gets or sets the new rank of the rule.
      * @type {number}
      * @memberof UpdateRankRequest
      */
     newRank?: number;
+    /**
+     * Gets or sets the old rank of the rule.
+     * @type {number}
+     * @memberof UpdateRankRequest
+     */
+    oldRank?: number;
 }
 /**
  * 
@@ -8486,22 +9863,10 @@ export interface UpdateRankRequest {
 export interface VectorSearchSettings {
     /**
      * 
-     * @type {number}
+     * @type {boolean}
      * @memberof VectorSearchSettings
      */
-    topK?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof VectorSearchSettings
-     */
-    hybridMode?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof VectorSearchSettings
-     */
-    thresholdDistance?: number;
+    applyBoostFunctions?: boolean;
     /**
      * 
      * @type {boolean}
@@ -8513,11 +9878,23 @@ export interface VectorSearchSettings {
      * @type {number}
      * @memberof VectorSearchSettings
      */
+    hybridMode?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof VectorSearchSettings
+     */
     multiplier?: number;
     /**
      * 
-     * @type {boolean}
+     * @type {number}
      * @memberof VectorSearchSettings
      */
-    applyBoostFunctions?: boolean;
+    thresholdDistance?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof VectorSearchSettings
+     */
+    topK?: number;
 }

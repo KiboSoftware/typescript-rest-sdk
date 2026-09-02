@@ -2,9 +2,9 @@
 /* eslint-disable */
 /**
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -72,7 +72,7 @@ export namespace facetsApiParams {
 export interface FacetsApiService {
     /**
     * Adds a new Facet to a category in a catalog.
-    * @summary Add facet
+    * @summary Add Facet
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {CatalogAdminsFacet} [catalogAdminsFacet] 
     * @param {*} [options] Override http request option.
@@ -83,13 +83,13 @@ export interface FacetsApiService {
 
     /**
     * Adds a new Facet to a category in a catalog.
-    * Add facet
+    * Add Facet
     */
     addFacet(requestParameters: facetsApiParams.AddFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsFacet>;
 
     /**
     * Deletes the Facet definition from the store.
-    * @summary Delete facet
+    * @summary Delete Facet
     * @param {number} facetId 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -99,13 +99,13 @@ export interface FacetsApiService {
 
     /**
     * Deletes the Facet definition from the store.
-    * Delete facet
+    * Delete Facet
     */
     deleteFacetById(requestParameters: facetsApiParams.DeleteFacetByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * Retrieves the details of a Facet Definition
-    * @summary Get facet
+    * Retrieves the details of a Facet definition.
+    * @summary Get Facet
     * @param {number} facetId 
     * @param {boolean} [validate] 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -116,14 +116,14 @@ export interface FacetsApiService {
     getFacetRaw(requestParameters: facetsApiParams.GetFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsFacet>>;
 
     /**
-    * Retrieves the details of a Facet Definition
-    * Get facet
+    * Retrieves the details of a Facet definition.
+    * Get Facet
     */
     getFacet(requestParameters: facetsApiParams.GetFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsFacet>;
 
     /**
-    * Retrieves a list of configured, and optionally available, Facet Configurations for the specified category.
-    * @summary Get facet category list
+    * Retrieves a list of configured, and optionally available, Facet configurations for the specified category.
+    * @summary Get Facet Category List
     * @param {number} [categoryId] 
     * @param {string} [categoryCode] 
     * @param {boolean} [includeAvailable] 
@@ -136,14 +136,14 @@ export interface FacetsApiService {
     getFacetCategoryListRaw(requestParameters: facetsApiParams.GetFacetCategoryListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FacetSet>>;
 
     /**
-    * Retrieves a list of configured, and optionally available, Facet Configurations for the specified category.
-    * Get facet category list
+    * Retrieves a list of configured, and optionally available, Facet configurations for the specified category.
+    * Get Facet Category List
     */
     getFacetCategoryList(requestParameters: facetsApiParams.GetFacetCategoryListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FacetSet>;
 
     /**
-    * Retrieves a list of configured, and optionally available, Facet Configurations for the specified category.
-    * @summary Get facet category list (legacy)
+    * Retrieves a list of configured, and optionally available, Facet configurations for the specified category. 
+    * @summary Get Facet Category List (Legacy)
     * @param {number} categoryId 
     * @param {boolean} [includeAvailable] 
     * @param {boolean} [validate] 
@@ -155,8 +155,8 @@ export interface FacetsApiService {
     getFacetCategoryListLegacyRaw(requestParameters: facetsApiParams.GetFacetCategoryListLegacyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FacetSet>>;
 
     /**
-    * Retrieves a list of configured, and optionally available, Facet Configurations for the specified category.
-    * Get facet category list (legacy)
+    * Retrieves a list of configured, and optionally available, Facet configurations for the specified category. 
+    * Get Facet Category List (Legacy)
     */
     getFacetCategoryListLegacy(requestParameters: facetsApiParams.GetFacetCategoryListLegacyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FacetSet>;
 
@@ -178,7 +178,7 @@ export interface FacetsApiService {
 
     /**
     * Modifies a Facet definition.
-    * @summary Update facet
+    * @summary Update Facet
     * @param {number} facetId 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {CatalogAdminsFacet} [catalogAdminsFacet] 
@@ -190,13 +190,13 @@ export interface FacetsApiService {
 
     /**
     * Modifies a Facet definition.
-    * Update facet
+    * Update Facet
     */
     updateFacet(requestParameters: facetsApiParams.UpdateFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsFacet>;
 
     /**
     * Modifies a Facet definition.
-    * @summary Update facet
+    * @summary Update Facet Set
     * @param {number} [categoryId] 
     * @param {string} [categoryCode] 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -209,7 +209,7 @@ export interface FacetsApiService {
 
     /**
     * Modifies a Facet definition.
-    * Update facet
+    * Update Facet Set
     */
     updateFacetSet(requestParameters: facetsApiParams.UpdateFacetSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FacetSet>;
 
@@ -226,7 +226,7 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiService {
     }
     /**
      * Adds a new Facet to a category in a catalog.
-     * Add facet
+     * Add Facet
      */
 
 
@@ -240,8 +240,6 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiService {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-
 
 
 
@@ -260,7 +258,7 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiService {
 
     /**
      * Adds a new Facet to a category in a catalog.
-     * Add facet
+     * Add Facet
      */
     async addFacet(requestParameters: facetsApiParams.AddFacetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsFacet> {
         const response = await this.addFacetRaw(requestParameters, initOverrides);
@@ -269,7 +267,7 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiService {
 
     /**
      * Deletes the Facet definition from the store.
-     * Delete facet
+     * Delete Facet
      */
 
 
@@ -281,8 +279,6 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiService {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-
 
 
 
@@ -300,15 +296,15 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiService {
 
     /**
      * Deletes the Facet definition from the store.
-     * Delete facet
+     * Delete Facet
      */
     async deleteFacetById(requestParameters: facetsApiParams.DeleteFacetByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteFacetByIdRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Retrieves the details of a Facet Definition
-     * Get facet
+     * Retrieves the details of a Facet definition.
+     * Get Facet
      */
 
 
@@ -331,8 +327,6 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiService {
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -346,8 +340,8 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiService {
     }
 
     /**
-     * Retrieves the details of a Facet Definition
-     * Get facet
+     * Retrieves the details of a Facet definition.
+     * Get Facet
      */
     async getFacet(requestParameters: facetsApiParams.GetFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsFacet> {
         const response = await this.getFacetRaw(requestParameters, initOverrides);
@@ -355,8 +349,8 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiService {
     }
 
     /**
-     * Retrieves a list of configured, and optionally available, Facet Configurations for the specified category.
-     * Get facet category list
+     * Retrieves a list of configured, and optionally available, Facet configurations for the specified category.
+     * Get Facet Category List
      */
 
 
@@ -387,8 +381,6 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiService {
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -402,8 +394,8 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiService {
     }
 
     /**
-     * Retrieves a list of configured, and optionally available, Facet Configurations for the specified category.
-     * Get facet category list
+     * Retrieves a list of configured, and optionally available, Facet configurations for the specified category.
+     * Get Facet Category List
      */
     async getFacetCategoryList(requestParameters: facetsApiParams.GetFacetCategoryListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FacetSet> {
         const response = await this.getFacetCategoryListRaw(requestParameters, initOverrides);
@@ -411,8 +403,8 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiService {
     }
 
     /**
-     * Retrieves a list of configured, and optionally available, Facet Configurations for the specified category.
-     * Get facet category list (legacy)
+     * Retrieves a list of configured, and optionally available, Facet configurations for the specified category. 
+     * Get Facet Category List (Legacy)
      */
 
 
@@ -439,8 +431,6 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiService {
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -454,8 +444,8 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiService {
     }
 
     /**
-     * Retrieves a list of configured, and optionally available, Facet Configurations for the specified category.
-     * Get facet category list (legacy)
+     * Retrieves a list of configured, and optionally available, Facet configurations for the specified category. 
+     * Get Facet Category List (Legacy)
      */
     async getFacetCategoryListLegacy(requestParameters: facetsApiParams.GetFacetCategoryListLegacyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FacetSet> {
         const response = await this.getFacetCategoryListLegacyRaw(requestParameters, initOverrides);
@@ -476,8 +466,6 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiService {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-
 
 
 
@@ -504,7 +492,7 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiService {
 
     /**
      * Modifies a Facet definition.
-     * Update facet
+     * Update Facet
      */
 
 
@@ -525,8 +513,6 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiService {
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -542,7 +528,7 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiService {
 
     /**
      * Modifies a Facet definition.
-     * Update facet
+     * Update Facet
      */
     async updateFacet(requestParameters: facetsApiParams.UpdateFacetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsFacet> {
         const response = await this.updateFacetRaw(requestParameters, initOverrides);
@@ -551,7 +537,7 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiService {
 
     /**
      * Modifies a Facet definition.
-     * Update facet
+     * Update Facet Set
      */
 
 
@@ -576,8 +562,6 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiService {
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -593,7 +577,7 @@ export class FacetsApi extends runtime.BaseAPI implements FacetsApiService {
 
     /**
      * Modifies a Facet definition.
-     * Update facet
+     * Update Facet Set
      */
     async updateFacetSet(requestParameters: facetsApiParams.UpdateFacetSetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FacetSet> {
         const response = await this.updateFacetSetRaw(requestParameters, initOverrides);

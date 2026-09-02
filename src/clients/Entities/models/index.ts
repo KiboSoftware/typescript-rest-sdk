@@ -8,16 +8,10 @@
 export interface EntityCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<object>}
      * @memberof EntityCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityCollection
-     */
-    pageSize?: number;
+    items?: Array<object> | null;
     /**
      * 
      * @type {number}
@@ -29,13 +23,19 @@ export interface EntityCollection {
      * @type {number}
      * @memberof EntityCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<object>}
+     * @type {number}
      * @memberof EntityCollection
      */
-    items?: Array<object> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityCollection
+     */
+    totalCount?: number;
 }
 /**
  * The metadata and Entity contents for an entity persisted in an EntityList in MZDB. The Item property contains the json representation of the Entity
@@ -48,55 +48,7 @@ export interface EntityContainer {
      * @type {number}
      * @memberof EntityContainer
      */
-    tenantId?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityContainer
-     */
-    siteId?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityContainer
-     */
-    masterCatalogId?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityContainer
-     */
     catalogId?: number | null;
-    /**
-     * The localeCode for the Entity. This will only be populated for EntityLists that are created with IsLocaleSpecific set to true.
-     * @type {string}
-     * @memberof EntityContainer
-     */
-    localeCode?: string | null;
-    /**
-     * The nameSpace and name for the EntityList in the format name@nameSpace.
-     * @type {string}
-     * @memberof EntityContainer
-     */
-    listFullName?: string | null;
-    /**
-     * The userId of the shopper account associated with this Entity. This will only be populated for EntityLists that are creaetd with IsShopperSpecific set to true.
-     * @type {string}
-     * @memberof EntityContainer
-     */
-    userId?: string | null;
-    /**
-     * The unique identifier for the Entity.
-     * @type {string}
-     * @memberof EntityContainer
-     */
-    id?: string | null;
-    /**
-     * The entity in json format.
-     * @type {object}
-     * @memberof EntityContainer
-     */
-    item?: object | null;
     /**
      * 
      * @type {string}
@@ -110,6 +62,48 @@ export interface EntityContainer {
      */
     createDate?: string;
     /**
+     * The unique identifier for the Entity.
+     * @type {string}
+     * @memberof EntityContainer
+     */
+    id?: string | null;
+    /**
+     * The entity in json format.
+     * @type {object}
+     * @memberof EntityContainer
+     */
+    item?: object | null;
+    /**
+     * The nameSpace and name for the EntityList in the format name@nameSpace.
+     * @type {string}
+     * @memberof EntityContainer
+     */
+    listFullName?: string | null;
+    /**
+     * The localeCode for the Entity. This will only be populated for EntityLists that are created with IsLocaleSpecific set to true.
+     * @type {string}
+     * @memberof EntityContainer
+     */
+    localeCode?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityContainer
+     */
+    masterCatalogId?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityContainer
+     */
+    siteId?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityContainer
+     */
+    tenantId?: number;
+    /**
      * 
      * @type {string}
      * @memberof EntityContainer
@@ -121,6 +115,12 @@ export interface EntityContainer {
      * @memberof EntityContainer
      */
     updateDate?: string;
+    /**
+     * The userId of the shopper account associated with this Entity. This will only be populated for EntityLists that are creaetd with IsShopperSpecific set to true.
+     * @type {string}
+     * @memberof EntityContainer
+     */
+    userId?: string | null;
 }
 /**
  * 
@@ -130,16 +130,10 @@ export interface EntityContainer {
 export interface EntityContainerCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<EntityContainer>}
      * @memberof EntityContainerCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityContainerCollection
-     */
-    pageSize?: number;
+    items?: Array<EntityContainer> | null;
     /**
      * 
      * @type {number}
@@ -151,13 +145,19 @@ export interface EntityContainerCollection {
      * @type {number}
      * @memberof EntityContainerCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<EntityContainer>}
+     * @type {number}
      * @memberof EntityContainerCollection
      */
-    items?: Array<EntityContainer> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityContainerCollection
+     */
+    totalCount?: number;
 }
 /**
  * The definition of an MZDB EntityList which describes the characteristics of the EntityList on a per tenant basis. EntityLists are created at the tenant level, but instances of the EntityLists are implicitly created at the appropriate context level as entities are added or removed from the EntityList.
@@ -166,35 +166,17 @@ export interface EntityContainerCollection {
  */
 export interface EntityList {
     /**
-     * 
-     * @type {number}
-     * @memberof EntityList
-     */
-    tenantId?: number;
-    /**
-     * The nameSpace for the EntityList which must be within the nameSpace scope of the developer Account for the creating application.  The name and namespace are formatted as name@nameSpace when specified as fullName. An EntityLists fullName must be unique within the tenant in which it is created.
-     * @type {string}
-     * @memberof EntityList
-     */
-    nameSpace?: string | null;
-    /**
-     * The name for the EntityList which must be unique within the namespace provided.  The name and namespace are formatted as name@nameSpace when specified as fullName. An EntityLists fullName must be unique within the tenant in which it is created.
-     * @type {string}
-     * @memberof EntityList
-     */
-    name?: string | null;
-    /**
      * At which context level are entities stored in the list. Possible values are "tenant", "site", "masterCatalog" or "catalog".  Each list instance will exist at this context level for the tenant.
      * @type {string}
      * @memberof EntityList
      */
     contextLevel?: string | null;
     /**
-     * Indicates whether or not Mozu should assign a generated identifier for each entity in the list or whether a unique identifier will be provided for each identity. If set to false, then a value must be provided for the IdProperty for the list.
-     * @type {boolean}
+     * 
+     * @type {string}
      * @memberof EntityList
      */
-    useSystemAssignedId?: boolean;
+    createDate?: string;
     /**
      * 
      * @type {IndexedProperty}
@@ -226,23 +208,11 @@ export interface EntityList {
      */
     indexD?: IndexedProperty;
     /**
-     * Indicates whether Enitities in the EntityList are allowed to be accessed from a Mozu storefront.
-     * @type {boolean}
-     * @memberof EntityList
-     */
-    isVisibleInStorefront?: boolean;
-    /**
      * Indicates whether MZDB should store entities in the EntityList instance specific to the localeCode provided.  If true, all operations on the EntityList will be filtered by the provided localeCode on the request or using the defautLocaleCode for the context.  All entities created in the EntityList will be stored with the localeCode provided on the request or the defautLocaleCode for the context as an additional implicit key. The default value is false.
      * @type {boolean}
      * @memberof EntityList
      */
     isLocaleSpecific?: boolean;
-    /**
-     * Indicates whether MZDB should store entities in the EntityList instance specific to the current shopper on the request.  If true, all operations on the EntityList will be filtered by the id of the shopper from the shopper claims provided on the request.  All entities created in the EntityList will be stored with the id of the shopper from the shopper claims provided on the request as an additional implicit key. The default value is false.
-     * @type {boolean}
-     * @memberof EntityList
-     */
-    isShopperSpecific?: boolean;
     /**
      * Indicates whether MZDB should clone all of the Entities in the EntityList when cloning an existing sandbox for which this list is already defined.  The default value is false.
      * @type {boolean}
@@ -250,17 +220,17 @@ export interface EntityList {
      */
     isSandboxDataCloningSupported?: boolean;
     /**
-     * The ListViews defined for this EntityList.  ListViews may be used to automatically filter an EntityList or transform the Entities in the list to a new Schema.
-     * @type {Array<ListView>}
+     * Indicates whether MZDB should store entities in the EntityList instance specific to the current shopper on the request.  If true, all operations on the EntityList will be filtered by the id of the shopper from the shopper claims provided on the request.  All entities created in the EntityList will be stored with the id of the shopper from the shopper claims provided on the request as an additional implicit key. The default value is false.
+     * @type {boolean}
      * @memberof EntityList
      */
-    views?: Array<ListView> | null;
+    isShopperSpecific?: boolean;
     /**
-     * Usages are arbitratry sting values used to provide instructions for other applications as to the intended areas where the list should be used. Mozu uses the "admin" usage valued to indicate that an EntityList should appear in the EntityManager in the Admin UI.  The values are open ended and applications may provide any value for a usage. This field can be used in queries to the EntityList.
-     * @type {Array<string>}
+     * Indicates whether Enitities in the EntityList are allowed to be accessed from a Mozu storefront.
+     * @type {boolean}
      * @memberof EntityList
      */
-    usages?: Array<string> | null;
+    isVisibleInStorefront?: boolean;
     /**
      * An arbitrary json property to be used by external applications for any purpose. MZDB will persist and retrieve the metadata without any restrictions.
      * @type {object}
@@ -268,17 +238,47 @@ export interface EntityList {
      */
     metadata?: object | null;
     /**
-     * 
+     * The name for the EntityList which must be unique within the namespace provided.  The name and namespace are formatted as name@nameSpace when specified as fullName. An EntityLists fullName must be unique within the tenant in which it is created.
      * @type {string}
      * @memberof EntityList
      */
-    createDate?: string;
+    name?: string | null;
+    /**
+     * The nameSpace for the EntityList which must be within the nameSpace scope of the developer Account for the creating application.  The name and namespace are formatted as name@nameSpace when specified as fullName. An EntityLists fullName must be unique within the tenant in which it is created.
+     * @type {string}
+     * @memberof EntityList
+     */
+    nameSpace?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityList
+     */
+    tenantId?: number;
     /**
      * 
      * @type {string}
      * @memberof EntityList
      */
     updateDate?: string;
+    /**
+     * Usages are arbitratry sting values used to provide instructions for other applications as to the intended areas where the list should be used. Mozu uses the "admin" usage valued to indicate that an EntityList should appear in the EntityManager in the Admin UI.  The values are open ended and applications may provide any value for a usage. This field can be used in queries to the EntityList.
+     * @type {Array<string>}
+     * @memberof EntityList
+     */
+    usages?: Array<string> | null;
+    /**
+     * Indicates whether or not Mozu should assign a generated identifier for each entity in the list or whether a unique identifier will be provided for each identity. If set to false, then a value must be provided for the IdProperty for the list.
+     * @type {boolean}
+     * @memberof EntityList
+     */
+    useSystemAssignedId?: boolean;
+    /**
+     * The ListViews defined for this EntityList.  ListViews may be used to automatically filter an EntityList or transform the Entities in the list to a new Schema.
+     * @type {Array<ListView>}
+     * @memberof EntityList
+     */
+    views?: Array<ListView> | null;
 }
 /**
  * 
@@ -288,16 +288,10 @@ export interface EntityList {
 export interface EntityListCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<EntityList>}
      * @memberof EntityListCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof EntityListCollection
-     */
-    pageSize?: number;
+    items?: Array<EntityList> | null;
     /**
      * 
      * @type {number}
@@ -309,13 +303,19 @@ export interface EntityListCollection {
      * @type {number}
      * @memberof EntityListCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<EntityList>}
+     * @type {number}
      * @memberof EntityListCollection
      */
-    items?: Array<EntityList> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EntityListCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -324,17 +324,17 @@ export interface EntityListCollection {
  */
 export interface IndexedProperty {
     /**
-     * A JPath query indicating the property that should be indexed to enable querying and sorting.  Non-indexed properties may be used in queries as long as at least one indexed property is also provided in the query.
-     * @type {string}
-     * @memberof IndexedProperty
-     */
-    propertyName?: string | null;
-    /**
      * The datatype of the property. Valid values are "string", "integer", "decimal", "date", "bool". See SharedConstants.DataTypeConst
      * @type {string}
      * @memberof IndexedProperty
      */
     dataType?: string | null;
+    /**
+     * A JPath query indicating the property that should be indexed to enable querying and sorting.  Non-indexed properties may be used in queries as long as at least one indexed property is also provided in the query.
+     * @type {string}
+     * @memberof IndexedProperty
+     */
+    propertyName?: string | null;
 }
 /**
  * 
@@ -342,36 +342,6 @@ export interface IndexedProperty {
  * @interface ListView
  */
 export interface ListView {
-    /**
-     * The name of the ListView. This must be unique for the EntityList.
-     * @type {string}
-     * @memberof ListView
-     */
-    name?: string | null;
-    /**
-     * Usages are arbitratry sting values used to provide instructions for other applications as to the intended areas where the view should be used. Mozu uses the "admin" usage valued to indicate that a ListView should appear in the EntityManager in the Admin UI.  The values are open ended and applications may provide any value for a usage. This field can be used in queries to the EntityList.
-     * @type {Array<string>}
-     * @memberof ListView
-     */
-    usages?: Array<string> | null;
-    /**
-     * An arbitrary json property to be used by external applications for any purpose. MZDB will persist and retrieve the metadata without any restrictions.
-     * @type {object}
-     * @memberof ListView
-     */
-    metaData?: object | null;
-    /**
-     * less restrictive than collection/list security. public | admin | owner
-     * @type {string}
-     * @memberof ListView
-     */
-    security?: string | null;
-    /**
-     * Indicates a implicitly applied filter to the EntityList for to which the ListView is associated. All queries to the ListView will have this filter applied implicitly.
-     * @type {string}
-     * @memberof ListView
-     */
-    filter?: string | null;
     /**
      * Indicates a default sort to be applied to the ListView.
      * @type {string}
@@ -384,6 +354,36 @@ export interface ListView {
      * @memberof ListView
      */
     fields?: Array<ListViewField> | null;
+    /**
+     * Indicates a implicitly applied filter to the EntityList for to which the ListView is associated. All queries to the ListView will have this filter applied implicitly.
+     * @type {string}
+     * @memberof ListView
+     */
+    filter?: string | null;
+    /**
+     * An arbitrary json property to be used by external applications for any purpose. MZDB will persist and retrieve the metadata without any restrictions.
+     * @type {object}
+     * @memberof ListView
+     */
+    metaData?: object | null;
+    /**
+     * The name of the ListView. This must be unique for the EntityList.
+     * @type {string}
+     * @memberof ListView
+     */
+    name?: string | null;
+    /**
+     * less restrictive than collection/list security. public | admin | owner
+     * @type {string}
+     * @memberof ListView
+     */
+    security?: string | null;
+    /**
+     * Usages are arbitratry sting values used to provide instructions for other applications as to the intended areas where the view should be used. Mozu uses the "admin" usage valued to indicate that a ListView should appear in the EntityManager in the Admin UI.  The values are open ended and applications may provide any value for a usage. This field can be used in queries to the EntityList.
+     * @type {Array<string>}
+     * @memberof ListView
+     */
+    usages?: Array<string> | null;
 }
 /**
  * 
@@ -393,16 +393,10 @@ export interface ListView {
 export interface ListViewCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<ListView>}
      * @memberof ListViewCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ListViewCollection
-     */
-    pageSize?: number;
+    items?: Array<ListView> | null;
     /**
      * 
      * @type {number}
@@ -414,13 +408,19 @@ export interface ListViewCollection {
      * @type {number}
      * @memberof ListViewCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<ListView>}
+     * @type {number}
      * @memberof ListViewCollection
      */
-    items?: Array<ListView> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ListViewCollection
+     */
+    totalCount?: number;
 }
 /**
  * shared by cms/mzdb.
@@ -435,15 +435,15 @@ export interface ListViewField {
      */
     name?: string | null;
     /**
-     * The datatype of the field. Valid values are "string", "integer", "decimal", "date", "bool". See SharedConstants.DataTypeConst
-     * @type {string}
-     * @memberof ListViewField
-     */
-    type?: string | null;
-    /**
      * A JPath query to the source property for this ViewField.
      * @type {string}
      * @memberof ListViewField
      */
     target?: string | null;
+    /**
+     * The datatype of the field. Valid values are "string", "integer", "decimal", "date", "bool". See SharedConstants.DataTypeConst
+     * @type {string}
+     * @memberof ListViewField
+     */
+    type?: string | null;
 }

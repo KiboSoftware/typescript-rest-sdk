@@ -5,3 +5,5 @@ dist/**
 **/coverage
 .vscode
 .backup
+# openapi-generator jar, downloaded on demand by generator/generate.mjs
+generator/.jar/

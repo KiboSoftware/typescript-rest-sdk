@@ -1,0 +1,134 @@
+# Regenerate the clients from the published API docs and open a PR.
+#
+# Runs every second Monday, which is the cadence the SDK is meant to be released
+# on. It never publishes: it opens a pull request whose body is the drift report,
+# so a person decides whether this fortnight's API changes should ship. Publishing
+# stays a deliberate act (the "Publish to npm" workflow).
+#
+# Where the specs come from
+# -------------------------
+# unified-documentation owns the OpenAPI specs. Its openapi-pipeline/dist_sdk/
+# directory holds one spec per client, built from the same processed specs and
+# editorial overlays that produce the public API reference, with operationIds
+# preserved because SDK method names come from them.
+#
+# This workflow reads dist_sdk/ from that repo's default branch. It deliberately
+# does NOT run the spec download: those specs come from services on Kibo's
+# internal network (*.gqa.kube-int-dev.gcp-kibo-dev.int), which a GitHub-hosted
+# runner cannot reach. Refreshing raw/ stays a step someone runs on the VPN and
+# commits to the docs repo. If this ever needs to be end-to-end automated, it
+# needs a self-hosted runner inside the network.
+name: Refresh SDK from API docs
+
+on:
+  schedule:
+    # 07:00 UTC Mondays. GitHub cannot express "every second week", so the job
+    # runs weekly and the guard step below exits on odd ISO weeks.
+    - cron: '0 7 * * 1'
+  workflow_dispatch:
+    inputs:
+      docs-ref:
+        description: 'unified-documentation ref to take specs from'
+        required: false
+        default: 'main'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  DOCS_REPO: Kibo-UCP/unified-documentation
+
+jobs:
+  check-schedule:
+    runs-on: ubuntu-latest
+    outputs:
+      should-run: ${{ steps.week.outputs.should-run }}
+    steps:
+      - id: week
+        # Manual runs always proceed; scheduled runs only on even ISO weeks.
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then
+            echo "should-run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          week=$(date -u +%V)
+          if [ $((10#$week % 2)) -eq 0 ]; then
+            echo "should-run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "should-run=false" >> "$GITHUB_OUTPUT"
+            echo "ISO week $week is odd; skipping (refresh runs fortnightly)."
+          fi
+
+  refresh:
+    needs: check-schedule
+    if: needs.check-schedule.outputs.should-run == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout SDK
+        uses: actions/checkout@v4
+
+      - name: Checkout API docs
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.DOCS_REPO }}
+          ref: ${{ github.event.inputs.docs-ref || 'main' }}
+          path: .docs-repo
+          # unified-documentation is private, so this needs a token with read
+          # access to it. A repo-scoped PAT stored as DOCS_REPO_TOKEN.
+          token: ${{ secrets.DOCS_REPO_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Rebuild the SDK specs from the docs pipeline
+        # dist_sdk/ is committed, but rebuilding proves the specs match the
+        # processed specs and overlays at this ref rather than trusting a
+        # possibly stale commit.
+        working-directory: .docs-repo
+        run: |
+          npm ci
+          npm run spec:sdk-build
+
+      - name: Drift report
+        working-directory: .docs-repo
+        run: |
+          npm run spec:sdk-drift -- --markdown > "$GITHUB_WORKSPACE/drift.md"
+          npm run spec:sdk-drift
+
+      - name: Generate clients
+        run: node generator/generate.mjs --specs .docs-repo/openapi-pipeline/dist_sdk
+
+      - name: Typecheck
+        run: npx tsc --noEmit -p tsconfig.json
+
+      - name: Test
+        run: npm run test:unit
+
+      - name: Remove the docs checkout before diffing
+        run: rm -rf .docs-repo
+
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: chore/sdk-refresh
+          # One rolling branch: a fortnight that changes nothing amends the open
+          # PR rather than opening a second one.
+          title: 'chore: refresh SDK from API docs'
+          commit-message: 'chore: refresh generated clients from API docs'
+          body-path: drift.md
+          labels: sdk-refresh
+          delete-branch: true
+          add-paths: |
+            src/clients

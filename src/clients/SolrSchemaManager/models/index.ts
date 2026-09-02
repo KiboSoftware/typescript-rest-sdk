@@ -11,7 +11,7 @@ export interface AdminUserAuditInfo {
      * @type {string}
      * @memberof AdminUserAuditInfo
      */
-    updateDate?: string | null;
+    createBy?: string | null;
     /**
      * 
      * @type {string}
@@ -29,7 +29,352 @@ export interface AdminUserAuditInfo {
      * @type {string}
      * @memberof AdminUserAuditInfo
      */
-    createBy?: string | null;
+    updateDate?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface AttributeVocabularyValueLocalizedContent
+ */
+export interface AttributeVocabularyValueLocalizedContent {
+    /**
+     * 
+     * @type {any}
+     * @memberof AttributeVocabularyValueLocalizedContent
+     */
+    stringValue?: any | null;
+}
+/**
+ * 
+ * @export
+ * @interface CatalogAdminsAttributeVocabularyValue
+ */
+export interface CatalogAdminsAttributeVocabularyValue {
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsAttributeVocabularyValue
+     */
+    mappedGenericValues?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsAttributeVocabularyValue
+     */
+    value?: any | null;
+}
+/**
+ * 
+ * @export
+ * @interface CatalogAdminsBundledProduct
+ */
+export interface CatalogAdminsBundledProduct {
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsBundledProduct
+     */
+    quantity?: any | null;
+}
+/**
+ * 
+ * @export
+ * @interface CatalogAdminsDiscount
+ */
+export interface CatalogAdminsDiscount {
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsDiscount
+     */
+    amount?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsDiscount
+     */
+    amountType?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsDiscount
+     */
+    canBeDeleted?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsDiscount
+     */
+    code?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsDiscount
+     */
+    hasPurchaseConditions?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsDiscount
+     */
+    maximumDiscountImpactPerOrder?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsDiscount
+     */
+    maximumDiscountImpactPerRedemption?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsDiscount
+     */
+    maximumRedemptionsPerOrder?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsDiscount
+     */
+    maximumUsesPerUser?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsDiscount
+     */
+    scope?: any | null;
+}
+/**
+ * 
+ * @export
+ * @interface CatalogAdminsDiscountCondition
+ */
+export interface CatalogAdminsDiscountCondition {
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsDiscountCondition
+     */
+    maxRedemptionCount?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsDiscountCondition
+     */
+    minimumQuantityProductsRequiredInCategories?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsDiscountCondition
+     */
+    minimumQuantityRequiredProducts?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsDiscountCondition
+     */
+    requiresAuthenticatedUser?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsDiscountCondition
+     */
+    requiresCoupon?: any | null;
+}
+/**
+ * 
+ * @export
+ * @interface CatalogAdminsDiscountTarget
+ */
+export interface CatalogAdminsDiscountTarget {
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsDiscountTarget
+     */
+    maximumQuantityPerRedemption?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsDiscountTarget
+     */
+    type?: any | null;
+}
+/**
+ * 
+ * @export
+ * @interface CatalogAdminsProduct
+ */
+export interface CatalogAdminsProduct {
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsProduct
+     */
+    hasConfigurableOptions?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsProduct
+     */
+    hasStandAloneOptions?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsProduct
+     */
+    isVariation?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsProduct
+     */
+    productCollectionProducts?: any | null;
+}
+/**
+ * 
+ * @export
+ * @interface CatalogAdminsProductImageGroup
+ */
+export interface CatalogAdminsProductImageGroup {
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsProductImageGroup
+     */
+    productImageGroupId?: any | null;
+}
+/**
+ * 
+ * @export
+ * @interface CatalogAdminsProductImageGroupTag
+ */
+export interface CatalogAdminsProductImageGroupTag {
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsProductImageGroupTag
+     */
+    fqn?: any | null;
+}
+/**
+ * 
+ * @export
+ * @interface CatalogAdminsProductPrice
+ */
+export interface CatalogAdminsProductPrice {
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsProductPrice
+     */
+    price?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsProductPrice
+     */
+    salePrice?: any | null;
+}
+/**
+ * 
+ * @export
+ * @interface CatalogAdminsTargetedShippingMethod
+ */
+export interface CatalogAdminsTargetedShippingMethod {
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsTargetedShippingMethod
+     */
+    code?: any | null;
+}
+/**
+ * 
+ * @export
+ * @interface CatalogAdminsTargetedShippingZone
+ */
+export interface CatalogAdminsTargetedShippingZone {
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsTargetedShippingZone
+     */
+    zone?: any | null;
+}
+/**
+ * 
+ * @export
+ * @interface CatalogAdminsThresholdMessage
+ */
+export interface CatalogAdminsThresholdMessage {
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsThresholdMessage
+     */
+    discountId?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsThresholdMessage
+     */
+    isActive?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsThresholdMessage
+     */
+    requiresCouponCode?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsThresholdMessage
+     */
+    showInCart?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsThresholdMessage
+     */
+    showOnCheckout?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof CatalogAdminsThresholdMessage
+     */
+    thresholdValue?: any | null;
+}
+/**
+ * 
+ * @export
+ * @interface CategoryDiscountCondition
+ */
+export interface CategoryDiscountCondition {
+    /**
+     * 
+     * @type {any}
+     * @memberof CategoryDiscountCondition
+     */
+    categoryId?: any | null;
+}
+/**
+ * 
+ * @export
+ * @interface DiscountLocalizedContent
+ */
+export interface DiscountLocalizedContent {
+    /**
+     * 
+     * @type {any}
+     * @memberof DiscountLocalizedContent
+     */
+    localeCode?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof DiscountLocalizedContent
+     */
+    name?: any | null;
 }
 /**
  * 
@@ -42,13 +387,13 @@ export interface FieldTypeDefinitionRepositoryEntry {
      * @type {string}
      * @memberof FieldTypeDefinitionRepositoryEntry
      */
-    name?: string | null;
+    description?: string | null;
     /**
      * 
      * @type {string}
      * @memberof FieldTypeDefinitionRepositoryEntry
      */
-    suffix?: string | null;
+    name?: string | null;
     /**
      * 
      * @type {any}
@@ -60,7 +405,7 @@ export interface FieldTypeDefinitionRepositoryEntry {
      * @type {string}
      * @memberof FieldTypeDefinitionRepositoryEntry
      */
-    description?: string | null;
+    suffix?: string | null;
     /**
      * Restricts the fields used by specific SOLR analyzer.
      * Originally developed for entity extraction/ aka noun_extraction
@@ -73,21 +418,80 @@ export interface FieldTypeDefinitionRepositoryEntry {
 /**
  * 
  * @export
+ * @interface PricingRuntimeCustomerSegment
+ */
+export interface PricingRuntimeCustomerSegment {
+    /**
+     * 
+     * @type {any}
+     * @memberof PricingRuntimeCustomerSegment
+     */
+    id?: any | null;
+}
+/**
+ * 
+ * @export
+ * @interface ProductCategory
+ */
+export interface ProductCategory {
+    /**
+     * 
+     * @type {any}
+     * @memberof ProductCategory
+     */
+    categoryId?: any | null;
+}
+/**
+ * 
+ * @export
+ * @interface ProductExtraValueDeltaPrice
+ */
+export interface ProductExtraValueDeltaPrice {
+    /**
+     * 
+     * @type {any}
+     * @memberof ProductExtraValueDeltaPrice
+     */
+    deltaPrice?: any | null;
+}
+/**
+ * Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs.
+ * @export
+ * @interface ProductInCatalogInfo
+ */
+export interface ProductInCatalogInfo {
+    /**
+     * 
+     * @type {any}
+     * @memberof ProductInCatalogInfo
+     */
+    catalogId?: any | null;
+}
+/**
+ * 
+ * @export
+ * @interface ProductLocalizedContent
+ */
+export interface ProductLocalizedContent {
+    /**
+     * 
+     * @type {any}
+     * @memberof ProductLocalizedContent
+     */
+    productName?: any | null;
+}
+/**
+ * 
+ * @export
  * @interface SchemaDefinition
  */
 export interface SchemaDefinition {
     /**
      * 
-     * @type {string}
+     * @type {AdminUserAuditInfo}
      * @memberof SchemaDefinition
      */
-    language: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SchemaDefinition
-     */
-    isPublished?: boolean;
+    auditInfo?: AdminUserAuditInfo;
     /**
      * 
      * @type {Array<SchemaDefinitionField>}
@@ -95,11 +499,17 @@ export interface SchemaDefinition {
      */
     fields: Array<SchemaDefinitionField>;
     /**
-     * List of attributes used in the spelling dictionary
-     * @type {Array<SpellingSchemaDefinitionField>}
+     * 
+     * @type {boolean}
      * @memberof SchemaDefinition
      */
-    spellingFields?: Array<SpellingSchemaDefinitionField> | null;
+    readonly isPublished?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof SchemaDefinition
+     */
+    language: string;
     /**
      * Returns boolean if contains any SpellingFields members.
      * @type {boolean}
@@ -107,11 +517,11 @@ export interface SchemaDefinition {
      */
     spellCorrectEnabled?: boolean | null;
     /**
-     * 
-     * @type {AdminUserAuditInfo}
+     * List of attributes used in the spelling dictionary
+     * @type {Array<SpellingSchemaDefinitionField>}
      * @memberof SchemaDefinition
      */
-    auditInfo?: AdminUserAuditInfo;
+    spellingFields?: Array<SpellingSchemaDefinitionField> | null;
 }
 /**
  * 
@@ -124,13 +534,13 @@ export interface SchemaDefinitionField {
      * @type {string}
      * @memberof SchemaDefinitionField
      */
-    fieldName: string;
+    fieldDefinition: string;
     /**
      * 
      * @type {string}
      * @memberof SchemaDefinitionField
      */
-    fieldDefinition: string;
+    fieldName: string;
     /**
      * 
      * @type {string}
@@ -142,13 +552,13 @@ export interface SchemaDefinitionField {
      * @type {string}
      * @memberof SchemaDefinitionField
      */
-    searchFieldName?: string | null;
+    readonly ingestFieldName?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SchemaDefinitionField
      */
-    ingestFieldName?: string | null;
+    readonly searchFieldName?: string | null;
 }
 /**
  * 
@@ -174,7 +584,7 @@ export interface Suggester {
      * @type {string}
      * @memberof Suggester
      */
-    name?: string | null;
+    allTermsRequired?: string | null;
     /**
      * 
      * @type {string}
@@ -186,5 +596,24 @@ export interface Suggester {
      * @type {string}
      * @memberof Suggester
      */
-    allTermsRequired?: string | null;
+    name?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface ThresholdMessageLocalizedContent
+ */
+export interface ThresholdMessageLocalizedContent {
+    /**
+     * 
+     * @type {any}
+     * @memberof ThresholdMessageLocalizedContent
+     */
+    localeCode?: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof ThresholdMessageLocalizedContent
+     */
+    messageTemplate?: any | null;
 }

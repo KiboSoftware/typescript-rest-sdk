@@ -2,9 +2,9 @@
 /* eslint-disable */
 /**
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -76,7 +76,7 @@ export namespace searchSettingsApiParams {
 export interface SearchSettingsApiService {
     /**
     * Adds the Search Settings for a specific site.
-    * @summary Add search setting
+    * @summary Add Search Settings
     * @param {boolean} [fromSystemDefault] 
     * @param {string} [copyFromName] 
     * @param {string} [name] 
@@ -91,13 +91,13 @@ export interface SearchSettingsApiService {
 
     /**
     * Adds the Search Settings for a specific site.
-    * Add search setting
+    * Add Search Settings
     */
     addSearchSetting(requestParameters: searchSettingsApiParams.AddSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings>;
 
     /**
     * Delete the Search Settings for a specific site by name.
-    * @summary Delete search setting
+    * @summary Delete Search Settings by Name
     * @param {string} name 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -107,13 +107,13 @@ export interface SearchSettingsApiService {
 
     /**
     * Delete the Search Settings for a specific site by name.
-    * Delete search setting
+    * Delete Search Settings by Name
     */
     deleteSearchSetting(requestParameters: searchSettingsApiParams.DeleteSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings>;
 
     /**
     * Deletes the SiteSearchSettings for a specific SearchSetting by name.
-    * @summary Delete site search settings
+    * @summary Delete Site Search Settings
     * @param {string} name 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -123,13 +123,13 @@ export interface SearchSettingsApiService {
 
     /**
     * Deletes the SiteSearchSettings for a specific SearchSetting by name.
-    * Delete site search settings
+    * Delete Site Search Settings
     */
     deleteSiteSearchSettings(requestParameters: searchSettingsApiParams.DeleteSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * Get site search settings by name.
-    * @summary Get search setting
+    * Get specific site search settings by name.
+    * @summary Get Search Settings by Name
     * @param {string} name 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
@@ -139,14 +139,14 @@ export interface SearchSettingsApiService {
     getSearchSettingRaw(requestParameters: searchSettingsApiParams.GetSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettings>>;
 
     /**
-    * Get site search settings by name.
-    * Get search setting
+    * Get specific site search settings by name.
+    * Get Search Settings by Name
     */
     getSearchSetting(requestParameters: searchSettingsApiParams.GetSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings>;
 
     /**
     * Get site search settings list.
-    * @summary Get search settings
+    * @summary Get Search Settings
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -156,13 +156,13 @@ export interface SearchSettingsApiService {
 
     /**
     * Get site search settings list.
-    * Get search settings
+    * Get Search Settings
     */
     getSearchSettings(requestParameters: searchSettingsApiParams.GetSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettingsCollection>;
 
     /**
     * Get SiteSearchSettings for a specific SearchSettings by name.
-    * @summary Get site search settings
+    * @summary Get Site Search Settings
     * @param {string} name 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
@@ -173,13 +173,13 @@ export interface SearchSettingsApiService {
 
     /**
     * Get SiteSearchSettings for a specific SearchSettings by name.
-    * Get site search settings
+    * Get Site Search Settings
     */
     getSiteSearchSettings(requestParameters: searchSettingsApiParams.GetSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteSearchSettings>;
 
     /**
-    * Get the system default search settings
-    * @summary Get system default search setting
+    * Get the system default search settings.
+    * @summary Get System Default Search Settings
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -188,14 +188,14 @@ export interface SearchSettingsApiService {
     getSystemDefaultSettingsRaw(requestParameters: searchSettingsApiParams.GetSystemDefaultSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettings>>;
 
     /**
-    * Get the system default search settings
-    * Get system default search setting
+    * Get the system default search settings.
+    * Get System Default Search Settings
     */
     getSystemDefaultSettings(requestParameters: searchSettingsApiParams.GetSystemDefaultSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings>;
 
     /**
-    * Updates the Search Settings for a specific site.
-    * @summary Update search setting
+    * Update site search settings for a specific site by name.
+    * @summary Update Search Settings by Name
     * @param {string} name 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {SearchSettings} [searchSettings] 
@@ -206,14 +206,14 @@ export interface SearchSettingsApiService {
     updateSearchSettingRaw(requestParameters: searchSettingsApiParams.UpdateSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchSettings>>;
 
     /**
-    * Updates the Search Settings for a specific site.
-    * Update search setting
+    * Update site search settings for a specific site by name.
+    * Update Search Settings by Name
     */
     updateSearchSetting(requestParameters: searchSettingsApiParams.UpdateSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings>;
 
     /**
     * Updates the SiteSearchSettings for a specific SearchSetting by name.
-    * @summary Update site search settings
+    * @summary Update Site Search Settings
     * @param {string} name 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {SiteSearchSettings} [siteSearchSettings] 
@@ -225,13 +225,13 @@ export interface SearchSettingsApiService {
 
     /**
     * Updates the SiteSearchSettings for a specific SearchSetting by name.
-    * Update site search settings
+    * Update Site Search Settings
     */
     updateSiteSearchSettings(requestParameters: searchSettingsApiParams.UpdateSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteSearchSettings>;
 
     /**
     * Update Spellcheck for SiteSearchSettings.
-    * @summary Update Spellcheck settings
+    * @summary Update Spellcheck Settings
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {SpellcheckUpdate} [spellcheckUpdate] 
     * @param {*} [options] Override http request option.
@@ -242,7 +242,7 @@ export interface SearchSettingsApiService {
 
     /**
     * Update Spellcheck for SiteSearchSettings.
-    * Update Spellcheck settings
+    * Update Spellcheck Settings
     */
     updateSpellCheck(requestParameters: searchSettingsApiParams.UpdateSpellCheckRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
@@ -259,7 +259,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
     }
     /**
      * Adds the Search Settings for a specific site.
-     * Add search setting
+     * Add Search Settings
      */
 
 
@@ -292,8 +292,6 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -309,7 +307,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
 
     /**
      * Adds the Search Settings for a specific site.
-     * Add search setting
+     * Add Search Settings
      */
     async addSearchSetting(requestParameters: searchSettingsApiParams.AddSearchSettingRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings> {
         const response = await this.addSearchSettingRaw(requestParameters, initOverrides);
@@ -318,7 +316,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
 
     /**
      * Delete the Search Settings for a specific site by name.
-     * Delete search setting
+     * Delete Search Settings by Name
      */
 
 
@@ -330,8 +328,6 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-
 
 
 
@@ -349,7 +345,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
 
     /**
      * Delete the Search Settings for a specific site by name.
-     * Delete search setting
+     * Delete Search Settings by Name
      */
     async deleteSearchSetting(requestParameters: searchSettingsApiParams.DeleteSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings> {
         const response = await this.deleteSearchSettingRaw(requestParameters, initOverrides);
@@ -358,7 +354,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
 
     /**
      * Deletes the SiteSearchSettings for a specific SearchSetting by name.
-     * Delete site search settings
+     * Delete Site Search Settings
      */
 
 
@@ -370,8 +366,6 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-
 
 
 
@@ -389,15 +383,15 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
 
     /**
      * Deletes the SiteSearchSettings for a specific SearchSetting by name.
-     * Delete site search settings
+     * Delete Site Search Settings
      */
     async deleteSiteSearchSettings(requestParameters: searchSettingsApiParams.DeleteSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteSiteSearchSettingsRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Get site search settings by name.
-     * Get search setting
+     * Get specific site search settings by name.
+     * Get Search Settings by Name
      */
 
 
@@ -416,8 +410,6 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -431,8 +423,8 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
     }
 
     /**
-     * Get site search settings by name.
-     * Get search setting
+     * Get specific site search settings by name.
+     * Get Search Settings by Name
      */
     async getSearchSetting(requestParameters: searchSettingsApiParams.GetSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings> {
         const response = await this.getSearchSettingRaw(requestParameters, initOverrides);
@@ -441,7 +433,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
 
     /**
      * Get site search settings list.
-     * Get search settings
+     * Get Search Settings
      */
 
 
@@ -453,8 +445,6 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-
 
 
 
@@ -472,7 +462,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
 
     /**
      * Get site search settings list.
-     * Get search settings
+     * Get Search Settings
      */
     async getSearchSettings(requestParameters: searchSettingsApiParams.GetSearchSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettingsCollection> {
         const response = await this.getSearchSettingsRaw(requestParameters, initOverrides);
@@ -481,7 +471,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
 
     /**
      * Get SiteSearchSettings for a specific SearchSettings by name.
-     * Get site search settings
+     * Get Site Search Settings
      */
 
 
@@ -500,8 +490,6 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -516,7 +504,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
 
     /**
      * Get SiteSearchSettings for a specific SearchSettings by name.
-     * Get site search settings
+     * Get Site Search Settings
      */
     async getSiteSearchSettings(requestParameters: searchSettingsApiParams.GetSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteSearchSettings> {
         const response = await this.getSiteSearchSettingsRaw(requestParameters, initOverrides);
@@ -524,8 +512,8 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
     }
 
     /**
-     * Get the system default search settings
-     * Get system default search setting
+     * Get the system default search settings.
+     * Get System Default Search Settings
      */
 
 
@@ -537,8 +525,6 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-
 
 
 
@@ -555,8 +541,8 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
     }
 
     /**
-     * Get the system default search settings
-     * Get system default search setting
+     * Get the system default search settings.
+     * Get System Default Search Settings
      */
     async getSystemDefaultSettings(requestParameters: searchSettingsApiParams.GetSystemDefaultSettingsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings> {
         const response = await this.getSystemDefaultSettingsRaw(requestParameters, initOverrides);
@@ -564,8 +550,8 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
     }
 
     /**
-     * Updates the Search Settings for a specific site.
-     * Update search setting
+     * Update site search settings for a specific site by name.
+     * Update Search Settings by Name
      */
 
 
@@ -586,8 +572,6 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -602,8 +586,8 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
     }
 
     /**
-     * Updates the Search Settings for a specific site.
-     * Update search setting
+     * Update site search settings for a specific site by name.
+     * Update Search Settings by Name
      */
     async updateSearchSetting(requestParameters: searchSettingsApiParams.UpdateSearchSettingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchSettings> {
         const response = await this.updateSearchSettingRaw(requestParameters, initOverrides);
@@ -612,7 +596,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
 
     /**
      * Updates the SiteSearchSettings for a specific SearchSetting by name.
-     * Update site search settings
+     * Update Site Search Settings
      */
 
 
@@ -633,8 +617,6 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -650,7 +632,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
 
     /**
      * Updates the SiteSearchSettings for a specific SearchSetting by name.
-     * Update site search settings
+     * Update Site Search Settings
      */
     async updateSiteSearchSettings(requestParameters: searchSettingsApiParams.UpdateSiteSearchSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteSearchSettings> {
         const response = await this.updateSiteSearchSettingsRaw(requestParameters, initOverrides);
@@ -659,7 +641,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
 
     /**
      * Update Spellcheck for SiteSearchSettings.
-     * Update Spellcheck settings
+     * Update Spellcheck Settings
      */
 
 
@@ -673,8 +655,6 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-
 
 
 
@@ -693,7 +673,7 @@ export class SearchSettingsApi extends runtime.BaseAPI implements SearchSettings
 
     /**
      * Update Spellcheck for SiteSearchSettings.
-     * Update Spellcheck settings
+     * Update Spellcheck Settings
      */
     async updateSpellCheck(requestParameters: searchSettingsApiParams.UpdateSpellCheckRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.updateSpellCheckRaw(requestParameters, initOverrides);

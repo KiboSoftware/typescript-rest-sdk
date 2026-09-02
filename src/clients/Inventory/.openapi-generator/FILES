@@ -1,9 +1,9 @@
+.openapi-generator-ignore
 apis/ExportInventoryApi.ts
 apis/InventoryAllocationApi.ts
 apis/InventoryApi.ts
 apis/InventoryBinApi.ts
 apis/InventoryBlockAssignmentApi.ts
-apis/InventoryCacheApi.ts
 apis/InventoryFetchFileConfigApi.ts
 apis/InventoryFutureDateApi.ts
 apis/InventoryJobApi.ts
@@ -13,7 +13,6 @@ apis/InventoryOrderItemApi.ts
 apis/InventorySiloApi.ts
 apis/InventoryTagApi.ts
 apis/InventoryTagCategoryApi.ts
-apis/InventoryTagcategoryApi.ts
 apis/ModifyInventoryApi.ts
 apis/ShipmentInventoryAllocationApi.ts
 apis/index.ts

@@ -1,9 +1,9 @@
+.openapi-generator-ignore
 apis/CarrierConfigurationApi.ts
 apis/CarrierConfigurationGlobalApi.ts
 apis/CarrierCredentialApi.ts
 apis/CarrierCredentialSetApi.ts
 apis/CarrierDefinitionApi.ts
-apis/ShipmentAttributeDefinitionApi.ts
 apis/ShippingProfileApi.ts
 apis/TargetRulesApi.ts
 apis/index.ts

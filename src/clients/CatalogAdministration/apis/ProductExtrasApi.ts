@@ -2,9 +2,9 @@
 /* eslint-disable */
 /**
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -96,8 +96,8 @@ export namespace productExtrasApiParams {
 */
 export interface ProductExtrasApiService {
     /**
-    * Add extra
-    * @summary Add extra
+    * Add extra. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Add Product Extra
     * @param {string} productCode 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {ProductExtra} [productExtra] 
@@ -108,14 +108,14 @@ export interface ProductExtrasApiService {
     addExtraRaw(requestParameters: productExtrasApiParams.AddExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtra>>;
 
     /**
-    * Add extra
-    * Add extra
+    * Add extra. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Add Product Extra
     */
     addExtra(requestParameters: productExtrasApiParams.AddExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtra>;
 
     /**
-    * 
-    * @summary Add extra value localized delta price
+    * Add a extra value localized delta price. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Add Extra Localized Delta Price
     * @param {string} productCode 
     * @param {string} attributeFQN 
     * @param {string} value 
@@ -128,14 +128,14 @@ export interface ProductExtrasApiService {
     addExtraValueLocalizedDeltaPriceRaw(requestParameters: productExtrasApiParams.AddExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtraValueDeltaPrice>>;
 
     /**
-    * 
-    * Add extra value localized delta price
+    * Add a extra value localized delta price. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Add Extra Localized Delta Price
     */
     addExtraValueLocalizedDeltaPrice(requestParameters: productExtrasApiParams.AddExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtraValueDeltaPrice>;
 
     /**
     * Delete extra
-    * @summary Delete extra
+    * @summary Delete Product Extra
     * @param {string} productCode 
     * @param {string} attributeFQN 
     * @param {*} [options] Override http request option.
@@ -146,13 +146,13 @@ export interface ProductExtrasApiService {
 
     /**
     * Delete extra
-    * Delete extra
+    * Delete Product Extra
     */
     deleteExtra(requestParameters: productExtrasApiParams.DeleteExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * 
-    * @summary Delete extra value localized delta price
+    * Delete extra value localized delta price.
+    * @summary Delete Extra Localized Delta Price
     * @param {string} productCode 
     * @param {string} attributeFQN 
     * @param {string} value 
@@ -164,14 +164,14 @@ export interface ProductExtrasApiService {
     deleteExtraValueLocalizedDeltaPriceRaw(requestParameters: productExtrasApiParams.DeleteExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * 
-    * Delete extra value localized delta price
+    * Delete extra value localized delta price.
+    * Delete Extra Localized Delta Price
     */
     deleteExtraValueLocalizedDeltaPrice(requestParameters: productExtrasApiParams.DeleteExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * Get individual extra.
-    * @summary Get extra
+    * Get individual extra. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Get Product Extra
     * @param {string} productCode 
     * @param {string} attributeFQN 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -182,14 +182,14 @@ export interface ProductExtrasApiService {
     getExtraRaw(requestParameters: productExtrasApiParams.GetExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtra>>;
 
     /**
-    * Get individual extra.
-    * Get extra
+    * Get individual extra. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Get Product Extra
     */
     getExtra(requestParameters: productExtrasApiParams.GetExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtra>;
 
     /**
-    * 
-    * @summary Get extra value localized delta price
+    * Get extra value localized delta price. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Get Extra Localized Delta Price by Currency
     * @param {string} productCode 
     * @param {string} attributeFQN 
     * @param {string} value 
@@ -202,14 +202,14 @@ export interface ProductExtrasApiService {
     getExtraValueLocalizedDeltaPriceRaw(requestParameters: productExtrasApiParams.GetExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtraValueDeltaPrice>>;
 
     /**
-    * 
-    * Get extra value localized delta price
+    * Get extra value localized delta price. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Get Extra Localized Delta Price by Currency
     */
     getExtraValueLocalizedDeltaPrice(requestParameters: productExtrasApiParams.GetExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtraValueDeltaPrice>;
 
     /**
-    * 
-    * @summary Get extra value localized delta prices
+    * Get extra value localized delta price. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Get Extra Localized Delta Price
     * @param {string} productCode 
     * @param {string} attributeFQN 
     * @param {string} value 
@@ -221,14 +221,14 @@ export interface ProductExtrasApiService {
     getExtraValueLocalizedDeltaPricesRaw(requestParameters: productExtrasApiParams.GetExtraValueLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductExtraValueDeltaPrice>>>;
 
     /**
-    * 
-    * Get extra value localized delta prices
+    * Get extra value localized delta price. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Get Extra Localized Delta Price
     */
     getExtraValueLocalizedDeltaPrices(requestParameters: productExtrasApiParams.GetExtraValueLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductExtraValueDeltaPrice>>;
 
     /**
-    * Get extras for the product.
-    * @summary Get extras
+    * Get extras for the product. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Get Product Extras
     * @param {string} productCode 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
@@ -238,14 +238,14 @@ export interface ProductExtrasApiService {
     getExtrasRaw(requestParameters: productExtrasApiParams.GetExtrasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductExtra>>>;
 
     /**
-    * Get extras for the product.
-    * Get extras
+    * Get extras for the product. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Get Product Extras
     */
     getExtras(requestParameters: productExtrasApiParams.GetExtrasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductExtra>>;
 
     /**
-    * Update extra
-    * @summary Update extra
+    * Update extra. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Update Product Extra
     * @param {string} productCode 
     * @param {string} attributeFQN 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -257,14 +257,14 @@ export interface ProductExtrasApiService {
     updateExtraRaw(requestParameters: productExtrasApiParams.UpdateExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtra>>;
 
     /**
-    * Update extra
-    * Update extra
+    * Update extra. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Update Product Extra
     */
     updateExtra(requestParameters: productExtrasApiParams.UpdateExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtra>;
 
     /**
-    * 
-    * @summary Update extra value localized delta price
+    * Update extra value localized delta price. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Update Extra Localized Delta Price by Currency
     * @param {string} productCode 
     * @param {string} attributeFQN 
     * @param {string} value 
@@ -278,14 +278,14 @@ export interface ProductExtrasApiService {
     updateExtraValueLocalizedDeltaPriceRaw(requestParameters: productExtrasApiParams.UpdateExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductExtraValueDeltaPrice>>;
 
     /**
-    * 
-    * Update extra value localized delta price
+    * Update extra value localized delta price. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Update Extra Localized Delta Price by Currency
     */
     updateExtraValueLocalizedDeltaPrice(requestParameters: productExtrasApiParams.UpdateExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtraValueDeltaPrice>;
 
     /**
-    * 
-    * @summary Update extra value localized delta prices
+    * Update extra value localized delta price. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Update Extra Localized Delta Price
     * @param {string} productCode 
     * @param {string} attributeFQN 
     * @param {string} value 
@@ -298,8 +298,8 @@ export interface ProductExtrasApiService {
     updateExtraValueLocalizedDeltaPricesRaw(requestParameters: productExtrasApiParams.UpdateExtraValueLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductExtraValueDeltaPrice>>>;
 
     /**
-    * 
-    * Update extra value localized delta prices
+    * Update extra value localized delta price. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Update Extra Localized Delta Price
     */
     updateExtraValueLocalizedDeltaPrices(requestParameters: productExtrasApiParams.UpdateExtraValueLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductExtraValueDeltaPrice>>;
 
@@ -315,8 +315,8 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
         this.basePathTemplate = basePathTemplate
     }
     /**
-     * Add extra
-     * Add extra
+     * Add extra. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Add Product Extra
      */
 
 
@@ -337,8 +337,6 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -353,8 +351,8 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
     }
 
     /**
-     * Add extra
-     * Add extra
+     * Add extra. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Add Product Extra
      */
     async addExtra(requestParameters: productExtrasApiParams.AddExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtra> {
         const response = await this.addExtraRaw(requestParameters, initOverrides);
@@ -362,8 +360,8 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
     }
 
     /**
-     * 
-     * Add extra value localized delta price
+     * Add a extra value localized delta price. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Add Extra Localized Delta Price
      */
 
 
@@ -392,8 +390,6 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -408,8 +404,8 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
     }
 
     /**
-     * 
-     * Add extra value localized delta price
+     * Add a extra value localized delta price. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Add Extra Localized Delta Price
      */
     async addExtraValueLocalizedDeltaPrice(requestParameters: productExtrasApiParams.AddExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtraValueDeltaPrice> {
         const response = await this.addExtraValueLocalizedDeltaPriceRaw(requestParameters, initOverrides);
@@ -418,7 +414,7 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
 
     /**
      * Delete extra
-     * Delete extra
+     * Delete Product Extra
      */
 
 
@@ -437,8 +433,6 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -453,15 +447,15 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
 
     /**
      * Delete extra
-     * Delete extra
+     * Delete Product Extra
      */
     async deleteExtra(requestParameters: productExtrasApiParams.DeleteExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteExtraRaw(requestParameters, initOverrides);
     }
 
     /**
-     * 
-     * Delete extra value localized delta price
+     * Delete extra value localized delta price.
+     * Delete Extra Localized Delta Price
      */
 
 
@@ -488,8 +482,6 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -503,16 +495,16 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
     }
 
     /**
-     * 
-     * Delete extra value localized delta price
+     * Delete extra value localized delta price.
+     * Delete Extra Localized Delta Price
      */
     async deleteExtraValueLocalizedDeltaPrice(requestParameters: productExtrasApiParams.DeleteExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteExtraValueLocalizedDeltaPriceRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Get individual extra.
-     * Get extra
+     * Get individual extra. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Get Product Extra
      */
 
 
@@ -535,8 +527,6 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -550,8 +540,8 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
     }
 
     /**
-     * Get individual extra.
-     * Get extra
+     * Get individual extra. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Get Product Extra
      */
     async getExtra(requestParameters: productExtrasApiParams.GetExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtra> {
         const response = await this.getExtraRaw(requestParameters, initOverrides);
@@ -559,8 +549,8 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
     }
 
     /**
-     * 
-     * Get extra value localized delta price
+     * Get extra value localized delta price. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Get Extra Localized Delta Price by Currency
      */
 
 
@@ -591,8 +581,6 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -606,8 +594,8 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
     }
 
     /**
-     * 
-     * Get extra value localized delta price
+     * Get extra value localized delta price. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Get Extra Localized Delta Price by Currency
      */
     async getExtraValueLocalizedDeltaPrice(requestParameters: productExtrasApiParams.GetExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtraValueDeltaPrice> {
         const response = await this.getExtraValueLocalizedDeltaPriceRaw(requestParameters, initOverrides);
@@ -615,8 +603,8 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
     }
 
     /**
-     * 
-     * Get extra value localized delta prices
+     * Get extra value localized delta price. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Get Extra Localized Delta Price
      */
 
 
@@ -643,8 +631,6 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -658,8 +644,8 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
     }
 
     /**
-     * 
-     * Get extra value localized delta prices
+     * Get extra value localized delta price. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Get Extra Localized Delta Price
      */
     async getExtraValueLocalizedDeltaPrices(requestParameters: productExtrasApiParams.GetExtraValueLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductExtraValueDeltaPrice>> {
         const response = await this.getExtraValueLocalizedDeltaPricesRaw(requestParameters, initOverrides);
@@ -667,8 +653,8 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
     }
 
     /**
-     * Get extras for the product.
-     * Get extras
+     * Get extras for the product. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Get Product Extras
      */
 
 
@@ -687,8 +673,6 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -702,8 +686,8 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
     }
 
     /**
-     * Get extras for the product.
-     * Get extras
+     * Get extras for the product. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Get Product Extras
      */
     async getExtras(requestParameters: productExtrasApiParams.GetExtrasRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductExtra>> {
         const response = await this.getExtrasRaw(requestParameters, initOverrides);
@@ -711,8 +695,8 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
     }
 
     /**
-     * Update extra
-     * Update extra
+     * Update extra. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Update Product Extra
      */
 
 
@@ -737,8 +721,6 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -753,8 +735,8 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
     }
 
     /**
-     * Update extra
-     * Update extra
+     * Update extra. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Update Product Extra
      */
     async updateExtra(requestParameters: productExtrasApiParams.UpdateExtraRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtra> {
         const response = await this.updateExtraRaw(requestParameters, initOverrides);
@@ -762,8 +744,8 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
     }
 
     /**
-     * 
-     * Update extra value localized delta price
+     * Update extra value localized delta price. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Update Extra Localized Delta Price by Currency
      */
 
 
@@ -796,8 +778,6 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -812,8 +792,8 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
     }
 
     /**
-     * 
-     * Update extra value localized delta price
+     * Update extra value localized delta price. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Update Extra Localized Delta Price by Currency
      */
     async updateExtraValueLocalizedDeltaPrice(requestParameters: productExtrasApiParams.UpdateExtraValueLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductExtraValueDeltaPrice> {
         const response = await this.updateExtraValueLocalizedDeltaPriceRaw(requestParameters, initOverrides);
@@ -821,8 +801,8 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
     }
 
     /**
-     * 
-     * Update extra value localized delta prices
+     * Update extra value localized delta price. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Update Extra Localized Delta Price
      */
 
 
@@ -851,8 +831,6 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -867,8 +845,8 @@ export class ProductExtrasApi extends runtime.BaseAPI implements ProductExtrasAp
     }
 
     /**
-     * 
-     * Update extra value localized delta prices
+     * Update extra value localized delta price. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Update Extra Localized Delta Price
      */
     async updateExtraValueLocalizedDeltaPrices(requestParameters: productExtrasApiParams.UpdateExtraValueLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductExtraValueDeltaPrice>> {
         const response = await this.updateExtraValueLocalizedDeltaPricesRaw(requestParameters, initOverrides);

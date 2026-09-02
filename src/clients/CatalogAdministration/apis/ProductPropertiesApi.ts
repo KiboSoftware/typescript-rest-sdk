@@ -2,9 +2,9 @@
 /* eslint-disable */
 /**
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -100,8 +100,8 @@ export namespace productPropertiesApiParams {
 */
 export interface ProductPropertiesApiService {
     /**
-    * Add property
-    * @summary Add property
+    * Add a property to a product. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Add Product Property
     * @param {string} productCode 
     * @param {string} [batchJobCode] 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -113,14 +113,14 @@ export interface ProductPropertiesApiService {
     addPropertyRaw(requestParameters: productPropertiesApiParams.AddPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductProperty>>;
 
     /**
-    * Add property
-    * Add property
+    * Add a property to a product. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Add Product Property
     */
     addProperty(requestParameters: productPropertiesApiParams.AddPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductProperty>;
 
     /**
-    * 
-    * @summary Add property value localized content
+    * Add property value localized content.
+    * @summary Add Product Property Localized Content
     * @param {string} productCode 
     * @param {string} attributeFQN 
     * @param {string} value 
@@ -133,14 +133,14 @@ export interface ProductPropertiesApiService {
     addPropertyValueLocalizedContentRaw(requestParameters: productPropertiesApiParams.AddPropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductPropertyValueLocalizedContent>>;
 
     /**
-    * 
-    * Add property value localized content
+    * Add property value localized content.
+    * Add Product Property Localized Content
     */
     addPropertyValueLocalizedContent(requestParameters: productPropertiesApiParams.AddPropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductPropertyValueLocalizedContent>;
 
     /**
-    * Delete Property
-    * @summary Delete property
+    * Delete a specific product property.
+    * @summary Delete Product Property
     * @param {string} productCode 
     * @param {string} attributeFQN 
     * @param {string} [batchJobCode] 
@@ -151,14 +151,14 @@ export interface ProductPropertiesApiService {
     deletePropertyRaw(requestParameters: productPropertiesApiParams.DeletePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * Delete Property
-    * Delete property
+    * Delete a specific product property.
+    * Delete Product Property
     */
     deleteProperty(requestParameters: productPropertiesApiParams.DeletePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * 
-    * @summary Delete property value localized content
+    * Delete property value localized content by locale code.
+    * @summary Delete Product Property Localized Content by Locale
     * @param {string} productCode 
     * @param {string} attributeFQN 
     * @param {string} value 
@@ -170,14 +170,14 @@ export interface ProductPropertiesApiService {
     deletePropertyValueLocalizedContentRaw(requestParameters: productPropertiesApiParams.DeletePropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * 
-    * Delete property value localized content
+    * Delete property value localized content by locale code.
+    * Delete Product Property Localized Content by Locale
     */
     deletePropertyValueLocalizedContent(requestParameters: productPropertiesApiParams.DeletePropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * Get properties for the product
-    * @summary Get properties
+    * Get properties for a product. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Get Product Properties
     * @param {string} productCode 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
@@ -187,14 +187,14 @@ export interface ProductPropertiesApiService {
     getPropertiesRaw(requestParameters: productPropertiesApiParams.GetPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CatalogAdminsProductProperty>>>;
 
     /**
-    * Get properties for the product
-    * Get properties
+    * Get properties for a product. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Get Product Properties
     */
     getProperties(requestParameters: productPropertiesApiParams.GetPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsProductProperty>>;
 
     /**
-    * Get individual property
-    * @summary Get property
+    * Get a specific product property. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Get Product Property
     * @param {string} productCode 
     * @param {string} attributeFQN 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -205,14 +205,14 @@ export interface ProductPropertiesApiService {
     getPropertyRaw(requestParameters: productPropertiesApiParams.GetPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductProperty>>;
 
     /**
-    * Get individual property
-    * Get property
+    * Get a specific product property. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Get Product Property
     */
     getProperty(requestParameters: productPropertiesApiParams.GetPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductProperty>;
 
     /**
-    * 
-    * @summary Get property value localized content
+    * Get property value localized content.
+    * @summary Get Product Property Localized Content by Locale
     * @param {string} productCode 
     * @param {string} attributeFQN 
     * @param {string} value 
@@ -225,14 +225,14 @@ export interface ProductPropertiesApiService {
     getPropertyValueLocalizedContentRaw(requestParameters: productPropertiesApiParams.GetPropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductPropertyValueLocalizedContent>>;
 
     /**
-    * 
-    * Get property value localized content
+    * Get property value localized content.
+    * Get Product Property Localized Content by Locale
     */
     getPropertyValueLocalizedContent(requestParameters: productPropertiesApiParams.GetPropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductPropertyValueLocalizedContent>;
 
     /**
-    * 
-    * @summary Get property value localized contents
+    * Get property value localized content.
+    * @summary Get Product Property Localized Contents
     * @param {string} productCode 
     * @param {string} attributeFQN 
     * @param {string} value 
@@ -244,14 +244,14 @@ export interface ProductPropertiesApiService {
     getPropertyValueLocalizedContentsRaw(requestParameters: productPropertiesApiParams.GetPropertyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductPropertyValueLocalizedContent>>>;
 
     /**
-    * 
-    * Get property value localized contents
+    * Get property value localized content.
+    * Get Product Property Localized Contents
     */
     getPropertyValueLocalizedContents(requestParameters: productPropertiesApiParams.GetPropertyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductPropertyValueLocalizedContent>>;
 
     /**
-    * Update property
-    * @summary Update property
+    * Update a specific product property. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Update Product Property
     * @param {string} productCode 
     * @param {string} attributeFQN 
     * @param {string} [batchJobCode] 
@@ -265,14 +265,14 @@ export interface ProductPropertiesApiService {
     updatePropertyRaw(requestParameters: productPropertiesApiParams.UpdatePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsProductProperty>>;
 
     /**
-    * Update property
-    * Update property
+    * Update a specific product property. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Update Product Property
     */
     updateProperty(requestParameters: productPropertiesApiParams.UpdatePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductProperty>;
 
     /**
-    * 
-    * @summary Update property value localized content
+    * Update property value localized content by locale code.
+    * @summary Update Product Property Localized Content by Locale
     * @param {string} productCode 
     * @param {string} attributeFQN 
     * @param {string} value 
@@ -286,14 +286,14 @@ export interface ProductPropertiesApiService {
     updatePropertyValueLocalizedContentRaw(requestParameters: productPropertiesApiParams.UpdatePropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductPropertyValueLocalizedContent>>;
 
     /**
-    * 
-    * Update property value localized content
+    * Update property value localized content by locale code.
+    * Update Product Property Localized Content by Locale
     */
     updatePropertyValueLocalizedContent(requestParameters: productPropertiesApiParams.UpdatePropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductPropertyValueLocalizedContent>;
 
     /**
-    * 
-    * @summary Update property value localized contents
+    * Update property value localized content.
+    * @summary Update Product Property Localized Content
     * @param {string} productCode 
     * @param {string} attributeFQN 
     * @param {string} value 
@@ -306,8 +306,8 @@ export interface ProductPropertiesApiService {
     updatePropertyValueLocalizedContentsRaw(requestParameters: productPropertiesApiParams.UpdatePropertyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductPropertyValueLocalizedContent>>>;
 
     /**
-    * 
-    * Update property value localized contents
+    * Update property value localized content.
+    * Update Product Property Localized Content
     */
     updatePropertyValueLocalizedContents(requestParameters: productPropertiesApiParams.UpdatePropertyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductPropertyValueLocalizedContent>>;
 
@@ -323,8 +323,8 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
         this.basePathTemplate = basePathTemplate
     }
     /**
-     * Add property
-     * Add property
+     * Add a property to a product. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Add Product Property
      */
 
 
@@ -349,8 +349,6 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -365,8 +363,8 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
     }
 
     /**
-     * Add property
-     * Add property
+     * Add a property to a product. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Add Product Property
      */
     async addProperty(requestParameters: productPropertiesApiParams.AddPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductProperty> {
         const response = await this.addPropertyRaw(requestParameters, initOverrides);
@@ -374,8 +372,8 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
     }
 
     /**
-     * 
-     * Add property value localized content
+     * Add property value localized content.
+     * Add Product Property Localized Content
      */
 
 
@@ -404,8 +402,6 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -420,8 +416,8 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
     }
 
     /**
-     * 
-     * Add property value localized content
+     * Add property value localized content.
+     * Add Product Property Localized Content
      */
     async addPropertyValueLocalizedContent(requestParameters: productPropertiesApiParams.AddPropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductPropertyValueLocalizedContent> {
         const response = await this.addPropertyValueLocalizedContentRaw(requestParameters, initOverrides);
@@ -429,8 +425,8 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
     }
 
     /**
-     * Delete Property
-     * Delete property
+     * Delete a specific product property.
+     * Delete Product Property
      */
 
 
@@ -453,8 +449,6 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -468,16 +462,16 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
     }
 
     /**
-     * Delete Property
-     * Delete property
+     * Delete a specific product property.
+     * Delete Product Property
      */
     async deleteProperty(requestParameters: productPropertiesApiParams.DeletePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deletePropertyRaw(requestParameters, initOverrides);
     }
 
     /**
-     * 
-     * Delete property value localized content
+     * Delete property value localized content by locale code.
+     * Delete Product Property Localized Content by Locale
      */
 
 
@@ -504,8 +498,6 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -519,16 +511,16 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
     }
 
     /**
-     * 
-     * Delete property value localized content
+     * Delete property value localized content by locale code.
+     * Delete Product Property Localized Content by Locale
      */
     async deletePropertyValueLocalizedContent(requestParameters: productPropertiesApiParams.DeletePropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deletePropertyValueLocalizedContentRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Get properties for the product
-     * Get properties
+     * Get properties for a product. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Get Product Properties
      */
 
 
@@ -547,8 +539,6 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -562,8 +552,8 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
     }
 
     /**
-     * Get properties for the product
-     * Get properties
+     * Get properties for a product. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Get Product Properties
      */
     async getProperties(requestParameters: productPropertiesApiParams.GetPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CatalogAdminsProductProperty>> {
         const response = await this.getPropertiesRaw(requestParameters, initOverrides);
@@ -571,8 +561,8 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
     }
 
     /**
-     * Get individual property
-     * Get property
+     * Get a specific product property. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Get Product Property
      */
 
 
@@ -595,8 +585,6 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -610,8 +598,8 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
     }
 
     /**
-     * Get individual property
-     * Get property
+     * Get a specific product property. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Get Product Property
      */
     async getProperty(requestParameters: productPropertiesApiParams.GetPropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductProperty> {
         const response = await this.getPropertyRaw(requestParameters, initOverrides);
@@ -619,8 +607,8 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
     }
 
     /**
-     * 
-     * Get property value localized content
+     * Get property value localized content.
+     * Get Product Property Localized Content by Locale
      */
 
 
@@ -651,8 +639,6 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -666,8 +652,8 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
     }
 
     /**
-     * 
-     * Get property value localized content
+     * Get property value localized content.
+     * Get Product Property Localized Content by Locale
      */
     async getPropertyValueLocalizedContent(requestParameters: productPropertiesApiParams.GetPropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductPropertyValueLocalizedContent> {
         const response = await this.getPropertyValueLocalizedContentRaw(requestParameters, initOverrides);
@@ -675,8 +661,8 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
     }
 
     /**
-     * 
-     * Get property value localized contents
+     * Get property value localized content.
+     * Get Product Property Localized Contents
      */
 
 
@@ -703,8 +689,6 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -718,8 +702,8 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
     }
 
     /**
-     * 
-     * Get property value localized contents
+     * Get property value localized content.
+     * Get Product Property Localized Contents
      */
     async getPropertyValueLocalizedContents(requestParameters: productPropertiesApiParams.GetPropertyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductPropertyValueLocalizedContent>> {
         const response = await this.getPropertyValueLocalizedContentsRaw(requestParameters, initOverrides);
@@ -727,8 +711,8 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
     }
 
     /**
-     * Update property
-     * Update property
+     * Update a specific product property. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Update Product Property
      */
 
 
@@ -761,8 +745,6 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -777,8 +759,8 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
     }
 
     /**
-     * Update property
-     * Update property
+     * Update a specific product property. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Update Product Property
      */
     async updateProperty(requestParameters: productPropertiesApiParams.UpdatePropertyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsProductProperty> {
         const response = await this.updatePropertyRaw(requestParameters, initOverrides);
@@ -786,8 +768,8 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
     }
 
     /**
-     * 
-     * Update property value localized content
+     * Update property value localized content by locale code.
+     * Update Product Property Localized Content by Locale
      */
 
 
@@ -820,8 +802,6 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -836,8 +816,8 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
     }
 
     /**
-     * 
-     * Update property value localized content
+     * Update property value localized content by locale code.
+     * Update Product Property Localized Content by Locale
      */
     async updatePropertyValueLocalizedContent(requestParameters: productPropertiesApiParams.UpdatePropertyValueLocalizedContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductPropertyValueLocalizedContent> {
         const response = await this.updatePropertyValueLocalizedContentRaw(requestParameters, initOverrides);
@@ -845,8 +825,8 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
     }
 
     /**
-     * 
-     * Update property value localized contents
+     * Update property value localized content.
+     * Update Product Property Localized Content
      */
 
 
@@ -875,8 +855,6 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -891,8 +869,8 @@ export class ProductPropertiesApi extends runtime.BaseAPI implements ProductProp
     }
 
     /**
-     * 
-     * Update property value localized contents
+     * Update property value localized content.
+     * Update Product Property Localized Content
      */
     async updatePropertyValueLocalizedContents(requestParameters: productPropertiesApiParams.UpdatePropertyValueLocalizedContentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductPropertyValueLocalizedContent>> {
         const response = await this.updatePropertyValueLocalizedContentsRaw(requestParameters, initOverrides);

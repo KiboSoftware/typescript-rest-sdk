@@ -11,7 +11,7 @@ export interface AdminUserAuditInfo {
      * @type {string}
      * @memberof AdminUserAuditInfo
      */
-    updateDate?: string | null;
+    createBy?: string | null;
     /**
      * 
      * @type {string}
@@ -29,7 +29,7 @@ export interface AdminUserAuditInfo {
      * @type {string}
      * @memberof AdminUserAuditInfo
      */
-    createBy?: string | null;
+    updateDate?: string | null;
 }
 
 /**
@@ -49,16 +49,28 @@ export type BatchDomains = typeof BatchDomains[keyof typeof BatchDomains];
 export interface BatchJob {
     /**
      * 
-     * @type {number}
+     * @type {AdminUserAuditInfo}
      * @memberof BatchJob
      */
-    tenantId?: number;
+    auditInfo?: AdminUserAuditInfo;
     /**
      * 
      * @type {string}
      * @memberof BatchJob
      */
     code?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof BatchJob
+     */
+    dateStarted?: string | null;
+    /**
+     * 
+     * @type {BatchDomains}
+     * @memberof BatchJob
+     */
+    domain?: BatchDomains;
     /**
      * 
      * @type {string}
@@ -73,28 +85,16 @@ export interface BatchJob {
     scheduledDate?: string | null;
     /**
      * 
-     * @type {string}
-     * @memberof BatchJob
-     */
-    dateStarted?: string | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof BatchJob
-     */
-    auditInfo?: AdminUserAuditInfo;
-    /**
-     * 
-     * @type {BatchDomains}
-     * @memberof BatchJob
-     */
-    domain?: BatchDomains;
-    /**
-     * 
      * @type {BatchJobStatuses}
      * @memberof BatchJob
      */
     status?: BatchJobStatuses;
+    /**
+     * 
+     * @type {number}
+     * @memberof BatchJob
+     */
+    tenantId?: number;
 }
 /**
  * 
@@ -129,16 +129,10 @@ export type BatchJobActionTypes = typeof BatchJobActionTypes[keyof typeof BatchJ
 export interface BatchJobCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<BatchJob>}
      * @memberof BatchJobCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof BatchJobCollection
-     */
-    pageSize?: number;
+    items?: Array<BatchJob> | null;
     /**
      * 
      * @type {number}
@@ -150,13 +144,19 @@ export interface BatchJobCollection {
      * @type {number}
      * @memberof BatchJobCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<BatchJob>}
+     * @type {number}
      * @memberof BatchJobCollection
      */
-    items?: Array<BatchJob> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof BatchJobCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -164,6 +164,12 @@ export interface BatchJobCollection {
  * @interface BatchJobItem
  */
 export interface BatchJobItem {
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof BatchJobItem
+     */
+    auditInfo?: AdminUserAuditInfo;
     /**
      * 
      * @type {string}
@@ -175,73 +181,13 @@ export interface BatchJobItem {
      * @type {number}
      * @memberof BatchJobItem
      */
-    masterCatalog?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof BatchJobItem
-     */
-    siteId?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof BatchJobItem
-     */
     catalogId?: number | null;
     /**
      * 
-     * @type {number}
-     * @memberof BatchJobItem
-     */
-    retryCount?: number | null;
-    /**
-     * 
      * @type {string}
      * @memberof BatchJobItem
      */
-    itemKey?: string | null;
-    /**
-     * 
-     * @type {BatchJobItemProcessingStatuses}
-     * @memberof BatchJobItem
-     */
-    processingStatus?: BatchJobItemProcessingStatuses;
-    /**
-     * 
-     * @type {number}
-     * @memberof BatchJobItem
-     */
-    status?: number | null;
-    /**
-     * 
-     * @type {Array<BatchJobItemError>}
-     * @memberof BatchJobItem
-     */
-    errors?: Array<BatchJobItemError> | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof BatchJobItem
-     */
-    uri?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof BatchJobItem
-     */
-    resourceType?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof BatchJobItem
-     */
-    query?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof BatchJobItem
-     */
-    localeCode?: string | null;
+    correlationId?: string | null;
     /**
      * 
      * @type {string}
@@ -256,6 +202,12 @@ export interface BatchJobItem {
     dataViewMode?: DataViewModeType;
     /**
      * 
+     * @type {Array<BatchJobItemError>}
+     * @memberof BatchJobItem
+     */
+    errors?: Array<BatchJobItemError> | null;
+    /**
+     * 
      * @type {string}
      * @memberof BatchJobItem
      */
@@ -265,13 +217,61 @@ export interface BatchJobItem {
      * @type {string}
      * @memberof BatchJobItem
      */
-    correlationId?: string | null;
+    itemKey?: string | null;
     /**
      * 
-     * @type {AdminUserAuditInfo}
+     * @type {string}
      * @memberof BatchJobItem
      */
-    auditInfo?: AdminUserAuditInfo;
+    localeCode?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof BatchJobItem
+     */
+    masterCatalog?: number | null;
+    /**
+     * 
+     * @type {BatchJobItemProcessingStatuses}
+     * @memberof BatchJobItem
+     */
+    processingStatus?: BatchJobItemProcessingStatuses;
+    /**
+     * 
+     * @type {string}
+     * @memberof BatchJobItem
+     */
+    query?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof BatchJobItem
+     */
+    resourceType?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof BatchJobItem
+     */
+    retryCount?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof BatchJobItem
+     */
+    siteId?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof BatchJobItem
+     */
+    status?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof BatchJobItem
+     */
+    uri?: string | null;
 }
 /**
  * 
@@ -287,6 +287,12 @@ export interface BatchJobItemError {
     code?: string | null;
     /**
      * 
+     * @type {string}
+     * @memberof BatchJobItemError
+     */
+    field?: string | null;
+    /**
+     * 
      * @type {Array<StringStringKeyValuePair>}
      * @memberof BatchJobItemError
      */
@@ -296,19 +302,13 @@ export interface BatchJobItemError {
      * @type {string}
      * @memberof BatchJobItemError
      */
-    message?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof BatchJobItemError
-     */
-    field?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof BatchJobItemError
-     */
     longMessage?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof BatchJobItemError
+     */
+    message?: string | null;
     /**
      * 
      * @type {Array<BatchJobItemError>}
@@ -339,16 +339,10 @@ export type BatchJobItemProcessingStatuses = typeof BatchJobItemProcessingStatus
 export interface BatchJobItemResultSet {
     /**
      * 
-     * @type {number}
+     * @type {Array<BatchJobItem>}
      * @memberof BatchJobItemResultSet
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof BatchJobItemResultSet
-     */
-    pageSize?: number;
+    items?: Array<BatchJobItem> | null;
     /**
      * 
      * @type {number}
@@ -360,13 +354,19 @@ export interface BatchJobItemResultSet {
      * @type {number}
      * @memberof BatchJobItemResultSet
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<BatchJobItem>}
+     * @type {number}
      * @memberof BatchJobItemResultSet
      */
-    items?: Array<BatchJobItem> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof BatchJobItemResultSet
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -376,16 +376,16 @@ export interface BatchJobItemResultSet {
 export interface BatchJobResourceSummary {
     /**
      * 
-     * @type {string}
-     * @memberof BatchJobResourceSummary
-     */
-    resourceType?: string | null;
-    /**
-     * 
      * @type {Array<ProcessingCount>}
      * @memberof BatchJobResourceSummary
      */
     counts?: Array<ProcessingCount> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof BatchJobResourceSummary
+     */
+    resourceType?: string | null;
 }
 
 /**
@@ -418,7 +418,19 @@ export interface BatchJobSummary {
      * @type {string}
      * @memberof BatchJobSummary
      */
+    dateStarted?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof BatchJobSummary
+     */
     name?: string | null;
+    /**
+     * 
+     * @type {Array<BatchJobResourceSummary>}
+     * @memberof BatchJobSummary
+     */
+    resources?: Array<BatchJobResourceSummary> | null;
     /**
      * 
      * @type {string}
@@ -427,22 +439,10 @@ export interface BatchJobSummary {
     scheduledDate?: string | null;
     /**
      * 
-     * @type {string}
-     * @memberof BatchJobSummary
-     */
-    dateStarted?: string | null;
-    /**
-     * 
      * @type {BatchJobStatuses}
      * @memberof BatchJobSummary
      */
     status?: BatchJobStatuses;
-    /**
-     * 
-     * @type {Array<BatchJobResourceSummary>}
-     * @memberof BatchJobSummary
-     */
-    resources?: Array<BatchJobResourceSummary> | null;
 }
 /**
  * 
@@ -452,16 +452,10 @@ export interface BatchJobSummary {
 export interface BatchJobSummaryCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<BatchJobSummary>}
      * @memberof BatchJobSummaryCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof BatchJobSummaryCollection
-     */
-    pageSize?: number;
+    items?: Array<BatchJobSummary> | null;
     /**
      * 
      * @type {number}
@@ -473,13 +467,19 @@ export interface BatchJobSummaryCollection {
      * @type {number}
      * @memberof BatchJobSummaryCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<BatchJobSummary>}
+     * @type {number}
      * @memberof BatchJobSummaryCollection
      */
-    items?: Array<BatchJobSummary> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof BatchJobSummaryCollection
+     */
+    totalCount?: number;
 }
 /**
  * 
@@ -492,13 +492,7 @@ export interface ContextOverride {
      * @type {number}
      * @memberof ContextOverride
      */
-    masterCatalog?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContextOverride
-     */
-    locale?: string | null;
+    catalog?: number | null;
     /**
      * 
      * @type {string}
@@ -507,10 +501,16 @@ export interface ContextOverride {
     currency?: string | null;
     /**
      * 
+     * @type {string}
+     * @memberof ContextOverride
+     */
+    locale?: string | null;
+    /**
+     * 
      * @type {number}
      * @memberof ContextOverride
      */
-    catalog?: number | null;
+    masterCatalog?: number | null;
     /**
      * 
      * @type {number}
@@ -541,13 +541,19 @@ export interface DropLocation {
      * @type {string}
      * @memberof DropLocation
      */
-    id?: string | null;
+    fileName?: string | null;
     /**
      * 
      * @type {string}
      * @memberof DropLocation
      */
-    uri?: string | null;
+    fileType?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DropLocation
+     */
+    id?: string | null;
     /**
      * 
      * @type {string}
@@ -559,13 +565,7 @@ export interface DropLocation {
      * @type {string}
      * @memberof DropLocation
      */
-    fileName?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof DropLocation
-     */
-    fileType?: string | null;
+    uri?: string | null;
 }
 /**
  * 
@@ -575,28 +575,16 @@ export interface DropLocation {
 export interface ExportJob {
     /**
      * 
-     * @type {string}
+     * @type {AdminUserAuditInfo}
      * @memberof ExportJob
      */
-    name?: string | null;
+    auditInfo?: AdminUserAuditInfo;
     /**
      * 
-     * @type {string}
+     * @type {any}
      * @memberof ExportJob
      */
-    id?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExportJob
-     */
-    requester?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof ExportJob
-     */
-    tenant?: number;
+    _configuration?: any | null;
     /**
      * 
      * @type {ContextOverride}
@@ -611,22 +599,58 @@ export interface ExportJob {
     domain?: string | null;
     /**
      * 
-     * @type {Array<ExportResource>}
-     * @memberof ExportJob
-     */
-    resources?: Array<ExportResource> | null;
-    /**
-     * 
      * @type {string}
      * @memberof ExportJob
      */
     exportDate?: string | null;
     /**
      * 
+     * @type {Array<DropLocation>}
+     * @memberof ExportJob
+     */
+    files?: Array<DropLocation> | null;
+    /**
+     * 
      * @type {string}
      * @memberof ExportJob
      */
     format?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExportJob
+     */
+    id?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ExportJob
+     */
+    isComplete?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExportJob
+     */
+    name?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExportJob
+     */
+    requester?: string | null;
+    /**
+     * 
+     * @type {Array<ExportResource>}
+     * @memberof ExportJob
+     */
+    resources?: Array<ExportResource> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ExportJob
+     */
+    retryAttempts?: number;
     /**
      * 
      * @type {string}
@@ -647,28 +671,10 @@ export interface ExportJob {
     statusMessage?: string | null;
     /**
      * 
-     * @type {boolean}
+     * @type {number}
      * @memberof ExportJob
      */
-    isComplete?: boolean;
-    /**
-     * 
-     * @type {Array<DropLocation>}
-     * @memberof ExportJob
-     */
-    files?: Array<DropLocation> | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof ExportJob
-     */
-    auditInfo?: AdminUserAuditInfo;
-    /**
-     * 
-     * @type {any}
-     * @memberof ExportJob
-     */
-    _configuration?: any | null;
+    tenant?: number;
 }
 /**
  * 
@@ -678,16 +684,10 @@ export interface ExportJob {
 export interface ExportResource {
     /**
      * 
-     * @type {string}
+     * @type {any}
      * @memberof ExportResource
      */
-    resource?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExportResource
-     */
-    filter?: string | null;
+    _configuration?: any | null;
     /**
      * 
      * @type {Array<string>}
@@ -699,13 +699,13 @@ export interface ExportResource {
      * @type {string}
      * @memberof ExportResource
      */
-    format?: string | null;
+    filter?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ExportResource
      */
-    status?: string | null;
+    format?: string | null;
     /**
      * 
      * @type {boolean}
@@ -717,7 +717,7 @@ export interface ExportResource {
      * @type {string}
      * @memberof ExportResource
      */
-    statusMessage?: string | null;
+    resource?: string | null;
     /**
      * 
      * @type {string}
@@ -726,10 +726,16 @@ export interface ExportResource {
     stateDetails?: string | null;
     /**
      * 
-     * @type {any}
+     * @type {string}
      * @memberof ExportResource
      */
-    _configuration?: any | null;
+    status?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExportResource
+     */
+    statusMessage?: string | null;
 }
 /**
  * 
@@ -737,6 +743,54 @@ export interface ExportResource {
  * @interface ImportJob
  */
 export interface ImportJob {
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof ImportJob
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * 
+     * @type {any}
+     * @memberof ImportJob
+     */
+    _configuration?: any | null;
+    /**
+     * 
+     * @type {ContextOverride}
+     * @memberof ImportJob
+     */
+    contextOverride?: ContextOverride;
+    /**
+     * 
+     * @type {string}
+     * @memberof ImportJob
+     */
+    domain?: string | null;
+    /**
+     * 
+     * @type {Array<DropLocation>}
+     * @memberof ImportJob
+     */
+    files?: Array<DropLocation> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ImportJob
+     */
+    format?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ImportJob
+     */
+    id?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ImportJob
+     */
+    isComplete?: boolean;
     /**
      * 
      * @type {string}
@@ -748,55 +802,13 @@ export interface ImportJob {
      * @type {string}
      * @memberof ImportJob
      */
-    id?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ImportJob
-     */
     requester?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ImportJob
-     */
-    domain?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ImportJob
-     */
-    format?: string | null;
     /**
      * 
      * @type {Array<ImportResource>}
      * @memberof ImportJob
      */
     resources?: Array<ImportResource> | null;
-    /**
-     * 
-     * @type {ContextOverride}
-     * @memberof ImportJob
-     */
-    contextOverride?: ContextOverride;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ImportJob
-     */
-    isComplete?: boolean;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof ImportJob
-     */
-    auditInfo?: AdminUserAuditInfo;
-    /**
-     * 
-     * @type {number}
-     * @memberof ImportJob
-     */
-    tenant?: number;
     /**
      * 
      * @type {string}
@@ -817,16 +829,10 @@ export interface ImportJob {
     statusMessage?: string | null;
     /**
      * 
-     * @type {any}
+     * @type {number}
      * @memberof ImportJob
      */
-    _configuration?: any | null;
-    /**
-     * 
-     * @type {Array<DropLocation>}
-     * @memberof ImportJob
-     */
-    files?: Array<DropLocation> | null;
+    tenant?: number;
 }
 /**
  * 
@@ -836,22 +842,16 @@ export interface ImportJob {
 export interface ImportResource {
     /**
      * 
-     * @type {string}
+     * @type {boolean}
      * @memberof ImportResource
      */
-    format?: string | null;
+    allowSyscalcValueUpdates?: boolean;
     /**
      * 
-     * @type {string}
+     * @type {any}
      * @memberof ImportResource
      */
-    resource?: string | null;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof ImportResource
-     */
-    fields?: Array<string> | null;
+    _configuration?: any | null;
     /**
      * 
      * @type {boolean}
@@ -860,10 +860,16 @@ export interface ImportResource {
     deleteOmitted?: boolean;
     /**
      * 
+     * @type {Array<string>}
+     * @memberof ImportResource
+     */
+    fields?: Array<string> | null;
+    /**
+     * 
      * @type {string}
      * @memberof ImportResource
      */
-    status?: string | null;
+    format?: string | null;
     /**
      * 
      * @type {boolean}
@@ -875,7 +881,7 @@ export interface ImportResource {
      * @type {string}
      * @memberof ImportResource
      */
-    statusMessage?: string | null;
+    resource?: string | null;
     /**
      * 
      * @type {string}
@@ -884,16 +890,16 @@ export interface ImportResource {
     stateDetails?: string | null;
     /**
      * 
-     * @type {any}
+     * @type {string}
      * @memberof ImportResource
      */
-    _configuration?: any | null;
+    status?: string | null;
     /**
      * 
-     * @type {boolean}
+     * @type {string}
      * @memberof ImportResource
      */
-    allowSyscalcValueUpdates?: boolean;
+    statusMessage?: string | null;
 }
 /**
  * 
@@ -903,16 +909,16 @@ export interface ImportResource {
 export interface ProcessingCount {
     /**
      * 
-     * @type {BatchJobItemProcessingStatuses}
-     * @memberof ProcessingCount
-     */
-    status?: BatchJobItemProcessingStatuses;
-    /**
-     * 
      * @type {number}
      * @memberof ProcessingCount
      */
     count?: number;
+    /**
+     * 
+     * @type {BatchJobItemProcessingStatuses}
+     * @memberof ProcessingCount
+     */
+    status?: BatchJobItemProcessingStatuses;
 }
 /**
  * 

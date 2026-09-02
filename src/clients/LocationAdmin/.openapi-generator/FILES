@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 apis/LocationAdminApi.ts
 apis/LocationAttributeDefinitionsApi.ts
 apis/LocationGroupApi.ts
@@ -6,6 +7,7 @@ apis/LocationInventoryAttributeDefinitionApi.ts
 apis/LocationSettingsApi.ts
 apis/LocationTypeApi.ts
 apis/TransferTimesApi.ts
+apis/VendorApi.ts
 apis/index.ts
 index.ts
 models/index.ts

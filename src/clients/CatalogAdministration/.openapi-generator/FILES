@@ -1,3 +1,6 @@
+.openapi-generator-ignore
+apis/BackorderRebalancingRulesApi.ts
+apis/CallOffReleaseRulesApi.ts
 apis/CategoriesApi.ts
 apis/CategoryAttributeDefinitionApi.ts
 apis/CouponSetsApi.ts
@@ -5,6 +8,7 @@ apis/CurrencyApi.ts
 apis/DiscountSettingsApi.ts
 apis/DiscountsApi.ts
 apis/FacetsApi.ts
+apis/FutureShipmentRebalancingRulesApi.ts
 apis/MasterCatalogPublishSettingsApi.ts
 apis/PickWaveRuleEvaluateApi.ts
 apis/PickWaveRulesApi.ts
@@ -18,12 +22,17 @@ apis/ProductPublishingApi.ts
 apis/ProductQuickEditApi.ts
 apis/ProductRuleUsagesApi.ts
 apis/ProductRulesApi.ts
-apis/ProductSortDefinitionsApi.ts
 apis/ProductTypesApi.ts
 apis/ProductVariationsApi.ts
 apis/ProductsApi.ts
+apis/ProductsV1Api.ts
+apis/PublishingApi.ts
 apis/PurchaseLimitRulesApi.ts
+apis/ReservationRulesApi.ts
+apis/ReservationStealForRulesApi.ts
+apis/ReservationStealFromRulesApi.ts
 apis/ReturnRulesApi.ts
+apis/RulesEngineJobsApi.ts
 apis/SafetyStockRulesApi.ts
 apis/SearchCategorySuggestSettingsApi.ts
 apis/SearchListingSettingsApi.ts
@@ -32,7 +41,7 @@ apis/SearchProductSuggestSettingsApi.ts
 apis/SearchRedirectApi.ts
 apis/SearchSettingsApi.ts
 apis/SearchSynonymsApi.ts
-apis/SearchTuningRulesApi.ts
+apis/ShipmentReleaseRulesApi.ts
 apis/ShipmentRulesApi.ts
 apis/TagApi.ts
 apis/index.ts

@@ -3,6 +3,73 @@
 /**
  * 
  * @export
+ * @interface Address
+ */
+export interface Address {
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    address1?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    address2?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    address3?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    address4?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    addressType?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    cityOrTown?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    countryCode?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Address
+     */
+    isValidated?: boolean | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    postalOrZipCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Address
+     */
+    stateOrProvince?: string | null;
+}
+/**
+ * 
+ * @export
  * @interface AdminUserAuditInfo
  */
 export interface AdminUserAuditInfo {
@@ -11,7 +78,7 @@ export interface AdminUserAuditInfo {
      * @type {string}
      * @memberof AdminUserAuditInfo
      */
-    updateDate?: string | null;
+    createBy?: string | null;
     /**
      * 
      * @type {string}
@@ -29,26 +96,7 @@ export interface AdminUserAuditInfo {
      * @type {string}
      * @memberof AdminUserAuditInfo
      */
-    createBy?: string | null;
-}
-/**
- * 
- * @export
- * @interface AttributeValueLocalizedContent
- */
-export interface AttributeValueLocalizedContent {
-    /**
-     * 
-     * @type {string}
-     * @memberof AttributeValueLocalizedContent
-     */
-    localeCode: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AttributeValueLocalizedContent
-     */
-    value: string;
+    updateDate?: string | null;
 }
 /**
  * 
@@ -58,16 +106,16 @@ export interface AttributeValueLocalizedContent {
 export interface Capacity {
     /**
      * 
-     * @type {string}
-     * @memberof Capacity
-     */
-    unitOfMeasure?: string | null;
-    /**
-     * 
      * @type {number}
      * @memberof Capacity
      */
     shipmentsPerUnit?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Capacity
+     */
+    unitOfMeasure?: string | null;
 }
 /**
  * 
@@ -77,64 +125,10 @@ export interface Capacity {
 export interface CommerceRuntimeAddress {
     /**
      * 
-     * @type {string}
+     * @type {any}
      * @memberof CommerceRuntimeAddress
      */
-    address1?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    address2?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    address3?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    address4?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    cityOrTown?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    stateOrProvince?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    postalOrZipCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    countryCode?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAddress
-     */
-    addressType?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAddress
-     */
-    isValidated?: boolean | null;
+    countryCode?: any | null;
 }
 /**
  * 
@@ -144,136 +138,10 @@ export interface CommerceRuntimeAddress {
 export interface CommerceRuntimeAttribute {
     /**
      * 
-     * @type {number}
+     * @type {any}
      * @memberof CommerceRuntimeAttribute
      */
-    id?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttribute
-     */
-    adminName?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttribute
-     */
-    namespace?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttribute
-     */
-    attributeCode: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttribute
-     */
-    inputType?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttribute
-     */
-    valueType: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttribute
-     */
-    dataType?: string | null;
-    /**
-     * 
-     * @type {Array<CommerceRuntimeAttributeMetadataItem>}
-     * @memberof CommerceRuntimeAttribute
-     */
-    attributeMetadata?: Array<CommerceRuntimeAttributeMetadataItem> | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttribute
-     */
-    attributeFQN?: string | null;
-    /**
-     * 
-     * @type {CommerceRuntimeAttributeLocalizedContent}
-     * @memberof CommerceRuntimeAttribute
-     */
-    content?: CommerceRuntimeAttributeLocalizedContent;
-    /**
-     * 
-     * @type {CommerceRuntimeAttributeValidation}
-     * @memberof CommerceRuntimeAttribute
-     */
-    validation?: CommerceRuntimeAttributeValidation;
-    /**
-     * 
-     * @type {Array<CommerceRuntimeAttributeVocabularyValue>}
-     * @memberof CommerceRuntimeAttribute
-     */
-    vocabularyValues?: Array<CommerceRuntimeAttributeVocabularyValue> | null;
-    /**
-     * 
-     * @type {AdminUserAuditInfo}
-     * @memberof CommerceRuntimeAttribute
-     */
-    auditInfo?: AdminUserAuditInfo;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAttribute
-     */
-    isActive?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAttribute
-     */
-    isRequired?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAttribute
-     */
-    isReadOnly?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAttribute
-     */
-    isMultiValued?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAttribute
-     */
-    isVisible?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeAttribute
-     */
-    order?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttribute
-     */
-    displayGroup: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAttribute
-     */
-    availableForOrderRouting?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAttribute
-     */
-    availableForDiscounts?: boolean;
+    availableForOrderRouting?: any | null;
 }
 /**
  * 
@@ -297,25 +165,6 @@ export interface CommerceRuntimeAttributeLocalizedContent {
 /**
  * 
  * @export
- * @interface CommerceRuntimeAttributeMetadataItem
- */
-export interface CommerceRuntimeAttributeMetadataItem {
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttributeMetadataItem
-     */
-    key: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttributeMetadataItem
-     */
-    value: string;
-}
-/**
- * 
- * @export
  * @interface CommerceRuntimeAttributeValidation
  */
 export interface CommerceRuntimeAttributeValidation {
@@ -324,19 +173,25 @@ export interface CommerceRuntimeAttributeValidation {
      * @type {string}
      * @memberof CommerceRuntimeAttributeValidation
      */
-    regularExpression?: string | null;
+    maxDateTime?: string | null;
     /**
      * 
      * @type {number}
      * @memberof CommerceRuntimeAttributeValidation
      */
-    minStringLength?: number | null;
+    maxNumericValue?: number | null;
     /**
      * 
      * @type {number}
      * @memberof CommerceRuntimeAttributeValidation
      */
     maxStringLength?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommerceRuntimeAttributeValidation
+     */
+    minDateTime?: string | null;
     /**
      * 
      * @type {number}
@@ -348,50 +203,13 @@ export interface CommerceRuntimeAttributeValidation {
      * @type {number}
      * @memberof CommerceRuntimeAttributeValidation
      */
-    maxNumericValue?: number | null;
+    minStringLength?: number | null;
     /**
      * 
      * @type {string}
      * @memberof CommerceRuntimeAttributeValidation
      */
-    minDateTime?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttributeValidation
-     */
-    maxDateTime?: string | null;
-}
-/**
- * 
- * @export
- * @interface CommerceRuntimeAttributeVocabularyValue
- */
-export interface CommerceRuntimeAttributeVocabularyValue {
-    /**
-     * 
-     * @type {string}
-     * @memberof CommerceRuntimeAttributeVocabularyValue
-     */
-    value: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CommerceRuntimeAttributeVocabularyValue
-     */
-    sequence?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommerceRuntimeAttributeVocabularyValue
-     */
-    isHidden?: boolean | null;
-    /**
-     * 
-     * @type {AttributeValueLocalizedContent}
-     * @memberof CommerceRuntimeAttributeVocabularyValue
-     */
-    content?: AttributeValueLocalizedContent;
+    regularExpression?: string | null;
 }
 /**
  * 
@@ -423,12 +241,6 @@ export interface CutoffHours {
      * @type {string}
      * @memberof CutoffHours
      */
-    startTime?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CutoffHours
-     */
     endTime?: string | null;
     /**
      * 
@@ -436,6 +248,12 @@ export interface CutoffHours {
      * @memberof CutoffHours
      */
     isClosed?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof CutoffHours
+     */
+    startTime?: string | null;
 }
 /**
  * 
@@ -464,16 +282,29 @@ export interface CutoffSchedule {
 export interface CutoffTimes {
     /**
      * 
-     * @type {LocationTimeZone}
-     * @memberof CutoffTimes
-     */
-    timeZone?: LocationTimeZone;
-    /**
-     * 
      * @type {Array<CutoffSchedule>}
      * @memberof CutoffTimes
      */
     schedules?: Array<CutoffSchedule> | null;
+    /**
+     * 
+     * @type {TimeZone}
+     * @memberof CutoffTimes
+     */
+    timeZone?: TimeZone;
+}
+/**
+ * 
+ * @export
+ * @interface DropShip
+ */
+export interface DropShip {
+    /**
+     * 
+     * @type {string}
+     * @memberof DropShip
+     */
+    vendorCode?: string | null;
 }
 /**
  * 
@@ -530,18 +361,6 @@ export interface Hours {
      * @type {string}
      * @memberof Hours
      */
-    label?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Hours
-     */
-    openTime?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Hours
-     */
     closeTime?: string | null;
     /**
      * 
@@ -549,6 +368,18 @@ export interface Hours {
      * @memberof Hours
      */
     isClosed?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof Hours
+     */
+    label?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Hours
+     */
+    openTime?: string | null;
 }
 /**
  * 
@@ -558,94 +389,16 @@ export interface Hours {
 export interface Location {
     /**
      * 
-     * @type {string}
+     * @type {Address}
      * @memberof Location
      */
-    code?: string | null;
-    /**
-     * 
-     * @type {Array<LocationType>}
-     * @memberof Location
-     */
-    locationTypes?: Array<LocationType> | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Location
-     */
-    name?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Location
-     */
-    description?: string | null;
-    /**
-     * 
-     * @type {CommerceRuntimeAddress}
-     * @memberof Location
-     */
-    address?: CommerceRuntimeAddress;
-    /**
-     * 
-     * @type {Coordinates}
-     * @memberof Location
-     */
-    geo?: Coordinates;
-    /**
-     * 
-     * @type {string}
-     * @memberof Location
-     */
-    phone?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Location
-     */
-    fax?: string | null;
+    address?: Address;
     /**
      * 
      * @type {boolean}
      * @memberof Location
      */
-    supportsInventory?: boolean;
-    /**
-     * 
-     * @type {Array<FulfillmentType>}
-     * @memberof Location
-     */
-    fulfillmentTypes?: Array<FulfillmentType> | null;
-    /**
-     * 
-     * @type {RegularHours}
-     * @memberof Location
-     */
-    regularHours?: RegularHours;
-    /**
-     * 
-     * @type {CutoffTimes}
-     * @memberof Location
-     */
-    cutoffTimes?: CutoffTimes;
-    /**
-     * 
-     * @type {ShippingOriginContact}
-     * @memberof Location
-     */
-    shippingOriginContact?: ShippingOriginContact;
-    /**
-     * 
-     * @type {string}
-     * @memberof Location
-     */
-    note?: string | null;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof Location
-     */
-    tags?: Array<string> | null;
+    allowFulfillmentWithNoStock?: boolean;
     /**
      * 
      * @type {Array<LocationAttribute>}
@@ -660,16 +413,40 @@ export interface Location {
     auditInfo?: AdminUserAuditInfo;
     /**
      * 
-     * @type {boolean}
+     * @type {Capacity}
      * @memberof Location
      */
-    allowFulfillmentWithNoStock?: boolean;
+    capacity?: Capacity;
+    /**
+     * 
+     * @type {string}
+     * @memberof Location
+     */
+    code?: string | null;
+    /**
+     * 
+     * @type {CutoffTimes}
+     * @memberof Location
+     */
+    cutoffTimes?: CutoffTimes;
     /**
      * 
      * @type {boolean}
      * @memberof Location
      */
-    isDisabled?: boolean;
+    deliveryConsolidation?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof Location
+     */
+    description?: string | null;
+    /**
+     * 
+     * @type {DropShip}
+     * @memberof Location
+     */
+    dropShip?: DropShip;
     /**
      * 
      * @type {boolean}
@@ -678,22 +455,22 @@ export interface Location {
     express?: boolean;
     /**
      * 
-     * @type {boolean}
+     * @type {string}
      * @memberof Location
      */
-    transferEnabled?: boolean;
+    fax?: string | null;
     /**
      * 
-     * @type {boolean}
+     * @type {Array<FulfillmentType>}
      * @memberof Location
      */
-    shipToHomeConsolidation?: boolean;
+    fulfillmentTypes?: Array<FulfillmentType> | null;
     /**
      * 
-     * @type {boolean}
+     * @type {Coordinates}
      * @memberof Location
      */
-    deliveryConsolidation?: boolean;
+    geo?: Coordinates;
     /**
      * 
      * @type {boolean}
@@ -711,13 +488,31 @@ export interface Location {
      * @type {boolean}
      * @memberof Location
      */
-    warehouseEnabled?: boolean;
+    isDisabled?: boolean;
     /**
      * 
-     * @type {boolean}
+     * @type {Array<LocationType>}
      * @memberof Location
      */
-    requiresManifest?: boolean;
+    locationTypes?: Array<LocationType> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Location
+     */
+    name?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Location
+     */
+    note?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Location
+     */
+    phone?: string | null;
     /**
      * 
      * @type {ProcessingTimes}
@@ -726,16 +521,58 @@ export interface Location {
     processingTimes?: ProcessingTimes;
     /**
      * 
+     * @type {RegularHours}
+     * @memberof Location
+     */
+    regularHours?: RegularHours;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Location
+     */
+    requiresManifest?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Location
+     */
+    shipToHomeConsolidation?: boolean;
+    /**
+     * 
+     * @type {ShippingOriginContact}
+     * @memberof Location
+     */
+    shippingOriginContact?: ShippingOriginContact;
+    /**
+     * 
      * @type {Array<SlaConfiguration>}
      * @memberof Location
      */
     slaConfigurations?: Array<SlaConfiguration> | null;
     /**
      * 
-     * @type {Capacity}
+     * @type {boolean}
      * @memberof Location
      */
-    capacity?: Capacity;
+    supportsInventory?: boolean;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof Location
+     */
+    tags?: Array<string> | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Location
+     */
+    transferEnabled?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Location
+     */
+    warehouseEnabled?: boolean;
 }
 /**
  * 
@@ -745,10 +582,16 @@ export interface Location {
 export interface LocationAttribute {
     /**
      * 
-     * @type {CommerceRuntimeAttribute}
+     * @type {LocationStorefrontAttribute}
      * @memberof LocationAttribute
      */
-    attributeDefinition?: CommerceRuntimeAttribute;
+    attributeDefinition?: LocationStorefrontAttribute;
+    /**
+     * 
+     * @type {number}
+     * @memberof LocationAttribute
+     */
+    attributeDefinitionId?: number | null;
     /**
      * 
      * @type {AdminUserAuditInfo}
@@ -761,12 +604,6 @@ export interface LocationAttribute {
      * @memberof LocationAttribute
      */
     fullyQualifiedName?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof LocationAttribute
-     */
-    attributeDefinitionId?: number | null;
     /**
      * 
      * @type {Array<any>}
@@ -782,16 +619,10 @@ export interface LocationAttribute {
 export interface LocationCollection {
     /**
      * 
-     * @type {number}
+     * @type {Array<Location>}
      * @memberof LocationCollection
      */
-    startIndex?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof LocationCollection
-     */
-    pageSize?: number;
+    items?: Array<Location> | null;
     /**
      * 
      * @type {number}
@@ -803,13 +634,227 @@ export interface LocationCollection {
      * @type {number}
      * @memberof LocationCollection
      */
-    totalCount?: number;
+    pageSize?: number;
     /**
      * 
-     * @type {Array<Location>}
+     * @type {number}
      * @memberof LocationCollection
      */
-    items?: Array<Location> | null;
+    startIndex?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof LocationCollection
+     */
+    totalCount?: number;
+}
+/**
+ * 
+ * @export
+ * @interface LocationStorefrontAttribute
+ */
+export interface LocationStorefrontAttribute {
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationStorefrontAttribute
+     */
+    adminName?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationStorefrontAttribute
+     */
+    attributeCode: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationStorefrontAttribute
+     */
+    attributeFQN?: string | null;
+    /**
+     * 
+     * @type {Array<LocationStorefrontAttributeMetadataItem>}
+     * @memberof LocationStorefrontAttribute
+     */
+    attributeMetadata?: Array<LocationStorefrontAttributeMetadataItem> | null;
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof LocationStorefrontAttribute
+     */
+    auditInfo?: AdminUserAuditInfo;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LocationStorefrontAttribute
+     */
+    availableForDiscounts?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LocationStorefrontAttribute
+     */
+    availableForOrderRouting?: boolean;
+    /**
+     * 
+     * @type {CommerceRuntimeAttributeLocalizedContent}
+     * @memberof LocationStorefrontAttribute
+     */
+    content?: CommerceRuntimeAttributeLocalizedContent;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationStorefrontAttribute
+     */
+    dataType?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationStorefrontAttribute
+     */
+    displayGroup: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof LocationStorefrontAttribute
+     */
+    id?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationStorefrontAttribute
+     */
+    inputType?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LocationStorefrontAttribute
+     */
+    isActive?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LocationStorefrontAttribute
+     */
+    isMultiValued?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LocationStorefrontAttribute
+     */
+    isReadOnly?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LocationStorefrontAttribute
+     */
+    isRequired?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LocationStorefrontAttribute
+     */
+    isVisible?: boolean | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationStorefrontAttribute
+     */
+    namespace?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof LocationStorefrontAttribute
+     */
+    order?: number | null;
+    /**
+     * 
+     * @type {CommerceRuntimeAttributeValidation}
+     * @memberof LocationStorefrontAttribute
+     */
+    validation?: CommerceRuntimeAttributeValidation;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationStorefrontAttribute
+     */
+    valueType: string;
+    /**
+     * 
+     * @type {Array<LocationStorefrontAttributeVocabularyValue>}
+     * @memberof LocationStorefrontAttribute
+     */
+    vocabularyValues?: Array<LocationStorefrontAttributeVocabularyValue> | null;
+}
+/**
+ * 
+ * @export
+ * @interface LocationStorefrontAttributeMetadataItem
+ */
+export interface LocationStorefrontAttributeMetadataItem {
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationStorefrontAttributeMetadataItem
+     */
+    key: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationStorefrontAttributeMetadataItem
+     */
+    value: string;
+}
+/**
+ * 
+ * @export
+ * @interface LocationStorefrontAttributeValueLocalizedContent
+ */
+export interface LocationStorefrontAttributeValueLocalizedContent {
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationStorefrontAttributeValueLocalizedContent
+     */
+    localeCode: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationStorefrontAttributeValueLocalizedContent
+     */
+    value: string;
+}
+/**
+ * 
+ * @export
+ * @interface LocationStorefrontAttributeVocabularyValue
+ */
+export interface LocationStorefrontAttributeVocabularyValue {
+    /**
+     * 
+     * @type {LocationStorefrontAttributeValueLocalizedContent}
+     * @memberof LocationStorefrontAttributeVocabularyValue
+     */
+    content?: LocationStorefrontAttributeValueLocalizedContent;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LocationStorefrontAttributeVocabularyValue
+     */
+    isHidden?: boolean | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof LocationStorefrontAttributeVocabularyValue
+     */
+    sequence?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationStorefrontAttributeVocabularyValue
+     */
+    value: string;
 }
 /**
  * 
@@ -819,28 +864,16 @@ export interface LocationCollection {
 export interface LocationTimeZone {
     /**
      * 
-     * @type {string}
+     * @type {any}
      * @memberof LocationTimeZone
      */
-    id?: string | null;
+    isDaylightSavingsTime?: any | null;
     /**
      * 
-     * @type {number}
+     * @type {any}
      * @memberof LocationTimeZone
      */
-    offset?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof LocationTimeZone
-     */
-    isDaylightSavingsTime?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof LocationTimeZone
-     */
-    ianaCode?: string | null;
+    offset?: any | null;
 }
 /**
  * 
@@ -848,6 +881,12 @@ export interface LocationTimeZone {
  * @interface LocationType
  */
 export interface LocationType {
+    /**
+     * 
+     * @type {AdminUserAuditInfo}
+     * @memberof LocationType
+     */
+    auditInfo?: AdminUserAuditInfo;
     /**
      * 
      * @type {string}
@@ -860,12 +899,87 @@ export interface LocationType {
      * @memberof LocationType
      */
     name?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface Operation
+ */
+export interface Operation {
     /**
      * 
-     * @type {AdminUserAuditInfo}
-     * @memberof LocationType
+     * @type {any}
+     * @memberof Operation
      */
-    auditInfo?: AdminUserAuditInfo;
+    value?: any | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Operation
+     */
+    from?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Operation
+     */
+    op?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Operation
+     */
+    path?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface Operation1
+ */
+export interface Operation1 {
+    /**
+     * 
+     * @type {string}
+     * @memberof Operation1
+     */
+    from?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Operation1
+     */
+    op?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Operation1
+     */
+    path?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface OperationBase
+ */
+export interface OperationBase {
+    /**
+     * 
+     * @type {string}
+     * @memberof OperationBase
+     */
+    from?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof OperationBase
+     */
+    op?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof OperationBase
+     */
+    path?: string | null;
 }
 /**
  * 
@@ -916,13 +1030,37 @@ export interface RegularHours {
      * @type {Hours}
      * @memberof RegularHours
      */
-    sunday?: Hours;
+    friday?: Hours;
     /**
      * 
      * @type {Hours}
      * @memberof RegularHours
      */
     monday?: Hours;
+    /**
+     * 
+     * @type {Hours}
+     * @memberof RegularHours
+     */
+    saturday?: Hours;
+    /**
+     * 
+     * @type {Hours}
+     * @memberof RegularHours
+     */
+    sunday?: Hours;
+    /**
+     * 
+     * @type {Hours}
+     * @memberof RegularHours
+     */
+    thursday?: Hours;
+    /**
+     * 
+     * @type {string}
+     * @memberof RegularHours
+     */
+    timeZone?: string | null;
     /**
      * 
      * @type {Hours}
@@ -935,30 +1073,6 @@ export interface RegularHours {
      * @memberof RegularHours
      */
     wednesday?: Hours;
-    /**
-     * 
-     * @type {Hours}
-     * @memberof RegularHours
-     */
-    thursday?: Hours;
-    /**
-     * 
-     * @type {Hours}
-     * @memberof RegularHours
-     */
-    friday?: Hours;
-    /**
-     * 
-     * @type {Hours}
-     * @memberof RegularHours
-     */
-    saturday?: Hours;
-    /**
-     * 
-     * @type {string}
-     * @memberof RegularHours
-     */
-    timeZone?: string | null;
 }
 /**
  * 
@@ -971,13 +1085,19 @@ export interface ShippingOriginContact {
      * @type {string}
      * @memberof ShippingOriginContact
      */
-    firstName?: string | null;
+    companyOrOrganization?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ShippingOriginContact
      */
-    middleNameOrInitial?: string | null;
+    email?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShippingOriginContact
+     */
+    firstName?: string | null;
     /**
      * 
      * @type {string}
@@ -989,19 +1109,13 @@ export interface ShippingOriginContact {
      * @type {string}
      * @memberof ShippingOriginContact
      */
-    companyOrOrganization?: string | null;
+    middleNameOrInitial?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ShippingOriginContact
      */
     phoneNumber?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShippingOriginContact
-     */
-    email?: string | null;
 }
 /**
  * 
@@ -1009,12 +1123,6 @@ export interface ShippingOriginContact {
  * @interface SlaConfiguration
  */
 export interface SlaConfiguration {
-    /**
-     * 
-     * @type {number}
-     * @memberof SlaConfiguration
-     */
-    slaId?: number;
     /**
      * 
      * @type {boolean}
@@ -1026,7 +1134,44 @@ export interface SlaConfiguration {
      * @type {number}
      * @memberof SlaConfiguration
      */
+    slaId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SlaConfiguration
+     */
     targetServiceLevelPercentage?: number;
+}
+/**
+ * 
+ * @export
+ * @interface TimeZone
+ */
+export interface TimeZone {
+    /**
+     * 
+     * @type {string}
+     * @memberof TimeZone
+     */
+    ianaCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof TimeZone
+     */
+    id?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof TimeZone
+     */
+    isDaylightSavingsTime?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof TimeZone
+     */
+    offset?: number;
 }
 /**
  * 
@@ -1039,13 +1184,31 @@ export interface WeeklyCutoffHours {
      * @type {CutoffHours}
      * @memberof WeeklyCutoffHours
      */
-    sunday?: CutoffHours;
+    friday?: CutoffHours;
     /**
      * 
      * @type {CutoffHours}
      * @memberof WeeklyCutoffHours
      */
     monday?: CutoffHours;
+    /**
+     * 
+     * @type {CutoffHours}
+     * @memberof WeeklyCutoffHours
+     */
+    saturday?: CutoffHours;
+    /**
+     * 
+     * @type {CutoffHours}
+     * @memberof WeeklyCutoffHours
+     */
+    sunday?: CutoffHours;
+    /**
+     * 
+     * @type {CutoffHours}
+     * @memberof WeeklyCutoffHours
+     */
+    thursday?: CutoffHours;
     /**
      * 
      * @type {CutoffHours}
@@ -1058,22 +1221,4 @@ export interface WeeklyCutoffHours {
      * @memberof WeeklyCutoffHours
      */
     wednesday?: CutoffHours;
-    /**
-     * 
-     * @type {CutoffHours}
-     * @memberof WeeklyCutoffHours
-     */
-    thursday?: CutoffHours;
-    /**
-     * 
-     * @type {CutoffHours}
-     * @memberof WeeklyCutoffHours
-     */
-    friday?: CutoffHours;
-    /**
-     * 
-     * @type {CutoffHours}
-     * @memberof WeeklyCutoffHours
-     */
-    saturday?: CutoffHours;
 }

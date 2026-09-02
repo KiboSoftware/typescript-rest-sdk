@@ -1,9 +1,15 @@
+.openapi-generator-ignore
+apis/OrderRoutingCustomDataListApi.ts
 apis/OrderRoutingDataListApi.ts
-apis/OrderRoutingEstimatedDeliveryDateApi.ts
+apis/OrderRoutingEDDApi.ts
 apis/OrderRoutingFilterApi.ts
+apis/OrderRoutingFilterDataApi.ts
 apis/OrderRoutingGroupApi.ts
 apis/OrderRoutingLocationApi.ts
+apis/OrderRoutingScenarioApi.ts
 apis/OrderRoutingSettingsApi.ts
+apis/OrderRoutingStrategyApi.ts
+apis/OrderRoutingStrategyExportApi.ts
 apis/RoutingApi.ts
 apis/index.ts
 index.ts

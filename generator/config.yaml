@@ -1,0 +1,27 @@
+# openapi-generator config for the Kibo TypeScript REST SDK.
+#
+# Only the three files listed below come from Kibo's custom templates; models
+# and the per-API index use the stock typescript-fetch templates.
+#
+#   apis.mustache    adds the `export namespace xApiParams` request-object
+#                    types and wires each client to ../../../client-runtime
+#   runtime.mustache reduces the stock 400-line runtime to a basePathTemplate
+#                    constant, because the real runtime is hand-written in
+#                    src/client-runtime and shared by every client
+#   index.mustache   drops the stock re-exports the SDK does not use
+#
+# The templates were previously only in KiboSoftware/sdk-generator-poc, a
+# separate private repo, which is why nobody but its author could regenerate the
+# SDK. They now live in generator/templates/ alongside the code they produce.
+templateDir: generator/templates
+files:
+  apis.mustache:
+    templateType: API
+    folder: apis
+    destinationFilename: .ts
+  index.mustache:
+    destinationFilename: index.ts
+    templateType: SupportingFiles
+  runtime.mustache:
+    destinationFilename: runtime.ts
+    templateType: SupportingFiles

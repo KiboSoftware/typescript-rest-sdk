@@ -2,9 +2,9 @@
 /* eslint-disable */
 /**
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -20,7 +20,7 @@ import type {
   CatalogAdminsCategoryAttribute,
   CatalogAdminsCategoryCollection,
   CatalogAdminsCategoryPagedCollection,
-  CatalogAdminsCustomerDynamicExpression,
+  CatalogAdminsDynamicExpression,
   CategoryAttributeCollection,
 } from '../models';
 
@@ -111,11 +111,11 @@ export namespace categoriesApiParams {
     }
     export interface ValidateDynamicExpressionRequest {
         responseFields?: string;
-        catalogAdminsCustomerDynamicExpression?: CatalogAdminsCustomerDynamicExpression;
+        catalogAdminsDynamicExpression?: CatalogAdminsDynamicExpression;
     }
     export interface ValidateRealTimeDynamicExpressionRequest {
         responseFields?: string;
-        catalogAdminsCustomerDynamicExpression?: CatalogAdminsCustomerDynamicExpression;
+        catalogAdminsDynamicExpression?: CatalogAdminsDynamicExpression;
     }
 }
 /**
@@ -126,8 +126,8 @@ export namespace categoriesApiParams {
 */
 export interface CategoriesApiService {
     /**
-    * dds a new category to the catalog\'s category hierarchy. Specify a ParentCategoryID to determine where to locate the category in the hierarchy; if not specified it becomes a top-level category.
-    * @summary Add category
+    * Adds a new category to the catalog\'s category hierarchy. Specify a ParentCategoryID to determine where to locate the category in the hierarchy; if not specified it becomes a top-level category. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". 
+    * @summary Add Category
     * @param {boolean} [incrementSequence] Sets the sequence number of the category to the current max sequence value plus 1 (e.g. 5 + 1 &#x3D; 6)
     * @param {boolean} [useProvidedId] If true, the provided Id value will be used as the CategoryId. If omitted or false, the system will generate a CategoryId
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -139,14 +139,14 @@ export interface CategoriesApiService {
     addCategoryRaw(requestParameters: categoriesApiParams.AddCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategory>>;
 
     /**
-    * dds a new category to the catalog\'s category hierarchy. Specify a ParentCategoryID to determine where to locate the category in the hierarchy; if not specified it becomes a top-level category.
-    * Add category
+    * Adds a new category to the catalog\'s category hierarchy. Specify a ParentCategoryID to determine where to locate the category in the hierarchy; if not specified it becomes a top-level category. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". 
+    * Add Category
     */
     addCategory(requestParameters: categoriesApiParams.AddCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategory>;
 
     /**
-    * Adds a new category attribute to the category.
-    * @summary Add category attribute
+    * Adds a new category attribute to the category. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Add Category Attribute
     * @param {number} categoryId 
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {CatalogAdminsCategoryAttribute} [catalogAdminsCategoryAttribute] 
@@ -157,14 +157,14 @@ export interface CategoriesApiService {
     addCategoryAttributeRaw(requestParameters: categoriesApiParams.AddCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryAttribute>>;
 
     /**
-    * Adds a new category attribute to the category.
-    * Add category attribute
+    * Adds a new category attribute to the category. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Add Category Attribute
     */
     addCategoryAttribute(requestParameters: categoriesApiParams.AddCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryAttribute>;
 
     /**
     * Adds the products in the provided product code list to the specified category.
-    * @summary Add products to category
+    * @summary Add Products to Category
     * @param {number} categoryId Unique identifier of the category that you want produts added to.
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {Array<string>} [requestBody] A list of products to be added to the category.
@@ -176,13 +176,13 @@ export interface CategoriesApiService {
 
     /**
     * Adds the products in the provided product code list to the specified category.
-    * Add products to category
+    * Add Products to Category
     */
     addProductsToCategory(requestParameters: categoriesApiParams.AddProductsToCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
     * Deletes the category attribute specified by its attributeFQN.
-    * @summary Delete category attribute
+    * @summary Delete Category Attribute
     * @param {number} categoryId 
     * @param {string} attributeFQN 
     * @param {*} [options] Override http request option.
@@ -193,13 +193,13 @@ export interface CategoriesApiService {
 
     /**
     * Deletes the category attribute specified by its attributeFQN.
-    * Delete category attribute
+    * Delete Category Attribute
     */
     deleteCategoryAttribute(requestParameters: categoriesApiParams.DeleteCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * Deletes the category specified by its category ID.
-    * @summary Delete category
+    * Deletes the category specified by its category ID. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Delete Category
     * @param {number} categoryId Unique identifier of the category that you want to delete.
     * @param {boolean} [cascadeDelete] If true, any subcategories of a category are deleted when this category is deleted. Otherwise only the given category is deleted. Default is false.
     * @param {boolean} [forceDelete] If true, category (and optionally subcategories) will be deleted even if there are products referecing them.  Default is false.
@@ -211,14 +211,14 @@ export interface CategoriesApiService {
     deleteCategoryByIdRaw(requestParameters: categoriesApiParams.DeleteCategoryByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * Deletes the category specified by its category ID.
-    * Delete category
+    * Deletes the category specified by its category ID. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Delete Category
     */
     deleteCategoryById(requestParameters: categoriesApiParams.DeleteCategoryByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * Retrieves a list of categories according to any specified filter criteria and sort options.
-    * @summary Get categories
+    * Retrieves a list of categories according to any specified filter criteria and sort options. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". 
+    * @summary Get Categories
     * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. The default value is 0.
     * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200.
     * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order.
@@ -233,14 +233,14 @@ export interface CategoriesApiService {
     getCategoriesRaw(requestParameters: categoriesApiParams.GetCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryPagedCollection>>;
 
     /**
-    * Retrieves a list of categories according to any specified filter criteria and sort options.
-    * Get categories
+    * Retrieves a list of categories according to any specified filter criteria and sort options. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". 
+    * Get Categories
     */
     getCategories(requestParameters: categoriesApiParams.GetCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryPagedCollection>;
 
     /**
-    * Retrieves the details of a single category.
-    * @summary Get category
+    * Retrieves the details of a single category. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Get Category
     * @param {number} categoryId Unique identifier of the category.
     * @param {boolean} [includeAttributes] 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -251,14 +251,14 @@ export interface CategoriesApiService {
     getCategoryRaw(requestParameters: categoriesApiParams.GetCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategory>>;
 
     /**
-    * Retrieves the details of a single category.
-    * Get category
+    * Retrieves the details of a single category. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Get Category
     */
     getCategory(requestParameters: categoriesApiParams.GetCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategory>;
 
     /**
-    * Retrieves the details of a single category attribute.
-    * @summary Get category attribute
+    * Retrieves the details of a single category attribute. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Get Category Attribute
     * @param {number} categoryId 
     * @param {string} attributeFQN 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -269,14 +269,14 @@ export interface CategoriesApiService {
     getCategoryAttributeRaw(requestParameters: categoriesApiParams.GetCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryAttribute>>;
 
     /**
-    * Retrieves the details of a single category attribute.
-    * Get category attribute
+    * Retrieves the details of a single category attribute. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Get Category Attribute
     */
     getCategoryAttribute(requestParameters: categoriesApiParams.GetCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryAttribute>;
 
     /**
-    * Retrieves a list of category attributes.
-    * @summary Get category attributes
+    * Retrieves a list of category attributes. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Get Category Attributes
     * @param {number} categoryId 
     * @param {number} [startIndex] 
     * @param {number} [pageSize] 
@@ -290,14 +290,14 @@ export interface CategoriesApiService {
     getCategoryAttributesRaw(requestParameters: categoriesApiParams.GetCategoryAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CategoryAttributeCollection>>;
 
     /**
-    * Retrieves a list of category attributes.
-    * Get category attributes
+    * Retrieves a list of category attributes. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Get Category Attributes
     */
     getCategoryAttributes(requestParameters: categoriesApiParams.GetCategoryAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryAttributeCollection>;
 
     /**
-    * Retrieves the immediate subcategories of a category.
-    * @summary Get child categories
+    * Retrieves the immediate subcategories of a category. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Get Child Categories
     * @param {number} categoryId Unique identifier of the category whose subcategories you want to get.
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
@@ -307,14 +307,14 @@ export interface CategoriesApiService {
     getChildCategoriesRaw(requestParameters: categoriesApiParams.GetChildCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryCollection>>;
 
     /**
-    * Retrieves the immediate subcategories of a category.
-    * Get child categories
+    * Retrieves the immediate subcategories of a category. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Get Child Categories
     */
     getChildCategories(requestParameters: categoriesApiParams.GetChildCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryCollection>;
 
     /**
     * Removes the products in the provided product code list from the specified category.
-    * @summary Remove products from category
+    * @summary Remove Products from Category
     * @param {number} categoryId Unique identifier of the category that you want products removed from.
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {Array<string>} [requestBody] A list of products to be removed from the category.
@@ -326,12 +326,12 @@ export interface CategoriesApiService {
 
     /**
     * Removes the products in the provided product code list from the specified category.
-    * Remove products from category
+    * Remove Products from Category
     */
     removeProductsFromCategory(requestParameters: categoriesApiParams.RemoveProductsFromCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * Retrieves a list of categories according to any specified filter criteria and sort options for attributes.
+    * Retrieves a list of categories according to any specified filter criteria and sort options for attributes. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". 
     * @summary Search Category Attributes
     * @param {number} [startIndex] 
     * @param {number} [pageSize] 
@@ -347,14 +347,14 @@ export interface CategoriesApiService {
     searchCategoryAttributesRaw(requestParameters: categoriesApiParams.SearchCategoryAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryPagedCollection>>;
 
     /**
-    * Retrieves a list of categories according to any specified filter criteria and sort options for attributes.
+    * Retrieves a list of categories according to any specified filter criteria and sort options for attributes. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". 
     * Search Category Attributes
     */
     searchCategoryAttributes(requestParameters: categoriesApiParams.SearchCategoryAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryPagedCollection>;
 
     /**
-    * Modifies a category such as moving it to another location in the category tree, or changing          whether it is visible on the storefront. This PUT replaces the existing resource, so be sure          to include all the information that you want to maintain for the category. Any unspecified          properties are set to null.
-    * @summary Update category
+    * Modifies a category such as moving it to another location in the category tree, or changing whether it is visible on the storefront. This PUT replaces the existing resource, so be sure to include all the information that you want to maintain for the category. Any unspecified properties are set to null.<br><br>This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Update Category
     * @param {number} categoryId Unique identifier of the category that you want to modify. Required.
     * @param {boolean} [cascadeVisibility] If true, when changing the display option for the category, change it for all subcategories also. Optional.
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -366,14 +366,14 @@ export interface CategoriesApiService {
     updateCategoryRaw(requestParameters: categoriesApiParams.UpdateCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategory>>;
 
     /**
-    * Modifies a category such as moving it to another location in the category tree, or changing          whether it is visible on the storefront. This PUT replaces the existing resource, so be sure          to include all the information that you want to maintain for the category. Any unspecified          properties are set to null.
-    * Update category
+    * Modifies a category such as moving it to another location in the category tree, or changing whether it is visible on the storefront. This PUT replaces the existing resource, so be sure to include all the information that you want to maintain for the category. Any unspecified properties are set to null.<br><br>This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Update Category
     */
     updateCategory(requestParameters: categoriesApiParams.UpdateCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategory>;
 
     /**
-    * Modifies the category attribute.
-    * @summary Update category attribute
+    * Modifies the category attribute. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Update Category Attribute
     * @param {number} categoryId 
     * @param {string} attributeFQN 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -385,44 +385,44 @@ export interface CategoriesApiService {
     updateCategoryAttributeRaw(requestParameters: categoriesApiParams.UpdateCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCategoryAttribute>>;
 
     /**
-    * Modifies the category attribute.
-    * Update category attribute
+    * Modifies the category attribute. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Update Category Attribute
     */
     updateCategoryAttribute(requestParameters: categoriesApiParams.UpdateCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryAttribute>;
 
     /**
-    * 
-    * @summary Validate dynamic category expression
+    * Validate an expression for a dynamic category.
+    * @summary Validate Dynamic Category Expression
     * @param {string} [responseFields] limits which fields are returned in the response body
-    * @param {CatalogAdminsCustomerDynamicExpression} [catalogAdminsCustomerDynamicExpression] 
+    * @param {CatalogAdminsDynamicExpression} [catalogAdminsDynamicExpression] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof CategoriesApiInterface
     */
-    validateDynamicExpressionRaw(requestParameters: categoriesApiParams.ValidateDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCustomerDynamicExpression>>;
+    validateDynamicExpressionRaw(requestParameters: categoriesApiParams.ValidateDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDynamicExpression>>;
 
     /**
-    * 
-    * Validate dynamic category expression
+    * Validate an expression for a dynamic category.
+    * Validate Dynamic Category Expression
     */
-    validateDynamicExpression(requestParameters: categoriesApiParams.ValidateDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCustomerDynamicExpression>;
+    validateDynamicExpression(requestParameters: categoriesApiParams.ValidateDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDynamicExpression>;
 
     /**
-    * 
-    * @summary Validate realtime dynamic category expression
+    * Validate an expression for a realtime dynamic category.
+    * @summary Validate Realtime Dynamic Category Expression
     * @param {string} [responseFields] limits which fields are returned in the response body
-    * @param {CatalogAdminsCustomerDynamicExpression} [catalogAdminsCustomerDynamicExpression] 
+    * @param {CatalogAdminsDynamicExpression} [catalogAdminsDynamicExpression] 
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     * @memberof CategoriesApiInterface
     */
-    validateRealTimeDynamicExpressionRaw(requestParameters: categoriesApiParams.ValidateRealTimeDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCustomerDynamicExpression>>;
+    validateRealTimeDynamicExpressionRaw(requestParameters: categoriesApiParams.ValidateRealTimeDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDynamicExpression>>;
 
     /**
-    * 
-    * Validate realtime dynamic category expression
+    * Validate an expression for a realtime dynamic category.
+    * Validate Realtime Dynamic Category Expression
     */
-    validateRealTimeDynamicExpression(requestParameters: categoriesApiParams.ValidateRealTimeDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCustomerDynamicExpression>;
+    validateRealTimeDynamicExpression(requestParameters: categoriesApiParams.ValidateRealTimeDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDynamicExpression>;
 
 }
 
@@ -436,8 +436,8 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
         this.basePathTemplate = basePathTemplate
     }
     /**
-     * dds a new category to the catalog\'s category hierarchy. Specify a ParentCategoryID to determine where to locate the category in the hierarchy; if not specified it becomes a top-level category.
-     * Add category
+     * Adds a new category to the catalog\'s category hierarchy. Specify a ParentCategoryID to determine where to locate the category in the hierarchy; if not specified it becomes a top-level category. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". 
+     * Add Category
      */
 
 
@@ -462,8 +462,6 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -478,8 +476,8 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
     }
 
     /**
-     * dds a new category to the catalog\'s category hierarchy. Specify a ParentCategoryID to determine where to locate the category in the hierarchy; if not specified it becomes a top-level category.
-     * Add category
+     * Adds a new category to the catalog\'s category hierarchy. Specify a ParentCategoryID to determine where to locate the category in the hierarchy; if not specified it becomes a top-level category. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". 
+     * Add Category
      */
     async addCategory(requestParameters: categoriesApiParams.AddCategoryRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategory> {
         const response = await this.addCategoryRaw(requestParameters, initOverrides);
@@ -487,8 +485,8 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
     }
 
     /**
-     * Adds a new category attribute to the category.
-     * Add category attribute
+     * Adds a new category attribute to the category. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Add Category Attribute
      */
 
 
@@ -509,8 +507,6 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -525,8 +521,8 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
     }
 
     /**
-     * Adds a new category attribute to the category.
-     * Add category attribute
+     * Adds a new category attribute to the category. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Add Category Attribute
      */
     async addCategoryAttribute(requestParameters: categoriesApiParams.AddCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryAttribute> {
         const response = await this.addCategoryAttributeRaw(requestParameters, initOverrides);
@@ -535,7 +531,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
 
     /**
      * Adds the products in the provided product code list to the specified category.
-     * Add products to category
+     * Add Products to Category
      */
 
 
@@ -556,8 +552,6 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -573,7 +567,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
 
     /**
      * Adds the products in the provided product code list to the specified category.
-     * Add products to category
+     * Add Products to Category
      */
     async addProductsToCategory(requestParameters: categoriesApiParams.AddProductsToCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.addProductsToCategoryRaw(requestParameters, initOverrides);
@@ -581,7 +575,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
 
     /**
      * Deletes the category attribute specified by its attributeFQN.
-     * Delete category attribute
+     * Delete Category Attribute
      */
 
 
@@ -600,8 +594,6 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -616,15 +608,15 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
 
     /**
      * Deletes the category attribute specified by its attributeFQN.
-     * Delete category attribute
+     * Delete Category Attribute
      */
     async deleteCategoryAttribute(requestParameters: categoriesApiParams.DeleteCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteCategoryAttributeRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Deletes the category specified by its category ID.
-     * Delete category
+     * Deletes the category specified by its category ID. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Delete Category
      */
 
 
@@ -651,8 +643,6 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -666,16 +656,16 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
     }
 
     /**
-     * Deletes the category specified by its category ID.
-     * Delete category
+     * Deletes the category specified by its category ID. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Delete Category
      */
     async deleteCategoryById(requestParameters: categoriesApiParams.DeleteCategoryByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteCategoryByIdRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Retrieves a list of categories according to any specified filter criteria and sort options.
-     * Get categories
+     * Retrieves a list of categories according to any specified filter criteria and sort options. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". 
+     * Get Categories
      */
 
 
@@ -714,8 +704,6 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -729,8 +717,8 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
     }
 
     /**
-     * Retrieves a list of categories according to any specified filter criteria and sort options.
-     * Get categories
+     * Retrieves a list of categories according to any specified filter criteria and sort options. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". 
+     * Get Categories
      */
     async getCategories(requestParameters: categoriesApiParams.GetCategoriesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryPagedCollection> {
         const response = await this.getCategoriesRaw(requestParameters, initOverrides);
@@ -738,8 +726,8 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
     }
 
     /**
-     * Retrieves the details of a single category.
-     * Get category
+     * Retrieves the details of a single category. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Get Category
      */
 
 
@@ -762,8 +750,6 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -777,8 +763,8 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
     }
 
     /**
-     * Retrieves the details of a single category.
-     * Get category
+     * Retrieves the details of a single category. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Get Category
      */
     async getCategory(requestParameters: categoriesApiParams.GetCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategory> {
         const response = await this.getCategoryRaw(requestParameters, initOverrides);
@@ -786,8 +772,8 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
     }
 
     /**
-     * Retrieves the details of a single category attribute.
-     * Get category attribute
+     * Retrieves the details of a single category attribute. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Get Category Attribute
      */
 
 
@@ -810,8 +796,6 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -825,8 +809,8 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
     }
 
     /**
-     * Retrieves the details of a single category attribute.
-     * Get category attribute
+     * Retrieves the details of a single category attribute. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Get Category Attribute
      */
     async getCategoryAttribute(requestParameters: categoriesApiParams.GetCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryAttribute> {
         const response = await this.getCategoryAttributeRaw(requestParameters, initOverrides);
@@ -834,8 +818,8 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
     }
 
     /**
-     * Retrieves a list of category attributes.
-     * Get category attributes
+     * Retrieves a list of category attributes. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Get Category Attributes
      */
 
 
@@ -870,8 +854,6 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -885,8 +867,8 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
     }
 
     /**
-     * Retrieves a list of category attributes.
-     * Get category attributes
+     * Retrieves a list of category attributes. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Get Category Attributes
      */
     async getCategoryAttributes(requestParameters: categoriesApiParams.GetCategoryAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryAttributeCollection> {
         const response = await this.getCategoryAttributesRaw(requestParameters, initOverrides);
@@ -894,8 +876,8 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
     }
 
     /**
-     * Retrieves the immediate subcategories of a category.
-     * Get child categories
+     * Retrieves the immediate subcategories of a category. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Get Child Categories
      */
 
 
@@ -914,8 +896,6 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -929,8 +909,8 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
     }
 
     /**
-     * Retrieves the immediate subcategories of a category.
-     * Get child categories
+     * Retrieves the immediate subcategories of a category. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Get Child Categories
      */
     async getChildCategories(requestParameters: categoriesApiParams.GetChildCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryCollection> {
         const response = await this.getChildCategoriesRaw(requestParameters, initOverrides);
@@ -939,7 +919,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
 
     /**
      * Removes the products in the provided product code list from the specified category.
-     * Remove products from category
+     * Remove Products from Category
      */
 
 
@@ -960,8 +940,6 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -977,14 +955,14 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
 
     /**
      * Removes the products in the provided product code list from the specified category.
-     * Remove products from category
+     * Remove Products from Category
      */
     async removeProductsFromCategory(requestParameters: categoriesApiParams.RemoveProductsFromCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.removeProductsFromCategoryRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Retrieves a list of categories according to any specified filter criteria and sort options for attributes.
+     * Retrieves a list of categories according to any specified filter criteria and sort options for attributes. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". 
      * Search Category Attributes
      */
 
@@ -1024,8 +1002,6 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1039,7 +1015,7 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
     }
 
     /**
-     * Retrieves a list of categories according to any specified filter criteria and sort options for attributes.
+     * Retrieves a list of categories according to any specified filter criteria and sort options for attributes. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". 
      * Search Category Attributes
      */
     async searchCategoryAttributes(requestParameters: categoriesApiParams.SearchCategoryAttributesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryPagedCollection> {
@@ -1048,8 +1024,8 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
     }
 
     /**
-     * Modifies a category such as moving it to another location in the category tree, or changing          whether it is visible on the storefront. This PUT replaces the existing resource, so be sure          to include all the information that you want to maintain for the category. Any unspecified          properties are set to null.
-     * Update category
+     * Modifies a category such as moving it to another location in the category tree, or changing whether it is visible on the storefront. This PUT replaces the existing resource, so be sure to include all the information that you want to maintain for the category. Any unspecified properties are set to null.<br><br>This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Update Category
      */
 
 
@@ -1074,8 +1050,6 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1090,8 +1064,8 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
     }
 
     /**
-     * Modifies a category such as moving it to another location in the category tree, or changing          whether it is visible on the storefront. This PUT replaces the existing resource, so be sure          to include all the information that you want to maintain for the category. Any unspecified          properties are set to null.
-     * Update category
+     * Modifies a category such as moving it to another location in the category tree, or changing whether it is visible on the storefront. This PUT replaces the existing resource, so be sure to include all the information that you want to maintain for the category. Any unspecified properties are set to null.<br><br>This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Update Category
      */
     async updateCategory(requestParameters: categoriesApiParams.UpdateCategoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategory> {
         const response = await this.updateCategoryRaw(requestParameters, initOverrides);
@@ -1099,8 +1073,8 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
     }
 
     /**
-     * Modifies the category attribute.
-     * Update category attribute
+     * Modifies the category attribute. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Update Category Attribute
      */
 
 
@@ -1125,8 +1099,6 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1141,8 +1113,8 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
     }
 
     /**
-     * Modifies the category attribute.
-     * Update category attribute
+     * Modifies the category attribute. This current version of the Categories API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Update Category Attribute
      */
     async updateCategoryAttribute(requestParameters: categoriesApiParams.UpdateCategoryAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCategoryAttribute> {
         const response = await this.updateCategoryAttributeRaw(requestParameters, initOverrides);
@@ -1150,12 +1122,12 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
     }
 
     /**
-     * 
-     * Validate dynamic category expression
+     * Validate an expression for a dynamic category.
+     * Validate Dynamic Category Expression
      */
 
 
-    async validateDynamicExpressionRaw(requestParameters: categoriesApiParams.ValidateDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCustomerDynamicExpression>> {
+    async validateDynamicExpressionRaw(requestParameters: categoriesApiParams.ValidateDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDynamicExpression>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -1165,8 +1137,6 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-
 
 
 
@@ -1177,28 +1147,28 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters.catalogAdminsCustomerDynamicExpression,
+            body: requestParameters.catalogAdminsDynamicExpression,
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response);
     }
 
     /**
-     * 
-     * Validate dynamic category expression
+     * Validate an expression for a dynamic category.
+     * Validate Dynamic Category Expression
      */
-    async validateDynamicExpression(requestParameters: categoriesApiParams.ValidateDynamicExpressionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCustomerDynamicExpression> {
+    async validateDynamicExpression(requestParameters: categoriesApiParams.ValidateDynamicExpressionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDynamicExpression> {
         const response = await this.validateDynamicExpressionRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * 
-     * Validate realtime dynamic category expression
+     * Validate an expression for a realtime dynamic category.
+     * Validate Realtime Dynamic Category Expression
      */
 
 
-    async validateRealTimeDynamicExpressionRaw(requestParameters: categoriesApiParams.ValidateRealTimeDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsCustomerDynamicExpression>> {
+    async validateRealTimeDynamicExpressionRaw(requestParameters: categoriesApiParams.ValidateRealTimeDynamicExpressionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CatalogAdminsDynamicExpression>> {
         const queryParameters: any = {};
 
         if (requestParameters.responseFields !== undefined) {
@@ -1211,8 +1181,6 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1220,17 +1188,17 @@ export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiServi
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters.catalogAdminsCustomerDynamicExpression,
+            body: requestParameters.catalogAdminsDynamicExpression,
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response);
     }
 
     /**
-     * 
-     * Validate realtime dynamic category expression
+     * Validate an expression for a realtime dynamic category.
+     * Validate Realtime Dynamic Category Expression
      */
-    async validateRealTimeDynamicExpression(requestParameters: categoriesApiParams.ValidateRealTimeDynamicExpressionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsCustomerDynamicExpression> {
+    async validateRealTimeDynamicExpression(requestParameters: categoriesApiParams.ValidateRealTimeDynamicExpressionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CatalogAdminsDynamicExpression> {
         const response = await this.validateRealTimeDynamicExpressionRaw(requestParameters, initOverrides);
         return await response.value();
     }

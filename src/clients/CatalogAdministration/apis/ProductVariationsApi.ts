@@ -2,9 +2,9 @@
 /* eslint-disable */
 /**
  * Kibo Catalog Admin Services
- * OpenAPI Spec for Kibo Catalog Admin Services
+ * <div id=\"overview_CATALOG_ADMIN\">             <h2>CATALOG ADMINISTRATION</h2>             <p>The Catalog Administration APIs are a collection of resources for configuring the catalogs and products offered to your shoppers, including                 discounts and coupon sets, faceting, price lists, and different types or variations of products. See the                 <a href=\"/concept-guides/catalog\">Catalog user guides</a>                 for information about the related features in the Unified Commerce Admin.</p>             <p>Use the <strong>Attributes</strong> resource to manage localization and attribute configurations for your catalogs. This current version of the Attributes API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access attribute data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Categories</strong> resource to organize products and control where they appear on the storefront. Create                 and maintain a hierarchy of categories and subcategories where the site will store properties. This current version of the Categories API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access category data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Coupon Sets</strong> resource to view and create coupon sets. You can use coupon sets to group multiple                 coupon codes together and associate them with one or more discounts.</p>             <p>Use the <strong>Currency</strong> resource to manage the currency localization rules and exchange rates for any of the                 currencies that are supported for placing orders in.</p>             <p>Use the <strong>Discounts</strong> and <strong>Discount Settings</strong> resources to define and manage discounts to apply to products, product categories, or                 orders. This current version of the Discounts API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access discount data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\". </p>             <p>Use the <strong>Facets</strong> resource to manage the facets shoppers use to filter product display results on a                 storefront. Facets can include categories, product attributes, or prices, and use either a range of                 values or discrete values.</p>             <p>Use the <strong>Master Catalog</strong> resource to view details of the master catalogs associated with a tenant and to                 manage the product publishing mode for each master catalog.</p>             <p>Use the <strong>Price Lists</strong> resources to view and create price lists. You can use price lists to override the                 catalog pricing of products for specific customer segments and/or sites.</p>             <p>Use the <strong>Products</strong>, <strong>Product Types/Extras/Options/Properties</strong>, and <strong>Product Sort Definitions</strong> resources to create new product definitions in the master catalog and determine which                 catalogs will feature products. This current version of the Products API includes localizedContent to                 support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the legacy Products API model. If                 you were a client prior to May 2024 and have upgraded your implementation to support this feature,                 you can still access product data that has not yet been rewritten to the new model by providing                 an x-api-version header set to \"1\".</p>             <p>Use the <strong>Publishing</strong> resource to publish pending product updates together as part of a set.</p>             <p>Use the <strong>Search</strong> resource to manage all settings and options for providing product search on your site, as                 well as search tuning rules.</p>         </div>
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: v1
  * 
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
@@ -132,8 +132,8 @@ export namespace productVariationsApiParams {
 */
 export interface ProductVariationsApiService {
     /**
-    * 
-    * @summary Add product variation localized delta price
+    * Add a product variation localized delta price.
+    * @summary Add Product Variation Localized Delta Price
     * @param {string} productCode 
     * @param {string} variationKey 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -145,14 +145,14 @@ export interface ProductVariationsApiService {
     addProductVariationLocalizedDeltaPriceRaw(requestParameters: productVariationsApiParams.AddProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationDeltaPrice>>;
 
     /**
-    * 
-    * Add product variation localized delta price
+    * Add a product variation localized delta price.
+    * Add Product Variation Localized Delta Price
     */
     addProductVariationLocalizedDeltaPrice(requestParameters: productVariationsApiParams.AddProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationDeltaPrice>;
 
     /**
-    * 
-    * @summary Add product variation localized price
+    * Add a product variation localized price.
+    * @summary Add Product Variation Localized Price
     * @param {string} productCode 
     * @param {string} variationKey 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -164,14 +164,14 @@ export interface ProductVariationsApiService {
     addProductVariationLocalizedPriceRaw(requestParameters: productVariationsApiParams.AddProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationFixedPrice>>;
 
     /**
-    * 
-    * Add product variation localized price
+    * Add a product variation localized price.
+    * Add Product Variation Localized Price
     */
     addProductVariationLocalizedPrice(requestParameters: productVariationsApiParams.AddProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationFixedPrice>;
 
     /**
-    * Deletes an existing product variation.
-    * @summary Delete product variation
+    * Deletes an existing product variation. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Delete Product Variation
     * @param {string} productCode Merchant-created code associated with the product, for example, a SKU. Required.
     * @param {string} variationKey Unique identifier for a single product variation. System-supplied and read-only.
     * @param {*} [options] Override http request option.
@@ -181,14 +181,14 @@ export interface ProductVariationsApiService {
     deleteProductVariationRaw(requestParameters: productVariationsApiParams.DeleteProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * Deletes an existing product variation.
-    * Delete product variation
+    * Deletes an existing product variation. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Delete Product Variation
     */
     deleteProductVariation(requestParameters: productVariationsApiParams.DeleteProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * 
-    * @summary Delete product variation localized delta price
+    * Delete the product variation localized delta prices for a specific currency.
+    * @summary Delete Product Variation Localized Delta Price
     * @param {string} productCode 
     * @param {string} variationKey 
     * @param {string} currencyCode 
@@ -199,14 +199,14 @@ export interface ProductVariationsApiService {
     deleteProductVariationLocalizedDeltaPriceRaw(requestParameters: productVariationsApiParams.DeleteProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * 
-    * Delete product variation localized delta price
+    * Delete the product variation localized delta prices for a specific currency.
+    * Delete Product Variation Localized Delta Price
     */
     deleteProductVariationLocalizedDeltaPrice(requestParameters: productVariationsApiParams.DeleteProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * 
-    * @summary Delete product variation localized price
+    * Delete the product variation localized price for a specific currency code.
+    * @summary Delete Product Variation Localized Price by Currency
     * @param {string} productCode 
     * @param {string} variationKey 
     * @param {string} currencyCode 
@@ -217,14 +217,14 @@ export interface ProductVariationsApiService {
     deleteProductVariationLocalizedPriceRaw(requestParameters: productVariationsApiParams.DeleteProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-    * 
-    * Delete product variation localized price
+    * Delete the product variation localized price for a specific currency code.
+    * Delete Product Variation Localized Price by Currency
     */
     deleteProductVariationLocalizedPrice(requestParameters: productVariationsApiParams.DeleteProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-    * Retrieves an existing product variation for a specific product and variation key.
-    * @summary Get product variation
+    * Retrieves an existing product variation for a specific product and variation key. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". 
+    * @summary Get Product Variation
     * @param {string} productCode Merchant-created code associated with the product, for example, a SKU. Required.
     * @param {string} variationKey Unique identifier for a single product variation. System-supplied and read-only.
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -235,14 +235,14 @@ export interface ProductVariationsApiService {
     getProductVariationRaw(requestParameters: productVariationsApiParams.GetProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariation>>;
 
     /**
-    * Retrieves an existing product variation for a specific product and variation key.
-    * Get product variation
+    * Retrieves an existing product variation for a specific product and variation key. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". 
+    * Get Product Variation
     */
     getProductVariation(requestParameters: productVariationsApiParams.GetProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariation>;
 
     /**
-    * 
-    * @summary Get product variation localized delta price
+    * Retrieve the product variation localized delta prices for a specific currency.
+    * @summary Get Product Variation Localized Delta Price
     * @param {string} productCode 
     * @param {string} variationKey 
     * @param {string} currencyCode 
@@ -254,14 +254,14 @@ export interface ProductVariationsApiService {
     getProductVariationLocalizedDeltaPriceRaw(requestParameters: productVariationsApiParams.GetProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationDeltaPrice>>;
 
     /**
-    * 
-    * Get product variation localized delta price
+    * Retrieve the product variation localized delta prices for a specific currency.
+    * Get Product Variation Localized Delta Price
     */
     getProductVariationLocalizedDeltaPrice(requestParameters: productVariationsApiParams.GetProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationDeltaPrice>;
 
     /**
-    * 
-    * @summary Get product variation localized delta prices
+    * Get product variation localized delta prices.
+    * @summary Get Product Variation Localized Delta Prices
     * @param {string} productCode 
     * @param {string} variationKey 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -272,14 +272,14 @@ export interface ProductVariationsApiService {
     getProductVariationLocalizedDeltaPricesRaw(requestParameters: productVariationsApiParams.GetProductVariationLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductVariationDeltaPrice>>>;
 
     /**
-    * 
-    * Get product variation localized delta prices
+    * Get product variation localized delta prices.
+    * Get Product Variation Localized Delta Prices
     */
     getProductVariationLocalizedDeltaPrices(requestParameters: productVariationsApiParams.GetProductVariationLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductVariationDeltaPrice>>;
 
     /**
-    * 
-    * @summary Get product variation localized price
+    * Get the product variation localized price for a specific currency code.
+    * @summary Get Product Variation Localized Price by Currency
     * @param {string} productCode 
     * @param {string} variationKey 
     * @param {string} currencyCode 
@@ -291,14 +291,14 @@ export interface ProductVariationsApiService {
     getProductVariationLocalizedPriceRaw(requestParameters: productVariationsApiParams.GetProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationFixedPrice>>;
 
     /**
-    * 
-    * Get product variation localized price
+    * Get the product variation localized price for a specific currency code.
+    * Get Product Variation Localized Price by Currency
     */
     getProductVariationLocalizedPrice(requestParameters: productVariationsApiParams.GetProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationFixedPrice>;
 
     /**
-    * 
-    * @summary Get product variation localized prices
+    * Get product variation localized prices.
+    * @summary Get Product Variation Localized Prices
     * @param {string} productCode 
     * @param {string} variationKey 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -309,19 +309,19 @@ export interface ProductVariationsApiService {
     getProductVariationLocalizedPricesRaw(requestParameters: productVariationsApiParams.GetProductVariationLocalizedPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductVariationFixedPrice>>>;
 
     /**
-    * 
-    * Get product variation localized prices
+    * Get product variation localized prices.
+    * Get Product Variation Localized Prices
     */
     getProductVariationLocalizedPrices(requestParameters: productVariationsApiParams.GetProductVariationLocalizedPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductVariationFixedPrice>>;
 
     /**
-    * Retrieves a paged list of product variations for a specific product according to any specified filter criteria and sort options.
-    * @summary Get product variations
+    * Retrieves a paged list of product variations for a specific product according to any specified filter criteria and sort options. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". 
+    * @summary Get Product Variations
     * @param {string} productCode Merchant-supplied code associated with the product, for example, a SKU. Required.
-    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set  where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items,  startIndex&#x3D;3. The default value is 0. Optional.
-    * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a  query. The default value is 20 and the maximum value is 200. Optional.
-    * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending  (a-z) or descending (z-a) order. Optional.
-    * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not  equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D;  starts with, or cont &#x3D; contains. Optional.
+    * @param {number} [startIndex] Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex&#x3D;3. The default value is 0. Optional.
+    * @param {number} [pageSize] Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+    * @param {string} [sortBy] The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+    * @param {string} [filter] A set of filter expressions representing the search parameters for a query: eq&#x3D;equals, ne&#x3D;not equals, gt&#x3D;greater than, lt &#x3D; less than or equals, gt &#x3D; greater than or equals, lt &#x3D; less than or equals, sw &#x3D; starts with, or cont &#x3D; contains. Optional.
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
@@ -330,14 +330,14 @@ export interface ProductVariationsApiService {
     getProductVariationsRaw(requestParameters: productVariationsApiParams.GetProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationPagedCollection>>;
 
     /**
-    * Retrieves a paged list of product variations for a specific product according to any specified filter criteria and sort options.
-    * Get product variations
+    * Retrieves a paged list of product variations for a specific product according to any specified filter criteria and sort options. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". 
+    * Get Product Variations
     */
     getProductVariations(requestParameters: productVariationsApiParams.GetProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationPagedCollection>;
 
     /**
-    * Modifies an existing product variation specified by its variation key. Typically used to change the price or               inventory count of an existing product variation. Read-only options are ignored.
-    * @summary Update product variation
+    * Modifies an existing product variation specified by its variation key. Typically used to change the price or inventory count of an existing product variation. Read-only options are ignored.<br><br>This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Update Product Variation
     * @param {string} productCode Merchant-created code associated with the product, for example, a SKU. Required.
     * @param {string} variationKey Unique identifier for a single variation. System-supplied and read-only.
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -349,14 +349,14 @@ export interface ProductVariationsApiService {
     updateProductVariationRaw(requestParameters: productVariationsApiParams.UpdateProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariation>>;
 
     /**
-    * Modifies an existing product variation specified by its variation key. Typically used to change the price or               inventory count of an existing product variation. Read-only options are ignored.
-    * Update product variation
+    * Modifies an existing product variation specified by its variation key. Typically used to change the price or inventory count of an existing product variation. Read-only options are ignored.<br><br>This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Update Product Variation
     */
     updateProductVariation(requestParameters: productVariationsApiParams.UpdateProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariation>;
 
     /**
-    * 
-    * @summary Update product variation localized delta price
+    * Update the product variation localized delta prices for a specific currency.
+    * @summary Update Product Variation Localized Delta Price
     * @param {string} productCode 
     * @param {string} variationKey 
     * @param {string} currencyCode 
@@ -369,14 +369,14 @@ export interface ProductVariationsApiService {
     updateProductVariationLocalizedDeltaPriceRaw(requestParameters: productVariationsApiParams.UpdateProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationDeltaPrice>>;
 
     /**
-    * 
-    * Update product variation localized delta price
+    * Update the product variation localized delta prices for a specific currency.
+    * Update Product Variation Localized Delta Price
     */
     updateProductVariationLocalizedDeltaPrice(requestParameters: productVariationsApiParams.UpdateProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationDeltaPrice>;
 
     /**
-    * 
-    * @summary Update product variation localized delta prices
+    * Update product variation localized delta prices.
+    * @summary Update Product Variation Localized Delta Prices
     * @param {string} productCode 
     * @param {string} variationKey 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -388,14 +388,14 @@ export interface ProductVariationsApiService {
     updateProductVariationLocalizedDeltaPricesRaw(requestParameters: productVariationsApiParams.UpdateProductVariationLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductVariationDeltaPrice>>>;
 
     /**
-    * 
-    * Update product variation localized delta prices
+    * Update product variation localized delta prices.
+    * Update Product Variation Localized Delta Prices
     */
     updateProductVariationLocalizedDeltaPrices(requestParameters: productVariationsApiParams.UpdateProductVariationLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductVariationDeltaPrice>>;
 
     /**
-    * 
-    * @summary Update product variation localized price
+    * Update the product variation localized price for a specific currency code.
+    * @summary Update Product Variation Localized Price by Currency
     * @param {string} productCode 
     * @param {string} variationKey 
     * @param {string} currencyCode 
@@ -408,14 +408,14 @@ export interface ProductVariationsApiService {
     updateProductVariationLocalizedPriceRaw(requestParameters: productVariationsApiParams.UpdateProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationFixedPrice>>;
 
     /**
-    * 
-    * Update product variation localized price
+    * Update the product variation localized price for a specific currency code.
+    * Update Product Variation Localized Price by Currency
     */
     updateProductVariationLocalizedPrice(requestParameters: productVariationsApiParams.UpdateProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationFixedPrice>;
 
     /**
-    * 
-    * @summary Update product variation localized prices
+    * Update product variation localized prices
+    * @summary Update Product Variation Localized Prices
     * @param {string} productCode 
     * @param {string} variationKey 
     * @param {string} [responseFields] limits which fields are returned in the response body
@@ -427,14 +427,14 @@ export interface ProductVariationsApiService {
     updateProductVariationLocalizedPricesRaw(requestParameters: productVariationsApiParams.UpdateProductVariationLocalizedPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProductVariationFixedPrice>>>;
 
     /**
-    * 
     * Update product variation localized prices
+    * Update Product Variation Localized Prices
     */
     updateProductVariationLocalizedPrices(requestParameters: productVariationsApiParams.UpdateProductVariationLocalizedPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductVariationFixedPrice>>;
 
     /**
-    * Modifies multiple product variations for an existing product in one operation. Use to set IsActive to true for               variations that represent configurable options for sale. Also use to change the price or inventory count of an               existing product variation. Read-only options are ignored.
-    * @summary Update product variations
+    * Modifies multiple product variations for an existing product in one operation. Use to set IsActive to true for variations that represent configurable options for sale. Also use to change the price or inventory count of an existing product variation. Read-only options are ignored.<br><br>This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * @summary Update Product Variations
     * @param {string} productCode Merchant-supplied code associated with the product, for example, a SKU. Required.
     * @param {string} [responseFields] limits which fields are returned in the response body
     * @param {ProductVariationCollection} [productVariationCollection] Properties of the product variations that you are modifying. Required.
@@ -445,8 +445,8 @@ export interface ProductVariationsApiService {
     updateProductVariationsRaw(requestParameters: productVariationsApiParams.UpdateProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVariationCollection>>;
 
     /**
-    * Modifies multiple product variations for an existing product in one operation. Use to set IsActive to true for               variations that represent configurable options for sale. Also use to change the price or inventory count of an               existing product variation. Read-only options are ignored.
-    * Update product variations
+    * Modifies multiple product variations for an existing product in one operation. Use to set IsActive to true for variations that represent configurable options for sale. Also use to change the price or inventory count of an existing product variation. Read-only options are ignored.<br><br>This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+    * Update Product Variations
     */
     updateProductVariations(requestParameters: productVariationsApiParams.UpdateProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationCollection>;
 
@@ -462,8 +462,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
         this.basePathTemplate = basePathTemplate
     }
     /**
-     * 
-     * Add product variation localized delta price
+     * Add a product variation localized delta price.
+     * Add Product Variation Localized Delta Price
      */
 
 
@@ -488,8 +488,6 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -504,8 +502,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * 
-     * Add product variation localized delta price
+     * Add a product variation localized delta price.
+     * Add Product Variation Localized Delta Price
      */
     async addProductVariationLocalizedDeltaPrice(requestParameters: productVariationsApiParams.AddProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationDeltaPrice> {
         const response = await this.addProductVariationLocalizedDeltaPriceRaw(requestParameters, initOverrides);
@@ -513,8 +511,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * 
-     * Add product variation localized price
+     * Add a product variation localized price.
+     * Add Product Variation Localized Price
      */
 
 
@@ -539,8 +537,6 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -555,8 +551,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * 
-     * Add product variation localized price
+     * Add a product variation localized price.
+     * Add Product Variation Localized Price
      */
     async addProductVariationLocalizedPrice(requestParameters: productVariationsApiParams.AddProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationFixedPrice> {
         const response = await this.addProductVariationLocalizedPriceRaw(requestParameters, initOverrides);
@@ -564,8 +560,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * Deletes an existing product variation.
-     * Delete product variation
+     * Deletes an existing product variation. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Delete Product Variation
      */
 
 
@@ -584,8 +580,6 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -599,16 +593,16 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * Deletes an existing product variation.
-     * Delete product variation
+     * Deletes an existing product variation. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Delete Product Variation
      */
     async deleteProductVariation(requestParameters: productVariationsApiParams.DeleteProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteProductVariationRaw(requestParameters, initOverrides);
     }
 
     /**
-     * 
-     * Delete product variation localized delta price
+     * Delete the product variation localized delta prices for a specific currency.
+     * Delete Product Variation Localized Delta Price
      */
 
 
@@ -631,8 +625,6 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -646,16 +638,16 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * 
-     * Delete product variation localized delta price
+     * Delete the product variation localized delta prices for a specific currency.
+     * Delete Product Variation Localized Delta Price
      */
     async deleteProductVariationLocalizedDeltaPrice(requestParameters: productVariationsApiParams.DeleteProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteProductVariationLocalizedDeltaPriceRaw(requestParameters, initOverrides);
     }
 
     /**
-     * 
-     * Delete product variation localized price
+     * Delete the product variation localized price for a specific currency code.
+     * Delete Product Variation Localized Price by Currency
      */
 
 
@@ -678,8 +670,6 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -693,16 +683,16 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * 
-     * Delete product variation localized price
+     * Delete the product variation localized price for a specific currency code.
+     * Delete Product Variation Localized Price by Currency
      */
     async deleteProductVariationLocalizedPrice(requestParameters: productVariationsApiParams.DeleteProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteProductVariationLocalizedPriceRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Retrieves an existing product variation for a specific product and variation key.
-     * Get product variation
+     * Retrieves an existing product variation for a specific product and variation key. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". 
+     * Get Product Variation
      */
 
 
@@ -725,8 +715,6 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -740,8 +728,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * Retrieves an existing product variation for a specific product and variation key.
-     * Get product variation
+     * Retrieves an existing product variation for a specific product and variation key. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". 
+     * Get Product Variation
      */
     async getProductVariation(requestParameters: productVariationsApiParams.GetProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariation> {
         const response = await this.getProductVariationRaw(requestParameters, initOverrides);
@@ -749,8 +737,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * 
-     * Get product variation localized delta price
+     * Retrieve the product variation localized delta prices for a specific currency.
+     * Get Product Variation Localized Delta Price
      */
 
 
@@ -777,8 +765,6 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -792,8 +778,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * 
-     * Get product variation localized delta price
+     * Retrieve the product variation localized delta prices for a specific currency.
+     * Get Product Variation Localized Delta Price
      */
     async getProductVariationLocalizedDeltaPrice(requestParameters: productVariationsApiParams.GetProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationDeltaPrice> {
         const response = await this.getProductVariationLocalizedDeltaPriceRaw(requestParameters, initOverrides);
@@ -801,8 +787,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * 
-     * Get product variation localized delta prices
+     * Get product variation localized delta prices.
+     * Get Product Variation Localized Delta Prices
      */
 
 
@@ -825,8 +811,6 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -840,8 +824,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * 
-     * Get product variation localized delta prices
+     * Get product variation localized delta prices.
+     * Get Product Variation Localized Delta Prices
      */
     async getProductVariationLocalizedDeltaPrices(requestParameters: productVariationsApiParams.GetProductVariationLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductVariationDeltaPrice>> {
         const response = await this.getProductVariationLocalizedDeltaPricesRaw(requestParameters, initOverrides);
@@ -849,8 +833,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * 
-     * Get product variation localized price
+     * Get the product variation localized price for a specific currency code.
+     * Get Product Variation Localized Price by Currency
      */
 
 
@@ -877,8 +861,6 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -892,8 +874,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * 
-     * Get product variation localized price
+     * Get the product variation localized price for a specific currency code.
+     * Get Product Variation Localized Price by Currency
      */
     async getProductVariationLocalizedPrice(requestParameters: productVariationsApiParams.GetProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationFixedPrice> {
         const response = await this.getProductVariationLocalizedPriceRaw(requestParameters, initOverrides);
@@ -901,8 +883,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * 
-     * Get product variation localized prices
+     * Get product variation localized prices.
+     * Get Product Variation Localized Prices
      */
 
 
@@ -925,8 +907,6 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -940,8 +920,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * 
-     * Get product variation localized prices
+     * Get product variation localized prices.
+     * Get Product Variation Localized Prices
      */
     async getProductVariationLocalizedPrices(requestParameters: productVariationsApiParams.GetProductVariationLocalizedPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductVariationFixedPrice>> {
         const response = await this.getProductVariationLocalizedPricesRaw(requestParameters, initOverrides);
@@ -949,8 +929,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * Retrieves a paged list of product variations for a specific product according to any specified filter criteria and sort options.
-     * Get product variations
+     * Retrieves a paged list of product variations for a specific product according to any specified filter criteria and sort options. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". 
+     * Get Product Variations
      */
 
 
@@ -985,8 +965,6 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1000,8 +978,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * Retrieves a paged list of product variations for a specific product according to any specified filter criteria and sort options.
-     * Get product variations
+     * Retrieves a paged list of product variations for a specific product according to any specified filter criteria and sort options. This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\". 
+     * Get Product Variations
      */
     async getProductVariations(requestParameters: productVariationsApiParams.GetProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationPagedCollection> {
         const response = await this.getProductVariationsRaw(requestParameters, initOverrides);
@@ -1009,8 +987,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * Modifies an existing product variation specified by its variation key. Typically used to change the price or               inventory count of an existing product variation. Read-only options are ignored.
-     * Update product variation
+     * Modifies an existing product variation specified by its variation key. Typically used to change the price or inventory count of an existing product variation. Read-only options are ignored.<br><br>This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Update Product Variation
      */
 
 
@@ -1035,8 +1013,6 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1051,8 +1027,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * Modifies an existing product variation specified by its variation key. Typically used to change the price or               inventory count of an existing product variation. Read-only options are ignored.
-     * Update product variation
+     * Modifies an existing product variation specified by its variation key. Typically used to change the price or inventory count of an existing product variation. Read-only options are ignored.<br><br>This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Update Product Variation
      */
     async updateProductVariation(requestParameters: productVariationsApiParams.UpdateProductVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariation> {
         const response = await this.updateProductVariationRaw(requestParameters, initOverrides);
@@ -1060,8 +1036,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * 
-     * Update product variation localized delta price
+     * Update the product variation localized delta prices for a specific currency.
+     * Update Product Variation Localized Delta Price
      */
 
 
@@ -1090,8 +1066,6 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1106,8 +1080,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * 
-     * Update product variation localized delta price
+     * Update the product variation localized delta prices for a specific currency.
+     * Update Product Variation Localized Delta Price
      */
     async updateProductVariationLocalizedDeltaPrice(requestParameters: productVariationsApiParams.UpdateProductVariationLocalizedDeltaPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationDeltaPrice> {
         const response = await this.updateProductVariationLocalizedDeltaPriceRaw(requestParameters, initOverrides);
@@ -1115,8 +1089,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * 
-     * Update product variation localized delta prices
+     * Update product variation localized delta prices.
+     * Update Product Variation Localized Delta Prices
      */
 
 
@@ -1141,8 +1115,6 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1157,8 +1129,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * 
-     * Update product variation localized delta prices
+     * Update product variation localized delta prices.
+     * Update Product Variation Localized Delta Prices
      */
     async updateProductVariationLocalizedDeltaPrices(requestParameters: productVariationsApiParams.UpdateProductVariationLocalizedDeltaPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductVariationDeltaPrice>> {
         const response = await this.updateProductVariationLocalizedDeltaPricesRaw(requestParameters, initOverrides);
@@ -1166,8 +1138,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * 
-     * Update product variation localized price
+     * Update the product variation localized price for a specific currency code.
+     * Update Product Variation Localized Price by Currency
      */
 
 
@@ -1196,8 +1168,6 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1212,8 +1182,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * 
-     * Update product variation localized price
+     * Update the product variation localized price for a specific currency code.
+     * Update Product Variation Localized Price by Currency
      */
     async updateProductVariationLocalizedPrice(requestParameters: productVariationsApiParams.UpdateProductVariationLocalizedPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationFixedPrice> {
         const response = await this.updateProductVariationLocalizedPriceRaw(requestParameters, initOverrides);
@@ -1221,8 +1191,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * 
      * Update product variation localized prices
+     * Update Product Variation Localized Prices
      */
 
 
@@ -1247,8 +1217,6 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1263,8 +1231,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * 
      * Update product variation localized prices
+     * Update Product Variation Localized Prices
      */
     async updateProductVariationLocalizedPrices(requestParameters: productVariationsApiParams.UpdateProductVariationLocalizedPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProductVariationFixedPrice>> {
         const response = await this.updateProductVariationLocalizedPricesRaw(requestParameters, initOverrides);
@@ -1272,8 +1240,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * Modifies multiple product variations for an existing product in one operation. Use to set IsActive to true for               variations that represent configurable options for sale. Also use to change the price or inventory count of an               existing product variation. Read-only options are ignored.
-     * Update product variations
+     * Modifies multiple product variations for an existing product in one operation. Use to set IsActive to true for variations that represent configurable options for sale. Also use to change the price or inventory count of an existing product variation. Read-only options are ignored.<br><br>This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Update Product Variations
      */
 
 
@@ -1294,8 +1262,6 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
 
 
 
-
-
         await this.addAuthorizationHeaders(headerParameters)
         
         const response = await this.request({
@@ -1310,8 +1276,8 @@ export class ProductVariationsApi extends runtime.BaseAPI implements ProductVari
     }
 
     /**
-     * Modifies multiple product variations for an existing product in one operation. Use to set IsActive to true for               variations that represent configurable options for sale. Also use to change the price or inventory count of an               existing product variation. Read-only options are ignored.
-     * Update product variations
+     * Modifies multiple product variations for an existing product in one operation. Use to set IsActive to true for variations that represent configurable options for sale. Also use to change the price or inventory count of an existing product variation. Read-only options are ignored.<br><br>This current version of the Products API includes localizedContent to support <a href=\"/pages/catalog-structure#multi-locale-catalogs\">multi-locale catalogs</a>, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to \"1\".
+     * Update Product Variations
      */
     async updateProductVariations(requestParameters: productVariationsApiParams.UpdateProductVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVariationCollection> {
         const response = await this.updateProductVariationsRaw(requestParameters, initOverrides);
