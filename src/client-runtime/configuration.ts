@@ -9,7 +9,6 @@ import {
 } from '../utilities'
 import { APIAuthClient } from '@kibocommerce/sdk-authentication'
 import { TenantManager } from './tenant-data-manager'
-import fetch from 'isomorphic-fetch'
 import type { FetchAPI, Middleware, HTTPQuery, HTTPHeaders } from './index'
 import type { ApiContext, ConfigurationParameters } from '../types'
 import { KiboApiContext, KiboHostedContext } from './api-context'
@@ -24,7 +23,7 @@ export class Configuration {
   constructor(params: ConfigurationParameters) {
     this.isKiboHosted = isKiboHosted()
     this.middleware = params.middleware || []
-    this.fetchApi = params.fetchApi || fetch
+    this.fetchApi = params.fetchApi || fetch.bind(globalThis)
     if (this.isKiboHosted) {
       this.context = new KiboHostedContext(params.apiContext)
     } else {
@@ -45,7 +44,7 @@ export class Configuration {
           this.fetchApi,
           cacheHandler as any
         )
-        this._tenantDataManager = new TenantManager(this._authClient, authHost, params.fetchApi)
+        this._tenantDataManager = new TenantManager(this._authClient, authHost, this.fetchApi)
       }
     }
   }
