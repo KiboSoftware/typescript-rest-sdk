@@ -38,7 +38,7 @@ export namespace filesApiParams {
         fileType?: string;
         fileName?: string;
         responseFields?: string;
-        body?: Blob;
+        body?: Blob | Buffer;
     }
 }
 /**
